@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P20WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P20WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P20WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P20WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P20WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P20WcfService_GetF1929WithF1909Tests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909Tests" />
+  </wsdl:message>
+  <wsdl:message name="P20WcfService_GetF1929WithF1909Tests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909TestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P20WcfService_InsertP200101ByAdjustType0_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP200101ByAdjustType0" />
+  </wsdl:message>
+  <wsdl:message name="P20WcfService_InsertP200101ByAdjustType0_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP200101ByAdjustType0Response" />
+  </wsdl:message>
+  <wsdl:message name="P20WcfService_InsertP200101ByAdjustType1_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP200101ByAdjustType1" />
+  </wsdl:message>
+  <wsdl:message name="P20WcfService_InsertP200101ByAdjustType1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP200101ByAdjustType1Response" />
+  </wsdl:message>
+  <wsdl:message name="P20WcfService_ImportF1913DataItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1913DataItems" />
+  </wsdl:message>
+  <wsdl:message name="P20WcfService_ImportF1913DataItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1913DataItemsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P20WcfService">
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <wsdl:input wsaw:Action="http://tempuri.org/P20WcfService/GetF1929WithF1909Tests" message="tns:P20WcfService_GetF1929WithF1909Tests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P20WcfService/GetF1929WithF1909TestsResponse" message="tns:P20WcfService_GetF1929WithF1909Tests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP200101ByAdjustType0">
+      <wsdl:input wsaw:Action="http://tempuri.org/P20WcfService/InsertP200101ByAdjustType0" message="tns:P20WcfService_InsertP200101ByAdjustType0_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P20WcfService/InsertP200101ByAdjustType0Response" message="tns:P20WcfService_InsertP200101ByAdjustType0_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP200101ByAdjustType1">
+      <wsdl:input wsaw:Action="http://tempuri.org/P20WcfService/InsertP200101ByAdjustType1" message="tns:P20WcfService_InsertP200101ByAdjustType1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P20WcfService/InsertP200101ByAdjustType1Response" message="tns:P20WcfService_InsertP200101ByAdjustType1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportF1913DataItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/P20WcfService/ImportF1913DataItems" message="tns:P20WcfService_ImportF1913DataItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P20WcfService/ImportF1913DataItemsResponse" message="tns:P20WcfService_ImportF1913DataItems_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P20WcfService" type="tns:P20WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <soap:operation soapAction="http://tempuri.org/P20WcfService/GetF1929WithF1909Tests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP200101ByAdjustType0">
+      <soap:operation soapAction="http://tempuri.org/P20WcfService/InsertP200101ByAdjustType0" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP200101ByAdjustType1">
+      <soap:operation soapAction="http://tempuri.org/P20WcfService/InsertP200101ByAdjustType1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportF1913DataItems">
+      <soap:operation soapAction="http://tempuri.org/P20WcfService/ImportF1913DataItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P20WcfService">
+    <wsdl:port name="BasicHttpBinding_P20WcfService" binding="tns:BasicHttpBinding_P20WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P20WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

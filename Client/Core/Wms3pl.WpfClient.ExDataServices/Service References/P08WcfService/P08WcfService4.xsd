@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Shared.ServiceEntites" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Shared.ServiceEntites" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+  <xs:complexType name="PackgeCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddQty" type="xs:int" />
+      <xs:element minOccurs="0" name="BoxNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellNum" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" minOccurs="0" name="F050301s" nillable="true" type="q1:ArrayOfF050301" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" minOccurs="0" name="F050801Item" nillable="true" type="q2:F050801" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" minOccurs="0" name="F050802s" nillable="true" type="q3:ArrayOfF050802" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" minOccurs="0" name="F1903s" nillable="true" type="q4:ArrayOfF1903" />
+      <xs:element minOccurs="0" name="InputCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackageBoxNo" type="xs:short" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackgeCode" nillable="true" type="tns:PackgeCode" />
+  <xs:complexType name="FinishCurrentBoxExecuteResult">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" minOccurs="0" name="F050801Data" nillable="true" type="q5:F050801" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" minOccurs="0" name="F055001Data" nillable="true" type="q6:F055001" />
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LMSMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinishCurrentBoxExecuteResult" nillable="true" type="tns:FinishCurrentBoxExecuteResult" />
+</xs:schema>

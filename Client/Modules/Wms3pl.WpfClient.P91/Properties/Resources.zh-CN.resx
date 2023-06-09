@@ -1,0 +1,1416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccumulateDamageQty" xml:space="preserve">
+    <value>累计损坏数</value>
+  </data>
+  <data name="AccumulateScanned" xml:space="preserve">
+    <value>累积实刷数</value>
+  </data>
+  <data name="AccumulateScannedGoodQty" xml:space="preserve">
+    <value>累积实刷成品数</value>
+  </data>
+  <data name="ACT" xml:space="preserve">
+    <value>动作</value>
+  </data>
+  <data name="ACT_ANALYSIS" xml:space="preserve">
+    <value>动作分析</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>新增明细</value>
+  </data>
+  <data name="AddPickQty" xml:space="preserve">
+    <value>新增拣料数</value>
+  </data>
+  <data name="ALLOCATION_NO" xml:space="preserve">
+    <value>调拨单号</value>
+  </data>
+  <data name="APPLY_PRICE" xml:space="preserve">
+    <value>货主加工申请价</value>
+  </data>
+  <data name="APPROVED_PRICE" xml:space="preserve">
+    <value>货主加工核定价</value>
+  </data>
+  <data name="APPROVE_PRICE" xml:space="preserve">
+    <value>核定价(元)</value>
+  </data>
+  <data name="AProcessQty" xml:space="preserve">
+    <value>预计加工数</value>
+  </data>
+  <data name="A_ITEM_BOM_QTY" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="A_ITEM_COMBIN_ORDERE" xml:space="preserve">
+    <value>组合项目</value>
+  </data>
+  <data name="A_PROCESS_QTY" xml:space="preserve">
+    <value>实际完成数</value>
+  </data>
+  <data name="BACK_DATE" xml:space="preserve">
+    <value>回仓日期</value>
+  </data>
+  <data name="BACK_ITEM" xml:space="preserve">
+    <value>回仓商品</value>
+  </data>
+  <data name="BACK_QTY_DETAIL" xml:space="preserve">
+    <value>回仓历史明细</value>
+  </data>
+  <data name="BadBackQty" xml:space="preserve">
+    <value>损坏已回仓数</value>
+  </data>
+  <data name="Bom" xml:space="preserve">
+    <value>编订组合</value>
+  </data>
+  <data name="BomMaintain" xml:space="preserve">
+    <value>BOM表维护</value>
+  </data>
+  <data name="BOM_NAME" xml:space="preserve">
+    <value>组合说明</value>
+  </data>
+  <data name="BOM_QTY" xml:space="preserve">
+    <value>需用数量</value>
+  </data>
+  <data name="BOM_TYPE" xml:space="preserve">
+    <value>组合性质</value>
+  </data>
+  <data name="BOM_TYPE_NAME" xml:space="preserve">
+    <value>组合类别</value>
+  </data>
+  <data name="BoxUnit" xml:space="preserve">
+    <value>箱最小单位数</value>
+  </data>
+  <data name="BOX_NO" xml:space="preserve">
+    <value>盒号</value>
+  </data>
+  <data name="BOX_QTY" xml:space="preserve">
+    <value>盒最小单位量</value>
+  </data>
+  <data name="BProcessQty" xml:space="preserve">
+    <value>累计加工数</value>
+  </data>
+  <data name="BREAK_BACK_QTY" xml:space="preserve">
+    <value>损坏回仓数</value>
+  </data>
+  <data name="BREAK_QTY" xml:space="preserve">
+    <value>损坏总数</value>
+  </data>
+  <data name="Build_Process" xml:space="preserve">
+    <value>建立加工单</value>
+  </data>
+  <data name="BUNDLE_SERIALNO" xml:space="preserve">
+    <value>序号控管</value>
+  </data>
+  <data name="CancelAct" xml:space="preserve">
+    <value>取消动作</value>
+  </data>
+  <data name="CancelConsume" xml:space="preserve">
+    <value>取消耗材</value>
+  </data>
+  <data name="CardQC" xml:space="preserve">
+    <value>卡片QC</value>
+  </data>
+  <data name="CASE_NO" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="CASE_QTY" xml:space="preserve">
+    <value>箱最小单位量</value>
+  </data>
+  <data name="CHECK_STAFF" xml:space="preserve">
+    <value>检验员</value>
+  </data>
+  <data name="ChooseSTOPLabel" xml:space="preserve">
+    <value>预选站别标签</value>
+  </data>
+  <data name="CLOSE_CYCLE" xml:space="preserve">
+    <value>结算周期</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="Combination" xml:space="preserve">
+    <value>组合</value>
+  </data>
+  <data name="CombineItem" xml:space="preserve">
+    <value>组合商品</value>
+  </data>
+  <data name="CombineItemList" xml:space="preserve">
+    <value>组合商品清单</value>
+  </data>
+  <data name="CombineItemSource" xml:space="preserve">
+    <value>组合商品物料表</value>
+  </data>
+  <data name="COMBIN_ORDER" xml:space="preserve">
+    <value>拆解顺序</value>
+  </data>
+  <data name="COMBIN_SORT" xml:space="preserve">
+    <value>组合顺序</value>
+  </data>
+  <data name="CompleteQty" xml:space="preserve">
+    <value>完成数</value>
+  </data>
+  <data name="Consumables_Statistic" xml:space="preserve">
+    <value>耗材统计</value>
+  </data>
+  <data name="Contactor" xml:space="preserve">
+    <value>联络人</value>
+  </data>
+  <data name="ContractCopy" xml:space="preserve">
+    <value>复制合约</value>
+  </data>
+  <data name="ContractDetail" xml:space="preserve">
+    <value>合约项目</value>
+  </data>
+  <data name="ContractMaintain" xml:space="preserve">
+    <value>合约管理维护</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>合约对象</value>
+  </data>
+  <data name="ContractorInfo" xml:space="preserve">
+    <value>合约对象资讯</value>
+  </data>
+  <data name="CONTRACT_Detail" xml:space="preserve">
+    <value>项目明细</value>
+  </data>
+  <data name="CONTRACT_TYPENAME" xml:space="preserve">
+    <value>合约分类</value>
+  </data>
+  <data name="CopyQuote" xml:space="preserve">
+    <value>复制报价单</value>
+  </data>
+  <data name="COST_PRICE" xml:space="preserve">
+    <value>成本价</value>
+  </data>
+  <data name="CProcessQty" xml:space="preserve">
+    <value>实际加工数</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立时间</value>
+  </data>
+  <data name="CUST_CODE" xml:space="preserve">
+    <value>货主</value>
+  </data>
+  <data name="Cust_Item_Code" xml:space="preserve">
+    <value>客户品号</value>
+  </data>
+  <data name="CYCLE_DATE" xml:space="preserve">
+    <value>结算日</value>
+  </data>
+  <data name="DamageQty" xml:space="preserve">
+    <value>损坏数</value>
+  </data>
+  <data name="DC_CODE" xml:space="preserve">
+    <value>加工单维护</value>
+  </data>
+  <data name="DC_CODE1" xml:space="preserve">
+    <value>合约管理</value>
+  </data>
+  <data name="DelAct" xml:space="preserve">
+    <value>删除动作</value>
+  </data>
+  <data name="DelConsume" xml:space="preserve">
+    <value>删除耗材</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除明细</value>
+  </data>
+  <data name="DelItem" xml:space="preserve">
+    <value>删除项目</value>
+  </data>
+  <data name="DelPickQty" xml:space="preserve">
+    <value>删除拣料数</value>
+  </data>
+  <data name="DelSerialNo" xml:space="preserve">
+    <value>删除序号</value>
+  </data>
+  <data name="DISABLE_DATE" xml:space="preserve">
+    <value>失效日期</value>
+  </data>
+  <data name="DismantleItem" xml:space="preserve">
+    <value>商品拆解</value>
+  </data>
+  <data name="dismantleItemSource" xml:space="preserve">
+    <value>拆解商品物料表</value>
+  </data>
+  <data name="Dismantling" xml:space="preserve">
+    <value>拆解</value>
+  </data>
+  <data name="DUEDATE" xml:space="preserve">
+    <value>到期日:{0}</value>
+  </data>
+  <data name="DUE_DATE" xml:space="preserve">
+    <value>到期日: {0}天</value>
+  </data>
+  <data name="EditAct" xml:space="preserve">
+    <value>编辑动作</value>
+  </data>
+  <data name="EditConsume" xml:space="preserve">
+    <value>编辑耗材</value>
+  </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>修改项目</value>
+  </data>
+  <data name="EditPickQty" xml:space="preserve">
+    <value>修改拣料数</value>
+  </data>
+  <data name="ErrorQty" xml:space="preserve">
+    <value>错误数</value>
+  </data>
+  <data name="ExportExcelDetail" xml:space="preserve">
+    <value>汇入Excel明细</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>加工完成</value>
+  </data>
+  <data name="FINISH_DATE" xml:space="preserve">
+    <value>完工日期</value>
+  </data>
+  <data name="FINISH_DATE1" xml:space="preserve">
+    <value>预计完工日期</value>
+  </data>
+  <data name="FINISH_TIME" xml:space="preserve">
+    <value>完工时间</value>
+  </data>
+  <data name="GoodBackQty" xml:space="preserve">
+    <value>良品已回仓数</value>
+  </data>
+  <data name="GoodsName" xml:space="preserve">
+    <value>成品名称</value>
+  </data>
+  <data name="GOOD_BACK_QTY" xml:space="preserve">
+    <value>良品回仓数</value>
+  </data>
+  <data name="GUP_NAME" xml:space="preserve">
+    <value>业主</value>
+  </data>
+  <data name="ImportExcel" xml:space="preserve">
+    <value>汇入序号</value>
+  </data>
+  <data name="InpVNRCode" xml:space="preserve">
+    <value>厂商资讯</value>
+  </data>
+  <data name="InsertAct" xml:space="preserve">
+    <value>新增动作</value>
+  </data>
+  <data name="InsertConsume" xml:space="preserve">
+    <value>新增耗材</value>
+  </data>
+  <data name="InsertItem" xml:space="preserve">
+    <value>新增项目</value>
+  </data>
+  <data name="ISPROCESS" xml:space="preserve">
+    <value>是否加工</value>
+  </data>
+  <data name="ItemBomName" xml:space="preserve">
+    <value>组合名称</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>成品编号</value>
+  </data>
+  <data name="ItemInfo" xml:space="preserve">
+    <value>商品资讯</value>
+  </data>
+  <data name="ITEMNAME" xml:space="preserve">
+    <value>项目名称</value>
+  </data>
+  <data name="ItemSerialNo" xml:space="preserve">
+    <value>商品序号</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="ITEM_CODE1" xml:space="preserve">
+    <value>厂商编号</value>
+  </data>
+  <data name="ITEM_CODE_BOM" xml:space="preserve">
+    <value>组合编号</value>
+  </data>
+  <data name="ITEM_DESC" xml:space="preserve">
+    <value>物料说明</value>
+  </data>
+  <data name="ITEM_DESC_A" xml:space="preserve">
+    <value>物料说明1</value>
+  </data>
+  <data name="ITEM_DESC_B" xml:space="preserve">
+    <value>物料说明2</value>
+  </data>
+  <data name="ITEM_DESC_C" xml:space="preserve">
+    <value>物料说明3</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ITEM_NAME1" xml:space="preserve">
+    <value>商名品称</value>
+  </data>
+  <data name="Item_Status" xml:space="preserve">
+    <value>商品状态</value>
+  </data>
+  <data name="ITEM_TYPE_NAME" xml:space="preserve">
+    <value>项目类别</value>
+  </data>
+  <data name="Item__Code" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ITEM__NAME" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>标签编号</value>
+  </data>
+  <data name="LABEL_CODE" xml:space="preserve">
+    <value>标签类型</value>
+  </data>
+  <data name="LABEL_NAME" xml:space="preserve">
+    <value>标签名称</value>
+  </data>
+  <data name="Line" xml:space="preserve">
+    <value>选择生产线</value>
+  </data>
+  <data name="LTYPE" xml:space="preserve">
+    <value>大分类</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="NET_RATE" xml:space="preserve">
+    <value>毛利率(%)</value>
+  </data>
+  <data name="NONE_Select" xml:space="preserve">
+    <value>不指定</value>
+  </data>
+  <data name="NotBackQty" xml:space="preserve">
+    <value>未回仓数</value>
+  </data>
+  <data name="ORDER_NO" xml:space="preserve">
+    <value>进仓单号</value>
+  </data>
+  <data name="OUTSOURCE" xml:space="preserve">
+    <value>委外商代号</value>
+  </data>
+  <data name="OutsourceId" xml:space="preserve">
+    <value>委外商</value>
+  </data>
+  <data name="OUTSOURCE_COST" xml:space="preserve">
+    <value>成本价(元)</value>
+  </data>
+  <data name="PACKAGE_DESC" xml:space="preserve">
+    <value>包装叙述</value>
+  </data>
+  <data name="PackingWork" xml:space="preserve">
+    <value>装盒/箱作业</value>
+  </data>
+  <data name="PackUnit" xml:space="preserve">
+    <value>盒最小单位数</value>
+  </data>
+  <data name="PASS" xml:space="preserve">
+    <value>通过</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>核准</value>
+  </data>
+  <data name="Pick" xml:space="preserve">
+    <value>开立拣料单</value>
+  </data>
+  <data name="PickQty" xml:space="preserve">
+    <value>拣料数</value>
+  </data>
+  <data name="PickWarehouseId_Qty" xml:space="preserve">
+    <value>拣料仓别与数量</value>
+  </data>
+  <data name="Pick_Item" xml:space="preserve">
+    <value>拣料商品</value>
+  </data>
+  <data name="PrintLBSet" xml:space="preserve">
+    <value>预选标签</value>
+  </data>
+  <data name="PrintOrder" xml:space="preserve">
+    <value>列印顺序</value>
+  </data>
+  <data name="PrintSet" xml:space="preserve">
+    <value>列印设定</value>
+  </data>
+  <data name="PROCCNT" xml:space="preserve">
+    <value>未结案工单数</value>
+  </data>
+  <data name="ProcessNo" xml:space="preserve">
+    <value>加工单编号</value>
+  </data>
+  <data name="ProcessQty" xml:space="preserve">
+    <value>加工数</value>
+  </data>
+  <data name="ProcessREPrintLabel" xml:space="preserve">
+    <value>加工补印标签</value>
+  </data>
+  <data name="ProcessStatus" xml:space="preserve">
+    <value>单据状态</value>
+  </data>
+  <data name="ProcessType" xml:space="preserve">
+    <value>单据类别</value>
+  </data>
+  <data name="Process_Act" xml:space="preserve">
+    <value>加工动作</value>
+  </data>
+  <data name="Process_Inspect" xml:space="preserve">
+    <value>加工检验(%)</value>
+  </data>
+  <data name="Process_Instruction" xml:space="preserve">
+    <value>加工说明</value>
+  </data>
+  <data name="Process_ItemQty" xml:space="preserve">
+    <value>加工料数</value>
+  </data>
+  <data name="PROCESS_NO" xml:space="preserve">
+    <value>加工单号</value>
+  </data>
+  <data name="PROCESS_QTY" xml:space="preserve">
+    <value>加工数量</value>
+  </data>
+  <data name="PROCESS_SET" xml:space="preserve">
+    <value>加工项目设定</value>
+  </data>
+  <data name="PROCESS_SOURCE" xml:space="preserve">
+    <value>加工单来源</value>
+  </data>
+  <data name="PROCESS_SUBCONTRACTOR" xml:space="preserve">
+    <value>加工委外商</value>
+  </data>
+  <data name="PROC_TYPE" xml:space="preserve">
+    <value>单据类型</value>
+  </data>
+  <data name="PRODUCE_DESC" xml:space="preserve">
+    <value>生产线说明</value>
+  </data>
+  <data name="PRODUCE_IP" xml:space="preserve">
+    <value>生产线IP</value>
+  </data>
+  <data name="PRODUCE_NAME" xml:space="preserve">
+    <value>生产线名称</value>
+  </data>
+  <data name="PRODUCE_NO" xml:space="preserve">
+    <value>生产线编号</value>
+  </data>
+  <data name="QCWork" xml:space="preserve">
+    <value>盒/箱QC作业</value>
+  </data>
+  <data name="Quote" xml:space="preserve">
+    <value>报价单动作与耗材</value>
+  </data>
+  <data name="QuoteMaintain" xml:space="preserve">
+    <value>报价单维护</value>
+  </data>
+  <data name="RePrintLabel" xml:space="preserve">
+    <value>补印标签</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>上架回仓</value>
+  </data>
+  <data name="SameGroupNo" xml:space="preserve">
+    <value>同组编号</value>
+  </data>
+  <data name="SaveAct" xml:space="preserve">
+    <value>储存动作</value>
+  </data>
+  <data name="SaveConsume" xml:space="preserve">
+    <value>储存耗材</value>
+  </data>
+  <data name="ScaleMachine" xml:space="preserve">
+    <value>磅秤机测试</value>
+  </data>
+  <data name="Scan" xml:space="preserve">
+    <value>应刷数</value>
+  </data>
+  <data name="ScanLocal" xml:space="preserve">
+    <value>本机刷验数</value>
+  </data>
+  <data name="ScannedGoodQty" xml:space="preserve">
+    <value>实刷成品数</value>
+  </data>
+  <data name="ScannedItem_Code" xml:space="preserve">
+    <value>请刷读商品序号</value>
+  </data>
+  <data name="ScannedQty" xml:space="preserve">
+    <value>实刷数</value>
+  </data>
+  <data name="SearchCONTRACT_NO" xml:space="preserve">
+    <value>合约编号</value>
+  </data>
+  <data name="SearchItem" xml:space="preserve">
+    <value>序号刷验</value>
+  </data>
+  <data name="SearchQuoteNo" xml:space="preserve">
+    <value>报价单编号</value>
+  </data>
+  <data name="SearchStartEnableDate" xml:space="preserve">
+    <value>生效日期</value>
+  </data>
+  <data name="SelectedF1980" xml:space="preserve">
+    <value>指派仓别</value>
+  </data>
+  <data name="SelectedItemType" xml:space="preserve">
+    <value>回仓品项明细</value>
+  </data>
+  <data name="SelectObjectType" xml:space="preserve">
+    <value>费用</value>
+  </data>
+  <data name="SerailNo" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="SetLabel" xml:space="preserve">
+    <value>品号标签设定</value>
+  </data>
+  <data name="SimCardSpec" xml:space="preserve">
+    <value>SIM卡规格</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="Spec" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="SPEC_DESC" xml:space="preserve">
+    <value>规格说明</value>
+  </data>
+  <data name="STANDARD" xml:space="preserve">
+    <value>耗用基准</value>
+  </data>
+  <data name="STANDARD_COST" xml:space="preserve">
+    <value>标准费用</value>
+  </data>
+  <data name="StartCirculateProcess" xml:space="preserve">
+    <value>启动流通加工</value>
+  </data>
+  <data name="StartDt" xml:space="preserve">
+    <value>加工单建立日</value>
+  </data>
+  <data name="StartFinishDt" xml:space="preserve">
+    <value>预计完工日</value>
+  </data>
+  <data name="Startprocessing" xml:space="preserve">
+    <value>启动加工</value>
+  </data>
+  <data name="StockQty" xml:space="preserve">
+    <value>库存数</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>联络电话</value>
+  </data>
+  <data name="TYPE" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="UnfinishedCount" xml:space="preserve">
+    <value>未完成数</value>
+  </data>
+  <data name="UNIT" xml:space="preserve">
+    <value>计量单位</value>
+  </data>
+  <data name="UNIT_ID" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="UNI_FORM" xml:space="preserve">
+    <value>统编</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>异动时间</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="Using" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>检视</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>列印张数</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>厂商名称</value>
+  </data>
+  <data name="WarehouseType" xml:space="preserve">
+    <value>仓别类型</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="WARRANTY_D" xml:space="preserve">
+    <value>保固日期</value>
+  </data>
+  <data name="WARRANTY_Info" xml:space="preserve">
+    <value>保固资讯</value>
+  </data>
+  <data name="WARRANTY_M" xml:space="preserve">
+    <value>保固月份</value>
+  </data>
+  <data name="WARRANTY_Range" xml:space="preserve">
+    <value>保固期限</value>
+  </data>
+  <data name="WARRANTY_S_M" xml:space="preserve">
+    <value>起始月份</value>
+  </data>
+  <data name="WARRANTY_S_Y" xml:space="preserve">
+    <value>起始年份</value>
+  </data>
+  <data name="WARRANTY_Type" xml:space="preserve">
+    <value>保固类型</value>
+  </data>
+  <data name="WARRANTY_Year" xml:space="preserve">
+    <value>保固年份</value>
+  </data>
+  <data name="WorkPrice" xml:space="preserve">
+    <value>作业单价(元)</value>
+  </data>
+  <data name="WORK_COST" xml:space="preserve">
+    <value>动作金额(元)</value>
+  </data>
+  <data name="WORK_HOUR" xml:space="preserve">
+    <value>标准工时(秒)</value>
+  </data>
+  <data name="CustMaintain" xml:space="preserve">
+    <value>货主主档维护</value>
+  </data>
+  <data name="SubContractorMaintain" xml:space="preserve">
+    <value>委外商主档维护</value>
+  </data>
+  <data name="P9101010000xamlcs_CirculateProcess" xml:space="preserve">
+    <value> 流通加工单</value>
+  </data>
+  <data name="P9101010000xamlcs_Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="P9101010000xamlcs_Message" xml:space="preserve">
+    <value>讯息</value>
+  </data>
+  <data name="P9101010000xamlcs_NoneSelect" xml:space="preserve">
+    <value>不指定</value>
+  </data>
+  <data name="P9101010000xamlcs_Process_PickOrd" xml:space="preserve">
+    <value> 加工拣料单</value>
+  </data>
+  <data name="P9101010000xamlcs_Process_Status_CantEdit" xml:space="preserve">
+    <value>此加工单状态已无法修改!</value>
+  </data>
+  <data name="P9101010000xamlcs_StartPickORD" xml:space="preserve">
+    <value>请先开立拣料单</value>
+  </data>
+  <data name="P9101010000xamlcs_StartPickORD_To_PreSelectLabel" xml:space="preserve">
+    <value>请先开立拣货单再进行预选标签</value>
+  </data>
+  <data name="P9101010000xamlcs_TransferMaintainBeforeBackWarehouse" xml:space="preserve">
+    <value>请先进行调拨单维护与再进行上架回仓</value>
+  </data>
+  <data name="P9101010000xamlcs_TransferMaintainBeforeProcess" xml:space="preserve">
+    <value>请先进行调拨单维护再进行加工完成</value>
+  </data>
+  <data name="P9101010000xamlcs_UnAuthentication" xml:space="preserve">
+    <value>无使用权限</value>
+  </data>
+  <data name="P9101010500xamlcs_ImportFail" xml:space="preserve">
+    <value>汇入失败!</value>
+  </data>
+  <data name="P9103020000xamlcs_FileCantFound" xml:space="preserve">
+    <value>找不到此档案!</value>
+  </data>
+  <data name="P9103020000xamlcs_FileNotFound" xml:space="preserve">
+    <value>档案不存在</value>
+  </data>
+  <data name="P9103020000xamlcs_ImageFilePathTooLong" xml:space="preserve">
+    <value>图档路径长度过长</value>
+  </data>
+  <data name="P9103020000xamlcs_JPGFile" xml:space="preserve">
+    <value>影像档 (*.jpg)|*.jpg</value>
+  </data>
+  <data name="P9103020000xamlcs_PrintPerson" xml:space="preserve">
+    <value>列印人员：</value>
+  </data>
+  <data name="P9103020000xamlcs_Qoute" xml:space="preserve">
+    <value>{0}-{1} 报价单</value>
+  </data>
+  <data name="P9103020000xamlcs_QouteImageFileUpload" xml:space="preserve">
+    <value>该报价单图档已上传过</value>
+  </data>
+  <data name="P9103020000xamlcs_QouteNo" xml:space="preserve">
+    <value>报价单号：</value>
+  </data>
+  <data name="P9103020000xamlcs_SelectQoute" xml:space="preserve">
+    <value>请先选择报价单</value>
+  </data>
+  <data name="P9103030000xamlcs_ClearContractDetailSet" xml:space="preserve">
+    <value>更换物流中心将会清空已设定合约项目明细</value>
+  </data>
+  <data name="P9103030000xamlcs_Contract" xml:space="preserve">
+    <value>合约单</value>
+  </data>
+  <data name="P9103030000xamlcs_NoContractor" xml:space="preserve">
+    <value>无此合约对象统编，是否於主档新增？</value>
+  </data>
+  <data name="P9103030000xamlcs_NoData" xml:space="preserve">
+    <value> 查询无资料，无法预览或列印！</value>
+  </data>
+  <data name="P9103030000xamlcs_NoOKQouto" xml:space="preserve">
+    <value>在合约有效期间内，无符合条件的报价单</value>
+  </data>
+  <data name="P9103030000xamlcs_SelectContract" xml:space="preserve">
+    <value> 尚未选择合约资料！</value>
+  </data>
+  <data name="P9101010000_ViewModel_Box" xml:space="preserve">
+    <value>盒</value>
+  </data>
+  <data name="P9101010000_ViewModel_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="P9101010000_ViewModel_FINISH_DATE_Invalid" xml:space="preserve">
+    <value>完工日期不可小於今天</value>
+  </data>
+  <data name="P9101010000_ViewModel_FINISH_TIME_Empty" xml:space="preserve">
+    <value>完工时间不可为空</value>
+  </data>
+  <data name="P9101010000_ViewModel_ITEM_CODE_Empty" xml:space="preserve">
+    <value>成品编号未输入</value>
+  </data>
+  <data name="P9101010000_ViewModel_ITEM_CODE_Error" xml:space="preserve">
+    <value>成品编号不正确</value>
+  </data>
+  <data name="P9101010000_ViewModel_NoDCInfo" xml:space="preserve">
+    <value>没有物流中心等资讯</value>
+  </data>
+  <data name="P9101010000_ViewModel_ProcessItem_Notdifine" xml:space="preserve">
+    <value>加工项目未设定</value>
+  </data>
+  <data name="P9101010000_ViewModel_PROCESS_QTY" xml:space="preserve">
+    <value>加工数量必须大於0</value>
+  </data>
+  <data name="P9101010000_ViewModel_SaveAndStartPick" xml:space="preserve">
+    <value>是否储存并开立拣料单？</value>
+  </data>
+  <data name="P9101010000_ViewModel_UnProcessed" xml:space="preserve">
+    <value>未加工</value>
+  </data>
+  <data name="P9101010100_ViewModel_PickQty" xml:space="preserve">
+    <value>拣料数总和与流通加工单加工数不符合，请确认拣料数</value>
+  </data>
+  <data name="P9101010100_ViewModel_PickQtyMustLessthanStockQty" xml:space="preserve">
+    <value>拣料数不可大於库存数</value>
+  </data>
+  <data name="P9101010100_ViewModel_ProcessStatusCantPick" xml:space="preserve">
+    <value>此加工单状态已无法开立拣料单!</value>
+  </data>
+  <data name="P9101010200_ViewModel_CantSelectProductLine" xml:space="preserve">
+    <value>此加工单状态已无法选择生产线!</value>
+  </data>
+  <data name="P9101010300_ViewModel_CantEdit" xml:space="preserve">
+    <value>此加工单状态已无法编辑!</value>
+  </data>
+  <data name="P9101010400_ViewModel_InputCorrectQty" xml:space="preserve">
+    <value>请输入正确的数量</value>
+  </data>
+  <data name="P9101010400_ViewModel_ProcessQtyAndAccumulateQtyGreaterThanRealProcessQty" xml:space="preserve">
+    <value>目前填入加工数量({0}) + 累积数量({1})已大於预计加工数量({2})</value>
+  </data>
+  <data name="P9101010400_ViewModel_ProcessQtyGreaterThanRealProcessQty" xml:space="preserve">
+    <value>目前填入加工数量:{0} 大於 实际加工数:{1}  </value>
+  </data>
+  <data name="P9101010500_ViewModel_EditSuccess" xml:space="preserve">
+    <value>修改成功! {0}</value>
+  </data>
+  <data name="P9101010500_ViewModel_FirstNeedTotalCount" xml:space="preserve">
+    <value>第一笔必须为总笔数</value>
+  </data>
+  <data name="P9101010500_ViewModel_IsSaveBackDetail" xml:space="preserve">
+    <value>回仓明细已修改，是否储存？</value>
+  </data>
+  <data name="P9101010500_ViewModel_NoEnoughWarehouse" xml:space="preserve">
+    <value>无足够仓别可供调拨！</value>
+  </data>
+  <data name="P9101010500_ViewModel_Product" xml:space="preserve">
+    <value>成品</value>
+  </data>
+  <data name="P9101010500_ViewModel_QtyIncorrect" xml:space="preserve">
+    <value>数量不正确</value>
+  </data>
+  <data name="P9101010500_ViewModel_SerialNoImportSuccess" xml:space="preserve">
+    <value>序号汇入成功</value>
+  </data>
+  <data name="P9101010500_ViewModel_Source" xml:space="preserve">
+    <value>物料</value>
+  </data>
+  <data name="P9101010500_ViewModel_TotalCountNotCorrect" xml:space="preserve">
+    <value>第一笔总笔数与内容笔数不同</value>
+  </data>
+  <data name="P9101010500_ViewModel_TransferNo" xml:space="preserve">
+    <value>调拨单号 : {0}</value>
+  </data>
+  <data name="P9103010000_ViewModel_ActionNoResponse" xml:space="preserve">
+    <value>操作无回应</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNoDuplicate" xml:space="preserve">
+    <value>组合商品编号重覆</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNoNotExist" xml:space="preserve">
+    <value>组合商品编号不存在</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNo_CNWordOnly" xml:space="preserve">
+    <value>组合编号只能输入英数</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNo_Required" xml:space="preserve">
+    <value>组合编号必须输入</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineOrderDuplicate" xml:space="preserve">
+    <value>组合顺序重覆</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineOrderGreaterThan0" xml:space="preserve">
+    <value>组合顺序需大於0</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombinNoExist" xml:space="preserve">
+    <value>该组合编号已存在，请重新输入组合编号</value>
+  </data>
+  <data name="P9103010000_ViewModel_InputCombineNo" xml:space="preserve">
+    <value>请输入组合商品编号</value>
+  </data>
+  <data name="P9103010000_ViewModel_InputProductNo" xml:space="preserve">
+    <value>请输入成品编号</value>
+  </data>
+  <data name="P9103010000_ViewModel_ProcessTest" xml:space="preserve">
+    <value>加工检验(%)只能输入0.00~100</value>
+  </data>
+  <data name="P9103010000_ViewModel_ProductNo_CNWordOnly" xml:space="preserve">
+    <value>成品编号只能输入英数</value>
+  </data>
+  <data name="P9103010000_ViewModel_ProductNo_Required" xml:space="preserve">
+    <value>成品编号必须输入</value>
+  </data>
+  <data name="P9103010000_ViewModel_QtyMoreThan0" xml:space="preserve">
+    <value>数量需大於0</value>
+  </data>
+  <data name="P9103010000_ViewModel_ReInputProductNo" xml:space="preserve">
+    <value>该成品编号不属於该业主、货主，请重新输入成品编号</value>
+  </data>
+  <data name="P9103010000_ViewModel_SelectDeleteCombineItem" xml:space="preserve">
+    <value>请选择要删除的组合商品</value>
+  </data>
+  <data name="P9103020000_ViewModel_ActDuplicate" xml:space="preserve">
+    <value>动作不可重复。</value>
+  </data>
+  <data name="P9103020000_ViewModel_APPLY_PRICE_Required" xml:space="preserve">
+    <value>货主加工申请价为必填</value>
+  </data>
+  <data name="P9103020000_ViewModel_ApproveQuote" xml:space="preserve">
+    <value>核准报价单</value>
+  </data>
+  <data name="P9103020000_ViewModel_ConsumeItemCode" xml:space="preserve">
+    <value>耗材的商品编号不可重复！</value>
+  </data>
+  <data name="P9103020000_ViewModel_InputCorrectNum_D" xml:space="preserve">
+    <value>动作金额(元)请输入正确的数字</value>
+  </data>
+  <data name="P9103020000_ViewModel_InputCorrectNum_H" xml:space="preserve">
+    <value>标准工时(秒)请输入正确的数字</value>
+  </data>
+  <data name="P9103020000_ViewModel_InvalidOperate" xml:space="preserve">
+    <value>无效的操作</value>
+  </data>
+  <data name="P9103020000_ViewModel_InvalidQuote" xml:space="preserve">
+    <value>无效的估价单</value>
+  </data>
+  <data name="P9103020000_ViewModel_ItemDuplicate" xml:space="preserve">
+    <value>商品不可重复。</value>
+  </data>
+  <data name="P9103020000_ViewModel_ItemNameLength100" xml:space="preserve">
+    <value>项目名称长度最多100个字</value>
+  </data>
+  <data name="P9103020000_ViewModel_ItemName_Required" xml:space="preserve">
+    <value>项目名称为必填</value>
+  </data>
+  <data name="P9103020000_ViewModel_ITEM_CODE_Required" xml:space="preserve">
+    <value>商品编号必须输入</value>
+  </data>
+  <data name="P9103020000_ViewModel_NoItemCode" xml:space="preserve">
+    <value>无此商品编号！</value>
+  </data>
+  <data name="P9103020000_ViewModel_NoValidSubcontractor" xml:space="preserve">
+    <value>无符合的委外商!</value>
+  </data>
+  <data name="P9103020000_ViewModel_OperatingError" xml:space="preserve">
+    <value>操作错误</value>
+  </data>
+  <data name="P9103020000_ViewModel_PROCESS_ID_Required" xml:space="preserve">
+    <value>必须选择动作</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteDelete" xml:space="preserve">
+    <value>此报价单已被删除</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteDeleted" xml:space="preserve">
+    <value>估价单已删除</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteInsert" xml:space="preserve">
+    <value>报价单新增</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteNotExist" xml:space="preserve">
+    <value>此报价单不存在</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteStatus" xml:space="preserve">
+    <value>此报价单的状态，无法操作这个功能</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteStatusCantUploadImage" xml:space="preserve">
+    <value>报价单的状态无法上传图档</value>
+  </data>
+  <data name="P9103020000_ViewModel_Rate" xml:space="preserve">
+    <value>毛利率必须为 0%~100% 之间</value>
+  </data>
+  <data name="P9103020000_ViewModel_ReTestActAnalysis" xml:space="preserve">
+    <value>更换物流中心将会重新验证动作分析。</value>
+  </data>
+  <data name="P9103020000_ViewModel_SelectDC" xml:space="preserve">
+    <value>请先选择物流中心</value>
+  </data>
+  <data name="P9103020000_ViewModel_UNIT_ID_Required" xml:space="preserve">
+    <value>必须选择计量单位</value>
+  </data>
+  <data name="P9103020000_ViewModel_UpdateQuoteApprove" xml:space="preserve">
+    <value>是否确认更新报价单为已核准？</value>
+  </data>
+  <data name="P9103020000_ViewModel_UploadImageSuccess" xml:space="preserve">
+    <value>上传图档成功</value>
+  </data>
+  <data name="P9103020000_ViewModel_ValidDateInvalid" xml:space="preserve">
+    <value>生效日期不可小於今日，且失效日期不可小於生效日期</value>
+  </data>
+  <data name="P9103020000_ViewModel_ValidDateInvalid_AutoTest" xml:space="preserve">
+    <value>生效日期不可小於今日，且失效日期不可小於生效日期，将自动重设并验证</value>
+  </data>
+  <data name="P9103030000_ViewModel_APPROVE_PRICE_Error" xml:space="preserve">
+    <value>{0} 货主核定价(元)格式错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_CantEditMain" xml:space="preserve">
+    <value>此合约已生效不可汇入主约</value>
+  </data>
+  <data name="P9103030000_ViewModel_ChangeCust_ClearContractDetail" xml:space="preserve">
+    <value>更换货主将会清空已设定合约项目明细</value>
+  </data>
+  <data name="P9103030000_ViewModel_contractCheckQueryFalse" xml:space="preserve">
+    <value>需先新增合约分类为主约的合约项目才可新增附约</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CanNotDelete" xml:space="preserve">
+    <value>合约已生效,不可删除</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CantAddNew" xml:space="preserve">
+    <value>此合约已生效，不可新增主约</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CantDelete" xml:space="preserve">
+    <value>此合约已生效，不可删除主约</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CantEdit" xml:space="preserve">
+    <value>合约已生效,不可修改</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractError" xml:space="preserve">
+    <value>合约项目错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractExist" xml:space="preserve">
+    <value>此合约已存在</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractNotExist" xml:space="preserve">
+    <value>此合约不存在</value>
+  </data>
+  <data name="P9103030000_ViewModel_Contractor_SET" xml:space="preserve">
+    <value>请设定合约对象</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_NO" xml:space="preserve">
+    <value>请输入合约编号</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_NO_CNWordOnly" xml:space="preserve">
+    <value>合约编号只能输入英数</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_TYPENAME" xml:space="preserve">
+    <value>请选择合约分类</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_TYPENAME_Error" xml:space="preserve">
+    <value>{0} 合约分类异常</value>
+  </data>
+  <data name="P9103030000_ViewModel_DATA_NOTFOUND" xml:space="preserve">
+    <value>资料不存在请重新新增或编辑</value>
+  </data>
+  <data name="P9103030000_ViewModel_DeleteItemDetail" xml:space="preserve">
+    <value>已删除项目明细</value>
+  </data>
+  <data name="P9103030000_ViewModel_DISABLE_DATE" xml:space="preserve">
+    <value>合约单生效日不可小於失效日期</value>
+  </data>
+  <data name="P9103030000_ViewModel_DISABLE_DATE_Error" xml:space="preserve">
+    <value>{0} 失效日期格式错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_ENABLE_DATE" xml:space="preserve">
+    <value>合约单生效日不可小於等於当日</value>
+  </data>
+  <data name="P9103030000_ViewModel_ENABLE_DATE_Error" xml:space="preserve">
+    <value>{0} 生效日期格式错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_ENABLE_DATE_Invalid" xml:space="preserve">
+    <value>{0} 生效日期必须大於今天</value>
+  </data>
+  <data name="P9103030000_ViewModel_Error" xml:space="preserve">
+    <value>格式错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_FileFormatError" xml:space="preserve">
+    <value>档案格式错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_APPROVE_PRICE" xml:space="preserve">
+    <value>请填写货主核定价</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_DISENABLE_DATE" xml:space="preserve">
+    <value>请填写失效日期</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_ENABLE_DATE" xml:space="preserve">
+    <value>请填写生效日期</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_OUTSOURCE_COST" xml:space="preserve">
+    <value>请填写成本价</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_SUB_CONTRACT_NO" xml:space="preserve">
+    <value>请填写合约编号</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_TASK_PRICE" xml:space="preserve">
+    <value>请填写作业单价</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_WORK_HOUR" xml:space="preserve">
+    <value>请填写标准工时</value>
+  </data>
+  <data name="P9103030000_ViewModel_InsertDetail" xml:space="preserve">
+    <value>已新增项目明细</value>
+  </data>
+  <data name="P9103030000_ViewModel_IsDelete" xml:space="preserve">
+    <value>是否确定删除此笔?</value>
+  </data>
+  <data name="P9103030000_ViewModel_IsDeleteContract" xml:space="preserve">
+    <value>主约被删除时，附约将一并被删除，请确认是否删除主约?</value>
+  </data>
+  <data name="P9103030000_ViewModel_ITEM_TYPE_NAME_Error" xml:space="preserve">
+    <value>{0} 项目类别异常</value>
+  </data>
+  <data name="P9103030000_ViewModel_MainContract" xml:space="preserve">
+    <value>主约</value>
+  </data>
+  <data name="P9103030000_ViewModel_OBJECT_TYPE_CantDuplicate" xml:space="preserve">
+    <value>相同的项目类别、加工动作，但生效日期、失效日期不可重叠</value>
+  </data>
+  <data name="P9103030000_ViewModel_OBJECT_TYPE_Duplicate" xml:space="preserve">
+    <value>相同的项目类别、项目名称，但生效日期、失效日期不可重叠</value>
+  </data>
+  <data name="P9103030000_ViewModel_OUTSOURCE_COST_Error" xml:space="preserve">
+    <value>{0} 成本价(元)格式错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_PROCESS_ACT_Error" xml:space="preserve">
+    <value>{0} 加工动作异常</value>
+  </data>
+  <data name="P9103030000_ViewModel_QUOTEListsNull" xml:space="preserve">
+    <value>没有任何符合的项目名称!</value>
+  </data>
+  <data name="P9103030000_ViewModel_QUOTE_NAME" xml:space="preserve">
+    <value>项目名称: {0} 不存在於生效日期起迄中</value>
+  </data>
+  <data name="P9103030000_ViewModel_QUOTE_NAME_Error" xml:space="preserve">
+    <value>{0} 项目名称异常</value>
+  </data>
+  <data name="P9103030000_ViewModel_SAME_OBJECT_TYPE_CANTDUPLICATE" xml:space="preserve">
+    <value>相同的合约分类、项目类别、项目名称，但生效日期、失效日期不可重叠</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectContractor" xml:space="preserve">
+    <value>请选择合约对象!</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectedData" xml:space="preserve">
+    <value>尚未选择合约</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectedTime" xml:space="preserve">
+    <value>请选建立时间</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectItemType" xml:space="preserve">
+    <value>请选择项目类别</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_CONTRACTNO" xml:space="preserve">
+    <value>请选择合约编号</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_PROCESS_ID" xml:space="preserve">
+    <value>请选择作业动作</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_QUOTE_NAME" xml:space="preserve">
+    <value>请选择项目名称</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_UNIT_ID" xml:space="preserve">
+    <value>请选择计量单位</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubContract" xml:space="preserve">
+    <value>附约</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractEffectDate_GreaterThanToday" xml:space="preserve">
+    <value>附约生效日不可小於等於当日</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubContractEffective_CantDelete" xml:space="preserve">
+    <value>附约已生效,不可删除</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractNo" xml:space="preserve">
+    <value>请输入附约的合约编号</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractNo_CNWordOnly" xml:space="preserve">
+    <value>附约的合约编号只能输入英数</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractorSource_Price_OutRange" xml:space="preserve">
+    <value>委外商成本价或货主核定价超出范围</value>
+  </data>
+  <data name="P9103030000_ViewModel_Subcontract_ENABLE_DATE_DISABLE_DATE_Invalid" xml:space="preserve">
+    <value>附约的生效日期、失效日期须在主约合约单的生效与失效日期区间内</value>
+  </data>
+  <data name="P9103030000_ViewModel_TASK_PRICE_Error" xml:space="preserve">
+    <value>{0} 作业单价(元)格式错误</value>
+  </data>
+  <data name="P9103030000_ViewModel_TASK_PRICE_WORK_HOUR_OUTRANGE" xml:space="preserve">
+    <value>作业单价或标准工时(秒)超出范围</value>
+  </data>
+  <data name="P9103030000_ViewModel_Total" xml:space="preserve">
+    <value>总计明细笔数：{0}</value>
+  </data>
+  <data name="P9103030000_ViewModel_UNIT_Error" xml:space="preserve">
+    <value>{0} 计量单位异常</value>
+  </data>
+  <data name="P9103030000_ViewModel_UNI_FORM" xml:space="preserve">
+    <value>请输入统编</value>
+  </data>
+  <data name="P9103030000_ViewModel_UNI_FORM_NotExist" xml:space="preserve">
+    <value>统编不存在</value>
+  </data>
+  <data name="P9103030000_ViewModel_Update" xml:space="preserve">
+    <value>已更新项目明细</value>
+  </data>
+  <data name="P9103030000_ViewModel_WORK_HOUR_Error" xml:space="preserve">
+    <value>{0} 标准工时(秒)格式错误</value>
+  </data>
+  <data name="P9103040000_ViewModel_cellBattery" xml:space="preserve">
+    <value>手机.电池*1.旅充头.说明书.耳机.背盖</value>
+  </data>
+  <data name="P9103040000_ViewModel_chooseData" xml:space="preserve">
+    <value>请选择资料!</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputItemInfo" xml:space="preserve">
+    <value>请填写商品资讯资讯 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputSourceInstruction" xml:space="preserve">
+    <value>请填写物料说明资讯 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputSubContractorInfo" xml:space="preserve">
+    <value>请填写委外商资讯 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputTestInfo" xml:space="preserve">
+    <value>请填写检验员资讯 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputVNRInfo" xml:space="preserve">
+    <value>请填写厂商资讯资讯 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputWarrantyDateInfo" xml:space="preserve">
+    <value>请填写保固日期资讯 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputWarrantyTypeInfo" xml:space="preserve">
+    <value>请填写保固类型资讯 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_Insert_DefaultClear" xml:space="preserve">
+    <value>新增-预设值清空</value>
+  </data>
+  <data name="P9103040000_ViewModel_ItemCodeNotExist" xml:space="preserve">
+    <value>商品编号不存在!</value>
+  </data>
+  <data name="P9103040000_ViewModel_PrintRange500" xml:space="preserve">
+    <value>列印张数介於 1-500张</value>
+  </data>
+  <data name="P9103040000_ViewModel_SubcontractorCode_CNWordOnly" xml:space="preserve">
+    <value>委外商代号只能输入英数 \n</value>
+  </data>
+  <data name="P9103040000_ViewModel_transline" xml:space="preserve">
+    <value>传输线.</value>
+  </data>
+  <data name="P9103040000_ViewModel_VnrCodeNotExist" xml:space="preserve">
+    <value>厂商编号不存在!</value>
+  </data>
+  <data name="P9103040000_ViewModel_YM" xml:space="preserve">
+    <value>{0}年{1}月</value>
+  </data>
+  <data name="P9103050000_ViewModel_DataNotFound_Delete" xml:space="preserve">
+    <value>资料不存在，无法删除</value>
+  </data>
+  <data name="P9103050000_ViewModel_DataNotFound_Update" xml:space="preserve">
+    <value>资料不存在，无法更新</value>
+  </data>
+  <data name="P9103050000_ViewModel_DC_ProductCode_Duplicate" xml:space="preserve">
+    <value>物流中心、生产线编号不可重复</value>
+  </data>
+  <data name="P9103050000_ViewModel_DC_Required" xml:space="preserve">
+    <value>必须选择物流中心</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineCodeLenth10" xml:space="preserve">
+    <value>生产线编号长度不可大於10</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineCode_Required" xml:space="preserve">
+    <value>必须输入生产线编号</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineInstructionLength200" xml:space="preserve">
+    <value>生产线说明长度不可大於200</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineIPFomatError" xml:space="preserve">
+    <value>生产线IP格式不正确</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineIPLength50" xml:space="preserve">
+    <value>生产线IP长度不可大於50</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineIP_Required" xml:space="preserve">
+    <value>必须输入生产线IP</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineNameLength50" xml:space="preserve">
+    <value>生产线名称长度不可大於50</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineName_Required" xml:space="preserve">
+    <value>必须输入生产线名称</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLine_CNWordOnly" xml:space="preserve">
+    <value>生产线编号只能输入英数</value>
+  </data>
+  <data name="LabelPrint_ClientNoLabelDEVICE" xml:space="preserve">
+    <value>此工作站无设定标签机</value>
+  </data>
+  <data name="LabelPrint_ItemNoLabelPrintData" xml:space="preserve">
+    <value>此商品无标签列印资料</value>
+  </data>
+  <data name="LabelPrint_NoCustItemInfo" xml:space="preserve">
+    <value>查无货主商品资讯</value>
+  </data>
+  <data name="LabelPrint_PrintLabelNotSet" xml:space="preserve">
+    <value>此加工动作无设定标签</value>
+  </data>
+  <data name="LabelPrint_YM" xml:space="preserve">
+    <value>{0}年{1}月</value>
+  </data>
+  <data name="P9101010500_ViewModel_QtyBeyond" xml:space="preserve">
+    <value>数量加总超出未加工数</value>
+  </data>
+  <data name="ItemQuery" xml:space="preserve">
+    <value>商品搜寻</value>
+  </data>
+  <data name="P9101030000_ViewModel_SelectDC" xml:space="preserve">
+    <value>请选择物流中心</value>
+  </data>
+</root>

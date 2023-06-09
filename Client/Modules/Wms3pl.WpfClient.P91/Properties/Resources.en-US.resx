@@ -1,0 +1,1419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccumulateDamageQty" xml:space="preserve">
+    <value>The cumulative number of damage</value>
+  </data>
+  <data name="AccumulateScanned" xml:space="preserve">
+    <value>Brush accumulated real number</value>
+  </data>
+  <data name="AccumulateScannedGoodQty" xml:space="preserve">
+    <value>Real finished brush cumulative number</value>
+  </data>
+  <data name="ACT" xml:space="preserve">
+    <value>action</value>
+  </data>
+  <data name="ACT_ANALYSIS" xml:space="preserve">
+    <value>Motion analysis</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>New Details</value>
+  </data>
+  <data name="AddPickQty" xml:space="preserve">
+    <value>The number of new-picking</value>
+  </data>
+  <data name="ALLOCATION_NO" xml:space="preserve">
+    <value>Requisition number</value>
+  </data>
+  <data name="APPLY_PRICE" xml:space="preserve">
+    <value>Owner processing application price</value>
+  </data>
+  <data name="APPROVED_PRICE" xml:space="preserve">
+    <value>The owner of the approved processing price</value>
+  </data>
+  <data name="APPROVE_PRICE" xml:space="preserve">
+    <value>Approved value (RMB)</value>
+  </data>
+  <data name="AProcessQty" xml:space="preserve">
+    <value>Expected number of machining</value>
+  </data>
+  <data name="A_ITEM_BOM_QTY" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="A_ITEM_COMBIN_ORDERE" xml:space="preserve">
+    <value>Group items</value>
+  </data>
+  <data name="A_PROCESS_QTY" xml:space="preserve">
+    <value>The actual number of completed</value>
+  </data>
+  <data name="BACK_DATE" xml:space="preserve">
+    <value>Date back to warehouse</value>
+  </data>
+  <data name="BACK_ITEM" xml:space="preserve">
+    <value>Back to the warehouse merchandise</value>
+  </data>
+  <data name="BACK_QTY_DETAIL" xml:space="preserve">
+    <value>Back to the warehouse history details</value>
+  </data>
+  <data name="BadBackQty" xml:space="preserve">
+    <value>Damage has been back a few positions</value>
+  </data>
+  <data name="Bom" xml:space="preserve">
+    <value>Compiled combination</value>
+  </data>
+  <data name="BomMaintain" xml:space="preserve">
+    <value>BOM Table Maintenance</value>
+  </data>
+  <data name="BOM_NAME" xml:space="preserve">
+    <value>Combination Description</value>
+  </data>
+  <data name="BOM_QTY" xml:space="preserve">
+    <value>The number of required</value>
+  </data>
+  <data name="BOM_TYPE" xml:space="preserve">
+    <value>A combination of nature</value>
+  </data>
+  <data name="BOM_TYPE_NAME" xml:space="preserve">
+    <value>Combined category</value>
+  </data>
+  <data name="BoxUnit" xml:space="preserve">
+    <value>The minimum number of units box</value>
+  </data>
+  <data name="BOX_NO" xml:space="preserve">
+    <value>Box No.</value>
+  </data>
+  <data name="BOX_QTY" xml:space="preserve">
+    <value>The minimum amount per unit box</value>
+  </data>
+  <data name="BProcessQty" xml:space="preserve">
+    <value>Cumulative number of machining</value>
+  </data>
+  <data name="BREAK_BACK_QTY" xml:space="preserve">
+    <value>Damage back to the number of positions</value>
+  </data>
+  <data name="BREAK_QTY" xml:space="preserve">
+    <value>Total damage</value>
+  </data>
+  <data name="Build_Process" xml:space="preserve">
+    <value>The establishment of a single processing</value>
+  </data>
+  <data name="BUNDLE_SERIALNO" xml:space="preserve">
+    <value>No. Controls</value>
+  </data>
+  <data name="CancelAct" xml:space="preserve">
+    <value>Cancel action</value>
+  </data>
+  <data name="CancelConsume" xml:space="preserve">
+    <value>Cancel supplies</value>
+  </data>
+  <data name="CardQC" xml:space="preserve">
+    <value>QC card</value>
+  </data>
+  <data name="CASE_NO" xml:space="preserve">
+    <value>Case number</value>
+  </data>
+  <data name="CASE_QTY" xml:space="preserve">
+    <value>The minimum amount per unit box</value>
+  </data>
+  <data name="CHECK_STAFF" xml:space="preserve">
+    <value>Inspectors</value>
+  </data>
+  <data name="ChooseSTOPLabel" xml:space="preserve">
+    <value>Do preselected tag station</value>
+  </data>
+  <data name="CLOSE_CYCLE" xml:space="preserve">
+    <value>Billing cycle</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Combination" xml:space="preserve">
+    <value>combination</value>
+  </data>
+  <data name="CombineItem" xml:space="preserve">
+    <value>Merchandise mix</value>
+  </data>
+  <data name="CombineItemList" xml:space="preserve">
+    <value>Combined list of goods</value>
+  </data>
+  <data name="CombineItemSource" xml:space="preserve">
+    <value>Merchandise mix materials table</value>
+  </data>
+  <data name="COMBIN_ORDER" xml:space="preserve">
+    <value>Dismantling sequence</value>
+  </data>
+  <data name="COMBIN_SORT" xml:space="preserve">
+    <value>Combined order</value>
+  </data>
+  <data name="CompleteQty" xml:space="preserve">
+    <value>Completions</value>
+  </data>
+  <data name="Consumables_Statistic" xml:space="preserve">
+    <value>Statistical supplies</value>
+  </data>
+  <data name="Contactor" xml:space="preserve">
+    <value>Contact person</value>
+  </data>
+  <data name="ContractCopy" xml:space="preserve">
+    <value>Copy contract</value>
+  </data>
+  <data name="ContractDetail" xml:space="preserve">
+    <value>Project contract</value>
+  </data>
+  <data name="ContractMaintain" xml:space="preserve">
+    <value>Contract management and maintenance</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Contract Object</value>
+  </data>
+  <data name="ContractorInfo" xml:space="preserve">
+    <value>Contract Object Information</value>
+  </data>
+  <data name="CONTRACT_Detail" xml:space="preserve">
+    <value>Item Details</value>
+  </data>
+  <data name="CONTRACT_TYPENAME" xml:space="preserve">
+    <value>Contract classification</value>
+  </data>
+  <data name="CopyQuote" xml:space="preserve">
+    <value>Copy Quote</value>
+  </data>
+  <data name="COST_PRICE" xml:space="preserve">
+    <value>Cost price</value>
+  </data>
+  <data name="CProcessQty" xml:space="preserve">
+    <value>The actual number of machining</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CustMaintain" xml:space="preserve">
+    <value>Owner Master Maintenance</value>
+  </data>
+  <data name="CUST_CODE" xml:space="preserve">
+    <value>Freight Owner</value>
+  </data>
+  <data name="Cust_Item_Code" xml:space="preserve">
+    <value>Customer item no</value>
+  </data>
+  <data name="CYCLE_DATE" xml:space="preserve">
+    <value>The settlement date</value>
+  </data>
+  <data name="DamageQty" xml:space="preserve">
+    <value>Number damage</value>
+  </data>
+  <data name="DC_CODE" xml:space="preserve">
+    <value>Maintenance Work Order</value>
+  </data>
+  <data name="DC_CODE1" xml:space="preserve">
+    <value>Contract Management</value>
+  </data>
+  <data name="DelAct" xml:space="preserve">
+    <value>Delete actions</value>
+  </data>
+  <data name="DelConsume" xml:space="preserve">
+    <value>Delete supplies</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete details</value>
+  </data>
+  <data name="DelItem" xml:space="preserve">
+    <value>Remove items</value>
+  </data>
+  <data name="DelPickQty" xml:space="preserve">
+    <value>Remove Picking the number of material</value>
+  </data>
+  <data name="DelSerialNo" xml:space="preserve">
+    <value>Delete number</value>
+  </data>
+  <data name="DISABLE_DATE" xml:space="preserve">
+    <value>Expiration date</value>
+  </data>
+  <data name="DismantleItem" xml:space="preserve">
+    <value>Commodity dismantling</value>
+  </data>
+  <data name="dismantleItemSource" xml:space="preserve">
+    <value>Dismantling material goods table</value>
+  </data>
+  <data name="Dismantling" xml:space="preserve">
+    <value>Dismantling</value>
+  </data>
+  <data name="DUEDATE" xml:space="preserve">
+    <value>Expiration date: {0}</value>
+  </data>
+  <data name="DUE_DATE" xml:space="preserve">
+    <value>Expiration date: {0} days</value>
+  </data>
+  <data name="EditAct" xml:space="preserve">
+    <value>Edit Action</value>
+  </data>
+  <data name="EditConsume" xml:space="preserve">
+    <value>Editing Supplies</value>
+  </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>Modify the project</value>
+  </data>
+  <data name="EditPickQty" xml:space="preserve">
+    <value>Modify the number-picking</value>
+  </data>
+  <data name="ErrorQty" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+  <data name="ExportExcelDetail" xml:space="preserve">
+    <value>Import Excel details</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Processing is completed</value>
+  </data>
+  <data name="FINISH_DATE" xml:space="preserve">
+    <value>Completion Date</value>
+  </data>
+  <data name="FINISH_DATE1" xml:space="preserve">
+    <value>Estimated Completion Date</value>
+  </data>
+  <data name="FINISH_TIME" xml:space="preserve">
+    <value>Completion Time</value>
+  </data>
+  <data name="GoodBackQty" xml:space="preserve">
+    <value>Ichiban has been back several positions</value>
+  </data>
+  <data name="GoodsName" xml:space="preserve">
+    <value>Finished name</value>
+  </data>
+  <data name="GOOD_BACK_QTY" xml:space="preserve">
+    <value>Yield back the number of positions</value>
+  </data>
+  <data name="GUP_NAME" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="ImportExcel" xml:space="preserve">
+    <value>Import numbers</value>
+  </data>
+  <data name="InpVNRCode" xml:space="preserve">
+    <value>Supplier Info</value>
+  </data>
+  <data name="InsertAct" xml:space="preserve">
+    <value>New action</value>
+  </data>
+  <data name="InsertConsume" xml:space="preserve">
+    <value>New supplies</value>
+  </data>
+  <data name="InsertItem" xml:space="preserve">
+    <value>New projects</value>
+  </data>
+  <data name="ISPROCESS" xml:space="preserve">
+    <value>Not Worked</value>
+  </data>
+  <data name="ItemBomName" xml:space="preserve">
+    <value>Combination name</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>Finished No.</value>
+  </data>
+  <data name="ItemInfo" xml:space="preserve">
+    <value>Item Information</value>
+  </data>
+  <data name="ITEMNAME" xml:space="preserve">
+    <value>project name</value>
+  </data>
+  <data name="ItemSerialNo" xml:space="preserve">
+    <value>Item Seq</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM_CODE1" xml:space="preserve">
+    <value>Supplier No.</value>
+  </data>
+  <data name="ITEM_CODE_BOM" xml:space="preserve">
+    <value>Number combination</value>
+  </data>
+  <data name="ITEM_DESC" xml:space="preserve">
+    <value>Item Description</value>
+  </data>
+  <data name="ITEM_DESC_A" xml:space="preserve">
+    <value>Item Description 1</value>
+  </data>
+  <data name="ITEM_DESC_B" xml:space="preserve">
+    <value>Item Description 2</value>
+  </data>
+  <data name="ITEM_DESC_C" xml:space="preserve">
+    <value>Item Description 3</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_NAME1" xml:space="preserve">
+    <value>Famous Suppliers say</value>
+  </data>
+  <data name="Item_Status" xml:space="preserve">
+    <value>Item Status</value>
+  </data>
+  <data name="ITEM_TYPE_NAME" xml:space="preserve">
+    <value>Item category</value>
+  </data>
+  <data name="Item__Code" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM__NAME" xml:space="preserve">
+    <value>product name</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>Tag number</value>
+  </data>
+  <data name="LabelPrint_ClientNoLabelDEVICE" xml:space="preserve">
+    <value>No labeling machine setting workstation</value>
+  </data>
+  <data name="LabelPrint_ItemNoLabelPrintData" xml:space="preserve">
+    <value>This product is no tag information Print</value>
+  </data>
+  <data name="LabelPrint_NoCustItemInfo" xml:space="preserve">
+    <value>No owner information check goods</value>
+  </data>
+  <data name="LabelPrint_PrintLabelNotSet" xml:space="preserve">
+    <value>This processing operation without setting tab</value>
+  </data>
+  <data name="LabelPrint_YM" xml:space="preserve">
+    <value>{1} {0} on January</value>
+  </data>
+  <data name="LABEL_CODE" xml:space="preserve">
+    <value>Label Type</value>
+  </data>
+  <data name="LABEL_NAME" xml:space="preserve">
+    <value>Label name</value>
+  </data>
+  <data name="Line" xml:space="preserve">
+    <value>Select product line</value>
+  </data>
+  <data name="LTYPE" xml:space="preserve">
+    <value>Main category</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="NET_RATE" xml:space="preserve">
+    <value>Gross margin (%)</value>
+  </data>
+  <data name="NONE_Select" xml:space="preserve">
+    <value>Not specify</value>
+  </data>
+  <data name="NotBackQty" xml:space="preserve">
+    <value>Did not return several positions</value>
+  </data>
+  <data name="ORDER_NO" xml:space="preserve">
+    <value>No. into the warehouse</value>
+  </data>
+  <data name="OUTSOURCE" xml:space="preserve">
+    <value>Foreign Code Committee</value>
+  </data>
+  <data name="OutsourceId" xml:space="preserve">
+    <value>Foreign Committee</value>
+  </data>
+  <data name="OUTSOURCE_COST" xml:space="preserve">
+    <value>Cost (RMB)</value>
+  </data>
+  <data name="P9101010000xamlcs_CirculateProcess" xml:space="preserve">
+    <value>Circulation Work Order</value>
+  </data>
+  <data name="P9101010000xamlcs_Confirm" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="P9101010000xamlcs_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="P9101010000xamlcs_NoneSelect" xml:space="preserve">
+    <value>Not specify</value>
+  </data>
+  <data name="P9101010000xamlcs_Process_PickOrd" xml:space="preserve">
+    <value>Pick List Processing</value>
+  </data>
+  <data name="P9101010000xamlcs_Process_Status_CantEdit" xml:space="preserve">
+    <value>This work order status can not be modified!</value>
+  </data>
+  <data name="P9101010000xamlcs_StartPickORD" xml:space="preserve">
+    <value>Please open a pick list</value>
+  </data>
+  <data name="P9101010000xamlcs_StartPickORD_To_PreSelectLabel" xml:space="preserve">
+    <value>Please pick list then opened preselected tag</value>
+  </data>
+  <data name="P9101010000xamlcs_TransferMaintainBeforeBackWarehouse" xml:space="preserve">
+    <value>Please make requisition maintenance and then back to warehouse shelves</value>
+  </data>
+  <data name="P9101010000xamlcs_TransferMaintainBeforeProcess" xml:space="preserve">
+    <value>Please make requisition maintenance then processing is completed</value>
+  </data>
+  <data name="P9101010000xamlcs_UnAuthentication" xml:space="preserve">
+    <value>No usage rights</value>
+  </data>
+  <data name="P9101010000_ViewModel_Box" xml:space="preserve">
+    <value>box</value>
+  </data>
+  <data name="P9101010000_ViewModel_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="P9101010000_ViewModel_FINISH_DATE_Invalid" xml:space="preserve">
+    <value>Completion date can not be smaller than today</value>
+  </data>
+  <data name="P9101010000_ViewModel_FINISH_TIME_Empty" xml:space="preserve">
+    <value>Completion time can not be null</value>
+  </data>
+  <data name="P9101010000_ViewModel_ITEM_CODE_Empty" xml:space="preserve">
+    <value>Input number is not finished</value>
+  </data>
+  <data name="P9101010000_ViewModel_ITEM_CODE_Error" xml:space="preserve">
+    <value>Finished number is incorrect</value>
+  </data>
+  <data name="P9101010000_ViewModel_NoDCInfo" xml:space="preserve">
+    <value>No other information Distribution Center</value>
+  </data>
+  <data name="P9101010000_ViewModel_ProcessItem_Notdifine" xml:space="preserve">
+    <value>Processing Project is not set</value>
+  </data>
+  <data name="P9101010000_ViewModel_PROCESS_QTY" xml:space="preserve">
+    <value>0 must be greater than the number of processing</value>
+  </data>
+  <data name="P9101010000_ViewModel_SaveAndStartPick" xml:space="preserve">
+    <value>Whether store and open a pick list?</value>
+  </data>
+  <data name="P9101010000_ViewModel_UnProcessed" xml:space="preserve">
+    <value>Crude</value>
+  </data>
+  <data name="P9101010100_ViewModel_PickQty" xml:space="preserve">
+    <value>Order picking is the sum of the number of processing flow of work orders not, to confirm the number of order-picking</value>
+  </data>
+  <data name="P9101010100_ViewModel_PickQtyMustLessthanStockQty" xml:space="preserve">
+    <value>Stock picking number is greater than the number of non-feed</value>
+  </data>
+  <data name="P9101010100_ViewModel_ProcessStatusCantPick" xml:space="preserve">
+    <value>This work order status has been unable to open a pick list!</value>
+  </data>
+  <data name="P9101010200_ViewModel_CantSelectProductLine" xml:space="preserve">
+    <value>This state has been unable to select a single processing production line!</value>
+  </data>
+  <data name="P9101010300_ViewModel_CantEdit" xml:space="preserve">
+    <value>This work order status can not be edited!</value>
+  </data>
+  <data name="P9101010400_ViewModel_InputCorrectQty" xml:space="preserve">
+    <value>Please enter the correct number</value>
+  </data>
+  <data name="P9101010400_ViewModel_ProcessQtyAndAccumulateQtyGreaterThanRealProcessQty" xml:space="preserve">
+    <value>Currently the number of processing Fill ({0}) + cumulative number ({1}) is greater than the expected number of machining ({2})</value>
+  </data>
+  <data name="P9101010400_ViewModel_ProcessQtyGreaterThanRealProcessQty" xml:space="preserve">
+    <value>Currently the number of processing Fill: {0} is greater than the actual number of processing: {1}</value>
+  </data>
+  <data name="P9101010500xamlcs_ImportFail" xml:space="preserve">
+    <value>Import failed!</value>
+  </data>
+  <data name="P9101010500_ViewModel_EditSuccess" xml:space="preserve">
+    <value>Modified successfully! {0}</value>
+  </data>
+  <data name="P9101010500_ViewModel_FirstNeedTotalCount" xml:space="preserve">
+    <value>Total items must first pen</value>
+  </data>
+  <data name="P9101010500_ViewModel_IsSaveBackDetail" xml:space="preserve">
+    <value>Back to the warehouse details have been modified, whether storage?</value>
+  </data>
+  <data name="P9101010500_ViewModel_NoEnoughWarehouse" xml:space="preserve">
+    <value>Do not have enough positions available for allocation!</value>
+  </data>
+  <data name="P9101010500_ViewModel_Product" xml:space="preserve">
+    <value>End product</value>
+  </data>
+  <data name="P9101010500_ViewModel_QtyIncorrect" xml:space="preserve">
+    <value>Incorrect number</value>
+  </data>
+  <data name="P9101010500_ViewModel_SerialNoImportSuccess" xml:space="preserve">
+    <value>No. Import success</value>
+  </data>
+  <data name="P9101010500_ViewModel_Source" xml:space="preserve">
+    <value>materials</value>
+  </data>
+  <data name="P9101010500_ViewModel_TotalCountNotCorrect" xml:space="preserve">
+    <value>Unlike the first pen Total items and content items</value>
+  </data>
+  <data name="P9101010500_ViewModel_TransferNo" xml:space="preserve">
+    <value>Requisition number: {0}</value>
+  </data>
+  <data name="P9103010000_ViewModel_ActionNoResponse" xml:space="preserve">
+    <value>Operation No response</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNoDuplicate" xml:space="preserve">
+    <value>Repeat the combination item no</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNoNotExist" xml:space="preserve">
+    <value>Combination item no does not exist</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNo_CNWordOnly" xml:space="preserve">
+    <value>Combination number can only enter alphanumeric</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineNo_Required" xml:space="preserve">
+    <value>You must enter a combination of numbers</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineOrderDuplicate" xml:space="preserve">
+    <value>Combination sequence repeat</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombineOrderGreaterThan0" xml:space="preserve">
+    <value>Combination sequence must be greater than 0</value>
+  </data>
+  <data name="P9103010000_ViewModel_CombinNoExist" xml:space="preserve">
+    <value>The combination number already exists, please re-enter a combination of numbers</value>
+  </data>
+  <data name="P9103010000_ViewModel_InputCombineNo" xml:space="preserve">
+    <value>Please enter a item no combination</value>
+  </data>
+  <data name="P9103010000_ViewModel_InputProductNo" xml:space="preserve">
+    <value>Please enter the number of finished</value>
+  </data>
+  <data name="P9103010000_ViewModel_ProcessTest" xml:space="preserve">
+    <value>Machining test (%) 0.00 ~ 100 only Input</value>
+  </data>
+  <data name="P9103010000_ViewModel_ProductNo_CNWordOnly" xml:space="preserve">
+    <value>Finished numbers can only enter alphanumeric</value>
+  </data>
+  <data name="P9103010000_ViewModel_ProductNo_Required" xml:space="preserve">
+    <value>Finished number must be entered</value>
+  </data>
+  <data name="P9103010000_ViewModel_QtyMoreThan0" xml:space="preserve">
+    <value>Number must be greater than 0</value>
+  </data>
+  <data name="P9103010000_ViewModel_ReInputProductNo" xml:space="preserve">
+    <value>The finished number does not belong to the owner, the owner, please re-enter the finished item no</value>
+  </data>
+  <data name="P9103010000_ViewModel_SelectDeleteCombineItem" xml:space="preserve">
+    <value>Please select a combination of goods to be deleted</value>
+  </data>
+  <data name="P9103020000xamlcs_FileCantFound" xml:space="preserve">
+    <value>This file can not be found!</value>
+  </data>
+  <data name="P9103020000xamlcs_FileNotFound" xml:space="preserve">
+    <value>File does not exist</value>
+  </data>
+  <data name="P9103020000xamlcs_ImageFilePathTooLong" xml:space="preserve">
+    <value>Drawing too long path</value>
+  </data>
+  <data name="P9103020000xamlcs_JPGFile" xml:space="preserve">
+    <value>Image file (* .jpg) | * .jpg</value>
+  </data>
+  <data name="P9103020000xamlcs_PrintPerson" xml:space="preserve">
+    <value>Print personnel:</value>
+  </data>
+  <data name="P9103020000xamlcs_Qoute" xml:space="preserve">
+    <value>{0} - {1} quotation</value>
+  </data>
+  <data name="P9103020000xamlcs_QouteImageFileUpload" xml:space="preserve">
+    <value>The quotation has been uploaded image file</value>
+  </data>
+  <data name="P9103020000xamlcs_QouteNo" xml:space="preserve">
+    <value>Quote number:</value>
+  </data>
+  <data name="P9103020000xamlcs_SelectQoute" xml:space="preserve">
+    <value>Please select quotations</value>
+  </data>
+  <data name="P9103020000_ViewModel_ActDuplicate" xml:space="preserve">
+    <value>Action can not be repeated.</value>
+  </data>
+  <data name="P9103020000_ViewModel_APPLY_PRICE_Required" xml:space="preserve">
+    <value>The owner of the processing is required to apply price</value>
+  </data>
+  <data name="P9103020000_ViewModel_ApproveQuote" xml:space="preserve">
+    <value>Approved Quote</value>
+  </data>
+  <data name="P9103020000_ViewModel_ConsumeItemCode" xml:space="preserve">
+    <value>Supplies of goods number can not be repeated!</value>
+  </data>
+  <data name="P9103020000_ViewModel_InputCorrectNum_D" xml:space="preserve">
+    <value>Action Amount (yuan) Please enter the correct number</value>
+  </data>
+  <data name="P9103020000_ViewModel_InputCorrectNum_H" xml:space="preserve">
+    <value>Standard time (in seconds) Please enter the correct number</value>
+  </data>
+  <data name="P9103020000_ViewModel_InvalidOperate" xml:space="preserve">
+    <value>Invalid operation</value>
+  </data>
+  <data name="P9103020000_ViewModel_InvalidQuote" xml:space="preserve">
+    <value>Invalid written estimate</value>
+  </data>
+  <data name="P9103020000_ViewModel_ItemDuplicate" xml:space="preserve">
+    <value>Goods can not be repeated.</value>
+  </data>
+  <data name="P9103020000_ViewModel_ItemNameLength100" xml:space="preserve">
+    <value>Project Name maximum length of 100 characters</value>
+  </data>
+  <data name="P9103020000_ViewModel_ItemName_Required" xml:space="preserve">
+    <value>Project Name Required</value>
+  </data>
+  <data name="P9103020000_ViewModel_ITEM_CODE_Required" xml:space="preserve">
+    <value>Item No must be entered</value>
+  </data>
+  <data name="P9103020000_ViewModel_NoItemCode" xml:space="preserve">
+    <value>No such item no!</value>
+  </data>
+  <data name="P9103020000_ViewModel_NoValidSubcontractor" xml:space="preserve">
+    <value>Foreign non-commissioned matching!</value>
+  </data>
+  <data name="P9103020000_ViewModel_OperatingError" xml:space="preserve">
+    <value>Operation Error</value>
+  </data>
+  <data name="P9103020000_ViewModel_PROCESS_ID_Required" xml:space="preserve">
+    <value>Action must be selected</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteDelete" xml:space="preserve">
+    <value>This quotation has been deleted</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteDeleted" xml:space="preserve">
+    <value>Written estimate deleted</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteInsert" xml:space="preserve">
+    <value>Quote New</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteNotExist" xml:space="preserve">
+    <value>This quotation does not exist</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteStatus" xml:space="preserve">
+    <value>This quotation of state, can not operate this function</value>
+  </data>
+  <data name="P9103020000_ViewModel_QuoteStatusCantUploadImage" xml:space="preserve">
+    <value>Quote of the state can not upload the image file</value>
+  </data>
+  <data name="P9103020000_ViewModel_Rate" xml:space="preserve">
+    <value>Margin must be between 0% and 100%</value>
+  </data>
+  <data name="P9103020000_ViewModel_ReTestActAnalysis" xml:space="preserve">
+    <value>Motion analysis to replace the distribution center will be re-verified.</value>
+  </data>
+  <data name="P9103020000_ViewModel_SelectDC" xml:space="preserve">
+    <value>Please select Distribution Center</value>
+  </data>
+  <data name="P9103020000_ViewModel_UNIT_ID_Required" xml:space="preserve">
+    <value>You must select the unit of measure</value>
+  </data>
+  <data name="P9103020000_ViewModel_UpdateQuoteApprove" xml:space="preserve">
+    <value>Whether to confirm the update has been approved for the quotation?</value>
+  </data>
+  <data name="P9103020000_ViewModel_UploadImageSuccess" xml:space="preserve">
+    <value>Upload image file success</value>
+  </data>
+  <data name="P9103020000_ViewModel_ValidDateInvalid" xml:space="preserve">
+    <value>Effective Date can not be less than today, and the expiration date can not be less than the effective date</value>
+  </data>
+  <data name="P9103020000_ViewModel_ValidDateInvalid_AutoTest" xml:space="preserve">
+    <value>Today, not less than the effective date and the expiration date can not be less than the effective date, and verification will automatically reset</value>
+  </data>
+  <data name="P9103030000xamlcs_ClearContractDetailSet" xml:space="preserve">
+    <value>Replace the distribution center will empty the contract set item details</value>
+  </data>
+  <data name="P9103030000xamlcs_Contract" xml:space="preserve">
+    <value>Single contract</value>
+  </data>
+  <data name="P9103030000xamlcs_NoContractor" xml:space="preserve">
+    <value>No such contract subject TongBian, whether to master new?</value>
+  </data>
+  <data name="P9103030000xamlcs_NoData" xml:space="preserve">
+    <value>No data, no preview or print!</value>
+  </data>
+  <data name="P9103030000xamlcs_NoOKQouto" xml:space="preserve">
+    <value>Within the effective period of the contract, no qualifying quotation</value>
+  </data>
+  <data name="P9103030000xamlcs_SelectContract" xml:space="preserve">
+    <value>No contract information has been selected yet!</value>
+  </data>
+  <data name="P9103030000_ViewModel_APPROVE_PRICE_Error" xml:space="preserve">
+    <value>{0} owner authorized price (RMB) malformed</value>
+  </data>
+  <data name="P9103030000_ViewModel_CantEditMain" xml:space="preserve">
+    <value>This agreement has entered into force can not be imported master about</value>
+  </data>
+  <data name="P9103030000_ViewModel_ChangeCust_ClearContractDetail" xml:space="preserve">
+    <value>The owner will have to replace the empty set contract item detail</value>
+  </data>
+  <data name="P9103030000_ViewModel_contractCheckQueryFalse" xml:space="preserve">
+    <value>You must first add contract-based classification of the contract about the project before the new rider</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CanNotDelete" xml:space="preserve">
+    <value>Contracts already in force, can not be deleted</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CantAddNew" xml:space="preserve">
+    <value>This contract is in effect, not about the new master</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CantDelete" xml:space="preserve">
+    <value>This agreement has been in force for about Lord can not be deleted</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractEffective_CantEdit" xml:space="preserve">
+    <value>Contracts already in force, can not be modified</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractError" xml:space="preserve">
+    <value>Contract Project Error</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractExist" xml:space="preserve">
+    <value>This agreement already exists</value>
+  </data>
+  <data name="P9103030000_ViewModel_ContractNotExist" xml:space="preserve">
+    <value>This contract does not exist</value>
+  </data>
+  <data name="P9103030000_ViewModel_Contractor_SET" xml:space="preserve">
+    <value>Set contract objects</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_NO" xml:space="preserve">
+    <value>Enter Contract No.</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_NO_CNWordOnly" xml:space="preserve">
+    <value>Contract No. can only enter alphanumeric</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_TYPENAME" xml:space="preserve">
+    <value>Please select the contract classification</value>
+  </data>
+  <data name="P9103030000_ViewModel_CONTRACT_TYPENAME_Error" xml:space="preserve">
+    <value>{0} contract classification abnormality</value>
+  </data>
+  <data name="P9103030000_ViewModel_DATA_NOTFOUND" xml:space="preserve">
+    <value>Please re-add or edit information does not exist</value>
+  </data>
+  <data name="P9103030000_ViewModel_DeleteItemDetail" xml:space="preserve">
+    <value>Deleted Item Details</value>
+  </data>
+  <data name="P9103030000_ViewModel_DISABLE_DATE" xml:space="preserve">
+    <value>Single contract can not be less than the effective date of the expiration date</value>
+  </data>
+  <data name="P9103030000_ViewModel_DISABLE_DATE_Error" xml:space="preserve">
+    <value>{0} expiration date malformed</value>
+  </data>
+  <data name="P9103030000_ViewModel_ENABLE_DATE" xml:space="preserve">
+    <value>The effective date of the contract can not be less than equal to one-day</value>
+  </data>
+  <data name="P9103030000_ViewModel_ENABLE_DATE_Error" xml:space="preserve">
+    <value>{0} commencement malformed</value>
+  </data>
+  <data name="P9103030000_ViewModel_ENABLE_DATE_Invalid" xml:space="preserve">
+    <value>{0} must be greater than the effective date of today</value>
+  </data>
+  <data name="P9103030000_ViewModel_Error" xml:space="preserve">
+    <value>wrong format</value>
+  </data>
+  <data name="P9103030000_ViewModel_FileFormatError" xml:space="preserve">
+    <value>File format error</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_APPROVE_PRICE" xml:space="preserve">
+    <value>Please fill out the owner of the approved price</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_DISENABLE_DATE" xml:space="preserve">
+    <value>Please fill out the expiration date</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_ENABLE_DATE" xml:space="preserve">
+    <value>Please fill in the date of entry into force</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_OUTSOURCE_COST" xml:space="preserve">
+    <value>Please fill in the cost price</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_SUB_CONTRACT_NO" xml:space="preserve">
+    <value>Please fill in Contract No.</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_TASK_PRICE" xml:space="preserve">
+    <value>Please fill jobs Price</value>
+  </data>
+  <data name="P9103030000_ViewModel_INPUT_WORK_HOUR" xml:space="preserve">
+    <value>Please fill in the standard working hours</value>
+  </data>
+  <data name="P9103030000_ViewModel_InsertDetail" xml:space="preserve">
+    <value>Added item details</value>
+  </data>
+  <data name="P9103030000_ViewModel_IsDelete" xml:space="preserve">
+    <value>Are you sure to delete this pen?</value>
+  </data>
+  <data name="P9103030000_ViewModel_IsDeleteContract" xml:space="preserve">
+    <value>When the master about to be deleted, and a rider will be deleted, please confirm whether to delete the master about?</value>
+  </data>
+  <data name="P9103030000_ViewModel_ITEM_TYPE_NAME_Error" xml:space="preserve">
+    <value>{0} exception item category</value>
+  </data>
+  <data name="P9103030000_ViewModel_MainContract" xml:space="preserve">
+    <value>Omoyaku</value>
+  </data>
+  <data name="P9103030000_ViewModel_OBJECT_TYPE_CantDuplicate" xml:space="preserve">
+    <value>The same project category, a machining operation, but effective dates and expiration dates may not overlap</value>
+  </data>
+  <data name="P9103030000_ViewModel_OBJECT_TYPE_Duplicate" xml:space="preserve">
+    <value>The same item category, item name, but effective dates and expiration dates may not overlap</value>
+  </data>
+  <data name="P9103030000_ViewModel_OUTSOURCE_COST_Error" xml:space="preserve">
+    <value>{0} cost (RMB) malformed</value>
+  </data>
+  <data name="P9103030000_ViewModel_PROCESS_ACT_Error" xml:space="preserve">
+    <value>{0} machining operation abnormality</value>
+  </data>
+  <data name="P9103030000_ViewModel_QUOTEListsNull" xml:space="preserve">
+    <value>No items matching name!</value>
+  </data>
+  <data name="P9103030000_ViewModel_QUOTE_NAME" xml:space="preserve">
+    <value>Project name: {0} does not exist on the effective date of starting and ending in</value>
+  </data>
+  <data name="P9103030000_ViewModel_QUOTE_NAME_Error" xml:space="preserve">
+    <value>{0} abnormal item name</value>
+  </data>
+  <data name="P9103030000_ViewModel_SAME_OBJECT_TYPE_CANTDUPLICATE" xml:space="preserve">
+    <value>Classification of the same contract, project type, project name, but effective dates and expiration dates may not overlap</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectContractor" xml:space="preserve">
+    <value>Please select the contract objects!</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectedData" xml:space="preserve">
+    <value>The contract has not been selected</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectedTime" xml:space="preserve">
+    <value>Please select setup time</value>
+  </data>
+  <data name="P9103030000_ViewModel_SelectItemType" xml:space="preserve">
+    <value>Please select an item category</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_CONTRACTNO" xml:space="preserve">
+    <value>Please select Contract No.</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_PROCESS_ID" xml:space="preserve">
+    <value>Please select the job action</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_QUOTE_NAME" xml:space="preserve">
+    <value>Please select the project name</value>
+  </data>
+  <data name="P9103030000_ViewModel_SELECT_UNIT_ID" xml:space="preserve">
+    <value>Please select the unit of measurement</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubContract" xml:space="preserve">
+    <value>RIDER</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractEffectDate_GreaterThanToday" xml:space="preserve">
+    <value>Rider commencement day is not less than or equal</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubContractEffective_CantDelete" xml:space="preserve">
+    <value>Rider has been in force can not be deleted</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractNo" xml:space="preserve">
+    <value>Enter the contract number attached Testament</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractNo_CNWordOnly" xml:space="preserve">
+    <value>Rider number of contracts can only enter alphanumeric</value>
+  </data>
+  <data name="P9103030000_ViewModel_SubcontractorSource_Price_OutRange" xml:space="preserve">
+    <value>Foreign Committee approved cost price is out of range or owner</value>
+  </data>
+  <data name="P9103030000_ViewModel_Subcontract_ENABLE_DATE_DISABLE_DATE_Invalid" xml:space="preserve">
+    <value>Shall contract about the single active master and the expiration date attached interval about the effective date, expiration date</value>
+  </data>
+  <data name="P9103030000_ViewModel_TASK_PRICE_Error" xml:space="preserve">
+    <value>{0} job Unit (RMB) malformed</value>
+  </data>
+  <data name="P9103030000_ViewModel_TASK_PRICE_WORK_HOUR_OUTRANGE" xml:space="preserve">
+    <value>Mono- or standard time job (s) out of range</value>
+  </data>
+  <data name="P9103030000_ViewModel_Total" xml:space="preserve">
+    <value>Detail items Total: {0}</value>
+  </data>
+  <data name="P9103030000_ViewModel_UNIT_Error" xml:space="preserve">
+    <value>{0} abnormal measurement units</value>
+  </data>
+  <data name="P9103030000_ViewModel_UNI_FORM" xml:space="preserve">
+    <value>Please enter TongBian</value>
+  </data>
+  <data name="P9103030000_ViewModel_UNI_FORM_NotExist" xml:space="preserve">
+    <value>TongBian does not exist</value>
+  </data>
+  <data name="P9103030000_ViewModel_Update" xml:space="preserve">
+    <value>Updated item details</value>
+  </data>
+  <data name="P9103030000_ViewModel_WORK_HOUR_Error" xml:space="preserve">
+    <value>{0} standard time (sec) malformed</value>
+  </data>
+  <data name="P9103040000_ViewModel_cellBattery" xml:space="preserve">
+    <value>Phone battery * 1. Lvchong head. Specification. Headset. Tegmental</value>
+  </data>
+  <data name="P9103040000_ViewModel_chooseData" xml:space="preserve">
+    <value>Please select the information!</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputItemInfo" xml:space="preserve">
+    <value>Please fill out the product data information \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputSourceInstruction" xml:space="preserve">
+    <value>Please fill material help information \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputSubContractorInfo" xml:space="preserve">
+    <value>Please fill in the Committee of Foreign Information \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputTestInfo" xml:space="preserve">
+    <value>Please fill out the information the inspector \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputVNRInfo" xml:space="preserve">
+    <value>Please fill Manufacturer Info Info \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputWarrantyDateInfo" xml:space="preserve">
+    <value>Please fill out the warranty date information \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_InputWarrantyTypeInfo" xml:space="preserve">
+    <value>Please fill out the warranty information type \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_Insert_DefaultClear" xml:space="preserve">
+    <value>New - Default Empty</value>
+  </data>
+  <data name="P9103040000_ViewModel_ItemCodeNotExist" xml:space="preserve">
+    <value>Item no does not exist!</value>
+  </data>
+  <data name="P9103040000_ViewModel_PrintRange500" xml:space="preserve">
+    <value>Print number between 1-500 Zhang Zhang</value>
+  </data>
+  <data name="P9103040000_ViewModel_SubcontractorCode_CNWordOnly" xml:space="preserve">
+    <value>Foreign Commission can only enter alphanumeric code \ n</value>
+  </data>
+  <data name="P9103040000_ViewModel_transline" xml:space="preserve">
+    <value>Transmission line.</value>
+  </data>
+  <data name="P9103040000_ViewModel_VnrCodeNotExist" xml:space="preserve">
+    <value>Supplier No. does not exist!</value>
+  </data>
+  <data name="P9103040000_ViewModel_YM" xml:space="preserve">
+    <value>{1} {0} on January</value>
+  </data>
+  <data name="P9103050000_ViewModel_DataNotFound_Delete" xml:space="preserve">
+    <value>Data does not exist, can not be deleted</value>
+  </data>
+  <data name="P9103050000_ViewModel_DataNotFound_Update" xml:space="preserve">
+    <value>Data does not exist, can not be updated</value>
+  </data>
+  <data name="P9103050000_ViewModel_DC_ProductCode_Duplicate" xml:space="preserve">
+    <value>Distribution center, production line number is not repeated</value>
+  </data>
+  <data name="P9103050000_ViewModel_DC_Required" xml:space="preserve">
+    <value>You must select Distribution Center</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineCodeLenth10" xml:space="preserve">
+    <value>Line length number is not larger than 10</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineCode_Required" xml:space="preserve">
+    <value>You must enter the production line number</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineInstructionLength200" xml:space="preserve">
+    <value>Line description must not be greater than 200</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineIPFomatError" xml:space="preserve">
+    <value>IP product line is not formatted correctly</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineIPLength50" xml:space="preserve">
+    <value>IP is not greater than the length of the production line 50</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineIP_Required" xml:space="preserve">
+    <value>You must enter the production line IP</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineNameLength50" xml:space="preserve">
+    <value>Is not greater than the length of the production line 50 Name</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLineName_Required" xml:space="preserve">
+    <value>You must enter the name of the production line</value>
+  </data>
+  <data name="P9103050000_ViewModel_ProductLine_CNWordOnly" xml:space="preserve">
+    <value>Production line number can only enter alphanumeric</value>
+  </data>
+  <data name="PACKAGE_DESC" xml:space="preserve">
+    <value>Package description</value>
+  </data>
+  <data name="PackingWork" xml:space="preserve">
+    <value>Cartoning / box job</value>
+  </data>
+  <data name="PackUnit" xml:space="preserve">
+    <value>The minimum number of units box</value>
+  </data>
+  <data name="PASS" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="Pick" xml:space="preserve">
+    <value>Open Pick List</value>
+  </data>
+  <data name="PickQty" xml:space="preserve">
+    <value>Pick the number of material</value>
+  </data>
+  <data name="PickWarehouseId_Qty" xml:space="preserve">
+    <value>Do not pick the number of silos</value>
+  </data>
+  <data name="Pick_Item" xml:space="preserve">
+    <value>Commodity-picking</value>
+  </data>
+  <data name="PrintLBSet" xml:space="preserve">
+    <value>Preselected label</value>
+  </data>
+  <data name="PrintOrder" xml:space="preserve">
+    <value>Print order</value>
+  </data>
+  <data name="PrintSet" xml:space="preserve">
+    <value>Print settings</value>
+  </data>
+  <data name="PROCCNT" xml:space="preserve">
+    <value>Singular work is not closed</value>
+  </data>
+  <data name="ProcessNo" xml:space="preserve">
+    <value>Work Order Number</value>
+  </data>
+  <data name="ProcessQty" xml:space="preserve">
+    <value>The number of machining</value>
+  </data>
+  <data name="ProcessREPrintLabel" xml:space="preserve">
+    <value>Manufacture complement printed label</value>
+  </data>
+  <data name="ProcessStatus" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="ProcessType" xml:space="preserve">
+    <value>Document Category</value>
+  </data>
+  <data name="Process_Act" xml:space="preserve">
+    <value>Processing operation</value>
+  </data>
+  <data name="Process_Inspect" xml:space="preserve">
+    <value>Processing test (%)</value>
+  </data>
+  <data name="Process_Instruction" xml:space="preserve">
+    <value>Processing Statement</value>
+  </data>
+  <data name="Process_ItemQty" xml:space="preserve">
+    <value>The number of machining material</value>
+  </data>
+  <data name="PROCESS_NO" xml:space="preserve">
+    <value>Work Order No.</value>
+  </data>
+  <data name="PROCESS_QTY" xml:space="preserve">
+    <value>The number of processing</value>
+  </data>
+  <data name="PROCESS_SET" xml:space="preserve">
+    <value>Processing projects set</value>
+  </data>
+  <data name="PROCESS_SOURCE" xml:space="preserve">
+    <value>Processing single source</value>
+  </data>
+  <data name="PROCESS_SUBCONTRACTOR" xml:space="preserve">
+    <value>Foreign working committee</value>
+  </data>
+  <data name="PROC_TYPE" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="PRODUCE_DESC" xml:space="preserve">
+    <value>Production Line Description</value>
+  </data>
+  <data name="PRODUCE_IP" xml:space="preserve">
+    <value>Production Line IP</value>
+  </data>
+  <data name="PRODUCE_NAME" xml:space="preserve">
+    <value>Production Line Name</value>
+  </data>
+  <data name="PRODUCE_NO" xml:space="preserve">
+    <value>Line number</value>
+  </data>
+  <data name="QCWork" xml:space="preserve">
+    <value>Cassette / box job QC</value>
+  </data>
+  <data name="Quote" xml:space="preserve">
+    <value>Quote movement and supplies</value>
+  </data>
+  <data name="QuoteMaintain" xml:space="preserve">
+    <value>Quote Maintenance</value>
+  </data>
+  <data name="RePrintLabel" xml:space="preserve">
+    <value>Printing labels up</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Back to the warehouse shelves</value>
+  </data>
+  <data name="SameGroupNo" xml:space="preserve">
+    <value>The same group number</value>
+  </data>
+  <data name="SaveAct" xml:space="preserve">
+    <value>Storage action</value>
+  </data>
+  <data name="SaveConsume" xml:space="preserve">
+    <value>Storage supplies</value>
+  </data>
+  <data name="ScaleMachine" xml:space="preserve">
+    <value>Scale testing machine</value>
+  </data>
+  <data name="Scan" xml:space="preserve">
+    <value>Should brush number</value>
+  </data>
+  <data name="ScanLocal" xml:space="preserve">
+    <value>This test brushes Number</value>
+  </data>
+  <data name="ScannedGoodQty" xml:space="preserve">
+    <value>Real number finished brush</value>
+  </data>
+  <data name="ScannedItem_Code" xml:space="preserve">
+    <value>Please read the item no brush</value>
+  </data>
+  <data name="ScannedQty" xml:space="preserve">
+    <value>Brush real number</value>
+  </data>
+  <data name="SearchCONTRACT_NO" xml:space="preserve">
+    <value>Contract No.</value>
+  </data>
+  <data name="SearchItem" xml:space="preserve">
+    <value>Brush test number</value>
+  </data>
+  <data name="SearchQuoteNo" xml:space="preserve">
+    <value>Quotation No.</value>
+  </data>
+  <data name="SearchStartEnableDate" xml:space="preserve">
+    <value>effective date</value>
+  </data>
+  <data name="SelectedF1980" xml:space="preserve">
+    <value>Do not assigned bin</value>
+  </data>
+  <data name="SelectedItemType" xml:space="preserve">
+    <value>Back to the warehouse product line detail</value>
+  </data>
+  <data name="SelectObjectType" xml:space="preserve">
+    <value>cost</value>
+  </data>
+  <data name="SerailNo" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="SetLabel" xml:space="preserve">
+    <value>Item number label set</value>
+  </data>
+  <data name="SimCardSpec" xml:space="preserve">
+    <value>SIM Card Specifications</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="Spec" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="SPEC_DESC" xml:space="preserve">
+    <value>Specifications</value>
+  </data>
+  <data name="STANDARD" xml:space="preserve">
+    <value>Consumption benchmark</value>
+  </data>
+  <data name="STANDARD_COST" xml:space="preserve">
+    <value>Standard cost</value>
+  </data>
+  <data name="StartCirculateProcess" xml:space="preserve">
+    <value>Start distribution processing</value>
+  </data>
+  <data name="StartDt" xml:space="preserve">
+    <value>Work order to establish day</value>
+  </data>
+  <data name="StartFinishDt" xml:space="preserve">
+    <value>Estimated Completion date</value>
+  </data>
+  <data name="Startprocessing" xml:space="preserve">
+    <value>Start working</value>
+  </data>
+  <data name="StockQty" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="SubContractorMaintain" xml:space="preserve">
+    <value>Foreign Master Maintenance Committee</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>Contact phone</value>
+  </data>
+  <data name="TYPE" xml:space="preserve">
+    <value>Types of</value>
+  </data>
+  <data name="UnfinishedCount" xml:space="preserve">
+    <value>The number of outstanding</value>
+  </data>
+  <data name="UNIT" xml:space="preserve">
+    <value>unit of measurement</value>
+  </data>
+  <data name="UNIT_ID" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="UNI_FORM" xml:space="preserve">
+    <value>TongBian</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Using" xml:space="preserve">
+    <value>Using</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>Print number of sheets</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="WarehouseType" xml:space="preserve">
+    <value>Do cartridge type</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="WARRANTY_D" xml:space="preserve">
+    <value>Warranty Date</value>
+  </data>
+  <data name="WARRANTY_Info" xml:space="preserve">
+    <value>Warranty Information</value>
+  </data>
+  <data name="WARRANTY_M" xml:space="preserve">
+    <value>Warranty month</value>
+  </data>
+  <data name="WARRANTY_Range" xml:space="preserve">
+    <value>Warranty Period</value>
+  </data>
+  <data name="WARRANTY_S_M" xml:space="preserve">
+    <value>Start Month</value>
+  </data>
+  <data name="WARRANTY_S_Y" xml:space="preserve">
+    <value>Starting Year</value>
+  </data>
+  <data name="WARRANTY_Type" xml:space="preserve">
+    <value>Warranty Type</value>
+  </data>
+  <data name="WARRANTY_Year" xml:space="preserve">
+    <value>Year Warranty</value>
+  </data>
+  <data name="WorkPrice" xml:space="preserve">
+    <value>Operating unit price (yuan)</value>
+  </data>
+  <data name="WORK_COST" xml:space="preserve">
+    <value>Action Amount (yuan)</value>
+  </data>
+  <data name="WORK_HOUR" xml:space="preserve">
+    <value>Standard time (sec)</value>
+  </data>
+  <data name="P910102Service_ProcessIsCancelled" xml:space="preserve">
+    <value>Process No.{0} is Cancelled</value>
+  </data>
+  <data name="P9101010500_ViewModel_QtyBeyond" xml:space="preserve">
+    <value>The total amount exceeds the number of unreturned positions</value>
+  </data>
+  <data name="ItemQuery" xml:space="preserve">
+    <value>Product search</value>
+  </data>
+  <data name="P9101030000_ViewModel_SelectDC" xml:space="preserve">
+    <value>Choose Distribution Center</value>
+  </data>
+</root>

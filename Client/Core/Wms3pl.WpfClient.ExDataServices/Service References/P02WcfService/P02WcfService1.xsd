@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F02" />
+  <xs:element name="UpdateF02020102">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseSeq" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="data" nillable="true" type="q1:ArrayOfF190206CheckName" />
+        <xs:element minOccurs="0" name="validDate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rtNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="checkItem" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" minOccurs="0" name="item05" nillable="true" type="q2:F1905" />
+        <xs:element minOccurs="0" name="makeNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF02020102Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF02020102Result" nillable="true" type="q3:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QuickUpdateF02020102">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rtNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QuickUpdateF02020102Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="QuickUpdateF02020102Result" nillable="true" type="q4:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RandomCheckSerial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="p020203Data" nillable="true" type="q5:P020203Data" />
+        <xs:element minOccurs="0" name="rtNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newSerialNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RandomCheckSerialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="RandomCheckSerialResult" nillable="true" type="q6:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF2501AndF02020104">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseSeq" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="serialNoResults" nillable="true" type="q7:ArrayOfSerialNoResult" />
+        <xs:element minOccurs="0" name="isScanSerial" type="xs:boolean" />
+        <xs:element minOccurs="0" name="rtNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF2501AndF02020104Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertF2501AndF02020104Result" nillable="true" type="q8:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateP02020304">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="data" nillable="true" type="q9:ArrayOfP020203Data" />
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateP02020304Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateP02020304Result" nillable="true" type="q10:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrUpdateF1510LocItemData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="f1510Data" nillable="true" type="q11:F1510Data" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="datas" nillable="true" type="q12:ArrayOfF1510ItemLocData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrUpdateF1510LocItemDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertOrUpdateF1510LocItemDataResult" nillable="true" type="q13:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF1510Data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tarDcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="allocationNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="datas" nillable="true" type="q14:ArrayOfF1510Data" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF1510DataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF1510DataResult" nillable="true" type="q15:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportSerialNoLoc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="allocationNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="importBundleSerialLocList" nillable="true" type="q16:ArrayOfImportBundleSerialLoc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportSerialNoLocResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="ImportSerialNoLocResult" nillable="true" type="q17:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewAcceptancePurchase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="acp" nillable="true" type="q18:AcceptanceConfirmParam" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewAcceptancePurchaseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="NewAcceptancePurchaseResult" nillable="true" type="q19:AcceptanceReturnData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetP0202030500PalletDatas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rtNO" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetP0202030500PalletDatasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="GetP0202030500PalletDatasResult" nillable="true" type="q20:ArrayOfP0202030500PalletData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRtNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRtNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetRtNoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InserF020301AndF020302">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="f020205Data" nillable="true" type="q21:ArrayOfP020205Detail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InserF020301AndF020302Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InserF020301AndF020302Result" nillable="true" type="q22:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteP020205">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="p020205Main" nillable="true" type="q23:P020205Main" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteP020205Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="DeleteP020205Result" nillable="true" type="q24:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckLargeSerialNoFull">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="largeSerialNo" nillable="true" type="q25:ArrayOfstring" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ignoreCheckOfStatus" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckLargeSerialNoFullResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CheckLargeSerialNoFullResult" nillable="true" type="q26:ArrayOfSerialNoResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckRepeatSerails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="poNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="largeSerialNo" nillable="true" type="q27:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckRepeatSerailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CheckRepeatSerailsResult" nillable="true" type="q28:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrUpdateF020103">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F02" minOccurs="0" name="editF020103" nillable="true" type="q29:F020103" />
+        <xs:element minOccurs="0" name="isAdd" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrUpdateF020103Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertOrUpdateF020103Result" nillable="true" type="q30:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OutOfStock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stockNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rtNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OutOfStockResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="OutOfStockResult" nillable="true" type="q31:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelAcceptance">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rtNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelAcceptanceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CancelAcceptanceResult" nillable="true" type="q32:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrUpdateP02020307">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="f02020109Datas" nillable="true" type="q33:ArrayOfF02020109Data" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrUpdateP02020307Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertOrUpdateP02020307Result" nillable="true" type="q34:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF1903">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="needExpired" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="firstInDate" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="saveDay" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="eanCode1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="eanCode2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="eanCode3" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="allDln" nillable="true" type="xs:short" />
+        <xs:element minOccurs="0" name="allShp" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="isPrecious" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fragile" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isEasyLos" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="spill" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isMagnetic" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isPerishable" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="tmprType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsTempControl" nillable="true" type="xs:string" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" minOccurs="0" name="updateVolumn" nillable="true" type="q35:F1905" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF1903Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF1903Result" nillable="true" type="q36:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateP020203">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="warehouseList" nillable="true" type="q37:ArrayOfstring" />
+        <xs:element minOccurs="0" name="RT_MODE" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateP020203Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateP020203Result" nillable="true" type="q38:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF010301AndGetNewID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="f010301Data" nillable="true" type="q39:ScanCargoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF010301AndGetNewIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertF010301AndGetNewIDResult" nillable="true" type="q40:ScanCargoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteF010301ScanCargoDatas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="front_f010301s" nillable="true" type="q41:ArrayOfScanCargoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteF010301ScanCargoDatasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="DeleteF010301ScanCargoDatasResult" nillable="true" type="q42:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010301BoxCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="front_f010301s" nillable="true" type="q43:ScanCargoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010301BoxCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF010301BoxCountResult" nillable="true" type="q44:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010301ScanCargoMemo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="front_f010301s" nillable="true" type="q45:ScanCargoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010301ScanCargoMemoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF010301ScanCargoMemoResult" nillable="true" type="q46:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF010302AndReturnValue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="f010302Data" nillable="true" type="q47:ScanReceiptData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF010302AndReturnValueResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertF010302AndReturnValueResult" nillable="true" type="q48:ScanReceiptData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010302ShipBoxCnt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="f010302Data" nillable="true" type="q49:ScanReceiptData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010302ShipBoxCntResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF010302ShipBoxCntResult" nillable="true" type="q50:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddF020501">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContainerCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ItemQty" type="xs:int" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F02" minOccurs="0" name="f0205data" nillable="true" type="q51:F0205" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddF020501Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="AddF020501Result" nillable="true" type="q52:AddF020501Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteContainerBindData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="areaContainerData" nillable="true" type="q53:AreaContainerData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteContainerBindDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="DeleteContainerBindDataResult" nillable="true" type="q54:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateContainerBindData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="areaContainerData" nillable="true" type="q55:ArrayOfAreaContainerData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateContainerBindDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateContainerBindDataResult" nillable="true" type="q56:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAllContainerIsDone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RTNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RTSEQ" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAllContainerIsDoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckAllContainerIsDoneResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUnnormalAllocDatas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q57="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="allocNos" nillable="true" type="q57:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUnnormalAllocDatasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetUnnormalAllocDatasResult" nillable="true" type="q58:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CallRecvVedio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stockNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q59="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="itemCodeList" nillable="true" type="q59:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CallRecvVedioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CallRecvVedioResult" nillable="true" type="q60:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReGetLmsApiStowShelfAreaGuide">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q61="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="warehouseList" nillable="true" type="q61:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReGetLmsApiStowShelfAreaGuideResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="ReGetLmsApiStowShelfAreaGuideResult" nillable="true" type="q62:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTodayRecvQty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purchaseNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reveDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTodayRecvQtyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTodayRecvQtyResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertManualProcessData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="f020501Id" type="xs:long" />
+        <xs:element minOccurs="0" name="f020502Id" type="xs:long" />
+        <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertManualProcessDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertManualProcessDataResult" nillable="true" type="q63:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertModifyRecvQtyData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="f020501Id" type="xs:long" />
+        <xs:element minOccurs="0" name="f020502Id" type="xs:long" />
+        <xs:element minOccurs="0" name="removeRecvQty" type="xs:int" />
+        <xs:element minOccurs="0" name="memo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q64="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemoveSerialNos" nillable="true" type="q64:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertModifyRecvQtyDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertModifyRecvQtyDataResult" nillable="true" type="q65:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertModifyNGQtyData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="f020501Id" type="xs:long" />
+        <xs:element minOccurs="0" name="f020502Id" type="xs:long" />
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="ngItem" nillable="true" type="q66:ArrayOfF02020109Data" />
+        <xs:element minOccurs="0" name="memo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ngContainerCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertModifyNGQtyDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertModifyNGQtyDataResult" nillable="true" type="q67:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010201Status">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stockNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF010201StatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF010201StatusResult" nillable="true" type="q68:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

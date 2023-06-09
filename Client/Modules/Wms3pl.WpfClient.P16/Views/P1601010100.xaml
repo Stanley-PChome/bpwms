@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P16.Views.P1601010100" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P16.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P16.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500" Title="商品搜尋" controls:PermissionService.FunctionId="P1601010100" controls:PermissionService.FunctionName="商品搜尋" WindowStartupLocation="CenterScreen" AllowDrop="False" WindowStyle="None" ResizeMode="NoResize" ShowActivated="True" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P1601010100_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1601010101" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1601010102" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1601010103" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+              <DockPanel>
+                <WrapPanel DockPanel.Dock="TOP" Margin="5">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="37" />
+                      <RowDefinition Height="37" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="80" />
+                      <ColumnDefinition Width="160" />
+                      <ColumnDefinition Width="80" />
+                      <ColumnDefinition Width="160" />
+                      <ColumnDefinition Width="80" />
+                      <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_CODE}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="123456" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_SIZE}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}">
+                      <ComboBox.Items>
+                        <ComboBoxItem Content="{x:Static Properties:Resources.Inches4point5}" />
+                        <ComboBoxItem Content="{x:Static Properties:Resources.Inches5}" />
+                      </ComboBox.Items>
+                    </ComboBox>
+                    <Label Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_SPEC}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}">
+                      <ComboBox.Items>
+                        <ComboBoxItem Content="16G" />
+                        <ComboBoxItem Content="64G" />
+                      </ComboBox.Items>
+                    </ComboBox>
+                    <Label Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.ITEM_COLOR}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}">
+                      <ComboBox.Items>
+                        <ComboBoxItem Content="{x:Static Properties:Resources.Black}" />
+                        <ComboBoxItem Content="{x:Static Properties:Resources.White}" />
+                      </ComboBox.Items>
+                    </ComboBox>
+                  </Grid>
+                </WrapPanel>
+                <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DgItemSource}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding Str5}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding Str6}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SIZE}" Binding="{Binding Str13}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SPEC}" Binding="{Binding Str14}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_COLOR}" Binding="{Binding Str15}" />
+                  </DataGrid.Columns>
+                </DataGrid>
+              </DockPanel>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

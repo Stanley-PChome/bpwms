@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ArrivalDateFrom" xml:space="preserve">
+    <value>Specify the date of arrival</value>
+  </data>
+  <data name="AUDIT_COUNT" xml:space="preserve">
+    <value>Audit has singular</value>
+  </data>
+  <data name="BatchDate" xml:space="preserve">
+    <value>Batch Date</value>
+  </data>
+  <data name="BATCH_NO" xml:space="preserve">
+    <value>batch number</value>
+  </data>
+  <data name="BUSINESS_NO" xml:space="preserve">
+    <value>Profit Number</value>
+  </data>
+  <data name="B_PICK_QTY" xml:space="preserve">
+    <value>Picking number</value>
+  </data>
+  <data name="cbDC_CODE_ALLOT" xml:space="preserve">
+    <value>Confirm stock information - allocation</value>
+  </data>
+  <data name="cbRETURN_FLAG" xml:space="preserve">
+    <value>process result</value>
+  </data>
+  <data name="cbSTATUS" xml:space="preserve">
+    <value>Processing status</value>
+  </data>
+  <data name="CHANNEL" xml:space="preserve">
+    <value>Access type</value>
+  </data>
+  <data name="ConfirmLeakData_pick" xml:space="preserve">
+    <value>Confirm the information out - picking</value>
+  </data>
+  <data name="ConfirmPartialDebit" xml:space="preserve">
+    <value>Shipper debit</value>
+  </data>
+  <data name="CONSIGNEE" xml:space="preserve">
+    <value>Receiver</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>Contact person</value>
+  </data>
+  <data name="CONTACT_TEL" xml:space="preserve">
+    <value>Contact phone</value>
+  </data>
+  <data name="CustName" xml:space="preserve">
+    <value>Shipper Address</value>
+  </data>
+  <data name="CustNo" xml:space="preserve">
+    <value>The owner of a single number</value>
+  </data>
+  <data name="CustOrdNo" xml:space="preserve">
+    <value>Customer Code</value>
+  </data>
+  <data name="CUST_COST" xml:space="preserve">
+    <value>The owner of a custom classification</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>Shipping debit</value>
+  </data>
+  <data name="DEBIT_COUNT" xml:space="preserve">
+    <value>The number of bills have been deducted</value>
+  </data>
+  <data name="DELV_DATE" xml:space="preserve">
+    <value>Batch Date</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Lot Details</value>
+  </data>
+  <data name="DgList" xml:space="preserve">
+    <value>batch</value>
+  </data>
+  <data name="ErrorQty" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+  <data name="ImportSerial" xml:space="preserve">
+    <value>Import numbers</value>
+  </data>
+  <data name="ISPASSk__BackingField" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="ISSELECTED" xml:space="preserve">
+    <value>Delete details</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="LACK_QTY" xml:space="preserve">
+    <value>Number of shortage of goods</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>Precautions</value>
+  </data>
+  <data name="NeedScanQty" xml:space="preserve">
+    <value>Should brush number</value>
+  </data>
+  <data name="NOSHIP_COUNT" xml:space="preserve">
+    <value>No manifest number</value>
+  </data>
+  <data name="NOTE" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="OrderDetail" xml:space="preserve">
+    <value>Order Details</value>
+  </data>
+  <data name="OrdNo" xml:space="preserve">
+    <value>Order Number</value>
+  </data>
+  <data name="ORD_DATE" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
+  <data name="ORD_QTY" xml:space="preserve">
+    <value>quantity of order</value>
+  </data>
+  <data name="ORD_TYPE" xml:space="preserve">
+    <value>Order Type</value>
+  </data>
+  <data name="P0601030000_ViewModel_ChkRecoverVirtualLoc" xml:space="preserve">
+    <value>To determine the selected order to make virtual storage spaces reply?</value>
+  </data>
+  <data name="P0601030000_ViewModel_SelectBatchTime" xml:space="preserve">
+    <value>Please select batch time</value>
+  </data>
+  <data name="P0601030000_ViewModel_SelectBathcDate" xml:space="preserve">
+    <value>Please select Batch Date</value>
+  </data>
+  <data name="P0601030000_ViewModel_SelectDC" xml:space="preserve">
+    <value>Please select Distribution Center</value>
+  </data>
+  <data name="P0601030000_ViewModel_selectedOrdNoList" xml:space="preserve">
+    <value>Please select the order number you want to reply</value>
+  </data>
+  <data name="P0601030000_ViewModel_VirtualLocRecoverConfirm" xml:space="preserve">
+    <value>Virtual storage spaces reply to the confirmation</value>
+  </data>
+  <data name="P0602010000_ViewModel_CancelORD" xml:space="preserve">
+    <value>Cancel order</value>
+  </data>
+  <data name="P0602010000_ViewModel_CheckItemDetail" xml:space="preserve">
+    <value>Check Item Details</value>
+  </data>
+  <data name="P0602010000_ViewModel_Close" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="P0602010000_ViewModel_Confirmed" xml:space="preserve">
+    <value>confirmed</value>
+  </data>
+  <data name="P0602010000_ViewModel_Cust_Check" xml:space="preserve">
+    <value>Owner to be confirmed</value>
+  </data>
+  <data name="P0602010000_ViewModel_FoundItem" xml:space="preserve">
+    <value>Find products</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyGreaterThanZero" xml:space="preserve">
+    <value>Out must be greater than 0</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyNotOverPickQty" xml:space="preserve">
+    <value>Out of the number should not exceed the number of picking</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyNotOverTransQty" xml:space="preserve">
+    <value>Out of the number should not exceed the number of allocation</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyNotZero" xml:space="preserve">
+    <value>Out of the number can not be 0</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStock_Check" xml:space="preserve">
+    <value>Out of stock To be confirmed</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStock_Shipment" xml:space="preserve">
+    <value>Lack Ship</value>
+  </data>
+  <data name="PassQty" xml:space="preserve">
+    <value>By number</value>
+  </data>
+  <data name="Pick" xml:space="preserve">
+    <value>Picking</value>
+  </data>
+  <data name="PickLeakProcess" xml:space="preserve">
+    <value>Picking out process</value>
+  </data>
+  <data name="PICK_ORD_SEQ" xml:space="preserve">
+    <value>Picking line item</value>
+  </data>
+  <data name="PICK_TIME" xml:space="preserve">
+    <value>Lot period</value>
+  </data>
+  <data name="PrintInvoice" xml:space="preserve">
+    <value>Print Invoice</value>
+  </data>
+  <data name="PRINT_RECEIPT" xml:space="preserve">
+    <value>Print invoices / receipts</value>
+  </data>
+  <data name="REASON" xml:space="preserve">
+    <value>Out the reasons</value>
+  </data>
+  <data name="RECEIPT_ADDRESS" xml:space="preserve">
+    <value>Invoice address</value>
+  </data>
+  <data name="RECEIPT_NO" xml:space="preserve">
+    <value>Specify the invoice number</value>
+  </data>
+  <data name="RECEIPT_TITLE" xml:space="preserve">
+    <value>Invoice</value>
+  </data>
+  <data name="RetailCode" xml:space="preserve">
+    <value>client's name</value>
+  </data>
+  <data name="ScannedQty" xml:space="preserve">
+    <value>Has several brush</value>
+  </data>
+  <data name="SearchOrdNo" xml:space="preserve">
+    <value>Query a single number</value>
+  </data>
+  <data name="SearchOrdNo1" xml:space="preserve">
+    <value>Order Number Single</value>
+  </data>
+  <data name="SerialNo" xml:space="preserve">
+    <value>Number / case number</value>
+  </data>
+  <data name="SERIAL_NOk__BackingField" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="SHOWQUERYPAGE" xml:space="preserve">
+    <value>Process set out</value>
+  </data>
+  <data name="SOURCE_NAME" xml:space="preserve">
+    <value>Source documents</value>
+  </data>
+  <data name="SP_DELV" xml:space="preserve">
+    <value>Special delivery</value>
+  </data>
+  <data name="SRC_QTY" xml:space="preserve">
+    <value>Number allocation</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="tbPICK_ORD_NO" xml:space="preserve">
+    <value>Picking a single number</value>
+  </data>
+  <data name="tbPICK_ORD_NO_ALLOT" xml:space="preserve">
+    <value>Requisition number</value>
+  </data>
+  <data name="TEL_1" xml:space="preserve">
+    <value>Receiving Tel 1</value>
+  </data>
+  <data name="TEL_2" xml:space="preserve">
+    <value>Receiving Tel 2</value>
+  </data>
+  <data name="TEL_AREA" xml:space="preserve">
+    <value>Shihanashi</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Allocation</value>
+  </data>
+  <data name="TransferToManagerWarehouse" xml:space="preserve">
+    <value>Transferred to warehouse management</value>
+  </data>
+  <data name="TRAN_CODE" xml:space="preserve">
+    <value>Job Category</value>
+  </data>
+  <data name="TxtPICK_TIME" xml:space="preserve">
+    <value>Lot period</value>
+  </data>
+  <data name="TYPE_ID" xml:space="preserve">
+    <value>Do the warehouse</value>
+  </data>
+  <data name="WMS_ORD_COUNT" xml:space="preserve">
+    <value>The total number of shippers</value>
+  </data>
+  <data name="WMS_ORD_NO" xml:space="preserve">
+    <value>Shipper No.</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>Job Type</value>
+  </data>
+  <data name="OrderType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="QueryAllOrder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="QueryB2COrder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="QueryNotOrder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PICK_LOC" xml:space="preserve">
+    <value>Original Pick List Storage Location</value>
+  </data>
+  <data name="ContainerBarcode" xml:space="preserve">
+    <value>Container barcode</value>
+  </data>
+  <data name="CONTAINER_CODE" xml:space="preserve">
+    <value>Container Code</value>
+  </data>
+  <data name="ModifyQtyOutOfStock" xml:space="preserve">
+    <value>Modify Lack Qty</value>
+  </data>
+  <data name="PickLoc" xml:space="preserve">
+    <value>Picking storage</value>
+  </data>
+  <data name="ConfirmExit" xml:space="preserve">
+    <value>You sure you want to leave?</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="LackQtyNotGreaterOrigin" xml:space="preserve">
+    <value>The shortage of goods quantity cannot be greater than the original quantity</value>
+  </data>
+  <data name="LackQtyNotLessZero" xml:space="preserve">
+    <value>The Number of shortage of goods cannot be less than 0</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>product search</value>
+  </data>
+</root>

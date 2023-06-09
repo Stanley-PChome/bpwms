@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5f880a58-59e9-4500-a953-4f971d703728" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/ExportWcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ExportWcfService.xsd" MetadataType="Schema" ID="647cfec5-9488-4b07-8c76-5a9ee71ad1fb" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/ExportWcfService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ExportWcfService.wsdl" MetadataType="Wsdl" ID="de986100-cda1-4915-a34c-81f6efc81d2a" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/ExportWcfService.svc?wsdl" />
+    <MetadataFile FileName="ExportWcfService1.xsd" MetadataType="Schema" ID="64df4a43-dc53-4808-9f84-734e5beb3621" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/ExportWcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ExportWcfService.disco" MetadataType="Disco" ID="50f575a7-395e-4a47-9414-ad396ea30cad" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/ExportWcfService.svc?disco" />
+    <MetadataFile FileName="ExportWcfService2.xsd" MetadataType="Schema" ID="55ebab16-5f94-46eb-a81f-db57ba1eb0f0" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/ExportWcfService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

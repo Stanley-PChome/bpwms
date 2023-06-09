@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P05.Views.P0503020300" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P05.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P05.ViewModel" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" ResizeMode="NoResize" WindowState="Maximized" WindowStyle="None" ShowActivated="True" ShowInTaskbar="False" IsHitTestVisible="True" Title="查看指定序號" controls:PermissionService.FunctionId="P0503020300" controls:PermissionService.FunctionName="查看指定序號" FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0503020300_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource ExitButton}" Command="{Binding ExitCommand}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel>
+              <!-- 由此處開始加入畫面項目 -->
+              <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding dgSerialNoData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="5" DockPanel.Dock="Top" Name="dgSerialNoData">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                  <DataGridTextColumn Header="品名" Binding="{Binding ITEM_NAME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                  <DataGridTextColumn Header="指定序號" Binding="{Binding SERIAL_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

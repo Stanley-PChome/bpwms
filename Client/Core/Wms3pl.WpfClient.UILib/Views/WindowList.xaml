@@ -1,0 +1,42 @@
+﻿<Window x:Class="Wms3pl.WpfClient.UILib.Views.WindowList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Views="clr-namespace:Wms3pl.WpfClient.UILib.Views" Title="WindowList" Height="300" Width="600" Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type Window}">
+
+            <StackPanel>
+
+                <TextBlock Height="30" Margin="2"  Text="{Binding Title}" />
+
+                <!--<TextBox Height="30" Margin="2" Text="{Binding Description}" />-->
+
+            </StackPanel>
+
+        </DataTemplate>
+        <Style TargetType="ListBox">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <ListBox x:Name="lv" SelectionChanged="lv_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Height="200" Width="190">
+                        <TextBlock Text="{Binding Path=Window.Title}" FontSize="13" HorizontalAlignment="Center" Margin="0,0,0,1" 
+                                   TextWrapping="Wrap"/>
+                        <Grid Width="190" Height="180" HorizontalAlignment="Center">
+                            <Image Source="{Binding Path=Image}" Margin="6,6,6,9"/>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

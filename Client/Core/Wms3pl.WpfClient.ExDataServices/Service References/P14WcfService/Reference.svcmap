@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1d85ff81-a9c0-4571-b013-bf1b99689045" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/P14WcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="P14WcfService.disco" MetadataType="Disco" ID="7f2dbc28-7f77-45d9-9269-e30780c9b870" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?disco" />
+    <MetadataFile FileName="P14WcfService3.xsd" MetadataType="Schema" ID="2975599c-403d-4853-ae77-75b45dbff707" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd2" />
+    <MetadataFile FileName="P14WcfService1.xsd" MetadataType="Schema" ID="d91c810a-d9f3-4c6a-9b88-2d974f219f18" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd3" />
+    <MetadataFile FileName="P14WcfService2.xsd" MetadataType="Schema" ID="487bb83d-9621-4b27-87be-5632fe0a8543" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="P14WcfService.wsdl" MetadataType="Wsdl" ID="45215cbe-4a5f-4d52-a7c5-392d7047b034" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?wsdl" />
+    <MetadataFile FileName="P14WcfService4.xsd" MetadataType="Schema" ID="ed5a1eb3-a354-4945-b27f-d2a58f5470f6" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd4" />
+    <MetadataFile FileName="P14WcfService5.xsd" MetadataType="Schema" ID="8bfb2ac6-19a5-4ba7-a85b-0b9e24f3bb3c" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd5" />
+    <MetadataFile FileName="P14WcfService.xsd" MetadataType="Schema" ID="f2d2e10c-0e79-4c23-a443-679d55845147" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

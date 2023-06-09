@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfF055001QueryItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F055001QueryItem" nillable="true" type="tns:F055001QueryItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF055001QueryItem" nillable="true" type="tns:ArrayOfF055001QueryItem" />
+  <xs:complexType name="F055001QueryItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BOX_NUM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CLIENT_PC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROCESS_DATE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WMS_ORD_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F055001QueryItem" nillable="true" type="tns:F055001QueryItem" />
+  <xs:complexType name="ArrayOfF1924QueryData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F1924QueryData" nillable="true" type="tns:F1924QueryData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF1924QueryData" nillable="true" type="tns:ArrayOfF1924QueryData" />
+  <xs:complexType name="F1924QueryData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EMAIL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMP_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1924QueryData" nillable="true" type="tns:F1924QueryData" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element name="_x003C_IsSuccessed_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Message_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+</xs:schema>

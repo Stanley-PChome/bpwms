@@ -1,0 +1,107 @@
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P71.Views.P7101020000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P71.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P71.Properties" 
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"    
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800"
+			controls:PermissionService.FunctionId="P7101020000"
+			controls:PermissionService.FunctionName="儲區維護"
+			FormException="{Binding Exception}">
+	<uiLib:Wms3plUserControl.DataContext>
+		<viewModel:P7101020000_ViewModel x:Name="Vm"/>
+	</uiLib:Wms3plUserControl.DataContext>
+	<uiLib:Wms3plUserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+		</ResourceDictionary>
+	</uiLib:Wms3plUserControl.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+					<Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP7101020001" Command="{Binding SearchCommand}" />
+					<Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP7101020002" Command="{Binding AddCommand}" />
+					<Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP7101020003" Command="{Binding EditCommand}" />
+				</WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
+				<TabControl x:Name="LayoutRoot" >
+					<TabControl.BindingGroup>
+						<BindingGroup Name="errorGroup" />
+					</TabControl.BindingGroup>
+					<TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+						<DockPanel>
+							<!-- 由此處開始加入畫面項目 -->
+							<GroupBox DockPanel.Dock ="Top" Header="{x:Static res:Resources.QueryCondition}">
+								<StackPanel>
+									<WrapPanel>
+										<Label Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbStyle}"/>
+										<ComboBox Style="{StaticResource ComboStyle}" Width="180"
+															ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}" 
+															DisplayMemberPath="Name" SelectedValuePath="Value" 
+															SelectedValue="{Binding SelectedDcCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+										<WrapPanel Visibility="{Binding VisibilityGupAndCust }">
+											<Label Content="{x:Static Properties:Resources.GupCode}" Style="{StaticResource LbStyle}"/>
+											<ComboBox Style="{StaticResource ComboStyle}" 
+																ItemsSource="{Binding GupList, UpdateSourceTrigger=PropertyChanged}" 
+																DisplayMemberPath="Name" SelectedValuePath="Value" 
+																SelectedValue="{Binding SelectedGupCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+											<Label Content="{x:Static Properties:Resources.CustCode}" Style="{StaticResource LbStyle}"/>
+											<ComboBox Style="{StaticResource ComboStyle}" 
+																ItemsSource="{Binding CustList, UpdateSourceTrigger=PropertyChanged}" 
+																DisplayMemberPath="Name" SelectedValuePath="Value" 
+																SelectedValue="{Binding SelectedCustCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+										</WrapPanel>
+									</WrapPanel>
+									<WrapPanel>
+										<Label Content="{x:Static Properties:Resources.WAREHOUSE_Name}" Style="{StaticResource LbStyle}" />
+										<ComboBox Style="{StaticResource ComboStyle}" Width="180"
+																ItemsSource="{Binding WarehouseList, UpdateSourceTrigger=PropertyChanged}" 
+																DisplayMemberPath="Name" SelectedValuePath="Value" 
+																SelectedValue="{Binding SelectedwarehouseId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+										<Label Content="{x:Static Properties:Resources.WarehouseId}" Style="{StaticResource LbStyle}"/>
+										<TextBox Text="{Binding SelectedwarehouseId}" IsReadOnly="True" Style="{StaticResource TxtStyle}"></TextBox>
+									</WrapPanel>
+								</StackPanel>
+							</GroupBox>
+							<DataGrid  Style="{StaticResource DgStyle}" SelectionUnit="FullRow" SelectionMode="Single"
+							  ItemsSource="{Binding F1919Datas, UpdateSourceTrigger=PropertyChanged}" 
+							  SelectedItem="{Binding SelectedF1919Data, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="dglist_OnMouseDoubleClick">
+								<DataGrid.Columns>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static res:Resources.Dc}" Binding="{Binding DC_NAME}"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.Gup_Code}" Binding="{Binding GUP_NAME}"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.Cust_Code}" Binding="{Binding CUST_NAME}"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.WAREHOUSE_Name}" Binding="{Binding WAREHOUSE_Name}"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.WAREHOUSE_ID}" Binding="{Binding WAREHOUSE_ID}"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.AREA_NAME}" Binding="{Binding AREA_NAME }"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.AREA_CODE}" Binding="{Binding AREA_CODE}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.PICK_TYPE}" Binding="{Binding PICK_TYPE_NAME}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.PICK_TOOL}" Binding="{Binding PICK_TOOL_NAME}"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.PUT_TOOL}" Binding="{Binding PUT_TOOL_NAME}"></DataGridTextColumn>
+									<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.SHELF_TOOL}" Binding="{Binding MOVE_TOOL_NAME}"></DataGridTextColumn>
+									<!--<DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.PICK_SEQ}" Binding="{Binding PICK_SEQ_NAME}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.SORT_BY}" Binding="{Binding SORT_BY_NAME}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.SINGLE_BOX}" Binding="{Binding SINGLE_BOX_NAME}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.PICK_CHECK}" Binding="{Binding PICK_CHECK_NAME}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.PICK_UNIT}" Binding="{Binding PICK_UNIT_NAME}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.PICK_MARTERIAL}" Binding="{Binding PICK_MARTERIAL_NAME}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static Properties:Resources.DELIVERY_MARTERIAL}" Binding="{Binding DELIVERY_MARTERIAL_NAME}"></DataGridTextColumn>-->
+                                </DataGrid.Columns>
+							</DataGrid>
+						</DockPanel>
+					</TabItem>
+				</TabControl>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

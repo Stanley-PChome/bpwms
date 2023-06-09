@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F14" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+  <xs:element name="GetSampleResults">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSampleResultsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="GetSampleResultsResult" nillable="true" type="q1:ArrayOfExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertP140101">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F14" minOccurs="0" name="f140101" nillable="true" type="q2:F140101" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="inventoryWareHouseList" nillable="true" type="q3:ArrayOfInventoryWareHouse" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="inventoryItemList" nillable="true" type="q4:ArrayOfInventoryItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertP140101Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertP140101Result" nillable="true" type="q5:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateP140101">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F14" minOccurs="0" name="f140101" nillable="true" type="q6:F140101" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="inventoryDetailItemList" nillable="true" type="q7:ArrayOfInventoryDetailItem" />
+        <xs:element minOccurs="0" name="clientName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateP140101Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateP140101Result" nillable="true" type="q8:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckInventoryItemExist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="inventoryItemList" nillable="true" type="q9:ArrayOfstring" />
+        <xs:element minOccurs="0" name="mode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckInventoryItemExistResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CheckInventoryItemExistResult" nillable="true" type="q10:CheckInventoryItemRes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckImorImportInventorySerial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="inventoryNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="importInventorySerials" nillable="true" type="q11:ArrayOfImportInventorySerial" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckImorImportInventorySerialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CheckImorImportInventorySerialResult" nillable="true" type="q12:ArrayOfImportInventorySerial" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF140101PostingStauts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="inventoryNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="importInventorySerials" nillable="true" type="q13:ArrayOfImportInventorySerial" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateF140101PostingStautsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="UpdateF140101PostingStautsResult" nillable="true" type="q14:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportInventoryDetailItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="inventoryNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="importInventoryDetailItems" nillable="true" type="q15:ArrayOfImportInventoryDetailItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportInventoryDetailItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="ImportInventoryDetailItemsResult" nillable="true" type="q16:ImportInventoryDetailResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountInventoryDetailItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="inventoryNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="wareHouseId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="begLocCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="endLocCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountInventoryDetailItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CountInventoryDetailItemsResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF140106">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="inventoryNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clientName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="datas" nillable="true" type="q17:ArrayOfInventoryDetailItemsByIsSecond" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertF140106Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertF140106Result" nillable="true" type="q18:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CaseClosedP140102">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="inventoryNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CaseClosedP140102Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CaseClosedP140102Result" nillable="true" type="q19:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetF1980ByLocCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetF1980ByLocCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" minOccurs="0" name="GetF1980ByLocCodeResult" nillable="true" type="q20:F1980" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

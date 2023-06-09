@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetZipCode32">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="addrStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZipCode32Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZipCode32Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="zip3" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCityAreaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetZipCode32SoapIn">
+    <wsdl:part name="parameters" element="tns:GetZipCode32" />
+  </wsdl:message>
+  <wsdl:message name="GetZipCode32SoapOut">
+    <wsdl:part name="parameters" element="tns:GetZipCode32Response" />
+  </wsdl:message>
+  <wsdl:message name="GetCityAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCityArea" />
+  </wsdl:message>
+  <wsdl:message name="GetCityAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCityAreaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LZWZIPSoap">
+    <wsdl:operation name="GetZipCode32">
+      <wsdl:input message="tns:GetZipCode32SoapIn" />
+      <wsdl:output message="tns:GetZipCode32SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityArea">
+      <wsdl:input message="tns:GetCityAreaSoapIn" />
+      <wsdl:output message="tns:GetCityAreaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LZWZIPSoap" type="tns:LZWZIPSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetZipCode32">
+      <soap:operation soapAction="http://tempuri.org/GetZipCode32" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityArea">
+      <soap:operation soapAction="http://tempuri.org/GetCityArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LZWZIPSoap12" type="tns:LZWZIPSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetZipCode32">
+      <soap12:operation soapAction="http://tempuri.org/GetZipCode32" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityArea">
+      <soap12:operation soapAction="http://tempuri.org/GetCityArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LZWZIP">
+    <wsdl:port name="LZWZIPSoap" binding="tns:LZWZIPSoap">
+      <soap:address location="http://32wsp.post.gov.tw/lzwzip/lzwzip.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LZWZIPSoap12" binding="tns:LZWZIPSoap12">
+      <soap12:address location="http://32wsp.post.gov.tw/lzwzip/lzwzip.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P05WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfF050102Ex">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F050102Ex" nillable="true" type="tns:F050102Ex" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF050102Ex" nillable="true" type="tns:ArrayOfF050102Ex" />
+  <xs:complexType name="F050102Ex">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="A_DELV_QTY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BUNDLE_SERIALLOC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BUNDLE_SERIALNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="B_DELV_QTY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CRT_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CRT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CRT_STAFF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ISSELECTED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_COLOR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SIZE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SPEC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAKE_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NO_DELV" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="ORD_SEQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:int" />
+      <xs:element minOccurs="0" name="SERIAL_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F050102Ex" nillable="true" type="tns:F050102Ex" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+  <xs:complexType name="ArrayOfF050102Excel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F050102Excel" nillable="true" type="tns:F050102Excel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF050102Excel" nillable="true" type="tns:ArrayOfF050102Excel" />
+  <xs:complexType name="F050102Excel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NO_DELV" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="ORD_SEQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:int" />
+      <xs:element minOccurs="0" name="SERIAL_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F050102Excel" nillable="true" type="tns:F050102Excel" />
+  <xs:complexType name="CreateBatchPick">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllotCnt" type="xs:short" />
+      <xs:element minOccurs="0" name="AllotType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DcCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GupCode" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PickOrdNos" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="PickTool" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateBatchPick" nillable="true" type="tns:CreateBatchPick" />
+  <xs:complexType name="ArrayOfPutReportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PutReportData" nillable="true" type="tns:PutReportData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPutReportData" nillable="true" type="tns:ArrayOfPutReportData" />
+  <xs:complexType name="PutReportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACT_QTY" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LOC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PLAN_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="RETAIL_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RETAIL_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PutReportData" nillable="true" type="tns:PutReportData" />
+  <xs:complexType name="ArrayOfBatchPickStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BatchPickStation" nillable="true" type="tns:BatchPickStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBatchPickStation" nillable="true" type="tns:ArrayOfBatchPickStation" />
+  <xs:complexType name="BatchPickStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BATCH_PICK_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CNT" type="xs:int" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="STATION_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TOTAL_QTY" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BatchPickStation" nillable="true" type="tns:BatchPickStation" />
+  <xs:complexType name="ArrayOfRP0501010004Model">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RP0501010004Model" nillable="true" type="tns:RP0501010004Model" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRP0501010004Model" nillable="true" type="tns:ArrayOfRP0501010004Model" />
+  <xs:complexType name="RP0501010004Model">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BARCODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VNR_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WMS_ORD_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RP0501010004Model" nillable="true" type="tns:RP0501010004Model" />
+  <xs:complexType name="ArrayOfRP0501010005Model">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RP0501010005Model" nillable="true" type="tns:RP0501010005Model" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRP0501010005Model" nillable="true" type="tns:ArrayOfRP0501010005Model" />
+  <xs:complexType name="RP0501010005Model">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BARCODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RP0501010005Model" nillable="true" type="tns:RP0501010005Model" />
+  <xs:complexType name="ArrayOfP050103ReportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="P050103ReportData" nillable="true" type="tns:P050103ReportData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfP050103ReportData" nillable="true" type="tns:ArrayOfP050103ReportData" />
+  <xs:complexType name="P050103ReportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACC_UNIT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AREA_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GUP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE_BARCODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_COLOR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SIZE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SPEC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_LOC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_LOC_BARCODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO_BARCODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_QTY_SUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PICK_TIME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SERIAL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TMPR_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VALID_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WAREHOUSE_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="P050103ReportData" nillable="true" type="tns:P050103ReportData" />
+  <xs:complexType name="ArrayOfCalcatePickPercent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CalcatePickPercent" nillable="true" type="tns:CalcatePickPercent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCalcatePickPercent" nillable="true" type="tns:ArrayOfCalcatePickPercent" />
+  <xs:complexType name="CalcatePickPercent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDA_PICK_PERCENT" type="xs:int" />
+      <xs:element minOccurs="0" name="PICK_TIME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CalcatePickPercent" nillable="true" type="tns:CalcatePickPercent" />
+  <xs:complexType name="ArrayOfChangePickTool">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ChangePickTool" nillable="true" type="tns:ChangePickTool" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChangePickTool" nillable="true" type="tns:ArrayOfChangePickTool" />
+  <xs:complexType name="ChangePickTool">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_TOOL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChangePickTool" nillable="true" type="tns:ChangePickTool" />
+  <xs:complexType name="BatchPickNoList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ATFL_BP_PICK_CNT" type="xs:int" />
+      <xs:element minOccurs="0" name="ATFL_B_PICK_CNT" type="xs:int" />
+      <xs:element minOccurs="0" name="ATFL_NP_PICK_CNT" type="xs:int" />
+      <xs:element minOccurs="0" name="ATFL_N_PICK_CNT" type="xs:int" />
+      <xs:element minOccurs="0" name="CROSS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_COST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_COST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FAST_DEAL_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FAST_DEAL_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORDER_PROC_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDA_PICK_PERCENT" type="xs:int" />
+      <xs:element minOccurs="0" name="PICK_TIME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REPICK_CNT" type="xs:int" />
+      <xs:element minOccurs="0" name="SOURCE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SOURCE_TYPE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BatchPickNoList" nillable="true" type="tns:BatchPickNoList" />
+  <xs:complexType name="RePickNoList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="COLLECTION_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CROSS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CRT_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_COST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FAST_DEAL_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORDER_PROC_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_TIME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_TOOL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SOURCE_TYPE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RePickNoList" nillable="true" type="tns:RePickNoList" />
+</xs:schema>

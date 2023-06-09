@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P18WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P18WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P18WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P18WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P18WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P18WcfService_GetF1913Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1913Data" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_GetF1913Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1913DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_UpdateValidDateAndBatchNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateValidDateAndBatchNo" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_UpdateValidDateAndBatchNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateValidDateAndBatchNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_InsertF200101Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF200101Data" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_InsertF200101Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF200101DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_UpdateF191302_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF191302" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_UpdateF191302_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF191302Response" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_CreateInventory_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateInventory" />
+  </wsdl:message>
+  <wsdl:message name="P18WcfService_CreateInventory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateInventoryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P18WcfService">
+    <wsdl:operation name="GetF1913Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P18WcfService/GetF1913Data" message="tns:P18WcfService_GetF1913Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P18WcfService/GetF1913DataResponse" message="tns:P18WcfService_GetF1913Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateValidDateAndBatchNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P18WcfService/UpdateValidDateAndBatchNo" message="tns:P18WcfService_UpdateValidDateAndBatchNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P18WcfService/UpdateValidDateAndBatchNoResponse" message="tns:P18WcfService_UpdateValidDateAndBatchNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF200101Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P18WcfService/InsertF200101Data" message="tns:P18WcfService_InsertF200101Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P18WcfService/InsertF200101DataResponse" message="tns:P18WcfService_InsertF200101Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF191302">
+      <wsdl:input wsaw:Action="http://tempuri.org/P18WcfService/UpdateF191302" message="tns:P18WcfService_UpdateF191302_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P18WcfService/UpdateF191302Response" message="tns:P18WcfService_UpdateF191302_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateInventory">
+      <wsdl:input wsaw:Action="http://tempuri.org/P18WcfService/CreateInventory" message="tns:P18WcfService_CreateInventory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P18WcfService/CreateInventoryResponse" message="tns:P18WcfService_CreateInventory_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P18WcfService" type="tns:P18WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetF1913Data">
+      <soap:operation soapAction="http://tempuri.org/P18WcfService/GetF1913Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateValidDateAndBatchNo">
+      <soap:operation soapAction="http://tempuri.org/P18WcfService/UpdateValidDateAndBatchNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF200101Data">
+      <soap:operation soapAction="http://tempuri.org/P18WcfService/InsertF200101Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF191302">
+      <soap:operation soapAction="http://tempuri.org/P18WcfService/UpdateF191302" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInventory">
+      <soap:operation soapAction="http://tempuri.org/P18WcfService/CreateInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P18WcfService">
+    <wsdl:port name="BasicHttpBinding_P18WcfService" binding="tns:BasicHttpBinding_P18WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P18WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

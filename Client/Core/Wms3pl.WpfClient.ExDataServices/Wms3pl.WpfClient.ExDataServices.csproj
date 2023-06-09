@@ -1,0 +1,1411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{056BBB13-890D-432D-858F-4BD6EF840006}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WpfClient.ExDataServices</RootNamespace>
+    <AssemblyName>Wms3pl.WpfClient.ExDataServices</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>bpwms.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigurationExHelper.cs" />
+    <Compile Include="DataContextExExtension.cs" />
+    <Compile Include="ExDataMapper.cs" />
+    <Compile Include="ExQueryExtensions.cs" />
+    <Compile Include="Functions\P02ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\P05ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\P08ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\P16ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\P19ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\P70ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\P71ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\P91ExDataSourcesFunction.cs" />
+    <Compile Include="Functions\ShareExDataSourcesFunction.cs" />
+    <Compile Include="Functions\SignalRExDataSourcesFunction.cs" />
+    <Compile Include="Metadata\P01ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P02ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P05ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P06ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P08ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P14ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P15ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P16ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P19ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P20ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P25ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P70ExMetadataHelpe.cs" />
+    <Compile Include="Metadata\P71ExMetadataHelper.cs" />
+    <Compile Include="Metadata\P91ExMetadataHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ExportWcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P01ExDataService\P01ExDataService.cs" />
+    <Compile Include="Service References\P01WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P02ExDataService\P02ExDataService.cs" />
+    <Compile Include="Service References\P02WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P05ExDataService\P05ExDataService.cs" />
+    <Compile Include="Service References\P05WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P06ExDataService\P06ExDataService.cs" />
+    <Compile Include="Service References\P06WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P08ExDataService\P08ExDataService.cs" />
+    <Compile Include="Service References\P08WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P14ExDataService\P14ExDataService.cs" />
+    <Compile Include="Service References\P14WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P15ExDataService\P15ExDataService.cs" />
+    <Compile Include="Service References\P15WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P16ExDataService\P16ExDataService.cs" />
+    <Compile Include="Service References\P16WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P18ExDataService\P18ExDataService.cs" />
+    <Compile Include="Service References\P18WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P19ExDataService\P19ExDataService.cs" />
+    <Compile Include="Service References\P19WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P20ExDataService\P20ExDataService.cs" />
+    <Compile Include="Service References\P20WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P21ExDataService\P21ExDataService.cs" />
+    <Compile Include="Service References\P21WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P25ExDataService\P25ExDataService.cs" />
+    <Compile Include="Service References\P25WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P50ExDataService\P50ExDataService.cs" />
+    <Compile Include="Service References\P50WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P70ExDataService\P70ExDataService.cs" />
+    <Compile Include="Service References\P70WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P71ExDataService\P71ExDataService.cs" />
+    <Compile Include="Service References\P71WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\P91ExDataService\P91ExDataService.cs" />
+    <Compile Include="Service References\P91WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\R01ExDataService\R01ExDataService.cs" />
+    <Compile Include="Service References\R01WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\S00WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\S03ExDataService\S03ExDataService.cs" />
+    <Compile Include="Service References\S03WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\S16WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\S19WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\S99WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SharedWcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ShareExDataService\ShareExDataService.cs" />
+    <Compile Include="Service References\SignalRExDataService\SignalRExDataService.cs" />
+    <Compile Include="Service References\SignalRWcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\T05ExDataService\T05ExDataService.cs" />
+    <Compile Include="Service References\T05WcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bpwms.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P01ExDataService.P01ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P02ExDataService.P02ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P05ExDataService.P05ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P06ExDataService.P06ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P08ExDataService.P08ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P15ExDataService.P15ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P16ExDataService.P16ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P18ExDataService.P18ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P19ExDataService.P19ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P20ExDataService.P20ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P25ExDataService.P25ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P50ExDataService.P50ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P70ExDataService.P70ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P71ExDataService.P71ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P91ExDataService.P91ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.P93ExDataService.P93ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.S01ExDataService.S01ExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.ShareExDataService.ShareExDataSource.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.ExDataServices.T05ExDataService.T05ExDataSource.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ExportWcfService\ExportWcfService.wsdl" />
+    <None Include="Service References\ExportWcfService\ExportWcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ExportWcfService\ExportWcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ExportWcfService\ExportWcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ExportWcfService\Wms3pl.WpfClient.ExDataServices.ExportWcfService.ApiResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P01ExDataService\ConnectedService.json" />
+    <None Include="Service References\P01WcfService\P01WcfService.wsdl" />
+    <None Include="Service References\P01WcfService\P01WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P01WcfService\P01WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P01WcfService\P01WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P01WcfService\P01WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P01WcfService\Wms3pl.WpfClient.ExDataServices.P01WcfService.BarcodeData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P01WcfService\Wms3pl.WpfClient.ExDataServices.P01WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P01WcfService\Wms3pl.WpfClient.ExDataServices.P01WcfService.SerialNoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P02ExDataService\ConnectedService.json" />
+    <None Include="Service References\P02WcfService\P02WcfService.wsdl" />
+    <None Include="Service References\P02WcfService\P02WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P02WcfService\P02WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P02WcfService\P02WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P02WcfService\P02WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P02WcfService\P02WcfService44.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P02WcfService\P02WcfService45.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P02WcfService\P02WcfService46.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P02WcfService\Wms3pl.WpfClient.ExDataServices.P02WcfService.AcceptanceReturnData1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P02WcfService\Wms3pl.WpfClient.ExDataServices.P02WcfService.AddF020501Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P02WcfService\Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P02WcfService\Wms3pl.WpfClient.ExDataServices.P02WcfService.P0202030500PalletData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P02WcfService\Wms3pl.WpfClient.ExDataServices.P02WcfService.ScanCargoData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P02WcfService\Wms3pl.WpfClient.ExDataServices.P02WcfService.ScanReceiptData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P02WcfService\Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P05ExDataService\ConnectedService.json" />
+    <None Include="Service References\P05WcfService\P05WcfService11.wsdl" />
+    <None Include="Service References\P05WcfService\P05WcfService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P05WcfService\P05WcfService52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P05WcfService\P05WcfService54.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P05WcfService\P05WcfService55.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P05WcfService\P05WcfService56.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P05WcfService\Wms3pl.WpfClient.ExDataServices.P05WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P05WcfService\Wms3pl.WpfClient.ExDataServices.P05WcfService.P050103ReportData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P05WcfService\Wms3pl.WpfClient.ExDataServices.P05WcfService.RP0501010004Model.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P05WcfService\Wms3pl.WpfClient.ExDataServices.P05WcfService.RP0501010005Model.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P06ExDataService\ConnectedService.json" />
+    <None Include="Service References\P06WcfService\P06WcfService.wsdl" />
+    <None Include="Service References\P06WcfService\P06WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P06WcfService\P06WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P06WcfService\P06WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P06WcfService\P06WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P06WcfService\P06WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P06WcfService\Wms3pl.WpfClient.ExDataServices.P06WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08ExDataService\ConnectedService.json" />
+    <None Include="Service References\P08WcfService\P08WcfService.wsdl" />
+    <None Include="Service References\P08WcfService\P08WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\P08WcfService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.BindBoxResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.CancelShipOrderRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ChangeShipPackCheckRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.CheckShipContainerCodeRes4.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.CloseShipBoxRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.GeShipFileRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.GetBoxDetailReportRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.GetRtnShipLittleLabelReportRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.GetShipLittleLabelReportRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.GetWorkStataionShipDataRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.GetShipLogisticBoxRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.HomeDeliveryOrderDebitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.LackItemResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickAllotData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickAllotResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickOutOfStockResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.RetailDeliverReportDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanContainerResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanPackageCodeResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.SearchAndCheckWmsOrderInfoRes4.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.SearchItemResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.SetPackageLineStationStatusRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.SetPackageStationStatusLogRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ShipOrderPickAllot.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ShipPackageReportModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.SowItemResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.UseShipContainerToBoxDetailRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P14ExDataService\ConnectedService.json" />
+    <None Include="Service References\P14WcfService\P14WcfService.wsdl" />
+    <None Include="Service References\P14WcfService\P14WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P14WcfService\P14WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P14WcfService\P14WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P14WcfService\P14WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P14WcfService\P14WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P14WcfService\P14WcfService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P14WcfService\Wms3pl.WpfClient.ExDataServices.P14WcfService.CheckInventoryItemRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P14WcfService\Wms3pl.WpfClient.ExDataServices.P14WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P14WcfService\Wms3pl.WpfClient.ExDataServices.P14WcfService.F1980.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P14WcfService\Wms3pl.WpfClient.ExDataServices.P14WcfService.ImportInventoryDetailResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P14WcfService\Wms3pl.WpfClient.ExDataServices.P14WcfService.ImportInventorySerial.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P15ExDataService\ConnectedService.json" />
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.SerialDataEx.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P15WcfService\P15WcfService1.wsdl" />
+    <None Include="Service References\P15WcfService\P15WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P15WcfService\P15WcfService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P15WcfService\P15WcfService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P15WcfService\P15WcfService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P15WcfService\Wms3pl.WpfClient.ExDataServices.P15WcfService.AddAllocationSuggestLocResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P15WcfService\Wms3pl.WpfClient.ExDataServices.P15WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P15WcfService\Wms3pl.WpfClient.ExDataServices.P15WcfService.F151001ReportDataByTicket.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P16ExDataService\ConnectedService.json" />
+    <None Include="Service References\P16WcfService\P16WcfService1.wsdl" />
+    <None Include="Service References\P16WcfService\P16WcfService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P16WcfService\P16WcfService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P16WcfService\P16WcfService12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P16WcfService\P16WcfService13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P16WcfService\P16WcfService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P16WcfService\P16WcfService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P16WcfService\P16WcfService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P16WcfService\Wms3pl.WpfClient.ExDataServices.P16WcfService.ExecuteLmsPdfApiResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P16WcfService\Wms3pl.WpfClient.ExDataServices.P16WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P16WcfService\Wms3pl.WpfClient.ExDataServices.P16WcfService.F160402.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P18ExDataService\ConnectedService.json" />
+    <None Include="Service References\P18WcfService\P18WcfService.wsdl" />
+    <None Include="Service References\P18WcfService\P18WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P18WcfService\P18WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P18WcfService\P18WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P18WcfService\P18WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P18WcfService\Wms3pl.WpfClient.ExDataServices.P18WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P18WcfService\Wms3pl.WpfClient.ExDataServices.P18WcfService.F1913.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P19ExDataService\ConnectedService.json" />
+    <None Include="Service References\P19WcfService\P19WcfService.wsdl" />
+    <None Include="Service References\P19WcfService\P19WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\P19WcfService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P19WcfService\Wms3pl.WpfClient.ExDataServices.P19WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P19WcfService\Wms3pl.WpfClient.ExDataServices.P19WcfService.F1912LocData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P19WcfService\Wms3pl.WpfClient.ExDataServices.P19WcfService.F1929WithF1909Test.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P19WcfService\Wms3pl.WpfClient.ExDataServices.P19WcfService.F197001Data.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P19WcfService\Wms3pl.WpfClient.ExDataServices.P19WcfService.F1980.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P20ExDataService\ConnectedService.json" />
+    <None Include="Service References\P20WcfService\P20WcfService.wsdl" />
+    <None Include="Service References\P20WcfService\P20WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P20WcfService\P20WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P20WcfService\P20WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P20WcfService\P20WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P20WcfService\Wms3pl.WpfClient.ExDataServices.P20WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P20WcfService\Wms3pl.WpfClient.ExDataServices.P20WcfService.ImportF1913DataResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P21ExDataService\ConnectedService.json" />
+    <None Include="Service References\P21WcfService\P21WcfService.wsdl" />
+    <None Include="Service References\P21WcfService\P21WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P21WcfService\P21WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P21WcfService\P21WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P21WcfService\P21WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P21WcfService\P21WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P21WcfService\Wms3pl.WpfClient.ExDataServices.P21WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P21WcfService\Wms3pl.WpfClient.ExDataServices.P21WcfService.TaskDispatchData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P21WcfService\Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P25ExDataService\ConnectedService.json" />
+    <None Include="Service References\P25WcfService\P25WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P25WcfService\P25WcfService1.wsdl" />
+    <None Include="Service References\P25WcfService\P25WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P25WcfService\P25WcfService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P25WcfService\P25WcfService12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P25WcfService\P25WcfService13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P25WcfService\Wms3pl.WpfClient.ExDataServices.P25WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P25WcfService\Wms3pl.WpfClient.ExDataServices.P25WcfService.F250103Verification.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P25WcfService\Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501QueryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P50ExDataService\ConnectedService.json" />
+    <None Include="Service References\P50WcfService\P50WcfService.wsdl" />
+    <None Include="Service References\P50WcfService\P50WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P50WcfService\P50WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P50WcfService\P50WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P50WcfService\P50WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P50WcfService\Wms3pl.WpfClient.ExDataServices.P50WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P70ExDataService\ConnectedService.json" />
+    <None Include="Service References\P70WcfService\P70WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P70WcfService\P70WcfService1.wsdl" />
+    <None Include="Service References\P70WcfService\P70WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P70WcfService\P70WcfService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P70WcfService\P70WcfService12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P70WcfService\P70WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P70WcfService\P70WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P70WcfService\Wms3pl.WpfClient.ExDataServices.P70WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P71ExDataService\ConnectedService.json" />
+    <None Include="Service References\P71WcfService\P71WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P71WcfService\P71WcfService1.wsdl" />
+    <None Include="Service References\P71WcfService\P71WcfService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P71WcfService\P71WcfService61.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P71WcfService\P71WcfService62.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P71WcfService\P71WcfService63.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P71WcfService\P71WcfService64.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P71WcfService\P71WcfService65.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P71WcfService\Wms3pl.WpfClient.ExDataServices.P71WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P71WcfService\Wms3pl.WpfClient.ExDataServices.P71WcfService.F1903.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P71WcfService\Wms3pl.WpfClient.ExDataServices.P71WcfService.F1912DataLoc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P71WcfService\Wms3pl.WpfClient.ExDataServices.P71WcfService.F1912DataLocByLocType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P71WcfService\Wms3pl.WpfClient.ExDataServices.P71WcfService.P710101DetailData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P91ExDataService\ConnectedService.json" />
+    <None Include="Service References\P91WcfService\P91WcfService.wsdl" />
+    <None Include="Service References\P91WcfService\P91WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\P91WcfService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\P91WcfService\Wms3pl.WpfClient.ExDataServices.P91WcfService.ExecuteResult2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P91WcfService\Wms3pl.WpfClient.ExDataServices.P91WcfService.F910302WithF1928.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\R01ExDataService\ConnectedService.json" />
+    <None Include="Service References\R01WcfService\R01WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\R01WcfService\R01WcfService11.wsdl" />
+    <None Include="Service References\R01WcfService\R01WcfService44.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\R01WcfService\R01WcfService45.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\R01WcfService\R01WcfService46.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\R01WcfService\R01WcfService47.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\R01WcfService\Wms3pl.WpfClient.ExDataServices.R01WcfService.ApiResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\R01WcfService\Wms3pl.WpfClient.ExDataServices.R01WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\R01WcfService\Wms3pl.WpfClient.ExDataServices.R01WcfService.SchF700501Data.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S00WcfService\S00WcfService.wsdl" />
+    <None Include="Service References\S00WcfService\S00WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S00WcfService\S00WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S00WcfService\S00WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S00WcfService\S00WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S00WcfService\Wms3pl.WpfClient.ExDataServices.S00WcfService.ContractSettleData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S03ExDataService\ConnectedService.json" />
+    <None Include="Service References\S03WcfService\S03WcfService.wsdl" />
+    <None Include="Service References\S03WcfService\S03WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S03WcfService\S03WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S03WcfService\S03WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S03WcfService\S03WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S03WcfService\Wms3pl.WpfClient.ExDataServices.S03WcfService.ExceedPickFinishTime.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S03WcfService\Wms3pl.WpfClient.ExDataServices.S03WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S03WcfService\Wms3pl.WpfClient.ExDataServices.S03WcfService.F0020.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S03WcfService\Wms3pl.WpfClient.ExDataServices.S03WcfService.OrderIsProblem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S16WcfService\S16WcfService.wsdl" />
+    <None Include="Service References\S16WcfService\S16WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S16WcfService\S16WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S16WcfService\S16WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S16WcfService\Wms3pl.WpfClient.ExDataServices.S16WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S19WcfService\S19WcfService.wsdl" />
+    <None Include="Service References\S19WcfService\S19WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S19WcfService\S19WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S19WcfService\S19WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S19WcfService\S19WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S19WcfService\Wms3pl.WpfClient.ExDataServices.S19WcfService.ApiResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\S99WcfService\S99WcfService.wsdl" />
+    <None Include="Service References\S99WcfService\S99WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S99WcfService\S99WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S99WcfService\S99WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S99WcfService\S99WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\S99WcfService\Wms3pl.WpfClient.ExDataServices.S99WcfService.WMSMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService.wsdl" />
+    <None Include="Service References\SharedWcfService\SharedWcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\SharedWcfService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.BoxPalletNoData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.ByteData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.ChkContainerResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.EgsReturnConsign.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.F050901.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.F194714.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.F1947151.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.F2501.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.FindItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.GetItemAllDlnAndAllShpRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.HctShipReturn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SharedWcfService\Wms3pl.WpfClient.ExDataServices.SharedWcfService.KTJShipReturn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShareExDataService\ConnectedService.json" />
+    <None Include="Service References\SignalRExDataService\ConnectedService.json" />
+    <None Include="Service References\SignalRWcfService\SignalRWcfService.wsdl" />
+    <None Include="Service References\SignalRWcfService\SignalRWcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SignalRWcfService\SignalRWcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SignalRWcfService\SignalRWcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SignalRWcfService\Wms3pl.WpfClient.ExDataServices.SignalRWcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\T05ExDataService\ConnectedService.json" />
+    <None Include="Service References\T05WcfService\T05WcfService.wsdl" />
+    <None Include="Service References\T05WcfService\T05WcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\T05WcfService\T05WcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\T05WcfService\T05WcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\T05WcfService\T05WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\T05WcfService\Wms3pl.WpfClient.ExDataServices.T05WcfService.ExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wms3pl.WpfClient.Common\Wms3pl.WpfClient.Common.csproj">
+      <Project>{0c8c673b-4390-4825-8605-6b2a70095b4f}</Project>
+      <Name>Wms3pl.WpfClient.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ExportWcfService\" />
+    <WCFMetadataStorage Include="Service References\P01WcfService\" />
+    <WCFMetadataStorage Include="Service References\P02WcfService\" />
+    <WCFMetadataStorage Include="Service References\P05WcfService\" />
+    <WCFMetadataStorage Include="Service References\P06WcfService\" />
+    <WCFMetadataStorage Include="Service References\P08WcfService\" />
+    <WCFMetadataStorage Include="Service References\P14WcfService\" />
+    <WCFMetadataStorage Include="Service References\P15WcfService\" />
+    <WCFMetadataStorage Include="Service References\P16WcfService\" />
+    <WCFMetadataStorage Include="Service References\P18WcfService\" />
+    <WCFMetadataStorage Include="Service References\P19WcfService\" />
+    <WCFMetadataStorage Include="Service References\P20WcfService\" />
+    <WCFMetadataStorage Include="Service References\P21WcfService\" />
+    <WCFMetadataStorage Include="Service References\P25WcfService\" />
+    <WCFMetadataStorage Include="Service References\P50WcfService\" />
+    <WCFMetadataStorage Include="Service References\P70WcfService\" />
+    <WCFMetadataStorage Include="Service References\P71WcfService\" />
+    <WCFMetadataStorage Include="Service References\P91WcfService\" />
+    <WCFMetadataStorage Include="Service References\R01WcfService\" />
+    <WCFMetadataStorage Include="Service References\S00WcfService\" />
+    <WCFMetadataStorage Include="Service References\S03WcfService\" />
+    <WCFMetadataStorage Include="Service References\S16WcfService\" />
+    <WCFMetadataStorage Include="Service References\S19WcfService\" />
+    <WCFMetadataStorage Include="Service References\S99WcfService\" />
+    <WCFMetadataStorage Include="Service References\SharedWcfService\" />
+    <WCFMetadataStorage Include="Service References\SignalRWcfService\" />
+    <WCFMetadataStorage Include="Service References\T05WcfService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P19WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P19WcfService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P19WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P71WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P71WcfService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P71WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P02WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P02WcfService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P02WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P05WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P05WcfService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P05WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P08WcfService\P08WcfService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P08WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P08WcfService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P08WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P06WcfService\P06WcfService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P06WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P06WcfService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P06WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P91WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P91WcfService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P91WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ExportWcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ExportWcfService\configuration.svcinfo" />
+    <None Include="Service References\ExportWcfService\configuration91.svcinfo" />
+    <None Include="Service References\ExportWcfService\ExportWcfService.disco" />
+    <None Include="Service References\S19WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\S19WcfService\configuration.svcinfo" />
+    <None Include="Service References\S19WcfService\configuration91.svcinfo" />
+    <None Include="Service References\S19WcfService\S19WcfService.disco" />
+    <None Include="Service References\P21WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P21WcfService\configuration.svcinfo" />
+    <None Include="Service References\P21WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P21WcfService\P21WcfService.disco" />
+    <None Include="Service References\S16WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\S16WcfService\configuration.svcinfo" />
+    <None Include="Service References\S16WcfService\configuration91.svcinfo" />
+    <None Include="Service References\S16WcfService\S16WcfService.disco" />
+    <None Include="Service References\P18WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P18WcfService\configuration.svcinfo" />
+    <None Include="Service References\P18WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P18WcfService\P18WcfService.disco" />
+    <None Include="Service References\SignalRWcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SignalRWcfService\configuration.svcinfo" />
+    <None Include="Service References\SignalRWcfService\configuration91.svcinfo" />
+    <None Include="Service References\SignalRWcfService\SignalRWcfService.disco" />
+    <None Include="Service References\SharedWcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SharedWcfService\configuration.svcinfo" />
+    <None Include="Service References\SharedWcfService\configuration91.svcinfo" />
+    <None Include="Service References\SharedWcfService\SharedWcfService.disco" />
+    <None Include="Service References\P05WcfService\P05WcfService11.disco" />
+    <None Include="Service References\P91WcfService\P91WcfService2.disco" />
+    <None Include="Service References\P01WcfService\P01WcfService.disco" />
+    <None Include="Service References\S03WcfService\S03WcfService.disco" />
+    <None Include="Service References\S03WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\S03WcfService\configuration.svcinfo" />
+    <None Include="Service References\S03WcfService\configuration91.svcinfo" />
+    <None Include="Service References\S99WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\S99WcfService\configuration.svcinfo" />
+    <None Include="Service References\S99WcfService\configuration91.svcinfo" />
+    <None Include="Service References\S99WcfService\S99WcfService.disco" />
+    <None Include="Service References\S00WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\S00WcfService\configuration.svcinfo" />
+    <None Include="Service References\S00WcfService\configuration91.svcinfo" />
+    <None Include="Service References\S00WcfService\S00WcfService.disco" />
+    <None Include="Service References\P71WcfService\P71WcfService1.disco" />
+    <None Include="Service References\R01WcfService\R01WcfService11.disco" />
+    <None Include="Service References\P70WcfService\P70WcfService1.disco" />
+    <None Include="Service References\R01WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\R01WcfService\configuration.svcinfo" />
+    <None Include="Service References\R01WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P25WcfService\P25WcfService1.disco" />
+    <None Include="Service References\P02WcfService\P02WcfService.disco" />
+    <None Include="Service References\P50WcfService\P50WcfService.disco" />
+    <None Include="Service References\P91WcfService\P91WcfService.disco" />
+    <None Include="Service References\P14WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P14WcfService\configuration.svcinfo" />
+    <None Include="Service References\P14WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P14WcfService\P14WcfService.disco" />
+    <None Include="Service References\P91WcfService\P91WcfService.disco" />
+    <None Include="Service References\T05WcfService\T05WcfService.disco" />
+    <None Include="Service References\P50WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P50WcfService\configuration.svcinfo" />
+    <None Include="Service References\P50WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P15WcfService\P15WcfService1.disco" />
+    <None Include="Service References\T05WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\T05WcfService\configuration.svcinfo" />
+    <None Include="Service References\T05WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P16WcfService\configuration.svcinfo" />
+    <None Include="Service References\P15WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P15WcfService\configuration.svcinfo" />
+    <None Include="Service References\P15WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P70WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P70WcfService\configuration.svcinfo" />
+    <None Include="Service References\P70WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P25WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P25WcfService\configuration.svcinfo" />
+    <None Include="Service References\P25WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P05WcfService\P05WcfService1.disco" />
+    <None Include="Service References\P20WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P20WcfService\configuration.svcinfo" />
+    <None Include="Service References\P20WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P20WcfService\P20WcfService.disco" />
+    <None Include="Service References\P01WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\P01WcfService\configuration.svcinfo" />
+    <None Include="Service References\P01WcfService\configuration91.svcinfo" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\P16WcfService\configuration91.svcinfo" />
+    <None Include="Service References\P16WcfService\P16WcfService1.disco" />
+    <None Include="Service References\P16WcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

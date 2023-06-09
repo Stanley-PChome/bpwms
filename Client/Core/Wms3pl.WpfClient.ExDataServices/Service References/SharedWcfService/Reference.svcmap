@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ffa1083d-5e4e-4053-af54-cc2496e59936" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/SharedWcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SharedWcfService1.xsd" MetadataType="Schema" ID="2ee13694-98a0-4f85-8c53-0feef65cb5e5" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SharedWcfService6.xsd" MetadataType="Schema" ID="2916f7dc-6b07-44a3-a588-0734297ff536" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd6" />
+    <MetadataFile FileName="SharedWcfService3.xsd" MetadataType="Schema" ID="2b3fa51d-10ba-4d6f-a660-36fa8a761e1a" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd3" />
+    <MetadataFile FileName="SharedWcfService.disco" MetadataType="Disco" ID="fd5753df-b22b-44c2-bde1-d173c4d9b6b2" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?disco" />
+    <MetadataFile FileName="SharedWcfService4.xsd" MetadataType="Schema" ID="48038f81-7d29-4be9-84be-07b183ce2d62" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd4" />
+    <MetadataFile FileName="SharedWcfService7.xsd" MetadataType="Schema" ID="e4f2b8c4-b1ec-4f43-8863-9ea4f0576af9" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd7" />
+    <MetadataFile FileName="SharedWcfService.wsdl" MetadataType="Wsdl" ID="88875a5a-b093-4e5f-a576-79c4cb345a8a" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?wsdl" />
+    <MetadataFile FileName="SharedWcfService.xsd" MetadataType="Schema" ID="02f12f1b-f326-4932-94cf-4a286c3348df" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SharedWcfService5.xsd" MetadataType="Schema" ID="46e2ef59-f001-4002-9406-e79d47cbf7e1" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd5" />
+    <MetadataFile FileName="SharedWcfService2.xsd" MetadataType="Schema" ID="d03cdee1-1b6f-43b1-a49e-ccaf5edb4b28" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

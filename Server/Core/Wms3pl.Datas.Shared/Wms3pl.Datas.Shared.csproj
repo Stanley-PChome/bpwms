@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3DC1679-3BFE-47B1-9302-9A17B90CD9F9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.Datas.Shared</RootNamespace>
+    <AssemblyName>Wms3pl.Datas.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFrameworkCore.DataEncryption, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFrameworkCore.DataEncryption.1.1.0\lib\netstandard2.0\EntityFrameworkCore.DataEncryption.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.5.6.0\lib\net40\Microsoft.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.EntityFrameworkCore.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.EntityFrameworkCore.Abstractions.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Memory.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiEntities\ApiEntities.cs" />
+    <Compile Include="ApiEntities\LmsEntities.cs" />
+    <Compile Include="ApiEntities\P820101Entities.cs" />
+    <Compile Include="ApiEntities\P820102Entities.cs" />
+    <Compile Include="ApiEntities\P820103Entities.cs" />
+    <Compile Include="ApiEntities\P820104Entities.cs" />
+    <Compile Include="ApiEntities\P820105Entities.cs" />
+    <Compile Include="ApiEntities\P820106Entities.cs" />
+    <Compile Include="ApiEntities\P820201Entities.cs" />
+    <Compile Include="ApiEntities\P820202Entities.cs" />
+    <Compile Include="ApiEntities\P820203Entities.cs" />
+    <Compile Include="ApiEntities\P820204Entities.cs" />
+    <Compile Include="ApiEntities\P820206Entities.cs" />
+    <Compile Include="ApiEntities\P820205Entities.cs" />
+    <Compile Include="ApiEntities\P820207Entities.cs" />
+    <Compile Include="ApiEntities\P820209Entities.cs" />
+    <Compile Include="ApiEntities\P820210Entities.cs" />
+    <Compile Include="ApiEntities\P820208Entities.cs" />
+    <Compile Include="ApiEntities\P820300Entities.cs" />
+    <Compile Include="ApiEntities\P820301Entities.cs" />
+    <Compile Include="ApiEntities\P820302Entities.cs" />
+    <Compile Include="ApiEntities\P820304Entities.cs" />
+    <Compile Include="ApiEntities\P820303Entities.cs" />
+    <Compile Include="ApiEntities\P820309Entities.cs" />
+    <Compile Include="ApiEntities\P820308Entities.cs" />
+    <Compile Include="ApiEntities\P820307Entities.cs" />
+    <Compile Include="ApiEntities\P820306Entities.cs" />
+    <Compile Include="ApiEntities\P820305Entities.cs" />
+    <Compile Include="ApiEntities\P820313Entities.cs" />
+    <Compile Include="ApiEntities\P820311Entities.cs" />
+    <Compile Include="ApiEntities\P820312Entitties.cs" />
+    <Compile Include="ApiEntities\P820310Entities.cs" />
+    <Compile Include="ApiEntities\P820400Entities.cs" />
+    <Compile Include="ApiEntities\P820401Entities.cs" />
+    <Compile Include="ApiEntities\P820402Entities.cs" />
+    <Compile Include="ApiEntities\P820403Entities.cs" />
+    <Compile Include="ApiEntities\P820410Entities.cs" />
+    <Compile Include="ApiEntities\P820409Entities.cs" />
+    <Compile Include="ApiEntities\P820408Entities.cs" />
+    <Compile Include="ApiEntities\P820407Entities.cs" />
+    <Compile Include="ApiEntities\P820406Entities.cs" />
+    <Compile Include="ApiEntities\P820405Entities.cs" />
+    <Compile Include="ApiEntities\P820404Entities.cs" />
+    <Compile Include="ApiEntities\P820506Entities.cs" />
+    <Compile Include="ApiEntities\P820509Entities.cs" />
+    <Compile Include="ApiEntities\P820508Entities.cs" />
+    <Compile Include="ApiEntities\P820411Entities.cs" />
+    <Compile Include="ApiEntities\P820505Entities.cs" />
+    <Compile Include="ApiEntities\P820504Entities.cs" />
+    <Compile Include="ApiEntities\P820503Entities.cs" />
+    <Compile Include="ApiEntities\P820502Entities.cs" />
+    <Compile Include="ApiEntities\P820500Entities.cs" />
+    <Compile Include="ApiEntities\P820501Entities.cs" />
+    <Compile Include="ApiEntities\P820507Entities.cs" />
+    <Compile Include="ApiEntities\P820510Entities.cs" />
+    <Compile Include="ApiEntities\P820512Entities.cs" />
+    <Compile Include="ApiEntities\P820511Entities.cs" />
+    <Compile Include="ApiEntities\P820514Entities.cs" />
+    <Compile Include="ApiEntities\P820513Entities.cs" />
+    <Compile Include="ApiEntities\WcssrEntities.cs" />
+    <Compile Include="Entities\AdjustOrderEntites.cs" />
+    <Compile Include="Entities\AllotEntites.cs" />
+    <Compile Include="Entities\DataImportEntities.cs" />
+    <Compile Include="Entities\F00ExEntities.cs" />
+    <Compile Include="Entities\F01ExEntities.part1.cs" />
+    <Compile Include="Entities\F01ExEntities.cs" />
+    <Compile Include="Entities\F01ExEntities.part2.cs" />
+    <Compile Include="Entities\F01ExEntities.part4.cs" />
+    <Compile Include="Entities\F02ExEntities.cs" />
+    <Compile Include="Entities\F07ExEntities.cs" />
+    <Compile Include="Entities\F06ExEntities.cs" />
+    <Compile Include="Entities\F05ExEntities.cs" />
+    <Compile Include="Entities\F05ExEntities.part1.cs" />
+    <Compile Include="Entities\F05ExEntities.part2.cs" />
+    <Compile Include="Entities\F14ExEntities.cs" />
+    <Compile Include="Entities\F15ExEntities.part1.cs" />
+    <Compile Include="Entities\F15ExEntities.cs" />
+    <Compile Include="Entities\F16ExEntities.cs" />
+    <Compile Include="Entities\F16ExEntities.part1.cs" />
+    <Compile Include="Entities\F16ExEntities.part2.cs" />
+    <Compile Include="Entities\F19ExEntities.cs" />
+    <Compile Include="Entities\F19ExEntities.part1.cs" />
+    <Compile Include="Entities\F19ExEntities.part2.cs" />
+    <Compile Include="Entities\F19ExEntities.part3.cs" />
+    <Compile Include="Entities\F20ExEntities.cs" />
+    <Compile Include="Entities\F25ExEntities.cs" />
+    <Compile Include="Entities\F50ExEntities.cs" />
+    <Compile Include="Entities\F51ExEntities.cs" />
+    <Compile Include="Entities\F71ExEntities.cs" />
+    <Compile Include="Entities\F91ExEntities.cs" />
+    <Compile Include="Entities\F70ExEntities.cs" />
+    <Compile Include="Entities\ItemEntities.cs" />
+    <Compile Include="Entities\ReportEntities.cs" />
+    <Compile Include="Entities\S04ExEntities.cs" />
+    <Compile Include="Entities\S05ExEntities.cs" />
+    <Compile Include="Entities\S19ExEntities.cs" />
+    <Compile Include="Entities\ScheduleExEntities.cs" />
+    <Compile Include="Entities\SharedEntities.cs" />
+    <Compile Include="Entities\ShipPackageEntities.cs" />
+    <Compile Include="Enums\ItemEnums.cs" />
+    <Compile Include="Enums\WmsLogProcTypeEnums.cs" />
+    <Compile Include="Pda.Entitues\P810101Entities.cs" />
+    <Compile Include="Pda.Entitues\P810102Entities.cs" />
+    <Compile Include="Pda.Entitues\P810110Entities.cs" />
+    <Compile Include="Pda.Entitues\P810103Entities.cs" />
+    <Compile Include="Pda.Entitues\P810105Entities.cs" />
+    <Compile Include="Pda.Entitues\P810107Entities.cs" />
+    <Compile Include="Pda.Entitues\P810106Entities.cs" />
+    <Compile Include="Pda.Entitues\P810108Enties.cs" />
+    <Compile Include="Pda.Entitues\P810116Entities.cs" />
+    <Compile Include="Pda.Entitues\P810111Entities.cs" />
+    <Compile Include="Pda.Entitues\P810109Entities.cs" />
+    <Compile Include="Pda.Entitues\P810117Entities.cs" />
+    <Compile Include="Pda.Entitues\P810115Entities.cs" />
+    <Compile Include="Pda.Entitues\P810114Entities.cs" />
+    <Compile Include="Pda.Entitues\P810113Entities.cs" />
+    <Compile Include="Pda.Entitues\P810112Entities.cs" />
+    <Compile Include="Pda.Entitues\P810118Entities.cs" />
+    <Compile Include="Pda.Entitues\P81Entities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2fa6f2b6-e072-437a-8096-7aec69b461a1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Client\Common\Wms3pl.Common\Wms3pl.Common.csproj">
+      <Project>{c7640a2e-5290-4dee-959d-ecdbf815f846}</Project>
+      <Name>Wms3pl.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{f8f52a2a-9c65-4b62-912f-4146b62aab72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+  </ItemGroup>
+</Project>

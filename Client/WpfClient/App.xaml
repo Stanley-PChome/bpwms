@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedViews:Wms3plAppBase xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:SharedViews="clr-namespace:Wms3pl.WpfClients.SharedViews;assembly=Wms3pl.WpfClients.SharedViews" xmlns:my="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" Exit="Application_Exit"
+													 x:Class="Wms3pl.WpfClient.App">
+	<SharedViews:Wms3plAppBase.Resources>
+		<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/Wms3pl.WpfClients.SharedViews;component/AppResource.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+				<!--<ResourceDictionary Source="pack://application:,,,/Wms3pl.WpfClient.P08;component/Module.xaml" />-->
+				<!--<ResourceDictionary Source="/PresentationFramework.Aero;component/themes/Aero.NormalColor.xaml"/>-->
+			</ResourceDictionary.MergedDictionaries>
+			<my:BusyMouseConverter p5:Key="BusyMouseConverter" xmlns:p5="http://schemas.microsoft.com/winfx/2006/xaml" />
+		</ResourceDictionary>
+		<!--<vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />-->
+	</SharedViews:Wms3plAppBase.Resources>
+</SharedViews:Wms3plAppBase>

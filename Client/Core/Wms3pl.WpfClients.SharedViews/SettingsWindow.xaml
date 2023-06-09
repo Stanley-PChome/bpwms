@@ -1,0 +1,25 @@
+﻿<Window x:Class="Wms3pl.WpfClients.SharedViews.SettingsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:Properties="clr-namespace:Wms3pl.WpfClients.SharedViews.Properties" Height="300" Width="400" FontSize="18" Title="設定">
+  <StackPanel>
+    <!--<StackPanel Orientation="Horizontal">
+      <TextBlock HorizontalAlignment="Left" Name="textBlock2" Text="字型大小" VerticalAlignment="Top" />
+      <ComboBox HorizontalAlignment="Left" Name="FontSizeComboBox" VerticalAlignment="Top" Width="120"
+              SelectedValue="{Binding Settings.DefaultFontSize}" ItemsSource="{Binding AvailableFontSizes}" />
+    </StackPanel>-->
+    <CheckBox Margin="0,5,0,0" Content="{x:Static Properties:Resources.SettingsWindow_LeaveCheck}" HorizontalAlignment="Left" IsChecked="{Binding Settings.NeedLeavingConfirmation}" Name="checkBox1" VerticalAlignment="Top" />
+    <CheckBox Margin="0,5,0,0" Content="{x:Static Properties:Resources.SettingsWindow_AutoHiddenMenu}" HorizontalAlignment="Left" IsChecked="{Binding Settings.AutoHideMenu}" VerticalAlignment="Top" />
+    <CheckBox Margin="0,5,0,0" Content="{x:Static Properties:Resources.SettingsWindow_ReRun}" HorizontalAlignment="Left" IsChecked="{Binding Settings.NeedContinueUnClosedFunctions}" Name="checkBox2" VerticalAlignment="Top" Visibility="Collapsed"/>
+    <!--<StackPanel Orientation="Horizontal">
+      <TextBlock Text="{x:Static Properties:Resources.SettingsWindow_DefaultLanguage}" />
+      <ComboBox MinWidth="200" SelectedValue="{Binding Settings.CurrentCulture}" SelectedValuePath="Tag">
+        <ComboBoxItem Content="繁體中文" Tag="zh-TW" />
+        <ComboBoxItem Content="簡體中文" Tag="zh-CN" />
+      </ComboBox>
+    </StackPanel>-->
+    <Button Margin="0,10,0,0" Width="75" Command="{Binding OkCommand}" Content="{x:Static Properties:Resources.OK}" HorizontalAlignment="Center" Name="OkButton" VerticalAlignment="Top" />
+
+  </StackPanel>
+
+  <!--<ComboBox Height="23" HorizontalAlignment="Left" Margin="98,12,0,0" Name="ThemesComboBox" VerticalAlignment="Top" Width="120" />
+    <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,14,0,0" Name="textBlock1" Text="主題" VerticalAlignment="Top" />-->
+</Window>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Wms3pl.WpfClient.UcLib.Views.UcSearchProduct" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Properties="clr-namespace:Wms3pl.WpfClient.UcLib.Properties" 
+             xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.UcLib.ViewModel"
+             mc:Ignorable="d" d:DesignHeight="110" d:DesignWidth="750" x:Name="SearchProduct">
+    <UserControl.DataContext>
+        <viewModel:UcSearchProduct_ViewModel x:Name="Vm" />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <Style TargetType="Label" x:Key="SearchProductLable" BasedOn="{StaticResource LbStyle}">
+        <Setter Property="MinWidth" Value="6"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </UserControl.Resources>
+  <WrapPanel DockPanel.Dock="Top" Margin="1">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.ItemCode}" HorizontalAlignment="Right" Style="{StaticResource SearchProductLable}" Foreground="DarkOrange"/>
+      <TextBox Name="TxtItemCode" Text="{Binding ItemCode, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" MaxLength="26" Grid.Row="0" Grid.Column="1" Width="220" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" KeyDown="TxtItemCode_KeyDown" LostFocus="TxtItemCode_LostFocus" />
+      <Button Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.ItemQuery}" Width="100" Height="35" Click="Button_Click" />
+       <TextBox Name="TxtSerialNo" Text="{Binding SerialNo, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" MaxLength="50" Grid.Row="0" Grid.Column="3" Width="250" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" KeyDown="TxtSerialNo_KeyDown" LostFocus="TxtSerialNo_LostFocus" />
+            <Button Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.SerialQuery}" Width="150" Height="35" Click="TxtSerialNo_ButtonClick" />
+       <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ItemName}" HorizontalAlignment="Right" Style="{StaticResource SearchProductLable}" Visibility="{Binding ItemNameVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+      <TextBox Name="TxtItemName" Text="{Binding ItemName, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Width="576" HorizontalAlignment="Left" Grid.ColumnSpan="3" Style="{StaticResource TxtStyle}" IsReadOnly="True" Visibility="{Binding ItemNameVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+      <Label Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.ItemSize}" HorizontalAlignment="Right" Style="{StaticResource SearchProductLable}" Visibility="{Binding ItemSizeVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+      <TextBox Name="TxtItemSize" Text="{Binding ItemSize, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="5" Width="150" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" IsReadOnly="True" Visibility="{Binding ItemSizeVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+      <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.ItemSpec}" HorizontalAlignment="Right" Style="{StaticResource SearchProductLable}" Visibility="{Binding ItemSpecVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+      <TextBox Name="TxtItemSpec" Text="{Binding ItemSpec, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Width="150" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" IsReadOnly="True" Visibility="{Binding ItemSpecVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+      <Label Grid.Row="2" Grid.Column="2" Content="{x:Static Properties:Resources.ItemColor}" HorizontalAlignment="Right" Style="{StaticResource SearchProductLable}" Visibility="{Binding ItemColorVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+      <TextBox Name="TxtItemColor" Text="{Binding ItemColor, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" Width="150" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" IsReadOnly="True" Visibility="{Binding ItemColorVisibility, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+  </WrapPanel>
+</UserControl>

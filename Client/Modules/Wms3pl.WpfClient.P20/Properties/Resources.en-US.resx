@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualCount" xml:space="preserve">
+    <value>Paid-number</value>
+  </data>
+  <data name="AddConsignee" xml:space="preserve">
+    <value>Receiver</value>
+  </data>
+  <data name="AddOrdNo" xml:space="preserve">
+    <value>Order Number Single</value>
+  </data>
+  <data name="ADDRESS" xml:space="preserve">
+    <value>delivery address</value>
+  </data>
+  <data name="AdjustNo" xml:space="preserve">
+    <value>Adjust single number</value>
+  </data>
+  <data name="AdjustQty" xml:space="preserve">
+    <value>Transferred to inventory</value>
+  </data>
+  <data name="AdjustType" xml:space="preserve">
+    <value>Adjust single category</value>
+  </data>
+  <data name="ADJUST_Data" xml:space="preserve">
+    <value>Master adjustment unit</value>
+  </data>
+  <data name="ADJUST_Detail" xml:space="preserve">
+    <value>Adjust the order details</value>
+  </data>
+  <data name="ADJUST_NO" xml:space="preserve">
+    <value>No single adjustment</value>
+  </data>
+  <data name="ADJ_QTY_IN" xml:space="preserve">
+    <value>The number of transferred</value>
+  </data>
+  <data name="ADJ_QTY_OUT" xml:space="preserve">
+    <value>Recall number</value>
+  </data>
+  <data name="ADR" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="ALL_COMP" xml:space="preserve">
+    <value>Distributors</value>
+  </data>
+  <data name="BUNDLE_SERIALNO" xml:space="preserve">
+    <value>No. Controls</value>
+  </data>
+  <data name="CAUSENAME" xml:space="preserve">
+    <value>Changes cause</value>
+  </data>
+  <data name="CELL_NUM" xml:space="preserve">
+    <value>Gate</value>
+  </data>
+  <data name="Checked" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CUST_ORD_NO" xml:space="preserve">
+    <value>The owner of a single number</value>
+  </data>
+  <data name="DeleteDetail" xml:space="preserve">
+    <value>Delete Adjustment Single Details</value>
+  </data>
+  <data name="DELV_DATE" xml:space="preserve">
+    <value>Batch Date</value>
+  </data>
+  <data name="Delv_Time" xml:space="preserve">
+    <value>Time out of the bus</value>
+  </data>
+  <data name="EditDetail" xml:space="preserve">
+    <value>Editorial adjustments order details</value>
+  </data>
+  <data name="ENTER_DATE" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="FalureCount" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+  <data name="ItemAdd" xml:space="preserve">
+    <value>New merchandise inventory</value>
+  </data>
+  <data name="ItemEdit" xml:space="preserve">
+    <value>Merchandise inventory adjustment</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_QTY" xml:space="preserve">
+    <value>inventory</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="MakeNo" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="MustScanCount" xml:space="preserve">
+    <value>Should brush number</value>
+  </data>
+  <data name="NEW_DC_NAME" xml:space="preserve">
+    <value>Shipping distribution center</value>
+  </data>
+  <data name="OrdSearch" xml:space="preserve">
+    <value>Search orders</value>
+  </data>
+  <data name="ORD_NO" xml:space="preserve">
+    <value>Order Number</value>
+  </data>
+  <data name="ORG_PICK_TIME" xml:space="preserve">
+    <value>Original batch period</value>
+  </data>
+  <data name="P2001010000_ViewModel_AddCause_Required" xml:space="preserve">
+    <value>Please enter transaction reason</value>
+  </data>
+  <data name="P2001010000_ViewModel_AddItemCode_AddItemName_Required" xml:space="preserve">
+    <value>Trade name or item number of the at least one input</value>
+  </data>
+  <data name="P2001010000_ViewModel_AddItemCode_Required" xml:space="preserve">
+    <value>Goods item number input at least 6 yards</value>
+  </data>
+  <data name="P2001010000_ViewModel_checkDatas_Required" xml:space="preserve">
+    <value>Please select at least one order</value>
+  </data>
+  <data name="P2001010000_ViewModel_Exist" xml:space="preserve">
+    <value>existed</value>
+  </data>
+  <data name="P2001010000_ViewModel_InsertSuccess" xml:space="preserve">
+    <value>Adjusting a single number: {0} successfully added</value>
+  </data>
+  <data name="P2001010000_ViewModel_NotSetAnyChange" xml:space="preserve">
+    <value>This information has been checked but did not pen any transaction set</value>
+  </data>
+  <data name="P2001010000_ViewModel_PICK_IN" xml:space="preserve">
+    <value>Call in</value>
+  </data>
+  <data name="P2001010000_ViewModel_PICK_OUT" xml:space="preserve">
+    <value>Recall</value>
+  </data>
+  <data name="P2001010000_ViewModel_SerailNo_Data" xml:space="preserve">
+    <value>Number Information</value>
+  </data>
+  <data name="P2001010000_ViewModel_SerialNo" xml:space="preserve">
+    <value>Information in this pen No.</value>
+  </data>
+  <data name="P2001010000_ViewModel_SERIALNO_SCANOK_Required" xml:space="preserve">
+    <value>This information must be No. brush pen read complete</value>
+  </data>
+  <data name="P2001010000_ViewModel_SureClearAllSet_To_ChangeDC" xml:space="preserve">
+    <value>To check the setting has been changed will clear all settings, \ r \ n Do you want to change the distribution center?</value>
+  </data>
+  <data name="P2001010000_ViewModel_SureEditRelateORD_To_SelfTake" xml:space="preserve">
+    <value>This order and other orders have been merged into a single shipment of up to if Zhang \ r confirm the changes related to this order and delivery order is self-created?</value>
+  </data>
+  <data name="P2001010000_ViewModel_ZIPCode_NotFound" xml:space="preserve">
+    <value>No such zip code!</value>
+  </data>
+  <data name="P2001010000_ViewModel_ZIPCode_Required" xml:space="preserve">
+    <value>Do not enter a zip code!</value>
+  </data>
+  <data name="P2001010000_ViewModel_ZIPCode_Wrong" xml:space="preserve">
+    <value>Postal code error!</value>
+  </data>
+  <data name="P2001010100_ViewModel_AdjustQtyGreaterThanZero" xml:space="preserve">
+    <value>The number must be greater than 0</value>
+  </data>
+  <data name="P2001010100_ViewModel_AdjustQtyLessThanStockQty" xml:space="preserve">
+    <value>Adjusting the number of stocks to be less than or equal</value>
+  </data>
+  <data name="P2001010100_ViewModel_Checked_Over_MustScan" xml:space="preserve">
+    <value>Has already exceeded the number of brush should brush number</value>
+  </data>
+  <data name="P2001010100_ViewModel_SerailNo_Exist" xml:space="preserve">
+    <value>This serial number already exists</value>
+  </data>
+  <data name="P2001010100_ViewModel_SerailNo_Required" xml:space="preserve">
+    <value>Serial number can not be empty</value>
+  </data>
+  <data name="P2001010200xamlcs_VNR_CODE_NotFound" xml:space="preserve">
+    <value>Supplier No. does not exist</value>
+  </data>
+  <data name="P2001010200_ViewModel_AdjustQtyGreaterThanZero" xml:space="preserve">
+    <value>Transferred to inventory must be greater than 0</value>
+  </data>
+  <data name="P2001010200_ViewModel_ItemInDCAndWarehouseIDNotFound" xml:space="preserve">
+    <value>This does not exist in the storage position and the cartridge is currently not distribution center</value>
+  </data>
+  <data name="P2001010200_ViewModel_LocCodeCannotInsert" xml:space="preserve">
+    <value>Specify the goods storage spaces with different owner, not new</value>
+  </data>
+  <data name="P2001010200_ViewModel_SelectedLocCode_DifferenceTo_ItemCustCode_IsSureToAdjust" xml:space="preserve">
+    <value>Designated storage spaces and the owner of the goods is different, please confirm whether or not to adjust?</value>
+  </data>
+  <data name="P2001010200_ViewModel_SerialNoNotFound" xml:space="preserve">
+    <value>This item no does not exist</value>
+  </data>
+  <data name="P2001010200_ViewModel_SureClearSerialNo_To_ChangeItem" xml:space="preserve">
+    <value>Replace the number of goods will be cleared, confirm whether the replacement?</value>
+  </data>
+  <data name="PICK_TIME" xml:space="preserve">
+    <value>Lot period</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="ScanCount" xml:space="preserve">
+    <value>Has several brush</value>
+  </data>
+  <data name="SearchItem" xml:space="preserve">
+    <value>Item Search</value>
+  </data>
+  <data name="SelectedDeliver" xml:space="preserve">
+    <value>Select distributors</value>
+  </data>
+  <data name="SelectedNEW_DC_CODE" xml:space="preserve">
+    <value>Select shipping distribution center</value>
+  </data>
+  <data name="SERIALNO_SCAN" xml:space="preserve">
+    <value>Brush number read</value>
+  </data>
+  <data name="SERIALNO_SCANOK" xml:space="preserve">
+    <value>Brush number read completion</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="StockEdit" xml:space="preserve">
+    <value>Inventory Adjustment</value>
+  </data>
+  <data name="StockQTY" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="TransferDetail" xml:space="preserve">
+    <value>Requisition details</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>Do not name warehouse</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>Job Category</value>
+  </data>
+  <data name="ZIP_CODE" xml:space="preserve">
+    <value>Postal code</value>
+  </data>
+  <data name="SOURCE_NO" xml:space="preserve">
+    <value>Soruce No</value>
+  </data>
+  <data name="SOURCE_TYPE" xml:space="preserve">
+    <value>Source Type</value>
+  </data>
+  <data name="P2001010000_ExcelImport" xml:space="preserve">
+    <value>stock Import</value>
+  </data>
+  <data name="P2001010000_ImportFail" xml:space="preserve">
+    <value>ImportFail!</value>
+  </data>
+  <data name="P2001010000_ImportSuccessDetail" xml:space="preserve">
+    <value>匯入成功{0}筆，失敗{1}筆，共{2}筆</value>
+  </data>
+  <data name="P2001010000_ExcelName" xml:space="preserve">
+    <value>失敗異動調整單明細表</value>
+  </data>
+  <data name="P2001010000_ExportFailDataDetail" xml:space="preserve">
+    <value>匯出異動庫存調整單失敗明細</value>
+  </data>
+  <data name="P2001010000_StockChangeDetail" xml:space="preserve">
+    <value>異動調整單明細</value>
+  </data>
+  <data name="P2001010000_ADJ_QTY_IN" xml:space="preserve">
+    <value>調入數</value>
+  </data>
+  <data name="P2001010000_ADJ_QTY_OUT" xml:space="preserve">
+    <value>調出數</value>
+  </data>
+  <data name="P2001010000_CAUSE" xml:space="preserve">
+    <value>異動原因</value>
+  </data>
+  <data name="P2001010000_DC_CODE" xml:space="preserve">
+    <value>物流中心</value>
+  </data>
+  <data name="P2001010000_ENTER_DATE" xml:space="preserve">
+    <value>入庫日</value>
+  </data>
+  <data name="P2001010000_FailMessage" xml:space="preserve">
+    <value>錯誤訊息</value>
+  </data>
+  <data name="P2001010000_ITEM_CODE" xml:space="preserve">
+    <value>品號</value>
+  </data>
+  <data name="P2001010000_LOC_CODE" xml:space="preserve">
+    <value>儲位</value>
+  </data>
+  <data name="P2001010000_MAKE_NO" xml:space="preserve">
+    <value>批號</value>
+  </data>
+  <data name="P2001010000_SERIAL_NO" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="P2001010000_VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="P2001010000_ExportInventoryDetailFailDataFail" xml:space="preserve">
+    <value>匯出失敗異動庫存調整單明細失敗</value>
+  </data>
+  <data name="P2001010000_ExportInventoryDetailFailDataSuccess" xml:space="preserve">
+    <value>匯出失敗異動庫存調整單明細成功</value>
+  </data>
+  <data name="String1P2001010100_ViewModel_SeriakNoInLoc" xml:space="preserve">
+    <value>Do not store this serial number</value>
+  </data>
+  <data name="P2001010000_ViewModel_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="P2001010000_IsAutoWarehourseCanNotChange" xml:space="preserve">
+    <value>{0} is the automatic warehouse cannot add and adjust the inventory</value>
+  </data>
+</root>

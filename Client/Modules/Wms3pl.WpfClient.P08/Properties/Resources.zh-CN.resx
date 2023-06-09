@@ -1,0 +1,2196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accpetance" xml:space="preserve">
+    <value>验收确认</value>
+  </data>
+  <data name="BUNDLE_SERIALNO" xml:space="preserve">
+    <value>序号商品</value>
+  </data>
+  <data name="CHECK_ITEM" xml:space="preserve">
+    <value>已检验</value>
+  </data>
+  <data name="CHECK_QTY" xml:space="preserve">
+    <value>抽验数</value>
+  </data>
+  <data name="CHECK_SERIAL" xml:space="preserve">
+    <value>已刷读序号</value>
+  </data>
+  <data name="Exist" xml:space="preserve">
+    <value>离开</value>
+  </data>
+  <data name="FUNC_ID" xml:space="preserve">
+    <value>笔数</value>
+  </data>
+  <data name="FUNC_NAME" xml:space="preserve">
+    <value>作业名称</value>
+  </data>
+  <data name="IsPickLocFirst" xml:space="preserve">
+    <value>取得拣货区优先储位</value>
+  </data>
+  <data name="ISPRINT" xml:space="preserve">
+    <value>已列印</value>
+  </data>
+  <data name="ISUPLOAD" xml:space="preserve">
+    <value>已上传图档</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>检验品号</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="MyWorkList" xml:space="preserve">
+    <value>待办事项</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>作业类别</value>
+  </data>
+  <data name="ORDER_QTY" xml:space="preserve">
+    <value>进货数</value>
+  </data>
+  <data name="RECV_QTY" xml:space="preserve">
+    <value>验收总量</value>
+  </data>
+  <data name="StartCheck" xml:space="preserve">
+    <value>开始检验</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>验收状态</value>
+  </data>
+  <data name="StockDate" xml:space="preserve">
+    <value>预定进货日</value>
+  </data>
+  <data name="StockNo" xml:space="preserve">
+    <value>进仓单号</value>
+  </data>
+  <data name="SUM_RECV_QTY" xml:space="preserve">
+    <value>已验收数</value>
+  </data>
+  <data name="TARWAREHOUSE" xml:space="preserve">
+    <value>上架仓别</value>
+  </data>
+  <data name="AUDIT_QTY" xml:space="preserve">
+    <value>刷验数</value>
+  </data>
+  <data name="BadSetting" xml:space="preserve">
+    <value>不良品设定</value>
+  </data>
+  <data name="BoxTotal" xml:space="preserve">
+    <value>总箱数</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CancelCheck" xml:space="preserve">
+    <value>取消检验</value>
+  </data>
+  <data name="CheckPercent" xml:space="preserve">
+    <value>抽验%</value>
+  </data>
+  <data name="CHECK_NAME" xml:space="preserve">
+    <value>检验项目</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="CurrentCount" xml:space="preserve">
+    <value>已刷数</value>
+  </data>
+  <data name="DefaultLocCode" xml:space="preserve">
+    <value>预设储位</value>
+  </data>
+  <data name="DIFFERENT_QTY" xml:space="preserve">
+    <value>差异数</value>
+  </data>
+  <data name="EditRecvQty" xml:space="preserve">
+    <value>修改验收数</value>
+  </data>
+  <data name="ERR_CODE" xml:space="preserve">
+    <value>异常状况</value>
+  </data>
+  <data name="ERR_MEMO" xml:space="preserve">
+    <value>异常原因</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>离开</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>求救</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>箱次</value>
+  </data>
+  <data name="InvalidCount" xml:space="preserve">
+    <value>错误数</value>
+  </data>
+  <data name="ISPASS" xml:space="preserve">
+    <value>通过</value>
+  </data>
+  <data name="IsPending" xml:space="preserve">
+    <value>强制结案</value>
+  </data>
+  <data name="ItemImageSource" xml:space="preserve">
+    <value>上传图档</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="LabelType" xml:space="preserve">
+    <value>列印种类</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="MOVED_QTY" xml:space="preserve">
+    <value>已上架数</value>
+  </data>
+  <data name="MULTI_FLAG" xml:space="preserve">
+    <value>组合商品</value>
+  </data>
+  <data name="NewSerialNo" xml:space="preserve">
+    <value>序号/盒号</value>
+  </data>
+  <data name="P0801010102_CHECK_QTY" xml:space="preserve">
+    <value>应刷数</value>
+  </data>
+  <data name="P080201_BUNDLE_SERIALNO" xml:space="preserve">
+    <value>序号控管</value>
+  </data>
+  <data name="PalletCount" xml:space="preserve">
+    <value>栈板数</value>
+  </data>
+  <data name="Posting" xml:space="preserve">
+    <value>过帐</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>列印</value>
+  </data>
+  <data name="PrintBarCode" xml:space="preserve">
+    <value>列印不明件
+BarCode</value>
+  </data>
+  <data name="PrintBox" xml:space="preserve">
+    <value>板箱标列印</value>
+  </data>
+  <data name="PrintQty" xml:space="preserve">
+    <value>列印张数</value>
+  </data>
+  <data name="PrintWeightReport" xml:space="preserve">
+    <value>列印重量标</value>
+  </data>
+  <data name="ProductCheck" xml:space="preserve">
+    <value>商品检验</value>
+  </data>
+  <data name="Recalculate" xml:space="preserve">
+    <value>重新计算</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>退货商品</value>
+  </data>
+  <data name="RecvConfirm" xml:space="preserve">
+    <value>检验确认</value>
+  </data>
+  <data name="RecvQty" xml:space="preserve">
+    <value>验收数</value>
+  </data>
+  <data name="RTN_QTY" xml:space="preserve">
+    <value>退货数</value>
+  </data>
+  <data name="ScanCheckCount" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="ScanSerial" xml:space="preserve">
+    <value>序号刷读</value>
+  </data>
+  <data name="SelectedLabelType" xml:space="preserve">
+    <value>板/箱标</value>
+  </data>
+  <data name="SerialCollet" xml:space="preserve">
+    <value>序号收集</value>
+  </data>
+  <data name="SerialNo" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>汇入序号</value>
+  </data>
+  <data name="ShowP0802010100" xml:space="preserve">
+    <value>选择分货表</value>
+  </data>
+  <data name="SingleBoxWeight" xml:space="preserve">
+    <value>单箱秤重</value>
+  </data>
+  <data name="TotalValidCount" xml:space="preserve">
+    <value>实收总数</value>
+  </data>
+  <data name="TotalWeight" xml:space="preserve">
+    <value>总重量(kg)</value>
+  </data>
+  <data name="TOTAL_AUDIT_QTY" xml:space="preserve">
+    <value>累计刷验数</value>
+  </data>
+  <data name="UCC_CODE" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="ValidCount" xml:space="preserve">
+    <value>实收数</value>
+  </data>
+  <data name="ValidDate" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>厂商代码</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>厂商名称</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>重量</value>
+  </data>
+  <data name="InputBillNo" xml:space="preserve">
+    <value>刷读单号</value>
+  </data>
+  <data name="InputSerailNo" xml:space="preserve">
+    <value>刷读</value>
+  </data>
+  <data name="NotExist" xml:space="preserve">
+    <value>讯息</value>
+  </data>
+  <data name="RTN_CUST_CODE" xml:space="preserve">
+    <value>客户代号</value>
+  </data>
+  <data name="RTN_CUST_NAME" xml:space="preserve">
+    <value>客户名称</value>
+  </data>
+  <data name="SelectedDc" xml:space="preserve">
+    <value>物流中心</value>
+  </data>
+  <data name="SelectedGatherNO" xml:space="preserve">
+    <value>汇总单号</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>查询序号</value>
+  </data>
+  <data name="ABItemPickQty" xml:space="preserve">
+    <value>总已拣/总应拣</value>
+  </data>
+  <data name="ABItemSrcQty" xml:space="preserve">
+    <value>总已下架/总应下架</value>
+  </data>
+  <data name="ABItemTarQty" xml:space="preserve">
+    <value>总已上架/总应上架</value>
+  </data>
+  <data name="ABPickQty" xml:space="preserve">
+    <value>已拣/应拣</value>
+  </data>
+  <data name="ABSrcQty" xml:space="preserve">
+    <value>已下架数/应下架数</value>
+  </data>
+  <data name="ABTarQty" xml:space="preserve">
+    <value>已上架数/应上架数</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>开始点收</value>
+  </data>
+  <data name="AcceptComplete" xml:space="preserve">
+    <value>点收结束</value>
+  </data>
+  <data name="ActualPickQty" xml:space="preserve">
+    <value>实拣</value>
+  </data>
+  <data name="ActualSrcQty" xml:space="preserve">
+    <value>实际下架数</value>
+  </data>
+  <data name="ActualTarQty" xml:space="preserve">
+    <value>实际上架数</value>
+  </data>
+  <data name="AddPickBoxNo" xml:space="preserve">
+    <value>加箱</value>
+  </data>
+  <data name="AdminId" xml:space="preserve">
+    <value>帐号</value>
+  </data>
+  <data name="AdminPassword" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="AllocationBoxNo" xml:space="preserve">
+    <value>调拨单号/箱号</value>
+  </data>
+  <data name="AllocationNo" xml:space="preserve">
+    <value>调拨单号</value>
+  </data>
+  <data name="A_DELV_QTY" xml:space="preserve">
+    <value>实际出货</value>
+  </data>
+  <data name="A_SRC_QTY" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="BAD_QTY" xml:space="preserve">
+    <value>不良品数</value>
+  </data>
+  <data name="BillType" xml:space="preserve">
+    <value>代收</value>
+  </data>
+  <data name="BOM_ITEM_CODE" xml:space="preserve">
+    <value>组合商品品号</value>
+  </data>
+  <data name="BOM_NAME" xml:space="preserve">
+    <value>组合商品品名</value>
+  </data>
+  <data name="BoxNo" xml:space="preserve">
+    <value>盒号</value>
+  </data>
+  <data name="BoxQty" xml:space="preserve">
+    <value>箱数</value>
+  </data>
+  <data name="B_DELV_QTY" xml:space="preserve">
+    <value>预计出货</value>
+  </data>
+  <data name="CancelPacking" xml:space="preserve">
+    <value>    取消包装    </value>
+  </data>
+  <data name="CancelSowing" xml:space="preserve">
+    <value>取消播种</value>
+  </data>
+  <data name="CAR_NO" xml:space="preserve">
+    <value>车号</value>
+  </data>
+  <data name="Car_No_A" xml:space="preserve">
+    <value>更新车号</value>
+  </data>
+  <data name="CaseNo" xml:space="preserve">
+    <value>调拨箱号</value>
+  </data>
+  <data name="CheckCode" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="ConfirmPickUp" xml:space="preserve">
+    <value>确定
+提货</value>
+  </data>
+  <data name="CONSIGNEE" xml:space="preserve">
+    <value>收件人</value>
+  </data>
+  <data name="ConsignNo" xml:space="preserve">
+    <value>托运单号：</value>
+  </data>
+  <data name="CountDownTime" xml:space="preserve">
+    <value>回主画面</value>
+  </data>
+  <data name="CountSerialNo" xml:space="preserve">
+    <value>总出货板数</value>
+  </data>
+  <data name="CustName" xml:space="preserve">
+    <value>出货客户：</value>
+  </data>
+  <data name="CustOrdNos" xml:space="preserve">
+    <value>货主单号：</value>
+  </data>
+  <data name="CUST_ORD_NO" xml:space="preserve">
+    <value>货主单号</value>
+  </data>
+  <data name="DelvCheckCode" xml:space="preserve">
+    <value>出货验证码：</value>
+  </data>
+  <data name="DelvDate" xml:space="preserve">
+    <value>出货日</value>
+  </data>
+  <data name="DisplayLocCode" xml:space="preserve">
+    <value>储位</value>
+  </data>
+  <data name="DoesNotExist" xml:space="preserve">
+    <value>不存在</value>
+  </data>
+  <data name="EAN_CODE" xml:space="preserve">
+    <value>不明件Barcode</value>
+  </data>
+  <data name="EnterAdminPassword" xml:space="preserve">
+    <value>输入您的密码</value>
+  </data>
+  <data name="EnterUnlockCode" xml:space="preserve">
+    <value>输入您的解锁码</value>
+  </data>
+  <data name="EterAdminId" xml:space="preserve">
+    <value>输入您的帐号</value>
+  </data>
+  <data name="FileFullPath" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="FRAGILE" xml:space="preserve">
+    <value>易碎品</value>
+  </data>
+  <data name="FRAGILE_LABEL" xml:space="preserve">
+    <value>易碎标签</value>
+  </data>
+  <data name="GOOD_QTY" xml:space="preserve">
+    <value>良品数</value>
+  </data>
+  <data name="GroupColor" xml:space="preserve">
+    <value>(红色：未完成、绿色：完成)</value>
+  </data>
+  <data name="GUARANTEE" xml:space="preserve">
+    <value>保证书</value>
+  </data>
+  <data name="InfoCarStatusText" xml:space="preserve">
+    <value>距出车时间</value>
+  </data>
+  <data name="InputPickNo" xml:space="preserve">
+    <value>拣货单号/拣货箱号</value>
+  </data>
+  <data name="INSTEAD_INVO" xml:space="preserve">
+    <value>发票</value>
+  </data>
+  <data name="InventoryNo" xml:space="preserve">
+    <value>盘点单号</value>
+  </data>
+  <data name="INVENTORY_QTY" xml:space="preserve">
+    <value>盘点数</value>
+  </data>
+  <data name="INVENTORY_TYPE" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="IsCheckAll" xml:space="preserve">
+    <value>设定不出货</value>
+  </data>
+  <data name="IsGenerate" xml:space="preserve">
+    <value>产生分货表 </value>
+  </data>
+  <data name="IsInport" xml:space="preserve">
+    <value>汇入分货表 </value>
+  </data>
+  <data name="ISSEAL" xml:space="preserve">
+    <value>封条图档</value>
+  </data>
+  <data name="IsVoice" xml:space="preserve">
+    <value>语音</value>
+  </data>
+  <data name="ItemCount" xml:space="preserve">
+    <value>品项数</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>商品品名</value>
+  </data>
+  <data name="ItemSerialNo" xml:space="preserve">
+    <value>序号搜寻</value>
+  </data>
+  <data name="LaALL_COMP" xml:space="preserve">
+    <value>配送商：</value>
+  </data>
+  <data name="LaCHECKOUT_TIME" xml:space="preserve">
+    <value>预计出车时段：</value>
+  </data>
+  <data name="LackQty" xml:space="preserve">
+    <value>缺货数量</value>
+  </data>
+  <data name="LaPICK_TIME" xml:space="preserve">
+    <value>批次时段：</value>
+  </data>
+  <data name="LaPIER_CODE" xml:space="preserve">
+    <value>出货码头：</value>
+  </data>
+  <data name="LaTMPR_TYPE" xml:space="preserve">
+    <value>温层：</value>
+  </data>
+  <data name="LOAD_OWNER_OK_QTY" xml:space="preserve">
+    <value>可出货主
+单数</value>
+  </data>
+  <data name="LOAD_OWNER_QTY" xml:space="preserve">
+    <value>应出货主
+单数</value>
+  </data>
+  <data name="MergeBoxCount" xml:space="preserve">
+    <value>合流箱数</value>
+  </data>
+  <data name="MISS_QTY" xml:space="preserve">
+    <value>损失数</value>
+  </data>
+  <data name="NextLoc" xml:space="preserve">
+    <value>下</value>
+  </data>
+  <data name="NoAnySerialNo" xml:space="preserve">
+    <value>列印不明件
+Barcode</value>
+  </data>
+  <data name="OrderQty" xml:space="preserve">
+    <value>出货数</value>
+  </data>
+  <data name="OutOfStock" xml:space="preserve">
+    <value>缺货</value>
+  </data>
+  <data name="P08020103_AUDIT_QTY" xml:space="preserve">
+    <value>实退数</value>
+  </data>
+  <data name="P08020103_RTN_QTY" xml:space="preserve">
+    <value>应退数</value>
+  </data>
+  <data name="P08060201_BoxNo" xml:space="preserve">
+    <value>合流箱号</value>
+  </data>
+  <data name="P08060201_ItemCode" xml:space="preserve">
+    <value>商品品号</value>
+  </data>
+  <data name="P080701_CancelPacking" xml:space="preserve">
+    <value>取消包装</value>
+  </data>
+  <data name="PackageDemand" xml:space="preserve">
+    <value>商品包装需求</value>
+  </data>
+  <data name="PACKAGE_BOX_NO" xml:space="preserve">
+    <value>出货箱数</value>
+  </data>
+  <data name="PackQty" xml:space="preserve">
+    <value>包装数</value>
+  </data>
+  <data name="PackStatus" xml:space="preserve">
+    <value>包装状态</value>
+  </data>
+  <data name="PALLET_NO" xml:space="preserve">
+    <value>板号</value>
+  </data>
+  <data name="PAST_NO" xml:space="preserve">
+    <value>托运单号</value>
+  </data>
+  <data name="PausePacking" xml:space="preserve">
+    <value>暂停包装</value>
+  </data>
+  <data name="PickArea" xml:space="preserve">
+    <value>拣货区</value>
+  </data>
+  <data name="PickAreaNo" xml:space="preserve">
+    <value>拣货区号</value>
+  </data>
+  <data name="PickBoxNo" xml:space="preserve">
+    <value>拣货箱号</value>
+  </data>
+  <data name="PickingOutOfStock" xml:space="preserve">
+    <value>拣货缺货处理</value>
+  </data>
+  <data name="PickStaff" xml:space="preserve">
+    <value>员工编号</value>
+  </data>
+  <data name="PickStart" xml:space="preserve">
+    <value>开始拣货</value>
+  </data>
+  <data name="PickUpPrint" xml:space="preserve">
+    <value>装车列印</value>
+  </data>
+  <data name="PICK_ORD_NO" xml:space="preserve">
+    <value>拣货单号</value>
+  </data>
+  <data name="PrevLoc" xml:space="preserve">
+    <value>上</value>
+  </data>
+  <data name="PrintDetail" xml:space="preserve">
+    <value>已列印明细</value>
+  </data>
+  <data name="PrintShipperDetail" xml:space="preserve">
+    <value>列印出货明细表</value>
+  </data>
+  <data name="PrintTakeDetail" xml:space="preserve">
+    <value>列印出车明细</value>
+  </data>
+  <data name="RECEIPT_DATE" xml:space="preserve">
+    <value>收货日期</value>
+  </data>
+  <data name="RePacking" xml:space="preserve">
+    <value>重新取得托运单号</value>
+  </data>
+  <data name="ReportList" xml:space="preserve">
+    <value>列印表单</value>
+  </data>
+  <data name="RetailCode" xml:space="preserve">
+    <value>门市编号</value>
+  </data>
+  <data name="RETAIL_CODE" xml:space="preserve">
+    <value>门市</value>
+  </data>
+  <data name="RETAIL_NAME" xml:space="preserve">
+    <value>门市名称</value>
+  </data>
+  <data name="RetUnit" xml:space="preserve">
+    <value>最小单位</value>
+  </data>
+  <data name="ReturnNoStart" xml:space="preserve">
+    <value>退货单号</value>
+  </data>
+  <data name="RIBBON" xml:space="preserve">
+    <value>缎带</value>
+  </data>
+  <data name="ROWNUM" xml:space="preserve">
+    <value>退货点收明细</value>
+  </data>
+  <data name="ScanItemCode" xml:space="preserve">
+    <value>刷读品号</value>
+  </data>
+  <data name="ScanLocCode" xml:space="preserve">
+    <value>盘点储位</value>
+  </data>
+  <data name="ScanTarLocCode" xml:space="preserve">
+    <value>目的储位</value>
+  </data>
+  <data name="SearchDelvDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="SearchFileName" xml:space="preserve">
+    <value>档名</value>
+  </data>
+  <data name="SearchOrdNo" xml:space="preserve">
+    <value>订单编号</value>
+  </data>
+  <data name="SearchPickTime" xml:space="preserve">
+    <value>批次时段</value>
+  </data>
+  <data name="SearchTakeDate" xml:space="preserve">
+    <value>出车日期</value>
+  </data>
+  <data name="SelectedChkOutTime" xml:space="preserve">
+    <value>出车时段</value>
+  </data>
+  <data name="SelectedCust" xml:space="preserve">
+    <value>货主</value>
+  </data>
+  <data name="SelectedDelvCompany" xml:space="preserve">
+    <value>配送商</value>
+  </data>
+  <data name="SelectedDelvNo" xml:space="preserve">
+    <value>车次</value>
+  </data>
+  <data name="SelectedGatherStartDt" xml:space="preserve">
+    <value>汇总单号查询/删除</value>
+  </data>
+  <data name="SelectedGup" xml:space="preserve">
+    <value>业主</value>
+  </data>
+  <data name="SelectedStartDt" xml:space="preserve">
+    <value>退货单建立日期</value>
+  </data>
+  <data name="SELF_TAKE" xml:space="preserve">
+    <value>自取</value>
+  </data>
+  <data name="SerialBoxNo" xml:space="preserve">
+    <value>序号/箱号</value>
+  </data>
+  <data name="SerialReadingLog" xml:space="preserve">
+    <value>刷读纪录</value>
+  </data>
+  <data name="ShipConfirm" xml:space="preserve">
+    <value>出货确认</value>
+  </data>
+  <data name="ShipperCount" xml:space="preserve">
+    <value>出货单数</value>
+  </data>
+  <data name="ShippingItems" xml:space="preserve">
+    <value>出货商品</value>
+  </data>
+  <data name="ShippingPalletCount" xml:space="preserve">
+    <value>出货板数明细</value>
+  </data>
+  <data name="SOURCE_TYPE" xml:space="preserve">
+    <value>来源单据：</value>
+  </data>
+  <data name="Sowing" xml:space="preserve">
+    <value>开始播种</value>
+  </data>
+  <data name="SowingFinish" xml:space="preserve">
+    <value>完成播种</value>
+  </data>
+  <data name="SPILL" xml:space="preserve">
+    <value>防溢漏</value>
+  </data>
+  <data name="SRC_LOC_CODE" xml:space="preserve">
+    <value>来源储位</value>
+  </data>
+  <data name="StartPacking" xml:space="preserve">
+    <value>开始包装</value>
+  </data>
+  <data name="STATUS_NAME" xml:space="preserve">
+    <value>出货状态</value>
+  </data>
+  <data name="TicketNo" xml:space="preserve">
+    <value>拣货单号/容器/出货单号</value>
+  </data>
+  <data name="TotalPackQty" xml:space="preserve">
+    <value>累计包装数</value>
+  </data>
+  <data name="TotalPickQty" xml:space="preserve">
+    <value>总拣次</value>
+  </data>
+  <data name="TotalQty" xml:space="preserve">
+    <value>总件数</value>
+  </data>
+  <data name="TOTAL_CNT" xml:space="preserve">
+    <value>总品项</value>
+  </data>
+  <data name="TOTAL_QTY" xml:space="preserve">
+    <value>总数量</value>
+  </data>
+  <data name="TRANSPORT" xml:space="preserve">
+    <value>运输公司</value>
+  </data>
+  <data name="TxtPAST_NO" xml:space="preserve">
+    <value>上传出货验证码</value>
+  </data>
+  <data name="UnlockCode" xml:space="preserve">
+    <value>解锁码</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>检视图档</value>
+  </data>
+  <data name="WareHouseName" xml:space="preserve">
+    <value>下架仓别</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="WmsOrdNo" xml:space="preserve">
+    <value>出貨單號</value>
+  </data>
+  <data name="WMS_ORD_NO" xml:space="preserve">
+    <value>出货单号：</value>
+  </data>
+  <data name="P0801010101_Ask" xml:space="preserve">
+    <value>询问</value>
+  </data>
+  <data name="P0801010101_ItemImage" xml:space="preserve">
+    <value>商品图档 (.jpg)|*.jpg</value>
+  </data>
+  <data name="P0802010000_BillNoIsNoData" xml:space="preserve">
+    <value>查无此单号资料!</value>
+  </data>
+  <data name="P0802010000_BoxNo" xml:space="preserve">
+    <value>箱号 : {0}</value>
+  </data>
+  <data name="P0802010000_ErrCodeIsNull" xml:space="preserve">
+    <value>请选择异常状况!</value>
+  </data>
+  <data name="P0802010000_Help" xml:space="preserve">
+    <value>(已求救) </value>
+  </data>
+  <data name="P0802010000_InputBillNoIsNull" xml:space="preserve">
+    <value>请刷读单号!</value>
+  </data>
+  <data name="P0802010000_LabelingNotExist" xml:space="preserve">
+    <value>查无已设定标签机</value>
+  </data>
+  <data name="P0802010000_NoInputErrorDesc" xml:space="preserve">
+    <value>尚有序号刷读资料未填选异常状况</value>
+  </data>
+  <data name="P0802010000_Not" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="P0802010000_ReturnRecordMainError" xml:space="preserve">
+    <value>含有来源单据退货单，不可超收非退货单内退货品项!</value>
+  </data>
+  <data name="P0802010000_ReturnRecordMainNotExist" xml:space="preserve">
+    <value>查无退货档资料</value>
+  </data>
+  <data name="P0802010000_ReturnStatusIsClose" xml:space="preserve">
+    <value>此退货检验单据已结案</value>
+  </data>
+  <data name="P0802010000_STATUS2" xml:space="preserve">
+    <value>已结案</value>
+  </data>
+  <data name="P0802010000_STATUS9" xml:space="preserve">
+    <value>已取消</value>
+  </data>
+  <data name="P0802010000_StatusMsg" xml:space="preserve">
+    <value>此单号资料{0}，不可检验!</value>
+  </data>
+  <data name="P0802010100_DeletedFail" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="P0802010100_FileFormatError" xml:space="preserve">
+    <value>档案格式错误</value>
+  </data>
+  <data name="P0802010100_GatherNoItemCount" xml:space="preserve">
+    <value>汇总单号:{0}、品项数:{1}</value>
+  </data>
+  <data name="P0802010100_NoData" xml:space="preserve">
+    <value>无资料!</value>
+  </data>
+  <data name="P0802010100_NoSelectData" xml:space="preserve">
+    <value>选勾选欲产生之分货表</value>
+  </data>
+  <data name="P0802010200_ImportNotPassCount" xml:space="preserve">
+    <value>汇入序号未通过笔数：{0}笔</value>
+  </data>
+  <data name="P0802010200_ItemSerialIsRepeat" xml:space="preserve">
+    <value>商品序号重复</value>
+  </data>
+  <data name="P0802010200_ItemSerialNoFile" xml:space="preserve">
+    <value>商品序号档 (.csv)|*.csv</value>
+  </data>
+  <data name="P0802010300_BadQtyOverError" xml:space="preserve">
+    <value>不良品数量不可超过实退数{0}</value>
+  </data>
+  <data name="P0802010300_BadQtyZeroError" xml:space="preserve">
+    <value>不良品数量不可小於0</value>
+  </data>
+  <data name="P0802030000_GoodWarehouse" xml:space="preserve">
+    <value>良品仓</value>
+  </data>
+  <data name="P0802030000_NoGoodWarehouse" xml:space="preserve">
+    <value>不良品仓</value>
+  </data>
+  <data name="P0803010000_ActualSrcQtyError" xml:space="preserve">
+    <value>实拣数必须小於等於此储位应拣数</value>
+  </data>
+  <data name="P0803010000_ActualSrcQtyError2" xml:space="preserve">
+    <value>实际下架数必须大於本次已下架数</value>
+  </data>
+  <data name="P0803010000_ActualSrcQtyIsNull" xml:space="preserve">
+    <value>实拣数请输入数值</value>
+  </data>
+  <data name="P0803010000_AllocationNoIsNull" xml:space="preserve">
+    <value>请刷读调拨单号</value>
+  </data>
+  <data name="P0803010000_BSrcQtyOverASrcQty" xml:space="preserve">
+    <value>尚未完成下架，但可继续其他储位下架</value>
+  </data>
+  <data name="P0803010000_CaseNoIsNull" xml:space="preserve">
+    <value>请先刷读箱号</value>
+  </data>
+  <data name="P0803010000_CaseNoIsNull2" xml:space="preserve">
+    <value>请刷读箱号</value>
+  </data>
+  <data name="P0803010000_HelpAsk" xml:space="preserve">
+    <value>是否求救？</value>
+  </data>
+  <data name="P0803010000_IsOutOfStockData" xml:space="preserve">
+    <value>此商品已注记下架缺货不可清除</value>
+  </data>
+  <data name="P0803010000_NextItemOrCompleteSrcAsk" xml:space="preserve">
+    <value>是否继续进行上架作业?</value>
+  </data>
+  <data name="P0803010000_OutOfStockAsk" xml:space="preserve">
+    <value>是否缺货？</value>
+  </data>
+  <data name="P0803010000_OutOfStockCheckMessage" xml:space="preserve">
+    <value>该调拨单有缺货商品未确认,待确认後才可进行相关作业!</value>
+  </data>
+  <data name="P0803010000_ScanItemCode" xml:space="preserve">
+    <value>请刷读[品项:</value>
+  </data>
+  <data name="P0803020000_ActualTarQtyError" xml:space="preserve">
+    <value>实际上架数必须大於本次已上架数</value>
+  </data>
+  <data name="P0803020000_BTarQtyOverATarQty" xml:space="preserve">
+    <value>尚未完成上架，但可继续其他储位上架</value>
+  </data>
+  <data name="P0803020000_CaseNoNotExist" xml:space="preserve">
+    <value>无此箱号</value>
+  </data>
+  <data name="P0803020000_ItemCode" xml:space="preserve">
+    <value>商品:{0}
+</value>
+  </data>
+  <data name="P0803020000_NextItemOrCompleteTar" xml:space="preserve">
+    <value>上架完成</value>
+  </data>
+  <data name="P0806020100_LackQtyError" xml:space="preserve">
+    <value>缺货数不可大於播种数</value>
+  </data>
+  <data name="P0807010000_AllowOrdItem" xml:space="preserve">
+    <value>出货明细中含有原箱商品</value>
+  </data>
+  <data name="P0807010000_BoxIsNull" xml:space="preserve">
+    <value>无纸箱</value>
+  </data>
+  <data name="P0807010000_CancelPackingConfirmMsg" xml:space="preserve">
+    <value>此出货单的包装纪录将清除，请确认是否取消包装?{0}(取消後，可以重新进行包装)</value>
+  </data>
+  <data name="P0807010000_CancelPackingUpdateFail" xml:space="preserve">
+    <value>取消包装失败!!</value>
+  </data>
+  <data name="P0807010000_CellNumIsNull" xml:space="preserve">
+    <value>请刷读门号!</value>
+  </data>
+  <data name="P0807010000_ConsignReportNotExist" xml:space="preserve">
+    <value>查无托运单格式</value>
+  </data>
+  <data name="P0807010000_CVS_TAKE" xml:space="preserve">
+    <value>超取</value>
+  </data>
+  <data name="P0807010000_F050801DataIsNull" xml:space="preserve">
+    <value>未指定出货单</value>
+  </data>
+  <data name="P0807010000_F051201DataExist" xml:space="preserve">
+    <value>此出货单尚未拣货完成</value>
+  </data>
+  <data name="P0807010000_F051206DataFlagNull" xml:space="preserve">
+    <value>缺货待确认，不可包装!</value>
+  </data>
+  <data name="P0807010000_f051206DatasFlag2" xml:space="preserve">
+    <value>货主回覆取消订单，不可出货!</value>
+  </data>
+  <data name="P0807010000_F052901DataExist" xml:space="preserve">
+    <value>合流箱未完成播种</value>
+  </data>
+  <data name="P0807010000_F700102NotExist" xml:space="preserve">
+    <value>尚未派车不可包装</value>
+  </data>
+  <data name="P0807010000_FindBox" xml:space="preserve">
+    <value>找到箱子</value>
+  </data>
+  <data name="P0807010000_HomeDelivery" xml:space="preserve">
+    <value>宅配</value>
+  </data>
+  <data name="P0807010000_PackComplete" xml:space="preserve">
+    <value>包装完毕请秤重</value>
+  </data>
+  <data name="P0807010000_PackQtyForamtError" xml:space="preserve">
+    <value>数量必须要数字</value>
+  </data>
+  <data name="P0807010000_PrintType1" xml:space="preserve">
+    <value>宅配单印表机</value>
+  </data>
+  <data name="P0807010000_PrintType2" xml:space="preserve">
+    <value>小白单印表机</value>
+  </data>
+  <data name="P0807010000_PrintType3" xml:space="preserve">
+    <value>箱明细印表机</value>
+  </data>
+  <data name="P0807010000_QueryBoxNoNotExist" xml:space="preserve">
+    <value>查无此箱号</value>
+  </data>
+  <data name="P0807010000_RePackingComplete" xml:space="preserve">
+    <value>重新取得托运单号成功!</value>
+  </data>
+  <data name="P0807010000_RePackingFail" xml:space="preserve">
+    <value>重新取得托运单号失败!</value>
+  </data>
+  <data name="P0807010000_SELF_TAKE" xml:space="preserve">
+    <value>自取</value>
+  </data>
+  <data name="P0807010000_StatusName" xml:space="preserve">
+    <value>出货单{0}</value>
+  </data>
+  <data name="P0807010000_VirtualItemError" xml:space="preserve">
+    <value>虚拟商品不可进行包装</value>
+  </data>
+  <data name="P0807010000_WmsOrdNoNotExist" xml:space="preserve">
+    <value>无此出货单</value>
+  </data>
+  <data name="P0807010000_WmsOrdNoStatusError" xml:space="preserve">
+    <value>出货单状态不正确</value>
+  </data>
+  <data name="P0807010100_ImportSerialRepeat" xml:space="preserve">
+    <value>序号重复汇入</value>
+  </data>
+  <data name="P0807010100_serialDataEx" xml:space="preserve">
+    <value>此次已刷读</value>
+  </data>
+  <data name="P0808020000_CanNotShip" xml:space="preserve">
+    <value>不可出货</value>
+  </data>
+  <data name="P0808020000_CanShip" xml:space="preserve">
+    <value>可出货</value>
+  </data>
+  <data name="P0808020000_ImportFail" xml:space="preserve">
+    <value>汇入失败!</value>
+  </data>
+  <data name="P0808020000_PackNotComplete" xml:space="preserve">
+    <value>此出货单未包装完成!</value>
+  </data>
+  <data name="P0808020000_UpLoadExcelFormatError" xml:space="preserve">
+    <value>上传的Excel格式错误</value>
+  </data>
+  <data name="P0808020000_UpLoadExcelIsNull" xml:space="preserve">
+    <value>上传的Excel无资料</value>
+  </data>
+  <data name="P0808020000_UpLoadSuccess" xml:space="preserve">
+    <value>上传成功</value>
+  </data>
+  <data name="P0808020000_WmsOrdNoIsNull" xml:space="preserve">
+    <value>查无此出货单号!</value>
+  </data>
+  <data name="P0808020000_WmsOrdNoPackError" xml:space="preserve">
+    <value>此出货单已包装!</value>
+  </data>
+  <data name="P0809010000_CarNoFormatError" xml:space="preserve">
+    <value>车号只能输入英文+数字</value>
+  </data>
+  <data name="P0809010000_CarNoIsNull" xml:space="preserve">
+    <value>请输入车号</value>
+  </data>
+  <data name="P0809010000_ImageDirectoryExistMsg" xml:space="preserve">
+    <value>原有封条照片将会删除，确定要进行吗?</value>
+  </data>
+  <data name="P0809010000_NEED_SEAL" xml:space="preserve">
+    <value>，请加装封条。 </value>
+  </data>
+  <data name="P0809010000_NEED_SEAL_Msg" xml:space="preserve">
+    <value>更新车号成功，出车装货明细产生中</value>
+  </data>
+  <data name="P0809010000_ReportTitle" xml:space="preserve">
+    <value>  出车明细表</value>
+  </data>
+  <data name="P0809010000_UpdateCarNoFail" xml:space="preserve">
+    <value>更新车号失败</value>
+  </data>
+  <data name="P0809010000_UpdateIsSealFail" xml:space="preserve">
+    <value>封条照片上传失败</value>
+  </data>
+  <data name="P0809010000_UpdateIsSealSuccess" xml:space="preserve">
+    <value>封条照片上传成功</value>
+  </data>
+  <data name="P0810010000_DataFirst" xml:space="preserve">
+    <value>此储位已无上一笔商品，</value>
+  </data>
+  <data name="P0810010000_DataLast" xml:space="preserve">
+    <value>此储位已无下一笔商品</value>
+  </data>
+  <data name="P0810010000_EnterQtyZeroError" xml:space="preserve">
+    <value>数量必须大於等於0</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail" xml:space="preserve">
+    <value>寻找盘点单失败!</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail1" xml:space="preserve">
+    <value>1.无此盘点单号</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail2" xml:space="preserve">
+    <value>2.此盘点单状态非初盘或复盘</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail3" xml:space="preserve">
+    <value>3.您无此盘点单可用商品储位权限</value>
+  </data>
+  <data name="P0810010000_InventoryNoIsNull" xml:space="preserve">
+    <value>请输入盘点单号</value>
+  </data>
+  <data name="P0810010000_LBMaxUnitQty" xml:space="preserve">
+    <value>最大单位数量</value>
+  </data>
+  <data name="P0810010000_LBMinUnitQty" xml:space="preserve">
+    <value>最小单位数量</value>
+  </data>
+  <data name="P0810010000_LocItemError" xml:space="preserve">
+    <value>此储位商品非盘点范围</value>
+  </data>
+  <data name="P0810010000_LocItemLast" xml:space="preserve">
+    <value>此储位已无下一笔商品，</value>
+  </data>
+  <data name="P0810010000_NextAsk" xml:space="preserve">
+    <value>是否移至下一储位?</value>
+  </data>
+  <data name="P0810010000_ScanItemCodeOrSerialNo" xml:space="preserve">
+    <value>请刷读品号或序号</value>
+  </data>
+  <data name="P0810010000_ScanLocCode" xml:space="preserve">
+    <value>请刷读储位</value>
+  </data>
+  <data name="DeliveryReportService_BatchDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="DeliveryReportService_BatchDate1" xml:space="preserve">
+    <value>批次日期：</value>
+  </data>
+  <data name="DeliveryReportService_BatchTime" xml:space="preserve">
+    <value>批次时段</value>
+  </data>
+  <data name="DeliveryReportService_BatchTime1" xml:space="preserve">
+    <value>批次时段：</value>
+  </data>
+  <data name="DeliveryReportService_BirthdayRestrictions" xml:space="preserve">
+    <value>(需在民国{0}年{1}月{2}日前出生)</value>
+  </data>
+  <data name="DeliveryReportService_BoxDetailReport" xml:space="preserve">
+    <value>补印箱明细</value>
+  </data>
+  <data name="DeliveryReportService_Collect" xml:space="preserve">
+    <value>代收</value>
+  </data>
+  <data name="DeliveryReportService_ConsignReport" xml:space="preserve">
+    <value>托运单</value>
+  </data>
+  <data name="DeliveryReportService_CustOrdNo" xml:space="preserve">
+    <value>货主单号</value>
+  </data>
+  <data name="DeliveryReportService_CustOrdNo1" xml:space="preserve">
+    <value>货主单号：</value>
+  </data>
+  <data name="DeliveryReportService_CustOrdNoError" xml:space="preserve">
+    <value>因货主单号不正确，无法列印申请配送检核表!</value>
+  </data>
+  <data name="DeliveryReportService_CvsTakeReport" xml:space="preserve">
+    <value>超取单</value>
+  </data>
+  <data name="DeliveryReportService_CVS_TAKE" xml:space="preserve">
+    <value>超商取货</value>
+  </data>
+  <data name="DeliveryReportService_F1947IsNull" xml:space="preserve">
+    <value>查无托运单格式</value>
+  </data>
+  <data name="DeliveryReportService_IDCardRequired" xml:space="preserve">
+    <value>只需收身份证及申请书</value>
+  </data>
+  <data name="DeliveryReportService_InvoReport" xml:space="preserve">
+    <value>发票</value>
+  </data>
+  <data name="DeliveryReportService_IsPrintInvoice" xml:space="preserve">
+    <value>此发票已列印</value>
+  </data>
+  <data name="DeliveryReportService_ItemCode" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="DeliveryReportService_ItemName" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="DeliveryReportService_ItemReportCount" xml:space="preserve">
+    <value>取回 {0} 张</value>
+  </data>
+  <data name="DeliveryReportService_ItemScanCode" xml:space="preserve">
+    <value>商品条码</value>
+  </data>
+  <data name="DeliveryReportService_LabelItemsIsNull" xml:space="preserve">
+    <value>无托运单可列印!</value>
+  </data>
+  <data name="DeliveryReportService_NeedDoubleIdentification" xml:space="preserve">
+    <value>需收双证件及申请书</value>
+  </data>
+  <data name="DeliveryReportService_NoDocumentsRequired" xml:space="preserve">
+    <value>不需收证件,收申请书</value>
+  </data>
+  <data name="DeliveryReportService_NotCollect" xml:space="preserve">
+    <value>不可代收</value>
+  </data>
+  <data name="DeliveryReportService_PrintDate" xml:space="preserve">
+    <value>列印日期</value>
+  </data>
+  <data name="DeliveryReportService_PrintDate1" xml:space="preserve">
+    <value>列印日期：</value>
+  </data>
+  <data name="DeliveryReportService_PrintStaff" xml:space="preserve">
+    <value>列印人员</value>
+  </data>
+  <data name="DeliveryReportService_PrintStaff1" xml:space="preserve">
+    <value>列印人员：</value>
+  </data>
+  <data name="DeliveryReportService_Receiver" xml:space="preserve">
+    <value>收货人</value>
+  </data>
+  <data name="DeliveryReportService_Receiver1" xml:space="preserve">
+    <value>收货人：</value>
+  </data>
+  <data name="DeliveryReportService_ReportTitle" xml:space="preserve">
+    <value> 出货箱明细</value>
+  </data>
+  <data name="DeliveryReportService_SaleOrderDetailReport" xml:space="preserve">
+    <value>销货凭单</value>
+  </data>
+  <data name="DeliveryReportService_SaRepot" xml:space="preserve">
+    <value>申装书配送检核表</value>
+  </data>
+  <data name="DeliveryReportService_SelfTakeReport" xml:space="preserve">
+    <value>自取单</value>
+  </data>
+  <data name="DeliveryReportService_SELF_TAKE" xml:space="preserve">
+    <value>《自取》</value>
+  </data>
+  <data name="DeliveryReportService_Unit" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="DeliveryReportService_WmsOrdNo" xml:space="preserve">
+    <value>出货单号</value>
+  </data>
+  <data name="DeliveryReportService_WmsOrdNo1" xml:space="preserve">
+    <value>出货单号：</value>
+  </data>
+  <data name="PackingService_Copies" xml:space="preserve">
+    <value> 份</value>
+  </data>
+  <data name="PackingService_MEMO" xml:space="preserve">
+    <value>备注：</value>
+  </data>
+  <data name="PackingService_No" xml:space="preserve">
+    <value>没有</value>
+  </data>
+  <data name="PackingService_NorthTwoSpecial" xml:space="preserve">
+    <value>北二特</value>
+  </data>
+  <data name="PackingService_NotSpecify" xml:space="preserve">
+    <value>不指定</value>
+  </data>
+  <data name="PackingService_SATotal" xml:space="preserve">
+    <value>SA共计：</value>
+  </data>
+  <data name="PackingService_Yuan" xml:space="preserve">
+    <value>元</value>
+  </data>
+  <data name="a" xml:space="preserve">
+    <value>个</value>
+  </data>
+  <data name="BoxNum01" xml:space="preserve">
+    <value>箱号:0001</value>
+  </data>
+  <data name="BoxNum02" xml:space="preserve">
+    <value>箱号:0002</value>
+  </data>
+  <data name="BoxNum03" xml:space="preserve">
+    <value>箱号:0003</value>
+  </data>
+  <data name="BoxNum04" xml:space="preserve">
+    <value>箱号:0004</value>
+  </data>
+  <data name="BoxNum05" xml:space="preserve">
+    <value>箱号:0005</value>
+  </data>
+  <data name="BoxNum06" xml:space="preserve">
+    <value>箱号:0006</value>
+  </data>
+  <data name="BoxNum07" xml:space="preserve">
+    <value>箱号:0007</value>
+  </data>
+  <data name="BoxNum08" xml:space="preserve">
+    <value>箱号:0008</value>
+  </data>
+  <data name="BoxNumber" xml:space="preserve">
+    <value>箱号:{0}</value>
+  </data>
+  <data name="CheckEnd" xml:space="preserve">
+    <value>点收结束</value>
+  </data>
+  <data name="Clear1" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="DC" xml:space="preserve">
+    <value>物流中心：</value>
+  </data>
+  <data name="DefectiveWarehouse" xml:space="preserve">
+    <value>不良品仓</value>
+  </data>
+  <data name="Exit1" xml:space="preserve">
+    <value>离开</value>
+  </data>
+  <data name="FirstZone" xml:space="preserve">
+    <value>第一区</value>
+  </data>
+  <data name="GoodsWarehouse" xml:space="preserve">
+    <value>良品仓</value>
+  </data>
+  <data name="Help1" xml:space="preserve">
+    <value>求救</value>
+  </data>
+  <data name="ItemCode1" xml:space="preserve">
+    <value>商品品号</value>
+  </data>
+  <data name="ItemCode2" xml:space="preserve">
+    <value>品号：</value>
+  </data>
+  <data name="ItemName1" xml:space="preserve">
+    <value>品名：</value>
+  </data>
+  <data name="Marquee" xml:space="preserve">
+    <value>跑马灯~</value>
+  </data>
+  <data name="MassiveSowingWork" xml:space="preserve">
+    <value>大量播种合流作业</value>
+  </data>
+  <data name="MinUnit" xml:space="preserve">
+    <value>最小单位：</value>
+  </data>
+  <data name="OnSaleQty" xml:space="preserve">
+    <value>已上架/应上架：</value>
+  </data>
+  <data name="OOOItem" xml:space="preserve">
+    <value>OOOXXXMMM商品 (黄色 10mm*12mm)</value>
+  </data>
+  <data name="OutofStock1" xml:space="preserve">
+    <value>缺货</value>
+  </data>
+  <data name="P0809010000xamlcs_JPG" xml:space="preserve">
+    <value>封条照片图档 (.jpg)|*.jpg</value>
+  </data>
+  <data name="P0809010000xamlcs_JPG_Limit3" xml:space="preserve">
+    <value>封条照片最多可上传3张</value>
+  </data>
+  <data name="P0809010000xamlcs_NoAuthentication" xml:space="preserve">
+    <value>无使用权限</value>
+  </data>
+  <data name="PickOrdNo" xml:space="preserve">
+    <value>拣货单号</value>
+  </data>
+  <data name="Pingzhen" xml:space="preserve">
+    <value>平镇</value>
+  </data>
+  <data name="PrintTransApplicate" xml:space="preserve">
+    <value>列印调拨申请单</value>
+  </data>
+  <data name="PrintUnknownBarcode" xml:space="preserve">
+    <value>列印不明件BarCode</value>
+  </data>
+  <data name="ReturnCheckMaintain" xml:space="preserve">
+    <value>退货点收维护</value>
+  </data>
+  <data name="ReturnNo" xml:space="preserve">
+    <value>退货单号：</value>
+  </data>
+  <data name="ReturnTest" xml:space="preserve">
+    <value>退货检验</value>
+  </data>
+  <data name="ReturnTmpWarehouse" xml:space="preserve">
+    <value>退货暂存仓</value>
+  </data>
+  <data name="SahllOnSaleQty" xml:space="preserve">
+    <value>应上架数：</value>
+  </data>
+  <data name="ScannedItemCode" xml:space="preserve">
+    <value>刷读品号</value>
+  </data>
+  <data name="SecZone" xml:space="preserve">
+    <value>第二区</value>
+  </data>
+  <data name="SerialNo1" xml:space="preserve">
+    <value>序号：</value>
+  </data>
+  <data name="SowingAB123456" xml:space="preserve">
+    <value>播种中：AB123456 - OOO商品</value>
+  </data>
+  <data name="SowingCancel" xml:space="preserve">
+    <value>取消播种</value>
+  </data>
+  <data name="SowingComplete" xml:space="preserve">
+    <value>完成播种</value>
+  </data>
+  <data name="SowingQty" xml:space="preserve">
+    <value>已播数:0</value>
+  </data>
+  <data name="SRC_Loc" xml:space="preserve">
+    <value>来源储位</value>
+  </data>
+  <data name="StartCheck1" xml:space="preserve">
+    <value>开始点收</value>
+  </data>
+  <data name="TargetWarehouse" xml:space="preserve">
+    <value>目的仓别：</value>
+  </data>
+  <data name="TAR_WarehouseID" xml:space="preserve">
+    <value>目的仓别</value>
+  </data>
+  <data name="TotalCount1" xml:space="preserve">
+    <value>总件数:1</value>
+  </data>
+  <data name="TotalCount10" xml:space="preserve">
+    <value>总件数:10</value>
+  </data>
+  <data name="TotalCount4" xml:space="preserve">
+    <value>总件数:4</value>
+  </data>
+  <data name="TotalCount8" xml:space="preserve">
+    <value>总件数:8</value>
+  </data>
+  <data name="TransQty" xml:space="preserve">
+    <value>调拨数</value>
+  </data>
+  <data name="WarehouseId" xml:space="preserve">
+    <value>仓别：</value>
+  </data>
+  <data name="WMS_ORD_NO1234567890" xml:space="preserve">
+    <value>出货单号:1234567890</value>
+  </data>
+  <data name="WMS_ORD_NO1234567892" xml:space="preserve">
+    <value>出货单号:1234567892</value>
+  </data>
+  <data name="WMS_ORD_NO1234567893" xml:space="preserve">
+    <value>出货单号:1234567893</value>
+  </data>
+  <data name="WMS_ORD_NO1234567894" xml:space="preserve">
+    <value>出货单号:1234567894</value>
+  </data>
+  <data name="WMS_ORD_NO1234567895" xml:space="preserve">
+    <value>出货单号:1234567895</value>
+  </data>
+  <data name="WMS_ORD_NO1234567896" xml:space="preserve">
+    <value>出货单号:1234567896</value>
+  </data>
+  <data name="WMS_ORD_NO1234567897" xml:space="preserve">
+    <value>出货单号:1234567897</value>
+  </data>
+  <data name="WMS_ORD_NO1234567898" xml:space="preserve">
+    <value>出货单号:1234567898</value>
+  </data>
+  <data name="YangMei" xml:space="preserve">
+    <value>杨梅</value>
+  </data>
+  <data name="ShipStickerNo" xml:space="preserve">
+    <value>出货贴纸</value>
+  </data>
+  <data name="TotalDelvQty" xml:space="preserve">
+    <value>总出货数</value>
+  </data>
+  <data name="PalletNo" xml:space="preserve">
+    <value>栈板编号</value>
+  </data>
+  <data name="ScanBarcode" xml:space="preserve">
+    <value>刷读条形码</value>
+  </data>
+  <data name="PleaseScanBarcode" xml:space="preserve">
+    <value>请刷读/输入条形码</value>
+  </data>
+  <data name="P0806130000_Btn_EMP_ID_BIND" xml:space="preserve">
+    <value>工号绑定</value>
+  </data>
+  <data name="P0806130000_Btn_EMP_ID_COMPLETE" xml:space="preserve">
+    <value>工号完成</value>
+  </data>
+  <data name="P0806130000_GD_CLOSE_DATE" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="P0806130000_GD_EMP_ID" xml:space="preserve">
+    <value>工号</value>
+  </data>
+  <data name="P0806130000_GD_ORDER_NO" xml:space="preserve">
+    <value>单号</value>
+  </data>
+  <data name="P0806130000_GD_START_DATE" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="P0806130000_GD_STATUS" xml:space="preserve">
+    <value>单据状态</value>
+  </data>
+  <data name="P0806130000_Lab_DC" xml:space="preserve">
+    <value>物流中心</value>
+  </data>
+  <data name="P0806130000_Lab_EMP_ID" xml:space="preserve">
+    <value>工号</value>
+  </data>
+  <data name="P0806130000_Lab_ORDER_NO" xml:space="preserve">
+    <value>出货/拣货单号</value>
+  </data>
+  <data name="P0806130000_Lab_EMP_ID_Brush" xml:space="preserve">
+    <value>请刷入工号</value>
+  </data>
+  <data name="P0806130000_Lab_ORDER_NO_Brush" xml:space="preserve">
+    <value>请刷入出货/拣货单号</value>
+  </data>
+  <data name="P0806130000_Btn_Bind_Complete" xml:space="preserve">
+    <value>绑定完成</value>
+  </data>
+  <data name="P0806130000_Btn_Pick_Complete" xml:space="preserve">
+    <value>拣货完成</value>
+  </data>
+  <data name="P0806130000_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="P0806130000_DeleteFail" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="P0806130000_DeleteSucess" xml:space="preserve">
+    <value>删除成功</value>
+  </data>
+  <data name="P0806130000_DontUpdateOrder" xml:space="preserve">
+    <value>无须更新的单据</value>
+  </data>
+  <data name="P0806130000_EmpIDError" xml:space="preserve">
+    <value>工号不正确</value>
+  </data>
+  <data name="P0806130000_EmpIDIsNotExist" xml:space="preserve">
+    <value>请输入正确的工号</value>
+  </data>
+  <data name="P0806130000_PickIsNotExist" xml:space="preserve">
+    <value>此拣货单号不存在</value>
+  </data>
+  <data name="P0806130000_PickStatusToEmpID" xml:space="preserve">
+    <value>此拣货单已分配给工号</value>
+  </data>
+  <data name="P0806130000_PickStatus_Cancel" xml:space="preserve">
+    <value>此拣货单已取消，无法进行绑定</value>
+  </data>
+  <data name="P0806130000_PickSucess" xml:space="preserve">
+    <value>拣货完成</value>
+  </data>
+  <data name="P0806130000_PleaseRushOrderNo" xml:space="preserve">
+    <value>请刷读要绑定的单号</value>
+  </data>
+  <data name="P0806130000_SaveFail" xml:space="preserve">
+    <value>笔资料写入失败</value>
+  </data>
+  <data name="P0806130000_SaveSucess" xml:space="preserve">
+    <value>写入成功</value>
+  </data>
+  <data name="P0806130000_StatusList_0" xml:space="preserve">
+    <value>待拣货</value>
+  </data>
+  <data name="P0806130000_StatusList_1" xml:space="preserve">
+    <value>拣货中</value>
+  </data>
+  <data name="P0806130000_StatusList_2" xml:space="preserve">
+    <value>拣货完成</value>
+  </data>
+  <data name="P0806130000_StatusList_9" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="P0806130000_Search" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="P0806130000_SearchErr" xml:space="preserve">
+    <value>查无资料</value>
+  </data>
+  <data name="P08010103_ReturnLocMessage" xml:space="preserve">
+    <value>货架停留在工作站时使用，请输入储位前五码</value>
+  </data>
+  <data name="InventoryType" xml:space="preserve">
+    <value>盘点类型</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>批号</value>
+  </data>
+  <data name="PURCHASE_NO" xml:space="preserve">
+    <value>进仓单号</value>
+  </data>
+  <data name="PURCHASE_SEQ" xml:space="preserve">
+    <value>进仓单序号</value>
+  </data>
+  <data name="UNIT_TRANS" xml:space="preserve">
+    <value>包装参考</value>
+  </data>
+  <data name="VALI_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="itemHight" xml:space="preserve">
+    <value>商品高(cm)</value>
+  </data>
+  <data name="itemLength" xml:space="preserve">
+    <value>商品长(cm)</value>
+  </data>
+  <data name="itemWeight" xml:space="preserve">
+    <value>商品重量(g)</value>
+  </data>
+  <data name="itemWidth" xml:space="preserve">
+    <value>商品宽(cm) </value>
+  </data>
+  <data name="BOX_CTRL_NO" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="ADD" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="RECE_DATE" xml:space="preserve">
+    <value>验收日期</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="BatchAllocNoMustComplete" xml:space="preserve">
+    <value>此汇总上架单[{0}]尚未完成，您必须先完成此汇总上架单!</value>
+  </data>
+  <data name="P0813010000_ItemCode" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="P0813010000_ItemName" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="P0813010000_LocCode" xml:space="preserve">
+    <value>储位编号</value>
+  </data>
+  <data name="P0813010000_Qty" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="P0813010000_ScanItemOrLoc" xml:space="preserve">
+    <value>请刷读商品或储位条形码</value>
+  </data>
+  <data name="P0813010100_LocStatus" xml:space="preserve">
+    <value>储位状态</value>
+  </data>
+  <data name="P0813010100_MoveLoc" xml:space="preserve">
+    <value>搬移储位</value>
+  </data>
+  <data name="P0813010100_MoveWarehouse" xml:space="preserve">
+    <value>搬移仓别</value>
+  </data>
+  <data name="P0813010100_UpLocBarcode" xml:space="preserve">
+    <value>上架储位条形码</value>
+  </data>
+  <data name="P0813010100_UpWarehouse" xml:space="preserve">
+    <value>上架仓别</value>
+  </data>
+  <data name="P0813010000_BoxCtrlNo" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="P0813010000_EnterDate" xml:space="preserve">
+    <value>入库日</value>
+  </data>
+  <data name="P0813010000_MakeNo" xml:space="preserve">
+    <value>批号</value>
+  </data>
+  <data name="P0813010000_MoveQty" xml:space="preserve">
+    <value>搬移数</value>
+  </data>
+  <data name="P0813010000_PalletCtrlNo" xml:space="preserve">
+    <value>板号</value>
+  </data>
+  <data name="P0813010000_SerialNo" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="P0813010000_ValidDate" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="P08130100_PleaseCheckMoveItem" xml:space="preserve">
+    <value>请勾选要搬移的商品</value>
+  </data>
+  <data name="P0813010100_Exit" xml:space="preserve">
+    <value>离开</value>
+  </data>
+  <data name="P0813010100_ItemCode" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="P0813010100_ItemName" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="P0813010100_MoveComplete" xml:space="preserve">
+    <value>搬移完成</value>
+  </data>
+  <data name="P0813010100_Qty" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="P0813010100_CheckAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="P0813010100_PleaseScanUpLoc" xml:space="preserve">
+    <value>请刷读上架储位条形码</value>
+  </data>
+  <data name="P0813010100_MoveLocNotExists" xml:space="preserve">
+    <value>搬移储位不存在</value>
+  </data>
+  <data name="P0813010100_MoveLocCanotMove" xml:space="preserve">
+    <value>搬移储位状态为{0}不可进行搬移</value>
+  </data>
+  <data name="P0813010100_MoveLocNoStock" xml:space="preserve">
+    <value>搬移储位无库存资料</value>
+  </data>
+  <data name="P0813010100_MoveLocItemNoStock" xml:space="preserve">
+    <value>搬移储位中无此商品{0}库存资料</value>
+  </data>
+  <data name="P0813010100_MoveQtyNotEquelOrLessZero" xml:space="preserve">
+    <value>搬移数不可小于等于0</value>
+  </data>
+  <data name="P0813010100_UpLocCanotMoveLoc" xml:space="preserve">
+    <value>上架储位不可为搬移储位</value>
+  </data>
+  <data name="P0813010100_ConfirmMoveComplete" xml:space="preserve">
+    <value>您确定要进行搬移?</value>
+  </data>
+  <data name="P0813010100_ScanUpLocCodeCorrect" xml:space="preserve">
+    <value>上架储位条形码正确</value>
+  </data>
+  <data name="PrintOne" xml:space="preserve">
+    <value>补印</value>
+  </data>
+  <data name="P0803020000_IsOutOfStockData" xml:space="preserve">
+    <value>此商品已注记上架缺货不可清除</value>
+  </data>
+  <data name="P0806130000_OrderNoIsNotExist" xml:space="preserve">
+    <value>此单号不存在</value>
+  </data>
+  <data name="PRINT_MEMO" xml:space="preserve">
+    <value>宅配类别</value>
+  </data>
+  <data name="PrintDate" xml:space="preserve">
+    <value>印单日期</value>
+  </data>
+  <data name="ShippingList" xml:space="preserve">
+    <value>出货明细</value>
+  </data>
+  <data name="TransferOrderDate" xml:space="preserve">
+    <value>转单日期</value>
+  </data>
+  <data name="P0806130000_Lab_CrtDate" xml:space="preserve">
+    <value>建立日期</value>
+  </data>
+  <data name="CloseBoxErrorMsg" xml:space="preserve">
+    <value>此箱尚未开始包装</value>
+  </data>
+  <data name="ManualCloseBox" xml:space="preserve">
+    <value>手动关箱</value>
+  </data>
+  <data name="P0806130000_NotDelete" xml:space="preserve">
+    <value>工号绑定完成，不能删除</value>
+  </data>
+  <data name="P0806130000_RepeactItem" xml:space="preserve">
+    <value>工号绑定重复</value>
+  </data>
+  <data name="P0807010000_OrginalItem" xml:space="preserve">
+    <value>原箱</value>
+  </data>
+  <data name="P0807010000_ScanOrginalItem" xml:space="preserve">
+    <value>请刷读原箱品号/序号/箱号</value>
+  </data>
+  <data name="P0808030000_WMS_ORD" xml:space="preserve">
+    <value>宅配单号</value>
+  </data>
+  <data name="P0808030000_scanResult" xml:space="preserve">
+    <value>刷读结果</value>
+  </data>
+  <data name="P0808030000_wmsOrdNo" xml:space="preserve">
+    <value>宅配单号</value>
+  </data>
+  <data name="P0808030000__scanTime" xml:space="preserve">
+    <value>刷读时间</value>
+  </data>
+  <data name="P0808030000_Item" xml:space="preserve">
+    <value>项次</value>
+  </data>
+  <data name="SpecifyPrinter1" xml:space="preserve">
+    <value>印表机1: 箱明细、厂退小白标</value>
+  </data>
+  <data name="DeliveryReportService_RtnLableReport" xml:space="preserve">
+    <value>厂退小白标</value>
+  </data>
+  <data name="P0806140000_WmsNoBarCode" xml:space="preserve">
+    <value>单据条码</value>
+  </data>
+  <data name="P0806140000_ShipCnt" xml:space="preserve">
+    <value>出货单数</value>
+  </data>
+  <data name="P0806140000_BoxDetail" xml:space="preserve">
+    <value>箱内明细</value>
+  </data>
+  <data name="P0806140000_OutOfStock" xml:space="preserve">
+    <value>缺货</value>
+  </data>
+  <data name="P0806140000_PauseAllot" xml:space="preserve">
+    <value>暂停分货</value>
+  </data>
+  <data name="P0806140000_StartAllot" xml:space="preserve">
+    <value>开始分货</value>
+  </data>
+  <data name="P0806140000_Query" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="P0806140000_BoxNo" xml:space="preserve">
+    <value>箱号:{0}</value>
+  </data>
+  <data name="P0806140000_SowQty" xml:space="preserve">
+    <value>已播数:{0}</value>
+  </data>
+  <data name="P0806140000_TotalQty" xml:space="preserve">
+    <value>总数:{0}</value>
+  </data>
+  <data name="P0806140000_BindingContainer" xml:space="preserve">
+    <value>绑定容器</value>
+  </data>
+  <data name="P0806140000_ContainerWatemark" xml:space="preserve">
+    <value>容器条码</value>
+  </data>
+  <data name="P0806140000_ItemBarCode" xml:space="preserve">
+    <value>商品条码</value>
+  </data>
+  <data name="P0806140000_ItemName" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="P0806140000_ItemWatemark" xml:space="preserve">
+    <value>品号/国条/序号</value>
+  </data>
+  <data name="P0806140000_Ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="P0806140000_ColletHint" xml:space="preserve">
+    <value>[綠色]集貨場</value>
+  </data>
+  <data name="P0806140000_ErrorHint" xml:space="preserve">
+    <value>[紫色]異常區</value>
+  </data>
+  <data name="P0806140000_PackageHint" xml:space="preserve">
+    <value>[橘色]包裝站</value>
+  </data>
+  <data name="P0806140000_PleaseInputContainerCode" xml:space="preserve">
+    <value>请输入容器编号</value>
+  </data>
+  <data name="P0806140000_BindContainerNotFinishConfirm" xml:space="preserve">
+    <value>容器绑定尚未完成，离开后需要重新绑定，请确认?</value>
+  </data>
+  <data name="P0806140000_PauseSowConfirm" xml:space="preserve">
+    <value>确定要暂停分货?</value>
+  </data>
+  <data name="P0806140000_PleaseScanItem" xml:space="preserve">
+    <value>请刷读品号/国条/序号</value>
+  </data>
+  <data name="P0806140000_SowFinishMsg" xml:space="preserve">
+    <value>分货完成，请依照地点分送</value>
+  </data>
+  <data name="P0806140000_ContainerIsBindOtherLocPosition" xml:space="preserve">
+    <value>此容器已绑定{0}位置，请绑定其他容器</value>
+  </data>
+  <data name="P0806140100_ASetQty" xml:space="preserve">
+    <value>已放入数量</value>
+  </data>
+  <data name="P0806140100_BSetQty" xml:space="preserve">
+    <value>应出货数量</value>
+  </data>
+  <data name="P0806140100_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="P0806140100_ItemCode" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="P0806140100_ItemName" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="P0806140100_BoxNo" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="CUST_COST" xml:space="preserve">
+    <value>客户自订分类：</value>
+  </data>
+  <data name="FAST_DEAL_TYPE" xml:space="preserve">
+    <value>优先处理旗标：</value>
+  </data>
+  <data name="P0807010000_UnfinishedCollection" xml:space="preserve">
+    <value>未完成集货，不可以包装</value>
+  </data>
+  <data name="P0807010000_PreBoxHasNotClose" xml:space="preserve">
+    <value>前一箱未正常关箱，请先手动执行关箱后再继续作业</value>
+  </data>
+  <data name="P0807010000_PreBoxHasOrginalItemNotClose" xml:space="preserve">
+    <value>前一箱为原箱商品，未正常关箱，请先手动执行关箱后再继续作业</value>
+  </data>
+  <data name="P0808040000_AddBox" xml:space="preserve">
+    <value>加箱</value>
+  </data>
+  <data name="P0808040000_BatchPickCnt" xml:space="preserve">
+    <value>批次拣货单数</value>
+  </data>
+  <data name="P0808040000_BatchPickQty" xml:space="preserve">
+    <value>批次总PCS数</value>
+  </data>
+  <data name="P0808040000_BatchPickQuery" xml:space="preserve">
+    <value>拣货单批次查询</value>
+  </data>
+  <data name="P0808040000_BoxDetail" xml:space="preserve">
+    <value>箱内明细</value>
+  </data>
+  <data name="P0808040000_CancelOrder" xml:space="preserve">
+    <value>订单取消</value>
+  </data>
+  <data name="P0808040000_ContainerCode" xml:space="preserve">
+    <value>容器条码</value>
+  </data>
+  <data name="P0808040000_ContainerComplete" xml:space="preserve">
+    <value>容器完成</value>
+  </data>
+  <data name="P0808040000_ContainerWatemark" xml:space="preserve">
+    <value>拣货单号/拣货贴纸/容器条码</value>
+  </data>
+  <data name="P0808040000_Dc" xml:space="preserve">
+    <value>物流中心</value>
+  </data>
+  <data name="P0808040000_DelvDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="P0808040000_Exit" xml:space="preserve">
+    <value>离开</value>
+  </data>
+  <data name="P0808040000_ItemBarcode" xml:space="preserve">
+    <value>商品条码</value>
+  </data>
+  <data name="P0808040000_ItemName" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="P0808040000_ItemWatemark" xml:space="preserve">
+    <value>品号/国条/序号</value>
+  </data>
+  <data name="P0808040000_LackShip" xml:space="preserve">
+    <value>缺品出货</value>
+  </data>
+  <data name="P0808040000_Target" xml:space="preserve">
+    <value>目的地</value>
+  </data>
+  <data name="P0808040000_NormalShip" xml:space="preserve">
+    <value>正常出货</value>
+  </data>
+  <data name="P0808040000_PauseAllot" xml:space="preserve">
+    <value>暂停分货</value>
+  </data>
+  <data name="P0808040000_PickOrder" xml:space="preserve">
+    <value>拣货单号</value>
+  </data>
+  <data name="P0808040000_PickQty" xml:space="preserve">
+    <value>拣货单总PCS数</value>
+  </data>
+  <data name="P0808040000_PickTime" xml:space="preserve">
+    <value>批次时段</value>
+  </data>
+  <data name="P0808040000_PrintInfo" xml:space="preserve">
+    <value>印表机1:列印箱明细</value>
+  </data>
+  <data name="P0808040000_Query" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="P0808040000_ReBindBox" xml:space="preserve">
+    <value>重绑箱号</value>
+  </data>
+  <data name="P0808040000_BoxNo" xml:space="preserve">
+    <value>箱号：{0}</value>
+  </data>
+  <data name="P0808040000_TotalQty" xml:space="preserve">
+    <value>累积数量：{0}</value>
+  </data>
+  <data name="P0808040300_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="P0808040300_CancelOrder" xml:space="preserve">
+    <value>(取消订单)</value>
+  </data>
+  <data name="P0808040300_NormalShip" xml:space="preserve">
+    <value>(正常出货)</value>
+  </data>
+  <data name="P0808040300_Ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="P0808040300_PleaseScanCrossWarehouseContainerCode" xml:space="preserve">
+    <value>请刷入跨库的容器条码</value>
+  </data>
+  <data name="P0808040300_PleaseScanInWarehouseContainerCode" xml:space="preserve">
+    <value>请刷入库内的容器条码</value>
+  </data>
+  <data name="P0808040100_ASetQty" xml:space="preserve">
+    <value>已播数量</value>
+  </data>
+  <data name="P0808040100_BoxNo" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="P0808040100_Dc" xml:space="preserve">
+    <value>物流中心</value>
+  </data>
+  <data name="P0808040100_DelvDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="P0808040100_MoveOutTarget" xml:space="preserve">
+    <value>目的地</value>
+  </data>
+  <data name="P0808040100_PickTime" xml:space="preserve">
+    <value>批次时段</value>
+  </data>
+  <data name="P0808040100_PrintBtn" xml:space="preserve">
+    <value>列印箱明细</value>
+  </data>
+  <data name="P0808040100_SowType" xml:space="preserve">
+    <value>分货类型</value>
+  </data>
+  <data name="P0808040100_Status" xml:space="preserve">
+    <value>箱号状态</value>
+  </data>
+  <data name="P0808040100_RowNum" xml:space="preserve">
+    <value>项次</value>
+  </data>
+  <data name="P0808040100_ShowErrorMsg" xml:space="preserve">
+    <value>尚未选择{0}</value>
+  </data>
+  <data name="P0808040100_DetailNullMsg" xml:space="preserve">
+    <value>尚未开始进行分货</value>
+  </data>
+  <data name="P0808040100_RP_PackageBoxNum" xml:space="preserve">
+    <value>箱次</value>
+  </data>
+  <data name="P0808040100_RP_Titie_1" xml:space="preserve">
+    <value>出货箱明细</value>
+  </data>
+  <data name="P0808040100_RP_PageNum" xml:space="preserve">
+    <value>页数</value>
+  </data>
+  <data name="P0808040100_RP_PrintDate" xml:space="preserve">
+    <value>印单日期</value>
+  </data>
+  <data name="P0808040100_WMS_ORD_NO" xml:space="preserve">
+    <value>订单单号</value>
+  </data>
+  <data name="P0808040100_RP_Titie_2" xml:space="preserve">
+    <value>取消箱明细</value>
+  </data>
+  <data name="P0808040400_ContainerBarcode" xml:space="preserve">
+    <value>容器条码</value>
+  </data>
+  <data name="P0808040400_CROSS_NAME" xml:space="preserve">
+    <value>目的地</value>
+  </data>
+  <data name="P0808040400_DELV_DATE" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="P0808040400_Item" xml:space="preserve">
+    <value>项次</value>
+  </data>
+  <data name="P0808040400_PICK_ORD_NO" xml:space="preserve">
+    <value>拣货单号</value>
+  </data>
+  <data name="P0808040400_PICK_TIME" xml:space="preserve">
+    <value>批次时段</value>
+  </data>
+  <data name="P0808040400_PICK_TOOL" xml:space="preserve">
+    <value>拣货工具</value>
+  </data>
+  <data name="P0808040400_SPLIT_CODE" xml:space="preserve">
+    <value>拣货区</value>
+  </data>
+  <data name="P0808040400_STATUS" xml:space="preserve">
+    <value>拣货单状态</value>
+  </data>
+  <data name="P0808040400_ContainerBarcodeVisualBrush" xml:space="preserve">
+    <value>拣货单号/拣货贴纸/容器条码</value>
+  </data>
+  <data name="P0808040000_BatchFinished" xml:space="preserve">
+    <value>批次日期:{0} 批次时段:{1} 目的地:{2} 已完成稽核出库。 {3}请将正常出货容器移至跨库出货码头{3}请将订单取消容器移至异常区</value>
+  </data>
+  <data name="P0808040000_ContainerAllotFinish" xml:space="preserve">
+    <value>容器分货完成</value>
+  </data>
+  <data name="P0808040000_ContainerIsEmptyConfirm" xml:space="preserve">
+    <value>以下商品尚未进行分货，请问是否容器已无商品?</value>
+  </data>
+  <data name="P0808040000_LackConfirm" xml:space="preserve">
+    <value>以下商品尚未进行分货，请问是否为缺品出货?</value>
+  </data>
+  <data name="P0808040000_LackItemInfo" xml:space="preserve">
+    <value>品号:{0} 品名:{1} 缺货数:{2}</value>
+  </data>
+  <data name="P0808040000_NotAllottemInfo" xml:space="preserve">
+    <value>品号:{0} 品名:{1} 未分货数:{2}</value>
+  </data>
+  <data name="P0808040000_ScanContainerCode" xml:space="preserve">
+    <value>请刷读容器条码</value>
+  </data>
+  <data name="P0806140000_ContainerFirstWordCannotOorP" xml:space="preserve">
+    <value>容器编号第一码不可为O或P开头</value>
+  </data>
+  <data name="P0807010000_ORD_NO_CANCEL" xml:space="preserve">
+    <value>订单已取消</value>
+  </data>
+  <data name="CancelArriveRecord" xml:space="preserve">
+    <value>取消到站紀錄</value>
+  </data>
+</root>

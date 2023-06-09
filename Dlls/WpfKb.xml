@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WpfKb</name>
+    </assembly>
+    <members>
+        <member name="T:WpfKb.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:WpfKb.Controls.NumberVirtualKeyboard">
+            <summary>
+            NumberVirtualKeyboard
+            </summary>
+        </member>
+        <member name="M:WpfKb.Controls.NumberVirtualKeyboard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.AreAnimationsEnabled">
+            <summary>
+            Gets or sets a value indicating whether animations are enabled.
+            </summary>
+            <value>
+            	<c>true</c> if animations are enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.IsAllowedToFade">
+            <summary>
+            Gets or sets a value that indicates whether the Keyboard is allowed to fade. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.IsDragging">
+            <summary>
+            Gets a value that indicates if the keyboard is currently being dragged. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.IsDragHelperAllowedToHide">
+            <summary>
+            Gets or sets a value that indicates if the drag helper text is allowed to hide. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.IsKeyboardShown">
+            <summary>
+            Gets a value that indicates that the keyboard is shown (not faded). This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.MaximumKeyboardOpacity">
+            <summary>
+            Gets or sets the maximum opacity for a fully displayed keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.MinimumKeyboardOpacity">
+            <summary>
+            Gets or sets the opacity to use for a partially hidden keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.KeyboardHideDelay">
+            <summary>
+            Gets or sets the number of seconds to wait after the last keyboard activity before hiding the keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.KeyboardHideAnimationDuration">
+            <summary>
+            Gets or sets the duration in seconds for the keyboard hide animation. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.KeyboardShowAnimationDuration">
+            <summary>
+            Gets or sets the duration in seconds for the keyboard show animation. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.NumberVirtualKeyboard.DeadZone">
+            <summary>
+            Gets or sets the maximum opacity for a fully displayed keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="T:WpfKb.Controls.FloatingTouchScreenKeyboard">
+            <summary>
+            FloatingTouchScreenKeyboard
+            </summary>
+        </member>
+        <member name="M:WpfKb.Controls.FloatingTouchScreenKeyboard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.AreAnimationsEnabled">
+            <summary>
+            Gets or sets a value indicating whether animations are enabled.
+            </summary>
+            <value>
+            	<c>true</c> if animations are enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.IsAllowedToFade">
+            <summary>
+            Gets or sets a value that indicates whether the Keyboard is allowed to fade. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.IsDragging">
+            <summary>
+            Gets a value that indicates if the keyboard is currently being dragged. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.IsDragHelperAllowedToHide">
+            <summary>
+            Gets or sets a value that indicates if the drag helper text is allowed to hide. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.IsKeyboardShown">
+            <summary>
+            Gets a value that indicates that the keyboard is shown (not faded). This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.MaximumKeyboardOpacity">
+            <summary>
+            Gets or sets the maximum opacity for a fully displayed keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.MinimumKeyboardOpacity">
+            <summary>
+            Gets or sets the opacity to use for a partially hidden keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.KeyboardHideDelay">
+            <summary>
+            Gets or sets the number of seconds to wait after the last keyboard activity before hiding the keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.KeyboardHideAnimationDuration">
+            <summary>
+            Gets or sets the duration in seconds for the keyboard hide animation. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.KeyboardShowAnimationDuration">
+            <summary>
+            Gets or sets the duration in seconds for the keyboard show animation. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.FloatingTouchScreenKeyboard.DeadZone">
+            <summary>
+            Gets or sets the maximum opacity for a fully displayed keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="T:WpfKb.Controls.SmartVirtualKeyboard">
+            <summary>
+            SmartVirtualKeyboard
+            </summary>
+        </member>
+        <member name="M:WpfKb.Controls.SmartVirtualKeyboard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.AreAnimationsEnabled">
+            <summary>
+            Gets or sets a value indicating whether animations are enabled.
+            </summary>
+            <value>
+            	<c>true</c> if animations are enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.IsAllowedToFade">
+            <summary>
+            Gets or sets a value that indicates whether the Keyboard is allowed to fade. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.IsDragging">
+            <summary>
+            Gets a value that indicates if the keyboard is currently being dragged. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.IsDragHelperAllowedToHide">
+            <summary>
+            Gets or sets a value that indicates if the drag helper text is allowed to hide. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.IsKeyboardShown">
+            <summary>
+            Gets a value that indicates that the keyboard is shown (not faded). This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.MaximumKeyboardOpacity">
+            <summary>
+            Gets or sets the maximum opacity for a fully displayed keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.MinimumKeyboardOpacity">
+            <summary>
+            Gets or sets the opacity to use for a partially hidden keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.KeyboardHideDelay">
+            <summary>
+            Gets or sets the number of seconds to wait after the last keyboard activity before hiding the keyboard. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.KeyboardHideAnimationDuration">
+            <summary>
+            Gets or sets the duration in seconds for the keyboard hide animation. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.KeyboardShowAnimationDuration">
+            <summary>
+            Gets or sets the duration in seconds for the keyboard show animation. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:WpfKb.Controls.SmartVirtualKeyboard.DeadZone">
+            <summary>
+            Gets or sets the maximum opacity for a fully displayed keyboard. This is a dependency property.
+            </summary>
+        </member>
+    </members>
+</doc>

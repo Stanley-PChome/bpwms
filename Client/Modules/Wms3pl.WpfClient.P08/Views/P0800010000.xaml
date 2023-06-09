@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0800010000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P21.ViewModel;assembly=Wms3pl.WpfClient.P21" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" Title="今日工作指示查詢" controls:PermissionService.FunctionId="P0800010000" controls:PermissionService.FunctionName="今日工作指示查詢" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P2115010000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP0800010001" Command="{Binding SearchCommand}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+              <!-- 由此處開始加入畫面項目 -->
+              <DockPanel DockPanel.Dock="Top">
+                <GroupBox Header="{x:Static res:Resources.QueryCondition}">
+                  <DockPanel>
+                    <Expander IsExpanded="True">
+                      <WrapPanel DockPanel.Dock="TOP" Margin="5">
+                        <Grid>
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                          </Grid.RowDefinitions>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                          </Grid.ColumnDefinitions>
+                          <Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbStyle}" />
+                          <ComboBox Grid.Row="0" Grid.Column="1" Name="Comb_DC" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedDc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+                      </WrapPanel>
+                    </Expander>
+                  </DockPanel>
+                </GroupBox>
+              </DockPanel>
+              <GroupBox Header="{x:Static Properties:Resources.MyWorkList}">
+                <DataGrid Style="{StaticResource DgStyle}" Height="260" VerticalAlignment="Top" ItemsSource="{Binding MyWorkList}" CellStyle="{StaticResource SingleClickEdit}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.NAME}" Binding="{Binding NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.FUNC_NAME}" Binding="{Binding FUNC_NAME}" />
+                    <DataGridHyperlinkColumn Header="{x:Static Properties:Resources.FUNC_ID}" ContentBinding="{Binding COUNTS}" Binding="{Binding FUNC_ID}">
+                      <DataGridHyperlinkColumn.ElementStyle>
+                        <Style>
+                          <EventSetter Event="Hyperlink.Click" Handler="DG_Hyperlink_Click" />
+                        </Style>
+                      </DataGridHyperlinkColumn.ElementStyle>
+                    </DataGridHyperlinkColumn>
+                  </DataGrid.Columns>
+                </DataGrid>
+              </GroupBox>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

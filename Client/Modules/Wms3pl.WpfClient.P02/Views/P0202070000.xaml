@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P02.Views.P0202070000" 
+                         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                         mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" 
+                         xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" 
+                         xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" 
+                         xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P02.Properties" 
+                         xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+                         xmlns:converter="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" 
+                         xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P02.ViewModel" x:Name="Window" Margin="0,0,0,0" 
+                         HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" 
+                         controls:PermissionService.FunctionId="P0202070000" 
+                         controls:PermissionService.FunctionName="驗收單與上架容器查詢" FormException="{Binding Exception}">
+    <uiLib:Wms3plUserControl.DataContext>
+        <viewModel:P0202070000_ViewModel x:Name="Vm" />
+    </uiLib:Wms3plUserControl.DataContext>
+    <uiLib:Wms3plUserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <common:NotConverter x:Key="NotConverter" />
+            <converter:CheckStateConverter x:Key="CheckStateConverter" />
+            <converter:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <converter:TimeStringToTimeFormatConverter x:Key="TimeStringConverter" />
+            <converter:MultiBoolNorConverter x:Key="MultiBoolNorConverter" />
+            <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+            <Style TargetType="CheckBox" x:Key="CheckStyle" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="DataGridCell" x:Key="NumberCellStyle">
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+            </Style>
+            <Style TargetType="Label" x:Key="LbTitleStyle" BasedOn="{StaticResource LbTitleStyle}">
+                <Setter Property="Width" Value="100" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+            </Style>
+        </ResourceDictionary>
+    </uiLib:Wms3plUserControl.Resources>
+    <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+        <uiLib:BasicMaster x:Name="Master">
+            <uiLib:BasicMaster.ToolBarArea>
+                <WrapPanel>
+                    <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP0202070001" Command="{Binding SearchCommand}" />
+                    <Button Style="{StaticResource PreviewButton}" controls:PermissionService.FunctionId="BP0202070002" Command="{Binding PreviewCommand}" />
+                </WrapPanel>
+            </uiLib:BasicMaster.ToolBarArea>
+            <uiLib:BasicMaster.MainContent>
+                <TabControl x:Name="LayoutRoot">
+                    <TabControl.BindingGroup>
+                        <BindingGroup Name="errorGroup" />
+                    </TabControl.BindingGroup>
+                    <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+                        <DockPanel>
+                            <!-- 由此處開始加入畫面項目 -->
+                            <DockPanel DockPanel.Dock="Top">
+                                <GroupBox Header="{x:Static res:Resources.QueryCondition}">
+                                    <DockPanel>
+                                        <WrapPanel DockPanel.Dock="TOP" Margin="5">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Row="0" Grid.Column="0" Content="物流中心" Style="{StaticResource LbStyle}" />
+                                                <ComboBox Grid.Row="0" Grid.Column="1" MinWidth="180" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedDc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                <Label Grid.Row="0" Grid.Column="2" Content="驗收日期" Style="{StaticResource LbStyle}" />
+                                                <DatePicker Grid.Row="0" Grid.Column="3" MinWidth="180" SelectedDate="{Binding StartDt,Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DateStyle}" />
+                                                <Label Content="~" Grid.Row="0" Grid.Column="4" Style="{StaticResource LbStyle}" />
+                                                <DatePicker Grid.Row="0" Grid.Column="5"  MinWidth="180" SelectedDate="{Binding EndDt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DateStyle}" />
+
+                                                <Label Grid.Row="1" Grid.Column="0" Content="貨主單號" Style="{StaticResource LbStyle}" />
+                                                <TextBox Grid.Row="1" Grid.Column="1" MaxLength="25" MinWidth="180" Text="{Binding CustOrdNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" KeyDown="VnrCode_OnKeyDown"/>
+                                                <Label Grid.Row="1" Grid.Column="2" Content="進倉單號" Style="{StaticResource LbStyle}" />
+                                                <TextBox Grid.Row="1" Grid.Column="3" MaxLength="20" MinWidth="180" Text="{Binding PurchaseNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                                                <Label Content="驗收單號" Grid.Row="1" Grid.Column="4" Style="{StaticResource LbStyle}"/>
+                                                <TextBox Grid.Row="1" Grid.Column="5" MaxLength="60"  MinWidth="180" Text="{Binding RtNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                                                
+                                                <Label Grid.Row="2" Grid.Column="0" Content="廠商編號" Style="{StaticResource LbStyle}" />
+                                                <TextBox Grid.Row="2" Grid.Column="1" MaxLength="20" MinWidth="180" Text="{Binding VnrCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" KeyDown="VnrCode_OnKeyDown"/>
+                                                <Label Grid.Row="2" Grid.Column="2" Content="廠商名稱" Style="{StaticResource LbStyle}" Foreground="Blue"/>
+                                                <TextBox Grid.Row="2" Grid.Column="3" MaxLength="20" MinWidth="180" Text="{Binding VnrNameConditon,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}"/>
+                                                <Label Grid.Row="2" Grid.Column="4" Content="容器條碼" Style="{StaticResource LbStyle}" />
+                                                <TextBox Grid.Row="2" Grid.Column="5" MaxLength="20" MinWidth="180" Text="{Binding ContainerCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" KeyDown="VnrCode_OnKeyDown"/>
+                                            </Grid>
+                                        </WrapPanel>
+                                    </DockPanel>
+                                </GroupBox>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top">
+                                <GroupBox Header="{x:Static res:Resources.QueryResult}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <DataGrid Grid.Row="0" Grid.Column="0" Style="{StaticResource DgStyle}" ItemsSource="{Binding DgList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="200">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.RECE_DATE}" Binding="{Binding RECE_DATE,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd'}" Visibility="Collapsed"/>
+                                                <DataGridTextColumn Header="驗收完成時間"  Binding="{Binding UPD_DATE,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd HH:mm:ss'}"  />
+                                                <DataGridTextColumn Header="驗收人員" Binding="{Binding UPD_NAME}" />
+                                                <DataGridTextColumn Header="快速通關分類" Binding="{Binding FAST_PASS_TYPE}" />
+                                                <DataGridTextColumn Header="貨主單號" Binding="{Binding CUST_ORD_NO}" />
+                                                <DataGridTextColumn Header="進倉單號" Binding="{Binding PURCHASE_NO}" />
+                                                <DataGridTextColumn Header="驗收單號" Binding="{Binding RT_NO}" />
+                                                <DataGridTextColumn Header="廠商編號" Binding="{Binding VNR_CODE}" />
+                                                <DataGridTextColumn Header="廠商名稱" Binding="{Binding VNR_NAME}" />
+                                                <DataGridTextColumn Header="驗收總數" Binding="{Binding RECV_QTY }"/>
+                                                <DataGridTextColumn Header="良品數" Binding="{Binding SUM_RECV_QTY}" />
+                                                <DataGridTextColumn Header="不良品數" Binding="{Binding DEFECT_QTY}" />
+                                                <DataGridTextColumn Header="驗收總品項數" Binding="{Binding ITEM_COUNT}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <WrapPanel Grid.Row="1" Grid.Column="0">
+                                            <Label Content="{x:Static Properties:Resources.P0202040000_RecvQtySubtotal}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
+                                            <Label Content="{Binding RecvQtySubtotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
+                                            <Label Content="{x:Static Properties:Resources.P0202040000_SumRecvQtySubtotal}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
+                                            <Label Content="{Binding SumRecvQtySubtotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
+                                            <Label Content="{x:Static Properties:Resources.P0202040000_DefectQtySubtotal}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
+                                            <Label Content="{Binding DefectQtySubtotal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
+                                        </WrapPanel>
+                                    </Grid>
+
+                                </GroupBox>
+                            </DockPanel>
+                            <TabControl >
+                                <TabControl.BindingGroup>
+                                    <BindingGroup Name="errorGroup" />
+                                </TabControl.BindingGroup>
+                                <TabItem Header="驗收單明細" Width="Auto">
+                                    <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding AcceptanceDetails,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedAcceptanceDetailData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="驗收單號" Binding="{Binding RT_NO}"/>
+                                            <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}" />
+                                            <DataGridTextColumn Header="國際條碼" Binding="{Binding EAN_CODE1}" />
+                                            <DataGridTextColumn Header="國際條碼二(商品ID)" Binding="{Binding EAN_CODE2}" />
+                                            <DataGridTextColumn Header="品名" Binding="{Binding ITEM_NAME}" />
+                                            <DataGridTextColumn Header="規格" Binding="{Binding ITEM_SPEC}" />
+                                            <DataGridTextColumn Header="顏色" Binding="{Binding ITEM_COLOR}" />
+                                            <DataGridTextColumn Header="效期" Binding="{Binding VALI_DATE,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd'}"  />
+                                            <DataGridTextColumn Header="區域" Binding="{Binding TYPE_CODE_NAME}" />
+                                            <DataGridTextColumn Header="數量" Binding="{Binding B_QTY}" />
+                                            <DataGridTextColumn Header="上架倉別" Binding="{Binding PICK_WARE_NAME }"/>
+                                            <DataGridTextColumn Header="需要複驗" Binding="{Binding NEED_DOUBLE_CHECK}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <TabItem Header="驗收單容器明細" Width="Auto">
+                                    <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding AcceptanceContainerDetails,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedAcceptanceContainerDetailData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="驗收單號" Binding="{Binding RT_NO}"/>
+                                            <DataGridTextColumn Header="容器條碼" Binding="{Binding CONTAINER_CODE}" />
+                                            <DataGridTextColumn Header="容器分隔條碼" Binding="{Binding BIN_CODE}" />
+                                            <DataGridTextColumn Header="容器狀態" Binding="{Binding F020501_STATUS}" />
+                                            <DataGridTextColumn Header="上架倉別" Binding="{Binding PICK_WARE_NAME}" />
+                                            <DataGridTextColumn Header="調撥單號" Binding="{Binding ALLOCATION_NO}" />
+                                            <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}" />
+                                            <DataGridTextColumn Header="區域" Binding="{Binding TYPE_CODE_NAME}"/>
+                                            <DataGridTextColumn Header="數量" Binding="{Binding QTY}" />
+                                            <DataGridTextColumn Header="複驗狀態" Binding="{Binding F020502_STATUS}" />
+                                            <DataGridTextColumn Header="複驗原因" Binding="{Binding RECHECK_CAUSE }"/>
+                                            <DataGridTextColumn Header="複驗備註" Binding="{Binding RECHECK_MEMO}" />
+                                            <!--<DataGridTextColumn Header="驗收註記" Binding="{Binding RCV_MEMO}" />-->
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <TabItem Header="不良品明細" Width="Auto">
+                                    <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DefectDetails,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedDefectDetailData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="驗收單號" Binding="{Binding RT_NO}"/>
+                                            <DataGridTextColumn Header="上架倉別" Binding="{Binding WAREHOUSE_NAME}" />
+                                            <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}" />
+                                            <DataGridTextColumn Header="數量" Binding="{Binding QTY}" />
+                                            <DataGridTextColumn Header="不良品原因" Binding="{Binding UCC_CODE_NAME}" />
+                                            <DataGridTextColumn Header="補充說明" Binding="{Binding CAUSE}" />
+                                            <DataGridTextColumn Header="序號" Binding="{Binding SERIAL_NO}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                            </TabControl>
+                            <!--<DockPanel DockPanel.Dock="Left" Width="300">
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.DC_CODE}" Style="{StaticResource LbTitleStyle}" />
+                  <ComboBox Style="{StaticResource ComboStyle}" SelectedIndex="0" ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedDc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="170" />
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.StartDt}" Style="{StaticResource LbTitleStyle}" />
+                  <DatePicker SelectedDate="{Binding StartDt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DateStyle}" Width="170" />
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.EndDt}" Style="{StaticResource LbTitleStyle}" />
+                  <DatePicker SelectedDate="{Binding EndDt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DateStyle}" Width="170" />
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.AddCustOrdNo}" Style="{StaticResource LbTitleStyle}" />
+                  <TextBox MaxLength="20" Text="{Binding CustOrdNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" KeyDown="VnrCode_OnKeyDown" Width="170" />
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.PURCHASE_NO}" Style="{StaticResource LbTitleStyle}" />
+                  <TextBox MaxLength="20" InputMethod.IsInputMethodEnabled="False" Text="{Binding PurchaseNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" Width="170" />
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                   <Label Content="{x:Static Properties:Resources.RtNo}" Style="{StaticResource LbTitleStyle}" />
+                   <TextBox MaxLength="20" InputMethod.IsInputMethodEnabled="False" Text="{Binding RtNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" Width="170" />
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.ALLOCATION_NO}" Style="{StaticResource LbTitleStyle}" />
+                  <TextBox MaxLength="20" Text="{Binding AllocationNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" KeyDown="VnrCode_OnKeyDown" Width="170" />
+               </WrapPanel>
+               <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.VNR_CODE}" Style="{StaticResource LbTitleStyle}" />
+                  <TextBox MaxLength="20" Text="{Binding VnrCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" KeyDown="VnrCode_OnKeyDown" Width="170" />
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.VNR_NAME}" Style="{StaticResource LbTitleStyle}" Foreground="Blue" />
+                  <TextBox MaxLength="60" Text="{Binding VnrNameConditon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" Width="170" />
+                  <Label Content="{Binding VnrName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" Visibility="Hidden" />
+                </WrapPanel>
+              </DockPanel>
+              <DockPanel Name="Dock1">
+                <WrapPanel HorizontalAlignment="Right" DockPanel.Dock="Top">
+                  <Button Content="{x:Static Properties:Resources.ShowDetail}" Style="{StaticResource BtnStyle}" Name="BtnChange" controls:PermissionService.FunctionId="BP0202040003" Command="{Binding ShowDetailCommand}" />
+                </WrapPanel>
+                <DataGrid ItemsSource="{Binding DgList}" Style="{StaticResource DgStyle}" VerticalContentAlignment="Center" SelectedItem="{Binding SelectedData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RECE_DATE}" Binding="{Binding RECE_DATE, StringFormat=\{0:yyyy/MM/dd\}}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.AddCustOrdNo}" Binding="{Binding CUST_ORD_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.PURCHASE_NO}" Binding="{Binding PURCHASE_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RtNo}" Binding="{Binding RT_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ALLOCATION_NO}" Binding="{Binding ALLOCATION_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.VNR_CODE}" Binding="{Binding VNR_CODE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.VNR_NAME}" Binding="{Binding VNR_NAME}" />
+                    <DataGridTemplateColumn Header="{x:Static Properties:Resources.STATUS}">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <ComboBox Style="{StaticResource ComboStyle}" ItemsSource="{Binding DataContext.StatusList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" IsEnabled="False" SelectedValue="{Binding STATUS}"></ComboBox>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                  </DataGrid.Columns>
+                </DataGrid>
+              </DockPanel>
+              <DockPanel Name="Dock2" Visibility="Collapsed">
+                <WrapPanel HorizontalAlignment="Right" DockPanel.Dock="Top">
+                  <Button Content="{x:Static Properties:Resources.ShowDetailImage}" Style="{StaticResource BtnStyle}" controls:PermissionService.FunctionId="BP0202040006" Command="{Binding ShowDetailImageCommand}" />
+                  <Button Content="{x:Static Properties:Resources.ShowDetailItem}" Style="{StaticResource BtnStyle}" controls:PermissionService.FunctionId="BP0202040004" Click="ButtonBase_OnClick" Command="{Binding ShowDetailItemCommand}" />
+                  <Button Content="{x:Static Properties:Resources.ShowList}" Style="{StaticResource BtnStyle}" controls:PermissionService.FunctionId="BP0202040005" Command="{Binding ShowListCommand}" />
+                </WrapPanel>
+                <DataGrid ItemsSource="{Binding DgList2}" Style="{StaticResource DgStyle}" DockPanel.Dock="Top" SelectedItem="{Binding SelectedDetailData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" VerticalContentAlignment="Center" MinHeight="150" MaxHeight="250">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RECE_DATE}" Binding="{Binding RECE_DATE, StringFormat=\{0:yyyy/MM/dd\}}" />
+                      -->
+                            <!--貨主單號-->
+                            <!--
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.AddCustOrdNo}" Binding="{Binding CUST_ORD_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.PURCHASE_NO}" Binding="{Binding PURCHASE_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RtNo}" Binding="{Binding RT_NO}" />
+
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ItemCodeDetail}" Binding="{Binding ITEM_CODE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P02020301_ITEM_NAME}" Binding="{Binding ITEM_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P0202040000_ORDER_QTY}" Binding="{Binding ORDER_QTY}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P02020301_RECV_QTY}" Binding="{Binding RECV_QTY}" />
+                                        -->
+                            <!--此處開始加期效、批號、快驗-->
+                            <!--
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P02020301_ACE_DATE2}" Binding="{Binding ACE_DATE2}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P02020301_MAKE_NO}" Binding="{Binding MAKE_NO}" />
+                    <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.P02020301_QUICK_CHECK}" Binding="{Binding QUICK_CHECK,Converter={StaticResource StringToBoolConverter}}" />
+
+                    <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.BUNDLE_SERIALNO}" Binding="{Binding BUNDLE_SERIALNO,Converter={StaticResource StringToBoolConverter}}" />
+                    <DataGridTemplateColumn Header="{x:Static Properties:Resources.STATUS}">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <ComboBox Style="{StaticResource ComboStyle}" ItemsSource="{Binding DataContext.StatusList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" IsEnabled="False" SelectedValue="{Binding STATUS}"></ComboBox>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                  </DataGrid.Columns>
+                </DataGrid>
+                <DockPanel>
+                  <DataGrid ItemsSource="{Binding CheckList}" Style="{StaticResource DgStyle}" SelectedIndex="0" VerticalContentAlignment="Center" Width="500">
+                    <DataGrid.Columns>
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.P0202040000_CHECK_NAME}" Binding="{Binding CHECK_NAME}" />
+                      <DataGridTemplateColumn Header="{x:Static Properties:Resources.ISPASS}">
+                        <DataGridTemplateColumn.CellTemplate>
+                          <DataTemplate>
+                            <CheckBox IsEnabled="False" IsChecked="{Binding ISPASS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" Style="{StaticResource CheckStyle}" />
+                          </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                      </DataGridTemplateColumn>
+                      <DataGridTemplateColumn Header="{x:Static Properties:Resources.UCC_CODE}">
+                        <DataGridTemplateColumn.CellTemplate>
+                          <DataTemplate>
+                            <ComboBox IsEnabled="False" Width="Auto" VerticalContentAlignment="Center" ItemsSource="{Binding Path=DataContext.UccList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="CAUSE" SelectedValuePath="UCC_CODE" SelectedValue="{Binding UCC_CODE}" />
+                          </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                      </DataGridTemplateColumn>
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.MEMO}" Binding="{Binding MEMO}" />
+                    </DataGrid.Columns>
+                  </DataGrid>
+                  <Viewbox DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Margin="5" Stretch="Uniform">
+                    <Image Source="{Binding ItemImageSource, UpdateSourceTrigger=PropertyChanged}" />
+                  </Viewbox>
+                </DockPanel>
+              </DockPanel>-->
+                        </DockPanel>
+                    </TabItem>
+                </TabControl>
+            </uiLib:BasicMaster.MainContent>
+        </uiLib:BasicMaster>
+    </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

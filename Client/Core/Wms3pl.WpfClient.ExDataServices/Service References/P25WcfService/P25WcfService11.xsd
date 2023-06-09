@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P25WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P25WcfService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetTests">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTestsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="GetTestsResult" nillable="true" type="q1:ArrayOfExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertUpdateF2501Data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="datas" nillable="true" type="q2:ArrayOfF2501WcfData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertUpdateF2501DataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="InsertUpdateF2501DataResult" nillable="true" type="q3:ArrayOfF250103Verification" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtendValidDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="listSerialNo" nillable="true" type="q4:ArrayOfstring" />
+        <xs:element minOccurs="0" name="validDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtendValidDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="ExtendValidDateResult" nillable="true" type="q5:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckNewSerialNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oldSerialNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newSerialNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clientIp" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckNewSerialNoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeSerialNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="listData" nillable="true" type="q6:ArrayOfP250302QueryItem" />
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeSerialNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="ChangeSerialNoResult" nillable="true" type="q7:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckImportData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dt" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clientIp" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckImportDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="CheckImportDataResult" nillable="true" type="q8:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Get2501QueryData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="boxSerial" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="batchNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="serialNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cellNum" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="poNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="wmsNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="itemType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="retailCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="combinNo" nillable="true" type="xs:short" />
+        <xs:element minOccurs="0" name="crtName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="crtSDate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="crtEDate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="updSDate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="updEDate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Get2501QueryDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="Get2501QueryDataResult" nillable="true" type="q9:ArrayOfF2501QueryData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSerialNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SnList" nillable="true" type="q10:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSerialNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="DeleteSerialNoResult" nillable="true" type="q11:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CloseCase" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>Data has been deleted</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ErrorAddFailed" xml:space="preserve">
+    <value>Add failed!</value>
+  </data>
+  <data name="ErrorExportFailed" xml:space="preserve">
+    <value>Export failed</value>
+  </data>
+  <data name="ErrorImportFailed" xml:space="preserve">
+    <value>Import failed</value>
+  </data>
+  <data name="ErrorUpdateFailed" xml:space="preserve">
+    <value>Fail to edit!</value>
+  </data>
+  <data name="Exist" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ExportExcel" xml:space="preserve">
+    <value>Export Excel</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Update failed</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>The pen</value>
+  </data>
+  <data name="FormService_AddFunctionForm_NotDefined" xml:space="preserve">
+    <value>Undefined</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ImportExcel" xml:space="preserve">
+    <value>Import Excel</value>
+  </data>
+  <data name="InfoAddSuccess" xml:space="preserve">
+    <value>Insert successfully!</value>
+  </data>
+  <data name="InfoApprove" xml:space="preserve">
+    <value>Purchase Order Approved!</value>
+  </data>
+  <data name="InfoDebitSuccess" xml:space="preserve">
+    <value>Debit been completed</value>
+  </data>
+  <data name="InfoDeleteSuccess" xml:space="preserve">
+    <value>Successfully deleted!</value>
+  </data>
+  <data name="InfoExportSuccess" xml:space="preserve">
+    <value>Export success</value>
+  </data>
+  <data name="InfoFileUploaded" xml:space="preserve">
+    <value>Upload success</value>
+  </data>
+  <data name="InfoImportSuccess" xml:space="preserve">
+    <value>Import success</value>
+  </data>
+  <data name="InfoInvalidPassword" xml:space="preserve">
+    <value>Wrong password</value>
+  </data>
+  <data name="InfoInvalidUnlockCode" xml:space="preserve">
+    <value>Unlock error</value>
+  </data>
+  <data name="InfoInvalidUnlockPermission" xml:space="preserve">
+    <value>This account has no package unlock permission</value>
+  </data>
+  <data name="InfoInvalidUserId" xml:space="preserve">
+    <value>No such account</value>
+  </data>
+  <data name="InfoNoData" xml:space="preserve">
+    <value>No data.</value>
+  </data>
+  <data name="InfoOrderNotInWarehouse" xml:space="preserve">
+    <value>Supplier have not yet printed report into the warehouse!</value>
+  </data>
+  <data name="InfoPickNoExists" xml:space="preserve">
+    <value>Picking list has been opened, is it printed?</value>
+  </data>
+  <data name="InfoSerialCountOver" xml:space="preserve">
+    <value>Serial number exceeds the number of brush</value>
+  </data>
+  <data name="InfoSerialNotAllImported" xml:space="preserve">
+    <value>Import success and the number of files Total items does not match the serial number</value>
+  </data>
+  <data name="InfoUpdateSuccess" xml:space="preserve">
+    <value>Successfully modified!</value>
+  </data>
+  <data name="InputPickNoNoData" xml:space="preserve">
+    <value>Please enter a number or a single pick number tote</value>
+  </data>
+  <data name="InputSerialNoDuplicate" xml:space="preserve">
+    <value>Box number input merging repeated</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>The end of the pen</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Write</value>
+  </data>
+  <data name="PickListNoData" xml:space="preserve">
+    <value>This batch is no longer pick list Print</value>
+  </data>
+  <data name="PickTimeNoData" xml:space="preserve">
+    <value>No batch check period</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="PrintFailed" xml:space="preserve">
+    <value>Print failure</value>
+  </data>
+  <data name="PrintSuccess" xml:space="preserve">
+    <value>Print Success</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="ScanSerialorBox" xml:space="preserve">
+    <value>Please read the brush item number / number / case number</value>
+  </data>
+  <data name="ScanSerialOrBoxMessage" xml:space="preserve">
+    <value>This brush food items must read the serial number, please read the serial number brush</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="Success2" xml:space="preserve">
+    <value>Update  success</value>
+  </data>
+  <data name="ToolTip" xml:space="preserve">
+    <value>Upfront</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="WarningAlreadySowing" xml:space="preserve">
+    <value>This product has been planting project</value>
+  </data>
+  <data name="WarningBeenDeleted" xml:space="preserve">
+    <value>Profile has been deleted, please refer to</value>
+  </data>
+  <data name="WarningBeforeAdd" xml:space="preserve">
+    <value>Data has been modified, whether to store?</value>
+  </data>
+  <data name="WarningBeforeAddLack" xml:space="preserve">
+    <value>Determining cartographic data out?</value>
+  </data>
+  <data name="WarningBeforeApproveF050101" xml:space="preserve">
+    <value>Sure you want to approve?</value>
+  </data>
+  <data name="WarningBeforeCancel" xml:space="preserve">
+    <value>Sure you want to cancel editing?</value>
+  </data>
+  <data name="WarningBeforeChangeContractObject" xml:space="preserve">
+    <value>The project has been set contract details to be cleared, confirm whether a contract subject to change?</value>
+  </data>
+  <data name="WarningBeforeComfirmEditItem" xml:space="preserve">
+    <value>Whether to confirm the changes?</value>
+  </data>
+  <data name="WarningBeforeDebit" xml:space="preserve">
+    <value>To determine shipping debit?</value>
+  </data>
+  <data name="WarningBeforeDelete" xml:space="preserve">
+    <value>You sure you want to delete?</value>
+  </data>
+  <data name="WarningBeforeDisableFunction" xml:space="preserve">
+    <value>You sure you want to modify disabled?</value>
+  </data>
+  <data name="WarningBeforeEnableFunction" xml:space="preserve">
+    <value>You sure you want to modify a non-disabled?</value>
+  </data>
+  <data name="WarningBeforeExit" xml:space="preserve">
+    <value>You sure you want to leave?</value>
+  </data>
+  <data name="WarningBeforeForceClose" xml:space="preserve">
+    <value>You sure you want to force closed?</value>
+  </data>
+  <data name="WarningBeforeGoP02020301" xml:space="preserve">
+    <value>This product is no purchase file number, whether No. Collecting?</value>
+  </data>
+  <data name="WarningBeforeImportF110101" xml:space="preserve">
+    <value>Zhang lent a different imported outgoing orders, whether to re-import details empty?</value>
+  </data>
+  <data name="WarningBeforePosting" xml:space="preserve">
+    <value>To determine the posting?</value>
+  </data>
+  <data name="WarningBeforePrint" xml:space="preserve">
+    <value>You sure you want to print?</value>
+  </data>
+  <data name="WarningBeforePrintInWarehouseTag" xml:space="preserve">
+    <value>Whether to print the weight standard?</value>
+  </data>
+  <data name="WarningBeforePrintWarehouseInReport" xml:space="preserve">
+    <value>Are you sure print into the warehouse?</value>
+  </data>
+  <data name="WarningBeforeSave" xml:space="preserve">
+    <value>Are you sure you archive?</value>
+  </data>
+  <data name="WarningBeforeSaveP020203" xml:space="preserve">
+    <value>Modify the total acceptance of goods to be re-examined? Are you sure you modify?</value>
+  </data>
+  <data name="WarningBeforeUpdate" xml:space="preserve">
+    <value>To determine the store?</value>
+  </data>
+  <data name="WarningBeforeUpdateProcessQty" xml:space="preserve">
+    <value>Pick List has been opened, if confirmed modify the number of processing?</value>
+  </data>
+  <data name="WarningBeforeUploadRtFiles" xml:space="preserve">
+    <value>Are you sure you upload a file?</value>
+  </data>
+  <data name="WarningBoxBindingComplete" xml:space="preserve">
+    <value>Binding box number is completed, start planting!</value>
+  </data>
+  <data name="WarningCannotDelete" xml:space="preserve">
+    <value>Data can not be deleted</value>
+  </data>
+  <data name="WarningCannotDeleteCheckItem" xml:space="preserve">
+    <value>You can not delete information, please remove test items in the commodity inspection items set</value>
+  </data>
+  <data name="WarningCannotDeleteFunction" xml:space="preserve">
+    <value>You can not delete the setting information, please remove the working group</value>
+  </data>
+  <data name="WarningCannotDeleteGroup" xml:space="preserve">
+    <value>You can not delete information, please remove the working group's staff</value>
+  </data>
+  <data name="WarningCannotDeleteGup" xml:space="preserve">
+    <value>You can not delete information, please remove the owner of the master group</value>
+  </data>
+  <data name="WarningCannotDeleteWordgroup" xml:space="preserve">
+    <value>You can not delete information, please remove the job group staff</value>
+  </data>
+  <data name="WarningCannotNext" xml:space="preserve">
+    <value>Has been for the last zone</value>
+  </data>
+  <data name="WarningCannotRevious" xml:space="preserve">
+    <value>Has for the first district</value>
+  </data>
+  <data name="WarningCannotUpdateF910201" xml:space="preserve">
+    <value>Has completed work order processing, data can not be modified</value>
+  </data>
+  <data name="WarningCannotUpdateProcessQty" xml:space="preserve">
+    <value>Pick List begins picking the number of processing can not be modified</value>
+  </data>
+  <data name="WarningDuplicatedData" xml:space="preserve">
+    <value>repeat</value>
+  </data>
+  <data name="WarningExist" xml:space="preserve">
+    <value>Data already exists, please refer to</value>
+  </data>
+  <data name="WarningFileLocked" xml:space="preserve">
+    <value>File is on</value>
+  </data>
+  <data name="WarningFileSizeExceedLimits" xml:space="preserve">
+    <value>The file size exceeds</value>
+  </data>
+  <data name="WarningFileUploadedFailure" xml:space="preserve">
+    <value>upload failed</value>
+  </data>
+  <data name="WarningInvalidLocCode" xml:space="preserve">
+    <value>Storage position number is incorrect</value>
+  </data>
+  <data name="WarningInvalidOrderNo" xml:space="preserve">
+    <value>Into the warehouse number is incorrect</value>
+  </data>
+  <data name="WarningInvalidRecvQty" xml:space="preserve">
+    <value>Total acceptance is not correct, do not exceed the acceptance number</value>
+  </data>
+  <data name="WarningInvalidSerialFile" xml:space="preserve">
+    <value>Serial number does not match the file format</value>
+  </data>
+  <data name="WarningIsChickIn" xml:space="preserve">
+    <value>This pick list {0}</value>
+  </data>
+  <data name="WarningIsChickIn2" xml:space="preserve">
+    <value>{1} was ({2}) Binding</value>
+  </data>
+  <data name="WarningIsManualAssignCar" xml:space="preserve">
+    <value>Whether manually send a car?</value>
+  </data>
+  <data name="WarningNoBoxNo" xml:space="preserve">
+    <value>Confluence box number is not entered</value>
+  </data>
+  <data name="WarningNoCarNo" xml:space="preserve">
+    <value>License plate number has not been entered</value>
+  </data>
+  <data name="WarningNoCaseHight" xml:space="preserve">
+    <value>Carton size not entered height</value>
+  </data>
+  <data name="WarningNoCaseLength" xml:space="preserve">
+    <value>Carton size length has not been entered</value>
+  </data>
+  <data name="WarningNoCaseWeight" xml:space="preserve">
+    <value>Not input carton weight</value>
+  </data>
+  <data name="WarningNoCaseWidth" xml:space="preserve">
+    <value>Carton size width not entered</value>
+  </data>
+  <data name="WarningNoCheckName" xml:space="preserve">
+    <value>Test item name has not been entered</value>
+  </data>
+  <data name="WarningNoCheckNo" xml:space="preserve">
+    <value>Test item number has not been entered</value>
+  </data>
+  <data name="WarningNoCustCode" xml:space="preserve">
+    <value>No owner has not yet entered</value>
+  </data>
+  <data name="WarningNoCustName" xml:space="preserve">
+    <value>Owner name has not been entered</value>
+  </data>
+  <data name="WarningNoDcCode" xml:space="preserve">
+    <value>DC number has not been entered</value>
+  </data>
+  <data name="WarningNoDcName" xml:space="preserve">
+    <value>DC name has not been entered</value>
+  </data>
+  <data name="WarningNoEmpID" xml:space="preserve">
+    <value>Staff numbers have not entered</value>
+  </data>
+  <data name="WarningNoEmpName" xml:space="preserve">
+    <value>Employee name has not been entered</value>
+  </data>
+  <data name="WarningNoGupCode" xml:space="preserve">
+    <value>The owners have not entered a number</value>
+  </data>
+  <data name="WarningNoGupName" xml:space="preserve">
+    <value>Owner name has not been entered</value>
+  </data>
+  <data name="WarningNoItem" xml:space="preserve">
+    <value>Check shipment details no such commodity items</value>
+  </data>
+  <data name="WarningNoItemCode" xml:space="preserve">
+    <value>Goods item number has not been entered</value>
+  </data>
+  <data name="WarningNoLackQty" xml:space="preserve">
+    <value>Out of stock Quantity is not entered</value>
+  </data>
+  <data name="WarningNoMergeBoxNo" xml:space="preserve">
+    <value>Confluent tank number has not yet entered</value>
+  </data>
+  <data name="WarningNoPackHight" xml:space="preserve">
+    <value>Volume contraction height has not been entered</value>
+  </data>
+  <data name="WarningNoPackLength" xml:space="preserve">
+    <value>Volume shrinkage length has not been entered</value>
+  </data>
+  <data name="WarningNoPackWeight" xml:space="preserve">
+    <value>Not entered a contraction weight</value>
+  </data>
+  <data name="WarningNoPackWidth" xml:space="preserve">
+    <value>Volume shrinkage width not entered</value>
+  </data>
+  <data name="WarningNoReceiptDate" xml:space="preserve">
+    <value>Receipt date has not been entered</value>
+  </data>
+  <data name="WarningNoReturnNoOrPastNo" xml:space="preserve">
+    <value>Consignment note / Return order has not been entered</value>
+  </data>
+  <data name="WarningNoSelect" xml:space="preserve">
+    <value>Please select data</value>
+  </data>
+  <data name="WarningNotAllowedUCCTypeForSpecialPurchase" xml:space="preserve">
+    <value>But the number is not checked brush experience, because before selecting "first recorded purchase"</value>
+  </data>
+  <data name="WarningNotModified" xml:space="preserve">
+    <value>No transaction data, without storage</value>
+  </data>
+  <data name="WarningNoTransport" xml:space="preserve">
+    <value>Transport companies have not entered</value>
+  </data>
+  <data name="WarningNotUccSelected" xml:space="preserve">
+    <value>Not by reason of the non-selected</value>
+  </data>
+  <data name="WarningNotValidFinishDate" xml:space="preserve">
+    <value>During the completion date does not match the quote to take effect please re-select the project name</value>
+  </data>
+  <data name="WarningNoValue" xml:space="preserve">
+    <value>Information is not filled out correctly</value>
+  </data>
+  <data name="WarningNoWmsOrdItem" xml:space="preserve">
+    <value>Check there is no single commodity shipments</value>
+  </data>
+  <data name="WarningNoWmsOrdNo" xml:space="preserve">
+    <value>No such check Shipper</value>
+  </data>
+  <data name="WarningProcessFinished" xml:space="preserve">
+    <value>Processing has been completed, work can not be carried out</value>
+  </data>
+  <data name="WarningProcessIp" xml:space="preserve">
+    <value>Does not meet the production line corresponding to the processing time of setting the single computer's IP</value>
+  </data>
+  <data name="WarningProgramSettingInvalid" xml:space="preserve">
+    <value>The selected program there is error, please check the XAML content</value>
+  </data>
+  <data name="WarningSerialNoHasExist" xml:space="preserve">
+    <value>Whether imported numbers to re-import?</value>
+  </data>
+  <data name="WarningSmallTicketHasExist" xml:space="preserve">
+    <value>Whether imported small single content to be re-import?</value>
+  </data>
+</root>

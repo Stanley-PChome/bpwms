@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0802010000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="24" MinWidth="600" MinHeight="500" Title="退貨檢驗" WindowStartupLocation="CenterScreen" AllowDrop="False" WindowStyle="None" ResizeMode="NoResize" WindowState="Maximized" ShowActivated="True" ShowInTaskbar="False" IsHitTestVisible="True" controls:PermissionService.FunctionId="P0802010000" d:DesignWidth="1024" d:DesignHeight="768" controls:PermissionService.FunctionName="退貨檢驗" FormException="{Binding Exception}" Loaded="Window_Loaded" Closing="Window_Closing">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0802010000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+      <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+      <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+      <converters:StringToNotBoolConverter x:Key="StringToNotBoolConverter" />
+      <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter" />
+      <converters:BoolToVisiablityConverter x:Key="BoolToVisiability" />
+      <converters:MultiStringToNotBoolConverter x:Key="MultiStringToNotBoolConverter" />
+      <converters:StringToLocCodeConverter x:Key="StringToLocCodeConverter" />
+      <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"></FrameworkElement>
+      <Style TargetType="ListBox" x:Key="ListBoxStyle">
+        <!--<Setter Property="ItemTemplate">
+          <Setter.Value>
+            <DataTemplate>
+              <TextBlock Text="{Binding Str1}"/>
+            </DataTemplate>
+          </Setter.Value>
+        </Setter>-->
+        <Setter Property="ItemsPanel">
+          <Setter.Value>
+            <ItemsPanelTemplate>
+              <WrapPanel />
+            </ItemsPanelTemplate>
+          </Setter.Value>
+        </Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+      </Style>
+      <Style TargetType="{x:Type TextBox}" x:Key="MarkTxtStyle">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Width" Value="600" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="error">
+            <Setter Property="Background" Value="Red" />
+            <Setter Property="Foreground" Value="White" />
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Center">
+        <VisualBrush.Visual>
+          <TextBlock FontStyle="Italic" Text="{x:Static Properties:Resources.Tag}" />
+        </VisualBrush.Visual>
+      </VisualBrush>
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.MainContent>
+        <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+          <WrapPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="5" />
+          <!-- 由此處開始加入畫面項目 -->
+          <Viewbox>
+            <DockPanel Width="1024" Height="700">
+              <DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                  <ContentControl Visibility="Collapsed" Content="{StaticResource ProxyElement}"></ContentControl>
+                  <DockPanel DockPanel.Dock="Left" Margin="2" VerticalAlignment="Top" Width="865">
+                    <WrapPanel DockPanel.Dock="Top">
+                      <Grid Width="865" Margin="0,2">
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="40" />
+                          <RowDefinition Height="40" />
+                          <RowDefinition Height="50" />
+                          <RowDefinition Height="45" />
+                          <RowDefinition Height="40" />
+                          <RowDefinition Height="45" />
+                          <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="585" />
+                          <ColumnDefinition Width="280" />
+                        </Grid.ColumnDefinitions>
+                        <WrapPanel Grid.Row="1" Grid.Column="0" DockPanel.Dock="Top">
+                          <TextBlock Text="{x:Static Properties:Resources.SelectedDc}" VerticalAlignment="Center" Margin="2" FontSize="20" />
+                          <ComboBox MinWidth="150" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Path=DcList}" DisplayMemberPath="Name" SelectedValuePath="Value" IsEnabled="{Binding NowWorkFlow ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:WorkFlow.BeforeCheckAndAccept}}" SelectedValue="{Binding Path=SelectedDc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                          <TextBlock Text="{x:Static Properties:Resources.SelectedGatherNO}" VerticalAlignment="Center" Margin="2" FontSize="20" />
+                          <ComboBox MinWidth="150" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Path=GatherList}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding Path=SelectedGatherNO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                          <CheckBox VerticalAlignment="Center" IsChecked="{Binding PlaySound,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">語音</CheckBox>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" DockPanel.Dock="Top" VerticalAlignment="Center">
+                          <TextBlock Text="{x:Static Properties:Resources.NotExist}" FontSize="22" FontWeight="Bold" Margin="0,5" HorizontalAlignment="Right" />
+                          <TextBox Text="{Binding NotExist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" Tag="{Binding IsError}" Style="{StaticResource MarkTxtStyle}" />
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">
+                          <TextBlock Text="{x:Static Properties:Resources.InputBillNo}" FontSize="22" FontWeight="Bold" Width="Auto" TextAlignment="Right" VerticalAlignment="Center" />
+                          <!--<TextBox Width="165" FontSize="22" FontWeight="Bold" AutoWordSelection="True" Height="40" Margin="2" Text="" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>-->
+                                                    <TextBox Width="220" FontSize="21" FontWeight="Bold" Background="SkyBlue" AutoWordSelection="True" Height="40" Margin="2" Name="TxtInputBillNo" MaxLength="20"  Text="{Binding InputBillNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding NowWorkFlow ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:WorkFlow.BeforeCheckAndAccept}}" KeyDown="ScanInputBillNo_OnKeyDown" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">
+                          <TextBlock Text="{x:Static Properties:Resources.RTN_CUST_CODE}" FontSize="18" TextAlignment="Right" VerticalAlignment="Center" />
+                          <TextBox Width="200" FontSize="18" Text="{Binding ReturnRecordMain.RTN_CUST_CODE}" Height="30" AutoWordSelection="True" Margin="2" IsEnabled="False" HorizontalContentAlignment="Left" />
+                          <TextBlock Text="{x:Static Properties:Resources.RTN_CUST_NAME}" FontSize="18" TextAlignment="Right" VerticalAlignment="Center" />
+                          <TextBox Width="227" FontSize="18" Text="{Binding ReturnRecordMain.RTN_CUST_NAME}" Height="30" AutoWordSelection="True" IsEnabled="False" HorizontalContentAlignment="Left" />
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                          <TextBlock Text="{x:Static Properties:Resources.InputSerailNo}" FontSize="22" FontWeight="Bold" Width="70" TextAlignment="Right" VerticalAlignment="Center" />
+                          <TextBox Width="340" FontSize="21" FontWeight="Bold" Background="SkyBlue" AutoWordSelection="True" Height="40" Margin="3,2,2,2" Name="TxtInputSerailNo" MaxLength="26" Text="{Binding InputSerailNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding NowWorkFlow ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                            <TextBox.InputBindings>
+                              <KeyBinding Key="Enter" Command="{Binding SearchItemCommand}" />
+                            </TextBox.InputBindings>
+                          </TextBox>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="3" Grid.Column="1" Grid.RowSpan="7" DockPanel.Dock="Left" HorizontalAlignment="Left">
+                                                    <Image Visibility="{Binding IsImageUploaded, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisiability}}" Source="{Binding ItemImageSource, UpdateSourceTrigger=PropertyChanged}" Margin="5" Stretch="Uniform" MaxHeight="280" MaxWidth="280"/>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="6" Grid.Column="0" DockPanel.Dock="Left" HorizontalAlignment="Left">
+                          <TextBlock Text="{x:Static Properties:Resources.AUDIT_QTY}" FontSize="22" FontWeight="Bold" Width="70" TextAlignment="Right" VerticalAlignment="Center" />
+                          <TextBox Width="100" Height="40" FontSize="21" Margin="2" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsEnabled="{Binding NowWorkFlow ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" Text="{Binding ScanCheckCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                          <Button Content="{x:Static Properties:Resources.ScanCheckCount}" Height="40" Width="100" Margin="25,0,5,0" Click="ScanInputSerailNo_Click" IsEnabled="{Binding NowWorkFlow ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" controls:PermissionService.FunctionId="BP0802010001" />
+                          <Label Content="{Binding BoxNo,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsHasBoxNo, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisiability}}" Margin="10,0,0,0" Foreground="Blue" FontWeight="Bold" FontSize="24" />
+                        </WrapPanel>
+                      </Grid>
+                    </WrapPanel>
+                  </DockPanel>
+                  <DockPanel DockPanel.Dock="Top" VerticalAlignment="Top">
+                    <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="10,0">
+                      <Button Margin="5" Content="{x:Static Properties:Resources.Exist}" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.BeforeCheckAndAccept}}" Width="110" Height="50" IsCancel="True" FontSize="20" controls:PermissionService.FunctionId="BP0802010002" />
+                      <Button Margin="5" Content="{x:Static Properties:Resources.ShowP0802010100}" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.BeforeCheckAndAccept}}" Width="110" Height="50" FontSize="20" Click="Button_Click" controls:PermissionService.FunctionId="BP0802010003" />
+                      <Button Margin="5" Content="{x:Static Properties:Resources.StartCheck}" Click="StartCheck_Click" IsEnabled="{Binding IsHasRows,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.BeforeCheckAndAccept}}" Width="110" Height="50" FontSize="20" controls:PermissionService.FunctionId="BP0802010004" />
+                      <Button Content="{x:Static Properties:Resources.CancelCheck}" Click="CancelCheck_Click" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" Margin="5,3" Width="115" Height="40" FontSize="20" HorizontalAlignment="Right" IsEnabled="True" controls:PermissionService.FunctionId="BP0802010005" />
+                      <Button Content="{x:Static Properties:Resources.Posting}" Click="Posting_Click" IsEnabled="{Binding IsPosting,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" Margin="5,3" Width="115" Height="40" FontSize="20" VerticalAlignment="Bottom" controls:PermissionService.FunctionId="BP0802010006" />
+                      <!--<Button Content="列印&#13;退貨明細表" 
+                              Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}"
+                              Margin="5,3" Width="115" Height="55" FontSize="20" HorizontalAlignment="Right" IsEnabled="True"
+							  controls:PermissionService.FunctionId="BP0802010007"/>-->
+                      <Button Content="{x:Static Properties:Resources.PrintBarCode}" Command="{Binding PrintBarCodeCommand}" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" Margin="5,3" Width="115" Height="55" FontSize="20" HorizontalAlignment="Right" IsEnabled="True" controls:PermissionService.FunctionId="BP0802010008" />
+                      <Button Content="{x:Static Properties:Resources.IsPending}" Click="ForceClose_Click" IsEnabled="{Binding IsPending,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" Margin="5,3" Width="115" Height="40" FontSize="20" VerticalAlignment="Bottom" controls:PermissionService.FunctionId="BP0802010009" />
+                      <Button Content="{x:Static Properties:Resources.Help}" Width="115" Margin="5,3" Height="40" FontSize="20" VerticalAlignment="Bottom" Background="Yellow" IsEnabled="True" Command="{Binding HelpCommand}" controls:PermissionService.FunctionId="BP0802010010" />
+                      <Button Content="{x:Static Properties:Resources.BadSetting}" Width="115" Margin="5,3" Height="40" FontSize="20" VerticalAlignment="Bottom" IsEnabled="True" Command="{Binding BadSettingCommand}" controls:PermissionService.FunctionId="BP0802010014" />
+                    </StackPanel>
+                  </DockPanel>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top" Height="200">
+                  <GroupBox Header="{x:Static Properties:Resources.Records}" HorizontalAlignment="Left" FontSize="20">
+                    <controls:ValidationDataGrid Name="DgRecords" SelectionMode="Single" Margin="2" Style="{StaticResource DgStyle}" SelectionChanged="DgRecords_SelectionChanged" ItemsSource="{Binding ReturnRecordDetails,UpdateSourceTrigger=PropertyChanged}" CellStyle="{StaticResource SingleClickEdit}" IsReadOnly="{Binding NowWorkFlow ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:WorkFlow.BeforeCheckAndAccept}}" SelectedItem="{Binding SelectRecordDetail,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                      <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="" Visibility="{Binding DataContext.NowWorkFlow,Source={StaticResource ProxyElement} ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}">
+                          <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                              <Button Content="{x:Static Properties:Resources.Clear}" controls:PermissionService.FunctionId="BP0802010011" Command="{Binding DataContext.ClearF161402DataCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" CommandParameter="{Binding}">
+                                <Button.Style>
+                                  <Style TargetType="Button">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                    <Style.Triggers>
+                                      <DataTrigger Binding="{Binding Item.HasNotInReturnItem}" Value="0">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                      </DataTrigger>
+                                    </Style.Triggers>
+                                  </Style>
+                                </Button.Style>
+                              </Button>
+                            </DataTemplate>
+                          </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" Binding="{Binding Item.ROWNUM}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding Item.ITEM_CODE}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding Item.ITEM_NAME}" Width="200" FontSize="14" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.P080201_BUNDLE_SERIALNO}" IsReadOnly="True" Binding="{Binding Item.BUNDLE_SERIALNO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" />
+                        <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.MULTI_FLAG}" IsReadOnly="True" Binding="{Binding Item.MULTI_FLAG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.RTN_QTY}" Binding="{Binding Item.RTN_QTY}" Width="80" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.AUDIT_QTY}" Binding="{Binding Item.AUDIT_QTY}" Width="80" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.TOTAL_AUDIT_QTY}" Binding="{Binding Item.TOTAL_AUDIT_QTY}" Width="120" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.DIFFERENT_QTY}" Binding="{Binding Item.DIFFERENT_QTY}" Width="80" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.DefaultLocCode}" Width="150">
+                          <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                              <Setter Property="MaxLength" Value="14" />
+                              <Setter Property="Text" Value="{Binding Item.LOC_CODE}" />
+                            </Style>
+                          </DataGridTextColumn.EditingElementStyle>
+                          <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                              <Setter Property="Text" Value="{Binding Item.LOC_CODE,Converter={StaticResource StringToLocCodeConverter}}" />
+                            </Style>
+                          </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.MOVED_QTY}" Binding="{Binding Item.MOVED_QTY}" IsReadOnly="True" Width="150" />
+                        <DataGridComboBoxColumn Header="{x:Static Properties:Resources.ERR_MEMO}" SelectedValueBinding="{Binding Item.CAUSE}" SelectedValuePath="UCC_CODE" DisplayMemberPath="CAUSE">
+                          <DataGridComboBoxColumn.ElementStyle>
+                            <Style TargetType="ComboBox">
+                              <Setter Property="ItemsSource" Value="{Binding DataContext.UccList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                            </Style>
+                          </DataGridComboBoxColumn.ElementStyle>
+                          <DataGridComboBoxColumn.EditingElementStyle>
+                            <Style TargetType="ComboBox">
+                              <Setter Property="ItemsSource" Value="{Binding DataContext.UccList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                              <EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged" />
+                            </Style>
+                          </DataGridComboBoxColumn.EditingElementStyle>
+                        </DataGridComboBoxColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.MEMO}" Binding="{Binding Item.MEMO}" Width="200">
+                          <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                              <Setter Property="MaxLength" Value="100" />
+                            </Style>
+                          </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                      </DataGrid.Columns>
+                    </controls:ValidationDataGrid>
+                  </GroupBox>
+                </DockPanel>
+                <DockPanel Margin="10" HorizontalAlignment="Stretch">
+                  <GroupBox Header="{x:Static Properties:Resources.ScanSerial}" HorizontalAlignment="Stretch">
+                    <DockPanel>
+                      <controls:ValidationDataGrid SelectionMode="Single" FontSize="20" Width="650" HorizontalAlignment="Stretch" CellStyle="{StaticResource SingleClickEdit}" Name="DgSerialRecords" IsReadOnly="{Binding NowWorkFlow ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:WorkFlow.BeforeCheckAndAccept}}" ItemsSource="{Binding SerialRecords,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectSerialRecord,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}">
+                        <DataGrid.Columns>
+                          <DataGridTemplateColumn Header="" Visibility="{Binding DataContext.NowWorkFlow,Source={StaticResource ProxyElement} ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}">
+                            <DataGridTemplateColumn.CellTemplate>
+                              <DataTemplate>
+                                <Button Content="{x:Static Properties:Resources.Clear}" controls:PermissionService.FunctionId="BP0802010012" Command="{Binding DataContext.ClearF16140101DataCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" CommandParameter="{Binding}" />
+                              </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                          </DataGridTemplateColumn>
+                          <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" IsReadOnly="True">
+                            <DataGridTextColumn.Binding>
+                              <MultiBinding Converter="{StaticResource DataGridRowNumberConverter}">
+                                <Binding />
+                                <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType=DataGrid}" />
+                              </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                          </DataGridTextColumn>
+                          <DataGridTextColumn Header="{x:Static Properties:Resources.SerialNo}" Binding="{Binding SERIAL_NO}" IsReadOnly="True" />
+                          <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}" IsReadOnly="True" />
+                          <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.ISPASS}" Binding="{Binding ISPASS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}">
+                            <DataGridCheckBoxColumn.EditingElementStyle>
+                              <Style TargetType="CheckBox">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Command" Value="{Binding DataContext.CheckBoxSetCommand,                             RelativeSource={RelativeSource FindAncestor,                             AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                                <Setter Property="CommandParameter" Value="{Binding}" />
+                              </Style>
+                            </DataGridCheckBoxColumn.EditingElementStyle>
+                            <DataGridCheckBoxColumn.ElementStyle>
+                              <Style TargetType="CheckBox">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Command" Value="{Binding DataContext.CheckBoxSetCommand,                              RelativeSource={RelativeSource FindAncestor,                              AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                                <Setter Property="CommandParameter" Value="{Binding}" />
+                              </Style>
+                            </DataGridCheckBoxColumn.ElementStyle>
+                          </DataGridCheckBoxColumn>
+                          <DataGridTextColumn Header="{x:Static res:Resources.Information}" Binding="{Binding MESSAGE}" FontSize="18">
+                            <DataGridTextColumn.EditingElementStyle>
+                              <Style TargetType="TextBox">
+                                <Setter Property="MaxHeight" Value="200" />
+                              </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                          </DataGridTextColumn>
+                          <DataGridComboBoxColumn Header="{x:Static Properties:Resources.ERR_CODE}" CanUserSort="False" SelectedValueBinding="{Binding ERR_CODE ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UCC_CODE" DisplayMemberPath="CAUSE">
+                            <DataGridComboBoxColumn.ElementStyle>
+                              <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding DataContext.UccList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                              </Style>
+                            </DataGridComboBoxColumn.ElementStyle>
+                            <DataGridComboBoxColumn.EditingElementStyle>
+                              <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding DataContext.UccList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                                <EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged" />
+                              </Style>
+                            </DataGridComboBoxColumn.EditingElementStyle>
+                          </DataGridComboBoxColumn>
+                        </DataGrid.Columns>
+                      </controls:ValidationDataGrid>
+                      <WrapPanel DockPanel.Dock="Top">
+                        <Button Content="{x:Static Properties:Resources.SERIAL_NO}" Height="40" Width="100" Margin="5" IsEnabled="True" Name="btnImportSerial" Visibility="{Binding NowWorkFlow ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:WorkFlow.CheckAndAccept}}" Style="{StaticResource BtnStyle}" Click="btnImportSerial_Click" controls:PermissionService.FunctionId="BP0802010013" />
+                      </WrapPanel>
+                      <WrapPanel DockPanel.Dock="Top">
+                        <TextBox Height="30" Width="100" TextAlignment="Center" Name="txtSearchSerialNo" KeyDown="SearchSerailNo_OnKeyDown" VerticalAlignment="Center" Margin="5" IsEnabled="True">
+                          <TextBox.Style>
+                            <Style TargetType="TextBox">
+                              <Style.Triggers>
+                                <Trigger Property="Text" Value="{x:Null}">
+                                  <Setter Property="Background" Value="{StaticResource HelpBrush}" />
+                                </Trigger>
+                                <Trigger Property="Text" Value="">
+                                  <Setter Property="Background" Value="{StaticResource HelpBrush}" />
+                                </Trigger>
+                              </Style.Triggers>
+                            </Style>
+                          </TextBox.Style>
+                        </TextBox>
+                      </WrapPanel>
+                    </DockPanel>
+                  </GroupBox>
+                  <DockPanel>
+                    <GroupBox Header="{x:Static Properties:Resources.CHECK_NAME}" HorizontalAlignment="Stretch">
+                      <DataGrid Margin="2" Height="300" Style="{StaticResource DgStyle}" FontSize="20" ItemsSource="{Binding CheckItems,UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                          <DataGridTextColumn Binding="{Binding CHECK_NAME}" />
+                        </DataGrid.Columns>
+                      </DataGrid>
+                    </GroupBox>
+                  </DockPanel>
+                </DockPanel>
+              </DockPanel>
+            </DockPanel>
+          </Viewbox>
+        </DockPanel>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

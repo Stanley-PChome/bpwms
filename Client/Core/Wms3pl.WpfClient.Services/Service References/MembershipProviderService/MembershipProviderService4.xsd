@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Security" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Security" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Web.Security" />
+  <xs:complexType name="ProviderProperties">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnablePasswordReset" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EnablePasswordRetrieval" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaxInvalidPasswordAttempts" type="xs:int" />
+      <xs:element minOccurs="0" name="MinRequiredNonAlphanumericCharacters" type="xs:int" />
+      <xs:element minOccurs="0" name="MinRequiredPasswordLength" type="xs:int" />
+      <xs:element minOccurs="0" name="PasswordAttemptWindow" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Web.Security" minOccurs="0" name="PasswordFormat" type="q1:MembershipPasswordFormat" />
+      <xs:element minOccurs="0" name="PasswordStrengthRegularExpression" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequiresQuestionAndAnswer" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RequiresUniqueEmail" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProviderProperties" nillable="true" type="tns:ProviderProperties" />
+  <xs:complexType name="MembershipCreateResult">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Web.Security" minOccurs="0" name="CreateStatus" type="q2:MembershipCreateStatus" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Web.Security" minOccurs="0" name="User" nillable="true" type="q3:MembershipUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MembershipCreateResult" nillable="true" type="tns:MembershipCreateResult" />
+  <xs:complexType name="MembershipFindResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RecordCount" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System.Web.Security" minOccurs="0" name="Users" nillable="true" type="q4:ArrayOfMembershipUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MembershipFindResult" nillable="true" type="tns:MembershipFindResult" />
+</xs:schema>

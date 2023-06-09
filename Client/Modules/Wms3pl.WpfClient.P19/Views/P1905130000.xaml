@@ -1,0 +1,74 @@
+﻿<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P19.Views.P1905130000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P19.ViewModel"
+            xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P19.Properties"
+            xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800"
+			controls:PermissionService.FunctionId="P1905130000"
+			controls:PermissionService.FunctionName="平台系統帳號管理"
+			FormException="{Binding Exception}">
+	<uiLib:Wms3plUserControl.DataContext>
+		<viewModel:P1905130000_ViewModel x:Name="Vm"/>
+	</uiLib:Wms3plUserControl.DataContext>
+	<uiLib:Wms3plUserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+		</ResourceDictionary>
+	</uiLib:Wms3plUserControl.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="載入中...." IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+					<Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1905130001" Command="{Binding SearchCommand}" />
+					<Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1905130002" Command="{Binding DeleteCommand}" />
+                </WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
+				<TabControl x:Name="LayoutRoot" >
+					<TabControl.BindingGroup>
+						<BindingGroup Name="errorGroup" />
+					</TabControl.BindingGroup>
+					<TabItem Header="主要" Width="Auto">
+						<DockPanel>
+						<!-- 由此處開始加入畫面項目 -->
+                            <GroupBox DockPanel.Dock="Top" Header="{x:Static Properties:Resources.P1905130000_QueryResult}" >
+                                <DataGrid ItemsSource="{Binding F0070Datas, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" SelectedItem="{Binding SelectedF0070Data,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                                    <DataGrid.Columns>
+                                        <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding IsSelectedAll, ElementName=Vm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding CheckAllCommand, ElementName=Vm}" Content="{x:Static Properties:Resources.P1905130000_IsSelectedAll}"></CheckBox>
+                                                </DataTemplate>
+                                            </DataGridCheckBoxColumn.HeaderTemplate>
+                                            <DataGridCheckBoxColumn.ElementStyle>
+                                                <Style TargetType="CheckBox">
+                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                                </Style>
+                                            </DataGridCheckBoxColumn.ElementStyle>
+                                        </DataGridCheckBoxColumn>
+                                        <DataGridTextColumn Header="{x:Static Properties:Resources.P1905130000_CONNECTID}" IsReadOnly="True" Binding="{Binding CONNECTID}" Visibility="Hidden" />
+                                        <DataGridTextColumn Header="{x:Static Properties:Resources.P1905130000_USERNAME}" IsReadOnly="True" Binding="{Binding USERNAME}" />
+                                        <DataGridTextColumn Header="{x:Static Properties:Resources.P1905130000_HOSTNAME}" IsReadOnly="True" Binding="{Binding HOSTNAME}" />
+                                        <DataGridTextColumn Header="{x:Static Properties:Resources.P1905130000_UNLOCKTIME}" IsReadOnly="True" Binding="{Binding UNLOCKTIME, StringFormat='yyyy/MM/dd hh:mm:ss'}" />
+                                        <DataGridTextColumn Header="{x:Static Properties:Resources.P1905130000_CRT_DATE}" IsReadOnly="True" Binding="{Binding CRT_DATE, StringFormat='yyyy/MM/dd hh:mm:ss'}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </GroupBox>
+						</DockPanel>
+					</TabItem>
+				</TabControl>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

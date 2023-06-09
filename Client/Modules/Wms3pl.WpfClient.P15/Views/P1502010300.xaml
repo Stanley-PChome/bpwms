@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P15.Views.P1502010300" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P15.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P15.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500" Title="標題" controls:PermissionService.FunctionId="P1502010300" controls:PermissionService.FunctionName="序號收集" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P1502010300_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1502010301" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource ImportExcelButton}" controls:PermissionService.FunctionId="BP1502010302" Command="{Binding ImportExcelCommand}" Width="50" Height="65" />
+          <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1502010303" Command="{Binding DeleteCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1502010304" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+              <!-- 由此處開始加入畫面項目 -->
+              <WrapPanel DockPanel.Dock="Top">
+                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ItemCode}" />
+                <Label Style="{StaticResource LbStyle}" Content="{Binding ItemCode}" />
+								<Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ItemName}" />
+                <Label Style="{StaticResource LbStyle}" Content="{Binding ItemName}" />
+              </WrapPanel>
+              <WrapPanel DockPanel.Dock="Top">
+                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ItemSize}" />
+                <Label Style="{StaticResource LbStyle}" Content="{Binding ItemSize}" />
+                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ItemSpec}" />
+                <Label Style="{StaticResource LbStyle}" Content="{Binding ItemSpec}" />
+                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ItemColor}" />
+                <Label Style="{StaticResource LbStyle}" Content="{Binding ItemColor}" />
+              </WrapPanel>
+              <WrapPanel DockPanel.Dock="Top">
+                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ScanSerialNo}" />
+                <TextBox Name="txtScanSerialNo" Style="{StaticResource TxtStyle}" Text="{Binding ScanSerialNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="250" KeyDown="ScanSerialNo_OnKeyDown" MaxLength="50" InputMethod.IsInputMethodEnabled="False"/>
+                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.MustScanSerialNoQty}" Visibility="{Binding IsShowQty}" />
+                <Label Style="{StaticResource LbStyle}" Content="{Binding MustScanSerialNoQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsShowQty}" />
+                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ScanSerialNoQty}" />
+                <Label Style="{StaticResource LbStyle}" Content="{Binding ScanSerialNoQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+              </WrapPanel>
+              <DataGrid Name="DgSerialNoResult" ItemsSource="{Binding SerialNoResultList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" IsSynchronizedWithCurrentItem="True" EnableRowVirtualization="True" SelectionMode="Single" SelectionUnit="FullRow" SelectedItem="{Binding SelectedSerialNoResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="{x:Static Properties:Resources.ScanSerialNo}" Binding="{Binding SerialNo}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

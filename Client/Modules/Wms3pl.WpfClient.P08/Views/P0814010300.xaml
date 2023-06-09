@@ -1,0 +1,73 @@
+﻿<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0814010300"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+                    xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" 
+                     xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel" 
+                     xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" 
+                     xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                     xmlns:local="clr-namespace:Wms3pl.WpfClient.P08.Views"
+                     controls:PermissionService.FunctionId="P0814010300" 
+                     controls:PermissionService.FunctionName="容器刷讀" 
+                     FormException="{Binding Exception}"
+                     Width="800" Height="600"                      
+                     ResizeMode="NoResize"
+                     WindowStartupLocation="CenterScreen"
+                     Loaded="Window_Loaded">
+    <uiLib:Wms3plWindow.DataContext>
+        <viewModel:P0814010300_ViewModel x:Name="Vm"/>
+    </uiLib:Wms3plWindow.DataContext>
+    <uiLib:Wms3plWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="LocalBtnStyle" TargetType="Button" BasedOn="{StaticResource BtnStyle}">
+                <Setter Property="MinWidth" Value="80" />
+                <Setter Property="MinHeight" Value="40" />
+            </Style>
+            <viewModel:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
+        </ResourceDictionary>
+    </uiLib:Wms3plWindow.Resources>
+
+    <telerik:RadBusyIndicator BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+        <uiLib:BasicMaster x:Name="Master">
+            <uiLib:BasicMaster.MainContent>
+                <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+                    <Viewbox VerticalAlignment="Top">
+                        <GroupBox Header="請刷入容器條碼">
+                            <DockPanel>
+                                <DockPanel DockPanel.Dock="Right">
+                                    <WrapPanel Orientation="Vertical">
+                                        <Button Content="關閉" Command="{Binding ExitCommand}" IsCancel="True" Style="{StaticResource LocalBtnStyle}"/>
+                                        <Button Content="確認" Command="{Binding CheckCommand}" controls:PermissionService.FunctionId="BP0814010301" Style="{StaticResource LocalBtnStyle}"/>
+                                    </WrapPanel>
+                                </DockPanel>
+                                <WrapPanel Orientation="Vertical" DockPanel.Dock="Top">
+                                    <WrapPanel>
+                                        <Label Content="容器箱數" Style="{StaticResource LbStyle}"/>
+                                        <Label Content="{Binding ContainerQty,UpdateSourceTrigger=PropertyChanged}" MinHeight="0" MinWidth="0" Style="{StaticResource LbStyle}"/>
+                                        <Label Content="箱" Style="{StaticResource LbStyle}"/>
+                                    </WrapPanel>
+                                    <WrapPanel>
+                                        <Label Content="容器條碼" Style="{StaticResource LbStyle}"/>
+                                        <TextBox x:Name="txtContainerCode" Text="{Binding ContainerCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" KeyDown="txtContainerCode_KeyDown" Style="{StaticResource TxtStyle}"/>
+                                    </WrapPanel>
+                                </WrapPanel>
+                                <DataGrid ItemsSource="{Binding ContainerList,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" Width="215" Height="110">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="容器條碼" Binding="{Binding ContainerCode}" Width="2*"/>
+                                        <DataGridTextColumn Header="已刷讀容器" Binding="{Binding IsScan,Converter={StaticResource BoolToYesNoConverter}}" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </GroupBox>
+                    </Viewbox>
+                </DockPanel>
+            </uiLib:BasicMaster.MainContent>
+        </uiLib:BasicMaster>
+    </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>
+    

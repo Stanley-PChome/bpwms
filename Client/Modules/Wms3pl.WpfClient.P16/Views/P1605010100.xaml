@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P16.Views.P1605010100" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P16.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P16.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" Title="銷毀檔案上傳" controls:PermissionService.FunctionName="銷毀檔案上傳" controls:PermissionService.FunctionId="P1605010100" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P1605010100_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <Style TargetType="CheckBox" x:Key="CheckStyle" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+      </Style>
+      <Style TargetType="DataGridCell" x:Key="NumberCellStyle">
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+      </Style>
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Name="btnExit" Style="{StaticResource ExitButton}" Click="btnExit_Click" controls:PermissionService.FunctionId="BP1605010101" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1605010102" Command="{Binding SaveCommand}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel>
+              <WrapPanel Margin="3" Orientation="Horizontal">
+                <GroupBox Header="{x:Static Properties:Resources.SHARE_DestroyNoSET}">
+                  <Grid Margin="3">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="auto" />
+                      <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel Grid.Row="0">
+                      <Label Content="{x:Static Properties:Resources.DESTROY_NO}" />
+                      <TextBox Text="{Binding DestroyNoAdd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="170" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" Margin="5,0,15,0" MaxLength="20" />
+                      <Button Name="btnAddTicket" IsEnabled="{Binding IsCanEdit}" Content="{x:Static Properties:Resources.INSERT}" Click="btnAddTicket_Click" controls:PermissionService.FunctionId="BP1605010103" controls:PermissionService.FunctionName="新增" />
+                    </WrapPanel>
+                    <DataGrid Grid.Row="1" Name="dgTicketList" IsReadOnly="True" SelectedIndex="0" VerticalContentAlignment="Center" ItemsSource="{Binding DgSerialFileList}" Style="{StaticResource DgStyle}" SelectedItem="{Binding DgSerialFileSelect, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                      <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="{x:Static Properties:Resources.CLEAR}">
+                          <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                              <Button Name="btnDelete" IsEnabled="{Binding IsCanEdit ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{x:Static Properties:Resources.CLEAR}" Click="btnDelete_Click" controls:PermissionService.FunctionId="BP1605010104" controls:PermissionService.FunctionName="清空" />
+                            </DataTemplate>
+                          </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.DESTROY_NO}" Binding="{Binding DESTROY_NO}" />
+                      </DataGrid.Columns>
+                    </DataGrid>
+                  </Grid>
+                </GroupBox>
+                <GroupBox Header="{x:Static Properties:Resources.FILE_UPLOAD}" Margin="15,3,3,3">
+                  <!-- 由此處開始加入畫面項目 -->
+                  <Grid Margin="3">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="auto" />
+                      <RowDefinition Height="auto" />
+                      <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel Grid.Row="0">
+                      <Label Content="{x:Static Properties:Resources.UPLOAD_FILE}" />
+                      <TextBox Text="{Binding SelectFileName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" Margin="5,0,15,0" />
+                      <Button Content="{x:Static Properties:Resources.BROWSE}" Click="btnAddFileUpload_Click" IsEnabled="{Binding IsCanEdit}" controls:PermissionService.FunctionId="BP1605010105" controls:PermissionService.FunctionName="選擇檔案" />
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="1">
+                      <Label Content="{x:Static Properties:Resources.FileMemo}" />
+                      <TextBox Text="{Binding FileMemo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" Margin="5,0,15,0" MaxLength="100" />
+                      <Button Content="{x:Static Properties:Resources.INSERT}" IsEnabled="{Binding IsCanEdit}" controls:PermissionService.FunctionId="BP1605010106" controls:PermissionService.FunctionName="新增檔案" Click="AddFile" />
+                    </WrapPanel>
+                    <DataGrid Grid.Row="2" Name="dgList" IsReadOnly="True" SelectedIndex="0" VerticalContentAlignment="Center" ItemsSource="{Binding DgFileList}" Style="{StaticResource DgStyle}" SelectedItem="{Binding DgFileSelect, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                      <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="{x:Static Properties:Resources.CLEAR}">
+                          <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                              <Button Name="btnClearFile" Content="{x:Static Properties:Resources.CLEAR}" IsEnabled="{Binding IsCanEdit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Click="btnClearFile_Click" controls:PermissionService.FunctionId="BP1605010107" controls:PermissionService.FunctionName="清空檔案" />
+                            </DataTemplate>
+                          </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.FileMemo}" Binding="{Binding UPLOAD_DESC}" />
+                        <DataGridTemplateColumn Header="{x:Static Properties:Resources.VIEW_FILE}">
+                          <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                              <Button Name="btnViewFile" Content="{x:Static Properties:Resources.VIEW}" Click="btnViewFile_Click" controls:PermissionService.FunctionId="BP1605010108" controls:PermissionService.FunctionName="檢視檔案" />
+                            </DataTemplate>
+                          </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                      </DataGrid.Columns>
+                    </DataGrid>
+                  </Grid>
+                </GroupBox>
+              </WrapPanel>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

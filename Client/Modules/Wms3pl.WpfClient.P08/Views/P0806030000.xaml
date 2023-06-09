@@ -1,0 +1,356 @@
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0806030000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+                     xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" 
+                    xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel"
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500"
+			Title="大量播種合流作業"
+      controls:PermissionService.FunctionId="P0806030000"
+			controls:PermissionService.FunctionName="大量播種合流作業(輔助播種畫面)"
+			controls:PermissionService.CheckPermission="False"
+			FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0800000000_ViewModel x:Name="Vm"/>
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <Style TargetType="Button" x:Key="AutoBtnStyle">
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="200"/>
+        <Setter Property="Margin" Value="10"/>
+      </Style>
+      <Style TargetType="TextBlock" x:Key="AutoTxtBlockStyle">
+        <Setter Property="FontSize" Value="170"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+      </Style>
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <uiLib:BasicMaster x:Name="Master">
+    <uiLib:BasicMaster.MainContent>
+      <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+        <DockPanel>
+          <WrapPanel DockPanel.Dock="Top" Orientation="Vertical">
+            <Label Content="{x:Static Properties:Resources.MassiveSowingWork}" FontWeight="Bold" Margin="3" FontSize="18" />
+            <WrapPanel Visibility="Collapsed" x:Name="Errors" />
+          </WrapPanel>
+          <Viewbox>
+            <DockPanel>
+              <DockPanel DockPanel.Dock="Top" Height="60">
+                <Label Content="{x:Static Properties:Resources.PICK_ORD_NO}" Style="{StaticResource LbStyle}"/>
+                <TextBox Style="{StaticResource TxtStyle}" Text="1234567891" IsEnabled="False" />
+                <Label Content="{x:Static Properties:Resources.P08060201_ItemCode}" Style="{StaticResource LbStyle}"/>
+                <TextBox Style="{StaticResource TxtStyle}"/>
+                <Button Content="{x:Static Properties:Resources.SowingFinish}" Width="150" Height="50" Margin="3" />
+                <Button Content="{x:Static Properties:Resources.CancelSowing}" Width="150" Height="50" Margin="3" IsCancel="True"/>
+              </DockPanel>
+              <DockPanel DockPanel.Dock="Top" Height="60" Margin="1,5">
+                <WrapPanel>
+                  <Button Content="{x:Static Properties:Resources.OutOfStock}" Width="150" Height="50" Margin="3"  Background="Tomato"/>
+                </WrapPanel>
+              </DockPanel>
+              <DockPanel DockPanel.Dock="Top">
+                <Label Content="{x:Static Properties:Resources.SowingAB123456}" Foreground="Blue" FontWeight="Bold" FontSize="45"/>
+                <Label Background="Khaki" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="150" >
+                </Label>
+              </DockPanel>
+              <DockPanel >
+								<!--<Label DockPanel.Dock="Top" Content="播種中：AB123456 - OOO商品" Foreground="Blue" FontWeight="Bold" FontSize="45"/>-->
+                <TabControl x:Name="LayoutRoot" >
+                  <TabControl.BindingGroup>
+                    <BindingGroup Name="errorGroup" />
+                  </TabControl.BindingGroup>
+                  <TabItem Width="Auto" >
+                    <TabItem.Header>
+                      <Label Content="{x:Static Properties:Resources.FirstZone}" Background="Yellow"/>
+                    </TabItem.Header>
+                    <Viewbox>
+                      <DockPanel>
+                        <WrapPanel DockPanel.Dock="Top">
+                          <Button Style="{StaticResource AutoBtnStyle}" Background="Yellow">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567890}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum01}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="1" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567892}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum02}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567893}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum03}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount1}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567894}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum04}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                        </WrapPanel>
+                        <WrapPanel DockPanel.Dock="Top">
+                          <Button Style="{StaticResource AutoBtnStyle}" >
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567895}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum05}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}" Background="Yellow">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567896}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum06}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="3" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount4}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567897}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum07}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <WrapPanel  DockPanel.Dock="Top">
+                                    <Label Content="{x:Static Properties:Resources.WMS_ORD_NO1234567898}" />
+                                    <Label Content="{x:Static Properties:Resources.BoxNum08}" FontSize="30" />
+                                  </WrapPanel>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount8}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="130,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                        </WrapPanel>
+                      </DockPanel>
+                    </Viewbox>
+                  </TabItem>
+                  <TabItem Width="Auto" >
+                    <TabItem.Header>
+                      <Label Content="{x:Static Properties:Resources.SecZone}" Background="Yellow"/>
+                    </TabItem.Header>
+                    <Viewbox>
+                      <DockPanel>
+                        <WrapPanel DockPanel.Dock="Top">
+                          <Button Style="{StaticResource AutoBtnStyle}" Background="Yellow">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567890}" />
+                                  <TextBlock DockPanel.Dock="Top" Text="1" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567892}"/>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567893}"/>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount1}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567894}"/>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                        </WrapPanel>
+                        <WrapPanel DockPanel.Dock="Top">
+                          <Button Style="{StaticResource AutoBtnStyle}" >
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567895}"/>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}" Background="Yellow">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567896}" />
+                                  <TextBlock DockPanel.Dock="Top" Text="3" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount4}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567897}"/>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount10}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                          <Button Style="{StaticResource AutoBtnStyle}">
+                            <Button.Content>
+                              <Viewbox>
+                                <DockPanel>
+                                  <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WMS_ORD_NO1234567898}"/>
+                                  <TextBlock DockPanel.Dock="Top" Text="0" Style="{StaticResource AutoTxtBlockStyle}"/>
+                                  <WrapPanel DockPanel.Dock="Bottom">
+                                    <Label Content="{x:Static Properties:Resources.TotalCount8}"/>
+                                    <Label Content="{x:Static Properties:Resources.SowingQty}" Margin="50,0,0,0"/>
+                                  </WrapPanel>
+                                </DockPanel>
+                              </Viewbox>
+                            </Button.Content>
+                          </Button>
+                        </WrapPanel>
+                      </DockPanel>
+                    </Viewbox>
+                  </TabItem>
+                </TabControl>
+              </DockPanel>
+            </DockPanel>
+          </Viewbox>
+        </DockPanel>
+      </telerik:RadBusyIndicator>
+    </uiLib:BasicMaster.MainContent>
+  </uiLib:BasicMaster>
+</uiLib:Wms3plWindow>

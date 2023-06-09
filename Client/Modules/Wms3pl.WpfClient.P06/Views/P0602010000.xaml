@@ -1,0 +1,745 @@
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P06.Views.P0602010000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P06.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P06.Properties" 
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+			xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common"
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800"
+			controls:PermissionService.FunctionId="P0602010000"
+			controls:PermissionService.FunctionName="揀貨缺貨處理"
+			FormException="{Binding Exception}">
+	<uiLib:Wms3plUserControl.DataContext>
+		<viewModel:P0602010000_ViewModel x:Name="Vm"/>
+	</uiLib:Wms3plUserControl.DataContext>
+	<uiLib:Wms3plUserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+			<viewModel:P0602010000_ViewModel x:Key="Vm"/>
+			<converters:IntParaToVisibilityConverter x:Key="IntParaToVisibilityConverter"/>
+			<converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter"/>
+			<converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter"/>
+			<converters:EnumBooleanConverter x:Key="EnumBooleanConverter"/>
+			<FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"></FrameworkElement>
+		</ResourceDictionary>
+	</uiLib:Wms3plUserControl.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+					<Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP0602010001" Command="{Binding SearchCommand}" />
+					<!--<Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP0602010002" Command="{Binding AddCommand}"/>-->
+					<Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP0602010003" Command="{Binding EditCommand}"  Visibility="Collapsed"/>
+					<Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP0602010004" Command="{Binding CancelCommand}"  Visibility="Collapsed"/>
+					<!--<Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP0602010005" Command="{Binding DeleteCommand}"  IsEnabled="{Binding LackSelected, ElementName=LayoutRoot, Converter={StaticResource NotConverter}}"/>-->
+					<Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP0602010005" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" Visibility="Collapsed"/>
+				</WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
+				<TabControl x:Name="LayoutRoot">
+					<TabControl.BindingGroup>
+						<BindingGroup Name="errorGroup" />
+					</TabControl.BindingGroup>
+					<TabItem Header="{x:Static Properties:Resources.ConfirmLeakData_pick}" Width="Auto" Name="PickTab"  Visibility="{Binding SelectedIndex,ElementName=cbWorkType,Converter={StaticResource IntParaToVisibilityConverter},ConverterParameter=0}">
+						<DockPanel Visibility="{Binding SelectedIndex,ElementName=cbWorkType,Converter={StaticResource IntParaToVisibilityConverter},ConverterParameter=0}">
+							<ScrollViewer DockPanel.Dock="Top">
+								<DockPanel>
+									<ContentControl Visibility="Collapsed" Content="{StaticResource ProxyElement}"></ContentControl>
+									<!---揀貨-查詢條件-查詢模式-->
+									<GroupBox Header="{x:Static res:Resources.QueryCondition}" DockPanel.Dock="Top" Visibility="{Binding SHOWQUERYPAGE}">
+										<Expander DockPanel.Dock="Top" Width="Auto" IsExpanded="True"  Name="ExpQueryCondition1">
+											<WrapPanel DockPanel.Dock="Top">
+												<Grid >
+													<Grid.RowDefinitions>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="180"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="180"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="Auto"/>
+													</Grid.ColumnDefinitions>
+													<Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.WorkType}" Style="{StaticResource LbStyle}" HorizontalAlignment="Right" />
+													<ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}" Width="100"
+															 Name="cbWorkType" SelectedValuePath="Tag" SelectedIndex="{Binding cbWorkType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+														<ComboBox.Items>
+															<ComboBoxItem Content="{x:Static Properties:Resources.Pick}" Tag="0"/>
+															<!--<ComboBoxItem Content="{x:Static Properties:Resources.Transfer}" Tag="1"/>-->
+														</ComboBox.Items>
+													</ComboBox>
+													<Label Grid.Row="0" Grid.Column="2" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right" />
+													<ComboBox Grid.Row="0" Grid.Column="3" Width="140" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbDC_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DcList}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>
+													<Label Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.cbSTATUS}" Style="{StaticResource LbStyle}"   HorizontalAlignment="Right"/>
+													<ComboBox Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" Width="120" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbSTATUS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding STATUSList}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>
+													<Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.BatchDate}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding dpDELV_DATE_Start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+																	Style="{StaticResource DateStyle}" HorizontalAlignment="Left" Width="140" />
+													<Label Content=" ~ " Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+													<DatePicker Grid.Row="1" Grid.Column="3" Style="{StaticResource DateStyle}" SelectedDate="{Binding dpDELV_DATE_End,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+													<!--<Label Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.TxtPICK_TIME}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<ComboBox Grid.Row="1" Grid.Column="3" Width="100" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbPICK_TIME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding PICK_TIMEList}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>-->
+													<Label Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.tbPICK_ORD_NO}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<TextBox Grid.Row="1" Grid.Column="5" Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" MinWidth="160" Width="Auto"
+															 Text="{Binding tbPICK_ORD_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="20" InputMethod.IsInputMethodEnabled="False"/>
+                                                    <Label Grid.Row="2" Grid.Column="0"  Content="{x:Static Properties:Resources.WMS_ORD_NO}" Style="{StaticResource LbTitleStyle}"/>
+													<TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" MinWidth="170" Width="Auto"
+															 Text="{Binding tbWMS_ORD_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="40" InputMethod.IsInputMethodEnabled="False"/>
+                                                    <Label Grid.Row="2" Grid.Column="2"  Content="容器條碼" Style="{StaticResource LbTitleStyle}"/>
+													<TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" MinWidth="170" Width="Auto"
+															 Text="{Binding tbCONTAINER_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="40" InputMethod.IsInputMethodEnabled="False"/>
+                                                    <Label Grid.Row="2" Grid.Column="4"  Content="作業人員" Style="{StaticResource LbTitleStyle}" HorizontalAlignment="Right"/>
+                                                    <TextBox Grid.Row="2" Grid.Column="5" Text="{Binding tbCrtOrUpdOpertor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}"/>
+                                                </Grid>
+											</WrapPanel>
+										</Expander>
+									</GroupBox>
+									<!---揀貨-查詢條件-新增模式-->
+									<GroupBox Header="{x:Static res:Resources.QueryCondition}" DockPanel.Dock="Top"   Visibility="{Binding SHOWADDPAGE}">
+										<Expander DockPanel.Dock="Top" Width="Auto" IsExpanded="True" Name="ExpQueryCondition2">
+											<WrapPanel DockPanel.Dock="Top">
+												<Grid >
+													<Grid.RowDefinitions>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="160"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="160"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="160"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="Auto"/>
+													</Grid.ColumnDefinitions>
+													<Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.WorkType}" Style="{StaticResource LbStyle}" HorizontalAlignment="Right" />
+													<ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}" Width="100"
+															 Name="cbWorkType2" SelectedValuePath="Tag" SelectedIndex="{Binding cbWorkType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+														<ComboBox.Items>
+															<ComboBoxItem Content="{x:Static Properties:Resources.Pick}" Tag="0"/>
+															<!--<ComboBoxItem Content="{x:Static Properties:Resources.Transfer}" Tag="1"/>-->
+														</ComboBox.Items>
+													</ComboBox>
+													<Label Grid.Row="0" Grid.Column="2" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbStyle}" HorizontalAlignment="Right"/>
+													<ComboBox Grid.Row="0" Grid.Column="3" Width="140" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbDC_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DcList}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>
+													<Label Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.BatchDate}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<DatePicker Grid.Row="0" Grid.Column="5" SelectedDate="{Binding dpDELV_DATE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+																	Style="{StaticResource DateStyle}" HorizontalAlignment="Left" Width="140" />
+													<Label Grid.Row="0" Grid.Column="6" Content="{x:Static Properties:Resources.TxtPICK_TIME}" Style="{StaticResource LbStyle}" HorizontalAlignment="Right"/>
+													<ComboBox Grid.Row="0" Grid.Column="7" Width="100" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbPICK_TIME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding PICK_TIMEList}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>
+													<Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.tbPICK_ORD_NO}" Style="{StaticResource LbStyle}" HorizontalAlignment="Right"/>
+													<WrapPanel  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7">
+														<TextBox Style="{StaticResource TxtStyle}" MinWidth="160" Width="Auto"
+															 Text="{Binding tbPICK_ORD_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="20" InputMethod.IsInputMethodEnabled="False"/>
+														<Button Content="{x:Static res:Resources.Query}" Width="100" Height="35" Command="{Binding SearchCommand_Add}"   
+															controls:PermissionService.FunctionId="BP0602010006"/>
+													</WrapPanel>
+												</Grid>
+											</WrapPanel>
+										</Expander>
+									</GroupBox>
+									<!---揀貨-查詢結果-查詢模式-->
+									<GroupBox  Header ="{x:Static res:Resources.OueryResult}" Visibility="{Binding SHOWQUERYPAGE}" DockPanel.Dock="Top" Width="Auto">
+										<Expander IsExpanded="True" Name="ExpQueryResult1" HorizontalAlignment="Left" Width="Auto">
+											<DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding PickList}"
+															SelectedItem="{Binding PickSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+															IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" SelectionMode="Single" Height="400">
+												<DataGrid.Columns>
+
+													<DataGridComboBoxColumn Header="{x:Static res:Resources.Dc}" IsReadOnly="True" SelectedValueBinding="{Binding DC_CODE}" 
+																					SelectedValuePath="Value" DisplayMemberPath="Name" 
+																					ItemsSource="{Binding DataContext.DcList, Source={StaticResource ProxyElement}}"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.BatchDate}" Binding="{Binding DELV_DATE,StringFormat=\{0:yyyy/MM/dd\}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.TxtPICK_TIME}" Binding="{Binding PICK_TIME}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.tbPICK_ORD_NO}" Binding="{Binding PICK_ORD_NO}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.WMS_ORD_NO}" Binding="{Binding WMS_ORD_NO}" IsReadOnly="True"/>
+													<DataGridComboBoxColumn Header="{x:Static Properties:Resources.cbSTATUS}" IsReadOnly="True" SelectedValueBinding="{Binding STATUS}" 
+																					ItemsSource="{Binding DataContext.STATUSList, Source={StaticResource ProxyElement}}"
+																					SelectedValuePath="Value" DisplayMemberPath="Name" />
+                                                    <DataGridTextColumn Header="異動人員" Binding="{Binding UPD_STAFF}" IsReadOnly="True"/>
+                                                    <DataGridTextColumn Header="異動時間" Binding="{Binding UPD_DATE,StringFormat=\{0:yyyy/MM/dd HH:mm\}}" IsReadOnly="True"/>
+                                                    <DataGridTextColumn Header="建立人員" Binding="{Binding CRT_STAFF}" IsReadOnly="True"/>
+                                                    <DataGridTextColumn Header="建立時間" Binding="{Binding CRT_DATE,StringFormat=\{0:yyyy/MM/dd HH:mm\}}" IsReadOnly="True"/>
+                                                </DataGrid.Columns>
+											</DataGrid>
+										</Expander>
+									</GroupBox>
+									<!---揀貨-查詢結果-新增模式-->
+									<GroupBox Header ="{x:Static res:Resources.OueryResult}"  Visibility="{Binding SHOWADDPAGE}" DockPanel.Dock="Top"  Width="Auto">
+										<Expander  Name="ExpQueryResult2" IsExpanded="True" HorizontalAlignment="Left">
+											<DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding PickList2}" 
+															SelectedItem="{Binding PickSelected2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+															IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" SelectionMode="Single"  Height="400" >
+												<DataGrid.Columns>
+													<DataGridComboBoxColumn Header="{x:Static res:Resources.Dc}" SelectedValueBinding="{Binding DC_CODE}" 
+																					SelectedValuePath="Value" DisplayMemberPath="Name"  IsReadOnly="True">
+														<DataGridComboBoxColumn.ElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.DcList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+															</Style>
+														</DataGridComboBoxColumn.ElementStyle>
+													</DataGridComboBoxColumn>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.BatchDate}" Binding="{Binding DELV_DATE,StringFormat=\{0:yyyy/MM/dd\}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.TxtPICK_TIME}" Binding="{Binding PICK_TIME}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.tbPICK_ORD_NO}" Binding="{Binding PICK_ORD_NO}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.WMS_ORD_NO}" Binding="{Binding WMS_ORD_NO}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.PICK_LOC}" Binding="{Binding PICK_LOC}" IsReadOnly="True"/>
+												</DataGrid.Columns>
+											</DataGrid>
+										</Expander>
+									</GroupBox>
+									<!---揀貨-缺貨處理設定-查詢模式-->
+									<GroupBox Header ="{x:Static Properties:Resources.SHOWQUERYPAGE}" Visibility="{Binding SHOWQUERYPAGE}" DockPanel.Dock="Top" Width="Auto">
+										<DockPanel>
+											<WrapPanel  DockPanel.Dock="Top">
+												<Grid>
+													<Grid.RowDefinitions>
+														<RowDefinition Height="*"/>
+														<RowDefinition Height="*"/>
+														<RowDefinition Height="*"/>
+														<RowDefinition Height="*"/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="auto"/>
+														<ColumnDefinition Width="auto"/>
+													</Grid.ColumnDefinitions>
+													<WrapPanel Grid.Row="0" >
+														<Label  Content="{x:Static Properties:Resources.tbPICK_ORD_NO}" Style="{StaticResource LbStyle}"/>
+														<TextBox  Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True"  Text="{Binding PickSelected.PICK_ORD_NO}" MaxLength="40" Width="170" InputMethod.IsInputMethodEnabled="False"/>
+														<Label  Content="{x:Static Properties:Resources.WMS_ORD_NO}" Style="{StaticResource LbStyle}"/>
+														<TextBox  Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True"  Text="{Binding PickSelected.WMS_ORD_NO}" MaxLength="40" Width="170" InputMethod.IsInputMethodEnabled="False"/>
+														<WrapPanel    Visibility="{Binding PickSelected.STATUS,Converter={StaticResource IntParaToVisibilityConverter},ConverterParameter=1}">
+															<Label  Content="{x:Static Properties:Resources.cbRETURN_FLAG}" Style="{StaticResource LbStyle}"  Visibility="Collapsed"/>
+															<ComboBox HorizontalAlignment="Left" Width="120" Style="{StaticResource ComboStyle}" IsEnabled="{Binding UserOperateMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumBooleanConverter}, ConverterParameter={x:Static uiLib:OperateMode.Edit}}"
+																	SelectedValue="{Binding cbRETURN_FLAG,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding RETURN_FLAGList}" 
+																	SelectedValuePath="Value" DisplayMemberPath="Name" Visibility="Collapsed"/>
+														</WrapPanel>
+													</WrapPanel>
+													<WrapPanel  Grid.Row="1">
+														<Label  Content="{x:Static Properties:Resources.CustNo}" Style="{StaticResource LbStyle}"/>
+														<TextBox  Grid.ColumnSpan="5"  Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True"  TextWrapping="Wrap" Text="{Binding CUST_ORD_NO}" Width="600" InputMethod.IsInputMethodEnabled="False" />
+													</WrapPanel>
+													<WrapPanel  Grid.Row="2">
+														<Label  Content="{x:Static Properties:Resources.OrdNo}" Style="{StaticResource LbStyle}"/>
+														<TextBox Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True"  Text="{Binding ORD_NO}" Width="600" InputMethod.IsInputMethodEnabled="False"/>
+													</WrapPanel>
+													<Button Grid.Row="3" Content="{x:Static Properties:Resources.ModifyQtyOutOfStock}" Click="ModifyQtyOutOfStock_Click" Width="300" Height="35" HorizontalAlignment="Left" Visibility="{Binding ShowModifyQtyOutOfStockBtn}" controls:PermissionService.FunctionId="BP0602010010"></Button>
+													<WrapPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"  Orientation="Vertical" Margin="10">
+														<TextBlock  TextWrapping="Wrap" Width="450" Foreground="Blue">
+															1. 若是找到部份商品，請按下畫面上的&lt;修改缺貨數&gt;，將缺貨數改成=缺貨數-找到商品數
+														</TextBlock>
+														<TextBlock  TextWrapping="Wrap" Width="450" Foreground="Blue">
+															2. 若是找到全部商品，請按下畫面上的&lt;修改缺貨數&gt;，將缺貨數改成0
+														</TextBlock>
+														<TextBlock  TextWrapping="Wrap" Width="450" Foreground="Blue">
+															3. 若仍然還有缺貨，請至LMS網頁中的 [揀缺出貨回報] 功能處理
+														</TextBlock>
+
+													</WrapPanel>
+												</Grid>
+
+											</WrapPanel>
+											<!--<WrapPanel  DockPanel.Dock="Top">
+												<Button Content="{x:Static Properties:Resources.ISSELECTED}" Width="100" Height="35" Command="{Binding DeleteDetailCommand}" Margin="5,0,0,0"
+														controls:PermissionService.FunctionId="BP0602010007"/>
+											</WrapPanel>-->
+											<controls:ValidationDataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding LackList}" 
+														SelectedItem="{Binding LackSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+														 Name="dgLack" CellStyle="{StaticResource SingleClickEdit}" IsReadOnly="False"  Height="350" 
+														 ScrollViewer.HorizontalScrollBarVisibility="Auto">
+												<DataGrid.Columns>
+													<DataGridCheckBoxColumn Binding="{Binding ISSELECTED,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"
+																			Visibility="{Binding DataContext.UserOperateMode, Source={StaticResource ProxyElement}, 
+																						Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static uiLib:OperateMode.Edit}}">
+														<DataGridCheckBoxColumn.HeaderTemplate>
+															<DataTemplate>
+																<CheckBox Style="{StaticResource CheckStyle}" Content="{x:Static res:Resources.SelectAll}" 
+																			IsChecked="{Binding DataContext.IsCheckAll, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																			Command="{Binding DataContext.CheckSelectedAllCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+																			CommandParameter="PICK_Q"/>
+															</DataTemplate>
+														</DataGridCheckBoxColumn.HeaderTemplate>
+														<DataGridCheckBoxColumn.ElementStyle>
+															<Style TargetType="CheckBox">
+																<Setter Property="VerticalAlignment" Value="Center"/>
+																<Setter Property="HorizontalAlignment" Value="Center"/>
+															</Style>
+														</DataGridCheckBoxColumn.ElementStyle>
+													</DataGridCheckBoxColumn>
+													<DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" Binding="{Binding ROWNUM,StringFormat=\{0:000\}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.PICK_ORD_SEQ}" Binding="{Binding PICK_ORD_SEQ}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.PickLoc}" Binding="{Binding LOC_CODE}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}"  IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_Name}" IsReadOnly="True" Width="150"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.B_PICK_QTY}" Binding="{Binding B_PICK_QTY}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.LACK_QTY}" Binding="{Binding LACK_QTY}" IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="6"/>
+																<Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+													<DataGridComboBoxColumn Header="{x:Static Properties:Resources.REASON}" SelectedValueBinding="{Binding REASON,UpdateSourceTrigger=PropertyChanged}" 
+																					SelectedValuePath="UCC_CODE" DisplayMemberPath="CAUSE"  IsReadOnly="True">
+														<DataGridComboBoxColumn.ElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+															</Style>
+														</DataGridComboBoxColumn.ElementStyle>
+														<DataGridComboBoxColumn.EditingElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+															</Style>
+														</DataGridComboBoxColumn.EditingElementStyle>
+													</DataGridComboBoxColumn>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.NOTE}" Width="150" Binding="{Binding MEMO}"  IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="200"/>
+																<Setter Property="DataGridCell.IsEnabled" Value="False"/>
+																<Style.Triggers>
+																	<DataTrigger Binding="{Binding DataContext.LackSelected.REASON, RelativeSource={RelativeSource FindAncestor,AncestorType=DataGrid}}" Value ="999">
+																		<Setter Property="DataGridCell.IsEnabled" Value="True"/>
+																	</DataTrigger>
+																</Style.Triggers>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+                                                    <DataGridComboBoxColumn Header="{x:Static Properties:Resources.cbRETURN_FLAG}" IsReadOnly="True" SelectedValueBinding="{Binding RETURN_FLAG}" 
+																					ItemsSource="{Binding RETURN_FLAGByGridList, Source={StaticResource Vm}}"
+																					SelectedValuePath="Value" DisplayMemberPath="Name" Visibility="{Binding DataContext.UserOperateMode, Source={StaticResource ProxyElement}, 
+																						Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static uiLib:OperateMode.Query}}" />
+                                                </DataGrid.Columns>
+											</controls:ValidationDataGrid>
+										</DockPanel>
+									</GroupBox>
+									<!---揀貨-缺貨處理設定-新增模式-->
+									<GroupBox Header ="{x:Static Properties:Resources.SHOWQUERYPAGE}"  Visibility="{Binding SHOWADDPAGE}">
+										<DockPanel>
+											<WrapPanel  DockPanel.Dock="Top">
+												<Grid>
+													<Grid.RowDefinitions>
+														<RowDefinition Height="*"/>
+														<RowDefinition Height="*"/>
+														<RowDefinition Height="*"/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="auto"/>
+													</Grid.ColumnDefinitions>
+													<WrapPanel Grid.Row="0" >
+														<Label  Content="{x:Static Properties:Resources.tbPICK_ORD_NO}" Style="{StaticResource LbStyle}"/>
+														<TextBox  Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True" Text="{Binding PickSelected2.PICK_ORD_NO}" MaxLength="40" Width="170" InputMethod.IsInputMethodEnabled="False"/>
+														<Label  Content="{x:Static Properties:Resources.WMS_ORD_NO}" Style="{StaticResource LbStyle}"/>
+														<TextBox  Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True" Text="{Binding PickSelected2.WMS_ORD_NO}" MaxLength="40" Width="170" InputMethod.IsInputMethodEnabled="False" />
+													</WrapPanel>
+													<WrapPanel  Grid.Row="1">
+														<Label  Content="{x:Static Properties:Resources.CustNo}" Style="{StaticResource LbStyle}"/>
+														<TextBox  Grid.ColumnSpan="5"  Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True" Text="{Binding CUST_ORD_NO}" Width="800" InputMethod.IsInputMethodEnabled="False"/>
+													</WrapPanel>
+													<WrapPanel  Grid.Row="2">
+														<Label  Content="{x:Static Properties:Resources.OrdNo}" Style="{StaticResource LbStyle}"/>
+														<TextBox Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True" Text="{Binding ORD_NO}" Width="800" InputMethod.IsInputMethodEnabled="False"/>
+													</WrapPanel>
+												</Grid>
+											</WrapPanel>
+											<controls:ValidationDataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding LackList2}" 
+														 	SelectedItem="{Binding LackSelected2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+															Name="dgLack2" CellStyle="{StaticResource SingleClickEdit}" IsReadOnly="False"  Height="400" HorizontalAlignment="Left">
+												<DataGrid.Columns>
+													<DataGridCheckBoxColumn Binding="{Binding ISSELECTED,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"
+																			Visibility="{Binding DataContext.UserOperateMode, Source={StaticResource ProxyElement}, 
+																										Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static uiLib:OperateMode.Edit}}">
+														<DataGridCheckBoxColumn.HeaderTemplate>
+															<DataTemplate>
+																<CheckBox Style="{StaticResource CheckStyle}" Content="{x:Static res:Resources.SelectAll}" 
+																			IsChecked="{Binding DataContext.IsCheckAll2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																			Command="{Binding DataContext.CheckSelectedAllCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+																			CommandParameter="PICK_A" />
+															</DataTemplate>
+														</DataGridCheckBoxColumn.HeaderTemplate>
+														<DataGridCheckBoxColumn.ElementStyle>
+															<Style TargetType="CheckBox">
+																<Setter Property="VerticalAlignment" Value="Center"/>
+																<Setter Property="HorizontalAlignment" Value="Center"/>
+															</Style>
+														</DataGridCheckBoxColumn.ElementStyle>
+													</DataGridCheckBoxColumn>
+													<DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" Binding="{Binding ROWNUM,StringFormat=\{0:000\}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.PICK_ORD_SEQ}" Binding="{Binding PICK_ORD_SEQ}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}"  IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_Name}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.B_PICK_QTY}" Binding="{Binding B_PICK_QTY}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.LACK_QTY}" Binding="{Binding LACK_QTY}" IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="6"/>
+																<Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+													<DataGridComboBoxColumn Header="{x:Static Properties:Resources.REASON}" SelectedValueBinding="{Binding REASON,UpdateSourceTrigger=PropertyChanged}" 
+																					SelectedValuePath="UCC_CODE" DisplayMemberPath="CAUSE"  IsReadOnly="True">
+														<DataGridComboBoxColumn.ElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+															</Style>
+														</DataGridComboBoxColumn.ElementStyle>
+														<DataGridComboBoxColumn.EditingElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+															</Style>
+														</DataGridComboBoxColumn.EditingElementStyle>
+													</DataGridComboBoxColumn>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.NOTE}" Width="200" Binding="{Binding MEMO}"  IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="200"/>
+																<Setter Property="DataGridCell.IsEnabled" Value="False"/>
+																<Style.Triggers>
+																	<DataTrigger Binding="{Binding DataContext.LackSelected2.REASON, RelativeSource={RelativeSource FindAncestor,AncestorType=DataGrid}}" Value="999">
+																		<Setter Property="DataGridCell.IsEnabled" Value="True"/>
+																	</DataTrigger>
+																</Style.Triggers>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+												</DataGrid.Columns>
+											</controls:ValidationDataGrid>
+										</DockPanel>
+									</GroupBox>
+
+								</DockPanel>
+							</ScrollViewer>
+						</DockPanel>
+					</TabItem>
+
+					<!--調撥調撥調撥調撥調撥############################################################################################-->
+
+					<TabItem Header="{x:Static Properties:Resources.cbDC_CODE_ALLOT}" Width="Auto" Name="AllotTab"  Visibility="{Binding SelectedIndex,ElementName=cbWorkType,Converter={StaticResource IntParaToVisibilityConverter},ConverterParameter=1}">
+						<DockPanel Visibility="{Binding SelectedIndex,ElementName=cbWorkType,Converter={StaticResource IntParaToVisibilityConverter},ConverterParameter=1}">
+							<ScrollViewer DockPanel.Dock="Top">
+								<DockPanel >
+									<!---調撥-查詢條件-查詢模式-->
+									<GroupBox Header="{x:Static res:Resources.QueryCondition}" DockPanel.Dock="Top" Visibility="{Binding SHOWQUERYPAGE}">
+										<Expander DockPanel.Dock="Top" Width="Auto" IsExpanded="True" Name="ExpQueryCondition1_Allot">
+											<WrapPanel DockPanel.Dock="Top">
+												<Grid >
+													<Grid.RowDefinitions>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="160"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="160"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="Auto"/>
+													</Grid.ColumnDefinitions>
+													<Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.WorkType}" Style="{StaticResource LbStyle}" HorizontalAlignment="Right" />
+													<ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}" Width="100"
+															 Name="cbWorkType3" SelectedValuePath="Tag" SelectedIndex="{Binding cbWorkType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+														<ComboBox.Items>
+															<ComboBoxItem Content="{x:Static Properties:Resources.Pick}" Tag="0"/>
+															<!--<ComboBoxItem Content="{x:Static Properties:Resources.Transfer}" Tag="1"/>-->
+														</ComboBox.Items>
+													</ComboBox>
+													<Label Grid.Row="0" Grid.Column="2" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<ComboBox Grid.Row="0" Grid.Column="3" Width="140" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbDC_CODE_ALLOT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DcList}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>
+													<Label Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.cbSTATUS}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<ComboBox Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" Width="120" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbSTATUS_ALLOT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding STATUSList_ALLOT}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>
+													<Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.tbPICK_ORD_NO_ALLOT}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" MinWidth="160" Width="160"
+															 Text="{Binding tbPICK_ORD_NO_ALLOT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="20" InputMethod.IsInputMethodEnabled="False"/>
+												</Grid>
+											</WrapPanel>
+										</Expander>
+									</GroupBox>
+									<!---調撥-查詢條件-新增模式-->
+									<GroupBox Header="{x:Static res:Resources.QueryCondition}" DockPanel.Dock="Top" Visibility="{Binding SHOWADDPAGE}">
+										<Expander DockPanel.Dock="Top" Width="Auto" IsExpanded="True"  Name="ExpQueryCondition2_Allot">
+											<WrapPanel DockPanel.Dock="Top">
+												<Grid >
+													<Grid.RowDefinitions>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="160"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="160"/>
+														<ColumnDefinition Width="100"/>
+														<ColumnDefinition Width="Auto"/>
+													</Grid.ColumnDefinitions>
+													<Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.WorkType}" Style="{StaticResource LbStyle}" HorizontalAlignment="Right" />
+													<ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}" Width="100"
+															 Name="cbWorkType4" SelectedValuePath="Tag" SelectedIndex="{Binding cbWorkType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+														<ComboBox.Items>
+															<ComboBoxItem Content="{x:Static Properties:Resources.Pick}" Tag="0"/>
+															<!--<ComboBoxItem Content="{x:Static Properties:Resources.Transfer}" Tag="1"/>-->
+														</ComboBox.Items>
+													</ComboBox>
+													<Label Grid.Row="0" Grid.Column="2" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<ComboBox Grid.Row="0" Grid.Column="3" Width="140" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbDC_CODE_ALLOT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DcList}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name" SelectedIndex="0"/>
+													<Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.tbPICK_ORD_NO_ALLOT}" Style="{StaticResource LbStyle}"  HorizontalAlignment="Right"/>
+													<WrapPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5">
+														<TextBox  Style="{StaticResource TxtStyle}" MinWidth="160" Width="160" MaxLength="20" InputMethod.IsInputMethodEnabled="False"
+															 Text="{Binding tbPICK_ORD_NO_ALLOT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+														<Button Content="{x:Static res:Resources.Query}" Width="100" Height="35" Command="{Binding SearchCommand_Add}"   
+															controls:PermissionService.FunctionId="BP0602010008"/>
+													</WrapPanel>
+												</Grid>
+											</WrapPanel>
+										</Expander>
+									</GroupBox>
+									<!---調撥-查詢結果-查詢模式-->
+									<GroupBox DockPanel.Dock="Top" Header ="{x:Static res:Resources.OueryResult}" Visibility="{Binding SHOWQUERYPAGE}">
+										<Expander Width="Auto"  IsExpanded="True"  Name="ExpQueryResult1_Allot">
+											<DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding PickList_Allot}" 
+															SelectedItem="{Binding PickSelected_Allot,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+															IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" SelectionMode="Single" Height="400">
+												<DataGrid.Columns>
+													<DataGridComboBoxColumn Header="{x:Static res:Resources.Dc}" IsReadOnly="True" SelectedValueBinding="{Binding TAR_DC_CODE}" 
+																					ItemsSource="{Binding DcList, Source={StaticResource Vm}}"
+																					SelectedValuePath="Value" DisplayMemberPath="Name" />
+													<DataGridTextColumn Header="{x:Static Properties:Resources.tbPICK_ORD_NO_ALLOT}" Binding="{Binding ALLOCATION_NO}" IsReadOnly="True"/>
+													<DataGridComboBoxColumn Header="{x:Static Properties:Resources.cbSTATUS}" IsReadOnly="True" SelectedValueBinding="{Binding STATUS}" 
+																					ItemsSource="{Binding STATUSList_ALLOT, Source={StaticResource Vm}}"
+																					SelectedValuePath="Value" DisplayMemberPath="Name" />
+
+												</DataGrid.Columns>
+											</DataGrid>
+										</Expander>
+									</GroupBox>
+									<!---調撥-查詢結果-新增模式-->
+									<GroupBox DockPanel.Dock="Top" Header ="{x:Static res:Resources.OueryResult}" Visibility="{Binding SHOWADDPAGE}">
+										<Expander Width="Auto"  IsExpanded="True" Name="ExpQueryResult2_Allot">
+											<DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding PickList2_Allot}" 
+															SelectedItem="{Binding PickSelected2_Allot,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+															IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" SelectionMode="Single"  Height="400">
+												<DataGrid.Columns>
+													<DataGridComboBoxColumn Header="{x:Static res:Resources.Dc}" IsReadOnly="True" SelectedValueBinding="{Binding TAR_DC_CODE}" 
+																					ItemsSource="{Binding DcList, Source={StaticResource Vm}}"
+																					SelectedValuePath="Value" DisplayMemberPath="Name" />
+													<DataGridTextColumn Header="{x:Static Properties:Resources.tbPICK_ORD_NO_ALLOT}" Binding="{Binding ALLOCATION_NO}" IsReadOnly="True"/>
+												</DataGrid.Columns>
+											</DataGrid>
+										</Expander>
+									</GroupBox>
+									<!---調撥-缺貨處理設定-查詢模式-->
+									<GroupBox Header ="{x:Static Properties:Resources.SHOWQUERYPAGE}" Visibility="{Binding SHOWQUERYPAGE}" DockPanel.Dock="Top" Width="Auto">
+										<DockPanel>
+											<WrapPanel DockPanel.Dock="Top">
+												<Label Content="{x:Static Properties:Resources.tbPICK_ORD_NO_ALLOT}" Style="{StaticResource LbStyle}"/>
+												<TextBox Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsEnabled="False" Text="{Binding ALLOCATION_NO}" MaxLength="20" InputMethod.IsInputMethodEnabled="False"/>
+
+												<WrapPanel Visibility="{Binding PickSelected_Allot.STATUS,Converter={StaticResource IntParaToVisibilityConverter},ConverterParameter=0}">
+													<Label  Content="{x:Static Properties:Resources.cbRETURN_FLAG}" Style="{StaticResource LbStyle}" />
+													<ComboBox HorizontalAlignment="Left" Width="120" Style="{StaticResource ComboStyle}"
+																SelectedValue="{Binding cbRETURN_FLAG_ALLOT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding RETURN_FLAGList_ALLOT}" 
+																SelectedValuePath="Value" DisplayMemberPath="Name"/>
+												</WrapPanel>
+											</WrapPanel>
+											<WrapPanel DockPanel.Dock="Top">
+												<Button Content="{x:Static Properties:Resources.ISSELECTED}" Width="100" Height="35" Command="{Binding DeleteDetailCommand}" Margin="5,0,0,0"
+														controls:PermissionService.FunctionId="BP0602010009"/>
+											</WrapPanel>
+											<controls:ValidationDataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding LackList_Allot}" 
+															SelectedItem="{Binding LackSelected_Allot,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+															 Name="dgLack_Allot" CellStyle="{StaticResource SingleClickEdit}" IsReadOnly="False"  Height="350"
+															ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+												<DataGrid.Columns>
+													<DataGridCheckBoxColumn Binding="{Binding ISSELECTED,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
+																			Visibility="{Binding DataContext.UserOperateMode, Source={StaticResource ProxyElement}, 
+																						Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static uiLib:OperateMode.Edit}}">
+														<DataGridCheckBoxColumn.HeaderTemplate>
+															<DataTemplate>
+																<CheckBox Style="{StaticResource CheckStyle}" Content="{x:Static res:Resources.SelectAll}" 
+																		IsChecked="{Binding DataContext.IsCheckAll3, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																		Command="{Binding DataContext.CheckSelectedAllCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+																		CommandParameter="ALLOT_Q" />
+															</DataTemplate>
+														</DataGridCheckBoxColumn.HeaderTemplate>
+														<DataGridCheckBoxColumn.ElementStyle>
+															<Style TargetType="CheckBox">
+																<Setter Property="VerticalAlignment" Value="Center"/>
+																<Setter Property="HorizontalAlignment" Value="Center"/>
+															</Style>
+														</DataGridCheckBoxColumn.ElementStyle>
+
+														<!--<DataGridCheckBoxColumn.CellStyle>
+															<Style  TargetType="DataGridCell" BasedOn="{StaticResource SingleClickEdit}">
+																<Setter Property="DataGridCell.Visibility" Value="Collapsed"/>
+																<Style.Triggers>
+																	<MultiDataTrigger>
+																		<MultiDataTrigger.Conditions>
+																			<Condition Binding="{Binding DataContext.UserOperateMode, RelativeSource={RelativeSource FindAncestor,AncestorType=DataGrid}}" Value="{x:Static uiLib:OperateMode.Edit}"/>
+																			<Condition Binding="{Binding DataContext.PickSelected_Allot.STATUS, RelativeSource={RelativeSource FindAncestor,AncestorType=DataGrid}}" Value="0"/>
+																		</MultiDataTrigger.Conditions>
+																		<Setter Property="DataGridCell.Visibility" Value="Visible"/>
+																	</MultiDataTrigger>
+																</Style.Triggers>
+															</Style>
+														</DataGridCheckBoxColumn.CellStyle>-->
+													</DataGridCheckBoxColumn>
+
+													<DataGridTextColumn Header="{x:Static Properties:Resources.PICK_ORD_SEQ}" Binding="{Binding ROWNUM,StringFormat=\{0:000\}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_NAME}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.SRC_QTY}" Binding="{Binding SRC_QTY}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.LACK_QTY}" Binding="{Binding LACK_QTY}"  IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="6"/>
+																<Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+													<DataGridComboBoxColumn Header="{x:Static Properties:Resources.REASON}" SelectedValueBinding="{Binding REASON,UpdateSourceTrigger=PropertyChanged}" 
+																					SelectedValuePath="UCC_CODE" DisplayMemberPath="CAUSE"  IsReadOnly="True" >
+														<DataGridComboBoxColumn.ElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList_Allot,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+															</Style>
+														</DataGridComboBoxColumn.ElementStyle>
+														<DataGridComboBoxColumn.EditingElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList_Allot,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																<!--<EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged4"/>-->
+															</Style>
+														</DataGridComboBoxColumn.EditingElementStyle>
+													</DataGridComboBoxColumn>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.NOTE}" Width="200" Binding="{Binding MEMO}" IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="200"/>
+																<Setter Property="DataGridCell.IsEnabled" Value="False"/>
+																<Style.Triggers>
+																	<DataTrigger Binding="{Binding DataContext.LackSelected_Allot.REASON, RelativeSource={RelativeSource FindAncestor,AncestorType=DataGrid}}" Value="999">
+																		<Setter Property="DataGridCell.IsEnabled" Value="True"/>
+																	</DataTrigger>
+																</Style.Triggers>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+												</DataGrid.Columns>
+											</controls:ValidationDataGrid>
+										</DockPanel>
+									</GroupBox>
+									<!---調撥-缺貨處理設定-新增模式-->
+									<GroupBox Header ="{x:Static Properties:Resources.SHOWQUERYPAGE}"  Visibility="{Binding SHOWADDPAGE}">
+										<DockPanel>
+											<WrapPanel DockPanel.Dock="Top">
+												<Label Content="{x:Static Properties:Resources.tbPICK_ORD_NO_ALLOT}" Style="{StaticResource LbStyle}"/>
+												<TextBox Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsEnabled="False" Text="{Binding ALLOCATION_NO}" MaxLength="20" InputMethod.IsInputMethodEnabled="False"/>
+											</WrapPanel>
+											<controls:ValidationDataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding LackList2_Allot}" 
+																									 	SelectedItem="{Binding LackSelected2_Allot,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																					 Name="dgLack2_Allot"		 CellStyle="{StaticResource SingleClickEdit}" IsReadOnly="False"  Height="400">
+												<DataGrid.Columns>
+													<DataGridCheckBoxColumn Binding="{Binding ISSELECTED,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"
+																			Visibility="{Binding DataContext.UserOperateMode, Source={StaticResource ProxyElement}, 
+																						Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static uiLib:OperateMode.Edit}}">
+														<DataGridCheckBoxColumn.HeaderTemplate>
+															<DataTemplate>
+																<CheckBox Style="{StaticResource CheckStyle}" Content="{x:Static res:Resources.SelectAll}" 
+																			IsChecked="{Binding DataContext.IsCheckAll4, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																			Command="{Binding DataContext.CheckSelectedAllCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+																			CommandParameter="ALLOT_A" />
+															</DataTemplate>
+														</DataGridCheckBoxColumn.HeaderTemplate>
+														<DataGridCheckBoxColumn.ElementStyle>
+															<Style TargetType="CheckBox">
+																<Setter Property="VerticalAlignment" Value="Center"/>
+																<Setter Property="HorizontalAlignment" Value="Center"/>
+															</Style>
+														</DataGridCheckBoxColumn.ElementStyle>
+													</DataGridCheckBoxColumn>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.PICK_ORD_SEQ}" Binding="{Binding ROWNUM,StringFormat=\{0:000\}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_NAME}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.SRC_QTY}" Binding="{Binding SRC_QTY}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.LACK_QTY}" Binding="{Binding LACK_QTY}"  IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="6"/>
+																<Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+													<DataGridComboBoxColumn Header="{x:Static Properties:Resources.REASON}" SelectedValueBinding="{Binding REASON,UpdateSourceTrigger=PropertyChanged}" 
+																					SelectedValuePath="UCC_CODE" DisplayMemberPath="CAUSE"  IsReadOnly="True">
+														<DataGridComboBoxColumn.ElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList_Allot,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+															</Style>
+														</DataGridComboBoxColumn.ElementStyle>
+														<DataGridComboBoxColumn.EditingElementStyle>
+															<Style TargetType="ComboBox">
+																<Setter Property="ItemsSource" Value="{Binding DataContext.REASONList_Allot,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																<!--<EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged4"/>-->
+															</Style>
+														</DataGridComboBoxColumn.EditingElementStyle>
+													</DataGridComboBoxColumn>
+													<DataGridTextColumn Header="{x:Static Properties:Resources.NOTE}" Width="200" Binding="{Binding MEMO}" IsReadOnly="True">
+														<DataGridTextColumn.EditingElementStyle>
+															<Style TargetType="{x:Type TextBox}">
+																<Setter Property="MaxLength" Value="200"/>
+																<Setter Property="DataGridCell.IsEnabled" Value="False"/>
+																<Style.Triggers>
+																	<DataTrigger Binding="{Binding DataContext.LackSelected2_Allot.REASON, RelativeSource={RelativeSource FindAncestor,AncestorType=DataGrid}}" Value="999">
+																		<Setter Property="DataGridCell.IsEnabled" Value="True"/>
+																	</DataTrigger>
+																</Style.Triggers>
+															</Style>
+														</DataGridTextColumn.EditingElementStyle>
+													</DataGridTextColumn>
+												</DataGrid.Columns>
+											</controls:ValidationDataGrid>
+										</DockPanel>
+									</GroupBox>
+								</DockPanel>
+							</ScrollViewer>
+						</DockPanel>
+					</TabItem>
+				</TabControl>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BOX_CTRL_NO" xml:space="preserve">
+    <value>Case number</value>
+  </data>
+  <data name="CategoryBegin" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="CloseDateBegin" xml:space="preserve">
+    <value>During settlement</value>
+  </data>
+  <data name="CustCodeIsExist" xml:space="preserve">
+    <value>Other commodities have been the owner</value>
+  </data>
+  <data name="CUST_NAME" xml:space="preserve">
+    <value>Freight Owner</value>
+  </data>
+  <data name="EnterDateBegin" xml:space="preserve">
+    <value>Warehousing period</value>
+  </data>
+  <data name="ENTER_DATE" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="ErrorCount" xml:space="preserve">
+    <value>Error items</value>
+  </data>
+  <data name="ImportDataErrorMessage" xml:space="preserve">
+    <value>{0} T still incorrect data, make sure the information display screen</value>
+  </data>
+  <data name="ImportFail" xml:space="preserve">
+    <value>Inventory Import Failed</value>
+  </data>
+  <data name="ImportFormatError" xml:space="preserve">
+    <value>Import file format error</value>
+  </data>
+  <data name="ImportIsSuccessed" xml:space="preserve">
+    <value>Import complete inventory</value>
+  </data>
+  <data name="ImportTotal" xml:space="preserve">
+    <value>Import Total items</value>
+  </data>
+  <data name="IsBoundleSerialLoc" xml:space="preserve">
+    <value>No. tied storage spaces</value>
+  </data>
+  <data name="IsExpand" xml:space="preserve">
+    <value>Term Expansion and warehousing Day</value>
+  </data>
+  <data name="IsMultiFlag" xml:space="preserve">
+    <value>Merchandise mix</value>
+  </data>
+  <data name="IsPickWareW" xml:space="preserve">
+    <value>Distribution Processing</value>
+  </data>
+  <data name="IsVirtualType" xml:space="preserve">
+    <value>virtual merchandise</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ItemQty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="ItemReturnRate" xml:space="preserve">
+    <value>Commodity slew rate</value>
+  </data>
+  <data name="ItemSearch" xml:space="preserve">
+    <value>Item Search</value>
+  </data>
+  <data name="ItemStock" xml:space="preserve">
+    <value>Commodity warehouses deposit</value>
+  </data>
+  <data name="ItemVerification" xml:space="preserve">
+    <value>Item number verification</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="ITEM_UNIT" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="LabelInfo" xml:space="preserve">
+    <value>Label Information</value>
+  </data>
+  <data name="LabelType" xml:space="preserve">
+    <value>label</value>
+  </data>
+  <data name="LeftDay" xml:space="preserve">
+    <value>The remaining number of days</value>
+  </data>
+  <data name="LocCodeBegin" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="LocCodeNotExist" xml:space="preserve">
+    <value>There is no storage spaces</value>
+  </data>
+  <data name="LocMixItem" xml:space="preserve">
+    <value>Items can be mixed</value>
+  </data>
+  <data name="LocStock" xml:space="preserve">
+    <value>Inventory storage spaces</value>
+  </data>
+  <data name="LocVerification" xml:space="preserve">
+    <value>Verify storage spaces</value>
+  </data>
+  <data name="LTypeBegin" xml:space="preserve">
+    <value>Main category</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="ManageSerailNo" xml:space="preserve">
+    <value>Serial number management</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="MixBatchno" xml:space="preserve">
+    <value>It can be mixed batch</value>
+  </data>
+  <data name="MTypeBegin" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Do not name warehouse</value>
+  </data>
+  <data name="NEW_START_NO" xml:space="preserve">
+    <value>The use of numbers</value>
+  </data>
+  <data name="NoDataToViewOrPrint" xml:space="preserve">
+    <value>No data, no preview or print!</value>
+  </data>
+  <data name="NotExist" xml:space="preserve">
+    <value>does not exist</value>
+  </data>
+  <data name="NOW_STATUS_NAME" xml:space="preserve">
+    <value>Status storage spaces</value>
+  </data>
+  <data name="NullEnterDateToday" xml:space="preserve">
+    <value>Blank storage date to today</value>
+  </data>
+  <data name="NullValidDateMax" xml:space="preserve">
+    <value>Blank duration that 9999/12/31</value>
+  </data>
+  <data name="OnlyShowErrorData" xml:space="preserve">
+    <value>Only error data</value>
+  </data>
+  <data name="P1801010000TotalVolumeOrUnitNull" xml:space="preserve">
+    <value>Information missing some of the goods</value>
+  </data>
+  <data name="P1801010000_ALLOCATION_SUM_QTY" xml:space="preserve">
+    <value>Virtual allocation</value>
+  </data>
+  <data name="P1801010000_CategoryTypeItemCodeLocCodeIsNullOrEmpty" xml:space="preserve">
+    <value>"Category", "large, medium and small category," "storage spaces", "item no" enter at least one search criteria</value>
+  </data>
+  <data name="P1801010000_CloseDateEmpty" xml:space="preserve">
+    <value>You must enter the settlement period</value>
+  </data>
+  <data name="P1801010000_CloseDateEnd" xml:space="preserve">
+    <value>Settlement date</value>
+  </data>
+  <data name="P1801010000_CloseDateInvalid" xml:space="preserve">
+    <value>As of the settlement date must be greater than during the day</value>
+  </data>
+  <data name="P1801010000_CustName" xml:space="preserve">
+    <value>Freight Owner</value>
+  </data>
+  <data name="P1801010000_EnterDate" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="P1801010000_ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P1801010000_ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="P1801010000_ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="P1801010000_ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="P1801010000_ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="P1801010000_LEND_QTY" xml:space="preserve">
+    <value>Number of foreign lending to send</value>
+  </data>
+  <data name="P1801010000_LimitQty" xml:space="preserve">
+    <value>Control Number</value>
+  </data>
+  <data name="P1801010000_LocCode" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="P1801010000_LTYPE_NAME" xml:space="preserve">
+    <value>Main category</value>
+  </data>
+  <data name="P1801010000_MTYPE_NAME" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="P1801010000_PickingQty" xml:space="preserve">
+    <value>Countable pick</value>
+  </data>
+  <data name="P1801010000_PICK_SUM_QTY" xml:space="preserve">
+    <value>Virtual shipments</value>
+  </data>
+  <data name="P1801010000_PROCESS_PICK_SUM_QTY" xml:space="preserve">
+    <value>Virtual machining</value>
+  </data>
+  <data name="P1801010000_RESERVATION_QTY" xml:space="preserve">
+    <value>The number of reservations</value>
+  </data>
+  <data name="P1801010000_STYPE_NAME" xml:space="preserve">
+    <value>Small class</value>
+  </data>
+  <data name="P1801010000_TotalInventory" xml:space="preserve">
+    <value>The total number of stock</value>
+  </data>
+  <data name="P1801010000_ValidDateEnd" xml:space="preserve">
+    <value>Commodity Term</value>
+  </data>
+  <data name="P1801010100_Confirm" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="P1801010100_ConfirmStockHasExists" xml:space="preserve">
+    <value>Have the same lot number and valid for merchandise inventory, make sure to adjust?</value>
+  </data>
+  <data name="P1801010100_HasSameVALID_DATE_Item" xml:space="preserve">
+    <value>There have been valid for the same product, make sure to adjust?</value>
+  </data>
+  <data name="P1801010100_MakeNoAdjustSuccess" xml:space="preserve">
+    <value>Lot adjust success</value>
+  </data>
+  <data name="P1801010100_NotAdjValidDateAndBatchNo" xml:space="preserve">
+    <value>Unadjusted lifetime and the lot number</value>
+  </data>
+  <data name="P1801010100_StockHasNotFound" xml:space="preserve">
+    <value>This stock information no longer exists</value>
+  </data>
+  <data name="P1801010100_ValidDateAdjustSuccess" xml:space="preserve">
+    <value>Term adjust success</value>
+  </data>
+  <data name="P1801010100_ValidDateAndBathNoNotSaveYet" xml:space="preserve">
+    <value>Term or lot number is not stored after the adjustment, make sure that you want to leave?</value>
+  </data>
+  <data name="P1801010100_ValidDateAndMakeNoAdjustSuccess" xml:space="preserve">
+    <value>Term Lot adjust success</value>
+  </data>
+  <data name="P1801010100_VALID_DATESamllThanToday" xml:space="preserve">
+    <value>Valid for less than today, may I ask whether you want to adjust it?</value>
+  </data>
+  <data name="PALLET_CTRL_NO" xml:space="preserve">
+    <value>Plate number</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="PrintOldLabel" xml:space="preserve">
+    <value>Printing labels up</value>
+  </data>
+  <data name="PrintQTY" xml:space="preserve">
+    <value>Print number of sheets</value>
+  </data>
+  <data name="QTY" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="QTYTotal" xml:space="preserve">
+    <value>The total number of stock</value>
+  </data>
+  <data name="RETURN_DAY" xml:space="preserve">
+    <value>Slew rate (days)</value>
+  </data>
+  <data name="RETURN_RATE" xml:space="preserve">
+    <value>Slew rate (number of times / month)</value>
+  </data>
+  <data name="SaveImport" xml:space="preserve">
+    <value>Stock transfer</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="SourceFile" xml:space="preserve">
+    <value>Source file</value>
+  </data>
+  <data name="STypeBegin" xml:space="preserve">
+    <value>Small class</value>
+  </data>
+  <data name="SureWantToleave" xml:space="preserve">
+    <value>You sure you want to leave?</value>
+  </data>
+  <data name="TOTAL_VOLUME" xml:space="preserve">
+    <value>Cargo volume</value>
+  </data>
+  <data name="UNIT" xml:space="preserve">
+    <value>The number of boxes</value>
+  </data>
+  <data name="USED_VOLUMN" xml:space="preserve">
+    <value>Use volume</value>
+  </data>
+  <data name="USEFUL_VOLUMN" xml:space="preserve">
+    <value>Available volume</value>
+  </data>
+  <data name="ValidDateAndBatchNoAdjust" xml:space="preserve">
+    <value>Term Lot adjustment</value>
+  </data>
+  <data name="ValidDateBegin" xml:space="preserve">
+    <value>Commodity Term</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="WarehouseName" xml:space="preserve">
+    <value>Do not name warehouse</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="AllocationNo" xml:space="preserve">
+    <value>Requisition number</value>
+  </data>
+  <data name="AllocationSeq" xml:space="preserve">
+    <value>Allocation Seq</value>
+  </data>
+  <data name="CrtDate" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CrtDateTime" xml:space="preserve">
+    <value>Create date time</value>
+  </data>
+  <data name="CrtName" xml:space="preserve">
+    <value>Create member</value>
+  </data>
+  <data name="EShopDate" xml:space="preserve">
+    <value>~</value>
+  </data>
+  <data name="Memo" xml:space="preserve">
+    <value>Memo</value>
+  </data>
+  <data name="P1802010000_CREATE_INVENTORY_NO" xml:space="preserve">
+    <value>Generate inventory</value>
+  </data>
+  <data name="P1802010000_CURRENT_LOC_CODE" xml:space="preserve">
+    <value>Current reserve</value>
+  </data>
+  <data name="P1802010000_CURRENT_SRC_WAREHOUSE_NAME" xml:space="preserve">
+    <value>Current warehouse</value>
+  </data>
+  <data name="P1802010000_PROCESSED_QTY" xml:space="preserve">
+    <value>Processing quantity</value>
+  </data>
+  <data name="P1802010000_QTY" xml:space="preserve">
+    <value>Number of abnormalities</value>
+  </data>
+  <data name="P1802010000_SRC_LOC_CODE" xml:space="preserve">
+    <value>Abnormal storage</value>
+  </data>
+  <data name="P1802010000_SRC_WAREHOUSE_NAME" xml:space="preserve">
+    <value>Abnormal warehouse</value>
+  </data>
+  <data name="SelectedDcCode" xml:space="preserve">
+    <value>Distribution Center</value>
+  </data>
+  <data name="SelectedProcFlag" xml:space="preserve">
+    <value>Processing method</value>
+  </data>
+  <data name="SourceNo" xml:space="preserve">
+    <value>No single source</value>
+  </data>
+  <data name="SrcType" xml:space="preserve">
+    <value>Source Type</value>
+  </data>
+  <data name="UpdDateTime" xml:space="preserve">
+    <value>Update date time</value>
+  </data>
+  <data name="UpdName" xml:space="preserve">
+    <value>Update date time</value>
+  </data>
+  <data name="P1802010000_IsDivide" xml:space="preserve">
+    <value>Because only part of the abnormal quantity is processed, this detail will be split into two, please confirm?</value>
+  </data>
+  <data name="P1802010000_QtyError" xml:space="preserve">
+    <value>The number of processing must not exceed the number of exceptions</value>
+  </data>
+  <data name="P1802010000_QtyNotChange" xml:space="preserve">
+    <value>If the processing method is pending, the processing quantity cannot be changed</value>
+  </data>
+  <data name="InfoNotModified" xml:space="preserve">
+    <value>No data changes, no need to save</value>
+  </data>
+  <data name="P1802010000_InsertFail" xml:space="preserve">
+    <value>Add failed!</value>
+  </data>
+  <data name="P1802010000_InsertSuccess" xml:space="preserve">
+    <value>! New inventory successful single number: {0}</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>product search</value>
+  </data>
+</root>

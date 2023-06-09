@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl xmlns:my="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" x:Class="Wms3pl.WpfClients.SharedViews.FunctionNavigator" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:services="clr-namespace:Wms3pl.WpfClient.Services;assembly=Wms3pl.WpfClient.Services" xmlns:debug="DebugVersion" xmlns:release="ReleaseVersion" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:Controles="clr-namespace:Wms3pl.WpfClients.SharedViews.Controls" xmlns:SharedViews="clr-namespace:Wms3pl.WpfClients.SharedViews" xmlns:Properties="clr-namespace:Wms3pl.WpfClients.SharedViews.Properties" xmlns:ViewModel="clr-namespace:Wms3pl.WpfClients.SharedViews.ViewModel" d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+  <UserControl.DataContext>
+    <ViewModel:FunctionNavigator_ViewModel />
+  </UserControl.DataContext>
+  <UserControl.CommandBindings>
+    <CommandBinding Command="{x:Static SharedViews:FunctionNavigator.FilterFocusCommand}" Executed="FilterFocusCommand_Executed" />
+  </UserControl.CommandBindings>
+  <UserControl.InputBindings>
+    <KeyBinding Command="{x:Static SharedViews:FunctionNavigator.FilterFocusCommand}" Modifiers="Ctrl" Key="E" />
+  </UserControl.InputBindings>
+  <UserControl.Resources>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibiltyConverter" />
+    <Style x:Key="TreeViewContainerStyle" TargetType="TreeViewItem">
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding IsChecked}" Value="False">
+          <Setter Property="Visibility" Value="Collapsed" />
+        </DataTrigger>
+      </Style.Triggers>
+      <Setter Property="IsExpanded" Value="True" />
+    </Style>
+    <Style x:Key="closeStyle" TargetType="TreeViewItem">
+      <Setter Property="IsExpanded" Value="False" />
+    </Style>
+    <Style x:Key="openStyle" TargetType="TreeViewItem">
+      <Setter Property="IsExpanded" Value="True" />
+    </Style>
+    <HierarchicalDataTemplate DataType="{x:Type services:Function}" ItemsSource="{Binding Path=Functions}" x:Key="FolderDataTemplate">
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
+      </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type services:Function}" ItemsSource="{Binding Path=Functions}" x:Key="PreferredFolderDataTemplate" ItemContainerStyle="{StaticResource TreeViewContainerStyle}">
+      <StackPanel Orientation="Horizontal" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibiltyConverter}}">
+        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
+      </StackPanel>
+    </HierarchicalDataTemplate>
+    <DataTemplate x:Key="LeafDocDataTemplate">
+      <WrapPanel Margin="-20, 0, 0, 0">
+        <my:PinButton IsPinned="{Binding IsChecked, Mode=TwoWay}" ToolTip="{x:Static Properties:Resources.SettingsWindow_AddRemovePreferences}" />
+        <TextBlock Text="{Binding Path=Name}" Cursor="Hand" ToolTip="{Binding Path=Name}" />
+      </WrapPanel>
+    </DataTemplate>
+    <Controles:FunctionTemplateSelector x:Key="allSelector" FolderDataTemplate="{StaticResource FolderDataTemplate}" LeafDocDataTemplate="{StaticResource LeafDocDataTemplate}" />
+    <Controles:FunctionTemplateSelector x:Key="preferredSelector" FolderDataTemplate="{StaticResource PreferredFolderDataTemplate}" LeafDocDataTemplate="{StaticResource LeafDocDataTemplate}" />
+  </UserControl.Resources>
+  <TabControl>
+    <TabItem Header="{x:Static Properties:Resources.SettingsWindow_All}">
+      <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static Properties:Resources.SettingsWindow_Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <DockPanel LastChildFill="True">
+            <Button Background="Red" Margin="0" ToolTip="{x:Static Properties:Resources.SettingsWindow_Clear}" DockPanel.Dock="Right" Click="Button_Click">
+              <Button.Style>
+                <Style TargetType="Button">
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=filter, Path=Text.Length}" Value="0">
+                      <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </Button.Style>
+              <Button.Template>
+                <ControlTemplate>
+                  <Label Style="{StaticResource HeaderCloseLabelStyle}" />
+                </ControlTemplate>
+              </Button.Template>
+            </Button>
+            <TextBox x:Name="filter" TextChanged="filter_TextChanged" KeyDown="filter_KeyDown">
+              <!--<i:Interaction.Triggers>
+							<i:EventTrigger EventName="TextChanged">
+								<MvvmLight:EventToCommand  Command="{Binding FilterCommand}" 
+																				 CommandParameter="{Binding Text, ElementName=filter, Mode=TwoWay}" 
+																				 MustToggleIsEnabledValue="True" />
+							</i:EventTrigger>
+						</i:Interaction.Triggers>-->
+              <my:WatermarkService.Watermark>
+                <Label Content="{x:Static Properties:Resources.SettingsWindow_InputCondition}" Margin="0, -8, 0, 0" />
+              </my:WatermarkService.Watermark>
+            </TextBox>
+          </DockPanel>
+          <TreeView x:Name="AllTreeView" ItemsSource="{Binding FilteredFunctions}" KeyDown="Treeview_KeyDown" ScrollViewer.IsDeferredScrollingEnabled="True" ItemTemplateSelector="{StaticResource allSelector}" MouseDoubleClick="TreeView_MouseDoubleClick" MouseLeftButtonUp="AllTreeView_MouseLeftButtonUp" Grid.Row="1" ItemContainerStyle="{StaticResource closeStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"></TreeView>
+        </Grid>
+      </telerik:RadBusyIndicator>
+    </TabItem>
+    <TabItem Header="{x:Static Properties:Resources.SettingsWindow_Preferences}">
+      <TabItem.Resources>
+        <ContextMenu x:Key="SolutionContext" StaysOpen="true">
+          <MenuItem Header="{x:Static Properties:Resources.SettingsWindow_ClearAllPreferences}" Click="RemoveAllPreferredClick" />
+        </ContextMenu>
+      </TabItem.Resources>
+      <TreeView x:Name="PreferedTreeView" ItemsSource="{Binding Functions}" KeyDown="Treeview_KeyDown" ScrollViewer.IsDeferredScrollingEnabled="True" ItemTemplateSelector="{StaticResource preferredSelector}" MouseDoubleClick="TreeView_MouseDoubleClick" MouseLeftButtonUp="AllTreeView_MouseLeftButtonUp" ItemContainerStyle="{StaticResource TreeViewContainerStyle}" ContextMenu="{StaticResource SolutionContext}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"></TreeView>
+    </TabItem>
+    <!--<mc:AlternateContent>
+			<mc:Choice Requires="debug">
+				<TabItem Header="已實作">
+					<TreeView x:Name="CodedTreeView" ItemsSource="{Binding CodedFunctions}"  KeyDown="Treeview_KeyDown"
+								ScrollViewer.IsDeferredScrollingEnabled="True" ItemTemplateSelector="{StaticResource allSelector}"
+								 MouseDoubleClick="TreeView_MouseDoubleClick" MouseLeftButtonUp="AllTreeView_MouseLeftButtonUp"
+								ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+				</TabItem>
+			</mc:Choice>
+		</mc:AlternateContent>-->
+  </TabControl>
+</UserControl>

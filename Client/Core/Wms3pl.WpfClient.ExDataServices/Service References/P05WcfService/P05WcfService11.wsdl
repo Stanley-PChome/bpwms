@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P05WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P05WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P05WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P05WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P05WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P05WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P05WcfService_InsertF050101_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050101" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_InsertF050101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050101Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_InsertExcelOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertExcelOrder" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_InsertExcelOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertExcelOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateF050101_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050101" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateF050101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050101Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_DeleteF050101_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF050101" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_DeleteF050101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF050101Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ApproveF050101_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveF050101" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ApproveF050101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveF050101Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateStatusCancelByWmsOrdNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusCancelByWmsOrdNo" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateStatusCancelByWmsOrdNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusCancelByWmsOrdNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateSourceNoStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSourceNoStatus" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateSourceNoStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSourceNoStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_InsertF050304_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050304" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_InsertF050304_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050304Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_DeleteF050304_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF050304" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_DeleteF050304_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF050304Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateF050304_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050304" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateF050304_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050304Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateOrderDelvRetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderDelvRetail" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_UpdateOrderDelvRetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderDelvRetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_BatchApproveF050101_InputMessage">
+    <wsdl:part name="parameters" element="tns:BatchApproveF050101" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_BatchApproveF050101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BatchApproveF050101Response" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_AllotStockTrialCalculation_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllotStockTrialCalculation" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_AllotStockTrialCalculation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllotStockTrialCalculationResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_SaveP05030401CreateAllocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveP05030401CreateAllocation" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_SaveP05030401CreateAllocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveP05030401CreateAllocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetP050112PickRetailCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetP050112PickRetailCount" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetP050112PickRetailCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetP050112PickRetailCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_CreateBatchPickData_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBatchPickData" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_CreateBatchPickData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBatchPickDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_DeleteBatchPickData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBatchPickData" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_DeleteBatchPickData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBatchPickDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_AGVStartupPick_InputMessage">
+    <wsdl:part name="parameters" element="tns:AGVStartupPick" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_AGVStartupPick_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AGVStartupPickResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ArtificalPick_InputMessage">
+    <wsdl:part name="parameters" element="tns:ArtificalPick" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ArtificalPick_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ArtificalPickResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ExecSow_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSow" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ExecSow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSowResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ExecSowToCaps_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSowToCaps" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ExecSowToCaps_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSowToCapsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ExecCapsReturn_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecCapsReturn" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ExecCapsReturn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecCapsReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ImportArtificalSowReturn_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportArtificalSowReturn" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_ImportArtificalSowReturn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportArtificalSowReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_AdjustAGVStations_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdjustAGVStations" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_AdjustAGVStations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdjustAGVStationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetPrintDataWmsOrdNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintDataWmsOrdNo" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetPrintDataWmsOrdNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintDataWmsOrdNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetPrintDataPickOrdNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintDataPickOrdNo" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetPrintDataPickOrdNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintDataPickOrdNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetPrintPickData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintPickData" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_GetPrintPickData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintPickDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_CalcatePercentWithUpdPickTool_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalcatePercentWithUpdPickTool" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_CalcatePercentWithUpdPickTool_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalcatePercentWithUpdPickToolResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_PrintUpdateBatchPickNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintUpdateBatchPickNo" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_PrintUpdateBatchPickNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintUpdateBatchPickNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_PrintUpdateRePickNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintUpdateRePickNo" />
+  </wsdl:message>
+  <wsdl:message name="P05WcfService_PrintUpdateRePickNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintUpdateRePickNoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P05WcfService">
+    <wsdl:operation name="InsertF050101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/InsertF050101" message="tns:P05WcfService_InsertF050101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/InsertF050101Response" message="tns:P05WcfService_InsertF050101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertExcelOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/InsertExcelOrder" message="tns:P05WcfService_InsertExcelOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/InsertExcelOrderResponse" message="tns:P05WcfService_InsertExcelOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/UpdateF050101" message="tns:P05WcfService_UpdateF050101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/UpdateF050101Response" message="tns:P05WcfService_UpdateF050101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF050101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/DeleteF050101" message="tns:P05WcfService_DeleteF050101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/DeleteF050101Response" message="tns:P05WcfService_DeleteF050101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveF050101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/ApproveF050101" message="tns:P05WcfService_ApproveF050101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/ApproveF050101Response" message="tns:P05WcfService_ApproveF050101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusCancelByWmsOrdNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/UpdateStatusCancelByWmsOrdNo" message="tns:P05WcfService_UpdateStatusCancelByWmsOrdNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/UpdateStatusCancelByWmsOrdNoResponse" message="tns:P05WcfService_UpdateStatusCancelByWmsOrdNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSourceNoStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/UpdateSourceNoStatus" message="tns:P05WcfService_UpdateSourceNoStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/UpdateSourceNoStatusResponse" message="tns:P05WcfService_UpdateSourceNoStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF050304">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/InsertF050304" message="tns:P05WcfService_InsertF050304_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/InsertF050304Response" message="tns:P05WcfService_InsertF050304_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF050304">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/DeleteF050304" message="tns:P05WcfService_DeleteF050304_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/DeleteF050304Response" message="tns:P05WcfService_DeleteF050304_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050304">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/UpdateF050304" message="tns:P05WcfService_UpdateF050304_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/UpdateF050304Response" message="tns:P05WcfService_UpdateF050304_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderDelvRetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/UpdateOrderDelvRetail" message="tns:P05WcfService_UpdateOrderDelvRetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/UpdateOrderDelvRetailResponse" message="tns:P05WcfService_UpdateOrderDelvRetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BatchApproveF050101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/BatchApproveF050101" message="tns:P05WcfService_BatchApproveF050101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/BatchApproveF050101Response" message="tns:P05WcfService_BatchApproveF050101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllotStockTrialCalculation">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/AllotStockTrialCalculation" message="tns:P05WcfService_AllotStockTrialCalculation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/AllotStockTrialCalculationResponse" message="tns:P05WcfService_AllotStockTrialCalculation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveP05030401CreateAllocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/SaveP05030401CreateAllocation" message="tns:P05WcfService_SaveP05030401CreateAllocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/SaveP05030401CreateAllocationResponse" message="tns:P05WcfService_SaveP05030401CreateAllocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetP050112PickRetailCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/GetP050112PickRetailCount" message="tns:P05WcfService_GetP050112PickRetailCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/GetP050112PickRetailCountResponse" message="tns:P05WcfService_GetP050112PickRetailCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBatchPickData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/CreateBatchPickData" message="tns:P05WcfService_CreateBatchPickData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/CreateBatchPickDataResponse" message="tns:P05WcfService_CreateBatchPickData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatchPickData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/DeleteBatchPickData" message="tns:P05WcfService_DeleteBatchPickData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/DeleteBatchPickDataResponse" message="tns:P05WcfService_DeleteBatchPickData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AGVStartupPick">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/AGVStartupPick" message="tns:P05WcfService_AGVStartupPick_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/AGVStartupPickResponse" message="tns:P05WcfService_AGVStartupPick_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ArtificalPick">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/ArtificalPick" message="tns:P05WcfService_ArtificalPick_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/ArtificalPickResponse" message="tns:P05WcfService_ArtificalPick_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecSow">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/ExecSow" message="tns:P05WcfService_ExecSow_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/ExecSowResponse" message="tns:P05WcfService_ExecSow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecSowToCaps">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/ExecSowToCaps" message="tns:P05WcfService_ExecSowToCaps_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/ExecSowToCapsResponse" message="tns:P05WcfService_ExecSowToCaps_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecCapsReturn">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/ExecCapsReturn" message="tns:P05WcfService_ExecCapsReturn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/ExecCapsReturnResponse" message="tns:P05WcfService_ExecCapsReturn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportArtificalSowReturn">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/ImportArtificalSowReturn" message="tns:P05WcfService_ImportArtificalSowReturn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/ImportArtificalSowReturnResponse" message="tns:P05WcfService_ImportArtificalSowReturn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAGVStations">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/AdjustAGVStations" message="tns:P05WcfService_AdjustAGVStations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/AdjustAGVStationsResponse" message="tns:P05WcfService_AdjustAGVStations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintDataWmsOrdNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/GetPrintDataWmsOrdNo" message="tns:P05WcfService_GetPrintDataWmsOrdNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/GetPrintDataWmsOrdNoResponse" message="tns:P05WcfService_GetPrintDataWmsOrdNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintDataPickOrdNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/GetPrintDataPickOrdNo" message="tns:P05WcfService_GetPrintDataPickOrdNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/GetPrintDataPickOrdNoResponse" message="tns:P05WcfService_GetPrintDataPickOrdNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintPickData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/GetPrintPickData" message="tns:P05WcfService_GetPrintPickData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/GetPrintPickDataResponse" message="tns:P05WcfService_GetPrintPickData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcatePercentWithUpdPickTool">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/CalcatePercentWithUpdPickTool" message="tns:P05WcfService_CalcatePercentWithUpdPickTool_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/CalcatePercentWithUpdPickToolResponse" message="tns:P05WcfService_CalcatePercentWithUpdPickTool_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintUpdateBatchPickNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/PrintUpdateBatchPickNo" message="tns:P05WcfService_PrintUpdateBatchPickNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/PrintUpdateBatchPickNoResponse" message="tns:P05WcfService_PrintUpdateBatchPickNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintUpdateRePickNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P05WcfService/PrintUpdateRePickNo" message="tns:P05WcfService_PrintUpdateRePickNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P05WcfService/PrintUpdateRePickNoResponse" message="tns:P05WcfService_PrintUpdateRePickNo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P05WcfService" type="tns:P05WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertF050101">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/InsertF050101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertExcelOrder">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/InsertExcelOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050101">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/UpdateF050101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF050101">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/DeleteF050101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveF050101">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/ApproveF050101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusCancelByWmsOrdNo">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/UpdateStatusCancelByWmsOrdNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSourceNoStatus">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/UpdateSourceNoStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF050304">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/InsertF050304" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF050304">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/DeleteF050304" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050304">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/UpdateF050304" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderDelvRetail">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/UpdateOrderDelvRetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BatchApproveF050101">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/BatchApproveF050101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllotStockTrialCalculation">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/AllotStockTrialCalculation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveP05030401CreateAllocation">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/SaveP05030401CreateAllocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetP050112PickRetailCount">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/GetP050112PickRetailCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBatchPickData">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/CreateBatchPickData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatchPickData">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/DeleteBatchPickData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AGVStartupPick">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/AGVStartupPick" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArtificalPick">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/ArtificalPick" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecSow">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/ExecSow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecSowToCaps">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/ExecSowToCaps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecCapsReturn">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/ExecCapsReturn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportArtificalSowReturn">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/ImportArtificalSowReturn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAGVStations">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/AdjustAGVStations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintDataWmsOrdNo">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/GetPrintDataWmsOrdNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintDataPickOrdNo">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/GetPrintDataPickOrdNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintPickData">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/GetPrintPickData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcatePercentWithUpdPickTool">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/CalcatePercentWithUpdPickTool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintUpdateBatchPickNo">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/PrintUpdateBatchPickNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintUpdateRePickNo">
+      <soap:operation soapAction="http://tempuri.org/P05WcfService/PrintUpdateRePickNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P05WcfService">
+    <wsdl:port name="BasicHttpBinding_P05WcfService" binding="tns:BasicHttpBinding_P05WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P05WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

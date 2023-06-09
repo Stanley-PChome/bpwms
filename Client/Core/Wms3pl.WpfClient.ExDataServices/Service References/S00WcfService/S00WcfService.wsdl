@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="S00WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/S00WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/S00WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/S00WcfService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/S00WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="S00WcfService_SettleDaily_InputMessage">
+    <wsdl:part name="parameters" element="tns:SettleDaily" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_SettleDaily_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SettleDailyResponse" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_GetContractSettleDatas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContractSettleDatas" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_GetContractSettleDatas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContractSettleDatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_DailyStockBackup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DailyStockBackup" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_DailyStockBackup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DailyStockBackupResponse" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_InsertStockSettle_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertStockSettle" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_InsertStockSettle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertStockSettleResponse" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_CalcWorkPerformanceDaily_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalcWorkPerformanceDaily" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_CalcWorkPerformanceDaily_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalcWorkPerformanceDailyResponse" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_CalcSettleReportDaily_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalcSettleReportDaily" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_CalcSettleReportDaily_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalcSettleReportDailyResponse" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_CalculateShipFee_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateShipFee" />
+  </wsdl:message>
+  <wsdl:message name="S00WcfService_CalculateShipFee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateShipFeeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="S00WcfService">
+    <wsdl:operation name="SettleDaily">
+      <wsdl:input wsaw:Action="http://tempuri.org/S00WcfService/SettleDaily" message="tns:S00WcfService_SettleDaily_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S00WcfService/SettleDailyResponse" message="tns:S00WcfService_SettleDaily_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContractSettleDatas">
+      <wsdl:input wsaw:Action="http://tempuri.org/S00WcfService/GetContractSettleDatas" message="tns:S00WcfService_GetContractSettleDatas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S00WcfService/GetContractSettleDatasResponse" message="tns:S00WcfService_GetContractSettleDatas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DailyStockBackup">
+      <wsdl:input wsaw:Action="http://tempuri.org/S00WcfService/DailyStockBackup" message="tns:S00WcfService_DailyStockBackup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S00WcfService/DailyStockBackupResponse" message="tns:S00WcfService_DailyStockBackup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertStockSettle">
+      <wsdl:input wsaw:Action="http://tempuri.org/S00WcfService/InsertStockSettle" message="tns:S00WcfService_InsertStockSettle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S00WcfService/InsertStockSettleResponse" message="tns:S00WcfService_InsertStockSettle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcWorkPerformanceDaily">
+      <wsdl:input wsaw:Action="http://tempuri.org/S00WcfService/CalcWorkPerformanceDaily" message="tns:S00WcfService_CalcWorkPerformanceDaily_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S00WcfService/CalcWorkPerformanceDailyResponse" message="tns:S00WcfService_CalcWorkPerformanceDaily_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcSettleReportDaily">
+      <wsdl:input wsaw:Action="http://tempuri.org/S00WcfService/CalcSettleReportDaily" message="tns:S00WcfService_CalcSettleReportDaily_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S00WcfService/CalcSettleReportDailyResponse" message="tns:S00WcfService_CalcSettleReportDaily_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateShipFee">
+      <wsdl:input wsaw:Action="http://tempuri.org/S00WcfService/CalculateShipFee" message="tns:S00WcfService_CalculateShipFee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S00WcfService/CalculateShipFeeResponse" message="tns:S00WcfService_CalculateShipFee_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_S00WcfService" type="tns:S00WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SettleDaily">
+      <soap:operation soapAction="http://tempuri.org/S00WcfService/SettleDaily" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContractSettleDatas">
+      <soap:operation soapAction="http://tempuri.org/S00WcfService/GetContractSettleDatas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DailyStockBackup">
+      <soap:operation soapAction="http://tempuri.org/S00WcfService/DailyStockBackup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertStockSettle">
+      <soap:operation soapAction="http://tempuri.org/S00WcfService/InsertStockSettle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcWorkPerformanceDaily">
+      <soap:operation soapAction="http://tempuri.org/S00WcfService/CalcWorkPerformanceDaily" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcSettleReportDaily">
+      <soap:operation soapAction="http://tempuri.org/S00WcfService/CalcSettleReportDaily" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateShipFee">
+      <soap:operation soapAction="http://tempuri.org/S00WcfService/CalculateShipFee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="S00WcfService">
+    <wsdl:port name="BasicHttpBinding_S00WcfService" binding="tns:BasicHttpBinding_S00WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/S00WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

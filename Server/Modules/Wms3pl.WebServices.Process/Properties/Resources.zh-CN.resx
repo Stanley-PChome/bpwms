@@ -1,0 +1,2058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CheckQtyError" xml:space="preserve">
+    <value>实收总数已等于应刷数，不用刷读序号!</value>
+  </data>
+  <data name="DataDelete" xml:space="preserve">
+    <value>资料已被删除, 请重新查询</value>
+  </data>
+  <data name="F02020101DataNotExist" xml:space="preserve">
+    <value>资料已不存在, 请重新查询</value>
+  </data>
+  <data name="F02020104NotExist" xml:space="preserve">
+    <value>查无进货序号档!</value>
+  </data>
+  <data name="F020301DataExist" xml:space="preserve">
+    <value>已有序号收集资料</value>
+  </data>
+  <data name="F020301DataNotExist" xml:space="preserve">
+    <value>无序号收集资料</value>
+  </data>
+  <data name="FileNameExist" xml:space="preserve">
+    <value>该档名已存在!</value>
+  </data>
+  <data name="NotExistsEmptyShopNoByBundleSerialNo" xml:space="preserve">
+    <value>该进仓单无采购单号，请确定是否继续作业?</value>
+  </data>
+  <data name="OutOfStockFail" xml:space="preserve">
+    <value>缺货确认更新失败</value>
+  </data>
+  <data name="P140101Service_InventoryDetailItemsHaveDeleted" xml:space="preserve">
+    <value>此盘点单已删除</value>
+  </data>
+  <data name="P140101Service_Negative" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="P140101Service_NoInventoryItem" xml:space="preserve">
+    <value>无可盘点商品</value>
+  </data>
+  <data name="P140101Service_SameCustYearMonthWarehouseIdDuplicate" xml:space="preserve">
+    <value>相同业主+年+月+仓别[{0}] 楼层、通道、座起讫重复</value>
+  </data>
+  <data name="P140101Service_SameCustYearMonthWarehouseIdExist" xml:space="preserve">
+    <value>相同业主+年+月+盘点次数资料已存在</value>
+  </data>
+  <data name="P140103Service_InventoryLoss_NeedSaveItemCodeInInventoryList" xml:space="preserve">
+    <value>为盘损，汇入的序号必须存在此盘点单内</value>
+  </data>
+  <data name="P140103Service_InventorySurplus_NeedSaveItemCodeInInventoryList" xml:space="preserve">
+    <value>为盘盈，汇入的序号必须全部存在此盘点单内</value>
+  </data>
+  <data name="P140103Service_ITEM_CODE" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="P140103Service_LocNotFound" xml:space="preserve">
+    <value>找不到管理仓</value>
+  </data>
+  <data name="P140103Service_NoEnough" xml:space="preserve">
+    <value>品号为</value>
+  </data>
+  <data name="P140103Service_NoEnoughItemCode" xml:space="preserve">
+    <value>序号数不足</value>
+  </data>
+  <data name="P140103Service_NoRequestItem" xml:space="preserve">
+    <value>不须汇入品号</value>
+  </data>
+  <data name="P140103Service_RequestItem" xml:space="preserve">
+    <value>缺少品号为</value>
+  </data>
+  <data name="P140103Service_RequestItemCode" xml:space="preserve">
+    <value>的序号</value>
+  </data>
+  <data name="P140104Service_EnterQtyEmpty" xml:space="preserve">
+    <value>尚未输入盘点结果</value>
+  </data>
+  <data name="P140104Service_StatusDataHasChanged" xml:space="preserve">
+    <value>该盘点单状态已被变更，请重新查询资料确认!</value>
+  </data>
+  <data name="PurchaseNoError" xml:space="preserve">
+    <value>进仓单号不正确</value>
+  </data>
+  <data name="PurchaseNoNotExist" xml:space="preserve">
+    <value>此进仓单号不存在!</value>
+  </data>
+  <data name="PurchaseStatusError" xml:space="preserve">
+    <value>该进仓单状态为异常，无法进行商品检验</value>
+  </data>
+  <data name="RepeatSerails" xml:space="preserve">
+    <value>序号重复:</value>
+  </data>
+  <data name="SerialNoExist" xml:space="preserve">
+    <value>序号已存在</value>
+  </data>
+  <data name="SerialNoIsNull" xml:space="preserve">
+    <value>序号不可为空白</value>
+  </data>
+  <data name="SrcLocNotExist" xml:space="preserve">
+    <value>找不到可用的进货暂存仓储位</value>
+  </data>
+  <data name="ValiDateError" xml:space="preserve">
+    <value>今日有可出货的订单，但品号{0}商品效期小於今天，造成验收无法完成。</value>
+  </data>
+  <data name="ValiDateError1" xml:space="preserve">
+    <value>请利用商品检验更改正确效期。</value>
+  </data>
+  <data name="VirtualItemNotExist" xml:space="preserve">
+    <value>找不到可用的虚拟商品储位</value>
+  </data>
+  <data name="VirtualTtypError1" xml:space="preserve">
+    <value>虚拟商品序号数最多{0}个,</value>
+  </data>
+  <data name="VirtualTtypError2" xml:space="preserve">
+    <value>已存在序号数{1}+本次汇入序号数{2}已超过{0}个</value>
+  </data>
+  <data name="P14ExDataService.cs_LocCodeNotFound" xml:space="preserve">
+    <value>储位不存在</value>
+  </data>
+  <data name="P150201Servicepart1_FailMessage" xml:space="preserve">
+    <value>失败原因{0}{1}</value>
+  </data>
+  <data name="P150201Servicepart1_ImportFail" xml:space="preserve">
+    <value> 汇入失败，汇入资料内有非系统目前所在的业主和货主调拨资料，请分开并分别汇入!</value>
+  </data>
+  <data name="P150201Servicepart1_ImportFailCount" xml:space="preserve">
+    <value>汇入失败 :总笔数 {0} , 检核失败 {1} 笔{2}{3}</value>
+  </data>
+  <data name="P150201Servicepart1_ImportResult" xml:space="preserve">
+    <value>汇入结果 :总笔数 {0} , 成功 {1} 笔 , 失败 {2} 笔, 成功新增单据 {3} 张 {4}</value>
+  </data>
+  <data name="P150201Servicepart1_SRCDC_Code" xml:space="preserve">
+    <value>来源DC:{0} 来源仓:{1} 来源储位{2} 品号{3}调拨数量超过库存</value>
+  </data>
+  <data name="P150201Service_WarehouseIdCannotIncludeLocCode" xml:space="preserve">
+    <value>该储位不包含在该仓别中! \n</value>
+  </data>
+  <data name="P190101Service_DataDeleted" xml:space="preserve">
+    <value>资料已被删除</value>
+  </data>
+  <data name="P190101Service_DataExist" xml:space="preserve">
+    <value>资料已存在, 请重新查询</value>
+  </data>
+  <data name="P190101Service_Data_Deleted" xml:space="preserve">
+    <value>资料已被删除, 请重新查询</value>
+  </data>
+  <data name="P190101Service_DC_Code_Duplicate" xml:space="preserve">
+    <value>物流中心编号重复!</value>
+  </data>
+  <data name="P190102Service_ACC_TYPE" xml:space="preserve">
+    <value>计价类别</value>
+  </data>
+  <data name="P190102Service_ALLOWORDITEM" xml:space="preserve">
+    <value>是否可原箱出货</value>
+  </data>
+  <data name="P190102Service_ALLOW_ALL_DLN" xml:space="preserve">
+    <value>放宽允收天数</value>
+  </data>
+  <data name="P190102Service_ALL_DLN" xml:space="preserve">
+    <value>允收天数</value>
+  </data>
+  <data name="P190102Service_BORROW_DAY" xml:space="preserve">
+    <value>最大可借出天数</value>
+  </data>
+  <data name="P190102Service_BUNDLE_SERIALLOC" xml:space="preserve">
+    <value>序号绑储位</value>
+  </data>
+  <data name="P190102Service_BUNDLE_SERIALNO" xml:space="preserve">
+    <value>序号商品</value>
+  </data>
+  <data name="P190102Service_CAN_SPILT_IN" xml:space="preserve">
+    <value>是否允许分批进货</value>
+  </data>
+  <data name="P190102Service_CHECK_PERCENT" xml:space="preserve">
+    <value>抽验比例</value>
+  </data>
+  <data name="P190102Service_Color" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="P190102Service_CrossItemMemo" xml:space="preserve">
+    <value>越库商品注记</value>
+  </data>
+  <data name="P190102Service_CustItemDataDeleted" xml:space="preserve">
+    <value>货主商品主档已被删除</value>
+  </data>
+  <data name="P190102Service_CUST_ITEM_CODE" xml:space="preserve">
+    <value>客户品号</value>
+  </data>
+  <data name="P190102Service_DELV_QTY_AVG" xml:space="preserve">
+    <value>每日出货平均数</value>
+  </data>
+  <data name="P190102Service_EANCODE1" xml:space="preserve">
+    <value>商品条码一</value>
+  </data>
+  <data name="P190102Service_EANCODE2" xml:space="preserve">
+    <value>商品条码二</value>
+  </data>
+  <data name="P190102Service_EANCODE3" xml:space="preserve">
+    <value>商品条码三</value>
+  </data>
+  <data name="P190102Service_EnviromentalTax" xml:space="preserve">
+    <value>环保税</value>
+  </data>
+  <data name="P190102Service_Format" xml:space="preserve">
+    <value>{0}格式必须为{1}码整数{2}码小数</value>
+  </data>
+  <data name="P190102Service_FRAGILE" xml:space="preserve">
+    <value>易碎品包装</value>
+  </data>
+  <data name="P190102Service_ImportItem_Duplicate" xml:space="preserve">
+    <value>此商品{0}重复存在此汇入清单中</value>
+  </data>
+  <data name="P190102Service_ImportResult" xml:space="preserve">
+    <value>汇入成功{0}笔，失败{1}笔，更新{2}笔，共{3}笔</value>
+  </data>
+  <data name="P190102Service_ISApple" xml:space="preserve">
+    <value>是否为苹果商品</value>
+  </data>
+  <data name="P190102Service_ISCARTON" xml:space="preserve">
+    <value>是否为纸箱</value>
+  </data>
+  <data name="P190102Service_ItemAttribute" xml:space="preserve">
+    <value>商品属性</value>
+  </data>
+  <data name="P190102Service_ItemDataUpdate" xml:space="preserve">
+    <value>商品主档更新</value>
+  </data>
+  <data name="P190102Service_ItemEnglishName" xml:space="preserve">
+    <value>商品英文名称</value>
+  </data>
+  <data name="P190102Service_ItemHideName" xml:space="preserve">
+    <value>商品隐藏名称</value>
+  </data>
+  <data name="P190102Service_ItemInChargeNotFound" xml:space="preserve">
+    <value>商品负责人员不存在於员工主档中</value>
+  </data>
+  <data name="P190102Service_ItemName" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="P190102Service_ItemNo" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="P190102Service_ItemNo_DisContinuedItem_Duplicate" xml:space="preserve">
+    <value>商品编号与停用商品重复</value>
+  </data>
+  <data name="P190102Service_ItemNo_Duplicate" xml:space="preserve">
+    <value>商品编号重复</value>
+  </data>
+  <data name="P190102Service_ItemSerialRule" xml:space="preserve">
+    <value>序号检核规则</value>
+  </data>
+  <data name="P190102Service_ItemType" xml:space="preserve">
+    <value>商品类别</value>
+  </data>
+  <data name="P190102Service_ITEM_HUMIDITY" xml:space="preserve">
+    <value>商品保存湿度</value>
+  </data>
+  <data name="P190102Service_ITEM_STAFF" xml:space="preserve">
+    <value>商品负责人</value>
+  </data>
+  <data name="P190102Service_LengthLessThan" xml:space="preserve">
+    <value>{0}{1}长度必须小於等於{2}</value>
+  </data>
+  <data name="P190102Service_LG" xml:space="preserve">
+    <value>出货是否附上保证书</value>
+  </data>
+  <data name="P190102Service_LOC_MIX_ITEM" xml:space="preserve">
+    <value>是否可储位混商品</value>
+  </data>
+  <data name="P190102Service_LType" xml:space="preserve">
+    <value>大分类</value>
+  </data>
+  <data name="P190102Service_LTypeNotExist" xml:space="preserve">
+    <value>大分类{0}不存在</value>
+  </data>
+  <data name="P190102Service_MaterialsType" xml:space="preserve">
+    <value>物料类型</value>
+  </data>
+  <data name="P190102Service_MEMO" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="P190102Service_MIX_BATCHNO" xml:space="preserve">
+    <value>是否可混批摆放於储位</value>
+  </data>
+  <data name="P190102Service_MType" xml:space="preserve">
+    <value>中分类</value>
+  </data>
+  <data name="P190102Service_MTypeNotExist" xml:space="preserve">
+    <value>中分类{0}不存在</value>
+  </data>
+  <data name="P190102Service_MustBeNumber" xml:space="preserve">
+    <value>{0}必须为数值</value>
+  </data>
+  <data name="P190102Service_MustGreaterThanZeroLessThanOne" xml:space="preserve">
+    <value>{0}必须为0或1</value>
+  </data>
+  <data name="P190102Service_NotExist" xml:space="preserve">
+    <value>{0}{1}不存在</value>
+  </data>
+  <data name="P190102Service_NO_PRICE" xml:space="preserve">
+    <value>是否无价商品</value>
+  </data>
+  <data name="P190102Service_ORD_SAVE_QTY" xml:space="preserve">
+    <value>采购安全库存量</value>
+  </data>
+  <data name="P190102Service_PackHightByView" xml:space="preserve">
+    <value>商品高(cm)</value>
+  </data>
+  <data name="P190102Service_PackLengthByView" xml:space="preserve">
+    <value>商品长(cm)</value>
+  </data>
+  <data name="P190102Service_PackWeightByView" xml:space="preserve">
+    <value>商品重量(g)</value>
+  </data>
+  <data name="P190102Service_PackWidthByView" xml:space="preserve">
+    <value>商品宽(cm)</value>
+  </data>
+  <data name="P190102Service_PICK_SAVE_ORD" xml:space="preserve">
+    <value>补货最小单位数</value>
+  </data>
+  <data name="P190102Service_PICK_SAVE_QTY" xml:space="preserve">
+    <value>补货安全库存量</value>
+  </data>
+  <data name="P190102Service_PICK_WARE_ID" xml:space="preserve">
+    <value>上架仓别</value>
+  </data>
+  <data name="P190102Service_Product_Hierarchy" xml:space="preserve">
+    <value>产品阶层</value>
+  </data>
+  <data name="P190102Service_Required" xml:space="preserve">
+    <value>{0}必填</value>
+  </data>
+  <data name="P190102Service_RET_ORD" xml:space="preserve">
+    <value>订购倍数</value>
+  </data>
+  <data name="P190102Service_SAVE_DAY" xml:space="preserve">
+    <value>补货安全库存天数</value>
+  </data>
+  <data name="P190102Service_SERIALNO_DIGIT" xml:space="preserve">
+    <value>序号码数</value>
+  </data>
+  <data name="P190102Service_SERIAL_BEGIN" xml:space="preserve">
+    <value>序号开头</value>
+  </data>
+  <data name="P190102Service_SIM_Spec" xml:space="preserve">
+    <value>SIM卡规格说明</value>
+  </data>
+  <data name="P190102Service_Spec" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="P190102Service_SPILL" xml:space="preserve">
+    <value>防溢漏包装</value>
+  </data>
+  <data name="P190102Service_SType" xml:space="preserve">
+    <value>小分类</value>
+  </data>
+  <data name="P190102Service_STypeNotExist" xml:space="preserve">
+    <value>小分类{0}不存在</value>
+  </data>
+  <data name="P190102Service_TMPR_TYPE" xml:space="preserve">
+    <value>商品保存温层</value>
+  </data>
+  <data name="P190102Service_Unit" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="P190102Service_UnitNotExist" xml:space="preserve">
+    <value>单位{0}不存在</value>
+  </data>
+  <data name="P190102Service_UsingItemCannotDelete" xml:space="preserve">
+    <value>该商品仍然在使用，无法删除</value>
+  </data>
+  <data name="P190102Service_VEN_ORD" xml:space="preserve">
+    <value>供应商最低订量</value>
+  </data>
+  <data name="P190102Service_VIRTUAL_TYPE" xml:space="preserve">
+    <value>虚拟商品类别</value>
+  </data>
+  <data name="P190103Service_DataExist_CannotInsert" xml:space="preserve">
+    <value>资料已存在无法新增, 请重新查询</value>
+  </data>
+  <data name="P190103Service_DataExist_CannotUpdate" xml:space="preserve">
+    <value>资料已存在无法更新, 请重新查询</value>
+  </data>
+  <data name="P190103Service_DataNotFound_CannotDelete" xml:space="preserve">
+    <value>资料不存在无法删除, 请重新查询</value>
+  </data>
+  <data name="P190109Service_HasDeleted" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="P190109Service_VNRStatus_CannotDelete" xml:space="preserve">
+    <value>此此厂商状态已无法删除</value>
+  </data>
+  <data name="P190109Service_VNRUsing_CannotDelete" xml:space="preserve">
+    <value>该厂商仍然在使用，无法删除</value>
+  </data>
+  <data name="P190109Service_VNR_NotFound" xml:space="preserve">
+    <value>此厂商不存在，已无法删除</value>
+  </data>
+  <data name="P190110Service_Retail_Duplicate" xml:space="preserve">
+    <value>门市资料重覆</value>
+  </data>
+  <data name="P190116Service_DELV_No_Deleted" xml:space="preserve">
+    <value>车次主档已被删除</value>
+  </data>
+  <data name="P190116Service_DELV_No_Duplicate" xml:space="preserve">
+    <value>车次资料重覆</value>
+  </data>
+  <data name="P190501Service_EmpExist" xml:space="preserve">
+    <value>员工编号已存在, 请重新查询</value>
+  </data>
+  <data name="P190504Service_ItemHasDeleted" xml:space="preserve">
+    <value>项目已被删除, 请重新查询</value>
+  </data>
+  <data name="P190505Service_WorkGroupDeleted" xml:space="preserve">
+    <value>工作群组已被删除, 请重新查询</value>
+  </data>
+  <data name="P190506Service_AccountNeedDifferenceToPassWord" xml:space="preserve">
+    <value>密码不能和帐号相同！</value>
+  </data>
+  <data name="P190506Service_IsOverPasswordValidDays" xml:space="preserve">
+    <value>已超过{0}天未变更密码!</value>
+  </data>
+  <data name="P190506Service_PasswordDifferenceToConfirmPassword" xml:space="preserve">
+    <value>密码与确认密码不同！</value>
+  </data>
+  <data name="P190506Service_PasswordHistory_Duplicate" xml:space="preserve">
+    <value>密码更新{0}次内不能重复！</value>
+  </data>
+  <data name="P190506Service_PasswordInvalid" xml:space="preserve">
+    <value>密码长度至少{0}个字元，内含英文与数字！</value>
+  </data>
+  <data name="P190506Service_PasswordLimitCharInvalid" xml:space="preserve">
+    <value>密码至少要有{0}个非数字字元！</value>
+  </data>
+  <data name="P190507Service_WorkGroupName_Duplicate" xml:space="preserve">
+    <value>作业群组名称重复</value>
+  </data>
+  <data name="P190507Service_WorkGroupParam_Required" xml:space="preserve">
+    <value>作业群组参数必须要填写</value>
+  </data>
+  <data name="P190508Service_WorkGroupDeleted" xml:space="preserve">
+    <value>作业群组已被删除, 请重新查询</value>
+  </data>
+  <data name="P190702Service_FUN_IDNotFound" xml:space="preserve">
+    <value>查无指定FUN_ID资料</value>
+  </data>
+  <data name="P190702Service_FUN_IDUnSet" xml:space="preserve">
+    <value>FUN_ID未设定</value>
+  </data>
+  <data name="P190702Service_FUN_SQLNotFound" xml:space="preserve">
+    <value>查无指定FUN_SQL资料</value>
+  </data>
+  <data name="P190702Service_QIDNotFound" xml:space="preserve">
+    <value>查无指定QID资料</value>
+  </data>
+  <data name="P192018Service_Update" xml:space="preserve">
+    <value>已更新</value>
+  </data>
+  <data name="P192019Service_Cust_CodeNotFound" xml:space="preserve">
+    <value>找不到此货主主档</value>
+  </data>
+  <data name="P192019Service_Deleted" xml:space="preserve">
+    <value>此{0}{1}已删除!</value>
+  </data>
+  <data name="P192019Service_Deleted_CannotModify" xml:space="preserve">
+    <value>此{0}{1}已删除，无法修改!</value>
+  </data>
+  <data name="P192019Service_Exist_CannotInsert" xml:space="preserve">
+    <value>此{0}{1}已存在，无法新增!</value>
+  </data>
+  <data name="P192019Service_ItemSetExist" xml:space="preserve">
+    <value>此{0}{1}已有商品设定，不可删除!</value>
+  </data>
+  <data name="P197001Service_ITEM_CODE_NotFound" xml:space="preserve">
+    <value>料号{0}不存在!</value>
+  </data>
+  <data name="P197001Service_ITEM_CODE_Required" xml:space="preserve">
+    <value>料号为必填!</value>
+  </data>
+  <data name="P197001Service_Label_Duplicate" xml:space="preserve">
+    <value>此标签已重复新增!</value>
+  </data>
+  <data name="P197001Service_PrintCount_Required" xml:space="preserve">
+    <value>列印数量为必填!</value>
+  </data>
+  <data name="P197001Service_VNR_Code_NotFound" xml:space="preserve">
+    <value>厂商代码{0}不存在!</value>
+  </data>
+  <data name="P197001Service_VNR_Code_Required" xml:space="preserve">
+    <value>厂商代码为必填!</value>
+  </data>
+  <data name="P197001Service_warrantyDate_Required" xml:space="preserve">
+    <value>保固日期为必填!</value>
+  </data>
+  <data name="P197001Service_warrantyYear_Required" xml:space="preserve">
+    <value>保固年限为必填!</value>
+  </data>
+  <data name="P160101Servicepart1_ItemCodeFormatError_L" xml:space="preserve">
+    <value>商品编号格式不正确,开头必须为左括弧;</value>
+  </data>
+  <data name="P160101Servicepart1_ItemCodeFormatError_LF" xml:space="preserve">
+    <value>商品编号格式不正确,找不到左右括弧;</value>
+  </data>
+  <data name="P160101Servicepart1_RTN_No_Empty" xml:space="preserve">
+    <value>退货单号为空值 ;</value>
+  </data>
+  <data name="P160101Service_addParam_Required" xml:space="preserve">
+    <value>addF161201, addF161202s 参数不能为 NULL</value>
+  </data>
+  <data name="P160101Service_ADR_Empty" xml:space="preserve">
+    <value>地址为空值 ;</value>
+  </data>
+  <data name="P160101Service_Contactor_Empty" xml:space="preserve">
+    <value>联络人为空值 ;</value>
+  </data>
+  <data name="P160101Service_CUST_CODE_Empty" xml:space="preserve">
+    <value>客户编号为空值 ;</value>
+  </data>
+  <data name="P160101Service_CUST_SYS_NO_NotFound" xml:space="preserve">
+    <value>找不到货主主档的系统编号 ;</value>
+  </data>
+  <data name="P160101Service_DC_CUSTCODE_GUPCODE_Required" xml:space="preserve">
+    <value>必须输入物流中心、业主、货主</value>
+  </data>
+  <data name="P160101Service_editParam_Required" xml:space="preserve">
+    <value>editF161201, editF161202s 参数不能为 NULL</value>
+  </data>
+  <data name="P160101Service_EditRtn" xml:space="preserve">
+    <value>已编辑退货单</value>
+  </data>
+  <data name="P160101Service_GUP_SYS_NO_NotFound" xml:space="preserve">
+    <value>找不到业主主档的系统编号;</value>
+  </data>
+  <data name="P160101Service_ImportResult" xml:space="preserve">
+    <value>汇入结果 :总笔数: {0} , 成功 {1} 笔 , 失败 {2} 笔</value>
+  </data>
+  <data name="P160101Service_Item_Code_Empty" xml:space="preserve">
+    <value>商品品号为空值 ;</value>
+  </data>
+  <data name="P160101Service_Item_Code_NotFound" xml:space="preserve">
+    <value>找不到商品编号 ;</value>
+  </data>
+  <data name="P160101Service_ONE_CUST_CODE_Required" xml:space="preserve">
+    <value>一个档案只能有一种货主</value>
+  </data>
+  <data name="P160101Service_Pending" xml:space="preserve">
+    <value>状态非为待处理，不可删除</value>
+  </data>
+  <data name="P160101Service_Retail_Code_NotFound" xml:space="preserve">
+    <value>找不到门市编号 ;</value>
+  </data>
+  <data name="P160101Service_RTN_Casuse_Empty" xml:space="preserve">
+    <value>退货原因为空值 ;</value>
+  </data>
+  <data name="P160101Service_RTN_Cause_NotFound" xml:space="preserve">
+    <value>找不到退货原因编号 ;</value>
+  </data>
+  <data name="P160101Service_RTN_Close" xml:space="preserve">
+    <value>此退货单已结案，不能修改</value>
+  </data>
+  <data name="P160101Service_RTN_Count_Zero" xml:space="preserve">
+    <value>退货量为 0 ;</value>
+  </data>
+  <data name="P160101Service_RTN_Deleted" xml:space="preserve">
+    <value>此退货单已被删除，不能修改</value>
+  </data>
+  <data name="P160101Service_RTN_NotFound" xml:space="preserve">
+    <value>该退货单不存在</value>
+  </data>
+  <data name="P160101Service_RTN_NO_Duplicate" xml:space="preserve">
+    <value>退货单号重复取得</value>
+  </data>
+  <data name="P160101Service_RTN_SRC_NO_UnabledDelete" xml:space="preserve">
+    <value>该退货单的来源单据已勾稽，不可删除</value>
+  </data>
+  <data name="P160101Service_RTN_SRC_NO_UnabledEdit" xml:space="preserve">
+    <value>该退货单的来源单据已勾稽，不可编辑</value>
+  </data>
+  <data name="P160101Service_RTN_Type_Empty" xml:space="preserve">
+    <value>退货类型为空值 ;</value>
+  </data>
+  <data name="P160101Service_RTN_Type_NotFound" xml:space="preserve">
+    <value>找不到退货类型编号 ;</value>
+  </data>
+  <data name="P160101Service_TEL_Empty" xml:space="preserve">
+    <value>电话为空值 ;</value>
+  </data>
+  <data name="P160101Service_WorkType_Empty" xml:space="preserve">
+    <value>作业类别为空值 ;</value>
+  </data>
+  <data name="P160101Service_WorkType_NotFound" xml:space="preserve">
+    <value>找不到作业类别编号 ;</value>
+  </data>
+  <data name="P160102Service_Create_Trans_No" xml:space="preserve">
+    <value>已建立调拨(退货上架)申请单</value>
+  </data>
+  <data name="P160102Service_DeletedTrans" xml:space="preserve">
+    <value>已删除调拨(退货上架)申请单</value>
+  </data>
+  <data name="P160102Service_ParamError" xml:space="preserve">
+    <value>参数错误</value>
+  </data>
+  <data name="P160102Service_TransStatus_UnabledDelete" xml:space="preserve">
+    <value>此调拨(退货上架)申请单状态已无法删除</value>
+  </data>
+  <data name="P160102Service_TransStatus_UnabledEdit" xml:space="preserve">
+    <value>调拨(退货上架)申请单状态已无法修改</value>
+  </data>
+  <data name="P160102Service_Trans_ApplicateNo_NotFound" xml:space="preserve">
+    <value>此调拨(退货上架)申请单不存在，已无法产生调拨单</value>
+  </data>
+  <data name="P160102Service_Trans_ApplicateNo_NotFound_UnabledDelete" xml:space="preserve">
+    <value>此调拨(退货上架)申请单不存在，已无法删除</value>
+  </data>
+  <data name="P160102Service_Trans_ApplicateStatus_Invalid" xml:space="preserve">
+    <value>此调拨(退货上架)申请单状态已无法产生调拨单</value>
+  </data>
+  <data name="P160102Service_Trans_NoItem" xml:space="preserve">
+    <value>此调拨(退货上架)申请单无任何品项可产生调拨单</value>
+  </data>
+  <data name="P160102Service_UpdateTrans" xml:space="preserve">
+    <value>已更新调拨(退货上架)申请单</value>
+  </data>
+  <data name="P160201Servicepart1_Item_Code_NotFound" xml:space="preserve">
+    <value>找不到商品编号:</value>
+  </data>
+  <data name="P160201Servicepart1_Loc_Code_Empty" xml:space="preserve">
+    <value>储位为空值 ;</value>
+  </data>
+  <data name="P160201Servicepart1_Loc_Code_NotFound" xml:space="preserve">
+    <value>找不到储位编号:</value>
+  </data>
+  <data name="P160201Servicepart1_SRC_WarehouseID_Empty" xml:space="preserve">
+    <value>来源仓别为空值 ;</value>
+  </data>
+  <data name="P160201Servicepart1_SRC_WarehouseID_NotFound" xml:space="preserve">
+    <value>找不到来源仓别:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_CODE_Empty" xml:space="preserve">
+    <value>厂商编号为空值 ;</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_CODE_NotFound" xml:space="preserve">
+    <value>找不到厂商编号:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_CauseNo_NotFound" xml:space="preserve">
+    <value>找不到厂退原因编号:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Cause_Empty" xml:space="preserve">
+    <value>厂退原因为空值 ;</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Type_Empty" xml:space="preserve">
+    <value>厂退类型为空值 ;</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Type_NotFound" xml:space="preserve">
+    <value>找不到厂退类型编号:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Zero" xml:space="preserve">
+    <value>厂退数量为 0 ;</value>
+  </data>
+  <data name="P160201Servicepart1_WorkTypeNO_NotFound" xml:space="preserve">
+    <value>找不到作业类别编号:</value>
+  </data>
+  <data name="P160201Service_VNR_NotFound" xml:space="preserve">
+    <value>厂商不存在!</value>
+  </data>
+  <data name="P160201Service_VNR_NO_Close" xml:space="preserve">
+    <value>此厂退单已结案，不能修改</value>
+  </data>
+  <data name="P160201Service_VNR_NO_Deleted" xml:space="preserve">
+    <value>此厂退单已被删除，不能修改</value>
+  </data>
+  <data name="P160201Service_VNR_NO_Edit" xml:space="preserve">
+    <value>已编辑厂退单</value>
+  </data>
+  <data name="P160201Service_VNR_NO_NotFound" xml:space="preserve">
+    <value>该厂退单不存在</value>
+  </data>
+  <data name="P160201Service_VNR_RTN_Inserted" xml:space="preserve">
+    <value>已新增厂退单</value>
+  </data>
+  <data name="P160202Service_Cause_Item_Code" xml:space="preserve">
+    <value>因品号</value>
+  </data>
+  <data name="P160202Service_Gen_VRN_RTN_Fail" xml:space="preserve">
+    <value>无法产生厂退出货单</value>
+  </data>
+  <data name="P160202Service_Is_Gen_VNR_RTN" xml:space="preserve">
+    <value>请问是否要产生厂退出货单?</value>
+  </data>
+  <data name="P160202Service_PRE_RTN" xml:space="preserve">
+    <value>，预退</value>
+  </data>
+  <data name="P160202Service_Qty" xml:space="preserve">
+    <value>个</value>
+  </data>
+  <data name="P160202Service_VNR_Warehouse_Stock_Insufficient" xml:space="preserve">
+    <value>个，厂退仓库存不足</value>
+  </data>
+  <data name="P160204Service_Insert_VNR_RTNN" xml:space="preserve">
+    <value>已新增厂退出货单</value>
+  </data>
+  <data name="P160204Service_NoAssign" xml:space="preserve">
+    <value>无指定</value>
+  </data>
+  <data name="P160204Service_VNR_RTN_No" xml:space="preserve">
+    <value>厂退出货单号</value>
+  </data>
+  <data name="P160204Service_VNR_RTN_Qty_Incorrect" xml:space="preserve">
+    <value>厂退数量与厂退出货数量不符合</value>
+  </data>
+  <data name="P160204Service_VNR_RTN_Status_CannotAddNew" xml:space="preserve">
+    <value>该厂退单的状态已无法新增厂退出货单</value>
+  </data>
+  <data name="P160401Service_Deleted" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="P160401Service_Scrap_No_NotFound" xml:space="preserve">
+    <value>此报废单不存在，已无法删除</value>
+  </data>
+  <data name="P160401Service_Scrap_No_Status_CannotDeleted" xml:space="preserve">
+    <value>此此报废单状态已无法删除</value>
+  </data>
+  <data name="P160402Service_Create_Scrap_No_First" xml:space="preserve">
+    <value>请先建立报废单</value>
+  </data>
+  <data name="P160402Service_NoScrapDetailToUpdate" xml:space="preserve">
+    <value>无报废明细资料可更新</value>
+  </data>
+  <data name="P160402Service_Permitted" xml:space="preserve">
+    <value>已核准</value>
+  </data>
+  <data name="P160402Service_Processing_Scrap_No_CannotModify" xml:space="preserve">
+    <value>此报废单已於处理中，不能修改</value>
+  </data>
+  <data name="P160402Service_Scrao_No_NotFound" xml:space="preserve">
+    <value>查无此报废单</value>
+  </data>
+  <data name="P160402Service_Scrao_No_Permitted" xml:space="preserve">
+    <value>报废单已核准</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Close" xml:space="preserve">
+    <value>此报废单已结案，不能修改</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Deleted" xml:space="preserve">
+    <value>此报废单已被删除，不能修改</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Permitted" xml:space="preserve">
+    <value>此报废单已核准，不能修改</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Stock_Sum" xml:space="preserve">
+    <value>此报废单(商品:{0},储位:{1},仓别:{2}),无库存数，不能修改</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Stock_Sum_Insufficient" xml:space="preserve">
+    <value>此报废单(商品:{0},储位:{1},仓别:{2}),库存数不足，不能修改</value>
+  </data>
+  <data name="P160501Service_Destroy_No_Status_NeedPendingToModify" xml:space="preserve">
+    <value>此销毁单状态必须为待处理且尚未配库才可修改</value>
+  </data>
+  <data name="P160501Service_ITEM" xml:space="preserve">
+    <value>商品: {0} </value>
+  </data>
+  <data name="P160501Service_Virtual_Item_DuplicateImport" xml:space="preserve">
+    <value>此虚拟商品:{0} ; 序号: {1} 已重复汇入</value>
+  </data>
+  <data name="P16ExDataService_CRT_Transfer_Complete" xml:space="preserve">
+    <value>已建立调拨单</value>
+  </data>
+  <data name="P080201Service_AuditQtyError" xml:space="preserve">
+    <value>此品项{0}检验数异常!</value>
+  </data>
+  <data name="P080201Service_AuditQtyMoveQtyError" xml:space="preserve">
+    <value>刷验数不可小於此商品上架数</value>
+  </data>
+  <data name="P080201Service_A1ItemNotChange" xml:space="preserve">
+    <value>原始状态就为A1序号商品不能变更通过!</value>
+  </data>
+  <data name="P080201Service_CustFileNotExist" xml:space="preserve">
+    <value>货主档:{0}不存在</value>
+  </data>
+  <data name="P080201Service_F16140101IsNull" xml:space="preserve">
+    <value>此序号{0}刷读纪录不存在!</value>
+  </data>
+  <data name="P080201Service_F161402IsNull" xml:space="preserve">
+    <value>此品项{0}不存在或检验数异常!</value>
+  </data>
+  <data name="P080201Service_F161402NotAny" xml:space="preserve">
+    <value>此品项{0}不存在退货商品中!</value>
+  </data>
+  <data name="P080201Service_F161502IsNull" xml:space="preserve">
+    <value>退货汇总表无符合资料可汇入</value>
+  </data>
+  <data name="P080201Service_F2501IsA1" xml:space="preserve">
+    <value>已过帐序号商品不能删除!</value>
+  </data>
+  <data name="P080201Service_F700101Cancel" xml:space="preserve">
+    <value>派车单状态已取消，无法更新</value>
+  </data>
+  <data name="P080201Service_F910101Data" xml:space="preserve">
+    <value>此商品[{0}]为虚拟组合商品，将自动拆解为{1}{2}</value>
+  </data>
+  <data name="P080201Service_GatherSeqRepeat" xml:space="preserve">
+    <value>退货汇总表单号:{0},序号:{1}重复</value>
+  </data>
+  <data name="P080201Service_GupCodeIsNull" xml:space="preserve">
+    <value>业主主档:{0}不存在</value>
+  </data>
+  <data name="P080201Service_IsF161401Closed" xml:space="preserve">
+    <value>退货单已结案，不可编辑!</value>
+  </data>
+  <data name="P080201Service_IsPosting" xml:space="preserve">
+    <value>已过帐序号商品不能变更通过!</value>
+  </data>
+  <data name="P080201Service_IsXYZ00001" xml:space="preserve">
+    <value>此品项{0}为不明件商品已有上架数，不可删除!</value>
+  </data>
+  <data name="P080201Service_ItemCodeNotExist" xml:space="preserve">
+    <value>品号{0}不存在!</value>
+  </data>
+  <data name="P080201Service_ItemFileNotExist" xml:space="preserve">
+    <value>商品主档:{0}不存在</value>
+  </data>
+  <data name="P080201Service_ItemIsDeleted" xml:space="preserve">
+    <value>此商品{0} {1}已被删除</value>
+  </data>
+  <data name="P080201Service_ItemPostingCount" xml:space="preserve">
+    <value>{0}种商品完成过帐</value>
+  </data>
+  <data name="P080201Service_ItemWarehouseError" xml:space="preserve">
+    <value>商品({0})之储位({1})不属於退货仓</value>
+  </data>
+  <data name="P080201Service_NoDataImport" xml:space="preserve">
+    <value>无资料可汇入</value>
+  </data>
+  <data name="P080201Service_NotFullReturn" xml:space="preserve">
+    <value>组合商品[{0}]已被拆开，但未收到{1}{2}</value>
+  </data>
+  <data name="P080201Service_NotFullReturnMessage" xml:space="preserve">
+    <value>{0}{1}若确定要过帐，请按下&lt;确定&gt;後，至主画面进行&lt;强制结案&gt;</value>
+  </data>
+  <data name="P080201Service_NotReturnQtyOver" xml:space="preserve">
+    <value>含有来源单据退货单，不可超收非退货单内退货品项!</value>
+  </data>
+  <data name="P080201Service_NotScanXYZ00001Item" xml:space="preserve">
+    <value>不可刷读不明件品号{0}</value>
+  </data>
+  <data name="P080201Service_ReturnNoSerialRepeat" xml:space="preserve">
+    <value>相同退货单不可重复刷读序号!</value>
+  </data>
+  <data name="P080201Service_RtnAuditItemExist" xml:space="preserve">
+    <value>此退货单已由{0}进行退货检验!</value>
+  </data>
+  <data name="P080201Service_RtnItemIsExist" xml:space="preserve">
+    <value>退货单不存在</value>
+  </data>
+  <data name="P080201Service_RtnItemIsPosting" xml:space="preserve">
+    <value>退货单已结案</value>
+  </data>
+  <data name="P080201Service_RtnQtyNotZero" xml:space="preserve">
+    <value>此品项{0}为退货单商品，不可删除!</value>
+  </data>
+  <data name="P080201Service_RtnQtyOver" xml:space="preserve">
+    <value>含有来源单据退货单，不可超收退货数!</value>
+  </data>
+  <data name="P080201Service_SerialItemNoNNoSetting" xml:space="preserve">
+    <value>不明件商品编号{0}未设定</value>
+  </data>
+  <data name="P080201Service_SerialItemProductNo" xml:space="preserve">
+    <value>此品项必须刷读序号,请刷读序号</value>
+  </data>
+  <data name="P080201Service_SerialNoNotReturnDetail" xml:space="preserve">
+    <value>序号不存在退货明细</value>
+  </data>
+  <data name="P080201Service_SerialNoScanRepeat" xml:space="preserve">
+    <value>序号重复刷读</value>
+  </data>
+  <data name="P080201Service_SerialNotPass" xml:space="preserve">
+    <value>此序号未出货</value>
+  </data>
+  <data name="P080201Service_SerialScanRepeat" xml:space="preserve">
+    <value>已刷读的序号商品不可重复刷读</value>
+  </data>
+  <data name="P080201Service_SuccessSerialCountError" xml:space="preserve">
+    <value>不明件商品{0}总序号数不可低於已过帐数!</value>
+  </data>
+  <data name="P080301Service_BoxUsed" xml:space="preserve">
+    <value>此箱号已被其他调拨单使用</value>
+  </data>
+  <data name="P080301Service_ScanItemCodeError" xml:space="preserve">
+    <value>您刷读的品号与目前的品号不符</value>
+  </data>
+  <data name="P080301Service_ScanItemCodeIsScan" xml:space="preserve">
+    <value>此{0}已刷读</value>
+  </data>
+  <data name="P080301Service_ScanSerialIsScan" xml:space="preserve">
+    <value>此{0}内序号已刷读</value>
+  </data>
+  <data name="P080301Service_ScanSerialNoError" xml:space="preserve">
+    <value>您刷读的序号与目前的序号不符</value>
+  </data>
+  <data name="P080301Service_ScanSerialNoLocCodeNotExist" xml:space="preserve">
+    <value>刷读的{0}不在此储位</value>
+  </data>
+  <data name="P080301Service_ScanSerialNoNotExist" xml:space="preserve">
+    <value>刷读的{0}不在此调拨单内</value>
+  </data>
+  <data name="P080302Service_ScanSerialNoNotExist" xml:space="preserve">
+    <value>此{0}不在此调拨单内</value>
+  </data>
+  <data name="P080602Service_APickQtyOver" xml:space="preserve">
+    <value>无法复原缺货资料至拣货明细中，恢复後的实际拣货数大於预计拣货数</value>
+  </data>
+  <data name="P080602Service_ASetQtyNotZero" xml:space="preserve">
+    <value>出货单号{0}商品项目{1}已播种完毕</value>
+  </data>
+  <data name="P080602Service_DelvDateError" xml:space="preserve">
+    <value>批次日期有误!</value>
+  </data>
+  <data name="P080602Service_F05030101IsNull" xml:space="preserve">
+    <value>查无订单编号</value>
+  </data>
+  <data name="P080602Service_F050802IsNull" xml:space="preserve">
+    <value>出货档无此出货单号!</value>
+  </data>
+  <data name="P080602Service_F051202IsNull" xml:space="preserve">
+    <value>无法复原缺货资料至拣货明细中，找不到该拣货明细纪录</value>
+  </data>
+  <data name="P080602Service_F052901IsNull" xml:space="preserve">
+    <value>查无出货单号{0}</value>
+  </data>
+  <data name="P080602Service_ItemCodeNotExist" xml:space="preserve">
+    <value>查无商品项目{0}</value>
+  </data>
+  <data name="P080602Service_LackQtyOver" xml:space="preserve">
+    <value>缺货数: {0} 超过此出货单品号: {1} 的实际拣货数(剩余缺货数: {2})</value>
+  </data>
+  <data name="P080602Service_LackQtyTotalError" xml:space="preserve">
+    <value>缺货数不可小於 0</value>
+  </data>
+  <data name="P080602Service_PickOrdNoIsNull" xml:space="preserve">
+    <value>查无拣货单</value>
+  </data>
+  <data name="P080602Service_WmsOrdNoNotExistItemCode" xml:space="preserve">
+    <value>出货单号{0}查无商品项目{1}</value>
+  </data>
+  <data name="P080701Service_AddQtyError" xml:space="preserve">
+    <value>此为序号商品，包装数必须为1</value>
+  </data>
+  <data name="P080701Service_AddQtyOver" xml:space="preserve">
+    <value>超过可出货数量</value>
+  </data>
+  <data name="P080701Service_BoxNoExist" xml:space="preserve">
+    <value>找到箱子</value>
+  </data>
+  <data name="P080701Service_BundleSerialsNotExist" xml:space="preserve">
+    <value>序号: {0} 不存在於品号: {1} 的指定出货序号中</value>
+  </data>
+  <data name="P080701Service_CellNumError" xml:space="preserve">
+    <value>门号格式错误!须为长度10码、全为数字，第一码为0，请重新刷读序号!</value>
+  </data>
+  <data name="P080701Service_CellNumIsNull" xml:space="preserve">
+    <value>请刷读门号!</value>
+  </data>
+  <data name="P080701Service_CellNumNotExist" xml:space="preserve">
+    <value>此门号不存在於指定挑卡档中!请重新刷读序号!</value>
+  </data>
+  <data name="P080701Service_CellNumRepeat" xml:space="preserve">
+    <value>门号不可重复刷读! 请重新刷读序号!</value>
+  </data>
+  <data name="P080701Service_CustItemNotExist" xml:space="preserve">
+    <value>无此货主商品</value>
+  </data>
+  <data name="P080701Service_CvsTake0" xml:space="preserve">
+    <value>外部取号宅配订单不能加箱</value>
+  </data>
+  <data name="P080701Service_CvsTake1" xml:space="preserve">
+    <value>超取订单不能加箱</value>
+  </data>
+  <data name="P080701Service_DeliveryDataIsNull" xml:space="preserve">
+    <value>无此原箱出货商品</value>
+  </data>
+  <data name="P080701Service_diffQtySumError" xml:space="preserve">
+    <value>品号: {0} 超过可出货数量(差异数:{1}, 实收数:{2})</value>
+  </data>
+  <data name="P080701Service_F05010102IsNull" xml:space="preserve">
+    <value>此序号不存在於指定挑卡档中!</value>
+  </data>
+  <data name="P080701Service_F050801StatusError" xml:space="preserve">
+    <value>出货主档状态不正确</value>
+  </data>
+  <data name="P080701Service_F051202QueryNotExist" xml:space="preserve">
+    <value>非此次出货商品</value>
+  </data>
+  <data name="P080701Service_F055001IsNull" xml:space="preserve">
+    <value>必须刷读品号</value>
+  </data>
+  <data name="P080701Service_F19471601Error" xml:space="preserve">
+    <value>同到货日同门市不可多条车次!</value>
+  </data>
+  <data name="P080701Service_F2501IsNull" xml:space="preserve">
+    <value>无此序号{0}</value>
+  </data>
+  <data name="P080701Service_FollowingBlank" xml:space="preserve">
+    <value>以下空白//</value>
+  </data>
+  <data name="P080701Service_ItemDeliveryDatasError" xml:space="preserve">
+    <value>包装商品 {0} 非此次出货商品</value>
+  </data>
+  <data name="P080701Service_ItemPackingComplete" xml:space="preserve">
+    <value>商品包装完成</value>
+  </data>
+  <data name="P080701Service_ItemSerialError" xml:space="preserve">
+    <value>刷读序号{0}非此商品指定出货序号</value>
+  </data>
+  <data name="P080701Service_NotInWmsOrder" xml:space="preserve">
+    <value>非此次出货组合商品</value>
+  </data>
+  <data name="P080701Service_NotScanBoxNo" xml:space="preserve">
+    <value>尚未刷读箱号</value>
+  </data>
+  <data name="P080701Service_ScanBoxNo" xml:space="preserve">
+    <value>请刷读箱号</value>
+  </data>
+  <data name="P080701Service_ScanCountError" xml:space="preserve">
+    <value>刷读数量必须大於等於1</value>
+  </data>
+  <data name="P080701Service_ScanItemSerialBoxNo" xml:space="preserve">
+    <value>请刷读品号/序号/箱号</value>
+  </data>
+  <data name="P080701Service_SerialNoIsExist" xml:space="preserve">
+    <value>无此序号</value>
+  </data>
+  <data name="P080701Service_SerialNoRepeat" xml:space="preserve">
+    <value>序号重复汇入</value>
+  </data>
+  <data name="P080701Service_SerialNoScan" xml:space="preserve">
+    <value>必须刷读序号</value>
+  </data>
+  <data name="P080701Service_TotalPackQtyError" xml:space="preserve">
+    <value>修改的数量{0}必须大於{1}!</value>
+  </data>
+  <data name="P080802Service_F050801IsNull" xml:space="preserve">
+    <value>第{0}笔托运单号找不到出货资料</value>
+  </data>
+  <data name="P080802Service_F050801NotExist" xml:space="preserve">
+    <value>查无此出货单</value>
+  </data>
+  <data name="P080802Service_F050901IsNull" xml:space="preserve">
+    <value>第{0}笔托运单号找不到托运资料</value>
+  </data>
+  <data name="P080802Service_F05500102IsNull" xml:space="preserve">
+    <value>该包裹今日不可出货，请放置於等待区</value>
+  </data>
+  <data name="P080802Service_F055001StatusNotOne" xml:space="preserve">
+    <value>此出货单尚未稽核完成</value>
+  </data>
+  <data name="P081001Service_F140101IsNull" xml:space="preserve">
+    <value>无此盘点单</value>
+  </data>
+  <data name="P081001Service_F140101StatusError" xml:space="preserve">
+    <value>此盘点单必须状态为待处理或初盘或复盘</value>
+  </data>
+  <data name="P081001Service_InventoryTypeError" xml:space="preserve">
+    <value>此储位非盘点范围</value>
+  </data>
+  <data name="P081001Service_ItemCodeOrSerialNoNotExist" xml:space="preserve">
+    <value>无此品号或序号</value>
+  </data>
+  <data name="P081001Service_ItemInventoryTypeError" xml:space="preserve">
+    <value>此商品非盘点范围</value>
+  </data>
+  <data name="P081001Service_StaffNameError" xml:space="preserve">
+    <value>此盘点单此储位已有其他人员盘点</value>
+  </data>
+  <data name="P200101Service_AdjustNo" xml:space="preserve">
+    <value>调整单号:</value>
+  </data>
+  <data name="P200101Service_dtmAllTimeGreaterThanOneHour" xml:space="preserve">
+    <value>出车时段必须选择超过目前时间1小时以上的</value>
+  </data>
+  <data name="P200101Service_HasSameWorkTypeAdjustNo" xml:space="preserve">
+    <value>已有相同作业类别的调整单</value>
+  </data>
+  <data name="P200101Service_HaveNoNewDelvTime" xml:space="preserve">
+    <value>此出车时段已无可用的新批次时间</value>
+  </data>
+  <data name="P200101Service_OrderNeedPackageBeforeSave" xml:space="preserve">
+    <value>订单必须为包装前订单才可存档</value>
+  </data>
+  <data name="P200101Service_OrdIisSelfTakeCannotAdjust" xml:space="preserve">
+    <value>您选择的订单已设为自取不可调整</value>
+  </data>
+  <data name="P200101Service_OrdIsOrderNotPackage_CannotDelete" xml:space="preserve">
+    <value>订单已过包装线,不可删除</value>
+  </data>
+  <data name="P200101Service_OrdIsOrderNotPackage_CannotEdit" xml:space="preserve">
+    <value>订单已过包装线,不可修改</value>
+  </data>
+  <data name="P200101Service_OrdisStartPick" xml:space="preserve">
+    <value>您选择的订单已开始拣货不可调整</value>
+  </data>
+  <data name="P200101Service_OrdIsTransfered_CannotDelete" xml:space="preserve">
+    <value>订单已转单不可删除</value>
+  </data>
+  <data name="P200101Service_OrdIsTransfered_CannotEdit" xml:space="preserve">
+    <value>订单已转单,不可修改</value>
+  </data>
+  <data name="P200101Service_RelationNoOrd_NeedCheck" xml:space="preserve">
+    <value>关联的订单必须一并勾选</value>
+  </data>
+  <data name="P200101Service_WORK_TYPEIsCancel_CannotDelete" xml:space="preserve">
+    <value>作业类别为订单取消不可删除</value>
+  </data>
+  <data name="P200101Service_WORK_TYPEIsGenNewBatch_CannotDelete" xml:space="preserve">
+    <value>作业类别为产生新批次不可删除</value>
+  </data>
+  <data name="P500101Service_AccProjectNo_NotFound" xml:space="preserve">
+    <value>此专案计价项目不存在，已无法删除</value>
+  </data>
+  <data name="P500101Service_AccProjectNo_Status_CannotDelete" xml:space="preserve">
+    <value>此此专案计价项目状态已无法删除</value>
+  </data>
+  <data name="P500101Service_Deleted" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="P250102Service_BATCH_NO_Duplicate" xml:space="preserve">
+    <value>储值卡盒号重复</value>
+  </data>
+  <data name="P250102Service_BOX_SERIAL_Duplicate" xml:space="preserve">
+    <value>盒号重复</value>
+  </data>
+  <data name="P250102Service_CONTROL_WORK_Duplicate" xml:space="preserve">
+    <value>管制作业重复</value>
+  </data>
+  <data name="P250102Service_FREEZE_SERIAL_NO_PERIOD_DOUBLE" xml:space="preserve">
+    <value>冻结的序号区间不可重叠</value>
+  </data>
+  <data name="P2501Service_BatchNo_FormatError" xml:space="preserve">
+    <value>储值卡盒号格式不正确!</value>
+  </data>
+  <data name="P2501Service_BatchNo_VALID_DATE_Incorrect" xml:space="preserve">
+    <value>储值卡盒号的目前效期与汇入资料不同!</value>
+  </data>
+  <data name="P2501Service_BoxSerialNo_FormatError" xml:space="preserve">
+    <value>盒号格式不正确!</value>
+  </data>
+  <data name="P2501Service_CannotInputCorSpecialType" xml:space="preserve">
+    <value>栏位请勿输入英文或特殊格式!</value>
+  </data>
+  <data name="P2501Service_Cell_Num_MustBeNumber" xml:space="preserve">
+    <value>门号必须为数字!</value>
+  </data>
+  <data name="P2501Service_Changed_ItemNo_NotExist" xml:space="preserve">
+    <value>变更的料号不存在商品主档中!</value>
+  </data>
+  <data name="P2501Service_Fail" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="P2501Service_ImportData_ItemCode_NotTheSame" xml:space="preserve">
+    <value>汇入资料的商品编号与序号不同!</value>
+  </data>
+  <data name="P2501Service_ItemType_NotBatchNo" xml:space="preserve">
+    <value>此商品的商品类别非储值卡!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_NotExist" xml:space="preserve">
+    <value>{0}储位编号不存在!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_NotExistAt" xml:space="preserve">
+    <value>{0}储位编号不存在於{1}!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_Required" xml:space="preserve">
+    <value>序号绑储位商品的储位编号为必填!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_VliadDate_Required" xml:space="preserve">
+    <value>序号绑储位商品效期为必填!</value>
+  </data>
+  <data name="P2501Service_NotPass" xml:space="preserve">
+    <value>未通过</value>
+  </data>
+  <data name="P2501Service_Pass" xml:space="preserve">
+    <value>通过</value>
+  </data>
+  <data name="P2501Service_RequiredColumnlack" xml:space="preserve">
+    <value>必填栏位有缺!</value>
+  </data>
+  <data name="P2501Service_SupplyNotExist" xml:space="preserve">
+    <value>该供应商不存在!</value>
+  </data>
+  <data name="P2501Service_TAR_SRC_TypeDifferent" xml:space="preserve">
+    <value>新旧品号的商品类别不相同，无法变更料号!</value>
+  </data>
+  <data name="P2501Service_WarehouseId_Required" xml:space="preserve">
+    <value>序号绑储位商品的仓别编号为必填!</value>
+  </data>
+  <data name="P250302Service_ITEM_CODE_NotFound" xml:space="preserve">
+    <value>品号不存在</value>
+  </data>
+  <data name="P250302Service_NewSerialNo_Duplicate" xml:space="preserve">
+    <value>档案内新序号不可重复({0})</value>
+  </data>
+  <data name="P250302Service_OldSerialNo_Duplicate" xml:space="preserve">
+    <value>档案内旧序号不可重复({0})</value>
+  </data>
+  <data name="P250302Service_ScanedData_Skip" xml:space="preserve">
+    <value>已存在刷读资料，略过不处理</value>
+  </data>
+  <data name="P250302Service_SERIAL_NO" xml:space="preserve">
+    <value>序号主档不存在序号 </value>
+  </data>
+  <data name="P70010401Service_CantDeleteEditWmsOrdNosByEdi" xml:space="preserve">
+    <value>派车单状态已无法编辑或删除!</value>
+  </data>
+  <data name="P70010401Service_DirstrNo" xml:space="preserve">
+    <value>派车单</value>
+  </data>
+  <data name="P70010401Service_ErrorWMS_NO" xml:space="preserve">
+    <value>失败,订单单号:</value>
+  </data>
+  <data name="P70010401Service_Fail_Destroy" xml:space="preserve">
+    <value>失败,销毁单号:</value>
+  </data>
+  <data name="P70010401Service_Fail_RetrnNo" xml:space="preserve">
+    <value>失败,退货单号:</value>
+  </data>
+  <data name="P70010401Service_Insert" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="P70010401Service_notCanEditWmsOrdNos" xml:space="preserve">
+    <value>无法编辑或删除派车单，\r\n因下列出货单已经开始包装，若需要修改出车时段，请先将该出货单设定为不出货:\r\n</value>
+  </data>
+  <data name="P70010401Service_NotExist" xml:space="preserve">
+    <value>不存在</value>
+  </data>
+  <data name="P700104Service_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="P910101Service_BackSerialNos" xml:space="preserve">
+    <value>指定上架回仓的序号，包含先前上传未修改品项的序号</value>
+  </data>
+  <data name="P910101Service_BackSerialNos_ExistBackStockSerialNo" xml:space="preserve">
+    <value>指定上架回仓的序号，存在可回仓的序号之外的序号</value>
+  </data>
+  <data name="P910101Service_BACK_STOCK_QTY_OVER_QTY" xml:space="preserve">
+    <value>回仓总数超过数量 {0}</value>
+  </data>
+  <data name="P910101Service_BoxQtyCantZero" xml:space="preserve">
+    <value>成品须装箱，流通加工单箱最小单位量不可为0</value>
+  </data>
+  <data name="P910101Service_DaaDeleted" xml:space="preserve">
+    <value>资料已被删除, 请重新查询</value>
+  </data>
+  <data name="P910101Service_Damage" xml:space="preserve">
+    <value>损坏</value>
+  </data>
+  <data name="P910101Service_ExistsBundleSerialLocMaterialItem_NeedUpload" xml:space="preserve">
+    <value>新增的项目中含有序号绑储位商品，需上传序号</value>
+  </data>
+  <data name="P910101Service_Good" xml:space="preserve">
+    <value>良品</value>
+  </data>
+  <data name="P910101Service_GoodContainsBoxSerialNo" xml:space="preserve">
+    <value>成品须装盒，上传序号须包含整盒的序号</value>
+  </data>
+  <data name="P910101Service_GoodContainsPackSerialNo" xml:space="preserve">
+    <value>成品须装箱，上传序号须包含整箱的序号</value>
+  </data>
+  <data name="P910101Service_GOODNO_NOTEXISTCUST" xml:space="preserve">
+    <value>此成品编号不存在於该货主当中</value>
+  </data>
+  <data name="P910101Service_GOOD_BACK_QTY_Box" xml:space="preserve">
+    <value>成品须装箱，数量需为箱最小单位量的倍数</value>
+  </data>
+  <data name="P910101Service_GOOD_BACK_QTY_Pack" xml:space="preserve">
+    <value>成品须装盒，数量需为盒最小单位量的倍数</value>
+  </data>
+  <data name="P910101Service_GOOD_OVER_QTY" xml:space="preserve">
+    <value>成品超过数量:\n  {0}</value>
+  </data>
+  <data name="P910101Service_ITEM_LOC_CODE_NO_DATA" xml:space="preserve">
+    <value>商品储位主档无资料</value>
+  </data>
+  <data name="P910101Service_NotSameQtyItems" xml:space="preserve">
+    <value>{0}序号绑储位商品{1}，与上传的序号数量不符</value>
+  </data>
+  <data name="P910101Service_OVER" xml:space="preserve">
+    <value>{0}超过{1}</value>
+  </data>
+  <data name="P910101Service_PackQtyCantZero" xml:space="preserve">
+    <value>成品须装盒，流通加工单盒最小单位量不可为0</value>
+  </data>
+  <data name="P910101Service_Pick_CantDeeleete" xml:space="preserve">
+    <value>此流通加工单已开立拣料单，无法删除!</value>
+  </data>
+  <data name="P910101Service_ProcessNotFound" xml:space="preserve">
+    <value>该流通加工单不存在</value>
+  </data>
+  <data name="P910101Service_SerialBundleitemCodes_UploadSerialNo" xml:space="preserve">
+    <value>{0}品项上传的序号包含了非序号绑储位商品</value>
+  </data>
+  <data name="P910101Service_SOURCE_OVER_QTY" xml:space="preserve">
+    <value>物料超过数量:\n  {0}</value>
+  </data>
+  <data name="P910101Service_STOCK_INSSUFICIENT" xml:space="preserve">
+    <value>商品库存不足</value>
+  </data>
+  <data name="P910101Service_Unprocessed_CantDelete" xml:space="preserve">
+    <value>状态非为未加工，不可删除</value>
+  </data>
+  <data name="P910301Service_DataContractNotExists" xml:space="preserve">
+    <value>资料合约编号不存在</value>
+  </data>
+  <data name="P910301Service_ENABLE_CONTRACT_CANTDELETE" xml:space="preserve">
+    <value>已生效合约不得删除!</value>
+  </data>
+  <data name="P910301Service_NO_CONTRACT_DETAIL_TO_DELETE" xml:space="preserve">
+    <value>必须没有合约明细才可删除!</value>
+  </data>
+  <data name="P910302Service_ADD_SUCCESS" xml:space="preserve">
+    <value>新增成功!</value>
+  </data>
+  <data name="P910302Service_APPROVED_PRICE_NEEDVALUE" xml:space="preserve">
+    <value>若要核准，必须填写货主加工核定价且状态为待处理</value>
+  </data>
+  <data name="P910302Service_ContractMain_ONLYONE_CUST" xml:space="preserve">
+    <value>同DC、货主、生效区间只能有一份合约!</value>
+  </data>
+  <data name="P910302Service_ContractMain_ONLYONE_SUB" xml:space="preserve">
+    <value>同DC、委外商、生效区间只能有一份合约!</value>
+  </data>
+  <data name="P910302Service_DATA_CONTRACTNO_EXIST" xml:space="preserve">
+    <value>资料合约编号已存在</value>
+  </data>
+  <data name="P910302Service_DATA_CONTRACTOBJECT_EXIST" xml:space="preserve">
+    <value>资料合约项目已存在</value>
+  </data>
+  <data name="P910302Service_EDIT_SUCCESS" xml:space="preserve">
+    <value>修改成功!</value>
+  </data>
+  <data name="P910302Service_PARAM_DATA_ERROR" xml:space="preserve">
+    <value>参数资料错误</value>
+  </data>
+  <data name="P910302Service_UPDATE" xml:space="preserve">
+    <value>已更新</value>
+  </data>
+  <data name="P910303Service_ACC_NUM" xml:space="preserve">
+    <value>材积 {0}材 </value>
+  </data>
+  <data name="P910303Service_ACC_NUM_WEIGHT" xml:space="preserve">
+    <value>重量 {0}kg </value>
+  </data>
+  <data name="P910303Service_APPROV_FEE" xml:space="preserve">
+    <value>单一费用,费用 {0} 元</value>
+  </data>
+  <data name="P910303Service_BASIC_FEE" xml:space="preserve">
+    <value>≦计价数量,费用 {0}元 </value>
+  </data>
+  <data name="P910303Service_FEE" xml:space="preserve">
+    <value>费用 {0} 元</value>
+  </data>
+  <data name="P910303Service_FEE_DOLLAR" xml:space="preserve">
+    <value>费用 {0}元 </value>
+  </data>
+  <data name="P910303Service_OVERSIZE" xml:space="preserve">
+    <value>超尺寸 每 {0}cm </value>
+  </data>
+  <data name="P910303Service_OVER_FEE" xml:space="preserve">
+    <value>&gt;计价数量,费用 {0}元 </value>
+  </data>
+  <data name="P910303Service_OVER_VALUE" xml:space="preserve">
+    <value>超材 每 {0}材 </value>
+  </data>
+  <data name="P910303Service_OVER_WEIGHT" xml:space="preserve">
+    <value>超重 每 {0}材 </value>
+  </data>
+  <data name="P910303Service_SIZE" xml:space="preserve">
+    <value>尺寸 {0}cm </value>
+  </data>
+  <data name="P910303Service_WEIGHT" xml:space="preserve">
+    <value>重量上限 {0}kg </value>
+  </data>
+  <data name="P060101Service_DebitComplete" xml:space="preserve">
+    <value>扣帐完成</value>
+  </data>
+  <data name="P060101Service_SERIAL_NO_NotFound" xml:space="preserve">
+    <value>{0} 品号 {1} 序号不存在，无法更新实际出货数量</value>
+  </data>
+  <data name="P060103Service_CheckNeeRecoverVirtualLoc" xml:space="preserve">
+    <value>没有需要回复虚拟储位的项目，请先勾选项目</value>
+  </data>
+  <data name="P060103Service_CustCancelOrder" xml:space="preserve">
+    <value>货主取消订单</value>
+  </data>
+  <data name="P060103Service_NeedAllRecover" xml:space="preserve">
+    <value> 为合并订单，需全部回复</value>
+  </data>
+  <data name="P060103Service_OrderNotFound" xml:space="preserve">
+    <value>订单不存在，请重新查询</value>
+  </data>
+  <data name="P060103Service_ORD_DataError" xml:space="preserve">
+    <value> 订单资料错误，不可回复！</value>
+  </data>
+  <data name="P060103Service_RecoverOrder" xml:space="preserve">
+    <value>已回复订单</value>
+  </data>
+  <data name="P060103Service_RecoverVirtualLoc" xml:space="preserve">
+    <value>虚拟储位回复</value>
+  </data>
+  <data name="P060103Service_TransORDNO" xml:space="preserve">
+    <value>调拨单号:{0}</value>
+  </data>
+  <data name="P060201Service_DataDeleted" xml:space="preserve">
+    <value>资料已被删除, 请重新查询</value>
+  </data>
+  <data name="P060201Service_f052901DatasHasData" xml:space="preserve">
+    <value>此拣货单已进合流作业，若要新增缺货请至合流作业!</value>
+  </data>
+  <data name="P060201Service_ITEM_CODE" xml:space="preserve">
+    <value>品　　号：</value>
+  </data>
+  <data name="P060201Service_OutofStockRecordExist" xml:space="preserve">
+    <value>缺货记录已经存在</value>
+  </data>
+  <data name="P060201Service_PICK_ORD_NO" xml:space="preserve">
+    <value>拣货单号：</value>
+  </data>
+  <data name="P060201Service_PICK_ORD_SEQ" xml:space="preserve">
+    <value>拣货项次：</value>
+  </data>
+  <data name="P060201Service_WMS_ORD_NO" xml:space="preserve">
+    <value>出货单号：</value>
+  </data>
+  <data name="P010201Service_StockCancel" xml:space="preserve">
+    <value>进仓单号已取消</value>
+  </data>
+  <data name="P010201Service_StockError" xml:space="preserve">
+    <value>进仓单号异常</value>
+  </data>
+  <data name="P010201Service_StockNoExist" xml:space="preserve">
+    <value>进仓单号不存在</value>
+  </data>
+  <data name="P010201Service_NoExistItems" xml:space="preserve">
+    <value>品号{0}不存在于商品主档</value>
+  </data>
+  <data name="P010201Service_NoSetItemPallect" xml:space="preserve">
+    <value>品号{0}未设定商品栈板迭法配置文件</value>
+  </data>
+  <data name="P010201Service_NoSetItemUnitCase" xml:space="preserve">
+    <value>品号{0}未设定商品材积阶层文件(单位:箱)</value>
+  </data>
+  <data name="DataFailureToRefreshUI" xml:space="preserve">
+    <value>数据异常，按下确定后将重整画面信息</value>
+  </data>
+  <data name="P020203Service_NoPrintInStockSticker" xml:space="preserve">
+    <value>请至进仓单维护先打印此进仓单栈板标签!</value>
+  </data>
+  <data name="P080613Service_UpdataNoData" xml:space="preserve">
+    <value>无可更新单据。</value>
+  </data>
+  <data name="PickOrdNoHasOtherStationUsed" xml:space="preserve">
+    <value>此拣货单[{0}]已被[{1}]工作站拣货中</value>
+  </data>
+  <data name="PickOrdNoMustComplete" xml:space="preserve">
+    <value>此拣货单[{0}]尚未拣货完成，您必须先完成此拣货单!</value>
+  </data>
+  <data name="P1905130000_DeleteNoData" xml:space="preserve">
+    <value>无可删除的数据</value>
+  </data>
+  <data name="P1905130000_DeleteErr" xml:space="preserve">
+    <value>删除使用者:{0}时，发生错误</value>
+  </data>
+  <data name="P1905130000_SucessDeleteData" xml:space="preserve">
+    <value>{0}笔数据中，成功删除{1}笔，失败{2}笔</value>
+  </data>
+  <data name="AllocationNoHasOtherStationUsed" xml:space="preserve">
+    <value>此调拨单[{0}]已被[{1}]工作站上架中</value>
+  </data>
+  <data name="AllocationNoMustComplete" xml:space="preserve">
+    <value>此调拨单[{0}]尚未上架完成，您必须先完成此调拨单!</value>
+  </data>
+  <data name="P050112Service_PickHasCancel" xml:space="preserve">
+    <value>拣货单[{0}]已取消</value>
+  </data>
+  <data name="P050112Service_PickHasComplete" xml:space="preserve">
+    <value>拣货单[{0}]已拣货完成</value>
+  </data>
+  <data name="P050112Service_PickHasProcess" xml:space="preserve">
+    <value>拣货单[{0}]已开始拣货</value>
+  </data>
+  <data name="P050112Service_PleaseReChoosePick" xml:space="preserve">
+    <value>请重新选择拣货单</value>
+  </data>
+  <data name="P0501120000_OverCapsUsedQtyWithAgv" xml:space="preserve">
+    <value>所选的门市数为{0}，超过{1}家将无法使用CAPS播种，请重新挑选拣货单</value>
+  </data>
+  <data name="P050112Service_BatchPickResult" xml:space="preserve">
+    <value>本次汇总批号为{0}，总门市数{1}，总品项数{2}，总拣货数{3}，共产生{4}张汇总单号</value>
+  </data>
+  <data name="P050112Service_BatchPickMustUnProcessToDelete" xml:space="preserve">
+    <value>汇总批号{0}拣货状态必须为待处理才可以删除</value>
+  </data>
+  <data name="P050112Service_BatchPickNoExist" xml:space="preserve">
+    <value>汇总批号{0}不存在</value>
+  </data>
+  <data name="P050112Service_SowDataDownLoadSuccess" xml:space="preserve">
+    <value>播种资料下传成功 </value>
+  </data>
+  <data name="P050112Service_ThisBatchHasWorkInCase" xml:space="preserve">
+    <value>CAPS正在执行此汇总批号{0}，请先完成后再进行新汇总批号CAPS下传</value>
+  </data>
+  <data name="BatchPickNoHasOtherStationUsed" xml:space="preserve">
+    <value>此汇总单[{0}]已被[{1}]工作站拣货中</value>
+  </data>
+  <data name="BatchPickNoMustComplete" xml:space="preserve">
+    <value>此汇总单[{0}]尚未拣货完成，您必须先完成此汇总单!</value>
+  </data>
+  <data name="P050112Service_PutStatusNotCanCapsPutReturn" xml:space="preserve">
+    <value>此汇总批号{0}状态为{1}不可进行CAPS回传</value>
+  </data>
+  <data name="P050112Service_PutToolMustCaseToBeReturn" xml:space="preserve">
+    <value>此汇总批号{0}播种工具必须为CAPS才进行CAPS回传</value>
+  </data>
+  <data name="P050112Service_NotInCurrentBatchPutData" xml:space="preserve">
+    <value>此储位{0} 品号{1} 门市编号{2} 不存在此汇总批次{3}播种清单中!</value>
+  </data>
+  <data name="P050112Service_PutReturnActQtyOverPlanQty" xml:space="preserve">
+    <value>储位{0} 品号{1} 门市编号{2} 实际播种数{3}超过应播种数{4}</value>
+  </data>
+  <data name="P050112Service_PutReturnDuplicate" xml:space="preserve">
+    <value>同门市同储位同商品不可重复数据</value>
+  </data>
+  <data name="P050112Service_ThisBatchIsWorkInAGV" xml:space="preserve">
+    <value>AGV正在执行此汇总批号{0}，请先完成后再进行新汇总批号下传</value>
+  </data>
+  <data name="P050112Service_RetailCntOverCaseMaxCnt" xml:space="preserve">
+    <value>此汇总批号{0}门市数{1}已超过CAPS最大门市数{2}，无法下传CAPS!</value>
+  </data>
+  <data name="P050112Service_BatchPickNoStatusCantToAdjStation" xml:space="preserve">
+    <value>此汇总单号{0}状态为{1}不可修改工作站</value>
+  </data>
+  <data name="P020203ItemTypeSet" xml:space="preserve">
+    <value>请至商品类别检验项目设定:{0}</value>
+  </data>
+  <data name="P140101Service_EnterDateFail" xml:space="preserve">
+    <value>入库日期格式错误</value>
+  </data>
+  <data name="P140101Service_ItemCodeNotExit" xml:space="preserve">
+    <value>商品品号不存在</value>
+  </data>
+  <data name="P140101Service_ItemCodeNull" xml:space="preserve">
+    <value>商品品号不可为Null值</value>
+  </data>
+  <data name="P140101Service_LocCodeNotExit" xml:space="preserve">
+    <value>该储位代码不存在</value>
+  </data>
+  <data name="P140101Service_LocCodeNull" xml:space="preserve">
+    <value>储位代码不可为Null值</value>
+  </data>
+  <data name="P140101Service_QTYFail" xml:space="preserve">
+    <value>盘点数格式错误</value>
+  </data>
+  <data name="P140101Service_ValidDateFail" xml:space="preserve">
+    <value>效期格式错误</value>
+  </data>
+  <data name="P140101Service_FLUSHBACKNAMEFail" xml:space="preserve">
+    <value>盘盈可回冲格式不正确</value>
+  </data>
+  <data name="P140101Service_FLUSHBACKNAMENull" xml:space="preserve">
+    <value>盘盈可回冲不可为空值</value>
+  </data>
+  <data name="InventoryNoMustComplete" xml:space="preserve">
+    <value>此盘点单[{0}]尚未完成，您必须先完成此盘点单!</value>
+  </data>
+  <data name="InventoryNoOtherStationUsed" xml:space="preserve">
+    <value>此盘点单[{0}]已被[{1}]工作站盘点中</value>
+  </data>
+  <data name="P060201Service_LackQtyOverMustQty" xml:space="preserve">
+    <value>拣货数{0}个，已确认缺货数{1}个，本次缺货数{2}个已超过拣货数</value>
+  </data>
+  <data name="P050112Service_PutStatusCanotArtificalSowReturn" xml:space="preserve">
+    <value>此汇总批号{0}状态为{1}不可进行人工播种回传</value>
+  </data>
+  <data name="P020203Service_AcceptanceItemValidDateMustOverToday" xml:space="preserve">
+    <value>品号{0}效期不可小于今天!</value>
+  </data>
+  <data name="P020203Service_AllItemCheckSuccess" xml:space="preserve">
+    <value>所有明细都已完成商品检验</value>
+  </data>
+  <data name="PurchaseHasClosed" xml:space="preserve">
+    <value>进仓单已结案</value>
+  </data>
+  <data name="PurchaseHasRecvComplete" xml:space="preserve">
+    <value>此验收单已完成验收，无法取消验收</value>
+  </data>
+  <data name="P050304Service_CreateReSupplyAllot" xml:space="preserve">
+    <value>已产生补货调拨单:{0}{1}</value>
+  </data>
+  <data name="P050304Service_SelectedItemNoReSupplyStock" xml:space="preserve">
+    <value>您勾选的商品补货区皆无库存，无法产生补货调拨单</value>
+  </data>
+  <data name="UnitTransLableName" xml:space="preserve">
+    <value>包装参考</value>
+  </data>
+  <data name="P060202Service_LostQtyTransferManagerWH" xml:space="preserve">
+    <value>此储位拣不到商品，人员要求转移至管理仓</value>
+  </data>
+  <data name="P060202Service_NotSetTransferManagerLoc" xml:space="preserve">
+    <value>货主并未设定转移的目的储位编号，无法使用此功能</value>
+  </data>
+  <data name="P060202Service_NoSelectedPickLostQtyData" xml:space="preserve">
+    <value>请勾选要转移至管理仓拣货异常数据</value>
+  </data>
+  <data name="P060202Service_TransferManagerWHSuccess" xml:space="preserve">
+    <value>转移至管理仓成功</value>
+  </data>
+  <data name="P060202Service_PickItemTransferManagerWH" xml:space="preserve">
+    <value>拣货物品不在储位上，人员要求转移至管理仓</value>
+  </data>
+  <data name="BatchAllocNoMustComplete" xml:space="preserve">
+    <value>此汇总上架单[{0}]尚未完成，您必须先完成此汇总上架单!</value>
+  </data>
+  <data name="P080301_IsOutOfStockData" xml:space="preserve">
+    <value>此商品已注记下架缺货不可清除</value>
+  </data>
+  <data name="P080302_IsOutOfStockData" xml:space="preserve">
+    <value>此商品已注记上架缺货不可清除</value>
+  </data>
+  <data name="P160204Service_VnrRtnStockDebit" xml:space="preserve">
+    <value>厂退库存已经扣帐完成，调整单号为{0}，请至异动调整作业检视调整明细</value>
+  </data>
+  <data name="P060204Service_VnrRtnToShip" xml:space="preserve">
+    <value>请移至手动挑单进行出货处理</value>
+  </data>
+  <data name="P160501Service_DestoryShipDebit" xml:space="preserve">
+    <value>报废销毁库存已经扣帐完成，调整单号为{0}，请至异动调整作业检视调整明细</value>
+  </data>
+  <data name="P160501Service_DestoryMustStatusInUnProcess" xml:space="preserve">
+    <value>销毁单必须状态为待处理才可进行出货</value>
+  </data>
+  <data name="P020203Service_QuickCheckMessage" xml:space="preserve">
+    <value>{0}笔商品检核未通过，请使用「商品检验」确认问题!</value>
+  </data>
+  <data name="P2001010000_DCCodeNULL" xml:space="preserve">
+    <value>物流中心编号为必填</value>
+  </data>
+  <data name="P2001010000_DCCodeErr" xml:space="preserve">
+    <value>物流中心编号不正确</value>
+  </data>
+  <data name="P2001010000_LocNULL" xml:space="preserve">
+    <value>储位编号为必填</value>
+  </data>
+  <data name="P2001010000_LocCodeNotExit" xml:space="preserve">
+    <value>该储位编号不存在</value>
+  </data>
+  <data name="P2001010000_ItemCodeNULL" xml:space="preserve">
+    <value>品号为必填</value>
+  </data>
+  <data name="P2001010000_ItemCodeNotExit" xml:space="preserve">
+    <value>该品号不存在</value>
+  </data>
+  <data name="P2001010000_ValidDateNULL" xml:space="preserve">
+    <value>效期为必填</value>
+  </data>
+  <data name="P2001010000_ValidDateFormaErr" xml:space="preserve">
+    <value>效期格式错误</value>
+  </data>
+  <data name="P2001010000_EnterDateFormaErr" xml:space="preserve">
+    <value>入庫日格式錯誤</value>
+  </data>
+  <data name="P2001010000_ADJQtyInOutNoExist" xml:space="preserve">
+    <value>调入数与调出数请择一填写</value>
+  </data>
+  <data name="P2001010000_ADJQtyInFormaErr" xml:space="preserve">
+    <value>调入数请填整数数字</value>
+  </data>
+  <data name="P2001010000_ADJQtyOutFormaErr" xml:space="preserve">
+    <value>调出数请填整数数字</value>
+  </data>
+  <data name="P2001010000_StockNoQTY" xml:space="preserve">
+    <value>库存不足</value>
+  </data>
+  <data name="P160102Service_SourceLocItemStockIsEmpty" xml:space="preserve">
+    <value>来源储位{0}商品{1}没有库存</value>
+  </data>
+  <data name="P160102Service_SourceLocItemStockQtyisNotEnoughToUpShelfQty" xml:space="preserve">
+    <value>来源储位{0}商品{1}库存小于上架数</value>
+  </data>
+  <data name="P050112Service_UnSetCapsMaxRetailQty" xml:space="preserve">
+    <value>未设定CAPS 门店数上限数量</value>
+  </data>
+  <data name="P050112Service_OverTotalPrePlainQty" xml:space="preserve">
+    <value>门店数{0}已超过Caps总座入数{1}</value>
+  </data>
+  <data name="P050112Service_UnsetCapsPerPlainQty" xml:space="preserve">
+    <value>未设定CAPS座入数</value>
+  </data>
+  <data name="P050112Service_UnsetCapsPlainQty" xml:space="preserve">
+    <value>未设定CAPS座数</value>
+  </data>
+  <data name="P050112Service_OverCapsMaxRetailQty" xml:space="preserve">
+    <value>拣货单门店数{0}已超过Caps最大门店数{1}</value>
+  </data>
+  <data name="P2001010000_ADJQtyInLessZeroErr" xml:space="preserve">
+    <value>调入数请填大于等于0</value>
+  </data>
+  <data name="P2001010000_ADJQtyOutLessZeroErr" xml:space="preserve">
+    <value>调出数请填大于等于0</value>
+  </data>
+  <data name="P2001010000_ItemRepeat" xml:space="preserve">
+    <value>同样商品明细数据只能存在一笔数据</value>
+  </data>
+  <data name="P190110Service_SysUnitCase_Duplicate" xml:space="preserve">
+    <value>系统单位只能有一个「{0}」</value>
+  </data>
+  <data name="P0806130000_OrderNoIsNotExist" xml:space="preserve">
+    <value>此单号不存在</value>
+  </data>
+  <data name="P0806130000_PickIsNotExist" xml:space="preserve">
+    <value>此拣货单号不存在</value>
+  </data>
+  <data name="P0806130000_PickStatus_Cancel" xml:space="preserve">
+    <value>此拣货单已取消，无法进行绑定</value>
+  </data>
+  <data name="P0806130000_PickStatusToEmpID" xml:space="preserve">
+    <value>此拣货单已分配给工号</value>
+  </data>
+  <data name="P0806130000_PleaseScanPickNo" xml:space="preserve">
+    <value>请刷入拣货单号</value>
+  </data>
+  <data name="P0806130000_EmpIDError" xml:space="preserve">
+    <value>工号不正确</value>
+  </data>
+  <data name="P0806130000_EmpIDIsNotExist" xml:space="preserve">
+    <value>请输入正确的工号</value>
+  </data>
+  <data name="P0806130000_PickOrdNoIsExist" xml:space="preserve">
+    <value>此拣货单已有人员进行单一拣货</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoIsNotExist" xml:space="preserve">
+    <value>此出货单号不存在</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoIsExist" xml:space="preserve">
+    <value>此出货单已有人员进行批量拣货</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoPickFinish" xml:space="preserve">
+    <value>此出货单已有人员批量拣货完成</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoPickFinished" xml:space="preserve">
+    <value>此出货单已拣货完成</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoPicking" xml:space="preserve">
+    <value>此出货单已有人员开始拣货</value>
+  </data>
+  <data name="P0806130000_PickOrdNoPickFinished" xml:space="preserve">
+    <value>此拣货单已拣货完成</value>
+  </data>
+  <data name="P0806130000_PickOrdNoPicking" xml:space="preserve">
+    <value>此拣货单已有人员开始拣货</value>
+  </data>
+  <data name="P2001010000_SerialNoError" xml:space="preserve">
+    <value>序号{0}错误，{1}</value>
+  </data>
+  <data name="P2001010000_SerialNoIsRepeat" xml:space="preserve">
+    <value>有序号重覆，请检查序号</value>
+  </data>
+  <data name="P2001010000_SerialNoCountError" xml:space="preserve">
+    <value>序号数与调出或调入数不同</value>
+  </data>
+  <data name="P0806130000_SinglePick" xml:space="preserve">
+    <value>此拣货单为单一拣货，请刷读出货单号</value>
+  </data>
+  <data name="P0806130000_BatchPick" xml:space="preserve">
+    <value>此拣货单为批量拣货，请刷读拣货单号</value>
+  </data>
+  <data name="WmsNoMustUnPackagedToAddLack" xml:space="preserve">
+    <value>此出货单必须为未包装才可以设定拣缺</value>
+  </data>
+  <data name="P060103Service_CannotBeRecovered" xml:space="preserve">
+    <value>订单 {0} 尚未拣货完成，无法进行储位回复</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoCancel" xml:space="preserve">
+    <value>此出货单已取消</value>
+  </data>
+  <data name="P0806130000_PickOrdNoCancel" xml:space="preserve">
+    <value>此拣货单已取消</value>
+  </data>
+  <data name="P0807010000_ChangeBoxNum" xml:space="preserve">
+    <value>更换纸箱</value>
+  </data>
+  <data name="P2001010000_NotExistCause" xml:space="preserve">
+    <value>异动原因不存在</value>
+  </data>
+  <data name="P080701Service_ScanOrginalItem" xml:space="preserve">
+    <value>出货明细中含有原箱商品，请刷读原箱品号/序号/箱号</value>
+  </data>
+  <data name="P080701Service_OrginalItemQtyMustOne" xml:space="preserve">
+    <value>此为原箱商品，包装数必须为1</value>
+  </data>
+  <data name="P080701Service_PreBoxHasOrginalItemNotClose" xml:space="preserve">
+    <value>前一箱为原箱商品，未正常关箱，请先手动执行关箱后再继续作业</value>
+  </data>
+  <data name="P080701Service_OrginalItem" xml:space="preserve">
+    <value>原箱商品</value>
+  </data>
+  <data name="P080701Service_ErrorBoxItemCode" xml:space="preserve">
+    <value>箱号输入错误，请刷读箱号</value>
+  </data>
+  <data name="P080701Service_NewBox" xml:space="preserve">
+    <value>加箱</value>
+  </data>
+  <data name="P2001010000_IsAutoWarehourse" xml:space="preserve">
+    <value>储位{0}是自动仓，不可调整商品库存</value>
+  </data>
+  <data name="P2001010000_IsAutoWarehourseIsNotAvailable" xml:space="preserve">
+    <value>储位{0}为自动仓储位，不可上架</value>
+  </data>
+  <data name="P250302Service_SERIAL_NO_NOT_IN_STOCK" xml:space="preserve">
+    <value>旧序号 {0} 状态不是在库(A1)</value>
+  </data>
+  <data name="P160202Service_ItemMakeNoStockNotEnough" xml:space="preserve">
+    <value>品号{0}批号{1}预退{2}个，库存不足{3}个</value>
+  </data>
+  <data name="P160202Service_ItemStockNotEnough" xml:space="preserve">
+    <value>品号{0}预退{1}个，库存不足{2}个</value>
+  </data>
+  <data name="P160202Service_RtnWmsQtyOverRtnQty" xml:space="preserve">
+    <value>[厂退单{0} 厂退序号{1} ]本次厂退出货数量{2}超过预计厂退数量{3}-已厂退出货数量{4}</value>
+  </data>
+  <data name="P140104Service_InventoryNotFinish" xml:space="preserve">
+    <value>此盘点单{0}未完成盘点，无法进行差异查询</value>
+  </data>
+  <data name="P140104Service_FirstInventoryNotFinish" xml:space="preserve">
+    <value>此盘点单{0}未完成初盘，无法产生复盘资料</value>
+  </data>
+  <data name="P1401020000_InventoryLossWHIdNotSetting" xml:space="preserve">
+    <value>尚未设定盘点盘损仓</value>
+  </data>
+  <data name="P140104Service_SecondInventoryNotExist" xml:space="preserve">
+    <value>此盘点单{0}未完成复盘，无法重新产生复盘资料</value>
+  </data>
+  <data name="PurchaseCustCostError" xml:space="preserve">
+    <value>跨并的进货单不须做进货收发作业</value>
+  </data>
+  <data name="P080201Service_NotData" xml:space="preserve">
+    <value>找不到欲更新资料</value>
+  </data>
+  <data name="P0806130000_PickOrdNoIsAutoPick" xml:space="preserve">
+    <value>此拣货单为自动仓拣货，无法进行绑定</value>
+  </data>
+  <data name="P0806130000_PickOrdNoIsPdaPick" xml:space="preserve">
+    <value>此拣货单为PDA拣货，无法进行绑定</value>
+  </data>
+  <data name="P080614Service_PickAllotFinished" xml:space="preserve">
+    <value>拣货单已分货完成</value>
+  </data>
+  <data name="P080614Service_PickIsCancel" xml:space="preserve">
+    <value>拣货单已取消，请移动到异常区</value>
+  </data>
+  <data name="P080614Service_PickIsNotArtificalOrder" xml:space="preserve">
+    <value>拣货单非人工仓拣货单</value>
+  </data>
+  <data name="P080614Service_PickIsNotExist" xml:space="preserve">
+    <value>拣货单不存在</value>
+  </data>
+  <data name="P080614Service_PickIsNotPickFinished" xml:space="preserve">
+    <value>拣货单尚未完成拣货</value>
+  </data>
+  <data name="P080614Service_PickIsSinglePickConfirmIsOutOfStock" xml:space="preserve">
+    <value>此为单一拣货单，请确认是否在拣货时有商品缺货?{0} (选是: 必须完成分货，不可中断、否: 不须分货，请到包装站)</value>
+  </data>
+  <data name="P080614Service_ContainerIsUsed" xml:space="preserve">
+    <value>此容器已被使用中，请确认是否可被使用?</value>
+  </data>
+  <data name="P080614Service_ItemNoExist" xml:space="preserve">
+    <value>您刷读的商品条码不存在</value>
+  </data>
+  <data name="P080614Service_ItemNoExistInOrder" xml:space="preserve">
+    <value>该品号不存在本拣货单中</value>
+  </data>
+  <data name="P080614Service_ItemIsSerialItemPleaseScanSerialNo" xml:space="preserve">
+    <value>该商品为序号商品，请刷读商品序号</value>
+  </data>
+  <data name="P080614Service_ThisSerialIsFreeze" xml:space="preserve">
+    <value>此商品序号已冻结</value>
+  </data>
+  <data name="P080614Service_ThisSerialIsNotInWarehouse" xml:space="preserve">
+    <value>此商品序号非在库序号</value>
+  </data>
+  <data name="P080614Service_ItemIsAllotFinished" xml:space="preserve">
+    <value>此商品已分货完成</value>
+  </data>
+  <data name="P080614Service_PickIsPdaSinglePickCanotAllot" xml:space="preserve">
+    <value>此為PDA單一揀貨，不可分貨，請依原PDA指示前往包裝站或集貨場</value>
+  </data>
+  <data name="P200101Service_NotCancelOrdNos" xml:space="preserve">
+    <value>订单{0}，已包装或已出货或已在稽核不可取消</value>
+  </data>
+  <data name="CanNotUseLMSRoute" xml:space="preserve">
+    <value>该批次日期:{0}时段:{1}拣货单目前无法进行LMS路顺排序，请选择以下处理方式</value>
+  </data>
+  <data name="P080804Service_BatchContainerNotFInished" xml:space="preserve">
+    <value>批次日期:{0} 批次时段:{1} 目的库:{2} {3} 尚有容器:{4} 未完成分货，请先完成此容器分货</value>
+  </data>
+  <data name="P080804Service_BatchPickNotFinished" xml:space="preserve">
+    <value>批次日期:{0} 批次时段:{1} 目的库:{2} 尚有拣货单未完成拣货</value>
+  </data>
+  <data name="P080804Service_ContianerNoNotExist" xml:space="preserve">
+    <value>容器编号不存在</value>
+  </data>
+  <data name="P080804Service_DcNotSetLossWarehouse" xml:space="preserve">
+    <value>物流中心{0}疑似遗失仓未设定</value>
+  </data>
+  <data name="P080804Service_ItemBarcodeNotInBox" xml:space="preserve">
+    <value>您刷读的商品条码不存在此容器中</value>
+  </data>
+  <data name="P080804Service_ItemIsAllotFinish" xml:space="preserve">
+    <value>此商品已分货完成</value>
+  </data>
+  <data name="P080804Service_NewBoxIsUsed" xml:space="preserve">
+    <value>新容器编号{0}已被使用，不可绑定</value>
+  </data>
+  <data name="P080804Service_OrgAddBoxHasProduct" xml:space="preserve">
+    <value>原容器编号{0}未放入任何商品不可加箱</value>
+  </data>
+  <data name="P080804Service_OrgBoxHasProduct" xml:space="preserve">
+    <value>原容器编号{0}已放入商品不可重新绑定</value>
+  </data>
+  <data name="P080804Service_OrgBoxIsClosed" xml:space="preserve">
+    <value>原容器编号{0}已关箱不可重新绑定</value>
+  </data>
+  <data name="P080804Service_OrgBoxNotExist" xml:space="preserve">
+    <value>原容器编号{0}资料不存在</value>
+  </data>
+  <data name="P080804Service_SerialIsLock" xml:space="preserve">
+    <value>此商品序号已冻结</value>
+  </data>
+  <data name="P080804Service_SerialIsNotInWarehouse" xml:space="preserve">
+    <value>此商品序号非在库序号</value>
+  </data>
+  <data name="P080804Service_SerialItemMustScanSeriral" xml:space="preserve">
+    <value>该商品为序号商品，请刷读商品序号</value>
+  </data>
+  <data name="P080804Service_YouScanItemBarcodeNotExist" xml:space="preserve">
+    <value>你刷读的商品条码不存在</value>
+  </data>
+</root>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cf9f0902-88c9-4b0c-b306-b0da5c61f08c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/S99WcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="S99WcfService1.xsd" MetadataType="Schema" ID="86a94b1a-5ecf-4496-b49e-58623d3f1270" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S99WcfService.svc?xsd=xsd1" />
+    <MetadataFile FileName="S99WcfService.xsd" MetadataType="Schema" ID="f3574112-e822-43c0-a067-9b5296e19db3" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S99WcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="S99WcfService2.xsd" MetadataType="Schema" ID="cb2cf47b-b778-4004-8b64-5fe6d504f44e" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S99WcfService.svc?xsd=xsd3" />
+    <MetadataFile FileName="S99WcfService3.xsd" MetadataType="Schema" ID="bad644ec-6de3-412b-a2ee-16278e5b0689" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S99WcfService.svc?xsd=xsd2" />
+    <MetadataFile FileName="S99WcfService.disco" MetadataType="Disco" ID="68793aa7-c1ba-455f-ba81-390d8004081d" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S99WcfService.svc?disco" />
+    <MetadataFile FileName="S99WcfService.wsdl" MetadataType="Wsdl" ID="96782b74-f8f4-42fe-89e9-56d3c1790699" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S99WcfService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

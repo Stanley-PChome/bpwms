@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0803010000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" Width="800" Height="600" d:DesignWidth="800" d:DesignHeight="600" WindowState="Maximized" WindowStartupLocation="CenterScreen" AllowDrop="False" BorderThickness="0" Title="同倉調撥下架" WindowStyle="None" ResizeMode="NoResize" ShowActivated="True" ShowInTaskbar="False" IsHitTestVisible="True" controls:PermissionService.FunctionId="P0803010000" controls:PermissionService.FunctionName="同倉調撥下架" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+  <!--MinWidth="800" MinHeight="600"-->
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0803010000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master" FontSize="22">
+      <uiLib:BasicMaster.MainContent>
+        <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+          <WrapPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="5" />
+          <!-- 由此處開始加入畫面項目 -->
+          <WrapPanel DockPanel.Dock="Top" Orientation="Vertical">
+            <WrapPanel Visibility="Collapsed" x:Name="Errors" />
+          </WrapPanel>
+          <Viewbox>
+            <DockPanel DockPanel.Dock="Top">
+              <!-- 跑馬燈 開始 --><!--
+              <WrapPanel DockPanel.Dock="Top">
+                <TextBlock DockPanel.Dock="Top" Text="{Binding MarqueeMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="30" Foreground="Red" x:Name="BlockMarqueeMessage">
+                  <TextBlock.RenderTransform>
+                    <TranslateTransform x:Name="MyTranslateTransform" />
+                  </TextBlock.RenderTransform>
+                </TextBlock>
+              </WrapPanel>
+              --><!-- 跑馬燈 結束 -->
+              <DockPanel DockPanel.Dock="Top">
+                <WrapPanel DockPanel.Dock="Top">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition />
+                      <RowDefinition />
+                      <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                       <Label  Grid.Row="0" Grid.Column="0" FontSize="30" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbTitleStyle}" />
+                       <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList}" SelectedValue="{Binding SelectedDcCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" />
+                       <CheckBox Grid.Row="0" Grid.Column="2" FontSize="30" Style="{StaticResource CheckStyle}" Content="{x:Static Properties:Resources.IsVoice}" IsChecked="{Binding IsVoice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                       <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.AllocationNo}" FontWeight="Bold" FontSize="30" Style="{StaticResource LbTitleStyle}" />
+                       <TextBox Grid.Row="1" Grid.Column="1" FontSize="30" FontWeight="Bold" Width="300"  Text="{Binding AllocationNo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="TxtAllocationNo" KeyDown="TxtAllocationNo_OnKeyDown" >
+                          <TextBox.Style>
+                              <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                  <Setter Property="MaxLength" Value="20" />
+                              </Style>
+                         </TextBox.Style>
+                      </TextBox>
+                    <Label Grid.Row="1" Grid.Column="2" FontSize="30" HorizontalContentAlignment="Left" FontWeight="Bold" Content="{x:Static Properties:Resources.WareHouseName}" Style="{StaticResource LbTitleStyle}" />
+                    <Label Grid.Row="1" Grid.Column="3" FontSize="30" Content="{Binding WareHouseName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" />
+                    <Label Grid.Row="2" Grid.Column="0" FontSize="30" FontWeight="Bold" Content="{x:Static Properties:Resources.DisplayLocCode}" Style="{StaticResource LbTitleStyle}" />
+                    <Label Grid.Row="2" Grid.Column="1" FontSize="30" FontWeight="Bold" Foreground="Blue" Content="{Binding DisplayLocCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" />
+                    <Label Grid.Row="2" Grid.Column="2" FontSize="30" FontWeight="Bold" Content="{x:Static Properties:Resources.ABSrcQty}" Style="{StaticResource LbTitleStyle}" />
+                    <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="3">
+                      <Label Content="{Binding ASrcQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+                      <Label Content="/" HorizontalContentAlignment="Center" VerticalAlignment="Center" />
+                      <Label Content="{Binding BSrcQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="50" Foreground="Red" Margin="10,0,0,0" FontWeight="Bold" />
+                    </WrapPanel>
+                  </Grid>
+                </WrapPanel>
+              </DockPanel>
+              <DockPanel DockPanel.Dock="Top">
+                <DockPanel>
+                  <DockPanel DockPanel.Dock="Top">
+                    <Grid MinWidth="1100" HorizontalAlignment="Left">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                      <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                      </Grid.RowDefinitions>
+                      <Label Content="{x:Static Properties:Resources.ITEM_CODE}" Grid.Row="0" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="0" Grid.Column="1" Content="{Binding ItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" />
+                      <Label Content="{x:Static Properties:Resources.ABItemSrcQty}" Grid.Row="0" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                      <WrapPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center">
+                        <Label Content="{Binding AItemSrcQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+                        <Label Content="/" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                        <Label Content="{Binding BItemSrcQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+                      </WrapPanel>
+                      <Label Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.RetUnit}" Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="0" Grid.Column="5" Content="{Binding RetUnit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" />
+                      <Label Grid.Row="0" Grid.Column="6" Content="{x:Static Properties:Resources.ValidDate}" Style="{StaticResource LbTitleStyle}" />
+                      <DatePicker Grid.Row="0" Grid.Column="7" SelectedDate="{Binding ValidDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DateStyle}" IsEnabled="{Binding IsEnabledValidDate ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="200" />
+                      <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_NAME}" Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{Binding ItemName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" />
+                      <Label Grid.Row="1" Grid.Column="6" Content="{x:Static Properties:Resources.MAKE_NO}" Style="{StaticResource LbTitleStyle}" />
+                      <TextBox Grid.Row="1" Grid.Column="7" Text="{Binding MakeNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding IsEnabledMakeNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="30" Width="200" >
+                          <TextBox.Style>
+                              <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                  <Setter Property="MaxLength" Value="20" />
+                              </Style>
+                          </TextBox.Style>
+                      </TextBox>
+                      <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.SerialNo}" Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="2" Grid.Column="1" Content="{Binding SERIAL_NOByShow,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" />
+                      <Label Grid.Row="2" Grid.Column="4" Content="{x:Static Properties:Resources.PALLET_NO}" Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="2" Grid.Column="5" Content="{Binding PalletNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left"  Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="2" Grid.Column="6" Content="{x:Static Properties:Resources.BOX_CTRL_NO}" Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="2" Grid.Column="7" Content="{Binding BoxCrtlNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left"  Style="{StaticResource LbTitleStyle}" />
+                      <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.BoxNo}" Visibility="Collapsed" />
+                      <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource LbStyle}" Content="{Binding BoxNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" />
+                    </Grid>
+                  </DockPanel>
+                  <WrapPanel DockPanel.Dock="Top" Height="50">
+                    <Label Content="{x:Static Properties:Resources.ScanItemCode}" Style="{StaticResource LbTitleStyle}" FontWeight="Bold" FontSize="30" />
+                        <TextBox Text="{Binding ScanItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="TxtScanItemCode" IsEnabled="{Binding IsEnabledScanItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" KeyDown="TxtScanItemCode_OnKeyDown" Width="250" FontSize="30" >
+                             <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                   <Setter Property="MaxLength" Value="50" />
+                                </Style>
+                             </TextBox.Style>
+                        </TextBox>
+                    <Label Content="{x:Static Properties:Resources.ActualSrcQty}" Style="{StaticResource LbTitleStyle}" FontWeight="Bold" FontSize="30" />
+                        <TextBox  Text="{Binding ActualSrcQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEnabledActualSrcQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" KeyDown="TxtActualSrcQty_OnKeyDown" AutoWordSelection="True" FontSize="30" controls:TextBoxService.AutoCreateVirtualKeyBoard="True" controls:TextBoxService.KeyBoardType="Number" >
+                             <TextBox.Style>
+                                  <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                     <Setter Property="MaxLength" Value="10" />
+                                  </Style>
+                             </TextBox.Style>
+                       </TextBox>
+                  </WrapPanel>
+                </DockPanel>
+              </DockPanel>
+              <DockPanel DockPanel.Dock="Left">
+                <DockPanel DockPanel.Dock="Top">
+                  <WrapPanel DockPanel.Dock="Left">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+                      <Button Content="{x:Static Properties:Resources.PrevLoc}" Width="50" Height="50" Margin="5" controls:PermissionService.FunctionId="BP0803010001" Command="{Binding PrevLocCommand}" />
+                      <Button Content="{x:Static Properties:Resources.NextLoc}" Width="50" Height="50" Margin="5" controls:PermissionService.FunctionId="BP0803010002" Command="{Binding NextLocCommand}" />
+                    </StackPanel>
+                  </WrapPanel>
+                  <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Image DockPanel.Dock="Top" Source="{Binding ItemImageSource, UpdateSourceTrigger=PropertyChanged}" Width="350" Height="300" />
+                  </WrapPanel>
+                </DockPanel>
+                <WrapPanel DockPanel.Dock="Top">
+                  <Button Content="{x:Static Properties:Resources.OutOfStock}" Background="Tomato" Width="100" Height="50" Margin="3,3,3,3" controls:PermissionService.FunctionId="BP0803010003" Command="{Binding OutOfStockCommand}" />
+                  <Button Content="{x:Static Properties:Resources.Help}" Background="Yellow" Width="100" Height="50" Margin="3,3,3,3" controls:PermissionService.FunctionId="BP0803010004" Command="{Binding HelpCommand}" />
+                  <Button Content="{x:Static Properties:Resources.Finish}" Width="100" Height="50" Margin="185,3,3,3" controls:PermissionService.FunctionId="BP0803010005" Command="{Binding FinishCommand}" />
+                  <Button Content="{x:Static Properties:Resources.Exist}" Margin="3" Width="100" Height="50" controls:PermissionService.FunctionId="BP0803010006" Command="{Binding ExitCommand}" />
+                </WrapPanel>
+              </DockPanel>
+              <DockPanel DockPanel.Dock="Right">
+                <DataGrid Margin="2" Style="{StaticResource DgStyle}" ItemsSource="{Binding F151002ItemLocDatas}" CellStyle="{StaticResource SingleClickEdit}" SelectedItem="{Binding SelectedF151002ItemLocData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="500" Height="400">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.WareHouseName}" Binding="{Binding WAREHOUSE_NAME }" Width="120" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.SRC_LOC_CODE}" Binding="{Binding SRC_LOC_CODE}" Width="120" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ValidDate}" Binding="{Binding SRC_VALID_DATE,Converter={StaticResource DateTimeToStringConverter}, ConverterParameter=yyyy/MM/dd}" Width="130" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.MAKE_NO}" Binding="{Binding SRC_MAKE_NO }" Width="100" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.A_SRC_QTY}" Binding="{Binding A_SRC_QTY}" Width="60" />
+                    <DataGridTemplateColumn Header="" Width="60">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Button Content="{x:Static Properties:Resources.Clear}" Click="ButtonBase_OnClick" controls:PermissionService.FunctionId="BP0803010007" controls:PermissionService.FunctionName="清除" />
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                  </DataGrid.Columns>
+                </DataGrid>
+              </DockPanel>
+            </DockPanel>
+          </Viewbox>
+        </DockPanel>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

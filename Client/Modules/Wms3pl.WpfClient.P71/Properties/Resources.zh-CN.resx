@@ -1,0 +1,2769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="a4Printer" xml:space="preserve">
+    <value>A4纸张列印</value>
+  </data>
+  <data name="AccArea" xml:space="preserve">
+    <value>修改区域名称</value>
+  </data>
+  <data name="AcceptingOverThirtyMin" xml:space="preserve">
+    <value>-验收处理中-超过30分钟未完成</value>
+  </data>
+  <data name="AccKind" xml:space="preserve">
+    <value>计费方式</value>
+  </data>
+  <data name="ACCNUM" xml:space="preserve">
+    <value>材积</value>
+  </data>
+  <data name="AccWay" xml:space="preserve">
+    <value>计价方式</value>
+  </data>
+  <data name="Acc_AreaName" xml:space="preserve">
+    <value>计费区域名称</value>
+  </data>
+  <data name="ACC_AREA_ID" xml:space="preserve">
+    <value>计费区域</value>
+  </data>
+  <data name="ACC_ITEMNAME" xml:space="preserve">
+    <value>计价项目名称</value>
+  </data>
+  <data name="ACC_ITEM_KIND_NAME" xml:space="preserve">
+    <value>计费单位</value>
+  </data>
+  <data name="ACC_ITEM_NAME" xml:space="preserve">
+    <value>计价设定名称</value>
+  </data>
+  <data name="ACC_NUM" xml:space="preserve">
+    <value>计价数量</value>
+  </data>
+  <data name="ACC_TYPE" xml:space="preserve">
+    <value>计费类型</value>
+  </data>
+  <data name="ACTION" xml:space="preserve">
+    <value>交易动作</value>
+  </data>
+  <data name="ACTUAL_CRASH" xml:space="preserve">
+    <value>实际碰撞率 </value>
+  </data>
+  <data name="ACT_ORD_COUNT" xml:space="preserve">
+    <value>实际出货订单数</value>
+  </data>
+  <data name="ACT_WMS_COUNT" xml:space="preserve">
+    <value>实际出货单数</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="AddArea" xml:space="preserve">
+    <value>新增区域</value>
+  </data>
+  <data name="AddFile" xml:space="preserve">
+    <value>新增档案</value>
+  </data>
+  <data name="AddNum" xml:space="preserve">
+    <value>新增单量</value>
+  </data>
+  <data name="ADDRESS_A" xml:space="preserve">
+    <value>地址参考1</value>
+  </data>
+  <data name="ADDRESS_B" xml:space="preserve">
+    <value>地址参考2</value>
+  </data>
+  <data name="AddSet" xml:space="preserve">
+    <value>新增设定</value>
+  </data>
+  <data name="AddTime" xml:space="preserve">
+    <value>新增时段</value>
+  </data>
+  <data name="AddWarehouseID" xml:space="preserve">
+    <value>新增仓别</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>细部调整</value>
+  </data>
+  <data name="ADR" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="ALLOWGUP_ITEMCATEGORYSHARE" xml:space="preserve">
+    <value>是否业主商品分类共用</value>
+  </data>
+  <data name="ALLOWGUP_RETAILSHARE" xml:space="preserve">
+    <value>是否业主门市共用</value>
+  </data>
+  <data name="ALLOWGUP_VNRSHARE" xml:space="preserve">
+    <value>是否业主厂商共用</value>
+  </data>
+  <data name="ALLOWREPEAT_ITEMBARCODE" xml:space="preserve">
+    <value>允许商品条码重覆</value>
+  </data>
+  <data name="ALLOWRT_SPECIALBUY" xml:space="preserve">
+    <value>允许验收进行特殊采购</value>
+  </data>
+  <data name="ALLOW_ADDBOXNOCHECK" xml:space="preserve">
+    <value>允许加箱後不做稽核</value>
+  </data>
+  <data name="ALLOW_NOPRINTPICKORDER" xml:space="preserve">
+    <value>允许不列印拣货单</value>
+  </data>
+  <data name="ALLOW_NOSHIPPACKAGE" xml:space="preserve">
+    <value>允许不出货包装</value>
+  </data>
+  <data name="Allow_OrdAddress_Analysis" xml:space="preserve">
+    <value>允许订单地址解析</value>
+  </data>
+  <data name="ALLOW_SPILT_ORDER_LIM" xml:space="preserve">
+    <value>允许订单明细超过</value>
+  </data>
+  <data name="ALLOW_SPILT_ORDER_OVER_LIM" xml:space="preserve">
+    <value>允许订单明细超过可以做订单切割</value>
+  </data>
+  <data name="ALL_COMP" xml:space="preserve">
+    <value>配送商名称</value>
+  </data>
+  <data name="ALL_ID" xml:space="preserve">
+    <value>配送商编号</value>
+  </data>
+  <data name="AMOUNT" xml:space="preserve">
+    <value>结算金额(元)</value>
+  </data>
+  <data name="AMT" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="APPROVE_DATE" xml:space="preserve">
+    <value>扣帐</value>
+  </data>
+  <data name="AreaType" xml:space="preserve">
+    <value>储区</value>
+  </data>
+  <data name="AREA_CODE" xml:space="preserve">
+    <value>储区代号</value>
+  </data>
+  <data name="AREA_NAME" xml:space="preserve">
+    <value>储区名称</value>
+  </data>
+  <data name="AType" xml:space="preserve">
+    <value>储区型态</value>
+  </data>
+  <data name="AUDIT_DATE" xml:space="preserve">
+    <value>稽核时间</value>
+  </data>
+  <data name="AUDIT_QTY" xml:space="preserve">
+    <value>验货数量</value>
+  </data>
+  <data name="AUTO_GEN_RTN" xml:space="preserve">
+    <value>换货是否自动产生退货单</value>
+  </data>
+  <data name="AUTO_PRINT_CONSIGN" xml:space="preserve">
+    <value>是否自动列印托运单</value>
+  </data>
+  <data name="AVG_PAST_DATE" xml:space="preserve">
+    <value>平均配送时间(分)</value>
+  </data>
+  <data name="A_TAR_QTY" xml:space="preserve">
+    <value>交易量</value>
+  </data>
+  <data name="A_TYPE" xml:space="preserve">
+    <value>大分类</value>
+  </data>
+  <data name="B2C_CAN_LACK" xml:space="preserve">
+    <value>允许B2C订单在配库缺货时部分释放</value>
+  </data>
+  <data name="BanjCode" xml:space="preserve">
+    <value>银行代号</value>
+  </data>
+  <data name="BANK_ACCOUNT" xml:space="preserve">
+    <value>银行帐号</value>
+  </data>
+  <data name="BANK_NAME" xml:space="preserve">
+    <value>银行名称</value>
+  </data>
+  <data name="bartender" xml:space="preserve">
+    <value>Bartender标签机列印</value>
+  </data>
+  <data name="BasicData" xml:space="preserve">
+    <value>基本资料</value>
+  </data>
+  <data name="BASIC_FEE" xml:space="preserve">
+    <value>≦计价数量,费用</value>
+  </data>
+  <data name="BEGIN_DATE" xml:space="preserve">
+    <value>使用日期起</value>
+  </data>
+  <data name="BEGIN_DELV_DATE" xml:space="preserve">
+    <value>开始出货日期</value>
+  </data>
+  <data name="Begin_InventoryDate" xml:space="preserve">
+    <value>开始存放日</value>
+  </data>
+  <data name="BILL_CONTACT" xml:space="preserve">
+    <value>帐务联络人资料</value>
+  </data>
+  <data name="BILL_DATA" xml:space="preserve">
+    <value>帐务资料</value>
+  </data>
+  <data name="BOSS" xml:space="preserve">
+    <value>负责人</value>
+  </data>
+  <data name="BOUNDLE_SERIALLOC" xml:space="preserve">
+    <value>允许序号绑储位</value>
+  </data>
+  <data name="BoxDetail" xml:space="preserve">
+    <value>箱明细</value>
+  </data>
+  <data name="BoxId" xml:space="preserve">
+    <value>箱次</value>
+  </data>
+  <data name="BoxWeight" xml:space="preserve">
+    <value>重量</value>
+  </data>
+  <data name="BtnPrint" xml:space="preserve">
+    <value>列印重量标</value>
+  </data>
+  <data name="BUY_CUST_NAME" xml:space="preserve">
+    <value>买方货主</value>
+  </data>
+  <data name="BWAREHOUSE" xml:space="preserve">
+    <value>外借仓</value>
+  </data>
+  <data name="ByACC_NUM" xml:space="preserve">
+    <value>依材积</value>
+  </data>
+  <data name="ByLocArea" xml:space="preserve">
+    <value>依储区　　</value>
+  </data>
+  <data name="ByLocCode" xml:space="preserve">
+    <value>依储位编号</value>
+  </data>
+  <data name="ByRange" xml:space="preserve">
+    <value>依范围</value>
+  </data>
+  <data name="ByWeight" xml:space="preserve">
+    <value>依重量</value>
+  </data>
+  <data name="B_TYPE" xml:space="preserve">
+    <value>中分类</value>
+  </data>
+  <data name="CAL_CUFT" xml:space="preserve">
+    <value>是否计算单据材积</value>
+  </data>
+  <data name="CAL_FEE" xml:space="preserve">
+    <value>计费</value>
+  </data>
+  <data name="CAL_STOCK" xml:space="preserve">
+    <value>计库存</value>
+  </data>
+  <data name="CAN_FAST" xml:space="preserve">
+    <value>快速到货</value>
+  </data>
+  <data name="CAN_FAST_Service" xml:space="preserve">
+    <value>是否提供快速到货功能</value>
+  </data>
+  <data name="CarKindForSearchResult" xml:space="preserve">
+    <value>车辆种辆</value>
+  </data>
+  <data name="CarSendFee" xml:space="preserve">
+    <value>车辆配送费用</value>
+  </data>
+  <data name="CarTonneForSearchResult" xml:space="preserve">
+    <value>吨数</value>
+  </data>
+  <data name="CarType" xml:space="preserve">
+    <value>车辆种类</value>
+  </data>
+  <data name="CAR_KIND_NAME" xml:space="preserve">
+    <value>车种</value>
+  </data>
+  <data name="Cel" xml:space="preserve">
+    <value>行动电话</value>
+  </data>
+  <data name="ChangeCount" xml:space="preserve">
+    <value>调整数</value>
+  </data>
+  <data name="ChangeNumber" xml:space="preserve">
+    <value>异动数</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>通道</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>选</value>
+  </data>
+  <data name="CHECKSET" xml:space="preserve">
+    <value>收货设定</value>
+  </data>
+  <data name="CHECK_ACCOUNT_TYPE_NAME" xml:space="preserve">
+    <value>对帐事项</value>
+  </data>
+  <data name="CHECK_INCORRECT" xml:space="preserve">
+    <value>进货箱入数与商品主档不吻合</value>
+  </data>
+  <data name="CHECK_ROUTE" xml:space="preserve">
+    <value>是否检核路线表</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>选择档案</value>
+  </data>
+  <data name="CirculateItem" xml:space="preserve">
+    <value>计价项目</value>
+  </data>
+  <data name="CirculateUnit" xml:space="preserve">
+    <value>计价单位</value>
+  </data>
+  <data name="CirculatProcessing_Board" xml:space="preserve">
+    <value>流通加工看板</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="ClearingDate" xml:space="preserve">
+    <value>结算日期</value>
+  </data>
+  <data name="ClearingItem" xml:space="preserve">
+    <value>结算项目</value>
+  </data>
+  <data name="ClearingPeriod" xml:space="preserve">
+    <value>结算期间：</value>
+  </data>
+  <data name="ClearingResult" xml:space="preserve">
+    <value>结算结果</value>
+  </data>
+  <data name="Clearing_Customer" xml:space="preserve">
+    <value>结算对象：</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>已关帐</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>公司名称</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>设定条件</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="CONSIGN_FORMAT" xml:space="preserve">
+    <value>托运单格式</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>紧急联络人</value>
+  </data>
+  <data name="CONTACTOR" xml:space="preserve">
+    <value>联络人</value>
+  </data>
+  <data name="COST" xml:space="preserve">
+    <value>成本费用(元)</value>
+  </data>
+  <data name="CountByW" xml:space="preserve">
+    <value>加工单总量</value>
+  </data>
+  <data name="COUNTF1912" xml:space="preserve">
+    <value>租用储位数</value>
+  </data>
+  <data name="COUNTF1913" xml:space="preserve">
+    <value>占用储位数</value>
+  </data>
+  <data name="COUNTF1913NULL" xml:space="preserve">
+    <value>空储位数</value>
+  </data>
+  <data name="COUNT_PACKAGE_BOX_NO" xml:space="preserve">
+    <value>总出货箱数</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立时间</value>
+  </data>
+  <data name="CRT_NAME" xml:space="preserve">
+    <value>派车人员</value>
+  </data>
+  <data name="CRT__NAME" xml:space="preserve">
+    <value>报告人</value>
+  </data>
+  <data name="CUFT_BLUK" xml:space="preserve">
+    <value>材积(零数箱)</value>
+  </data>
+  <data name="CUFT_FACTOR" xml:space="preserve">
+    <value>材积系数(整数箱)</value>
+  </data>
+  <data name="CurrentRecord_HANDY" xml:space="preserve">
+    <value>便利性:</value>
+  </data>
+  <data name="CurrentWeight" xml:space="preserve">
+    <value>单箱秤重</value>
+  </data>
+  <data name="CustCode" xml:space="preserve">
+    <value>　　货主</value>
+  </data>
+  <data name="CustOrd" xml:space="preserve">
+    <value>客户订单</value>
+  </data>
+  <data name="CustType" xml:space="preserve">
+    <value>单据类别</value>
+  </data>
+  <data name="CUST_BOX" xml:space="preserve">
+    <value>是否提供货主指定纸箱</value>
+  </data>
+  <data name="Cust_Code" xml:space="preserve">
+    <value>货主</value>
+  </data>
+  <data name="CUST_MEMO" xml:space="preserve">
+    <value>出货装箱明细备注</value>
+  </data>
+  <data name="CUST_NAME" xml:space="preserve">
+    <value>货主数目</value>
+  </data>
+  <data name="CUST_ORD_NO" xml:space="preserve">
+    <value>货主单号</value>
+  </data>
+  <data name="CUST_TYPE" xml:space="preserve">
+    <value>单据类型</value>
+  </data>
+  <data name="DC" xml:space="preserve">
+    <value>　　　　　　 物流中心</value>
+  </data>
+  <data name="DcWorkCalendar" xml:space="preserve">
+    <value>物流中心行事历</value>
+  </data>
+  <data name="DcWorkPersonCount" xml:space="preserve">
+    <value>物流中心资讯-上班人数：</value>
+  </data>
+  <data name="DC_TRANSFER" xml:space="preserve">
+    <value>允许跨物流中心调拨</value>
+  </data>
+  <data name="DEFAULT_ZIP" xml:space="preserve">
+    <value>预设邮递区号</value>
+  </data>
+  <data name="Deliver" xml:space="preserve">
+    <value>配送商</value>
+  </data>
+  <data name="DeliverRouteDelvSet" xml:space="preserve">
+    <value>配送商路线配次设定</value>
+  </data>
+  <data name="DeliverRouteDelvSetTab" xml:space="preserve">
+    <value>配送商路线配次设定(Tab)</value>
+  </data>
+  <data name="DeliverServiceCust" xml:space="preserve">
+    <value>配送商服务货主维护</value>
+  </data>
+  <data name="DeliverServiceCustTab" xml:space="preserve">
+    <value>配送商服务货主维护(Tab)</value>
+  </data>
+  <data name="DELIVERYTIMES" xml:space="preserve">
+    <value>合计配送次数</value>
+  </data>
+  <data name="DelSet" xml:space="preserve">
+    <value>删除设定</value>
+  </data>
+  <data name="DelTime" xml:space="preserve">
+    <value>删除时段</value>
+  </data>
+  <data name="DelvAccTypeAddList" xml:space="preserve">
+    <value>配送计价类别</value>
+  </data>
+  <data name="DelvEfficList" xml:space="preserve">
+    <value>配送效率</value>
+  </data>
+  <data name="DelvFrequency" xml:space="preserve">
+    <value>出车频率</value>
+  </data>
+  <data name="DelvTimes" xml:space="preserve">
+    <value>配次</value>
+  </data>
+  <data name="DELVTMPR" xml:space="preserve">
+    <value>配送温层代码</value>
+  </data>
+  <data name="DELV_DATE" xml:space="preserve">
+    <value>最近出货时间</value>
+  </data>
+  <data name="DELV_DATEPERIOD" xml:space="preserve">
+    <value>出货日期区间</value>
+  </data>
+  <data name="DELV_DAY" xml:space="preserve">
+    <value>出货单处理日期</value>
+  </data>
+  <data name="DELV_EFFIC" xml:space="preserve">
+    <value>配送效率代码</value>
+  </data>
+  <data name="DELV_NAME" xml:space="preserve">
+    <value>出货单据名称</value>
+  </data>
+  <data name="DELV_ORD" xml:space="preserve">
+    <value>出货单据</value>
+  </data>
+  <data name="DELV_PRO_DATE" xml:space="preserve">
+    <value>出货单处理日期D+</value>
+  </data>
+  <data name="DELV_TIME" xml:space="preserve">
+    <value>最近拣货时间</value>
+  </data>
+  <data name="DELV_TMPR" xml:space="preserve">
+    <value>配送温层</value>
+  </data>
+  <data name="DELV_Type" xml:space="preserve">
+    <value>出货单型态</value>
+  </data>
+  <data name="Delv__Time" xml:space="preserve">
+    <value>出车时段</value>
+  </data>
+  <data name="DepId" xml:space="preserve">
+    <value>单位代号</value>
+  </data>
+  <data name="DepName" xml:space="preserve">
+    <value>单位名称</value>
+  </data>
+  <data name="DEPTH" xml:space="preserve">
+    <value>储位深度(cm)</value>
+  </data>
+  <data name="DEP_NAME" xml:space="preserve">
+    <value>负责单位</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>明细</value>
+  </data>
+  <data name="DIFF_CLOSE" xml:space="preserve">
+    <value>累积未结案时间(小时)</value>
+  </data>
+  <data name="DIFF_DELV_DATE" xml:space="preserve">
+    <value>累计停滞时间(天)</value>
+  </data>
+  <data name="DISTR_CAR_NO" xml:space="preserve">
+    <value>派车单号</value>
+  </data>
+  <data name="DISTR_USE_NAME" xml:space="preserve">
+    <value>派车用途</value>
+  </data>
+  <data name="DM" xml:space="preserve">
+    <value>是否放置(无料号)DM</value>
+  </data>
+  <data name="DM_NAME" xml:space="preserve">
+    <value>DM名称</value>
+  </data>
+  <data name="Doller" xml:space="preserve">
+    <value>元</value>
+  </data>
+  <data name="DollerPerLoc" xml:space="preserve">
+    <value>元/储位</value>
+  </data>
+  <data name="DollerPerUnit" xml:space="preserve">
+    <value>元/单位</value>
+  </data>
+  <data name="DtPeriod" xml:space="preserve">
+    <value>异动期间</value>
+  </data>
+  <data name="DWAREHOUSE" xml:space="preserve">
+    <value>报废仓</value>
+  </data>
+  <data name="EditArea" xml:space="preserve">
+    <value>修改区域</value>
+  </data>
+  <data name="EditLocRange" xml:space="preserve">
+    <value>修改储位范围</value>
+  </data>
+  <data name="EditNum" xml:space="preserve">
+    <value>修改单量</value>
+  </data>
+  <data name="EDI_RESULT" xml:space="preserve">
+    <value>配送失败原因</value>
+  </data>
+  <data name="EIGHT_ARRIVALRATE" xml:space="preserve">
+    <value>8小时到货率</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="Emergency" xml:space="preserve">
+    <value>-紧急</value>
+  </data>
+  <data name="EmpId" xml:space="preserve">
+    <value>员工编号</value>
+  </data>
+  <data name="EMPNAME" xml:space="preserve">
+    <value>责责人</value>
+  </data>
+  <data name="Emp_Na" xml:space="preserve">
+    <value>员工名称</value>
+  </data>
+  <data name="EMP_NAME" xml:space="preserve">
+    <value>作业人员</value>
+  </data>
+  <data name="ENDDATE" xml:space="preserve">
+    <value>使用日期迄</value>
+  </data>
+  <data name="End_DATE" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="END_DELV_DATE" xml:space="preserve">
+    <value>结束出货日期</value>
+  </data>
+  <data name="Expected" xml:space="preserve">
+    <value>预计完成时间</value>
+  </data>
+  <data name="Export_No" xml:space="preserve">
+    <value>出货单</value>
+  </data>
+  <data name="FALSECOUNT" xml:space="preserve">
+    <value>配送失败件数</value>
+  </data>
+  <data name="FALSERATE" xml:space="preserve">
+    <value>配送失败率</value>
+  </data>
+  <data name="FAST_DELIVER_NAME" xml:space="preserve">
+    <value>是否快速到货</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>费用科目</value>
+  </data>
+  <data name="FEE_Total" xml:space="preserve">
+    <value>费用合计 </value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>档案名称</value>
+  </data>
+  <data name="FILLRATE" xml:space="preserve">
+    <value>储位填满率</value>
+  </data>
+  <data name="FinishCheckQty" xml:space="preserve">
+    <value>已抽验数量</value>
+  </data>
+  <data name="FinishRecvQty" xml:space="preserve">
+    <value>已验收数量</value>
+  </data>
+  <data name="FixMEMO" xml:space="preserve">
+    <value>维修需求描述 </value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>楼层</value>
+  </data>
+  <data name="FLUSHBACK" xml:space="preserve">
+    <value>盘盈可回冲</value>
+  </data>
+  <data name="FOUR_ARRIVALRATE" xml:space="preserve">
+    <value>4小时到货率</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>五</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>　　从</value>
+  </data>
+  <data name="GeneralSet" xml:space="preserve">
+    <value>一般设定</value>
+  </data>
+  <data name="GET_CONSIGN_NO" xml:space="preserve">
+    <value>取号方式</value>
+  </data>
+  <data name="GupCode" xml:space="preserve">
+    <value>　　业主</value>
+  </data>
+  <data name="GUPSHARE" xml:space="preserve">
+    <value>是否业主商品共用</value>
+  </data>
+  <data name="Gup_Code" xml:space="preserve">
+    <value>业主</value>
+  </data>
+  <data name="GUP_NAME" xml:space="preserve">
+    <value>业主数目</value>
+  </data>
+  <data name="GWAREHOUSE" xml:space="preserve">
+    <value>良品仓</value>
+  </data>
+  <data name="Handy" xml:space="preserve">
+    <value>便利性</value>
+  </data>
+  <data name="HAPPEN_DATE" xml:space="preserve">
+    <value>发生时间</value>
+  </data>
+  <data name="HEI" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="HEIGHT" xml:space="preserve">
+    <value>储位高度(cm)</value>
+  </data>
+  <data name="hEIGHTTextBox" xml:space="preserve">
+    <value>储位深度(cm):</value>
+  </data>
+  <data name="HELP_NAME" xml:space="preserve">
+    <value>作业种类</value>
+  </data>
+  <data name="Help_Time" xml:space="preserve">
+    <value>求救时间</value>
+  </data>
+  <data name="HorDistance" xml:space="preserve">
+    <value>水平距离(公尺)</value>
+  </data>
+  <data name="horizontalDistance" xml:space="preserve">
+    <value>　水平距离</value>
+  </data>
+  <data name="ImportSDate" xml:space="preserve">
+    <value>投入日期</value>
+  </data>
+  <data name="INCARDATE" xml:space="preserve">
+    <value>装车</value>
+  </data>
+  <data name="INCAR_DATE" xml:space="preserve">
+    <value>装车等候时间</value>
+  </data>
+  <data name="INSIDER_TRADING" xml:space="preserve">
+    <value>允许内部(跨货主)交易</value>
+  </data>
+  <data name="INSIDER_TRADING_LIM" xml:space="preserve">
+    <value>最大内部交易数量</value>
+  </data>
+  <data name="INSTEAD_INVO" xml:space="preserve">
+    <value>代开发票功能</value>
+  </data>
+  <data name="INVENTORY_DATE" xml:space="preserve">
+    <value>盘点日期</value>
+  </data>
+  <data name="INVENTORY_NO" xml:space="preserve">
+    <value>盘点单号</value>
+  </data>
+  <data name="INVOICE_CNT" xml:space="preserve">
+    <value>发票列印张数</value>
+  </data>
+  <data name="IN_OUT" xml:space="preserve">
+    <value>正逆物流</value>
+  </data>
+  <data name="IN_TAX" xml:space="preserve">
+    <value>税别</value>
+  </data>
+  <data name="ISAcceptedUPLOADFILE" xml:space="preserve">
+    <value>是否验收後上传档案 </value>
+  </data>
+  <data name="ISALLOCATIONSHOWVALIDDATE" xml:space="preserve">
+    <value>是否调拨单显示效期</value>
+  </data>
+  <data name="ISALLOW_DELV_DAY" xml:space="preserve">
+    <value>是否判断允出天数</value>
+  </data>
+  <data name="ISB2B_ALONE_OUT" xml:space="preserve">
+    <value>是否允许B2B单张订单出货</value>
+  </data>
+  <data name="ISBACK_DISTR" xml:space="preserve">
+    <value>是否允许逆物流配送</value>
+  </data>
+  <data name="IsCheckAll" xml:space="preserve">
+    <value>勾选</value>
+  </data>
+  <data name="ISDELV_LOADING_CHECKCODE" xml:space="preserve">
+    <value>是否装车稽核检查出货验证码</value>
+  </data>
+  <data name="ISDELV_NOLOADING" xml:space="preserve">
+    <value>是否不出货装车</value>
+  </data>
+  <data name="ISLATEST_VALID_DATE" xml:space="preserve">
+    <value>是否只允许最新的效期进仓</value>
+  </data>
+  <data name="ISOUTOFSTOCKRECV" xml:space="preserve">
+    <value>允许序号商品缺货验收</value>
+  </data>
+  <data name="ISOUTOFSTOCK_RECV" xml:space="preserve">
+    <value>是否允许序号商品缺货验收</value>
+  </data>
+  <data name="ISPICKLOCFIRST" xml:space="preserve">
+    <value>是否建议储位取得拣货区优先储位</value>
+  </data>
+  <data name="ISPICKSHOWCUSTNAME" xml:space="preserve">
+    <value>是否拣货单显示收货人姓名</value>
+  </data>
+  <data name="ISPICKSHOWVALIDDATE" xml:space="preserve">
+    <value>是否拣货单显示效期</value>
+  </data>
+  <data name="ISPRINTDELV" xml:space="preserve">
+    <value>是否列印送货单</value>
+  </data>
+  <data name="ISPRINTDELVDTL" xml:space="preserve">
+    <value>是否列印箱明细</value>
+  </data>
+  <data name="ISPRINT_SELFTAKE" xml:space="preserve">
+    <value>是否列印自取单</value>
+  </data>
+  <data name="IsSaveHorDistance" xml:space="preserve">
+    <value>是否调整</value>
+  </data>
+  <data name="ISUPLOADFILE" xml:space="preserve">
+    <value>是否验收後上传档案</value>
+  </data>
+  <data name="IS_ORDDATE_TODAY" xml:space="preserve">
+    <value>允许汇入日为订单日期</value>
+  </data>
+  <data name="IS_SINGLEBOXCHECK" xml:space="preserve">
+    <value>是否单箱稽核</value>
+  </data>
+  <data name="IS_SP_CAR" xml:space="preserve">
+    <value>是否为专车 </value>
+  </data>
+  <data name="IS_TAX" xml:space="preserve">
+    <value>含税</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>品项</value>
+  </data>
+  <data name="ItemCntByA" xml:space="preserve">
+    <value>进仓品项数</value>
+  </data>
+  <data name="ItemCntByR1" xml:space="preserve">
+    <value>客退品项数</value>
+  </data>
+  <data name="ItemCntByR2" xml:space="preserve">
+    <value>门退品项数</value>
+  </data>
+  <data name="ItemCntByR3" xml:space="preserve">
+    <value>换货品项数</value>
+  </data>
+  <data name="ItemCntByR4" xml:space="preserve">
+    <value>RMA品项数</value>
+  </data>
+  <data name="ItemCntByR5" xml:space="preserve">
+    <value>RTO品项数</value>
+  </data>
+  <data name="ItemCntByR6" xml:space="preserve">
+    <value>七天监赏期品项数</value>
+  </data>
+  <data name="ItemCntByR7" xml:space="preserve">
+    <value>出货拒收品项数</value>
+  </data>
+  <data name="ItemCntByR8" xml:space="preserve">
+    <value>其他品项数</value>
+  </data>
+  <data name="ItemCntByR9" xml:space="preserve">
+    <value>派车取件品项数</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="ItemCodeQuery" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ItemCode_Range" xml:space="preserve">
+    <value>品号范围</value>
+  </data>
+  <data name="ItemImage" xml:space="preserve">
+    <value>商品图档</value>
+  </data>
+  <data name="ITEMNAME" xml:space="preserve">
+    <value>交易品项</value>
+  </data>
+  <data name="ItemQTY" xml:space="preserve">
+    <value>件数</value>
+  </data>
+  <data name="ItemSearch" xml:space="preserve">
+    <value>商品搜寻</value>
+  </data>
+  <data name="ItemSEet" xml:space="preserve">
+    <value>商品设定</value>
+  </data>
+  <data name="ITEM_CEL" xml:space="preserve">
+    <value>手机</value>
+  </data>
+  <data name="ITEM_CHECK" xml:space="preserve">
+    <value>商品抽验</value>
+  </data>
+  <data name="ITEM_CODE_BOM" xml:space="preserve">
+    <value>商品组合编号</value>
+  </data>
+  <data name="ITEM_CONTACT" xml:space="preserve">
+    <value>货物联络人资料</value>
+  </data>
+  <data name="ITEM_COUNT" xml:space="preserve">
+    <value>实际出货品项数</value>
+  </data>
+  <data name="ITEM_CTN" xml:space="preserve">
+    <value>品项数</value>
+  </data>
+  <data name="ITEM_MAIL" xml:space="preserve">
+    <value>信箱</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="ITEM_PRICE" xml:space="preserve">
+    <value>交易单价</value>
+  </data>
+  <data name="ITEM_QTY" xml:space="preserve">
+    <value>运输件数合计</value>
+  </data>
+  <data name="Item__Name" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="labelPrinter" xml:space="preserve">
+    <value>标签机列印(装置设定维护-快速标签机)</value>
+  </data>
+  <data name="LEN" xml:space="preserve">
+    <value>长</value>
+  </data>
+  <data name="LEND_NO" xml:space="preserve">
+    <value>外送单号</value>
+  </data>
+  <data name="LEND_QTY" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="LENGTH" xml:space="preserve">
+    <value>储位长度(cm)</value>
+  </data>
+  <data name="lENGTHTextBox" xml:space="preserve">
+    <value>储位长度(cm):</value>
+  </data>
+  <data name="LocActive" xml:space="preserve">
+    <value>管制动作</value>
+  </data>
+  <data name="LocAttributeEdit" xml:space="preserve">
+    <value>储位属性修改</value>
+  </data>
+  <data name="LocCode" xml:space="preserve">
+    <value>储位</value>
+  </data>
+  <data name="LocCodeAttribute" xml:space="preserve">
+    <value>储位属性</value>
+  </data>
+  <data name="LocCodeTotal" xml:space="preserve">
+    <value>储位统计</value>
+  </data>
+  <data name="LocCount" xml:space="preserve">
+    <value>储位数增减</value>
+  </data>
+  <data name="LocData" xml:space="preserve">
+    <value>储位资料</value>
+  </data>
+  <data name="LocLevel" xml:space="preserve">
+    <value>层别</value>
+  </data>
+  <data name="LocRange" xml:space="preserve">
+    <value>储位范围</value>
+  </data>
+  <data name="LocStatus" xml:space="preserve">
+    <value>管制状态</value>
+  </data>
+  <data name="LocType" xml:space="preserve">
+    <value>储格</value>
+  </data>
+  <data name="LocType_Equip" xml:space="preserve">
+    <value>料架设备</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>储位编号</value>
+  </data>
+  <data name="LOC_COUNT" xml:space="preserve">
+    <value>储位数目</value>
+  </data>
+  <data name="Loc_Type" xml:space="preserve">
+    <value>料架</value>
+  </data>
+  <data name="LOC_TYPEID" xml:space="preserve">
+    <value>储位型态</value>
+  </data>
+  <data name="LOC_TYPE_ID" xml:space="preserve">
+    <value>料架代码</value>
+  </data>
+  <data name="LOC_TYPE_NAME" xml:space="preserve">
+    <value>料架名称</value>
+  </data>
+  <data name="lOC_TYPE_NAMETextBox" xml:space="preserve">
+    <value>料架名称:</value>
+  </data>
+  <data name="LOC__CODE" xml:space="preserve">
+    <value>储位代码</value>
+  </data>
+  <data name="LogiType" xml:space="preserve">
+    <value>物流类别</value>
+  </data>
+  <data name="LOSS_QTY" xml:space="preserve">
+    <value>盘损数</value>
+  </data>
+  <data name="MANAGER_LOCK" xml:space="preserve">
+    <value>解锁功能</value>
+  </data>
+  <data name="MAX_PAST_DATE" xml:space="preserve">
+    <value>最长配送时间(分)</value>
+  </data>
+  <data name="MAX_WEIGHT" xml:space="preserve">
+    <value>重量上限</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>作业类别</value>
+  </data>
+  <data name="MERGE_BOX_DATE" xml:space="preserve">
+    <value>合流时间</value>
+  </data>
+  <data name="MERGE_ORDER_NAME" xml:space="preserve">
+    <value>是否并单</value>
+  </data>
+  <data name="Merge_TAR_LOC_CODE" xml:space="preserve">
+    <value>合并後储位号 </value>
+  </data>
+  <data name="MILESTONE_NO_A_NAME" xml:space="preserve">
+    <value>里程碑一</value>
+  </data>
+  <data name="MILESTONE_NO_B_NAME" xml:space="preserve">
+    <value>里程碑二</value>
+  </data>
+  <data name="MILESTONE_NO_C_NAME" xml:space="preserve">
+    <value>里程碑三</value>
+  </data>
+  <data name="MILESTONE_NO_D_NAME" xml:space="preserve">
+    <value>里程碑四</value>
+  </data>
+  <data name="MILESTONE_NO_E_NAME" xml:space="preserve">
+    <value>里程碑五</value>
+  </data>
+  <data name="MILESTONE_NO_F_NAME" xml:space="preserve">
+    <value>里程碑六</value>
+  </data>
+  <data name="MILESTONE_NO_G_NAME" xml:space="preserve">
+    <value>里程碑七</value>
+  </data>
+  <data name="MILESTONE_NO_H_NAME" xml:space="preserve">
+    <value>里程碑八</value>
+  </data>
+  <data name="MILESTONE_NO_I_NAME" xml:space="preserve">
+    <value>里程碑九</value>
+  </data>
+  <data name="MILESTONE_NO_J_NAME" xml:space="preserve">
+    <value>里程碑十</value>
+  </data>
+  <data name="MILESTONE_NO_K_NAME" xml:space="preserve">
+    <value>里程碑十一</value>
+  </data>
+  <data name="MILESTONE_NO_L_NAME" xml:space="preserve">
+    <value>里程碑十二</value>
+  </data>
+  <data name="MILESTONE_NO_M_NAME" xml:space="preserve">
+    <value>里程碑十三</value>
+  </data>
+  <data name="MILESTONE_NO_N_NAME" xml:space="preserve">
+    <value>里程碑十四</value>
+  </data>
+  <data name="MIN_PAST_DATE" xml:space="preserve">
+    <value>最短配送时间(分)</value>
+  </data>
+  <data name="MIX_LOC_BATCH" xml:space="preserve">
+    <value>允许储位混批</value>
+  </data>
+  <data name="MIX_LOC_ITEM" xml:space="preserve">
+    <value>允许储位混商品</value>
+  </data>
+  <data name="MIX_SERIAL_NO" xml:space="preserve">
+    <value>允许序号绑储位商品混序号</value>
+  </data>
+  <data name="MOBILE" xml:space="preserve">
+    <value>手机号码</value>
+  </data>
+  <data name="Modify_LocAttribute" xml:space="preserve">
+    <value>修改储位属性</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>一</value>
+  </data>
+  <data name="MWAREHOUSE" xml:space="preserve">
+    <value>管理仓</value>
+  </data>
+  <data name="NEED_SEAL" xml:space="preserve">
+    <value>是否需要加装封条</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>(单)</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="NowLocCount" xml:space="preserve">
+    <value>本次储格数</value>
+  </data>
+  <data name="Now_ChangeCount" xml:space="preserve">
+    <value>本次储区调整数</value>
+  </data>
+  <data name="Now_LocCount" xml:space="preserve">
+    <value>本次储区储格数</value>
+  </data>
+  <data name="NO_PRICE" xml:space="preserve">
+    <value>有价/无价商品</value>
+  </data>
+  <data name="NUM" xml:space="preserve">
+    <value>配送单量</value>
+  </data>
+  <data name="NWAREHOUSE" xml:space="preserve">
+    <value>不良品仓</value>
+  </data>
+  <data name="OldLocCount" xml:space="preserve">
+    <value>原储格数</value>
+  </data>
+  <data name="OldLocTotalCount" xml:space="preserve">
+    <value>原储位数</value>
+  </data>
+  <data name="Old_LocCount" xml:space="preserve">
+    <value>原储区储格数</value>
+  </data>
+  <data name="OnePrice" xml:space="preserve">
+    <value>均一价</value>
+  </data>
+  <data name="OneSizeLabel" xml:space="preserve">
+    <value>单一标签尺寸</value>
+  </data>
+  <data name="OpenFileDialog" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="OrderDetail" xml:space="preserve">
+    <value>订单明细</value>
+  </data>
+  <data name="ORDER_LIMIT" xml:space="preserve">
+    <value>订单批次上限</value>
+  </data>
+  <data name="ORDER_SET" xml:space="preserve">
+    <value>订单设定</value>
+  </data>
+  <data name="OrdMaintain" xml:space="preserve">
+    <value>单量维护</value>
+  </data>
+  <data name="ORDNO" xml:space="preserve">
+    <value>订单单号</value>
+  </data>
+  <data name="OrdType" xml:space="preserve">
+    <value>物流单据</value>
+  </data>
+  <data name="ORD_BATCH_LIM" xml:space="preserve">
+    <value>订单批次上限数量</value>
+  </data>
+  <data name="ORD_NAME" xml:space="preserve">
+    <value>单据型态</value>
+  </data>
+  <data name="ORD_NO" xml:space="preserve">
+    <value>订单编号</value>
+  </data>
+  <data name="ORD_PRIORITY_QTY" xml:space="preserve">
+    <value>订单优先处理</value>
+  </data>
+  <data name="ORD_PROP_NAME" xml:space="preserve">
+    <value>故障分类 </value>
+  </data>
+  <data name="Origin_LocAttributte" xml:space="preserve">
+    <value>原有储位属性</value>
+  </data>
+  <data name="Origin_LocRange" xml:space="preserve">
+    <value>原有储位范围</value>
+  </data>
+  <data name="Origni_LOC_CODE" xml:space="preserve">
+    <value>原储位号</value>
+  </data>
+  <data name="OutSource" xml:space="preserve">
+    <value>委外商</value>
+  </data>
+  <data name="OUTSOURCE_COST" xml:space="preserve">
+    <value>计费单价</value>
+  </data>
+  <data name="OUT_SET" xml:space="preserve">
+    <value>出货设定</value>
+  </data>
+  <data name="OverWeight" xml:space="preserve">
+    <value>超重  每</value>
+  </data>
+  <data name="OVER_FEE" xml:space="preserve">
+    <value>&gt;计价数量,费用</value>
+  </data>
+  <data name="OVER_Size" xml:space="preserve">
+    <value>超尺寸</value>
+  </data>
+  <data name="OVER_TOWFOUR_ARRIVALRATE" xml:space="preserve">
+    <value>超过24小时到货率 </value>
+  </data>
+  <data name="OVER_UNIT" xml:space="preserve">
+    <value>超材</value>
+  </data>
+  <data name="OVER_UNIT_FEE" xml:space="preserve">
+    <value>超材  每</value>
+  </data>
+  <data name="OVER_VALUE" xml:space="preserve">
+    <value>超尺寸  每</value>
+  </data>
+  <data name="Over_Weight" xml:space="preserve">
+    <value>超重</value>
+  </data>
+  <data name="OWAREHOUSE" xml:space="preserve">
+    <value>外送仓</value>
+  </data>
+  <data name="PACKAGE_BOX_NO" xml:space="preserve">
+    <value>包装箱数</value>
+  </data>
+  <data name="PACKAGE_DATE" xml:space="preserve">
+    <value>包装时间</value>
+  </data>
+  <data name="PACKAGE_PERIOD" xml:space="preserve">
+    <value>包装</value>
+  </data>
+  <data name="PACKAGE_QTY" xml:space="preserve">
+    <value>出货数</value>
+  </data>
+  <data name="PalletCount" xml:space="preserve">
+    <value>栈板数</value>
+  </data>
+  <data name="PASSWAY" xml:space="preserve">
+    <value>流道</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>复制贴上</value>
+  </data>
+  <data name="Paste_" xml:space="preserve">
+    <value>贴上</value>
+  </data>
+  <data name="PAST_DATE" xml:space="preserve">
+    <value>到货时间</value>
+  </data>
+  <data name="PAST_NO" xml:space="preserve">
+    <value>托运单号</value>
+  </data>
+  <data name="PayCondition" xml:space="preserve">
+    <value>付款条件</value>
+  </data>
+  <data name="PaymentRequestDay" xml:space="preserve">
+    <value>请款日</value>
+  </data>
+  <data name="PayWay" xml:space="preserve">
+    <value>付款方式</value>
+  </data>
+  <data name="PER" xml:space="preserve">
+    <value>每</value>
+  </data>
+  <data name="PERCENTAGE" xml:space="preserve">
+    <value>所占比例(%)</value>
+  </data>
+  <data name="PERSON_NUMBER" xml:space="preserve">
+    <value>群组总人数</value>
+  </data>
+  <data name="PICK_DATE" xml:space="preserve">
+    <value>拣货时间</value>
+  </data>
+  <data name="PICK_PERIOD" xml:space="preserve">
+    <value>拣货</value>
+  </data>
+  <data name="PICK_TIME" xml:space="preserve">
+    <value>批次时段</value>
+  </data>
+  <data name="PICK_TIMES" xml:space="preserve">
+    <value>拣货次数</value>
+  </data>
+  <data name="PIER_CODE" xml:space="preserve">
+    <value>预设码头</value>
+  </data>
+  <data name="Plain" xml:space="preserve">
+    <value>座别</value>
+  </data>
+  <data name="PostingDateBegin" xml:space="preserve">
+    <value>过帐日期</value>
+  </data>
+  <data name="PRE_ORD_COUNT" xml:space="preserve">
+    <value>应出货订单数</value>
+  </data>
+  <data name="PRE_WMS_COUNT" xml:space="preserve">
+    <value>应出货单数</value>
+  </data>
+  <data name="PrintEmptyLocCode" xml:space="preserve">
+    <value>仅列印空储位</value>
+  </data>
+  <data name="PRINTER_TYPE" xml:space="preserve">
+    <value>列印方式</value>
+  </data>
+  <data name="PrintSpec" xml:space="preserve">
+    <value>列印规格</value>
+  </data>
+  <data name="PrintTool" xml:space="preserve">
+    <value>列印工具</value>
+  </data>
+  <data name="PRINT_CONSIGN" xml:space="preserve">
+    <value>是否代印托运单</value>
+  </data>
+  <data name="PRIORITY" xml:space="preserve">
+    <value>出货优先顺序</value>
+  </data>
+  <data name="ProcessingOverThirtyMin" xml:space="preserve">
+    <value>-加工处理中-超过预计完成时间</value>
+  </data>
+  <data name="Processing_No" xml:space="preserve">
+    <value>加工单</value>
+  </data>
+  <data name="ProcessResult" xml:space="preserve">
+    <value>处理结果</value>
+  </data>
+  <data name="PROCESS_ACT" xml:space="preserve">
+    <value>动作</value>
+  </data>
+  <data name="PROCESS_ID" xml:space="preserve">
+    <value>加工动作编号</value>
+  </data>
+  <data name="PROCESS_NO" xml:space="preserve">
+    <value>单号</value>
+  </data>
+  <data name="Process_progress" xml:space="preserve">
+    <value>处理进度</value>
+  </data>
+  <data name="PROCESS_QTY" xml:space="preserve">
+    <value>加工数</value>
+  </data>
+  <data name="ProductQty" xml:space="preserve">
+    <value>小於商品数量</value>
+  </data>
+  <data name="PROFIT_QTY" xml:space="preserve">
+    <value>盘盈数</value>
+  </data>
+  <data name="PROPORTION1" xml:space="preserve">
+    <value>单件出货比例</value>
+  </data>
+  <data name="PROPORTION10" xml:space="preserve">
+    <value>&gt;=10件出货比例</value>
+  </data>
+  <data name="PROPORTION2" xml:space="preserve">
+    <value>2件出货比例</value>
+  </data>
+  <data name="PROPORTION3" xml:space="preserve">
+    <value>3件出货比例</value>
+  </data>
+  <data name="PROPORTION49" xml:space="preserve">
+    <value>4~9件出货比例</value>
+  </data>
+  <data name="PurchaseNo" xml:space="preserve">
+    <value>进仓单号</value>
+  </data>
+  <data name="QTY" xml:space="preserve">
+    <value>作业数</value>
+  </data>
+  <data name="QTY_OVER_TAR_START" xml:space="preserve">
+    <value>张以上启动(东部-&gt;中南部-&gt;北部)</value>
+  </data>
+  <data name="QueryCondition" xml:space="preserve">
+    <value>查询修件</value>
+  </data>
+  <data name="RealSize" xml:space="preserve">
+    <value>实际尺寸(长*宽*高)</value>
+  </data>
+  <data name="ReCalculate" xml:space="preserve">
+    <value>重新计算</value>
+  </data>
+  <data name="ReceiptNo" xml:space="preserve">
+    <value>单据号码</value>
+  </data>
+  <data name="RECE_DATE" xml:space="preserve">
+    <value>最近进货时间</value>
+  </data>
+  <data name="RemoveAll" xml:space="preserve">
+    <value>全部删除</value>
+  </data>
+  <data name="RENTEND_DATE" xml:space="preserve">
+    <value>租用到期日</value>
+  </data>
+  <data name="RentPeriod" xml:space="preserve">
+    <value>租用期间</value>
+  </data>
+  <data name="RENT_BEGINDATE" xml:space="preserve">
+    <value>租用期间(起)</value>
+  </data>
+  <data name="RENT_BEGIN_DATE" xml:space="preserve">
+    <value>租用期限(起)</value>
+  </data>
+  <data name="RENT_ENDDATE" xml:space="preserve">
+    <value>租用期间(迄)</value>
+  </data>
+  <data name="RENT_END_DATE" xml:space="preserve">
+    <value>租用期限(迄)</value>
+  </data>
+  <data name="REPAIR_TIME" xml:space="preserve">
+    <value>合计维修时间(分)</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>报表类别</value>
+  </data>
+  <data name="ReportTypeDetail" xml:space="preserve">
+    <value>请款明细表</value>
+  </data>
+  <data name="ReportTypeMain" xml:space="preserve">
+    <value>请款总表</value>
+  </data>
+  <data name="RESERVE" xml:space="preserve">
+    <value>预约数</value>
+  </data>
+  <data name="ReturingOverThirtyMin" xml:space="preserve">
+    <value>-退货处理中-超过30分钟未完成</value>
+  </data>
+  <data name="Return_Board" xml:space="preserve">
+    <value>退货看板</value>
+  </data>
+  <data name="RETURN_DATE" xml:space="preserve">
+    <value>回单</value>
+  </data>
+  <data name="Return_No" xml:space="preserve">
+    <value>退货单</value>
+  </data>
+  <data name="RIBBON" xml:space="preserve">
+    <value>是否需要缎带包装</value>
+  </data>
+  <data name="RIBBON_BEGIN_DATE" xml:space="preserve">
+    <value>设定使用日期</value>
+  </data>
+  <data name="ROUTE" xml:space="preserve">
+    <value>运输路线</value>
+  </data>
+  <data name="ROUTE_CODE" xml:space="preserve">
+    <value>路线编号</value>
+  </data>
+  <data name="ROUTE_Record" xml:space="preserve">
+    <value>路线</value>
+  </data>
+  <data name="RTN_CAUSE" xml:space="preserve">
+    <value>逆物流原因</value>
+  </data>
+  <data name="RTN_QTY" xml:space="preserve">
+    <value>到货数量</value>
+  </data>
+  <data name="RWAREHOUSE" xml:space="preserve">
+    <value>厂退仓</value>
+  </data>
+  <data name="SALARY" xml:space="preserve">
+    <value>群组总薪资</value>
+  </data>
+  <data name="SAM_CUST_CODE" xml:space="preserve">
+    <value>同客户代号</value>
+  </data>
+  <data name="SAM_ITEM" xml:space="preserve">
+    <value>允许同质性商品转换</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>六</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>结算关帐</value>
+  </data>
+  <data name="SA_QTY" xml:space="preserve">
+    <value>SA申请书数</value>
+  </data>
+  <data name="SearchByItem" xml:space="preserve">
+    <value>依商品</value>
+  </data>
+  <data name="SearchByLoc" xml:space="preserve">
+    <value>依储位</value>
+  </data>
+  <data name="SearchCode" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="SearchCustName" xml:space="preserve">
+    <value>货主编号</value>
+  </data>
+  <data name="SearchDateBegin" xml:space="preserve">
+    <value>起迄日期</value>
+  </data>
+  <data name="SearchDate_Begin" xml:space="preserve">
+    <value>起讫日期</value>
+  </data>
+  <data name="SearchDelvDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="SearchEndCode" xml:space="preserve">
+    <value>储位编号(迄)</value>
+  </data>
+  <data name="SearchLocTypeId" xml:space="preserve">
+    <value>料架代码:</value>
+  </data>
+  <data name="SearchName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="SearchStartCode" xml:space="preserve">
+    <value>储位编号(起)</value>
+  </data>
+  <data name="SearchType" xml:space="preserve">
+    <value>查询种类</value>
+  </data>
+  <data name="SelectChannel" xml:space="preserve">
+    <value>通道选择</value>
+  </data>
+  <data name="SelectedCount" xml:space="preserve">
+    <value>管制数量</value>
+  </data>
+  <data name="SelectedDeliveryObject" xml:space="preserve">
+    <value>外送类别</value>
+  </data>
+  <data name="SelectedEanCode" xml:space="preserve">
+    <value>国际条码</value>
+  </data>
+  <data name="SelectedFileName" xml:space="preserve">
+    <value>选择上传档案</value>
+  </data>
+  <data name="SelectedGrp" xml:space="preserve">
+    <value>工作群组</value>
+  </data>
+  <data name="SelectedGupCode" xml:space="preserve">
+    <value>货主名称</value>
+  </data>
+  <data name="SelectedItemType" xml:space="preserve">
+    <value>商品类别</value>
+  </data>
+  <data name="SelectedLocLevel" xml:space="preserve">
+    <value>层选择</value>
+  </data>
+  <data name="SelectedLocStatus" xml:space="preserve">
+    <value>使用状态</value>
+  </data>
+  <data name="SelectedPastType" xml:space="preserve">
+    <value>配送类别</value>
+  </data>
+  <data name="SelectedPlain" xml:space="preserve">
+    <value>座选择</value>
+  </data>
+  <data name="SelectedWorkType" xml:space="preserve">
+    <value>工作类型</value>
+  </data>
+  <data name="SelectInventoryDate" xml:space="preserve">
+    <value>稽核日期</value>
+  </data>
+  <data name="SelectLocCode" xml:space="preserve">
+    <value>储位选择</value>
+  </data>
+  <data name="SelectPrint" xml:space="preserve">
+    <value>列印选择</value>
+  </data>
+  <data name="SelectRTNDC" xml:space="preserve">
+    <value>指定退货物流中心</value>
+  </data>
+  <data name="SELFTAKE_CHECKCODE" xml:space="preserve">
+    <value>自取领货提领单验证码</value>
+  </data>
+  <data name="SELL_CUST_NAME" xml:space="preserve">
+    <value>卖方货主</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>商品序号</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>设定</value>
+  </data>
+  <data name="SettingStatus" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="SHIPPING_ASSIGN_NAME" xml:space="preserve">
+    <value>自动派车</value>
+  </data>
+  <data name="SHIPTOTALPERSON" xml:space="preserve">
+    <value>出货组总人数</value>
+  </data>
+  <data name="SHIPTOTOALHOURS" xml:space="preserve">
+    <value>出货组总工时</value>
+  </data>
+  <data name="SHORT_MOBILE" xml:space="preserve">
+    <value>手机简码</value>
+  </data>
+  <data name="SHORT_NAME" xml:space="preserve">
+    <value>公司简称</value>
+  </data>
+  <data name="SHOW_UNIT_TRANS" xml:space="preserve">
+    <value>显示包装参考</value>
+  </data>
+  <data name="SingleFEE" xml:space="preserve">
+    <value>单一费用,费用</value>
+  </data>
+  <data name="SingleLoc" xml:space="preserve">
+    <value>单一储位</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="SourceType" xml:space="preserve">
+    <value>来源类型</value>
+  </data>
+  <data name="SOUTH_PRIORITY_QTY" xml:space="preserve">
+    <value>中南部单优先处理设定</value>
+  </data>
+  <data name="SPBOX_BEGIN_DATE" xml:space="preserve">
+    <value>指定纸箱</value>
+  </data>
+  <data name="Spec" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="SpecialCar" xml:space="preserve">
+    <value>专车</value>
+  </data>
+  <data name="SPILT_INCHECK" xml:space="preserve">
+    <value>允许部分到货</value>
+  </data>
+  <data name="SPILT_ORDER_LIM" xml:space="preserve">
+    <value>可以做订单切割</value>
+  </data>
+  <data name="SPILT_OUTCHECK" xml:space="preserve">
+    <value>是否允许部分出货</value>
+  </data>
+  <data name="SPILT_OUTWAY" xml:space="preserve">
+    <value>部分出货方式</value>
+  </data>
+  <data name="SPLIT_FLOOR_NAME" xml:space="preserve">
+    <value>拆单设定</value>
+  </data>
+  <data name="SP_BOX" xml:space="preserve">
+    <value>特殊纸箱使用设定</value>
+  </data>
+  <data name="SRC_LOC_CODE" xml:space="preserve">
+    <value>来源储位</value>
+  </data>
+  <data name="StagnationDays" xml:space="preserve">
+    <value>停滞天数</value>
+  </data>
+  <data name="StartLocCode" xml:space="preserve">
+    <value>起讫储位号</value>
+  </data>
+  <data name="START_DATE" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>目前状况</value>
+  </data>
+  <data name="STATUS_NAME" xml:space="preserve">
+    <value>目前状况 </value>
+  </data>
+  <data name="StockQTY" xml:space="preserve">
+    <value>库存数量</value>
+  </data>
+  <data name="Stock_Board" xml:space="preserve">
+    <value>进货看板</value>
+  </data>
+  <data name="Stock_No" xml:space="preserve">
+    <value>进仓单</value>
+  </data>
+  <data name="SUBJECT" xml:space="preserve">
+    <value>未处理事项</value>
+  </data>
+  <data name="SUBTOTAL" xml:space="preserve">
+    <value>金额小计</value>
+  </data>
+  <data name="SUM_DELV_QTY" xml:space="preserve">
+    <value>实际出货件数(pcs)</value>
+  </data>
+  <data name="SUM_QTY" xml:space="preserve">
+    <value>储位净值 </value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="Supply" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="SWAREHOUSE" xml:space="preserve">
+    <value>耗材仓</value>
+  </data>
+  <data name="SYS_CUST_CODE" xml:space="preserve">
+    <value>系统货主编号</value>
+  </data>
+  <data name="TAKETIME" xml:space="preserve">
+    <value>派车时间</value>
+  </data>
+  <data name="TAKE_DATE" xml:space="preserve">
+    <value>派车日期</value>
+  </data>
+  <data name="TAKE_TIME" xml:space="preserve">
+    <value>出车时间</value>
+  </data>
+  <data name="TAR_LOC_CODE" xml:space="preserve">
+    <value>目的储位</value>
+  </data>
+  <data name="Tel" xml:space="preserve">
+    <value>市内电话</value>
+  </data>
+  <data name="TELEPHONE" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="TEL_EXTENSION" xml:space="preserve">
+    <value>分机号码</value>
+  </data>
+  <data name="THEORY_CRASH" xml:space="preserve">
+    <value>理论碰撞率</value>
+  </data>
+  <data name="Thu" xml:space="preserve">
+    <value>四</value>
+  </data>
+  <data name="TICKET_NAME" xml:space="preserve">
+    <value>单据名称</value>
+  </data>
+  <data name="till" xml:space="preserve">
+    <value>　　到</value>
+  </data>
+  <data name="TMPR_TYPE" xml:space="preserve">
+    <value>温层</value>
+  </data>
+  <data name="TMPR_TYPE_NAME" xml:space="preserve">
+    <value>料架温层</value>
+  </data>
+  <data name="TO" xml:space="preserve">
+    <value>　　至</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总计明细笔数 :</value>
+  </data>
+  <data name="TotalBox" xml:space="preserve">
+    <value>总箱数</value>
+  </data>
+  <data name="TotalQtyByA" xml:space="preserve">
+    <value>进货总数量</value>
+  </data>
+  <data name="TotalQtyByR1" xml:space="preserve">
+    <value>客退总量</value>
+  </data>
+  <data name="TotalQtyByR2" xml:space="preserve">
+    <value>门退总量</value>
+  </data>
+  <data name="TotalQtyByR3" xml:space="preserve">
+    <value>换货总量</value>
+  </data>
+  <data name="TotalQtyByR4" xml:space="preserve">
+    <value>RMA总量</value>
+  </data>
+  <data name="TotalQtyByR5" xml:space="preserve">
+    <value>RTO总量</value>
+  </data>
+  <data name="TotalQtyByR6" xml:space="preserve">
+    <value>七天监赏期总量</value>
+  </data>
+  <data name="TotalQtyByR7" xml:space="preserve">
+    <value>出货拒收总量</value>
+  </data>
+  <data name="TotalQtyByR8" xml:space="preserve">
+    <value>其他总量</value>
+  </data>
+  <data name="TotalQtyByR9" xml:space="preserve">
+    <value>派车取件总量</value>
+  </data>
+  <data name="TotalQtyByW" xml:space="preserve">
+    <value>已完成数量</value>
+  </data>
+  <data name="TotalWeight" xml:space="preserve">
+    <value>总重量(kg)</value>
+  </data>
+  <data name="TOTALWORKHOURS" xml:space="preserve">
+    <value>投入工时(秒)</value>
+  </data>
+  <data name="TOTAL_AMT_AVG" xml:space="preserve">
+    <value>平均金额</value>
+  </data>
+  <data name="TOTAL_AMT_AVG43" xml:space="preserve">
+    <value>3/4金额</value>
+  </data>
+  <data name="TOTAL_DATE" xml:space="preserve">
+    <value>总处理时间(分) </value>
+  </data>
+  <data name="TOTAL_QTY" xml:space="preserve">
+    <value>原数量</value>
+  </data>
+  <data name="TotelLocCount" xml:space="preserve">
+    <value>储格数</value>
+  </data>
+  <data name="TOWFOUR_ARRIVALRATE" xml:space="preserve">
+    <value>24小时到货率</value>
+  </data>
+  <data name="TRANSACTION_NO" xml:space="preserve">
+    <value>对帐单号</value>
+  </data>
+  <data name="TRANSACTION_QTY" xml:space="preserve">
+    <value>交易数量</value>
+  </data>
+  <data name="Trans_No" xml:space="preserve">
+    <value>调拨单</value>
+  </data>
+  <data name="TRANS_STATUS" xml:space="preserve">
+    <value>异动作业</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>二</value>
+  </data>
+  <data name="TWAREHOUSE" xml:space="preserve">
+    <value>退货暂存仓</value>
+  </data>
+  <data name="TxtNum" xml:space="preserve">
+    <value>单量</value>
+  </data>
+  <data name="TYPE" xml:space="preserve">
+    <value>配送商类别</value>
+  </data>
+  <data name="TYPENAME" xml:space="preserve">
+    <value>配送商类型</value>
+  </data>
+  <data name="Ucc" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="UNIT" xml:space="preserve">
+    <value>材</value>
+  </data>
+  <data name="Unit_CM" xml:space="preserve">
+    <value>单位：公分</value>
+  </data>
+  <data name="UNIT_FEE" xml:space="preserve">
+    <value>费用</value>
+  </data>
+  <data name="UNI_FORM" xml:space="preserve">
+    <value>统一编号</value>
+  </data>
+  <data name="UN_WMS_COUNT" xml:space="preserve">
+    <value>未出货单数</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>异动时间</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="UploadEmp" xml:space="preserve">
+    <value>上传人员</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>上传档案</value>
+  </data>
+  <data name="Upload_Time" xml:space="preserve">
+    <value>上传时间</value>
+  </data>
+  <data name="UseCurrency" xml:space="preserve">
+    <value>使用币别</value>
+  </data>
+  <data name="ViewLocCount" xml:space="preserve">
+    <value>储位数</value>
+  </data>
+  <data name="ViewSelectedFloor" xml:space="preserve">
+    <value>楼层选择</value>
+  </data>
+  <data name="VolumerateTextBox" xml:space="preserve">
+    <value>容积率(%):</value>
+  </data>
+  <data name="VOLUME_RATE" xml:space="preserve">
+    <value>容积率(%)</value>
+  </data>
+  <data name="VOLUMN" xml:space="preserve">
+    <value>材积合计</value>
+  </data>
+  <data name="VOLUMN_AVG" xml:space="preserve">
+    <value>平均材积</value>
+  </data>
+  <data name="VOLUMN_AVG43" xml:space="preserve">
+    <value>3/4材积</value>
+  </data>
+  <data name="WaitForReturnOverThirtyMin" xml:space="preserve">
+    <value>-退货待上架-超过30分钟未处理</value>
+  </data>
+  <data name="WaitForSaleOverThirtyMin" xml:space="preserve">
+    <value>-验收待上架-超过30分钟未完成</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="WarehouseAttribute" xml:space="preserve">
+    <value>仓别属性</value>
+  </data>
+  <data name="WarehouseId" xml:space="preserve">
+    <value>仓别编号</value>
+  </data>
+  <data name="WarehouseLocType" xml:space="preserve">
+    <value>　　料架</value>
+  </data>
+  <data name="WarehouseType" xml:space="preserve">
+    <value>仓别型态</value>
+  </data>
+  <data name="WAREHOUSE_ID" xml:space="preserve">
+    <value>仓别代号</value>
+  </data>
+  <data name="Warehouse_LocType" xml:space="preserve">
+    <value>　　　料架</value>
+  </data>
+  <data name="WAREHOUSE_Name" xml:space="preserve">
+    <value>仓别名称</value>
+  </data>
+  <data name="WAREHOUSE_TYPE_NAME" xml:space="preserve">
+    <value>仓别数目</value>
+  </data>
+  <data name="WEI" xml:space="preserve">
+    <value>宽</value>
+  </data>
+  <data name="WEIGHT" xml:space="preserve">
+    <value>负载重量(kg)</value>
+  </data>
+  <data name="wEIGHTTextBox" xml:space="preserve">
+    <value>负载重量(kg):</value>
+  </data>
+  <data name="Wen" xml:space="preserve">
+    <value>三</value>
+  </data>
+  <data name="wIDTHTextBox" xml:space="preserve">
+    <value>储位高度(cm):</value>
+  </data>
+  <data name="WMSNO" xml:space="preserve">
+    <value>退货申请单号</value>
+  </data>
+  <data name="WMS_DATE" xml:space="preserve">
+    <value>配库时间</value>
+  </data>
+  <data name="WMS_Line" xml:space="preserve">
+    <value>加工线</value>
+  </data>
+  <data name="WMS_NO" xml:space="preserve">
+    <value>退货单号</value>
+  </data>
+  <data name="WMS_ORDNO" xml:space="preserve">
+    <value>出货单号</value>
+  </data>
+  <data name="WMS_ORD_NO" xml:space="preserve">
+    <value>物流单号</value>
+  </data>
+  <data name="WMS__NO" xml:space="preserve">
+    <value>加工单号</value>
+  </data>
+  <data name="WMS___NO" xml:space="preserve">
+    <value>系统单号</value>
+  </data>
+  <data name="WORK_HOUR" xml:space="preserve">
+    <value>群组总工时</value>
+  </data>
+  <data name="WWAREHOUSE" xml:space="preserve">
+    <value>流通加工仓</value>
+  </data>
+  <data name="ZIPCODE" xml:space="preserve">
+    <value>邮递区号 </value>
+  </data>
+  <data name="ZIPCODE_EXAMPL" xml:space="preserve">
+    <value>(00000:台湾 ; 99999:海外)</value>
+  </data>
+  <data name="ZIPNAME" xml:space="preserve">
+    <value>邮递区号名称</value>
+  </data>
+  <data name="ZIP_CODE" xml:space="preserve">
+    <value>邮递区号</value>
+  </data>
+  <data name="P7101010100xamlcs_ModifyCheckMessage" xml:space="preserve">
+    <value>总储位:{3}个{2}不可调整:{0}个{2}可调整:{1}个{2}是否异动?</value>
+  </data>
+  <data name="P7101050000xamlcs_OVERNUM_Range" xml:space="preserve">
+    <value>超过便利性输入值的范围1~3,请重新输入!</value>
+  </data>
+  <data name="P7101050000xamlcs_OVERVOLUME_RATE_Range" xml:space="preserve">
+    <value>超过容积率输入值的范围&lt;=100%,请重新输入!</value>
+  </data>
+  <data name="P7101080000xamlcs_listNoData" xml:space="preserve">
+    <value> 查询无资料，无法预览或列印！</value>
+  </data>
+  <data name="P7105100000xamlcs_CheckMonthFeeDetailCorreectMessage" xml:space="preserve">
+    <value>上列为{0}年{1}月份各项费用明细表核对无误後，敬请惠予拨款</value>
+  </data>
+  <data name="P7105100000xamlcs_CNT_DATE_BEGIN_END" xml:space="preserve">
+    <value>起讫日期：{0}</value>
+  </data>
+  <data name="P7105100000xamlcs_CNT_DATE_RANGE" xml:space="preserve">
+    <value>{0} 起讫日期</value>
+  </data>
+  <data name="P7105100000xamlcs_OTHER_SendFeeDetail" xml:space="preserve">
+    <value>{0} 其他寄送费请款明细</value>
+  </data>
+  <data name="P7105100000xamlcs_RTN_Processing_Fee_Detail" xml:space="preserve">
+    <value>{0} 退货验收处理费请款明细</value>
+  </data>
+  <data name="P7107020000xamlcs_CIRCULATION_REPORT" xml:space="preserve">
+    <value>对帐报表-	流通加工</value>
+  </data>
+  <data name="P7107020000xamlcs_COMPLEX_REPORT" xml:space="preserve">
+    <value>对帐报表-	综合</value>
+  </data>
+  <data name="P7107020000xamlcs_DELV_REPORT" xml:space="preserve">
+    <value>对帐报表-	派车</value>
+  </data>
+  <data name="P7107020000xamlcs_IN_TRADE" xml:space="preserve">
+    <value>对帐报表-内部交易</value>
+  </data>
+  <data name="P7107050000xamlcs_Availability_REPORT" xml:space="preserve">
+    <value>储位状况</value>
+  </data>
+  <data name="P7107050000xamlcs_BackWarehouseInventory_REPORT" xml:space="preserve">
+    <value>退仓清单</value>
+  </data>
+  <data name="P7107050000xamlcs_ChangeDetail_REPORT" xml:space="preserve">
+    <value>储位异动明细表</value>
+  </data>
+  <data name="P7107050000xamlcs_MergeExecution_REPORT" xml:space="preserve">
+    <value>储位合并执行表</value>
+  </data>
+  <data name="P7107050000xamlcs_WarehouseDetail_REPORT" xml:space="preserve">
+    <value>仓别内容明细表</value>
+  </data>
+  <data name="P7109010000xamlcs_NO_AUTHENTICATION" xml:space="preserve">
+    <value>无使用权限</value>
+  </data>
+  <data name="ConsigneeName" xml:space="preserve">
+    <value>收件人姓名</value>
+  </data>
+  <data name="ConsigneeTel" xml:space="preserve">
+    <value>收件人电话</value>
+  </data>
+  <data name="DC1" xml:space="preserve">
+    <value>物流中心看板一</value>
+  </data>
+  <data name="DC2" xml:space="preserve">
+    <value>物流中心看板二</value>
+  </data>
+  <data name="DeliverQuery" xml:space="preserve">
+    <value>配送商主档查询</value>
+  </data>
+  <data name="MergeCondition" xml:space="preserve">
+    <value>并单条件</value>
+  </data>
+  <data name="ModifyWarehouse" xml:space="preserve">
+    <value>修改仓别</value>
+  </data>
+  <data name="P7101010000_ViewModel_share" xml:space="preserve">
+    <value>共用</value>
+  </data>
+  <data name="P7101010100_ViewModel_DataEditCheck" xml:space="preserve">
+    <value>资料已修改是否确认?</value>
+  </data>
+  <data name="P7101010100_ViewModel_H" xml:space="preserve">
+    <value>最高</value>
+  </data>
+  <data name="P7101010100_ViewModel_HorDistance_Num_Required" xml:space="preserve">
+    <value>水平距离必须为数值</value>
+  </data>
+  <data name="P7101010100_ViewModel_L" xml:space="preserve">
+    <value>最低</value>
+  </data>
+  <data name="P7101010100_ViewModel_LocSetDataRangeCheck" xml:space="preserve">
+    <value>请确认仓库范围定义是否有此设定!</value>
+  </data>
+  <data name="P7101010100_ViewModel_LocTextFormatError" xml:space="preserve">
+    <value>储位格式不正确!</value>
+  </data>
+  <data name="P7101010100_ViewModel_M" xml:space="preserve">
+    <value>适中</value>
+  </data>
+  <data name="P7101010100_ViewModel_NoneSelect" xml:space="preserve">
+    <value>未指定</value>
+  </data>
+  <data name="P7101010100_ViewModel_RentBeginDateRentEndDate_Required" xml:space="preserve">
+    <value>有设定租用日期(起)则租用日期(迄)也必设定</value>
+  </data>
+  <data name="P7101010100_ViewModel_RentBeginDate_GreaterThan_RentEndDate" xml:space="preserve">
+    <value>租用日期(迄)必须大於等於租用日期(起)</value>
+  </data>
+  <data name="P7101010100_ViewModel_RentEndDateRentBeginDate_Required" xml:space="preserve">
+    <value>有设定租用日期(迄)则租用日期(起)也必设定</value>
+  </data>
+  <data name="P7101010100_ViewModel_SysAutoNo" xml:space="preserve">
+    <value>系统自动编号</value>
+  </data>
+  <data name="P7101010100_ViewModel_TempF" xml:space="preserve">
+    <value>冷冻</value>
+  </data>
+  <data name="P7101010100_ViewModel_TempL" xml:space="preserve">
+    <value>低温</value>
+  </data>
+  <data name="P7101010100_ViewModel_TempN" xml:space="preserve">
+    <value>常温</value>
+  </data>
+  <data name="P7101010100_ViewModel_WarehouseName_Required" xml:space="preserve">
+    <value>请填写仓别名称</value>
+  </data>
+  <data name="P7101020100_ViewModel_AreaName_Required" xml:space="preserve">
+    <value>请填写储区名称</value>
+  </data>
+  <data name="P7101030000_ViewModel_BeginDate_GreaterThan_EndDate" xml:space="preserve">
+    <value>起始日不得大於迄止日!</value>
+  </data>
+  <data name="P7101030000_ViewModel_CancelEdit" xml:space="preserve">
+    <value>是否确定取消编辑?</value>
+  </data>
+  <data name="P7101030000_ViewModel_HandyEmpty" xml:space="preserve">
+    <value>便利性尚未输入</value>
+  </data>
+  <data name="P7101040000_ViewModel_ControlReasonEmpty" xml:space="preserve">
+    <value>管制原因尚未输入</value>
+  </data>
+  <data name="P7101040000_ViewModel_ControlStatusEmpty" xml:space="preserve">
+    <value>管制状态尚未输入</value>
+  </data>
+  <data name="P7101040000_ViewModel_ItemCodeIncorrect" xml:space="preserve">
+    <value>商品编号不正确</value>
+  </data>
+  <data name="P7101050000_ViewModel_LOC_TYPE_ID_CNWordOnly" xml:space="preserve">
+    <value>料架代码只能输入英数</value>
+  </data>
+  <data name="P7101050000_ViewModel_LOC_TYPE_ID_Reequired" xml:space="preserve">
+    <value>料架代码为必填栏位</value>
+  </data>
+  <data name="P7101050000_ViewModel_LOC_TYPE_NAME_Required" xml:space="preserve">
+    <value>料架名称为必填栏位</value>
+  </data>
+  <data name="P7101060000_ViewModel_ModifyPeriod_SequenceIncorrect" xml:space="preserve">
+    <value>异动期间输入先後顺序不符</value>
+  </data>
+  <data name="P7101060000_ViewModel_ModifyTimeEmpty" xml:space="preserve">
+    <value>异动期间尚未输入</value>
+  </data>
+  <data name="P7101080000_ViewModel_ClipBoardEmpty" xml:space="preserve">
+    <value>剪贴簿无资料请重新复制资料</value>
+  </data>
+  <data name="P7101080000_ViewModel_CUST_Required" xml:space="preserve">
+    <value>货主为必填栏位!</value>
+  </data>
+  <data name="P7101080000_ViewModel_DC_Required" xml:space="preserve">
+    <value>物流中心为必填栏位!</value>
+  </data>
+  <data name="P7101080000_ViewModel_GUP_Required" xml:space="preserve">
+    <value>业主为必填栏位!</value>
+  </data>
+  <data name="P7101080000_ViewModel_ItemCode_Required" xml:space="preserve">
+    <value>请输入商品编号!</value>
+  </data>
+  <data name="P7101080000_ViewModel_ITEM_CODE_Duplicate" xml:space="preserve">
+    <value>品号重复，已过滤重复品号</value>
+  </data>
+  <data name="P7101080000_ViewModel_LocBeginEnd_Required" xml:space="preserve">
+    <value>请输入储位起迄编号!</value>
+  </data>
+  <data name="P7101080000_ViewModel_LocCode_Card" xml:space="preserve">
+    <value>储位卡</value>
+  </data>
+  <data name="P7101080000_ViewModel_WarehouseID_Required" xml:space="preserve">
+    <value>仓别编号为必填栏位!</value>
+  </data>
+  <data name="P7104010000_ViewModel_Transfer" xml:space="preserve">
+    <value>调拨</value>
+  </data>
+  <data name="P7104020000_ViewModel_Avaliable" xml:space="preserve">
+    <value>可使用</value>
+  </data>
+  <data name="P7104020000_ViewModel_Used" xml:space="preserve">
+    <value>已使用</value>
+  </data>
+  <data name="P7104030000_ViewModel_Change" xml:space="preserve">
+    <value>换货 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_Check_Finish_NotYet" xml:space="preserve">
+    <value>进货验收 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_Check_OnSale_NotYet" xml:space="preserve">
+    <value>验收完成 - 已上架/未上架</value>
+  </data>
+  <data name="P7104030000_ViewModel_CustRTN" xml:space="preserve">
+    <value>客退 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_DELV_PickUp" xml:space="preserve">
+    <value>派车取件作业 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_DONE_NOTYET" xml:space="preserve">
+    <value>{0} - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_InStock_ExpectStock" xml:space="preserve">
+    <value>已进仓/预计进仓</value>
+  </data>
+  <data name="P7104030000_ViewModel_Other_RTN_NO" xml:space="preserve">
+    <value>其他退货单 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_RefuseRtn" xml:space="preserve">
+    <value>出货拒收退回 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_RetailRTN" xml:space="preserve">
+    <value>门退 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_RMA_RTN" xml:space="preserve">
+    <value>RMA退货 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_RTN_Complete" xml:space="preserve">
+    <value>退货完成 - 已上架/未上架</value>
+  </data>
+  <data name="P7104030000_ViewModel_RTO_RTN" xml:space="preserve">
+    <value>RTO退货 - 已完成/未完成</value>
+  </data>
+  <data name="P7104030000_ViewModel_SevenDaysRTN" xml:space="preserve">
+    <value>七天监赏期退货 - 已完成/未完成</value>
+  </data>
+  <data name="P7105010000_ViewModel_NONE_SPECIFY" xml:space="preserve">
+    <value>不指定</value>
+  </data>
+  <data name="P7105020000_ViewModel_ACCNum_GreaterThanOne" xml:space="preserve">
+    <value>计价数量需为大於或等於1的整数</value>
+  </data>
+  <data name="P7105020000_ViewModel_ACCSetName_Duplicate" xml:space="preserve">
+    <value>计价设定名称不可重复!</value>
+  </data>
+  <data name="P7105020000_ViewModel_ConditionFee_GreaterThanZero" xml:space="preserve">
+    <value>条件计费金额需为大於或等於0</value>
+  </data>
+  <data name="P7105020000_ViewModel_NoData_Insert_Edit" xml:space="preserve">
+    <value>无资料可新增或编辑</value>
+  </data>
+  <data name="P7105020000_ViewModel_None" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="P7105020000_ViewModel_SelectACCItem" xml:space="preserve">
+    <value>请选择计价项目</value>
+  </data>
+  <data name="P7105020000_ViewModel_SelectACCUnit" xml:space="preserve">
+    <value>请选择计价单位</value>
+  </data>
+  <data name="P7105020000_ViewModel_SelectACCWay" xml:space="preserve">
+    <value>请选择计费方式</value>
+  </data>
+  <data name="P7105020000_ViewModel_SelectData" xml:space="preserve">
+    <value>请选取资料</value>
+  </data>
+  <data name="P7105020000_ViewModel_SelectDC" xml:space="preserve">
+    <value>请选择物流中心</value>
+  </data>
+  <data name="P7105020000_ViewModel_SelectDeliverPlanType" xml:space="preserve">
+    <value>请选择配送计价类别</value>
+  </data>
+  <data name="P7105020000_ViewModel_SelectEL_No" xml:space="preserve">
+    <value>请选择物流单据</value>
+  </data>
+  <data name="P7105020000_ViewModel_SingleFee_GreaterThanZero" xml:space="preserve">
+    <value>单一费用金额需为大於或等於0</value>
+  </data>
+  <data name="P7105050000_ViewModel_Count" xml:space="preserve">
+    <value>件</value>
+  </data>
+  <data name="P7105050000_ViewModel_C_OVER_UNIT_FEE_Required" xml:space="preserve">
+    <value>若有输入超尺寸数值，则超尺寸费用必填</value>
+  </data>
+  <data name="P7105050000_ViewModel_D_OVER_UNIT_FEE_Required" xml:space="preserve">
+    <value>若有输入超材数值，则超尺寸费用必填</value>
+  </data>
+  <data name="P7105050000_ViewModel_E_OVER_UNIT_FEE_Required" xml:space="preserve">
+    <value>若有输入超重数值，则超重费用必填</value>
+  </data>
+  <data name="P7105050000_ViewModel_SameDC_ACCItemNameDuplicate" xml:space="preserve">
+    <value>同一个物流中心的计价项目名称不能重复!</value>
+  </data>
+  <data name="P7105050000_ViewModel_SameDC_ACCItemName_Duplicate" xml:space="preserve">
+    <value>同一个物流中心的计价项目名称不能重复</value>
+  </data>
+  <data name="P7105050000_ViewModel_Using" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="P7105060000_ViewModel_ACC_NUM_LessThanOne" xml:space="preserve">
+    <value>数量必须&gt;=1</value>
+  </data>
+  <data name="P7105070000_ViewModel_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="P7105070000_ViewModel_FEE_Required" xml:space="preserve">
+    <value>费用必须输入</value>
+  </data>
+  <data name="P7105070000_ViewModel_NotTax" xml:space="preserve">
+    <value>未税</value>
+  </data>
+  <data name="P7105070000_ViewModel_OVER_SIZE" xml:space="preserve">
+    <value>超尺寸</value>
+  </data>
+  <data name="P7105070000_ViewModel_OVER_UNIT" xml:space="preserve">
+    <value>超材</value>
+  </data>
+  <data name="P7105070000_ViewModel_OVER_WEIGHT" xml:space="preserve">
+    <value>超重</value>
+  </data>
+  <data name="P7105070000_ViewModel_WorkAccItemNotFound" xml:space="preserve">
+    <value>此作业计价项目不存在，已无法删除</value>
+  </data>
+  <data name="P7105070000_ViewModel_WorkAccItemStatus_CannotDelete" xml:space="preserve">
+    <value>此此作业计价项目状态已无法删除</value>
+  </data>
+  <data name="P7105100000_ViewModel_DoSettlementClosing_Success" xml:space="preserve">
+    <value>结算关帐成功!</value>
+  </data>
+  <data name="P7107050000_ViewModel_LocMergeAcc_ItemCountLimit" xml:space="preserve">
+    <value>储位合并计算，请选择商品数量小於一定数值</value>
+  </data>
+  <data name="P7107050000_ViewModel_LocMergeAcc_ItemCountLimit_SureAcc" xml:space="preserve">
+    <value>储位合并计算，建议商品数量不能太大，确定是否要进行计算?</value>
+  </data>
+  <data name="P7108010000_ViewModel_InputItemCode" xml:space="preserve">
+    <value>请输入国际条码或品号</value>
+  </data>
+  <data name="P7108020000_ViewModel_Export" xml:space="preserve">
+    <value>出货</value>
+  </data>
+  <data name="P7108020000_ViewModel_ModifyData_Required" xml:space="preserve">
+    <value>异动日期的起迄日皆需输入!</value>
+  </data>
+  <data name="P7108020000_ViewModel_NoData" xml:space="preserve">
+    <value>查无资料!</value>
+  </data>
+  <data name="P7108020000_ViewModel_QueryPeriod_InNintyDays" xml:space="preserve">
+    <value>查询期间不得超过90天</value>
+  </data>
+  <data name="P7108080000_ViewModel_SelectBatchDate" xml:space="preserve">
+    <value>请选择批次日期</value>
+  </data>
+  <data name="P7108080000_ViewModel_SelectBatchTime" xml:space="preserve">
+    <value>请选择批次时段</value>
+  </data>
+  <data name="P7109010000_ViewModel_ACCAREA" xml:space="preserve">
+    <value>计费区域 {0}  至少需勾选一个地区</value>
+  </data>
+  <data name="P7109010000_ViewModel_ALL_COMP_Name_Limit" xml:space="preserve">
+    <value>配送商名称必须输入且长度不可超过30</value>
+  </data>
+  <data name="P7109010000_ViewModel_ALL_ID_Limit" xml:space="preserve">
+    <value>配送商编号必须输入且长度不可超过10</value>
+  </data>
+  <data name="P7109010000_ViewModel_BatchTime_SelectArea" xml:space="preserve">
+    <value>批次时段 {0} {1} {2} 至少需勾选一个地区</value>
+  </data>
+  <data name="P7109010000_ViewModel_CurrentMaster" xml:space="preserve">
+    <value>请先查询配送商主档後才可删除</value>
+  </data>
+  <data name="P7109010000_ViewModel_DeleteError" xml:space="preserve">
+    <value>删除异常</value>
+  </data>
+  <data name="P7109010000_ViewModel_DELV_TIMES_ZIP_CODE_NotSet" xml:space="preserve">
+    <value>出车时段:{0} 配次:{1} 邮递区号:{2}，无配送路线表设定\r\n请至P710905路线配次与配送商对应表设定</value>
+  </data>
+  <data name="P7109010000_ViewModel_InputDelv" xml:space="preserve">
+    <value>请输入配次</value>
+  </data>
+  <data name="P7109010000_ViewModel_I_EL" xml:space="preserve">
+    <value>正物流</value>
+  </data>
+  <data name="P7109010000_ViewModel_ListOne" xml:space="preserve">
+    <value>单量至少输入一个</value>
+  </data>
+  <data name="P7109010000_ViewModel_O_EL" xml:space="preserve">
+    <value>逆物流</value>
+  </data>
+  <data name="P7109010000_ViewModel_PAST_TYPE_DELV_EFFIC_DELV_TMPR_Exisst" xml:space="preserve">
+    <value>此出车时间、配送效率、配送温层已存在</value>
+  </data>
+  <data name="P7109010000_ViewModel_PIER_CODE" xml:space="preserve">
+    <value>请先选择配送码头</value>
+  </data>
+  <data name="P7109010000_ViewModel_SelectDC" xml:space="preserve">
+    <value>请先选择物流中心</value>
+  </data>
+  <data name="P7109010000_ViewModel_StepError" xml:space="preserve">
+    <value>操作状态有误，请重新开启页面</value>
+  </data>
+  <data name="P7109020000_ViewModel_CUST_Required" xml:space="preserve">
+    <value>货主必须选择</value>
+  </data>
+  <data name="P7109020000_ViewModel_DC_Required" xml:space="preserve">
+    <value>物流中心必须选择</value>
+  </data>
+  <data name="P7109020000_ViewModel_Deliver_GUP_CUST_Duplicate" xml:space="preserve">
+    <value>配送商、业主、货主重复</value>
+  </data>
+  <data name="P7109020000_ViewModel_Deliver_Required" xml:space="preserve">
+    <value>配送商必须选择</value>
+  </data>
+  <data name="P7109020000_ViewModel_Empty_Value" xml:space="preserve">
+    <value>值不能为空</value>
+  </data>
+  <data name="P7109020000_ViewModel_GUP_Required" xml:space="preserve">
+    <value>业主必须选择</value>
+  </data>
+  <data name="P7109030000_ViewModel_AutoNo" xml:space="preserve">
+    <value>自动编号</value>
+  </data>
+  <data name="P7109030000_ViewModel_BillContact_Email_FormatError" xml:space="preserve">
+    <value>帐务联络人信箱格式不正确</value>
+  </data>
+  <data name="P7109030000_ViewModel_CustCode_CNWordOnly" xml:space="preserve">
+    <value>货主编号只能输入英数</value>
+  </data>
+  <data name="P7109030000_ViewModel_CustCode_Empty" xml:space="preserve">
+    <value>货主编号尚未输入</value>
+  </data>
+  <data name="P7109030000_ViewModel_CustCode_SYSCustCode_Duplicate" xml:space="preserve">
+    <value>货主编号或系统货主编号重复</value>
+  </data>
+  <data name="P7109030000_ViewModel_Cust_Deleted" xml:space="preserve">
+    <value>此货主已被删除</value>
+  </data>
+  <data name="P7109030000_ViewModel_Cust_Email_FormatError" xml:space="preserve">
+    <value>货主联络人信箱格式不正确</value>
+  </data>
+  <data name="P7109030000_ViewModel_Gup_Item_Sharing_SureExecute" xml:space="preserve">
+    <value>业主商品共用，需进行业主商品设定同步，是否确定执行？</value>
+  </data>
+  <data name="P7109030000_ViewModel_Input_DMName" xml:space="preserve">
+    <value>请输入DM名称</value>
+  </data>
+  <data name="P7109030000_ViewModel_Same_DMName_DatePeriod_Duplicate" xml:space="preserve">
+    <value>相同DM名称的起迄日期区间重叠，请重新输入!</value>
+  </data>
+  <data name="P7109030000_ViewModel_SelectCurrency" xml:space="preserve">
+    <value>未选择使用币别!</value>
+  </data>
+  <data name="P7109030000_ViewModel_SelectData" xml:space="preserve">
+    <value>未选择资料!</value>
+  </data>
+  <data name="P7109030000_ViewModel_SYS_CustCode_CNWordOnly" xml:space="preserve">
+    <value>系统货主编号只能输入英数</value>
+  </data>
+  <data name="P7109030000_ViewModel_SYS_CustCode_Empty" xml:space="preserve">
+    <value>系统货主编号尚未输入</value>
+  </data>
+  <data name="P7109030000_ViewModel_SYS_GupCode_Duplicate" xml:space="preserve">
+    <value>系统业主编号重复</value>
+  </data>
+  <data name="P7109030000_ViewModel_UniFormExists" xml:space="preserve">
+    <value>统编已存在於货主主档或委外商主档</value>
+  </data>
+  <data name="P7110010000_ViewModel_MustHaveOneMileStone" xml:space="preserve">
+    <value>必须至少要有一个里程碑</value>
+  </data>
+  <data name="P7110010000_ViewModel_MustSelectDC_Gup_Cust" xml:space="preserve">
+    <value>必须选择物流中心、业主、货主</value>
+  </data>
+  <data name="P7110010000_ViewModel_MustSelectTicketType" xml:space="preserve">
+    <value>必须选择单据型态、单据类别</value>
+  </data>
+  <data name="P7110010000_ViewModel_RepeatDC_GUP_CUST_TICKET_CannotAddNew" xml:space="preserve">
+    <value>不可新增重复的物流中心、业主、货主、单据类型、单据类别</value>
+  </data>
+  <data name="P7110010000_ViewModel_TicketName_RequiredAndLimitLength" xml:space="preserve">
+    <value>单据名称必填且不可超过50个字</value>
+  </data>
+  <data name="P7110010000_ViewModel_TICKET_ID_NotFound" xml:space="preserve">
+    <value>该货主单据主档不存在</value>
+  </data>
+  <data name="P7110010000_ViewModel_Ticket_Name_Required" xml:space="preserve">
+    <value>单据名称必填</value>
+  </data>
+  <data name="P7110030000_ViewModel_DataNotExist" xml:space="preserve">
+    <value>资料不存在，无法更新</value>
+  </data>
+  <data name="P7110030000_ViewModel_DELV_DAY_Incorrect" xml:space="preserve">
+    <value>出货单处理日期D+ 不可小於 0</value>
+  </data>
+  <data name="P7110030000_ViewModel_MustSelectTicketName" xml:space="preserve">
+    <value>必须选择单据名称</value>
+  </data>
+  <data name="P7110030000_ViewModel_ORDER_LIMIT_Incorrect" xml:space="preserve">
+    <value>订单批次上限数量需&gt;1</value>
+  </data>
+  <data name="P7110030000_ViewModel_SameDC_Gup_Cust_TicketName_CannotRepeat" xml:space="preserve">
+    <value>同物流中心、业主、货主、单据名称不可重复</value>
+  </data>
+  <data name="P7110030000_ViewModel_SOUTH_PRIORITY_QTY" xml:space="preserve">
+    <value>订单优先处理张数不可小於 0</value>
+  </data>
+  <data name="ProcessingStatusManage" xml:space="preserve">
+    <value>加工状况管控</value>
+  </data>
+  <data name="PurchaseService_Stock_No_BuyNo" xml:space="preserve">
+    <value>该进仓单无采购单号，请确定是否继续作业?</value>
+  </data>
+  <data name="QueryFix" xml:space="preserve">
+    <value>查询修件</value>
+  </data>
+  <data name="ReturnStatusManage" xml:space="preserve">
+    <value>退货状况管控</value>
+  </data>
+  <data name="SendAddress" xml:space="preserve">
+    <value>配送地址</value>
+  </data>
+  <data name="StockStatusManage" xml:space="preserve">
+    <value>进货状况管控</value>
+  </data>
+  <data name="P71060000_Add" xml:space="preserve">
+    <value>加入</value>
+  </data>
+  <data name="P71060000_DataExist" xml:space="preserve">
+    <value>选项数据已存在DB不可新增</value>
+  </data>
+  <data name="P71060000_DataRepeat" xml:space="preserve">
+    <value>数据不可重复</value>
+  </data>
+  <data name="P71060000_IsUsage" xml:space="preserve">
+    <value>使用</value>
+  </data>
+  <data name="P71060000_Lang" xml:space="preserve">
+    <value>语系</value>
+  </data>
+  <data name="P71060000_LangEdit" xml:space="preserve">
+    <value>多语系维护</value>
+  </data>
+  <data name="P71060000_LangName" xml:space="preserve">
+    <value>语系显示名称</value>
+  </data>
+  <data name="P71060000_LangValue" xml:space="preserve">
+    <value>语系值</value>
+  </data>
+  <data name="P71060000_Name" xml:space="preserve">
+    <value>选项名称</value>
+  </data>
+  <data name="P71060000_NameNull" xml:space="preserve">
+    <value>选项名称未输入</value>
+  </data>
+  <data name="P71060000_Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="P71060000_SubName" xml:space="preserve">
+    <value>选单名称</value>
+  </data>
+  <data name="P71060000_SubNameNull" xml:space="preserve">
+    <value>选单名称未输入</value>
+  </data>
+  <data name="P71060000_SubTopic" xml:space="preserve">
+    <value>选单ID</value>
+  </data>
+  <data name="P71060000_SubTopicNull" xml:space="preserve">
+    <value>选单ID未输入</value>
+  </data>
+  <data name="P71060000_Topic" xml:space="preserve">
+    <value>程序IC</value>
+  </data>
+  <data name="P71060000_TopicNull" xml:space="preserve">
+    <value>程序IC未输入</value>
+  </data>
+  <data name="P71060000_Value" xml:space="preserve">
+    <value>选项值</value>
+  </data>
+  <data name="P71060000_ValueNull" xml:space="preserve">
+    <value>选项值未输入</value>
+  </data>
+  <data name="PICK_CHECK" xml:space="preserve">
+    <value>拣货稽核</value>
+  </data>
+  <data name="PICK_SEQ" xml:space="preserve">
+    <value>拣货顺序</value>
+  </data>
+  <data name="PICK_TOOL" xml:space="preserve">
+    <value>摘取工具</value>
+  </data>
+  <data name="PICK_UNIT" xml:space="preserve">
+    <value>拣货单位</value>
+  </data>
+  <data name="PICK_MARTERIAL" xml:space="preserve">
+    <value>拣货载具</value>
+  </data>
+  <data name="PICK_TYPE" xml:space="preserve">
+    <value>拣货方式</value>
+  </data>
+  <data name="DELIVERY_MARTERIAL" xml:space="preserve">
+    <value>出货资材类型</value>
+  </data>
+  <data name="SINGLE_BOX" xml:space="preserve">
+    <value>单箱计算</value>
+  </data>
+  <data name="SORT_BY" xml:space="preserve">
+    <value>排序方式</value>
+  </data>
+  <data name="PUT_TOOL" xml:space="preserve">
+    <value>播种工具</value>
+  </data>
+  <data name="CreateStorageAreaPickSetting" xml:space="preserve">
+    <value>建立储区拣货设定</value>
+  </data>
+  <data name="P7101020100_DeleteSetting" xml:space="preserve">
+    <value>因为建立储区拣货设定被取消，请问是否要删除储区拣货设定?</value>
+  </data>
+  <data name="UWAREHOUSE" xml:space="preserve">
+    <value>台中特殊控制仓</value>
+  </data>
+  <data name="VWAREHOUSE" xml:space="preserve">
+    <value>高雄特殊控制仓</value>
+  </data>
+  <data name="SelectSharedFolder" xml:space="preserve">
+    <value>客户指定共享路径</value>
+  </data>
+  <data name="SelectIsshiftitem" xml:space="preserve">
+    <value>是否使用替代品号</value>
+  </data>
+  <data name="SelectShiftitemcode" xml:space="preserve">
+    <value>替代品号</value>
+  </data>
+  <data name="SelectPackcountMaxUnit" xml:space="preserve">
+    <value>包装数量换算最大单位</value>
+  </data>
+  <data name="SelectNeedItemspec" xml:space="preserve">
+    <value>允许强制测量新品规格</value>
+  </data>
+  <data name="SelectIsPrintInstockpalletsticker" xml:space="preserve">
+    <value>是否打印进仓栈板标签</value>
+  </data>
+  <data name="SelectIsIsQuickCheck" xml:space="preserve">
+    <value>允许快速进货检验</value>
+  </data>
+  <data name="SelectInstockautoclosed" xml:space="preserve">
+    <value>进仓单自动结案天数</value>
+  </data>
+  <data name="SelectAllowoutshipdetlog" xml:space="preserve">
+    <value>允许导出出货明细数据</value>
+  </data>
+  <data name="selectChgVenderOrd" xml:space="preserve">
+    <value>是否原厂退单出货</value>
+  </data>
+  <data name="selectSpiltVenderOrd" xml:space="preserve">
+    <value>允许导出出货明细数据</value>
+  </data>
+  <data name="SelectAllowAdvancedstock" xml:space="preserve">
+    <value>是否允许预先配库</value>
+  </data>
+  <data name="SelectPrint2PDF" xml:space="preserve">
+    <value>允许报表自动转成PDF档案</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>批号</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="P7108020000_AllotStock" xml:space="preserve">
+    <value>配库</value>
+  </data>
+  <data name="P7109020000_AddBoxGetConsignNo" xml:space="preserve">
+    <value>加箱托运单取号方式</value>
+  </data>
+  <data name="P7109020000_ZipCode" xml:space="preserve">
+    <value>集货所邮政编码</value>
+  </data>
+  <data name="AllowRoundPiece" xml:space="preserve">
+    <value>允许来回件</value>
+  </data>
+  <data name="SHELF_TOOL" xml:space="preserve">
+    <value>作业工具</value>
+  </data>
+  <data name="DESTROY_TYPE" xml:space="preserve">
+    <value>报废销毁方式</value>
+  </data>
+  <data name="selectAllowEditBoxQty" xml:space="preserve">
+    <value>允许修改箱入数</value>
+  </data>
+  <data name="selectShowMessage" xml:space="preserve">
+    <value>是否显示确认讯息</value>
+  </data>
+  <data name="selectShowQty" xml:space="preserve">
+    <value>允许预带确认数量</value>
+  </data>
+  <data name="VNR_RTN_TYPE" xml:space="preserve">
+    <value>厂退方式</value>
+  </data>
+  <data name="DEVICE_TYPE" xml:space="preserve">
+    <value>仓别属性</value>
+  </data>
+  <data name="PICK_FLOOR" xml:space="preserve">
+    <value>拣货楼层</value>
+  </data>
+  <data name="P7101010100_ViewModel_WarehouseId_Exist" xml:space="preserve">
+    <value>此仓别编号已存在</value>
+  </data>
+  <data name="P7101010100_ViewModel_WarehouseNum_Length_short" xml:space="preserve">
+    <value>仓别编号为2码</value>
+  </data>
+  <data name="P7101010100_ViewModel_WarehouseNum_Num_Required" xml:space="preserve">
+    <value>仓别编号必须为数字</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>商品搜寻</value>
+  </data>
+</root>

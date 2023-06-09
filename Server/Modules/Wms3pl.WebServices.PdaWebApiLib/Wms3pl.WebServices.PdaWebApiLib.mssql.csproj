@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{101F216F-4BCA-473A-AE68-5C0C8AE62A46}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WebServices.PdaWebApiLib</RootNamespace>
+    <AssemblyName>Wms3pl.WebServices.PdaWebApiLib</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\P810101Controller.cs" />
+    <Compile Include="Controllers\P810102Controller.cs" />
+    <Compile Include="Controllers\P810110Controller.cs" />
+    <Compile Include="Controllers\P810116Controller.cs" />
+    <Compile Include="Controllers\P810111Controller.cs" />
+    <Compile Include="Controllers\P810109Controller.cs" />
+    <Compile Include="Controllers\P810103Controller.cs" />
+    <Compile Include="Controllers\P810105Controller.cs" />
+    <Compile Include="Controllers\P810106Controller.cs" />
+    <Compile Include="Controllers\P810107Controller.cs" />
+    <Compile Include="Controllers\P810108Controller.cs" />
+    <Compile Include="Controllers\P810117Controller.cs" />
+    <Compile Include="Controllers\P810115Controller.cs" />
+    <Compile Include="Controllers\P810114Controller.cs" />
+    <Compile Include="Controllers\P810113Controller.cs" />
+    <Compile Include="Controllers\P810112Controller.cs" />
+    <Compile Include="Controllers\P810118Controller.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2FA6F2B6-E072-437A-8096-7AEC69B461A1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{d3dc1679-3bfe-47b1-9302-9a17b90cd9f9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{f8f52a2a-9c65-4b62-912f-4146b62aab72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F07\Wms3pl.Datas.F07.csproj">
+      <Project>{61302189-F348-4C74-BC5E-ED5BC88A6484}</Project>
+      <Name>Wms3pl.Datas.F07</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.PdaWebApi.Business\Wms3pl.WebServices.PdaWebApi.Business.mssql.csproj">
+      <Project>{ac9afc33-7b04-4927-866f-0d95a7f702c4}</Project>
+      <Name>Wms3pl.WebServices.PdaWebApi.Business.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.Shared\Wms3pl.WebServices.Shared.mssql.csproj">
+      <Project>{e8775330-cea0-4a6e-b625-e55659f4f7e4}</Project>
+      <Name>Wms3pl.WebServices.Shared.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.Schedule\Wms3pl.Datas.Schedule.csproj">
+      <Project>{28c186d5-1ea4-4dd4-bf0b-b50a92e1b294}</Project>
+      <Name>Wms3pl.Datas.Schedule</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resource.zh-Hans.resx">
+      <LastGenOutput>Resource.zh-Hans.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

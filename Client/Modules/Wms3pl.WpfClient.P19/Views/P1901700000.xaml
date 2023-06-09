@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P19.Views.P1901700000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P19.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P19.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" controls:PermissionService.FunctionId="P1901700000" controls:PermissionService.FunctionName="標籤主檔維護" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P1901700000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+      <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+      <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+      <converters:EnumToNotBooleanConverter x:Key="EnumToNotBooleanConverter" />
+      <converters:NameValuePairMultiConverter x:Key="NameValuePairMultiConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1901700001" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP1901700002" Command="{Binding AddCommand}" />
+          <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1901700003" Command="{Binding EditCommand}" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1901700004" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1901700005" Command="{Binding DeleteCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1901700006" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel>
+              <!-- 由此處開始加入畫面項目 -->
+              <Expander Header="{x:Static res:Resources.QueryCondition}" DockPanel.Dock="Top" IsExpanded="{Binding SearchResultIsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                <Grid DockPanel.Dock="Top">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.SearchLabelType}" Style="{StaticResource LbTitleStyle}" />
+                  <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding LabelTypeList}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SearchLabelType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                  <Label Content="{x:Static Properties:Resources.SearchLabelName}" Grid.Row="0" Grid.Column="2" Foreground="Blue" Style="{StaticResource LbTitleStyle}" />
+                  <TextBox x:Name="txtLABEL_NAME" Text="{Binding SearchLabelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" Width="200" Grid.Row="0" Grid.Column="3" Style="{StaticResource TxtStyle}" MaxLength="20" />
+                </Grid>
+              </Expander>
+              <Expander Header="{x:Static res:Resources.OueryResult}" DockPanel.Dock="Top" IsExpanded="{Binding QueryResultIsExpanded,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                <DataGrid Style="{StaticResource DgStyle}" Height="160" ItemsSource="{Binding LabelList}" SelectedItem="{Binding SelectedLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.SearchLabelType}">
+                      <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                          <Binding Path="LABEL_TYPE" />
+                          <Binding Path="DataContext.LabelTypeList" RelativeSource="{RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}" />
+                        </MultiBinding>
+                      </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.LABEL_CODE}" Binding="{Binding LABEL_CODE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.SearchLabelName}" Binding="{Binding LABEL_NAME}" />
+                  </DataGrid.Columns>
+                </DataGrid>
+              </Expander>
+              <GroupBox Header="{Binding QuoteHeaderText,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top" IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumToNotBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                <DockPanel>
+                  <ScrollViewer>
+                    <DockPanel>
+                      <Grid DockPanel.Dock="Top">
+                        <Grid.RowDefinitions>
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto" />
+                          <ColumnDefinition Width="Auto" />
+                          <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.SearchLabelType}" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding EditLabelTypeList}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedItem="{Binding SelectedLabelType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedLabel.LABEL_TYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumToNotBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.LABEL_CODE}" Style="{StaticResource LbTitleStyle}" />
+                        <TextBox x:Name="txtEditLABEL_CODE" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedLabel.LABEL_CODE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding UserOperateMode,Converter={StaticResource EnumToNotBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" Style="{StaticResource TxtStyle}"  MaxLength="15"  InputMethod.IsInputMethodEnabled="False" TextChanged="TxtEditLABEL_CODE_TextChanged" />
+                        <Label Content="{x:Static Properties:Resources.SearchLabelName}" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                        <TextBox x:Name="txtEditLABEL_NAME" Text="{Binding SelectedLabel.LABEL_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true}" IsReadOnly="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}" Width="250" Grid.Row="2" Grid.Column="1" Style="{StaticResource TxtStyle}" MaxLength="20" />
+                        <CheckBox Content="{x:Static Properties:Resources.PRINT_ITEM}" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.ITEM, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="ITEMCheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.VNR}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.VNR, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="VNRCheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.WARRANTY}" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.WARRANTY, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="WARRANTYCheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.WARRANTY_Y}" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.WARRANTY_Y, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="WARRANTY_YCheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.WARRANTY_M}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.WARRANTY_M, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="WARRANTY_MCheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.WARRANTY_D}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.WARRANTY_D, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="WARRANTY_DCheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.OUTSOURCE}" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.OUTSOURCE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="OUTSOURCECheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.CHECK_STAFF}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.CHECK_STAFF, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="CHECK_STAFFCheckBox" VerticalAlignment="Center" />
+                        <CheckBox Content="{x:Static Properties:Resources.ITEM_DESC}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" IsChecked="{Binding SelectedLabel.ITEM_DESC, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="ITEM_DESCCheckBox" VerticalAlignment="Center" />
+                      </Grid>
+                    </DockPanel>
+                  </ScrollViewer>
+                </DockPanel>
+              </GroupBox>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

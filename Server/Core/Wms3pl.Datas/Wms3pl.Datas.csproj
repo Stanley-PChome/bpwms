@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8F52A2A-9C65-4B62-912F-4146B62AAB72}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.Datas</RootNamespace>
+    <AssemblyName>Wms3pl.Datas</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFrameworkCore.DataEncryption, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFrameworkCore.DataEncryption.1.1.0\lib\netstandard2.0\EntityFrameworkCore.DataEncryption.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.5.6.0\lib\net40\Microsoft.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.EntityFrameworkCore.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.EntityFrameworkCore.Abstractions.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Memory.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="F00\F0000.cs" />
+    <Compile Include="F00\F0002.cs" />
+    <Compile Include="F00\F0001.cs" />
+    <Compile Include="F00\F0003.cs" />
+    <Compile Include="F00\F000301.cs" />
+    <Compile Include="F00\F0005.cs" />
+    <Compile Include="F00\F0006.cs" />
+    <Compile Include="F00\F0009.cs" />
+    <Compile Include="F00\F000901.cs" />
+    <Compile Include="F00\F000902.cs" />
+    <Compile Include="F00\F00090201.cs" />
+    <Compile Include="F00\F000903.cs" />
+    <Compile Include="F00\F000904.cs" />
+    <Compile Include="F00\F000904_I18N.cs" />
+    <Compile Include="F00\F000906.cs" />
+    <Compile Include="F00\F0010.cs" />
+    <Compile Include="F00\F001001.cs" />
+    <Compile Include="F00\F0011.cs" />
+    <Compile Include="F00\F0020.cs" />
+    <Compile Include="F00\F0050.cs" />
+    <Compile Include="F00\F005001.cs" />
+    <Compile Include="F00\F0060.cs" />
+    <Compile Include="F00\F0070.cs" />
+    <Compile Include="F00\F0080.cs" />
+    <Compile Include="F00\F009008.cs" />
+    <Compile Include="F00\F009007.cs" />
+    <Compile Include="F00\F009006.cs" />
+    <Compile Include="F00\F009005.cs" />
+    <Compile Include="F00\F009004.cs" />
+    <Compile Include="F00\F009003.cs" />
+    <Compile Include="F00\F009002.cs" />
+    <Compile Include="F00\F009001.cs" />
+    <Compile Include="F00\F0090.cs" />
+    <Compile Include="F00\F0090Base.cs" />
+    <Compile Include="F00\F0091.cs" />
+    <Compile Include="F00\F0093.cs" />
+    <Compile Include="F00\F0092.cs" />
+    <Compile Include="F01\F010101.cs" />
+    <Compile Include="F01\F010102.cs" />
+    <Compile Include="F01\F010201.cs" />
+    <Compile Include="F01\F010202.cs" />
+    <Compile Include="F01\F010205.cs" />
+    <Compile Include="F01\F010204.cs" />
+    <Compile Include="F01\F010203.cs" />
+    <Compile Include="F01\F010301.cs" />
+    <Compile Include="F01\F010301_HISTORY.cs" />
+    <Compile Include="F01\F010302.cs" />
+    <Compile Include="F01\F010302_HISTORY.cs" />
+    <Compile Include="F02\F020103.cs" />
+    <Compile Include="F02\F020104.cs" />
+    <Compile Include="F02\F0202.cs" />
+    <Compile Include="F02\F020201.cs" />
+    <Compile Include="F02\F02020101.cs" />
+    <Compile Include="F02\F02020102.cs" />
+    <Compile Include="F02\F02020103.cs" />
+    <Compile Include="F02\F02020104.cs" />
+    <Compile Include="F02\F02020105.cs" />
+    <Compile Include="F02\F02020106.cs" />
+    <Compile Include="F02\F020503.cs" />
+    <Compile Include="F02\F020502.cs" />
+    <Compile Include="F02\F020501.cs" />
+    <Compile Include="F02\F0205.cs" />
+    <Compile Include="F02\F02020109.cs" />
+    <Compile Include="F02\F020203.cs" />
+    <Compile Include="F02\F020202.cs" />
+    <Compile Include="F02\F02020108.cs" />
+    <Compile Include="F02\F02020107.cs" />
+    <Compile Include="F02\F020301.cs" />
+    <Compile Include="F02\F020302.cs" />
+    <Compile Include="F02\F020504.cs" />
+    <Compile Include="F02\F02050401.cs" />
+    <Compile Include="F02\F02050402.cs" />
+    <Compile Include="F05\F0500.cs" />
+    <Compile Include="F05\F050001.cs" />
+    <Compile Include="F05\F05000101.cs" />
+    <Compile Include="F05\F050002.cs" />
+    <Compile Include="F05\F05000201.cs" />
+    <Compile Include="F05\F050003.cs" />
+    <Compile Include="F05\F05000301.cs" />
+    <Compile Include="F05\F050004.cs" />
+    <Compile Include="F05\F050006.cs" />
+    <Compile Include="F05\F050007.cs" />
+    <Compile Include="F05\F0501_HISTORY.cs" />
+    <Compile Include="F05\F0501.cs" />
+    <Compile Include="F05\F050101.cs" />
+    <Compile Include="F05\F05010103.cs" />
+    <Compile Include="F05\F050102.cs" />
+    <Compile Include="F05\F050104.cs" />
+    <Compile Include="F05\F050103.cs" />
+    <Compile Include="F05\F05010301.cs" />
+    <Compile Include="F05\F050301.cs" />
+    <Compile Include="F05\F05030101.cs" />
+    <Compile Include="F05\F050302.cs" />
+    <Compile Include="F05\F05030201.cs" />
+    <Compile Include="F05\F05030202.cs" />
+    <Compile Include="F05\F050303.cs" />
+    <Compile Include="F05\F050305.cs" />
+    <Compile Include="F05\F050304.cs" />
+    <Compile Include="F05\F050306.cs" />
+    <Compile Include="F05\F050306_HISTORY.cs" />
+    <Compile Include="F05\F050801.cs" />
+    <Compile Include="F05\F050802.cs" />
+    <Compile Include="F05\F050803.cs" />
+    <Compile Include="F05\F050804.cs" />
+    <Compile Include="F05\F05080401.cs" />
+    <Compile Include="F05\F050805.cs" />
+    <Compile Include="F05\F05080501.cs" />
+    <Compile Include="F05\F05080502.cs" />
+    <Compile Include="F05\F05080503.cs" />
+    <Compile Include="F05\F05080504.cs" />
+    <Compile Include="F05\F05080505.cs" />
+    <Compile Include="F05\F05080506.cs" />
+    <Compile Include="F05\F050901.cs" />
+    <Compile Include="F05\F051201.cs" />
+    <Compile Include="F05\F05120101.cs" />
+    <Compile Include="F05\F051202.cs" />
+    <Compile Include="F05\F051203.cs" />
+    <Compile Include="F05\F051206.cs" />
+    <Compile Include="F05\F05120601.cs" />
+    <Compile Include="F05\F0513.cs" />
+    <Compile Include="F05\F051301_HISTORY.cs" />
+    <Compile Include="F05\F051301.cs" />
+    <Compile Include="F05\F051401.cs" />
+    <Compile Include="F05\F051402.cs" />
+    <Compile Include="F05\F0515.cs" />
+    <Compile Include="F05\F051501.cs" />
+    <Compile Include="F05\F051502.cs" />
+    <Compile Include="F05\F051503.cs" />
+    <Compile Include="F05\F051504.cs" />
+    <Compile Include="F05\F051601.cs" />
+    <Compile Include="F05\F051602.cs" />
+    <Compile Include="F05\F051803.cs" />
+    <Compile Include="F05\F051802.cs" />
+    <Compile Include="F05\F051801.cs" />
+    <Compile Include="F05\F051603.cs" />
+    <Compile Include="F05\F052901.cs" />
+    <Compile Include="F05\F052902.cs" />
+    <Compile Include="F05\F052903.cs" />
+    <Compile Include="F05\F05290301.cs" />
+    <Compile Include="F05\F052904.cs" />
+    <Compile Include="F05\F05290401.cs" />
+    <Compile Include="F05\F052905.cs" />
+    <Compile Include="F05\F05290501.cs" />
+    <Compile Include="F05\F055001.cs" />
+    <Compile Include="F05\F05500101.cs" />
+    <Compile Include="F05\F05500102.cs" />
+    <Compile Include="F05\F055002.cs" />
+    <Compile Include="F05\F055003.cs" />
+    <Compile Include="F05\F05500103.cs" />
+    <Compile Include="F05\F056002.cs" />
+    <Compile Include="F05\F056001.cs" />
+    <Compile Include="F05\F055007.cs" />
+    <Compile Include="F05\F055006.cs" />
+    <Compile Include="F05\F055005.cs" />
+    <Compile Include="F06\F06020902.cs" />
+    <Compile Include="F06\F06020901.cs" />
+    <Compile Include="F06\F060209.cs" />
+    <Compile Include="F06\F06020702.cs" />
+    <Compile Include="F06\F06020701.cs" />
+    <Compile Include="F06\F060207.cs" />
+    <Compile Include="F06\F060208.cs" />
+    <Compile Include="F06\F060703.cs" />
+    <Compile Include="F06\F060702.cs" />
+    <Compile Include="F06\F060401.cs" />
+    <Compile Include="F05\F055004.cs" />
+    <Compile Include="F06\F060206.cs" />
+    <Compile Include="F06\F060205.cs" />
+    <Compile Include="F06\F060204.cs" />
+    <Compile Include="F06\F060203.cs" />
+    <Compile Include="F06\F060202.cs" />
+    <Compile Include="F06\F060102.cs" />
+    <Compile Include="F06\F060302.cs" />
+    <Compile Include="F06\F060406.cs" />
+    <Compile Include="F06\F060405.cs" />
+    <Compile Include="F06\F060404.cs" />
+    <Compile Include="F06\F060403.cs" />
+    <Compile Include="F06\F060402.cs" />
+    <Compile Include="F06\F060701.cs" />
+    <Compile Include="F06\F060602.cs" />
+    <Compile Include="F06\F060601.cs" />
+    <Compile Include="F06\F060501.cs" />
+    <Compile Include="F06\F060301.cs" />
+    <Compile Include="F06\F060201.cs" />
+    <Compile Include="F06\F060101.cs" />
+    <Compile Include="F06\F060802.cs" />
+    <Compile Include="F06\F060801.cs" />
+    <Compile Include="F07\F07010401.cs" />
+    <Compile Include="F07\F076102.cs" />
+    <Compile Include="F07\F076101.cs" />
+    <Compile Include="F07\F075109.cs" />
+    <Compile Include="F07\F076103.cs" />
+    <Compile Include="F07\F076104.cs" />
+    <Compile Include="F07\F077101.cs" />
+    <Compile Include="F07\F077102.cs" />
+    <Compile Include="F07\F075103.cs" />
+    <Compile Include="F07\F075102.cs" />
+    <Compile Include="F07\F075101.cs" />
+    <Compile Include="F07\F0701.cs" />
+    <Compile Include="F07\F070101.cs" />
+    <Compile Include="F07\F070103.cs" />
+    <Compile Include="F07\F070104.cs" />
+    <Compile Include="F07\F070102.cs" />
+    <Compile Include="F07\F075108.cs" />
+    <Compile Include="F07\F075107.cs" />
+    <Compile Include="F07\F075106.cs" />
+    <Compile Include="F07\F075105.cs" />
+    <Compile Include="F14\F140101.cs" />
+    <Compile Include="F14\F14010101.cs" />
+    <Compile Include="F14\F140102.cs" />
+    <Compile Include="F14\F140103.cs" />
+    <Compile Include="F14\F140104.cs" />
+    <Compile Include="F14\F140105.cs" />
+    <Compile Include="F14\F140106.cs" />
+    <Compile Include="F14\F140107.cs" />
+    <Compile Include="F14\F140110.cs" />
+    <Compile Include="F14\F140111.cs" />
+    <Compile Include="F14\F140113.cs" />
+    <Compile Include="F15\F151001.cs" />
+    <Compile Include="F15\F15100101.cs" />
+    <Compile Include="F15\F151002.cs" />
+    <Compile Include="F15\F151003.cs" />
+    <Compile Include="F15\F151004.cs" />
+    <Compile Include="F15\F1511.cs" />
+    <Compile Include="F15\F151201.cs" />
+    <Compile Include="F15\F151202.cs" />
+    <Compile Include="F15\F151203.cs" />
+    <Compile Include="F16\F160201.cs" />
+    <Compile Include="F16\F160202.cs" />
+    <Compile Include="F16\F160203.cs" />
+    <Compile Include="F16\F160204.cs" />
+    <Compile Include="F16\F160401.cs" />
+    <Compile Include="F16\F160402.cs" />
+    <Compile Include="F16\F160501.cs" />
+    <Compile Include="F16\F160502.cs" />
+    <Compile Include="F16\F160503.cs" />
+    <Compile Include="F16\F16050301.cs" />
+    <Compile Include="F16\F160504.cs" />
+    <Compile Include="F16\F161201.cs" />
+    <Compile Include="F16\F161202.cs" />
+    <Compile Include="F16\F16120201.cs" />
+    <Compile Include="F16\F161203.cs" />
+    <Compile Include="F16\F161204.cs" />
+    <Compile Include="F16\F161301.cs" />
+    <Compile Include="F16\F161302.cs" />
+    <Compile Include="F16\F161401.cs" />
+    <Compile Include="F16\F16140101.cs" />
+    <Compile Include="F16\F16140102.cs" />
+    <Compile Include="F16\F161402.cs" />
+    <Compile Include="F16\F16140201.cs" />
+    <Compile Include="F16\F161501.cs" />
+    <Compile Include="F16\F161502.cs" />
+    <Compile Include="F16\F161601.cs" />
+    <Compile Include="F16\F161602.cs" />
+    <Compile Include="F19\F190001.cs" />
+    <Compile Include="F19\F19000101.cs" />
+    <Compile Include="F19\F19000102.cs" />
+    <Compile Include="F19\F19000103.cs" />
+    <Compile Include="F19\F19000104.cs" />
+    <Compile Include="F19\F19000105.cs" />
+    <Compile Include="F19\F19000106.cs" />
+    <Compile Include="F19\F190002.cs" />
+    <Compile Include="F19\F190003.cs" />
+    <Compile Include="F19\F190004.cs" />
+    <Compile Include="F19\F190010.cs" />
+    <Compile Include="F19\F1901.cs" />
+    <Compile Include="F19\F190101.cs" />
+    <Compile Include="F19\F190102.cs" />
+    <Compile Include="F19\F190105.cs" />
+    <Compile Include="F19\F190106.cs" />
+    <Compile Include="F19\F190205.cs" />
+    <Compile Include="F19\F190206.cs" />
+    <Compile Include="F19\F190207.cs" />
+    <Compile Include="F19\F1903_ASYNC.cs" />
+    <Compile Include="F19\F1903_HISTORY.cs" />
+    <Compile Include="F19\F1903.cs" />
+    <Compile Include="F19\F190301.cs" />
+    <Compile Include="F19\F190303.cs" />
+    <Compile Include="F19\F190305.cs" />
+    <Compile Include="F19\F1905.cs" />
+    <Compile Include="F19\F190701.cs" />
+    <Compile Include="F19\F190702.cs" />
+    <Compile Include="F19\F190703.cs" />
+    <Compile Include="F19\F190704.cs" />
+    <Compile Include="F19\F1908.cs" />
+    <Compile Include="F19\F1909.cs" />
+    <Compile Include="F19\F190901.cs" />
+    <Compile Include="F19\F190902.cs" />
+    <Compile Include="F19\F190904.cs" />
+    <Compile Include="F19\F190905.cs" />
+    <Compile Include="F19\F190906.cs" />
+    <Compile Include="F19\F190907.cs" />
+    <Compile Include="F19\F190908.cs" />
+    <Compile Include="F19\F190909.cs" />
+    <Compile Include="F19\F1910.cs" />
+    <Compile Include="F19\F191001.cs" />
+    <Compile Include="F19\F191002.cs" />
+    <Compile Include="F19\F1912.cs" />
+    <Compile Include="F19\F191201.cs" />
+    <Compile Include="F19\F191202.cs" />
+    <Compile Include="F19\F191204.cs" />
+    <Compile Include="F19\F191205.cs" />
+    <Compile Include="F19\F191206.cs" />
+    <Compile Include="F19\F19120601.cs" />
+    <Compile Include="F19\F19120602.cs" />
+    <Compile Include="F19\F1913.cs" />
+    <Compile Include="F19\F191303.cs" />
+    <Compile Include="F19\F191305.cs" />
+    <Compile Include="F19\F191304.cs" />
+    <Compile Include="F19\F191302.cs" />
+    <Compile Include="F19\F191301.cs" />
+    <Compile Include="F19\F19130501.cs" />
+    <Compile Include="F19\F1915.cs" />
+    <Compile Include="F19\F1916.cs" />
+    <Compile Include="F19\F1917.cs" />
+    <Compile Include="F19\F1919.cs" />
+    <Compile Include="F19\F191901.cs" />
+    <Compile Include="F19\F191902.cs" />
+    <Compile Include="F19\F1924.cs" />
+    <Compile Include="F19\F192401.cs" />
+    <Compile Include="F19\F192401_IMPORTLOG.cs" />
+    <Compile Include="F19\F192402.cs" />
+    <Compile Include="F19\F192403.cs" />
+    <Compile Include="F19\F192404.cs" />
+    <Compile Include="F19\F192405.cs" />
+    <Compile Include="F19\F1925.cs" />
+    <Compile Include="F19\F1928.cs" />
+    <Compile Include="F19\F1929.cs" />
+    <Compile Include="F19\F1933.cs" />
+    <Compile Include="F19\F1934.cs" />
+    <Compile Include="F19\F1942.cs" />
+    <Compile Include="F19\F1943.cs" />
+    <Compile Include="F19\F1944.cs" />
+    <Compile Include="F19\F195601.cs" />
+    <Compile Include="F19\F1956.cs" />
+    <Compile Include="F19\F1955.cs" />
+    <Compile Include="F19\F1946.cs" />
+    <Compile Include="F19\F1945.cs" />
+    <Compile Include="F19\F194501.cs" />
+    <Compile Include="F19\F1947.cs" />
+    <Compile Include="F19\F194701.cs" />
+    <Compile Include="F19\F19470101.cs" />
+    <Compile Include="F19\F194702.cs" />
+    <Compile Include="F19\F194703.cs" />
+    <Compile Include="F19\F194704.cs" />
+    <Compile Include="F19\F194705.cs" />
+    <Compile Include="F19\F194706.cs" />
+    <Compile Include="F19\F194707.cs" />
+    <Compile Include="F19\F194708.cs" />
+    <Compile Include="F19\F19470801.cs" />
+    <Compile Include="F19\F194709.cs" />
+    <Compile Include="F19\F194710.cs" />
+    <Compile Include="F19\F19471001.cs" />
+    <Compile Include="F19\F194711.cs" />
+    <Compile Include="F19\F194712.cs" />
+    <Compile Include="F19\F19471201.cs" />
+    <Compile Include="F19\F194713.cs" />
+    <Compile Include="F19\F194714.cs" />
+    <Compile Include="F19\F194715.cs" />
+    <Compile Include="F19\F194716.cs" />
+    <Compile Include="F19\F19471601.cs" />
+    <Compile Include="F19\F1948.cs" />
+    <Compile Include="F19\F194801.cs" />
+    <Compile Include="F19\F194901.cs" />
+    <Compile Include="F19\F1950.cs" />
+    <Compile Include="F19\F1951.cs" />
+    <Compile Include="F19\F1952.cs" />
+    <Compile Include="F19\F1952_HISTORY.cs" />
+    <Compile Include="F19\F1953.cs" />
+    <Compile Include="F19\F195301.cs" />
+    <Compile Include="F19\F195301_IMPORTLOG.cs" />
+    <Compile Include="F19\F195302.cs" />
+    <Compile Include="F19\F1954.cs" />
+    <Compile Include="F19\F195402.cs" />
+    <Compile Include="F19\F19540201.cs" />
+    <Compile Include="F19\F19540202.cs" />
+    <Compile Include="F19\F1954_I18N.cs" />
+    <Compile Include="F19\F1963.cs" />
+    <Compile Include="F19\F196301.cs" />
+    <Compile Include="F19\F1970.cs" />
+    <Compile Include="F19\F197001.cs" />
+    <Compile Include="F19\F197002.cs" />
+    <Compile Include="F19\F19700201.cs" />
+    <Compile Include="F19\F1980.cs" />
+    <Compile Include="F19\F198001.cs" />
+    <Compile Include="F19\F1981.cs" />
+    <Compile Include="F19\F1983.cs" />
+    <Compile Include="F19\F199001.cs" />
+    <Compile Include="F19\F199002.cs" />
+    <Compile Include="F19\F199003.cs" />
+    <Compile Include="F19\F199005.cs" />
+    <Compile Include="F19\F199006.cs" />
+    <Compile Include="F19\F199007.cs" />
+    <Compile Include="F20\F200101.cs" />
+    <Compile Include="F20\F200102.cs" />
+    <Compile Include="F20\F20010201.cs" />
+    <Compile Include="F20\F20010202.cs" />
+    <Compile Include="F20\F200103.cs" />
+    <Compile Include="F20\F20010301.cs" />
+    <Compile Include="F25\F2501.cs" />
+    <Compile Include="F25\F250101.cs" />
+    <Compile Include="F25\F250102.cs" />
+    <Compile Include="F25\F25010201.cs" />
+    <Compile Include="F25\F250103.cs" />
+    <Compile Include="F25\F250104.cs" />
+    <Compile Include="F25\F250105.cs" />
+    <Compile Include="F25\F250106.cs" />
+    <Compile Include="F50\F500101.cs" />
+    <Compile Include="F50\F500102.cs" />
+    <Compile Include="F50\F500103.cs" />
+    <Compile Include="F50\F500104.cs" />
+    <Compile Include="F50\F500105.cs" />
+    <Compile Include="F50\F500201.cs" />
+    <Compile Include="F50\F500202.cs" />
+    <Compile Include="F51\F5101.cs" />
+    <Compile Include="F51\F510101.cs" />
+    <Compile Include="F51\F510102.cs" />
+    <Compile Include="F51\F51010501.cs" />
+    <Compile Include="F51\F510105.cs" />
+    <Compile Include="F51\F510104.cs" />
+    <Compile Include="F51\F5102.cs" />
+    <Compile Include="F51\F5103.cs" />
+    <Compile Include="F51\F5104.cs" />
+    <Compile Include="F51\F5105.cs" />
+    <Compile Include="F51\F5106.cs" />
+    <Compile Include="F51\F5107.cs" />
+    <Compile Include="F51\F5108.cs" />
+    <Compile Include="F51\F5109.cs" />
+    <Compile Include="F51\F511001.cs" />
+    <Compile Include="F51\F511002.cs" />
+    <Compile Include="F51\F5111.cs" />
+    <Compile Include="F51\F5112.cs" />
+    <Compile Include="F70\F700101.cs" />
+    <Compile Include="F70\F70010101.cs" />
+    <Compile Include="F70\F700102.cs" />
+    <Compile Include="F70\F70010201.cs" />
+    <Compile Include="F70\F700201.cs" />
+    <Compile Include="F70\F700501.cs" />
+    <Compile Include="F70\F70050101.cs" />
+    <Compile Include="F70\F700701.cs" />
+    <Compile Include="F70\F700702.cs" />
+    <Compile Include="F70\F700703.cs" />
+    <Compile Include="F70\F700705.cs" />
+    <Compile Include="F70\F700706.cs" />
+    <Compile Include="F70\F700707.cs" />
+    <Compile Include="F70\F700708.cs" />
+    <Compile Include="F70\F700709.cs" />
+    <Compile Include="F70\F700801.cs" />
+    <Compile Include="F70\F700802.cs" />
+    <Compile Include="F91\F910001.cs" />
+    <Compile Include="F91\F910003.cs" />
+    <Compile Include="F91\F91000301.cs" />
+    <Compile Include="F91\F91000302.cs" />
+    <Compile Include="F91\F910004.cs" />
+    <Compile Include="F91\F910005.cs" />
+    <Compile Include="F91\F910101.cs" />
+    <Compile Include="F91\F910102.cs" />
+    <Compile Include="F91\F910201.cs" />
+    <Compile Include="F91\F910203.cs" />
+    <Compile Include="F91\F910204.cs" />
+    <Compile Include="F91\F910205.cs" />
+    <Compile Include="F91\F91020501.cs" />
+    <Compile Include="F91\F91020502.cs" />
+    <Compile Include="F91\F910206.cs" />
+    <Compile Include="F91\F91020601.cs" />
+    <Compile Include="F91\F910207.cs" />
+    <Compile Include="F91\F910208.cs" />
+    <Compile Include="F91\F910209.cs" />
+    <Compile Include="F91\F910301.cs" />
+    <Compile Include="F91\F910302.cs" />
+    <Compile Include="F91\F910401.cs" />
+    <Compile Include="F91\F910402.cs" />
+    <Compile Include="F91\F910403.cs" />
+    <Compile Include="F91\F910404.cs" />
+    <Compile Include="F91\F910501.cs" />
+    <Compile Include="F91\F910502.cs" />
+    <Compile Include="F91\F910503.cs" />
+    <Compile Include="F91\F910504.cs" />
+    <Compile Include="F91\F910505.cs" />
+    <Compile Include="F91\F910506.cs" />
+    <Compile Include="F91\F910507.cs" />
+    <Compile Include="F91\F910508.cs" />
+    <Compile Include="F91\F910509.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schedule\PREFERENCE.cs" />
+    <Compile Include="Schedule\SCHEDULE_JOB_RESULT.cs" />
+    <Compile Include="View\VW_F000904_LANG.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2fa6f2b6-e072-437a-8096-7aec69b461a1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,236 @@
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P71.Views.P7104020000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P71.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P71.Properties" 
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"    
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500"
+			Title="{x:Static Properties:Resources.DC2}"  WindowState="Maximized"
+			controls:PermissionService.CheckPermission="False"
+			controls:PermissionService.FunctionId="P7104020000"
+			controls:PermissionService.FunctionName="物流中心看板二"
+			FormException="{Binding Exception}" Closed="P7104020000_OnClosed">
+	<uiLib:Wms3plWindow.DataContext>
+		<viewModel:P7104020000_ViewModel x:Name="Vm"/>
+	</uiLib:Wms3plWindow.DataContext>
+	<uiLib:Wms3plWindow.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+		</ResourceDictionary>
+	</uiLib:Wms3plWindow.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.MainContent>
+				<ScrollViewer>
+					<DockPanel Style="{StaticResource WindowDockPanelStyle}">
+						<!-- 由此處開始加入畫面項目 -->
+						<WrapPanel DockPanel.Dock="Top" Margin="1" HorizontalAlignment="Center" >
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<Label Grid.Row="0" Grid.Column="0"  Style="{StaticResource LbTitleStyle}" Content="{x:Static res:Resources.Dc}"/>
+								<ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList}" SelectedValue="{Binding SelectedDcCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" DisplayMemberPath="Name" />
+								<Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.Cust_Code}"/>
+								<Label Grid.Row="1" Grid.Column="1"  Style="{StaticResource LbStyle}" Content="{Binding CustName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+							</Grid>
+						</WrapPanel>
+						<WrapPanel DockPanel.Dock="Top">
+							<telerik:RadChart  ItemsSource="{Binding LineChartDataByAList}" Width="300" Height="300" FontSize="15" BorderThickness="0" Background="Transparent" Margin="5">
+								<telerik:RadChart.SeriesMappings>
+									<telerik:SeriesMapping >
+										<telerik:SeriesMapping.SeriesDefinition>
+											<telerik:LineSeriesDefinition LegendDisplayMode="DataPointLabel">
+												<telerik:LineSeriesDefinition.LabelSettings>
+													<telerik:RadialLabelSettings />
+												</telerik:LineSeriesDefinition.LabelSettings>
+											</telerik:LineSeriesDefinition>
+										</telerik:SeriesMapping.SeriesDefinition>
+										<telerik:SeriesMapping.ItemMappings>
+											<telerik:ItemMapping DataPointMember="YValue" FieldName="Value" />
+											<telerik:ItemMapping DataPointMember="XCategory" FieldName="Label" />
+										</telerik:SeriesMapping.ItemMappings>
+									</telerik:SeriesMapping>
+								</telerik:RadChart.SeriesMappings>
+								<telerik:RadChart.DefaultView>
+									<telerik:ChartDefaultView>
+										<telerik:ChartDefaultView.ChartTitle >
+											<telerik:ChartTitle Content="{x:Static Properties:Resources.Stock_No}" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontSize="20"/>
+										</telerik:ChartDefaultView.ChartTitle>
+										<telerik:ChartDefaultView.ChartLegend>
+											<telerik:ChartLegend x:Name="LineLegendA" Visibility="Collapsed"></telerik:ChartLegend>
+										</telerik:ChartDefaultView.ChartLegend>
+										<telerik:ChartDefaultView.ChartArea>
+											<telerik:ChartArea LegendName="LegendA" Background="White">
+											</telerik:ChartArea >
+										</telerik:ChartDefaultView.ChartArea>
+
+									</telerik:ChartDefaultView>
+								</telerik:RadChart.DefaultView>
+							</telerik:RadChart>
+							<telerik:RadChart  ItemsSource="{Binding LineChartDataBySList}" Width="300" Height="300" FontSize="15" BorderThickness="0" Background="Transparent" Margin="5">
+								<telerik:RadChart.SeriesMappings>
+									<telerik:SeriesMapping >
+										<telerik:SeriesMapping.SeriesDefinition>
+											<telerik:LineSeriesDefinition LegendDisplayMode="DataPointLabel">
+												<telerik:LineSeriesDefinition.LabelSettings>
+													<telerik:RadialLabelSettings />
+												</telerik:LineSeriesDefinition.LabelSettings>
+											</telerik:LineSeriesDefinition>
+										</telerik:SeriesMapping.SeriesDefinition>
+										<telerik:SeriesMapping.ItemMappings>
+											<telerik:ItemMapping DataPointMember="YValue" FieldName="Value" />
+											<telerik:ItemMapping DataPointMember="XCategory" FieldName="Label" />
+										</telerik:SeriesMapping.ItemMappings>
+									</telerik:SeriesMapping>
+								</telerik:RadChart.SeriesMappings>
+								<telerik:RadChart.DefaultView>
+									<telerik:ChartDefaultView>
+										<telerik:ChartDefaultView.ChartTitle >
+											<telerik:ChartTitle Content="{x:Static Properties:Resources.CustOrd}" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontSize="20"/>
+										</telerik:ChartDefaultView.ChartTitle>
+										<telerik:ChartDefaultView.ChartLegend>
+											<telerik:ChartLegend x:Name="LineLegendS" Visibility="Collapsed"></telerik:ChartLegend>
+										</telerik:ChartDefaultView.ChartLegend>
+										<telerik:ChartDefaultView.ChartArea>
+											<telerik:ChartArea LegendName="LegendS" Background="White"></telerik:ChartArea >
+										</telerik:ChartDefaultView.ChartArea>
+									</telerik:ChartDefaultView>
+								</telerik:RadChart.DefaultView>
+							</telerik:RadChart>
+							<telerik:RadChart  ItemsSource="{Binding LineChartDataByRList}" Width="300" Height="300" FontSize="15" BorderThickness="0" Background="Transparent" Margin="5">
+								<telerik:RadChart.SeriesMappings>
+									<telerik:SeriesMapping >
+										<telerik:SeriesMapping.SeriesDefinition>
+											<telerik:LineSeriesDefinition LegendDisplayMode="DataPointLabel">
+												<telerik:LineSeriesDefinition.LabelSettings>
+													<telerik:RadialLabelSettings />
+												</telerik:LineSeriesDefinition.LabelSettings>
+											</telerik:LineSeriesDefinition>
+										</telerik:SeriesMapping.SeriesDefinition>
+										<telerik:SeriesMapping.ItemMappings>
+											<telerik:ItemMapping DataPointMember="YValue" FieldName="Value" />
+											<telerik:ItemMapping DataPointMember="XCategory" FieldName="Label" />
+										</telerik:SeriesMapping.ItemMappings>
+									</telerik:SeriesMapping>
+								</telerik:RadChart.SeriesMappings>
+								<telerik:RadChart.DefaultView>
+									<telerik:ChartDefaultView>
+										<telerik:ChartDefaultView.ChartTitle >
+											<telerik:ChartTitle Content="{x:Static Properties:Resources.Return_No}" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontSize="20"/>
+										</telerik:ChartDefaultView.ChartTitle>
+										<telerik:ChartDefaultView.ChartLegend>
+											<telerik:ChartLegend x:Name="LineLegendR" Visibility="Collapsed"></telerik:ChartLegend>
+										</telerik:ChartDefaultView.ChartLegend>
+										<telerik:ChartDefaultView.ChartArea>
+											<telerik:ChartArea LegendName="LegendR" Background="White"></telerik:ChartArea >
+										</telerik:ChartDefaultView.ChartArea>
+									</telerik:ChartDefaultView>
+								</telerik:RadChart.DefaultView>
+							</telerik:RadChart>
+							<telerik:RadChart  ItemsSource="{Binding LineChartDataByWList}" Width="300" Height="300" FontSize="15" BorderThickness="0" Background="Transparent" Margin="5">
+								<telerik:RadChart.SeriesMappings>
+									<telerik:SeriesMapping >
+										<telerik:SeriesMapping.SeriesDefinition>
+											<telerik:LineSeriesDefinition LegendDisplayMode="DataPointLabel">
+												<telerik:LineSeriesDefinition.LabelSettings>
+													<telerik:RadialLabelSettings />
+												</telerik:LineSeriesDefinition.LabelSettings>
+											</telerik:LineSeriesDefinition>
+										</telerik:SeriesMapping.SeriesDefinition>
+										<telerik:SeriesMapping.ItemMappings>
+											<telerik:ItemMapping DataPointMember="YValue" FieldName="Value" />
+											<telerik:ItemMapping DataPointMember="XCategory" FieldName="Label" />
+										</telerik:SeriesMapping.ItemMappings>
+									</telerik:SeriesMapping>
+								</telerik:RadChart.SeriesMappings>
+								<telerik:RadChart.DefaultView>
+									<telerik:ChartDefaultView>
+										<telerik:ChartDefaultView.ChartTitle >
+											<telerik:ChartTitle Content="{x:Static Properties:Resources.Processing_No}" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontSize="20"/>
+										</telerik:ChartDefaultView.ChartTitle>
+										<telerik:ChartDefaultView.ChartLegend>
+											<telerik:ChartLegend x:Name="LineLegendW" Visibility="Collapsed"></telerik:ChartLegend>
+										</telerik:ChartDefaultView.ChartLegend>
+										<telerik:ChartDefaultView.ChartArea>
+											<telerik:ChartArea LegendName="LegendW" Background="White"></telerik:ChartArea >
+										</telerik:ChartDefaultView.ChartArea>
+									</telerik:ChartDefaultView>
+								</telerik:RadChart.DefaultView>
+							</telerik:RadChart>
+						</WrapPanel>
+						<WrapPanel>
+							<ListBox ItemsSource="{Binding ChartSourceByLocTypeList}">
+								<ListBox.Template>
+									<ControlTemplate TargetType="{x:Type ListBox}">
+										<ScrollViewer HorizontalScrollBarVisibility="Disabled">
+											<WrapPanel IsItemsHost="True"></WrapPanel>
+										</ScrollViewer>
+									</ControlTemplate>
+								</ListBox.Template>
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<DockPanel>
+											<telerik:RadChart x:Name="radChart" ItemsSource="{Binding ChartSourcePercentList}" Width="300" Height="300" FontSize="15" BorderThickness="0" Background="Transparent">
+												<telerik:RadChart.PaletteBrushes>
+													<SolidColorBrush Color="#FF00DBFF"/>
+													<SolidColorBrush Color="#FFEACA33"/>
+												</telerik:RadChart.PaletteBrushes>
+												<telerik:RadChart.SeriesMappings>
+													<telerik:SeriesMapping >
+														<telerik:SeriesMapping.SeriesDefinition>
+															<telerik:PieSeriesDefinition LegendDisplayMode="DataPointLabel">
+																<telerik:PieSeriesDefinition.LabelSettings>
+																	<telerik:RadialLabelSettings />
+																</telerik:PieSeriesDefinition.LabelSettings>
+															</telerik:PieSeriesDefinition>
+														</telerik:SeriesMapping.SeriesDefinition>
+														<telerik:SeriesMapping.ItemMappings>
+															<telerik:ItemMapping DataPointMember="YValue" FieldName="Percent" />
+															<telerik:ItemMapping DataPointMember="LegendLabel" FieldName="Label"  />
+															<telerik:ItemMapping DataPointMember="Label" FieldName="PercentLabel"  />
+															<telerik:ItemMapping DataPointMember="Tooltip" FieldName="Label"  />
+														</telerik:SeriesMapping.ItemMappings>
+													</telerik:SeriesMapping>
+												</telerik:RadChart.SeriesMappings>
+												<telerik:RadChart.DefaultView>
+													<telerik:ChartDefaultView ChartLegendPosition="Left">
+														<telerik:ChartDefaultView.ChartTitle>
+															<telerik:ChartTitle Content="{Binding LocTypeName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" BorderBrush="Transparent" Background="Transparent" Foreground="Black" BorderThickness="0" FontSize="20"/>
+														</telerik:ChartDefaultView.ChartTitle>
+														<telerik:ChartDefaultView.ChartLegend>
+															<telerik:ChartLegend x:Name="Legend" Visibility="Visible" Header="">
+															</telerik:ChartLegend>
+														</telerik:ChartDefaultView.ChartLegend>
+														<telerik:ChartDefaultView.ChartArea>
+															<telerik:ChartArea LegendName="Legend">
+															</telerik:ChartArea >
+														</telerik:ChartDefaultView.ChartArea>
+													</telerik:ChartDefaultView>
+												</telerik:RadChart.DefaultView>
+											</telerik:RadChart>
+										</DockPanel>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</WrapPanel>
+					</DockPanel>
+				</ScrollViewer>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

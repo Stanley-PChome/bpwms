@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P16WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P16WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P16WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P16WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P16WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Process.P16.ServiceEntites" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P16WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F16" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P16WcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Shared.ServiceEntites" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P16WcfService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.ApiEntities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P16WcfService_ImportF1602Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1602Data" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ImportF1602Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1602DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ImportF1612ForHiiir_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1612ForHiiir" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ImportF1612ForHiiir_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1612ForHiiirResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ValidateVendorRtnStack_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateVendorRtnStack" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ValidateVendorRtnStack_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateVendorRtnStackResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertP160101_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP160101" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertP160101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP160101Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateP160101_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP160101" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateP160101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP160101Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF160201_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF160201" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF160201_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF160201Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateF160201_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160201" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateF160201_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160201Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF160204_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF160204" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF160204_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF160204Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertP160102_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP160102" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertP160102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP160102Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateP160102_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP160102" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateP160102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP160102Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF160501s_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF160501s" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF160501s_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF160501sResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateF160501s_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160501s" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateF160501s_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160501sResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_DeleteF160501s_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF160501s" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_DeleteF160501s_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF160501sResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_P160501Shipment_InputMessage">
+    <wsdl:part name="parameters" element="tns:P160501Shipment" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_P160501Shipment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:P160501ShipmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF161201_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF161201" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_InsertF161201_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF161201Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_SaveScrapDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveScrapDetails" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_SaveScrapDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveScrapDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetF160402ScrapSum_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF160402ScrapSum" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetF160402ScrapSum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF160402ScrapSumResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetF160402ScrapData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF160402ScrapData" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetF160402ScrapData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF160402ScrapDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ApproveScrapDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveScrapDetails" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ApproveScrapDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveScrapDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateF160503_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160503" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_UpdateF160503_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160503Response" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ImportF1612Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1612Data" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ImportF1612Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF1612DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_CheckItemLocTmpr_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckItemLocTmpr" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_CheckItemLocTmpr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckItemLocTmprResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ApplyVendorReturnOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyVendorReturnOrder" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_ApplyVendorReturnOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyVendorReturnOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetVendorReturnOrderFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorReturnOrderFile" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetVendorReturnOrderFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorReturnOrderFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetVendorReturnOrderDetailFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorReturnOrderDetailFile" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_GetVendorReturnOrderDetailFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorReturnOrderDetailFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_DelF075103s_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelF075103s" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_DelF075103s_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelF075103sResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_DistibuteInfoAsync_InputMessage">
+    <wsdl:part name="parameters" element="tns:DistibuteInfoAsync" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_DistibuteInfoAsync_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DistibuteInfoAsyncResponse" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_SealingInfoAsync_InputMessage">
+    <wsdl:part name="parameters" element="tns:SealingInfoAsync" />
+  </wsdl:message>
+  <wsdl:message name="P16WcfService_SealingInfoAsync_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SealingInfoAsyncResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P16WcfService">
+    <wsdl:operation name="ImportF1602Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/ImportF1602Data" message="tns:P16WcfService_ImportF1602Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/ImportF1602DataResponse" message="tns:P16WcfService_ImportF1602Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportF1612ForHiiir">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/ImportF1612ForHiiir" message="tns:P16WcfService_ImportF1612ForHiiir_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/ImportF1612ForHiiirResponse" message="tns:P16WcfService_ImportF1612ForHiiir_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateVendorRtnStack">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/ValidateVendorRtnStack" message="tns:P16WcfService_ValidateVendorRtnStack_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/ValidateVendorRtnStackResponse" message="tns:P16WcfService_ValidateVendorRtnStack_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP160101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/InsertP160101" message="tns:P16WcfService_InsertP160101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/InsertP160101Response" message="tns:P16WcfService_InsertP160101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP160101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/UpdateP160101" message="tns:P16WcfService_UpdateP160101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/UpdateP160101Response" message="tns:P16WcfService_UpdateP160101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF160201">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/InsertF160201" message="tns:P16WcfService_InsertF160201_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/InsertF160201Response" message="tns:P16WcfService_InsertF160201_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160201">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/UpdateF160201" message="tns:P16WcfService_UpdateF160201_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/UpdateF160201Response" message="tns:P16WcfService_UpdateF160201_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF160204">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/InsertF160204" message="tns:P16WcfService_InsertF160204_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/InsertF160204Response" message="tns:P16WcfService_InsertF160204_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP160102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/InsertP160102" message="tns:P16WcfService_InsertP160102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/InsertP160102Response" message="tns:P16WcfService_InsertP160102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP160102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/UpdateP160102" message="tns:P16WcfService_UpdateP160102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/UpdateP160102Response" message="tns:P16WcfService_UpdateP160102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF160501s">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/InsertF160501s" message="tns:P16WcfService_InsertF160501s_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/InsertF160501sResponse" message="tns:P16WcfService_InsertF160501s_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160501s">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/UpdateF160501s" message="tns:P16WcfService_UpdateF160501s_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/UpdateF160501sResponse" message="tns:P16WcfService_UpdateF160501s_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF160501s">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/DeleteF160501s" message="tns:P16WcfService_DeleteF160501s_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/DeleteF160501sResponse" message="tns:P16WcfService_DeleteF160501s_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="P160501Shipment">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/P160501Shipment" message="tns:P16WcfService_P160501Shipment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/P160501ShipmentResponse" message="tns:P16WcfService_P160501Shipment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF161201">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/InsertF161201" message="tns:P16WcfService_InsertF161201_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/InsertF161201Response" message="tns:P16WcfService_InsertF161201_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveScrapDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/SaveScrapDetails" message="tns:P16WcfService_SaveScrapDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/SaveScrapDetailsResponse" message="tns:P16WcfService_SaveScrapDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF160402ScrapSum">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/GetF160402ScrapSum" message="tns:P16WcfService_GetF160402ScrapSum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/GetF160402ScrapSumResponse" message="tns:P16WcfService_GetF160402ScrapSum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF160402ScrapData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/GetF160402ScrapData" message="tns:P16WcfService_GetF160402ScrapData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/GetF160402ScrapDataResponse" message="tns:P16WcfService_GetF160402ScrapData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveScrapDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/ApproveScrapDetails" message="tns:P16WcfService_ApproveScrapDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/ApproveScrapDetailsResponse" message="tns:P16WcfService_ApproveScrapDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160503">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/UpdateF160503" message="tns:P16WcfService_UpdateF160503_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/UpdateF160503Response" message="tns:P16WcfService_UpdateF160503_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportF1612Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/ImportF1612Data" message="tns:P16WcfService_ImportF1612Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/ImportF1612DataResponse" message="tns:P16WcfService_ImportF1612Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckItemLocTmpr">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/CheckItemLocTmpr" message="tns:P16WcfService_CheckItemLocTmpr_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/CheckItemLocTmprResponse" message="tns:P16WcfService_CheckItemLocTmpr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyVendorReturnOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/ApplyVendorReturnOrder" message="tns:P16WcfService_ApplyVendorReturnOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/ApplyVendorReturnOrderResponse" message="tns:P16WcfService_ApplyVendorReturnOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorReturnOrderFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/GetVendorReturnOrderFile" message="tns:P16WcfService_GetVendorReturnOrderFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/GetVendorReturnOrderFileResponse" message="tns:P16WcfService_GetVendorReturnOrderFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorReturnOrderDetailFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/GetVendorReturnOrderDetailFile" message="tns:P16WcfService_GetVendorReturnOrderDetailFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/GetVendorReturnOrderDetailFileResponse" message="tns:P16WcfService_GetVendorReturnOrderDetailFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DelF075103s">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/DelF075103s" message="tns:P16WcfService_DelF075103s_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/DelF075103sResponse" message="tns:P16WcfService_DelF075103s_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DistibuteInfoAsync">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/DistibuteInfoAsync" message="tns:P16WcfService_DistibuteInfoAsync_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/DistibuteInfoAsyncResponse" message="tns:P16WcfService_DistibuteInfoAsync_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SealingInfoAsync">
+      <wsdl:input wsaw:Action="http://tempuri.org/P16WcfService/SealingInfoAsync" message="tns:P16WcfService_SealingInfoAsync_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P16WcfService/SealingInfoAsyncResponse" message="tns:P16WcfService_SealingInfoAsync_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P16WcfService" type="tns:P16WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ImportF1602Data">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/ImportF1602Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportF1612ForHiiir">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/ImportF1612ForHiiir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateVendorRtnStack">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/ValidateVendorRtnStack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP160101">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/InsertP160101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP160101">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/UpdateP160101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF160201">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/InsertF160201" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160201">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/UpdateF160201" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF160204">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/InsertF160204" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP160102">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/InsertP160102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP160102">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/UpdateP160102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF160501s">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/InsertF160501s" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160501s">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/UpdateF160501s" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF160501s">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/DeleteF160501s" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="P160501Shipment">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/P160501Shipment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF161201">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/InsertF161201" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveScrapDetails">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/SaveScrapDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF160402ScrapSum">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/GetF160402ScrapSum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF160402ScrapData">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/GetF160402ScrapData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveScrapDetails">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/ApproveScrapDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160503">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/UpdateF160503" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportF1612Data">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/ImportF1612Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckItemLocTmpr">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/CheckItemLocTmpr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyVendorReturnOrder">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/ApplyVendorReturnOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorReturnOrderFile">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/GetVendorReturnOrderFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorReturnOrderDetailFile">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/GetVendorReturnOrderDetailFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelF075103s">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/DelF075103s" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DistibuteInfoAsync">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/DistibuteInfoAsync" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SealingInfoAsync">
+      <soap:operation soapAction="http://tempuri.org/P16WcfService/SealingInfoAsync" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P16WcfService">
+    <wsdl:port name="BasicHttpBinding_P16WcfService" binding="tns:BasicHttpBinding_P16WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P16WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,2192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="a" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="ABItemPickQty" xml:space="preserve">
+    <value>The total has been picking / total should pick</value>
+  </data>
+  <data name="ABItemSrcQty" xml:space="preserve">
+    <value>The total has been off the shelf / shelves should always be</value>
+  </data>
+  <data name="ABItemTarQty" xml:space="preserve">
+    <value>The total is already live / shelves should always be</value>
+  </data>
+  <data name="ABPickQty" xml:space="preserve">
+    <value>Has picked / should pick</value>
+  </data>
+  <data name="ABSrcQty" xml:space="preserve">
+    <value>The number of off the shelf / rack should be the next number</value>
+  </data>
+  <data name="ABTarQty" xml:space="preserve">
+    <value>Has several shelves / shelves should count</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Start points to close</value>
+  </data>
+  <data name="AcceptComplete" xml:space="preserve">
+    <value>Points to close end</value>
+  </data>
+  <data name="Accpetance" xml:space="preserve">
+    <value>Acceptance confirmation</value>
+  </data>
+  <data name="ActualPickQty" xml:space="preserve">
+    <value>Real pick</value>
+  </data>
+  <data name="ActualSrcQty" xml:space="preserve">
+    <value>The actual number of shelves</value>
+  </data>
+  <data name="ActualTarQty" xml:space="preserve">
+    <value>The actual number of shelves</value>
+  </data>
+  <data name="ADD" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddPickBoxNo" xml:space="preserve">
+    <value>Plus box</value>
+  </data>
+  <data name="AdminId" xml:space="preserve">
+    <value>account number</value>
+  </data>
+  <data name="AdminPassword" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="AllocationBoxNo" xml:space="preserve">
+    <value>Transfer odd number / case number</value>
+  </data>
+  <data name="AllocationNo" xml:space="preserve">
+    <value>Requisition number</value>
+  </data>
+  <data name="AUDIT_QTY" xml:space="preserve">
+    <value>Brush the number of test</value>
+  </data>
+  <data name="A_DELV_QTY" xml:space="preserve">
+    <value>Actual shipments</value>
+  </data>
+  <data name="A_SRC_QTY" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="BadSetting" xml:space="preserve">
+    <value>Defective products set</value>
+  </data>
+  <data name="BAD_QTY" xml:space="preserve">
+    <value>The number of defective products</value>
+  </data>
+  <data name="BatchAllocNoMustComplete" xml:space="preserve">
+    <value>This summary shelves single [{0}] not yet complete, you must complete this summary shelves single!</value>
+  </data>
+  <data name="BillType" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="BOM_ITEM_CODE" xml:space="preserve">
+    <value>A combination of commodity item no</value>
+  </data>
+  <data name="BOM_NAME" xml:space="preserve">
+    <value>Combination commodity name</value>
+  </data>
+  <data name="BoxNo" xml:space="preserve">
+    <value>Box No.</value>
+  </data>
+  <data name="BoxNum01" xml:space="preserve">
+    <value>Box Number: 0001</value>
+  </data>
+  <data name="BoxNum02" xml:space="preserve">
+    <value>Box Number: 0002</value>
+  </data>
+  <data name="BoxNum03" xml:space="preserve">
+    <value>Box Number: 0003</value>
+  </data>
+  <data name="BoxNum04" xml:space="preserve">
+    <value>Box Number: 0004</value>
+  </data>
+  <data name="BoxNum05" xml:space="preserve">
+    <value>Box Number: 0005</value>
+  </data>
+  <data name="BoxNum06" xml:space="preserve">
+    <value>Box Number: 0006</value>
+  </data>
+  <data name="BoxNum07" xml:space="preserve">
+    <value>Box Number: 0007</value>
+  </data>
+  <data name="BoxNum08" xml:space="preserve">
+    <value>Box Number: 0008</value>
+  </data>
+  <data name="BoxNumber" xml:space="preserve">
+    <value>Box number: {0}</value>
+  </data>
+  <data name="BoxQty" xml:space="preserve">
+    <value>Box number</value>
+  </data>
+  <data name="BoxTotal" xml:space="preserve">
+    <value>The total number of boxes</value>
+  </data>
+  <data name="BOX_CTRL_NO" xml:space="preserve">
+    <value>Case number</value>
+  </data>
+  <data name="BUNDLE_SERIALNO" xml:space="preserve">
+    <value>No. Commodity</value>
+  </data>
+  <data name="B_DELV_QTY" xml:space="preserve">
+    <value>Expected to ship</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelCheck" xml:space="preserve">
+    <value>Cancel inspection</value>
+  </data>
+  <data name="CancelPacking" xml:space="preserve">
+    <value>Unpack</value>
+  </data>
+  <data name="CancelSowing" xml:space="preserve">
+    <value>Cancel sowing</value>
+  </data>
+  <data name="CAR_NO" xml:space="preserve">
+    <value>License plate number</value>
+  </data>
+  <data name="Car_No_A" xml:space="preserve">
+    <value>Update the license plate number</value>
+  </data>
+  <data name="CaseNo" xml:space="preserve">
+    <value>Box number allocation</value>
+  </data>
+  <data name="CheckCode" xml:space="preserve">
+    <value>Verification code</value>
+  </data>
+  <data name="CheckEnd" xml:space="preserve">
+    <value>Points to close end</value>
+  </data>
+  <data name="CheckPercent" xml:space="preserve">
+    <value>Sampling and Testing%</value>
+  </data>
+  <data name="CHECK_ITEM" xml:space="preserve">
+    <value>Checked</value>
+  </data>
+  <data name="CHECK_NAME" xml:space="preserve">
+    <value>Test items</value>
+  </data>
+  <data name="CHECK_QTY" xml:space="preserve">
+    <value>Number of Sampling and Testing</value>
+  </data>
+  <data name="CHECK_SERIAL" xml:space="preserve">
+    <value>Brush has read the serial number</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Clear1" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>carry out</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ConfirmPickUp" xml:space="preserve">
+    <value>determine
+ Delivery</value>
+  </data>
+  <data name="CONSIGNEE" xml:space="preserve">
+    <value>Addressee</value>
+  </data>
+  <data name="ConsignNo" xml:space="preserve">
+    <value>No consignment note:</value>
+  </data>
+  <data name="CountDownTime" xml:space="preserve">
+    <value>Back to the main screen</value>
+  </data>
+  <data name="CountSerialNo" xml:space="preserve">
+    <value>The total number of shipments board</value>
+  </data>
+  <data name="CurrentCount" xml:space="preserve">
+    <value>Has several brush</value>
+  </data>
+  <data name="CustName" xml:space="preserve">
+    <value>Customer shipments:</value>
+  </data>
+  <data name="CustOrdNos" xml:space="preserve">
+    <value>The owner of a single number:</value>
+  </data>
+  <data name="CUST_ORD_NO" xml:space="preserve">
+    <value>The owner of a single number</value>
+  </data>
+  <data name="DC" xml:space="preserve">
+    <value>Distribution Center:</value>
+  </data>
+  <data name="DefaultLocCode" xml:space="preserve">
+    <value>Preset storage spaces</value>
+  </data>
+  <data name="DefectiveWarehouse" xml:space="preserve">
+    <value>Defective products warehouse</value>
+  </data>
+  <data name="DeliveryReportService_BatchDate" xml:space="preserve">
+    <value>Batch Date</value>
+  </data>
+  <data name="DeliveryReportService_BatchDate1" xml:space="preserve">
+    <value>Batch Date:</value>
+  </data>
+  <data name="DeliveryReportService_BatchTime" xml:space="preserve">
+    <value>Lot period</value>
+  </data>
+  <data name="DeliveryReportService_BatchTime1" xml:space="preserve">
+    <value>Batch period:</value>
+  </data>
+  <data name="DeliveryReportService_BirthdayRestrictions" xml:space="preserve">
+    <value>({2} to be born before the Republican {0} {1} in January)</value>
+  </data>
+  <data name="DeliveryReportService_BoxDetailReport" xml:space="preserve">
+    <value>Reprint Box specification</value>
+  </data>
+  <data name="DeliveryReportService_Collect" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="DeliveryReportService_ConsignReport" xml:space="preserve">
+    <value>Booking note</value>
+  </data>
+  <data name="DeliveryReportService_CustOrdNo" xml:space="preserve">
+    <value>The owner of a single number</value>
+  </data>
+  <data name="DeliveryReportService_CustOrdNo1" xml:space="preserve">
+    <value>The owner of a single number:</value>
+  </data>
+  <data name="DeliveryReportService_CustOrdNoError" xml:space="preserve">
+    <value>Because the owner of a single number is not correct, can not print application delivery checklist!</value>
+  </data>
+  <data name="DeliveryReportService_CvsTakeReport" xml:space="preserve">
+    <value>Super single take</value>
+  </data>
+  <data name="DeliveryReportService_CVS_TAKE" xml:space="preserve">
+    <value>President Chain Store Pickup</value>
+  </data>
+  <data name="DeliveryReportService_F1947IsNull" xml:space="preserve">
+    <value>No results consignment note format</value>
+  </data>
+  <data name="DeliveryReportService_IDCardRequired" xml:space="preserve">
+    <value>Just received identity cards and application</value>
+  </data>
+  <data name="DeliveryReportService_InvoReport" xml:space="preserve">
+    <value>invoice</value>
+  </data>
+  <data name="DeliveryReportService_IsPrintInvoice" xml:space="preserve">
+    <value>This invoice has been printed</value>
+  </data>
+  <data name="DeliveryReportService_ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="DeliveryReportService_ItemName" xml:space="preserve">
+    <value>product name</value>
+  </data>
+  <data name="DeliveryReportService_ItemReportCount" xml:space="preserve">
+    <value>{0} retrieved Zhang</value>
+  </data>
+  <data name="DeliveryReportService_ItemScanCode" xml:space="preserve">
+    <value>barcode</value>
+  </data>
+  <data name="DeliveryReportService_LabelItemsIsNull" xml:space="preserve">
+    <value>No consignment Print!</value>
+  </data>
+  <data name="DeliveryReportService_NeedDoubleIdentification" xml:space="preserve">
+    <value>Documents and applications need to receive double</value>
+  </data>
+  <data name="DeliveryReportService_NoDocumentsRequired" xml:space="preserve">
+    <value>Without closing documents, applications received</value>
+  </data>
+  <data name="DeliveryReportService_NotCollect" xml:space="preserve">
+    <value>Can not collect</value>
+  </data>
+  <data name="DeliveryReportService_PrintDate" xml:space="preserve">
+    <value>Print Date</value>
+  </data>
+  <data name="DeliveryReportService_PrintDate1" xml:space="preserve">
+    <value>Print Date:</value>
+  </data>
+  <data name="DeliveryReportService_PrintStaff" xml:space="preserve">
+    <value>Print staff</value>
+  </data>
+  <data name="DeliveryReportService_PrintStaff1" xml:space="preserve">
+    <value>Print personnel:</value>
+  </data>
+  <data name="DeliveryReportService_Receiver" xml:space="preserve">
+    <value>Receiver</value>
+  </data>
+  <data name="DeliveryReportService_Receiver1" xml:space="preserve">
+    <value>Receiver:</value>
+  </data>
+  <data name="DeliveryReportService_ReportTitle" xml:space="preserve">
+    <value>Shipping boxes Details</value>
+  </data>
+  <data name="DeliveryReportService_SaleOrderDetailReport" xml:space="preserve">
+    <value>Sales voucher</value>
+  </data>
+  <data name="DeliveryReportService_SaRepot" xml:space="preserve">
+    <value>Shanghai with the book distribution checklist</value>
+  </data>
+  <data name="DeliveryReportService_SelfTakeReport" xml:space="preserve">
+    <value>Pickup Single</value>
+  </data>
+  <data name="DeliveryReportService_SELF_TAKE" xml:space="preserve">
+    <value>"Self-created"</value>
+  </data>
+  <data name="DeliveryReportService_Unit" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="DeliveryReportService_WmsOrdNo" xml:space="preserve">
+    <value>Shipper No.</value>
+  </data>
+  <data name="DeliveryReportService_WmsOrdNo1" xml:space="preserve">
+    <value>Shipper number:</value>
+  </data>
+  <data name="DelvCheckCode" xml:space="preserve">
+    <value>Shipment verification code:</value>
+  </data>
+  <data name="DelvDate" xml:space="preserve">
+    <value>Date of shipment</value>
+  </data>
+  <data name="DIFFERENT_QTY" xml:space="preserve">
+    <value>Variance</value>
+  </data>
+  <data name="DisplayLocCode" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="DoesNotExist" xml:space="preserve">
+    <value>does not exist</value>
+  </data>
+  <data name="EAN_CODE" xml:space="preserve">
+    <value>Barcode unknown pieces</value>
+  </data>
+  <data name="EditRecvQty" xml:space="preserve">
+    <value>Modify the acceptance number</value>
+  </data>
+  <data name="EnterAdminPassword" xml:space="preserve">
+    <value>Enter your password</value>
+  </data>
+  <data name="EnterUnlockCode" xml:space="preserve">
+    <value>Enter your unlock code</value>
+  </data>
+  <data name="ERR_CODE" xml:space="preserve">
+    <value>Abnormal conditions</value>
+  </data>
+  <data name="ERR_MEMO" xml:space="preserve">
+    <value>Abnormal</value>
+  </data>
+  <data name="EterAdminId" xml:space="preserve">
+    <value>Enter your account number</value>
+  </data>
+  <data name="Exist" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Exit1" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FileFullPath" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>carry out</value>
+  </data>
+  <data name="FirstZone" xml:space="preserve">
+    <value>First District</value>
+  </data>
+  <data name="FRAGILE" xml:space="preserve">
+    <value>Fragile goods</value>
+  </data>
+  <data name="FRAGILE_LABEL" xml:space="preserve">
+    <value>Fragile label</value>
+  </data>
+  <data name="FUNC_ID" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="FUNC_NAME" xml:space="preserve">
+    <value>Job Name</value>
+  </data>
+  <data name="GoodsWarehouse" xml:space="preserve">
+    <value>Ichiban warehouse</value>
+  </data>
+  <data name="GOOD_QTY" xml:space="preserve">
+    <value>Ichiban number</value>
+  </data>
+  <data name="GroupColor" xml:space="preserve">
+    <value>(Red: Incomplete, green: completed)</value>
+  </data>
+  <data name="GUARANTEE" xml:space="preserve">
+    <value>Guarantee</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Cry for help</value>
+  </data>
+  <data name="Help1" xml:space="preserve">
+    <value>Cry for help</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Box times</value>
+  </data>
+  <data name="InfoCarStatusText" xml:space="preserve">
+    <value>From time out of the bus</value>
+  </data>
+  <data name="InputBillNo" xml:space="preserve">
+    <value>Brush read a single number</value>
+  </data>
+  <data name="InputPickNo" xml:space="preserve">
+    <value>Picking a single number / number tote</value>
+  </data>
+  <data name="InputSerailNo" xml:space="preserve">
+    <value>Brush read</value>
+  </data>
+  <data name="INSTEAD_INVO" xml:space="preserve">
+    <value>invoice</value>
+  </data>
+  <data name="InvalidCount" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+  <data name="InventoryNo" xml:space="preserve">
+    <value>Inventory of single number</value>
+  </data>
+  <data name="InventoryType" xml:space="preserve">
+    <value>Inventory type</value>
+  </data>
+  <data name="INVENTORY_QTY" xml:space="preserve">
+    <value>Points disk</value>
+  </data>
+  <data name="INVENTORY_TYPE" xml:space="preserve">
+    <value>Types of</value>
+  </data>
+  <data name="IsCheckAll" xml:space="preserve">
+    <value>Set does not ship</value>
+  </data>
+  <data name="IsGenerate" xml:space="preserve">
+    <value>Produce half a point table</value>
+  </data>
+  <data name="IsInport" xml:space="preserve">
+    <value>Import cargo division table</value>
+  </data>
+  <data name="ISPASS" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="IsPending" xml:space="preserve">
+    <value>Forced closed</value>
+  </data>
+  <data name="IsPickLocFirst" xml:space="preserve">
+    <value>Get priority storage spaces picking area</value>
+  </data>
+  <data name="ISPRINT" xml:space="preserve">
+    <value>It has been printed</value>
+  </data>
+  <data name="ISSEAL" xml:space="preserve">
+    <value>Drawing seals</value>
+  </data>
+  <data name="ISUPLOAD" xml:space="preserve">
+    <value>Uploaded image file</value>
+  </data>
+  <data name="IsVoice" xml:space="preserve">
+    <value>voice</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>Test Article No.</value>
+  </data>
+  <data name="ItemCode1" xml:space="preserve">
+    <value>Item No.</value>
+  </data>
+  <data name="ItemCode2" xml:space="preserve">
+    <value>Item number:</value>
+  </data>
+  <data name="ItemCount" xml:space="preserve">
+    <value>The number of food items</value>
+  </data>
+  <data name="itemHight" xml:space="preserve">
+    <value>High product (cm)</value>
+  </data>
+  <data name="ItemImageSource" xml:space="preserve">
+    <value>Upload image file</value>
+  </data>
+  <data name="itemLength" xml:space="preserve">
+    <value>Item length (cm)</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ItemName1" xml:space="preserve">
+    <value>Item Name：</value>
+  </data>
+  <data name="ItemSerialNo" xml:space="preserve">
+    <value>Number Search</value>
+  </data>
+  <data name="itemWeight" xml:space="preserve">
+    <value>Weight (g)</value>
+  </data>
+  <data name="itemWidth" xml:space="preserve">
+    <value>Item Width (cm)</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="LaALL_COMP" xml:space="preserve">
+    <value>Distributors:</value>
+  </data>
+  <data name="LabelType" xml:space="preserve">
+    <value>Print species</value>
+  </data>
+  <data name="LaCHECKOUT_TIME" xml:space="preserve">
+    <value>Expected turnout time:</value>
+  </data>
+  <data name="LackQty" xml:space="preserve">
+    <value>Out of stock Quantity</value>
+  </data>
+  <data name="LaPICK_TIME" xml:space="preserve">
+    <value>Batch period:</value>
+  </data>
+  <data name="LaPIER_CODE" xml:space="preserve">
+    <value>Shipping dock:</value>
+  </data>
+  <data name="LaTMPR_TYPE" xml:space="preserve">
+    <value>Stratosphere:</value>
+  </data>
+  <data name="LOAD_OWNER_OK_QTY" xml:space="preserve">
+    <value>Can be shipped main
+ Odd number</value>
+  </data>
+  <data name="LOAD_OWNER_QTY" xml:space="preserve">
+    <value>Should be the main shipping
+ Odd number</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="Marquee" xml:space="preserve">
+    <value>Marquee ~</value>
+  </data>
+  <data name="MassiveSowingWork" xml:space="preserve">
+    <value>Planting a large number of merging operations</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="MergeBoxCount" xml:space="preserve">
+    <value>Merge several boxes</value>
+  </data>
+  <data name="MinUnit" xml:space="preserve">
+    <value>The smallest unit:</value>
+  </data>
+  <data name="MISS_QTY" xml:space="preserve">
+    <value>Number of losses</value>
+  </data>
+  <data name="MOVED_QTY" xml:space="preserve">
+    <value>Has several shelves</value>
+  </data>
+  <data name="MULTI_FLAG" xml:space="preserve">
+    <value>Merchandise mix</value>
+  </data>
+  <data name="MyWorkList" xml:space="preserve">
+    <value>To Do</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>Job Category</value>
+  </data>
+  <data name="NewSerialNo" xml:space="preserve">
+    <value>Serial / Box No.</value>
+  </data>
+  <data name="NextLoc" xml:space="preserve">
+    <value>under</value>
+  </data>
+  <data name="NoAnySerialNo" xml:space="preserve">
+    <value>Print unknown pieces
+ Barcode</value>
+  </data>
+  <data name="NotExist" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="OnSaleQty" xml:space="preserve">
+    <value>Has shelves / shelves should:</value>
+  </data>
+  <data name="OOOItem" xml:space="preserve">
+    <value>OOOXXXMMM product (yellow 10mm * 12mm)</value>
+  </data>
+  <data name="OrderQty" xml:space="preserve">
+    <value>Shipments</value>
+  </data>
+  <data name="ORDER_QTY" xml:space="preserve">
+    <value>Number of stock</value>
+  </data>
+  <data name="OutOfStock" xml:space="preserve">
+    <value>out of stock</value>
+  </data>
+  <data name="OutofStock1" xml:space="preserve">
+    <value>out of stock</value>
+  </data>
+  <data name="P0801010101_Ask" xml:space="preserve">
+    <value>Ask</value>
+  </data>
+  <data name="P0801010101_ItemImage" xml:space="preserve">
+    <value>Commodity drawing (.jpg) | * .jpg</value>
+  </data>
+  <data name="P0801010102_CHECK_QTY" xml:space="preserve">
+    <value>Should brush number</value>
+  </data>
+  <data name="P08010103_ReturnLocMessage" xml:space="preserve">
+    <value>Shelf stays in workstations, the first five code bits enter the reservoir</value>
+  </data>
+  <data name="P0802010000_BillNoIsNoData" xml:space="preserve">
+    <value>Check there is no single number information!</value>
+  </data>
+  <data name="P0802010000_BoxNo" xml:space="preserve">
+    <value>Box number: {0}</value>
+  </data>
+  <data name="P0802010000_ErrCodeIsNull" xml:space="preserve">
+    <value>Please select an abnormal situation!</value>
+  </data>
+  <data name="P0802010000_Help" xml:space="preserve">
+    <value>(Already help)</value>
+  </data>
+  <data name="P0802010000_InputBillNoIsNull" xml:space="preserve">
+    <value>Please read the brush single number!</value>
+  </data>
+  <data name="P0802010000_LabelingNotExist" xml:space="preserve">
+    <value>No investigation has been set Label Printer</value>
+  </data>
+  <data name="P0802010000_NoInputErrorDesc" xml:space="preserve">
+    <value>Brush still read the serial number information is missing election anomalies</value>
+  </data>
+  <data name="P0802010000_Not" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="P0802010000_ReturnRecordMainError" xml:space="preserve">
+    <value>Source documents contain a single return, not return a single return surplus non-food items!</value>
+  </data>
+  <data name="P0802010000_ReturnRecordMainNotExist" xml:space="preserve">
+    <value>No results return profile data</value>
+  </data>
+  <data name="P0802010000_ReturnStatusIsClose" xml:space="preserve">
+    <value>This document has been closed Return Inspection</value>
+  </data>
+  <data name="P0802010000_STATUS2" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="P0802010000_STATUS9" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="P0802010000_StatusMsg" xml:space="preserve">
+    <value>This single-number data {0}, can not test!</value>
+  </data>
+  <data name="P0802010100_DeletedFail" xml:space="preserve">
+    <value>failed to delete</value>
+  </data>
+  <data name="P0802010100_FileFormatError" xml:space="preserve">
+    <value>File format error</value>
+  </data>
+  <data name="P0802010100_GatherNoItemCount" xml:space="preserve">
+    <value>Summary Sheet Number: {0}, the number of food items: {1}</value>
+  </data>
+  <data name="P0802010100_NoData" xml:space="preserve">
+    <value>No article!</value>
+  </data>
+  <data name="P0802010100_NoSelectData" xml:space="preserve">
+    <value>To check the option to produce goods of the points table</value>
+  </data>
+  <data name="P0802010200_ImportNotPassCount" xml:space="preserve">
+    <value>Items number is not imported by: {0} T</value>
+  </data>
+  <data name="P0802010200_ItemSerialIsRepeat" xml:space="preserve">
+    <value>Item no Repeat</value>
+  </data>
+  <data name="P0802010200_ItemSerialNoFile" xml:space="preserve">
+    <value>Commodity order file (.csv) | * .csv</value>
+  </data>
+  <data name="P0802010300_BadQtyOverError" xml:space="preserve">
+    <value>Not exceed the number of defective products back real numbers {0}</value>
+  </data>
+  <data name="P0802010300_BadQtyZeroError" xml:space="preserve">
+    <value>Number of defective products is not less than 0</value>
+  </data>
+  <data name="P08020103_AUDIT_QTY" xml:space="preserve">
+    <value>Real number back</value>
+  </data>
+  <data name="P08020103_RTN_QTY" xml:space="preserve">
+    <value>The number should be returned</value>
+  </data>
+  <data name="P080201_BUNDLE_SERIALNO" xml:space="preserve">
+    <value>No. Controls</value>
+  </data>
+  <data name="P0802030000_GoodWarehouse" xml:space="preserve">
+    <value>Ichiban warehouse</value>
+  </data>
+  <data name="P0802030000_NoGoodWarehouse" xml:space="preserve">
+    <value>Defective products warehouse</value>
+  </data>
+  <data name="P0803010000_ActualSrcQtyError" xml:space="preserve">
+    <value>Real sorting must be less than equal to this number of storage spaces should Picking</value>
+  </data>
+  <data name="P0803010000_ActualSrcQtyError2" xml:space="preserve">
+    <value>The actual number must be greater than the number of off the shelf this off the shelf</value>
+  </data>
+  <data name="P0803010000_ActualSrcQtyIsNull" xml:space="preserve">
+    <value>Picking enter the real value</value>
+  </data>
+  <data name="P0803010000_AllocationNoIsNull" xml:space="preserve">
+    <value>Please read the brush requisition number</value>
+  </data>
+  <data name="P0803010000_BSrcQtyOverASrcQty" xml:space="preserve">
+    <value>Not yet completed the shelves, but may continue with other storage spaces shelves</value>
+  </data>
+  <data name="P0803010000_CaseNoIsNull" xml:space="preserve">
+    <value>Please read the brush box number</value>
+  </data>
+  <data name="P0803010000_CaseNoIsNull2" xml:space="preserve">
+    <value>Please read the brush box number</value>
+  </data>
+  <data name="P0803010000_HelpAsk" xml:space="preserve">
+    <value>Whether for help?</value>
+  </data>
+  <data name="P0803010000_IsOutOfStockData" xml:space="preserve">
+    <value>Notes This product has not cleared the shelves out of stock</value>
+  </data>
+  <data name="P0803010000_NextItemOrCompleteSrcAsk" xml:space="preserve">
+    <value>Added whether to continue operations?</value>
+  </data>
+  <data name="P0803010000_OutOfStockAsk" xml:space="preserve">
+    <value>Whether out of stock?</value>
+  </data>
+  <data name="P0803010000_OutOfStockCheckMessage" xml:space="preserve">
+    <value>The requisition of goods out of stock unconfirmed, before the related work to be confirmed!</value>
+  </data>
+  <data name="P0803010000_ScanItemCode" xml:space="preserve">
+    <value>Please read the brush [food items:</value>
+  </data>
+  <data name="P0803020000_ActualTarQtyError" xml:space="preserve">
+    <value>The actual number of shelves must be greater than this number has been added to our</value>
+  </data>
+  <data name="P0803020000_BTarQtyOverATarQty" xml:space="preserve">
+    <value>Unfinished shelves, but may continue with other storage spaces shelves</value>
+  </data>
+  <data name="P0803020000_CaseNoNotExist" xml:space="preserve">
+    <value>No such case number</value>
+  </data>
+  <data name="P0803020000_IsOutOfStockData" xml:space="preserve">
+    <value>This product has not cleared out shelves Notes</value>
+  </data>
+  <data name="P0803020000_ItemCode" xml:space="preserve">
+    <value>Item: {0}</value>
+  </data>
+  <data name="P0803020000_NextItemOrCompleteTar" xml:space="preserve">
+    <value>Added complete</value>
+  </data>
+  <data name="P0806020100_LackQtyError" xml:space="preserve">
+    <value>Out of the number not larger than the number seeded</value>
+  </data>
+  <data name="P08060201_BoxNo" xml:space="preserve">
+    <value>Confluent tank No.</value>
+  </data>
+  <data name="P08060201_ItemCode" xml:space="preserve">
+    <value>Item No.</value>
+  </data>
+  <data name="P0806130000_Btn_Bind_Complete" xml:space="preserve">
+    <value>Binding completed</value>
+  </data>
+  <data name="P0806130000_Btn_EMP_ID_BIND" xml:space="preserve">
+    <value>Binding job number</value>
+  </data>
+  <data name="P0806130000_Btn_EMP_ID_COMPLETE" xml:space="preserve">
+    <value>No work completed</value>
+  </data>
+  <data name="P0806130000_Btn_Pick_Complete" xml:space="preserve">
+    <value>Picking completed</value>
+  </data>
+  <data name="P0806130000_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="P0806130000_DeleteFail" xml:space="preserve">
+    <value>failed to delete</value>
+  </data>
+  <data name="P0806130000_DeleteSucess" xml:space="preserve">
+    <value>successfully deleted</value>
+  </data>
+  <data name="P0806130000_DontUpdateOrder" xml:space="preserve">
+    <value>No need to update the documents</value>
+  </data>
+  <data name="P0806130000_EmpIDError" xml:space="preserve">
+    <value>Job number is incorrect</value>
+  </data>
+  <data name="P0806130000_EmpIDIsNotExist" xml:space="preserve">
+    <value>Please enter the correct job number</value>
+  </data>
+  <data name="P0806130000_GD_CLOSE_DATE" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="P0806130000_GD_EMP_ID" xml:space="preserve">
+    <value>Job number</value>
+  </data>
+  <data name="P0806130000_GD_ORDER_NO" xml:space="preserve">
+    <value>Single number</value>
+  </data>
+  <data name="P0806130000_GD_START_DATE" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="P0806130000_GD_STATUS" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="P0806130000_Lab_DC" xml:space="preserve">
+    <value>Distribution Center</value>
+  </data>
+  <data name="P0806130000_Lab_EMP_ID" xml:space="preserve">
+    <value>Job number</value>
+  </data>
+  <data name="P0806130000_Lab_EMP_ID_Brush" xml:space="preserve">
+    <value>Please brush into the job number</value>
+  </data>
+  <data name="P0806130000_Lab_ORDER_NO" xml:space="preserve">
+    <value>Shipper number / Picking a single number</value>
+  </data>
+  <data name="P0806130000_Lab_ORDER_NO_Brush" xml:space="preserve">
+    <value>Please pick brush into a single number</value>
+  </data>
+  <data name="P0806130000_PickIsNotExist" xml:space="preserve">
+    <value>This picking a single number does not exist</value>
+  </data>
+  <data name="P0806130000_PickStatusToEmpID" xml:space="preserve">
+    <value>This pick list is assigned to the job number</value>
+  </data>
+  <data name="P0806130000_PickStatus_Cancel" xml:space="preserve">
+    <value>This picking orders has been canceled, can not bind</value>
+  </data>
+  <data name="P0806130000_PickSucess" xml:space="preserve">
+    <value>Picking completed</value>
+  </data>
+  <data name="P0806130000_PleaseRushOrderNo" xml:space="preserve">
+    <value>Please read the brush to bind pick list</value>
+  </data>
+  <data name="P0806130000_SaveFail" xml:space="preserve">
+    <value>Pen data write failure</value>
+  </data>
+  <data name="P0806130000_SaveSucess" xml:space="preserve">
+    <value>Write successful</value>
+  </data>
+  <data name="P0806130000_Search" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="P0806130000_SearchErr" xml:space="preserve">
+    <value>No results.</value>
+  </data>
+  <data name="P0806130000_StatusList_0" xml:space="preserve">
+    <value>To be picking</value>
+  </data>
+  <data name="P0806130000_StatusList_1" xml:space="preserve">
+    <value>Picking the</value>
+  </data>
+  <data name="P0806130000_StatusList_2" xml:space="preserve">
+    <value>Picking completed</value>
+  </data>
+  <data name="P0806130000_StatusList_9" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="P0807010000_AllowOrdItem" xml:space="preserve">
+    <value>ShippingList Have OriginalItem</value>
+  </data>
+  <data name="P0807010000_BoxIsNull" xml:space="preserve">
+    <value>No Carton</value>
+  </data>
+  <data name="P0807010000_CancelPackingConfirmMsg" xml:space="preserve">
+    <value>This single-package shipments to clear the record, make sure to cancel the package? {0} (Cancel can be re-packaged)</value>
+  </data>
+  <data name="P0807010000_CancelPackingUpdateFail" xml:space="preserve">
+    <value>Cancel package failed !!</value>
+  </data>
+  <data name="P0807010000_CellNumIsNull" xml:space="preserve">
+    <value>Please read the brush Gate!</value>
+  </data>
+  <data name="P0807010000_ConsignReportNotExist" xml:space="preserve">
+    <value>No results consignment note format</value>
+  </data>
+  <data name="P0807010000_CVS_TAKE" xml:space="preserve">
+    <value>Take over</value>
+  </data>
+  <data name="P0807010000_F050801DataIsNull" xml:space="preserve">
+    <value>Unspecified Shipper</value>
+  </data>
+  <data name="P0807010000_F051201DataExist" xml:space="preserve">
+    <value>This shipper has not yet completed picking</value>
+  </data>
+  <data name="P0807010000_F051206DataFlagNull" xml:space="preserve">
+    <value>Out to be confirmed, not the packaging!</value>
+  </data>
+  <data name="P0807010000_f051206DatasFlag2" xml:space="preserve">
+    <value>Reply owner to cancel the order, can not be shipped!</value>
+  </data>
+  <data name="P0807010000_F052901DataExist" xml:space="preserve">
+    <value>Confluent tank unfinished sowing</value>
+  </data>
+  <data name="P0807010000_F700102NotExist" xml:space="preserve">
+    <value>Not yet sent a car packed</value>
+  </data>
+  <data name="P0807010000_FindBox" xml:space="preserve">
+    <value>Find the box</value>
+  </data>
+  <data name="P0807010000_HomeDelivery" xml:space="preserve">
+    <value>delivery</value>
+  </data>
+  <data name="P0807010000_PackComplete" xml:space="preserve">
+    <value>Please complete package weighing</value>
+  </data>
+  <data name="P0807010000_PackQtyForamtError" xml:space="preserve">
+    <value>The number must be digital</value>
+  </data>
+  <data name="P0807010000_PrintType1" xml:space="preserve">
+    <value>Delivery single printer</value>
+  </data>
+  <data name="P0807010000_PrintType2" xml:space="preserve">
+    <value>White single printer</value>
+  </data>
+  <data name="P0807010000_PrintType3" xml:space="preserve">
+    <value>Details box printer</value>
+  </data>
+  <data name="P0807010000_QueryBoxNoNotExist" xml:space="preserve">
+    <value>Check there is no case number</value>
+  </data>
+  <data name="P0807010000_RePackingComplete" xml:space="preserve">
+    <value>Re succeed No. consignment note!</value>
+  </data>
+  <data name="P0807010000_RePackingFail" xml:space="preserve">
+    <value>Consignment failed to regain the number!</value>
+  </data>
+  <data name="P0807010000_SELF_TAKE" xml:space="preserve">
+    <value>Pickup</value>
+  </data>
+  <data name="P0807010000_StatusName" xml:space="preserve">
+    <value>Shipper {0}</value>
+  </data>
+  <data name="P0807010000_VirtualItemError" xml:space="preserve">
+    <value>Virtual goods can not be packaged</value>
+  </data>
+  <data name="P0807010000_WmsOrdNoNotExist" xml:space="preserve">
+    <value>No such Shipper</value>
+  </data>
+  <data name="P0807010000_WmsOrdNoStatusError" xml:space="preserve">
+    <value>Shipper status is incorrect</value>
+  </data>
+  <data name="P0807010100_ImportSerialRepeat" xml:space="preserve">
+    <value>No. repeated import</value>
+  </data>
+  <data name="P0807010100_serialDataEx" xml:space="preserve">
+    <value>The brush has been read</value>
+  </data>
+  <data name="P080701_CancelPacking" xml:space="preserve">
+    <value>Cancellation Package</value>
+  </data>
+  <data name="P0808020000_CanNotShip" xml:space="preserve">
+    <value>Not shipping</value>
+  </data>
+  <data name="P0808020000_CanShip" xml:space="preserve">
+    <value>Can be shipped</value>
+  </data>
+  <data name="P0808020000_ImportFail" xml:space="preserve">
+    <value>Import failed!</value>
+  </data>
+  <data name="P0808020000_PackNotComplete" xml:space="preserve">
+    <value>This delivery order is not complete package!</value>
+  </data>
+  <data name="P0808020000_UpLoadExcelFormatError" xml:space="preserve">
+    <value>Upload the Excel Malformed</value>
+  </data>
+  <data name="P0808020000_UpLoadExcelIsNull" xml:space="preserve">
+    <value>No information uploaded Excel</value>
+  </data>
+  <data name="P0808020000_UpLoadSuccess" xml:space="preserve">
+    <value>Upload successful</value>
+  </data>
+  <data name="P0808020000_WmsOrdNoIsNull" xml:space="preserve">
+    <value>Check there is no single number to ship!</value>
+  </data>
+  <data name="P0808020000_WmsOrdNoPackError" xml:space="preserve">
+    <value>This Shipper packed!</value>
+  </data>
+  <data name="P0809010000xamlcs_JPG" xml:space="preserve">
+    <value>Drawing seal photo (.jpg) | * .jpg</value>
+  </data>
+  <data name="P0809010000xamlcs_JPG_Limit3" xml:space="preserve">
+    <value>Seals can upload up to 3 photos</value>
+  </data>
+  <data name="P0809010000xamlcs_NoAuthentication" xml:space="preserve">
+    <value>No usage rights</value>
+  </data>
+  <data name="P0809010000_CarNoFormatError" xml:space="preserve">
+    <value>+ Digital license plate number can only enter English</value>
+  </data>
+  <data name="P0809010000_CarNoIsNull" xml:space="preserve">
+    <value>Please enter the license plate number</value>
+  </data>
+  <data name="P0809010000_ImageDirectoryExistMsg" xml:space="preserve">
+    <value>Original photo will be removed seals sure you want to proceed?</value>
+  </data>
+  <data name="P0809010000_NEED_SEAL" xml:space="preserve">
+    <value>Please install seals.</value>
+  </data>
+  <data name="P0809010000_NEED_SEAL_Msg" xml:space="preserve">
+    <value>Update successful license plate number, details of the bus loading generation</value>
+  </data>
+  <data name="P0809010000_ReportTitle" xml:space="preserve">
+    <value>Car schedule list</value>
+  </data>
+  <data name="P0809010000_UpdateCarNoFail" xml:space="preserve">
+    <value>Failed to update the license plate number</value>
+  </data>
+  <data name="P0809010000_UpdateIsSealFail" xml:space="preserve">
+    <value>Seal photo upload failed</value>
+  </data>
+  <data name="P0809010000_UpdateIsSealSuccess" xml:space="preserve">
+    <value>Photo uploaded successfully seal</value>
+  </data>
+  <data name="P0810010000_DataFirst" xml:space="preserve">
+    <value>This is no longer the sum of commodity storage spaces,</value>
+  </data>
+  <data name="P0810010000_DataLast" xml:space="preserve">
+    <value>This is no longer under the sum of commodity storage spaces</value>
+  </data>
+  <data name="P0810010000_EnterQtyZeroError" xml:space="preserve">
+    <value>Number must be greater than or equal to 0</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail" xml:space="preserve">
+    <value>Looking inventory of single failure!</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail1" xml:space="preserve">
+    <value>1. Count no such single number</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail2" xml:space="preserve">
+    <value>2. This state of the non-count single or double disc Chupan</value>
+  </data>
+  <data name="P0810010000_InventoryNoFail3" xml:space="preserve">
+    <value>3. You no such inventory of available single commodity storage spaces permission</value>
+  </data>
+  <data name="P0810010000_InventoryNoIsNull" xml:space="preserve">
+    <value>Please enter a single number inventory</value>
+  </data>
+  <data name="P0810010000_LBMaxUnitQty" xml:space="preserve">
+    <value>The maximum number of units</value>
+  </data>
+  <data name="P0810010000_LBMinUnitQty" xml:space="preserve">
+    <value>The minimum number of units</value>
+  </data>
+  <data name="P0810010000_LocItemError" xml:space="preserve">
+    <value>This non-count storage spaces product range</value>
+  </data>
+  <data name="P0810010000_LocItemLast" xml:space="preserve">
+    <value>This is no longer under the sum of commodity storage spaces,</value>
+  </data>
+  <data name="P0810010000_NextAsk" xml:space="preserve">
+    <value>Whether the move to the next storage spaces?</value>
+  </data>
+  <data name="P0810010000_ScanItemCodeOrSerialNo" xml:space="preserve">
+    <value>Please read the brush item no or serial number</value>
+  </data>
+  <data name="P0810010000_ScanLocCode" xml:space="preserve">
+    <value>Please read the brush storage spaces</value>
+  </data>
+  <data name="P0813010000_BoxCtrlNo" xml:space="preserve">
+    <value>Case number</value>
+  </data>
+  <data name="P0813010000_EnterDate" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="P0813010000_ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P0813010000_ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="P0813010000_LocCode" xml:space="preserve">
+    <value>Number storage spaces</value>
+  </data>
+  <data name="P0813010000_MakeNo" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="P0813010000_MoveQty" xml:space="preserve">
+    <value>Move number</value>
+  </data>
+  <data name="P0813010000_PalletCtrlNo" xml:space="preserve">
+    <value>Plate number</value>
+  </data>
+  <data name="P0813010000_Qty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="P0813010000_ScanItemOrLoc" xml:space="preserve">
+    <value>Please brush bar code reading commodity or storage spaces</value>
+  </data>
+  <data name="P0813010000_SerialNo" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="P0813010000_ValidDate" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="P08130100_PleaseCheckMoveItem" xml:space="preserve">
+    <value>Check to move goods</value>
+  </data>
+  <data name="P0813010100_CheckAll" xml:space="preserve">
+    <value>select all</value>
+  </data>
+  <data name="P0813010100_ConfirmMoveComplete" xml:space="preserve">
+    <value>Are you sure you want to move?</value>
+  </data>
+  <data name="P0813010100_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="P0813010100_ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P0813010100_ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="P0813010100_LocStatus" xml:space="preserve">
+    <value>Status storage spaces</value>
+  </data>
+  <data name="P0813010100_MoveComplete" xml:space="preserve">
+    <value>Move complete</value>
+  </data>
+  <data name="P0813010100_MoveLoc" xml:space="preserve">
+    <value>Moving storage spaces</value>
+  </data>
+  <data name="P0813010100_MoveLocCanotMove" xml:space="preserve">
+    <value>Transportable storage state bit can not be moved {0}</value>
+  </data>
+  <data name="P0813010100_MoveLocItemNoStock" xml:space="preserve">
+    <value>No such storage spaces move goods inventory data {0}</value>
+  </data>
+  <data name="P0813010100_MoveLocNoStock" xml:space="preserve">
+    <value>No move inventory data storage spaces</value>
+  </data>
+  <data name="P0813010100_MoveLocNotExists" xml:space="preserve">
+    <value>Bits are not transportable storage</value>
+  </data>
+  <data name="P0813010100_MoveQtyNotEquelOrLessZero" xml:space="preserve">
+    <value>The number is not less than or equal move 0</value>
+  </data>
+  <data name="P0813010100_MoveWarehouse" xml:space="preserve">
+    <value>Do not move warehouse</value>
+  </data>
+  <data name="P0813010100_PleaseScanUpLoc" xml:space="preserve">
+    <value>Please read the brush bar code bit storage shelves</value>
+  </data>
+  <data name="P0813010100_Qty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="P0813010100_ScanUpLocCodeCorrect" xml:space="preserve">
+    <value>Added correct bar code storage spaces</value>
+  </data>
+  <data name="P0813010100_UpLocBarcode" xml:space="preserve">
+    <value>Shelves storage spaces barcode</value>
+  </data>
+  <data name="P0813010100_UpLocCanotMoveLoc" xml:space="preserve">
+    <value>Bit storage shelves can not move to the storage position</value>
+  </data>
+  <data name="P0813010100_UpWarehouse" xml:space="preserve">
+    <value>Do not warehouse shelves</value>
+  </data>
+  <data name="PackageDemand" xml:space="preserve">
+    <value>Packaging requirements</value>
+  </data>
+  <data name="PACKAGE_BOX_NO" xml:space="preserve">
+    <value>Shipments box</value>
+  </data>
+  <data name="PackingService_Copies" xml:space="preserve">
+    <value>Part</value>
+  </data>
+  <data name="PackingService_MEMO" xml:space="preserve">
+    <value>Remarks:</value>
+  </data>
+  <data name="PackingService_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="PackingService_NorthTwoSpecial" xml:space="preserve">
+    <value>North Second Special</value>
+  </data>
+  <data name="PackingService_NotSpecify" xml:space="preserve">
+    <value>Not specify</value>
+  </data>
+  <data name="PackingService_SATotal" xml:space="preserve">
+    <value>Total SA:</value>
+  </data>
+  <data name="PackingService_Yuan" xml:space="preserve">
+    <value>yuan</value>
+  </data>
+  <data name="PackQty" xml:space="preserve">
+    <value>Number of packages</value>
+  </data>
+  <data name="PackStatus" xml:space="preserve">
+    <value>Packing state</value>
+  </data>
+  <data name="PalletCount" xml:space="preserve">
+    <value>Number of pallets</value>
+  </data>
+  <data name="PalletNo" xml:space="preserve">
+    <value>Pallet number</value>
+  </data>
+  <data name="PALLET_NO" xml:space="preserve">
+    <value>Plate number</value>
+  </data>
+  <data name="PAST_NO" xml:space="preserve">
+    <value>No consignment note</value>
+  </data>
+  <data name="PausePacking" xml:space="preserve">
+    <value>Pause packaging</value>
+  </data>
+  <data name="PickArea" xml:space="preserve">
+    <value>Picking area</value>
+  </data>
+  <data name="PickAreaNo" xml:space="preserve">
+    <value>Picking area code</value>
+  </data>
+  <data name="PickBoxNo" xml:space="preserve">
+    <value>Picking box number</value>
+  </data>
+  <data name="PickingOutOfStock" xml:space="preserve">
+    <value>Picking out process</value>
+  </data>
+  <data name="PickOrdNo" xml:space="preserve">
+    <value>Picking a single number</value>
+  </data>
+  <data name="PickStaff" xml:space="preserve">
+    <value>employee ID</value>
+  </data>
+  <data name="PickStart" xml:space="preserve">
+    <value>Start picking</value>
+  </data>
+  <data name="PickUpPrint" xml:space="preserve">
+    <value>Loading Print</value>
+  </data>
+  <data name="PICK_ORD_NO" xml:space="preserve">
+    <value>Picking a single number</value>
+  </data>
+  <data name="Pingzhen" xml:space="preserve">
+    <value>Pingzhen</value>
+  </data>
+  <data name="PleaseScanBarcode" xml:space="preserve">
+    <value>Please read the brush / bar code input</value>
+  </data>
+  <data name="Posting" xml:space="preserve">
+    <value>Posting</value>
+  </data>
+  <data name="PrevLoc" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="PrintBarCode" xml:space="preserve">
+    <value>Print unknown pieces
+ BarCode</value>
+  </data>
+  <data name="PrintBox" xml:space="preserve">
+    <value>Print standard crate</value>
+  </data>
+  <data name="PrintDetail" xml:space="preserve">
+    <value>Details have been printed</value>
+  </data>
+  <data name="PrintOne" xml:space="preserve">
+    <value>Hoshirushi</value>
+  </data>
+  <data name="PrintQty" xml:space="preserve">
+    <value>Print number of sheets</value>
+  </data>
+  <data name="PrintShipperDetail" xml:space="preserve">
+    <value>Print shipping schedule</value>
+  </data>
+  <data name="PrintTakeDetail" xml:space="preserve">
+    <value>Print out of the bus Details</value>
+  </data>
+  <data name="PrintTransApplicate" xml:space="preserve">
+    <value>Print allocation application form</value>
+  </data>
+  <data name="PrintUnknownBarcode" xml:space="preserve">
+    <value>Print unknown pieces BarCode</value>
+  </data>
+  <data name="PrintWeightReport" xml:space="preserve">
+    <value>Print weight standard</value>
+  </data>
+  <data name="ProductCheck" xml:space="preserve">
+    <value>Item inspection</value>
+  </data>
+  <data name="PURCHASE_NO" xml:space="preserve">
+    <value>No. into the warehouse</value>
+  </data>
+  <data name="PURCHASE_SEQ" xml:space="preserve">
+    <value>No. into the warehouse</value>
+  </data>
+  <data name="Recalculate" xml:space="preserve">
+    <value>recalculate</value>
+  </data>
+  <data name="RECEIPT_DATE" xml:space="preserve">
+    <value>Receipt Date</value>
+  </data>
+  <data name="RECE_DATE" xml:space="preserve">
+    <value>Acceptance Date</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>Return Merchandise</value>
+  </data>
+  <data name="RecvConfirm" xml:space="preserve">
+    <value>Confirmation test</value>
+  </data>
+  <data name="RecvQty" xml:space="preserve">
+    <value>Acceptance number</value>
+  </data>
+  <data name="RECV_QTY" xml:space="preserve">
+    <value>Total acceptance</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RePacking" xml:space="preserve">
+    <value>No. regain consignment note</value>
+  </data>
+  <data name="ReportList" xml:space="preserve">
+    <value>Print Form</value>
+  </data>
+  <data name="RetailCode" xml:space="preserve">
+    <value>No store</value>
+  </data>
+  <data name="RETAIL_CODE" xml:space="preserve">
+    <value>Retail</value>
+  </data>
+  <data name="RETAIL_NAME" xml:space="preserve">
+    <value>Store name</value>
+  </data>
+  <data name="RetUnit" xml:space="preserve">
+    <value>The smallest unit</value>
+  </data>
+  <data name="ReturnCheckMaintain" xml:space="preserve">
+    <value>Return check and accept maintenance</value>
+  </data>
+  <data name="ReturnNo" xml:space="preserve">
+    <value>Return Order number:</value>
+  </data>
+  <data name="ReturnNoStart" xml:space="preserve">
+    <value>Return Order No.</value>
+  </data>
+  <data name="ReturnTest" xml:space="preserve">
+    <value>Return Inspection</value>
+  </data>
+  <data name="ReturnTmpWarehouse" xml:space="preserve">
+    <value>Returns temporary storage</value>
+  </data>
+  <data name="RIBBON" xml:space="preserve">
+    <value>ribbon</value>
+  </data>
+  <data name="ROWNUM" xml:space="preserve">
+    <value>Returns points to close Details</value>
+  </data>
+  <data name="RTN_CUST_CODE" xml:space="preserve">
+    <value>Customer Code</value>
+  </data>
+  <data name="RTN_CUST_NAME" xml:space="preserve">
+    <value>client's name</value>
+  </data>
+  <data name="RTN_QTY" xml:space="preserve">
+    <value>Returns the number of</value>
+  </data>
+  <data name="SahllOnSaleQty" xml:space="preserve">
+    <value>Should be added to our number:</value>
+  </data>
+  <data name="ScanBarcode" xml:space="preserve">
+    <value>Brush bar code reading</value>
+  </data>
+  <data name="ScanCheckCount" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ScanItemCode" xml:space="preserve">
+    <value>Brush read item no</value>
+  </data>
+  <data name="ScanLocCode" xml:space="preserve">
+    <value>Inventory storage spaces</value>
+  </data>
+  <data name="ScannedItemCode" xml:space="preserve">
+    <value>Brush read item no</value>
+  </data>
+  <data name="ScanSerial" xml:space="preserve">
+    <value>Brush number read</value>
+  </data>
+  <data name="ScanTarLocCode" xml:space="preserve">
+    <value>Object storage spaces</value>
+  </data>
+  <data name="SearchDelvDate" xml:space="preserve">
+    <value>Batch Date</value>
+  </data>
+  <data name="SearchFileName" xml:space="preserve">
+    <value>Filename</value>
+  </data>
+  <data name="SearchOrdNo" xml:space="preserve">
+    <value>Order Number</value>
+  </data>
+  <data name="SearchPickTime" xml:space="preserve">
+    <value>Lot period</value>
+  </data>
+  <data name="SearchTakeDate" xml:space="preserve">
+    <value>Date out of the bus</value>
+  </data>
+  <data name="SecZone" xml:space="preserve">
+    <value>Second District</value>
+  </data>
+  <data name="SelectedChkOutTime" xml:space="preserve">
+    <value>Time out of the bus</value>
+  </data>
+  <data name="SelectedCust" xml:space="preserve">
+    <value>Freight Owner</value>
+  </data>
+  <data name="SelectedDc" xml:space="preserve">
+    <value>Distribution Center</value>
+  </data>
+  <data name="SelectedDelvCompany" xml:space="preserve">
+    <value>Distributors</value>
+  </data>
+  <data name="SelectedDelvNo" xml:space="preserve">
+    <value>Train number</value>
+  </data>
+  <data name="SelectedGatherNO" xml:space="preserve">
+    <value>Summary Sheet No.</value>
+  </data>
+  <data name="SelectedGatherStartDt" xml:space="preserve">
+    <value>Summary single query / delete</value>
+  </data>
+  <data name="SelectedGup" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="SelectedLabelType" xml:space="preserve">
+    <value>Plate / box labeled</value>
+  </data>
+  <data name="SelectedStartDt" xml:space="preserve">
+    <value>Return order creation date</value>
+  </data>
+  <data name="SELF_TAKE" xml:space="preserve">
+    <value>Pickup</value>
+  </data>
+  <data name="SerialBoxNo" xml:space="preserve">
+    <value>Number / case number</value>
+  </data>
+  <data name="SerialCollet" xml:space="preserve">
+    <value>No. Collecting</value>
+  </data>
+  <data name="SerialNo" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="SerialNo1" xml:space="preserve">
+    <value>Serial number:</value>
+  </data>
+  <data name="SerialReadingLog" xml:space="preserve">
+    <value>Brush reading record</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>Import numbers</value>
+  </data>
+  <data name="ShipConfirm" xml:space="preserve">
+    <value>Shipping confirmation</value>
+  </data>
+  <data name="ShipperCount" xml:space="preserve">
+    <value>Shipper Number</value>
+  </data>
+  <data name="ShippingItems" xml:space="preserve">
+    <value>Shipments of goods</value>
+  </data>
+  <data name="ShippingPalletCount" xml:space="preserve">
+    <value>Shipping number plate details</value>
+  </data>
+  <data name="ShipStickerNo" xml:space="preserve">
+    <value>Shipping stickers</value>
+  </data>
+  <data name="ShowP0802010100" xml:space="preserve">
+    <value>Select the sub-goods table</value>
+  </data>
+  <data name="SingleBoxWeight" xml:space="preserve">
+    <value>Single box weighing</value>
+  </data>
+  <data name="SOURCE_TYPE" xml:space="preserve">
+    <value>Source Documents:</value>
+  </data>
+  <data name="Sowing" xml:space="preserve">
+    <value>Start planting</value>
+  </data>
+  <data name="SowingAB123456" xml:space="preserve">
+    <value>Seeding: AB123456 - OOO Goods</value>
+  </data>
+  <data name="SowingCancel" xml:space="preserve">
+    <value>Cancel sowing</value>
+  </data>
+  <data name="SowingComplete" xml:space="preserve">
+    <value>Complete sowing</value>
+  </data>
+  <data name="SowingFinish" xml:space="preserve">
+    <value>Complete sowing</value>
+  </data>
+  <data name="SowingQty" xml:space="preserve">
+    <value>Has been for several broadcast: 0</value>
+  </data>
+  <data name="SPILL" xml:space="preserve">
+    <value>Anti-spill</value>
+  </data>
+  <data name="SRC_Loc" xml:space="preserve">
+    <value>Source Loc</value>
+  </data>
+  <data name="SRC_LOC_CODE" xml:space="preserve">
+    <value>Source Loc</value>
+  </data>
+  <data name="StartCheck" xml:space="preserve">
+    <value>Start test</value>
+  </data>
+  <data name="StartCheck1" xml:space="preserve">
+    <value>Start points to close</value>
+  </data>
+  <data name="StartPacking" xml:space="preserve">
+    <value>Start packing</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>Acceptance state</value>
+  </data>
+  <data name="STATUS_NAME" xml:space="preserve">
+    <value>Shipping Status</value>
+  </data>
+  <data name="StockDate" xml:space="preserve">
+    <value>Scheduled purchase date</value>
+  </data>
+  <data name="StockNo" xml:space="preserve">
+    <value>No. into the warehouse</value>
+  </data>
+  <data name="SUM_RECV_QTY" xml:space="preserve">
+    <value>Number of acceptance has been</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Query No.</value>
+  </data>
+  <data name="TargetWarehouse" xml:space="preserve">
+    <value>Objective other positions:</value>
+  </data>
+  <data name="TARWAREHOUSE" xml:space="preserve">
+    <value>Do not warehouse shelves</value>
+  </data>
+  <data name="TAR_WarehouseID" xml:space="preserve">
+    <value>Do object warehouse</value>
+  </data>
+  <data name="TicketNo" xml:space="preserve">
+    <value>Picking box number / container / Shipper</value>
+  </data>
+  <data name="TotalCount1" xml:space="preserve">
+    <value>Total items: 1</value>
+  </data>
+  <data name="TotalCount10" xml:space="preserve">
+    <value>Total: 10</value>
+  </data>
+  <data name="TotalCount4" xml:space="preserve">
+    <value>Total number of pieces: 4</value>
+  </data>
+  <data name="TotalCount8" xml:space="preserve">
+    <value>Total number of pieces: 8</value>
+  </data>
+  <data name="TotalDelvQty" xml:space="preserve">
+    <value>The total number of shipments</value>
+  </data>
+  <data name="TotalPackQty" xml:space="preserve">
+    <value>Cumulative Number of packages</value>
+  </data>
+  <data name="TotalPickQty" xml:space="preserve">
+    <value>The total picking time</value>
+  </data>
+  <data name="TotalQty" xml:space="preserve">
+    <value>total number</value>
+  </data>
+  <data name="TotalValidCount" xml:space="preserve">
+    <value>The total number of paid-up</value>
+  </data>
+  <data name="TotalWeight" xml:space="preserve">
+    <value>Total Weight (kg)</value>
+  </data>
+  <data name="TOTAL_AUDIT_QTY" xml:space="preserve">
+    <value>The cumulative number of brush test</value>
+  </data>
+  <data name="TOTAL_CNT" xml:space="preserve">
+    <value>Total food items</value>
+  </data>
+  <data name="TOTAL_QTY" xml:space="preserve">
+    <value>The total number</value>
+  </data>
+  <data name="TRANSPORT" xml:space="preserve">
+    <value>transport company</value>
+  </data>
+  <data name="TransQty" xml:space="preserve">
+    <value>Number allocation</value>
+  </data>
+  <data name="TxtPAST_NO" xml:space="preserve">
+    <value>Upload shipment verification code</value>
+  </data>
+  <data name="UCC_CODE" xml:space="preserve">
+    <value>the reason</value>
+  </data>
+  <data name="UNIT_TRANS" xml:space="preserve">
+    <value>Packaging Reference</value>
+  </data>
+  <data name="UnlockCode" xml:space="preserve">
+    <value>Unlock code</value>
+  </data>
+  <data name="ValidCount" xml:space="preserve">
+    <value>Paid-number</value>
+  </data>
+  <data name="ValidDate" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="VALI_DATE" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="ViewFile" xml:space="preserve">
+    <value>Drawing View</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>Supplier No</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="WarehouseId" xml:space="preserve">
+    <value>Cang by:</value>
+  </data>
+  <data name="WareHouseName" xml:space="preserve">
+    <value>Do not warehouse shelves</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>weight</value>
+  </data>
+  <data name="WmsOrdNo" xml:space="preserve">
+    <value>Shipper No.</value>
+  </data>
+  <data name="WMS_ORD_NO" xml:space="preserve">
+    <value>Shipper number:</value>
+  </data>
+  <data name="WMS_ORD_NO1234567890" xml:space="preserve">
+    <value>Shipper number: 1234567890</value>
+  </data>
+  <data name="WMS_ORD_NO1234567892" xml:space="preserve">
+    <value>Shipper number: 1234567892</value>
+  </data>
+  <data name="WMS_ORD_NO1234567893" xml:space="preserve">
+    <value>Shipper number: 1234567893</value>
+  </data>
+  <data name="WMS_ORD_NO1234567894" xml:space="preserve">
+    <value>Shipper number: 1234567894</value>
+  </data>
+  <data name="WMS_ORD_NO1234567895" xml:space="preserve">
+    <value>Shipper number: 1234567895</value>
+  </data>
+  <data name="WMS_ORD_NO1234567896" xml:space="preserve">
+    <value>Shipper number: 1234567896</value>
+  </data>
+  <data name="WMS_ORD_NO1234567897" xml:space="preserve">
+    <value>Shipper number: 1234567897</value>
+  </data>
+  <data name="WMS_ORD_NO1234567898" xml:space="preserve">
+    <value>Shipper number: 1234567898</value>
+  </data>
+  <data name="YangMei" xml:space="preserve">
+    <value>Strawberry</value>
+  </data>
+  <data name="P0806130000_OrderNoIsNotExist" xml:space="preserve">
+    <value>This picking a single number does not exist</value>
+  </data>
+  <data name="PRINT_MEMO" xml:space="preserve">
+    <value>PrintMemo</value>
+  </data>
+  <data name="PrintDate" xml:space="preserve">
+    <value>Print date</value>
+  </data>
+  <data name="ShippingList" xml:space="preserve">
+    <value>Shipping list</value>
+  </data>
+  <data name="TransferOrderDate" xml:space="preserve">
+    <value>Transfer order date</value>
+  </data>
+  <data name="P0806130000_Lab_CrtDate" xml:space="preserve">
+    <value>Create date</value>
+  </data>
+  <data name="CloseBoxErrorMsg" xml:space="preserve">
+    <value>This box has not yet started packaging</value>
+  </data>
+  <data name="ManualCloseBox" xml:space="preserve">
+    <value>Manual close box</value>
+  </data>
+  <data name="P0806130000_NotDelete" xml:space="preserve">
+    <value>The job number binding is completed and cannot be deleted</value>
+  </data>
+  <data name="P0806130000_RepeactItem" xml:space="preserve">
+    <value>Duplicate job number binding</value>
+  </data>
+  <data name="P0807010000_OrginalItem" xml:space="preserve">
+    <value>OrginalItem</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Please Scan OrginalItem ItemCode/SN/BoxNo</value>
+  </data>
+  <data name="P0808030000_WMS_ORD" xml:space="preserve">
+    <value>Home Delivery Order Number</value>
+  </data>
+  <data name="P0808030000_scanResult" xml:space="preserve">
+    <value>Refresh the results</value>
+  </data>
+  <data name="P0808030000_wmsOrdNo" xml:space="preserve">
+    <value>Home Delivery Order Number</value>
+  </data>
+  <data name="P0808030000__scanTime" xml:space="preserve">
+    <value>Refresh time</value>
+  </data>
+  <data name="P0808030000_Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="SpecifyPrinter1" xml:space="preserve">
+    <value>Printer 1: Box details, factory return small white label</value>
+  </data>
+  <data name="DeliveryReportService_RtnLableReport" xml:space="preserve">
+    <value>Factory return small white label</value>
+  </data>
+  <data name="P0806140000_WmsNoBarCode" xml:space="preserve">
+    <value>WmsNo Barcode</value>
+  </data>
+  <data name="P0806140000_ShipCnt" xml:space="preserve">
+    <value>ShipCnt</value>
+  </data>
+  <data name="P0806140000_BoxDetail" xml:space="preserve">
+    <value>BoxDetail</value>
+  </data>
+  <data name="P0806140000_OutOfStock" xml:space="preserve">
+    <value>OutOfStock</value>
+  </data>
+  <data name="P0806140000_PauseAllot" xml:space="preserve">
+    <value>Pause Allot</value>
+  </data>
+  <data name="P0806140000_StartAllot" xml:space="preserve">
+    <value>Start Allot</value>
+  </data>
+  <data name="P0806140000_Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="P0806140000_BoxNo" xml:space="preserve">
+    <value>BoxNo:{0}</value>
+  </data>
+  <data name="P0806140000_SowQty" xml:space="preserve">
+    <value>ShowQty:{0}</value>
+  </data>
+  <data name="P0806140000_TotalQty" xml:space="preserve">
+    <value>TotalQty:{0}</value>
+  </data>
+  <data name="P0806140000_BindingContainer" xml:space="preserve">
+    <value>BindingContainer</value>
+  </data>
+  <data name="P0806140000_ContainerWatemark" xml:space="preserve">
+    <value>ContainerWatemar</value>
+  </data>
+  <data name="P0806140000_ItemBarCode" xml:space="preserve">
+    <value>ItemBarCode</value>
+  </data>
+  <data name="P0806140000_ItemName" xml:space="preserve">
+    <value>ItemName</value>
+  </data>
+  <data name="P0806140000_ItemWatemark" xml:space="preserve">
+    <value>ItemWatemark</value>
+  </data>
+  <data name="P0806140000_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="P0806140000_ColletHint" xml:space="preserve">
+    <value>[Green]CollectYard</value>
+  </data>
+  <data name="P0806140000_ErrorHint" xml:space="preserve">
+    <value>[Purple]ErrorArea</value>
+  </data>
+  <data name="P0806140000_PackageHint" xml:space="preserve">
+    <value>[Orange]Package</value>
+  </data>
+  <data name="P0806140000_PleaseInputContainerCode" xml:space="preserve">
+    <value>Please Input ContainerCode</value>
+  </data>
+  <data name="P0806140000_BindContainerNotFinishConfirm" xml:space="preserve">
+    <value>BindContainer Not Finish,After Exit Need ReBind Container, Please Sure To Do?</value>
+  </data>
+  <data name="P0806140000_PauseSowConfirm" xml:space="preserve">
+    <value>Are You Sure Stop Allot?</value>
+  </data>
+  <data name="P0806140000_PleaseScanItem" xml:space="preserve">
+    <value>Please Scan ProductNo/EAN Code/Searial No</value>
+  </data>
+  <data name="P0806140000_SowFinishMsg" xml:space="preserve">
+    <value>Sow Finished，Please see distribute to the location</value>
+  </data>
+  <data name="P0806140000_ContainerIsBindOtherLocPosition" xml:space="preserve">
+    <value>This container is Bind in {0} position，Please Bind Other Container</value>
+  </data>
+  <data name="P0806140100_ASetQty" xml:space="preserve">
+    <value>InBoxQty</value>
+  </data>
+  <data name="P0806140100_BSetQty" xml:space="preserve">
+    <value>Require Qty</value>
+  </data>
+  <data name="P0806140100_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="P0806140100_ItemCode" xml:space="preserve">
+    <value>Product No</value>
+  </data>
+  <data name="P0806140100_ItemName" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="P0806140100_BoxNo" xml:space="preserve">
+    <value>Box No</value>
+  </data>
+  <data name="CUST_COST" xml:space="preserve">
+    <value>Customer customized classification:</value>
+  </data>
+  <data name="FAST_DEAL_TYPE" xml:space="preserve">
+    <value>Prioritize flags:</value>
+  </data>
+  <data name="P0807010000_UnfinishedCollection" xml:space="preserve">
+    <value>Unfinished collection, no packaging</value>
+  </data>
+  <data name="P0807010000_PreBoxHasNotClose" xml:space="preserve">
+    <value>PreBox Not Close，Please Manually Close this Box</value>
+  </data>
+  <data name="P0807010000_PreBoxHasOrginalItemNotClose" xml:space="preserve">
+    <value>PreBox is OrginalItem,But Not Close，Please Manually Close this Box</value>
+  </data>
+  <data name="P0808040000_AddBox" xml:space="preserve">
+    <value>AddBox</value>
+  </data>
+  <data name="P0808040000_BatchPickCnt" xml:space="preserve">
+    <value>BatchPickCnt</value>
+  </data>
+  <data name="P0808040000_BatchPickQty" xml:space="preserve">
+    <value>BatchPickQty</value>
+  </data>
+  <data name="P0808040000_BatchPickQuery" xml:space="preserve">
+    <value>PickBatchQuery</value>
+  </data>
+  <data name="P0808040000_BoxDetail" xml:space="preserve">
+    <value>BoxDetail</value>
+  </data>
+  <data name="P0808040000_CancelOrder" xml:space="preserve">
+    <value>CancelOrder</value>
+  </data>
+  <data name="P0808040000_ContainerCode" xml:space="preserve">
+    <value>ContainerCode</value>
+  </data>
+  <data name="P0808040000_ContainerComplete" xml:space="preserve">
+    <value>ContainerComplete</value>
+  </data>
+  <data name="P0808040000_ContainerWatemark" xml:space="preserve">
+    <value>PickOrder/PickSticker/ContainerCode</value>
+  </data>
+  <data name="P0808040000_Dc" xml:space="preserve">
+    <value>Dc</value>
+  </data>
+  <data name="P0808040000_DelvDate" xml:space="preserve">
+    <value>DelvDate</value>
+  </data>
+  <data name="P0808040000_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="P0808040000_ItemBarcode" xml:space="preserve">
+    <value>ItemBarcode</value>
+  </data>
+  <data name="P0808040000_ItemName" xml:space="preserve">
+    <value>ItemName</value>
+  </data>
+  <data name="P0808040000_ItemWatemark" xml:space="preserve">
+    <value>ItemCode/EAN/SERAIL</value>
+  </data>
+  <data name="P0808040000_LackShip" xml:space="preserve">
+    <value>LackShip</value>
+  </data>
+  <data name="P0808040000_NormalShip" xml:space="preserve">
+    <value>NormalShip</value>
+  </data>
+  <data name="P0808040000_PauseAllot" xml:space="preserve">
+    <value>PauseAllot</value>
+  </data>
+  <data name="P0808040000_PickOrder" xml:space="preserve">
+    <value>Pick No</value>
+  </data>
+  <data name="P0808040000_PickQty" xml:space="preserve">
+    <value>Pick Total Pcs</value>
+  </data>
+  <data name="P0808040000_PickTime" xml:space="preserve">
+    <value>PickTime</value>
+  </data>
+  <data name="P0808040000_PrintInfo" xml:space="preserve">
+    <value>Printer1:Print BoxDetail</value>
+  </data>
+  <data name="P0808040000_Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="P0808040000_ReBindBox" xml:space="preserve">
+    <value>ReBindBox</value>
+  </data>
+  <data name="P0808040000_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="P0808040000_BoxNo" xml:space="preserve">
+    <value>BoxNo：{0}</value>
+  </data>
+  <data name="P0808040000_TotalQty" xml:space="preserve">
+    <value>TotalQty：{0}</value>
+  </data>
+  <data name="P0808040300_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="P0808040300_CancelOrder" xml:space="preserve">
+    <value>(CancelOrder)</value>
+  </data>
+  <data name="P0808040300_NormalShip" xml:space="preserve">
+    <value>(NormalShip)</value>
+  </data>
+  <data name="P0808040300_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="P0808040300_PleaseScanCrossWarehouseContainerCode" xml:space="preserve">
+    <value>Please Scan CrossWarehouse ContainerCode</value>
+  </data>
+  <data name="P0808040300_PleaseScanInWarehouseContainerCode" xml:space="preserve">
+    <value>Please Scan InWarehouse ContainerCode</value>
+  </data>
+  <data name="P0808040100_ASetQty" xml:space="preserve">
+    <value>ActualSetQty</value>
+  </data>
+  <data name="P0808040100_BoxNo" xml:space="preserve">
+    <value>BoxNo</value>
+  </data>
+  <data name="P0808040100_Dc" xml:space="preserve">
+    <value>Dc</value>
+  </data>
+  <data name="P0808040100_DelvDate" xml:space="preserve">
+    <value>DelvDate</value>
+  </data>
+  <data name="P0808040100_MoveOutTarget" xml:space="preserve">
+    <value>MoveOutTarget</value>
+  </data>
+  <data name="P0808040100_PickTime" xml:space="preserve">
+    <value>PickTime</value>
+  </data>
+  <data name="P0808040100_PrintBtn" xml:space="preserve">
+    <value>PrintReport</value>
+  </data>
+  <data name="P0808040100_SowType" xml:space="preserve">
+    <value>SowType</value>
+  </data>
+  <data name="P0808040100_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="P0808040100_RowNum" xml:space="preserve">
+    <value>Row No.</value>
+  </data>
+  <data name="P0808040100_ShowErrorMsg" xml:space="preserve">
+    <value>Not selected {0}</value>
+  </data>
+  <data name="P0808040100_DetailNullMsg" xml:space="preserve">
+    <value>Distribution has not yet started</value>
+  </data>
+  <data name="P0808040100_RP_PackageBoxNum" xml:space="preserve">
+    <value>Box No</value>
+  </data>
+  <data name="P0808040100_RP_Titie_1" xml:space="preserve">
+    <value>Shipping box details</value>
+  </data>
+  <data name="P0808040100_RP_PageNum" xml:space="preserve">
+    <value>Page Num</value>
+  </data>
+  <data name="P0808040100_RP_PrintDate" xml:space="preserve">
+    <value>Print Date</value>
+  </data>
+  <data name="P0808040100_WMS_ORD_NO" xml:space="preserve">
+    <value>order number</value>
+  </data>
+  <data name="P0808040100_RP_Titie_2" xml:space="preserve">
+    <value>Unbox Details</value>
+  </data>
+  <data name="P0808040400_ContainerBarcode" xml:space="preserve">
+    <value>container barcode</value>
+  </data>
+  <data name="P0808040400_CROSS_NAME" xml:space="preserve">
+    <value>destination</value>
+  </data>
+  <data name="P0808040400_DELV_DATE" xml:space="preserve">
+    <value>batch date</value>
+  </data>
+  <data name="P0808040400_Item" xml:space="preserve">
+    <value>item number</value>
+  </data>
+  <data name="P0808040400_PICK_ORD_NO" xml:space="preserve">
+    <value>Pick order number</value>
+  </data>
+  <data name="P0808040400_PICK_TIME" xml:space="preserve">
+    <value>batch period</value>
+  </data>
+  <data name="P0808040400_PICK_TOOL" xml:space="preserve">
+    <value>picking tool</value>
+  </data>
+  <data name="P0808040400_SPLIT_CODE" xml:space="preserve">
+    <value>picking area</value>
+  </data>
+  <data name="P0808040400_STATUS" xml:space="preserve">
+    <value>Pick List Status</value>
+  </data>
+  <data name="P0808040400_ContainerBarcodeVisualBrush" xml:space="preserve">
+    <value>Picking slip number/picking sticker/container barcode</value>
+  </data>
+  <data name="P0808040000_BatchFinished" xml:space="preserve">
+    <value>BatchDate:{0} BatchTime:{1} Target:{2} is Finished Ship。{3} Please Normal Ship Box to Cross pier {3} Please CancelOrder Box to Exception Area</value>
+  </data>
+  <data name="P0808040000_ContainerAllotFinish" xml:space="preserve">
+    <value>Container is allot finished</value>
+  </data>
+  <data name="P0808040000_ContainerIsEmptyConfirm" xml:space="preserve">
+    <value>The following Item have not allot，Confirm the container is Empty?</value>
+  </data>
+  <data name="P0808040000_LackConfirm" xml:space="preserve">
+    <value>The following Item have not allot,Are the ship outofstock?</value>
+  </data>
+  <data name="P0808040000_LackItemInfo" xml:space="preserve">
+    <value>ItemCode:{0} ItemName:{1} LackQty:{2}</value>
+  </data>
+  <data name="P0808040000_NotAllottemInfo" xml:space="preserve">
+    <value>ItemCode:{0} ItemName:{1} NotAllotQty:{2}</value>
+  </data>
+  <data name="P0808040000_ScanContainerCode" xml:space="preserve">
+    <value>Please Scan ContainerCode</value>
+  </data>
+  <data name="P0806140000_ContainerFirstWordCannotOorP" xml:space="preserve">
+    <value>ContainerCode First Word Cannot start O or P</value>
+  </data>
+  <data name="CancelArriveRecord" xml:space="preserve">
+    <value>CancelArriveRecord</value>
+  </data>
+</root>

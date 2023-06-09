@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P19.Views.P1920090000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P19.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P19.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" xmlns:converter="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" controls:PermissionService.FunctionId="P1920090000" controls:PermissionService.FunctionName="退貨類型維護" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P1920090000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <converter:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+      <viewModel:P1920070000_ViewModel x:Key="Vm" />
+      <converter:CheckStateConverter x:Key="CheckStateConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1920090001" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP1920090002" Command="{Binding AddCommand}" />
+          <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1920090003" Command="{Binding EditCommand}" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1920090004" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1920090005" Command="{Binding DeleteCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1920090006" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel Name="DockPanel1">
+              <!-- 由此處開始加入畫面項目 -->
+              <!--<GroupBox Header="查詢" DockPanel.Dock="Top" Margin="0,0,0,10" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">-->
+              <GroupBox Name="GroupBox" Header="{x:Static res:Resources.Query}" DockPanel.Dock="Top" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                  <Label Content="{x:Static Properties:Resources.RETURNTYPE}" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+                  <ComboBox SelectedValue="{Binding RETURNTYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="cbRETURNTYPE" ItemsSource="{Binding F000904S_RETURNTYPE}" Margin="3,4,0,0" VerticalAlignment="Top" MinWidth="140" SelectedValuePath="VALUE" DisplayMemberPath="NAME"></ComboBox>
+                  <Label Content="{x:Static Properties:Resources.TYPEID}" Style="{StaticResource LbStyle}" />
+                  <TextBox Name="txtTYPEID" Text="{Binding TYPEID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                  <Label Content="{x:Static Properties:Resources.TYPENAME}" Style="{StaticResource LbStyle}" Foreground="Blue" />
+                  <TextBox Name="txtTYPENAME" Text="{Binding TYPENAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                </StackPanel>
+              </GroupBox>
+              <!--<DockPanel  Width="{Binding Path=Width, ElementName=GroupBox}" LastChildFill="False">
+                              
+                            </DockPanel>-->
+              <StackPanel Width="Auto">
+                <controls:ValidationDataGrid SelectionMode="Single" Visibility="{ Binding F160203_List_Visible,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding F160203_List,UpdateSourceTrigger=PropertyChanged}" Name="F160203_List" SelectedItem="{Binding F160203_SelectedData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" IsReadOnly="False" CellStyle="{StaticResource UcSingleRowEdit}" RowHeaderStyle="{StaticResource UcSingleRowHeaderEdit}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RTN_VNR_TYPE_ID}" IsReadOnly="True" Binding="{Binding RTN_VNR_TYPE_ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true}">
+                      <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowAddFocus}" />
+                      </DataGridTextColumn.CellStyle>
+                      <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                          <Setter Property="MaxLength" Value="5" />
+                          <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                        </Style>
+                      </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RTN_VNR_TYPE_NAME}" IsReadOnly="True" Binding="{Binding RTN_VNR_TYPE_NAME,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true}">
+                      <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowEditFocus}" />
+                      </DataGridTextColumn.CellStyle>
+                      <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                          <Setter Property="MaxLength" Value="80" />
+                          <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                        </Style>
+                      </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" IsReadOnly="True" Binding="{Binding CRT_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_DATE}" IsReadOnly="True" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.UPD_STAFF}" IsReadOnly="True" Binding="{Binding UPD_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.UPD_DATE}" IsReadOnly="True" Binding="{Binding UPD_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
+                  </DataGrid.Columns>
+                </controls:ValidationDataGrid>
+                <controls:ValidationDataGrid SelectionMode="Single" Visibility="{ Binding F161203_List_Visible,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding F161203_List,UpdateSourceTrigger=PropertyChanged}" Name="F161203_List" SelectedItem="{Binding F161203_SelectedData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" IsReadOnly="False" CellStyle="{StaticResource UcSingleRowEdit}" RowHeaderStyle="{StaticResource UcSingleRowHeaderEdit}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RTN_TYPE_ID}" IsReadOnly="True" Binding="{Binding RTN_TYPE_ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true}">
+                      <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowAddFocus}" />
+                      </DataGridTextColumn.CellStyle>
+                      <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                          <Setter Property="MaxLength" Value="5" />
+                          <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                        </Style>
+                      </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RTN_TYPE_NAME}" IsReadOnly="True" Binding="{Binding RTN_TYPE_NAME,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true}">
+                      <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowEditFocus}" />
+                      </DataGridTextColumn.CellStyle>
+                      <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                          <Setter Property="MaxLength" Value="80" />
+                          <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                        </Style>
+                      </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" IsReadOnly="True" Binding="{Binding CRT_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_DATE}" IsReadOnly="True" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.UPD_STAFF}" IsReadOnly="True" Binding="{Binding UPD_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.UPD_DATE}" IsReadOnly="True" Binding="{Binding UPD_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
+                  </DataGrid.Columns>
+                </controls:ValidationDataGrid>
+              </StackPanel>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

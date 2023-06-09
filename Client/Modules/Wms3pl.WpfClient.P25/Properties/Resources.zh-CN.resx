@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACTIVATED" xml:space="preserve">
+    <value>序号开通状态</value>
+  </data>
+  <data name="BatchNo" xml:space="preserve">
+    <value>储值卡盒号</value>
+  </data>
+  <data name="BoxSerial" xml:space="preserve">
+    <value>盒号</value>
+  </data>
+  <data name="BUNDLE_SERIALLOC" xml:space="preserve">
+    <value>序号绑储位</value>
+  </data>
+  <data name="CAMERA_NO" xml:space="preserve">
+    <value>摄影机编号</value>
+  </data>
+  <data name="CASE_NO" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="CAUSE_DESC" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="CELL_NUM" xml:space="preserve">
+    <value>门号</value>
+  </data>
+  <data name="ChangeCount" xml:space="preserve">
+    <value>可更换数：</value>
+  </data>
+  <data name="CLIENT_IP" xml:space="preserve">
+    <value>电脑编号</value>
+  </data>
+  <data name="EditableF2501WcfData" xml:space="preserve">
+    <value>序号调入调出设定</value>
+  </data>
+  <data name="EXPORT_SearchResult" xml:space="preserve">
+    <value>汇出查询结果</value>
+  </data>
+  <data name="Extend" xml:space="preserve">
+    <value>确认展延</value>
+  </data>
+  <data name="ExtendCount" xml:space="preserve">
+    <value>本机预计展延数：</value>
+  </data>
+  <data name="ExtendValidDate" xml:space="preserve">
+    <value>效期展延</value>
+  </data>
+  <data name="FreezeBeginDate" xml:space="preserve">
+    <value>序号冻结的日期区间</value>
+  </data>
+  <data name="FreezeCount" xml:space="preserve">
+    <value>冻结序号数量</value>
+  </data>
+  <data name="FreezeRange" xml:space="preserve">
+    <value>冻结范围</value>
+  </data>
+  <data name="FREEZE_BEGIN_DATE" xml:space="preserve">
+    <value>冻结日期(起)</value>
+  </data>
+  <data name="FREEZE_END_DATE" xml:space="preserve">
+    <value>冻结日期(迄)</value>
+  </data>
+  <data name="ImportExcel" xml:space="preserve">
+    <value>汇入EXCEL</value>
+  </data>
+  <data name="IN_DATE" xml:space="preserve">
+    <value>进货日期</value>
+  </data>
+  <data name="IsChangeItemCode" xml:space="preserve">
+    <value>强制更换品号</value>
+  </data>
+  <data name="ISPASS_DESC" xml:space="preserve">
+    <value>是否通过</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>商品品号</value>
+  </data>
+  <data name="ITEMNAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ItemSearch" xml:space="preserve">
+    <value>商品搜寻</value>
+  </data>
+  <data name="ItemTypeQ" xml:space="preserve">
+    <value>序号类别</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>商品规格</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>储位编号</value>
+  </data>
+  <data name="Memo" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="OnlyShowPass" xml:space="preserve">
+    <value>显示刷读通过</value>
+  </data>
+  <data name="ORD_PROP_NAME" xml:space="preserve">
+    <value>作业类别</value>
+  </data>
+  <data name="P2501030000_ViewModel_BoxSerial" xml:space="preserve">
+    <value>盒号</value>
+  </data>
+  <data name="P2501030000_ViewModel_Cell_Num" xml:space="preserve">
+    <value>门号</value>
+  </data>
+  <data name="P2501030000_ViewModel_Cust_Code" xml:space="preserve">
+    <value>货主</value>
+  </data>
+  <data name="P2501030000_ViewModel_EditableF2501WcfData_WarehouseID_LocCode_Required" xml:space="preserve">
+    <value>勾选序号绑储位必须填写仓别与储位</value>
+  </data>
+  <data name="P2501030000_ViewModel_GUP_Code" xml:space="preserve">
+    <value>业主</value>
+  </data>
+  <data name="P2501030000_ViewModel_ImportCUSTCode_Different" xml:space="preserve">
+    <value>汇入的货主编号与目前使用中的货主编号({0})不同!</value>
+  </data>
+  <data name="P2501030000_ViewModel_ImportGUPCode_Different" xml:space="preserve">
+    <value>汇入的业主编号与目前使用中的业主编号({0})不同!</value>
+  </data>
+  <data name="P2501030000_ViewModel_ImportSTATUS_Invalid" xml:space="preserve">
+    <value>汇入要变更的状态只能为A1(进货)!</value>
+  </data>
+  <data name="P2501030000_ViewModel_ImportTableFormatError" xml:space="preserve">
+    <value>汇入表格格式错误!</value>
+  </data>
+  <data name="P2501030000_ViewModel_Item_Code" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="P2501030000_ViewModel_LocCodeNo" xml:space="preserve">
+    <value>储位编号</value>
+  </data>
+  <data name="P2501030000_ViewModel_MustSelectDC" xml:space="preserve">
+    <value>必须选择物流中心</value>
+  </data>
+  <data name="P2501030000_ViewModel_NoData" xml:space="preserve">
+    <value>无资料!</value>
+  </data>
+  <data name="P2501030000_ViewModel_RecommendLocCodeNotFound" xml:space="preserve">
+    <value>找不到建议储位!</value>
+  </data>
+  <data name="P2501030000_ViewModel_RETAIL_CODE" xml:space="preserve">
+    <value>客代</value>
+  </data>
+  <data name="P2501030000_ViewModel_SaveSuccess" xml:space="preserve">
+    <value>储存成功!</value>
+  </data>
+  <data name="P2501030000_ViewModel_SerialNo" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="P2501030000_ViewModel_serialNoError" xml:space="preserve">
+    <value>序号格式错误!</value>
+  </data>
+  <data name="P2501030000_ViewModel_serialNoNotExist" xml:space="preserve">
+    <value>序号不存在!</value>
+  </data>
+  <data name="P2501030000_ViewModel_serialNo_Required" xml:space="preserve">
+    <value>请输入序号!</value>
+  </data>
+  <data name="P2501030000_ViewModel_SerialStatus" xml:space="preserve">
+    <value>序号状态</value>
+  </data>
+  <data name="P2501030000_ViewModel_StoreNotInWareHouse" xml:space="preserve">
+    <value>此储位不存在於选择的物流中心与仓别</value>
+  </data>
+  <data name="P2501030000_ViewModel_Supply" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="P2501030000_ViewModel_SYS_Supply" xml:space="preserve">
+    <value>系统商</value>
+  </data>
+  <data name="P2501030000_ViewModel_UnitCount" xml:space="preserve">
+    <value>单位数量</value>
+  </data>
+  <data name="P2501030000_ViewModel_ValidDate" xml:space="preserve">
+    <value>效期YYYY/MM/DD</value>
+  </data>
+  <data name="P2501030000_ViewModel_VNRCodeNotFound" xml:space="preserve">
+    <value>厂商编号不存在</value>
+  </data>
+  <data name="P2501030000_ViewModel_WarehouseIdNo" xml:space="preserve">
+    <value>仓别编号</value>
+  </data>
+  <data name="P2501030000_ViewModel_WMS_NO" xml:space="preserve">
+    <value>WMS单号</value>
+  </data>
+  <data name="P2502010000_ViewModel_CheckIsOpenedFile" xml:space="preserve">
+    <value>请检查档案是否已开启</value>
+  </data>
+  <data name="P2502010000_ViewModel_NoDataExport" xml:space="preserve">
+    <value>目前尚无资料汇出!</value>
+  </data>
+  <data name="P2502010000_ViewModel_SearchCondition_Required" xml:space="preserve">
+    <value>商品编号/序号/系统单号/PO单号 至少输入一项查询条件</value>
+  </data>
+  <data name="P2502010000_ViewModel_SelectStoragePath" xml:space="preserve">
+    <value>选择储存路径</value>
+  </data>
+  <data name="P2502010000_ViewModel_SerialFileSearch" xml:space="preserve">
+    <value>序号主档查询-</value>
+  </data>
+  <data name="P2502010000_ViewModel_Title1" xml:space="preserve">
+    <value>业主,货主,商品品号,商品名称,商品规格</value>
+  </data>
+  <data name="P2502010000_ViewModel_Title2" xml:space="preserve">
+    <value>,序号状态,序号,序号类别</value>
+  </data>
+  <data name="P2502010000_ViewModel_Title3" xml:space="preserve">
+    <value>,效期</value>
+  </data>
+  <data name="P2502010000_ViewModel_Title4" xml:space="preserve">
+    <value>,PO单号,系统单号,进货日期,作业类别</value>
+  </data>
+  <data name="P2502010000_ViewModel_Title5" xml:space="preserve">
+    <value>,客户代号,序号开通状态,加工单号</value>
+  </data>
+  <data name="P2502010000_ViewModel_Title6" xml:space="preserve">
+    <value>,供应商,系统商,摄影机编号,电脑编号,单位</value>
+  </data>
+  <data name="P2502010000_ViewModel_Title7" xml:space="preserve">
+    <value>,序号是否已上传给客户,建立日期,建立人员,异动日期,异动人员\n</value>
+  </data>
+  <data name="P2502020000_ViewModel_SearchCondition_Required" xml:space="preserve">
+    <value>商品编号/序号/门号/系统单号/PO单号/储值卡盒号/盒号 至少输入一项查询条件</value>
+  </data>
+  <data name="P2502020000_ViewModel_SerialModifySearch" xml:space="preserve">
+    <value>序号异动查询-</value>
+  </data>
+  <data name="P2503010000_ViewModel_ClearDataAndReCheckSerialNo" xml:space="preserve">
+    <value>将清空资料列重新查询并检核序号，是否确认？</value>
+  </data>
+  <data name="P2503010000_ViewModel_ExtendCount" xml:space="preserve">
+    <value>预计展延序号数{0}，是否确认展延？</value>
+  </data>
+  <data name="P2503010000_ViewModel_ExtendSerial" xml:space="preserve">
+    <value>序号已展延</value>
+  </data>
+  <data name="P2503020000_ViewModel_ChangeCount" xml:space="preserve">
+    <value>序号已更换</value>
+  </data>
+  <data name="P2503020000_ViewModel_ExpectChangeCount" xml:space="preserve">
+    <value>预计更换数{0}，是否确认更换？</value>
+  </data>
+  <data name="P2503020000_ViewModel_ItemCodeNotExist" xml:space="preserve">
+    <value>品号不存在</value>
+  </data>
+  <data name="P2503020000_ViewModel_OldSerialNoCheckError" xml:space="preserve">
+    <value>旧序号检核失败</value>
+  </data>
+  <data name="P2503020000_ViewModel_ScanData_Duplicate_New0" xml:space="preserve">
+    <value>刷读资料不可重复（新序号{0}）</value>
+  </data>
+  <data name="P2503020000_ViewModel_ScanData_Duplicate_Old0" xml:space="preserve">
+    <value>刷读资料不可重复（旧序号{0}）</value>
+  </data>
+  <data name="P2503020000_ViewModel_SerialNo_New_Old_TheSame" xml:space="preserve">
+    <value>新序号和旧序号相同</value>
+  </data>
+  <data name="PASTE" xml:space="preserve">
+    <value>贴上</value>
+  </data>
+  <data name="PO_NO" xml:space="preserve">
+    <value>PO单号</value>
+  </data>
+  <data name="PROCESS_NO" xml:space="preserve">
+    <value>加工单号</value>
+  </data>
+  <data name="RegulatoryWork" xml:space="preserve">
+    <value>管制作业</value>
+  </data>
+  <data name="RETAIL_CODE" xml:space="preserve">
+    <value>客户代号</value>
+  </data>
+  <data name="ScanArea" xml:space="preserve">
+    <value>刷读区域</value>
+  </data>
+  <data name="ScanResult" xml:space="preserve">
+    <value>刷读结果</value>
+  </data>
+  <data name="SelectedFreezeReason" xml:space="preserve">
+    <value>序号冻结的原因</value>
+  </data>
+  <data name="SEND_CUST" xml:space="preserve">
+    <value>序号是否已上传给客户</value>
+  </data>
+  <data name="SerialChangeFileImport" xml:space="preserve">
+    <value>序号更换档汇入</value>
+  </data>
+  <data name="SerialNo" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="SerialNoBeginEnd" xml:space="preserve">
+    <value>序号(迄)</value>
+  </data>
+  <data name="SerialNoNew" xml:space="preserve">
+    <value>新序号</value>
+  </data>
+  <data name="SerialNoOld" xml:space="preserve">
+    <value>旧序号</value>
+  </data>
+  <data name="SerialNo_Search" xml:space="preserve">
+    <value>序号查询</value>
+  </data>
+  <data name="SERIAL_NO_BEGIN" xml:space="preserve">
+    <value>序号(起)</value>
+  </data>
+  <data name="Serial_No_Range" xml:space="preserve">
+    <value>序号范围</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>序号状态</value>
+  </data>
+  <data name="SYS_NAME" xml:space="preserve">
+    <value>系统商</value>
+  </data>
+  <data name="TAG3G" xml:space="preserve">
+    <value>3G号码</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="Verification" xml:space="preserve">
+    <value>验证通过</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>供应商编号</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="WAREHOUSE_ID" xml:space="preserve">
+    <value>仓别名称</value>
+  </data>
+  <data name="WMS_NO" xml:space="preserve">
+    <value>系统单号</value>
+  </data>
+  <data name="P2503020000_ViewModel_NewSerialNoIsExist" xml:space="preserve">
+    <value>新序号已存在，不可以更改</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>商品搜寻</value>
+  </data>
+  <data name="IsSelectedAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+</root>

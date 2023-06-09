@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P02.Views.P0202030200" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" FontSize="18" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P02.ViewModel" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P02.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" controls:PermissionService.FunctionId="P0202030200" controls:PermissionService.FunctionName="檔案上傳" controls:PermissionService.CheckPermission="False" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Width="500" Height="200" FormException="{Binding Exception}" x:Name="Window">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0202030200_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <uiLib:BasicMaster x:Name="Master">
+    <uiLib:BasicMaster.MainContent>
+      <TabControl x:Name="LayoutRoot">
+        <DockPanel>
+          <WrapPanel DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="{x:Static Properties:Resources.RtNo}" Style="{StaticResource LbStyle}" />
+            <ComboBox SelectedItem="{Binding RtNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding RtNoList, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" Style="{StaticResource ComboStyle}" Width="Auto" MinWidth="120" />
+          </WrapPanel>
+          <WrapPanel DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="{x:Static Properties:Resources.confirm}" Width="100" Height="45" Command="{Binding SearchCommand}" controls:PermissionService.FunctionId="BP0202030201" controls:PermissionService.FunctionName="確定" />
+          </WrapPanel>
+        </DockPanel>
+      </TabControl>
+    </uiLib:BasicMaster.MainContent>
+  </uiLib:BasicMaster>
+</uiLib:Wms3plWindow>

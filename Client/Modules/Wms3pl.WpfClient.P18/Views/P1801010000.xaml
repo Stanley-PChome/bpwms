@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P18.Views.P1801010000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P18.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P18.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" controls:PermissionService.FunctionId="P1801010000" controls:PermissionService.FunctionName="庫存查詢" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P1801010000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <converters:RadioBoolToStringConverter x:Key="RadioBoolToStringConverter" />
+      <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+      <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter" />
+      <converters:StringTypeToVisiablityConverter x:Key="StringTypeToVisiablityConverter" />
+      <converters:StringTypeToNotBoolConverter x:Key="StringTypeToNotBoolConverter" />
+      <converters:StringTypeToBoolConverter x:Key="StringTypeToBoolConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1801010001" Command="{Binding SearchCommand}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <!-- 由此處開始加入畫面項目 -->
+            <DockPanel>
+              <Expander Name="ExpQueryCondition" Header="{x:Static res:Resources.QueryCondition}" IsExpanded="True" DockPanel.Dock="Top">
+                <DockPanel>
+                  <DockPanel DockPanel.Dock="TOP">
+                    <Grid>
+                      <Grid.RowDefinitions>
+                        <RowDefinition />
+                      </Grid.RowDefinitions>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="160" />
+                      </Grid.ColumnDefinitions>
+                      <Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                      <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList}" SelectedValue="{Binding DcCode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                      <RadioButton Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.LocStock}" Style="{StaticResource RbStyle}" GroupName="RbSearch" IsChecked="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource RadioBoolToStringConverter},ConverterParameter=0}" />
+                      <RadioButton Grid.Row="0" Grid.Column="3" Content="{x:Static Properties:Resources.ItemStock}" Style="{StaticResource RbStyle}" GroupName="RbSearch" IsChecked="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource RadioBoolToStringConverter},ConverterParameter=1}" />
+                      <RadioButton Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.ItemReturnRate}" Style="{StaticResource RbStyle}" GroupName="RbSearch" IsChecked="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource RadioBoolToStringConverter},ConverterParameter=2}" />
+                    </Grid>
+                  </DockPanel>
+                  <DockPanel DockPanel.Dock="Top">
+                    <DockPanel DockPanel.Dock="Left">
+                      <DataGrid Height="285" Style="{StaticResource DgStyle}" IsReadOnly="False" ItemsSource="{Binding WarehouseList}" CellStyle="{StaticResource SingleClickEdit}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToNotBoolConverter},ConverterParameter=2}">
+                        <DataGrid.Columns>
+                          <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGridCheckBoxColumn.ElementStyle>
+                              <Style TargetType="CheckBox">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                              </Style>
+                            </DataGridCheckBoxColumn.ElementStyle>
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                              <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsCheckAll, ElementName=Vm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding CheckAllCommand, ElementName=Vm}" Content="{x:Static res:Resources.SelectAll}"></CheckBox>
+                              </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                          </DataGridCheckBoxColumn>
+                          <DataGridTextColumn Header="{x:Static Properties:Resources.Name}" Binding="{Binding Item.Name}" IsReadOnly="True" />
+                        </DataGrid.Columns>
+                      </DataGrid>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Right">
+                      <Grid DockPanel.Dock="Top">
+                        <Grid.RowDefinitions>
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="auto" />
+                          <ColumnDefinition Width="160" />
+                          <ColumnDefinition Width="25" />
+                          <ColumnDefinition Width="160" />
+                          <ColumnDefinition Width="90" />
+                          <ColumnDefinition Width="160" />
+                          <ColumnDefinition Width="25" />
+                          <ColumnDefinition Width="160" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.CategoryBegin}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding CategoryList}" SelectedValue="{Binding CategoryBegin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                        <Label Grid.Row="0" Grid.Column="2" Content="~" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="0" Grid.Column="3" Style="{StaticResource ComboStyle}" ItemsSource="{Binding CategoryList}" SelectedValue="{Binding CategoryEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.LTypeBegin}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding LTypeList}" SelectedValue="{Binding LTypeBegin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                        <Label Grid.Row="1" Grid.Column="2" Content="~" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="1" Grid.Column="3" Style="{StaticResource ComboStyle}" ItemsSource="{Binding LTypeList}" SelectedValue="{Binding LTypeEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.MTypeBegin}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding MTypeList}" SelectedValue="{Binding MTypeBegin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                        <Label Grid.Row="2" Grid.Column="2" Content="~" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="2" Grid.Column="3" Style="{StaticResource ComboStyle}" ItemsSource="{Binding MTypeList}" SelectedValue="{Binding MTypeEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static Properties:Resources.P1801010000_STYPE_NAME}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding STypeList}" SelectedValue="{Binding STypeBegin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                        <Label Grid.Row="3" Grid.Column="2" Content="~" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <ComboBox Grid.Row="3" Grid.Column="3" Style="{StaticResource ComboStyle}" ItemsSource="{Binding STypeList}" SelectedValue="{Binding STypeEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" SelectedValuePath="Value" DisplayMemberPath="Name"></ComboBox>
+                          <!--箱號-->
+                        <Label Grid.Row="4" Grid.Column="0" Content="廠商編號" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding VnrCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Style="{StaticResource TxtStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToNotBoolConverter},ConverterParameter=2}" Width="auto" HorizontalAlignment="Stretch" CharacterCasing="Upper" />
+                        <Label Grid.Row="5" Grid.Column="0" Content="{x:Static Properties:Resources.ItemCode}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Grid.ColumnSpan="6" Width="590" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" />
+                        <WrapPanel Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Height="30">
+                          <Button Content="{x:Static Properties:Resources.Paste}" Width="70" Height="30" HorizontalAlignment="Left" Margin="0,0,5,0" controls:PermissionService.FunctionId="BP1801010003" Command="{Binding PasteCommand}" />
+                          <Button x:Name="btnSerachProduct" Content="{x:Static Properties:Resources.ItemSearch}" Width="90" Height="30" Margin="5,0,0,0" controls:PermissionService.FunctionId="BP1801010004" Click="btnSerachProduct_Click" />
+                        </WrapPanel>
+                         <!--批號-->
+                        <Label Grid.Row="6" Grid.Column="0" Content="{x:Static Properties:Resources.MAKE_NO}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding MakeNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Grid.ColumnSpan="6" Width="590" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" 
+                                 IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <WrapPanel  Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="2" Height="30">
+                         <Button Content="{x:Static Properties:Resources.Paste}" Width="70" Height="30" HorizontalAlignment="Left" Margin="0,0,5,0" controls:PermissionService.FunctionId="BP1801010005" Command="{Binding PasteMakeNoCommand}" 
+                                 IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}"/>
+                        </WrapPanel>
+                        <Label Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.EnterDateBegin}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <DatePicker Grid.Row="0" Grid.Column="5" SelectedDate="{Binding EnterDateBegin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" />
+                        <Label Content="~" Grid.Row="0" Grid.Column="6" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <DatePicker Grid.Row="0" Grid.Column="7" SelectedDate="{Binding EnterDateEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" />
+                        <Label Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.P1801010000_ValidDateEnd}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <DatePicker Grid.Row="1" Grid.Column="5" SelectedDate="{Binding ValidDateBegin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" />
+                        <Label Content="~" Grid.Row="1" Grid.Column="6" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" />
+                        <DatePicker Grid.Row="1" Grid.Column="7" SelectedDate="{Binding ValidDateEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" />
+                        <Label Grid.Row="2" Grid.Column="4" Content="{x:Static Properties:Resources.CloseDateBegin}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=2}" />
+                        <DatePicker Grid.Row="2" Grid.Column="5" SelectedDate="{Binding CloseDateBegin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=2}" />
+                        <Label Content="~" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=2}" />
+                        <DatePicker Grid.Row="2" Grid.Column="7" SelectedDate="{Binding CloseDateEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=2}" />
+                        <Label Grid.Row="3" Grid.Column="4" Content="{x:Static Properties:Resources.LocCodeBegin}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <TextBox Grid.Row="3" Grid.Column="5" Text="{Binding LocCodeBegin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Style="{StaticResource TxtStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <Label Content="~" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <TextBox Grid.Row="3" Grid.Column="7" Text="{Binding LocCodeEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Style="{StaticResource TxtStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <!--板號-->
+                        <Label Grid.Row="4" Grid.Column="4" Content="{x:Static Properties:Resources.PALLET_CTRL_NO}" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <TextBox Grid.Row="4" Grid.Column="5" Text="{Binding PalletCtrlNoBegin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Style="{StaticResource TxtStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <Label Content="~" Grid.Row="4" Grid.Column="6" HorizontalAlignment="Right" Style="{StaticResource LbTitleStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                        <TextBox Grid.Row="4" Grid.Column="7" Text="{Binding PalletCtrlNoEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" Style="{StaticResource TxtStyle}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+                       </Grid>
+                      <Grid>
+                        <Grid.RowDefinitions>
+                          <RowDefinition />
+                          <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="120" />
+                          <ColumnDefinition Width="140" />
+                          <ColumnDefinition Width="120" />
+                          <ColumnDefinition Width="120" />
+                          <ColumnDefinition Width="120" />
+                          <ColumnDefinition Width="200" />
+                          <ColumnDefinition Width="120" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.ManageSerailNo}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CheckStyle}" IsChecked="{Binding IsBoundleSerialNo, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringToBoolConverter}}" />
+                        <CheckBox Grid.Row="0" Grid.Column="1" Content="{x:Static Properties:Resources.IsBoundleSerialLoc}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CheckStyle}" IsChecked="{Binding IsBoundleSerialLoc, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringToBoolConverter}}" />
+                        <CheckBox Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.IsMultiFlag}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CheckStyle}" IsChecked="{Binding IsMultiFlag, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringToBoolConverter}}" />
+                        <CheckBox Grid.Row="0" Grid.Column="3" Content="{x:Static Properties:Resources.IsPickWareW}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CheckStyle}" IsChecked="{Binding IsPickWareW, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringToBoolConverter}}" />
+                        <CheckBox Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.IsVirtualType}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CheckStyle}" IsChecked="{Binding IsVirtualType, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringToBoolConverter}}" />
+                        <CheckBox Grid.Row="0" Grid.Column="5" Content="{x:Static Properties:Resources.IsExpand}" Grid.ColumnSpan="2" Width="200" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CheckStyle}" IsChecked="{Binding IsExpand, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringToBoolConverter}}" IsEnabled="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToBoolConverter},ConverterParameter=0}" />
+												<Button Grid.Row="0" Grid.Column="6" Content="{x:Static Properties:Resources.ValidDateAndBatchNoAdjust}" Command="{Binding ValidCommand}" controls:PermissionService.FunctionId="BP1801010101" />
+                      </Grid>
+                    </DockPanel>
+                  </DockPanel>
+                </DockPanel>
+              </Expander>
+              <GroupBox Header="{x:Static res:Resources.OueryResult}" Visibility="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToVisiablityConverter},ConverterParameter=0}">
+                <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DgQueryData1}" Name="Dg1" SelectedValue="{Binding selectDgQueryData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="Auto">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}">
+                      <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource DataGridRowNumberConverter}">
+                          <Binding />
+                          <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType=DataGrid}" />
+                        </MultiBinding>
+                      </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.CUST_NAME}" Binding="{Binding CUST_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.WAREHOUSE_NAME}" Binding="{Binding WAREHOUSE_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.LocCodeBegin}" Binding="{Binding LOC_CODE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ItemCode}" Binding="{Binding ITEM_CODE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.LTypeBegin}" Binding="{Binding LTYPE_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.MTypeBegin}" Binding="{Binding MTYPE_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P1801010000_STYPE_NAME}" Binding="{Binding STYPE_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SPEC}" Binding="{Binding ITEM_SPEC}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SIZE}" Binding="{Binding ITEM_SIZE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_COLOR}" Binding="{Binding ITEM_COLOR}" />
+                    <DataGridTextColumn Header="廠商編號" Binding="{Binding VNR_CODE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.QTY}" Binding="{Binding QTY}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_UNIT}" Binding="{Binding ITEM_UNIT}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.NOW_STATUS_NAME}" Binding="{Binding NOW_STATUS_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.USEFUL_VOLUMN}" Binding="{Binding USEFUL_VOLUMN,StringFormat=N2}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.USED_VOLUMN}" Binding="{Binding USED_VOLUMN}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.BOX_CTRL_NO}" Binding="{Binding BOX_CTRL_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.PALLET_CTRL_NO}" Binding="{Binding PALLET_CTRL_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.UNIT}" Binding="{Binding UNIT}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.TOTAL_VOLUME}" Binding="{Binding TOTAL_VOLUME,StringFormat=N2}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.MAKE_NO}" Binding="{Binding MAKE_NO}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.LeftDay}" Binding="{Binding LeftDay}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.VALID_DATE}" Binding="{Binding VALID_DATE,StringFormat=\{0:yyyy/MM/dd\}}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ENTER_DATE}" Binding="{Binding ENTER_DATE,StringFormat=\{0:yyyy/MM/dd\}}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.SERIAL_NO}" Binding="{Binding SERIAL_NO}" />
+                  </DataGrid.Columns>
+                </DataGrid>
+              </GroupBox>
+              <GroupBox Header="{x:Static res:Resources.OueryResult}" Visibility="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToVisiablityConverter},ConverterParameter=1}">
+                <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DtQueryData2}" AutoGenerateColumns="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+              </GroupBox>
+              <GroupBox Header="{x:Static res:Resources.OueryResult}" Visibility="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToVisiablityConverter},ConverterParameter=2}">
+                <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DgQueryData3}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}">
+                      <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource DataGridRowNumberConverter}">
+                          <Binding />
+                          <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType=DataGrid}" />
+                        </MultiBinding>
+                      </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.CUST_NAME}" Binding="{Binding CUST_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ItemCode}" Binding="{Binding ITEM_CODE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.LTypeBegin}" Binding="{Binding LTYPE_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.MTypeBegin}" Binding="{Binding MTYPE_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P1801010000_STYPE_NAME}" Binding="{Binding STYPE_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SIZE}" Binding="{Binding ITEM_SIZE}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SPEC}" Binding="{Binding ITEM_SPEC}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_COLOR}" Binding="{Binding ITEM_COLOR}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.P1801010000_TotalInventory}" Binding="{Binding QTY}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RETURN_RATE}" Binding="{Binding RETURN_RATE, StringFormat={}{0:0.##}}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RETURN_DAY}" Binding="{Binding RETURN_DAY, StringFormat={}{0:0.##}}" />
+                  </DataGrid.Columns>
+                </DataGrid>
+              </GroupBox>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

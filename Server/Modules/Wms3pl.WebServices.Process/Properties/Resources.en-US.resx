@@ -1,0 +1,2104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllocationNoHasOtherStationUsed" xml:space="preserve">
+    <value>This requisition [{0}] was [{1}] was added to the workstation</value>
+  </data>
+  <data name="AllocationNoMustComplete" xml:space="preserve">
+    <value>This requisition [{0}] has not yet completed the shelves, you must complete this requisition!</value>
+  </data>
+  <data name="BatchAllocNoMustComplete" xml:space="preserve">
+    <value>This summary shelves single [{0}] not yet complete, you must complete this summary shelves single!</value>
+  </data>
+  <data name="BatchPickNoHasOtherStationUsed" xml:space="preserve">
+    <value>This Summary Sheet [{0}] was [{1}] in picking station</value>
+  </data>
+  <data name="BatchPickNoMustComplete" xml:space="preserve">
+    <value>This summary sheet [{0}] not yet picking is complete, you must first complete the summary sheet!</value>
+  </data>
+  <data name="CheckQtyError" xml:space="preserve">
+    <value>Greater than equal to the total number of real brush should brush number, read the serial number do not brush!</value>
+  </data>
+  <data name="DataDelete" xml:space="preserve">
+    <value>Profile has been deleted, please refer to</value>
+  </data>
+  <data name="DataFailureToRefreshUI" xml:space="preserve">
+    <value>Abnormal data, press OK, the picture information reformer</value>
+  </data>
+  <data name="F02020101DataNotExist" xml:space="preserve">
+    <value>Data does not exist, please refer to</value>
+  </data>
+  <data name="F02020104NotExist" xml:space="preserve">
+    <value>No purchase check the serial number file!</value>
+  </data>
+  <data name="F020301DataExist" xml:space="preserve">
+    <value>Serial data have been collected</value>
+  </data>
+  <data name="F020301DataNotExist" xml:space="preserve">
+    <value>No No. Collecting Data</value>
+  </data>
+  <data name="FileNameExist" xml:space="preserve">
+    <value>The file name already exists!</value>
+  </data>
+  <data name="InventoryNoMustComplete" xml:space="preserve">
+    <value>This inventory list [{0}] has not been completed, you must complete this inventory list!</value>
+  </data>
+  <data name="InventoryNoOtherStationUsed" xml:space="preserve">
+    <value>This single Count [{0}] was [{1}] inventory in the workstation</value>
+  </data>
+  <data name="NotExistsEmptyShopNoByBundleSerialNo" xml:space="preserve">
+    <value>The purchase order into warehouse without number, determine whether to continue the job?</value>
+  </data>
+  <data name="OutOfStockFail" xml:space="preserve">
+    <value>Out confirm update failed</value>
+  </data>
+  <data name="P010201Service_NoExistItems" xml:space="preserve">
+    <value>Item number {0} does not exist in the product master</value>
+  </data>
+  <data name="P010201Service_NoSetItemPallect" xml:space="preserve">
+    <value>Item number {0} were stacked pallet goods is not set Profile</value>
+  </data>
+  <data name="P010201Service_NoSetItemUnitCase" xml:space="preserve">
+    <value>Item no is not set {0} commodity class file volume (unit: me)</value>
+  </data>
+  <data name="P010201Service_StockCancel" xml:space="preserve">
+    <value>No. into the warehouse has been canceled</value>
+  </data>
+  <data name="P010201Service_StockError" xml:space="preserve">
+    <value>No. into the warehouse abnormal</value>
+  </data>
+  <data name="P010201Service_StockNoExist" xml:space="preserve">
+    <value>Into the warehouse number does not exist</value>
+  </data>
+  <data name="P020203ItemTypeSet" xml:space="preserve">
+    <value>Please test items to merchandise categories set: {0}</value>
+  </data>
+  <data name="P020203Service_AcceptanceItemValidDateMustOverToday" xml:space="preserve">
+    <value>{0} Item No. Term not less than today!</value>
+  </data>
+  <data name="P020203Service_AllItemCheckSuccess" xml:space="preserve">
+    <value>All the details have been completed Commodity Inspection</value>
+  </data>
+  <data name="P020203Service_NoPrintInStockSticker" xml:space="preserve">
+    <value>Please enter the warehouse receipt to print out this maintenance into the warehouse pallet label!</value>
+  </data>
+  <data name="P0501120000_OverCapsUsedQtyWithAgv" xml:space="preserve">
+    <value>Store the selected number is {0}, {1} over home will not use CAPS sowing, re-pick pick list</value>
+  </data>
+  <data name="P050112Service_BatchPickMustUnProcessToDelete" xml:space="preserve">
+    <value>Summary batch picking {0} must state to be processed can be deleted</value>
+  </data>
+  <data name="P050112Service_BatchPickNoExist" xml:space="preserve">
+    <value>Summary Lot {0} does not exist</value>
+  </data>
+  <data name="P050112Service_BatchPickNoStatusCantToAdjStation" xml:space="preserve">
+    <value>This summary of the state of odd numbers {0} to {1} workstation unmodifiable</value>
+  </data>
+  <data name="P050112Service_BatchPickResult" xml:space="preserve">
+    <value>The batch summary {0}, {1} the total number of outlets, the total number of food items {2}, {3} the total number of picking, generating {4} sheets were aggregated single number</value>
+  </data>
+  <data name="P050112Service_NotInCurrentBatchPutData" xml:space="preserve">
+    <value>This storage spaces{0} {1} item number No. RACK {2} does not exist this summary Batch {3} seeding list!</value>
+  </data>
+  <data name="P050112Service_PickHasCancel" xml:space="preserve">
+    <value>Picking orders [{0}] Canceled</value>
+  </data>
+  <data name="P050112Service_PickHasComplete" xml:space="preserve">
+    <value>Picking orders [{0}] is completed picking</value>
+  </data>
+  <data name="P050112Service_PickHasProcess" xml:space="preserve">
+    <value>Picking orders [{0}] started picking</value>
+  </data>
+  <data name="P050112Service_PleaseReChoosePick" xml:space="preserve">
+    <value>Please re-select pick list</value>
+  </data>
+  <data name="P050112Service_PutReturnActQtyOverPlanQty" xml:space="preserve">
+    <value>Storage spaces{0} {1} item number No. RACK {2} {3} actual sowing should exceed the number of seeded {4}</value>
+  </data>
+  <data name="P050112Service_PutReturnDuplicate" xml:space="preserve">
+    <value>Same store with the same commodity storage spaces non-repeatable data</value>
+  </data>
+  <data name="P050112Service_PutStatusCanotArtificalSowReturn" xml:space="preserve">
+    <value>This summary Lot {0} to {1} is not a state artificially seeding return</value>
+  </data>
+  <data name="P050112Service_PutStatusNotCanCapsPutReturn" xml:space="preserve">
+    <value>This summary Lot {0} to {1} is not a state for return CAPS</value>
+  </data>
+  <data name="P050112Service_PutToolMustCaseToBeReturn" xml:space="preserve">
+    <value>This summary Lot {0} before planting tools must be return to CAPS CAPS</value>
+  </data>
+  <data name="P050112Service_RetailCntOverCaseMaxCnt" xml:space="preserve">
+    <value>This summary Lot Number RACK {0} {1} has exceeded the maximum number {2} CAPS store, can not be passed CAPS!</value>
+  </data>
+  <data name="P050112Service_SowDataDownLoadSuccess" xml:space="preserve">
+    <value>Under seeding data transfer success</value>
+  </data>
+  <data name="P050112Service_ThisBatchHasWorkInCase" xml:space="preserve">
+    <value>CAPS executing this batch summary {0}, the new summary passaged again, please complete batch CAPS</value>
+  </data>
+  <data name="P050112Service_ThisBatchIsWorkInAGV" xml:space="preserve">
+    <value>Lot AGV is performing this summary {0}, the new summary passaged batch after completion please</value>
+  </data>
+  <data name="P050304Service_CreateReSupplyAllot" xml:space="preserve">
+    <value>Replenishment requisition generated: {0} {1}</value>
+  </data>
+  <data name="P050304Service_SelectedItemNoReSupplyStock" xml:space="preserve">
+    <value>You check the merchandise inventory replenishment area are not and can not generate replenishment requisition</value>
+  </data>
+  <data name="P060101Service_DebitComplete" xml:space="preserve">
+    <value>Debit complete</value>
+  </data>
+  <data name="P060101Service_SERIAL_NO_NotFound" xml:space="preserve">
+    <value>{0} Item no {1} Seq does not exist,can't update actual number of shipments
+</value>
+  </data>
+  <data name="P060103Service_CheckNeeRecoverVirtualLoc" xml:space="preserve">
+    <value>There is no need to reply to the virtual storage spaces of the project, please check the project</value>
+  </data>
+  <data name="P060103Service_CustCancelOrder" xml:space="preserve">
+    <value>The owner to cancel the order</value>
+  </data>
+  <data name="P060103Service_NeedAllRecover" xml:space="preserve">
+    <value>In order to merge orders, all responses are required</value>
+  </data>
+  <data name="P060103Service_OrderNotFound" xml:space="preserve">
+    <value>Order does not exist, please refer to</value>
+  </data>
+  <data name="P060103Service_ORD_DataError" xml:space="preserve">
+    <value>Order information is wrong, can't reply!</value>
+  </data>
+  <data name="P060103Service_RecoverOrder" xml:space="preserve">
+    <value>Order has been restored</value>
+  </data>
+  <data name="P060103Service_RecoverVirtualLoc" xml:space="preserve">
+    <value>Virtual storage spaces reply</value>
+  </data>
+  <data name="P060103Service_TransORDNO" xml:space="preserve">
+    <value>Requisition number: {0}</value>
+  </data>
+  <data name="P060201Service_DataDeleted" xml:space="preserve">
+    <value>Profile has been deleted, please refer to</value>
+  </data>
+  <data name="P060201Service_f052901DatasHasData" xml:space="preserve">
+    <value>This confluence of work into picking orders already, to add to your stock confluence job!</value>
+  </data>
+  <data name="P060201Service_ITEM_CODE" xml:space="preserve">
+    <value>Item  No:</value>
+  </data>
+  <data name="P060201Service_LackQtyOverMustQty" xml:space="preserve">
+    <value>Picking number {0}, the number of confirmed Out {1}, {2 Out of this number has been exceeded the number of picking}</value>
+  </data>
+  <data name="P060201Service_OutofStockRecordExist" xml:space="preserve">
+    <value>Out record already exists</value>
+  </data>
+  <data name="P060201Service_PICK_ORD_NO" xml:space="preserve">
+    <value>Picking a single number:</value>
+  </data>
+  <data name="P060201Service_PICK_ORD_SEQ" xml:space="preserve">
+    <value>Picking line item:</value>
+  </data>
+  <data name="P060201Service_WMS_ORD_NO" xml:space="preserve">
+    <value>Shipper number:</value>
+  </data>
+  <data name="P060202Service_LostQtyTransferManagerWH" xml:space="preserve">
+    <value>This not pick goods storage spaces, warehouse management personnel requirements proceeds to</value>
+  </data>
+  <data name="P060202Service_NoSelectedPickLostQtyData" xml:space="preserve">
+    <value>Check to be transferred to the warehouse management picking anomaly data</value>
+  </data>
+  <data name="P060202Service_NotSetTransferManagerLoc" xml:space="preserve">
+    <value>The purpose storage spaces numbered owner not set transfer, can not use this feature</value>
+  </data>
+  <data name="P060202Service_PickItemTransferManagerWH" xml:space="preserve">
+    <value>Picking items not on the storage spaces, warehouse management personnel requirements proceeds to</value>
+  </data>
+  <data name="P060202Service_TransferManagerWHSuccess" xml:space="preserve">
+    <value>Transferred to the warehouse management success</value>
+  </data>
+  <data name="P080201Service_AuditQtyError" xml:space="preserve">
+    <value>Item {0} This article examines the digital exception!</value>
+  </data>
+  <data name="P080201Service_AuditQtyMoveQtyError" xml:space="preserve">
+    <value>Number of test can not brush this small number of goods shelves</value>
+  </data>
+  <data name="P080201Service_A1ItemNotChange" xml:space="preserve">
+    <value>A1 to the original state is not changed by the number of goods!</value>
+  </data>
+  <data name="P080201Service_CustFileNotExist" xml:space="preserve">
+    <value>Owner of the file: {0} does not exist</value>
+  </data>
+  <data name="P080201Service_F16140101IsNull" xml:space="preserve">
+    <value>This serial number read record brush {0} does not exist!</value>
+  </data>
+  <data name="P080201Service_F161402IsNull" xml:space="preserve">
+    <value>This food items {0} does not exist or the number of abnormal test!</value>
+  </data>
+  <data name="P080201Service_F161402NotAny" xml:space="preserve">
+    <value>This food items {0} does not exist in the return item!</value>
+  </data>
+  <data name="P080201Service_F161502IsNull" xml:space="preserve">
+    <value>Summary of no return in line with data that can be imported</value>
+  </data>
+  <data name="P080201Service_F2501IsA1" xml:space="preserve">
+    <value>Posted Number of goods can not be deleted!</value>
+  </data>
+  <data name="P080201Service_F700101Cancel" xml:space="preserve">
+    <value>Sent a car to a single state has been canceled, can not be updated</value>
+  </data>
+  <data name="P080201Service_F910101Data" xml:space="preserve">
+    <value>This product [{0}] The virtual combined product, will automatically be disassembled to {1} {2}</value>
+  </data>
+  <data name="P080201Service_GatherSeqRepeat" xml:space="preserve">
+    <value>Summary Return Form Number: {0}, ID: {1} repeat</value>
+  </data>
+  <data name="P080201Service_GupCodeIsNull" xml:space="preserve">
+    <value>Owner Master: {0} does not exist</value>
+  </data>
+  <data name="P080201Service_IsF161401Closed" xml:space="preserve">
+    <value>Return form has been closed, can not be edited!</value>
+  </data>
+  <data name="P080201Service_IsPosting" xml:space="preserve">
+    <value>Posted by a number of goods can not be changed!</value>
+  </data>
+  <data name="P080201Service_IsXYZ00001" xml:space="preserve">
+    <value>This food items {0} is unknown items have been added to our numbers, can not be deleted!</value>
+  </data>
+  <data name="P080201Service_ItemCodeNotExist" xml:space="preserve">
+    <value>Item number {0} does not exist!</value>
+  </data>
+  <data name="P080201Service_ItemFileNotExist" xml:space="preserve">
+    <value>Item Master: {0} does not exist</value>
+  </data>
+  <data name="P080201Service_ItemIsDeleted" xml:space="preserve">
+    <value>This product {0} {1} has been deleted</value>
+  </data>
+  <data name="P080201Service_ItemPostingCount" xml:space="preserve">
+    <value>{0} posting completion commodities</value>
+  </data>
+  <data name="P080201Service_ItemWarehouseError" xml:space="preserve">
+    <value>Goods ({0}) of the storage spaces ({1}) are not returned cartridge</value>
+  </data>
+  <data name="P080201Service_NoDataImport" xml:space="preserve">
+    <value>No information can be imported</value>
+  </data>
+  <data name="P080201Service_NotFullReturn" xml:space="preserve">
+    <value>Item composition [{0}] has been disassembled, but did not receive {1} {2}</value>
+  </data>
+  <data name="P080201Service_NotFullReturnMessage" xml:space="preserve">
+    <value>After {0} to {1} to determine if posted, &lt;OK&gt;, to the main picture &lt;forcibly closed&gt;</value>
+  </data>
+  <data name="P080201Service_NotReturnQtyOver" xml:space="preserve">
+    <value>Source documents contain a single return, not return a single return surplus non-food items!</value>
+  </data>
+  <data name="P080201Service_NotScanXYZ00001Item" xml:space="preserve">
+    <value>The brush member is not unknown item number reading {0}</value>
+  </data>
+  <data name="P080201Service_ReturnNoSerialRepeat" xml:space="preserve">
+    <value>Returns the same repeating single brush can not read the serial number!</value>
+  </data>
+  <data name="P080201Service_RtnAuditItemExist" xml:space="preserve">
+    <value>This return form to be returned by the test {0}!</value>
+  </data>
+  <data name="P080201Service_RtnItemIsExist" xml:space="preserve">
+    <value>Return order does not exist</value>
+  </data>
+  <data name="P080201Service_RtnItemIsPosting" xml:space="preserve">
+    <value>Return ticket has been closed</value>
+  </data>
+  <data name="P080201Service_RtnQtyNotZero" xml:space="preserve">
+    <value>This food items {0} to return a single commodity, can not be deleted!</value>
+  </data>
+  <data name="P080201Service_RtnQtyOver" xml:space="preserve">
+    <value>Source documents contain a single return, the number of surplus non-returnable!</value>
+  </data>
+  <data name="P080201Service_SerialItemNoNNoSetting" xml:space="preserve">
+    <value>Unknown item ID is not set {0}</value>
+  </data>
+  <data name="P080201Service_SerialItemProductNo" xml:space="preserve">
+    <value>This brush food items must read the serial number, please read the serial number brush</value>
+  </data>
+  <data name="P080201Service_SerialNoNotReturnDetail" xml:space="preserve">
+    <value>No. absence return detail</value>
+  </data>
+  <data name="P080201Service_SerialNoScanRepeat" xml:space="preserve">
+    <value>Brush read are duplicated</value>
+  </data>
+  <data name="P080201Service_SerialNotPass" xml:space="preserve">
+    <value>This number is not shipped</value>
+  </data>
+  <data name="P080201Service_SerialScanRepeat" xml:space="preserve">
+    <value>Brushed read commodity ID read brush unrepeatable</value>
+  </data>
+  <data name="P080201Service_SuccessSerialCountError" xml:space="preserve">
+    <value>{0} is unknown item number is not less than the total number of accounts has expired!</value>
+  </data>
+  <data name="P080301Service_BoxUsed" xml:space="preserve">
+    <value>The case number has been allocated to other single-use</value>
+  </data>
+  <data name="P080301Service_ScanItemCodeError" xml:space="preserve">
+    <value>Brush your read item no does not match with the current item no</value>
+  </data>
+  <data name="P080301Service_ScanItemCodeIsScan" xml:space="preserve">
+    <value>This brush {0} has read</value>
+  </data>
+  <data name="P080301Service_ScanSerialIsScan" xml:space="preserve">
+    <value>{0} This brush has read the ID</value>
+  </data>
+  <data name="P080301Service_ScanSerialNoError" xml:space="preserve">
+    <value>Brush your reading serial number does not match with the current number</value>
+  </data>
+  <data name="P080301Service_ScanSerialNoLocCodeNotExist" xml:space="preserve">
+    <value>Brush {0} does not read this bit reservoir</value>
+  </data>
+  <data name="P080301Service_ScanSerialNoNotExist" xml:space="preserve">
+    <value>Brush {0} does not read this allocation of a single</value>
+  </data>
+  <data name="P080301_IsOutOfStockData" xml:space="preserve">
+    <value>Notes This product has not cleared the shelves out of stock</value>
+  </data>
+  <data name="P080302Service_ScanSerialNoNotExist" xml:space="preserve">
+    <value>This {0} is not within this requisition</value>
+  </data>
+  <data name="P080302_IsOutOfStockData" xml:space="preserve">
+    <value>This product has not cleared out shelves Notes</value>
+  </data>
+  <data name="P080305Service_ActQtyNotLocCanTarQty" xml:space="preserve">
+    <value>Picking real number may not exceed the storage shelves bit number {0}</value>
+  </data>
+  <data name="P080305Service_ActQtyNotPalletCanTarQty" xml:space="preserve">
+    <value>This number should not exceed the real picking pallet number can be added to {0}</value>
+  </data>
+  <data name="P080305Service_IsOutOfStockData" xml:space="preserve">
+    <value>This product has been out of stock annotation, uncleanable</value>
+  </data>
+  <data name="P080305Service_OutOfStockCheckMessage" xml:space="preserve">
+    <value>This pallet has a number {0} Out unacknowledged, before correlation operations to be confirmed</value>
+  </data>
+  <data name="P080305Service_PalletAllocationIsClosed" xml:space="preserve">
+    <value>This pallet requisition number {0} has been closed</value>
+  </data>
+  <data name="P080305Service_PalletNoIsUpSuccess" xml:space="preserve">
+    <value>Pallet shelves number {0} has completed</value>
+  </data>
+  <data name="P080305Service_PalletNoNotAcceptance" xml:space="preserve">
+    <value>Not pallet acceptance numbers {0}</value>
+  </data>
+  <data name="P080305Service_StickerPalletNoNoExist" xml:space="preserve">
+    <value>Pallet ID {0} does not exist</value>
+  </data>
+  <data name="P080601Service_EmpIdNotExist" xml:space="preserve">
+    <value>Employees number does not exist!</value>
+  </data>
+  <data name="P080601Service_F051201ListIsNull" xml:space="preserve">
+    <value>This pick lists have been completed or have been assigned to picking trolley picking</value>
+  </data>
+  <data name="P080601Service_NotIsCanUseful" xml:space="preserve">
+    <value>No employee numbers operate this function workgroup permission!</value>
+  </data>
+  <data name="P080601Service_PickOrdNosIsNull" xml:space="preserve">
+    <value>Employees no authority to set the storage spaces</value>
+  </data>
+  <data name="P080601Service_UpdateF051201Fail" xml:space="preserve">
+    <value>Virtual storage spaces status update failed</value>
+  </data>
+  <data name="P080602Service_APickQtyOver" xml:space="preserve">
+    <value>Data can not be restored to picking out details, the actual number is greater than expected recovery after picking the number of picking</value>
+  </data>
+  <data name="P080602Service_ASetQtyNotZero" xml:space="preserve">
+    <value>Shipper number {0}  item  {1} completed sown</value>
+  </data>
+  <data name="P080602Service_DelvDateError" xml:space="preserve">
+    <value>Batch date wrong!</value>
+  </data>
+  <data name="P080602Service_F05030101IsNull" xml:space="preserve">
+    <value>No results Order Number</value>
+  </data>
+  <data name="P080602Service_F050802IsNull" xml:space="preserve">
+    <value>No such file shipped shipping single number!</value>
+  </data>
+  <data name="P080602Service_F051202IsNull" xml:space="preserve">
+    <value>Data can not be restored to picking out details, the details can not find the picking record</value>
+  </data>
+  <data name="P080602Service_F052901IsNull" xml:space="preserve">
+    <value>No results shipper number {0}</value>
+  </data>
+  <data name="P080602Service_ItemCodeNotExist" xml:space="preserve">
+    <value>No results merchandise item {0}</value>
+  </data>
+  <data name="P080602Service_LackQtyOver" xml:space="preserve">
+    <value>Out count: {0} exceeds the shipper item no: {1} of the actual picking (Left Out: {2})</value>
+  </data>
+  <data name="P080602Service_LackQtyTotalError" xml:space="preserve">
+    <value>Out of a number not less than 0</value>
+  </data>
+  <data name="P080602Service_PickOrdNoIsNull" xml:space="preserve">
+    <value>No results picking orders</value>
+  </data>
+  <data name="P080602Service_WmsOrdNoNotExistItemCode" xml:space="preserve">
+    <value>{0} shipper number no merchandise item check {1}</value>
+  </data>
+  <data name="P080613Service_UpdataNoData" xml:space="preserve">
+    <value>There is no update documents.</value>
+  </data>
+  <data name="P080701Service_AddQtyError" xml:space="preserve">
+    <value>This is the number of goods, packing number must be 1</value>
+  </data>
+  <data name="P080701Service_AddQtyOver" xml:space="preserve">
+    <value>Exceed the number of shipments</value>
+  </data>
+  <data name="P080701Service_BoxNoExist" xml:space="preserve">
+    <value>Find the box</value>
+  </data>
+  <data name="P080701Service_BundleSerialsNotExist" xml:space="preserve">
+    <value>ID: {0} does not exist in the item no: Specifies the shipment number in {1}</value>
+  </data>
+  <data name="P080701Service_CellNumError" xml:space="preserve">
+    <value>Gate malformed! Shall be a length of 10 yards, all numbers, the first code is 0, re-read number brush!</value>
+  </data>
+  <data name="P080701Service_CellNumIsNull" xml:space="preserve">
+    <value>Please read the brush Gate!</value>
+  </data>
+  <data name="P080701Service_CellNumNotExist" xml:space="preserve">
+    <value>This number does not exist in the designated door pick card profile! Please re-read the serial number brush!</value>
+  </data>
+  <data name="P080701Service_CellNumRepeat" xml:space="preserve">
+    <value>Gate unrepeatable brush read! Please re-read the serial number brush!</value>
+  </data>
+  <data name="P080701Service_CustItemNotExist" xml:space="preserve">
+    <value>No such shippers of goods</value>
+  </data>
+  <data name="P080701Service_CvsTake0" xml:space="preserve">
+    <value>Delivery orders can not be taken outside number plus box</value>
+  </data>
+  <data name="P080701Service_CvsTake1" xml:space="preserve">
+    <value>Orders can not take super-plus box</value>
+  </data>
+  <data name="P080701Service_DeliveryDataIsNull" xml:space="preserve">
+    <value>No such original box to ship goods</value>
+  </data>
+  <data name="P080701Service_diffQtySumError" xml:space="preserve">
+    <value>Item number: {0} exceeds the quantity shipped (Variance: {1}, the number of paid-: {2})</value>
+  </data>
+  <data name="P080701Service_F05010102IsNull" xml:space="preserve">
+    <value>This number does not exist in the designated pick the card profile!</value>
+  </data>
+  <data name="P080701Service_F050801StatusError" xml:space="preserve">
+    <value>Ship master status is incorrect</value>
+  </data>
+  <data name="P080701Service_F051202QueryNotExist" xml:space="preserve">
+    <value>The non-delivery of goods</value>
+  </data>
+  <data name="P080701Service_F055001IsNull" xml:space="preserve">
+    <value>Brush must read item number</value>
+  </data>
+  <data name="P080701Service_F19471601Error" xml:space="preserve">
+    <value>With the arrival of the store with a number of trips not days!</value>
+  </data>
+  <data name="P080701Service_F2501IsNull" xml:space="preserve">
+    <value>No such number {0}</value>
+  </data>
+  <data name="P080701Service_FollowingBlank" xml:space="preserve">
+    <value>Blank //</value>
+  </data>
+  <data name="P080701Service_ItemDeliveryDatasError" xml:space="preserve">
+    <value>{0} non-packaged goods shipped the goods</value>
+  </data>
+  <data name="P080701Service_ItemPackingComplete" xml:space="preserve">
+    <value>Packaging complete</value>
+  </data>
+  <data name="P080701Service_ItemSerialError" xml:space="preserve">
+    <value>{0} Read the brush number of non-specified shipment number for this product</value>
+  </data>
+  <data name="P080701Service_NotInWmsOrder" xml:space="preserve">
+    <value>The combination of non-delivery of goods</value>
+  </data>
+  <data name="P080701Service_NotScanBoxNo" xml:space="preserve">
+    <value>Not brush box number read</value>
+  </data>
+  <data name="P080701Service_ScanBoxNo" xml:space="preserve">
+    <value>Please read the brush box number</value>
+  </data>
+  <data name="P080701Service_ScanCountError" xml:space="preserve">
+    <value>Brush number must be greater than or equal to 1 reading</value>
+  </data>
+  <data name="P080701Service_ScanItemSerialBoxNo" xml:space="preserve">
+    <value>Please read the brush item number / number / case number</value>
+  </data>
+  <data name="P080701Service_SerialNoIsExist" xml:space="preserve">
+    <value>No such number</value>
+  </data>
+  <data name="P080701Service_SerialNoRepeat" xml:space="preserve">
+    <value>No. repeated import</value>
+  </data>
+  <data name="P080701Service_SerialNoScan" xml:space="preserve">
+    <value>Brush must read the serial number</value>
+  </data>
+  <data name="P080701Service_TotalPackQtyError" xml:space="preserve">
+    <value>{0} the number of changes must be greater than 1} {!</value>
+  </data>
+  <data name="P080802Service_F050801IsNull" xml:space="preserve">
+    <value>{0} can not find a pen consignment note No. shipment data</value>
+  </data>
+  <data name="P080802Service_F050801NotExist" xml:space="preserve">
+    <value>No such check Shipper</value>
+  </data>
+  <data name="P080802Service_F050901IsNull" xml:space="preserve">
+    <value>{0} can not find a pen consignment number check data</value>
+  </data>
+  <data name="P080802Service_F05500102IsNull" xml:space="preserve">
+    <value>The package is not available to ship today, please placed in the waiting area</value>
+  </data>
+  <data name="P080802Service_F055001StatusNotOne" xml:space="preserve">
+    <value>This audit has not been completed Shipper</value>
+  </data>
+  <data name="P081001Service_F140101IsNull" xml:space="preserve">
+    <value>No such inventory list</value>
+  </data>
+  <data name="P081001Service_F140101StatusError" xml:space="preserve">
+    <value>This single count state must be treated or Chupan or Replay</value>
+  </data>
+  <data name="P081001Service_InventoryTypeError" xml:space="preserve">
+    <value>This non-count bit storage range</value>
+  </data>
+  <data name="P081001Service_ItemCodeOrSerialNoNotExist" xml:space="preserve">
+    <value>No such item no or serial number</value>
+  </data>
+  <data name="P081001Service_ItemInventoryTypeError" xml:space="preserve">
+    <value>This product range of non-Count</value>
+  </data>
+  <data name="P081001Service_StaffNameError" xml:space="preserve">
+    <value>This inventory this single storage spaces have been other personnel inventory</value>
+  </data>
+  <data name="P140101Service_EnterDateFail" xml:space="preserve">
+    <value>Warehousing date format error</value>
+  </data>
+  <data name="P140101Service_FLUSHBACKNAMEFail" xml:space="preserve">
+    <value>Overage may be incorrect format back to red</value>
+  </data>
+  <data name="P140101Service_FLUSHBACKNAMENull" xml:space="preserve">
+    <value>Overage can not be rushed back to null</value>
+  </data>
+  <data name="P140101Service_InventoryDetailItemsHaveDeleted" xml:space="preserve">
+    <value>This inventory list has been deleted</value>
+  </data>
+  <data name="P140101Service_ItemCodeNotExit" xml:space="preserve">
+    <value>Commodity item no does not exist</value>
+  </data>
+  <data name="P140101Service_ItemCodeNull" xml:space="preserve">
+    <value>Item Item No. value can not be Null</value>
+  </data>
+  <data name="P140101Service_LocCodeNotExit" xml:space="preserve">
+    <value>The storage bit code does not exist</value>
+  </data>
+  <data name="P140101Service_LocCodeNull" xml:space="preserve">
+    <value>Chu-bit code is not a Null value</value>
+  </data>
+  <data name="P140101Service_Negative" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="P140101Service_NoInventoryItem" xml:space="preserve">
+    <value>There is no inventory of goods</value>
+  </data>
+  <data name="P140101Service_QTYFail" xml:space="preserve">
+    <value>Points disk format error</value>
+  </data>
+  <data name="P140101Service_SameCustYearMonthWarehouseIdDuplicate" xml:space="preserve">
+    <value>Owners same month + + + In another cartridge [{0}] floors, channels, repeating seat Termini</value>
+  </data>
+  <data name="P140101Service_SameCustYearMonthWarehouseIdExist" xml:space="preserve">
+    <value>Same owners + year + month + count the number of times data already exists</value>
+  </data>
+  <data name="P140101Service_ValidDateFail" xml:space="preserve">
+    <value>Term malformed</value>
+  </data>
+  <data name="P140103Service_InventoryLoss_NeedSaveItemCodeInInventoryList" xml:space="preserve">
+    <value>Damaged disc, import sequence number must exist within a single count</value>
+  </data>
+  <data name="P140103Service_InventorySurplus_NeedSaveItemCodeInInventoryList" xml:space="preserve">
+    <value>For the overage, import all of the serial number must be present within this single inventory</value>
+  </data>
+  <data name="P140103Service_ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P140103Service_LocNotFound" xml:space="preserve">
+    <value>Can not find management positions</value>
+  </data>
+  <data name="P140103Service_NoEnough" xml:space="preserve">
+    <value>Item no</value>
+  </data>
+  <data name="P140103Service_NoEnoughItemCode" xml:space="preserve">
+    <value>No. shortfall</value>
+  </data>
+  <data name="P140103Service_NoRequestItem" xml:space="preserve">
+    <value>Do not need to import goods number</value>
+  </data>
+  <data name="P140103Service_RequestItem" xml:space="preserve">
+    <value>Lack of product No.</value>
+  </data>
+  <data name="P140103Service_RequestItemCode" xml:space="preserve">
+    <value>Serial number</value>
+  </data>
+  <data name="P140104Service_EnterQtyEmpty" xml:space="preserve">
+    <value>Have not entered Count Results</value>
+  </data>
+  <data name="P140104Service_StatusDataHasChanged" xml:space="preserve">
+    <value>The inventory of single status has been changed, please refer to the information confirmed!</value>
+  </data>
+  <data name="P14ExDataService.cs_LocCodeNotFound" xml:space="preserve">
+    <value>Storage spaces does not exist</value>
+  </data>
+  <data name="P14ExDataService_LocCodeNotFound" xml:space="preserve">
+    <value>There is no storage spaces</value>
+  </data>
+  <data name="P150201Servicepart1_FailMessage" xml:space="preserve">
+    <value>Failure {0}{1}</value>
+  </data>
+  <data name="P150201Servicepart1_ImportFail" xml:space="preserve">
+    <value>If the import fails, the information and the owner of the non-system are currently allocated in the data. Please separate and remit them separately!</value>
+  </data>
+  <data name="P150201Servicepart1_ImportFailCount" xml:space="preserve">
+    <value>Import failed: Total items {0}, {1} check failed nuclear Pen{2}{3}</value>
+  </data>
+  <data name="P150201Servicepart1_ImportResult" xml:space="preserve">
+    <value>Import Results: Total items {0}, {1} successful pen, the pen fails {2}, {3} successfully added document sheets {4}</value>
+  </data>
+  <data name="P150201Servicepart1_SRCDC_Code" xml:space="preserve">
+    <value>Source DC: {0} cartridge Source: {1} {2} {3} Number Item Number Origin allocated storage spaces than Stock</value>
+  </data>
+  <data name="P150201Service_WarehouseIdCannotIncludeLocCode" xml:space="preserve">
+    <value>This bit is not contained in the storage bin are not! \ N-</value>
+  </data>
+  <data name="P160101Servicepart1_ItemCodeFormatError_L" xml:space="preserve">
+    <value>Item ID is not formatted correctly, must begin with a left parenthesis;</value>
+  </data>
+  <data name="P160101Servicepart1_ItemCodeFormatError_LF" xml:space="preserve">
+    <value>Item ID is not formatted correctly, can not find around brackets;</value>
+  </data>
+  <data name="P160101Servicepart1_RTN_No_Empty" xml:space="preserve">
+    <value>Return order number is null;</value>
+  </data>
+  <data name="P160101Service_addParam_Required" xml:space="preserve">
+    <value>addF161201, addF161202s parameter can not be NULL</value>
+  </data>
+  <data name="P160101Service_ADR_Empty" xml:space="preserve">
+    <value>Address is null;</value>
+  </data>
+  <data name="P160101Service_Contactor_Empty" xml:space="preserve">
+    <value>Null contact person;</value>
+  </data>
+  <data name="P160101Service_CUST_CODE_Empty" xml:space="preserve">
+    <value>Customer number is null;</value>
+  </data>
+  <data name="P160101Service_CUST_SYS_NO_NotFound" xml:space="preserve">
+    <value>Can not find the system no of freight owner</value>
+  </data>
+  <data name="P160101Service_DC_CUSTCODE_GUPCODE_Required" xml:space="preserve">
+    <value>You must enter a distribution center, the group freight owner</value>
+  </data>
+  <data name="P160101Service_editParam_Required" xml:space="preserve">
+    <value>editF161201, editF161202s parameter can not be NULL</value>
+  </data>
+  <data name="P160101Service_EditRtn" xml:space="preserve">
+    <value>Edited Return Order</value>
+  </data>
+  <data name="P160101Service_GUP_SYS_NO_NotFound" xml:space="preserve">
+    <value>Can not find the system no of group;</value>
+  </data>
+  <data name="P160101Service_ImportResult" xml:space="preserve">
+    <value>Import Results: Total items: {0}, {1} successful pen, pen fails {2}</value>
+  </data>
+  <data name="P160101Service_Item_Code_Empty" xml:space="preserve">
+    <value>Commodity item no is null;</value>
+  </data>
+  <data name="P160101Service_Item_Code_NotFound" xml:space="preserve">
+    <value>Can not find the item no;</value>
+  </data>
+  <data name="P160101Service_ONE_CUST_CODE_Required" xml:space="preserve">
+    <value>There is only one Freight Owner of a file</value>
+  </data>
+  <data name="P160101Service_Pending" xml:space="preserve">
+    <value>Non-state to be treated, can not be deleted</value>
+  </data>
+  <data name="P160101Service_Retail_Code_NotFound" xml:space="preserve">
+    <value>Can not find outlets number;</value>
+  </data>
+  <data name="P160101Service_RTN_Casuse_Empty" xml:space="preserve">
+    <value>Reason for the return is null;</value>
+  </data>
+  <data name="P160101Service_RTN_Cause_NotFound" xml:space="preserve">
+    <value>Can not find the reason for the return number;</value>
+  </data>
+  <data name="P160101Service_RTN_Close" xml:space="preserve">
+    <value>This return form has been closed, can not be modified</value>
+  </data>
+  <data name="P160101Service_RTN_Count_Zero" xml:space="preserve">
+    <value>Return is 0;</value>
+  </data>
+  <data name="P160101Service_RTN_Deleted" xml:space="preserve">
+    <value>This return form has been deleted and can not be modified</value>
+  </data>
+  <data name="P160101Service_RTN_NotFound" xml:space="preserve">
+    <value>The absence of a single return</value>
+  </data>
+  <data name="P160101Service_RTN_NO_Duplicate" xml:space="preserve">
+    <value>Returns made repeated single number</value>
+  </data>
+  <data name="P160101Service_RTN_SRC_NO_UnabledDelete" xml:space="preserve">
+    <value>The return single document has been a source of articulation, can not be deleted</value>
+  </data>
+  <data name="P160101Service_RTN_SRC_NO_UnabledEdit" xml:space="preserve">
+    <value>The return single document has been a source of articulation, not editable</value>
+  </data>
+  <data name="P160101Service_RTN_Type_Empty" xml:space="preserve">
+    <value>Return type is null;</value>
+  </data>
+  <data name="P160101Service_RTN_Type_NotFound" xml:space="preserve">
+    <value>Can not find the return type number;</value>
+  </data>
+  <data name="P160101Service_TEL_Empty" xml:space="preserve">
+    <value>Telephone is null;</value>
+  </data>
+  <data name="P160101Service_WorkType_Empty" xml:space="preserve">
+    <value>Job type is null;</value>
+  </data>
+  <data name="P160101Service_WorkType_NotFound" xml:space="preserve">
+    <value>Can not find a job category number;</value>
+  </data>
+  <data name="P160102Service_Create_Trans_No" xml:space="preserve">
+    <value>Established allocation (return shelves) Requisition</value>
+  </data>
+  <data name="P160102Service_DeletedTrans" xml:space="preserve">
+    <value>Deleted allocation (return shelves) Requisition</value>
+  </data>
+  <data name="P160102Service_ParamError" xml:space="preserve">
+    <value>Parameter error</value>
+  </data>
+  <data name="P160102Service_TransStatus_UnabledDelete" xml:space="preserve">
+    <value>This allocation (return shelves) Requisition status can not be deleted</value>
+  </data>
+  <data name="P160102Service_TransStatus_UnabledEdit" xml:space="preserve">
+    <value>Allocation (return shelves) Requisition status can not be modified</value>
+  </data>
+  <data name="P160102Service_Trans_ApplicateNo_NotFound" xml:space="preserve">
+    <value>This allocation (return shelves) application form does not exist, has been unable to produce requisition</value>
+  </data>
+  <data name="P160102Service_Trans_ApplicateNo_NotFound_UnabledDelete" xml:space="preserve">
+    <value>This allocation (return shelves) application form does not exist, can not be deleted</value>
+  </data>
+  <data name="P160102Service_Trans_ApplicateStatus_Invalid" xml:space="preserve">
+    <value>This allocation (return shelves) state has been unable to produce a single application for requisition</value>
+  </data>
+  <data name="P160102Service_Trans_NoItem" xml:space="preserve">
+    <value>This allocation (return shelves) Requisition product items can be produced without any requisition</value>
+  </data>
+  <data name="P160102Service_UpdateTrans" xml:space="preserve">
+    <value>Updated allocation (return shelves) Requisition</value>
+  </data>
+  <data name="P160201Servicepart1_Item_Code_NotFound" xml:space="preserve">
+    <value>Can not find item no:</value>
+  </data>
+  <data name="P160201Servicepart1_Loc_Code_Empty" xml:space="preserve">
+    <value>Storage spaces is null;</value>
+  </data>
+  <data name="P160201Servicepart1_Loc_Code_NotFound" xml:space="preserve">
+    <value>Can not find storage spaces number:</value>
+  </data>
+  <data name="P160201Servicepart1_SRC_WarehouseID_Empty" xml:space="preserve">
+    <value>Source cartridge is not null;</value>
+  </data>
+  <data name="P160201Servicepart1_SRC_WarehouseID_NotFound" xml:space="preserve">
+    <value>Sources do not find positions:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_CODE_Empty" xml:space="preserve">
+    <value>Vendor number is null;</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_CODE_NotFound" xml:space="preserve">
+    <value>Can not find the supplier no:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_CauseNo_NotFound" xml:space="preserve">
+    <value>No plant can not find the reason for withdrawal:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Cause_Empty" xml:space="preserve">
+    <value>The reason for the plant back null;</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Type_Empty" xml:space="preserve">
+    <value>Plant back type null;</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Type_NotFound" xml:space="preserve">
+    <value>No plant can not find back type:</value>
+  </data>
+  <data name="P160201Servicepart1_VNR_RTN_Zero" xml:space="preserve">
+    <value>The number of plants back to zero;</value>
+  </data>
+  <data name="P160201Servicepart1_WorkTypeNO_NotFound" xml:space="preserve">
+    <value>Can not find a job Category Code:</value>
+  </data>
+  <data name="P160201Service_VNR_NotFound" xml:space="preserve">
+    <value>Supplier do not exist!</value>
+  </data>
+  <data name="P160201Service_VNR_NO_Close" xml:space="preserve">
+    <value>This plant has been closed chargeback can not be modified</value>
+  </data>
+  <data name="P160201Service_VNR_NO_Deleted" xml:space="preserve">
+    <value>This plant chargeback has been deleted and can not be modified</value>
+  </data>
+  <data name="P160201Service_VNR_NO_Edit" xml:space="preserve">
+    <value>Edited plant chargeback</value>
+  </data>
+  <data name="P160201Service_VNR_NO_NotFound" xml:space="preserve">
+    <value>The plant chargeback does not exist</value>
+  </data>
+  <data name="P160201Service_VNR_RTN_Inserted" xml:space="preserve">
+    <value>Added plant chargeback</value>
+  </data>
+  <data name="P160202Service_Cause_Item_Code" xml:space="preserve">
+    <value>Item number because</value>
+  </data>
+  <data name="P160202Service_Gen_VRN_RTN_Fail" xml:space="preserve">
+    <value>Unable to produce plant exit manifest</value>
+  </data>
+  <data name="P160202Service_Is_Gen_VNR_RTN" xml:space="preserve">
+    <value>Does factory to produce exit manifest?</value>
+  </data>
+  <data name="P160202Service_PRE_RTN" xml:space="preserve">
+    <value>Pre-retirement</value>
+  </data>
+  <data name="P160202Service_Qty" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="P160202Service_VNR_Warehouse_Stock_Insufficient" xml:space="preserve">
+    <value>Less than one, retired factory warehouse store</value>
+  </data>
+  <data name="P160204Service_Insert_VNR_RTNN" xml:space="preserve">
+    <value>Added plant exit manifest</value>
+  </data>
+  <data name="P160204Service_NoAssign" xml:space="preserve">
+    <value>Unspecified</value>
+  </data>
+  <data name="P160204Service_VNR_RTN_No" xml:space="preserve">
+    <value>Factory exit invoice number</value>
+  </data>
+  <data name="P160204Service_VNR_RTN_Qty_Incorrect" xml:space="preserve">
+    <value>The number returned to the factory and factory goods do not meet the number of exit</value>
+  </data>
+  <data name="P160204Service_VNR_RTN_Status_CannotAddNew" xml:space="preserve">
+    <value>The plant retreat single state has been unable to plant new exit manifest</value>
+  </data>
+  <data name="P160401Service_Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="P160401Service_Scrap_No_NotFound" xml:space="preserve">
+    <value>This Scrap does not exist, can not be deleted</value>
+  </data>
+  <data name="P160401Service_Scrap_No_Status_CannotDeleted" xml:space="preserve">
+    <value>This has been scrapped this single state can not be deleted</value>
+  </data>
+  <data name="P160402Service_Create_Scrap_No_First" xml:space="preserve">
+    <value>Please create Scrap</value>
+  </data>
+  <data name="P160402Service_NoScrapDetailToUpdate" xml:space="preserve">
+    <value>Detailed information can be updated without scrapped</value>
+  </data>
+  <data name="P160402Service_Permitted" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="P160402Service_Processing_Scrap_No_CannotModify" xml:space="preserve">
+    <value>This was scrapped single treatment can not be modified</value>
+  </data>
+  <data name="P160402Service_Scrao_No_NotFound" xml:space="preserve">
+    <value>Check there is no single scrap</value>
+  </data>
+  <data name="P160402Service_Scrao_No_Permitted" xml:space="preserve">
+    <value>Scrap Approved</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Close" xml:space="preserve">
+    <value>This Scrap has been closed, can not be modified</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Deleted" xml:space="preserve">
+    <value>This single scrap has been removed, can not be modified</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Permitted" xml:space="preserve">
+    <value>Scrap has approved this can not be modified</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Stock_Sum" xml:space="preserve">
+    <value>This Scrap (Product: {0}, storage spaces: {1}, the cartridge do: {2}), no stock number, can not be modified</value>
+  </data>
+  <data name="P160402Service_Scrap_No_Stock_Sum_Insufficient" xml:space="preserve">
+    <value>This Scrap (Product: {0}, storage spaces: {1}, the cartridge do: {2}), lack of inventory, can not be modified</value>
+  </data>
+  <data name="P160501Service_Destroy_No_Status_NeedPendingToModify" xml:space="preserve">
+    <value>This must be destroyed before a single state and have not been modified to be treated with library</value>
+  </data>
+  <data name="P160501Service_ITEM" xml:space="preserve">
+    <value>Item: {0}</value>
+  </data>
+  <data name="P160501Service_Virtual_Item_DuplicateImport" xml:space="preserve">
+    <value>This virtual goods: {0}; ID: {1} has already been imported</value>
+  </data>
+  <data name="P16ExDataService_CRT_Transfer_Complete" xml:space="preserve">
+    <value>Has established a requisition</value>
+  </data>
+  <data name="P190101Service_DataDeleted" xml:space="preserve">
+    <value>Profile has been deleted</value>
+  </data>
+  <data name="P190101Service_DataExist" xml:space="preserve">
+    <value>Data already exists, please refer to</value>
+  </data>
+  <data name="P190101Service_Data_Deleted" xml:space="preserve">
+    <value>Profile has been deleted, please refer to</value>
+  </data>
+  <data name="P190101Service_DC_Code_Duplicate" xml:space="preserve">
+    <value>Distribution center numbers are duplicated!</value>
+  </data>
+  <data name="P190102Service_ACC_TYPE" xml:space="preserve">
+    <value>Valuation category</value>
+  </data>
+  <data name="P190102Service_ALLOWORDITEM" xml:space="preserve">
+    <value>Whether the original shipping carton</value>
+  </data>
+  <data name="P190102Service_ALLOW_ALL_DLN" xml:space="preserve">
+    <value>The number of days to relax acceptance</value>
+  </data>
+  <data name="P190102Service_ALL_DLN" xml:space="preserve">
+    <value>Acceptance Days</value>
+  </data>
+  <data name="P190102Service_BORROW_DAY" xml:space="preserve">
+    <value>The maximum number of days can lend</value>
+  </data>
+  <data name="P190102Service_BUNDLE_SERIALLOC" xml:space="preserve">
+    <value>No. tied storage spaces</value>
+  </data>
+  <data name="P190102Service_BUNDLE_SERIALNO" xml:space="preserve">
+    <value>No. Commodity</value>
+  </data>
+  <data name="P190102Service_CAN_SPILT_IN" xml:space="preserve">
+    <value>Whether allowing partial purchase</value>
+  </data>
+  <data name="P190102Service_CHECK_PERCENT" xml:space="preserve">
+    <value>Checking ratio</value>
+  </data>
+  <data name="P190102Service_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="P190102Service_CrossItemMemo" xml:space="preserve">
+    <value>The library commodities Notes</value>
+  </data>
+  <data name="P190102Service_CustItemDataDeleted" xml:space="preserve">
+    <value>The  Freight Owner of the product master has been deleted</value>
+  </data>
+  <data name="P190102Service_CUST_ITEM_CODE" xml:space="preserve">
+    <value>Customer item no</value>
+  </data>
+  <data name="P190102Service_DELV_QTY_AVG" xml:space="preserve">
+    <value>Average daily shipments</value>
+  </data>
+  <data name="P190102Service_EANCODE1" xml:space="preserve">
+    <value>A product barcode</value>
+  </data>
+  <data name="P190102Service_EANCODE2" xml:space="preserve">
+    <value>Commodity bar two</value>
+  </data>
+  <data name="P190102Service_EANCODE3" xml:space="preserve">
+    <value>Item barcode three</value>
+  </data>
+  <data name="P190102Service_EnviromentalTax" xml:space="preserve">
+    <value>Green taxes</value>
+  </data>
+  <data name="P190102Service_Format" xml:space="preserve">
+    <value>{0} to {1} format must be integers with the decimal code {2}</value>
+  </data>
+  <data name="P190102Service_FRAGILE" xml:space="preserve">
+    <value>Fragile goods packing</value>
+  </data>
+  <data name="P190102Service_ImportItem_Duplicate" xml:space="preserve">
+    <value>{0} repeated this product is present in this list Import</value>
+  </data>
+  <data name="P190102Service_ImportResult" xml:space="preserve">
+    <value>{0} successfully imported pen, pen fails {1}, {2} update pen, pen of {3}</value>
+  </data>
+  <data name="P190102Service_ISApple" xml:space="preserve">
+    <value>Whether Apple merchandise</value>
+  </data>
+  <data name="P190102Service_ISCARTON" xml:space="preserve">
+    <value>Whether carton</value>
+  </data>
+  <data name="P190102Service_ItemAttribute" xml:space="preserve">
+    <value>Commercial Property</value>
+  </data>
+  <data name="P190102Service_ItemDataUpdate" xml:space="preserve">
+    <value>Item master update</value>
+  </data>
+  <data name="P190102Service_ItemEnglishName" xml:space="preserve">
+    <value>Item English name</value>
+  </data>
+  <data name="P190102Service_ItemHideName" xml:space="preserve">
+    <value>Commodity Hide name</value>
+  </data>
+  <data name="P190102Service_ItemInChargeNotFound" xml:space="preserve">
+    <value>Personnel responsible for merchandise does not exist in the employee master file in</value>
+  </data>
+  <data name="P190102Service_ItemName" xml:space="preserve">
+    <value>product name</value>
+  </data>
+  <data name="P190102Service_ItemNo" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P190102Service_ItemNo_DisContinuedItem_Duplicate" xml:space="preserve">
+    <value>Item No and disabled commodity repeat</value>
+  </data>
+  <data name="P190102Service_ItemNo_Duplicate" xml:space="preserve">
+    <value>Item No repeat</value>
+  </data>
+  <data name="P190102Service_ItemSerialRule" xml:space="preserve">
+    <value>Number nuclear inspection rules</value>
+  </data>
+  <data name="P190102Service_ItemType" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="P190102Service_ITEM_HUMIDITY" xml:space="preserve">
+    <value>Commodity storage humidity</value>
+  </data>
+  <data name="P190102Service_ITEM_STAFF" xml:space="preserve">
+    <value>Commodity Leader</value>
+  </data>
+  <data name="P190102Service_LengthLessThan" xml:space="preserve">
+    <value>{0} {1} must be less than equal to {2}</value>
+  </data>
+  <data name="P190102Service_LG" xml:space="preserve">
+    <value>Whether attached shipping guarantee</value>
+  </data>
+  <data name="P190102Service_LOC_MIX_ITEM" xml:space="preserve">
+    <value>Whether storage spaces mixed product</value>
+  </data>
+  <data name="P190102Service_LType" xml:space="preserve">
+    <value>Main category</value>
+  </data>
+  <data name="P190102Service_LTypeNotExist" xml:space="preserve">
+    <value>Macrotaxonomy {0} does not exist</value>
+  </data>
+  <data name="P190102Service_MaterialsType" xml:space="preserve">
+    <value>Material Types</value>
+  </data>
+  <data name="P190102Service_MEMO" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="P190102Service_MIX_BATCHNO" xml:space="preserve">
+    <value>Whether placed in the reservoir can be mixed batch bits</value>
+  </data>
+  <data name="P190102Service_MType" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="P190102Service_MTypeNotExist" xml:space="preserve">
+    <value>Classification {0} does not exist</value>
+  </data>
+  <data name="P190102Service_MustBeNumber" xml:space="preserve">
+    <value>{0} must be numeric</value>
+  </data>
+  <data name="P190102Service_MustGreaterThanZeroLessThanOne" xml:space="preserve">
+    <value>{0} must be 0 or 1</value>
+  </data>
+  <data name="P190102Service_NotExist" xml:space="preserve">
+    <value>{0} {1} does not exist</value>
+  </data>
+  <data name="P190102Service_NO_PRICE" xml:space="preserve">
+    <value>Whether priceless commodity</value>
+  </data>
+  <data name="P190102Service_ORD_SAVE_QTY" xml:space="preserve">
+    <value>Safety stock purchases</value>
+  </data>
+  <data name="P190102Service_PackHightByView" xml:space="preserve">
+    <value>High product (cm)</value>
+  </data>
+  <data name="P190102Service_PackLengthByView" xml:space="preserve">
+    <value>Item length (cm)</value>
+  </data>
+  <data name="P190102Service_PackWeightByView" xml:space="preserve">
+    <value>Weight (g)</value>
+  </data>
+  <data name="P190102Service_PackWidthByView" xml:space="preserve">
+    <value>Item Width (cm)</value>
+  </data>
+  <data name="P190102Service_PICK_SAVE_ORD" xml:space="preserve">
+    <value>Replenishment minimum number of units</value>
+  </data>
+  <data name="P190102Service_PICK_SAVE_QTY" xml:space="preserve">
+    <value>Safety stock replenishment</value>
+  </data>
+  <data name="P190102Service_PICK_WARE_ID" xml:space="preserve">
+    <value>Do not warehouse shelves</value>
+  </data>
+  <data name="P190102Service_Product_Hierarchy" xml:space="preserve">
+    <value>Item sectors</value>
+  </data>
+  <data name="P190102Service_Required" xml:space="preserve">
+    <value>Required {0}</value>
+  </data>
+  <data name="P190102Service_RET_ORD" xml:space="preserve">
+    <value>Order in multiples</value>
+  </data>
+  <data name="P190102Service_SAVE_DAY" xml:space="preserve">
+    <value>The number of days the safety stock replenishment</value>
+  </data>
+  <data name="P190102Service_SERIALNO_DIGIT" xml:space="preserve">
+    <value>Ordinal numbers</value>
+  </data>
+  <data name="P190102Service_SERIAL_BEGIN" xml:space="preserve">
+    <value>The beginning of the serial number</value>
+  </data>
+  <data name="P190102Service_SIM_Spec" xml:space="preserve">
+    <value>SIM card specifications</value>
+  </data>
+  <data name="P190102Service_Spec" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="P190102Service_SPILL" xml:space="preserve">
+    <value>Anti-spill packaging</value>
+  </data>
+  <data name="P190102Service_SType" xml:space="preserve">
+    <value>Small class</value>
+  </data>
+  <data name="P190102Service_STypeNotExist" xml:space="preserve">
+    <value>Small classification {0} does not exist</value>
+  </data>
+  <data name="P190102Service_TMPR_TYPE" xml:space="preserve">
+    <value>Commodity save stratosphere</value>
+  </data>
+  <data name="P190102Service_Unit" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="P190102Service_UnitNotExist" xml:space="preserve">
+    <value>Unit {0} does not exist</value>
+  </data>
+  <data name="P190102Service_UsingItemCannotDelete" xml:space="preserve">
+    <value>The product is still in use, can not be deleted</value>
+  </data>
+  <data name="P190102Service_VEN_ORD" xml:space="preserve">
+    <value>Supplier MOQ</value>
+  </data>
+  <data name="P190102Service_VIRTUAL_TYPE" xml:space="preserve">
+    <value>Virtual goods category</value>
+  </data>
+  <data name="P190103Service_DataExist_CannotInsert" xml:space="preserve">
+    <value>Unable to add information already exists, please refer to</value>
+  </data>
+  <data name="P190103Service_DataExist_CannotUpdate" xml:space="preserve">
+    <value>Unable to update existing information, please refer to</value>
+  </data>
+  <data name="P190103Service_DataNotFound_CannotDelete" xml:space="preserve">
+    <value>Data can not be deleted does not exist, please refer to</value>
+  </data>
+  <data name="P190109Service_HasDeleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="P190109Service_VNRStatus_CannotDelete" xml:space="preserve">
+    <value>This vendor has this status can not be deleted</value>
+  </data>
+  <data name="P190109Service_VNRUsing_CannotDelete" xml:space="preserve">
+    <value>The supplier still in use can not be deleted</value>
+  </data>
+  <data name="P190109Service_VNR_NotFound" xml:space="preserve">
+    <value>This supplier does not exist, can not be deleted</value>
+  </data>
+  <data name="P190110Service_Retail_Duplicate" xml:space="preserve">
+    <value>Repeat data store</value>
+  </data>
+  <data name="P190116Service_DELV_No_Deleted" xml:space="preserve">
+    <value>Train master has been deleted</value>
+  </data>
+  <data name="P190116Service_DELV_No_Duplicate" xml:space="preserve">
+    <value>Data repeat trips</value>
+  </data>
+  <data name="P190501Service_EmpExist" xml:space="preserve">
+    <value>Employee number already exists, please refer to</value>
+  </data>
+  <data name="P190504Service_ItemHasDeleted" xml:space="preserve">
+    <value>Items have been deleted, please refer to</value>
+  </data>
+  <data name="P190505Service_WorkGroupDeleted" xml:space="preserve">
+    <value>Working group has been deleted, please refer to</value>
+  </data>
+  <data name="P190506Service_AccountNeedDifferenceToPassWord" xml:space="preserve">
+    <value>Account number and password can not be the same!</value>
+  </data>
+  <data name="P190506Service_IsOverPasswordValidDays" xml:space="preserve">
+    <value>{0} day has exceeded the password is not changed!</value>
+  </data>
+  <data name="P190506Service_PasswordDifferenceToConfirmPassword" xml:space="preserve">
+    <value>Different password and confirm your password!</value>
+  </data>
+  <data name="P190506Service_PasswordHistory_Duplicate" xml:space="preserve">
+    <value>Password Update can not be repeated within the time {0}!</value>
+  </data>
+  <data name="P190506Service_PasswordInvalid" xml:space="preserve">
+    <value>{0} password length of at least characters, English and digital contents!</value>
+  </data>
+  <data name="P190506Service_PasswordLimitCharInvalid" xml:space="preserve">
+    <value>{0} password must be at least one non-numeric characters!</value>
+  </data>
+  <data name="P190507Service_WorkGroupName_Duplicate" xml:space="preserve">
+    <value>Repeat job group name</value>
+  </data>
+  <data name="P190507Service_WorkGroupParam_Required" xml:space="preserve">
+    <value>Group operating parameters must be filled</value>
+  </data>
+  <data name="P190508Service_WorkGroupDeleted" xml:space="preserve">
+    <value>Work group has been deleted, please refer to</value>
+  </data>
+  <data name="P1905130000_DeleteErr" xml:space="preserve">
+    <value>Delete a user: {0} when an error occurs</value>
+  </data>
+  <data name="P1905130000_DeleteNoData" xml:space="preserve">
+    <value>No deletion of data</value>
+  </data>
+  <data name="P1905130000_SucessDeleteData" xml:space="preserve">
+    <value>{0} Resources pen, pen successfully deleted {1}, {2} failed Pen</value>
+  </data>
+  <data name="P190702Service_FUN_IDNotFound" xml:space="preserve">
+    <value>No results specified FUN_ID information</value>
+  </data>
+  <data name="P190702Service_FUN_IDUnSet" xml:space="preserve">
+    <value>FUN_ID not set</value>
+  </data>
+  <data name="P190702Service_FUN_SQLNotFound" xml:space="preserve">
+    <value>No results specified FUN_SQL information</value>
+  </data>
+  <data name="P190702Service_QIDNotFound" xml:space="preserve">
+    <value>No results specified information QID</value>
+  </data>
+  <data name="P192018Service_Update" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="P192019Service_Cust_CodeNotFound" xml:space="preserve">
+    <value>Master the owner can not be found</value>
+  </data>
+  <data name="P192019Service_Deleted" xml:space="preserve">
+    <value>This {0} {1} has been deleted!</value>
+  </data>
+  <data name="P192019Service_Deleted_CannotModify" xml:space="preserve">
+    <value>This {0} {1} has been deleted and can not be modified!</value>
+  </data>
+  <data name="P192019Service_Exist_CannotInsert" xml:space="preserve">
+    <value>This {0} {1} already exists, can not be added!</value>
+  </data>
+  <data name="P192019Service_ItemSetExist" xml:space="preserve">
+    <value>This {0} {1} existing product set can not be deleted!</value>
+  </data>
+  <data name="P197001Service_ITEM_CODE_NotFound" xml:space="preserve">
+    <value>Number {0} does not exist!</value>
+  </data>
+  <data name="P197001Service_ITEM_CODE_Required" xml:space="preserve">
+    <value>Number is required!</value>
+  </data>
+  <data name="P197001Service_Label_Duplicate" xml:space="preserve">
+    <value>This label has been repeated New!</value>
+  </data>
+  <data name="P197001Service_PrintCount_Required" xml:space="preserve">
+    <value>Print number is required!</value>
+  </data>
+  <data name="P197001Service_VNR_Code_NotFound" xml:space="preserve">
+    <value>Supplier No {0} does not exist!</value>
+  </data>
+  <data name="P197001Service_VNR_Code_Required" xml:space="preserve">
+    <value>Supplier No is required!</value>
+  </data>
+  <data name="P197001Service_warrantyDate_Required" xml:space="preserve">
+    <value>Warranty date is required!</value>
+  </data>
+  <data name="P197001Service_warrantyYear_Required" xml:space="preserve">
+    <value>Warranty service life is required!</value>
+  </data>
+  <data name="P200101Service_AdjustNo" xml:space="preserve">
+    <value>Adjust single number:</value>
+  </data>
+  <data name="P200101Service_dtmAllTimeGreaterThanOneHour" xml:space="preserve">
+    <value>Period of the bus must be selected more than the current time 1 hour</value>
+  </data>
+  <data name="P200101Service_HasSameWorkTypeAdjustNo" xml:space="preserve">
+    <value>Has the same adjustment of a single job category</value>
+  </data>
+  <data name="P200101Service_HaveNoNewDelvTime" xml:space="preserve">
+    <value>This time the bus is no longer available for a new batch time</value>
+  </data>
+  <data name="P200101Service_OrderNeedPackageBeforeSave" xml:space="preserve">
+    <value>Orders must be pre-orders for the packaging before archiving</value>
+  </data>
+  <data name="P200101Service_OrdIisSelfTakeCannotAdjust" xml:space="preserve">
+    <value>You choose the order is not set to self-created adjustment</value>
+  </data>
+  <data name="P200101Service_OrdIsOrderNotPackage_CannotDelete" xml:space="preserve">
+    <value>Orders passed packaging line, can not be deleted</value>
+  </data>
+  <data name="P200101Service_OrdIsOrderNotPackage_CannotEdit" xml:space="preserve">
+    <value>Orders passed packaging line can not be modified</value>
+  </data>
+  <data name="P200101Service_OrdisStartPick" xml:space="preserve">
+    <value>You choose the order has begun to pick Unadjusted</value>
+  </data>
+  <data name="P200101Service_OrdIsTransfered_CannotDelete" xml:space="preserve">
+    <value>Switch to a single order has not deleted</value>
+  </data>
+  <data name="P200101Service_OrdIsTransfered_CannotEdit" xml:space="preserve">
+    <value>Orders to single, can not be modified</value>
+  </data>
+  <data name="P200101Service_RelationNoOrd_NeedCheck" xml:space="preserve">
+    <value>Orders association must also check</value>
+  </data>
+  <data name="P200101Service_WORK_TYPEIsCancel_CannotDelete" xml:space="preserve">
+    <value>Job category for the cancellation of orders can not be deleted</value>
+  </data>
+  <data name="P200101Service_WORK_TYPEIsGenNewBatch_CannotDelete" xml:space="preserve">
+    <value>Job category to produce a new batch can not be deleted</value>
+  </data>
+  <data name="P250102Service_BATCH_NO_Duplicate" xml:space="preserve">
+    <value>Stored-value card box number repeat</value>
+  </data>
+  <data name="P250102Service_BOX_SERIAL_Duplicate" xml:space="preserve">
+    <value>Repeat box number</value>
+  </data>
+  <data name="P250102Service_CONTROL_WORK_Duplicate" xml:space="preserve">
+    <value>Control operations repeat</value>
+  </data>
+  <data name="P250102Service_FREEZE_SERIAL_NO_PERIOD_DOUBLE" xml:space="preserve">
+    <value>Frozen serial sections may not overlap</value>
+  </data>
+  <data name="P2501Service_BatchNo_FormatError" xml:space="preserve">
+    <value>Stored-value card box number format is not correct!</value>
+  </data>
+  <data name="P2501Service_BatchNo_VALID_DATE_Incorrect" xml:space="preserve">
+    <value>Stored-value card box number of the current Term and import data from different!</value>
+  </data>
+  <data name="P2501Service_BoxSerialNo_FormatError" xml:space="preserve">
+    <value>Box number format is not correct!</value>
+  </data>
+  <data name="P2501Service_CannotInputCorSpecialType" xml:space="preserve">
+    <value>Do not enter the field in English or special format!</value>
+  </data>
+  <data name="P2501Service_Cell_Num_MustBeNumber" xml:space="preserve">
+    <value>Gate number must be a number!</value>
+  </data>
+  <data name="P2501Service_Changed_ItemNo_NotExist" xml:space="preserve">
+    <value>Change item number does not exist in the product master!</value>
+  </data>
+  <data name="P2501Service_Fail" xml:space="preserve">
+    <value>failure</value>
+  </data>
+  <data name="P2501Service_ImportData_ItemCode_NotTheSame" xml:space="preserve">
+    <value>Import data of different item no and serial number!</value>
+  </data>
+  <data name="P2501Service_ItemType_NotBatchNo" xml:space="preserve">
+    <value>This non-commodity categories of goods stored-value card!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_NotExist" xml:space="preserve">
+    <value>{0} does not exist number of storage spaces!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_NotExistAt" xml:space="preserve">
+    <value>{0} does not exist in the storage position number 1} {!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_Required" xml:space="preserve">
+    <value>No. storage spaces tied to commodity storage spaces number is required!</value>
+  </data>
+  <data name="P2501Service_LOC_CODE_VliadDate_Required" xml:space="preserve">
+    <value>No. tied valid for goods storage spaces are required!</value>
+  </data>
+  <data name="P2501Service_NotPass" xml:space="preserve">
+    <value>Did not pass</value>
+  </data>
+  <data name="P2501Service_Pass" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="P2501Service_RequiredColumnlack" xml:space="preserve">
+    <value>Required fields have missing!</value>
+  </data>
+  <data name="P2501Service_SupplyNotExist" xml:space="preserve">
+    <value>The vendor does not exist!</value>
+  </data>
+  <data name="P2501Service_TAR_SRC_TypeDifferent" xml:space="preserve">
+    <value>The old and new numbers are also not the same product category, item number can not be changed!</value>
+  </data>
+  <data name="P2501Service_WarehouseId_Required" xml:space="preserve">
+    <value>No. tied goods storage spaces respectively numbered bins required!</value>
+  </data>
+  <data name="P250302Service_ITEM_CODE_NotFound" xml:space="preserve">
+    <value>Item no does not exist</value>
+  </data>
+  <data name="P250302Service_NewSerialNo_Duplicate" xml:space="preserve">
+    <value>The new file ID not duplicate the ({0})</value>
+  </data>
+  <data name="P250302Service_OldSerialNo_Duplicate" xml:space="preserve">
+    <value>The file ID can not repeat old ({0})</value>
+  </data>
+  <data name="P250302Service_ScanedData_Skip" xml:space="preserve">
+    <value>Brush read data already exists, skip does not deal</value>
+  </data>
+  <data name="P250302Service_SERIAL_NO" xml:space="preserve">
+    <value>Master ID number does not exist</value>
+  </data>
+  <data name="P500101Service_AccProjectNo_NotFound" xml:space="preserve">
+    <value>This project denominated project does not exist, can not be deleted</value>
+  </data>
+  <data name="P500101Service_AccProjectNo_Status_CannotDelete" xml:space="preserve">
+    <value>This project status denominated this project can not be deleted</value>
+  </data>
+  <data name="P500101Service_Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="P70010401Service_CantDeleteEditWmsOrdNosByEdi" xml:space="preserve">
+    <value>Sent a car to a single state can no longer be edited or deleted!</value>
+  </data>
+  <data name="P70010401Service_DirstrNo" xml:space="preserve">
+    <value>Sent a car alone</value>
+  </data>
+  <data name="P70010401Service_ErrorWMS_NO" xml:space="preserve">
+    <value>Fails, order a single number:</value>
+  </data>
+  <data name="P70010401Service_Fail_Destroy" xml:space="preserve">
+    <value>Failed to destroy a single number:</value>
+  </data>
+  <data name="P70010401Service_Fail_RetrnNo" xml:space="preserve">
+    <value>Fails, returns a single number:</value>
+  </data>
+  <data name="P70010401Service_Insert" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="P70010401Service_notCanEditWmsOrdNos" xml:space="preserve">
+    <value>You can not edit or delete sent a car alone, \ r \ n for the following shippers have begun packaging, if you need to modify the bus time, please set the Shipper does not ship: \ r \ n</value>
+  </data>
+  <data name="P70010401Service_NotExist" xml:space="preserve">
+    <value>does not exist</value>
+  </data>
+  <data name="P700104Service_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="P910101Service_BackSerialNos" xml:space="preserve">
+    <value>Specifies the number of warehouse shelves back, unmodified product contains previously uploaded item number</value>
+  </data>
+  <data name="P910101Service_BackSerialNos_ExistBackStockSerialNo" xml:space="preserve">
+    <value>Cartridge back shelves specified number, serial number exists outside the bin number may return</value>
+  </data>
+  <data name="P910101Service_BACK_STOCK_QTY_OVER_QTY" xml:space="preserve">
+    <value>Back bin number exceeds the total number {0}</value>
+  </data>
+  <data name="P910101Service_BoxQtyCantZero" xml:space="preserve">
+    <value>Be finished packing, the minimum unit of the amount of circulation processing single box can not be 0</value>
+  </data>
+  <data name="P910101Service_DaaDeleted" xml:space="preserve">
+    <value>Profile has been deleted, please refer to</value>
+  </data>
+  <data name="P910101Service_Damage" xml:space="preserve">
+    <value>damage</value>
+  </data>
+  <data name="P910101Service_ExistsBundleSerialLocMaterialItem_NeedUpload" xml:space="preserve">
+    <value>The new project contains a serial number tied to commodity storage spaces, numbers need to upload</value>
+  </data>
+  <data name="P910101Service_Good" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="P910101Service_GoodContainsBoxSerialNo" xml:space="preserve">
+    <value>Cartoning be finished, upload serial number shall contain whole box</value>
+  </data>
+  <data name="P910101Service_GoodContainsPackSerialNo" xml:space="preserve">
+    <value>Be finished packing, the upload serial number shall contain FCL</value>
+  </data>
+  <data name="P910101Service_GOODNO_NOTEXISTCUST" xml:space="preserve">
+    <value>This number does not exist in the finished product which the owner</value>
+  </data>
+  <data name="P910101Service_GOOD_BACK_QTY_Box" xml:space="preserve">
+    <value>Packing should be finished, the number must be a multiple of the minimum unit of the amount of the tank</value>
+  </data>
+  <data name="P910101Service_GOOD_BACK_QTY_Pack" xml:space="preserve">
+    <value>Cartoning be finished, the number must be a multiple of the amount of the minimum unit cassette</value>
+  </data>
+  <data name="P910101Service_GOOD_OVER_QTY" xml:space="preserve">
+    <value>Finished exceed the number: \ n {0}</value>
+  </data>
+  <data name="P910101Service_ITEM_LOC_CODE_NO_DATA" xml:space="preserve">
+    <value>Commodity storage spaces master Not available</value>
+  </data>
+  <data name="P910101Service_NotSameQtyItems" xml:space="preserve">
+    <value>{0} number of storage spaces merchandise tie {1}, the number does not match the number of uploaded</value>
+  </data>
+  <data name="P910101Service_OVER" xml:space="preserve">
+    <value>{0} over {1}</value>
+  </data>
+  <data name="P910101Service_PackQtyCantZero" xml:space="preserve">
+    <value>Cartoning be finished, a single cartridge minimum unit distribution processing amount can not be 0</value>
+  </data>
+  <data name="P910101Service_Pick_CantDeeleete" xml:space="preserve">
+    <value>This flow of work orders has opened pick list can not be deleted!</value>
+  </data>
+  <data name="P910101Service_ProcessNotFound" xml:space="preserve">
+    <value>The absence of a single distribution processing</value>
+  </data>
+  <data name="P910101Service_SerialBundleitemCodes_UploadSerialNo" xml:space="preserve">
+    <value>{0} food items uploaded serial number contains non-bound goods storage spaces</value>
+  </data>
+  <data name="P910101Service_SOURCE_OVER_QTY" xml:space="preserve">
+    <value>Material exceed the number: \ n {0}</value>
+  </data>
+  <data name="P910101Service_STOCK_INSSUFICIENT" xml:space="preserve">
+    <value>Merchandise inventory shortage</value>
+  </data>
+  <data name="P910101Service_Unprocessed_CantDelete" xml:space="preserve">
+    <value>Non-state is not working, can not be deleted</value>
+  </data>
+  <data name="P910301Service_DataContractNotExists" xml:space="preserve">
+    <value>Data Contract ID does not exist</value>
+  </data>
+  <data name="P910301Service_ENABLE_CONTRACT_CANTDELETE" xml:space="preserve">
+    <value>Contracts already in force must not be deleted!</value>
+  </data>
+  <data name="P910301Service_NO_CONTRACT_DETAIL_TO_DELETE" xml:space="preserve">
+    <value>There must be no contractual details can delete!</value>
+  </data>
+  <data name="P910302Service_ADD_SUCCESS" xml:space="preserve">
+    <value>added successfully!</value>
+  </data>
+  <data name="P910302Service_APPROVED_PRICE_NEEDVALUE" xml:space="preserve">
+    <value>To approve, the owner must complete processing and price approval status pending</value>
+  </data>
+  <data name="P910302Service_ContractMain_ONLYONE_CUST" xml:space="preserve">
+    <value>With DC, the Freight Owner has a contract can only become effective range!</value>
+  </data>
+  <data name="P910302Service_ContractMain_ONLYONE_SUB" xml:space="preserve">
+    <value>With DC, appoint foreign, effective range can only have a contract!</value>
+  </data>
+  <data name="P910302Service_DATA_CONTRACTNO_EXIST" xml:space="preserve">
+    <value>Data Contract ID already exists</value>
+  </data>
+  <data name="P910302Service_DATA_CONTRACTOBJECT_EXIST" xml:space="preserve">
+    <value>Data Contract project already exists</value>
+  </data>
+  <data name="P910302Service_EDIT_SUCCESS" xml:space="preserve">
+    <value>Successfully modified!</value>
+  </data>
+  <data name="P910302Service_PARAM_DATA_ERROR" xml:space="preserve">
+    <value>Parameter data error</value>
+  </data>
+  <data name="P910302Service_UPDATE" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="P910303Service_ACC_NUM" xml:space="preserve">
+    <value>{0} timber volume</value>
+  </data>
+  <data name="P910303Service_ACC_NUM_WEIGHT" xml:space="preserve">
+    <value>{0} kg weight</value>
+  </data>
+  <data name="P910303Service_APPROV_FEE" xml:space="preserve">
+    <value>Flat fee element {0}</value>
+  </data>
+  <data name="P910303Service_BASIC_FEE" xml:space="preserve">
+    <value>Number ≦ pricing, cost element {0}</value>
+  </data>
+  <data name="P910303Service_FEE" xml:space="preserve">
+    <value>Cost {0} based on</value>
+  </data>
+  <data name="P910303Service_FEE_DOLLAR" xml:space="preserve">
+    <value>Cost {0} based on</value>
+  </data>
+  <data name="P910303Service_OVERSIZE" xml:space="preserve">
+    <value>Each oversize {0} cm</value>
+  </data>
+  <data name="P910303Service_OVER_FEE" xml:space="preserve">
+    <value>&gt; Denominated quantity, cost element {0}</value>
+  </data>
+  <data name="P910303Service_OVER_VALUE" xml:space="preserve">
+    <value>Each super sheet material {0}</value>
+  </data>
+  <data name="P910303Service_OVER_WEIGHT" xml:space="preserve">
+    <value>Each member overweight {0}</value>
+  </data>
+  <data name="P910303Service_SIZE" xml:space="preserve">
+    <value>Size {0} cm</value>
+  </data>
+  <data name="P910303Service_WEIGHT" xml:space="preserve">
+    <value>Upper weight limit {0} kg</value>
+  </data>
+  <data name="PickOrdNoHasOtherStationUsed" xml:space="preserve">
+    <value>This pick list [{0}] was [{1}] in picking station</value>
+  </data>
+  <data name="PickOrdNoMustComplete" xml:space="preserve">
+    <value>This picking orders [{0}] not yet picking is complete, you must complete this pick list!</value>
+  </data>
+  <data name="PurchaseHasClosed" xml:space="preserve">
+    <value>Into the warehouse has been closed</value>
+  </data>
+  <data name="PurchaseHasRecvComplete" xml:space="preserve">
+    <value>This Acceptance has been completed acceptance, acceptance can not be canceled</value>
+  </data>
+  <data name="PurchaseNoError" xml:space="preserve">
+    <value>Into the warehouse number is incorrect</value>
+  </data>
+  <data name="PurchaseNoNotExist" xml:space="preserve">
+    <value>This feed warehouse number does not exist!</value>
+  </data>
+  <data name="PurchaseStatusError" xml:space="preserve">
+    <value>The warehouse into the abnormal state can not be commodity inspection</value>
+  </data>
+  <data name="RepeatSerails" xml:space="preserve">
+    <value>Repeat number:</value>
+  </data>
+  <data name="SerialNoExist" xml:space="preserve">
+    <value>Number already exists</value>
+  </data>
+  <data name="SerialNoIsNull" xml:space="preserve">
+    <value>Serial number can not be empty</value>
+  </data>
+  <data name="SrcLocNotExist" xml:space="preserve">
+    <value>The purchase can not find the temporary storage location available</value>
+  </data>
+  <data name="UnitTransLableName" xml:space="preserve">
+    <value>Packaging Reference</value>
+  </data>
+  <data name="ValiDateError" xml:space="preserve">
+    <value>Today there can ship orders, but item no {0} commodity valid for less than today, resulting in the acceptance can not be completed.</value>
+  </data>
+  <data name="ValiDateError1" xml:space="preserve">
+    <value>Please use valid for Commodity Inspection correct change.</value>
+  </data>
+  <data name="VirtualItemNotExist" xml:space="preserve">
+    <value>Can not find virtual goods storage spaces available</value>
+  </data>
+  <data name="VirtualTtypError1" xml:space="preserve">
+    <value>Up to the sequence number of virtual goods {0},</value>
+  </data>
+  <data name="VirtualTtypError2" xml:space="preserve">
+    <value>Ordinal number already exists + {1} The number counted import {2} {0} has been exceeded</value>
+  </data>
+  <data name="P160204Service_VnrRtnStockDebit" xml:space="preserve">
+    <value>Factory return stock has been debited, the adjustment order number is {0}, please go to the transaction adjustment job view adjustment details</value>
+  </data>
+  <data name="P060204Service_VnrRtnToShip" xml:space="preserve">
+    <value>Please move to manual picking for shipment processing</value>
+  </data>
+  <data name="P160501Service_DestoryShipDebit" xml:space="preserve">
+    <value>Scrap Destruction Inventory has been debited, the adjustment order number is {0}, please go to the transaction adjustment job view adjustment details</value>
+  </data>
+  <data name="P160501Service_DestoryMustStatusInUnProcess" xml:space="preserve">
+    <value>Destruction order must be pending for shipment</value>
+  </data>
+  <data name="P2001010000_ADJQtyInFormaErr" xml:space="preserve">
+    <value>調入數請填整數數字</value>
+  </data>
+  <data name="P2001010000_ADJQtyInOutNoExist" xml:space="preserve">
+    <value>調入數與調出數請擇一填寫</value>
+  </data>
+  <data name="P2001010000_ADJQtyOutFormaErr" xml:space="preserve">
+    <value>調出數請填整數數字</value>
+  </data>
+  <data name="P2001010000_DCCodeErr" xml:space="preserve">
+    <value>物流中心編號不正確</value>
+  </data>
+  <data name="P2001010000_DCCodeNULL" xml:space="preserve">
+    <value>物流中心編號為必填</value>
+  </data>
+  <data name="P2001010000_EnterDateFormaErr" xml:space="preserve">
+    <value>入庫日格式錯誤</value>
+  </data>
+  <data name="P2001010000_ItemCodeNotExit" xml:space="preserve">
+    <value>該品號不存在</value>
+  </data>
+  <data name="P2001010000_ItemCodeNULL" xml:space="preserve">
+    <value>品號為必填</value>
+  </data>
+  <data name="P2001010000_LocCodeNotExit" xml:space="preserve">
+    <value>該儲位編號不存在</value>
+  </data>
+  <data name="P2001010000_LocNULL" xml:space="preserve">
+    <value>儲位編號為必填</value>
+  </data>
+  <data name="P2001010000_ValidDateFormaErr" xml:space="preserve">
+    <value>效期格式錯誤</value>
+  </data>
+  <data name="P2001010000_ValidDateNULL" xml:space="preserve">
+    <value>效期為必填</value>
+  </data>
+  <data name="P2001010000_StockNoQTY" xml:space="preserve">
+    <value>庫存不足</value>
+  </data>
+  <data name="P160102Service_SourceLocItemStockIsEmpty" xml:space="preserve">
+    <value>Source Loc {0} Item {1} Stock is no Stock</value>
+  </data>
+  <data name="P160102Service_SourceLocItemStockQtyisNotEnoughToUpShelfQty" xml:space="preserve">
+    <value>Source Loc {0} Item {1} Stock is less than UpShelfQty</value>
+  </data>
+  <data name="P050112Service_UnSetCapsMaxRetailQty" xml:space="preserve">
+    <value>Not Set Caps Retail Qty</value>
+  </data>
+  <data name="P050112Service_OverTotalPrePlainQty" xml:space="preserve">
+    <value>RetailQty is {0} Over Caps TotalPerPlainQty is {1}</value>
+  </data>
+  <data name="P050112Service_UnsetCapsPerPlainQty" xml:space="preserve">
+    <value>UnSet Caps PerPlainQty</value>
+  </data>
+  <data name="P050112Service_UnsetCapsPlainQty" xml:space="preserve">
+    <value>UnSet Caps PlainQty</value>
+  </data>
+  <data name="P050112Service_OverCapsMaxRetailQty" xml:space="preserve">
+    <value>PickOrder RetailQty is {0} Over CAPS Max RetailQty is {1}</value>
+  </data>
+  <data name="P2001010000_ADJQtyInLessZeroErr" xml:space="preserve">
+    <value>調入數請填大於等於0</value>
+  </data>
+  <data name="P2001010000_ADJQtyOutLessZeroErr" xml:space="preserve">
+    <value>調出數請填大於等於0</value>
+  </data>
+  <data name="P2001010000_ItemRepeat" xml:space="preserve">
+    <value>同樣商品明細資料只能存在一筆資料</value>
+  </data>
+  <data name="P190110Service_SysUnitCase_Duplicate" xml:space="preserve">
+    <value>System unit can only have one [{0}]</value>
+  </data>
+  <data name="P0806130000_OrderNoIsNotExist" xml:space="preserve">
+    <value>This picking a single number does not exist</value>
+  </data>
+  <data name="P0806130000_PickIsNotExist" xml:space="preserve">
+    <value>This picking a single number does not exist</value>
+  </data>
+  <data name="P0806130000_PickStatus_Cancel" xml:space="preserve">
+    <value>This picking orders has been canceled, can not bind</value>
+  </data>
+  <data name="P0806130000_PickStatusToEmpID" xml:space="preserve">
+    <value>This pick list is assigned to the job number</value>
+  </data>
+  <data name="P0806130000_PleaseScanPickNo" xml:space="preserve">
+    <value>Please Scan Pick No.</value>
+  </data>
+  <data name="P0806130000_EmpIDError" xml:space="preserve">
+    <value>Job number is incorrect</value>
+  </data>
+  <data name="P0806130000_EmpIDIsNotExist" xml:space="preserve">
+    <value>Please enter the correct job number</value>
+  </data>
+  <data name="P0806130000_PickOrdNoIsExist" xml:space="preserve">
+    <value>Existing personnel on this picking list perform single picking</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoIsNotExist" xml:space="preserve">
+    <value>No such shipping single number!</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoIsExist" xml:space="preserve">
+    <value>This shipper has been batch picking</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoPickFinish" xml:space="preserve">
+    <value>This shipper has already been batch picked by personnel</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoPickFinished" xml:space="preserve">
+    <value>This shipper has been picked</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoPicking" xml:space="preserve">
+    <value>This shipper has already been picked</value>
+  </data>
+  <data name="P0806130000_PickOrdNoPickFinished" xml:space="preserve">
+    <value>This pick order has been picked</value>
+  </data>
+  <data name="P0806130000_PickOrdNoPicking" xml:space="preserve">
+    <value>This picking list has already been picked</value>
+  </data>
+  <data name="P2001010000_SerialNoError" xml:space="preserve">
+    <value>The serial number {0} is wrong, {1}</value>
+  </data>
+  <data name="P2001010000_SerialNoIsRepeat" xml:space="preserve">
+    <value>Repeat with serial number, please check serial number</value>
+  </data>
+  <data name="P2001010000_SerialNoCountError" xml:space="preserve">
+    <value>The serial number is different from the recalled or recalled number</value>
+  </data>
+  <data name="P0806130000_SinglePick" xml:space="preserve">
+    <value>This pick order  is set to single pick, please read the order number</value>
+  </data>
+  <data name="P0806130000_BatchPick" xml:space="preserve">
+    <value>This picking list  is set to batch picking, please read the picking list number</value>
+  </data>
+  <data name="WmsNoMustUnPackagedToAddLack" xml:space="preserve">
+    <value>This shipper must be unpackaged to be able to set picking defects</value>
+  </data>
+  <data name="P060103Service_CannotBeRecovered" xml:space="preserve">
+    <value>Order {0} has not been picked up yet and cannot be returned to the storage location</value>
+  </data>
+  <data name="P0806130000_WmsOrdNoCancel" xml:space="preserve">
+    <value>This shipper has been cancelled</value>
+  </data>
+  <data name="P0806130000_PickOrdNoCancel" xml:space="preserve">
+    <value>This pick order has been cancelled</value>
+  </data>
+  <data name="P0807010000_ChangeBoxNum" xml:space="preserve">
+    <value>Change carton</value>
+  </data>
+  <data name="P2001010000_NotExistCause" xml:space="preserve">
+    <value>The reason for the change does not exist</value>
+  </data>
+  <data name="P080701Service_ScanOrginalItem" xml:space="preserve">
+    <value>ShipList Has OrginalItem,Please Scan OrginalItem ItemCode/SN/BoxNo</value>
+  </data>
+  <data name="P080701Service_OrginalItemQtyMustOne" xml:space="preserve">
+    <value>This is OrginalItem, PackQty Must One</value>
+  </data>
+  <data name="P080701Service_PreBoxHasOrginalItemNotClose" xml:space="preserve">
+    <value>PreBox is Orginalitem,But Not Closed,Please Manually Close Box</value>
+  </data>
+  <data name="P080701Service_OrginalItem" xml:space="preserve">
+    <value>OrginalItem</value>
+  </data>
+  <data name="P080701Service_ErrorBoxItemCode" xml:space="preserve">
+    <value>BoxItemCode is Wrong,Please Scan BoxItemCode</value>
+  </data>
+  <data name="P080701Service_NewBox" xml:space="preserve">
+    <value>Add New Box</value>
+  </data>
+  <data name="P2001010000_IsAutoWarehourse" xml:space="preserve">
+    <value>The storage position {0} is an automatic warehouse, and the commodity inventory cannot be adjusted</value>
+  </data>
+  <data name="P2001010000_IsAutoWarehourseIsNotAvailable" xml:space="preserve">
+    <value>The storage location {0} is an automatic storage location and cannot be put on the shelf</value>
+  </data>
+  <data name="P250302Service_SERIAL_NO_NOT_IN_STOCK" xml:space="preserve">
+    <value>The old serial number {0} status is not in the library (A1)</value>
+  </data>
+  <data name="P160202Service_ItemMakeNoStockNotEnough" xml:space="preserve">
+    <value>Item No. {0}Batch No.{1}Pre-return {2}pcs, {3}pcs is insufficient</value>
+  </data>
+  <data name="P160202Service_ItemStockNotEnough" xml:space="preserve">
+    <value>Item No. {0}{1} pre-returned, {2} insufficient in stock</value>
+  </data>
+  <data name="P160202Service_RtnWmsQtyOverRtnQty" xml:space="preserve">
+    <value>[Factory return order {0} Factory return serial number {1}] This time the factory withdrawal quantity {2} exceeds the expected factory return quantity {3}-the factory withdrawal quantity {4}</value>
+  </data>
+  <data name="P140104Service_InventoryNotFinish" xml:space="preserve">
+    <value>This inventory order {0} has not completed the inventory, and the difference query cannot be performed</value>
+  </data>
+  <data name="P140104Service_FirstInventoryNotFinish" xml:space="preserve">
+    <value>This inventory order {0} has not completed the initial order and cannot generate re-examination data</value>
+  </data>
+  <data name="P1401020000_InventoryLossWHIdNotSetting" xml:space="preserve">
+    <value>Inventory loss position has not been set</value>
+  </data>
+  <data name="P140104Service_SecondInventoryNotExist" xml:space="preserve">
+    <value>This inventory order {0} has not completed the review and cannot regenerate the review data</value>
+  </data>
+  <data name="PurchaseCustCostError" xml:space="preserve">
+    <value>Cross-consolidated purchase orders do not require receiving and dispatching operations</value>
+  </data>
+  <data name="P080201Service_NotData" xml:space="preserve">
+    <value>Can't find the information to update</value>
+  </data>
+  <data name="P0806130000_PickOrdNoIsAutoPick" xml:space="preserve">
+    <value>This pick order is for automatic warehouse picking and cannot be bound</value>
+  </data>
+  <data name="P0806130000_PickOrdNoIsPdaPick" xml:space="preserve">
+    <value>This pick order is for PDA picking and cannot be bound</value>
+  </data>
+  <data name="P080614Service_PickAllotFinished" xml:space="preserve">
+    <value>PickOrder is Allot Finished</value>
+  </data>
+  <data name="P080614Service_PickIsCancel" xml:space="preserve">
+    <value>PickOrder is Cancel，Please Move To ErrorArea</value>
+  </data>
+  <data name="P080614Service_PickIsNotArtificalOrder" xml:space="preserve">
+    <value>PickOrder is Not ArtificalOrder</value>
+  </data>
+  <data name="P080614Service_PickIsNotExist" xml:space="preserve">
+    <value>PickOrder is Not Exist</value>
+  </data>
+  <data name="P080614Service_PickIsNotPickFinished" xml:space="preserve">
+    <value>PickOrder is Not Finish</value>
+  </data>
+  <data name="P080614Service_PickIsSinglePickConfirmIsOutOfStock" xml:space="preserve">
+    <value>PickOrder is Single Order,Please Confirm Picking Has Product OutOfStock?{0} (Choose Yes: Must Allot Pick,Cannot Break Allot、Choose No: Not Allot,Please Go to Package Station)</value>
+  </data>
+  <data name="P080614Service_ContainerIsUsed" xml:space="preserve">
+    <value>This container is in use, can not be bound</value>
+  </data>
+  <data name="P080614Service_ContainerTypeError" xml:space="preserve">
+    <value>This container is for cross-warehouse, can not be bound</value>
+  </data>
+  <data name="P080614Service_ItemNoExist" xml:space="preserve">
+    <value>Your Scan Product Barcode Not Exist</value>
+  </data>
+  <data name="P080614Service_ItemNoExistInOrder" xml:space="preserve">
+    <value>Your Scan Product Barcode Not In PickOrder</value>
+  </data>
+  <data name="P080614Service_ItemIsSerialItemPleaseScanSerialNo" xml:space="preserve">
+    <value>This Product is Serial Product, Please Scan Product Serial</value>
+  </data>
+  <data name="P080614Service_ThisSerialIsFreeze" xml:space="preserve">
+    <value>This Serial Is Freeze</value>
+  </data>
+  <data name="P080614Service_ThisSerialIsNotInWarehouse" xml:space="preserve">
+    <value>This Serial Is Not InWarehouse</value>
+  </data>
+  <data name="P080614Service_ItemIsAllotFinished" xml:space="preserve">
+    <value>This Product is Allot Finished</value>
+  </data>
+  <data name="P080614Service_PickIsPdaSinglePickCanotAllot" xml:space="preserve">
+    <value>This is PDA Single Pick，Can not to Allot，Please Pre See PDA Direct To Package or Collection</value>
+  </data>
+  <data name="P200101Service_NotCancelOrdNos" xml:space="preserve">
+    <value>Order {0}, packaged or shipped or auditing, cannot be cancelled</value>
+  </data>
+  <data name="CanNotUseLMSRoute" xml:space="preserve">
+    <value>The batch date: {0} Time period: {1} The picking list cannot currently be sorted by LMS, please select the following processing method</value>
+  </data>
+  <data name="P080804Service_BatchContainerNotFInished" xml:space="preserve">
+    <value>BatchDate:{0} BatchTime:{1} Target:{2} {3} Have Container:{4} Not Finish Allot，Please finished this container</value>
+  </data>
+  <data name="P080804Service_BatchPickNotFinished" xml:space="preserve">
+    <value>BathcDate:{0} BatchTime:{1} Target:{2} Have PickOrder Not Finished</value>
+  </data>
+  <data name="P080804Service_ContianerNoNotExist" xml:space="preserve">
+    <value>Container Is not exist</value>
+  </data>
+  <data name="P080804Service_DcNotSetLossWarehouse" xml:space="preserve">
+    <value>Dc{0} not set loss warehouse</value>
+  </data>
+  <data name="P080804Service_ItemBarcodeNotInBox" xml:space="preserve">
+    <value>Your Scan Barcode Not in Box</value>
+  </data>
+  <data name="P080804Service_ItemIsAllotFinish" xml:space="preserve">
+    <value>Product is allot finished</value>
+  </data>
+  <data name="P080804Service_NewBoxIsUsed" xml:space="preserve">
+    <value>NewBox{0} is used cannot bind</value>
+  </data>
+  <data name="P080804Service_OrgAddBoxHasProduct" xml:space="preserve">
+    <value>OrgBox{0} not any product cannot addbox</value>
+  </data>
+  <data name="P080804Service_OrgBoxHasProduct" xml:space="preserve">
+    <value>OrgBox{0} have product cannot bind</value>
+  </data>
+  <data name="P080804Service_OrgBoxIsClosed" xml:space="preserve">
+    <value>OrgBox{0} is closed cannot bind</value>
+  </data>
+  <data name="P080804Service_OrgBoxNotExist" xml:space="preserve">
+    <value>OrgBox{0} DataNotExist</value>
+  </data>
+  <data name="P080804Service_SerialIsLock" xml:space="preserve">
+    <value>This product serial is lock</value>
+  </data>
+  <data name="P080804Service_SerialIsNotInWarehouse" xml:space="preserve">
+    <value>This product serial is not in warehouse</value>
+  </data>
+  <data name="P080804Service_SerialIsActived" xml:space="preserve">
+    <value>This serial number belong to defective product cannot be shipped</value>
+  </data>
+  <data name="P080804Service_SerialItemMustScanSeriral" xml:space="preserve">
+    <value>This product is SerialItem,Please Scan Product Serial</value>
+  </data>
+  <data name="P080804Service_YouScanItemBarcodeNotExist" xml:space="preserve">
+    <value>Your scan itembarcode is not exist</value>
+  </data>
+</root>

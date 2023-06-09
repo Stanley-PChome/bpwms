@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddItem" xml:space="preserve">
+    <value>New Details</value>
+  </data>
+  <data name="AddOrEditInventoryName" xml:space="preserve">
+    <value>Inventory name</value>
+  </data>
+  <data name="AddOrEditWareHouseId" xml:space="preserve">
+    <value>Do not warehouse inventory</value>
+  </data>
+  <data name="AGV_STATUS_DESC" xml:space="preserve">
+    <value>AGV inventory status</value>
+  </data>
+  <data name="AllDifferenceProduct" xml:space="preserve">
+    <value>All goods are different</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Storage areas</value>
+  </data>
+  <data name="AreaName" xml:space="preserve">
+    <value>Storage area name</value>
+  </data>
+  <data name="BOX_CTRL_NO" xml:space="preserve">
+    <value>Case number</value>
+  </data>
+  <data name="CHANNEL_BEGIN" xml:space="preserve">
+    <value>Channels play</value>
+  </data>
+  <data name="CHANNEL_END" xml:space="preserve">
+    <value>As of channels</value>
+  </data>
+  <data name="CheckTool" xml:space="preserve">
+    <value>Inventory Tool</value>
+  </data>
+  <data name="CHECK_TOOL_DESC" xml:space="preserve">
+    <value>Inventory Tool</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CurrentClosePoint" xml:space="preserve">
+    <value>Currently Closing point:</value>
+  </data>
+  <data name="CYCLE_TIMES" xml:space="preserve">
+    <value>The first cycle counting</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>Delete details</value>
+  </data>
+  <data name="DetailRecords" xml:space="preserve">
+    <value>Detailed results of the query</value>
+  </data>
+  <data name="DIFF_QTY" xml:space="preserve">
+    <value>Inventory difference (B-A)</value>
+  </data>
+  <data name="EditQty" xml:space="preserve">
+    <value>WMS inventory  qty</value>
+  </data>
+  <data name="EnterDate" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="ENTER_DATE" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="ExcelImportInventoryDetailItem" xml:space="preserve">
+    <value>Excel import inventory results</value>
+  </data>
+  <data name="ExcelImportItemCode" xml:space="preserve">
+    <value>Excel import</value>
+  </data>
+  <data name="ExportDetailWareHouseList" xml:space="preserve">
+    <value>Export inventory of single details</value>
+  </data>
+  <data name="ExportFailDataDetail" xml:space="preserve">
+    <value>Export inventory of single failure details</value>
+  </data>
+  <data name="FailMessage" xml:space="preserve">
+    <value>Error message</value>
+  </data>
+  <data name="FEE" xml:space="preserve">
+    <value>Cost / next</value>
+  </data>
+  <data name="FilterCondition" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="First_Condition" xml:space="preserve">
+    <value>A filter condition</value>
+  </data>
+  <data name="FIRST_QTY" xml:space="preserve">
+    <value>Chupan number</value>
+  </data>
+  <data name="FLOOR_BEGIN" xml:space="preserve">
+    <value>From the floor</value>
+  </data>
+  <data name="FLOOR_END" xml:space="preserve">
+    <value>As of floors</value>
+  </data>
+  <data name="FLUSHBACK" xml:space="preserve">
+    <value>Overage can punch back</value>
+  </data>
+  <data name="Flush_Back" xml:space="preserve">
+    <value>Overage can punch back</value>
+  </data>
+  <data name="FST_INVENTORY_DATE" xml:space="preserve">
+    <value>Chupan time</value>
+  </data>
+  <data name="FST_INVENTORY_NAME" xml:space="preserve">
+    <value>Chupan staff</value>
+  </data>
+  <data name="InventoryDetailItem" xml:space="preserve">
+    <value>Count Results</value>
+  </data>
+  <data name="InventoryItemList" xml:space="preserve">
+    <value>Merchandise inventory</value>
+  </data>
+  <data name="InventoryLoc" xml:space="preserve">
+    <value>Inventory storage spaces</value>
+  </data>
+  <data name="InventoryYearMonth" xml:space="preserve">
+    <value>year/month</value>
+  </data>
+  <data name="INVENTORY_CYCLE" xml:space="preserve">
+    <value>cycle</value>
+  </data>
+  <data name="INVENTORY_DATE" xml:space="preserve">
+    <value>Count Date</value>
+  </data>
+  <data name="INVENTORY_MON" xml:space="preserve">
+    <value>month</value>
+  </data>
+  <data name="INVENTORY_NO" xml:space="preserve">
+    <value>Inventory of single number</value>
+  </data>
+  <data name="INVENTORY_TYPE" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="INVENTORY_YEAR" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="ISCHARGE" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="IsItemCode" xml:space="preserve">
+    <value>Designated goods:</value>
+  </data>
+  <data name="IsRangeProduct" xml:space="preserve">
+    <value>The difference between the number of</value>
+  </data>
+  <data name="IsSelected" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="IsShowQueryDetailRule" xml:space="preserve">
+    <value>Query detailed conditions</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ItemColor" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEMQTY" xml:space="preserve">
+    <value>Differences in the number of food items</value>
+  </data>
+  <data name="ItemSize" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ItemSpec" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="ITEM_CNT" xml:space="preserve">
+    <value>The total number of food items</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_QTY" xml:space="preserve">
+    <value>The total number of goods</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="LocCode" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>Number storage spaces</value>
+  </data>
+  <data name="Loc__Code" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="LOSS_QTY" xml:space="preserve">
+    <value>Number of Discs loss</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="P1401010000xamlcs_ImportFail" xml:space="preserve">
+    <value>Import failed!</value>
+  </data>
+  <data name="P1401010000xamlcs_Inventory" xml:space="preserve">
+    <value>Inventory list</value>
+  </data>
+  <data name="P1401010000xamlcs_IventoryList" xml:space="preserve">
+    <value>Inventory Inventory</value>
+  </data>
+  <data name="P1401010000xamlcs_QueryDataEmpty" xml:space="preserve">
+    <value>No data, no preview or print!</value>
+  </data>
+  <data name="P1401010000_Asking" xml:space="preserve">
+    <value>Ask</value>
+  </data>
+  <data name="P1401010000_AskingForQueryWillReplaceInventoryItemList" xml:space="preserve">
+    <value>After the query will replace the current list of goods inventory already exists, whether to research?</value>
+  </data>
+  <data name="P1401010000_AtleastOneInventoryWareHouseData" xml:space="preserve">
+    <value>Warehouse inventory check sum do not at least</value>
+  </data>
+  <data name="P1401010000_checkCount" xml:space="preserve">
+    <value>Check billing, fee required</value>
+  </data>
+  <data name="P1401010000_Customer" xml:space="preserve">
+    <value>This owner [</value>
+  </data>
+  <data name="P1401010000_CycleTimesLessEqualThanCycle" xml:space="preserve">
+    <value>Number of cycles equal to the cycle disc must be less than</value>
+  </data>
+  <data name="P1401010000_ENTER_DATE" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="P1401010000_ExcelName" xml:space="preserve">
+    <value>Failed inventory list</value>
+  </data>
+  <data name="P1401010000_ExistData" xml:space="preserve">
+    <value>Data already exists</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetail" xml:space="preserve">
+    <value>Export inventory of single details</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailFail" xml:space="preserve">
+    <value>Export inventory of single failure details</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailFailDataFail" xml:space="preserve">
+    <value>Export inventory data failed detailed failure</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailFailDataSuccess" xml:space="preserve">
+    <value>Details successfully export inventory data failed</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailSuccess" xml:space="preserve">
+    <value>Export inventory order detail success</value>
+  </data>
+  <data name="P1401010000_FirstInventoryDetailQtyNeedMoreThanZero" xml:space="preserve">
+    <value>Chupan must be greater than or equal to 0</value>
+  </data>
+  <data name="P1401010000_FIRST_QTY" xml:space="preserve">
+    <value>Chupan number</value>
+  </data>
+  <data name="P1401010000_FLUSHBACKNAME" xml:space="preserve">
+    <value>Overage can punch back</value>
+  </data>
+  <data name="P1401010000_ImportEmptyExcel" xml:space="preserve">
+    <value>No import Excel data</value>
+  </data>
+  <data name="P1401010000_ImportErrorExcel" xml:space="preserve">
+    <value>Import Excel Malformed</value>
+  </data>
+  <data name="P1401010000_ImportItemIsExistInInventoryItemList" xml:space="preserve">
+    <value>Import goods inventory number already exists in the list of goods</value>
+  </data>
+  <data name="P1401010000_ImportSearchDetailCountHint" xml:space="preserve">
+    <value>Under this condition inventory detail consensus {0} pen, the screen display 500 pen</value>
+  </data>
+  <data name="P1401010000_ImportSuccessDetail" xml:space="preserve">
+    <value>Import Success {0} (Add{1}+Update{2})，Failure {3}，Total {4} </value>
+  </data>
+  <data name="P1401010000_InsertFail" xml:space="preserve">
+    <value>Add failed!</value>
+  </data>
+  <data name="P1401010000_InsertSuccess" xml:space="preserve">
+    <value>! New inventory successful single number: {0}</value>
+  </data>
+  <data name="P1401010000_InventoryDetail" xml:space="preserve">
+    <value>Inventory of single detail -</value>
+  </data>
+  <data name="P1401010000_InventoryLocItemNotValid" xml:space="preserve">
+    <value>This non-inventory goods storage spaces or the range</value>
+  </data>
+  <data name="P1401010000_ItemIsExistInInventoryItemList" xml:space="preserve">
+    <value>This Product ID already exists in the inventory list of goods</value>
+  </data>
+  <data name="P1401010000_ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P1401010000_ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="P1401010000_ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="P1401010000_ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="P1401010000_ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="P1401010000_LOC_CODE" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="P1401010000_NeedCycle" xml:space="preserve">
+    <value>Required period</value>
+  </data>
+  <data name="P1401010000_NeedCycleTimes" xml:space="preserve">
+    <value>The number of cycles required disk</value>
+  </data>
+  <data name="P1401010000_NeedSetChannelBegin" xml:space="preserve">
+    <value>Do not count the cartridge must be set path Termini</value>
+  </data>
+  <data name="P1401010000_NeedSetFloorBegin" xml:space="preserve">
+    <value>Do not count the cartridge must be set floor Termini</value>
+  </data>
+  <data name="P1401010000_NeedSetPlainBegin" xml:space="preserve">
+    <value>Do not count the cartridge holder must be set Termini</value>
+  </data>
+  <data name="P1401010000_NoItemCode" xml:space="preserve">
+    <value>] No such item no [</value>
+  </data>
+  <data name="P1401010000_PluralInventoryDetailQtyNeedMoreThanZero" xml:space="preserve">
+    <value>Replay number must be greater than 0</value>
+  </data>
+  <data name="P1401010000_QTY" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="P1401010000_QueryInventoryEDate" xml:space="preserve">
+    <value>Count Date</value>
+  </data>
+  <data name="P1401010000_SECOND_QTY" xml:space="preserve">
+    <value>Replay number</value>
+  </data>
+  <data name="P1401010000_UpdateFail" xml:space="preserve">
+    <value>Update failed!</value>
+  </data>
+  <data name="P1401010000_VALID_DATE" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="P1401010000_WAREHOUSE_NAME" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="P140101_ErrorLocCodeList" xml:space="preserve">
+    <value>Error storage spaces list</value>
+  </data>
+  <data name="P140101_ExcelImportLoc" xml:space="preserve">
+    <value>Excel import</value>
+  </data>
+  <data name="P140101_ImportInventoryLocFormatError" xml:space="preserve">
+    <value>Data field error!</value>
+  </data>
+  <data name="P140101_ImportInventoryLocNotExist" xml:space="preserve">
+    <value>Import data in there {0} pen storage spaces do not exist, {1} Verify error storage spaces on the screen the list {1} Do not warehouse, storage area is correct!</value>
+  </data>
+  <data name="P140101_ImportInventoryLocNull" xml:space="preserve">
+    <value>Import file No information available</value>
+  </data>
+  <data name="P140101_ImportInventoryLocRepeat" xml:space="preserve">
+    <value>{0} duplicated reservoir pen, is automatically excluded</value>
+  </data>
+  <data name="P140101_ImportRepeatData" xml:space="preserve">
+    <value>Import data Repeat</value>
+  </data>
+  <data name="P140101_InventoryLocLimit" xml:space="preserve">
+    <value>Inventory storage spaces can input pen {0}</value>
+  </data>
+  <data name="P140101_InventoryLocLongError" xml:space="preserve">
+    <value>Error bit length input hopper !!</value>
+  </data>
+  <data name="P140101_InventoryLocNotExist" xml:space="preserve">
+    <value>Storage spaces do not exist, do not confirm the warehouse, storage area is correct!</value>
+  </data>
+  <data name="P140101_InventoryLocNull" xml:space="preserve">
+    <value>Count storage spaces must be entered</value>
+  </data>
+  <data name="P140101_InventoryLocRepeat" xml:space="preserve">
+    <value>Chu duplicated !!</value>
+  </data>
+  <data name="P140101_LocCodeList" xml:space="preserve">
+    <value>Storage spaces numbered list</value>
+  </data>
+  <data name="P140101_Manual" xml:space="preserve">
+    <value>Manual input</value>
+  </data>
+  <data name="P140101_MaskCode" xml:space="preserve">
+    <value>Mask rule</value>
+  </data>
+  <data name="P140101_NotSelectedInventoryArea" xml:space="preserve">
+    <value>Please select inventory storage area!</value>
+  </data>
+  <data name="P140101_NotSelectedMask" xml:space="preserve">
+    <value>Mask rule is not selected!</value>
+  </data>
+  <data name="P140101_NotSetLocLimit" xml:space="preserve">
+    <value>Inventory storage conditions bit is not set</value>
+  </data>
+  <data name="P140101_RepeatImportList" xml:space="preserve">
+    <value>More details are imported will be deleted, please confirm that you want to delete</value>
+  </data>
+  <data name="P140101_SelectedValueError" xml:space="preserve">
+    <value>Until a value not less than the start value!</value>
+  </data>
+  <data name="P1401020000xamlcs_ChooseInventory" xml:space="preserve">
+    <value>Please select inventory list!</value>
+  </data>
+  <data name="P1401020000xamlcs_DifferentInventory" xml:space="preserve">
+    <value>Inventory difference table</value>
+  </data>
+  <data name="P1401020000_AlreadyExistItem" xml:space="preserve">
+    <value>This product has been added!</value>
+  </data>
+  <data name="P1401020000_CheckingGenerInventoryDiff" xml:space="preserve">
+    <value>Yet import inventory data, to confirm whether the differences in the results generated inventory</value>
+  </data>
+  <data name="P1401020000_CheckingRegenerPluralDiffData" xml:space="preserve">
+    <value>Replay difference in the number of data already exists, confirmed wipe data recovery disk data to reproduce</value>
+  </data>
+  <data name="P1401020000_ItemCodeIsEmpty" xml:space="preserve">
+    <value>Item No can not be empty!</value>
+  </data>
+  <data name="P1401020000_ItemIsEmpty" xml:space="preserve">
+    <value>Not entered any merchandise!</value>
+  </data>
+  <data name="P1401020000_RangeDiffIsEmpty" xml:space="preserve">
+    <value>The number of interval differences can not be empty!</value>
+  </data>
+  <data name="P1401020000_SelectInventoryDataFirst" xml:space="preserve">
+    <value>Please select a single inventory data!</value>
+  </data>
+  <data name="P1401040000xamlcs_BalanceSheet" xml:space="preserve">
+    <value>BanMitsuruson documents Table</value>
+  </data>
+  <data name="P1401040000_ItemCodeIsExist" xml:space="preserve">
+    <value>Item No has been repeated</value>
+  </data>
+  <data name="P1401040000_SelectFilterProductList" xml:space="preserve">
+    <value>Please check the merchandise to be removed</value>
+  </data>
+  <data name="PALLET_CTRL_NO" xml:space="preserve">
+    <value>Plate number</value>
+  </data>
+  <data name="PLAIN_BEGIN" xml:space="preserve">
+    <value>His seat</value>
+  </data>
+  <data name="PLAIN_END" xml:space="preserve">
+    <value>Seat until</value>
+  </data>
+  <data name="PostingDateBegin" xml:space="preserve">
+    <value>Posting Date</value>
+  </data>
+  <data name="ProductId" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="PROFIT_QTY" xml:space="preserve">
+    <value>Overage number</value>
+  </data>
+  <data name="QTY" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="QtyCount" xml:space="preserve">
+    <value>System inventory quantity (A)</value>
+  </data>
+  <data name="Qty_Count" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="QueryDetailBegLocCode" xml:space="preserve">
+    <value>Storage spaces range</value>
+  </data>
+  <data name="QueryDetailWareHouseList" xml:space="preserve">
+    <value>Inventory of single details</value>
+  </data>
+  <data name="QueryDetialWareHouseId" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="QueryInventoryNo" xml:space="preserve">
+    <value>Inventory of single number</value>
+  </data>
+  <data name="QueryInventorySDate" xml:space="preserve">
+    <value>Count Date</value>
+  </data>
+  <data name="RangeEnd" xml:space="preserve">
+    <value>～</value>
+  </data>
+  <data name="RbBackClosePoint" xml:space="preserve">
+    <value>Closing stock rewind point</value>
+  </data>
+  <data name="RbClosePoint" xml:space="preserve">
+    <value>Copy inventory Closing point</value>
+  </data>
+  <data name="RegenerateInventoryData" xml:space="preserve">
+    <value>Replay information is generated</value>
+  </data>
+  <data name="SaveInventoryData" xml:space="preserve">
+    <value>Inventory confirmed</value>
+  </data>
+  <data name="SearchDetail" xml:space="preserve">
+    <value>Query Details</value>
+  </data>
+  <data name="SearchDetailData" xml:space="preserve">
+    <value>Single query inventory data</value>
+  </data>
+  <data name="Second_Condition" xml:space="preserve">
+    <value>Filter condition II</value>
+  </data>
+  <data name="SECOND_QTY" xml:space="preserve">
+    <value>Replay number</value>
+  </data>
+  <data name="SEC_INVENTORY_DATE" xml:space="preserve">
+    <value>Replay time</value>
+  </data>
+  <data name="SEC_INVENTORY_NAME" xml:space="preserve">
+    <value>Replay staff</value>
+  </data>
+  <data name="SelectBackClosePoint" xml:space="preserve">
+    <value>Rewind Closing point:</value>
+  </data>
+  <data name="SelectedItemLType" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="SelectedItemMType" xml:space="preserve">
+    <value>In class</value>
+  </data>
+  <data name="SelectedItemSType" xml:space="preserve">
+    <value>Subcategories</value>
+  </data>
+  <data name="SelectedReportType" xml:space="preserve">
+    <value>Report type</value>
+  </data>
+  <data name="SelectedStatus" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="SelectedWareHouseId" xml:space="preserve">
+    <value>Specify warehouse by</value>
+  </data>
+  <data name="SelectItem" xml:space="preserve">
+    <value>Designated goods:</value>
+  </data>
+  <data name="SelectStatus" xml:space="preserve">
+    <value>Inventory status</value>
+  </data>
+  <data name="SetAllFlushback" xml:space="preserve">
+    <value>All set to be overage back to red</value>
+  </data>
+  <data name="SHOW_CNT" xml:space="preserve">
+    <value>Count shows the number of</value>
+  </data>
+  <data name="SortByCount" xml:space="preserve">
+    <value>Sort according to differences in the number of</value>
+  </data>
+  <data name="SortCondition" xml:space="preserve">
+    <value>Sort by:</value>
+  </data>
+  <data name="STATION_NO" xml:space="preserve">
+    <value>workstation</value>
+  </data>
+  <data name="TIMES" xml:space="preserve">
+    <value>Secondary</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="ValidDate" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="WarehouseId" xml:space="preserve">
+    <value>Specify warehouse by:</value>
+  </data>
+  <data name="WarehouseName" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="WareHouseType" xml:space="preserve">
+    <value>Do cartridge type</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>Do not name warehouse</value>
+  </data>
+  <data name="WmsQtyCount" xml:space="preserve">
+    <value>WMS system inventory quantity (X)</value>
+  </data>
+  <data name="UnmoveStockQty" xml:space="preserve">
+    <value>WMS has been debited but not off the shelf (Y)</value>
+  </data>
+  <data name="InventoryQty" xml:space="preserve">
+    <value>Actual count (B)</value>
+  </data>
+  <data name="INVENTORY_NAME" xml:space="preserve">
+    <value>Inventory staff</value>
+  </data>
+  <data name="INVENTORY_TIME" xml:space="preserve">
+    <value>Inventory date</value>
+  </data>
+  <data name="STOCK_DIFF_QTY" xml:space="preserve">
+    <value>WMS system inventory difference number (B-X-Y)</value>
+  </data>
+  <data name="P1401020000_CheckingSelectedIsExistDatas" xml:space="preserve">
+    <value>Please check the detailed information of the inventory</value>
+  </data>
+  <data name="P1401020000_SaveInventoryConditionError" xml:space="preserve">
+    <value>Please select all the different products in the first selection of the filter criteria and all the difference products in the second selection of the filter criteria to check the inventory data, and confirm the differences are confirmed in the inventory</value>
+  </data>
+  <data name="P1401020000_CheckingIsCanSaveInventoryData" xml:space="preserve">
+    <value>Please check the inventory order information first</value>
+  </data>
+  <data name="P1401020000_WordingHeader" xml:space="preserve">
+    <value>&lt;盤點比對說明&gt; 請在庫存靜止狀態下進行盤點。</value>
+  </data>
+  <data name="P1401020000_Wording_1" xml:space="preserve">
+    <value>盤點差異數(B-A)
+(1)人工倉的系統庫存來自WMS系統、自動倉的系統庫存來自自動倉的系統。
+(2)若自動倉的盤點差異數&gt;0時，按下&lt;盤點確認&gt;會下發盤點調整任務。</value>
+  </data>
+  <data name="P1401020000_Wording_2" xml:space="preserve">
+    <value>WMS系統庫存差異數(B-X-Y)
+(1)當盤點儲位屬於人工倉時，A=X。
+(2)若盤點差異數=0，而WMS系統庫存差異數&gt;0 時，按下&lt;盤點確認&gt;，只調整WMS的庫存。</value>
+  </data>
+  <data name="AutomaticWarehouseQty" xml:space="preserve">
+    <value>Automatic warehouse inventory quantity</value>
+  </data>
+  <data name="InventoryDiscrepancies" xml:space="preserve">
+    <value>Inventory discrepancies</value>
+  </data>
+  <data name="InventoryWarehouseDiscrepancies" xml:space="preserve">
+    <value>Inventory inventory difference</value>
+  </data>
+  <data name="AdjustStatus" xml:space="preserve">
+    <value>Adjustment of status</value>
+  </data>
+  <data name="UnmovedQty" xml:space="preserve">
+    <value>WMS unmoved quantity</value>
+  </data>
+  <data name="InventoryName" xml:space="preserve">
+    <value>Inventory staff</value>
+  </data>
+  <data name="InventoryTime" xml:space="preserve">
+    <value>Inventory time</value>
+  </data>
+  <data name="InventoryDoc" xml:space="preserve">
+    <value>Inventory order to generate documents</value>
+  </data>
+  <data name="WMS_NO" xml:space="preserve">
+    <value>wmsNo</value>
+  </data>
+  <data name="P1401020000_RegenerateInventoryConditionError" xml:space="preserve">
+    <value>Please select all the different products in the first selection of the filter conditions and all the difference products in the second selection of the filter conditions to check the inventory data, and confirm that the differences are in the process of generating the review data</value>
+  </data>
+  <data name="P1401020000_RegenerateInventoryConditionError_2" xml:space="preserve">
+    <value>Inventory discrepancies or inventory discrepancies are not equal to 0 before re-counting can be performed</value>
+  </data>
+  <data name="P1401020000_NotDiffMsg" xml:space="preserve">
+    <value>There are no differences in this inventory or do not accept any differences?</value>
+  </data>
+  <data name="P1401020000_NotNeedRegenerate" xml:space="preserve">
+    <value>There is no difference in this inventory, no need to create a review list</value>
+  </data>
+</root>

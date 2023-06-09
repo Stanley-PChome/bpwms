@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddTo" xml:space="preserve">
+    <value>Add to</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="AllRetail" xml:space="preserve">
+    <value>All stores</value>
+  </data>
+  <data name="AreaCode" xml:space="preserve">
+    <value>Area code</value>
+  </data>
+  <data name="AreaName" xml:space="preserve">
+    <value>Zone Name</value>
+  </data>
+  <data name="Box" xml:space="preserve">
+    <value>box</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="ConfirmIsDataModify" xml:space="preserve">
+    <value>Data has been modified, whether you want to save?</value>
+  </data>
+  <data name="ConfirmIsDataModify2" xml:space="preserve">
+    <value>Are you sure you want to save the information in this modified?</value>
+  </data>
+  <data name="CREATE_DATE" xml:space="preserve">
+    <value>Filing date</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="CRT_STAFF" xml:space="preserve">
+    <value>Establishment staff</value>
+  </data>
+  <data name="CSV" xml:space="preserve">
+    <value>CSV</value>
+  </data>
+  <data name="CustCodeCategory" xml:space="preserve">
+    <value>Customers do not</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Freight Owner</value>
+  </data>
+  <data name="DataIsChanged" xml:space="preserve">
+    <value>Profile has been Alert, please refer to</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>date</value>
+  </data>
+  <data name="Dc" xml:space="preserve">
+    <value>Distribution Center</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Digits_ErrorMessage" xml:space="preserve">
+    <value>Must be a positive integer</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>E-mail is malformed</value>
+  </data>
+  <data name="ExportCSV" xml:space="preserve">
+    <value>Export CSV</value>
+  </data>
+  <data name="ExportExcel" xml:space="preserve">
+    <value>Export Excel</value>
+  </data>
+  <data name="ExportXML" xml:space="preserve">
+    <value>XML export</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FormatError" xml:space="preserve">
+    <value>Incorrect input format</value>
+  </data>
+  <data name="FormService_AddFunctionForm_NotDefined" xml:space="preserve">
+    <value>Undefined</value>
+  </data>
+  <data name="GetDataFailedFormat" xml:space="preserve">
+    <value>Access to information failed because: {0}</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="InfoAddSuccess" xml:space="preserve">
+    <value>added successfully</value>
+  </data>
+  <data name="InfoDeleteSuccess" xml:space="preserve">
+    <value>successfully deleted</value>
+  </data>
+  <data name="InfoFileImportErrMsg" xml:space="preserve">
+    <value>Import error message:</value>
+  </data>
+  <data name="InfoFileImportFailed" xml:space="preserve">
+    <value>File "{0}" Import Error!</value>
+  </data>
+  <data name="InfoFileImportFailedCount" xml:space="preserve">
+    <value>Import failed items: {0} T.</value>
+  </data>
+  <data name="InfoFileImportSucceed" xml:space="preserve">
+    <value>File "{0}" Import complete!</value>
+  </data>
+  <data name="InfoFileImportSucceedCount" xml:space="preserve">
+    <value>Import successful items: {0} pen.</value>
+  </data>
+  <data name="InfoFileIsOpened" xml:space="preserve">
+    <value>Please close the currently open use of the file "{0}"!</value>
+  </data>
+  <data name="InfoMustSelectDataItem" xml:space="preserve">
+    <value>Please select the information!</value>
+  </data>
+  <data name="InfoNoData" xml:space="preserve">
+    <value>No results.</value>
+  </data>
+  <data name="InfoNoDataCanBeDelete" xml:space="preserve">
+    <value>{0} No Data can be deleted</value>
+  </data>
+  <data name="InfoNoDataSet" xml:space="preserve">
+    <value>No results {0} information, please set!</value>
+  </data>
+  <data name="InfoNoPrintData" xml:space="preserve">
+    <value>No Information Print</value>
+  </data>
+  <data name="InfoNoQueryData" xml:space="preserve">
+    <value>No check information {0}</value>
+  </data>
+  <data name="InfoNoSetResourceKeyNote" xml:space="preserve">
+    <value>note! This is not set "{0}" resource of</value>
+  </data>
+  <data name="InfoNotModified" xml:space="preserve">
+    <value>No transaction data, without storage</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="InfoSameDataIsExist" xml:space="preserve">
+    <value>The same {0} already exists!</value>
+  </data>
+  <data name="InfoSearchSuccess" xml:space="preserve">
+    <value>Query completed</value>
+  </data>
+  <data name="ItemCodeCategory" xml:space="preserve">
+    <value>Commodity group</value>
+  </data>
+  <data name="ItemNumber" xml:space="preserve">
+    <value>Line item</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading....</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="MinLength_ErrorMessage" xml:space="preserve">
+    <value>{1} is not less than the length of the code</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>modify</value>
+  </data>
+  <data name="MustAlphanumeric" xml:space="preserve">
+    <value>Please enter the numbers</value>
+  </data>
+  <data name="MustNumberOrEnglishChar" xml:space="preserve">
+    <value>{0} must be alphanumeric</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="NoDataMovementWithoutUpdating" xml:space="preserve">
+    <value>No information transaction without update</value>
+  </data>
+  <data name="NoExist" xml:space="preserve">
+    <value>{0} does not exist!</value>
+  </data>
+  <data name="Numeric_ErrorMessage" xml:space="preserve">
+    <value>Must be numeric</value>
+  </data>
+  <data name="OueryResult" xml:space="preserve">
+    <value>search result</value>
+  </data>
+  <data name="PaperSize" xml:space="preserve">
+    <value>Paper Size</value>
+  </data>
+  <data name="PleaseInput" xml:space="preserve">
+    <value>Please enter {0}</value>
+  </data>
+  <data name="PleaseReInput" xml:space="preserve">
+    <value>Please re-enter {0}</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Please Select {0}</value>
+  </data>
+  <data name="PrintAlign" xml:space="preserve">
+    <value>Print direction</value>
+  </data>
+  <data name="PrintAll" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="PrintArea" xml:space="preserve">
+    <value>Print range</value>
+  </data>
+  <data name="PrintCopyCount" xml:space="preserve">
+    <value>Copies</value>
+  </data>
+  <data name="Printer" xml:space="preserve">
+    <value>List Machine</value>
+  </data>
+  <data name="PrintHorizontal" xml:space="preserve">
+    <value>Cross India</value>
+  </data>
+  <data name="PrintPageFrom" xml:space="preserve">
+    <value>Page from</value>
+  </data>
+  <data name="PrintPageTo" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="PrintVertical" xml:space="preserve">
+    <value>Direct printing</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="QueryCondition" xml:space="preserve">
+    <value>Query conditions</value>
+  </data>
+  <data name="QueryResult" xml:space="preserve">
+    <value>search result</value>
+  </data>
+  <data name="Range_ErrorMessage" xml:space="preserve">
+    <value>Value must be between {1} and {2}</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report form</value>
+  </data>
+  <data name="Required_ErrorMessage" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="RetDln" xml:space="preserve">
+    <value>Shelf Life</value>
+  </data>
+  <data name="SearchConditions" xml:space="preserve">
+    <value>Query Conditions</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>select all</value>
+  </data>
+  <data name="SingleAdd" xml:space="preserve">
+    <value>Adding single</value>
+  </data>
+  <data name="SingleDelete" xml:space="preserve">
+    <value>Delete single</value>
+  </data>
+  <data name="SingleUpdate" xml:space="preserve">
+    <value>Single maintenance</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="StringLength_ErrorMessage" xml:space="preserve">
+    <value>Not exceed the length of the code {1}</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>update completed</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>time</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="UPD_STAFF" xml:space="preserve">
+    <value>Update Staff</value>
+  </data>
+  <data name="ValidationHasError" xml:space="preserve">
+    <value>There are data validation does not pass!</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="WarningBeforeCancel" xml:space="preserve">
+    <value>Sure you want to cancel editing?</value>
+  </data>
+  <data name="WarningBeforeClose" xml:space="preserve">
+    <value>You sure you want to leave?</value>
+  </data>
+  <data name="WarningBeforeDelete" xml:space="preserve">
+    <value>You sure you want to delete?</value>
+  </data>
+  <data name="WarningBeforeUpdate" xml:space="preserve">
+    <value>To determine the store?</value>
+  </data>
+  <data name="XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ProcessingMethod" xml:space="preserve">
+    <value>processing method</value>
+  </data>
+</root>

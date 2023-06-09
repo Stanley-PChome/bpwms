@@ -1,0 +1,1416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACCEPTENCE_DATE" xml:space="preserve">
+    <value>Acceptance Date</value>
+  </data>
+  <data name="ACCEPTENCE_QTY" xml:space="preserve">
+    <value>ACCEPTACE</value>
+  </data>
+  <data name="AddDetail" xml:space="preserve">
+    <value>New Details</value>
+  </data>
+  <data name="AddNewSearch" xml:space="preserve">
+    <value>Obtain recall details</value>
+  </data>
+  <data name="ADDRESS" xml:space="preserve">
+    <value>Contact Address</value>
+  </data>
+  <data name="ADR" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="ALLOCATE_DATE" xml:space="preserve">
+    <value>Date of Application</value>
+  </data>
+  <data name="ALLOCATIONNO" xml:space="preserve">
+    <value>No allocation alone</value>
+  </data>
+  <data name="ALLOCATION_DETAIL" xml:space="preserve">
+    <value>Allocation application form details</value>
+  </data>
+  <data name="ALLOCATION_ITEM" xml:space="preserve">
+    <value>Apply for the allocation of goods</value>
+  </data>
+  <data name="ALLOCATION_NO" xml:space="preserve">
+    <value>Requisition number</value>
+  </data>
+  <data name="ALLOCATION_QTY" xml:space="preserve">
+    <value>The number of applications</value>
+  </data>
+  <data name="ALLOW_QTY" xml:space="preserve">
+    <value>Acceptable amount</value>
+  </data>
+  <data name="ALL_ID_TEXT" xml:space="preserve">
+    <value>Distributors</value>
+  </data>
+  <data name="ALL_QTY" xml:space="preserve">
+    <value>Number of stock</value>
+  </data>
+  <data name="APPLICATION_QTY" xml:space="preserve">
+    <value>Applications</value>
+  </data>
+  <data name="AREA_NAME" xml:space="preserve">
+    <value>Storage areas</value>
+  </data>
+  <data name="ASCUST_NAME" xml:space="preserve">
+    <value>client's name</value>
+  </data>
+  <data name="ASCUST_NO" xml:space="preserve">
+    <value>Customer Code</value>
+  </data>
+  <data name="ASDEVL_DATES" xml:space="preserve">
+    <value>Shipping date</value>
+  </data>
+  <data name="ASDEVL_PAY" xml:space="preserve">
+    <value>Shipping debit</value>
+  </data>
+  <data name="AUDIT_DATE" xml:space="preserve">
+    <value>Inspection date</value>
+  </data>
+  <data name="AUDIT_NAME" xml:space="preserve">
+    <value>Inspection personnel</value>
+  </data>
+  <data name="AUDIT_QTY" xml:space="preserve">
+    <value>Returns amount</value>
+  </data>
+  <data name="AUDIT_QTY_SUM" xml:space="preserve">
+    <value>The cumulative number of brush test</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>black</value>
+  </data>
+  <data name="BookDateForEdit" xml:space="preserve">
+    <value>Scheduled recall date</value>
+  </data>
+  <data name="BOX_CTRL_NO" xml:space="preserve">
+    <value>Case number</value>
+  </data>
+  <data name="BROWSE" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="CAR_NO" xml:space="preserve">
+    <value>License plate number</value>
+  </data>
+  <data name="CAUSE" xml:space="preserve">
+    <value>Abnormal</value>
+  </data>
+  <data name="CHANGE_DATE" xml:space="preserve">
+    <value>Replacement date</value>
+  </data>
+  <data name="CHANGE_NO" xml:space="preserve">
+    <value>No single replacement</value>
+  </data>
+  <data name="CHARGE_TYPE" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="CHG_CAUSE" xml:space="preserve">
+    <value>Replacement reason</value>
+  </data>
+  <data name="CHG_CUST_CODE" xml:space="preserve">
+    <value>Replacement client code</value>
+  </data>
+  <data name="CHG_CUST_NAME" xml:space="preserve">
+    <value>Replacement Customer Name</value>
+  </data>
+  <data name="CHG_TYPE_ID" xml:space="preserve">
+    <value>Replacement type</value>
+  </data>
+  <data name="CLEAR" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="CONFIRM_MODIFY" xml:space="preserve">
+    <value>Confirm the changes</value>
+  </data>
+  <data name="CONSIGNEE" xml:space="preserve">
+    <value>Addressee</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>Contact person</value>
+  </data>
+  <data name="CONTACT_TEL" xml:space="preserve">
+    <value>contact phone</value>
+  </data>
+  <data name="COSTCENTER" xml:space="preserve">
+    <value>The owner of a custom classification</value>
+  </data>
+  <data name="COST_CENTER" xml:space="preserve">
+    <value>Cost Center</value>
+  </data>
+  <data name="CREATE" xml:space="preserve">
+    <value>operators</value>
+  </data>
+  <data name="CREATE_DESTROY_NO" xml:space="preserve">
+    <value>The establishment of a single destruction</value>
+  </data>
+  <data name="CREATE_RECALLNEW_NO" xml:space="preserve">
+    <value>The establishment of a single product recall</value>
+  </data>
+  <data name="CREATE_RTN_NO" xml:space="preserve">
+    <value>The establishment of a single return</value>
+  </data>
+  <data name="CREATE_SCRAP_NO" xml:space="preserve">
+    <value>Establish Scrap</value>
+  </data>
+  <data name="CREATE_SearchRTN" xml:space="preserve">
+    <value>Establishing the allocation application form</value>
+  </data>
+  <data name="CREATE_TRANS_NO" xml:space="preserve">
+    <value>The establishment of a single replacement</value>
+  </data>
+  <data name="CREAT_VNR_RTN" xml:space="preserve">
+    <value>Establish plant Chargeback</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CRT_NAME" xml:space="preserve">
+    <value>Personnel</value>
+  </data>
+  <data name="CUST_CODE" xml:space="preserve">
+    <value>Freight Owner</value>
+  </data>
+  <data name="CUST_NAME" xml:space="preserve">
+    <value>Shiyedanwei</value>
+  </data>
+  <data name="CUST_NO" xml:space="preserve">
+    <value>Customer Number</value>
+  </data>
+  <data name="CUST_ORD_NO" xml:space="preserve">
+    <value>External order number</value>
+  </data>
+  <data name="DcCodeForAddNewSearch" xml:space="preserve">
+    <value>Factory chargeback inquiry</value>
+  </data>
+  <data name="DcNameForSearch" xml:space="preserve">
+    <value>Query number of recalls</value>
+  </data>
+  <data name="DC_NAME" xml:space="preserve">
+    <value>Upload destruction of documents</value>
+  </data>
+  <data name="DeltetDetail" xml:space="preserve">
+    <value>Delete details</value>
+  </data>
+  <data name="DELV_NO" xml:space="preserve">
+    <value>Sent a car to a single number</value>
+  </data>
+  <data name="DESTROY_DATE" xml:space="preserve">
+    <value>Japan is expected to be destroyed</value>
+  </data>
+  <data name="DESTROY_DEVL" xml:space="preserve">
+    <value>Destruction shipping</value>
+  </data>
+  <data name="DESTROY_DONE" xml:space="preserve">
+    <value>Complete destruction</value>
+  </data>
+  <data name="DESTROY_FILEIMPORT" xml:space="preserve">
+    <value>Destruction file import</value>
+  </data>
+  <data name="DESTROY_ITEM" xml:space="preserve">
+    <value>Destruction of goods</value>
+  </data>
+  <data name="DESTROY_ITEM_DETAIL" xml:space="preserve">
+    <value>Product Details Destruction</value>
+  </data>
+  <data name="DESTROY_NO" xml:space="preserve">
+    <value>The destruction of a single number</value>
+  </data>
+  <data name="DESTROY_QTY" xml:space="preserve">
+    <value>Number of destruction</value>
+  </data>
+  <data name="DISTRIBUTION" xml:space="preserve">
+    <value>Arrival points</value>
+  </data>
+  <data name="DistributionSET" xml:space="preserve">
+    <value>Distributors set</value>
+  </data>
+  <data name="Distribution_CHECK" xml:space="preserve">
+    <value>Distributors confirmation</value>
+  </data>
+  <data name="DISTR_AREA_TEXT" xml:space="preserve">
+    <value>Delivery Area</value>
+  </data>
+  <data name="DISTR_CAR" xml:space="preserve">
+    <value>Sent a car</value>
+  </data>
+  <data name="DISTR_CAR_MEMO" xml:space="preserve">
+    <value>Notes sent a car</value>
+  </data>
+  <data name="DISTR_CAR_NO" xml:space="preserve">
+    <value>Sent a car to a single number</value>
+  </data>
+  <data name="EanCode" xml:space="preserve">
+    <value>Barcode unknown pieces</value>
+  </data>
+  <data name="EMERGENCY" xml:space="preserve">
+    <value>urgent</value>
+  </data>
+  <data name="EnterDateBegin" xml:space="preserve">
+    <value>Warehousing date</value>
+  </data>
+  <data name="ERR_CODE" xml:space="preserve">
+    <value>Abnormal conditions</value>
+  </data>
+  <data name="EXCEL_EXPORT" xml:space="preserve">
+    <value>Export Excel files</value>
+  </data>
+  <data name="FileMemo" xml:space="preserve">
+    <value>File Description</value>
+  </data>
+  <data name="FILE_UPLOAD" xml:space="preserve">
+    <value>File upload</value>
+  </data>
+  <data name="GUP_NAME" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="HELP_TIME" xml:space="preserve">
+    <value>Help time</value>
+  </data>
+  <data name="ImportWmsOrdDetails" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="IMPORT_DETAIL" xml:space="preserve">
+    <value>Import Details</value>
+  </data>
+  <data name="IMPORT_NewSearch_DETAIL" xml:space="preserve">
+    <value>Import Commodity recall details</value>
+  </data>
+  <data name="Inches4point5" xml:space="preserve">
+    <value>4.5 inches</value>
+  </data>
+  <data name="Inches5" xml:space="preserve">
+    <value>5 inches</value>
+  </data>
+  <data name="INSERT" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ISCLOSE" xml:space="preserve">
+    <value>Forced closed</value>
+  </data>
+  <data name="ISPASS" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="IsSelected" xml:space="preserve">
+    <value>Setting warehouse by</value>
+  </data>
+  <data name="ITEMCODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEMNAME" xml:space="preserve">
+    <value>product name</value>
+  </data>
+  <data name="ItemValidDateBeginForAddNewSearch" xml:space="preserve">
+    <value>Commodity Term</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_SEARCHRTN" xml:space="preserve">
+    <value>Allocation of goods</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="LOC_QTY" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="MATERIAL_NO" xml:space="preserve">
+    <value>Part No</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="MODIFY_DATE" xml:space="preserve">
+    <value>Modified Date</value>
+  </data>
+  <data name="MODIFY_DETAIL" xml:space="preserve">
+    <value>Modify details</value>
+  </data>
+  <data name="MOVED_QTY" xml:space="preserve">
+    <value>Has several shelves</value>
+  </data>
+  <data name="MULTIRETURN" xml:space="preserve">
+    <value>Multi-retired number</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="NOTALLOW_QTY" xml:space="preserve">
+    <value>Do not allow Yield</value>
+  </data>
+  <data name="NOTMOVED_QTY" xml:space="preserve">
+    <value>No amount shelves</value>
+  </data>
+  <data name="NOT_RTN_WMS_QTY" xml:space="preserve">
+    <value>The number of plants not retreat</value>
+  </data>
+  <data name="ORD_NO" xml:space="preserve">
+    <value>Document Number</value>
+  </data>
+  <data name="ORD_PROP" xml:space="preserve">
+    <value>Job Category</value>
+  </data>
+  <data name="P1601010000_BeginDateLessThanEndDate" xml:space="preserve">
+    <value>No larger than the starting date until the closing date!</value>
+  </data>
+  <data name="P1601010000_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="P1601010000_ChooseDC" xml:space="preserve">
+    <value>Please select Distribution Center</value>
+  </data>
+  <data name="P1601010000_CloseCase" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="P1601010000_Input" xml:space="preserve">
+    <value>please enter</value>
+  </data>
+  <data name="P1601010000_ItemCodeExist" xml:space="preserve">
+    <value>This product item numbers {0} already exists</value>
+  </data>
+  <data name="P1601010000_Pending" xml:space="preserve">
+    <value>To be processed</value>
+  </data>
+  <data name="P1601010000_Processed" xml:space="preserve">
+    <value>Processed</value>
+  </data>
+  <data name="P1601010100xamlcs_Black" xml:space="preserve">
+    <value>black</value>
+  </data>
+  <data name="P1601010100xamlcs_Inches5" xml:space="preserve">
+    <value>5 inches</value>
+  </data>
+  <data name="P1601010100xamlcs_None" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="P1601010100xamlcs_Processed" xml:space="preserve">
+    <value>Processed</value>
+  </data>
+  <data name="P1601020000xamlcs_NullData" xml:space="preserve">
+    <value>No data, no preview or print!</value>
+  </data>
+  <data name="P1601020000xamlcs_TransferApplicateNo" xml:space="preserve">
+    <value>Allocation application form</value>
+  </data>
+  <data name="P1601020000_ChooseDC" xml:space="preserve">
+    <value>Choose Distribution Center</value>
+  </data>
+  <data name="P1601020000_ChooseTransferApplicateItem" xml:space="preserve">
+    <value>Allocation application is not selected merchandise!</value>
+  </data>
+  <data name="P1601020000_FilterDuplicate_UpdateDB" xml:space="preserve">
+    <value>Filtered import duplicate items, and update the inventory database</value>
+  </data>
+  <data name="P1601020000_Frozen" xml:space="preserve">
+    <value>freezing</value>
+  </data>
+  <data name="P1601020000_GeneratePrint_TransferApplicateNo" xml:space="preserve">
+    <value>Are you sure you generate and print a single application allocation?</value>
+  </data>
+  <data name="P1601020000_Is" xml:space="preserve">
+    <value>{0} to {1}</value>
+  </data>
+  <data name="P1601020000_ItemCode_LocCode_ValidDate" xml:space="preserve">
+    <value>Item No {0} Storage Spaces {1}  Validity Date{2} Storage Date {3}</value>
+  </data>
+  <data name="P1601020000_itemTmprs" xml:space="preserve">
+    <value>{0} to {1} stratosphere, food items can not be set to the following stratosphere: \ r \ n {2}</value>
+  </data>
+  <data name="P1601020000_LowTemperature" xml:space="preserve">
+    <value>Hypothermia</value>
+  </data>
+  <data name="P1601020000_NoDataToPrint" xml:space="preserve">
+    <value>This requisition without any food items Print</value>
+  </data>
+  <data name="P1601020000_NotWork" xml:space="preserve">
+    <value>Invalid operation</value>
+  </data>
+  <data name="P1601020000_OnSaleQtyEmpty" xml:space="preserve">
+    <value>Shelves number can not be 0!</value>
+  </data>
+  <data name="P1601020000_OnSaleQty_GreaterThan_StockQty" xml:space="preserve">
+    <value>Shelves number not be greater than the number of stock!</value>
+  </data>
+  <data name="P1601020000_RegularTemperature" xml:space="preserve">
+    <value>Room temperature</value>
+  </data>
+  <data name="P1601020000_SameItemCode" xml:space="preserve">
+    <value>Item number: {0}, the data already exists, whether to update the number?</value>
+  </data>
+  <data name="P1601020000_Tar_WarehouseID_NotSet" xml:space="preserve">
+    <value>Purpose warehouse by not set!</value>
+  </data>
+  <data name="P160102_BoxCtrlNo" xml:space="preserve">
+    <value>Case number</value>
+  </data>
+  <data name="P160102_MakeNo" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="P160102_PalletCtrlNo" xml:space="preserve">
+    <value>Plate number</value>
+  </data>
+  <data name="P1601050000xamlcs_Destpath" xml:space="preserve">
+    <value>Select Save Path</value>
+  </data>
+  <data name="P1601050000_ColumnName1" xml:space="preserve">
+    <value>No. | Gate | Shipper Number | Number son | Product Code | customer number | Customer Name | shipping date</value>
+  </data>
+  <data name="P1601050000_ColumnName2" xml:space="preserve">
+    <value>No. | Gate | state</value>
+  </data>
+  <data name="P1601050000_Footer" xml:space="preserve">
+    <value>Footer: Sub Total Total Quantity Item Number</value>
+  </data>
+  <data name="P1602010000xamlcs_ChooseDC" xml:space="preserve">
+    <value>Choose Distribution Center</value>
+  </data>
+  <data name="P1602010000xamlcs_NullData" xml:space="preserve">
+    <value>No data, no preview or print!</value>
+  </data>
+  <data name="P1602010000xamlcs_TransferApplicateNo" xml:space="preserve">
+    <value>Allocation application form</value>
+  </data>
+  <data name="P1602010000xamlcs_VNRCode_Required" xml:space="preserve">
+    <value>Enter the vendor ID</value>
+  </data>
+  <data name="P1602010000_ChooseVNR_RTN_Cause" xml:space="preserve">
+    <value>Please select the reason for withdrawal factory</value>
+  </data>
+  <data name="P1602010000_ChooseVNR_RTN_Date" xml:space="preserve">
+    <value>Please select dates back plant</value>
+  </data>
+  <data name="P1602010000_ChooseVNR_RTN_No" xml:space="preserve">
+    <value>Please select the vendor ID</value>
+  </data>
+  <data name="P1602010000_ChooseVNR_RTN_Reason" xml:space="preserve">
+    <value>Please select the type of plant retreat</value>
+  </data>
+  <data name="P1602010000_ChooseWorkType" xml:space="preserve">
+    <value>Choose job category</value>
+  </data>
+  <data name="P1602010000_CRT_DateEmpty" xml:space="preserve">
+    <value>Creation date of origin and destination must enter the day!</value>
+  </data>
+  <data name="P1602010000_Item_Required" xml:space="preserve">
+    <value>\ N detail in this article must have item</value>
+  </data>
+  <data name="P1602010000_NoData" xml:space="preserve">
+    <value>No results!</value>
+  </data>
+  <data name="P1602010000_NoItem" xml:space="preserve">
+    <value>\ N original details no such food items</value>
+  </data>
+  <data name="P1602010000_NoVNR_ADR_Default" xml:space="preserve">
+    <value>This {0} supplier  no address, default is self-created!</value>
+  </data>
+  <data name="P1602010000_NoVNR_RTN_Detail" xml:space="preserve">
+    <value>No details of plant retreat</value>
+  </data>
+  <data name="P1602010000_NO_Address" xml:space="preserve">
+    <value>This supplier no address, check to be self-created!</value>
+  </data>
+  <data name="P1602010000_ORD_NO_StatusUnabledDelete" xml:space="preserve">
+    <value>The status of this document has not deleted</value>
+  </data>
+  <data name="P1602010000_RTNItemCount_Equal_VNR_RTN_count" xml:space="preserve">
+    <value>\ N with the number of items to be equal to the original factory retreat total retreat</value>
+  </data>
+  <data name="P1602010000_VNRCodeNotFound" xml:space="preserve">
+    <value>Supplier No. does not exist!</value>
+  </data>
+  <data name="P1602010000_VNRItem_ImportStockRecordInvalid" xml:space="preserve">
+    <value>Plant back commodity {0} {1} is not in the vendor's record Jincang</value>
+  </data>
+  <data name="P1602010000_VNR_RTN_CountInvalid" xml:space="preserve">
+    <value>Factory setting back for an amount greater than 0</value>
+  </data>
+  <data name="P1602010100xamlcs_CancelEdit" xml:space="preserve">
+    <value>Sure you want to cancel editing?</value>
+  </data>
+  <data name="P1602010100xamlcs_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="P1602010100_Exist" xml:space="preserve">
+    <value>\ N already exists, can not be repeated</value>
+  </data>
+  <data name="P1602010100_InStockDate_Required" xml:space="preserve">
+    <value>Starting and ending date of the date of storage must enter!</value>
+  </data>
+  <data name="P1602010100_ItemCode" xml:space="preserve">
+    <value>\ N Item number:</value>
+  </data>
+  <data name="P1602010100_LocCode" xml:space="preserve">
+    <value>\ N storage spaces:</value>
+  </data>
+  <data name="P1602010100_LocCode_ItemCode_ItemName_RequiredOne" xml:space="preserve">
+    <value>Storage spaces, item no, product name denotes compulsory at least the same!</value>
+  </data>
+  <data name="P1602010100_ValidateDate_Required" xml:space="preserve">
+    <value>Term of origin and destination must enter the day!</value>
+  </data>
+  <data name="P1602010100_WarehouseID" xml:space="preserve">
+    <value>Cang by:</value>
+  </data>
+  <data name="P1602020000_Exist_NoImport" xml:space="preserve">
+    <value>Already exists, do not allow import</value>
+  </data>
+  <data name="P1602020000_GrandVNR_RTNCountValid" xml:space="preserve">
+    <value>The cumulative number of retired plant has been equal to the number returned to the factory</value>
+  </data>
+  <data name="P1602020000_ITEM" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="P1602020000_VNR_RTN_Date_Required" xml:space="preserve">
+    <value>Starting and ending dates back Japanese factory must enter!</value>
+  </data>
+  <data name="P1602020000_VNR_RTN_DELV_Empty" xml:space="preserve">
+    <value>Must be greater than the number of factory goods exit 0</value>
+  </data>
+  <data name="P1602020000_VNR_RTN_DELV_Invalid" xml:space="preserve">
+    <value>The number of factory goods can not be greater than the number of exits returned to the factory</value>
+  </data>
+  <data name="P1602020000_VNR_RTN_Detail_NotExportYet" xml:space="preserve">
+    <value>Details have not been imported goods factory exit details</value>
+  </data>
+  <data name="P1602020000_VNR_RTN_NO" xml:space="preserve">
+    <value>Factory Chargeback</value>
+  </data>
+  <data name="P1602030000_CrtDateAreaError" xml:space="preserve">
+    <value>Date range of error!</value>
+  </data>
+  <data name="P1602030000_ItemCount" xml:space="preserve">
+    <value>The number of food items</value>
+  </data>
+  <data name="P1602030000_QueryDetail" xml:space="preserve">
+    <value>Query Details</value>
+  </data>
+  <data name="P1602030000_REMIND_DAYS" xml:space="preserve">
+    <value>Remind Days</value>
+  </data>
+  <data name="P1602030000_ReportType" xml:space="preserve">
+    <value>Report Type</value>
+  </data>
+  <data name="P1602030000_RET_DAYS" xml:space="preserve">
+    <value>The number of days allowed back</value>
+  </data>
+  <data name="P1602030000_RP_NO" xml:space="preserve">
+    <value>Factory retreat Report No.</value>
+  </data>
+  <data name="P1602030000_STOCK_QTY" xml:space="preserve">
+    <value>The number of library</value>
+  </data>
+  <data name="P1604010000_DeleteItemDetail" xml:space="preserve">
+    <value>Deleted Item Details</value>
+  </data>
+  <data name="P1604010000_DestroyItem" xml:space="preserve">
+    <value>Destruction of goods</value>
+  </data>
+  <data name="P1604010000_ImportTableFormatError" xml:space="preserve">
+    <value>Import tabular format error!</value>
+  </data>
+  <data name="P1604010000_ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P1604010000_Item_Loc_Warehouse" xml:space="preserve">
+    <value>Item: {0}, storage spaces: {1}, the cartridge do: {2} {3}</value>
+  </data>
+  <data name="P1604010000_Item_Loc_Warehouse_StockQtyInSufficient" xml:space="preserve">
+    <value>Item: {0}, storage spaces: {1}, the cartridge do: {2}, insufficient inventory, re-set the number of scrapped</value>
+  </data>
+  <data name="P1604010000_LocCode" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="P1604010000_NoData" xml:space="preserve">
+    <value>No article!</value>
+  </data>
+  <data name="P1604010000_SaveSuccess" xml:space="preserve">
+    <value>Saved successfully!</value>
+  </data>
+  <data name="P1604010000_ScrapCause" xml:space="preserve">
+    <value>The reason scrapped</value>
+  </data>
+  <data name="P1604010000_ScrapCount" xml:space="preserve">
+    <value>The number of scrapped</value>
+  </data>
+  <data name="P1604010000_ScrapCountEmpty" xml:space="preserve">
+    <value>Scrap quantity is not less than or equal 0</value>
+  </data>
+  <data name="P1604010000_ScrapCountInvalid" xml:space="preserve">
+    <value>Not be greater than the number of scrapped inventory!</value>
+  </data>
+  <data name="P1604010000_ScrapDataNull" xml:space="preserve">
+    <value>No detailed information or to check the number of scrapped scrapped not be 0</value>
+  </data>
+  <data name="P1604010000_ScrapDetail" xml:space="preserve">
+    <value>Details scrapped</value>
+  </data>
+  <data name="P1604010000_ScrapItem" xml:space="preserve">
+    <value>Scrapped goods</value>
+  </data>
+  <data name="P1604010000_TotalCount" xml:space="preserve">
+    <value>Detail items Total: {0}</value>
+  </data>
+  <data name="P1604010000_WareHouseName" xml:space="preserve">
+    <value>Do not name warehouse</value>
+  </data>
+  <data name="P1604010100_ChooseData" xml:space="preserve">
+    <value>Check the information</value>
+  </data>
+  <data name="P1604010100_ChooseScrapCause" xml:space="preserve">
+    <value>Please select the reason scrapped</value>
+  </data>
+  <data name="P1604010100_ChooseWarehouseName" xml:space="preserve">
+    <value>Please choose another name warehouse</value>
+  </data>
+  <data name="P1604010100_ItemCode_ItemNameEmpty" xml:space="preserve">
+    <value>Please enter a item no or name</value>
+  </data>
+  <data name="P1604010100_ScrapCount_Required" xml:space="preserve">
+    <value>The number of scrapped a required field</value>
+  </data>
+  <data name="P1605010000xamlcs_ChooseData" xml:space="preserve">
+    <value>Please select the information!</value>
+  </data>
+  <data name="P1605010000xamlcs_StatusInvalidToModify" xml:space="preserve">
+    <value>The current state of information must not be changed!</value>
+  </data>
+  <data name="P1605010000_CheckCount" xml:space="preserve">
+    <value>check the quantity</value>
+  </data>
+  <data name="P1605010000_ChooseData" xml:space="preserve">
+    <value>Please select the information!</value>
+  </data>
+  <data name="P1605010000_ChooseVirtualData" xml:space="preserve">
+    <value>Please select the number of virtual goods imported!</value>
+  </data>
+  <data name="P1605010000_DestroyAllScrapStockItemCheck" xml:space="preserve">
+    <value>Confirm that you want to destroy all abandoned warehouse merchandise?</value>
+  </data>
+  <data name="P1605010000_DestroyCountInvalid" xml:space="preserve">
+    <value>Number of destruction shall not exceed the amount of scrap</value>
+  </data>
+  <data name="P1605010000_DestroyDateInvalid" xml:space="preserve">
+    <value>Japan is expected to be not less than the destruction of today \ n</value>
+  </data>
+  <data name="P1605010000_Hint" xml:space="preserve">
+    <value>prompt</value>
+  </data>
+  <data name="P1605010000_ImportExcludeDuplicateSerialNo" xml:space="preserve">
+    <value>Import exclude repeat number: {0} \ n!</value>
+  </data>
+  <data name="P1605010000_ImportFormatInCorrect" xml:space="preserve">
+    <value>Import format is not correct!</value>
+  </data>
+  <data name="P1605010000_ImportSuccessCount" xml:space="preserve">
+    <value>Total items successfully imported: {0}</value>
+  </data>
+  <data name="P1605010000_InsertSuccess" xml:space="preserve">
+    <value>Destruction single number: {0} successfully added</value>
+  </data>
+  <data name="P1605010000_ItemDataEmpty" xml:space="preserve">
+    <value>Item:! {0} is no such data \ n</value>
+  </data>
+  <data name="P1605010000_ItemDestroyCountInCorrect" xml:space="preserve">
+    <value>Item: {0} incorrect number of destroyed \ n!</value>
+  </data>
+  <data name="P1605010000_ItemDetail_Required" xml:space="preserve">
+    <value>Item details can not be blank \ n</value>
+  </data>
+  <data name="P1605010000_ItemDuplicate" xml:space="preserve">
+    <value>Item: {0} has repeat \ n-!</value>
+  </data>
+  <data name="P1605010000_ItemDuplicate1" xml:space="preserve">
+    <value>Goods not repeat!</value>
+  </data>
+  <data name="P1605010000_ManuallyDelv" xml:space="preserve">
+    <value>Whether manually send a car?</value>
+  </data>
+  <data name="P1605010000_NoPermission" xml:space="preserve">
+    <value>No usage rights</value>
+  </data>
+  <data name="P1605010000_ReImportVirtualItemSerialNo" xml:space="preserve">
+    <value>Please re-import of virtual goods number: {0} \ n</value>
+  </data>
+  <data name="P1605010000_ScrapCountEmpty" xml:space="preserve">
+    <value>Please fill in the correct information! Scrapped amount can not be 0</value>
+  </data>
+  <data name="P1605010000_ScrapStockEmpty" xml:space="preserve">
+    <value>Currently no goods to scrap warehouse</value>
+  </data>
+  <data name="P1605010000_StatusUnabledModify" xml:space="preserve">
+    <value>The current state of information must not be changed!</value>
+  </data>
+  <data name="P1605010000_UpdateSuccess" xml:space="preserve">
+    <value>Destruction single number: {0} updated successfully</value>
+  </data>
+  <data name="P1605010000_VirtualSerialItem_InCompatible" xml:space="preserve">
+    <value>Virtual Reference Item: {0} and import amount ({1}) does not match \ n</value>
+  </data>
+  <data name="P1605010100xamlcs_Destroy" xml:space="preserve">
+    <value>Destroy files (*.) |. * *</value>
+  </data>
+  <data name="P1605010100xamlcs_FileNotFound" xml:space="preserve">
+    <value>File does not exist</value>
+  </data>
+  <data name="P1605010100xamlcs_UploadNotDone_SureWanttoLeave" xml:space="preserve">
+    <value>Not uploaded the file, confirm whether to leave?!</value>
+  </data>
+  <data name="P1605010100xamlcs_Waring" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="P1605010100_ChooseFile" xml:space="preserve">
+    <value>Please select the file or fill out instructions!</value>
+  </data>
+  <data name="P1605010100_NewUploadFile" xml:space="preserve">
+    <value>Please add document number or want to upload files!</value>
+  </data>
+  <data name="P1605010100_NoDestroyNo" xml:space="preserve">
+    <value>No destruction of a single number!</value>
+  </data>
+  <data name="P1605010100_ORDExist" xml:space="preserve">
+    <value>The document has been previously uploaded records!</value>
+  </data>
+  <data name="P1605010100_ORD_NoEmpty" xml:space="preserve">
+    <value>Please fill out the document number!</value>
+  </data>
+  <data name="PALLET_CTRL_NO" xml:space="preserve">
+    <value>Plate number</value>
+  </data>
+  <data name="PastNo" xml:space="preserve">
+    <value>No consignment note</value>
+  </data>
+  <data name="PAST_NO" xml:space="preserve">
+    <value>Returns points to close Details</value>
+  </data>
+  <data name="PostingDateS" xml:space="preserve">
+    <value>Posting Date</value>
+  </data>
+  <data name="POSTING_DATE" xml:space="preserve">
+    <value>Date recorded</value>
+  </data>
+  <data name="POST_QTY" xml:space="preserve">
+    <value>Returns the number of over posted</value>
+  </data>
+  <data name="PRINT_SearchRTN" xml:space="preserve">
+    <value>Print allocation application form</value>
+  </data>
+  <data name="REAL_AUDIT_QTY" xml:space="preserve">
+    <value>The number of paid-up</value>
+  </data>
+  <data name="REAL_RETURN_QTY" xml:space="preserve">
+    <value>The amount is expected to return</value>
+  </data>
+  <data name="REASON" xml:space="preserve">
+    <value>Closed reasons</value>
+  </data>
+  <data name="RecallNoForSearch" xml:space="preserve">
+    <value>Item recall a single number</value>
+  </data>
+  <data name="RecallReasonForAddNewInput" xml:space="preserve">
+    <value>Item recall a single new</value>
+  </data>
+  <data name="RECALL_A_QTY" xml:space="preserve">
+    <value>Should recall the number of</value>
+  </data>
+  <data name="RECALL_B_QTY" xml:space="preserve">
+    <value>The number has recalled</value>
+  </data>
+  <data name="RECALL_CAUSE_TEXT" xml:space="preserve">
+    <value>Reason for Recall</value>
+  </data>
+  <data name="RECALL_DATE" xml:space="preserve">
+    <value>Recall scheduled day</value>
+  </data>
+  <data name="RECALL_NO" xml:space="preserve">
+    <value>The number of goods recalled statistics</value>
+  </data>
+  <data name="RECALL_QTY" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="ReceiptNoForSearch" xml:space="preserve">
+    <value>Factory chargeback No.</value>
+  </data>
+  <data name="ReciptDateStart" xml:space="preserve">
+    <value>Receipt Date</value>
+  </data>
+  <data name="ReportTypeForSearch" xml:space="preserve">
+    <value>Report type</value>
+  </data>
+  <data name="ReturnDetail" xml:space="preserve">
+    <value>Return Details / brush inspection record</value>
+  </data>
+  <data name="ReturnLog" xml:space="preserve">
+    <value>No. brush inspection record</value>
+  </data>
+  <data name="ReturnTotalCount" xml:space="preserve">
+    <value>The total number of plant retreat</value>
+  </data>
+  <data name="ReturnWmsNo" xml:space="preserve">
+    <value>Factory exit invoice number</value>
+  </data>
+  <data name="RETURN_DATE" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
+  <data name="Return_No" xml:space="preserve">
+    <value>Return Order number:</value>
+  </data>
+  <data name="RETURN_PROCESS" xml:space="preserve">
+    <value>Returns Processing</value>
+  </data>
+  <data name="RTN_AFTER" xml:space="preserve">
+    <value>Retreat</value>
+  </data>
+  <data name="RTN_CAUSE" xml:space="preserve">
+    <value>reasons for return</value>
+  </data>
+  <data name="RTN_CHECK_NO" xml:space="preserve">
+    <value>Receipt Number</value>
+  </data>
+  <data name="RTN_CHECK_SEQ_COUNT" xml:space="preserve">
+    <value>Number of pieces</value>
+  </data>
+  <data name="RTN_COMPELETE" xml:space="preserve">
+    <value>Return completed</value>
+  </data>
+  <data name="RTN_CUST_CODE" xml:space="preserve">
+    <value>Returns Customer Code</value>
+  </data>
+  <data name="RTN_CUST_NAME" xml:space="preserve">
+    <value>Returns Customer Name</value>
+  </data>
+  <data name="RTN_FIRST" xml:space="preserve">
+    <value>To retreat</value>
+  </data>
+  <data name="RTN_ITEM" xml:space="preserve">
+    <value>Return Merchandise</value>
+  </data>
+  <data name="RTN_ITEM_CHECK" xml:space="preserve">
+    <value>Return check and accept</value>
+  </data>
+  <data name="RTN_ITEM_TEST" xml:space="preserve">
+    <value>Return Inspection</value>
+  </data>
+  <data name="RTN_MEMO" xml:space="preserve">
+    <value>Return Notes</value>
+  </data>
+  <data name="RTN_NO_MANAGE" xml:space="preserve">
+    <value>Return Order Maintenance</value>
+  </data>
+  <data name="RTN_PROCESS" xml:space="preserve">
+    <value>(Return process)</value>
+  </data>
+  <data name="RTN_QTY" xml:space="preserve">
+    <value>Number of return</value>
+  </data>
+  <data name="RTN_QTY_ADD" xml:space="preserve">
+    <value>Replacement of goods</value>
+  </data>
+  <data name="RTN_QTY_EDIT" xml:space="preserve">
+    <value>The number of replacement</value>
+  </data>
+  <data name="RTN_TYPE_ID" xml:space="preserve">
+    <value>Return type</value>
+  </data>
+  <data name="RTN_VNR_CAUSE_TEXT" xml:space="preserve">
+    <value>Factory reason retreat</value>
+  </data>
+  <data name="RTN_VNR_DATE" xml:space="preserve">
+    <value>Factory retreat Date</value>
+  </data>
+  <data name="RTN_VNR_QTY" xml:space="preserve">
+    <value>The number returned to the factory</value>
+  </data>
+  <data name="RTN_VNR_QTY_REMAINDER" xml:space="preserve">
+    <value>Factory goods number of exit</value>
+  </data>
+  <data name="RTN_VNR_TYPE_TEXT" xml:space="preserve">
+    <value>Plant back type</value>
+  </data>
+  <data name="RTN_WMS_QTY" xml:space="preserve">
+    <value>The cumulative number of retired plant</value>
+  </data>
+  <data name="SALE_DETAIL" xml:space="preserve">
+    <value>Number of shelves</value>
+  </data>
+  <data name="SCRAPITEM_LOCCODE_QUERY" xml:space="preserve">
+    <value>Scrap commodity storage spaces queries</value>
+  </data>
+  <data name="ScrapNo" xml:space="preserve">
+    <value>Scrap No.</value>
+  </data>
+  <data name="SCRAP_CAUSE" xml:space="preserve">
+    <value>The reason scrapped</value>
+  </data>
+  <data name="SCRAP_DETAIL" xml:space="preserve">
+    <value>Details scrapped</value>
+  </data>
+  <data name="SCRAP_FILEIMPORT" xml:space="preserve">
+    <value>Scrap import file</value>
+  </data>
+  <data name="SCRAP_ITEM_DETAIL" xml:space="preserve">
+    <value>Destruction Details</value>
+  </data>
+  <data name="SCRAP_QTY" xml:space="preserve">
+    <value>The number of scrapped</value>
+  </data>
+  <data name="SCRAP_WAREHOUSE_QTY" xml:space="preserve">
+    <value>The number of scrap warehouse store</value>
+  </data>
+  <data name="SearchCUST_ORD_NO" xml:space="preserve">
+    <value>The owner of a single number</value>
+  </data>
+  <data name="SearchLoc_Code" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="SearchONSALE" xml:space="preserve">
+    <value>Allocation shelves</value>
+  </data>
+  <data name="SearchReturn_NO" xml:space="preserve">
+    <value>Return Order No.</value>
+  </data>
+  <data name="SearchSOURCE_NO" xml:space="preserve">
+    <value>No single source</value>
+  </data>
+  <data name="SEARCH_ITEM" xml:space="preserve">
+    <value>Item Search</value>
+  </data>
+  <data name="SelectDetailCount" xml:space="preserve">
+    <value>Details Total items:</value>
+  </data>
+  <data name="SelectSTATUS" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="SELF_TAKE" xml:space="preserve">
+    <value>Pickup</value>
+  </data>
+  <data name="SELF_TAKE_MEMO" xml:space="preserve">
+    <value>Pickup Notes</value>
+  </data>
+  <data name="SEND_ADDRESS" xml:space="preserve">
+    <value>delivery address</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="SHARE_DestroyNoSET" xml:space="preserve">
+    <value>Destruction single common set</value>
+  </data>
+  <data name="SHORTFALL" xml:space="preserve">
+    <value>The number of shortages</value>
+  </data>
+  <data name="SOURCE_NO" xml:space="preserve">
+    <value>Source documents</value>
+  </data>
+  <data name="SRC_LOC" xml:space="preserve">
+    <value>Source Loc</value>
+  </data>
+  <data name="SRC_WAREHOUSE_NAME" xml:space="preserve">
+    <value>Source warehouse Do</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>Contact phone</value>
+  </data>
+  <data name="TOTAL" xml:space="preserve">
+    <value>total</value>
+  </data>
+  <data name="TRANSPORT" xml:space="preserve">
+    <value>transport company</value>
+  </data>
+  <data name="TRANS_DONE" xml:space="preserve">
+    <value>Replacement complete</value>
+  </data>
+  <data name="TRA_LOC" xml:space="preserve">
+    <value>Recommended shelf storage spaces</value>
+  </data>
+  <data name="TxtSearchRTN_APPLY_NO" xml:space="preserve">
+    <value>Allocation requisition number</value>
+  </data>
+  <data name="TYPE_NAME" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="UPLOAD_FILE" xml:space="preserve">
+    <value>Upload file</value>
+  </data>
+  <data name="UserOperateMode" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="ValidDateStart" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="VALID_DATE_Column" xml:space="preserve">
+    <value>Term field</value>
+  </data>
+  <data name="VendorCodeForSearch" xml:space="preserve">
+    <value>Supplier No.</value>
+  </data>
+  <data name="VendorNameForSearch" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="VENDOR_RETURN_DETAIL" xml:space="preserve">
+    <value>Factory Details back</value>
+  </data>
+  <data name="VENDOR_RETURN_ITEM" xml:space="preserve">
+    <value>Factory goods back</value>
+  </data>
+  <data name="VENDOR_RETURN_ORD_DETAIL" xml:space="preserve">
+    <value>Factory goods exit details</value>
+  </data>
+  <data name="VIEW" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="VIEW_FILE" xml:space="preserve">
+    <value>View Profile</value>
+  </data>
+  <data name="VIRTUAL_ITEMCODE_FILEIMPORT" xml:space="preserve">
+    <value>Virtual goods imported file number</value>
+  </data>
+  <data name="VIRTUAL_TYPE" xml:space="preserve">
+    <value>Whether virtual goods</value>
+  </data>
+  <data name="VNRNAME" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>Supplier Code</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>Supplier name</value>
+  </data>
+  <data name="VNR_RTN_COMPELETE" xml:space="preserve">
+    <value>Factory complete withdrawal</value>
+  </data>
+  <data name="VNR_RTN_EXPORT" xml:space="preserve">
+    <value>Factory goods exit</value>
+  </data>
+  <data name="VNR_RTN_TOTAL" xml:space="preserve">
+    <value>The total number returned to the factory / plant has been set back total:</value>
+  </data>
+  <data name="WAREHOUSEID" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="WAREHOUSE_ID" xml:space="preserve">
+    <value>Do not name warehouse</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>Do object warehouse</value>
+  </data>
+  <data name="WarningApproveSave" xml:space="preserve">
+    <value>Information has been changed to confirm whether approval</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="WHITESMALLSMALL" xml:space="preserve">
+    <value>Little white</value>
+  </data>
+  <data name="WmsOrderNo" xml:space="preserve">
+    <value>Shipper No.</value>
+  </data>
+  <data name="WMSORDNO" xml:space="preserve">
+    <value>The owner of a single number</value>
+  </data>
+  <data name="WMS_NO" xml:space="preserve">
+    <value>WMS single number</value>
+  </data>
+  <data name="WMS_ORDNO" xml:space="preserve">
+    <value>No shipments alone</value>
+  </data>
+  <data name="WMS_ORD_NO" xml:space="preserve">
+    <value>The owner of the original shipper No.</value>
+  </data>
+  <data name="WMS_ORD_NO_DETAIL" xml:space="preserve">
+    <value>Document details</value>
+  </data>
+  <data name="P1602020000_ConfirmSystemToMinusStock" xml:space="preserve">
+    <value>The system will deduct the inventory directly, please confirm whether it is executed?</value>
+  </data>
+  <data name="P1605010000_Shipment" xml:space="preserve">
+    <value>Shipment</value>
+  </data>
+  <data name="DelvType" xml:space="preserve">
+    <value>Delivery Method</value>
+  </data>
+  <data name="P1601020000_DetailHasChangeValidDateOrMakeNoConfirmAdustStock" xml:space="preserve">
+    <value>Detail has Change ValidDate Or MakeNo,Are you want to adjust Mapping Stock?</value>
+  </data>
+  <data name="ASCUST_ORD_NO" xml:space="preserve">
+    <value>Shipper's order number</value>
+  </data>
+  <data name="ASWMS_ORD_NO" xml:space="preserve">
+    <value>Shipment number</value>
+  </data>
+  <data name="RP1602010003_TITLE" xml:space="preserve">
+    <value> Return Record Form</value>
+  </data>
+  <data name="RP1602010005_TITLE" xml:space="preserve">
+    <value> Factory Return Form</value>
+  </data>
+  <data name="EmpID" xml:space="preserve">
+    <value>staff code</value>
+  </data>
+  <data name="EmpName" xml:space="preserve">
+    <value>name of worker</value>
+  </data>
+  <data name="P1602020000_CRT_NAME" xml:space="preserve">
+    <value>Establish staff</value>
+  </data>
+  <data name="P1602020000_DISTR_CAR" xml:space="preserve">
+    <value>Delivery Method</value>
+  </data>
+  <data name="P1602020000_RTN_WMS_DATE" xml:space="preserve">
+    <value>Establishment time</value>
+  </data>
+  <data name="ItemQuery" xml:space="preserve">
+    <value>Product search</value>
+  </data>
+  <data name="P1602010000_DeliveryWay" xml:space="preserve">
+    <value>DeliveryWay</value>
+  </data>
+  <data name="P1602010000_TYPE_ID" xml:space="preserve">
+    <value>TYPE_ID</value>
+  </data>
+  <data name="RTN_VNR_CAUSE_DESC" xml:space="preserve">
+    <value>RTN_VNR_CAUSE_DESC</value>
+  </data>
+  <data name="P1602020000_ADDRESS" xml:space="preserve">
+    <value>ADDRESS</value>
+  </data>
+  <data name="P1602020000_TYPE_ID" xml:space="preserve">
+    <value>WAREHOUSE_TYPE</value>
+  </data>
+  <data name="P1602020000_ITEM_CONTACT" xml:space="preserve">
+    <value>CONTACT</value>
+  </data>
+  <data name="P1602020000_ITEM_TEL" xml:space="preserve">
+    <value>TEL</value>
+  </data>
+  <data name="ReceiptSeqForSearch" xml:space="preserve">
+    <value>SEQ</value>
+  </data>
+  <data name="P1602020000_DiffDeliveryWay" xml:space="preserve">
+    <value>[RtnVnrNo {0}]DeliveryWay is Diff，Can't Import</value>
+  </data>
+  <data name="P1602020000_DiffItemAddress" xml:space="preserve">
+    <value>[RtnVnrNo {0}]Address is Diff，Can't Import</value>
+  </data>
+  <data name="P1602020000_DiffItemContact" xml:space="preserve">
+    <value>[RtnVnrNo {0}]Contact is Diff，Can't Import</value>
+  </data>
+  <data name="P1602020000_DiffItemTel" xml:space="preserve">
+    <value>[RtnVnrNo {0}]Tel is Diff，Can't Import</value>
+  </data>
+  <data name="P1602020000_DiffOrdProp" xml:space="preserve">
+    <value>[RtnVnrNo {0}]OrdProp is Diff，Can't Import</value>
+  </data>
+  <data name="P1602020000_DiffTypeId" xml:space="preserve">
+    <value>[RtnVnrNo {0}]WarehouseType is Diff，Can't Import</value>
+  </data>
+  <data name="P1602020000_DiffVnrCode" xml:space="preserve">
+    <value>[RtnVnrNo {0}]VnrCode is Diff，Can't Import</value>
+  </data>
+  <data name="P1602020000_SameRtnVnrNo" xml:space="preserve">
+    <value>[RtnVnrNo {0}] is exists shipDetail,Can't Import</value>
+  </data>
+  <data name="P1602030000_WmsOrdNo" xml:space="preserve">
+    <value>Factory exit order number</value>
+  </data>
+  <data name="P1602030000_PrintHomeDeliveryOrder" xml:space="preserve">
+    <value>Reprint the home delivery order</value>
+  </data>
+  <data name="P1602030000_PrintReturnDetail" xml:space="preserve">
+    <value>Reprint factory return details</value>
+  </data>
+  <data name="P1602030000_Leave" xml:space="preserve">
+    <value>Leave</value>
+  </data>
+  <data name="P1602030000_VnrCode" xml:space="preserve">
+    <value>Vendor Number</value>
+  </data>
+  <data name="P1602030000_DeliveryWay" xml:space="preserve">
+    <value>Delivery Way</value>
+  </data>
+  <data name="P1602030000_AllId" xml:space="preserve">
+    <value>Home Delivery Service</value>
+  </data>
+  <data name="P1602030000_MaxSheetNum" xml:space="preserve">
+    <value>Number of home delivery leaflets</value>
+  </data>
+  <data name="P1602030000_Comfirm" xml:space="preserve">
+    <value>Shipment confirmation</value>
+  </data>
+  <data name="P1602030000_Debited" xml:space="preserve">
+    <value>Debited</value>
+  </data>
+  <data name="P1602030000_NotYetPackaged" xml:space="preserve">
+    <value>The factory exited goods have not been packaged yet, and the factory exited goods cannot be deducted</value>
+  </data>
+  <data name="P1602030000_PleaceSelectedAllId" xml:space="preserve">
+    <value>Please choose a home delivery company</value>
+  </data>
+  <data name="P1602030000_PleaceSelectedDeliveryWay" xml:space="preserve">
+    <value>Please select shipping method</value>
+  </data>
+  <data name="P1602030000_PleaceSelectedMaxSheetNum" xml:space="preserve">
+    <value>Please select the number of home delivery leaflets</value>
+  </data>
+  <data name="P1602030000_PleaceSelectedMaxSheetNumMustBe1" xml:space="preserve">
+    <value>The shipping method is for the manufacturer to pick up, and the number of home delivery leaflets must be 1</value>
+  </data>
+  <data name="P1602030000_MemoDescription" xml:space="preserve">
+    <value>Please fill in the information entered by yourself on site (delivery date + handler, for example: 20210929-Wang Xiaoming)</value>
+  </data>
+  <data name="P1602030000_PrintDescription1" xml:space="preserve">
+    <value>Printer 1: Factory Return Schedule</value>
+  </data>
+  <data name="P1602030000_PrintDescription2" xml:space="preserve">
+    <value>Printer 2: Delivery form</value>
+  </data>
+  <data name="P1602030000_VendorReturnDetailNotSetPrint" xml:space="preserve">
+    <value>The printer is not set in the factory return schedule, please go to the device maintenance to set the printer</value>
+  </data>
+  <data name="P1602030000_VendorReturnNotSetPrint" xml:space="preserve">
+    <value>The printer is not set in the delivery order, please go to the device maintenance to set the printer</value>
+  </data>
+  <data name="P1602030000_PleaseEnterMomo" xml:space="preserve">
+    <value>The shipping method is that the manufacturer needs to enter the information entered on-site to pick up the goods by itself</value>
+  </data>
+  <data name="P1602010000_ChooseDELIVERY_WAY" xml:space="preserve">
+    <value>Please choose a delivery method</value>
+  </data>
+</root>

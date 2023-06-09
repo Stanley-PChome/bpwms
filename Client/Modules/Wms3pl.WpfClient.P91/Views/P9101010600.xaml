@@ -1,0 +1,63 @@
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P91.Views.P9101010600"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P91.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P91.Properties" 
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="400" MinHeight="500"
+			Title="{x:Static Properties:Resources.CombineItemList}" WindowStartupLocation="CenterScreen"
+			controls:PermissionService.CheckPermission="False"
+			controls:PermissionService.FunctionId="P9101010600"
+		  controls:PermissionService.FunctionName="{x:Static Properties:Resources.CombineItemList}"
+			FormException="{Binding Exception}">
+	<uiLib:Wms3plWindow.DataContext>
+		<viewModel:P9101010600_ViewModel x:Name="Vm"/>
+	</uiLib:Wms3plWindow.DataContext>
+	<uiLib:Wms3plWindow.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+		</ResourceDictionary>
+	</uiLib:Wms3plWindow.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+					<Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP9101010601" Click="btnSave_Click" />
+					<Button Name="btnCancel" Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP9101010602" Click="btnCancel_Click" Content="{x:Static Properties:Resources.NONE_Select}" />
+				</WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
+				<TabControl x:Name="LayoutRoot" >
+					<TabControl.BindingGroup>
+						<BindingGroup Name="errorGroup" />
+					</TabControl.BindingGroup>
+					<TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+						<DockPanel Style="{StaticResource WindowDockPanelStyle}">
+							<!-- 由此處開始加入畫面項目 -->
+							<DataGrid Name="dgList" ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource DgStyle}" SelectedItem="{Binding SelectedData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+								<DataGrid.Columns>
+									<DataGridTextColumn Header="{x:Static Properties:Resources.CUST_CODE}" Binding="{Binding CUST_NAME}"/>
+									<DataGridTextColumn Header="{x:Static Properties:Resources.GUP_NAME}" Binding="{Binding GUP_NAME}"/>
+									<DataGridTextColumn Header="{x:Static Properties:Resources.ItemCode}" Binding="{Binding ITEM_CODE}"/>
+									<DataGridTextColumn Header="{x:Static Properties:Resources.GoodsName}" Binding="{Binding ITEM_NAME}"/>
+									<DataGridTextColumn Header="{x:Static Properties:Resources.BOM_TYPE_NAME}" Binding="{Binding BOM_TYPE_NAME}"/>
+                  <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE_BOM}" Binding="{Binding BOM_NO}"/>
+									<DataGridTextColumn Header="{x:Static Properties:Resources.ItemBomName}" Binding="{Binding BOM_NAME}"/>
+								</DataGrid.Columns>
+							</DataGrid>
+						</DockPanel>
+					</TabItem>
+				</TabControl>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

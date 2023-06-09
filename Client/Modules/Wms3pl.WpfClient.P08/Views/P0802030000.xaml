@@ -1,0 +1,132 @@
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0802030000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" 
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+			HorizontalAlignment="Stretch" FontSize="28" Width="800" Height="600"
+      WindowStartupLocation="CenterScreen" Title="上架作業"  AllowDrop="False" WindowStyle="None" 
+      ResizeMode="NoResize" ShowActivated="True" ShowInTaskbar="False" IsHitTestVisible="True"	
+      controls:PermissionService.FunctionId="P0802030000"
+      controls:PermissionService.FunctionName="退貨上架申請"
+			controls:PermissionService.CheckPermission="False"
+			FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0800000000_ViewModel x:Name="Vm"/>
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.MainContent>
+        <DockPanel  Style="{StaticResource WindowDockPanelStyle}">
+          <WrapPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="5" />
+          <Viewbox>
+            <DockPanel>
+              <WrapPanel DockPanel.Dock="Top">
+                <Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.Marquee}"  FontSize="30" Foreground="Red"/>
+              </WrapPanel>
+              <DockPanel  DockPanel.Dock="Left">
+                <WrapPanel DockPanel.Dock="Top">
+                  <Label Content="{x:Static Properties:Resources.DC}" VerticalAlignment="Center"/>
+                  <ComboBox  MinWidth="150" VerticalAlignment="Center" >
+                    <ComboBox.Items>
+                      <ComboBoxItem Content="{x:Static Properties:Resources.YangMei}"/>
+                      <ComboBoxItem Content="{x:Static Properties:Resources.Pingzhen}"/>
+                    </ComboBox.Items>
+                  </ComboBox>
+                  <CheckBox IsChecked="True" Margin="20,0">語音</CheckBox>
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" Margin="0,5">
+                  <Label Content="{x:Static Properties:Resources.TargetWarehouse}" FontSize="30" FontWeight="Bold"/>
+                  <ComboBox  MinWidth="150" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" >
+                    <ComboBox.Items>
+                      <ComboBoxItem Content="{x:Static Properties:Resources.P0802030000_GoodWarehouse}"/>
+                      <ComboBoxItem Content="{x:Static Properties:Resources.P0802030000_NoGoodWarehouse}"/>
+                    </ComboBox.Items>
+                  </ComboBox>
+                </WrapPanel>
+                <DockPanel DockPanel.Dock="Top">
+                  <DockPanel>
+                    <DockPanel DockPanel.Dock="Top" >
+                      <Grid Width="800" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="130"/>
+                          <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                          <RowDefinition />
+                          <RowDefinition />
+                          <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.ItemCode2}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Content="1234567"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.MinUnit}" HorizontalAlignment="Right"/>
+                        <Label Grid.Row="0" Grid.Column="3" Content="{x:Static Properties:Resources.a}" HorizontalAlignment="Left"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ItemName1}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{x:Static Properties:Resources.OOOItem}"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.SerialNo1}"/>
+                        <Label Grid.Row="2" Grid.Column="1" Content="12345670987654321"/>
+                      </Grid>
+                    </DockPanel>
+                    <WrapPanel DockPanel.Dock="Top" Height="45" >
+                      <Label Content="{x:Static Properties:Resources.SRC_LOC_CODE}" VerticalContentAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                      <TextBox Width="150" Margin="1" FontSize="30" FontWeight="Bold"/>
+                      <Label Content="{x:Static Properties:Resources.ScanItemCode}" VerticalContentAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                      <TextBox Width="150" Margin="1" FontSize="30" FontWeight="Bold"/>
+                      <Label Content="{x:Static Properties:Resources.TransQty}" VerticalContentAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                      <TextBox Width="150" Margin="1" FontSize="30" FontWeight="Bold"/>
+                    </WrapPanel>
+                  </DockPanel>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                  <DockPanel DockPanel.Dock="Top">
+                    <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                      <Label DockPanel.Dock="Top" Width="350" Height="300" Background="Wheat"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Top">
+                      <DataGrid Margin="2" Style="{StaticResource DgStyle}"  ItemsSource="{Binding DgItemSource}" CellStyle="{StaticResource SingleClickEdit}">
+                        <DataGrid.Columns>
+                          <DataGridTextColumn Header="{x:Static Properties:Resources.TAR_WarehouseID}" Binding="{Binding Str4}" />
+                          <DataGridTextColumn Header="{x:Static Properties:Resources.SRC_LOC_CODE}" Binding="{Binding Str1}" Width="200" />
+                          <DataGridTextColumn Header="{x:Static Properties:Resources.TransQty}" Binding="{Binding Str2}"/>
+                          <DataGridTemplateColumn Header="">
+                            <DataGridTemplateColumn.CellTemplate>
+                              <DataTemplate>
+                                <Button Content="{Binding Str3}"/>
+                              </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                          </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                      </DataGrid>
+                    </WrapPanel>
+                  </DockPanel>
+                  <WrapPanel DockPanel.Dock="Top">
+                    <Button Content="{x:Static Properties:Resources.Help}" Background="Yellow"  Width="100" Height="50" Margin="3,3,3,3"/>
+                    <Button Content="{x:Static Properties:Resources.PrintTransApplicate}" Width="220" Height="50" Margin="3,3,3,3" IsEnabled="False"/>
+                    <Button Content="{x:Static Properties:Resources.Finish}" Width="100" Height="50" Margin="185,3,3,3"/>
+                    <Button Content="{x:Static Properties:Resources.Exist}" Margin="3" Width="100" Height="50" IsCancel="True" />
+                  </WrapPanel>
+                </DockPanel>
+              </DockPanel>
+            </DockPanel>
+          </Viewbox>
+        </DockPanel>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

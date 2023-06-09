@@ -1,0 +1,1248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P14.Views.P1401010000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:ucLibViews="clr-namespace:Wms3pl.WpfClient.UcLib.Views;assembly=Wms3pl.WpfClient.UcLib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P14.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P14.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" MinHeight="500" controls:PermissionService.FunctionId="P1401010000" controls:PermissionService.FunctionName="盤點單維護" FormException="{Binding Exception}">
+    <uiLib:Wms3plUserControl.DataContext>
+        <viewModel:P1401010000_ViewModel x:Name="Vm" />
+    </uiLib:Wms3plUserControl.DataContext>
+    <uiLib:Wms3plUserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <common:NotConverter x:Key="NotConverter" />
+            <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+            <converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter" />
+            <converters:EnumToNotBooleanConverter x:Key="EnumToNotBooleanConverter" />
+            <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+            <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter" />
+            <converters:NameValuePairMultiConverter x:Key="NameValuePairMultiConverter" />
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <converters:ZeroPointConverter x:Key="ZeroPointConverter" />
+            <converters:OwnerItemsSourceConverter x:Key="OwnerItemsSourceConverter" />
+            <converters:StringTypeToVisiablityConverter x:Key="StringTypeToVisiablityConverter" />
+            <converters:StringTypeToNotVisiablityConverter x:Key="StringTypeToNotVisiablityConverter" />
+            <converters:MultiBoolNorConverter x:Key="MultiBoolNorConverter" />
+            <converters:NullOrWhiteSpaceToNotBoolConverter x:Key="NullOrWhiteSpaceToNotBoolConverter"/>
+            <converters:StringToLocCodeConverter x:Key="StringToLocCodeConverter"/>
+            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"></FrameworkElement>
+            <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}" x:Key="LargeTxtStyle">
+                <Setter Property="Width" Value="180" />
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource ComboStyle}" x:Key="LargeComboStyle">
+                <Setter Property="Width" Value="180" />
+            </Style>
+            <!--#region 樓層起資料-->
+            <Style TargetType="ComboBox" x:Key="DgComboxItemStyleBeginFloor">
+                <Setter Property="ItemsSource">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}" NotifyOnSourceUpdated="True" Mode="TwoWay">
+                            <MultiBinding.Bindings>
+                                <Binding Path="WAREHOUSE_ID" NotifyOnSourceUpdated="True"></Binding>
+                                <Binding Path="DataContext.AllFloorDictionary" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}"></Binding>
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsEnabled" Value="False"></Setter>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True"></Setter>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion -->
+
+            <!--#region 樓層迄資料-->
+            <Style TargetType="ComboBox" x:Key="DgComboBoxItemStyleEndFloor">
+                <Setter Property="ItemsSource">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}" NotifyOnSourceUpdated="True" Mode="TwoWay">
+                            <MultiBinding.Bindings>
+                                <Binding Path="WAREHOUSE_ID" NotifyOnSourceUpdated="True"></Binding>
+                                <Binding Path="DataContext.AllFloorDictionary" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}"></Binding>
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsEnabled" Value="False"></Setter>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True"></Setter>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region 通道起資料-->
+            <Style TargetType="ComboBox" x:Key="DgComboxItemStyleBeginChannel">
+                <Setter Property="ItemsSource">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}" NotifyOnSourceUpdated="True" Mode="TwoWay">
+                            <MultiBinding.Bindings>
+                                <Binding Path="WAREHOUSE_ID" NotifyOnSourceUpdated="True"></Binding>
+                                <Binding Path="DataContext.AllChannelDictionary" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}"></Binding>
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsEnabled" Value="False"></Setter>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True"></Setter>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region 通道迄資料-->
+            <Style TargetType="ComboBox" x:Key="DgComboBoxItemStyleEndChannel">
+                <Setter Property="ItemsSource">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}" NotifyOnSourceUpdated="True" Mode="TwoWay">
+                            <MultiBinding.Bindings>
+                                <Binding Path="WAREHOUSE_ID" NotifyOnSourceUpdated="True"></Binding>
+                                <Binding Path="DataContext.AllChannelDictionary" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}"></Binding>
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsEnabled" Value="False"></Setter>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True"></Setter>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region 座起資料-->
+            <Style TargetType="ComboBox" x:Key="DgComboxItemStyleBeginPlain">
+                <Setter Property="ItemsSource">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}" NotifyOnSourceUpdated="True" Mode="TwoWay">
+                            <MultiBinding.Bindings>
+                                <Binding Path="WAREHOUSE_ID" NotifyOnSourceUpdated="True"></Binding>
+                                <Binding Path="DataContext.AllPlainDictionary" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}"></Binding>
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsEnabled" Value="False"></Setter>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True"></Setter>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region 座迄資料-->
+            <Style TargetType="ComboBox" x:Key="DgComboBoxItemStyleEndPlain">
+                <Setter Property="ItemsSource">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}" NotifyOnSourceUpdated="True" Mode="TwoWay">
+                            <MultiBinding.Bindings>
+                                <Binding Path="WAREHOUSE_ID" NotifyOnSourceUpdated="True"></Binding>
+                                <Binding Path="DataContext.AllPlainDictionary" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}"></Binding>
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsEnabled" Value="False"></Setter>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True"></Setter>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+
+            <Style TargetType="CheckBox" BasedOn="{StaticResource CheckStyle}" x:Key="DgCheckBoxItemStyle">
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+                <!--取消check時觸發的事件-->
+                <EventSetter Event="Unchecked" Handler="WareHouseItemCheck_OnHandler"></EventSetter>
+            </Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource CheckStyle}" x:Key="DgCheckBoxStyle">
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+            </Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource CheckStyle}" x:Key="DgEditCheckBoxStyle">
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+                <Setter Property="IsEnabled" Value="True" />
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding DataContext.CustReadOnlyFlushBack,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" Value="True"></Condition>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="False" />
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </uiLib:Wms3plUserControl.Resources>
+    <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+        <uiLib:BasicMaster x:Name="Master">
+            <uiLib:BasicMaster.ToolBarArea>
+                <WrapPanel>
+                    <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1401010001" Command="{Binding SearchCommand}" />
+                    <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP1401010002" Command="{Binding AddCommand}" />
+                    <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1401010003" Command="{Binding EditCommand}" />
+                    <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1401010004" Command="{Binding CancelCommand}" />
+                    <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1401010005" Command="{Binding DeleteCommand}" />
+                    <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1401010006" Command="{Binding SaveCommand}">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource MultiBoolNorConverter}">
+                                <Binding ElementName="LayoutRoot" Path="(Validation.HasError)" />
+                                <Binding ElementName="dgGroupList" Path="HasError" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
+                    <Button Style="{StaticResource PreviewButton}" controls:PermissionService.FunctionId="BP1401010007" Command="{Binding PrintCommand}" CommandParameter="{x:Static uiLib:PrintType.Preview}" />
+                    <Button Style="{StaticResource PrintButton}" controls:PermissionService.FunctionId="BP1401010008" Command="{Binding PrintCommand}" CommandParameter="{x:Static uiLib:PrintType.ToPrinter}" />
+                </WrapPanel>
+            </uiLib:BasicMaster.ToolBarArea>
+            <uiLib:BasicMaster.MainContent>
+                <TabControl x:Name="LayoutRoot">
+                    <TabControl.BindingGroup>
+                        <BindingGroup Name="errorGroup" />
+                    </TabControl.BindingGroup>
+                    <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+                        <DockPanel>
+                            <ContentControl Visibility="Collapsed" Content="{StaticResource ProxyElement}"></ContentControl>
+                            <!--#region 查詢-->
+                            <!--查詢Begin-->
+                            <ScrollViewer Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                                <DockPanel>
+                                    <!--#region 查詢條件-->
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <GroupBox Header="{x:Static res:Resources.QueryCondition}">
+                                            <DockPanel>
+                                                <Expander IsExpanded="{Binding ShowQueryRule, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <WrapPanel DockPanel.Dock="Top" Margin="5">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="auto" />
+                                                                <RowDefinition Height="auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto" />
+                                                                <ColumnDefinition Width="auto" />
+                                                                <ColumnDefinition Width="auto" />
+                                                                <ColumnDefinition Width="auto" />
+                                                                <ColumnDefinition Width="auto" />
+                                                                <ColumnDefinition Width="auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbTitleStyle}" />
+                                                            <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource LargeComboStyle}" ItemsSource="{Binding DcList}" SelectedValue="{Binding SelectedQueryDcCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" />
+                                                            <Label Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.QueryInventorySDate}" Style="{StaticResource LbTitleStyle}" />
+                                                            <DatePicker Grid.Row="0" Grid.Column="3" Style="{StaticResource DateStyle}" SelectedDate="{Binding QueryInventorySDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                            <Label Content=" ~ " Grid.Row="0" Grid.Column="4" Style="{StaticResource LbStyle}" />
+                                                            <DatePicker Grid.Row="0" Grid.Column="5" Style="{StaticResource DateStyle}" SelectedDate="{Binding QueryInventoryEDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.QueryInventoryNo}" Style="{StaticResource LbTitleStyle}" />
+                                                            <TextBox Grid.Row="1" Grid.Column="1" MaxLength="20" Text="{Binding QueryInventoryNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LargeTxtStyle}" />
+                                                            <Label Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.SelectedStatus}" Style="{StaticResource LbTitleStyle}" />
+                                                            <ComboBox Grid.Row="1" Grid.Column="3" Style="{StaticResource ComboStyle}" ItemsSource="{Binding StatusList}" SelectedValue="{Binding SelectedStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" />
+                                                        </Grid>
+                                                    </WrapPanel>
+                                                </Expander>
+                                            </DockPanel>
+                                        </GroupBox>
+                                    </DockPanel>
+                                    <!--#endregion-->
+
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <GroupBox Header="{x:Static res:Resources.OueryResult}">
+                                            <DockPanel>
+                                                <Expander IsExpanded="True">
+                                                    <DockPanel>
+                                                        <WrapPanel HorizontalAlignment="Right" DockPanel.Dock="Top">
+                                                            <Label Content="{x:Static Properties:Resources.SelectedReportType}" Style="{StaticResource LbTitleStyle}" />
+                                                            <ComboBox Style="{StaticResource LargeComboStyle}" ItemsSource="{Binding ReportTypeList}" SelectedValue="{Binding SelectedReportType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" />
+                                                        </WrapPanel>
+                                                        <DataGrid Style="{StaticResource DgStyle}" SelectionMode="Single" Height="200" ItemsSource="{Binding F140101List,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedF140101,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                                            <DataGrid.Columns>
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.QueryInventorySDate}" Binding="{Binding INVENTORY_DATE, StringFormat=\{0:yyyy/MM/dd\}}" />
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.QueryInventoryNo}" Binding="{Binding INVENTORY_NO}" />
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.SelectedStatus}">
+                                                                    <DataGridTextColumn.Binding>
+                                                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                                                            <Binding Path="STATUS" />
+                                                                            <Binding Path="DataContext.StatusList" RelativeSource="{RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}" />
+                                                                        </MultiBinding>
+                                                                    </DataGridTextColumn.Binding>
+                                                                </DataGridTextColumn>
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CNT}" Binding="{Binding ITEM_CNT}" />
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_QTY}" Binding="{Binding ITEM_QTY}" />
+                                                                <DataGridTextColumn Binding="{Binding Path=CHECK_TOOL_DESC}" Header="{x:Static Properties:Resources.CHECK_TOOL_DESC}" />
+                                                                <DataGridTextColumn Binding="{Binding Path=MEMO}" Header="{x:Static Properties:Resources.MEMO}" />
+															</DataGrid.Columns>
+                                                        </DataGrid>
+                                                    </DockPanel>
+                                                </Expander>
+                                            </DockPanel>
+                                        </GroupBox>
+                                    </DockPanel>
+                                    <Border BorderBrush="Gray">
+                                        <DockPanel>
+                                            <WrapPanel DockPanel.Dock="TOP" Margin="5">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="True" Style="{StaticResource TxtStyle}">
+                                                        <TextBox.Text>
+                                                            <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                                                <Binding Path="SelectedF140101.DC_CODE" />
+                                                                <Binding Path="DcList" />
+                                                            </MultiBinding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+                                                    <Label Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.QueryInventoryNo}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="0" Grid.Column="3" Style="{StaticResource LargeTxtStyle}" IsReadOnly="True" Text="{Binding SelectedF140101.INVENTORY_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Label Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.SelectedStatus}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="0" Grid.Column="5" IsReadOnly="True" Style="{StaticResource TxtStyle}">
+                                                        <TextBox.Text>
+                                                            <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                                                <Binding Path="SelectedF140101.STATUS" />
+                                                                <Binding Path="StatusList" />
+                                                            </MultiBinding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+                                                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.INVENTORY_TYPE}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Style="{StaticResource TxtStyle}">
+                                                        <TextBox.Text>
+                                                            <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                                                <Binding Path="SelectedF140101.INVENTORY_TYPE" />
+                                                                <Binding Path="InventoryTypeList" />
+                                                            </MultiBinding>
+                                                        </TextBox.Text>
+                                                    </TextBox>
+                                                    <Label Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.INVENTORY_CYCLE}">
+                                                        <Label.Style>
+                                                            <Style TargetType="Label" BasedOn="{StaticResource LbTitleStyle}">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                                <Style.Triggers>
+                                                                    <MultiDataTrigger>
+                                                                        <MultiDataTrigger.Conditions>
+                                                                            <Condition Binding="{Binding SelectedF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                        </MultiDataTrigger.Conditions>
+                                                                        <Setter Property="Visibility" Value="Visible" />
+                                                                    </MultiDataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Label.Style>
+                                                    </Label>
+                                                    <WrapPanel Grid.Row="1" Grid.Column="3">
+                                                        <WrapPanel.Style>
+                                                            <Style TargetType="WrapPanel">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                                <Style.Triggers>
+                                                                    <MultiDataTrigger>
+                                                                        <MultiDataTrigger.Conditions>
+                                                                            <Condition Binding="{Binding SelectedF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                        </MultiDataTrigger.Conditions>
+                                                                        <Setter Property="Visibility" Value="Visible" />
+                                                                    </MultiDataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </WrapPanel.Style>
+                                                        <TextBox IsReadOnly="True" Style="{StaticResource TxtStyle}" Width="80" Text="{Binding SelectedF140101.INVENTORY_CYCLE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="{x:Static Properties:Resources.INVENTORY_YEAR}" MinWidth="10" Style="{StaticResource LbTitleStyle}" />
+                                                        <TextBox IsReadOnly="True" Style="{StaticResource TxtStyle}" Width="80" Text="{Binding SelectedF140101.INVENTORY_YEAR,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="{x:Static Properties:Resources.INVENTORY_MON}" MinWidth="10" Style="{StaticResource LbTitleStyle}" />
+                                                        <TextBox IsReadOnly="True" Style="{StaticResource TxtStyle}" Width="80" Text="{Binding SelectedF140101.INVENTORY_MON,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2">
+                                                        <WrapPanel.Style>
+                                                            <Style TargetType="WrapPanel">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                                <Style.Triggers>
+                                                                    <MultiDataTrigger>
+                                                                        <MultiDataTrigger.Conditions>
+                                                                            <Condition Binding="{Binding SelectedF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                        </MultiDataTrigger.Conditions>
+                                                                        <Setter Property="Visibility" Value="Visible" />
+                                                                    </MultiDataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </WrapPanel.Style>
+                                                        <Label Content="{x:Static Properties:Resources.CYCLE_TIMES}" Style="{StaticResource LbTitleStyle}" />
+                                                        <TextBox IsReadOnly="True" Width="45" Style="{StaticResource TxtStyle}" Text="{Binding SelectedF140101.CYCLE_TIMES,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="{x:Static Properties:Resources.TIMES}" Style="{StaticResource LbStyle}" />
+                                                    </WrapPanel>
+                                                    <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.QueryInventorySDate}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True" Text="{Binding SelectedF140101.INVENTORY_DATE,StringFormat=\{0:yyyy/MM/dd\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                                                    <WrapPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+                                                        <Label Content="{x:Static Properties:Resources.ISCHARGE}" Style="{StaticResource LbTitleStyle}" />
+                                                        <CheckBox Style="{StaticResource CheckStyle}" IsEnabled="False" IsChecked="{Binding SelectedF140101.ISCHARGE,Converter={StaticResource StringToBoolConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="{x:Static Properties:Resources.FEE}" Style="{StaticResource LbTitleStyle}" />
+                                                        <TextBox IsReadOnly="True" Style="{StaticResource TxtStyle}" Text="{Binding SelectedF140101.FEE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    </WrapPanel>
+                                                    <Label Grid.Row="3" Grid.Column="0" Content="{x:Static Properties:Resources.MEMO}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Width="550" IsReadOnly="True" Style="{StaticResource TxtStyle}" Text="{Binding SelectedF140101.MEMO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Label Grid.Row="3" Grid.Column="4" Content="列印盤點單顯示庫存數量" Style="{StaticResource LbTitleStyle}" />
+                                                    <CheckBox Grid.Row="3" Grid.Column="5" Style="{StaticResource CheckStyle}" IsEnabled="False" IsChecked="{Binding SelectedF140101.SHOW_CNT,Converter={StaticResource StringToBoolConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Label Grid.Row="4" Grid.Column="0" Content="{x:Static res:Resources.CRT_STAFF}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="True" Style="{StaticResource TxtStyle}" Text="{Binding SelectedF140101.CRT_NAME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Label Grid.Row="4" Grid.Column="2" Content="{x:Static Properties:Resources.CRT_DATE}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="4" Grid.Column="3" IsReadOnly="True" Text="{Binding SelectedF140101.CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Style="{StaticResource LargeTxtStyle}" />
+                                                    <Label Grid.Row="5" Grid.Column="0" Content="{x:Static res:Resources.UPD_STAFF}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="True" Style="{StaticResource TxtStyle}" Text="{Binding SelectedF140101.UPD_NAME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Label Grid.Row="5" Grid.Column="2" Content="{x:Static Properties:Resources.UPD_DATE}" Style="{StaticResource LbTitleStyle}" />
+                                                    <TextBox Grid.Row="5" Grid.Column="3" IsReadOnly="True" Text="{Binding SelectedF140101.UPD_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LargeTxtStyle}" />
+                                                </Grid>
+                                            </WrapPanel>
+                                            <GroupBox Header="{x:Static Properties:Resources.QueryDetailWareHouseList}">
+                                                <DockPanel>
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.QueryDetialWareHouseId}" />
+                                                        <ComboBox ItemsSource="{Binding QueryDetailWareHouseList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedQueryDetialWareHouseId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value">
+                                                            <ComboBox.Style>
+                                                                <Style TargetType="ComboBox" BasedOn="{StaticResource ComboStyle}">
+                                                                    <Setter Property="IsEnabled" Value="True" />
+                                                                    <Style.Triggers>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding SelectedF140101,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="IsEnabled" Value="False" />
+                                                                        </MultiDataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </ComboBox.Style>
+                                                        </ComboBox>
+                                                        <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.QueryDetailBegLocCode}" />
+                                                        <TextBox Text="{Binding QueryDetailBegLocCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="14">
+                                                            <TextBox.Style>
+                                                                <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                                    <Setter Property="IsReadOnly" Value="False" />
+                                                                    <Style.Triggers>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding SelectedF140101,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                                        </MultiDataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBox.Style>
+                                                        </TextBox>
+                                                        <Label Style="{StaticResource LbTitleStyle}" Content=" ~ " MinWidth="1" />
+                                                        <TextBox Text="{Binding QueryDetailEndLocCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="14">
+                                                            <TextBox.Style>
+                                                                <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                                    <Setter Property="IsReadOnly" Value="False" />
+                                                                    <Style.Triggers>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding SelectedF140101,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                                        </MultiDataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBox.Style>
+                                                        </TextBox>
+                                                        <Button Style="{StaticResource BtnStyle}" Content="{x:Static res:Resources.Query}" controls:PermissionService.FunctionId="BP1401010009" Command="{Binding SearchDetailCommand}" MinHeight="30" />
+                                                        <Button Style="{StaticResource BtnStyle}" Content="{x:Static Properties:Resources.ExportDetailWareHouseList}" controls:PermissionService.FunctionId="BP1401010017" Command="{Binding ExportDetailCommand}" MinHeight="30" />
+                                                    </WrapPanel>
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <ucLibViews:UcSearchProduct 
+                                                            ItemCode="{Binding DataContext.QueryDetailItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                            ItemName="{Binding DataContext.QueryDetailItemName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                            ItemSize="{Binding DataContext.QueryDetailItemSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                            ItemSpec="{Binding DataContext.QueryDetailItemSpec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                            ItemColor="{Binding DataContext.QueryDetailItemColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                            SerialNo="{Binding DataContext.QueryDetailSerialNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                            HasItem="{Binding QueryDetailHasFindItem,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" 
+                                                            Margin="20,0,0,0" IsEnabled="{Binding QueryDetailItemIsEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                            ItemColorVisibility="Collapsed" ItemSizeVisibility="Collapsed" ItemSpecVisibility="Collapsed" />
+                                                    </WrapPanel>
+                                                    <DataGrid Style="{StaticResource DgStyle}" SelectionMode="Single" MinHeight="200" Height="400" ScrollViewer.HorizontalScrollBarVisibility="Auto" IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" ItemsSource="{Binding InventoryDetailItemList,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedInventoryDetailItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <DataGrid.Columns>
+                                                            <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" IsReadOnly="True">
+                                                                <DataGridTextColumn.Binding>
+                                                                    <MultiBinding Converter="{StaticResource DataGridRowNumberConverter}">
+                                                                        <Binding />
+                                                                        <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType=DataGrid}" />
+                                                                    </MultiBinding>
+                                                                </DataGridTextColumn.Binding>
+                                                            </DataGridTextColumn>
+                                                            <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="貨主品號" IsReadOnly="True" Binding="{Binding CUST_ITEM_CODE}" />
+                                                            <DataGridTextColumn Header="國條" IsReadOnly="True" Binding="{Binding EAN_CODE1}" />
+                                                            <DataGridTextColumn Header="條碼二" IsReadOnly="True" Binding="{Binding EAN_CODE2}" />
+                                                            <DataGridTextColumn Header="條碼三" IsReadOnly="True" Binding="{Binding EAN_CODE3}" />
+                                                            <DataGridTextColumn Header="品名" Binding="{Binding ITEM_NAME}" IsReadOnly="True" Width="500" />
+                                                            <DataGridTextColumn Header="效期" Binding="{Binding VALID_DATE, StringFormat=\{0:yyyy/MM/dd\}}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="批號" Binding="{Binding MAKE_NO}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="入庫日" Binding="{Binding ENTER_DATE, StringFormat=\{0:yyyy/MM/dd\}}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="倉別" IsReadOnly="True" Binding="{Binding WAREHOUSE_NAME}" />
+                                                            <DataGridTextColumn Header="儲位" Binding="{Binding LOC_CODE,Converter={StaticResource StringToLocCodeConverter}}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="WMS庫存數" Binding="{Binding QTY}" IsReadOnly="True"/>
+                                                            <DataGridTextColumn Header="WMS未搬動數" Binding="{Binding UNMOVE_STOCK_QTY}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="自動倉庫存數" IsReadOnly="True" Binding="{Binding DEVICE_STOCK_QTY}" />
+                                                            <DataGridTextColumn Header="初盤數" Binding="{Binding FIRST_QTY}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="複盤數" Binding="{Binding SECOND_QTY}" IsReadOnly="True" />
+                                                        </DataGrid.Columns>
+                                                    </DataGrid>
+                                                </DockPanel>
+                                            </GroupBox>
+                                        </DockPanel>
+                                    </Border>
+                                </DockPanel>
+                            </ScrollViewer>
+                            <!--查詢End-->
+                            <!--#endregion-->
+
+                            <!--新增/編輯Begin-->
+                            <ScrollViewer Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                                <DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding DcList}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding AddOrEditF140101.DC_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" SelectionChanged="AddOrEditDc_OnSelectionChanged" />
+                                            <TextBox Style="{StaticResource TxtStyle}" IsReadOnly="True" Grid.Row="0" Grid.Column="1" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}">
+                                                <TextBox.Text>
+                                                    <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                                        <Binding Path="AddOrEditF140101.DC_CODE" />
+                                                        <Binding Path="DcList" />
+                                                    </MultiBinding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.QueryInventorySDate}" />
+                                            <DatePicker Style="{StaticResource DateStyle}" Grid.Row="0" Grid.Column="3" SelectedDate="{Binding AddOrEditF140101.INVENTORY_DATE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" SelectedDateChanged="InventoryDate_OnSelectedDateChanged" />
+                                            <TextBox Style="{StaticResource TxtStyle}" IsReadOnly="True" Grid.Row="0" Grid.Column="3" Text="{Binding AddOrEditF140101.INVENTORY_DATE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat=\{0:yyyy/MM/dd\},ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" />
+                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.AddOrEditInventoryName}" />
+                                            <TextBox Style="{StaticResource TxtStyle}" IsReadOnly="True" Grid.Row="0" Grid.Column="5" Text="{Binding AddOrEditInventoryName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                            <WrapPanel Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2">
+                                                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ISCHARGE}" />
+                                                <CheckBox IsChecked="{Binding AddOrEditF140101.ISCHARGE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" Unchecked="IsCharge_OnUnChecked">
+                                                    <CheckBox.Style>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource CheckStyle}">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Style.Triggers>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding DataContext.CanCheckIsCharge,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" Value="True" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="IsEnabled" Value="True" />
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Style>
+                                                </CheckBox>
+                                                <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.FEE}" />
+                                                <TextBox MaxLength="12" Text="{Binding AddOrEditF140101.FEE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ZeroPointConverter},ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}">
+                                                    <TextBox.Style>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Style.Triggers>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding AddOrEditF140101.ISCHARGE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="IsReadOnly" Value="False" />
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Style>
+                                                </TextBox>
+                                            </WrapPanel>
+                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.INVENTORY_TYPE}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding InventoryTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" DisplayMemberPath="Name" SelectedValuePath="Value" Visibility="{Binding UserOperateMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" SelectionChanged="InventoryType_OnSelectionChanged" />
+                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.CheckTool}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding CheckToolList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding AddOrEditF140101.CHECK_TOOL,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" DisplayMemberPath="Name" SelectedValuePath="Value" IsEnabled="{Binding UserOperateMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" />
+                                            <TextBox Style="{StaticResource TxtStyle}" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}">
+                                                <TextBox.Text>
+                                                    <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                                        <Binding Path="AddOrEditF140101.INVENTORY_TYPE" />
+                                                        <Binding Path="InventoryTypeList" />
+                                                    </MultiBinding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                            <Label Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.INVENTORY_CYCLE}">
+                                                <Label.Style>
+                                                    <Style TargetType="Label" BasedOn="{StaticResource LbTitleStyle}">
+                                                        <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                                        <Style.Triggers>
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </MultiDataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Label.Style>
+                                            </Label>
+                                            <WrapPanel Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="3">
+                                                <WrapPanel.Style>
+                                                    <Style TargetType="WrapPanel">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                        <Style.Triggers>
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </MultiDataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </WrapPanel.Style>
+                                                <TextBox Width="80" MaxLength="2" Text="{Binding AddOrEditF140101.INVENTORY_CYCLE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ZeroPointConverter},ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" KeyUp="InventoryCycle_OnKeyUp">
+                                                    <TextBox.Style>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Style.Triggers>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding UserOperateMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Static uiLib:OperateMode.Add}" />
+                                                                        <Condition Binding="{Binding ReadOnlyInventoryCycle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="False"></Condition>
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="IsReadOnly" Value="False" />
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Style>
+                                                </TextBox>
+                                                <Label Content="{x:Static Properties:Resources.INVENTORY_YEAR}" Style="{StaticResource LbTitleStyle}" MinWidth="10" />
+                                                <ComboBox Width="80" Style="{StaticResource ComboStyle}" ItemsSource="{Binding InventoryYearList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding AddOrEditF140101.INVENTORY_YEAR,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectionChanged="InventoryYear_OnSelectionChanged" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" />
+                                                <TextBox Width="80" Style="{StaticResource TxtStyle}" IsReadOnly="True" Text="{Binding AddOrEditF140101.INVENTORY_YEAR,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" />
+                                                <Label Content="{x:Static Properties:Resources.INVENTORY_MON}" Style="{StaticResource LbTitleStyle}" MinWidth="10" />
+                                                <ComboBox Width="80" Style="{StaticResource ComboStyle}" ItemsSource="{Binding InventoryMonthList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding AddOrEditF140101.INVENTORY_MON,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectionChanged="InventoryMonth_OnSelectionChanged" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" />
+                                                <TextBox IsReadOnly="True" Width="80" Style="{StaticResource TxtStyle}" Text="{Binding AddOrEditF140101.INVENTORY_MON,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" />
+                                            </WrapPanel>
+                                            <WrapPanel Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2">
+                                                <WrapPanel.Style>
+                                                    <Style TargetType="WrapPanel">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                        <Style.Triggers>
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </MultiDataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </WrapPanel.Style>
+                                                <Label Content="{x:Static Properties:Resources.CYCLE_TIMES}" Style="{StaticResource LbTitleStyle}" />
+                                                <TextBox Width="45" MaxLength="3" Text="{Binding AddOrEditF140101.CYCLE_TIMES,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ZeroPointConverter},ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" KeyUp="CycleTimes_OnKeyUp">
+                                                    <TextBox.Style>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                            <Setter Property="IsReadOnly" Value="False" />
+                                                            <Style.Triggers>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding UserOperateMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Static uiLib:OperateMode.Edit}" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="IsReadOnly" Value="True" />
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Style>
+                                                </TextBox>
+                                                <Label Content="{x:Static Properties:Resources.TIMES}" Style="{StaticResource LbStyle}" />
+                                            </WrapPanel>
+                                            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.MEMO}" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Style="{StaticResource TxtStyle}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Width="500" Text="{Binding AddOrEditF140101.MEMO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" MaxLength="200" />
+                                            <Label Grid.Row="2" Grid.Column="6" Content="列印盤點單顯示庫存數量" Style="{StaticResource LbTitleStyle}" />
+                                            <CheckBox Style="{StaticResource CheckStyle}" Grid.Row="2" Grid.Column="7" IsChecked="{Binding AddOrEditF140101.SHOW_CNT,Converter={StaticResource StringToBoolConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" />
+                                            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static Properties:Resources.QueryInventoryNo}" />
+                                            <TextBox Style="{StaticResource LargeTxtStyle}" Grid.Row="3" Grid.Column="1" Text="{Binding AddOrEditF140101.INVENTORY_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" IsReadOnly="True" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" MaxLength="20" />
+                                        </Grid>
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <DockPanel DockPanel.Dock="Left" MinWidth="200" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}">
+                                            <DockPanel>
+                                                <GroupBox Header="{x:Static Properties:Resources.AddOrEditWareHouseId}">
+                                                    <DockPanel>
+                                                        <Grid DockPanel.Dock="Top">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.QueryDetialWareHouseId}">
+                                                                <Label.Style>
+                                                                    <Style TargetType="Label" BasedOn="{StaticResource LbTitleStyle}">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                        <Style.Triggers>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="3" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="4" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Label.Style>
+                                                            </Label>
+                                                            <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedAddOrEditWareHouseId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding AddOrEditWareHouseList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                                                <ComboBox.Style>
+                                                                    <Style TargetType="ComboBox" BasedOn="{StaticResource ComboStyle}">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                        <Style.Triggers>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="3" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="4" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </ComboBox.Style>
+                                                            </ComboBox>
+                                                            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.WareHouseType}">
+                                                                <Label.Style>
+                                                                    <Style TargetType="Label" BasedOn="{StaticResource LbTitleStyle}">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                        <Style.Triggers>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="0" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="2" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Label.Style>
+                                                            </Label>
+                                                            <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedWareHouseType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding WareHouseTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectionChanged="WareHouseType_OnSelectionChanged">
+                                                                <ComboBox.Style>
+                                                                    <Style TargetType="ComboBox" BasedOn="{StaticResource ComboStyle}">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                        <Style.Triggers>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="0" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="2" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="3" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                            <MultiDataTrigger>
+                                                                                <MultiDataTrigger.Conditions>
+                                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="4" />
+                                                                                </MultiDataTrigger.Conditions>
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </MultiDataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </ComboBox.Style>
+                                                            </ComboBox>
+                                                            <Label Style="{StaticResource LbStyle}" Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.QueryDetialWareHouseId}" HorizontalContentAlignment="Right"
+                                                                   Visibility="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringTypeToVisiablityConverter},ConverterParameter='5'}"/>
+
+                                                            <ComboBox Style="{StaticResource ComboStyle}" Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Value" 
+                                                                      SelectedValue="{Binding AddF140111.WAREHOUSE_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" 
+                                                                      ItemsSource="{Binding WareHouseTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                                      IsEnabled="{Binding IsNotUsing,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                      Visibility="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringTypeToVisiablityConverter},ConverterParameter='5'}"/>
+                                                            <Label Style="{StaticResource LbStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.Area}" HorizontalContentAlignment="Right"
+                                                                   Visibility="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringTypeToVisiablityConverter},ConverterParameter='5'}"/>
+                                                            <ComboBox Style="{StaticResource ComboStyle}" Grid.Row="1" Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Value" 
+                                                                      SelectedValue="{Binding AddF140111.AREA_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                                      ItemsSource="{Binding AreaList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                                      IsEnabled="{Binding IsNotUsing,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                      Visibility="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringTypeToVisiablityConverter},ConverterParameter='5'}"/>
+                                                        </Grid>
+                                                        <DataGrid VerticalAlignment="Top" ItemsSource="{Binding InventoryWareHouseList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" SelectedItem="{Binding SelectedInventoryWareHouse,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CellStyle="{StaticResource SingleClickEdit}" Height="360">
+                                                            <DataGrid.Style>
+                                                                <Style TargetType="DataGrid" BasedOn="{StaticResource DgStyle}">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                    <Style.Triggers>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="0" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="Visibility" Value="Visible"></Setter>
+                                                                        </MultiDataTrigger>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="1" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="Visibility" Value="Visible"></Setter>
+                                                                        </MultiDataTrigger>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="2" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="Visibility" Value="Visible"></Setter>
+                                                                        </MultiDataTrigger>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="3" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="Visibility" Value="Visible"></Setter>
+                                                                        </MultiDataTrigger>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="4" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="Visibility" Value="Visible"></Setter>
+                                                                        </MultiDataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </DataGrid.Style>
+                                                            <!--倉別明細Grid-->
+                                                            <DataGrid.Columns>
+                                                                <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource DgCheckBoxItemStyle}" EditingElementStyle="{StaticResource DgCheckBoxItemStyle}">
+                                                                    <DataGridCheckBoxColumn.HeaderTemplate>
+                                                                        <DataTemplate>
+                                                                            <CheckBox Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllWareHouse,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllWareHouse_OnChecked" Unchecked="CheckAllWareHouse_OnChecked" />
+                                                                        </DataTemplate>
+                                                                    </DataGridCheckBoxColumn.HeaderTemplate>
+                                                                </DataGridCheckBoxColumn>
+                                                                <!--樓層起-->
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.WAREHOUSE_NAME}" Binding="{Binding WAREHOUSE_NAME}" IsReadOnly="True" />
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.AreaName}" Binding="{Binding AREA_NAME}" IsReadOnly="True" />
+                                                                <DataGridComboBoxColumn Header="{x:Static Properties:Resources.FLOOR_BEGIN}" SelectedValueBinding="{Binding FLOOR_BEGIN,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="False" ElementStyle="{StaticResource DgComboxItemStyleBeginFloor}" EditingElementStyle="{StaticResource DgComboxItemStyleBeginFloor}">
+                                                                    <DataGridComboBoxColumn.Visibility>
+                                                                        <Binding Path="DataContext.ShowColumn" Source="{StaticResource ProxyElement}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource StringTypeToVisiablityConverter}" ConverterParameter="{x:Static viewModel:DisplayType.display}" />
+                                                                    </DataGridComboBoxColumn.Visibility>
+                                                                </DataGridComboBoxColumn>
+                                                                <!--樓層迄-->
+                                                                <DataGridComboBoxColumn Header="{x:Static Properties:Resources.FLOOR_END}" SelectedValueBinding="{Binding FLOOR_END,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="False" ElementStyle="{StaticResource DgComboBoxItemStyleEndFloor}" EditingElementStyle="{StaticResource DgComboBoxItemStyleEndFloor}">
+                                                                    <DataGridComboBoxColumn.Visibility>
+                                                                        <Binding Path="DataContext.ShowColumn" Source="{StaticResource ProxyElement}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource StringTypeToVisiablityConverter}" ConverterParameter="{x:Static viewModel:DisplayType.display}" />
+                                                                    </DataGridComboBoxColumn.Visibility>
+                                                                </DataGridComboBoxColumn>
+                                                                <!--通道起-->
+                                                                <DataGridComboBoxColumn Header="{x:Static Properties:Resources.CHANNEL_BEGIN}" SelectedValueBinding="{Binding CHANNEL_BEGIN,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="False" ElementStyle="{StaticResource DgComboxItemStyleBeginChannel}" EditingElementStyle="{StaticResource DgComboxItemStyleBeginChannel}">
+                                                                    <DataGridComboBoxColumn.Visibility>
+                                                                        <Binding Path="DataContext.ShowColumn" Source="{StaticResource ProxyElement}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource StringTypeToVisiablityConverter}" ConverterParameter="{x:Static viewModel:DisplayType.display}" />
+                                                                    </DataGridComboBoxColumn.Visibility>
+                                                                </DataGridComboBoxColumn>
+                                                                <!--通道迄-->
+                                                                <DataGridComboBoxColumn Header="{x:Static Properties:Resources.CHANNEL_END}" SelectedValueBinding="{Binding CHANNEL_END,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="False" ElementStyle="{StaticResource DgComboBoxItemStyleEndChannel}" EditingElementStyle="{StaticResource DgComboBoxItemStyleEndChannel}">
+                                                                    <DataGridComboBoxColumn.Visibility>
+                                                                        <Binding Path="DataContext.ShowColumn" Source="{StaticResource ProxyElement}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource StringTypeToVisiablityConverter}" ConverterParameter="{x:Static viewModel:DisplayType.display}" />
+                                                                    </DataGridComboBoxColumn.Visibility>
+                                                                </DataGridComboBoxColumn>
+                                                                <!--座起-->
+                                                                <DataGridComboBoxColumn Header="{x:Static Properties:Resources.PLAIN_BEGIN}" SelectedValueBinding="{Binding PLAIN_BEGIN,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="False" ElementStyle="{StaticResource DgComboxItemStyleBeginPlain}" EditingElementStyle="{StaticResource DgComboxItemStyleBeginPlain}">
+                                                                    <DataGridComboBoxColumn.Visibility>
+                                                                        <Binding Path="DataContext.ShowColumn" Source="{StaticResource ProxyElement}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource StringTypeToVisiablityConverter}" ConverterParameter="{x:Static viewModel:DisplayType.display}" />
+                                                                    </DataGridComboBoxColumn.Visibility>
+                                                                </DataGridComboBoxColumn>
+                                                                <!--座迄-->
+                                                                <DataGridComboBoxColumn Header="{x:Static Properties:Resources.PLAIN_END}" SelectedValueBinding="{Binding PLAIN_END,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="False" ElementStyle="{StaticResource DgComboBoxItemStyleEndPlain}" EditingElementStyle="{StaticResource DgComboBoxItemStyleEndPlain}">
+                                                                    <DataGridComboBoxColumn.Visibility>
+                                                                        <Binding Path="DataContext.ShowColumn" Source="{StaticResource ProxyElement}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource StringTypeToVisiablityConverter}" ConverterParameter="{x:Static viewModel:DisplayType.display}" />
+                                                                    </DataGridComboBoxColumn.Visibility>
+                                                                </DataGridComboBoxColumn>
+                                                            </DataGrid.Columns>
+                                                        </DataGrid>
+                                                    </DockPanel>
+                                                </GroupBox>
+                                            </DockPanel>
+                                        </DockPanel>
+                                        <DockPanel Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}">
+                                            <DockPanel>
+                                                <DockPanel.Style>
+                                                    <Style TargetType="DockPanel">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                        <Style.Triggers>
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="0" />
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </MultiDataTrigger>
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding AddOrEditF140101.INVENTORY_TYPE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="2" />
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </MultiDataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DockPanel.Style>
+                                                <GroupBox Header="{x:Static Properties:Resources.InventoryItemList}">
+                                                    <DockPanel>
+                                                        <Grid DockPanel.Dock="Top">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.INVENTORY_TYPE}"/>
+                                                            <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" DisplayMemberPath="Name" SelectedValuePath="Value" ItemsSource="{Binding ItemTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItemType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="2" Content="廠商編號"/>
+                                                            <TextBox Style="{StaticResource TxtStyle}" Grid.Row="0" Grid.Column="3" Text="{Binding SelectedVnrCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="4" Content="廠商名稱" Foreground="Blue"/>
+                                                            <TextBox Style="{StaticResource TxtStyle}" Grid.Row="0" Grid.Column="5" Text="{Binding SelectedVnrName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            <Button Grid.Row="0" Grid.Column="6" Style="{StaticResource BtnStyle}" Content="{x:Static res:Resources.Query}" controls:PermissionService.FunctionId="BP1401010010" Command="{Binding SearchItemCommand}" MinHeight="30" />
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.SelectedItemLType}" />
+                                                            <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboStyle}" DisplayMemberPath="Name" SelectedValuePath="Value" ItemsSource="{Binding ItemLTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItemLType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.SelectedItemMType}" />
+                                                            <ComboBox Grid.Row="1" Grid.Column="3" Style="{StaticResource ComboStyle}" DisplayMemberPath="Name" SelectedValuePath="Value" ItemsSource="{Binding ItemMTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItemMType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding MTypeIsEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.SelectedItemSType}" />
+                                                            <ComboBox Grid.Row="1" Grid.Column="5" Style="{StaticResource ComboStyle}" DisplayMemberPath="Name" SelectedValuePath="Value" ItemsSource="{Binding ItemSTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItemSType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding STypeIsEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            <ucLibViews:UcSearchProduct Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8" 
+                                                                                        ItemCode="{Binding DataContext.AddItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                        ItemName="{Binding DataContext.AddItemName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                        ItemSize="{Binding DataContext.AddItemSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                        ItemSpec="{Binding DataContext.AddItemSpec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                        ItemColor="{Binding DataContext.AddItemColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                        SerialNo="{Binding DataContext.AddSerialNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                        HasItem="{Binding DataContext.AddHasFindItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" Margin="35,0,0,0" ItemColorVisibility="Collapsed" ItemSizeVisibility="Collapsed" ItemSpecVisibility="Collapsed" />
+                                                            <WrapPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="8">
+                                                                <Button Style="{StaticResource BtnStyle}" Content="{x:Static Properties:Resources.AddItem}" controls:PermissionService.FunctionId="BP1401010011" Command="{Binding AddItemCommand}" MinHeight="30" />
+                                                                <Button Style="{StaticResource BtnStyle}" Content="{x:Static Properties:Resources.DeleteItem}" controls:PermissionService.FunctionId="BP1401010012" Command="{Binding DeleteItemCommand}" MinHeight="30" />
+                                                                <Button Style="{StaticResource BtnStyle}" Content="商品品號匯入" controls:PermissionService.FunctionId="BP1401010013" Command="{Binding ExcelImportItemCommand}" CommandParameter="BP1401010013" MinHeight="30" />
+                                                                <Button Style="{StaticResource BtnStyle}" Content="貨主品編匯入" controls:PermissionService.FunctionId="BP1401010021" Command="{Binding ExcelImportItemCommand}" CommandParameter="BP1401010021" MinHeight="30" />
+                                                            </WrapPanel>
+                                                            
+                                                        </Grid>
+                                                        <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding InventoryItemList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" SelectedItem="{Binding SelectedInventoryItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CellStyle="{StaticResource SingleClickEdit}">
+                                                            <DataGrid.Columns>
+                                                                <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource DgCheckBoxStyle}" EditingElementStyle="{StaticResource DgCheckBoxStyle}">
+                                                                    <DataGridCheckBoxColumn.HeaderTemplate>
+                                                                        <DataTemplate>
+                                                                            <CheckBox Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllItem_OnChecked" Unchecked="CheckAllItem_OnChecked" />
+                                                                        </DataTemplate>
+                                                                    </DataGridCheckBoxColumn.HeaderTemplate>
+                                                                </DataGridCheckBoxColumn>
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}" IsReadOnly="True" />
+                                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_NAME}" IsReadOnly="True" />
+                                                            </DataGrid.Columns>
+                                                        </DataGrid>
+                                                    </DockPanel>
+                                                </GroupBox>
+                                            </DockPanel>
+                                        </DockPanel>
+                                        <!--#region 編輯Mode-->
+                                        <DockPanel Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}">
+                                            <GroupBox Header="{x:Static Properties:Resources.InventoryDetailItem}">
+                                                <DockPanel>
+                                                    <DockPanel DockPanel.Dock="Top">
+                                                        <GroupBox Header="{x:Static Properties:Resources.IsShowQueryDetailRule}" DockPanel.Dock="Top">
+                                                            <Expander IsExpanded="{Binding IsShowQueryDetailRule,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top">
+                                                                <DockPanel>
+                                                                    <WrapPanel DockPanel.Dock="Top">
+                                                                        <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.QueryDetialWareHouseId}" />
+                                                                        <ComboBox ItemsSource="{Binding QueryDetailWareHouseList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedEditQueryDetailWareHouseId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value">
+                                                                            <ComboBox.Style>
+                                                                                <Style TargetType="ComboBox" BasedOn="{StaticResource ComboStyle}">
+                                                                                    <Setter Property="IsEnabled" Value="True" />
+                                                                                    <Style.Triggers>
+                                                                                        <MultiDataTrigger>
+                                                                                            <MultiDataTrigger.Conditions>
+                                                                                                <Condition Binding="{Binding AddOrEditF140101,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}" />
+                                                                                            </MultiDataTrigger.Conditions>
+                                                                                            <Setter Property="IsEnabled" Value="False" />
+                                                                                        </MultiDataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </ComboBox.Style>
+                                                                        </ComboBox>
+                                                                        <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.QueryDetailBegLocCode}" />
+                                                                        <TextBox Text="{Binding EditQueryDetailBegLocCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="14">
+                                                                            <TextBox.Style>
+                                                                                <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                                                    <Setter Property="IsReadOnly" Value="False" />
+                                                                                    <Style.Triggers>
+                                                                                        <MultiDataTrigger>
+                                                                                            <MultiDataTrigger.Conditions>
+                                                                                                <Condition Binding="{Binding AddOrEditF140101,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}" />
+                                                                                            </MultiDataTrigger.Conditions>
+                                                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                                                        </MultiDataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </TextBox.Style>
+                                                                        </TextBox>
+                                                                        <Label Style="{StaticResource LbTitleStyle}" Content=" ~ " MinWidth="1" />
+                                                                        <TextBox Text="{Binding EditQueryDetailEndLocCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="14">
+                                                                            <TextBox.Style>
+                                                                                <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                                                    <Setter Property="IsReadOnly" Value="False" />
+                                                                                    <Style.Triggers>
+                                                                                        <MultiDataTrigger>
+                                                                                            <MultiDataTrigger.Conditions>
+                                                                                                <Condition Binding="{Binding AddOrEditF140101,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}" />
+                                                                                            </MultiDataTrigger.Conditions>
+                                                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                                                        </MultiDataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </TextBox.Style>
+                                                                        </TextBox>
+                                                                        <Button Style="{StaticResource BtnStyle}" Content="{x:Static res:Resources.Query}" controls:PermissionService.FunctionId="BP1401010018" Command="{Binding SearchEditDetailCommand}" MinHeight="30" />
+                                                                    </WrapPanel>
+                                                                    <WrapPanel DockPanel.Dock="Top">
+                                                                        <ucLibViews:UcSearchProduct 
+                                                                            ItemCode="{Binding DataContext.EditQueryItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                            ItemName="{Binding DataContext.EditQueryItemName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                            ItemSize="{Binding DataContext.EditQueryItemSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                            ItemSpec="{Binding DataContext.EditQueryItemSpec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                            ItemColor="{Binding DataContext.EditQueryItemColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                            SerialNo="{Binding DataContext.EditQuerySerialNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                            HasItem="{Binding DataContext.EditQueryHasFindItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" Margin="20,0,0,0" ItemColorVisibility="Collapsed" ItemSizeVisibility="Collapsed" ItemSpecVisibility="Collapsed" />
+                                                                    </WrapPanel>
+                                                                </DockPanel>
+                                                            </Expander>
+                                                        </GroupBox>
+                                                        <GroupBox Header="{x:Static Properties:Resources.AddItem}" DockPanel.Dock="Top">
+                                                            <Expander IsExpanded="True" DockPanel.Dock="Top">
+                                                                <Grid DockPanel.Dock="Top">
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="Auto" />
+                                                                        <RowDefinition Height="Auto" />
+                                                                        <RowDefinition Height="Auto" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <ucLibViews:UcSearchProduct Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" 
+                                                                                                ItemCode="{Binding DataContext.EditItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                                ItemName="{Binding DataContext.EditItemName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                                ItemSize="{Binding DataContext.EditItemSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                                ItemSpec="{Binding DataContext.EditItemSpec,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                                ItemColor="{Binding DataContext.EditItemColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" 
+                                                                                                SerialNo="{Binding DataContext.EditSerialNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}"
+                                                                                                CustItemCode="{Binding DataContext.EditCustItemCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}"
+                                                                                                EanCode1="{Binding DataContext.EditEanCode1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}"
+                                                                                                EanCode2="{Binding DataContext.EditEanCode2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}"
+                                                                                                EanCode3="{Binding DataContext.EditEanCode3,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}"
+                                                                                                HasItem="{Binding DataContext.EditHasFindItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" Margin="20,0,0,0" ItemColorVisibility="Collapsed" ItemSizeVisibility="Collapsed" ItemSpecVisibility="Collapsed" />
+                                                                    <!--儲位-->
+                                                                    <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.LOC_CODE}" />
+                                                                    <TextBox Style="{StaticResource TxtStyle}" Grid.Row="1" Grid.Column="1" Text="{Binding EditLocCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="14" />
+                                                                    <!--批號-->
+                                                                    <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.MAKE_NO}" />
+                                                                    <TextBox Style="{StaticResource TxtStyle}" Grid.Row="1" Grid.Column="3" Text="{Binding EditMakeNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="40" />
+                                                                    <!--效期-->
+                                                                    <Label Style="{StaticResource LbTitleStyle}" Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.VALID_DATE}" />
+                                                                    <DatePicker Style="{StaticResource DateStyle}" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding EditValidDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                                    <!--數量-->
+                                                                    <Label Grid.Row="2" Grid.Column="2" Content="{x:Static Properties:Resources.EditQty}">
+                                                                        <Label.Style>
+                                                                            <Style TargetType="Label" BasedOn="{StaticResource LbTitleStyle}">
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                                <Style.Triggers>
+                                                                                    <MultiDataTrigger>
+                                                                                        <MultiDataTrigger.Conditions>
+                                                                                            <Condition Binding="{Binding AddOrEditF140101.STATUS}" Value="0" />
+                                                                                        </MultiDataTrigger.Conditions>
+                                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                                    </MultiDataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Label.Style>
+                                                                    </Label>
+                                                                    <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding EditQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="6">
+                                                                        <TextBox.Style>
+                                                                            <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                                <Style.Triggers>
+                                                                                    <MultiDataTrigger>
+                                                                                        <MultiDataTrigger.Conditions>
+                                                                                            <Condition Binding="{Binding AddOrEditF140101.STATUS}" Value="0" />
+                                                                                        </MultiDataTrigger.Conditions>
+                                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                                    </MultiDataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </TextBox.Style>
+                                                                    </TextBox>
+                                                                </Grid>
+                                                            </Expander>
+                                                        </GroupBox>
+                                                    </DockPanel>
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <Button Style="{StaticResource BtnStyle}" Content="{x:Static Properties:Resources.AddItem}" controls:PermissionService.FunctionId="BP1401010014" Command="{Binding AddInventoryDetailItemCommand}" MinHeight="30" />
+                                                        <Button Content="{x:Static Properties:Resources.DeleteItem}" Style="{StaticResource BtnStyle}" controls:PermissionService.FunctionId="BP1401010015" Command="{Binding DeleteInventoryDetailItemCommand}" MinHeight="30" />
+                                                        <Button Content="{x:Static Properties:Resources.ExcelImportInventoryDetailItem}" controls:PermissionService.FunctionId="BP1401010016" Command="{Binding ImportInventoryDetailItemCommand}" MinHeight="30">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button" BasedOn="{StaticResource BtnStyle}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                    <Style.Triggers>
+                                                                        <MultiDataTrigger>
+                                                                            <MultiDataTrigger.Conditions>
+                                                                                <Condition Binding="{Binding AddOrEditF140101.STATUS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="0" />
+                                                                            </MultiDataTrigger.Conditions>
+                                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                                        </MultiDataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
+                                                        <!--<Button Style="{StaticResource BtnStyle}" Content="{x:Static Properties:Resources.SetAllFlushback}" controls:PermissionService.FunctionId="BP1401010019" Command="{Binding SetAllFlushbackCommand}" MinHeight="30" />-->
+                                                    </WrapPanel>
+                                                    <controls:ValidationDataGrid Name="dgGroupList" Style="{StaticResource DgStyle}" SelectionMode="Single" Height="400" ScrollViewer.HorizontalScrollBarVisibility="Auto" IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" ItemsSource="{Binding EditInventoryDetailItemList,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedEditInventoryDetailItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <DataGrid.Columns>
+                                                            <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource DgCheckBoxStyle}" EditingElementStyle="{StaticResource DgCheckBoxStyle}">
+                                                                <DataGridCheckBoxColumn.HeaderTemplate>
+                                                                    <DataTemplate>
+                                                                        <CheckBox Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllEditInventoryDetailItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllEditInventoryDetailItem_OnChecked" Unchecked="CheckAllEditInventoryDetailItem_OnChecked" />
+                                                                    </DataTemplate>
+                                                                </DataGridCheckBoxColumn.HeaderTemplate>
+                                                                <DataGridCheckBoxColumn.Visibility>
+                                                                    <Binding Path="DataContext.AddOrEditF140101.STATUS" Source="{StaticResource ProxyElement}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource StringTypeToVisiablityConverter}" ConverterParameter="0" />
+                                                                </DataGridCheckBoxColumn.Visibility>
+                                                            </DataGridCheckBoxColumn>
+                                                            <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" IsReadOnly="True">
+                                                                <DataGridTextColumn.Binding>
+                                                                    <MultiBinding Converter="{StaticResource DataGridRowNumberConverter}">
+                                                                        <Binding />
+                                                                        <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType=DataGrid}" />
+                                                                    </MultiBinding>
+                                                                </DataGridTextColumn.Binding>
+                                                            </DataGridTextColumn>
+                                                            <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="貨主品號" IsReadOnly="True" Binding="{Binding CUST_ITEM_CODE}" />
+                                                            <DataGridTextColumn Header="國條" IsReadOnly="True" Binding="{Binding EAN_CODE1}" />
+                                                            <DataGridTextColumn Header="條碼二" IsReadOnly="True" Binding="{Binding EAN_CODE2}" />
+                                                            <DataGridTextColumn Header="條碼三" IsReadOnly="True" Binding="{Binding EAN_CODE3}" />
+                                                            <DataGridTextColumn Header="品名" Binding="{Binding ITEM_NAME}" IsReadOnly="True" Width="500" />
+                                                            <DataGridTextColumn Header="效期" Binding="{Binding VALID_DATE, StringFormat=\{0:yyyy/MM/dd\}}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="批號" Binding="{Binding MAKE_NO}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="入庫日" Binding="{Binding ENTER_DATE, StringFormat=\{0:yyyy/MM/dd\}}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="倉別" IsReadOnly="True" Binding="{Binding WAREHOUSE_NAME}" />
+                                                            <DataGridTextColumn Header="儲位" Binding="{Binding LOC_CODE,Converter={StaticResource StringToLocCodeConverter}}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="WMS庫存數" Binding="{Binding QTY}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="WMS未搬動數" Binding="{Binding UNMOVE_STOCK_QTY}" IsReadOnly="True" />
+                                                            <DataGridTextColumn Header="自動倉庫存數" IsReadOnly="True" Binding="{Binding DEVICE_STOCK_QTY}" />
+                                                            <DataGridTextColumn Header="初盤數" Binding="{Binding FIRST_QTY,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True,Converter={StaticResource ZeroPointConverter}}" IsReadOnly="{Binding DataContext.IsReadOnlyFirstQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" />
+                                                            <DataGridTextColumn Header="複盤數" Binding="{Binding SECOND_QTY,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True,Converter={StaticResource ZeroPointConverter}}" IsReadOnly="{Binding DataContext.IsReadOnlySecondQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Source={StaticResource ProxyElement}}" />
+                                                        </DataGrid.Columns>
+                                                    </controls:ValidationDataGrid>
+                                                </DockPanel>
+                                            </GroupBox>
+                                        </DockPanel>
+                                        <!--#endregion-->
+                                    </DockPanel>
+                                </DockPanel>
+                            </ScrollViewer>
+                            <!--新增/編輯End-->
+                        </DockPanel>
+                    </TabItem>
+                </TabControl>
+            </uiLib:BasicMaster.MainContent>
+        </uiLib:BasicMaster>
+    </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P02WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F02" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F01" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P02WcfService_UpdateF02020102_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF02020102" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF02020102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF02020102Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_QuickUpdateF02020102_InputMessage">
+    <wsdl:part name="parameters" element="tns:QuickUpdateF02020102" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_QuickUpdateF02020102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QuickUpdateF02020102Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_RandomCheckSerial_InputMessage">
+    <wsdl:part name="parameters" element="tns:RandomCheckSerial" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_RandomCheckSerial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RandomCheckSerialResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF2501AndF02020104_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF2501AndF02020104" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF2501AndF02020104_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF2501AndF02020104Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateP02020304_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP02020304" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateP02020304_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP02020304Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateF1510LocItemData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF1510LocItemData" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateF1510LocItemData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF1510LocItemDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF1510Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1510Data" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF1510Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1510DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_ImportSerialNoLoc_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSerialNoLoc" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_ImportSerialNoLoc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSerialNoLocResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_NewAcceptancePurchase_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewAcceptancePurchase" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_NewAcceptancePurchase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewAcceptancePurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetP0202030500PalletDatas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetP0202030500PalletDatas" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetP0202030500PalletDatas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetP0202030500PalletDatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetRtNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRtNo" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetRtNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRtNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InserF020301AndF020302_InputMessage">
+    <wsdl:part name="parameters" element="tns:InserF020301AndF020302" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InserF020301AndF020302_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InserF020301AndF020302Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_DeleteP020205_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteP020205" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_DeleteP020205_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteP020205Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckLargeSerialNoFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLargeSerialNoFull" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckLargeSerialNoFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLargeSerialNoFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckRepeatSerails_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRepeatSerails" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckRepeatSerails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRepeatSerailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateF020103_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF020103" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateF020103_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF020103Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_OutOfStock_InputMessage">
+    <wsdl:part name="parameters" element="tns:OutOfStock" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_OutOfStock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OutOfStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CancelAcceptance_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAcceptance" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CancelAcceptance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAcceptanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateP02020307_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateP02020307" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateP02020307_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateP02020307Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF1903_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1903" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF1903_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1903Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateP020203_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP020203" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateP020203_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP020203Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF010301AndGetNewID_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF010301AndGetNewID" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF010301AndGetNewID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF010301AndGetNewIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_DeleteF010301ScanCargoDatas_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF010301ScanCargoDatas" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_DeleteF010301ScanCargoDatas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF010301ScanCargoDatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010301BoxCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010301BoxCount" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010301BoxCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010301BoxCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010301ScanCargoMemo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010301ScanCargoMemo" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010301ScanCargoMemo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010301ScanCargoMemoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF010302AndReturnValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF010302AndReturnValue" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF010302AndReturnValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF010302AndReturnValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010302ShipBoxCnt_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010302ShipBoxCnt" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010302ShipBoxCnt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010302ShipBoxCntResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_AddF020501_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddF020501" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_AddF020501_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddF020501Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_DeleteContainerBindData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteContainerBindData" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_DeleteContainerBindData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteContainerBindDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateContainerBindData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContainerBindData" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateContainerBindData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContainerBindDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckAllContainerIsDone_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAllContainerIsDone" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckAllContainerIsDone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAllContainerIsDoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetUnnormalAllocDatas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnnormalAllocDatas" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetUnnormalAllocDatas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnnormalAllocDatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CallRecvVedio_InputMessage">
+    <wsdl:part name="parameters" element="tns:CallRecvVedio" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CallRecvVedio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CallRecvVedioResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_ReGetLmsApiStowShelfAreaGuide_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReGetLmsApiStowShelfAreaGuide" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_ReGetLmsApiStowShelfAreaGuide_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReGetLmsApiStowShelfAreaGuideResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetTodayRecvQty_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTodayRecvQty" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetTodayRecvQty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTodayRecvQtyResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertManualProcessData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertManualProcessData" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertManualProcessData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertManualProcessDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertModifyRecvQtyData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertModifyRecvQtyData" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertModifyRecvQtyData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertModifyRecvQtyDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertModifyNGQtyData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertModifyNGQtyData" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertModifyNGQtyData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertModifyNGQtyDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010201Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010201Status" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF010201Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF010201StatusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P02WcfService">
+    <wsdl:operation name="UpdateF02020102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF02020102" message="tns:P02WcfService_UpdateF02020102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF02020102Response" message="tns:P02WcfService_UpdateF02020102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QuickUpdateF02020102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/QuickUpdateF02020102" message="tns:P02WcfService_QuickUpdateF02020102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/QuickUpdateF02020102Response" message="tns:P02WcfService_QuickUpdateF02020102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RandomCheckSerial">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/RandomCheckSerial" message="tns:P02WcfService_RandomCheckSerial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/RandomCheckSerialResponse" message="tns:P02WcfService_RandomCheckSerial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF2501AndF02020104">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertF2501AndF02020104" message="tns:P02WcfService_InsertF2501AndF02020104_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertF2501AndF02020104Response" message="tns:P02WcfService_InsertF2501AndF02020104_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP02020304">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateP02020304" message="tns:P02WcfService_UpdateP02020304_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateP02020304Response" message="tns:P02WcfService_UpdateP02020304_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF1510LocItemData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateF1510LocItemData" message="tns:P02WcfService_InsertOrUpdateF1510LocItemData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateF1510LocItemDataResponse" message="tns:P02WcfService_InsertOrUpdateF1510LocItemData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF1510Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF1510Data" message="tns:P02WcfService_UpdateF1510Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF1510DataResponse" message="tns:P02WcfService_UpdateF1510Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSerialNoLoc">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/ImportSerialNoLoc" message="tns:P02WcfService_ImportSerialNoLoc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/ImportSerialNoLocResponse" message="tns:P02WcfService_ImportSerialNoLoc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewAcceptancePurchase">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/NewAcceptancePurchase" message="tns:P02WcfService_NewAcceptancePurchase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/NewAcceptancePurchaseResponse" message="tns:P02WcfService_NewAcceptancePurchase_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetP0202030500PalletDatas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/GetP0202030500PalletDatas" message="tns:P02WcfService_GetP0202030500PalletDatas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/GetP0202030500PalletDatasResponse" message="tns:P02WcfService_GetP0202030500PalletDatas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRtNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/GetRtNo" message="tns:P02WcfService_GetRtNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/GetRtNoResponse" message="tns:P02WcfService_GetRtNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InserF020301AndF020302">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InserF020301AndF020302" message="tns:P02WcfService_InserF020301AndF020302_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InserF020301AndF020302Response" message="tns:P02WcfService_InserF020301AndF020302_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteP020205">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/DeleteP020205" message="tns:P02WcfService_DeleteP020205_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/DeleteP020205Response" message="tns:P02WcfService_DeleteP020205_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckLargeSerialNoFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CheckLargeSerialNoFull" message="tns:P02WcfService_CheckLargeSerialNoFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CheckLargeSerialNoFullResponse" message="tns:P02WcfService_CheckLargeSerialNoFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckRepeatSerails">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CheckRepeatSerails" message="tns:P02WcfService_CheckRepeatSerails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CheckRepeatSerailsResponse" message="tns:P02WcfService_CheckRepeatSerails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF020103">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateF020103" message="tns:P02WcfService_InsertOrUpdateF020103_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateF020103Response" message="tns:P02WcfService_InsertOrUpdateF020103_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OutOfStock">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/OutOfStock" message="tns:P02WcfService_OutOfStock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/OutOfStockResponse" message="tns:P02WcfService_OutOfStock_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelAcceptance">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CancelAcceptance" message="tns:P02WcfService_CancelAcceptance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CancelAcceptanceResponse" message="tns:P02WcfService_CancelAcceptance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateP02020307">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateP02020307" message="tns:P02WcfService_InsertOrUpdateP02020307_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateP02020307Response" message="tns:P02WcfService_InsertOrUpdateP02020307_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF1903">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF1903" message="tns:P02WcfService_UpdateF1903_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF1903Response" message="tns:P02WcfService_UpdateF1903_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP020203">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateP020203" message="tns:P02WcfService_UpdateP020203_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateP020203Response" message="tns:P02WcfService_UpdateP020203_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF010301AndGetNewID">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertF010301AndGetNewID" message="tns:P02WcfService_InsertF010301AndGetNewID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertF010301AndGetNewIDResponse" message="tns:P02WcfService_InsertF010301AndGetNewID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF010301ScanCargoDatas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/DeleteF010301ScanCargoDatas" message="tns:P02WcfService_DeleteF010301ScanCargoDatas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/DeleteF010301ScanCargoDatasResponse" message="tns:P02WcfService_DeleteF010301ScanCargoDatas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010301BoxCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010301BoxCount" message="tns:P02WcfService_UpdateF010301BoxCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010301BoxCountResponse" message="tns:P02WcfService_UpdateF010301BoxCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010301ScanCargoMemo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010301ScanCargoMemo" message="tns:P02WcfService_UpdateF010301ScanCargoMemo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010301ScanCargoMemoResponse" message="tns:P02WcfService_UpdateF010301ScanCargoMemo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF010302AndReturnValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertF010302AndReturnValue" message="tns:P02WcfService_InsertF010302AndReturnValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertF010302AndReturnValueResponse" message="tns:P02WcfService_InsertF010302AndReturnValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010302ShipBoxCnt">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010302ShipBoxCnt" message="tns:P02WcfService_UpdateF010302ShipBoxCnt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010302ShipBoxCntResponse" message="tns:P02WcfService_UpdateF010302ShipBoxCnt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddF020501">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/AddF020501" message="tns:P02WcfService_AddF020501_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/AddF020501Response" message="tns:P02WcfService_AddF020501_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContainerBindData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/DeleteContainerBindData" message="tns:P02WcfService_DeleteContainerBindData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/DeleteContainerBindDataResponse" message="tns:P02WcfService_DeleteContainerBindData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContainerBindData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateContainerBindData" message="tns:P02WcfService_UpdateContainerBindData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateContainerBindDataResponse" message="tns:P02WcfService_UpdateContainerBindData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllContainerIsDone">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CheckAllContainerIsDone" message="tns:P02WcfService_CheckAllContainerIsDone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CheckAllContainerIsDoneResponse" message="tns:P02WcfService_CheckAllContainerIsDone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnnormalAllocDatas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/GetUnnormalAllocDatas" message="tns:P02WcfService_GetUnnormalAllocDatas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/GetUnnormalAllocDatasResponse" message="tns:P02WcfService_GetUnnormalAllocDatas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CallRecvVedio">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CallRecvVedio" message="tns:P02WcfService_CallRecvVedio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CallRecvVedioResponse" message="tns:P02WcfService_CallRecvVedio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReGetLmsApiStowShelfAreaGuide">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/ReGetLmsApiStowShelfAreaGuide" message="tns:P02WcfService_ReGetLmsApiStowShelfAreaGuide_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/ReGetLmsApiStowShelfAreaGuideResponse" message="tns:P02WcfService_ReGetLmsApiStowShelfAreaGuide_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTodayRecvQty">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/GetTodayRecvQty" message="tns:P02WcfService_GetTodayRecvQty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/GetTodayRecvQtyResponse" message="tns:P02WcfService_GetTodayRecvQty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertManualProcessData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertManualProcessData" message="tns:P02WcfService_InsertManualProcessData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertManualProcessDataResponse" message="tns:P02WcfService_InsertManualProcessData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertModifyRecvQtyData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertModifyRecvQtyData" message="tns:P02WcfService_InsertModifyRecvQtyData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertModifyRecvQtyDataResponse" message="tns:P02WcfService_InsertModifyRecvQtyData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertModifyNGQtyData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertModifyNGQtyData" message="tns:P02WcfService_InsertModifyNGQtyData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertModifyNGQtyDataResponse" message="tns:P02WcfService_InsertModifyNGQtyData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010201Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010201Status" message="tns:P02WcfService_UpdateF010201Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010201StatusResponse" message="tns:P02WcfService_UpdateF010201Status_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P02WcfService" type="tns:P02WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateF02020102">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF02020102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuickUpdateF02020102">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/QuickUpdateF02020102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RandomCheckSerial">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/RandomCheckSerial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF2501AndF02020104">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertF2501AndF02020104" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP02020304">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateP02020304" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF1510LocItemData">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertOrUpdateF1510LocItemData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF1510Data">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF1510Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSerialNoLoc">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/ImportSerialNoLoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewAcceptancePurchase">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/NewAcceptancePurchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetP0202030500PalletDatas">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/GetP0202030500PalletDatas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRtNo">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/GetRtNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InserF020301AndF020302">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InserF020301AndF020302" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteP020205">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/DeleteP020205" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLargeSerialNoFull">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CheckLargeSerialNoFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRepeatSerails">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CheckRepeatSerails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF020103">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertOrUpdateF020103" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OutOfStock">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/OutOfStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelAcceptance">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CancelAcceptance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateP02020307">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertOrUpdateP02020307" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF1903">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF1903" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP020203">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateP020203" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF010301AndGetNewID">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertF010301AndGetNewID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF010301ScanCargoDatas">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/DeleteF010301ScanCargoDatas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010301BoxCount">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF010301BoxCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010301ScanCargoMemo">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF010301ScanCargoMemo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF010302AndReturnValue">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertF010302AndReturnValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010302ShipBoxCnt">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF010302ShipBoxCnt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddF020501">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/AddF020501" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContainerBindData">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/DeleteContainerBindData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContainerBindData">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateContainerBindData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllContainerIsDone">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CheckAllContainerIsDone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnnormalAllocDatas">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/GetUnnormalAllocDatas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CallRecvVedio">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CallRecvVedio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReGetLmsApiStowShelfAreaGuide">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/ReGetLmsApiStowShelfAreaGuide" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTodayRecvQty">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/GetTodayRecvQty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertManualProcessData">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertManualProcessData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertModifyRecvQtyData">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertModifyRecvQtyData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertModifyNGQtyData">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertModifyNGQtyData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF010201Status">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF010201Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P02WcfService">
+    <wsdl:port name="BasicHttpBinding_P02WcfService" binding="tns:BasicHttpBinding_P02WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P02WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

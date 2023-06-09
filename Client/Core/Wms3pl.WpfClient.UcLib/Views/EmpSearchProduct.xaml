@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Wms3pl.WpfClient.UcLib.Views.EmpSearchProduct" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.UcLib.Properties" mc:Ignorable="d" d:DesignHeight="25" d:DesignWidth="500" x:Name="SearchProduct" Loaded="SearchProduct_Loaded" Focusable="True">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <Style TargetType="Label" x:Key="SearchProductLable" BasedOn="{StaticResource LbStyle}">
+        <Setter Property="MinWidth" Value="6"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </UserControl.Resources>
+  <WrapPanel DockPanel.Dock="Top" Margin="1">
+    <Grid>
+      <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0"  Content="{Binding LabelText, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Style="{StaticResource SearchProductLable}"/>
+            <TextBox x:Name="TxtEmpId" Grid.Row="0" Grid.Column="1" Width="170" Text="{Binding EmpId, ElementName=SearchProduct, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource TxtStyle}" KeyDown="TxtEmpId_KeyDown" LostFocus="TextEmpId_LostFocus"/>
+            <TextBox Grid.Row="0" Grid.Column="2" Style="{StaticResource TxtStyle}" Width="auto" MinWidth="170" MaxWidth="220" Text="{Binding EmpName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+    </Grid>
+  </WrapPanel>
+</UserControl>

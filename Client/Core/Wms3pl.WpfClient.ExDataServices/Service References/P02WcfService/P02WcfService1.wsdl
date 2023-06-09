@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P02WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_P02WcfService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/P02WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/P02WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/P02WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/P02WcfService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P02WcfService_UpdateF02020102_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF02020102" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF02020102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF02020102Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF2501AndF02020104_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF2501AndF02020104" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertF2501AndF02020104_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF2501AndF02020104Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateP02020304_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP02020304" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateP02020304_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP02020304Response" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateF1510LocItemData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF1510LocItemData" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_InsertOrUpdateF1510LocItemData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF1510LocItemDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF1510Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1510Data" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateF1510Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1510DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_AcceptancePurchase_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptancePurchase" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_AcceptancePurchase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptancePurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetRtNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRtNo" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_GetRtNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRtNoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P02WcfService">
+    <wsdl:operation name="UpdateF02020102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF02020102" message="tns:P02WcfService_UpdateF02020102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF02020102Response" message="tns:P02WcfService_UpdateF02020102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF2501AndF02020104">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertF2501AndF02020104" message="tns:P02WcfService_InsertF2501AndF02020104_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertF2501AndF02020104Response" message="tns:P02WcfService_InsertF2501AndF02020104_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP02020304">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateP02020304" message="tns:P02WcfService_UpdateP02020304_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateP02020304Response" message="tns:P02WcfService_UpdateP02020304_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF1510LocItemData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateF1510LocItemData" message="tns:P02WcfService_InsertOrUpdateF1510LocItemData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/InsertOrUpdateF1510LocItemDataResponse" message="tns:P02WcfService_InsertOrUpdateF1510LocItemData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF1510Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF1510Data" message="tns:P02WcfService_UpdateF1510Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF1510DataResponse" message="tns:P02WcfService_UpdateF1510Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptancePurchase">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/AcceptancePurchase" message="tns:P02WcfService_AcceptancePurchase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/AcceptancePurchaseResponse" message="tns:P02WcfService_AcceptancePurchase_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRtNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/GetRtNo" message="tns:P02WcfService_GetRtNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/GetRtNoResponse" message="tns:P02WcfService_GetRtNo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P02WcfService" type="tns:P02WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateF02020102">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF02020102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF2501AndF02020104">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertF2501AndF02020104" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP02020304">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateP02020304" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF1510LocItemData">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/InsertOrUpdateF1510LocItemData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF1510Data">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF1510Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptancePurchase">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/AcceptancePurchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRtNo">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/GetRtNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_P02WcfService" type="tns:P02WcfService">
+    <wsp:PolicyReference URI="#NetTcpBinding_P02WcfService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="UpdateF02020102">
+      <soap12:operation soapAction="http://tempuri.org/P02WcfService/UpdateF02020102" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF2501AndF02020104">
+      <soap12:operation soapAction="http://tempuri.org/P02WcfService/InsertF2501AndF02020104" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP02020304">
+      <soap12:operation soapAction="http://tempuri.org/P02WcfService/UpdateP02020304" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF1510LocItemData">
+      <soap12:operation soapAction="http://tempuri.org/P02WcfService/InsertOrUpdateF1510LocItemData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF1510Data">
+      <soap12:operation soapAction="http://tempuri.org/P02WcfService/UpdateF1510Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptancePurchase">
+      <soap12:operation soapAction="http://tempuri.org/P02WcfService/AcceptancePurchase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRtNo">
+      <soap12:operation soapAction="http://tempuri.org/P02WcfService/GetRtNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P02WcfService">
+    <wsdl:port name="BasicHttpBinding_P02WcfService" binding="tns:BasicHttpBinding_P02WcfService">
+      <soap:address location="http://ewmsap/wms3pl.webservices/P02WcfService.svc" />
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_P02WcfService" binding="tns:NetTcpBinding_P02WcfService">
+      <soap12:address location="net.tcp://hp-pc.bankpro.com.tw/wms3pl.webservices/P02WcfService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://hp-pc.bankpro.com.tw/wms3pl.webservices/P02WcfService.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

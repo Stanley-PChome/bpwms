@@ -1,0 +1,799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddItem" xml:space="preserve">
+    <value>新增明细</value>
+  </data>
+  <data name="AddOrEditInventoryName" xml:space="preserve">
+    <value>盘点名称</value>
+  </data>
+  <data name="AddOrEditWareHouseId" xml:space="preserve">
+    <value>盘点仓别</value>
+  </data>
+  <data name="CHANNEL_BEGIN" xml:space="preserve">
+    <value>通道起</value>
+  </data>
+  <data name="CHANNEL_END" xml:space="preserve">
+    <value>通道迄</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立时间</value>
+  </data>
+  <data name="CYCLE_TIMES" xml:space="preserve">
+    <value>循环盘点第</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>删除明细</value>
+  </data>
+  <data name="EditQty" xml:space="preserve">
+    <value>WMS库存数量</value>
+  </data>
+  <data name="ENTER_DATE" xml:space="preserve">
+    <value>入库日期</value>
+  </data>
+  <data name="ExcelImportInventoryDetailItem" xml:space="preserve">
+    <value>Excel 盘点结果汇入</value>
+  </data>
+  <data name="ExcelImportItemCode" xml:space="preserve">
+    <value>Excel 汇入</value>
+  </data>
+  <data name="ExportDetailWareHouseList" xml:space="preserve">
+    <value>汇出盘点单明细</value>
+  </data>
+  <data name="FEE" xml:space="preserve">
+    <value>费用/次</value>
+  </data>
+  <data name="FIRST_QTY" xml:space="preserve">
+    <value>初盘数</value>
+  </data>
+  <data name="FLUSHBACK" xml:space="preserve">
+    <value>盘盈可回冲</value>
+  </data>
+  <data name="InventoryDetailItem" xml:space="preserve">
+    <value>盘点结果</value>
+  </data>
+  <data name="InventoryItemList" xml:space="preserve">
+    <value>盘点商品</value>
+  </data>
+  <data name="INVENTORY_CYCLE" xml:space="preserve">
+    <value>周期</value>
+  </data>
+  <data name="INVENTORY_MON" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="INVENTORY_TYPE" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="INVENTORY_YEAR" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="ISCHARGE" xml:space="preserve">
+    <value>计费</value>
+  </data>
+  <data name="IsShowQueryDetailRule" xml:space="preserve">
+    <value>查询明细条件</value>
+  </data>
+  <data name="ITEM_CNT" xml:space="preserve">
+    <value>品项总数</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ITEM_QTY" xml:space="preserve">
+    <value>商品总数</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>储位编号</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="QTY" xml:space="preserve">
+    <value>库存数</value>
+  </data>
+  <data name="QueryDetailBegLocCode" xml:space="preserve">
+    <value>储位范围</value>
+  </data>
+  <data name="QueryDetailWareHouseList" xml:space="preserve">
+    <value>盘点单明细</value>
+  </data>
+  <data name="QueryDetialWareHouseId" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="QueryInventoryNo" xml:space="preserve">
+    <value>盘点单号</value>
+  </data>
+  <data name="QueryInventorySDate" xml:space="preserve">
+    <value>盘点日期</value>
+  </data>
+  <data name="SECOND_QTY" xml:space="preserve">
+    <value>复盘数</value>
+  </data>
+  <data name="SelectedItemLType" xml:space="preserve">
+    <value>大类</value>
+  </data>
+  <data name="SelectedItemMType" xml:space="preserve">
+    <value>中类</value>
+  </data>
+  <data name="SelectedItemSType" xml:space="preserve">
+    <value>小类</value>
+  </data>
+  <data name="SelectedReportType" xml:space="preserve">
+    <value>报表种类</value>
+  </data>
+  <data name="SelectedStatus" xml:space="preserve">
+    <value>单据状态</value>
+  </data>
+  <data name="SHOW_CNT" xml:space="preserve">
+    <value>盘点显示数量</value>
+  </data>
+  <data name="TIMES" xml:space="preserve">
+    <value>次</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>异动时间</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="WareHouseType" xml:space="preserve">
+    <value>仓别类型</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>仓别名称</value>
+  </data>
+  <data name="AllDifferenceProduct" xml:space="preserve">
+    <value>全部有差异商品</value>
+  </data>
+  <data name="First_Condition" xml:space="preserve">
+    <value>筛选条件一</value>
+  </data>
+  <data name="FST_INVENTORY_DATE" xml:space="preserve">
+    <value>初盘时间</value>
+  </data>
+  <data name="FST_INVENTORY_NAME" xml:space="preserve">
+    <value>初盘人员</value>
+  </data>
+  <data name="InventoryYearMonth" xml:space="preserve">
+    <value>年/月</value>
+  </data>
+  <data name="IsItemCode" xml:space="preserve">
+    <value>指定商品：</value>
+  </data>
+  <data name="IsRangeProduct" xml:space="preserve">
+    <value>差异数量介於</value>
+  </data>
+  <data name="LocCode" xml:space="preserve">
+    <value>储位</value>
+  </data>
+  <data name="ProductId" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="QtyCount" xml:space="preserve">
+    <value>系统库存数量(A)</value>
+  </data>
+  <data name="RangeEnd" xml:space="preserve">
+    <value>～</value>
+  </data>
+  <data name="RegenerateInventoryData" xml:space="preserve">
+    <value>产生复盘资料</value>
+  </data>
+  <data name="SaveInventoryData" xml:space="preserve">
+    <value>盘点确认</value>
+  </data>
+  <data name="SearchDetailData" xml:space="preserve">
+    <value>查询盘点单资料</value>
+  </data>
+  <data name="Second_Condition" xml:space="preserve">
+    <value>筛选条件二</value>
+  </data>
+  <data name="SEC_INVENTORY_DATE" xml:space="preserve">
+    <value>复盘时间</value>
+  </data>
+  <data name="SEC_INVENTORY_NAME" xml:space="preserve">
+    <value>复盘人员</value>
+  </data>
+  <data name="SelectedWareHouseId" xml:space="preserve">
+    <value>指定仓别</value>
+  </data>
+  <data name="SelectStatus" xml:space="preserve">
+    <value>盘点状态</value>
+  </data>
+  <data name="ITEMQTY" xml:space="preserve">
+    <value>品项差异数</value>
+  </data>
+  <data name="DetailRecords" xml:space="preserve">
+    <value>查询明细结果</value>
+  </data>
+  <data name="EnterDate" xml:space="preserve">
+    <value>入库日</value>
+  </data>
+  <data name="FilterCondition" xml:space="preserve">
+    <value>筛选条件</value>
+  </data>
+  <data name="Flush_Back" xml:space="preserve">
+    <value>盘盈可回冲</value>
+  </data>
+  <data name="INVENTORY_DATE" xml:space="preserve">
+    <value>盘点日期</value>
+  </data>
+  <data name="INVENTORY_NO" xml:space="preserve">
+    <value>盘点单号</value>
+  </data>
+  <data name="IsSelected" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ItemColor" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ItemSize" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ItemSpec" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="Loc__Code" xml:space="preserve">
+    <value>储位</value>
+  </data>
+  <data name="LOSS_QTY" xml:space="preserve">
+    <value>盘损数</value>
+  </data>
+  <data name="PostingDateBegin" xml:space="preserve">
+    <value>过帐日期</value>
+  </data>
+  <data name="PROFIT_QTY" xml:space="preserve">
+    <value>盘盈数</value>
+  </data>
+  <data name="Qty_Count" xml:space="preserve">
+    <value>库存数</value>
+  </data>
+  <data name="SearchDetail" xml:space="preserve">
+    <value>查询明细</value>
+  </data>
+  <data name="SelectItem" xml:space="preserve">
+    <value>指定商品：</value>
+  </data>
+  <data name="SortByCount" xml:space="preserve">
+    <value>依差异数量排序</value>
+  </data>
+  <data name="SortCondition" xml:space="preserve">
+    <value>排序条件：</value>
+  </data>
+  <data name="ValidDate" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="WarehouseId" xml:space="preserve">
+    <value>指定仓别：</value>
+  </data>
+  <data name="WarehouseName" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="CurrentClosePoint" xml:space="preserve">
+    <value>目前关帐点：</value>
+  </data>
+  <data name="P1401010000_Asking" xml:space="preserve">
+    <value>询问</value>
+  </data>
+  <data name="P1401010000_AskingForQueryWillReplaceInventoryItemList" xml:space="preserve">
+    <value>查询後会取代目前已存在的盘点商品清单,是否继续查询?</value>
+  </data>
+  <data name="P1401010000_AtleastOneInventoryWareHouseData" xml:space="preserve">
+    <value>盘点仓别至少勾选一笔</value>
+  </data>
+  <data name="P1401010000_checkCount" xml:space="preserve">
+    <value>勾选计费,费用必填</value>
+  </data>
+  <data name="P1401010000_Customer" xml:space="preserve">
+    <value>此业主[</value>
+  </data>
+  <data name="P1401010000_CycleTimesLessEqualThanCycle" xml:space="preserve">
+    <value>循环盘次数必须小於等於周期</value>
+  </data>
+  <data name="P1401010000_ENTER_DATE" xml:space="preserve">
+    <value>入库日</value>
+  </data>
+  <data name="P1401010000_ExistData" xml:space="preserve">
+    <value>资料已存在</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetail" xml:space="preserve">
+    <value>盘点单明细-</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailFail" xml:space="preserve">
+    <value>汇出盘点单明细失败</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailSuccess" xml:space="preserve">
+    <value>汇出盘点单明细成功</value>
+  </data>
+  <data name="P1401010000_FirstInventoryDetailQtyNeedMoreThanZero" xml:space="preserve">
+    <value>初盘数必须大於等於0</value>
+  </data>
+  <data name="P1401010000_FIRST_QTY" xml:space="preserve">
+    <value>初盘数</value>
+  </data>
+  <data name="P1401010000_FLUSHBACKNAME" xml:space="preserve">
+    <value>盘盈可回冲</value>
+  </data>
+  <data name="P1401010000_ImportEmptyExcel" xml:space="preserve">
+    <value>汇入的Excel无资料</value>
+  </data>
+  <data name="P1401010000_ImportErrorExcel" xml:space="preserve">
+    <value>汇入的Excel格式错误</value>
+  </data>
+  <data name="P1401010000_ImportItemIsExistInInventoryItemList" xml:space="preserve">
+    <value>汇入的商品编号已存在盘点商品清单中</value>
+  </data>
+  <data name="P1401010000_ImportSuccessDetail" xml:space="preserve">
+    <value>汇入成功{0}笔(新增{1}笔+更新{2}笔)，失败{3}笔，共{4}笔</value>
+  </data>
+  <data name="P1401010000_InsertFail" xml:space="preserve">
+    <value>新增失败!</value>
+  </data>
+  <data name="P1401010000_InsertSuccess" xml:space="preserve">
+    <value>新增成功! 盘点单号:{0}</value>
+  </data>
+  <data name="P1401010000_InventoryDetail" xml:space="preserve">
+    <value>汇出盘点单明细</value>
+  </data>
+  <data name="P1401010000_InventoryLocItemNotValid" xml:space="preserve">
+    <value>此储位或商品非盘点范围</value>
+  </data>
+  <data name="P1401010000_ItemIsExistInInventoryItemList" xml:space="preserve">
+    <value>此商品编号已存在盘点商品清单中</value>
+  </data>
+  <data name="P1401010000_ITEM_CODE" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="P1401010000_ITEM_COLOR" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="P1401010000_ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="P1401010000_ITEM_SIZE" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="P1401010000_ITEM_SPEC" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="P1401010000_LOC_CODE" xml:space="preserve">
+    <value>储位</value>
+  </data>
+  <data name="P1401010000_NeedCycle" xml:space="preserve">
+    <value>周期必填</value>
+  </data>
+  <data name="P1401010000_NeedCycleTimes" xml:space="preserve">
+    <value>循环盘次数必填</value>
+  </data>
+  <data name="P1401010000_NeedSetChannelBegin" xml:space="preserve">
+    <value>盘点仓别必须设定通道起讫</value>
+  </data>
+  <data name="P1401010000_NoItemCode" xml:space="preserve">
+    <value>]无此商品编号[</value>
+  </data>
+  <data name="P1401010000_PluralInventoryDetailQtyNeedMoreThanZero" xml:space="preserve">
+    <value>复盘数必须大於等於0</value>
+  </data>
+  <data name="P1401010000_QTY" xml:space="preserve">
+    <value>库存数</value>
+  </data>
+  <data name="P1401010000_QueryInventoryEDate" xml:space="preserve">
+    <value>盘点日期</value>
+  </data>
+  <data name="P1401010000_SECOND_QTY" xml:space="preserve">
+    <value>复盘数</value>
+  </data>
+  <data name="P1401010000_UpdateFail" xml:space="preserve">
+    <value>更新失败!</value>
+  </data>
+  <data name="P1401010000_VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="P1401010000_WAREHOUSE_NAME" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="P1401020000_AlreadyExistItem" xml:space="preserve">
+    <value>该商品已经加入!</value>
+  </data>
+  <data name="P1401020000_CheckingGenerInventoryDiff" xml:space="preserve">
+    <value>尚未汇入盘点资料，是否确认产生盘点差异结果</value>
+  </data>
+  <data name="P1401020000_CheckingRegenerPluralDiffData" xml:space="preserve">
+    <value>复盘差异数资料已存在，确认清空资料重新产生复盘资料</value>
+  </data>
+  <data name="P1401020000_ItemCodeIsEmpty" xml:space="preserve">
+    <value>商品编号不得为空!</value>
+  </data>
+  <data name="P1401020000_ItemIsEmpty" xml:space="preserve">
+    <value>尚未输入任何商品!</value>
+  </data>
+  <data name="P1401020000_RangeDiffIsEmpty" xml:space="preserve">
+    <value>差异数量区间不得为空!</value>
+  </data>
+  <data name="P1401020000_SelectInventoryDataFirst" xml:space="preserve">
+    <value>请先选取盘点单资料!</value>
+  </data>
+  <data name="P1401040000_ItemCodeIsExist" xml:space="preserve">
+    <value>商品编号已重覆</value>
+  </data>
+  <data name="P1401040000_SelectFilterProductList" xml:space="preserve">
+    <value>请勾选要删除的商品</value>
+  </data>
+  <data name="RbBackClosePoint" xml:space="preserve">
+    <value>倒回库存关帐点</value>
+  </data>
+  <data name="RbClosePoint" xml:space="preserve">
+    <value>拷贝库存关帐点</value>
+  </data>
+  <data name="SelectBackClosePoint" xml:space="preserve">
+    <value>倒回关帐点：</value>
+  </data>
+  <data name="P1401010000xamlcs_ImportFail" xml:space="preserve">
+    <value>汇入失败!</value>
+  </data>
+  <data name="P1401010000xamlcs_Inventory" xml:space="preserve">
+    <value> 盘点单</value>
+  </data>
+  <data name="P1401010000xamlcs_IventoryList" xml:space="preserve">
+    <value> 盘点清册</value>
+  </data>
+  <data name="P1401010000xamlcs_QueryDataEmpty" xml:space="preserve">
+    <value> 查询无资料，无法预览或列印！</value>
+  </data>
+  <data name="P1401020000xamlcs_ChooseInventory" xml:space="preserve">
+    <value> 请选取盘点单！</value>
+  </data>
+  <data name="P1401020000xamlcs_DifferentInventory" xml:space="preserve">
+    <value> 盘点差异表</value>
+  </data>
+  <data name="P1401040000xamlcs_BalanceSheet" xml:space="preserve">
+    <value> 盘盈损资料表</value>
+  </data>
+  <data name="SetAllFlushback" xml:space="preserve">
+    <value>全部设为盘盈可回冲</value>
+  </data>
+  <data name="P1401010000_ImportSearchDetailCountHint" xml:space="preserve">
+    <value>在此条件下的盘点明细共有{0}笔，画面仅显示500笔</value>
+  </data>
+  <data name="FLOOR_BEGIN" xml:space="preserve">
+    <value>楼层起</value>
+  </data>
+  <data name="FLOOR_END" xml:space="preserve">
+    <value>楼层迄</value>
+  </data>
+  <data name="PLAIN_BEGIN" xml:space="preserve">
+    <value>座起</value>
+  </data>
+  <data name="PLAIN_END" xml:space="preserve">
+    <value>座迄</value>
+  </data>
+  <data name="P1401010000_NeedSetFloorBegin" xml:space="preserve">
+    <value>盘点仓别必须设定楼层起讫</value>
+  </data>
+  <data name="P1401010000_NeedSetPlainBegin" xml:space="preserve">
+    <value>盘点仓别必须设定座起讫</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>批号</value>
+  </data>
+  <data name="FailMessage" xml:space="preserve">
+    <value>错误讯息</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailFailDataFail" xml:space="preserve">
+    <value>导出盘点失败资料明细失败</value>
+  </data>
+  <data name="P1401010000_ExportInventoryDetailFailDataSuccess" xml:space="preserve">
+    <value>导出盘点失败资料明细成功</value>
+  </data>
+  <data name="ExportFailDataDetail" xml:space="preserve">
+    <value>汇出盘点单失败明细</value>
+  </data>
+  <data name="P1401010000_ExcelName" xml:space="preserve">
+    <value>失败盘点明细表</value>
+  </data>
+  <data name="P140101_ImportRepeatData" xml:space="preserve">
+    <value>汇入数据重复</value>
+  </data>
+  <data name="CheckTool" xml:space="preserve">
+    <value>盘点工具</value>
+  </data>
+  <data name="AreaName" xml:space="preserve">
+    <value>储区名称</value>
+  </data>
+  <data name="P140101_SelectedValueError" xml:space="preserve">
+    <value>迄值不可小于起始值!</value>
+  </data>
+  <data name="BOX_CTRL_NO" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="PALLET_CTRL_NO" xml:space="preserve">
+    <value>板号</value>
+  </data>
+  <data name="InventoryLoc" xml:space="preserve">
+    <value>盘点储位</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>储区</value>
+  </data>
+  <data name="P140101_ImportInventoryLocFormatError" xml:space="preserve">
+    <value>资料栏位错误!</value>
+  </data>
+  <data name="P140101_ImportInventoryLocNotExist" xml:space="preserve">
+    <value>汇入数据中有{0}笔储位不存在，{1}请确认画面上错误储位清单中{1}仓别、储区是否正确!</value>
+  </data>
+  <data name="P140101_ImportInventoryLocNull" xml:space="preserve">
+    <value>汇入档案无数据</value>
+  </data>
+  <data name="P140101_ImportInventoryLocRepeat" xml:space="preserve">
+    <value>储位重复{0}笔，将自动排除</value>
+  </data>
+  <data name="P140101_InventoryLocLimit" xml:space="preserve">
+    <value>盘点储位只能输入{0}笔</value>
+  </data>
+  <data name="P140101_InventoryLocLongError" xml:space="preserve">
+    <value>输入储位长度错误!!</value>
+  </data>
+  <data name="P140101_InventoryLocNotExist" xml:space="preserve">
+    <value>储位不存在，请确认仓别、储区是否正确!</value>
+  </data>
+  <data name="P140101_InventoryLocNull" xml:space="preserve">
+    <value>盘点储位必须输入</value>
+  </data>
+  <data name="P140101_InventoryLocRepeat" xml:space="preserve">
+    <value>储位重复!!</value>
+  </data>
+  <data name="P140101_NotSelectedInventoryArea" xml:space="preserve">
+    <value>请选择盘点储区!</value>
+  </data>
+  <data name="P140101_NotSelectedMask" xml:space="preserve">
+    <value>屏蔽规则未选择!</value>
+  </data>
+  <data name="P140101_NotSetLocLimit" xml:space="preserve">
+    <value>未设定盘点储位条件限制</value>
+  </data>
+  <data name="P140101_ExcelImportLoc" xml:space="preserve">
+    <value>Excel汇入</value>
+  </data>
+  <data name="P140101_LocCodeList" xml:space="preserve">
+    <value>储位编号清单</value>
+  </data>
+  <data name="P140101_Manual" xml:space="preserve">
+    <value>手动输入</value>
+  </data>
+  <data name="P140101_MaskCode" xml:space="preserve">
+    <value>屏蔽规则</value>
+  </data>
+  <data name="AGV_STATUS_DESC" xml:space="preserve">
+    <value>AGV盘点状态</value>
+  </data>
+  <data name="CHECK_TOOL_DESC" xml:space="preserve">
+    <value>盘点工具</value>
+  </data>
+  <data name="STATION_NO" xml:space="preserve">
+    <value>工作站</value>
+  </data>
+  <data name="P140101_ErrorLocCodeList" xml:space="preserve">
+    <value>错误储位清单</value>
+  </data>
+  <data name="P140101_RepeatImportList" xml:space="preserve">
+    <value>已汇入明细数据将会被删除，请确认是否要删除</value>
+  </data>
+  <data name="WmsQtyCount" xml:space="preserve">
+    <value>WMS系统库存数量(X)</value>
+  </data>
+  <data name="UnmoveStockQty" xml:space="preserve">
+    <value>WMS已扣帐但未下架数(Y)</value>
+  </data>
+  <data name="InventoryQty" xml:space="preserve">
+    <value>实际盘点数量(B)</value>
+  </data>
+  <data name="DIFF_QTY" xml:space="preserve">
+    <value>盘点差异数(B-A)</value>
+  </data>
+  <data name="INVENTORY_NAME" xml:space="preserve">
+    <value>盘点人员</value>
+  </data>
+  <data name="INVENTORY_TIME" xml:space="preserve">
+    <value>盘点时间</value>
+  </data>
+  <data name="STOCK_DIFF_QTY" xml:space="preserve">
+    <value>WMS系统库存差异数(B-X-Y)</value>
+  </data>
+  <data name="P1401020000_CheckingSelectedIsExistDatas" xml:space="preserve">
+    <value>请勾选盘点单明细资料</value>
+  </data>
+  <data name="P1401020000_SaveInventoryConditionError" xml:space="preserve">
+    <value>请将筛选条件一选仓别全部、筛选条件二选全部差异商品进行查询盘点资料后，并确认差异在进行盘点确认</value>
+  </data>
+  <data name="尚未設定盤點盤損倉" xml:space="preserve">
+    <value>尚未设定盘点盘损仓</value>
+  </data>
+  <data name="P1401020000_CheckingIsCanSaveInventoryData" xml:space="preserve">
+    <value>请先查询盘点单资料</value>
+  </data>
+  <data name="P1401020000_WordingHeader" xml:space="preserve">
+    <value>&lt;盤點比對說明&gt; 請在庫存靜止狀態下進行盤點。</value>
+  </data>
+  <data name="P1401020000_Wording_1" xml:space="preserve">
+    <value>盤點差異數(B-A)
+(1)人工倉的系統庫存來自WMS系統、自動倉的系統庫存來自自動倉的系統。
+(2)若自動倉的盤點差異數&gt;0時，按下&lt;盤點確認&gt;會下發盤點調整任務。</value>
+  </data>
+  <data name="P1401020000_Wording_2" xml:space="preserve">
+    <value>WMS系統庫存差異數(B-X-Y)
+(1)當盤點儲位屬於人工倉時，A=X。
+(2)若盤點差異數=0，而WMS系統庫存差異數&gt;0 時，按下&lt;盤點確認&gt;，只調整WMS的庫存。</value>
+  </data>
+  <data name="AutomaticWarehouseQty" xml:space="preserve">
+    <value>自动仓库存数量</value>
+  </data>
+  <data name="InventoryDiscrepancies" xml:space="preserve">
+    <value>盘点差异数</value>
+  </data>
+  <data name="InventoryWarehouseDiscrepancies" xml:space="preserve">
+    <value>盘点库差数</value>
+  </data>
+  <data name="AdjustStatus" xml:space="preserve">
+    <value>调整状态</value>
+  </data>
+  <data name="UnmovedQty" xml:space="preserve">
+    <value>WMS未搬动数量</value>
+  </data>
+  <data name="InventoryName" xml:space="preserve">
+    <value>盘点人员</value>
+  </data>
+  <data name="InventoryTime" xml:space="preserve">
+    <value>盘点时间</value>
+  </data>
+  <data name="InventoryDoc" xml:space="preserve">
+    <value>盘点单产生单据</value>
+  </data>
+  <data name="WMS_NO" xml:space="preserve">
+    <value>WMS单号</value>
+  </data>
+  <data name="P1401020000_RegenerateInventoryConditionError" xml:space="preserve">
+    <value>请将筛选条件一选仓别全部、筛选条件二选全部差异商品进行查询盘点资料后，并确认差异在进行产生复盘资料</value>
+  </data>
+  <data name="P1401020000_RegenerateInventoryConditionError_2" xml:space="preserve">
+    <value>盘点差异数或盘点库差数不等于0才可以复盘</value>
+  </data>
+  <data name="P1401020000_NotDiffMsg" xml:space="preserve">
+    <value>本次盘点无差异或者不接受任何差异?</value>
+  </data>
+  <data name="P1401020000_NotNeedRegenerate" xml:space="preserve">
+    <value>本次盘点无差异，不需建立复盘单</value>
+  </data>
+</root>

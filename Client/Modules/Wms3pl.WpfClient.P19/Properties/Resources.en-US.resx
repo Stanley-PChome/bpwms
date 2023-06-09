@@ -1,0 +1,2561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACCOUNT_INFO" xml:space="preserve">
+    <value>Accounting data</value>
+  </data>
+  <data name="AccUnit" xml:space="preserve">
+    <value>Unit of account numbers</value>
+  </data>
+  <data name="AccUnitName" xml:space="preserve">
+    <value>Unit of account names</value>
+  </data>
+  <data name="ACC_TYPE" xml:space="preserve">
+    <value>Valuation category</value>
+  </data>
+  <data name="ACODE" xml:space="preserve">
+    <value>Big Classification Number</value>
+  </data>
+  <data name="AddDetail" xml:space="preserve">
+    <value>New Details</value>
+  </data>
+  <data name="AddFUN_COD" xml:space="preserve">
+    <value>coding</value>
+  </data>
+  <data name="ADDRESS" xml:space="preserve">
+    <value>Distribution Center Address</value>
+  </data>
+  <data name="ADD_SET" xml:space="preserve">
+    <value>Join set</value>
+  </data>
+  <data name="ADR" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="ALLOWORDITEM" xml:space="preserve">
+    <value>Whether to allow the original shipping carton</value>
+  </data>
+  <data name="ALLOW_ALL_DLN" xml:space="preserve">
+    <value>The number of days to relax acceptance</value>
+  </data>
+  <data name="ALLOW_IN" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+  <data name="ALLOW_OUT" xml:space="preserve">
+    <value>Shipments</value>
+  </data>
+  <data name="ALL_DLN" xml:space="preserve">
+    <value>Acceptance Days</value>
+  </data>
+  <data name="Amodel" xml:space="preserve">
+    <value>Information Analysis Module</value>
+  </data>
+  <data name="AMORTIZATION_NO" xml:space="preserve">
+    <value>The total number of amortization</value>
+  </data>
+  <data name="ANAME" xml:space="preserve">
+    <value>Large Category Name</value>
+  </data>
+  <data name="AREA_CODE" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="ArrivalTimeE" xml:space="preserve">
+    <value>Arrival time (until)</value>
+  </data>
+  <data name="ArrivalTimeS" xml:space="preserve">
+    <value>Arrival time (since)</value>
+  </data>
+  <data name="AssignEmps" xml:space="preserve">
+    <value>Staff has been set</value>
+  </data>
+  <data name="Authorized" xml:space="preserve">
+    <value>Authorized</value>
+  </data>
+  <data name="A_TO_Z" xml:space="preserve">
+    <value>(Enter uppercase A ~ Z)</value>
+  </data>
+  <data name="BANKCODE" xml:space="preserve">
+    <value>Bank code</value>
+  </data>
+  <data name="BANK_ACCOUNT" xml:space="preserve">
+    <value>Bank account</value>
+  </data>
+  <data name="BANK_CODE" xml:space="preserve">
+    <value>Bank Code</value>
+  </data>
+  <data name="BANK_NAME" xml:space="preserve">
+    <value>Bank Name 稱</value>
+  </data>
+  <data name="BARCODE_TYPE" xml:space="preserve">
+    <value>Barcode types</value>
+  </data>
+  <data name="BCODE" xml:space="preserve">
+    <value>Classification number</value>
+  </data>
+  <data name="BILL_CONTACT" xml:space="preserve">
+    <value>Accounts contacts</value>
+  </data>
+  <data name="BNAME" xml:space="preserve">
+    <value>In category names</value>
+  </data>
+  <data name="BORROW_DAY" xml:space="preserve">
+    <value>The maximum number of days available to borrow</value>
+  </data>
+  <data name="BOSS" xml:space="preserve">
+    <value>principal</value>
+  </data>
+  <data name="BOUNDLE_SERIALREQ" xml:space="preserve">
+    <value>No. Item Control Manager</value>
+  </data>
+  <data name="Browsing" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="BUILD_AREA" xml:space="preserve">
+    <value>Turf</value>
+  </data>
+  <data name="BUNDLE_SERIALLOC" xml:space="preserve">
+    <value>No. tied storage spaces</value>
+  </data>
+  <data name="BUNDLE_SERIALNO" xml:space="preserve">
+    <value>No. Commodity</value>
+  </data>
+  <data name="CAN_SELL" xml:space="preserve">
+    <value>Allow sales</value>
+  </data>
+  <data name="CAN_SPILT_IN" xml:space="preserve">
+    <value>Allowing partial purchase</value>
+  </data>
+  <data name="CAR_SIZE" xml:space="preserve">
+    <value>Size of vehicle tonnes</value>
+  </data>
+  <data name="CASE_WEIGHT" xml:space="preserve">
+    <value>Carton Weight</value>
+  </data>
+  <data name="cbUctId" xml:space="preserve">
+    <value>The reason categories</value>
+  </data>
+  <data name="CCODE" xml:space="preserve">
+    <value>Small class numbers</value>
+  </data>
+  <data name="CHANNEL" xml:space="preserve">
+    <value>Retail Category</value>
+  </data>
+  <data name="CHANNEL1" xml:space="preserve">
+    <value>aisle</value>
+  </data>
+  <data name="CHECKNO" xml:space="preserve">
+    <value>Inspection Item Number</value>
+  </data>
+  <data name="CheckPackage" xml:space="preserve">
+    <value>Packaging brush examiner buckle rights</value>
+  </data>
+  <data name="CHECKPERCENT" xml:space="preserve">
+    <value>Checking ratio</value>
+  </data>
+  <data name="CHECK_NAME" xml:space="preserve">
+    <value>Test item name</value>
+  </data>
+  <data name="CHECK_NO" xml:space="preserve">
+    <value>Test items</value>
+  </data>
+  <data name="CHECK_PERCENT" xml:space="preserve">
+    <value>Checking ratio (%)</value>
+  </data>
+  <data name="CHECK_STAFF" xml:space="preserve">
+    <value>Whether to print inspector</value>
+  </data>
+  <data name="CHECK_TYPE" xml:space="preserve">
+    <value>Test item category</value>
+  </data>
+  <data name="CHG_TYPE_ID" xml:space="preserve">
+    <value>No replacement type</value>
+  </data>
+  <data name="CHG_TYPE_NAME" xml:space="preserve">
+    <value>Replacement Type Name</value>
+  </data>
+  <data name="CHOOOSE_GUP_CODE" xml:space="preserve">
+    <value>Select the owners</value>
+  </data>
+  <data name="CHOOSE_DC_CODE" xml:space="preserve">
+    <value>Select DC</value>
+  </data>
+  <data name="ClassCode" xml:space="preserve">
+    <value>Classification Number</value>
+  </data>
+  <data name="ClassName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="CLEAR" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="CLIENT_IP" xml:space="preserve">
+    <value>IP workstation</value>
+  </data>
+  <data name="CNAME" xml:space="preserve">
+    <value>Small class name</value>
+  </data>
+  <data name="COMMUNIT_ADDRESS" xml:space="preserve">
+    <value>Contact Address</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>Contact person</value>
+  </data>
+  <data name="COUDIV_AREAID" xml:space="preserve">
+    <value>County administrative region</value>
+  </data>
+  <data name="COUDIV_ID" xml:space="preserve">
+    <value>Administrative number</value>
+  </data>
+  <data name="COUDIV_NAME" xml:space="preserve">
+    <value>Administrative Name</value>
+  </data>
+  <data name="CRTNAME" xml:space="preserve">
+    <value>Stratosphere</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CRT_NAME" xml:space="preserve">
+    <value>Administrative counties</value>
+  </data>
+  <data name="CTNS" xml:space="preserve">
+    <value>The number of boxes</value>
+  </data>
+  <data name="CURRENCY" xml:space="preserve">
+    <value>Use currency</value>
+  </data>
+  <data name="CUSTITEMSET" xml:space="preserve">
+    <value>The owner of goods set</value>
+  </data>
+  <data name="CUST_CODE" xml:space="preserve">
+    <value>Owner code</value>
+  </data>
+  <data name="CUST_INFO" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
+  <data name="CUST_ITEM_CODE" xml:space="preserve">
+    <value>Customer item no</value>
+  </data>
+  <data name="C_D_FLAG" xml:space="preserve">
+    <value>Cross-docking goods</value>
+  </data>
+  <data name="DATA_SET" xml:space="preserve">
+    <value>Documentation Set</value>
+  </data>
+  <data name="DATA_VALUE" xml:space="preserve">
+    <value>Data values</value>
+  </data>
+  <data name="DC_CODE" xml:space="preserve">
+    <value>Distribution Center Code</value>
+  </data>
+  <data name="DC_CODENo" xml:space="preserve">
+    <value>Distribution Center ID</value>
+  </data>
+  <data name="DC_NAME" xml:space="preserve">
+    <value>Distribution Center Name</value>
+  </data>
+  <data name="DEFINITION" xml:space="preserve">
+    <value>Custom righteousness</value>
+  </data>
+  <data name="DelDetail" xml:space="preserve">
+    <value>Delete details</value>
+  </data>
+  <data name="DELI_TYPE" xml:space="preserve">
+    <value>Delivery mode numbers</value>
+  </data>
+  <data name="DelvNo_RETAIL_DETAIL" xml:space="preserve">
+    <value>Retail trips Details</value>
+  </data>
+  <data name="DELV_FORMAT" xml:space="preserve">
+    <value>Consignment note Report file name</value>
+  </data>
+  <data name="DELV_NO" xml:space="preserve">
+    <value>Trips or route number</value>
+  </data>
+  <data name="DELV_QTY_AVG" xml:space="preserve">
+    <value>Average daily shipments</value>
+  </data>
+  <data name="DELV_TIME" xml:space="preserve">
+    <value>Arrival time (HH: mm)</value>
+  </data>
+  <data name="DELV_WAY" xml:space="preserve">
+    <value>Lushun</value>
+  </data>
+  <data name="DEL_SET" xml:space="preserve">
+    <value>Delete set</value>
+  </data>
+  <data name="DEPID" xml:space="preserve">
+    <value>Unit number</value>
+  </data>
+  <data name="DEPNAME" xml:space="preserve">
+    <value>company name</value>
+  </data>
+  <data name="DESCRIPT" xml:space="preserve">
+    <value>Setting Description</value>
+  </data>
+  <data name="DETAILS" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DisableProgram" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="DRIVER_ID" xml:space="preserve">
+    <value>Drivers Number</value>
+  </data>
+  <data name="DRIVER_NAME" xml:space="preserve">
+    <value>The driver name</value>
+  </data>
+  <data name="DUE_DAY" xml:space="preserve">
+    <value>Invoice due date</value>
+  </data>
+  <data name="EAN_CODE1" xml:space="preserve">
+    <value>International Barcode</value>
+  </data>
+  <data name="EAN_CODE2" xml:space="preserve">
+    <value>Barcode two</value>
+  </data>
+  <data name="EAN_CODE3" xml:space="preserve">
+    <value>Barcode three</value>
+  </data>
+  <data name="EMAIL" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="EmpQUERY_CONDITION" xml:space="preserve">
+    <value>Personnel search criteria</value>
+  </data>
+  <data name="EMP_NAME" xml:space="preserve">
+    <value>name of worker</value>
+  </data>
+  <data name="ERROR_MSG" xml:space="preserve">
+    <value>Error message</value>
+  </data>
+  <data name="ESERVICE" xml:space="preserve">
+    <value>Service Provider number</value>
+  </data>
+  <data name="ESERVICE_NAME" xml:space="preserve">
+    <value>Service provider name</value>
+  </data>
+  <data name="ESHOP" xml:space="preserve">
+    <value>Mother vendor number</value>
+  </data>
+  <data name="ESHOP_ID" xml:space="preserve">
+    <value>Sub-vendor ID</value>
+  </data>
+  <data name="ExportExcelList" xml:space="preserve">
+    <value>Export feature list</value>
+  </data>
+  <data name="EXTENSION_A" xml:space="preserve">
+    <value>Jincang product does not test</value>
+  </data>
+  <data name="EXTRA_FEE" xml:space="preserve">
+    <value>Increase cost</value>
+  </data>
+  <data name="FAX" xml:space="preserve">
+    <value>fax number</value>
+  </data>
+  <data name="FAX_NUM" xml:space="preserve">
+    <value>fax telephone</value>
+  </data>
+  <data name="FILENAME" xml:space="preserve">
+    <value>Setting 檔名</value>
+  </data>
+  <data name="FileNameNotFound" xml:space="preserve">
+    <value>Upload image file can not be found</value>
+  </data>
+  <data name="FilePathNotSetting" xml:space="preserve">
+    <value>Upload file location is not set</value>
+  </data>
+  <data name="FILETYPE" xml:space="preserve">
+    <value>Setting type</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>floor</value>
+  </data>
+  <data name="FRAGILE" xml:space="preserve">
+    <value>Fragile goods</value>
+  </data>
+  <data name="FUNC_NAME" xml:space="preserve">
+    <value>Program Name (Function Menu)</value>
+  </data>
+  <data name="FUNC_NO" xml:space="preserve">
+    <value>Program coding</value>
+  </data>
+  <data name="FUN_CODE" xml:space="preserve">
+    <value>coding</value>
+  </data>
+  <data name="FUN_DESC" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="FUN_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FUN_TYPE" xml:space="preserve">
+    <value>Function Module</value>
+  </data>
+  <data name="GENERAL_SET" xml:space="preserve">
+    <value>General Settings</value>
+  </data>
+  <data name="GRPDESC" xml:space="preserve">
+    <value>Group description</value>
+  </data>
+  <data name="GRPID" xml:space="preserve">
+    <value>Group number</value>
+  </data>
+  <data name="GRPNAME" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="GRP_DESC" xml:space="preserve">
+    <value>Explanation</value>
+  </data>
+  <data name="GRP_ID" xml:space="preserve">
+    <value>Numbering</value>
+  </data>
+  <data name="GRP_ID_1" xml:space="preserve">
+    <value>1 days notice group</value>
+  </data>
+  <data name="GRP_ID_14" xml:space="preserve">
+    <value>14 days' notice groups</value>
+  </data>
+  <data name="GRP_ID_7" xml:space="preserve">
+    <value>7 days notice groups</value>
+  </data>
+  <data name="GRP_NAME" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="GUPCODE" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="GUPItemSet" xml:space="preserve">
+    <value>Owners set of goods</value>
+  </data>
+  <data name="GUP_CODE" xml:space="preserve">
+    <value>Group Code</value>
+  </data>
+  <data name="GUP_NAME" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="GUP__Code" xml:space="preserve">
+    <value>Owner Number</value>
+  </data>
+  <data name="hGroupName" xml:space="preserve">
+    <value>Workgroup name</value>
+  </data>
+  <data name="HIGHT" xml:space="preserve">
+    <value>Height (cm)</value>
+  </data>
+  <data name="INPUT_TEXT" xml:space="preserve">
+    <value>(Please enter the number)</value>
+  </data>
+  <data name="INSERT" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="INVO_LIM_QTY" xml:space="preserve">
+    <value>Days notice before the invoice number is less than</value>
+  </data>
+  <data name="INVO_NO" xml:space="preserve">
+    <value>Currently used to invoice number</value>
+  </data>
+  <data name="INVO_NO_BEGIN" xml:space="preserve">
+    <value>Invoice number from</value>
+  </data>
+  <data name="INVO_NO_END" xml:space="preserve">
+    <value>As of invoice No.</value>
+  </data>
+  <data name="INVO_TITLE" xml:space="preserve">
+    <value>Word track</value>
+  </data>
+  <data name="INVO_TYPE" xml:space="preserve">
+    <value>Invoice Style</value>
+  </data>
+  <data name="INVO_ZIP" xml:space="preserve">
+    <value>Invoice data</value>
+  </data>
+  <data name="INV_ADDRESS" xml:space="preserve">
+    <value>Invoice address</value>
+  </data>
+  <data name="INV_ZIP" xml:space="preserve">
+    <value>Invoices zip code</value>
+  </data>
+  <data name="ISBOX" xml:space="preserve">
+    <value>Allow FCL shipments</value>
+  </data>
+  <data name="ISCARTON" xml:space="preserve">
+    <value>Whether carton</value>
+  </data>
+  <data name="ISCOMMON" xml:space="preserve">
+    <value>Common account</value>
+  </data>
+  <data name="ISOEM" xml:space="preserve">
+    <value>Whether for its own goods</value>
+  </data>
+  <data name="ISPRINTSTAR" xml:space="preserve">
+    <value>Whether printed bar code before and after the asterisk</value>
+  </data>
+  <data name="IsSelected" xml:space="preserve">
+    <value>Customer service</value>
+  </data>
+  <data name="IS_MAIL_1" xml:space="preserve">
+    <value>1 days notice Email</value>
+  </data>
+  <data name="IS_MAIL_14" xml:space="preserve">
+    <value>14 days notice Email</value>
+  </data>
+  <data name="IS_MAIL_7" xml:space="preserve">
+    <value>7 days notice Email</value>
+  </data>
+  <data name="IS_SMS_1" xml:space="preserve">
+    <value>1 day SMS notifications</value>
+  </data>
+  <data name="IS_SMS_14" xml:space="preserve">
+    <value>14 days SMS notifications</value>
+  </data>
+  <data name="IS_SMS_7" xml:space="preserve">
+    <value>7 days SMS notifications</value>
+  </data>
+  <data name="ITEM" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="ItemAttr" xml:space="preserve">
+    <value>Commercial Property</value>
+  </data>
+  <data name="ITEMCHECK" xml:space="preserve">
+    <value>Commodity inspection project</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>Item No.</value>
+  </data>
+  <data name="ITEMDECORATE" xml:space="preserve">
+    <value>Packaging Maintenance</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>product name</value>
+  </data>
+  <data name="ItemSerialRule" xml:space="preserve">
+    <value>No. Check Rules</value>
+  </data>
+  <data name="ItemSpec" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="ItemTypeId" xml:space="preserve">
+    <value>Item category</value>
+  </data>
+  <data name="ITEM_CEL" xml:space="preserve">
+    <value>Cell  phone</value>
+  </data>
+  <data name="ITEM_CLASS" xml:space="preserve">
+    <value>Item sectors</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_CONTACT" xml:space="preserve">
+    <value>Cargo contacts</value>
+  </data>
+  <data name="ITEM_DESC" xml:space="preserve">
+    <value>Whether Print Item Description</value>
+  </data>
+  <data name="ITEM_ENGNAME" xml:space="preserve">
+    <value>Item English name</value>
+  </data>
+  <data name="ITEM_HUMIDITY" xml:space="preserve">
+    <value>Commodity storage humidity</value>
+  </data>
+  <data name="ITEM_MAIL" xml:space="preserve">
+    <value>mailbox</value>
+  </data>
+  <data name="ITEM_MERGE" xml:space="preserve">
+    <value>And whether the goods package</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_NICKNAME" xml:space="preserve">
+    <value>Commodity Hide name</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>Item Size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="ITEM_STAFF" xml:space="preserve">
+    <value>Personnel responsible for merchandise</value>
+  </data>
+  <data name="ITEM_TYPE" xml:space="preserve">
+    <value>Material Types</value>
+  </data>
+  <data name="ITEM_TYPEID" xml:space="preserve">
+    <value>Item number category</value>
+  </data>
+  <data name="LABEL_CODE" xml:space="preserve">
+    <value>Tag number</value>
+  </data>
+  <data name="LAB_CUST_INFO" xml:space="preserve">
+    <value>Customer Service Information Label</value>
+  </data>
+  <data name="LAB_NOTE1" xml:space="preserve">
+    <value>Shipping labels 1</value>
+  </data>
+  <data name="LAB_NOTE2" xml:space="preserve">
+    <value>2 shipping labels</value>
+  </data>
+  <data name="LAB_NOTE3" xml:space="preserve">
+    <value>Shipping labels 3</value>
+  </data>
+  <data name="LAB_VNR_NAME" xml:space="preserve">
+    <value>Supplier name tags</value>
+  </data>
+  <data name="LAND_AREA" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="LEADTIME" xml:space="preserve">
+    <value>Lead time (days)</value>
+  </data>
+  <data name="LENGTH" xml:space="preserve">
+    <value>Length (cm)</value>
+  </data>
+  <data name="LG" xml:space="preserve">
+    <value>Attach shipping guarantee</value>
+  </data>
+  <data name="LIM_QTY_NOTICE" xml:space="preserve">
+    <value>Group pre-notification</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>Virtual goods storage spaces</value>
+  </data>
+  <data name="Loc_Code1" xml:space="preserve">
+    <value>Storage spaces</value>
+  </data>
+  <data name="LOC_LEVEL" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="LOC_MIX_ITEM" xml:space="preserve">
+    <value>Goods storage spaces allows the mix</value>
+  </data>
+  <data name="MAIL" xml:space="preserve">
+    <value>Contact Mail</value>
+  </data>
+  <data name="MAIL_BOX" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="MENUSTYLE" xml:space="preserve">
+    <value>User-defined function classification and sorting table</value>
+  </data>
+  <data name="MENU_CODE" xml:space="preserve">
+    <value>Menu style</value>
+  </data>
+  <data name="MIX_BATCHNO" xml:space="preserve">
+    <value>Whether placed in the reservoir can be mixed batch bits</value>
+  </data>
+  <data name="MOBILE" xml:space="preserve">
+    <value>cellphone number</value>
+  </data>
+  <data name="MODIFY_DATA" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="MODIFY_STATUS" xml:space="preserve">
+    <value>Modify status</value>
+  </data>
+  <data name="MTYPE" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="MULTI_FLAG" xml:space="preserve">
+    <value>Notes merchandise mix</value>
+  </data>
+  <data name="NEED_SHIPPING_MARK" xml:space="preserve">
+    <value>Are paste marks (to be customized)</value>
+  </data>
+  <data name="NewMenuName" xml:space="preserve">
+    <value>Copy specify a new menu style menu style name</value>
+  </data>
+  <data name="NOTE1" xml:space="preserve">
+    <value>Shipping labels Description 1</value>
+  </data>
+  <data name="NOTE2" xml:space="preserve">
+    <value>2 shipping label instructions</value>
+  </data>
+  <data name="NOTE3" xml:space="preserve">
+    <value>3 shipping label instructions</value>
+  </data>
+  <data name="NO_PRICE" xml:space="preserve">
+    <value>Whether priceless commodity</value>
+  </data>
+  <data name="OIL_FEE" xml:space="preserve">
+    <value>Owned oil subsidies</value>
+  </data>
+  <data name="ORDERSET" xml:space="preserve">
+    <value>Order set</value>
+  </data>
+  <data name="Order_Selected" xml:space="preserve">
+    <value>order</value>
+  </data>
+  <data name="ORD_CIRCLE" xml:space="preserve">
+    <value>Order cycle (weekly frequency)</value>
+  </data>
+  <data name="ORD_DATEA_SAT" xml:space="preserve">
+    <value>six</value>
+  </data>
+  <data name="ORD_DATE_FRI" xml:space="preserve">
+    <value>Fives</value>
+  </data>
+  <data name="ORD_DATE_MON" xml:space="preserve">
+    <value>One</value>
+  </data>
+  <data name="ORD_DATE_SUN" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="ORD_DATE_THU" xml:space="preserve">
+    <value>four</value>
+  </data>
+  <data name="ORD_DATE_TUE" xml:space="preserve">
+    <value>two</value>
+  </data>
+  <data name="ORD_DATE_WED" xml:space="preserve">
+    <value>three</value>
+  </data>
+  <data name="ORD_SAVE_QTY" xml:space="preserve">
+    <value>Safety stock purchases</value>
+  </data>
+  <data name="ORD_TIME" xml:space="preserve">
+    <value>Lead time</value>
+  </data>
+  <data name="OUTSOURCE" xml:space="preserve">
+    <value>Whether to print the Foreign Committee</value>
+  </data>
+  <data name="OVERTIME_FEE" xml:space="preserve">
+    <value>Ultra-point increase</value>
+  </data>
+  <data name="P1901010000_DC_CODE_EXIST" xml:space="preserve">
+    <value>The distribution center number already exists</value>
+  </data>
+  <data name="P1901010000_DELV_EFFIC_DUPLICATE" xml:space="preserve">
+    <value>Distribution efficiency has been repeated</value>
+  </data>
+  <data name="P1901010000_DELV_EFFIC_EXIST" xml:space="preserve">
+    <value>Distribution efficiency already exist</value>
+  </data>
+  <data name="P1901010000_DELV_EFFIC_ORDER_DUPLICATE" xml:space="preserve">
+    <value>Distribution efficiency has been repeated sequence</value>
+  </data>
+  <data name="P1901010000_ZIP_CODE_EXIST" xml:space="preserve">
+    <value>Zip code already exists</value>
+  </data>
+  <data name="P1901020000xamlcs_CirculateProcessWarehouse" xml:space="preserve">
+    <value>Circulation processing warehouse</value>
+  </data>
+  <data name="P1901020000xamlcs_ItemsCannotBeVirtual" xml:space="preserve">
+    <value>Check the product master allows the original shipping box, not the virtual goods, virtual goods category Clear</value>
+  </data>
+  <data name="P1901020000xamlcs_ItemSerailNoBundleCirculateProcessWarehouse" xml:space="preserve">
+    <value>Checking the product master ID storage spaces tied product is added to the cartridge will not flow to bin Processing</value>
+  </data>
+  <data name="P1901020000xamlcs_ItemSerailNoNeedCheck" xml:space="preserve">
+    <value>Checking the product master ID storage spaces tied goods, check the number of goods required</value>
+  </data>
+  <data name="P1901020000xamlcs_NoAuthorize" xml:space="preserve">
+    <value>No usage rights</value>
+  </data>
+  <data name="P1901020000xamlcs_NoDataToInsertUpdate" xml:space="preserve">
+    <value>No information can be added or edited</value>
+  </data>
+  <data name="P1901020000xamlcs_SetItemNo" xml:space="preserve">
+    <value>Please set commodity item no before they can upload the image file</value>
+  </data>
+  <data name="P1901020000_ACC_Type" xml:space="preserve">
+    <value>Valuation category</value>
+  </data>
+  <data name="P1901020000_ALLOWORDITEM" xml:space="preserve">
+    <value>Whether the original shipping carton</value>
+  </data>
+  <data name="P1901020000_ALLOWORDITEM_Cannotbe_VIRTUAL_TYPE" xml:space="preserve">
+    <value>Check the product master allows the original shipping box, not the virtual goods, virtual goods category Clear</value>
+  </data>
+  <data name="P1901020000_Allow_ALL_DLN" xml:space="preserve">
+    <value>The number of days to relax acceptance</value>
+  </data>
+  <data name="P1901020000_ALL_DLN" xml:space="preserve">
+    <value>Acceptance Days</value>
+  </data>
+  <data name="P1901020000_Borrow_Max_Days" xml:space="preserve">
+    <value>The maximum number of days can lend</value>
+  </data>
+  <data name="P1901020000_Can_Split_In" xml:space="preserve">
+    <value>Whether allowing partial purchase</value>
+  </data>
+  <data name="P1901020000_Check_Percent" xml:space="preserve">
+    <value>Checking ratio</value>
+  </data>
+  <data name="P1901020000_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="P1901020000_CrossWareItem_CannotSet_PICK_WARE_W" xml:space="preserve">
+    <value>The product is not set library is not added to the cartridge bin Processing</value>
+  </data>
+  <data name="P1901020000_CrossWareItem_Note" xml:space="preserve">
+    <value>The library commodities Notes</value>
+  </data>
+  <data name="P1901020000_CustomerNo" xml:space="preserve">
+    <value>Customer item no</value>
+  </data>
+  <data name="P1901020000_Delv_Qty_Avg" xml:space="preserve">
+    <value>Average daily shipments</value>
+  </data>
+  <data name="P1901020000_EANCode1" xml:space="preserve">
+    <value>A product barcode</value>
+  </data>
+  <data name="P1901020000_EANCode2" xml:space="preserve">
+    <value>Commodity bar two</value>
+  </data>
+  <data name="P1901020000_EANCode3" xml:space="preserve">
+    <value>Item barcode three</value>
+  </data>
+  <data name="P1901020000_EnviromentalTax" xml:space="preserve">
+    <value>Green taxes</value>
+  </data>
+  <data name="P1901020000_ExcelColumnsFormatError" xml:space="preserve">
+    <value>Import tabular format error!</value>
+  </data>
+  <data name="P1901020000_EXIST_ORDER_HAS_ITEM_CODE" xml:space="preserve">
+    <value>Please note !! orders have been established will continue to ship this product</value>
+  </data>
+  <data name="P1901020000_Fragile" xml:space="preserve">
+    <value>Fragile goods packing</value>
+  </data>
+  <data name="P1901020000_Height" xml:space="preserve">
+    <value>High product (cm)</value>
+  </data>
+  <data name="P1901020000_IsApple" xml:space="preserve">
+    <value>Whether Apple merchandise</value>
+  </data>
+  <data name="P1901020000_IsCarton" xml:space="preserve">
+    <value>Whether carton</value>
+  </data>
+  <data name="P1901020000_ISCARTON_ONLY_PICK_WARE_S" xml:space="preserve">
+    <value>If the check boxes, you do not only choose supplies warehouse shelves warehouse!</value>
+  </data>
+  <data name="P1901020000_ItemAttribute" xml:space="preserve">
+    <value>Commercial Property</value>
+  </data>
+  <data name="P1901020000_ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="P1901020000_ItemEnglishName" xml:space="preserve">
+    <value>Item English name</value>
+  </data>
+  <data name="P1901020000_ItemHideName" xml:space="preserve">
+    <value>Commodity Hide name</value>
+  </data>
+  <data name="P1901020000_ItemInCharge" xml:space="preserve">
+    <value>Personnel responsible for merchandise</value>
+  </data>
+  <data name="P1901020000_ItemName" xml:space="preserve">
+    <value>product name</value>
+  </data>
+  <data name="P1901020000_ItemType" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="P1901020000_ITEM_CODE_ENGLISH_NUMBER_ONLY" xml:space="preserve">
+    <value>Item No allows you to enter alphanumeric</value>
+  </data>
+  <data name="P1901020000_ITEM_CODE_REQUIRED" xml:space="preserve">
+    <value>Item ID is a required field!</value>
+  </data>
+  <data name="P1901020000_Item_Humidity" xml:space="preserve">
+    <value>Commodity storage humidity</value>
+  </data>
+  <data name="P1901020000_Item_TMPR_Type" xml:space="preserve">
+    <value>Commodity save stratosphere</value>
+  </data>
+  <data name="P1901020000_ITEM_TYPE_Required" xml:space="preserve">
+    <value>Category must be selected!</value>
+  </data>
+  <data name="P1901020000_Length" xml:space="preserve">
+    <value>Item length (cm)</value>
+  </data>
+  <data name="P1901020000_LG" xml:space="preserve">
+    <value>Whether attached shipping guarantee</value>
+  </data>
+  <data name="P1901020000_Loc_Mix_Item" xml:space="preserve">
+    <value>Whether storage spaces mixed product</value>
+  </data>
+  <data name="P1901020000_Ltype" xml:space="preserve">
+    <value>Main category</value>
+  </data>
+  <data name="P1901020000_Mix_BatchNo" xml:space="preserve">
+    <value>Whether placed in the reservoir can be mixed batch bits</value>
+  </data>
+  <data name="P1901020000_Mtype" xml:space="preserve">
+    <value>Classification</value>
+  </data>
+  <data name="P1901020000_MULTI_FLAG_Digit_In_Ones" xml:space="preserve">
+    <value>The multi-piece Please enter a number from 0 to 9!</value>
+  </data>
+  <data name="P1901020000_NEED_ONE_CONDITION" xml:space="preserve">
+    <value>Item no or product name or specifications or large classification must be at least enter a query</value>
+  </data>
+  <data name="P1901020000_NOITEM_INCHARGE" xml:space="preserve">
+    <value>No personnel responsible for merchandise check</value>
+  </data>
+  <data name="P1901020000_Note" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="P1901020000_No_Price" xml:space="preserve">
+    <value>Whether priceless commodity</value>
+  </data>
+  <data name="P1901020000_ObjectType" xml:space="preserve">
+    <value>Material Types</value>
+  </data>
+  <data name="P1901020000_OrdMultiple" xml:space="preserve">
+    <value>Order times the amount</value>
+  </data>
+  <data name="P1901020000_ORD_SAVE_Qty" xml:space="preserve">
+    <value>Safety stock purchases</value>
+  </data>
+  <data name="P1901020000_ORD_SAVE_QTY_NOTNULL" xml:space="preserve">
+    <value>Purchase safety stock is a required field!</value>
+  </data>
+  <data name="P1901020000_PalletLevelItem" xml:space="preserve">
+    <value>Each pallet box number, the number of layers do not less than 1!</value>
+  </data>
+  <data name="P1901020000_Pick_Save_Days" xml:space="preserve">
+    <value>The number of days the safety stock replenishment</value>
+  </data>
+  <data name="P1901020000_Pick_Save_Min_Qty" xml:space="preserve">
+    <value>Replenishment minimum number of units</value>
+  </data>
+  <data name="P1901020000_PICK_SAVE_ORD_NOTNULL" xml:space="preserve">
+    <value>The minimum number of units replenishment is a required field!</value>
+  </data>
+  <data name="P1901020000_Pick_Save_Qty" xml:space="preserve">
+    <value>Safety stock replenishment</value>
+  </data>
+  <data name="P1901020000_PICK_SAVE_QTY_NOTNULL" xml:space="preserve">
+    <value>Safety stock replenishment amount is a required field!</value>
+  </data>
+  <data name="P1901020000_ProductStage" xml:space="preserve">
+    <value>Item sectors</value>
+  </data>
+  <data name="P1901020000_RET_DLN_NOTNULL" xml:space="preserve">
+    <value>Shelf life is a required field!</value>
+  </data>
+  <data name="P1901020000_SELECT_NO_DATA" xml:space="preserve">
+    <value>Information has not been selected</value>
+  </data>
+  <data name="P1901020000_SerialNoCheckRules" xml:space="preserve">
+    <value>No. Check Rules</value>
+  </data>
+  <data name="P1901020000_SerialNoCount" xml:space="preserve">
+    <value>Ordinal numbers</value>
+  </data>
+  <data name="P1901020000_SerialNoStart" xml:space="preserve">
+    <value>The beginning of the serial number</value>
+  </data>
+  <data name="P1901020000_SERIALNO_BUNDLE_CirculateWarehouse" xml:space="preserve">
+    <value>Sequence number check bit reservoir tie, the other must be added to a flow-through process cartridge magazine!</value>
+  </data>
+  <data name="P1901020000_SerialNo_Bundle_LocCode" xml:space="preserve">
+    <value>No. tied storage spaces</value>
+  </data>
+  <data name="P1901020000_SERIALNO_BUNDLE_SERIALITEM_MUSTCHECK" xml:space="preserve">
+    <value>When the number of storage spaces have checked tie, serial number goods must be checked!</value>
+  </data>
+  <data name="P1901020000_SerialNo_Item" xml:space="preserve">
+    <value>No. Commodity</value>
+  </data>
+  <data name="P1901020000_SERIALNO_REQUIRED" xml:space="preserve">
+    <value>No. When goods are checked, ordinal numbers must be filled out!</value>
+  </data>
+  <data name="P1901020000_SIM_Card_Spec_Instruction" xml:space="preserve">
+    <value>SIM card specifications</value>
+  </data>
+  <data name="P1901020000_Spec" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="P1901020000_Spill" xml:space="preserve">
+    <value>Anti-spill packaging</value>
+  </data>
+  <data name="P1901020000_Stype" xml:space="preserve">
+    <value>Small class</value>
+  </data>
+  <data name="P1901020000_Unit" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="P1901020000_VenOrd" xml:space="preserve">
+    <value>Supplier MOQ</value>
+  </data>
+  <data name="P1901020000_VEN_ORD_GREATERTHANZERO" xml:space="preserve">
+    <value>Supplier MOQ must be greater than 0!</value>
+  </data>
+  <data name="P1901020000_Virtual_Item_Type" xml:space="preserve">
+    <value>Virtual goods category</value>
+  </data>
+  <data name="P1901020000_WarehouseId" xml:space="preserve">
+    <value>Do not warehouse shelves</value>
+  </data>
+  <data name="P1901020000_WAREHOUSEID_REQUIRED" xml:space="preserve">
+    <value>Warehouse shelves do not have to choose!</value>
+  </data>
+  <data name="P1901020000_Weight" xml:space="preserve">
+    <value>Weight (g)</value>
+  </data>
+  <data name="P1901020000_Width" xml:space="preserve">
+    <value>Item Width (cm)</value>
+  </data>
+  <data name="P1901020100xamlcs_ItemImage" xml:space="preserve">
+    <value>Commodity drawing (.jpg) | * .jpg</value>
+  </data>
+  <data name="P1901020100xamlcs_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="P1901020100xamlcs_YesToLeave" xml:space="preserve">
+    <value>You sure you want to leave?</value>
+  </data>
+  <data name="P1901020100_ChooseImage" xml:space="preserve">
+    <value>Select the picture</value>
+  </data>
+  <data name="P1901020100_NoChooseItemImage" xml:space="preserve">
+    <value>Select the check goods without drawing</value>
+  </data>
+  <data name="P1901020100_NoItemDefaultImage" xml:space="preserve">
+    <value>No pre-trade check the original image file</value>
+  </data>
+  <data name="P1901020100_NoItemImage" xml:space="preserve">
+    <value>Drawing no check goods</value>
+  </data>
+  <data name="P1901030000_ChooseDeltePackSet" xml:space="preserve">
+    <value>Please select the package is set to be deleted</value>
+  </data>
+  <data name="P1901030000_ChooseItem" xml:space="preserve">
+    <value>Please select merchandise items</value>
+  </data>
+  <data name="P1901030000_Hierarchy" xml:space="preserve">
+    <value>Class units, units of measurement and the minimum number of units required fields</value>
+  </data>
+  <data name="P1901030000_HierarchyRepeat" xml:space="preserve">
+    <value>{0} class unit is not available and then repeated</value>
+  </data>
+  <data name="P1901030000_NeedOneCondition" xml:space="preserve">
+    <value>Item no or product name must be at least enter a query</value>
+  </data>
+  <data name="P1901030000_Range_Error_Message" xml:space="preserve">
+    <value>{0} must be between {1} and {2}</value>
+  </data>
+  <data name="P1901030000_SizeError" xml:space="preserve">
+    <value>Length, width and height of the maximum input 999999.99</value>
+  </data>
+  <data name="P1901030000_UnitRepeat" xml:space="preserve">
+    <value>Not repeat unit: {0}</value>
+  </data>
+  <data name="P1901030000_Volume" xml:space="preserve">
+    <value>Volume contraction length, width, height</value>
+  </data>
+  <data name="P1901030000_Weight" xml:space="preserve">
+    <value>Contracted weight</value>
+  </data>
+  <data name="P1901030000_ZeroError" xml:space="preserve">
+    <value>Item length, width, height, is not less than the minimum number of units equal to zero</value>
+  </data>
+  <data name="P1901090000RetMemo" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="P1901090000_InsertFail" xml:space="preserve">
+    <value>Do not enter data, add fail!</value>
+  </data>
+  <data name="P1901090000_TimeFormat_Error" xml:space="preserve">
+    <value>Arrival time (HH: mm) input format error</value>
+  </data>
+  <data name="P1901090000_UpdateFail" xml:space="preserve">
+    <value>Data is not selected, the update fails!</value>
+  </data>
+  <data name="P1901090000_VendorDetails" xml:space="preserve">
+    <value>Supplier master file details</value>
+  </data>
+  <data name="P1901090000_VendorEdit" xml:space="preserve">
+    <value>Supplier Master Maintenance</value>
+  </data>
+  <data name="P1901090000_VendorInsert" xml:space="preserve">
+    <value>Supplier Master add</value>
+  </data>
+  <data name="P1901090000_Ven_No_Duplicate" xml:space="preserve">
+    <value>Repeat the vendor ID</value>
+  </data>
+  <data name="P1901090100_UnSelectableStatus" xml:space="preserve">
+    <value>Edit state can not choose!</value>
+  </data>
+  <data name="P1901100000_AdrNeed" xml:space="preserve">
+    <value>Please enter the contact address</value>
+  </data>
+  <data name="P1901100000_ContactNeed" xml:space="preserve">
+    <value>Please enter the contact person</value>
+  </data>
+  <data name="P1901100000_DeleteFail" xml:space="preserve">
+    <value>Not selected data, delete failed!</value>
+  </data>
+  <data name="P1901100000_PhoneNumberNeed" xml:space="preserve">
+    <value>請 import contact phone</value>
+  </data>
+  <data name="P1901100000_SaleBaseDetails" xml:space="preserve">
+    <value>Retail Master Detail</value>
+  </data>
+  <data name="P1901100000_SaleBaseInsert" xml:space="preserve">
+    <value>Master new store</value>
+  </data>
+  <data name="P1901100000_SaleBaseManage" xml:space="preserve">
+    <value>Retail Master Maintenance</value>
+  </data>
+  <data name="P1901100000_SaleBaseNameNeed" xml:space="preserve">
+    <value>Enter the store name</value>
+  </data>
+  <data name="P1901100000_SaleBaseNoNeed" xml:space="preserve">
+    <value>Enter the store number</value>
+  </data>
+  <data name="P1901100000_SaleBaseTypeNeed" xml:space="preserve">
+    <value>Please select the category Retail</value>
+  </data>
+  <data name="P1901160000_DELV_NO_Detail" xml:space="preserve">
+    <value>Train Master Detail</value>
+  </data>
+  <data name="P1901160000_DELV_NO_Insert" xml:space="preserve">
+    <value>Master new trips</value>
+  </data>
+  <data name="P1901160000_DELV_NO_Manage" xml:space="preserve">
+    <value>Train Master Maintenance</value>
+  </data>
+  <data name="P1901160000_InputARRIVAL_TIME_E" xml:space="preserve">
+    <value>Select arrival time (until) !!</value>
+  </data>
+  <data name="P1901160000_InputARRIVAL_TIME_S" xml:space="preserve">
+    <value>Select arrival time (since) !!</value>
+  </data>
+  <data name="P1901160000_InputDELV_WAY" xml:space="preserve">
+    <value>Please choose the road along !!</value>
+  </data>
+  <data name="P1901160000_InputRETAIL_CODE" xml:space="preserve">
+    <value>Enter the store number !!</value>
+  </data>
+  <data name="P1901160000_InputRETAIL_NAME" xml:space="preserve">
+    <value>Please enter a search store !!</value>
+  </data>
+  <data name="P1901160000_InputStoreNo" xml:space="preserve">
+    <value>Please enter the store number !!</value>
+  </data>
+  <data name="P1901160000_NoStoreData" xml:space="preserve">
+    <value>Check there is no store, please confirm store numbers !!</value>
+  </data>
+  <data name="P1901160000_PackField" xml:space="preserve">
+    <value>Allocation field</value>
+  </data>
+  <data name="P1901160000_RetailCodeExist" xml:space="preserve">
+    <value>This store already exists in other trips, please re-enter the store !!</value>
+  </data>
+  <data name="P1901160000_SelectedCAR_GUP" xml:space="preserve">
+    <value>Please select dealers</value>
+  </data>
+  <data name="P1901160000_SelectedCAR_PERIOD" xml:space="preserve">
+    <value>Please select periods out of the bus</value>
+  </data>
+  <data name="P1901160000_SelectedDC" xml:space="preserve">
+    <value>Please select a distribution center !!</value>
+  </data>
+  <data name="P1901160000_SelectedDC1" xml:space="preserve">
+    <value>Choose Distribution Center</value>
+  </data>
+  <data name="P1901160000_SelectedDELV_NO" xml:space="preserve">
+    <value>Please enter the trips !!</value>
+  </data>
+  <data name="P1901160000_SelectedDELV_NO1" xml:space="preserve">
+    <value>Please enter trips</value>
+  </data>
+  <data name="P1901160000_SelectedDELV_NO2" xml:space="preserve">
+    <value>Please select the information trips</value>
+  </data>
+  <data name="P1901160000_SelectedDELV_NODataNull" xml:space="preserve">
+    <value>Please enter the above information logistics trips !!</value>
+  </data>
+  <data name="P1901160000_SelectedDRIVER_ID" xml:space="preserve">
+    <value>Please enter a driver number</value>
+  </data>
+  <data name="P1901160000_SelectedDRIVER_NAME" xml:space="preserve">
+    <value>Please enter the name of the driver</value>
+  </data>
+  <data name="P1901160000_SelectedEditDataNull" xml:space="preserve">
+    <value>Please select the data you want to edit !!</value>
+  </data>
+  <data name="P1901160000_SelectedEXTRA_FEE" xml:space="preserve">
+    <value>Please input costs increase</value>
+  </data>
+  <data name="P1901160000_SelectedOIL_FEE" xml:space="preserve">
+    <value>Please enter the oil-funded subsidies</value>
+  </data>
+  <data name="P1901160000_SelectedOVERTIME_FEE" xml:space="preserve">
+    <value>Please enter the super-point increase</value>
+  </data>
+  <data name="P1901160000_SelectedREGION_FEE" xml:space="preserve">
+    <value>Please enter the area increase</value>
+  </data>
+  <data name="P1901250000_AtleastCheckOne" xml:space="preserve">
+    <value>Pier purchase, shipment is set to be at least one check</value>
+  </data>
+  <data name="P1901250000_PierDataNotFound" xml:space="preserve">
+    <value>No such information pier</value>
+  </data>
+  <data name="P1901250000_PierDuplicate" xml:space="preserve">
+    <value>Pier number can not be repeated</value>
+  </data>
+  <data name="P1901250000_PierNull" xml:space="preserve">
+    <value>Please enter the number wharf</value>
+  </data>
+  <data name="P1901250000_PierValidateCNWord" xml:space="preserve">
+    <value>Pier number can be entered alphanumeric string</value>
+  </data>
+  <data name="P1901250000_TmpMustGreaterThanZero" xml:space="preserve">
+    <value>The number of digits only temporary area greater than 0</value>
+  </data>
+  <data name="P1901250000_TmpMustPositive" xml:space="preserve">
+    <value>The number is not less than a staging area</value>
+  </data>
+  <data name="P1901280000_BANK_ACCOUNT_FormatError" xml:space="preserve">
+    <value>Bank account is not formatted correctly</value>
+  </data>
+  <data name="P1901280000_BILL_CEL_FormatError" xml:space="preserve">
+    <value>Contact phone billing format is incorrect</value>
+  </data>
+  <data name="P1901280000_BILL_TEL_FormatError" xml:space="preserve">
+    <value>Accounts Contact Phone incorrect format</value>
+  </data>
+  <data name="P1901280000_CannotDelete" xml:space="preserve">
+    <value>Data does not exist, can not be deleted</value>
+  </data>
+  <data name="P1901280000_CannotUpdate" xml:space="preserve">
+    <value>Data does not exist, can not be updated</value>
+  </data>
+  <data name="P1901280000_InputContact" xml:space="preserve">
+    <value>You must enter billing contact</value>
+  </data>
+  <data name="P1901280000_InputOUTSOURCE_ID" xml:space="preserve">
+    <value>You must enter the number of foreign committee</value>
+  </data>
+  <data name="P1901280000_InputOUTSOURCE_Name" xml:space="preserve">
+    <value>You must enter the name of the Commission of Foreign</value>
+  </data>
+  <data name="P1901280000_InputPhoneNumber" xml:space="preserve">
+    <value>Required import phone</value>
+  </data>
+  <data name="P1901280000_InputVATnumber" xml:space="preserve">
+    <value>You must enter uniform number</value>
+  </data>
+  <data name="P1901280000_INV_ZIP_ValidateNWord" xml:space="preserve">
+    <value>Invoices can only enter zip code numbers</value>
+  </data>
+  <data name="P1901280000_ITEM_CEL_FormatError" xml:space="preserve">
+    <value>Cargo Contact phone format is incorrect</value>
+  </data>
+  <data name="P1901280000_ITEM_TEL_FormatError" xml:space="preserve">
+    <value>Cargo Contact Telephone format incorrect</value>
+  </data>
+  <data name="P1901280000_OUTSOURCE_ID_Duplicate" xml:space="preserve">
+    <value>Appointed foreign number can not be repeated</value>
+  </data>
+  <data name="P1901280000_OUTSOURCE_ID_LengthLimit10" xml:space="preserve">
+    <value>Foreign Committee Number Length should not exceed 10</value>
+  </data>
+  <data name="P1901280000_OUTSOURCE_ID_LengthLimit30" xml:space="preserve">
+    <value>Appointed foreign name can not exceed 30</value>
+  </data>
+  <data name="P1901280000_OUTSOURCE_ID_LengthLimit40" xml:space="preserve">
+    <value>Accounts contacts can not exceed 40</value>
+  </data>
+  <data name="P1901280000_OUTSOURCE_ID_ValidateCNWord" xml:space="preserve">
+    <value>Commission can only enter the British Foreign ID number</value>
+  </data>
+  <data name="P1901280000_PhoneNumberFormatError" xml:space="preserve">
+    <value>Telephone format incorrect</value>
+  </data>
+  <data name="P1901280000_tPhoneNumber_LengthLimit40" xml:space="preserve">
+    <value>Phone not exceed 40</value>
+  </data>
+  <data name="P1901280000_UniFormExists" xml:space="preserve">
+    <value>TongBian already exists in the master or owner of the committee of foreign master</value>
+  </data>
+  <data name="P1901280000_VATnumber_LengthLimit16" xml:space="preserve">
+    <value>Uniform number can not be longer than 16</value>
+  </data>
+  <data name="P1901280000_VATnumber_ValidateCNWord" xml:space="preserve">
+    <value>Uniform numbers can only enter numbers</value>
+  </data>
+  <data name="P1901280000_ZIP_ValidateNWord" xml:space="preserve">
+    <value>Zip code can only enter numbers</value>
+  </data>
+  <data name="P1901290000_GupCodeNotExist" xml:space="preserve">
+    <value>This owner has been deleted</value>
+  </data>
+  <data name="P1901290000_GUP_CODENull" xml:space="preserve">
+    <value>The owners have not entered a number</value>
+  </data>
+  <data name="P1901290000_GUP_CODE_SYS_GUP_CODE_Duplicate" xml:space="preserve">
+    <value>No owner or owners of number duplication system</value>
+  </data>
+  <data name="P1901290000_GUP_CODE_ValidateCNWord" xml:space="preserve">
+    <value>No owner can only enter alphanumeric</value>
+  </data>
+  <data name="P1901290000_GUP_NAMENull" xml:space="preserve">
+    <value>Owner name has not been entered</value>
+  </data>
+  <data name="P1901290000_SYS_GUP_CODENull" xml:space="preserve">
+    <value>System owners have not entered a number</value>
+  </data>
+  <data name="P1901290000_SYS_GUP_CODE_Duplicate" xml:space="preserve">
+    <value>No duplicate system owners</value>
+  </data>
+  <data name="P1901290000_SYS_GUP_CODE_ValidateCNWord" xml:space="preserve">
+    <value>The system owner can only enter alphanumeric number</value>
+  </data>
+  <data name="P1901700000_CheckOne" xml:space="preserve">
+    <value>Check the label must be at least check one item</value>
+  </data>
+  <data name="P1901700000_DeleteFail" xml:space="preserve">
+    <value>Delete fails, no data can be deleted</value>
+  </data>
+  <data name="P1901700000_InsertFail" xml:space="preserve">
+    <value>Add failed, label master data already exists in this pen</value>
+  </data>
+  <data name="P1901700000_LabelListDetail" xml:space="preserve">
+    <value>Label Master Detail</value>
+  </data>
+  <data name="P1901700000_LabelListInsert" xml:space="preserve">
+    <value>Label Master new</value>
+  </data>
+  <data name="P1901700000_LabelListManage" xml:space="preserve">
+    <value>Label Master Maintenance</value>
+  </data>
+  <data name="P1901700000_SaveFail" xml:space="preserve">
+    <value>Storage fails, no data can be stored</value>
+  </data>
+  <data name="P1901700000_UpdateFail" xml:space="preserve">
+    <value>Update failed Label Master in check there is no pen information</value>
+  </data>
+  <data name="P1902020000_ChooseItemYet" xml:space="preserve">
+    <value>The project has not been selected</value>
+  </data>
+  <data name="P1902020000_Deleted" xml:space="preserve">
+    <value>For this reason the category has been deleted</value>
+  </data>
+  <data name="P1902020000_InputReasonTypeNo" xml:space="preserve">
+    <value>Please enter a reason category number</value>
+  </data>
+  <data name="P1902020000_ReasonCommentLength40" xml:space="preserve">
+    <value>Category Description reason can only enter a maximum of 40 characters</value>
+  </data>
+  <data name="P1902020000_ReasonTypeNoDuplicate" xml:space="preserve">
+    <value>The reason category number repeat</value>
+  </data>
+  <data name="P1902020000_ReasonTypeNoLength4" xml:space="preserve">
+    <value>The reason category number can enter up to four characters</value>
+  </data>
+  <data name="P1902020000_ReasonTypeNo_ValidateCNWord" xml:space="preserve">
+    <value>The reason category number can only enter alphanumeric</value>
+  </data>
+  <data name="P1902030000_ChooseItem" xml:space="preserve">
+    <value>Please select an item</value>
+  </data>
+  <data name="P1902030000_ChooseReasonNo" xml:space="preserve">
+    <value>Please select the reason number</value>
+  </data>
+  <data name="P1902030000_InputReason" xml:space="preserve">
+    <value>The reason required!</value>
+  </data>
+  <data name="P1902030000_ReasonLength40" xml:space="preserve">
+    <value>The reason can not be more than 40 characters</value>
+  </data>
+  <data name="P1902030000_ReasonNo_ValidateCNWord" xml:space="preserve">
+    <value>No reason can only enter alphanumeric</value>
+  </data>
+  <data name="P1902030000_ReasonTypeNoDeleted" xml:space="preserve">
+    <value>For this reason coding has been removed</value>
+  </data>
+  <data name="P1902030000_ReasonTypeNoExist" xml:space="preserve">
+    <value>For this reason the encoding already exists</value>
+  </data>
+  <data name="P1902050000_Check_NoType_Required" xml:space="preserve">
+    <value>Test item category required!</value>
+  </data>
+  <data name="P1902050000_InputCHECK_NO" xml:space="preserve">
+    <value>Test items required!</value>
+  </data>
+  <data name="P1902060000_CheckItemDuplicate" xml:space="preserve">
+    <value>Test items can not be repeated</value>
+  </data>
+  <data name="P1902060000_InputCheckItem" xml:space="preserve">
+    <value>Please enter the test items</value>
+  </data>
+  <data name="P1902060000_InputCheckItemType" xml:space="preserve">
+    <value>Please enter the test item category</value>
+  </data>
+  <data name="P1902060000_InputItemCode" xml:space="preserve">
+    <value>Please enter the article number</value>
+  </data>
+  <data name="P1902060000_Item_OnlyCNWord" xml:space="preserve">
+    <value>Item no can be entered only alphanumeric string</value>
+  </data>
+  <data name="P1902060000_NoItemCheckData" xml:space="preserve">
+    <value>No such commodity inspection data</value>
+  </data>
+  <data name="P1905010000_CelNumberFormatError" xml:space="preserve">
+    <value>The phone number is not formatted correctly</value>
+  </data>
+  <data name="P1905010000_CelShortNumFormatError" xml:space="preserve">
+    <value>Phone simple code format is not correct</value>
+  </data>
+  <data name="P1905010000_Choose_DC_Gup_Changed" xml:space="preserve">
+    <value>Selected owners and the owner changed DC</value>
+  </data>
+  <data name="P1905010000_CopyToNewMenuName" xml:space="preserve">
+    <value>Are you sure you want to copy [{0}] menu style to the new menu style [{1}] do?</value>
+  </data>
+  <data name="P1905010000_DC_Gup_Changed" xml:space="preserve">
+    <value>DC and the owner has been changed, make sure the new employee master file</value>
+  </data>
+  <data name="P1905010000_Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="P1905010000_EmployeeNo_OnlyCNWord" xml:space="preserve">
+    <value>Number of employees can only enter alphanumeric</value>
+  </data>
+  <data name="P1905010000_ExtensionFormatError" xml:space="preserve">
+    <value>Extension format is incorrect</value>
+  </data>
+  <data name="P1905010000_MENU_CODE_Required" xml:space="preserve">
+    <value>Check the user-defined menu classification and sorting must select menu style</value>
+  </data>
+  <data name="P1905010000_UnitChoose_Required" xml:space="preserve">
+    <value>To select the unit Required</value>
+  </data>
+  <data name="P1905010000_Using" xml:space="preserve">
+    <value>Using</value>
+  </data>
+  <data name="P1905040000_Edit" xml:space="preserve">
+    <value>Edited</value>
+  </data>
+  <data name="P1905040000_FuncList" xml:space="preserve">
+    <value>Feature List</value>
+  </data>
+  <data name="P1905040000_InputExtensionFunc" xml:space="preserve">
+    <value>Extensions have no choice</value>
+  </data>
+  <data name="P1905040000_InputWorkGroupName" xml:space="preserve">
+    <value>Please enter a workgroup name</value>
+  </data>
+  <data name="P1905040000_WorkGroupExist" xml:space="preserve">
+    <value>Workgroup name already exists</value>
+  </data>
+  <data name="P1905050000_NoSpecify" xml:space="preserve">
+    <value>Not specify</value>
+  </data>
+  <data name="P1905060000_DestSavePath" xml:space="preserve">
+    <value>Select Save Path</value>
+  </data>
+  <data name="P1905060000_ExcelTitle" xml:space="preserve">
+    <value>Work function number, work function name, the name of the button, the button operable \ n</value>
+  </data>
+  <data name="P1905060000_InputConfirmPassword" xml:space="preserve">
+    <value>Password has been filled, but not yet confirm the password to fill in!</value>
+  </data>
+  <data name="P1905060000_InputPassWord" xml:space="preserve">
+    <value>Confirm password has been filled, but the password has not filled out!</value>
+  </data>
+  <data name="P1905060000_NoPassword" xml:space="preserve">
+    <value>The password is not set</value>
+  </data>
+  <data name="P1905060000_PeopleFuncList" xml:space="preserve">
+    <value>Staff function list</value>
+  </data>
+  <data name="P1905060000_SetNoPassword" xml:space="preserve">
+    <value>Password has been set</value>
+  </data>
+  <data name="P1905070000_WorkGroupNotExist" xml:space="preserve">
+    <value>Working group does not exist, please refer to</value>
+  </data>
+  <data name="P1905130000_CONNECTID" xml:space="preserve">
+    <value>Connection ID</value>
+  </data>
+  <data name="P1905130000_CRT_DATE" xml:space="preserve">
+    <value>Login Time</value>
+  </data>
+  <data name="P1905130000_DeleteSucess" xml:space="preserve">
+    <value>successfully deleted</value>
+  </data>
+  <data name="P1905130000_ErrSelected" xml:space="preserve">
+    <value>Not choose to delete the record</value>
+  </data>
+  <data name="P1905130000_HOSTNAME" xml:space="preserve">
+    <value>Login host name</value>
+  </data>
+  <data name="P1905130000_IsSelectedAll" xml:space="preserve">
+    <value>select all</value>
+  </data>
+  <data name="P1905130000_QueryResult" xml:space="preserve">
+    <value>search result</value>
+  </data>
+  <data name="P1905130000_UNLOCKTIME" xml:space="preserve">
+    <value>Unlock time</value>
+  </data>
+  <data name="P1905130000_USERNAME" xml:space="preserve">
+    <value>User Account</value>
+  </data>
+  <data name="P1907020000_CopyComplete" xml:space="preserve">
+    <value>Copy the complete \ n Please open Excel paste data</value>
+  </data>
+  <data name="P1907020000_ExportQuertResult" xml:space="preserve">
+    <value>Export query results complete</value>
+  </data>
+  <data name="P1907020000_ExportQueryResultFail" xml:space="preserve">
+    <value>Export query results fail</value>
+  </data>
+  <data name="P1907020000_QueryFail" xml:space="preserve">
+    <value>Query failed:</value>
+  </data>
+  <data name="P1907020000_QueryFailByFuncIDNull" xml:space="preserve">
+    <value>Query failed: query items FUN_ID not set</value>
+  </data>
+  <data name="P1920020000_ACC_UNIT_Duplicate" xml:space="preserve">
+    <value>Unit of account can not be repeated</value>
+  </data>
+  <data name="P1920020000_ACC_UNIT_NoExist" xml:space="preserve">
+    <value>No such unit of account data</value>
+  </data>
+  <data name="P1920020000_InputAccUnit" xml:space="preserve">
+    <value>Please enter the unit of account name</value>
+  </data>
+  <data name="P1920020000_InputItemType" xml:space="preserve">
+    <value>Please enter the item category</value>
+  </data>
+  <data name="P1920020000_IntpuAccUnit" xml:space="preserve">
+    <value>Please enter the unit of account</value>
+  </data>
+  <data name="P1920030000_InputAccUnitNo" xml:space="preserve">
+    <value>Please enter the unit of measurement number</value>
+  </data>
+  <data name="P1920030000_ItemTypeNo_Duplicate" xml:space="preserve">
+    <value>Item category number can not be repeated</value>
+  </data>
+  <data name="P1920030000_QuoteItemTypeDataNull" xml:space="preserve">
+    <value>No such offer project category data</value>
+  </data>
+  <data name="P1920040000_CLIENT_IP_FormatError" xml:space="preserve">
+    <value>Workstation IP format error</value>
+  </data>
+  <data name="P1920040000_DC_CODE_Client_IP_Duplicate" xml:space="preserve">
+    <value>Distribution center workstation IP unrepeatable</value>
+  </data>
+  <data name="P1920040000_InputCLIENT_IP" xml:space="preserve">
+    <value>Please enter the workstation IP</value>
+  </data>
+  <data name="P1920040000_InputVIDEO_NO" xml:space="preserve">
+    <value>Please enter the camera station number</value>
+  </data>
+  <data name="P1920040000_NoCLIENT_IP_Data" xml:space="preserve">
+    <value>No such video workstations and machine profile data</value>
+  </data>
+  <data name="P1920040000_VIDEO_NO_Duplicate" xml:space="preserve">
+    <value>Camera station number can not be repeated</value>
+  </data>
+  <data name="P1920050000_DEP_ID_Duplicate" xml:space="preserve">
+    <value>Unit number can not be repeated</value>
+  </data>
+  <data name="P1920050000_InputDEP_ID" xml:space="preserve">
+    <value>Please enter the unit number</value>
+  </data>
+  <data name="P1920050000_InputDEP_NAME" xml:space="preserve">
+    <value>Enter a Name</value>
+  </data>
+  <data name="P1920060000_COUDIV_ID_Duplicate" xml:space="preserve">
+    <value>Administrative number can not be repeated</value>
+  </data>
+  <data name="P1920060000_InputCOUDIV_ID" xml:space="preserve">
+    <value>Please enter the administrative ID</value>
+  </data>
+  <data name="P1920060000_InputCOUDIV_Name" xml:space="preserve">
+    <value>Please enter the name of the administrative</value>
+  </data>
+  <data name="P1920060000_NoCOUDIV_ID" xml:space="preserve">
+    <value>No such administrative number data</value>
+  </data>
+  <data name="P1920070000_ChooseCOUDIV_ID" xml:space="preserve">
+    <value>Please select the administrative counties</value>
+  </data>
+  <data name="P1920070000_InputZIP_CODE" xml:space="preserve">
+    <value>Please enter the number of township area</value>
+  </data>
+  <data name="P1920070000_InputZIP_Name" xml:space="preserve">
+    <value>Enter the name of the township area</value>
+  </data>
+  <data name="P1920070000_ZIP_CODE_Deleted" xml:space="preserve">
+    <value>This rural area number has been deleted</value>
+  </data>
+  <data name="P1920070000_ZIP_CODE_Exist" xml:space="preserve">
+    <value>This number already exists in rural areas</value>
+  </data>
+  <data name="P1920080000_ChooseRegionCode" xml:space="preserve">
+    <value>Please select the area code</value>
+  </data>
+  <data name="P1920080000_InputZIP_CODE" xml:space="preserve">
+    <value>Please enter a zip code</value>
+  </data>
+  <data name="P1920080000_ZIP_CODE_Bundled" xml:space="preserve">
+    <value>This postal code corresponding to the region exists</value>
+  </data>
+  <data name="P1920090000_CHG_TYPE_ID" xml:space="preserve">
+    <value>No replacement type</value>
+  </data>
+  <data name="P1920090000_Deleted" xml:space="preserve">
+    <value>This {0} has been deleted</value>
+  </data>
+  <data name="P1920090000_Exist" xml:space="preserve">
+    <value>This already exists {0}</value>
+  </data>
+  <data name="P1920090000_InputTypeID" xml:space="preserve">
+    <value>Please enter the type number</value>
+  </data>
+  <data name="P1920090000_RTN_TYPE_ID" xml:space="preserve">
+    <value>Return Type Number</value>
+  </data>
+  <data name="P1920090000_RTN_VNR_TYPE_ID" xml:space="preserve">
+    <value>Factory type number retired</value>
+  </data>
+  <data name="P1920090000_TypeName" xml:space="preserve">
+    <value>Please enter a Type Name</value>
+  </data>
+  <data name="P1920100000_CAR_KIND_ID_Duplicate" xml:space="preserve">
+    <value>The type of vehicle number can not be repeated</value>
+  </data>
+  <data name="P1920100000_InputCAR_KIND_IDAndCheckFormatCorrect" xml:space="preserve">
+    <value>Please enter the number and types of vehicles to confirm the input format (digital and can not be zero and negative) are correct</value>
+  </data>
+  <data name="P1920100000_InputCAR_KIND_Name" xml:space="preserve">
+    <value>Enter the name of the type of vehicle</value>
+  </data>
+  <data name="P1920100000_txtCAR_KIND_ID_FormatError" xml:space="preserve">
+    <value>Vehicle Type No malformed</value>
+  </data>
+  <data name="P1920100000_txtCAR_KIND_ID_Null" xml:space="preserve">
+    <value>No such type of vehicle ID information</value>
+  </data>
+  <data name="P1920160000_InputPROCESS_ACT" xml:space="preserve">
+    <value>Please enter the processing operation</value>
+  </data>
+  <data name="P1920160000_InputPROCESS_ACT_WithByte" xml:space="preserve">
+    <value>No processing operation Enter Alphanumeric half</value>
+  </data>
+  <data name="P1920160000_InputPROCESS_ID" xml:space="preserve">
+    <value>Please enter a machining operation number</value>
+  </data>
+  <data name="P1920160000_PROCESS_ACT_ByteCountError" xml:space="preserve">
+    <value>No leader of a machining operation bit wrong!</value>
+  </data>
+  <data name="P1920160000_PROCESS_ID_Duplicate" xml:space="preserve">
+    <value>No processing operation can not be repeated</value>
+  </data>
+  <data name="P1920160000_PROCESS_ID_Null" xml:space="preserve">
+    <value>No such data processing operation number</value>
+  </data>
+  <data name="P1920170000_InputSET_NAME" xml:space="preserve">
+    <value>Please enter the name of the setting</value>
+  </data>
+  <data name="P1920170000_InputSET_VALUE" xml:space="preserve">
+    <value>Please enter setpoints</value>
+  </data>
+  <data name="P1920170000_SET_NAME_Null" xml:space="preserve">
+    <value>No such system configuration data</value>
+  </data>
+  <data name="P1920180000_FILENAME_OnlyCNWord" xml:space="preserve">
+    <value>Profile name only enter alphanumeric</value>
+  </data>
+  <data name="P1920180000_FILETYPE_OnlyCNWord" xml:space="preserve">
+    <value>Set type can only enter alphanumeric</value>
+  </data>
+  <data name="P1920190000_dCheckPercentChecking" xml:space="preserve">
+    <value>Checking ratio must be between 0 100 in numeric format</value>
+  </data>
+  <data name="P1920190000_InputACODE" xml:space="preserve">
+    <value>Please enter a large number Classification</value>
+  </data>
+  <data name="P1920190000_InputANAME" xml:space="preserve">
+    <value>Please enter the large category name</value>
+  </data>
+  <data name="P1920190000_InputBCODE" xml:space="preserve">
+    <value>Please enter the number of classification</value>
+  </data>
+  <data name="P1920190000_InputBNAME" xml:space="preserve">
+    <value>Please input category name</value>
+  </data>
+  <data name="P1920190000_InputCCODE" xml:space="preserve">
+    <value>Please enter the small classification number</value>
+  </data>
+  <data name="P1920190000_InputCheckPercent" xml:space="preserve">
+    <value>Please enter a checking ratio</value>
+  </data>
+  <data name="P1920190000_InputCNAME" xml:space="preserve">
+    <value>Enter the name of small classification</value>
+  </data>
+  <data name="P1920190000_SelectACODE" xml:space="preserve">
+    <value>Please select large category</value>
+  </data>
+  <data name="P1920190000_SelectBCODE" xml:space="preserve">
+    <value>Please choose classification</value>
+  </data>
+  <data name="P1920190000_WillDeleteOtherSharingCustSet" xml:space="preserve">
+    <value>Currently logged owner is set to medium and small commodity classification share, will be deleted share the same set of other shippers, are you sure?</value>
+  </data>
+  <data name="P1920190000_WillInsertOrUpdateOtherSharingCustSameSet" xml:space="preserve">
+    <value>Currently logged owner is set to medium and small commodity classification share, will also be added or updated share the same set of other shippers, are you sure?</value>
+  </data>
+  <data name="P1920210000_BeginAndEndValueNotNull" xml:space="preserve">
+    <value>Start and end values ​​can not be empty !!</value>
+  </data>
+  <data name="P1920210000_BeginValueLessThanEndValue" xml:space="preserve">
+    <value>Start value is not greater than the end value !!</value>
+  </data>
+  <data name="P1920210000_ChooseDeleteData" xml:space="preserve">
+    <value>Please select Delete Data !!</value>
+  </data>
+  <data name="P1920210000_ChooseWantDeletedData" xml:space="preserve">
+    <value>Please select the data to be deleted!</value>
+  </data>
+  <data name="P1920210000_DefinitionNotNull" xml:space="preserve">
+    <value>Custom value can not be empty!</value>
+  </data>
+  <data name="P1920210000_Setting_Duplicate" xml:space="preserve">
+    <value>Setting material duplicate !!</value>
+  </data>
+  <data name="PackHightByView" xml:space="preserve">
+    <value>High product (cm)</value>
+  </data>
+  <data name="PackLengthByView" xml:space="preserve">
+    <value>Item length (cm)</value>
+  </data>
+  <data name="PackWeightByView" xml:space="preserve">
+    <value>Weight (kg)</value>
+  </data>
+  <data name="PackWidthByView" xml:space="preserve">
+    <value>Item Width (cm)</value>
+  </data>
+  <data name="PACK_SET" xml:space="preserve">
+    <value>Packing set</value>
+  </data>
+  <data name="PACK_WEIGHT" xml:space="preserve">
+    <value>Contracted weight</value>
+  </data>
+  <data name="PAID_NOTE" xml:space="preserve">
+    <value>Paid Description</value>
+  </data>
+  <data name="PalletLevel" xml:space="preserve">
+    <value>棧板 疊法 set</value>
+  </data>
+  <data name="PalletLevelCaseQty" xml:space="preserve">
+    <value>The number of boxes each pallet</value>
+  </data>
+  <data name="PalletLevelCnt" xml:space="preserve">
+    <value>Pallet layers</value>
+  </data>
+  <data name="PASSWORD" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="PASSWORD_CHECK" xml:space="preserve">
+    <value>confirm password</value>
+  </data>
+  <data name="PASTE" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="PAY_FACTOR" xml:space="preserve">
+    <value>payment terms</value>
+  </data>
+  <data name="PAY_TYPE" xml:space="preserve">
+    <value>payment method</value>
+  </data>
+  <data name="PICK_ORD" xml:space="preserve">
+    <value>Min repellent amount</value>
+  </data>
+  <data name="PICK_SAVE_ORD" xml:space="preserve">
+    <value>Replenishment minimum number of units</value>
+  </data>
+  <data name="PICK_SAVE_QTY" xml:space="preserve">
+    <value>Safety stock replenishment</value>
+  </data>
+  <data name="PICK_WAREType" xml:space="preserve">
+    <value>Do not type warehouse shelves</value>
+  </data>
+  <data name="PICK_WARE_ID" xml:space="preserve">
+    <value>Do not warehouse shelves</value>
+  </data>
+  <data name="PIER_CODE" xml:space="preserve">
+    <value>Pier No.</value>
+  </data>
+  <data name="PLAIN" xml:space="preserve">
+    <value>seat</value>
+  </data>
+  <data name="PLATFORM_NAME" xml:space="preserve">
+    <value>Platform name</value>
+  </data>
+  <data name="Pmodel" xml:space="preserve">
+    <value>General Work Module</value>
+  </data>
+  <data name="PRINT_ITEM" xml:space="preserve">
+    <value>Whether Print product</value>
+  </data>
+  <data name="PROCESS_ACT" xml:space="preserve">
+    <value>Processing operation</value>
+  </data>
+  <data name="PROCESS_ID" xml:space="preserve">
+    <value>No processing operation</value>
+  </data>
+  <data name="QueryClass" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="QueryItem" xml:space="preserve">
+    <value>Your search</value>
+  </data>
+  <data name="QueryParams" xml:space="preserve">
+    <value>parameter</value>
+  </data>
+  <data name="RabStratum1" xml:space="preserve">
+    <value>First class</value>
+  </data>
+  <data name="RabStratum2" xml:space="preserve">
+    <value>Second class</value>
+  </data>
+  <data name="RANGE" xml:space="preserve">
+    <value>range</value>
+  </data>
+  <data name="REGION_FEE" xml:space="preserve">
+    <value>Regional fare increase</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Mandatory</value>
+  </data>
+  <data name="RETAIL_NAME" xml:space="preserve">
+    <value>Search store</value>
+  </data>
+  <data name="RETURNTYPE" xml:space="preserve">
+    <value>Change the return type</value>
+  </data>
+  <data name="RET_ORD" xml:space="preserve">
+    <value>Order times the amount</value>
+  </data>
+  <data name="Rmodel" xml:space="preserve">
+    <value>Optimization Analysis Module</value>
+  </data>
+  <data name="RTN_TYPE_ID" xml:space="preserve">
+    <value>Return Type Number</value>
+  </data>
+  <data name="RTN_TYPE_NAME" xml:space="preserve">
+    <value>Return Type Name</value>
+  </data>
+  <data name="RTN_VNR_TYPE_ID" xml:space="preserve">
+    <value>Factory type number retired</value>
+  </data>
+  <data name="RTN_VNR_TYPE_NAME" xml:space="preserve">
+    <value>Factory retreat type name</value>
+  </data>
+  <data name="SAVE_DAY" xml:space="preserve">
+    <value>Save days</value>
+  </data>
+  <data name="ScheduleName" xml:space="preserve">
+    <value>Permission Description</value>
+  </data>
+  <data name="SEARCH" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="SearchDelvNo" xml:space="preserve">
+    <value>Train number</value>
+  </data>
+  <data name="SearchEmpId" xml:space="preserve">
+    <value>employee ID</value>
+  </data>
+  <data name="SearchInvoMon" xml:space="preserve">
+    <value>Invoices month</value>
+  </data>
+  <data name="SearchInvoYear" xml:space="preserve">
+    <value>Invoice Year</value>
+  </data>
+  <data name="SearchItemCode" xml:space="preserve">
+    <value>Query (only the first fifty results of qualifying)</value>
+  </data>
+  <data name="SearchLabelName" xml:space="preserve">
+    <value>Label name</value>
+  </data>
+  <data name="SearchLabelType" xml:space="preserve">
+    <value>Label Type</value>
+  </data>
+  <data name="SearchLTypes" xml:space="preserve">
+    <value>Main category</value>
+  </data>
+  <data name="SearchOutsourceId" xml:space="preserve">
+    <value>No foreign committee</value>
+  </data>
+  <data name="SearchOutsourceName" xml:space="preserve">
+    <value>Committee Foreign Name</value>
+  </data>
+  <data name="SearchWorkgroupName" xml:space="preserve">
+    <value>Job group name</value>
+  </data>
+  <data name="SelectCustCode" xml:space="preserve">
+    <value>Freight Owner</value>
+  </data>
+  <data name="SelectedAllId" xml:space="preserve">
+    <value>Distributors</value>
+  </data>
+  <data name="SelectedCarGup" xml:space="preserve">
+    <value>Dealers</value>
+  </data>
+  <data name="SelectedCarPeriod" xml:space="preserve">
+    <value>Time out of the bus</value>
+  </data>
+  <data name="SelectedClassType" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SelectedSaleBaseGroup" xml:space="preserve">
+    <value>Retail Group</value>
+  </data>
+  <data name="SelectedWork" xml:space="preserve">
+    <value>Job Module</value>
+  </data>
+  <data name="SelectedZipCode" xml:space="preserve">
+    <value>Postal code</value>
+  </data>
+  <data name="Selected_DELV_EFFIC" xml:space="preserve">
+    <value>Distribution efficiency</value>
+  </data>
+  <data name="Selected_DELV_EFFIC_ORDER" xml:space="preserve">
+    <value>Efficiency of delivery order</value>
+  </data>
+  <data name="SELF_TAKE" xml:space="preserve">
+    <value>Whether self-created</value>
+  </data>
+  <data name="SEQ" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="SERIALNO_DIGIT" xml:space="preserve">
+    <value>Ordinal numbers</value>
+  </data>
+  <data name="SERIAL_BEGIN" xml:space="preserve">
+    <value>The beginning of the serial number</value>
+  </data>
+  <data name="SET" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>Set as default</value>
+  </data>
+  <data name="SETTED_LOC_CODE" xml:space="preserve">
+    <value>Storage spaces have been set</value>
+  </data>
+  <data name="SETTING_TYPE" xml:space="preserve">
+    <value>Set category</value>
+  </data>
+  <data name="SET_DC_CODE_CUST_CODE" xml:space="preserve">
+    <value>DC and is operable to set the owner</value>
+  </data>
+  <data name="SET_EXPANDABLE_FUNC_NAME" xml:space="preserve">
+    <value>Extensions can be set</value>
+  </data>
+  <data name="SET_JOB_GROUP" xml:space="preserve">
+    <value>Workgroup settings</value>
+  </data>
+  <data name="SET_NAME" xml:space="preserve">
+    <value>Set your name</value>
+  </data>
+  <data name="SET_VALUE" xml:space="preserve">
+    <value>Setpoint</value>
+  </data>
+  <data name="SHOP_DELV_DAY" xml:space="preserve">
+    <value>Retail purchase date</value>
+  </data>
+  <data name="SHOP_RETURN_DAY" xml:space="preserve">
+    <value>Retail Return Day</value>
+  </data>
+  <data name="SHORT_CODE" xml:space="preserve">
+    <value>Short Code</value>
+  </data>
+  <data name="SHORT_MOBILE" xml:space="preserve">
+    <value>Mobile phone short code</value>
+  </data>
+  <data name="SHORT_SALESBASE_NAME" xml:space="preserve">
+    <value>Retail short</value>
+  </data>
+  <data name="SHOWINFO" xml:space="preserve">
+    <value>Display of funding</value>
+  </data>
+  <data name="SIM_SPEC" xml:space="preserve">
+    <value>sim card specifications</value>
+  </data>
+  <data name="Smodel" xml:space="preserve">
+    <value>Regular work module</value>
+  </data>
+  <data name="SPILL" xml:space="preserve">
+    <value>liquid</value>
+  </data>
+  <data name="Stage1" xml:space="preserve">
+    <value>First floor</value>
+  </data>
+  <data name="Stage2" xml:space="preserve">
+    <value>The second floor</value>
+  </data>
+  <data name="Stage3" xml:space="preserve">
+    <value>The third floor</value>
+  </data>
+  <data name="StartLocCode" xml:space="preserve">
+    <value>Number storage spaces</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="STOP_DATE" xml:space="preserve">
+    <value>Day merchandise for sale</value>
+  </data>
+  <data name="STYPE" xml:space="preserve">
+    <value>Small class</value>
+  </data>
+  <data name="SYS_GUP_CODE" xml:space="preserve">
+    <value>Number system owners</value>
+  </data>
+  <data name="TAXTYPE" xml:space="preserve">
+    <value>Do not tax</value>
+  </data>
+  <data name="TAX_TYPE" xml:space="preserve">
+    <value>Taxes</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>telephone number</value>
+  </data>
+  <data name="TEL1" xml:space="preserve">
+    <value>Tel 1</value>
+  </data>
+  <data name="TEL2" xml:space="preserve">
+    <value>Tel 2</value>
+  </data>
+  <data name="TELE" xml:space="preserve">
+    <value>phone</value>
+  </data>
+  <data name="TEL_EXTENSION" xml:space="preserve">
+    <value>Extension</value>
+  </data>
+  <data name="TEMP_AREA" xml:space="preserve">
+    <value>Number of staging area</value>
+  </data>
+  <data name="Tmodel" xml:space="preserve">
+    <value>Transaction Analysis Module</value>
+  </data>
+  <data name="TMPR_TYPE" xml:space="preserve">
+    <value>Commodity save stratosphere</value>
+  </data>
+  <data name="txtCAR_KIND_ID" xml:space="preserve">
+    <value>Vehicle Type No</value>
+  </data>
+  <data name="txtCAR_KIND_NAME" xml:space="preserve">
+    <value>Vehicle category name</value>
+  </data>
+  <data name="txtCAUSE" xml:space="preserve">
+    <value>the reason</value>
+  </data>
+  <data name="txtRETAIL_CODE" xml:space="preserve">
+    <value>No store</value>
+  </data>
+  <data name="txtRETAIL_NAME" xml:space="preserve">
+    <value>Store name</value>
+  </data>
+  <data name="txtType_Desc" xml:space="preserve">
+    <value>Type the name of reason</value>
+  </data>
+  <data name="txtUCC_CODE" xml:space="preserve">
+    <value>No reason</value>
+  </data>
+  <data name="txtUct_ID" xml:space="preserve">
+    <value>No reason categories</value>
+  </data>
+  <data name="txtVRNCODE" xml:space="preserve">
+    <value>Supplier No.:</value>
+  </data>
+  <data name="txtVRNNAME" xml:space="preserve">
+    <value>Supplier Name:</value>
+  </data>
+  <data name="txtVRN_CODE" xml:space="preserve">
+    <value>Supplier No.</value>
+  </data>
+  <data name="txtVRN_NAME" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="TYPE" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="TYPEID" xml:space="preserve">
+    <value>Type Number</value>
+  </data>
+  <data name="TYPENAME" xml:space="preserve">
+    <value>type name</value>
+  </data>
+  <data name="UnassignEmps" xml:space="preserve">
+    <value>Staff not set</value>
+  </data>
+  <data name="UNIT_LEVEL" xml:space="preserve">
+    <value>Stratum</value>
+  </data>
+  <data name="UNIT_QTY" xml:space="preserve">
+    <value>Number of Units</value>
+  </data>
+  <data name="UNI_FORM" xml:space="preserve">
+    <value>Uniform numbers</value>
+  </data>
+  <data name="UNPAID_NOTE" xml:space="preserve">
+    <value>No payment instructions</value>
+  </data>
+  <data name="UnPublish" xml:space="preserve">
+    <value>Not on the plate</value>
+  </data>
+  <data name="UNSET_LOC_CODE" xml:space="preserve">
+    <value>A reservoir that is not set</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="UPLOAD_DATE" xml:space="preserve">
+    <value>File Date</value>
+  </data>
+  <data name="VEN_ORD" xml:space="preserve">
+    <value>Supplier MOQ</value>
+  </data>
+  <data name="VIDEO_NO" xml:space="preserve">
+    <value>Camera station number</value>
+  </data>
+  <data name="VIRTUAL_TYPE" xml:space="preserve">
+    <value>Virtual goods category</value>
+  </data>
+  <data name="VNR" xml:space="preserve">
+    <value>Whether Print supplier Info</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>Base article</value>
+  </data>
+  <data name="VNR_TYPE" xml:space="preserve">
+    <value>Manufacturer Category</value>
+  </data>
+  <data name="WaitForAuthorization" xml:space="preserve">
+    <value>Be authorized</value>
+  </data>
+  <data name="WAREHOUSE_ID" xml:space="preserve">
+    <value>Hold another</value>
+  </data>
+  <data name="WARRANTY" xml:space="preserve">
+    <value>Whether to print the warranty period</value>
+  </data>
+  <data name="WARRANTY_D" xml:space="preserve">
+    <value>Whether to print the date warranty</value>
+  </data>
+  <data name="WARRANTY_M" xml:space="preserve">
+    <value>Whether to print the month warranty</value>
+  </data>
+  <data name="WARRANTY_Y" xml:space="preserve">
+    <value>Whether print Year Warranty</value>
+  </data>
+  <data name="WIDTH" xml:space="preserve">
+    <value>Width (cm)</value>
+  </data>
+  <data name="WorkgroupList" xml:space="preserve">
+    <value>Setting work groups</value>
+  </data>
+  <data name="WORK_DESC" xml:space="preserve">
+    <value>Work group description</value>
+  </data>
+  <data name="WORK_ID" xml:space="preserve">
+    <value>Job group number</value>
+  </data>
+  <data name="WORK_NAME" xml:space="preserve">
+    <value>Work group</value>
+  </data>
+  <data name="WORK_NO" xml:space="preserve">
+    <value>Work Type Codes</value>
+  </data>
+  <data name="WORK_ZONE" xml:space="preserve">
+    <value>Setting the work area</value>
+  </data>
+  <data name="ZIPAREA_CODE" xml:space="preserve">
+    <value>Rural area number</value>
+  </data>
+  <data name="ZIP_CODE" xml:space="preserve">
+    <value>Warehouse zip code</value>
+  </data>
+  <data name="ZIP_CODE_NAME" xml:space="preserve">
+    <value>Zip code name</value>
+  </data>
+  <data name="ZIP_NAME" xml:space="preserve">
+    <value>The name of the township area</value>
+  </data>
+  <data name="SYS_UNIT" xml:space="preserve">
+    <value>System unit</value>
+  </data>
+  <data name="ItemQuery" xml:space="preserve">
+    <value>Product search</value>
+  </data>
+  <data name="P1905010000_DC_CODE_Required" xml:space="preserve">
+    <value>Check the user-defined menu classification and sorting must select dcCode style</value>
+  </data>
+  <data name="ALL_SHP" xml:space="preserve">
+    <value>Save days</value>
+  </data>
+  <data name="EAN_CODE4" xml:space="preserve">
+    <value>EAN/ISBN</value>
+  </data>
+  <data name="FIRST_IN_DATE" xml:space="preserve">
+    <value>First purchase date</value>
+  </data>
+  <data name="NEED_EXPIRED" xml:space="preserve">
+    <value>Expiration date</value>
+  </data>
+  <data name="P1901020000_VNR_CODE" xml:space="preserve">
+    <value>Vendor Number</value>
+  </data>
+  <data name="P1901020000_VNR_NAME" xml:space="preserve">
+    <value>Vendor Name</value>
+  </data>
+  <data name="P1901020000_SAVE_DAY_GREATER_THAN_30" xml:space="preserve">
+    <value>For the expiration date, the storage days must be greater than 30</value>
+  </data>
+  <data name="P190102000_SaveDayNotLessThan30" xml:space="preserve">
+    <value>The total storage days for the expiration date cannot be less than 30</value>
+  </data>
+  <data name="P1901020000_SAVE_DAY_HAVE_TO_NULL" xml:space="preserve">
+    <value>The total storage days must be empty</value>
+  </data>
+  <data name="P1901020000_VnrCodeNotFind" xml:space="preserve">
+    <value>No such manufacturer number</value>
+  </data>
+  <data name="P1901020000_SaveDayShort" xml:space="preserve">
+    <value>Commodities with a short expiry date cannot be placed in the warehouse</value>
+  </data>
+  <data name="P1920080000_ZIP_CODE_Deleted" xml:space="preserve">
+    <value>This zip code corresponding to the region has been deleted</value>
+  </data>
+  <data name="P1920080000_InputCustCode" xml:space="preserve">
+    <value>Please enter the custcode</value>
+  </data>
+  <data name="P1920080000_InputGupCode" xml:space="preserve">
+    <value>Please enter the Gupcode</value>
+  </data>
+  <data name="P1901020000_CustItemCode" xml:space="preserve">
+    <value>Customer item no</value>
+  </data>
+  <data name="P1901090000_DeliveryWay" xml:space="preserve">
+    <value>Delivery Way</value>
+  </data>
+  <data name="IS_EASY_LOSE" xml:space="preserve">
+    <value>Is it easy to lose</value>
+  </data>
+  <data name="IS_MAGNETIC" xml:space="preserve">
+    <value>Strong magnetic mark</value>
+  </data>
+  <data name="IS_PRECIOUS" xml:space="preserve">
+    <value>Valuable goods label</value>
+  </data>
+  <data name="P1901710000_DC_CODE" xml:space="preserve">
+    <value>Logistics Center</value>
+  </data>
+  <data name="P1901710000_StartSetting" xml:space="preserve">
+    <value>Start setting</value>
+  </data>
+  <data name="P1901710000_OpenAutoAllocStock" xml:space="preserve">
+    <value>Open Auto Alloc Stock</value>
+  </data>
+  <data name="P1901710000_OrderMaxItemCnt" xml:space="preserve">
+    <value>The maximum number of items in a single picking list in a manual warehouse</value>
+  </data>
+  <data name="P1901710000_OrderMaxRecord" xml:space="preserve">
+    <value>The maximum number of details for a single picking list in a manual warehouse</value>
+  </data>
+  <data name="P1901710000_PickingListSegmentationConditions" xml:space="preserve">
+    <value>Picking list segmentation conditions</value>
+  </data>
+  <data name="P1901710000_PickOrderMaxRecord" xml:space="preserve">
+    <value>Maximum number of items in manual warehouse picking list</value>
+  </data>
+  <data name="P1901710000_WaitSendAutoPick" xml:space="preserve">
+    <value>Automatic warehouse picking tasks are dispatched after manual warehouse picking is completed</value>
+  </data>
+  <data name="P1901710000_AllocationInventorySetting" xml:space="preserve">
+    <value>Allocation inventory schedule setting</value>
+  </data>
+  <data name="P1901710000_B2BPdaPickPecent" xml:space="preserve">
+    <value>B2B-PDA preset picking order distribution ratio</value>
+  </data>
+  <data name="P1901710000_B2BPdaPickPrecent" xml:space="preserve">
+    <value>B2C-PDA preset picking order distribution ratio</value>
+  </data>
+  <data name="P1901710000_pdaPresetAllocation" xml:space="preserve">
+    <value>PDA preset allocation</value>
+  </data>
+  <data name="P1901050000_CRT_DATE" xml:space="preserve">
+    <value>Build time</value>
+  </data>
+  <data name="P1901050000_CRT_STAFF" xml:space="preserve">
+    <value>Establish staff</value>
+  </data>
+  <data name="P1901050000_END_TIME" xml:space="preserve">
+    <value>End time (minutes)</value>
+  </data>
+  <data name="P1901050000_PERIOD" xml:space="preserve">
+    <value>Execute every few minutes</value>
+  </data>
+  <data name="P1901050000_START_TIME" xml:space="preserve">
+    <value>Start time (minutes)</value>
+  </data>
+  <data name="P1901050000_UPD_DATE" xml:space="preserve">
+    <value>Change time</value>
+  </data>
+  <data name="P1901050000_UPD_STAFF" xml:space="preserve">
+    <value>Changed personnel</value>
+  </data>
+  <data name="P1901710000_PickingScheduleSetting" xml:space="preserve">
+    <value>Picking schedule setting</value>
+  </data>
+  <data name="P1901710000_B2B_PDA_PICK_PECENT_ERROR" xml:space="preserve">
+    <value>B2C-PDA preset picking order distribution ratio, which needs to be between 0~100</value>
+  </data>
+  <data name="P1901710000_B2C_PDA_PICK_PERCENT_ERROR" xml:space="preserve">
+    <value>B2C-PDA preset picking order distribution ratio, which needs to be between 0~100</value>
+  </data>
+  <data name="P1901710000_Wording_1" xml:space="preserve">
+    <value>1. The minimum start time is 00:00
+2. The maximum end time is 23:59
+3. Execute every few minutes: Please fill in a number within 2~60
+4. The start time and end time cannot be the same
+5. The end time must be greater than the start time
+6. Set time intervals not to overlap</value>
+  </data>
+  <data name="P1901710000_EndTime" xml:space="preserve">
+    <value>End time (minutes)</value>
+  </data>
+  <data name="P1901710000_EndTimeError" xml:space="preserve">
+    <value>The end time format must be HH:mm and the range is 00:00~23:59</value>
+  </data>
+  <data name="P1901710000_EndTimeIsGreaterThanStartTime" xml:space="preserve">
+    <value>The end time must be greater than the start time</value>
+  </data>
+  <data name="P1901710000_ExecuteEveryFewMinutes" xml:space="preserve">
+    <value>Execute every few minutes</value>
+  </data>
+  <data name="P1901710000_NewTimeIntervalOverlap" xml:space="preserve">
+    <value>New time interval overlap</value>
+  </data>
+  <data name="P1901710000_NoticeItem" xml:space="preserve">
+    <value>NoticeItem</value>
+  </data>
+  <data name="P1901710000_PeriodError" xml:space="preserve">
+    <value>Execute once every few minutes, only input greater than 1 and less than or equal to 60</value>
+  </data>
+  <data name="P1901710000_StartTime" xml:space="preserve">
+    <value>Start time (minutes)</value>
+  </data>
+  <data name="P1901710000_StartTimeEndTimeSame" xml:space="preserve">
+    <value>The start time and end time cannot be the same</value>
+  </data>
+  <data name="P1901710000_StartTimeError" xml:space="preserve">
+    <value>The start time format must be HH:mm and the range is 00:00~23:59</value>
+  </data>
+  <data name="P1901710000_NewTimeIntervalIsLessThanOnceEveryFewMinutes" xml:space="preserve">
+    <value>The new time interval is less than once every few minutes</value>
+  </data>
+  <data name="P1901710000_ORDER_MAX_ITEMCNT_ERROR" xml:space="preserve">
+    <value>The maximum number of items in a single picking list in a manual warehouse must be greater than 0 and less than 1000</value>
+  </data>
+  <data name="P1901710000_ORDER_MAX_RECORD_ERROR" xml:space="preserve">
+    <value>The maximum number of details for a single picking list in a manual warehouse must be greater than 0 and less than 1000</value>
+  </data>
+  <data name="String1P1901710000_PICKORDER_MAX_RECORD_ERROR" xml:space="preserve">
+    <value>The maximum number of details of the manual warehouse picking list must be greater than 0 and less than 1000</value>
+  </data>
+  <data name="P1901810000_ADD_LOC_CODE" xml:space="preserve">
+    <value>Add loc code</value>
+  </data>
+  <data name="P1901810000_BEGIN_LOC_CODE" xml:space="preserve">
+    <value>Head code</value>
+  </data>
+  <data name="P1901810000_CRT_DATE" xml:space="preserve">
+    <value>Create Time</value>
+  </data>
+  <data name="P1901810000_CRT_NAME" xml:space="preserve">
+    <value>Create User</value>
+  </data>
+  <data name="P1901810000_DC_Code_Is_Modify" xml:space="preserve">
+    <value>Distribution Center changes, whether to clear the PK area range</value>
+  </data>
+  <data name="P1901810000_DELETE_LOC_CODE" xml:space="preserve">
+    <value>Delete loc code</value>
+  </data>
+  <data name="P1901810000_END_LOC_CODE" xml:space="preserve">
+    <value>End code</value>
+  </data>
+  <data name="P1901810000_fun_title" xml:space="preserve">
+    <value>PK Area Maintenance </value>
+  </data>
+  <data name="P1901810000_GB_PK_AREA" xml:space="preserve">
+    <value>PK Area</value>
+  </data>
+  <data name="P1901810000_PICK_FLOOR" xml:space="preserve">
+    <value>Picking floor</value>
+  </data>
+  <data name="P1901810000_PKArea_Is_Modify" xml:space="preserve">
+    <value>PK area code changes, whether to clear the PK area range</value>
+  </data>
+  <data name="P1901810000_PK_AREA" xml:space="preserve">
+    <value>PK Area No</value>
+  </data>
+  <data name="P1901810000_PK_NAME" xml:space="preserve">
+    <value>PK Area Name</value>
+  </data>
+  <data name="P1901810000_PK_Select_Area" xml:space="preserve">
+    <value>PK area selection</value>
+  </data>
+  <data name="P1901810000_QueryResult" xml:space="preserve">
+    <value>Search result </value>
+  </data>
+  <data name="P1901810000_UPD_DATE" xml:space="preserve">
+    <value>Update Time</value>
+  </data>
+  <data name="P1901810000_UPD_NAME" xml:space="preserve">
+    <value>Update User</value>
+  </data>
+  <data name="P1901810000_Unrecogniz_PKArea_Value_Change" xml:space="preserve">
+    <value>Unrecognized change content</value>
+  </data>
+  <data name="P1901810000_DC_Code" xml:space="preserve">
+    <value>Distribution Center</value>
+  </data>
+  <data name="P1901810000_Input_Sort_Error" xml:space="preserve">
+    <value>Please enter the interval data from small to large</value>
+  </data>
+  <data name="P1901810000_Only_Number" xml:space="preserve">
+    <value>Only enter alphanumeric characters</value>
+  </data>
+  <data name="P1901810000_Code_Exist" xml:space="preserve">
+    <value>The first 5 code\r\n{0}\r\nalready exist</value>
+  </data>
+</root>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P05.Views.P0503040100"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+    xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+    xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+    xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+    xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P05.Properties"
+    xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"
+    xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P05.ViewModel" x:Name="Window" Margin="0,0,0,0" Width="1100" Height="800"
+    HorizontalAlignment="Stretch" FontSize="16"  WindowStyle="ToolWindow"  ShowActivated="True"
+    ShowInTaskbar="False" IsHitTestVisible="True" Title="總庫試算" WindowStartupLocation="CenterOwner"
+    controls:PermissionService.FunctionId="P0503040100" controls:PermissionService.FunctionName="總庫試算"
+    controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}"
+    Loaded="Form_Loaded">
+    <uiLib:Wms3plWindow.DataContext>
+        <viewModel:P0503040100_ViewModel x:Name="Vm" />
+    </uiLib:Wms3plWindow.DataContext>
+    <uiLib:Wms3plWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <common:NotConverter x:Key="NotConverter" />
+            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"></FrameworkElement>
+            <Style TargetType="{x:Type TextBlock}" x:Key="DataGridCellRightStyle">
+                <Setter Property="HorizontalAlignment" Value="Right" />
+            </Style>
+        </ResourceDictionary>
+    </uiLib:Wms3plWindow.Resources>
+    <DockPanel>
+        <uiLib:BasicMaster DockPanel.Dock="Top" x:Name="Master">
+            <uiLib:BasicMaster.ToolBarArea>
+                <WrapPanel>
+                    <Button Content="{x:Static Properties:Resources.IsBatch}" controls:PermissionService.FunctionId="BP0503040103"
+              Command="{Binding AllocationCommand}" Visibility="{Binding IsAllotButtonShow}" />
+                    <Button Content="{x:Static Properties:Resources.P0503040100_ReSupplySuggest}" controls:PermissionService.FunctionId="BP0503040102"
+              Command="{Binding SaveCommand}" />
+                    <Button Style="{StaticResource ExitButton}" controls:PermissionService.FunctionId="BP0503040101"
+              Command="{Binding ExitCommand}" />
+                </WrapPanel>
+            </uiLib:BasicMaster.ToolBarArea>
+            <uiLib:BasicMaster.MainContent>
+                <DockPanel></DockPanel>
+            </uiLib:BasicMaster.MainContent>
+        </uiLib:BasicMaster>
+        <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}"
+        IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+            <TabControl SelectedIndex="{Binding SelectedTabIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <TabItem Header="訂單缺貨結果">
+                    <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+                        <DockPanel>
+                            <ContentControl Visibility="Collapsed" Content="{StaticResource ProxyElement}"></ContentControl>
+                            <WrapPanel DockPanel.Dock="Top">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="180"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="180"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" Text="{Binding DcName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Label Grid.Row="0" Grid.Column="2"  Margin="40,0,0,0" Content="{x:Static Properties:Resources.P0503040100_CalNo}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="0" Grid.Column="3"  VerticalAlignment="Center" Text="{Binding CalNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.P0503040100_TTLOrderCnt}" Style="{StaticResource LbTitleStyle}" />
+                                    <WrapPanel  Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" >
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_A_ORD_CNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock VerticalAlignment="Center" Text=" / "/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_B_ORD_CNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </WrapPanel>
+                                    <Label  Grid.Row="1" Grid.Column="2" Margin="40,0,0,0" Content="{x:Static Properties:Resources.P0503040100_TTLRetailCnt}" Style="{StaticResource LbTitleStyle}" />
+                                    <WrapPanel Grid.Row="1" Grid.Column="3"  VerticalAlignment="Center" >
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_A_RETAIL_CNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                                        <TextBlock VerticalAlignment="Center" Text=" / "/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_B_RETAIL_CNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </WrapPanel>
+                                    <Label Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.P0503040100_TTLShelfNo}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" Text="{Binding Master.TTL_A_SHELF_CNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Label  Grid.Row="2" Grid.Column="0" Margin="40,0,0,0" Content="{x:Static Properties:Resources.P0503040100_TTLItemCnt}" Style="{StaticResource LbTitleStyle}" />
+                                    <WrapPanel  Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" >
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_A_ITEM_CNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock VerticalAlignment="Center" Text=" / "/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_B_ITEM_CNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </WrapPanel>
+                                    <Label  Grid.Row="2" Grid.Column="2" Margin="40,0,0,0" Content="{x:Static Properties:Resources.P0503040100_TTLQty}" Style="{StaticResource LbTitleStyle}" />
+                                    <WrapPanel  Grid.Row="2" Grid.Column="3"  VerticalAlignment="Center" >
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_A_DELV_QTY,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock VerticalAlignment="Center" Text=" / "/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Master.TTL_B_DELV_QTY,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </WrapPanel>
+
+                                </Grid>
+                            </WrapPanel>
+                            <Expander IsExpanded="True" DockPanel.Dock="Bottom" >
+                                <DockPanel >
+                                    <GroupBox Header="{x:Static Properties:Resources.P0503040100_OutOfStockOrder}">
+                                        <DockPanel>
+                                            <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
+                                                <Button controls:PermissionService.FunctionId="BP0503040103" Content="{x:Static Properties:Resources.P0503040100_QueryDetail }" Width="100" Height="30" Command="{Binding SearchOutStockOrderDetailCommand}"/>
+                                            </WrapPanel>
+                                            <DataGrid  Style="{StaticResource DgStyle}"  SelectionMode="Single"  Height="{Binding DataContext.Height,Source={StaticResource ProxyElement},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+											ItemsSource="{Binding OutStockOrders,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" CellStyle="{StaticResource WinSingleRowEdit}"
+              RowHeaderStyle="{StaticResource WinSingleRowHeaderEdit}">
+                                                <DataGrid.Columns>
+                                                    <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                                                        <DataGridCheckBoxColumn.HeaderTemplate>
+                                                            <DataTemplate>
+                                                                <CheckBox Content="{x:Static res:Resources.SelectAll}" IsChecked="{Binding DataContext.IsCheckAllOrder, RelativeSource={RelativeSource FindAncestor, AncestorType=Window},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                                            </DataTemplate>
+                                                        </DataGridCheckBoxColumn.HeaderTemplate>
+                                                    </DataGridCheckBoxColumn>
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_OrdNo}" IsReadOnly="True"
+                  Binding="{Binding Item.ORD_NO}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_AllotResult}" IsReadOnly="True"
+                  Binding="{Binding Item.RESULT_NAME}" />
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </DockPanel>
+                                    </GroupBox>
+                                    <GroupBox Header="{x:Static Properties:Resources.P0503040100_OutOfStockOrderDetail}">
+                                        <DataGrid  Margin="0,25,0,0"  Style="{StaticResource DgStyle}"  SelectionMode="Single"  Height="{Binding DataContext.Height,Source={StaticResource ProxyElement},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+											ItemsSource="{Binding OutStockOrderDetails,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" CellStyle="{StaticResource WinSingleRowEdit}"
+              RowHeaderStyle="{StaticResource WinSingleRowHeaderEdit}">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_CustOrdNo}" IsReadOnly="True"
+                  Binding="{Binding CUST_ORD_NO}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_OrdSeq}" IsReadOnly="True"
+                  Binding="{Binding ORD_SEQ}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" IsReadOnly="True"
+                  Binding="{Binding ITEM_CODE}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" IsReadOnly="True" Width="140"
+                  Binding="{Binding ITEM_NAME}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_OrdQty}" IsReadOnly="True"
+                  Binding="{Binding ORD_QTY}" ElementStyle="{StaticResource DataGridCellRightStyle}"/>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_AllotQty}" IsReadOnly="True"
+                  Binding="{Binding ALLOT_QTY}" ElementStyle="{StaticResource DataGridCellRightStyle}"/>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_OrdNo}" IsReadOnly="True"
+                  Binding="{Binding ORD_NO}" />
+
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </GroupBox>
+
+                                </DockPanel>
+                            </Expander>
+                            <Expander IsExpanded="{Binding IsExpendTotalStock,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                                <DockPanel>
+                                    <GroupBox Header="{x:Static Properties:Resources.P0503040100_AreaDelvRatio}">
+                                        <DataGrid Style="{StaticResource DgStyle}"  SelectionMode="Single" 
+											ItemsSource="{Binding AreaDelvRatioDetails,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" CellStyle="{StaticResource WinSingleRowEdit}"
+              RowHeaderStyle="{StaticResource WinSingleRowHeaderEdit}">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_WarehouseName}" IsReadOnly="True"
+                  Binding="{Binding WAREHOUSE_NAME}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_AreaName}" IsReadOnly="True"
+                  Binding="{Binding AREA_NAME}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_DelvQty}" IsReadOnly="True"
+                  Binding="{Binding DELV_QTY}" ElementStyle="{StaticResource DataGridCellRightStyle}"/>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_DelvRatio}" IsReadOnly="True"
+                  Binding="{Binding DELV_RATIO,StringFormat=P0}" ElementStyle="{StaticResource DataGridCellRightStyle}"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </GroupBox>
+                                    <GroupBox Header="{x:Static Properties:Resources.P0503040100_ItemOutOfStock}">
+                                        <DataGrid Style="{StaticResource DgStyle}" SelectionMode="Single"
+              ItemsSource="{Binding CalculationDatas,UpdateSourceTrigger=PropertyChanged}"
+              IsReadOnly="False" CellStyle="{StaticResource WinSingleRowEdit}" 
+              RowHeaderStyle="{StaticResource WinSingleRowHeaderEdit}"  SelectedItem="{Binding SelectedCalculation,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGrid.Columns>
+                                                <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                                                    <DataGridCheckBoxColumn.HeaderTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox Content="{x:Static res:Resources.SelectAll}" IsChecked="{Binding DataContext.IsCheckAll, RelativeSource={RelativeSource FindAncestor, AncestorType=Window},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                                        </DataTemplate>
+                                                    </DataGridCheckBoxColumn.HeaderTemplate>
+                                                    <DataGridCheckBoxColumn.CellStyle>
+                                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource WinSingleRowEdit}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                        <Grid>
+                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </DataGridCheckBoxColumn.CellStyle>
+                                                    <DataGridCheckBoxColumn.ElementStyle>
+                                                        <Style TargetType="CheckBox">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Item.SUG_RESUPPLY_STOCK_QTY}" Value="0">
+                                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </DataGridCheckBoxColumn.ElementStyle>
+                                                    <DataGridCheckBoxColumn.EditingElementStyle>
+                                                        <Style TargetType="CheckBox" >
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Item.SUG_RESUPPLY_STOCK_QTY}" Value="0">
+                                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </DataGridCheckBoxColumn.EditingElementStyle>
+                                                </DataGridCheckBoxColumn>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.WAREHOUSE_NAME}" IsReadOnly="True"
+                  Binding="{Binding Item.TYPE_NAME}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" IsReadOnly="True"
+                  Binding="{Binding Item.ITEM_CODE}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" IsReadOnly="True" Width="100"
+                  Binding="{Binding Item.ITEM_NAME}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_PickStockQty}" IsReadOnly="True" Binding="{Binding Item.TTL_PICK_STOCK_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}" Visibility="Collapsed" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_TotalStockQty}" IsReadOnly="True" Binding="{Binding Item.TTL_STOCK_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_TotalOrdQty}" IsReadOnly="True" Binding="{Binding Item.TTL_ORD_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_TotalOutStockQty}" IsReadOnly="True" Binding="{Binding Item.TTL_OUTSTOCK_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}" />
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_SugResupplyStockQty}" IsReadOnly="True" Binding="{Binding Item.SUG_RESUPPLY_STOCK_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}" Visibility="Collapsed"/>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_SugVirtualStockQty}" IsReadOnly="True" Binding="{Binding Item.SUG_VIRTUAL_STOCK_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}" Visibility="Collapsed"/>
+                                                <DataGridTextColumn Header="{x:Static Properties:Resources.P0503040100_ReSupplyStockQty}" IsReadOnly="True" Binding="{Binding Item.TTL_RESUPPLY_STOCK_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}"/>
+                                                <DataGridTextColumn Header="虛擬庫存數" IsReadOnly="True" Binding="{Binding Item.TTL_VIRTUAL_STOCK_QTY}"
+                  ElementStyle="{StaticResource DataGridCellRightStyle}"/>
+                                                <DataGridTextColumn Header="批號" IsReadOnly="True" Binding="{Binding Item.MAKE_NO}"/>
+                                                <DataGridTextColumn Header="指定出貨序號" IsReadOnly="True" Binding="{Binding Item.SERIAL_NO}"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </GroupBox>
+                                </DockPanel>
+                            </Expander>
+
+
+                        </DockPanel>
+
+                    </DockPanel>
+                </TabItem>
+
+                <TabItem Header="訂單試算結果">
+                    <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+												<WrapPanel DockPanel.Dock="Top">
+													<Label  Content="指定自動倉揀貨優先旗標" Style="{StaticResource LbTitleStyle}" />
+													<ComboBox  Style="{StaticResource ComboStyle}" ItemsSource="{Binding PriorityList, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" 
+																						 SelectedValue="{Binding SelectedPriorityCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+												</WrapPanel>
+											<GroupBox Header="各訂單預計揀貨倉別" DockPanel.Dock="Top" >			
+											<DataGrid Style="{StaticResource DgStyle}" CellStyle="{StaticResource WinSingleRowEdit}"
+                            ItemsSource="{Binding PlanPickWarehouse,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Height="250">
+                                <DataGrid.Columns>
+                                    <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding DataContext.IsAllotButtonShow,Source={StaticResource ProxyElement}}">
+                                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                <CheckBox Content="{x:Static res:Resources.SelectAll}" IsChecked="{Binding DataContext.IsCheckAllWarehouseOrder, RelativeSource={RelativeSource FindAncestor, AncestorType=Window},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                                </DataTemplate>
+                                            </DataGridCheckBoxColumn.HeaderTemplate>
+            
+                                        <DataGridCheckBoxColumn.CellStyle>
+                                            <Style TargetType="DataGridCell" BasedOn="{StaticResource WinSingleRowEdit}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Item.IS_LACK_ORDER}" Value="是">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGridCheckBoxColumn.CellStyle>
+                                    </DataGridCheckBoxColumn>
+                                    <DataGridTextColumn Header="訂單編號" Binding="{Binding Item.ORD_NO}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="貨主單號" Binding="{Binding Item.CUST_ORD_NO}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="貨主自訂分類" Binding="{Binding Item.CUST_COST}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="優先處理旗標" Binding="{Binding Item.FAST_DEAL_TYPE}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="跨庫目的地" Binding="{Binding Item.MOVE_OUT_TARGET}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="缺貨" Binding="{Binding Item.IS_LACK_ORDER}" IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="預計揀貨倉別" Binding="{Binding Item.WAREHOUSE_INFO}" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
+                        <GroupBox Header="各訂單商品預計揀貨倉別明細">
+                            <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding PlanPickWarehouseDetail,UpdateSourceTrigger=PropertyChanged}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="訂單編號" Binding="{Binding ORD_NO}"/>
+                                    <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}"/>
+                                    <DataGridTextColumn Header="品名" Binding="{Binding ITEM_NAME}"/>
+                                    <DataGridTextColumn Header="訂購數" Binding="{Binding B_QTY}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="配庫數" Binding="{Binding A_QTY}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="缺貨" Binding="{Binding IS_LACK}" Visibility="Collapsed">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="預計揀貨倉別" Binding="{Binding WAREHOUSE_INFO}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+        </telerik:RadBusyIndicator>
+    </DockPanel>
+</uiLib:Wms3plWindow>

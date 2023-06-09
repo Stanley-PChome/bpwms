@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P02.Views.P0202030400" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" FontSize="18" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P02.ViewModel" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P02.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" controls:PermissionService.FunctionId="P0202030400" controls:PermissionService.FunctionName="特殊採購" controls:PermissionService.CheckPermission="False" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Width="800" Height="600" FormException="{Binding Exception}" x:Name="Window">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0202030400_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+      <converters:BoolToNotVisiabilityConverter x:Key="BoolToNotVisiability" />
+      <converters:BoolToVisiablityConverter x:Key="BoolToVisiability" />
+      <converters:StringToNotBoolConverter x:Key="StringToNotBoolConverter" />
+      <converters:OwnerItemsSourceConverter x:Key="OwnerItemsSourceConverter" />
+      <viewModel:CanExecuteSpecialConverter x:Key="CanExecuteSpecialConverter" />
+      <Style TargetType="CheckBox" x:Key="CheckStyle" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+      </Style>
+      <Style TargetType="DataGridCell" x:Key="NumberCellStyle">
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+      </Style>
+      <Style TargetType="ComboBox" x:Key="uccStyle">
+        <Setter Property="ItemsSource">
+          <Setter.Value>
+            <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}">
+              <MultiBinding.Bindings>
+                <Binding Path="CHECK_ITEM" />
+                <Binding Path="DataContext.UccDict" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}" />
+              </MultiBinding.Bindings>
+            </MultiBinding>
+          </Setter.Value>
+        </Setter>
+        <Setter Property="IsEnabled" Value="{Binding Converter={StaticResource CanExecuteSpecialConverter}}" />
+      </Style>
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}">
+            <DockPanel>
+              <ScrollViewer DockPanel.Dock="Top">
+                <DockPanel HorizontalAlignment="Right">
+                  <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP0202030401" Command="{Binding SaveCommand}" Width="50" Height="65" />
+                  <Button Name="btnExit" Style="{StaticResource ExitButton}" controls:PermissionService.FunctionId="BP0202030402" Command="{Binding ExitCommand}" Width="50" Height="65" />
+                </DockPanel>
+              </ScrollViewer>
+              <DockPanel DockPanel.Dock="Top">
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.PURCHASE_NO}" Style="{StaticResource LbStyle}" />
+                  <Label Content="{Binding PurchaseNo}" Style="{StaticResource LbStyle}" />
+                </WrapPanel>
+                <controls:ValidationDataGrid Name="dgList" ItemsSource="{Binding BaseData}" CellStyle="{StaticResource SingleClickEdit}" Style="{StaticResource DgStyle}" IsReadOnly="False" VerticalContentAlignment="Center">
+                  <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="{x:Static Properties:Resources.ISSPECIAL}" IsReadOnly="False">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <CheckBox IsChecked="{Binding ISSPECIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToBoolConverter}}" Style="{StaticResource CheckStyle}" Command="{Binding DataContext.SpecialCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_NAME}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.RECV_QTY}" Binding="{Binding RECV_QTY}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="{x:Static Properties:Resources.NOT_CHECK_ITEM}" IsReadOnly="True">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <CheckBox IsChecked="{Binding CHECK_ITEM,Converter={StaticResource StringToNotBoolConverter}}" Style="{StaticResource CheckStyle}" Command="{Binding DataContext.DisableCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="{x:Static Properties:Resources.NOT_CHECK_SERIAL}" IsReadOnly="True">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <CheckBox IsChecked="{Binding CHECK_SERIAL,Converter={StaticResource StringToNotBoolConverter}}" Style="{StaticResource CheckStyle}" Command="{Binding DataContext.DisableCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plWindow}}}" />
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridComboBoxColumn Header="{x:Static Properties:Resources.UCC_CODE}" ElementStyle="{StaticResource uccStyle}" EditingElementStyle="{StaticResource uccStyle}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValueBinding="{Binding SPECIAL_CODE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DataGridComboBoxColumn>
+                    <DataGridTemplateColumn Header="{x:Static Properties:Resources.SPECIAL_DESC}" IsReadOnly="False" Width="400">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <TextBox Margin="0" VerticalContentAlignment="Center" MaxLength="200" Text="{Binding SPECIAL_DESC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                  </DataGrid.Columns>
+                </controls:ValidationDataGrid>
+              </DockPanel>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

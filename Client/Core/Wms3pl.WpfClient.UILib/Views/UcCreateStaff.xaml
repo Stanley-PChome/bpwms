@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Wms3pl.WpfClient.UILib.Views.UcCreateStaff"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+  <WrapPanel>
+    <Label Content="建立日期:"  HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+    <TextBlock Margin="3" Text="{Binding Path=CRT_DATE, StringFormat={}\{0:yyyy/MM/dd HH:mm:ss\}, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+    <Label Content="建立人員:" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+    <Label  HorizontalAlignment="Left" Margin="3" Content="{Binding Path=CRT_NAME, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+    <Label Content="異動日期:" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+    <TextBlock Margin="3" Text="{Binding Path=UPD_DATE, StringFormat={}\{0:yyyy/MM/dd HH:mm:ss\}, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+    <Label Content="異動人員:" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+    <TextBlock HorizontalAlignment="Left" Margin="3" Text="{Binding Path=UPD_NAME, NotifyOnTargetUpdated=True}" VerticalAlignment="Center" SourceUpdated="TextBlock_SourceUpdated" TargetUpdated="TextBlock_SourceUpdated" />
+    <Label HorizontalAlignment="Left" Margin="3" x:Name="empName" VerticalAlignment="Center" />
+  </WrapPanel>
+</UserControl>

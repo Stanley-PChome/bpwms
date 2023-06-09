@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExecuteResult" nillable="true" type="tns:ArrayOfExecuteResult" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+  <xs:complexType name="ArrayOfF050301Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F050301Data" nillable="true" type="tns:F050301Data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF050301Data" nillable="true" type="tns:ArrayOfF050301Data" />
+  <xs:complexType name="F050301Data">
+    <xs:sequence>
+      <xs:element name="_x003C_ADDRESS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CONSIGNEE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ORD_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IsSelected_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_ORD_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ORD_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PICK_TIME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ROWNUM_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ZIP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F050301Data" nillable="true" type="tns:F050301Data" />
+  <xs:complexType name="ArrayOfF1913Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F1913Data" nillable="true" type="tns:F1913Data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF1913Data" nillable="true" type="tns:ArrayOfF1913Data" />
+  <xs:complexType name="F1913Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ADJ_QTY_IN" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ADJ_QTY_OUT" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BOX_CTRL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BUNDLE_SERIALLOC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BUNDLE_SERIALNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAUSE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAUSENAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAUSE_MEMO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEVICE_STOCK_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="DIFF_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="EAN_CODE1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EAN_CODE2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EAN_CODE3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ENTER_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="INVENTORY_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="INVENTORY_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="INVENTORY_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="ISADD" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_FLUSHBACK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_COLOR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SIZE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SPEC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LOC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAKE_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PALLET_CTRL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PERSON_CONFIRM_STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROC_WMS_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QTY" type="xs:long" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:int" />
+      <xs:element minOccurs="0" name="SERIALNO_SCANOK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SERIAL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STOCK_DIFF_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="UNMOVE_STOCK_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="VALID_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VNR_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VNR_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WAREHOUSE_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WAREHOUSE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WMS_STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WORK_TYPE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1913Data" nillable="true" type="tns:F1913Data" />
+  <xs:complexType name="ArrayOfSerialNoResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SerialNoResult" nillable="true" type="tns:SerialNoResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSerialNoResult" nillable="true" type="tns:ArrayOfSerialNoResult" />
+  <xs:complexType name="SerialNoResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BoxSerail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CaseNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Checked" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CombinNo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CurrentlyStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemSize" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MakeNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Puk" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SEQ" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SerialNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="boxCtrlNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="palletCtrlNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SerialNoResult" nillable="true" type="tns:SerialNoResult" />
+  <xs:complexType name="ArrayOfF1913DataImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F1913DataImport" nillable="true" type="tns:F1913DataImport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF1913DataImport" nillable="true" type="tns:ArrayOfF1913DataImport" />
+  <xs:complexType name="F1913DataImport">
+    <xs:sequence>
+      <xs:element name="_x003C_ADJ_QTY_IN_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ADJ_QTY_OUT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAUSENAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAUSE_MEMO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAUSE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ENTER_DATE_FORMAT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ENTER_DATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FailMessage_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LOC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MAKE_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ROWNUM_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_SERIAL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VALID_DATE_FORMAT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VALID_DATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1913DataImport" nillable="true" type="tns:F1913DataImport" />
+  <xs:complexType name="ImportF1913DataResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="F1913DataFailItems" nillable="true" type="tns:ArrayOfF1913DataImport" />
+      <xs:element minOccurs="0" name="F1913DataItems" nillable="true" type="tns:ArrayOfF1913Data" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ExecuteResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportF1913DataResult" nillable="true" type="tns:ImportF1913DataResult" />
+</xs:schema>

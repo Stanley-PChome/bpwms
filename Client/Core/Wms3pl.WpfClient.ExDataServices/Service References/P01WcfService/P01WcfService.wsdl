@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P01WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P01WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P01WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P01WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P01WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Common.Enums" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P01WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P01WcfService_InsertP010101_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP010101" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_InsertP010101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP010101Response" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_UpdateP010101_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP010101" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_UpdateP010101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP010101Response" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_InsertOrUpdateP010201_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateP010201" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_InsertOrUpdateP010201_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateP010201Response" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_BarcodeInspection_InputMessage">
+    <wsdl:part name="parameters" element="tns:BarcodeInspection" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_BarcodeInspection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BarcodeInspectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_GetItemCodeBySerialNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemCodeBySerialNo" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_GetItemCodeBySerialNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemCodeBySerialNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_SerialNoStatusCheckAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:SerialNoStatusCheckAll" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_SerialNoStatusCheckAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SerialNoStatusCheckAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_SerialNoStatusCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:SerialNoStatusCheck" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_SerialNoStatusCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SerialNoStatusCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_ImportF10201Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF10201Data" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_ImportF10201Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF10201DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_CountPallet_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountPallet" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_CountPallet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountPalletResponse" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_GetInboundCnt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInboundCnt" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_GetInboundCnt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInboundCntResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P01WcfService">
+    <wsdl:operation name="InsertP010101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/InsertP010101" message="tns:P01WcfService_InsertP010101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/InsertP010101Response" message="tns:P01WcfService_InsertP010101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP010101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/UpdateP010101" message="tns:P01WcfService_UpdateP010101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/UpdateP010101Response" message="tns:P01WcfService_UpdateP010101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateP010201">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/InsertOrUpdateP010201" message="tns:P01WcfService_InsertOrUpdateP010201_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/InsertOrUpdateP010201Response" message="tns:P01WcfService_InsertOrUpdateP010201_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BarcodeInspection">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/BarcodeInspection" message="tns:P01WcfService_BarcodeInspection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/BarcodeInspectionResponse" message="tns:P01WcfService_BarcodeInspection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemCodeBySerialNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/GetItemCodeBySerialNo" message="tns:P01WcfService_GetItemCodeBySerialNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/GetItemCodeBySerialNoResponse" message="tns:P01WcfService_GetItemCodeBySerialNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SerialNoStatusCheckAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/SerialNoStatusCheckAll" message="tns:P01WcfService_SerialNoStatusCheckAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/SerialNoStatusCheckAllResponse" message="tns:P01WcfService_SerialNoStatusCheckAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SerialNoStatusCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/SerialNoStatusCheck" message="tns:P01WcfService_SerialNoStatusCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/SerialNoStatusCheckResponse" message="tns:P01WcfService_SerialNoStatusCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportF10201Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/ImportF10201Data" message="tns:P01WcfService_ImportF10201Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/ImportF10201DataResponse" message="tns:P01WcfService_ImportF10201Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountPallet">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/CountPallet" message="tns:P01WcfService_CountPallet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/CountPalletResponse" message="tns:P01WcfService_CountPallet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInboundCnt">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/GetInboundCnt" message="tns:P01WcfService_GetInboundCnt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/GetInboundCntResponse" message="tns:P01WcfService_GetInboundCnt_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P01WcfService" type="tns:P01WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertP010101">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/InsertP010101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP010101">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/UpdateP010101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateP010201">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/InsertOrUpdateP010201" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BarcodeInspection">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/BarcodeInspection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemCodeBySerialNo">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/GetItemCodeBySerialNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SerialNoStatusCheckAll">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/SerialNoStatusCheckAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SerialNoStatusCheck">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/SerialNoStatusCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportF10201Data">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/ImportF10201Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountPallet">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/CountPallet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboundCnt">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/GetInboundCnt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P01WcfService">
+    <wsdl:port name="BasicHttpBinding_P01WcfService" binding="tns:BasicHttpBinding_P01WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P01WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://Wms3pl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Wms3pl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://Wms3pl/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd0" namespace="http://Wms3pl" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Security" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Web.Security" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MembershipProvider_TestInput_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestInput" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_TestInput_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestInputResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetProviderProperties_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProviderProperties" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetProviderProperties_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProviderPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetUserByKey_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByKey" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetUserByKey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_CreateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_CreateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ChangePasswordQuestionAndAnswer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordQuestionAndAnswer" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ChangePasswordQuestionAndAnswer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordQuestionAndAnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPassword" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ChangePassword_FaultDetailFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:FaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ValidateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateUser" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_ValidateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_UnlockUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnlockUser" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_UnlockUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnlockUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetUserByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByName" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetUserByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetUserNameByEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserNameByEmail" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetUserNameByEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserNameByEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetNumberOfUsersOnline_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumberOfUsersOnline" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_GetNumberOfUsersOnline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumberOfUsersOnlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_FindUsersByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindUsersByName" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_FindUsersByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindUsersByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_FindUsersByEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindUsersByEmail" />
+  </wsdl:message>
+  <wsdl:message name="MembershipProvider_FindUsersByEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindUsersByEmailResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MembershipProvider">
+    <wsdl:operation name="TestInput">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/TestInput" message="tns:MembershipProvider_TestInput_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/TestInputResponse" message="tns:MembershipProvider_TestInput_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProviderProperties">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/GetProviderProperties" message="tns:MembershipProvider_GetProviderProperties_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/GetProviderPropertiesResponse" message="tns:MembershipProvider_GetProviderProperties_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByKey">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/GetUserByKey" message="tns:MembershipProvider_GetUserByKey_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/GetUserByKeyResponse" message="tns:MembershipProvider_GetUserByKey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/CreateUser" message="tns:MembershipProvider_CreateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/CreateUserResponse" message="tns:MembershipProvider_CreateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/AddUser" message="tns:MembershipProvider_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/AddUserResponse" message="tns:MembershipProvider_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordQuestionAndAnswer">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/ChangePasswordQuestionAndAnswer" message="tns:MembershipProvider_ChangePasswordQuestionAndAnswer_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/ChangePasswordQuestionAndAnswerResponse" message="tns:MembershipProvider_ChangePasswordQuestionAndAnswer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPassword">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/GetPassword" message="tns:MembershipProvider_GetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/GetPasswordResponse" message="tns:MembershipProvider_GetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/ChangePassword" message="tns:MembershipProvider_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/ChangePasswordResponse" message="tns:MembershipProvider_ChangePassword_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://Wms3pl/MembershipProvider/ChangePasswordFaultDetailFault" name="FaultDetailFault" message="tns:MembershipProvider_ChangePassword_FaultDetailFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/ResetPassword" message="tns:MembershipProvider_ResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/ResetPasswordResponse" message="tns:MembershipProvider_ResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/UpdateUser" message="tns:MembershipProvider_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/UpdateUserResponse" message="tns:MembershipProvider_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/ValidateUser" message="tns:MembershipProvider_ValidateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/ValidateUserResponse" message="tns:MembershipProvider_ValidateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnlockUser">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/UnlockUser" message="tns:MembershipProvider_UnlockUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/UnlockUserResponse" message="tns:MembershipProvider_UnlockUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByName">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/GetUserByName" message="tns:MembershipProvider_GetUserByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/GetUserByNameResponse" message="tns:MembershipProvider_GetUserByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserNameByEmail">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/GetUserNameByEmail" message="tns:MembershipProvider_GetUserNameByEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/GetUserNameByEmailResponse" message="tns:MembershipProvider_GetUserNameByEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/DeleteUser" message="tns:MembershipProvider_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/DeleteUserResponse" message="tns:MembershipProvider_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/GetAllUsers" message="tns:MembershipProvider_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/GetAllUsersResponse" message="tns:MembershipProvider_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfUsersOnline">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/GetNumberOfUsersOnline" message="tns:MembershipProvider_GetNumberOfUsersOnline_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/GetNumberOfUsersOnlineResponse" message="tns:MembershipProvider_GetNumberOfUsersOnline_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindUsersByName">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/FindUsersByName" message="tns:MembershipProvider_FindUsersByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/FindUsersByNameResponse" message="tns:MembershipProvider_FindUsersByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindUsersByEmail">
+      <wsdl:input wsaw:Action="http://Wms3pl/MembershipProvider/FindUsersByEmail" message="tns:MembershipProvider_FindUsersByEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://Wms3pl/MembershipProvider/FindUsersByEmailResponse" message="tns:MembershipProvider_FindUsersByEmail_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

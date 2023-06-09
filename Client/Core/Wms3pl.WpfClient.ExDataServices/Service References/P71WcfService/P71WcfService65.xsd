@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfF1912">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F1912" nillable="true" type="tns:F1912" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF1912" nillable="true" type="tns:ArrayOfF1912" />
+  <xs:complexType name="F1912">
+    <xs:sequence>
+      <xs:element name="_x003C_AREA_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CHANNEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FLOOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_HOR_DISTANCE_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_LAST_CALVOLUMN_TIME_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_LOC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LOC_LEVEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LOC_TYPE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LOC_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NOW_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NOW_STATUS_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PLAIN_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PRE_STATUS_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RENT_BEGIN_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_RENT_END_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UCC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_USED_VOLUMN_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_USEFUL_VOLUMN_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_WAREHOUSE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1912" nillable="true" type="tns:F1912" />
+  <xs:complexType name="ArrayOfF1903">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F1903" nillable="true" type="tns:F1903" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF1903" nillable="true" type="tns:ArrayOfF1903" />
+  <xs:complexType name="F1903">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOWORDITEM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_ALL_DLN_x003E_k__BackingField" nillable="true" type="xs:short" />
+      <xs:element name="_x003C_ALL_DLN_x003E_k__BackingField" nillable="true" type="xs:short" />
+      <xs:element name="_x003C_ALL_SHP_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_AMORTIZATION_NO_x003E_k__BackingField" type="xs:short" />
+      <xs:element name="_x003C_BORROW_DAY_x003E_k__BackingField" nillable="true" type="xs:short" />
+      <xs:element name="_x003C_BOUNDLE_SERIALREQ_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BUNDLE_SERIALLOC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BUNDLE_SERIALNO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAN_SELL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAN_SPILT_IN_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CHECK_PERCENT_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CTNS_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_CURRENCY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_C_D_FLAG_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_QTY_AVG_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_EAN_CODE1_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE2_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE3_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE4_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EP_TAX_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_EXTENSION_A_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_B_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_C_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_D_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_E_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FIRST_IN_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_FRAGILE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISAPPLE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISBOX_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISCARTON_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISOEM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_ASYNC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_EASY_LOSE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_MAGNETIC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_PERISHABLE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_PRECIOUS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_TEMP_CONTROL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_ATTR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_CLASS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_COLOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_ENGNAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_EXCHANGE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_HUMIDITY_x003E_k__BackingField" nillable="true" type="xs:short" />
+      <xs:element name="_x003C_ITEM_MERGE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NICKNAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_RETURN_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SIZE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SOURCE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_UNIT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LG_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LOC_MIX_ITEM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LTYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MAKENO_REQU_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MEMO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MIX_BATCHNO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MTYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MULTI_FLAG_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NEED_EXPIRED_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NO_PRICE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ORD_SAVE_QTY_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_PICK_ORD_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_PICK_SAVE_ORD_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_PICK_SAVE_QTY_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_PICK_WARE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PICK_WARE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RCV_MEMO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RET_ORD_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_RET_UNIT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SAVE_DAY_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_SERIALNO_DIGIT_x003E_k__BackingField" nillable="true" type="xs:short" />
+      <xs:element name="_x003C_SERIAL_BEGIN_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SERIAL_RULE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SIM_SPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SND_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SPILL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STOP_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_STYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TARIFF_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TMPR_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VEN_ORD_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_VIRTUAL_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VNR_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VNR_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1903" nillable="true" type="tns:F1903" />
+  <xs:complexType name="F1947">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_KIND_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_ROUND_PIECE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALL_COMP_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALL_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CHECK_ROUTE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CONSIGN_REPORT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELIVERYROUTE_URL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_A_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_B_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_C_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_D_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_E_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PIER_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1947" nillable="true" type="tns:F1947" />
+  <xs:complexType name="ArrayOfF194701">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F194701" nillable="true" type="tns:F194701" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF194701" nillable="true" type="tns:ArrayOfF194701" />
+  <xs:complexType name="F194701">
+    <xs:sequence>
+      <xs:element name="_x003C_ALL_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAN_ALLREGION_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_EFFIC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_FREQ_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_TIMES_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_TIME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_TMPR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PAST_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F194701" nillable="true" type="tns:F194701" />
+  <xs:complexType name="ArrayOfF19470101">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F19470101" nillable="true" type="tns:F19470101" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF19470101" nillable="true" type="tns:ArrayOfF19470101" />
+  <xs:complexType name="F19470101">
+    <xs:sequence>
+      <xs:element name="_x003C_ALL_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_EFFIC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_TIME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_TMPR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PAST_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ZIP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F19470101" nillable="true" type="tns:F19470101" />
+  <xs:complexType name="ArrayOfF194708">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F194708" nillable="true" type="tns:F194708" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF194708" nillable="true" type="tns:ArrayOfF194708" />
+  <xs:complexType name="F194708">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_AREA_ID_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_ACC_AREA_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALL_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F194708" nillable="true" type="tns:F194708" />
+  <xs:complexType name="ArrayOfF19470801">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F19470801" nillable="true" type="tns:F19470801" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF19470801" nillable="true" type="tns:ArrayOfF19470801" />
+  <xs:complexType name="F19470801">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_AREA_ID_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_ALL_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ZIP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F19470801" nillable="true" type="tns:F19470801" />
+  <xs:complexType name="ArrayOfF194709">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F194709" nillable="true" type="tns:F194709" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF194709" nillable="true" type="tns:ArrayOfF194709" />
+  <xs:complexType name="F194709">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_DELVNUM_ID_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_ALL_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NUM_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F194709" nillable="true" type="tns:F194709" />
+  <xs:complexType name="ArrayOfF194703">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F194703" nillable="true" type="tns:F194703" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF194703" nillable="true" type="tns:ArrayOfF194703" />
+  <xs:complexType name="F194703">
+    <xs:sequence>
+      <xs:element name="_x003C_ALL_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAR_KIND_ID_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FEE_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_IN_OUT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F194703" nillable="true" type="tns:F194703" />
+  <xs:complexType name="F1909">
+    <xs:sequence>
+      <xs:element name="_x003C_ADDRESS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOCATIONCHANGMAKENO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOCATIONCHANGVALIDATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOWGUP_ITEMCATEGORYSHARE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOWGUP_RETAILSHARE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOWGUP_VNRSHARE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOWOUTSHIPDETLOG_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOWREPEAT_ITEMBARCODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOWRT_SPECIALBUY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_ADDBOXNOCHECK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_ADVANCEDSTOCK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_CANCEL_LACKORD_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_EDIT_BOX_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_NOPRINTPICKORDER_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_NOSHIPPACKAGE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_AUTO_GEN_RTN_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_B2C_CAN_LACK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BANK_ACCOUNT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BANK_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BANK_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BILL_CEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BILL_CONTACT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BILL_MAIL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BILL_TEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BOSS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BOUNDLE_SERIALLOC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAL_CUFT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAN_FAST_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CHECK_PERCENT_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_CHG_VENDER_ORD_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CONTACT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUFT_BLUK_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_CUFT_FACTOR_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_CURRENCY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_BOX_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_MEMO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_TRANSFER_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DESTROY_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DUE_DAY_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_EXTENSION_A_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_B_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_C_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_D_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_E_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FLUSHBACK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GUPSHARE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INSIDER_TRADING_LIM_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_INSIDER_TRADING_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INSTEAD_INVO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INSTOCKAUTOCLOSED_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_INVO_ADDRESS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVO_LIM_QTY_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_INVO_REPORT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVO_ZIP_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISALLOCATIONSHOWVALIDDATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISALLOW_DELV_DAY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISB2B_ALONE_OUT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISBACK_DISTR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISDELV_LOADING_CHECKCODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISDELV_NOLOADING_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISLATEST_VALID_DATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISOUTOFSTOCKRECV_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISPICKLOCFIRST_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISPICKSHOWCUSTNAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISPICKSHOWVALIDDATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISPRINTDELVDTL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISPRINTDELV_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISPRINT_SELFTAKE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISSHIFTITEM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ISUPLOADFILE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_ORDDATE_TODAY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_PRINT_INSTOCKPALLETSTICKER_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_QUICK_CHECK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_SINGLEBOXCHECK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_UP_SHELF_CANCEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_CEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_CONTACT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_MAIL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NOTRET_REMIND_DAYS_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_ITEM_RET_REMIND_DAYS_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_ITEM_TEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MANAGER_LOCK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MIX_LOC_BATCH_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MIX_LOC_ITEM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MIX_SERIAL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NEED_ITEMSPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NEED_SEAL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ORDER_ADDRESS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PACKCOUNT_MAX_UNIT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PAY_FACTOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PAY_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PRINT2PDF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PRINT_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RIBBON_BEGIN_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_RIBBON_END_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_RIBBON_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RTN_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SAM_ITEM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SELFTAKE_CHECKCODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHARED_FOLDER_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHIFTITEMCODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHORT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOW_MESSAGE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOW_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOW_UNIT_TRANS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SPBOX_BEGIN_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_SPBOX_END_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_SPECIAL_IN_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SPILT_INCHECK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SPILT_ORDER_LIM_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_SPILT_ORDER_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SPILT_OUTCHECKWAY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SPILT_OUTCHECK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SPILT_VENDER_ORD_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SP_BOX_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SP_BOX_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STATUS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SUGGEST_LOC_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SYS_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TAX_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UNI_FORM_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VALID_DATE_CHKYEAR_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_VNR_RTN_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ZIP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1909" nillable="true" type="tns:F1909" />
+  <xs:complexType name="ArrayOfF190902">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F190902" nillable="true" type="tns:F190902" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF190902" nillable="true" type="tns:ArrayOfF190902" />
+  <xs:complexType name="F190902">
+    <xs:sequence>
+      <xs:element name="_x003C_BEGIN_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DM_SEQ_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_END_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F190902" nillable="true" type="tns:F190902" />
+  <xs:complexType name="F199001">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_ITEM_KIND_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ACC_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ACC_NUM_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ACC_UNIT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IN_TAX_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_TYPE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LOC_TYPE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STATUS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TMPR_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UNIT_FEE_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F199001" nillable="true" type="tns:F199001" />
+  <xs:complexType name="F199006">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ACC_NUM_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ACC_UNIT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_ACC_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FEE_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_IN_TAX_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STATUS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F199006" nillable="true" type="tns:F199006" />
+  <xs:complexType name="F199005">
+    <xs:sequence>
+      <xs:element name="_x003C_ACC_AREA_ID_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_ACC_ITEM_KIND_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ACC_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ACC_KIND_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ACC_NUM_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_ACC_UNIT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAR_KIND_ID_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_ACC_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_EFFIC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELV_TMPR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FEE_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_IN_TAX_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_SPECIAL_CAR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_TYPE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LOGI_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MAX_WEIGHT_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_OVER_UNIT_FEE_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_OVER_VALUE_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_SEQ_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_STATUS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F199005" nillable="true" type="tns:F199005" />
+</xs:schema>

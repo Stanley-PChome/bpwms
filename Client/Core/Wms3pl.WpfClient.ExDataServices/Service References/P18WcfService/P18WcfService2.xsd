@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+  <xs:complexType name="ArrayOfP180301ImportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="P180301ImportData" nillable="true" type="tns:P180301ImportData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfP180301ImportData" nillable="true" type="tns:ArrayOfP180301ImportData" />
+  <xs:complexType name="P180301ImportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EnterDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ItemCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemVerification" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocMixItem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocVerification" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MakeNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MixBatchno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Qty" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ValidDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WarehouseId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WarehouseName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="P180301ImportData" nillable="true" type="tns:P180301ImportData" />
+  <xs:complexType name="StockAbnormalData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALLOCATION_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ALLOCATION_SEQ" type="xs:int" />
+      <xs:element minOccurs="0" name="CRT_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CRT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MAKE_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MEMO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROC_FLAG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROC_FLAG_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROC_WMS_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SERIAL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SRC_LOC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SRC_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SRC_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SRC_WAREHOUSE_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SRC_WAREHOUSE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SRC_WMS_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPD_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UPD_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VALID_DATE" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StockAbnormalData" nillable="true" type="tns:StockAbnormalData" />
+  <xs:complexType name="ArrayOfStockAbnormalData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StockAbnormalData" nillable="true" type="tns:StockAbnormalData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStockAbnormalData" nillable="true" type="tns:ArrayOfStockAbnormalData" />
+</xs:schema>

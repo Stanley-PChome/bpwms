@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0809010200" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500" Width="600" WindowStyle="None" ResizeMode="NoResize" WindowState="Maximized" ShowActivated="True" ShowInTaskbar="False" IsHitTestVisible="True" Title="上傳封條照片" controls:PermissionService.FunctionId="P0809010200" controls:PermissionService.FunctionName="上傳封條照片" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0809010200_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <Style TargetType="{x:Type ListBoxItem}" x:Key="ContainerStyle">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Style.Triggers>
+          <Trigger Property="IsSelected" Value="True">
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="FontSize" Value="30" />
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP0809010201" Command="{Binding AddCommand}" />
+          <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP0809010202" Command="{Binding EditCommand}" />
+          <Button Style="{StaticResource ExitButton}" controls:PermissionService.FunctionId="BP0809010203" Click="ExitCommand_Click" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+              <!-- 由此處開始加入畫面項目 -->
+              <WrapPanel>
+                <DockPanel Visibility="{Binding IsHasPhoto, UpdateSourceTrigger=PropertyChanged}">
+                  <ListBox Height="300" ItemsSource="{Binding DataList,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedData, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ContainerStyle}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate>
+                        <Button Click="ShowImg_Click" CommandParameter="{Binding FILE_NAME}" controls:PermissionService.FunctionId="BP0809010204" controls:PermissionService.FunctionName="顯示圖片" Content="{Binding FILE_NAME}"></Button>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                </DockPanel>
+              </WrapPanel>
+              <Viewbox DockPanel.Dock="Right">
+                <Image Source="{Binding ItemImageSource, UpdateSourceTrigger=PropertyChanged}" Margin="50" VerticalAlignment="Center" HorizontalAlignment="Center" />
+              </Viewbox>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

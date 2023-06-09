@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P02.Views.P0201040000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" FontSize="18" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P02.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P02.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" controls:PermissionService.FunctionId="P0201040000" controls:PermissionService.FunctionName="碼頭期間設定" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P0201040000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+      <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+      <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+      <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+      <converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP0201040001" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP0201040002" Command="{Binding AddCommand}" />
+          <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP0201040003" Command="{Binding EditCommand}" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP0201040004" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP0201040005" Command="{Binding DeleteCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP0201040006" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel>
+              <GroupBox Header="{x:Static res:Resources.Query}" DockPanel.Dock="Top" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                <WrapPanel DockPanel.Dock="Top" Margin="5">
+                  <Label Content="{x:Static Properties:Resources.DC_CODE}" Style="{StaticResource LbStyle}" />
+                  <ComboBox Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcCodes}" SelectedValue="{Binding SelectDcCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" DisplayMemberPath="Name" Name="DcComboBox" />
+                  <Label Content="{x:Static Properties:Resources.SelectedStartDate}" Style="{StaticResource LbStyle}" />
+                  <DatePicker Style="{StaticResource DateStyle}" SelectedDate="{Binding SelectedStartDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                  <Label Content="{x:Static Properties:Resources.SelectedEndDate}" />
+                  <DatePicker Style="{StaticResource DateStyle}" SelectedDate="{Binding SelectedEndDate,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </WrapPanel>
+              </GroupBox>
+              <WrapPanel DockPanel.Dock="Top" Margin="5" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                <Label Content="{x:Static Properties:Resources.NotQueryDate}" Style="{StaticResource LbStyle}" />
+                <DatePicker Style="{StaticResource DateStyle}" SelectedDate="{Binding SelectData.BEGIN_DATE, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,                                                 ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" IsEnabled="{Binding UserOperateMode ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" Name="BeginDatePickerForAddNew" />
+                <Label Content="{x:Static Properties:Resources.SelectedEndDate}" />
+                <DatePicker Style="{StaticResource DateStyle}" SelectedDate="{Binding SelectData.END_DATE,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,                                                 ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" IsEnabled="{Binding UserOperateMode ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" />
+              </WrapPanel>
+              <WrapPanel DockPanel.Dock="Top" Margin="5" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                <Label Content="{x:Static Properties:Resources.PIER_CODE}" Style="{StaticResource LbStyle}" />
+                <ComboBox Style="{StaticResource ComboStyle}" ItemsSource="{Binding PierList}" SelectedIndex="0" SelectedValue="{Binding SelectData.PIER_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,                          ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" SelectedValuePath="Value" DisplayMemberPath="Name" IsEnabled="{Binding UserOperateMode ,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" />
+                <Label Content="{x:Static Properties:Resources.TEMP_AREA}" Style="{StaticResource LbStyle}" />
+                <TextBox Style="{StaticResource TxtStyle}" Width="50" Text="{Binding SelectData.TEMP_AREA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,                                                 ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True }" Name="TempAreaCounTextBox" MaxLength="3" />
+                <CheckBox Content="{x:Static Properties:Resources.ALLOW_IN}" Style="{StaticResource CheckStyle}" IsChecked="{Binding SelectData.ALLOW_IN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToBoolConverter}}" />
+                <CheckBox Content="{x:Static Properties:Resources.ALLOW_OUT}" Style="{StaticResource CheckStyle}" IsChecked="{Binding SelectData.ALLOW_OUT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToBoolConverter}}" />
+              </WrapPanel>
+              <DataGrid ItemsSource="{Binding DgItemSource}" Style="{StaticResource DgStyle}" SelectedItem="{Binding SelectData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="{x:Static Properties:Resources.BEGIN_DATE}" Binding="{Binding BEGIN_DATE,Converter={StaticResource DateTimeToStringConverter}, ConverterParameter=yyyy/MM/dd}" />
+                  <DataGridTextColumn Header="{x:Static Properties:Resources.END_DATE}" Binding="{Binding END_DATE,Converter={StaticResource DateTimeToStringConverter}, ConverterParameter=yyyy/MM/dd}" />
+                  <DataGridTextColumn Header="{x:Static Properties:Resources.PIER_CODE}" Binding="{Binding PIER_CODE}" />
+                  <DataGridTextColumn Header="{x:Static Properties:Resources.TEMP_AREA}" Binding="{Binding TEMP_AREA}" />
+                  <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.ALLOW_IN}" Binding="{Binding ALLOW_IN,Converter={StaticResource StringToBoolConverter}}" />
+                  <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.ALLOW_OUT}" Binding="{Binding ALLOW_OUT,Converter={StaticResource StringToBoolConverter}}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExecuteResult" nillable="true" type="tns:ArrayOfExecuteResult" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+  <xs:complexType name="ArrayOfInventoryWareHouse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventoryWareHouse" nillable="true" type="tns:InventoryWareHouse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInventoryWareHouse" nillable="true" type="tns:ArrayOfInventoryWareHouse" />
+  <xs:complexType name="InventoryWareHouse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AREA_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AREA_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CHANNEL_BEGIN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CHANNEL_END" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FLOOR_BEGIN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FLOOR_END" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PLAIN_BEGIN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PLAIN_END" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WAREHOUSE_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WAREHOUSE_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InventoryWareHouse" nillable="true" type="tns:InventoryWareHouse" />
+  <xs:complexType name="ArrayOfInventoryItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventoryItem" nillable="true" type="tns:InventoryItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInventoryItem" nillable="true" type="tns:ArrayOfInventoryItem" />
+  <xs:complexType name="InventoryItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CUST_ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InventoryItem" nillable="true" type="tns:InventoryItem" />
+  <xs:complexType name="ArrayOfInventoryDetailItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventoryDetailItem" nillable="true" type="tns:InventoryDetailItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInventoryDetailItem" nillable="true" type="tns:ArrayOfInventoryDetailItem" />
+  <xs:complexType name="InventoryDetailItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BOX_CTRL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEVICE_STOCK_QTY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EAN_CODE1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EAN_CODE2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EAN_CODE3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ENTER_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FIRST_QTY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FIRST_QTY_ORG" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FLUSHBACK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FLUSHBACKNAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FLUSHBACK_ORG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_COLOR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SIZE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SPEC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LOC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAKE_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PALLET_CTRL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QTY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SECOND_QTY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SECOND_QTY_ORG" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UNMOVE_STOCK_QTY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="VALID_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WAREHOUSE_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WAREHOUSE_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InventoryDetailItem" nillable="true" type="tns:InventoryDetailItem" />
+  <xs:complexType name="CheckInventoryItemRes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InventoryItems" nillable="true" type="tns:ArrayOfInventoryItem" />
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckInventoryItemRes" nillable="true" type="tns:CheckInventoryItemRes" />
+  <xs:complexType name="ArrayOfImportInventorySerial">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImportInventorySerial" nillable="true" type="tns:ImportInventorySerial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImportInventorySerial" nillable="true" type="tns:ArrayOfImportInventorySerial" />
+  <xs:complexType name="ImportInventorySerial">
+    <xs:sequence>
+      <xs:element name="_x003C_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IsSuccess_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_LOC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Message_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ROWNUM_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_SERIAL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportInventorySerial" nillable="true" type="tns:ImportInventorySerial" />
+  <xs:complexType name="ArrayOfImportInventoryDetailItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImportInventoryDetailItem" nillable="true" type="tns:ImportInventoryDetailItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImportInventoryDetailItem" nillable="true" type="tns:ArrayOfImportInventoryDetailItem" />
+  <xs:complexType name="ImportInventoryDetailItem">
+    <xs:sequence>
+      <xs:element name="_x003C_BOX_CTRL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DEVICE_STOCK_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE1_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE2_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE3_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EnterDate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FIRST_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_COLOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SIZE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ItemCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LocCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MAKE_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PALLET_CTRL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ROWNUM_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_SECOND_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UNMOVE_STOCK_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ValidDate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WAREHOUSE_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportInventoryDetailItem" nillable="true" type="tns:ImportInventoryDetailItem" />
+  <xs:complexType name="ImportInventoryDetailResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FailDetailItems" nillable="true" type="tns:ArrayOfExportFailInventoryDetailItem" />
+      <xs:element minOccurs="0" name="InventoryDetailItems" nillable="true" type="tns:ArrayOfInventoryDetailItem" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ExecuteResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportInventoryDetailResult" nillable="true" type="tns:ImportInventoryDetailResult" />
+  <xs:complexType name="ArrayOfExportFailInventoryDetailItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExportFailInventoryDetailItem" nillable="true" type="tns:ExportFailInventoryDetailItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExportFailInventoryDetailItem" nillable="true" type="tns:ArrayOfExportFailInventoryDetailItem" />
+  <xs:complexType name="ExportFailInventoryDetailItem">
+    <xs:sequence>
+      <xs:element name="_x003C_BOX_CTRL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DEVICE_STOCK_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE1_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE2_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE3_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EnterDate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FIRST_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FLUSHBACKNAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FailMessage_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_COLOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SIZE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ItemCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_LocCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MAKE_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PALLET_CTRL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ROWNUM_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_SECOND_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UNMOVE_STOCK_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ValidDate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WAREHOUSE_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExportFailInventoryDetailItem" nillable="true" type="tns:ExportFailInventoryDetailItem" />
+  <xs:complexType name="ArrayOfInventoryDetailItemsByIsSecond">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventoryDetailItemsByIsSecond" nillable="true" type="tns:InventoryDetailItemsByIsSecond" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInventoryDetailItemsByIsSecond" nillable="true" type="tns:ArrayOfInventoryDetailItemsByIsSecond" />
+  <xs:complexType name="InventoryDetailItemsByIsSecond">
+    <xs:sequence>
+      <xs:element name="_x003C_BOX_CTRL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CHECK_TOOL_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DEVICE_STOCK_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DIFF_FIRST_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DIFF_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DIFF_SECOND_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE1_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE2_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE3_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ENTER_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_FIRST_QTY_Num_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_FIRST_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FLUSHBACK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FST_INVENTORY_DATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FST_INVENTORY_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVENTORY_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_INVENTORY_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVENTORY_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVENTORY_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVENTORY_TYPE_DESC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVENTORY_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_COLOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SIZE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_UNIT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IsSelected_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_LOC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MAKE_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PALLET_BOX_CTRL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PALLET_CTRL_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PRINT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_PRINT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PRINT_TITLE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PROC_WMS_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_QTY_Num_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ROWNUM_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_SECOND_QTY_Num_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_SECOND_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SEC_INVENTORY_DATE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SEC_INVENTORY_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOW_CNT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STATUS_DESC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STOCK_DIFF_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UNIT_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UNMOVE_STOCK_QTY_Num_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_UNMOVE_STOCK_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VALID_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_WAREHOUSE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WAREHOUSE_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InventoryDetailItemsByIsSecond" nillable="true" type="tns:InventoryDetailItemsByIsSecond" />
+</xs:schema>

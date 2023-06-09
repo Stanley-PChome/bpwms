@@ -1,0 +1,1393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P08WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Shared.ServiceEntites" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P08WcfService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F16" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P08WcfService_GetF1929WithF1909Tests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909Tests" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetF1929WithF1909Tests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909TestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckAndUpdatePacking_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAndUpdatePacking" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckAndUpdatePacking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAndUpdatePackingResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelPacking_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelPacking" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelPacking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelPackingResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckSerialsInOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSerialsInOrder" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckSerialsInOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSerialsInOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckSerialStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSerialStatus" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckSerialStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSerialStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SearchWmsOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchWmsOrder" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SearchWmsOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchWmsOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_StartPackageCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartPackageCheck" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_StartPackageCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartPackageCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanPackageCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanPackageCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanPackageCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanPackageCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ImpoortP161502_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImpoortP161502" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ImpoortP161502_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImpoortP161502Response" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckSerials_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSerials" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckSerials_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSerialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InportUpdatePacking_InputMessage">
+    <wsdl:part name="parameters" element="tns:InportUpdatePacking" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InportUpdatePacking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InportUpdatePackingResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetPintBarCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPintBarCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetPintBarCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPintBarCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InsertF16140102_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF16140102" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InsertF16140102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF16140102Response" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF700101Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF700101Status" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF700101Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF700101StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF161201SourceNoStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF161201SourceNoStatus" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF161201SourceNoStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF161201SourceNoStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ChangeF16140101IsPass_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeF16140101IsPass" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ChangeF16140101IsPass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeF16140101IsPassResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_FinishCurrentBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishCurrentBox" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_FinishCurrentBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinishCurrentBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckF161401RepeatSerialNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckF161401RepeatSerialNo" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckF161401RepeatSerialNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckF161401RepeatSerialNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_LoadMasterDetailsData_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMasterDetailsData" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_LoadMasterDetailsData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMasterDetailsDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckReturnBomItemNotFullReturn_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckReturnBomItemNotFullReturn" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckReturnBomItemNotFullReturn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckReturnBomItemNotFullReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF16140201_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF16140201" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF16140201_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF16140201Response" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_DoSearchItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoSearchItem" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_DoSearchItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoSearchItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF161402_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF161402" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF161402_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF161402Response" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UploadDelvCheckCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadDelvCheckCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UploadDelvCheckCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadDelvCheckCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRetailDeliverDetailReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetailDeliverDetailReport" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRetailDeliverDetailReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetailDeliverDetailReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRetailDeliverDetailReportByRetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetailDeliverDetailReportByRetail" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRetailDeliverDetailReportByRetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetailDeliverDetailReportByRetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRetailDeliverDetailReportByRetailIntact_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetailDeliverDetailReportByRetailIntact" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRetailDeliverDetailReportByRetailIntact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetailDeliverDetailReportByRetailIntactResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateP0806130000Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP0806130000Data" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateP0806130000Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP0806130000DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckOrderNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckOrderNo" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckOrderNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckOrderNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_BindComplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:BindComplete" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_BindComplete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BindCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_AddF050305Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddF050305Data" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_AddF050305Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddF050305DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_P081301CheckTarLocCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:P081301CheckTarLocCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_P081301CheckTarLocCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:P081301CheckTarLocCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_P081301CreateAllocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:P081301CreateAllocation" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_P081301CreateAllocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:P081301CreateAllocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ApplyConsign_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyConsign" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ApplyConsign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyConsignResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelConsign_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelConsign" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelConsign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelConsignResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF160204_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160204" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateF160204_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF160204Response" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckPickAllotOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPickAllotOrder" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckPickAllotOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPickAllotOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetAndCreatePickAllotDatas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAndCreatePickAllotDatas" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetAndCreatePickAllotDatas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAndCreatePickAllotDatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckContainer" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_BindContainerFinished_InputMessage">
+    <wsdl:part name="parameters" element="tns:BindContainerFinished" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_BindContainerFinished_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BindContainerFinishedResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SowItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:SowItem" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SowItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SowItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InsertF050305_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050305" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InsertF050305_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050305Response" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_OutOfStocks_InputMessage">
+    <wsdl:part name="parameters" element="tns:OutOfStocks" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_OutOfStocks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OutOfStocksResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanContainerCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanContainerCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanContainerCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanContainerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_BindBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:BindBox" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_BindBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BindBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_P080804SowItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:P080804SowItem" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_P080804SowItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:P080804SowItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetPickLackItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPickLackItems" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetPickLackItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPickLackItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetContainerLackItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContainerLackItems" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetContainerLackItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContainerLackItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ContainerComplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:ContainerComplete" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ContainerComplete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ContainerCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_PickOutOfStockComfirm_InputMessage">
+    <wsdl:part name="parameters" element="tns:PickOutOfStockComfirm" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_PickOutOfStockComfirm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PickOutOfStockComfirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_DeleteEmpPickBind_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmpPickBind" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_DeleteEmpPickBind_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmpPickBindResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SetPackageStationStatusLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPackageStationStatusLog" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SetPackageStationStatusLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPackageStationStatusLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckShipContainerCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckShipContainerCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CheckShipContainerCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckShipContainerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SearchAndCheckWmsOrderInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchAndCheckWmsOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SearchAndCheckWmsOrderInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchAndCheckWmsOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanItemBarcode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanItemBarcode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanItemBarcode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanItemBarcodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseShipBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseShipBox" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseShipBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseShipBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UseShipContainerToBoxDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:UseShipContainerToBoxDetail" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UseShipContainerToBoxDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UseShipContainerToBoxDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelShipOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelShipOrder" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelShipOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelShipOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SearchShipReportList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchShipReportList" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SearchShipReportList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchShipReportListResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetBoxDetailReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoxDetailReport" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetBoxDetailReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoxDetailReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetShipLittleLabelReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShipLittleLabelReport" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetShipLittleLabelReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShipLittleLabelReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRtnShipLittleLabelReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRtnShipLittleLabelReport" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetRtnShipLittleLabelReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRtnShipLittleLabelReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GeShipFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GeShipFile" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GeShipFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GeShipFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SetPackageLineStationStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPackageLineStationStatus" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_SetPackageLineStationStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPackageLineStationStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ChangeShipPackCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeShipPackCheck" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ChangeShipPackCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeShipPackCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetWorkStataionShipData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkStataionShipData" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetWorkStataionShipData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkStataionShipDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetShipLogisticBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShipLogisticBox" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetShipLogisticBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShipLogisticBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_LogPausePacking_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogPausePacking" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_LogPausePacking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogPausePackingResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateShipReportList_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateShipReportList" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_UpdateShipReportList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateShipReportListResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_HomeDeliveryOrderDebit_InputMessage">
+    <wsdl:part name="parameters" element="tns:HomeDeliveryOrderDebit" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_HomeDeliveryOrderDebit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HomeDeliveryOrderDebitResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InsertF050305Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050305Data" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_InsertF050305Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF050305DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelArrivalRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelArrivalRecord" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CancelArrivalRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelArrivalRecordResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P08WcfService">
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetF1929WithF1909Tests" message="tns:P08WcfService_GetF1929WithF1909Tests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetF1929WithF1909TestsResponse" message="tns:P08WcfService_GetF1929WithF1909Tests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAndUpdatePacking">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckAndUpdatePacking" message="tns:P08WcfService_CheckAndUpdatePacking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckAndUpdatePackingResponse" message="tns:P08WcfService_CheckAndUpdatePacking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelPacking">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CancelPacking" message="tns:P08WcfService_CancelPacking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CancelPackingResponse" message="tns:P08WcfService_CancelPacking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSerialsInOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckSerialsInOrder" message="tns:P08WcfService_CheckSerialsInOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckSerialsInOrderResponse" message="tns:P08WcfService_CheckSerialsInOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSerialStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckSerialStatus" message="tns:P08WcfService_CheckSerialStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckSerialStatusResponse" message="tns:P08WcfService_CheckSerialStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchWmsOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/SearchWmsOrder" message="tns:P08WcfService_SearchWmsOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/SearchWmsOrderResponse" message="tns:P08WcfService_SearchWmsOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartPackageCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/StartPackageCheck" message="tns:P08WcfService_StartPackageCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/StartPackageCheckResponse" message="tns:P08WcfService_StartPackageCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanPackageCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanPackageCode" message="tns:P08WcfService_ScanPackageCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanPackageCodeResponse" message="tns:P08WcfService_ScanPackageCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImpoortP161502">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ImpoortP161502" message="tns:P08WcfService_ImpoortP161502_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ImpoortP161502Response" message="tns:P08WcfService_ImpoortP161502_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSerials">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckSerials" message="tns:P08WcfService_CheckSerials_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckSerialsResponse" message="tns:P08WcfService_CheckSerials_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InportUpdatePacking">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/InportUpdatePacking" message="tns:P08WcfService_InportUpdatePacking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/InportUpdatePackingResponse" message="tns:P08WcfService_InportUpdatePacking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPintBarCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetPintBarCode" message="tns:P08WcfService_GetPintBarCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetPintBarCodeResponse" message="tns:P08WcfService_GetPintBarCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF16140102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/InsertF16140102" message="tns:P08WcfService_InsertF16140102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/InsertF16140102Response" message="tns:P08WcfService_InsertF16140102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF700101Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UpdateF700101Status" message="tns:P08WcfService_UpdateF700101Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UpdateF700101StatusResponse" message="tns:P08WcfService_UpdateF700101Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF161201SourceNoStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UpdateF161201SourceNoStatus" message="tns:P08WcfService_UpdateF161201SourceNoStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UpdateF161201SourceNoStatusResponse" message="tns:P08WcfService_UpdateF161201SourceNoStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeF16140101IsPass">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ChangeF16140101IsPass" message="tns:P08WcfService_ChangeF16140101IsPass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ChangeF16140101IsPassResponse" message="tns:P08WcfService_ChangeF16140101IsPass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishCurrentBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/FinishCurrentBox" message="tns:P08WcfService_FinishCurrentBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/FinishCurrentBoxResponse" message="tns:P08WcfService_FinishCurrentBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckF161401RepeatSerialNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckF161401RepeatSerialNo" message="tns:P08WcfService_CheckF161401RepeatSerialNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckF161401RepeatSerialNoResponse" message="tns:P08WcfService_CheckF161401RepeatSerialNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadMasterDetailsData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/LoadMasterDetailsData" message="tns:P08WcfService_LoadMasterDetailsData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/LoadMasterDetailsDataResponse" message="tns:P08WcfService_LoadMasterDetailsData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReturnBomItemNotFullReturn">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckReturnBomItemNotFullReturn" message="tns:P08WcfService_CheckReturnBomItemNotFullReturn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckReturnBomItemNotFullReturnResponse" message="tns:P08WcfService_CheckReturnBomItemNotFullReturn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF16140201">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UpdateF16140201" message="tns:P08WcfService_UpdateF16140201_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UpdateF16140201Response" message="tns:P08WcfService_UpdateF16140201_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoSearchItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/DoSearchItem" message="tns:P08WcfService_DoSearchItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/DoSearchItemResponse" message="tns:P08WcfService_DoSearchItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF161402">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UpdateF161402" message="tns:P08WcfService_UpdateF161402_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UpdateF161402Response" message="tns:P08WcfService_UpdateF161402_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDelvCheckCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UploadDelvCheckCode" message="tns:P08WcfService_UploadDelvCheckCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UploadDelvCheckCodeResponse" message="tns:P08WcfService_UploadDelvCheckCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRetailDeliverDetailReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReport" message="tns:P08WcfService_GetRetailDeliverDetailReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReportResponse" message="tns:P08WcfService_GetRetailDeliverDetailReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRetailDeliverDetailReportByRetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReportByRetail" message="tns:P08WcfService_GetRetailDeliverDetailReportByRetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReportByRetailResponse" message="tns:P08WcfService_GetRetailDeliverDetailReportByRetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRetailDeliverDetailReportByRetailIntact">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReportByRetailIntact" message="tns:P08WcfService_GetRetailDeliverDetailReportByRetailIntact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReportByRetailIntactResponse" message="tns:P08WcfService_GetRetailDeliverDetailReportByRetailIntact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP0806130000Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UpdateP0806130000Data" message="tns:P08WcfService_UpdateP0806130000Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UpdateP0806130000DataResponse" message="tns:P08WcfService_UpdateP0806130000Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckOrderNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckOrderNo" message="tns:P08WcfService_CheckOrderNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckOrderNoResponse" message="tns:P08WcfService_CheckOrderNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BindComplete">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/BindComplete" message="tns:P08WcfService_BindComplete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/BindCompleteResponse" message="tns:P08WcfService_BindComplete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddF050305Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/AddF050305Data" message="tns:P08WcfService_AddF050305Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/AddF050305DataResponse" message="tns:P08WcfService_AddF050305Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="P081301CheckTarLocCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/P081301CheckTarLocCode" message="tns:P08WcfService_P081301CheckTarLocCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/P081301CheckTarLocCodeResponse" message="tns:P08WcfService_P081301CheckTarLocCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="P081301CreateAllocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/P081301CreateAllocation" message="tns:P08WcfService_P081301CreateAllocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/P081301CreateAllocationResponse" message="tns:P08WcfService_P081301CreateAllocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyConsign">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ApplyConsign" message="tns:P08WcfService_ApplyConsign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ApplyConsignResponse" message="tns:P08WcfService_ApplyConsign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelConsign">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CancelConsign" message="tns:P08WcfService_CancelConsign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CancelConsignResponse" message="tns:P08WcfService_CancelConsign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160204">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UpdateF160204" message="tns:P08WcfService_UpdateF160204_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UpdateF160204Response" message="tns:P08WcfService_UpdateF160204_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPickAllotOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckPickAllotOrder" message="tns:P08WcfService_CheckPickAllotOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckPickAllotOrderResponse" message="tns:P08WcfService_CheckPickAllotOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAndCreatePickAllotDatas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetAndCreatePickAllotDatas" message="tns:P08WcfService_GetAndCreatePickAllotDatas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetAndCreatePickAllotDatasResponse" message="tns:P08WcfService_GetAndCreatePickAllotDatas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckContainer" message="tns:P08WcfService_CheckContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckContainerResponse" message="tns:P08WcfService_CheckContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BindContainerFinished">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/BindContainerFinished" message="tns:P08WcfService_BindContainerFinished_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/BindContainerFinishedResponse" message="tns:P08WcfService_BindContainerFinished_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SowItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/SowItem" message="tns:P08WcfService_SowItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/SowItemResponse" message="tns:P08WcfService_SowItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF050305">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/InsertF050305" message="tns:P08WcfService_InsertF050305_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/InsertF050305Response" message="tns:P08WcfService_InsertF050305_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OutOfStocks">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/OutOfStocks" message="tns:P08WcfService_OutOfStocks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/OutOfStocksResponse" message="tns:P08WcfService_OutOfStocks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanContainerCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanContainerCode" message="tns:P08WcfService_ScanContainerCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanContainerCodeResponse" message="tns:P08WcfService_ScanContainerCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BindBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/BindBox" message="tns:P08WcfService_BindBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/BindBoxResponse" message="tns:P08WcfService_BindBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="P080804SowItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/P080804SowItem" message="tns:P08WcfService_P080804SowItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/P080804SowItemResponse" message="tns:P08WcfService_P080804SowItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPickLackItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetPickLackItems" message="tns:P08WcfService_GetPickLackItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetPickLackItemsResponse" message="tns:P08WcfService_GetPickLackItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerLackItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetContainerLackItems" message="tns:P08WcfService_GetContainerLackItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetContainerLackItemsResponse" message="tns:P08WcfService_GetContainerLackItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ContainerComplete">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ContainerComplete" message="tns:P08WcfService_ContainerComplete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ContainerCompleteResponse" message="tns:P08WcfService_ContainerComplete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PickOutOfStockComfirm">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/PickOutOfStockComfirm" message="tns:P08WcfService_PickOutOfStockComfirm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/PickOutOfStockComfirmResponse" message="tns:P08WcfService_PickOutOfStockComfirm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmpPickBind">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/DeleteEmpPickBind" message="tns:P08WcfService_DeleteEmpPickBind_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/DeleteEmpPickBindResponse" message="tns:P08WcfService_DeleteEmpPickBind_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPackageStationStatusLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/SetPackageStationStatusLog" message="tns:P08WcfService_SetPackageStationStatusLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/SetPackageStationStatusLogResponse" message="tns:P08WcfService_SetPackageStationStatusLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckShipContainerCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CheckShipContainerCode" message="tns:P08WcfService_CheckShipContainerCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CheckShipContainerCodeResponse" message="tns:P08WcfService_CheckShipContainerCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchAndCheckWmsOrderInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/SearchAndCheckWmsOrderInfo" message="tns:P08WcfService_SearchAndCheckWmsOrderInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/SearchAndCheckWmsOrderInfoResponse" message="tns:P08WcfService_SearchAndCheckWmsOrderInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanItemBarcode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanItemBarcode" message="tns:P08WcfService_ScanItemBarcode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanItemBarcodeResponse" message="tns:P08WcfService_ScanItemBarcode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseShipBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CloseShipBox" message="tns:P08WcfService_CloseShipBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CloseShipBoxResponse" message="tns:P08WcfService_CloseShipBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UseShipContainerToBoxDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UseShipContainerToBoxDetail" message="tns:P08WcfService_UseShipContainerToBoxDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UseShipContainerToBoxDetailResponse" message="tns:P08WcfService_UseShipContainerToBoxDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelShipOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CancelShipOrder" message="tns:P08WcfService_CancelShipOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CancelShipOrderResponse" message="tns:P08WcfService_CancelShipOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchShipReportList">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/SearchShipReportList" message="tns:P08WcfService_SearchShipReportList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/SearchShipReportListResponse" message="tns:P08WcfService_SearchShipReportList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBoxDetailReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetBoxDetailReport" message="tns:P08WcfService_GetBoxDetailReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetBoxDetailReportResponse" message="tns:P08WcfService_GetBoxDetailReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShipLittleLabelReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetShipLittleLabelReport" message="tns:P08WcfService_GetShipLittleLabelReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetShipLittleLabelReportResponse" message="tns:P08WcfService_GetShipLittleLabelReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRtnShipLittleLabelReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetRtnShipLittleLabelReport" message="tns:P08WcfService_GetRtnShipLittleLabelReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetRtnShipLittleLabelReportResponse" message="tns:P08WcfService_GetRtnShipLittleLabelReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GeShipFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GeShipFile" message="tns:P08WcfService_GeShipFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GeShipFileResponse" message="tns:P08WcfService_GeShipFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPackageLineStationStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/SetPackageLineStationStatus" message="tns:P08WcfService_SetPackageLineStationStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/SetPackageLineStationStatusResponse" message="tns:P08WcfService_SetPackageLineStationStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeShipPackCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ChangeShipPackCheck" message="tns:P08WcfService_ChangeShipPackCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ChangeShipPackCheckResponse" message="tns:P08WcfService_ChangeShipPackCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkStataionShipData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetWorkStataionShipData" message="tns:P08WcfService_GetWorkStataionShipData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetWorkStataionShipDataResponse" message="tns:P08WcfService_GetWorkStataionShipData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShipLogisticBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetShipLogisticBox" message="tns:P08WcfService_GetShipLogisticBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetShipLogisticBoxResponse" message="tns:P08WcfService_GetShipLogisticBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogPausePacking">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/LogPausePacking" message="tns:P08WcfService_LogPausePacking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/LogPausePackingResponse" message="tns:P08WcfService_LogPausePacking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateShipReportList">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/UpdateShipReportList" message="tns:P08WcfService_UpdateShipReportList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/UpdateShipReportListResponse" message="tns:P08WcfService_UpdateShipReportList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HomeDeliveryOrderDebit">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/HomeDeliveryOrderDebit" message="tns:P08WcfService_HomeDeliveryOrderDebit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/HomeDeliveryOrderDebitResponse" message="tns:P08WcfService_HomeDeliveryOrderDebit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF050305Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/InsertF050305Data" message="tns:P08WcfService_InsertF050305Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/InsertF050305DataResponse" message="tns:P08WcfService_InsertF050305Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelArrivalRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CancelArrivalRecord" message="tns:P08WcfService_CancelArrivalRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CancelArrivalRecordResponse" message="tns:P08WcfService_CancelArrivalRecord_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P08WcfService" type="tns:P08WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetF1929WithF1909Tests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAndUpdatePacking">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckAndUpdatePacking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPacking">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CancelPacking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSerialsInOrder">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckSerialsInOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSerialStatus">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckSerialStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchWmsOrder">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/SearchWmsOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartPackageCheck">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/StartPackageCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanPackageCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanPackageCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImpoortP161502">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ImpoortP161502" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSerials">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckSerials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InportUpdatePacking">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/InportUpdatePacking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPintBarCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetPintBarCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF16140102">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/InsertF16140102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF700101Status">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UpdateF700101Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF161201SourceNoStatus">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UpdateF161201SourceNoStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeF16140101IsPass">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ChangeF16140101IsPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinishCurrentBox">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/FinishCurrentBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckF161401RepeatSerialNo">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckF161401RepeatSerialNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadMasterDetailsData">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/LoadMasterDetailsData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReturnBomItemNotFullReturn">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckReturnBomItemNotFullReturn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF16140201">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UpdateF16140201" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoSearchItem">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/DoSearchItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF161402">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UpdateF161402" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDelvCheckCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UploadDelvCheckCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRetailDeliverDetailReport">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRetailDeliverDetailReportByRetail">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReportByRetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRetailDeliverDetailReportByRetailIntact">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetRetailDeliverDetailReportByRetailIntact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP0806130000Data">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UpdateP0806130000Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckOrderNo">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckOrderNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindComplete">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/BindComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddF050305Data">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/AddF050305Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="P081301CheckTarLocCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/P081301CheckTarLocCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="P081301CreateAllocation">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/P081301CreateAllocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyConsign">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ApplyConsign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelConsign">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CancelConsign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF160204">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UpdateF160204" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPickAllotOrder">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckPickAllotOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAndCreatePickAllotDatas">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetAndCreatePickAllotDatas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckContainer">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindContainerFinished">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/BindContainerFinished" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SowItem">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/SowItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF050305">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/InsertF050305" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OutOfStocks">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/OutOfStocks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanContainerCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanContainerCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindBox">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/BindBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="P080804SowItem">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/P080804SowItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPickLackItems">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetPickLackItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerLackItems">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetContainerLackItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerComplete">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ContainerComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PickOutOfStockComfirm">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/PickOutOfStockComfirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmpPickBind">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/DeleteEmpPickBind" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPackageStationStatusLog">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/SetPackageStationStatusLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckShipContainerCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CheckShipContainerCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchAndCheckWmsOrderInfo">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/SearchAndCheckWmsOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanItemBarcode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanItemBarcode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseShipBox">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CloseShipBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UseShipContainerToBoxDetail">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UseShipContainerToBoxDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelShipOrder">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CancelShipOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchShipReportList">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/SearchShipReportList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBoxDetailReport">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetBoxDetailReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShipLittleLabelReport">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetShipLittleLabelReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRtnShipLittleLabelReport">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetRtnShipLittleLabelReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeShipFile">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GeShipFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPackageLineStationStatus">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/SetPackageLineStationStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeShipPackCheck">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ChangeShipPackCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkStataionShipData">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetWorkStataionShipData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShipLogisticBox">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetShipLogisticBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogPausePacking">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/LogPausePacking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateShipReportList">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/UpdateShipReportList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HomeDeliveryOrderDebit">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/HomeDeliveryOrderDebit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF050305Data">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/InsertF050305Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelArrivalRecord">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CancelArrivalRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P08WcfService">
+    <wsdl:port name="BasicHttpBinding_P08WcfService" binding="tns:BasicHttpBinding_P08WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P08WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

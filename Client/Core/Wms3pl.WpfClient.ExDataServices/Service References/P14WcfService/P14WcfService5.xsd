@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="F1980">
+    <xs:sequence>
+      <xs:element name="_x003C_CAL_FEE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CAL_STOCK_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DEVICE_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_A_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_B_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_C_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_D_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EXTENSION_E_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_HOR_DISTANCE_x003E_k__BackingField" nillable="true" type="xs:decimal" />
+      <xs:element name="_x003C_LOC_TYPE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PICK_FLOOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RENT_BEGIN_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_RENT_END_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_TMPR_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WAREHOUSE_ID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WAREHOUSE_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_WAREHOUSE_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F1980" nillable="true" type="tns:F1980" />
+</xs:schema>

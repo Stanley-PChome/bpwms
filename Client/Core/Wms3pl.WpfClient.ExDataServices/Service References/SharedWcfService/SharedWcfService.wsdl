@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SharedWcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F25" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/SharedWcfService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.WebServices.Shared.ServiceEntites" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SharedWcfService_GenerateEgsConsign_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateEgsConsign" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GenerateEgsConsign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateEgsConsignResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_CreateConsignBySuperBU_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateConsignBySuperBU" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_CreateConsignBySuperBU_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateConsignBySuperBUResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetEgsReturnConsigns_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEgsReturnConsigns" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetEgsReturnConsigns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEgsReturnConsignsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetStatusList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusList" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetStatusList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetStatusListByAllId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusListByAllId" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetStatusListByAllId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusListByAllIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetUpdateF050901DataForSOD_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpdateF050901DataForSOD" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetUpdateF050901DataForSOD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpdateF050901DataForSODResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetUpdateF050901DataForLogId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpdateF050901DataForLogId" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetUpdateF050901DataForLogId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpdateF050901DataForLogIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForTCAT_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForTCAT" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForTCAT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForTCATResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForTCATSOD_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForTCATSOD" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForTCATSOD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForTCATSODResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_InsertDbLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDbLog" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_InsertDbLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDbLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateDbLogIsSuccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDbLogIsSuccess" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateDbLogIsSuccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDbLogIsSuccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetBarCodePalletOrBoxNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBarCodePalletOrBoxNo" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetBarCodePalletOrBoxNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBarCodePalletOrBoxNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetEgsCustomerSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEgsCustomerSetting" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetEgsCustomerSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEgsCustomerSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetHctShipReturns_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHctShipReturns" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetHctShipReturns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHctShipReturnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForHCT_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForHCT" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForHCT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForHCTResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetHctCustomerSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHctCustomerSetting" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetHctCustomerSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHctCustomerSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetKTJShipReturns_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetKTJShipReturns" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetKTJShipReturns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetKTJShipReturnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetSampleExcel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleExcel" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetSampleExcel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusSOD_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusSOD" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusSOD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusSODResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetKtjCustomerSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetKtjCustomerSetting" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetKtjCustomerSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetKtjCustomerSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForKTJ_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForKTJ" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_UpdateStatusForKTJ_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusForKTJResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_FindItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindItems" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_FindItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_ContainerCloseBoxWithRT_InputMessage">
+    <wsdl:part name="parameters" element="tns:ContainerCloseBoxWithRT" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_ContainerCloseBoxWithRT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ContainerCloseBoxWithRTResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_CheckContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckContainer" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_CheckContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetItemAllDlnAndAllShp_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemAllDlnAndAllShp" />
+  </wsdl:message>
+  <wsdl:message name="SharedWcfService_GetItemAllDlnAndAllShp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemAllDlnAndAllShpResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SharedWcfService">
+    <wsdl:operation name="GenerateEgsConsign">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GenerateEgsConsign" message="tns:SharedWcfService_GenerateEgsConsign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GenerateEgsConsignResponse" message="tns:SharedWcfService_GenerateEgsConsign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateConsignBySuperBU">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/CreateConsignBySuperBU" message="tns:SharedWcfService_CreateConsignBySuperBU_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/CreateConsignBySuperBUResponse" message="tns:SharedWcfService_CreateConsignBySuperBU_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEgsReturnConsigns">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetEgsReturnConsigns" message="tns:SharedWcfService_GetEgsReturnConsigns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetEgsReturnConsignsResponse" message="tns:SharedWcfService_GetEgsReturnConsigns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusList">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetStatusList" message="tns:SharedWcfService_GetStatusList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetStatusListResponse" message="tns:SharedWcfService_GetStatusList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusListByAllId">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetStatusListByAllId" message="tns:SharedWcfService_GetStatusListByAllId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetStatusListByAllIdResponse" message="tns:SharedWcfService_GetStatusListByAllId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateF050901DataForSOD">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetUpdateF050901DataForSOD" message="tns:SharedWcfService_GetUpdateF050901DataForSOD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetUpdateF050901DataForSODResponse" message="tns:SharedWcfService_GetUpdateF050901DataForSOD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateF050901DataForLogId">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetUpdateF050901DataForLogId" message="tns:SharedWcfService_GetUpdateF050901DataForLogId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetUpdateF050901DataForLogIdResponse" message="tns:SharedWcfService_GetUpdateF050901DataForLogId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForTCAT">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForTCAT" message="tns:SharedWcfService_UpdateStatusForTCAT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForTCATResponse" message="tns:SharedWcfService_UpdateStatusForTCAT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForTCATSOD">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForTCATSOD" message="tns:SharedWcfService_UpdateStatusForTCATSOD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForTCATSODResponse" message="tns:SharedWcfService_UpdateStatusForTCATSOD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDbLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/InsertDbLog" message="tns:SharedWcfService_InsertDbLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/InsertDbLogResponse" message="tns:SharedWcfService_InsertDbLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDbLogIsSuccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/UpdateDbLogIsSuccess" message="tns:SharedWcfService_UpdateDbLogIsSuccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/UpdateDbLogIsSuccessResponse" message="tns:SharedWcfService_UpdateDbLogIsSuccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBarCodePalletOrBoxNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetBarCodePalletOrBoxNo" message="tns:SharedWcfService_GetBarCodePalletOrBoxNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetBarCodePalletOrBoxNoResponse" message="tns:SharedWcfService_GetBarCodePalletOrBoxNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEgsCustomerSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetEgsCustomerSetting" message="tns:SharedWcfService_GetEgsCustomerSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetEgsCustomerSettingResponse" message="tns:SharedWcfService_GetEgsCustomerSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHctShipReturns">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetHctShipReturns" message="tns:SharedWcfService_GetHctShipReturns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetHctShipReturnsResponse" message="tns:SharedWcfService_GetHctShipReturns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForHCT">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForHCT" message="tns:SharedWcfService_UpdateStatusForHCT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForHCTResponse" message="tns:SharedWcfService_UpdateStatusForHCT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHctCustomerSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetHctCustomerSetting" message="tns:SharedWcfService_GetHctCustomerSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetHctCustomerSettingResponse" message="tns:SharedWcfService_GetHctCustomerSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKTJShipReturns">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetKTJShipReturns" message="tns:SharedWcfService_GetKTJShipReturns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetKTJShipReturnsResponse" message="tns:SharedWcfService_GetKTJShipReturns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSampleExcel">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetSampleExcel" message="tns:SharedWcfService_GetSampleExcel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetSampleExcelResponse" message="tns:SharedWcfService_GetSampleExcel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusSOD">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusSOD" message="tns:SharedWcfService_UpdateStatusSOD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusSODResponse" message="tns:SharedWcfService_UpdateStatusSOD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKtjCustomerSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetKtjCustomerSetting" message="tns:SharedWcfService_GetKtjCustomerSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetKtjCustomerSettingResponse" message="tns:SharedWcfService_GetKtjCustomerSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForKTJ">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForKTJ" message="tns:SharedWcfService_UpdateStatusForKTJ_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/UpdateStatusForKTJResponse" message="tns:SharedWcfService_UpdateStatusForKTJ_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/FindItems" message="tns:SharedWcfService_FindItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/FindItemsResponse" message="tns:SharedWcfService_FindItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ContainerCloseBoxWithRT">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/ContainerCloseBoxWithRT" message="tns:SharedWcfService_ContainerCloseBoxWithRT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/ContainerCloseBoxWithRTResponse" message="tns:SharedWcfService_ContainerCloseBoxWithRT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/CheckContainer" message="tns:SharedWcfService_CheckContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/CheckContainerResponse" message="tns:SharedWcfService_CheckContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemAllDlnAndAllShp">
+      <wsdl:input wsaw:Action="http://tempuri.org/SharedWcfService/GetItemAllDlnAndAllShp" message="tns:SharedWcfService_GetItemAllDlnAndAllShp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/SharedWcfService/GetItemAllDlnAndAllShpResponse" message="tns:SharedWcfService_GetItemAllDlnAndAllShp_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_SharedWcfService" type="tns:SharedWcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerateEgsConsign">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GenerateEgsConsign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateConsignBySuperBU">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/CreateConsignBySuperBU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEgsReturnConsigns">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetEgsReturnConsigns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusList">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetStatusList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusListByAllId">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetStatusListByAllId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateF050901DataForSOD">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetUpdateF050901DataForSOD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateF050901DataForLogId">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetUpdateF050901DataForLogId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForTCAT">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/UpdateStatusForTCAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForTCATSOD">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/UpdateStatusForTCATSOD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDbLog">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/InsertDbLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDbLogIsSuccess">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/UpdateDbLogIsSuccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBarCodePalletOrBoxNo">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetBarCodePalletOrBoxNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEgsCustomerSetting">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetEgsCustomerSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHctShipReturns">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetHctShipReturns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForHCT">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/UpdateStatusForHCT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHctCustomerSetting">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetHctCustomerSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKTJShipReturns">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetKTJShipReturns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSampleExcel">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetSampleExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusSOD">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/UpdateStatusSOD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKtjCustomerSetting">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetKtjCustomerSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusForKTJ">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/UpdateStatusForKTJ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindItems">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/FindItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerCloseBoxWithRT">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/ContainerCloseBoxWithRT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckContainer">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/CheckContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemAllDlnAndAllShp">
+      <soap:operation soapAction="http://tempuri.org/SharedWcfService/GetItemAllDlnAndAllShp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SharedWcfService">
+    <wsdl:port name="BasicHttpBinding_SharedWcfService" binding="tns:BasicHttpBinding_SharedWcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/SharedWcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

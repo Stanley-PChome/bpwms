@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P25WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P25WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P25WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P25WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P25WcfService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P25WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P25WcfService_GetTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTests" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_GetTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_InsertUpdateF2501Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUpdateF2501Data" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_InsertUpdateF2501Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUpdateF2501DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_ExtendValidDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendValidDate" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_ExtendValidDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendValidDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_CheckNewSerialNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckNewSerialNo" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_CheckNewSerialNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckNewSerialNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_ChangeSerialNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeSerialNo" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_ChangeSerialNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeSerialNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_CheckImportData_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckImportData" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_CheckImportData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckImportDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_Get2501QueryData_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get2501QueryData" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_Get2501QueryData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Get2501QueryDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_DeleteSerialNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSerialNo" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_DeleteSerialNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSerialNoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P25WcfService">
+    <wsdl:operation name="GetTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/GetTests" message="tns:P25WcfService_GetTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/GetTestsResponse" message="tns:P25WcfService_GetTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateF2501Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/InsertUpdateF2501Data" message="tns:P25WcfService_InsertUpdateF2501Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/InsertUpdateF2501DataResponse" message="tns:P25WcfService_InsertUpdateF2501Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtendValidDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/ExtendValidDate" message="tns:P25WcfService_ExtendValidDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/ExtendValidDateResponse" message="tns:P25WcfService_ExtendValidDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewSerialNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/CheckNewSerialNo" message="tns:P25WcfService_CheckNewSerialNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/CheckNewSerialNoResponse" message="tns:P25WcfService_CheckNewSerialNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSerialNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/ChangeSerialNo" message="tns:P25WcfService_ChangeSerialNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/ChangeSerialNoResponse" message="tns:P25WcfService_ChangeSerialNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckImportData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/CheckImportData" message="tns:P25WcfService_CheckImportData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/CheckImportDataResponse" message="tns:P25WcfService_CheckImportData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get2501QueryData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/Get2501QueryData" message="tns:P25WcfService_Get2501QueryData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/Get2501QueryDataResponse" message="tns:P25WcfService_Get2501QueryData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSerialNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/DeleteSerialNo" message="tns:P25WcfService_DeleteSerialNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/DeleteSerialNoResponse" message="tns:P25WcfService_DeleteSerialNo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P25WcfService" type="tns:P25WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTests">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/GetTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateF2501Data">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/InsertUpdateF2501Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendValidDate">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/ExtendValidDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewSerialNo">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/CheckNewSerialNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSerialNo">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/ChangeSerialNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckImportData">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/CheckImportData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get2501QueryData">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/Get2501QueryData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSerialNo">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/DeleteSerialNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P25WcfService">
+    <wsdl:port name="BasicHttpBinding_P25WcfService" binding="tns:BasicHttpBinding_P25WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P25WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

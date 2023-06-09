@@ -1,0 +1,294 @@
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P17.Views.P1701030000"
+	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+	xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+	xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+	xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+	xmlns:converter="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common"
+	xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P17.ViewModel"
+	xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P17.Properties" 
+	xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+	x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800"
+	controls:PermissionService.FunctionId="P1701030000"
+	controls:PermissionService.FunctionName="儲位屬性維護"
+	FormException="{Binding Exception}">
+	<uiLib:Wms3plUserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+			<converter:CheckStateConverter x:Key="CheckStateConverter"/>
+			<converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
+			<converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+			<converter:TimeStringToTimeFormatConverter x:Key="TimeStringConverter" />
+            <converter:StringToLocCodeConverter x:Key="StringToLocCodeConverter" />
+            <Style TargetType="Label" x:Key="LbStyle">
+				<Setter Property="Margin" Value="3"/>
+				<Setter Property="MinWidth" Value="85"/>
+				<Setter Property="VerticalContentAlignment" Value="Center" />
+			</Style>
+			<Style TargetType="DatePicker" x:Key="DateStyle">
+				<Setter Property="Margin" Value="3"/>
+				<Setter Property="Width" Value="150"/>
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+			</Style>
+			<Style TargetType="ComboBox" x:Key="ComboStyle">
+				<Setter Property="Margin" Value="3"/>
+				<Setter Property="Width" Value="150"/>
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+			</Style>
+			<Style TargetType="CheckBox" x:Key="CheckStyle">
+				<Setter Property="Margin" Value="3"/>
+				<Setter Property="Width" Value="65"/>
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+			</Style>
+			<Style TargetType="TextBox" x:Key="TxtStyle">
+				<Setter Property="Margin" Value="3"/>
+				<Setter Property="Width" Value="90"/>
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+			</Style>
+			<Style TargetType="DataGrid" x:Key="DgStyle" BasedOn="{StaticResource {x:Type DataGrid}}">
+				<Setter Property="Margin" Value="5"/>
+				<Setter Property="AutoGenerateColumns" Value="False"/>
+				<Setter Property="CanUserAddRows" Value="False"/>
+				<Setter Property="CanUserDeleteRows" Value="False"/>
+				<Setter Property="IsReadOnly" Value="True" />
+			</Style>
+            <Style TargetType="CheckBox" x:Key="CheckStyleForEdit">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Width" Value="130"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+		</ResourceDictionary>
+	</uiLib:Wms3plUserControl.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+					<Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1701030001" Command="{Binding SearchCommand}" Visibility="{Binding VisibilityQueryMode,UpdateSourceTrigger=PropertyChanged}" />
+					<Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1701030003" Command="{Binding EditCommand}" Visibility="{Binding VisibilityQueryMode,UpdateSourceTrigger=PropertyChanged}" />
+					<Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1701030004" Command="{Binding CancelCommand}" Visibility="{Binding VisibilityEditMode,UpdateSourceTrigger=PropertyChanged}" />
+					<Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1701030006" Command="{Binding SaveCommand}" Visibility="{Binding VisibilityEditMode,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}"/>
+				</WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
+				<TabControl x:Name="LayoutRoot" >
+					<TabControl.BindingGroup>
+						<BindingGroup Name="errorGroup" />
+					</TabControl.BindingGroup>
+					<TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+						<DockPanel>
+							<!-- 由此處開始加入畫面項目 -->
+							<GroupBox Header="{x:Static res:Resources.Query}" DockPanel.Dock="Top" Visibility="{Binding VisibilityQueryMode, UpdateSourceTrigger=PropertyChanged}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*"/>
+										<RowDefinition Height="*"/>
+										<RowDefinition Height="*"/>
+										<RowDefinition Height="*"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+										<ColumnDefinition Width="auto"/>
+									</Grid.ColumnDefinitions>
+									<Label  Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.DC}" Style="{StaticResource LbStyle}" />
+									<ComboBox  Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" SelectedIndex="0" 
+											  ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}" 
+											  DisplayMemberPath="Name" SelectedValuePath="Value" 
+											  SelectedValue="{Binding SelectedDc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+									<Label  Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.GUP_NAME}" Style="{StaticResource LbStyle}" HorizontalContentAlignment="Right"
+													 Visibility="{Binding GupVisibility, UpdateSourceTrigger=PropertyChanged}" />
+									<ComboBox  Grid.Row="0" Grid.Column="3" Style="{StaticResource ComboStyle}" SelectedIndex="0" 
+												  Visibility="{Binding GupVisibility, UpdateSourceTrigger=PropertyChanged}"
+												  ItemsSource="{Binding GupList, UpdateSourceTrigger=PropertyChanged}" 
+												  DisplayMemberPath="Name" SelectedValuePath="Value" 
+												  SelectedValue="{Binding SelectedGup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+									<Label  Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.CUST_NAME}" Style="{StaticResource LbStyle}" HorizontalContentAlignment="Right"
+													 Visibility="{Binding GupVisibility, UpdateSourceTrigger=PropertyChanged}" />
+									<ComboBox  Grid.Row="0" Grid.Column="5" Style="{StaticResource ComboStyle}" SelectedIndex="0" 
+												  Visibility="{Binding CustVisibility, UpdateSourceTrigger=PropertyChanged}"
+												  ItemsSource="{Binding CustList, UpdateSourceTrigger=PropertyChanged}" 
+												  DisplayMemberPath="Name" SelectedValuePath="Value" 
+												  SelectedValue="{Binding SelectedCust, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+									<Label Grid.Row="1" Grid.Column="0"  Content="{x:Static Properties:Resources.WAREHOUSE_TYPE}" Style="{StaticResource LbStyle}" HorizontalContentAlignment="Right"/>
+									<ComboBox Grid.Row="1" Grid.Column="1"  Style="{StaticResource ComboStyle}" SelectedIndex="0" 
+											  ItemsSource="{Binding WarehouseTypeList, UpdateSourceTrigger=PropertyChanged}" 
+											  DisplayMemberPath="Name" SelectedValuePath="Value" 
+											  SelectedValue="{Binding SelectedWarehouseType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+									<Label Grid.Row="1" Grid.Column="2"  Content="{x:Static Properties:Resources.WAREHOUSE_NAME}" Style="{StaticResource LbStyle}" Width="60" HorizontalContentAlignment="Right" />
+									<ComboBox Grid.Row="1" Grid.Column="3"  Style="{StaticResource ComboStyle}" SelectedIndex="0" 
+											  ItemsSource="{Binding WarehouseList, UpdateSourceTrigger=PropertyChanged}" 
+											  DisplayMemberPath="Name" SelectedValuePath="Value" 
+											  SelectedValue="{Binding SelectedWarehouse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+									<WrapPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal" VerticalAlignment="Center">
+										<RadioButton IsChecked="{Binding SearchByArea, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+													 GroupName="SearchType" Content="依儲位" VerticalContentAlignment="Center"/>
+
+										<Label Content="{x:Static Properties:Resources.LOC_CODE}" Style="{StaticResource LbStyle}" Width="60" HorizontalContentAlignment="Right" />
+										<ComboBox Style="{StaticResource ComboStyle}" SelectedIndex="0" 
+											  ItemsSource="{Binding AreaList, UpdateSourceTrigger=PropertyChanged}" 
+											  DisplayMemberPath="Name" SelectedValuePath="Value" 
+											  SelectedValue="{Binding SelectedArea, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+										<Label Content="通道" Style="{StaticResource LbStyle}" Width="60" HorizontalContentAlignment="Right" />
+										<ComboBox Style="{StaticResource ComboStyle}" SelectedIndex="0" 
+											  ItemsSource="{Binding ChannelList, UpdateSourceTrigger=PropertyChanged}" 
+											  DisplayMemberPath="Name" SelectedValuePath="Value" 
+											  SelectedValue="{Binding SelectedChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+									</WrapPanel>
+									<WrapPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal" VerticalAlignment="Center">
+										<RadioButton IsChecked="{Binding SearchByLoc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+													 GroupName="SearchType" Content="{x:Static Properties:Resources.BY_LOC_CODE}" VerticalContentAlignment="Center" />
+										<Label Content="{x:Static Properties:Resources.LOC_CODE_S}" Style="{StaticResource LbStyle}" />
+										<TextBox Name="txtStartCode" Text="{Binding SearchStartCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+												 Style="{StaticResource TxtStyle}" MaxLength="20" Width="160" />
+										<Label Content="{x:Static Properties:Resources.LOC_CODE_E}" Style="{StaticResource LbStyle}" />
+										<TextBox Name="txtEndCode" Text="{Binding SearchEndCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+												 Style="{StaticResource TxtStyle}" MaxLength="20" Width="160" />
+										<Label Content="{Binding SelectedItemName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbStyle}" />
+									</WrapPanel>
+								</Grid>
+							</GroupBox>
+                            <GroupBox Header="{x:Static Properties:Resources.LOC_ATTRIBUTE_MODIFY}" DockPanel.Dock="Top" Visibility="{Binding VisibilityEditMode, UpdateSourceTrigger=PropertyChanged}">
+								<WrapPanel Orientation="Vertical">
+									<WrapPanel Orientation="Horizontal">
+                                        <Grid >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="0" Grid.Column="0" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="160"/>
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox  Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.IsAdjust}" Style="{StaticResource CheckStyleForEdit}" IsChecked="{Binding IsSaveHorDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="IsSaveHorDistance_Checked"  Unchecked="IsSaveHorDistance_Checked" />
+                                                <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.DISTANCE}" Style="{StaticResource LbStyle}" />
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="160"/>
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox  Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.IsAdjust}" Style="{StaticResource CheckStyleForEdit}" IsChecked="{Binding IsSaveLocType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="IsSaveLocType_Checked"  Unchecked="IsSaveLocType_Checked"  />
+                                                <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.LOCType}" Style="{StaticResource LbStyle}" />
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="2" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="160"/>
+                                                </Grid.ColumnDefinitions>
+                                                <!--<CheckBox  Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.IsAdjust}" Style="{StaticResource CheckStyleForEdit}" IsChecked="{Binding IsSaveHandy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="IsSaveHandy_Checked"  Unchecked="IsSaveHandy_Checked" />-->
+                                                <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.HANDY}" Style="{StaticResource LbStyle}" />
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="0" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="160"/>
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox  Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.IsAdjust}" Style="{StaticResource CheckStyleForEdit}"  IsChecked="{Binding IsSaveRentBaginDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="IsSaveRentBaginDate_Checked"  Unchecked="IsSaveRentBaginDate_Checked"/>
+                                                <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.dtRENT_BEGIN_DATE}" Style="{StaticResource LbStyle}" />
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="1" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="160"/>
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox  Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.IsAdjust}" Style="{StaticResource CheckStyleForEdit}"  IsChecked="{Binding IsSaveRentEndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="IsSaveRentEndDate_Checked"  Unchecked="IsSaveRentEndDate_Checked" />
+                                                <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.dtRENT_END_DATE}" Style="{StaticResource LbStyle}" />
+                                            </Grid>
+
+                                            <TextBox Grid.Row="1" Grid.Column="0"  Text="{Binding txtHOR_DISTANCE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" />
+                                            <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboStyle}"
+															ItemsSource="{Binding LOCTypeList, UpdateSourceTrigger=PropertyChanged}" 
+															DisplayMemberPath="Name" SelectedValuePath="Value" 
+															SelectedValue="{Binding SelectedLOCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding txtHANDY, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" HorizontalAlignment="Left" IsReadOnly="True" IsEnabled="False"/>
+                                            <DatePicker Grid.Row="4" Grid.Column="0" Style="{StaticResource DateStyle}" SelectedDate="{Binding dtRENT_BEGIN_DATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <DatePicker Grid.Row="4" Grid.Column="1" Style="{StaticResource DateStyle}" SelectedDate="{Binding dtRENT_END_DATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </Grid>
+                                    </WrapPanel>
+								</WrapPanel>
+							</GroupBox>
+							<GroupBox Header="{x:Static res:Resources.OueryResult}" DockPanel.Dock="Top" Visibility="{Binding VisibilityQueryMode, UpdateSourceTrigger=PropertyChanged}">
+								<DataGrid Name="dgList" ItemsSource="{Binding LocList, UpdateSourceTrigger=PropertyChanged}"
+													Style="{StaticResource DgStyle}" SelectionUnit="FullRow" SelectionMode="Single">
+									<DataGrid.Columns>
+										<DataGridTemplateColumn Width="80">
+											<DataGridTemplateColumn.HeaderTemplate>
+												<DataTemplate>
+													
+														<CheckBox IsChecked="{Binding DataContext.IsCheckAll, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+																	Command="{Binding DataContext.CheckAllCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" VerticalContentAlignment="Center"
+																	Content="{x:Static res:Resources.SelectAll}"/>
+													
+												</DataTemplate>
+											</DataGridTemplateColumn.HeaderTemplate>
+											<DataGridTemplateColumn.CellTemplate>
+												<DataTemplate>
+													<WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+														<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+													</WrapPanel>
+												</DataTemplate>
+											</DataGridTemplateColumn.CellTemplate>
+										</DataGridTemplateColumn>
+										<DataGridTextColumn Header="{x:Static res:Resources.Dc}"  Binding="{Binding DC_NAME}" />
+										<DataGridTextColumn Header="{x:Static Properties:Resources.GUP_NAME}"  Binding="{Binding GUP_NAME}" />
+										<DataGridTextColumn Header="{x:Static Properties:Resources.CUST_NAME}" Binding="{Binding CUST_NAME}" />
+										<DataGridTextColumn Header="{x:Static Properties:Resources.WAREHOUSE_NAME}"  Binding="{Binding WAREHOUSE_NAME}"/>
+										<DataGridTextColumn Header="{x:Static Properties:Resources.WAREHOUSE_CODE}"  Binding="{Binding WAREHOUSE_CODE}" Visibility="Hidden" />
+										<DataGridTextColumn Header="{x:Static Properties:Resources.LOC_CODE}"  Binding="{Binding AREA_NAME}"/>
+										<DataGridTextColumn Header="{x:Static Properties:Resources.AREA_CODE}"  Binding="{Binding AREA_CODE}" Visibility="Hidden" />
+                                        <DataGridTextColumn Header="{x:Static Properties:Resources.LOCCODE}" Binding="{Binding LOC_CODE,Converter={StaticResource StringToLocCodeConverter}}" />
+										<DataGridTextColumn Header="{x:Static Properties:Resources.TEMP_TYPE_NAME}"  Binding="{Binding TEMP_TYPE_NAME}" />
+                                        <DataGridTextColumn Header="水平距離(公尺)"  Binding="{Binding HOR_DISTANCE}"/>
+										<DataGridTextColumn Header="{x:Static Properties:Resources.LOC_TYPE_NAME}" Binding="{Binding LOC_TYPE_NAME}" />
+										<DataGridTextColumn Header="{x:Static Properties:Resources.HANDY}"  Binding="{Binding HANDY}"/>
+										<DataGridTextColumn Header="{x:Static Properties:Resources.RENT_BEGIN_DATE}"  Binding="{Binding RENT_BEGIN_DATE,Converter={StaticResource DateTimeToStringConverter}, ConverterParameter=yyyy/MM/dd}"/>
+										<DataGridTextColumn Header="{x:Static Properties:Resources.RENT_END_DATE}"  Binding="{Binding RENT_END_DATE,Converter={StaticResource DateTimeToStringConverter}, ConverterParameter=yyyy/MM/dd}"/>
+										<DataGridCheckBoxColumn Header="{x:Static Properties:Resources.CAL_STOCK}"  Binding="{Binding CAL_STOCK,Converter={StaticResource StringToBoolConverter}}" />
+										<DataGridCheckBoxColumn Header="{x:Static Properties:Resources.CAL_FEE}"  Binding="{Binding CAL_FEE,Converter={StaticResource StringToBoolConverter}}" />
+									</DataGrid.Columns>
+								</DataGrid>
+							</GroupBox>
+						</DockPanel>
+					</TabItem>
+				</TabControl>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

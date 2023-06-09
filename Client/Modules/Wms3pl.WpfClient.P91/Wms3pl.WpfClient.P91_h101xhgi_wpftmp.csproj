@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD618563-992C-43C2-832C-6C2A3ECE42E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WpfClient.P91</RootNamespace>
+    <AssemblyName>Wms3pl.WpfClient.P91</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\R9101010001en_US.cs">
+      <DependentUpon>R9101010001en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\R9101010001.cs">
+      <DependentUpon>R9101010001.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\R9101010001Sub1en_US.cs">
+      <DependentUpon>R9101010001Sub1en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\R9101010001Sub1.cs">
+      <DependentUpon>R9101010001Sub1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\R9101010001Sub1zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R9101010001Sub1zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\R9101010001Sub2en_US.cs">
+      <DependentUpon>R9101010001Sub2en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\R9101010001Sub2.cs">
+      <DependentUpon>R9101010001Sub2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\R9101010001Sub2zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R9101010001Sub2zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\R9101010001zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R9101010001zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\R9103030001en_US.cs">
+      <DependentUpon>R9103030001en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\R9103030001.cs">
+      <DependentUpon>R9103030001.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\R9103030001zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R9103030001zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\R9103030002en_US.cs">
+      <DependentUpon>R9103030002en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\R9103030002.cs">
+      <DependentUpon>R9103030002.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\R9103030002zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R9103030002zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\RP9101010002en_US.cs">
+      <DependentUpon>RP9101010002en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\RP9101010002.cs">
+      <DependentUpon>RP9101010002.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\RP9101010002zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RP9101010002zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\RP9101010501en_US.cs">
+      <DependentUpon>RP9101010501en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\RP9101010501.cs">
+      <DependentUpon>RP9101010501.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\RP9101010501zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RP9101010501zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\RP9103020001en_US.cs">
+      <DependentUpon>RP9103020001en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\RP9103020001.cs">
+      <DependentUpon>RP9103020001.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\RP9103020001zh_CN1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RP9103020001zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\RP9103020002en_US.cs">
+      <DependentUpon>RP9103020002en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\RP9103020002zh_CN.cs">
+      <DependentUpon>RP9103020002zh_CN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\RP9103020002.cs">
+      <DependentUpon>RP9103020002.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\RP9103020003en_US.cs">
+      <DependentUpon>RP9103020003en_US.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\RP9103020003.cs">
+      <DependentUpon>RP9103020003.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\RP9103020003zh_CN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RP9103020003zh_CN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\P91CommonDataHelper.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\P9100000000_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010000_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010100_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010101_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010200_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010300_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010400_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010500_ViewModel.cs" />
+    <Compile Include="ViewModel\P9101010600_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103010000_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103010100_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103010200_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103020000_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103030000_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103030200_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103040000_ViewModel.cs" />
+    <Compile Include="ViewModel\P9103050000_ViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\P9101010000.xaml.cs">
+      <DependentUpon>P9101010000.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9101010100.xaml.cs">
+      <DependentUpon>P9101010100.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9101010200.xaml.cs">
+      <DependentUpon>P9101010200.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9101010300.xaml.cs">
+      <DependentUpon>P9101010300.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9101010400.xaml.cs">
+      <DependentUpon>P9101010400.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9101010500.xaml.cs">
+      <DependentUpon>P9101010500.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9101010600.xaml.cs">
+      <DependentUpon>P9101010600.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9103010000.xaml.cs">
+      <DependentUpon>P9103010000.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9103020000.xaml.cs">
+      <DependentUpon>P9103020000.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9103030000.xaml.cs">
+      <DependentUpon>P9103030000.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9103030100.xaml.cs">
+      <DependentUpon>P9103030100.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9103030200.xaml.cs">
+      <DependentUpon>P9103030200.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9103040000.xaml.cs">
+      <DependentUpon>P9103040000.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P9103050000.xaml.cs">
+      <DependentUpon>P9103050000.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Wms3pl.Common\Wms3pl.Common.csproj">
+      <Project>{c7640a2e-5290-4dee-959d-ecdbf815f846}</Project>
+      <Name>Wms3pl.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.Common\Wms3pl.WpfClient.Common.csproj">
+      <Project>{0c8c673b-4390-4825-8605-6b2a70095b4f}</Project>
+      <Name>Wms3pl.WpfClient.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.DataServices\Wms3pl.WpfClient.DataServices.csproj">
+      <Project>{ab389260-f6f9-4b37-9d53-6aa8fa5c0cd4}</Project>
+      <Name>Wms3pl.WpfClient.DataServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.ExDataServices\Wms3pl.WpfClient.ExDataServices.csproj">
+      <Project>{056bbb13-890d-432d-858f-4bd6ef840006}</Project>
+      <Name>Wms3pl.WpfClient.ExDataServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.LabelPrinter\Wms3pl.WpfClient.LabelPrinter.csproj">
+      <Project>{851f81a2-cf06-41eb-98ac-cf6e608ef780}</Project>
+      <Name>Wms3pl.WpfClient.LabelPrinter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P19\Wms3pl.WpfClient.P19.csproj">
+      <Project>{77403299-ba9a-4746-a5e3-28d93bc2597b}</Project>
+      <Name>Wms3pl.WpfClient.P19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P71\Wms3pl.WpfClient.P71.csproj">
+      <Project>{e745f324-4cea-4384-97d2-4af8b403a5cf}</Project>
+      <Name>Wms3pl.WpfClient.P71</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.Services\Wms3pl.WpfClient.Services.csproj">
+      <Project>{2b9a7011-d480-467b-b9eb-ec5cba108c6b}</Project>
+      <Name>Wms3pl.WpfClient.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.UcLib\Wms3pl.WpfClient.UcLib.csproj">
+      <Project>{3efe6126-c90f-4e68-894b-2098b183b3da}</Project>
+      <Name>Wms3pl.WpfClient.UcLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.UILib\Wms3pl.WpfClient.UILib.csproj">
+      <Project>{71cc6808-45bb-470e-9d22-f4863669f18b}</Project>
+      <Name>Wms3pl.WpfClient.UILib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClients.SharedViews\Wms3pl.WpfClients.SharedViews.csproj">
+      <Project>{00627b28-afb7-4087-b419-e096b82df071}</Project>
+      <Name>Wms3pl.WpfClients.SharedViews</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\WpfClient.Resources\WpfClient.Resources.csproj">
+      <Project>{321b4074-53db-40f7-96b0-baf422739858}</Project>
+      <Name>WpfClient.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+    <EmbeddedResource Include="Report\R9101010001en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001Sub1en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001Sub1en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001Sub1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001Sub1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001Sub1zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001Sub1zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001Sub2en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001Sub2en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001Sub2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001Sub2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001Sub2zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001Sub2zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9101010001zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9101010001zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9103030001en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9103030001en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9103030001.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9103030001.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9103030001zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9103030001zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9103030002en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9103030002en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9103030002.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9103030002.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\R9103030002zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R9103030002zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9101010002en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9101010002en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9101010002.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9101010002.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9101010002zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9101010002zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9101010501en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9101010501en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9101010501.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9101010501.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9101010501zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9101010501zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020001en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020001en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020001.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020001.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020001zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020001zh_CN1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020002en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020002en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020002zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020002zh_CN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020002.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020002.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020003en_US.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020003en_US.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020003.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020003.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RP9103020003zh_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RP9103020003zh_CN.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(BuildingInsideVisualStudio)"=="true" (
+mkdir $(SolutionDir)WpfClient\$(OutDir)\$(TargetName)\Views\
+copy $(ProjectDir)*.xaml  $(SolutionDir)WpfClient\$(OutDir)\$(TargetName)\
+copy $(TargetDir)*.*  $(SolutionDir)\WpfClient\$(OutDir)
+ if Exist $(ProjectDir)Views\ (
+	del $(SolutionDir)WpfClient\$(OutDir)\$(TargetName)\Views\*.xaml  /q
+	copy $(ProjectDir)Views\*.xaml  $(SolutionDir)WpfClient\$(OutDir)\$(TargetName)\Views\
+	)
+ )</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Dlls\CrystalDecisions.CrystalReports.Engine.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Dlls\CrystalDecisions.ReportSource.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Dlls\CrystalDecisions.Shared.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.Extras.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.Platform.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Microsoft.CSharp.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.ComponentModel.DataAnnotations.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Configuration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Runtime.Serialization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.ServiceModel.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\packages\MvvmLightLibs.5.0.2.0\lib\net45\System.Windows.Interactivity.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.Linq.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Dlls\Telerik.Windows.Controls.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsBase.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Common\Wms3pl.Common\bin\Debug\Wms3pl.Common.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClient.Common\bin\Debug\Wms3pl.WpfClient.Common.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClient.DataServices\bin\Debug\Wms3pl.WpfClient.DataServices.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClient.ExDataServices\bin\Debug\Wms3pl.WpfClient.ExDataServices.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClient.LabelPrinter\bin\Debug\Wms3pl.WpfClient.LabelPrinter.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P19\bin\Debug\Wms3pl.WpfClient.P19.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P71\bin\Debug\Wms3pl.WpfClient.P71.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\WpfClient.Resources\bin\Debug\Wms3pl.WpfClient.Resources.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClient.Services\bin\Debug\Wms3pl.WpfClient.Services.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClient.UcLib\bin\Debug\Wms3pl.WpfClient.UcLib.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClient.UILib\bin\Debug\Wms3pl.WpfClient.UILib.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Client\Core\Wms3pl.WpfClients.SharedViews\bin\Debug\Wms3pl.WpfClients.SharedViews.dll" />
+    <ReferencePath Include="D:\★金財通\Project\iWMS\Dlls\Xceed.Wpf.Toolkit.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Collections.Concurrent.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Collections.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ComponentModel.Annotations.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ComponentModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ComponentModel.EventBasedAsync.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Diagnostics.Contracts.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Diagnostics.Debug.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Diagnostics.Tools.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Diagnostics.Tracing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Dynamic.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Globalization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.IO.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Linq.Expressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Linq.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Linq.Queryable.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Net.NetworkInformation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Net.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Net.Requests.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Net.WebHeaderCollection.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ObjectModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Reflection.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Reflection.Emit.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Reflection.Emit.ILGeneration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Reflection.Emit.Lightweight.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Reflection.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Reflection.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Resources.ResourceManager.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.Handles.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.InteropServices.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.Numerics.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.Serialization.Json.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.Serialization.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.Serialization.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Security.Principal.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ServiceModel.Duplex.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ServiceModel.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ServiceModel.NetTcp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ServiceModel.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ServiceModel.Security.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Text.Encoding.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Text.Encoding.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Text.RegularExpressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Threading.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Threading.Tasks.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Threading.Tasks.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Threading.Timer.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Xml.ReaderWriter.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Xml.XDocument.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Xml.XmlSerializer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9101010000.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9101010100.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9101010200.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9101010300.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9101010400.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9101010500.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9101010600.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9103010000.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9103020000.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9103030000.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9103030100.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9103030200.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9103040000.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\Views\P9103050000.g.cs" />
+    <Compile Include="D:\★金財通\Project\iWMS\Client\Modules\Wms3pl.WpfClient.P91\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

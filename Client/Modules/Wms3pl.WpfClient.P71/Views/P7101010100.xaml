@@ -1,0 +1,394 @@
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P71.Views.P7101010100"
+		xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+		xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+		xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+		xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+		xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P71.ViewModel" 
+		xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P71.Properties" 
+		xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"    
+		x:Name="Window" Margin="0,0,0,0"
+		xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common"
+		HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500" Title="{x:Static Properties:Resources.AddWarehouseID}" WindowState="Maximized"
+		WindowStyle="None" ResizeMode="NoResize" controls:PermissionService.FunctionId="P7101010100" controls:PermissionService.FunctionName="{x:Static Properties:Resources.AddWarehouseID}"
+		controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+    <uiLib:Wms3plWindow.DataContext>
+        <viewModel:P7101010100_ViewModel x:Name="Vm" />
+    </uiLib:Wms3plWindow.DataContext>
+    <uiLib:Wms3plWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <common:NotConverter x:Key="NotConverter" />
+            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"></FrameworkElement>
+            <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+        </ResourceDictionary>
+    </uiLib:Wms3plWindow.Resources>
+    <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False"
+			IsBusy="{Binding IsBusy}">
+        <uiLib:BasicMaster x:Name="Master">
+            <uiLib:BasicMaster.ToolBarArea>
+                <WrapPanel>
+                    <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP7101010101"
+							Command="{Binding CancelCommand}" />
+                    <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP7101010102"
+							Command="{Binding SaveCommand}"
+							IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+                </WrapPanel>
+            </uiLib:BasicMaster.ToolBarArea>
+            <uiLib:BasicMaster.MainContent>
+                <TabControl x:Name="LayoutRoot">
+                    <TabControl.BindingGroup>
+                        <BindingGroup Name="errorGroup" />
+                    </TabControl.BindingGroup>
+                    <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+                        <ScrollViewer>
+                            <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+                                <!-- 由此處開始加入畫面項目 -->
+                                <GroupBox DockPanel.Dock="Top">
+                                    <StackPanel IsEnabled="{Binding IsNotEdit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                        <WrapPanel>
+                                            <Label Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbStyle}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}"
+													ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}"
+													DisplayMemberPath="Name" SelectedValuePath="Value"
+													SelectedValue="{Binding SelectedDcCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <WrapPanel Visibility="{Binding VisibilityGupAndCust }">
+                                                <Label Content="{x:Static Properties:Resources.GupCode}" Style="{StaticResource LbStyle}" />
+                                                <ComboBox Style="{StaticResource ComboStyle}"
+														ItemsSource="{Binding GupList, UpdateSourceTrigger=PropertyChanged}"
+														DisplayMemberPath="Name" SelectedValuePath="Value"
+														SelectedValue="{Binding SelectedGupCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                <Label Content="{x:Static Properties:Resources.CustCode}" Style="{StaticResource LbStyle}" />
+                                                <ComboBox Style="{StaticResource ComboStyle}"
+														ItemsSource="{Binding CustList, UpdateSourceTrigger=PropertyChanged}"
+														DisplayMemberPath="Name" SelectedValuePath="Value"
+														SelectedValue="{Binding SelectedCustCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            </WrapPanel>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="{x:Static Properties:Resources.WarehouseType}" Style="{StaticResource LbStyle}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}"
+													ItemsSource="{Binding WarehouseTypeList, UpdateSourceTrigger=PropertyChanged}"
+													DisplayMemberPath="Name" SelectedValuePath="Value"
+													SelectedValue="{Binding SelectedWarehouseType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                            <Label Content="{x:Static Properties:Resources.WAREHOUSE_Name}" Style="{StaticResource LbStyle}" />
+                                            <TextBox
+													Text="{Binding WarehouseName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+													Style="{StaticResource TxtStyle}" />
+                                            <Label Content="{x:Static Properties:Resources.WarehouseId}" Style="{StaticResource LbStyle}" />
+
+                                            <DockPanel Width="158">
+                                                <!--↓編輯顯示用textbox-->
+                                                <TextBox Grid.Column="1" Style="{StaticResource TxtStyle}"
+                                                         Text="{Binding WarehouseId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         Visibility="{Binding txtWarehouseIDVisibility}"/>
+
+                                                <!--↓新增時顯示-->
+                                                <Label DockPanel.Dock="Left" Content="{Binding SelectedWarehouseType}" Style="{StaticResource LbStyle}" Visibility="{Binding lbWarehouseTypeVisibility}" MinWidth="30" Width="30"/>
+                                                <TextBox Grid.Column="1" MaxLength="2" Visibility="{Binding lbWarehouseTypeVisibility}" Text="{Binding WarehouseNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </DockPanel>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="{x:Static Properties:Resources.WarehouseAttribute}" DockPanel.Dock="Top">
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <Label Content="{x:Static Properties:Resources.TMPR_TYPE}" Style="{StaticResource LbStyle}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}"
+													ItemsSource="{Binding TempTypeList, UpdateSourceTrigger=PropertyChanged}"
+													DisplayMemberPath="Name" SelectedValuePath="Value"
+													SelectedValue="{Binding SelectedTempType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <Label Content="{x:Static Properties:Resources.DEVICE_TYPE}" Style="{StaticResource LbStyle}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}"
+													ItemsSource="{Binding DeviceTypeList, UpdateSourceTrigger=PropertyChanged}"
+													DisplayMemberPath="Name" SelectedValuePath="Value"
+													SelectedValue="{Binding SelectedDeviceType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <Label Content="{x:Static Properties:Resources.PICK_FLOOR}" Style="{StaticResource LbStyle}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}"
+													ItemsSource="{Binding PickFloorList, UpdateSourceTrigger=PropertyChanged}"
+													DisplayMemberPath="Name" SelectedValuePath="Value"
+													SelectedValue="{Binding SelectedPickFloor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <CheckBox
+													IsChecked="{Binding CalStock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+													Style="{StaticResource CheckStyle}" />
+                                            <Label Content="{x:Static Properties:Resources.CAL_STOCK}" Style="{StaticResource LbStyle}" />
+                                            <CheckBox
+													IsChecked="{Binding CalFee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+													Style="{StaticResource CheckStyle}" />
+                                            <Label Content="{x:Static Properties:Resources.CAL_FEE}" Style="{StaticResource LbStyle}" />
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="{x:Static Properties:Resources.LocCodeAttribute}" DockPanel.Dock="Top">
+                                    <StackPanel>
+                                        <WrapPanel>
+
+                                            <Label Content="{x:Static Properties:Resources.HorDistance}" Style="{StaticResource LbStyle}" />
+                                            <TextBox
+													Text="{Binding HorDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+													Style="{StaticResource TxtStyle}" />
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="{x:Static Properties:Resources.WarehouseLocType}" Style="{StaticResource LbStyle}" />
+                                            <ComboBox Style="{StaticResource ComboStyle}"
+													ItemsSource="{Binding WarehouseLocTypeList , UpdateSourceTrigger=PropertyChanged}"
+													DisplayMemberPath="Name" SelectedValuePath="Value"
+													SelectedValue="{Binding SelectedWarehouseLocType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <Label Content="{x:Static Properties:Resources.Handy}" Style="{StaticResource LbStyle}" />
+                                            <TextBox Text="{Binding SelectedHandy}" Style="{StaticResource TxtStyle}"
+													IsEnabled="False" />
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="{x:Static Properties:Resources.RentPeriod}" Style="{StaticResource LbStyle}" />
+                                            <DatePicker
+													SelectedDate="{Binding RentBeginDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+													Style="{StaticResource DateStyle}" />
+                                            <Label Content="{x:Static Properties:Resources.TO}" Style="{StaticResource LbStyle}" />
+                                            <DatePicker
+													SelectedDate="{Binding RentEndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+													Style="{StaticResource DateStyle}" />
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="{x:Static Properties:Resources.LocCodeTotal}" DockPanel.Dock="Top">
+                                    <DockPanel>
+                                        <Label Content="{x:Static Properties:Resources.OldLocTotalCount}" Style="{StaticResource LbStyle}" />
+                                        <TextBox
+												Text="{Binding OldLocTotalCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+												IsEnabled="False" Style="{StaticResource TxtStyle}" />
+                                        <Label Content="{x:Static Properties:Resources.LocCount}" Style="{StaticResource LbStyle}" />
+                                        <TextBox
+												Text="{Binding LocCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+												IsEnabled="False" Style="{StaticResource TxtStyle}" />
+                                    </DockPanel>
+                                </GroupBox>
+                                <GroupBox Header="{x:Static Properties:Resources.LocRange}" DockPanel.Dock="Top">
+                                    <Expander Name="ExpQueryCondition" IsExpanded="True">
+                                        <DockPanel>
+                                            <ContentControl Visibility="Collapsed"
+													Content="{StaticResource ProxyElement}"></ContentControl>
+                                            <DockPanel DockPanel.Dock="Top">
+                                                <WrapPanel DockPanel.Dock="Bottom">
+                                                    <Button Margin="5,5,5,5" Content="{x:Static Properties:Resources.Add}" Width="100"
+															Command="{Binding AddLocCommand}" />
+                                                </WrapPanel>
+                                                <WrapPanel DockPanel.Dock="Bottom">
+                                                    <RadioButton Margin="10,0,10,0" Content="{x:Static Properties:Resources.SingleLoc}"
+															VerticalContentAlignment="Center"
+															HorizontalContentAlignment="Right" GroupName="SettingType"
+															IsChecked="{Binding SettingType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:SettingMode.Customize}}" />
+                                                    <TextBox Style="{StaticResource TxtStyle}"
+															InputMethod.IsInputMethodEnabled="False"
+															CharacterCasing="Upper" Margin="54,5,0,5" MaxLength="9"
+															Text="{Binding LocText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+															IsEnabled="{Binding SettingType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:SettingMode.Customize}}" />
+                                                </WrapPanel>
+                                                <WrapPanel DockPanel.Dock="Left">
+                                                    <RadioButton Margin="10,10,10,0" Content="{x:Static Properties:Resources.ByRange}"
+															VerticalContentAlignment="Center"
+															HorizontalContentAlignment="Right" GroupName="SettingType"
+															IsChecked="{Binding SettingType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:SettingMode.LocArea}}" />
+                                                </WrapPanel>
+                                                <DockPanel
+														IsEnabled="{Binding SettingType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static viewModel:SettingMode.LocArea}}">
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <Label Content="{x:Static Properties:Resources.Floor}" Style="{StaticResource LbStyle}" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding FloorList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedFloor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <Label Content="{x:Static Properties:Resources.Channel}" Style="{StaticResource LbStyle}" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MinChannelList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMinChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="～" Style="{StaticResource LbStyle}"
+																HorizontalContentAlignment="Center" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MaxChannelList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMaxChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <Label Content="{x:Static Properties:Resources.Plain}" Style="{StaticResource LbStyle}" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MinPlainList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMinPlain, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="～" Style="{StaticResource LbStyle}"
+																HorizontalContentAlignment="Center" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MaxPlainList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMaxPlain, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <Label Content="{x:Static Properties:Resources.LocLevel}" Style="{StaticResource LbStyle}" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MinLocLevelList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMinLocLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="～" Style="{StaticResource LbStyle}"
+																HorizontalContentAlignment="Center" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MaxLocLevelList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMaxLocLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel DockPanel.Dock="Top">
+                                                        <Label Content="{x:Static Properties:Resources.LocType}" Style="{StaticResource LbStyle}" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MinLocTypeList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMinLocType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Label Content="～" Style="{StaticResource LbStyle}"
+																HorizontalContentAlignment="Center" />
+                                                        <ComboBox Style="{StaticResource ComboStyle}"
+																ItemsSource="{Binding MaxLocTypeList , UpdateSourceTrigger=PropertyChanged}"
+																DisplayMemberPath="Name" SelectedValuePath="Value"
+																SelectedValue="{Binding SelectedMaxLocType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </WrapPanel>
+                                                </DockPanel>
+                                            </DockPanel>
+                                        </DockPanel>
+                                    </Expander>
+                                </GroupBox>
+                                <GroupBox Header="{x:Static Properties:Resources.LocData}">
+                                    <DockPanel>
+                                        <Grid DockPanel.Dock="Top">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <DockPanel Grid.Row="0" Grid.Column="0">
+                                                <WrapPanel DockPanel.Dock="Top">
+                                                    <Label Content="{x:Static Properties:Resources.Floor}" Style="{StaticResource LbStyle}" />
+                                                    <ComboBox Style="{StaticResource ComboStyle}"
+															ItemsSource="{Binding QueryFloorList , UpdateSourceTrigger=PropertyChanged}"
+															DisplayMemberPath="Name" SelectedValuePath="Value"
+															SelectedValue="{Binding SelectedQueryFloor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </WrapPanel>
+                                                <WrapPanel DockPanel.Dock="Top">
+                                                    <Label Content="{x:Static Properties:Resources.AreaType}" Style="{StaticResource LbStyle}" />
+                                                    <ComboBox Style="{StaticResource ComboStyle}"
+															ItemsSource="{Binding AreaType , UpdateSourceTrigger=PropertyChanged}"
+															DisplayMemberPath="Name" SelectedValuePath="Value"
+															SelectedValue="{Binding SelectedAreaType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Button Margin="5" Content="{x:Static Properties:Resources.Adjust}" Width="120"
+															Command="{Binding AdjustCommand, ElementName=Vm}"></Button>
+                                                </WrapPanel>
+                                            </DockPanel>
+                                            <DataGrid Name="dgMaster"
+													ItemsSource="{Binding MasterDataList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+													Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False"
+													CanUserAddRows="False" Height="300" CanUserDeleteRows="False"
+													SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True"
+													Style="{StaticResource DgStyle}"
+													SelectedItem="{Binding SelectMasertData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+													IsSynchronizedWithCurrentItem="True">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.Channel}" IsReadOnly="True"
+															Binding="{Binding ChannelNo}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.Plain}" IsReadOnly="True"
+															Binding="{Binding PlainNo}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.LocLevel}" IsReadOnly="True"
+															Binding="{Binding LocLevelNo}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.OldLocCount}" IsReadOnly="True"
+															Binding="{Binding OldLocCount}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.ChangeCount}" IsReadOnly="True"
+															Binding="{Binding ChangeCount}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.NowLocCount}" IsReadOnly="True"
+															Binding="{Binding NowLocCount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                    <DataGridComboBoxColumn Header="{x:Static Properties:Resources.SettingStatus}" IsReadOnly="True"
+															ItemsSource="{Binding DataContext.SettingStatusList,Source={StaticResource ProxyElement}}"
+															SelectedValuePath="Value" DisplayMemberPath="Name"
+															SelectedValueBinding="{Binding SettingStatus}">
+                                                    </DataGridComboBoxColumn>
+                                                </DataGrid.Columns>
+                                                <DataGrid.Resources>
+                                                    <SolidColorBrush
+															x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+															Color="DodgerBlue" />
+                                                    <SolidColorBrush
+															x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+															Color="White" />
+                                                </DataGrid.Resources>
+                                            </DataGrid>
+                                            <WrapPanel VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1">
+                                                <Button Margin="5" Content="{x:Static Properties:Resources.Confirm}" Width="120"
+														Command="{Binding ConfirmCommand, ElementName=Vm}"></Button>
+                                            </WrapPanel>
+                                            <DataGrid Name="dgDetail"
+													ItemsSource="{Binding DetailDataList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+													Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False"
+													CanUserAddRows="False" Height="300" CanUserDeleteRows="False"
+													SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True"
+													Style="{StaticResource DgStyle}"
+													SelectedItem="{Binding SelectedDetailData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+													IsSynchronizedWithCurrentItem="True">
+                                                <DataGrid.Columns>
+                                                    <DataGridCheckBoxColumn
+															Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <DataGridCheckBoxColumn.HeaderTemplate>
+                                                            <DataTemplate>
+                                                                <CheckBox
+																		IsChecked="{Binding IsJobSelectedAll, ElementName=Vm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+																		Command="{Binding CheckAllCommand, ElementName=Vm}"
+																		CommandParameter="JobGroup" Content="{x:Static res:Resources.SelectAll}">
+                                                                </CheckBox>
+                                                            </DataTemplate>
+                                                        </DataGridCheckBoxColumn.HeaderTemplate>
+                                                        <DataGridCheckBoxColumn.ElementStyle>
+                                                            <Style TargetType="CheckBox">
+                                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                                <Setter Property="IsEnabled"
+																		Value="{Binding Item.IsEditData, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                            </Style>
+                                                        </DataGridCheckBoxColumn.ElementStyle>
+                                                    </DataGridCheckBoxColumn>
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.LOC_CODE}" IsReadOnly="True"
+															Binding="{Binding Item.LOC_CODE}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.Channel}" IsReadOnly="True"
+															Binding="{Binding Item.CHANNEL}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.Plain}" IsReadOnly="True"
+															Binding="{Binding Item.PLAIN}" />
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.LocLevel}" IsReadOnly="True"
+															Binding="{Binding Item.LOC_LEVEL}" />
+                                                    <DataGridComboBoxColumn Header="{x:Static Properties:Resources.WAREHOUSE_Name}" IsReadOnly="True"
+															ItemsSource="{Binding DataContext.GridWarehouseList, Source={StaticResource ProxyElement}}"
+															SelectedValuePath="Value" DisplayMemberPath="Name"
+															SelectedValueBinding="{Binding Item.WAREHOUSE_ID, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                                                    </DataGridComboBoxColumn>
+                                                    <DataGridComboBoxColumn Header="{x:Static Properties:Resources.SettingStatus}" IsReadOnly="True"
+															ItemsSource="{Binding DataContext.LocStatusList, Source={StaticResource ProxyElement}}"
+															SelectedValuePath="Value" DisplayMemberPath="Name"
+															SelectedValueBinding="{Binding Item.STATUS, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                                                    </DataGridComboBoxColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Grid>
+                                    </DockPanel>
+                                </GroupBox>
+                            </DockPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
+            </uiLib:BasicMaster.MainContent>
+        </uiLib:BasicMaster>
+    </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

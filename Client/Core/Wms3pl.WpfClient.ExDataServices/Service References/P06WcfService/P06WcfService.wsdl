@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P06WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P06WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P06WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P06WcfService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P06WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P06WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P06WcfService_ConfirmP060103_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmP060103" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_ConfirmP060103_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmP060103Response" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_UpdateF051206_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF051206" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_UpdateF051206_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF051206Response" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_DeleteF051206_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF051206" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_DeleteF051206_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF051206Response" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_InsertF051206_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF051206" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_InsertF051206_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF051206Response" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_InsertF151003_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF151003" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_InsertF151003_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF151003Response" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_UpdateF151003_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF151003" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_UpdateF151003_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF151003Response" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_DeleteF151003_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF151003" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_DeleteF151003_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF151003Response" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_ConfirmBatchDebit_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmBatchDebit" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_ConfirmBatchDebit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmBatchDebitResponse" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_GetContainerBarcode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContainerBarcode" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_GetContainerBarcode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContainerBarcodeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P06WcfService">
+    <wsdl:operation name="ConfirmP060103">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/ConfirmP060103" message="tns:P06WcfService_ConfirmP060103_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/ConfirmP060103Response" message="tns:P06WcfService_ConfirmP060103_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF051206">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/UpdateF051206" message="tns:P06WcfService_UpdateF051206_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/UpdateF051206Response" message="tns:P06WcfService_UpdateF051206_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF051206">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/DeleteF051206" message="tns:P06WcfService_DeleteF051206_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/DeleteF051206Response" message="tns:P06WcfService_DeleteF051206_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF051206">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/InsertF051206" message="tns:P06WcfService_InsertF051206_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/InsertF051206Response" message="tns:P06WcfService_InsertF051206_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF151003">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/InsertF151003" message="tns:P06WcfService_InsertF151003_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/InsertF151003Response" message="tns:P06WcfService_InsertF151003_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF151003">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/UpdateF151003" message="tns:P06WcfService_UpdateF151003_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/UpdateF151003Response" message="tns:P06WcfService_UpdateF151003_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF151003">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/DeleteF151003" message="tns:P06WcfService_DeleteF151003_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/DeleteF151003Response" message="tns:P06WcfService_DeleteF151003_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmBatchDebit">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/ConfirmBatchDebit" message="tns:P06WcfService_ConfirmBatchDebit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/ConfirmBatchDebitResponse" message="tns:P06WcfService_ConfirmBatchDebit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerBarcode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/GetContainerBarcode" message="tns:P06WcfService_GetContainerBarcode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/GetContainerBarcodeResponse" message="tns:P06WcfService_GetContainerBarcode_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P06WcfService" type="tns:P06WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConfirmP060103">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/ConfirmP060103" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF051206">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/UpdateF051206" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF051206">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/DeleteF051206" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF051206">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/InsertF051206" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF151003">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/InsertF151003" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF151003">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/UpdateF151003" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF151003">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/DeleteF151003" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmBatchDebit">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/ConfirmBatchDebit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerBarcode">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/GetContainerBarcode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P06WcfService">
+    <wsdl:port name="BasicHttpBinding_P06WcfService" binding="tns:BasicHttpBinding_P06WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P06WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

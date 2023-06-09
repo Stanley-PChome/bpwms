@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0802010100" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" Width="600" Height="700" Title="產生分貨表" WindowStartupLocation="CenterScreen" AllowDrop="False" WindowStyle="None" ResizeMode="NoResize" ShowActivated="True" ShowInTaskbar="False" IsHitTestVisible="True" controls:PermissionService.FunctionId="P0802010100" controls:PermissionService.FunctionName="{x:Static Properties:Resources.ShowP0802010100}" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0802010100_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP0802010101" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP0802010102" Click="Cancel_Click" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP0802010103" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <ScrollViewer>
+          <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+            <WrapPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="5" />
+            <GroupBox DockPanel.Dock="Top">
+              <GroupBox.Header>
+                <RadioButton Content="{x:Static Properties:Resources.IsInport}" GroupName="report" IsChecked="{Binding IsInport,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged}" />
+              </GroupBox.Header>
+              <WrapPanel DockPanel.Dock="TOP" Margin="5">
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="37" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="390" />
+                    <ColumnDefinition Width="130" />
+                  </Grid.ColumnDefinitions>
+                  <TextBox Grid.Row="0" Grid.Column="0" Height="32" Text="{Binding Path=FileFullPath}" IsEnabled="{Binding IsInport}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="390" />
+                  <Button Grid.Row="0" Grid.Column="1" Command="{Binding OpenFileDialogCommand}" controls:PermissionService.FunctionId="BP0802010104" controls:PermissionService.FunctionName="{x:Static Properties:Resources.FileFullPath}" IsEnabled="{Binding IsInport}" Content="{x:Static Properties:Resources.FileFullPath}" Height="32" HorizontalAlignment="Left" VerticalAlignment="Center" Width="88" />
+                </Grid>
+              </WrapPanel>
+            </GroupBox>
+            <GroupBox DockPanel.Dock="Top">
+              <GroupBox.Header>
+                <RadioButton Content="{x:Static Properties:Resources.IsGenerate}" GroupName="report" IsChecked="{Binding IsGenerate,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged}" />
+              </GroupBox.Header>
+              <DockPanel DockPanel.Dock="Top">
+                <WrapPanel DockPanel.Dock="TOP" Margin="5" IsEnabled="{Binding IsGenerate}">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="37" />
+                      <RowDefinition Height="37" />
+                      <RowDefinition Height="37" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="130" />
+                      <ColumnDefinition Width="160" />
+                      <ColumnDefinition Width="100" />
+                      <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.SelectedStartDt}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding SelectedStartDt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" />
+                    <Label Content=" ~ " Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{Binding SelectedEndDt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DateStyle}" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ReturnNoStart}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ReturnNoStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                    <Label Content=" ~ " Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding ReturnNoEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                    <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_CODE}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ReturnItemCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                    <Label Grid.Row="2" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_NAME}" Foreground="Blue" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding ReturnItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                  </Grid>
+                </WrapPanel>
+                <DockPanel>
+                  <DataGrid DockPanel.Dock="Top" Style="{StaticResource DgStyle}" Height="200" IsReadOnly="False" ItemsSource="{Binding F161202SelectedDatas,UpdateSourceTrigger=PropertyChanged}" CellStyle="{StaticResource SingleClickEdit}" SelectedItem="{Binding SelectedF161202SelectedData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid.Columns>
+                      <DataGridCheckBoxColumn Binding="{Binding IsSelected}">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                          <DataTemplate>
+                            <CheckBox Content="{x:Static res:Resources.SelectAll}" IsChecked="{Binding DataContext.IsCheckAll, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                          </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                      </DataGridCheckBoxColumn>
+                      <DataGridTextColumn Header="{x:Static res:Resources.Date}" Binding="{Binding Item.RETURN_DATE ,StringFormat={}{0:yyyy/MM/dd}}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.ReturnNoStart}" Binding="{Binding Item.RETURN_NO}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding Item.ITEM_CODE}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding Item.ITEM_NAME}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SIZE}" Binding="{Binding Item.ITEM_SIZE}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SPEC}" Binding="{Binding Item.ITEM_SPEC}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_COLOR}" Binding="{Binding Item.ITEM_COLOR}" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                  </DataGrid>
+                </DockPanel>
+              </DockPanel>
+            </GroupBox>
+            <GroupBox Header="{x:Static Properties:Resources.SelectedGatherStartDt}">
+              <DockPanel DockPanel.Dock="Top">
+                <WrapPanel DockPanel.Dock="TOP" Margin="5">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="37" />
+                      <RowDefinition Height="37" />
+                      <RowDefinition Height="37" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="130" />
+                      <ColumnDefinition Width="160" />
+                      <ColumnDefinition Width="100" />
+                      <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.CRT_DATE}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding SelectedGatherStartDt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{StaticResource DateStyle}" />
+                    <Label Content=" ~ " Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{Binding SelectedGatherEndDt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DateStyle}" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.SelectedGatherNO}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding GatherNoStart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                    <Label Content=" ~ " Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding GatherNoEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                    <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.SearchFileName}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SearchFileName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" />
+                    <Button Grid.Row="2" Grid.Column="2" Content="{x:Static res:Resources.Query}" Width="100" Height="35" Command="{Binding SearchGatherCommand}" controls:PermissionService.FunctionId="BP0802010105" controls:PermissionService.FunctionName="{x:Static res:Resources.Query}" />
+                  </Grid>
+                </WrapPanel>
+                <DockPanel>
+                  <Button Content="{x:Static res:Resources.Delete}" DockPanel.Dock="Top" Width="100" Height="35" HorizontalAlignment="Left" Command="{Binding DeleteGatherCommand}" controls:PermissionService.FunctionId="BP0802010106" controls:PermissionService.FunctionName="{x:Static res:Resources.Delete}" />
+                  <DataGrid DockPanel.Dock="Top" Style="{StaticResource DgStyle}" IsReadOnly="False" ItemsSource="{Binding F161501SelectedDatas,UpdateSourceTrigger=PropertyChanged}" CellStyle="{StaticResource SingleClickEdit}" SelectedItem="{Binding SelectedF161501SelectedData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid.Columns>
+                      <DataGridCheckBoxColumn Binding="{Binding IsSelected}">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                          <DataTemplate>
+                            <CheckBox Content="{x:Static res:Resources.SelectAll}" IsChecked="{Binding DataContext.IsGatherCheckAll, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                          </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                      </DataGridCheckBoxColumn>
+                      <DataGridTextColumn Header="{x:Static res:Resources.Date}" Binding="{Binding Item.GATHER_DATE ,StringFormat={}{0:yyyy/MM/dd}}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.SelectedGatherNO}" Binding="{Binding Item.GATHER_NO}" IsReadOnly="True" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.SearchFileName}" Binding="{Binding Item.FILE_NAME}" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                  </DataGrid>
+                </DockPanel>
+              </DockPanel>
+            </GroupBox>
+          </DockPanel>
+        </ScrollViewer>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

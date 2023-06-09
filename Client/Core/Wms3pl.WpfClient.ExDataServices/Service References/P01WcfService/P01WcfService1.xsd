@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ewmsap/iWms.WebServices/P01WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Common.Enums" />
+  <xs:complexType name="F010101Data">
+    <xs:sequence>
+      <xs:element name="_x003C_ADDRESS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BUSPER_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CONTACT_TEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CRT_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ORD_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DELIVER_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INVOICE_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_INVO_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_INV_ADDRESS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MEMO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ORD_PROP_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PAY_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOP_CAUSE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOP_DATE_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_SHOP_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STATUS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TAX_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TEL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_UPD_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UPD_STAFF_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VNR_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VNR_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F010101Data" nillable="true" type="tns:F010101Data" />
+  <xs:complexType name="ArrayOfF010102Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F010102Data" nillable="true" type="tns:F010102Data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF010102Data" nillable="true" type="tns:ArrayOfF010102Data" />
+  <xs:complexType name="F010102Data">
+    <xs:sequence>
+      <xs:element name="_x003C_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_COLOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SIZE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOP_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SHOP_QTY_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_SHOP_SEQ_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F010102Data" nillable="true" type="tns:F010102Data" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+  <xs:complexType name="F010201Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BOOKING_IN_PERIOD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CRT_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CRT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CRT_STAFF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_COST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELIVER_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EDI_FLAG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FAST_PASS_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MEMO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_PROP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SHOP_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SHOP_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SOURCE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SOURCE_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SOURCE_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUSNAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STOCK_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="STOCK_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPD_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UPD_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPD_STAFF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VNR_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VNR_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VNR_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F010201Data" nillable="true" type="tns:F010201Data" />
+  <xs:complexType name="ArrayOfF010202Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F010202Data" nillable="true" type="tns:F010202Data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF010202Data" nillable="true" type="tns:ArrayOfF010202Data" />
+  <xs:complexType name="F010202Data">
+    <xs:sequence>
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CUST_ORD_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ChangeFlag_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE1_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EAN_CODE2_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_COLOR_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SIZE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ITEM_SPEC_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_MAKE_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ROWNUM_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_STOCK_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STOCK_QTY_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_STOCK_SEQ_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_UNIT_TRANS_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VALI_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_VNR_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F010202Data" nillable="true" type="tns:F010202Data" />
+  <xs:complexType name="BarcodeData">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wms3pl.Common.Enums" minOccurs="0" name="Barcode" type="q1:BarcodeType" />
+      <xs:element minOccurs="0" name="BarcodeText" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BarcodeData" nillable="true" type="tns:BarcodeData" />
+  <xs:complexType name="SerialNoResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BoxSerail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CaseNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Checked" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CombinNo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CurrentlyStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemSize" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MakeNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Puk" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SEQ" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SerialNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="boxCtrlNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="palletCtrlNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SerialNoResult" nillable="true" type="tns:SerialNoResult" />
+  <xs:complexType name="ArrayOfF010201ImportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F010201ImportData" nillable="true" type="tns:F010201ImportData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF010201ImportData" nillable="true" type="tns:ArrayOfF010201ImportData" />
+  <xs:complexType name="F010201ImportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BOOKING_IN_PERIOD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FAST_PASS_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAKE_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PO_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STOCK_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="VALI_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VNR_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VNR_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F010201ImportData" nillable="true" type="tns:F010201ImportData" />
+</xs:schema>

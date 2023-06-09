@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D1EEB7A3-3206-4566-883F-5039BC36706F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.Datas.Test</RootNamespace>
+    <AssemblyName>Wms3pl.Datas.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.Abstractions.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.Relational.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.SqlServer.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Caching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Caching.Memory.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DiagnosticAdapter, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.DiagnosticAdapter.2.2.0\lib\net461\Microsoft.Extensions.DiagnosticAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient, Version=4.5.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Data.SqlClient.4.6.1\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Text.Encodings.Web.4.7.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseRepositoryTest.cs" />
+    <Compile Include="F00\F0003RepositoryTest.cs" />
+    <Compile Include="F00\F000904RepositoryTest.cs" />
+    <Compile Include="F00\F0070RepositoryTest.cs" />
+    <Compile Include="F00\F0080RepositoryTest.cs" />
+    <Compile Include="F01\F010101RepositoryTest.cs" />
+    <Compile Include="F01\F010102RepositoryTest.cs" />
+    <Compile Include="F01\F010201Repository.part2Test.cs" />
+    <Compile Include="F01\F010201RepositoryTest.cs" />
+    <Compile Include="F01\F010202Repository.part1Test.cs" />
+    <Compile Include="F01\F010202RepositoryTest.cs" />
+    <Compile Include="F01\F010203RepositoryTest.cs" />
+    <Compile Include="F02\F020103RepositoryTest.cs" />
+    <Compile Include="F02\F020104RepositoryTest.cs" />
+    <Compile Include="F02\F02020101RepositoryTest.cs" />
+    <Compile Include="F02\F02020103RepositoryTest.cs" />
+    <Compile Include="F02\F02020102RepositoryTest.cs" />
+    <Compile Include="F02\F02020104RepositoryTest.cs" />
+    <Compile Include="F02\F02020106RepositoryTest.cs" />
+    <Compile Include="F02\F02020107RepositoryTest.cs" />
+    <Compile Include="F02\F020203RepositoryTest.cs" />
+    <Compile Include="F02\F020502RepositoryTest.cs" />
+    <Compile Include="F02\F020302RepositoryTest.cs" />
+    <Compile Include="F02\F020301RepositoryTest.cs" />
+    <Compile Include="F02\F020201RepositoryTest.cs" />
+    <Compile Include="F05\F05000101RepositoryTest.cs" />
+    <Compile Include="F05\F050001RepositoryTest.cs" />
+    <Compile Include="F05\F05000201RepositoryTest.cs" />
+    <Compile Include="F05\F050002RepositoryTest.cs" />
+    <Compile Include="F05\F05000301RepositoryTest.cs" />
+    <Compile Include="F05\F050003RepositoryTest.cs" />
+    <Compile Include="F05\F050004RepositoryTest.cs" />
+    <Compile Include="F05\F050006RepositoryTest.cs" />
+    <Compile Include="F05\F050007RepositoryTest.cs" />
+    <Compile Include="F05\F0500RepositoryTest.cs" />
+    <Compile Include="F05\F05010103RepositoryTest.cs" />
+    <Compile Include="F05\F050101RepositoryPart1Test.cs" />
+    <Compile Include="F05\F050101RepositoryTest.cs" />
+    <Compile Include="F05\F050102RepositoryTest.cs" />
+    <Compile Include="F05\F05010301RepositoryTest.cs" />
+    <Compile Include="F05\F050104RepositoryTest.cs" />
+    <Compile Include="F05\F050103RepositoryTest.cs" />
+    <Compile Include="F05\F05030101RepositoryTest.cs" />
+    <Compile Include="F05\F050301RepositoryPart1Test.cs" />
+    <Compile Include="F05\F050301RepositoryPart2Test.cs" />
+    <Compile Include="F05\F050301RepositoryPart3Test.cs" />
+    <Compile Include="F05\F050301RepositoryTest.cs" />
+    <Compile Include="F05\F05030201RepositoryTest.cs" />
+    <Compile Include="F05\F05030202RepositoryTest.cs" />
+    <Compile Include="F05\F050302RepositoryTest.cs" />
+    <Compile Include="F05\F050303RepositoryTest.cs" />
+    <Compile Include="F05\F050304RepositoryTest.cs" />
+    <Compile Include="F05\F050801RepositoryPart1Test.cs" />
+    <Compile Include="F05\F050801RepositoryTest.cs" />
+    <Compile Include="F05\F050802RepositoryTest.cs" />
+    <Compile Include="F05\F050803RepositoryTest.cs" />
+    <Compile Include="F05\F05080401RepositoryTest.cs" />
+    <Compile Include="F05\F050804RepositoryTest.cs" />
+    <Compile Include="F05\F05080501RepositoryTest.cs" />
+    <Compile Include="F05\F05080502RepositoryTest.cs" />
+    <Compile Include="F05\F05080503RepositoryTest.cs" />
+    <Compile Include="F05\F05080504RepositoryTest.cs" />
+    <Compile Include="F05\F050805RepositoryTest.cs" />
+    <Compile Include="F05\F051203RepositoryTest.cs" />
+    <Compile Include="F05\F0513RepositoryTest.cs" />
+    <Compile Include="F05\F051501RepositoryTest.cs" />
+    <Compile Include="F05\F051502RepositoryTest.cs" />
+    <Compile Include="F05\F051503RepositoryTest.cs" />
+    <Compile Include="F05\F051504RepositoryTest.cs" />
+    <Compile Include="F05\F0515RepositoryTest.cs" />
+    <Compile Include="F05\F051601RepositoryTest.cs" />
+    <Compile Include="F05\F051602RepositoryTest.cs" />
+    <Compile Include="F05\F051603RepositoryTest.cs" />
+    <Compile Include="F05\F052901RepositoryTest.cs" />
+    <Compile Include="F05\F052902RepositoryTest.cs" />
+    <Compile Include="F05\F05500101RepositoryTest.cs" />
+    <Compile Include="F05\F05500102RepositoryTest.cs" />
+    <Compile Include="F05\F055001RepositoryTest.cs" />
+    <Compile Include="F05\F055002RepositoryTest.cs" />
+    <Compile Include="F05\F055004RepositoryTest.cs" />
+    <Compile Include="F05\F055003RepositoryTest.cs" />
+    <Compile Include="F06\F060205RepositoryTest.cs" />
+    <Compile Include="F06\F060401RepositoryTest.cs" />
+    <Compile Include="F06\F060402RepositoryTest.cs" />
+    <Compile Include="F06\F060403RepositoryTest.cs" />
+    <Compile Include="F06\F060404RepositoryTest.cs" />
+    <Compile Include="F06\F060405RepositoryTest.cs" />
+    <Compile Include="F06\F060602RepositoryTest.cs" />
+    <Compile Include="F06\F060601RepositoryTest.cs" />
+    <Compile Include="F06\F060406RepositoryTest.cs" />
+    <Compile Include="F06\F060301RepositoryTest.cs" />
+    <Compile Include="F06\F060201RepositoryTest.cs" />
+    <Compile Include="F06\F060101RepositoryTest.cs" />
+    <Compile Include="F14\F140101RepositoryTest.cs" />
+    <Compile Include="F14\F140102RepositoryTest.cs" />
+    <Compile Include="F14\F140104RepositoryTest.cs" />
+    <Compile Include="F14\F140105RepositoryTest.cs" />
+    <Compile Include="F14\F140106RepositoryTest.cs" />
+    <Compile Include="F14\F140110RepositoryTest.cs" />
+    <Compile Include="F14\F140113RepositoryTest.cs" />
+    <Compile Include="F15\F15100101RepositoryTest.cs" />
+    <Compile Include="F15\F151002RepositoryTest.cs" />
+    <Compile Include="F15\F151003RepositoryTest.cs" />
+    <Compile Include="F15\F151004RepositoryTest.cs" />
+    <Compile Include="F15\F1511RepositoryTest.cs" />
+    <Compile Include="F15\F151201RepositoryTest.cs" />
+    <Compile Include="F15\F151202RepositoryTest.cs" />
+    <Compile Include="F15\F151203RepositoryTest.cs" />
+    <Compile Include="F16\F160402RepositoryTest.cs" />
+    <Compile Include="F05\F051202RepositoryTest.cs" />
+    <Compile Include="F05\F051206RepositoryTest.cs" />
+    <Compile Include="F15\F151001RepositoryTest.cs" />
+    <Compile Include="F16\F160201RepositoryTest.cs" />
+    <Compile Include="F16\F160204RepositoryTest.cs" />
+    <Compile Include="F16\F160503RepositoryTest.cs" />
+    <Compile Include="F16\F160502RepositoryTest.cs" />
+    <Compile Include="F16\F16050301RepositoryTest.cs" />
+    <Compile Include="F16\F160504RepositoryTest.cs" />
+    <Compile Include="F16\F161203RepositoryTest.cs" />
+    <Compile Include="F16\F161202RepositoryTest.cs" />
+    <Compile Include="F16\F161201RepositoryTest.cs" />
+    <Compile Include="F16\F160501RepositoryTest.cs" />
+    <Compile Include="F16\F161201Repository.part1Test.cs" />
+    <Compile Include="F16\F16140101RepositoryTest.cs" />
+    <Compile Include="F16\F161401RepositoryTest.cs" />
+    <Compile Include="F16\F161302RepositoryTest.cs" />
+    <Compile Include="F16\F161301RepositoryTest.cs" />
+    <Compile Include="F16\F161204RepositoryTest.cs" />
+    <Compile Include="F16\F16140201RepositoryTest.cs" />
+    <Compile Include="F16\F161602RepositoryTest.cs" />
+    <Compile Include="F16\F161601RepositoryTest.cs" />
+    <Compile Include="F16\F161502RepositoryTest.cs" />
+    <Compile Include="F16\F161501RepositoryTest.cs" />
+    <Compile Include="F16\F161402RepositoryTest.cs" />
+    <Compile Include="F19\F1909RepositoryTest.cs" />
+    <Compile Include="F19\F1912RepositoryTest.cs" />
+    <Compile Include="F05\F050901RepositoryPart1Test.cs" />
+    <Compile Include="F05\F050901RepositoryTest.cs" />
+    <Compile Include="F05\F05120101RepositoryTest.cs" />
+    <Compile Include="F05\F051201RepositoryTest.cs" />
+    <Compile Include="F14\F14010101RepositoryTest.cs" />
+    <Compile Include="F19\F19000101RepositoryTest.cs" />
+    <Compile Include="F19\F19000103RepositoryTest.cs" />
+    <Compile Include="F19\F190001RepositoryTest.cs" />
+    <Compile Include="F19\F190206RepositoryTest.cs" />
+    <Compile Include="F19\F190207RepositoryTest.cs" />
+    <Compile Include="F19\F190303RepositoryTest.cs" />
+    <Compile Include="F19\F190301RepositoryTest.cs" />
+    <Compile Include="F19\F190305RepositoryTest.cs" />
+    <Compile Include="F19\F1905RepositoryTest.cs" />
+    <Compile Include="F19\F1903RepositoryTest.cs" />
+    <Compile Include="F19\F190701RepositoryTest.cs" />
+    <Compile Include="F19\F1913RepositoryTest.cs" />
+    <Compile Include="F19\F1915RepositoryTest.cs" />
+    <Compile Include="F19\F1916RepositoryTest.cs" />
+    <Compile Include="F19\F1917RepositoryTest.cs" />
+    <Compile Include="F19\F191901RepositoryTest.cs" />
+    <Compile Include="F19\F191902RepositoryTest.cs" />
+    <Compile Include="F19\F1919RepositoryTest.cs" />
+    <Compile Include="F19\F192401RepositoryTest.cs" />
+    <Compile Include="F19\F192401_IMPORTLOGRepositoryTest.cs" />
+    <Compile Include="F19\F192402RepositoryTest.cs" />
+    <Compile Include="F19\F192403RepositoryTest.cs" />
+    <Compile Include="F19\F192404RepositoryTest.cs" />
+    <Compile Include="F19\F192405RepositoryTest.cs" />
+    <Compile Include="F19\F1924RepositoryTest.cs" />
+    <Compile Include="F19\F1925RepositoryTest.cs" />
+    <Compile Include="F19\F1928RepositoryTest.cs" />
+    <Compile Include="F19\F1929RepositoryTest.cs" />
+    <Compile Include="F19\F1933RepositoryTest.cs" />
+    <Compile Include="F19\F1934RepositoryTest.cs" />
+    <Compile Include="F19\F1942RepositoryTest.cs" />
+    <Compile Include="F19\F1944RepositoryTest.cs" />
+    <Compile Include="F19\F19470101RepositoryTest.cs" />
+    <Compile Include="F19\F194701RepositoryTest.cs" />
+    <Compile Include="F19\F194702RepositoryTest.cs" />
+    <Compile Include="F19\F194703RepositoryTest.cs" />
+    <Compile Include="F19\F194704RepositoryTest.cs" />
+    <Compile Include="F19\F194705RepositoryTest.cs" />
+    <Compile Include="F19\F194706RepositoryTest.cs" />
+    <Compile Include="F19\F194707RepositoryTest.cs" />
+    <Compile Include="F19\F19470801RepositoryTest.cs" />
+    <Compile Include="F19\F194708RepositoryTest.cs" />
+    <Compile Include="F19\F194709RepositoryTest.cs" />
+    <Compile Include="F19\F194710RepositoryTest.cs" />
+    <Compile Include="F19\F194711RepositoryTest.part1.cs" />
+    <Compile Include="F19\F19471201RepositoryTest.cs" />
+    <Compile Include="F19\F194712RepositoryTest.cs" />
+    <Compile Include="F19\F194713RepositoryTest.cs" />
+    <Compile Include="F19\F194714RepositoryTest.cs" />
+    <Compile Include="F19\F194715RepositoryTest.cs" />
+    <Compile Include="F19\F19471601RepositoryTest.cs" />
+    <Compile Include="F19\F194716RepositoryTest.cs" />
+    <Compile Include="F19\F1947RepositoryTest.cs" />
+    <Compile Include="F19\F194801RepositoryTest.cs" />
+    <Compile Include="F19\F1948RepositoryTest.cs" />
+    <Compile Include="F19\F1950RepositoryTest.cs" />
+    <Compile Include="F19\F1951RepositoryTest.cs" />
+    <Compile Include="F19\F1952RepositoryTest.cs" />
+    <Compile Include="F19\F1952_HISTORYRepositoryTest.cs" />
+    <Compile Include="F19\F195301RepositoryTest.cs" />
+    <Compile Include="F19\F195301_IMPORTLOGRepositoryTest.cs" />
+    <Compile Include="F19\F195302RepositoryTest.cs" />
+    <Compile Include="F19\F1953RepositoryTest.cs" />
+    <Compile Include="F19\F19540201RepositoryTest.cs" />
+    <Compile Include="F19\F19540202RepositoryTest.cs" />
+    <Compile Include="F19\F195402RepositoryTest.cs" />
+    <Compile Include="F19\F1954RepositoryTest.cs" />
+    <Compile Include="F19\F196301RepositoryTest.cs" />
+    <Compile Include="F19\F1963RepositoryTest.cs" />
+    <Compile Include="F19\F197001RepositoryTest.cs" />
+    <Compile Include="F19\F19700201RepositoryTest.cs" />
+    <Compile Include="F19\F197002RepositoryTest.cs" />
+    <Compile Include="F19\F198001RepositoryTest.cs" />
+    <Compile Include="F19\F1980RepositoryTest.cs" />
+    <Compile Include="F19\F1981RepositoryTest.cs" />
+    <Compile Include="F19\F1983RepositoryTest.cs" />
+    <Compile Include="F19\F199001RepositoryTest.cs" />
+    <Compile Include="F19\F199002RepositoryTest.cs" />
+    <Compile Include="F19\F199003RepositoryTest.cs" />
+    <Compile Include="F19\F199005RepositoryTest.cs" />
+    <Compile Include="F19\F199006RepositoryTest.cs" />
+    <Compile Include="F19\F199007RepositoryTest.cs" />
+    <Compile Include="F19\Test.cs" />
+    <Compile Include="F20\F200101RepositoryTest.cs" />
+    <Compile Include="F20\F200102RepositoryTest.cs" />
+    <Compile Include="F20\F200103RepositoryTest.cs" />
+    <Compile Include="F50\F500201RepositoryTest.cs" />
+    <Compile Include="F50\F500105RepositoryTest.cs" />
+    <Compile Include="F50\F500104RepositoryTest.cs" />
+    <Compile Include="F50\F500103RepositoryTest.cs" />
+    <Compile Include="F50\F500102RepositoryTest.cs" />
+    <Compile Include="F50\F500101RepositoryTest.cs" />
+    <Compile Include="F25\F250101RepositoryTest.cs" />
+    <Compile Include="F25\F25010201RepositoryTest.cs" />
+    <Compile Include="F25\F250102RepositoryTest.cs" />
+    <Compile Include="F25\F250105RepositoryTest.cs" />
+    <Compile Include="F25\F250106RepositoryTest.cs" />
+    <Compile Include="F25\F2501RepositoryTest.cs" />
+    <Compile Include="F51\F510105RepositoryTest.cs" />
+    <Compile Include="F51\F5108RepositoryTest.cs" />
+    <Compile Include="F51\F5109RepositoryTest.cs" />
+    <Compile Include="F51\F5107RepositoryTest.cs" />
+    <Compile Include="F51\F5106RepositoryTest.cs" />
+    <Compile Include="F51\F5105RepositoryTest.cs" />
+    <Compile Include="F51\F5104RepositoryTest.cs" />
+    <Compile Include="F51\F5103RepositoryTest.cs" />
+    <Compile Include="F51\F5102RepositoryTest.cs" />
+    <Compile Include="F51\F5101RepositoryTest.cs" />
+    <Compile Include="F51\F510104RepositoryTest.cs" />
+    <Compile Include="F51\F510102RepositoryTest.cs" />
+    <Compile Include="F70\F700201RepositoryTest.cs" />
+    <Compile Include="F70\F70010101RepositoryTest.cs" />
+    <Compile Include="F70\F700101RepositoryTest.cs" />
+    <Compile Include="F70\F700102RepositoryTest.cs" />
+    <Compile Include="F70\F70050101RepositoryTest.cs" />
+    <Compile Include="F70\F700501RepositoryTest.cs" />
+    <Compile Include="F70\F700701RepositoryTest.cs" />
+    <Compile Include="F70\F700702RepositoryTest.cs" />
+    <Compile Include="F70\F700703RepositoryTest.cs" />
+    <Compile Include="F70\F700705RepositoryTest.cs" />
+    <Compile Include="F70\F700706RepositoryTest.cs" />
+    <Compile Include="F70\F700707RepositoryTest.cs" />
+    <Compile Include="F70\F700708RepositoryTest.cs" />
+    <Compile Include="F70\F700709RepositoryTest.cs" />
+    <Compile Include="F91\F910001RepositoryTest.cs" />
+    <Compile Include="F91\F91000301RepositoryTest.cs" />
+    <Compile Include="F91\F91000302RepositoryTest.cs" />
+    <Compile Include="F91\F910003RepositoryTest.cs" />
+    <Compile Include="F91\F910004RepositoryTest.cs" />
+    <Compile Include="F91\F910005RepositoryTest.cs" />
+    <Compile Include="F91\F910101RepositoryTest.cs" />
+    <Compile Include="F91\F910102RepositoryTest.cs" />
+    <Compile Include="F91\F910201RepositoryTest.cs" />
+    <Compile Include="F91\F910203RepositoryTest.cs" />
+    <Compile Include="F91\F910204RepositoryTest.cs" />
+    <Compile Include="F91\F91020501RepositoryTest.cs" />
+    <Compile Include="F91\F91020502RepositoryTest.cs" />
+    <Compile Include="F91\F910205RepositoryTest.cs" />
+    <Compile Include="F91\F91020601RepositoryTest.cs" />
+    <Compile Include="F91\F910206RepositoryTest.cs" />
+    <Compile Include="F91\F910207RepositoryTest.cs" />
+    <Compile Include="F91\F910208RepositoryTest.cs" />
+    <Compile Include="F91\F910209RepositoryTest.cs" />
+    <Compile Include="F91\F910301RepositoryTest.cs" />
+    <Compile Include="F91\F910302RepositoryTest.cs" />
+    <Compile Include="F91\F910401RepositoryTest.cs" />
+    <Compile Include="F91\F910402RepositoryTest.cs" />
+    <Compile Include="F91\F910403RepositoryTest.cs" />
+    <Compile Include="F91\F910502RepositoryTest.cs" />
+    <Compile Include="F91\F910503RepositoryTest.cs" />
+    <Compile Include="F91\F910504RepositoryTest.cs" />
+    <Compile Include="F91\F910505RepositoryTest.cs" />
+    <Compile Include="F91\F910506RepositoryTest.cs" />
+    <Compile Include="F91\F910507RepositoryTest.cs" />
+    <Compile Include="F91\F910508RepositoryTest.cs" />
+    <Compile Include="F91\F910509RepositoryTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="schedule\SCHEDULE_JOB_RESULT_RepositoryTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2FA6F2B6-E072-437A-8096-7AEC69B461A1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{D3DC1679-3BFE-47B1-9302-9A17B90CD9F9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{F8F52A2A-9C65-4B62-912F-4146B62AAB72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
+      <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
+      <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Modules\Wms3pl.WebServices.Shared\Wms3pl.WebServices.Shared.mssql.csproj">
+      <Project>{e8775330-cea0-4a6e-b625-e55659f4f7e4}</Project>
+      <Name>Wms3pl.WebServices.Shared.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F00\Wms3pl.Datas.F00.csproj">
+      <Project>{f9054276-1c3b-44d1-ba52-5f040a3b1488}</Project>
+      <Name>Wms3pl.Datas.F00</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F01\Wms3pl.Datas.F01.csproj">
+      <Project>{61238d14-28c6-4c66-84a1-51d134e0c9f8}</Project>
+      <Name>Wms3pl.Datas.F01</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F02\Wms3pl.Datas.F02.csproj">
+      <Project>{a82c1a68-acbb-4508-af25-6f388ffe0b7a}</Project>
+      <Name>Wms3pl.Datas.F02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F05\Wms3pl.Datas.F05.csproj">
+      <Project>{a1db887e-deb2-43c3-9f48-bc484186ef97}</Project>
+      <Name>Wms3pl.Datas.F05</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F06\Wms3pl.Datas.F06.csproj">
+      <Project>{2006BE43-61BD-4259-9255-8FB393C052E6}</Project>
+      <Name>Wms3pl.Datas.F06</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F11\Wms3pl.Datas.F11.csproj">
+      <Project>{1c438a7a-4942-42e5-abe0-ca693d0ddfda}</Project>
+      <Name>Wms3pl.Datas.F11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F14\Wms3pl.Datas.F14.csproj">
+      <Project>{6d42aa8a-3bab-46d7-b481-07314eae47e8}</Project>
+      <Name>Wms3pl.Datas.F14</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F15\Wms3pl.Datas.F15.csproj">
+      <Project>{59e7e4d0-cc8e-4509-8f2e-ff6e28ad9857}</Project>
+      <Name>Wms3pl.Datas.F15</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F16\Wms3pl.Datas.F16.csproj">
+      <Project>{361f2c23-8fa2-4288-a36d-7ed6659abf5d}</Project>
+      <Name>Wms3pl.Datas.F16</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F19\Wms3pl.Datas.F19.csproj">
+      <Project>{d48d1f67-d7ad-4eb7-8d8a-f4f2aa085a76}</Project>
+      <Name>Wms3pl.Datas.F19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F20\Wms3pl.Datas.F20.csproj">
+      <Project>{0F81A0E0-728F-4247-885B-6485CE150A5A}</Project>
+      <Name>Wms3pl.Datas.F20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F50\Wms3pl.Datas.F50.csproj">
+      <Project>{ede9c7c0-211a-4549-9a78-18a5c63f947c}</Project>
+      <Name>Wms3pl.Datas.F50</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F25\Wms3pl.Datas.F25.csproj">
+      <Project>{c0a80dfd-fbab-4717-8fe5-62d35ddbcd59}</Project>
+      <Name>Wms3pl.Datas.F25</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F51\Wms3pl.Datas.F51.csproj">
+      <Project>{b0a89937-c73a-4f50-b421-2cbfd94125c5}</Project>
+      <Name>Wms3pl.Datas.F51</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F70\Wms3pl.Datas.F70.csproj">
+      <Project>{066a2e2b-d78a-4379-b09d-f84798633333}</Project>
+      <Name>Wms3pl.Datas.F70</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.F91\Wms3pl.Datas.F91.csproj">
+      <Project>{5f336702-0ad9-4d39-85a4-4547a475baf7}</Project>
+      <Name>Wms3pl.Datas.F91</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.Datas.Schedule\Wms3pl.Datas.Schedule.csproj">
+      <Project>{28c186d5-1ea4-4dd4-bf0b-b50a92e1b294}</Project>
+      <Name>Wms3pl.Datas.Schedule</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="F11\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets'))" />
+  </Target>
+  <Import Project="..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\..\..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets')" />
+</Project>

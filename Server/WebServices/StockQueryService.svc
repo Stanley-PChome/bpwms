@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Wms3pl.WebServices.P08.Services.EcStockQueryService" %>

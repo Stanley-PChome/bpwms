@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddTo" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>异动</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="AllRetail" xml:space="preserve">
+    <value>所有门市</value>
+  </data>
+  <data name="AreaCode" xml:space="preserve">
+    <value>区域代码</value>
+  </data>
+  <data name="AreaName" xml:space="preserve">
+    <value>区域名称</value>
+  </data>
+  <data name="Box" xml:space="preserve">
+    <value>箱</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>检查</value>
+  </data>
+  <data name="ConfirmIsDataModify" xml:space="preserve">
+    <value>资料已经修改，是否要先储存？</value>
+  </data>
+  <data name="ConfirmIsDataModify2" xml:space="preserve">
+    <value>是否确定要存储本次所修改的资料？</value>
+  </data>
+  <data name="CREATE_DATE" xml:space="preserve">
+    <value>建档日期</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立日期</value>
+  </data>
+  <data name="CRT_STAFF" xml:space="preserve">
+    <value>建立人员</value>
+  </data>
+  <data name="CSV" xml:space="preserve">
+    <value>CSV</value>
+  </data>
+  <data name="CustCodeCategory" xml:space="preserve">
+    <value>客户别</value>
+  </data>
+  <data name="DataIsChanged" xml:space="preserve">
+    <value>资料已被异动，请重新查询</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Digits_ErrorMessage" xml:space="preserve">
+    <value>必须为正整数</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>电子信箱格式有误</value>
+  </data>
+  <data name="ExportCSV" xml:space="preserve">
+    <value>汇出CSV</value>
+  </data>
+  <data name="ExportExcel" xml:space="preserve">
+    <value>汇出Excel</value>
+  </data>
+  <data name="ExportXML" xml:space="preserve">
+    <value>汇出XML</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>档案</value>
+  </data>
+  <data name="FormatError" xml:space="preserve">
+    <value>输入格式不正确</value>
+  </data>
+  <data name="FormService_AddFunctionForm_NotDefined" xml:space="preserve">
+    <value>未定义</value>
+  </data>
+  <data name="GetDataFailedFormat" xml:space="preserve">
+    <value>取得资料失败，原因：{0}</value>
+  </data>
+  <data name="InfoAddSuccess" xml:space="preserve">
+    <value>新增成功</value>
+  </data>
+  <data name="InfoDeleteSuccess" xml:space="preserve">
+    <value>删除成功</value>
+  </data>
+  <data name="InfoFileImportErrMsg" xml:space="preserve">
+    <value>汇入错误讯息：</value>
+  </data>
+  <data name="InfoFileImportFailed" xml:space="preserve">
+    <value>档案「{0}」汇入错误！</value>
+  </data>
+  <data name="InfoFileImportFailedCount" xml:space="preserve">
+    <value>汇入失败笔数：{0}笔。</value>
+  </data>
+  <data name="InfoFileImportSucceed" xml:space="preserve">
+    <value>档案「{0}」汇入完成！</value>
+  </data>
+  <data name="InfoFileImportSucceedCount" xml:space="preserve">
+    <value>汇入成功笔数：{0}笔。</value>
+  </data>
+  <data name="InfoFileIsOpened" xml:space="preserve">
+    <value>请先关闭现正开启使用中之档案「{0}」！</value>
+  </data>
+  <data name="InfoMustSelectDataItem" xml:space="preserve">
+    <value>请选择数据！</value>
+  </data>
+  <data name="InfoNoData" xml:space="preserve">
+    <value>查无数据</value>
+  </data>
+  <data name="InfoNoDataCanBeDelete" xml:space="preserve">
+    <value>{0}无数据可删除!</value>
+  </data>
+  <data name="InfoNoDataSet" xml:space="preserve">
+    <value>查无{0}资料，请先设定！</value>
+  </data>
+  <data name="InfoNoPrintData" xml:space="preserve">
+    <value>無資料列印</value>
+  </data>
+  <data name="InfoNoQueryData" xml:space="preserve">
+    <value>查无{0}数据</value>
+  </data>
+  <data name="InfoNoSetResourceKeyNote" xml:space="preserve">
+    <value>注意！没有设定此「{0}」的resource</value>
+  </data>
+  <data name="InfoNotModified" xml:space="preserve">
+    <value>资料没有异动, 不需储存</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>讯息</value>
+  </data>
+  <data name="InfoSameDataIsExist" xml:space="preserve">
+    <value>相同的{0}已存在！</value>
+  </data>
+  <data name="InfoSearchSuccess" xml:space="preserve">
+    <value>查询完成</value>
+  </data>
+  <data name="ItemCodeCategory" xml:space="preserve">
+    <value>商品群</value>
+  </data>
+  <data name="ItemNumber" xml:space="preserve">
+    <value>项次</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>载入中....</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>主要</value>
+  </data>
+  <data name="MinLength_ErrorMessage" xml:space="preserve">
+    <value>長度不可小於 {1} 碼 </value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="MustAlphanumeric" xml:space="preserve">
+    <value>请输入英文数字</value>
+  </data>
+  <data name="MustNumberOrEnglishChar" xml:space="preserve">
+    <value>{0}必须是英数!</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="NoDataMovementWithoutUpdating" xml:space="preserve">
+    <value>无资料异动，不需更新</value>
+  </data>
+  <data name="NoExist" xml:space="preserve">
+    <value>{0}不存在!</value>
+  </data>
+  <data name="Numeric_ErrorMessage" xml:space="preserve">
+    <value>必须为数值</value>
+  </data>
+  <data name="OueryResult" xml:space="preserve">
+    <value>查询结果</value>
+  </data>
+  <data name="PaperSize" xml:space="preserve">
+    <value>纸张大小</value>
+  </data>
+  <data name="PleaseInput" xml:space="preserve">
+    <value>请输入{0}</value>
+  </data>
+  <data name="PleaseReInput" xml:space="preserve">
+    <value>请重新输入{0}</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>请选择{0}</value>
+  </data>
+  <data name="PrintAlign" xml:space="preserve">
+    <value>列印方向</value>
+  </data>
+  <data name="PrintAll" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="PrintArea" xml:space="preserve">
+    <value>列印范围</value>
+  </data>
+  <data name="PrintCopyCount" xml:space="preserve">
+    <value>份数</value>
+  </data>
+  <data name="Printer" xml:space="preserve">
+    <value>列表机</value>
+  </data>
+  <data name="PrintHorizontal" xml:space="preserve">
+    <value>横印</value>
+  </data>
+  <data name="PrintPageFrom" xml:space="preserve">
+    <value>页从</value>
+  </data>
+  <data name="PrintPageTo" xml:space="preserve">
+    <value>至</value>
+  </data>
+  <data name="PrintVertical" xml:space="preserve">
+    <value>直印</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="QueryCondition" xml:space="preserve">
+    <value>查询条件</value>
+  </data>
+  <data name="QueryResult" xml:space="preserve">
+    <value>查询结果</value>
+  </data>
+  <data name="Range_ErrorMessage" xml:space="preserve">
+    <value>值必须介于{1}与{2}之间</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>报表</value>
+  </data>
+  <data name="Required_ErrorMessage" xml:space="preserve">
+    <value>必要栏位</value>
+  </data>
+  <data name="RetDln" xml:space="preserve">
+    <value>保存期限</value>
+  </data>
+  <data name="SearchConditions" xml:space="preserve">
+    <value>搜寻条件</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="SingleAdd" xml:space="preserve">
+    <value>单笔添加</value>
+  </data>
+  <data name="SingleDelete" xml:space="preserve">
+    <value>单笔删除</value>
+  </data>
+  <data name="SingleUpdate" xml:space="preserve">
+    <value>单笔维护</value>
+  </data>
+  <data name="StringLength_ErrorMessage" xml:space="preserve">
+    <value>长度不得超过{1}码</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>更新成功</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>时间</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>异动日期</value>
+  </data>
+  <data name="UPD_STAFF" xml:space="preserve">
+    <value>异动人员</value>
+  </data>
+  <data name="ValidationHasError" xml:space="preserve">
+    <value>尚有数据验证未通过!</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="WarningBeforeCancel" xml:space="preserve">
+    <value>确定要取消编辑?</value>
+  </data>
+  <data name="WarningBeforeClose" xml:space="preserve">
+    <value>确定要离开?</value>
+  </data>
+  <data name="WarningBeforeDelete" xml:space="preserve">
+    <value>确定要删除?</value>
+  </data>
+  <data name="WarningBeforeUpdate" xml:space="preserve">
+    <value>确定要储存?</value>
+  </data>
+  <data name="XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Dc" xml:space="preserve">
+    <value>物流中心</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>货主</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>业主</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>汇入</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="ProcessingMethod" xml:space="preserve">
+    <value>处理方式</value>
+  </data>
+</root>

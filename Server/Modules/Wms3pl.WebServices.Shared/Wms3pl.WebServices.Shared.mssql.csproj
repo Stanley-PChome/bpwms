@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8775330-CEA0-4A6E-B625-E55659F4F7E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WebServices.Shared</RootNamespace>
+    <AssemblyName>Wms3pl.WebServices.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ph|AnyCPU'">
+    <OutputPath>bin\Ph\</OutputPath>
+    <DefineConstants>TRACE;Ph</DefineConstants>
+    <Optimize>true</Optimize>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;TEST</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ph_A7|AnyCPU'">
+    <OutputPath>bin\Ph_A7\</OutputPath>
+    <DefineConstants>Ph_A7</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.5.6.0\lib\net40\Microsoft.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dlls\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dlls\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dlls\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiService\ApiLogHelper.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Enums\NewAllocationEnums.cs" />
+    <Compile Include="Enums\PickEnums.cs" />
+    <Compile Include="Helper\WmsLogHelper.cs" />
+    <Compile Include="Lms\Services\DoubleCheckService.cs" />
+    <Compile Include="Lms\Services\BatchPickService.cs" />
+    <Compile Include="Lms\Services\ConsignService.cs" />
+    <Compile Include="Lms\Services\LmsBaseService.cs" />
+    <Compile Include="Lms\Services\PrintService.cs" />
+    <Compile Include="Lms\Services\StowShelfAreaService.cs" />
+    <Compile Include="Lms\Services\ShipFileService.cs" />
+    <Compile Include="Lms\Services\UpdateItemInfoService.cs" />
+    <Compile Include="Lms\WebApiConnectSetting\LmsSetting.cs" />
+    <Compile Include="ServiceEntites\ContainerEntities.cs" />
+    <Compile Include="ServiceEntites\EgsEntities.cs" />
+    <Compile Include="ServiceEntites\HctEntities.cs" />
+    <Compile Include="ServiceEntites\KtjEntities.cs" />
+    <Compile Include="ServiceEntites\AdjustEntities.cs" />
+    <Compile Include="ServiceEntites\NewAllocationEntities.cs" />
+    <Compile Include="ServiceEntites\PickEntities.cs" />
+    <Compile Include="ServiceEntites\ReplenishEntities.cs" />
+    <Compile Include="ServiceEntites\WarehouseInEntities.cs" />
+    <Compile Include="Services\AdjustOrderService.cs" />
+    <Compile Include="Services\AdjustService.cs" />
+    <Compile Include="ServiceEntites\StockEntities.cs" />
+    <Compile Include="Services\CollectionService.cs" />
+    <Compile Include="Services\CommonService.cs" />
+    <Compile Include="Services\ConsignService.Hct.cs" />
+    <Compile Include="Services\ConsignService.Ktj.cs" />
+    <Compile Include="Services\NewSuggestLocService.cs" />
+    <Compile Include="Services\ShipPackageService.cs" />
+    <Compile Include="Services\ContainerService.cs" />
+    <Compile Include="Services\ConsignService.cs" />
+    <Compile Include="Services\ConsignService.Egs.cs" />
+    <Compile Include="Services\ConsignService.SuperBU.cs" />
+    <Compile Include="Services\InventoryService.cs" />
+    <Compile Include="Services\ExportService.cs" />
+    <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\LogService.cs" />
+    <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\NewAllocationService.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PickService.cs" />
+    <Compile Include="Services\PostOfficeAddressParser.cs" />
+    <Compile Include="Service References\WsZipCode\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceEntites\SharedEntities.cs" />
+    <Compile Include="Services\LocCodeSharedService.Check.cs" />
+    <Compile Include="Services\ReplenishService.cs" />
+    <Compile Include="Services\ReportService.cs" />
+    <Compile Include="Services\ReturnService.cs" />
+    <Compile Include="Services\SerialNoCancelService.cs" />
+    <Compile Include="Services\SerialNoService.cs" />
+    <Compile Include="Services\StockService.cs" />
+    <Compile Include="Services\SuggestLocService.cs" />
+    <Compile Include="Services\VendorReturnService.cs" />
+    <Compile Include="Services\WarehouseInService.cs" />
+    <Compile Include="Services\WorkstationService.cs" />
+    <Compile Include="SharedWcfService.cs" />
+    <Compile Include="ShareExDataSource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SharedService.cs" />
+    <Compile Include="ShareExDataService.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TransApiServices\Check\CheckItemBomService.cs" />
+    <Compile Include="TransApiServices\Check\CheckItemLevelService.cs" />
+    <Compile Include="TransApiServices\Check\CheckUserService.cs" />
+    <Compile Include="TransApiServices\Check\CheckItemService.cs" />
+    <Compile Include="TransApiServices\Check\CheckOrderService.cs" />
+    <Compile Include="TransApiServices\Check\CheckReturnService.cs" />
+    <Compile Include="TransApiServices\Check\CheckFlashStockTransferService.cs" />
+    <Compile Include="TransApiServices\Check\CheckSerialNoService.cs" />
+    <Compile Include="TransApiServices\Check\CheckTransWcsApiService.cs" />
+    <Compile Include="TransApiServices\Check\CheckTransApiService.cs" />
+    <Compile Include="TransApiServices\Check\CheckVendorReturnService.cs" />
+    <Compile Include="TransApiServices\Check\CheckStockService.cs" />
+    <Compile Include="TransApiServices\Check\CheckVendorService.cs" />
+    <Compile Include="TransApiServices\Check\CheckWarehouseInService.cs" />
+    <Compile Include="TransApiServices\Common\CommonPostUserDataService.cs" />
+    <Compile Include="TransApiServices\Common\CommonChangeTransportProviderService.cs" />
+    <Compile Include="TransApiServices\Common\CommonFlashStockTransferService.cs" />
+    <Compile Include="TransApiServices\Common\CommonItemBomService.cs" />
+    <Compile Include="TransApiServices\Common\CommonItemCategoryService.cs" />
+    <Compile Include="TransApiServices\Common\CommonItemLevelService.cs" />
+    <Compile Include="TransApiServices\Common\CommonItemService.cs" />
+    <Compile Include="TransApiServices\Common\CommonOrderService.cs" />
+    <Compile Include="TransApiServices\Common\CommonReplenishStockService.cs" />
+    <Compile Include="TransApiServices\Common\CommonRetailService.cs" />
+    <Compile Include="TransApiServices\Common\CommonReturnService.cs" />
+    <Compile Include="TransApiServices\Common\CommonSerialNoService.cs" />
+    <Compile Include="TransApiServices\Common\CommonStockService.cs" />
+    <Compile Include="TransApiServices\Common\CommonVendorReturnService.cs" />
+    <Compile Include="TransApiServices\Common\CommonVendorService.cs" />
+    <Compile Include="TransApiServices\Common\CommonWarehouseInsService.cs" />
+    <Compile Include="TransApiServices\TransApiBaseService.cs" />
+    <Compile Include="WcsServices\WcsBaseService.cs" />
+    <Compile Include="WcsServices\WcsInboundCancelService.cs" />
+    <Compile Include="WcsServices\WcsItemSnService.cs" />
+    <Compile Include="WcsServices\WcsOutboundCancelService.cs" />
+    <Compile Include="WcsServices\WcsSetting.cs" />
+    <Compile Include="WcsServices\WcsWorkStationServices.cs" />
+    <Compile Include="Wcssr\Services\DistibuteService.cs" />
+    <Compile Include="Wcssr\Services\RecvItemService.cs" />
+    <Compile Include="Wcssr\Services\WcssrBaseService.cs" />
+    <Compile Include="Wcssr\WebApiConnectSetting\WcssrSetting.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Client\Common\Wms3pl.Common\Wms3pl.Common.csproj">
+      <Project>{c7640a2e-5290-4dee-959d-ecdbf815f846}</Project>
+      <Name>Wms3pl.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2fa6f2b6-e072-437a-8096-7aec69b461a1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\WebServices.WebApi.Common\WebServices.WebApi.Common.csproj">
+      <Project>{448B94B8-4B09-4F1F-BA65-1A4A55001CD5}</Project>
+      <Name>WebServices.WebApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{d3dc1679-3bfe-47b1-9302-9a17b90cd9f9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{f8f52a2a-9c65-4b62-912f-4146b62aab72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
+      <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
+      <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F00\Wms3pl.Datas.F00.csproj">
+      <Project>{f9054276-1c3b-44d1-ba52-5f040a3b1488}</Project>
+      <Name>Wms3pl.Datas.F00</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F06\Wms3pl.Datas.F06.csproj">
+      <Project>{2006be43-61bd-4259-9255-8fb393c052e6}</Project>
+      <Name>Wms3pl.Datas.F06</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F07\Wms3pl.Datas.F07.csproj">
+      <Project>{61302189-F348-4C74-BC5E-ED5BC88A6484}</Project>
+      <Name>Wms3pl.Datas.F07</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F01\Wms3pl.Datas.F01.csproj">
+      <Project>{61238d14-28c6-4c66-84a1-51d134e0c9f8}</Project>
+      <Name>Wms3pl.Datas.F01</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F02\Wms3pl.Datas.F02.csproj">
+      <Project>{a82c1a68-acbb-4508-af25-6f388ffe0b7a}</Project>
+      <Name>Wms3pl.Datas.F02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F05\Wms3pl.Datas.F05.csproj">
+      <Project>{a1db887e-deb2-43c3-9f48-bc484186ef97}</Project>
+      <Name>Wms3pl.Datas.F05</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F11\Wms3pl.Datas.F11.csproj">
+      <Project>{1c438a7a-4942-42e5-abe0-ca693d0ddfda}</Project>
+      <Name>Wms3pl.Datas.F11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F14\Wms3pl.Datas.F14.csproj">
+      <Project>{6d42aa8a-3bab-46d7-b481-07314eae47e8}</Project>
+      <Name>Wms3pl.Datas.F14</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F15\Wms3pl.Datas.F15.csproj">
+      <Project>{59e7e4d0-cc8e-4509-8f2e-ff6e28ad9857}</Project>
+      <Name>Wms3pl.Datas.F15</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F16\Wms3pl.Datas.F16.csproj">
+      <Project>{361f2c23-8fa2-4288-a36d-7ed6659abf5d}</Project>
+      <Name>Wms3pl.Datas.F16</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F19\Wms3pl.Datas.F19.csproj">
+      <Project>{d48d1f67-d7ad-4eb7-8d8a-f4f2aa085a76}</Project>
+      <Name>Wms3pl.Datas.F19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F20\Wms3pl.Datas.F20.csproj">
+      <Project>{0f81a0e0-728f-4247-885b-6485ce150a5a}</Project>
+      <Name>Wms3pl.Datas.F20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F25\Wms3pl.Datas.F25.csproj">
+      <Project>{c0a80dfd-fbab-4717-8fe5-62d35ddbcd59}</Project>
+      <Name>Wms3pl.Datas.F25</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F50\Wms3pl.Datas.F50.csproj">
+      <Project>{ede9c7c0-211a-4549-9a78-18a5c63f947c}</Project>
+      <Name>Wms3pl.Datas.F50</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F51\Wms3pl.Datas.F51.csproj">
+      <Project>{b0a89937-c73a-4f50-b421-2cbfd94125c5}</Project>
+      <Name>Wms3pl.Datas.F51</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F70\Wms3pl.Datas.F70.csproj">
+      <Project>{066a2e2b-d78a-4379-b09d-f84798633333}</Project>
+      <Name>Wms3pl.Datas.F70</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F91\Wms3pl.Datas.F91.csproj">
+      <Project>{5f336702-0ad9-4d39-85a4-4547a475baf7}</Project>
+      <Name>Wms3pl.Datas.F91</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.Schedule\Wms3pl.Datas.Schedule.csproj">
+      <Project>{28c186d5-1ea4-4dd4-bf0b-b50a92e1b294}</Project>
+      <Name>Wms3pl.Datas.Schedule</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Service References\WsZipCode\lzwzip.wsdl" />
+    <None Include="Service References\WsZipCode\Wms3pl.WebServices.Shared.WsZipCode.GetCityAreaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WsZipCode\Wms3pl.WebServices.Shared.WsZipCode.GetZipCode32Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WsZipCode\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WsZipCode\lzwzip.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WsZipCode\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WsZipCode\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WsZipCode\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+  </ItemGroup>
+  <ItemGroup />
+</Project>

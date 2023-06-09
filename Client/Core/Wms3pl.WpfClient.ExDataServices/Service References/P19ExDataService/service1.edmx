@@ -1,0 +1,744 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="Wms3pl.Datas.Shared.Entities" xmlns="http://schemas.microsoft.com/ado/2007/05/edm">
+      <EntityType Name="ExecuteResult">
+        <Key>
+          <PropertyRef Name="IsSuccessed" />
+        </Key>
+        <Property Name="IsSuccessed" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Message" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1929WithF1909Test">
+        <Key>
+          <PropertyRef Name="CUST_CODE" />
+          <PropertyRef Name="GUP_CODE" />
+        </Key>
+        <Property Name="GUP_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="GUP_NAME" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" />
+        <Property Name="CUST_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="CUST_NAME" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="FunctionShowInfo">
+        <Key>
+          <PropertyRef Name="FUN_CODE" />
+          <PropertyRef Name="GRP_ID" />
+          <PropertyRef Name="SHOWINFO" />
+        </Key>
+        <Property Name="GRP_ID" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="SHOWINFO" Type="Edm.String" Nullable="false" />
+        <Property Name="FUN_CODE" Type="Edm.String" Nullable="false" />
+      </EntityType>
+      <EntityType Name="P1905GroupFunctionMapping">
+        <Key>
+          <PropertyRef Name="FUN_CODE" />
+        </Key>
+        <Property Name="FUN_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="FUN_NAME" Type="Edm.String" />
+        <Property Name="FUN_TYPE" Type="Edm.String" />
+        <Property Name="FUN_DESC" Type="Edm.String" />
+        <Property Name="CUST_CODE" Type="Edm.String" />
+        <Property Name="GRP_ID" Type="Edm.Decimal" />
+        <Property Name="ISENABLED" Type="Edm.Decimal" />
+      </EntityType>
+      <EntityType Name="F1924Data">
+        <Key>
+          <PropertyRef Name="EMP_ID" />
+        </Key>
+        <Property Name="EMP_ID" Type="Edm.String" Nullable="false" />
+        <Property Name="EMP_NAME" Type="Edm.String" />
+        <Property Name="EMAIL" Type="Edm.String" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="ISDELETED" Type="Edm.String" />
+        <Property Name="PACKAGE_UNLOCK" Type="Edm.String" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="ISCOMMON" Type="Edm.String" />
+        <Property Name="DEP_ID" Type="Edm.String" />
+        <Property Name="WORK_ID" Type="Edm.Decimal" />
+      </EntityType>
+      <EntityType Name="F190101Data">
+        <Key>
+          <PropertyRef Name="CUST_CODE" />
+          <PropertyRef Name="DC_CODE" />
+          <PropertyRef Name="GUP_CODE" />
+        </Key>
+        <Property Name="DC_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="DC_NAME" Type="Edm.String" />
+        <Property Name="CUST_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="CUST_NAME" Type="Edm.String" />
+        <Property Name="GUP_CODE" Type="Edm.String" Nullable="false" />
+      </EntityType>
+      <EntityType Name="EmpWithFuncionName">
+        <Key>
+          <PropertyRef Name="ROW_NUM" />
+        </Key>
+        <Property Name="ROW_NUM" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="EMP_ID" Type="Edm.String" />
+        <Property Name="FUN_CODE" Type="Edm.String" />
+        <Property Name="FUN_NAME" Type="Edm.String" />
+        <Property Name="BTNAME" Type="Edm.String" />
+        <Property Name="BTOPT" Type="Edm.Decimal" Nullable="false" />
+      </EntityType>
+      <EntityType Name="GetUserPassword">
+        <Key>
+          <PropertyRef Name="EMP_ID" />
+        </Key>
+        <Property Name="EMP_ID" Type="Edm.String" Nullable="false" />
+        <Property Name="PASSWORD" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1905Data">
+        <Key>
+          <PropertyRef Name="CUST_CODE" />
+          <PropertyRef Name="GUP_CODE" />
+          <PropertyRef Name="ITEM_CODE" />
+        </Key>
+        <Property Name="ITEM_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="ITEM_NAME" Type="Edm.String" />
+        <Property Name="GUP_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="GUP_NAME" Type="Edm.String" />
+        <Property Name="CUST_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="CUST_NAME" Type="Edm.String" />
+        <Property Name="PACK_WEIGHT" Type="Edm.Double" />
+      </EntityType>
+      <EntityType Name="F190301Data">
+        <Key>
+          <PropertyRef Name="CUST_CODE" />
+          <PropertyRef Name="GUP_CODE" />
+          <PropertyRef Name="ITEM_CODE" />
+          <PropertyRef Name="UNIT_ID" />
+        </Key>
+        <Property Name="ITEM_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="UNIT_LEVEL" Type="Edm.Int16" Nullable="false" />
+        <Property Name="UNIT_ID" Type="Edm.String" Nullable="false" />
+        <Property Name="UNIT_QTY" Type="Edm.Int32" Nullable="false" />
+        <Property Name="LENGTH" Type="Edm.Decimal" />
+        <Property Name="WIDTH" Type="Edm.Decimal" />
+        <Property Name="HIGHT" Type="Edm.Decimal" />
+        <Property Name="WEIGHT" Type="Edm.Decimal" />
+        <Property Name="GUP_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="CUST_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="ITEM_NAME" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1947WithF194701">
+        <Key>
+          <PropertyRef Name="ALL_ID" />
+          <PropertyRef Name="DC_CODE" />
+          <PropertyRef Name="DELV_TIME" />
+        </Key>
+        <Property Name="DC_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="ALL_ID" Type="Edm.String" Nullable="false" />
+        <Property Name="ALL_COMP" Type="Edm.String" />
+        <Property Name="PIER_CODE" Type="Edm.String" />
+        <Property Name="DELV_TIME" Type="Edm.String" Nullable="false" />
+      </EntityType>
+      <EntityType Name="UserWarehouse">
+        <Key>
+          <PropertyRef Name="Value" />
+        </Key>
+        <Property Name="DC_CODE" Type="Edm.String" />
+        <Property Name="Value" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1954Ex">
+        <Key>
+          <PropertyRef Name="FUN_CODE" />
+        </Key>
+        <Property Name="FUN_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="FUN_NAME" Type="Edm.String" />
+        <Property Name="FUN_TYPE" Type="Edm.String" />
+        <Property Name="FUN_DESC" Type="Edm.String" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="STATUS" Type="Edm.String" />
+        <Property Name="UPLOAD_DATE" Type="Edm.DateTime" />
+        <Property Name="DISABLE" Type="Edm.String" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="WarningMessage" Type="Edm.String" />
+        <Property Name="MainProgram" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F197001Data">
+        <Key>
+          <PropertyRef Name="CUST_CODE" />
+          <PropertyRef Name="GUP_CODE" />
+          <PropertyRef Name="LABEL_SEQ" />
+        </Key>
+        <Property Name="LABEL_SEQ" Type="Edm.Int32" Nullable="false" />
+        <Property Name="LABEL_CODE" Type="Edm.String" />
+        <Property Name="LABEL_NAME" Type="Edm.String" />
+        <Property Name="ITEM_CODE" Type="Edm.String" />
+        <Property Name="ITEM_NAME" Type="Edm.String" />
+        <Property Name="ITEM_SIZE" Type="Edm.String" />
+        <Property Name="ITEM_SPEC" Type="Edm.String" />
+        <Property Name="ITEM_COLOR" Type="Edm.String" />
+        <Property Name="CUST_ITEM_CODE" Type="Edm.String" />
+        <Property Name="SUGR" Type="Edm.String" />
+        <Property Name="VNR_CODE" Type="Edm.String" />
+        <Property Name="VNR_NAME" Type="Edm.String" />
+        <Property Name="WARRANTY" Type="Edm.String" />
+        <Property Name="WARRANTY_S_Y" Type="Edm.Int16" />
+        <Property Name="WARRANTY_S_M" Type="Edm.String" />
+        <Property Name="WARRANTY_Y" Type="Edm.String" />
+        <Property Name="WARRANTY_M" Type="Edm.String" />
+        <Property Name="WARRANTY_D" Type="Edm.Int16" />
+        <Property Name="OUTSOURCE" Type="Edm.String" />
+        <Property Name="CHECK_STAFF" Type="Edm.String" />
+        <Property Name="ITEM_DESC_A" Type="Edm.String" />
+        <Property Name="ITEM_DESC_B" Type="Edm.String" />
+        <Property Name="ITEM_DESC_C" Type="Edm.String" />
+        <Property Name="CUST_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="GUP_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="DistributionData">
+        <Key>
+          <PropertyRef Name="ROWNUM" />
+        </Key>
+        <Property Name="ROWNUM" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="COUDIV_ID" Type="Edm.String" />
+        <Property Name="COUDIV_NAME" Type="Edm.String" />
+        <Property Name="ALL_ID" Type="Edm.String" />
+        <Property Name="ALL_COMP" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1909EX">
+        <Key>
+          <PropertyRef Name="ROWNUM" />
+        </Key>
+        <Property Name="ROWNUM" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="CUST_CODE" Type="Edm.String" />
+        <Property Name="CUST_NAME" Type="Edm.String" />
+        <Property Name="GUP_CODE" Type="Edm.String" />
+        <Property Name="SHORT_NAME" Type="Edm.String" />
+        <Property Name="BOSS" Type="Edm.String" />
+        <Property Name="CONTACT" Type="Edm.String" />
+        <Property Name="TEL" Type="Edm.String" />
+        <Property Name="ADDRESS" Type="Edm.String" />
+        <Property Name="UNI_FORM" Type="Edm.String" />
+        <Property Name="ITEM_CONTACT" Type="Edm.String" />
+        <Property Name="ITEM_TEL" Type="Edm.String" />
+        <Property Name="ITEM_CEL" Type="Edm.String" />
+        <Property Name="ITEM_MAIL" Type="Edm.String" />
+        <Property Name="BILL_CONTACT" Type="Edm.String" />
+        <Property Name="BILL_TEL" Type="Edm.String" />
+        <Property Name="BILL_CEL" Type="Edm.String" />
+        <Property Name="BILL_MAIL" Type="Edm.String" />
+        <Property Name="CURRENCY" Type="Edm.String" />
+        <Property Name="PAY_FACTOR" Type="Edm.String" />
+        <Property Name="PAY_TYPE" Type="Edm.String" />
+        <Property Name="BANK_CODE" Type="Edm.String" />
+        <Property Name="BANK_NAME" Type="Edm.String" />
+        <Property Name="BANK_ACCOUNT" Type="Edm.String" />
+        <Property Name="ORDER_ADDRESS" Type="Edm.String" />
+        <Property Name="MIX_LOC_BATCH" Type="Edm.String" />
+        <Property Name="MIX_LOC_ITEM" Type="Edm.String" />
+        <Property Name="DC_TRANSFER" Type="Edm.String" />
+        <Property Name="BOUNDLE_SERIALLOC" Type="Edm.String" />
+        <Property Name="RTN_DC_CODE" Type="Edm.String" />
+        <Property Name="OVERAGE" Type="Edm.String" />
+        <Property Name="SAM_ITEM" Type="Edm.String" />
+        <Property Name="INSIDER_TRADING" Type="Edm.String" />
+        <Property Name="INSIDER_TRADING_LIM" Type="Edm.Int32" />
+        <Property Name="SPILT_ORDER" Type="Edm.String" />
+        <Property Name="SPILT_ORDER_LIM" Type="Edm.Int32" />
+        <Property Name="B2C_CAN_LACK" Type="Edm.String" />
+        <Property Name="CAN_FAST" Type="Edm.String" />
+        <Property Name="INSTEAD_INVO" Type="Edm.String" />
+        <Property Name="SPILT_INCHECK" Type="Edm.String" />
+        <Property Name="SPECIAL_IN" Type="Edm.String" />
+        <Property Name="CHECK_PERCENT" Type="Edm.Decimal" />
+        <Property Name="NEED_SEAL" Type="Edm.String" />
+        <Property Name="DM" Type="Edm.String" />
+        <Property Name="RIBBON" Type="Edm.String" />
+        <Property Name="RIBBON_BEGIN_DATE" Type="Edm.DateTime" />
+        <Property Name="RIBBON_END_DATE" Type="Edm.DateTime" />
+        <Property Name="CUST_BOX" Type="Edm.String" />
+        <Property Name="SP_BOX" Type="Edm.String" />
+        <Property Name="SP_BOX_CODE" Type="Edm.String" />
+        <Property Name="SPBOX_BEGIN_DATE" Type="Edm.DateTime" />
+        <Property Name="SPBOX_END_DATE" Type="Edm.DateTime" />
+        <Property Name="STATUS" Type="Edm.String" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="INVO_ZIP" Type="Edm.String" />
+        <Property Name="TAX_TYPE" Type="Edm.String" />
+        <Property Name="INVO_ADDRESS" Type="Edm.String" />
+        <Property Name="DUE_DAY" Type="Edm.Decimal" />
+        <Property Name="INVO_LIM_QTY" Type="Edm.Int32" />
+        <Property Name="AUTO_GEN_RTN" Type="Edm.String" />
+        <Property Name="SYS_CUST_CODE" Type="Edm.String" />
+        <Property Name="LOC_CODE" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F199002Data">
+        <Key>
+          <PropertyRef Name="ACC_ITEM_KIND_ID" />
+          <PropertyRef Name="ACC_KIND" />
+          <PropertyRef Name="ACC_NUM" />
+          <PropertyRef Name="ACC_UNIT" />
+          <PropertyRef Name="DC_CODE" />
+          <PropertyRef Name="DELV_ACC_TYPE" />
+          <PropertyRef Name="ORD_TYPE" />
+        </Key>
+        <Property Name="DC_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_ITEM_KIND_ID" Type="Edm.String" Nullable="false" />
+        <Property Name="ORD_TYPE" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_KIND" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_UNIT" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_NUM" Type="Edm.Int16" Nullable="false" />
+        <Property Name="IN_TAX" Type="Edm.String" />
+        <Property Name="FEE" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="BASIC_FEE" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="OVER_FEE" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="DELV_ACC_TYPE" Type="Edm.String" Nullable="false" />
+        <Property Name="STATUS" Type="Edm.String" />
+        <Property Name="ITEM_TYPE_ID" Type="Edm.String" />
+        <Property Name="FEE_DESCRIBE" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1912LocData">
+        <Key>
+          <PropertyRef Name="AREA_CODE" />
+          <PropertyRef Name="DC_CODE" />
+          <PropertyRef Name="LOC_CODE" />
+        </Key>
+        <Property Name="DC_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="AREA_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="LOC_CODE" Type="Edm.String" Nullable="false" />
+      </EntityType>
+      <EntityType Name="F1934EX">
+        <Key>
+          <PropertyRef Name="ZIP_CODE" />
+        </Key>
+        <Property Name="ZIP_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="ZIP_NAME" Type="Edm.String" />
+        <Property Name="COUDIV_ID" Type="Edm.String" />
+        <Property Name="ISCHECKED" Type="Edm.Int32" Nullable="false" />
+      </EntityType>
+      <EntityType Name="F1947JoinF194701">
+        <Key>
+          <PropertyRef Name="DELV_EFFIC" />
+          <PropertyRef Name="DELV_TIME" />
+          <PropertyRef Name="DELV_TMPR" />
+        </Key>
+        <Property Name="DELV_TIME" Type="Edm.String" Nullable="false" />
+        <Property Name="DELV_EFFIC" Type="Edm.String" Nullable="false" />
+        <Property Name="DELV_TMPR" Type="Edm.String" Nullable="false" />
+        <Property Name="DELV_TMPR_NAME" Type="Edm.String" />
+        <Property Name="DELV_EFFIC_NAME" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F19470101Datas">
+        <Key>
+          <PropertyRef Name="DELV_EFFIC" />
+          <PropertyRef Name="DELV_TIME" />
+          <PropertyRef Name="DELV_TMPR" />
+          <PropertyRef Name="ZIP_CODE" />
+        </Key>
+        <Property Name="ZIP_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="DELV_EFFIC" Type="Edm.String" Nullable="false" />
+        <Property Name="DELV_TIME" Type="Edm.String" Nullable="false" />
+        <Property Name="DELV_TMPR" Type="Edm.String" Nullable="false" />
+      </EntityType>
+      <EntityType Name="F199005Data">
+        <Key>
+          <PropertyRef Name="ACC_ITEM_KIND_ID" />
+          <PropertyRef Name="ACC_KIND" />
+          <PropertyRef Name="ACC_NUM" />
+          <PropertyRef Name="ACC_UNIT" />
+          <PropertyRef Name="CUST_TYPE" />
+          <PropertyRef Name="DC_CODE" />
+          <PropertyRef Name="DELV_ACC_TYPE" />
+          <PropertyRef Name="DELV_EFFIC" />
+          <PropertyRef Name="IS_SPECIAL_CAR" />
+          <PropertyRef Name="LOGI_TYPE" />
+        </Key>
+        <Property Name="DC_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_ITEM_KIND_ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CUST_TYPE" Type="Edm.String" Nullable="false" />
+        <Property Name="LOGI_TYPE" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_KIND" Type="Edm.String" Nullable="false" />
+        <Property Name="IS_SPECIAL_CAR" Type="Edm.String" Nullable="false" />
+        <Property Name="CAR_KIND_ID" Type="Edm.Decimal" />
+        <Property Name="ACC_AREA_ID" Type="Edm.Decimal" />
+        <Property Name="DELV_TMPR" Type="Edm.String" />
+        <Property Name="DELV_EFFIC" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_UNIT" Type="Edm.String" Nullable="false" />
+        <Property Name="IN_TAX" Type="Edm.String" />
+        <Property Name="ACC_NUM" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="MAX_WEIGHT" Type="Edm.Decimal" />
+        <Property Name="FEE" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="OVER_VALUE" Type="Edm.Decimal" />
+        <Property Name="OVER_UNIT_FEE" Type="Edm.Decimal" />
+        <Property Name="DELV_ACC_TYPE" Type="Edm.String" Nullable="false" />
+        <Property Name="STATUS" Type="Edm.String" />
+        <Property Name="ITEM_TYPE_ID" Type="Edm.String" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="ACC_UNIT_TEXT" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F91000302Data">
+        <Key>
+          <PropertyRef Name="ACC_UNIT" />
+        </Key>
+        <Property Name="ACC_UNIT" Type="Edm.String" Nullable="false" />
+        <Property Name="ACC_UNIT_NAME" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F194702Data">
+        <Key>
+          <PropertyRef Name="CAR_KIND_ID" />
+        </Key>
+        <Property Name="CAR_KIND_ID" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="CAR_KIND_NAME" Type="Edm.String" />
+        <Property Name="CAR_SIZE" Type="Edm.String" />
+        <Property Name="TMPR_TYPE" Type="Edm.String" />
+        <Property Name="TMPR_TYPE_TEXT" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1948Data">
+        <Key>
+          <PropertyRef Name="ACC_AREA_ID" />
+        </Key>
+        <Property Name="ACC_AREA_ID" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="ACC_AREA" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F190102JoinF000904">
+        <Key>
+          <PropertyRef Name="DELV_EFFIC" />
+        </Key>
+        <Property Name="DELV_EFFIC" Type="Edm.String" Nullable="false" />
+        <Property Name="DELV_EFFIC_NAME" Type="Edm.String" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="Wms3pl.Datas.F19" xmlns="http://schemas.microsoft.com/ado/2007/05/edm">
+      <EntityType Name="F1954">
+        <Key>
+          <PropertyRef Name="FUN_CODE" />
+        </Key>
+        <Property Name="FUN_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="FUN_NAME" Type="Edm.String" />
+        <Property Name="FUN_TYPE" Type="Edm.String" />
+        <Property Name="FUN_DESC" Type="Edm.String" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="STATUS" Type="Edm.String" />
+        <Property Name="UPLOAD_DATE" Type="Edm.DateTime" />
+        <Property Name="DISABLE" Type="Edm.String" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1929">
+        <Key>
+          <PropertyRef Name="GUP_CODE" />
+        </Key>
+        <Property Name="GUP_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="GUP_NAME" Type="Edm.String" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="SYS_GUP_CODE" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="F1912">
+        <Key>
+          <PropertyRef Name="DC_CODE" />
+          <PropertyRef Name="LOC_CODE" />
+        </Key>
+        <Property Name="LOC_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="FLOOR" Type="Edm.String" />
+        <Property Name="AREA_CODE" Type="Edm.String" />
+        <Property Name="CHANNEL" Type="Edm.String" />
+        <Property Name="PLAIN" Type="Edm.String" />
+        <Property Name="LOC_LEVEL" Type="Edm.String" />
+        <Property Name="LOC_TYPE" Type="Edm.String" />
+        <Property Name="LOC_TYPE_ID" Type="Edm.String" />
+        <Property Name="NOW_STATUS_ID" Type="Edm.String" />
+        <Property Name="PRE_STATUS_ID" Type="Edm.String" />
+        <Property Name="WAREHOUSE_ID" Type="Edm.String" />
+        <Property Name="DC_CODE" Type="Edm.String" Nullable="false" />
+        <Property Name="UPD_STAFF" Type="Edm.String" />
+        <Property Name="CRT_DATE" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="UPD_DATE" Type="Edm.DateTime" />
+        <Property Name="UCC_CODE" Type="Edm.String" />
+        <Property Name="CRT_STAFF" Type="Edm.String" />
+        <Property Name="GUP_CODE" Type="Edm.String" />
+        <Property Name="CUST_CODE" Type="Edm.String" />
+        <Property Name="HOR_DISTANCE" Type="Edm.Decimal" />
+        <Property Name="RENT_BEGIN_DATE" Type="Edm.DateTime" />
+        <Property Name="RENT_END_DATE" Type="Edm.DateTime" />
+        <Property Name="CRT_NAME" Type="Edm.String" />
+        <Property Name="UPD_NAME" Type="Edm.String" />
+        <Property Name="USEFUL_VOLUMN" Type="Edm.Decimal" />
+        <Property Name="USED_VOLUMN" Type="Edm.Decimal" />
+        <Property Name="NOW_CUST_CODE" Type="Edm.String" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="Wms3pl.WebServices.Process.P19.ExDataSources" xmlns="http://schemas.microsoft.com/ado/2007/05/edm">
+      <EntityContainer Name="P19ExDataSource" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="ExecuteResults" EntityType="Wms3pl.Datas.Shared.Entities.ExecuteResult" />
+        <EntitySet Name="F1924s" EntityType="Wms3pl.Datas.F19.F1954" />
+        <EntitySet Name="F1929s" EntityType="Wms3pl.Datas.F19.F1929" />
+        <EntitySet Name="F1929WithF1909Tests" EntityType="Wms3pl.Datas.Shared.Entities.F1929WithF1909Test" />
+        <EntitySet Name="FunctionShowInfos" EntityType="Wms3pl.Datas.Shared.Entities.FunctionShowInfo" />
+        <EntitySet Name="P1905GroupFunctionMappings" EntityType="Wms3pl.Datas.Shared.Entities.P1905GroupFunctionMapping" />
+        <EntitySet Name="F1924Datas" EntityType="Wms3pl.Datas.Shared.Entities.F1924Data" />
+        <EntitySet Name="F190101Datas" EntityType="Wms3pl.Datas.Shared.Entities.F190101Data" />
+        <EntitySet Name="F1912s" EntityType="Wms3pl.Datas.F19.F1912" />
+        <EntitySet Name="EmpWithFuncionNames" EntityType="Wms3pl.Datas.Shared.Entities.EmpWithFuncionName" />
+        <EntitySet Name="GetUserPasswords" EntityType="Wms3pl.Datas.Shared.Entities.GetUserPassword" />
+        <EntitySet Name="F1905Datas" EntityType="Wms3pl.Datas.Shared.Entities.F1905Data" />
+        <EntitySet Name="F190301Datas" EntityType="Wms3pl.Datas.Shared.Entities.F190301Data" />
+        <EntitySet Name="F1947WithF194701s" EntityType="Wms3pl.Datas.Shared.Entities.F1947WithF194701" />
+        <EntitySet Name="UserWarehouses" EntityType="Wms3pl.Datas.Shared.Entities.UserWarehouse" />
+        <EntitySet Name="F1954Exs" EntityType="Wms3pl.Datas.Shared.Entities.F1954Ex" />
+        <EntitySet Name="F197001Datas" EntityType="Wms3pl.Datas.Shared.Entities.F197001Data" />
+        <EntitySet Name="DistributionDatas" EntityType="Wms3pl.Datas.Shared.Entities.DistributionData" />
+        <EntitySet Name="F1909EXs" EntityType="Wms3pl.Datas.Shared.Entities.F1909EX" />
+        <EntitySet Name="F199002Datas" EntityType="Wms3pl.Datas.Shared.Entities.F199002Data" />
+        <EntitySet Name="F1912LocDatas" EntityType="Wms3pl.Datas.Shared.Entities.F1912LocData" />
+        <EntitySet Name="F1934EXs" EntityType="Wms3pl.Datas.Shared.Entities.F1934EX" />
+        <EntitySet Name="F1947JoinF194701EXs" EntityType="Wms3pl.Datas.Shared.Entities.F1947JoinF194701" />
+        <EntitySet Name="F19470101DatasEXs" EntityType="Wms3pl.Datas.Shared.Entities.F19470101Datas" />
+        <EntitySet Name="F199005Datas" EntityType="Wms3pl.Datas.Shared.Entities.F199005Data" />
+        <EntitySet Name="F91000302Datas" EntityType="Wms3pl.Datas.Shared.Entities.F91000302Data" />
+        <EntitySet Name="F194702Datas" EntityType="Wms3pl.Datas.Shared.Entities.F194702Data" />
+        <EntitySet Name="F1948Datas" EntityType="Wms3pl.Datas.Shared.Entities.F1948Data" />
+        <EntitySet Name="F190102JoinF000904DatasEXs" EntityType="Wms3pl.Datas.Shared.Entities.F190102JoinF000904" />
+        <FunctionImport Name="GetDatas" ReturnType="Collection(Wms3pl.Datas.F19.F1929)" EntitySet="F1929s" m:HttpMethod="GET" />
+        <FunctionImport Name="GetF1929WithF1909Tests" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1929WithF1909Test)" EntitySet="F1929WithF1909Tests" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="UpdateWithTrans1" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="UpdateWithTrans2" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="UpdateWithoutTrans1" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="UpdateWithoutTrans2" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetFunctionShowInfos" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.FunctionShowInfo)" EntitySet="FunctionShowInfos" m:HttpMethod="GET">
+          <Parameter Name="account" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="DeleteUser" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="empId" Type="Edm.String" />
+          <Parameter Name="userId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF190101MappingTable" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F190101Data)" EntitySet="F190101Datas" m:HttpMethod="GET">
+          <Parameter Name="gupId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetUserFunctions" ReturnType="Collection(Wms3pl.Datas.F19.F1954)" EntitySet="F1924s" m:HttpMethod="GET">
+          <Parameter Name="account" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetUserFunctionsForPda" ReturnType="Collection(Wms3pl.Datas.F19.F1954)" EntitySet="F1924s" m:HttpMethod="GET">
+          <Parameter Name="account" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="dcCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="SaveUserFunctions" ReturnType="Collection(Edm.String)" m:HttpMethod="POST">
+          <Parameter Name="account" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="InsertF1954" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="funCode" Type="Edm.String" />
+          <Parameter Name="funName" Type="Edm.String" />
+          <Parameter Name="funDesc" Type="Edm.String" />
+          <Parameter Name="funType" Type="Edm.String" />
+          <Parameter Name="userId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="UpdateF1954" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="funCode" Type="Edm.String" />
+          <Parameter Name="funName" Type="Edm.String" />
+          <Parameter Name="funDesc" Type="Edm.String" />
+          <Parameter Name="userId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="DeletedF1954" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="funCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="DeleteP190504" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="groupId" Type="Edm.String" />
+          <Parameter Name="userId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="F1924WithF192403" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1924Data)" EntitySet="F1924Datas" m:HttpMethod="GET" />
+        <FunctionImport Name="UpdateP190505" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="groupId" Type="Edm.String" />
+          <Parameter Name="empId" Type="Edm.String" />
+          <Parameter Name="userId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetUserPassword" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.GetUserPassword)" EntitySet="GetUserPasswords" m:HttpMethod="GET">
+          <Parameter Name="empid" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="EmpWithFuncionName" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.EmpWithFuncionName)" EntitySet="EmpWithFuncionNames" m:HttpMethod="GET">
+          <Parameter Name="Empid" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetAssignedLoc" ReturnType="Collection(Wms3pl.Datas.F19.F1912)" EntitySet="F1912s" m:HttpMethod="GET">
+          <Parameter Name="workgroupId" Type="Edm.String" />
+          <Parameter Name="dcCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetUnAssignedLoc" ReturnType="Collection(Wms3pl.Datas.F19.F1912)" EntitySet="F1912s" m:HttpMethod="GET">
+          <Parameter Name="workgroupId" Type="Edm.String" />
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="warehouseId" Type="Edm.String" />
+          <Parameter Name="floor" Type="Edm.String" />
+          <Parameter Name="startLocCode" Type="Edm.String" />
+          <Parameter Name="endLocCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="InsertF195301ImportLogError" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="userId" Type="Edm.String" />
+          <Parameter Name="errmsg" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="InsertF192401ImportLogError" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="userId" Type="Edm.String" />
+          <Parameter Name="errmsg" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="DeleteDC" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetPackCase" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1905Data)" EntitySet="F1905Datas" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="itemCode" Type="Edm.String" />
+          <Parameter Name="itemName" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="DeleteItem" ReturnType="Wms3pl.Datas.Shared.Entities.ExecuteResult" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="itemCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF1947WithF194701Datas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1947WithF194701)" EntitySet="F1947WithF194701s" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="delvTime" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetUserWarehouse" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.UserWarehouse)" EntitySet="UserWarehouses" m:HttpMethod="GET">
+          <Parameter Name="userId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetItemPack" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F190301Data)" EntitySet="F190301Datas" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="itemCode" Type="Edm.String" />
+          <Parameter Name="itemName" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF197001Data" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F197001Data)" EntitySet="F197001Datas" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="labelCode" Type="Edm.String" />
+          <Parameter Name="itemCode" Type="Edm.String" />
+          <Parameter Name="vnrCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetDistributionData" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.DistributionData)" EntitySet="DistributionDatas" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="CheckItemLocStatus" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="itemCode" Type="Edm.String" />
+          <Parameter Name="srcLocCode" Type="Edm.String" />
+          <Parameter Name="tarLocCode" Type="Edm.String" />
+          <Parameter Name="validDate" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetP1909EXDatas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1909EX)" EntitySet="F1909EXs" m:HttpMethod="GET" />
+        <FunctionImport Name="GetFloors" ReturnType="Edm.String" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="warehouseId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetChanels" ReturnType="Edm.String" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="warehouseId" Type="Edm.String" />
+          <Parameter Name="floor" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetNonAllowedF1912LocDatas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1912LocData)" EntitySet="F1912LocDatas" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="warehouseId" Type="Edm.String" />
+          <Parameter Name="floor" Type="Edm.String" />
+          <Parameter Name="beginLocCode" Type="Edm.String" />
+          <Parameter Name="endLocCode" Type="Edm.String" />
+          <Parameter Name="workId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetAllowedF1912LocDatas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1912LocData)" EntitySet="F1912LocDatas" m:HttpMethod="GET">
+          <Parameter Name="workId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetJobValuation" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F199002Data)" EntitySet="F199002Datas" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="accItemKindId" Type="Edm.String" />
+          <Parameter Name="OrdType" Type="Edm.String" />
+          <Parameter Name="accKind" Type="Edm.String" />
+          <Parameter Name="accUnit" Type="Edm.String" />
+          <Parameter Name="status" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF1934EXDatas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1934EX)" EntitySet="F1934EXs" m:HttpMethod="GET" />
+        <FunctionImport Name="GetF1947Join194701Datas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1947JoinF194701)" EntitySet="F1947JoinF194701EXs" m:HttpMethod="GET">
+          <Parameter Name="ALL_ID" Type="Edm.String" />
+          <Parameter Name="DC_CODE" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF19470101Datas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F19470101Datas)" EntitySet="F19470101DatasEXs" m:HttpMethod="GET">
+          <Parameter Name="ALL_ID" Type="Edm.String" />
+          <Parameter Name="DC_CODE" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF199005" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F199005Data)" EntitySet="F199005Datas" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+          <Parameter Name="accItemKindId" Type="Edm.String" />
+          <Parameter Name="logiType" Type="Edm.String" />
+          <Parameter Name="custType" Type="Edm.String" />
+          <Parameter Name="taxType" Type="Edm.String" />
+          <Parameter Name="accKind" Type="Edm.String" />
+          <Parameter Name="isSpecialCar" Type="Edm.String" />
+          <Parameter Name="status" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetAccUnitList" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F91000302Data)" EntitySet="F91000302Datas" m:HttpMethod="GET">
+          <Parameter Name="itemTypeId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF194702" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F194702Data)" EntitySet="F194702Datas" m:HttpMethod="GET" />
+        <FunctionImport Name="GetF1948" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F1948Data)" EntitySet="F1948Datas" m:HttpMethod="GET">
+          <Parameter Name="dcCode" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetF190102JoinF000904Datas" ReturnType="Collection(Wms3pl.Datas.Shared.Entities.F190102JoinF000904)" EntitySet="F190102JoinF000904DatasEXs" m:HttpMethod="GET">
+          <Parameter Name="DC_CODE" Type="Edm.String" />
+          <Parameter Name="TOPIC" Type="Edm.String" />
+          <Parameter Name="Subtopic" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="DeleteP190109" ReturnType="Wms3pl.Datas.Shared.Entities.ExecuteResult" EntitySet="ExecuteResults" m:HttpMethod="GET">
+          <Parameter Name="gupCode" Type="Edm.String" />
+          <Parameter Name="custCode" Type="Edm.String" />
+          <Parameter Name="vnrCode" Type="Edm.String" />
+        </FunctionImport>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

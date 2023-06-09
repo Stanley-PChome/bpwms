@@ -1,0 +1,9 @@
+PICK_ORD_NO	String	20	
+DELV_DATE	Date		
+PICK_TIME	String	8	
+WMS_ORD_NO	String	20	
+B_DISTR_QTY	Number		
+ITEM_CODE	String	20	
+ITEM_NAME	String	300	
+GUP_NAME	String	80	
+CUST_NAME	String	80	

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8C14EF5-DAA3-4F0E-80F2-B3E99EFF73F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WebServices.Refind</RootNamespace>
+    <AssemblyName>Wms3pl.WebServices.Refind</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.5.6.0\lib\net40\Microsoft.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="R01\ExDataSources\R01ExDataSource.cs" />
+    <Compile Include="R01\R01ExDataService.cs" />
+    <Compile Include="R01\R01WcfService.cs" />
+    <Compile Include="R01\Services\R010101Service.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2fa6f2b6-e072-437a-8096-7aec69b461a1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Client\Common\Wms3pl.Common\Wms3pl.Common.csproj">
+      <Project>{c7640a2e-5290-4dee-959d-ecdbf815f846}</Project>
+      <Name>Wms3pl.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{d3dc1679-3bfe-47b1-9302-9a17b90cd9f9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{f8f52a2a-9c65-4b62-912f-4146b62aab72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
+      <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
+      <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.Process\Wms3pl.WebServices.Process.mssql.csproj">
+      <Project>{318a534f-66ea-43a4-a6ee-f9734d765ea5}</Project>
+      <Name>Wms3pl.WebServices.Process.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.Schedule\Wms3pl.WebServices.Schedule.mssql.csproj">
+      <Project>{3F74F917-2C3D-41C4-A25E-8ED04ABBB332}</Project>
+      <Name>Wms3pl.WebServices.Schedule.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.Shared\Wms3pl.WebServices.Shared.mssql.csproj">
+      <Project>{e8775330-cea0-4a6e-b625-e55659f4f7e4}</Project>
+      <Name>Wms3pl.WebServices.Shared.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Client\Core\Wms3pl.WpfClient.Common\Wms3pl.WpfClient.Common.csproj">
+      <Project>{0c8c673b-4390-4825-8605-6b2a70095b4f}</Project>
+      <Name>Wms3pl.WpfClient.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F05\Wms3pl.Datas.F05.csproj">
+      <Project>{a1db887e-deb2-43c3-9f48-bc484186ef97}</Project>
+      <Name>Wms3pl.Datas.F05</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F15\Wms3pl.Datas.F15.csproj">
+      <Project>{59e7e4d0-cc8e-4509-8f2e-ff6e28ad9857}</Project>
+      <Name>Wms3pl.Datas.F15</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F19\Wms3pl.Datas.F19.csproj">
+      <Project>{d48d1f67-d7ad-4eb7-8d8a-f4f2aa085a76}</Project>
+      <Name>Wms3pl.Datas.F19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F50\Wms3pl.Datas.F50.csproj">
+      <Project>{ede9c7c0-211a-4549-9a78-18a5c63f947c}</Project>
+      <Name>Wms3pl.Datas.F50</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F70\Wms3pl.Datas.F70.csproj">
+      <Project>{066a2e2b-d78a-4379-b09d-f84798633333}</Project>
+      <Name>Wms3pl.Datas.F70</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+  </ItemGroup>
+</Project>

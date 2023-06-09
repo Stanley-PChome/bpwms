@@ -1,0 +1,265 @@
+﻿<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P21.Views.P2115010000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+      xmlns:converter="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P21.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P21.Properties"
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800"
+			controls:PermissionService.FunctionId="P2115010000"
+			controls:PermissionService.FunctionName="{x:Static Properties:Resources.TodayWorkInstructions}"
+			controls:PermissionService.CheckPermission="False"
+			FormException="{Binding Exception}">
+	<uiLib:Wms3plUserControl.DataContext>
+		<viewModel:P2115010000_ViewModel x:Name="Vm" />
+	</uiLib:Wms3plUserControl.DataContext>
+	<uiLib:Wms3plUserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+			<converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+		</ResourceDictionary>
+	</uiLib:Wms3plUserControl.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+					<Button Style="{StaticResource SearchButton}" controls:PermissionService.CheckPermission="False" Command="{Binding SearchCommand}" />
+				</WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
+				<TabControl x:Name="LayoutRoot">
+					<TabControl.BindingGroup>
+						<BindingGroup Name="errorGroup" />
+					</TabControl.BindingGroup>
+					<TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+						<DockPanel>
+							<DockPanel DockPanel.Dock="Top">
+								<GroupBox  Header="{x:Static res:Resources.QueryCondition}">
+									<DockPanel>
+										<Expander IsExpanded="True">
+											<WrapPanel DockPanel.Dock="TOP" Margin="5">
+												<Grid>
+													<Grid.RowDefinitions>
+														<RowDefinition Height="Auto" />
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="Auto" />
+														<ColumnDefinition Width="Auto" />
+													</Grid.ColumnDefinitions>
+													<Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.DC}" Style="{StaticResource LbStyle}" />
+													<ComboBox Grid.Row="0" Grid.Column="1" Name="Comb_DC"
+                              Style="{StaticResource ComboStyle}"
+															ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}"
+															DisplayMemberPath="Name" SelectedValuePath="Value"
+															SelectedValue="{Binding SelectedDc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+												</Grid>
+											</WrapPanel>
+										</Expander>
+									</DockPanel>
+								</GroupBox>
+							</DockPanel>
+							<ScrollViewer DockPanel.Dock="Top">
+								<DockPanel>
+									<GroupBox Header="{x:Static Properties:Resources.ToDoItems}" DockPanel.Dock="Top">
+										<Expander IsExpanded="True" DockPanel.Dock="Top">
+											<DockPanel>
+												<DockPanel DockPanel.Dock="Top">
+													<DataGrid  Style="{StaticResource DgStyle}"  VerticalAlignment="Top"
+											    DockPanel.Dock="Top" Width="Auto" ItemsSource="{Binding MyWorkList}"
+											    VerticalScrollBarVisibility="Auto"
+											    CellStyle="{StaticResource SingleClickEdit}">
+
+														<DataGrid.Columns>
+															<DataGridTemplateColumn Header="{x:Static Properties:Resources.HotFunction}">
+																<DataGridTemplateColumn.CellTemplate>
+																	<DataTemplate>
+																		<Button Click="Button_Click" ToolTip="{Binding FUNC_ID}" Content="{Binding FUNC_NAME}"
+																IsEnabled="{Binding func1Enable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></Button>
+																	</DataTemplate>
+																</DataGridTemplateColumn.CellTemplate>
+															</DataGridTemplateColumn>
+															<DataGridTextColumn Header="{x:Static Properties:Resources.JobCategory}" Binding="{Binding NAME}" />
+															<DataGridTextColumn Header="{x:Static Properties:Resources.JobName}" Binding="{Binding FUNC_NAME}" />
+															<DataGridTextColumn Header="{x:Static Properties:Resources.UndoneNumberOfJob}"   Binding="{Binding COUNTS}" />
+															<DataGridTextColumn Header="{x:Static Properties:Resources.TotalOfJobToday}"   Binding="{Binding COUNTS_B}" />
+															<DataGridTextColumn Header="{x:Static Properties:Resources.UndoneNumberOfJobToday}"   Binding="{Binding COUNTS_C}" />
+															<DataGridTextColumn Header="{x:Static Properties:Resources.PercentCompletedToday}" Binding="{Binding PercentCnt}">
+
+																<DataGridTextColumn.CellStyle>
+																	<Style TargetType="{x:Type DataGridCell}">
+																		<Setter Property="Background" Value="{Binding BackColorCombine,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+																		<Setter Property="Foreground" Value="{Binding ForeColorCombine,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+																	</Style>
+																</DataGridTextColumn.CellStyle>
+															</DataGridTextColumn>
+															<DataGridTemplateColumn Header="{x:Static Properties:Resources.HotKeyA}">
+																<DataGridTemplateColumn.CellTemplate>
+																	<DataTemplate>
+																		<Button Click="Button_Click" ToolTip="{Binding FUNC_IDB}" Content="{Binding FUNC_NAMEB}"
+																Visibility="{Binding FUNCBVIS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																IsEnabled="{Binding func2Enable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></Button>
+																	</DataTemplate>
+																</DataGridTemplateColumn.CellTemplate>
+															</DataGridTemplateColumn>
+															<DataGridTemplateColumn Header="{x:Static Properties:Resources.HotKeyB}">
+																<DataGridTemplateColumn.CellTemplate>
+																	<DataTemplate>
+																		<Button Click="Button_Click" ToolTip="{Binding FUNC_IDC}" Content="{Binding FUNC_NAMEC}" 
+																Visibility="{Binding FUNCCVIS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																IsEnabled="{Binding func3Enable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></Button>
+																	</DataTemplate>
+																</DataGridTemplateColumn.CellTemplate>
+															</DataGridTemplateColumn>
+														</DataGrid.Columns>
+													</DataGrid>
+
+													<DockPanel DockPanel.Dock="Top" />
+												</DockPanel>
+												<GroupBox DockPanel.Dock="Top">
+													<DockPanel>
+														<ListBox ItemsSource="{Binding ChartOrLineSourceByOrdPropListA}">
+															<ListBox.Template>
+																<ControlTemplate TargetType="{x:Type ListBox}">
+																	<ScrollViewer HorizontalScrollBarVisibility="Disabled">
+																		<WrapPanel IsItemsHost="True"></WrapPanel>
+																	</ScrollViewer>
+																</ControlTemplate>
+															</ListBox.Template>
+															<ListBox.ItemTemplate>
+																<DataTemplate>
+
+																	<DockPanel>
+																		<StackPanel>
+																			<DockPanel DockPanel.Dock="Top">
+																				<Label Content="{Binding OrdProp}" />
+																				<!--X1="0" Y1="30" X2="60" Y2="30"-->
+																				<!--"35,15 60,30 35,45"-->
+																				<Canvas Grid.Column="3" Height="5" Width="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+																	Visibility="{Binding VisEnable}">
+																					<Line X1="0" Y1="15" X2="30" Y2="15" Stroke="Black" StrokeThickness="1" />
+																					<Polyline Points="15,7 30,15 15,23" Stroke="Black" StrokeThickness="1" />
+																				</Canvas>
+																			</DockPanel>
+																			<telerik:RadChart x:Name="radChart" ItemsSource="{Binding ChartSourceList}" Width="150" Height="150"
+																		    FontSize="14" BorderThickness="0" Background="Transparent" DockPanel.Dock="Top">
+																				<telerik:RadChart.LegendStyle>
+																					<Style TargetType="Control">
+																						<Setter Property="Width" Value="{Binding widthValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+																						<Setter Property="Height" Value="{Binding heightValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+																						<Setter Property="HorizontalContentAlignment" Value="Center" />
+																						<Setter Property="VerticalContentAlignment" Value="Center" />
+																						<Setter Property="FontSize" Value="{Binding FontSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+																					</Style>
+																				</telerik:RadChart.LegendStyle>
+																				<telerik:RadChart.DefaultView>
+																					<telerik:ChartDefaultView ChartLegendPosition="Left">
+																						<telerik:ChartDefaultView.ChartLegend>
+																							<telerik:ChartLegend x:Name="Legend" Visibility="Visible" 
+																							    Header=" "  UseAutoGeneratedItems="True">
+
+																							</telerik:ChartLegend>
+
+																						</telerik:ChartDefaultView.ChartLegend>
+																						<telerik:ChartDefaultView.ChartArea>
+																							<telerik:ChartArea LegendName="Legend">
+																							</telerik:ChartArea>
+
+																						</telerik:ChartDefaultView.ChartArea>
+
+																					</telerik:ChartDefaultView>
+																				</telerik:RadChart.DefaultView>
+																				<telerik:RadChart.SeriesMappings>
+																					<telerik:SeriesMapping>
+																						<telerik:SeriesMapping.SeriesDefinition>
+																							<telerik:PieSeriesDefinition LegendDisplayMode="DataPointLabel">
+																								<telerik:PieSeriesDefinition.LabelSettings>
+																									<telerik:RadialLabelSettings ShowZeroValueLabels="False"></telerik:RadialLabelSettings>
+																								</telerik:PieSeriesDefinition.LabelSettings>
+																							</telerik:PieSeriesDefinition>
+																						</telerik:SeriesMapping.SeriesDefinition>
+																						<telerik:SeriesMapping.ItemMappings>
+																							<telerik:ItemMapping DataPointMember="YValue" FieldName="CustTotalCount" />
+																							<telerik:ItemMapping DataPointMember="XValue" FieldName="TotalCount" />
+																							<telerik:ItemMapping DataPointMember="Label" FieldName="Label" />
+																							<telerik:ItemMapping DataPointMember="LegendLabel" FieldName="ListType" />
+																						</telerik:SeriesMapping.ItemMappings>
+																					</telerik:SeriesMapping>
+																				</telerik:RadChart.SeriesMappings>
+
+																			</telerik:RadChart>
+																		</StackPanel>
+																	</DockPanel>
+																</DataTemplate>
+															</ListBox.ItemTemplate>
+														</ListBox>
+														<DockPanel />
+													</DockPanel>
+												</GroupBox>
+											</DockPanel>
+										</Expander>
+									</GroupBox>
+									<GroupBox Header="{x:Static Properties:Resources.MessageNotification}" DockPanel.Dock="Top">
+										<Expander IsExpanded="True" DockPanel.Dock="Top">
+											<DockPanel>
+												<WrapPanel DockPanel.Dock="Top" >
+													<Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.Classification}"   />
+													<ListBox ItemsSource="{Binding SubjectList}" VerticalContentAlignment="Center" >
+														<ListBox.Template>
+															<ControlTemplate TargetType="ListBox">
+																<WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+															</ControlTemplate>
+														</ListBox.Template>
+														<ListBox.ItemTemplate>
+															<DataTemplate>
+																<CheckBox Style="{StaticResource CheckStyle}" Content="{Binding Item.Name}" IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
+															</DataTemplate>
+														</ListBox.ItemTemplate>
+													</ListBox>
+												</WrapPanel>
+												<DataGrid  Style="{StaticResource DgStyle}"  VerticalAlignment="Top" DockPanel.Dock="Top"
+											       Width="Auto" ItemsSource="{Binding ScheduleList}"
+											       VerticalScrollBarVisibility="Auto" 
+											       CellStyle="{StaticResource SingleClickEdit}">
+
+													<DataGrid.Columns>
+														<DataGridTextColumn Header="{x:Static res:Resources.Date}" Binding="{Binding SCHEDULE_DATE,Converter={StaticResource DateTimeToStringConverter}, ConverterParameter='yyyy/MM/dd'}" />
+														<DataGridTextColumn Header="{x:Static res:Resources.Time}" Binding="{Binding SCHEDULE_TIME}" />
+														<DataGridTemplateColumn Header="{x:Static Properties:Resources.Classification}" Width="*">
+															<DataGridTemplateColumn.CellTemplate>
+																<DataTemplate>
+																	<TextBlock TextWrapping="Wrap" Text="{Binding SUBJECT}" />
+																</DataTemplate>
+															</DataGridTemplateColumn.CellTemplate>
+														</DataGridTemplateColumn>
+														<DataGridTemplateColumn Header="{x:Static Properties:Resources.MessageContent}" Width="8*">
+															<DataGridTemplateColumn.CellTemplate>
+																<DataTemplate>
+																	<TextBlock TextWrapping="Wrap" Text="{Binding CONTENT}" />
+																</DataTemplate>
+															</DataGridTemplateColumn.CellTemplate>
+														</DataGridTemplateColumn>
+													</DataGrid.Columns>
+												</DataGrid>
+
+											</DockPanel>
+										</Expander>
+									</GroupBox>
+								</DockPanel>
+							</ScrollViewer>
+							<DockPanel />
+						</DockPanel>
+					</TabItem>
+				</TabControl>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

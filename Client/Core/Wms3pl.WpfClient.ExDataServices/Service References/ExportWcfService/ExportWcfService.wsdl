@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ExportWcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/ExportWcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/ExportWcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/ExportWcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.ApiEntities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ExportWcfService_ExportWarehouseInResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportWarehouseInResults" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportWarehouseInResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportWarehouseInResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportOrderResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportOrderResults" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportOrderResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportOrderResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportVendorReturnResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportVendorReturnResults" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportVendorReturnResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportVendorReturnResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExpStockAlertResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExpStockAlertResults" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExpStockAlertResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExpStockAlertResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportHomeDeliveryResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportHomeDeliveryResults" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportHomeDeliveryResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportHomeDeliveryResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportStockMovementResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportStockMovementResults" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportStockMovementResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportStockMovementResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportSysErrorNotifyResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportSysErrorNotifyResults" />
+  </wsdl:message>
+  <wsdl:message name="ExportWcfService_ExportSysErrorNotifyResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportSysErrorNotifyResultsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ExportWcfService">
+    <wsdl:operation name="ExportWarehouseInResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ExportWcfService/ExportWarehouseInResults" message="tns:ExportWcfService_ExportWarehouseInResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ExportWcfService/ExportWarehouseInResultsResponse" message="tns:ExportWcfService_ExportWarehouseInResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportOrderResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ExportWcfService/ExportOrderResults" message="tns:ExportWcfService_ExportOrderResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ExportWcfService/ExportOrderResultsResponse" message="tns:ExportWcfService_ExportOrderResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportVendorReturnResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ExportWcfService/ExportVendorReturnResults" message="tns:ExportWcfService_ExportVendorReturnResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ExportWcfService/ExportVendorReturnResultsResponse" message="tns:ExportWcfService_ExportVendorReturnResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExpStockAlertResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ExportWcfService/ExpStockAlertResults" message="tns:ExportWcfService_ExpStockAlertResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ExportWcfService/ExpStockAlertResultsResponse" message="tns:ExportWcfService_ExpStockAlertResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportHomeDeliveryResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ExportWcfService/ExportHomeDeliveryResults" message="tns:ExportWcfService_ExportHomeDeliveryResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ExportWcfService/ExportHomeDeliveryResultsResponse" message="tns:ExportWcfService_ExportHomeDeliveryResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportStockMovementResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ExportWcfService/ExportStockMovementResults" message="tns:ExportWcfService_ExportStockMovementResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ExportWcfService/ExportStockMovementResultsResponse" message="tns:ExportWcfService_ExportStockMovementResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportSysErrorNotifyResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/ExportWcfService/ExportSysErrorNotifyResults" message="tns:ExportWcfService_ExportSysErrorNotifyResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ExportWcfService/ExportSysErrorNotifyResultsResponse" message="tns:ExportWcfService_ExportSysErrorNotifyResults_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ExportWcfService" type="tns:ExportWcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExportWarehouseInResults">
+      <soap:operation soapAction="http://tempuri.org/ExportWcfService/ExportWarehouseInResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportOrderResults">
+      <soap:operation soapAction="http://tempuri.org/ExportWcfService/ExportOrderResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportVendorReturnResults">
+      <soap:operation soapAction="http://tempuri.org/ExportWcfService/ExportVendorReturnResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExpStockAlertResults">
+      <soap:operation soapAction="http://tempuri.org/ExportWcfService/ExpStockAlertResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportHomeDeliveryResults">
+      <soap:operation soapAction="http://tempuri.org/ExportWcfService/ExportHomeDeliveryResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportStockMovementResults">
+      <soap:operation soapAction="http://tempuri.org/ExportWcfService/ExportStockMovementResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportSysErrorNotifyResults">
+      <soap:operation soapAction="http://tempuri.org/ExportWcfService/ExportSysErrorNotifyResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExportWcfService">
+    <wsdl:port name="BasicHttpBinding_ExportWcfService" binding="tns:BasicHttpBinding_ExportWcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/ExportWcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfOrderIsProblem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderIsProblem" nillable="true" type="tns:OrderIsProblem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderIsProblem" nillable="true" type="tns:ArrayOfOrderIsProblem" />
+  <xs:complexType name="OrderIsProblem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CREATE_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TYPE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderIsProblem" nillable="true" type="tns:OrderIsProblem" />
+  <xs:complexType name="ArrayOfExceedPickFinishTime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExceedPickFinishTime" nillable="true" type="tns:ExceedPickFinishTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExceedPickFinishTime" nillable="true" type="tns:ArrayOfExceedPickFinishTime" />
+  <xs:complexType name="ExceedPickFinishTime">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CREATE_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICKFINISHTIME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExceedPickFinishTime" nillable="true" type="tns:ExceedPickFinishTime" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+</xs:schema>

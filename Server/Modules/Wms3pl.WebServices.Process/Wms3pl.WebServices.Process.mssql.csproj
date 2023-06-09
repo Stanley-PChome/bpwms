@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{318A534F-66EA-43A4-A6EE-F9734D765EA5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WebServices.Process</RootNamespace>
+    <AssemblyName>Wms3pl.WebServices.Process</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.5.6.0\lib\net40\Microsoft.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="P01\ExDataSources\P01ExDataSource.cs" />
+    <Compile Include="P01\ExDataSources\P01ExDataSource.part1.cs" />
+    <Compile Include="P01\ExDataSources\P01ExDataSource.part4.cs" />
+    <Compile Include="P01\ExDataSources\P01ExDataSource.part2.cs" />
+    <Compile Include="P01\P01ExDataService.cs" />
+    <Compile Include="P01\P01ExDataService.part1.cs" />
+    <Compile Include="P01\P01WcfService.cs" />
+    <Compile Include="P01\Services\P010101Service.cs" />
+    <Compile Include="P01\Services\P010201Service.cs" />
+    <Compile Include="P02\P02WcfService.cs" />
+    <Compile Include="P02\Services\P020208Service.cs" />
+    <Compile Include="P02\Services\P020105Service.cs" />
+    <Compile Include="P02\Services\P020201Service.cs" />
+    <Compile Include="P02\Services\P020203Service.cs" />
+    <Compile Include="P02\Services\P020203Service.part1.cs" />
+    <Compile Include="P02\Services\P020205Service.cs" />
+    <Compile Include="P02\Services\P020206Service.cs" />
+    <Compile Include="P02\Services\P020301Service.cs" />
+    <Compile Include="P05\ExDataSources\P05ExDataSource.cs" />
+    <Compile Include="P05\ExDataSources\P05ExDataSource.part1.cs" />
+    <Compile Include="P05\P05ExDataService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="P05\P05ExDataService.part1.cs" />
+    <Compile Include="P05\P05WcfService.cs" />
+    <Compile Include="P05\Services\P050103Service.cs" />
+    <Compile Include="P05\Services\P050104Service.cs" />
+    <Compile Include="P05\Services\P050112Service.cs" />
+    <Compile Include="P05\Services\P050201Service.cs" />
+    <Compile Include="P05\Services\P050303Service.cs" />
+    <Compile Include="P05\Services\P050302Service.cs" />
+    <Compile Include="P05\Services\P050304Service.cs" />
+    <Compile Include="P05\Services\P050101Service.cs" />
+    <Compile Include="P05\Services\P050102Service.cs" />
+    <Compile Include="P05\Services\P050301Service.cs" />
+    <Compile Include="P05\Services\P050801Service .part1.cs" />
+    <Compile Include="P05\Services\P050801Service.cs" />
+    <Compile Include="P06\ExDataSources\P06ExDataSource.cs" />
+    <Compile Include="P06\P06ExDataService.cs" />
+    <Compile Include="P06\P06WcfService.cs" />
+    <Compile Include="P06\Services\P060101Service.cs" />
+    <Compile Include="P06\Services\P060201Service.cs" />
+    <Compile Include="P06\Services\P060103Service.cs" />
+    <Compile Include="P06\Services\P060202Service.cs" />
+    <Compile Include="P08\ExDataSources\P08ExDataSource.cs" />
+    <Compile Include="P08\P08ExDataService.cs" />
+    <Compile Include="P08\P08WcfService.cs" />
+    <Compile Include="P08\Services\P080201Service.cs" />
+    <Compile Include="P08\Services\P080301Service.cs" />
+    <Compile Include="P08\Services\P080302Service.cs" />
+    <Compile Include="P05\Services\P0513Service.cs" />
+    <Compile Include="P08\Services\P080613Service.cs" />
+    <Compile Include="P08\Services\P080614Service.cs" />
+    <Compile Include="P08\Services\P080802Service.cs" />
+    <Compile Include="P08\Services\P080803Service.cs" />
+    <Compile Include="P08\Services\P080804Service.cs" />
+    <Compile Include="P08\Services\P080901Service.cs" />
+    <Compile Include="P08\Services\P081001Service.cs" />
+    <Compile Include="P08\Services\P081301Service.cs" />
+    <Compile Include="P11\Services\P110103Service.cs" />
+    <Compile Include="P11\Services\P1101Service.cs" />
+    <Compile Include="P14\ExDataSources\P14ExDataSource.cs" />
+    <Compile Include="P14\P14ExDataService.cs" />
+    <Compile Include="P14\P14WcfService.cs" />
+    <Compile Include="P14\Services\P140101Service.cs" />
+    <Compile Include="P14\Services\P140103Service.cs" />
+    <Compile Include="P14\Services\P140104Service.cs" />
+    <Compile Include="P15\ExDataSources\P15ExDataSource.cs" />
+    <Compile Include="P15\P15ExDataService.part1.cs" />
+    <Compile Include="P15\P15ExDataService.cs" />
+    <Compile Include="P15\P15WcfService.cs" />
+    <Compile Include="P15\Services\P150201Service.cs" />
+    <Compile Include="P08\Services\P080701Service.cs" />
+    <Compile Include="P15\Services\P150201Service.part1.cs" />
+    <Compile Include="P16\ExDataSources\P16ExDataSource.cs" />
+    <Compile Include="P16\P16ExDataService.cs" />
+    <Compile Include="P16\P16WcfService.part1.cs" />
+    <Compile Include="P16\P16WcfService.cs" />
+    <Compile Include="P16\ServiceEntites\P16Entities.cs" />
+    <Compile Include="P16\Services\P160101Service.part1.cs" />
+    <Compile Include="P16\Services\P160101Service.cs" />
+    <Compile Include="P16\Services\P160201Service.part1.cs" />
+    <Compile Include="P16\Services\P160201Service.cs" />
+    <Compile Include="P16\Services\P160202Service.cs" />
+    <Compile Include="P16\Services\P160203Service.cs" />
+    <Compile Include="P16\Services\P160401Service.cs" />
+    <Compile Include="P16\Services\P160402Service.cs" />
+    <Compile Include="P16\Services\P160501Service.cs" />
+    <Compile Include="P16\Services\P160503Service.cs" />
+    <Compile Include="P16\Services\P160504Service.cs" />
+    <Compile Include="P16\Services\P160502Service.cs" />
+    <Compile Include="P16\Services\P161201Service.cs" />
+    <Compile Include="P08\Services\P080602Service.cs" />
+    <Compile Include="P16\Services\P160102Service.cs" />
+    <Compile Include="P18\ExDataSources\P18ExDataSource.cs" />
+    <Compile Include="P18\P18WcfService.cs" />
+    <Compile Include="P18\P18ExDataService.cs" />
+    <Compile Include="P18\Services\P180201Service.cs" />
+    <Compile Include="P18\Services\P180101Service.cs" />
+    <Compile Include="P18\Services\P180301Service.cs" />
+    <Compile Include="P19\Services\P190105Service.cs" />
+    <Compile Include="P19\Services\P190110Service.cs" />
+    <Compile Include="P19\Services\P190116Service.cs" />
+    <Compile Include="P19\Services\P190181Service.cs" />
+    <Compile Include="P19\Services\P190104Service.cs" />
+    <Compile Include="P19\Services\P190193Service.cs" />
+    <Compile Include="P19\Services\P190192Service.cs" />
+    <Compile Include="P19\Services\P190513Service.cs" />
+    <Compile Include="P19\Services\P190702Service.cs" />
+    <Compile Include="P19\Services\P190701Service.cs" />
+    <Compile Include="P19\Services\F1909Service.cs" />
+    <Compile Include="P19\Services\P190101Service.cs" />
+    <Compile Include="P19\Services\P190102Service.cs" />
+    <Compile Include="P19\Services\P190103Service.cs" />
+    <Compile Include="P19\Services\P190109Service.cs" />
+    <Compile Include="P19\Services\P190303Service.cs" />
+    <Compile Include="P19\Services\P191206Service.cs" />
+    <Compile Include="P19\Services\P190191Service.cs" />
+    <Compile Include="P19\Services\P1913Service.cs" />
+    <Compile Include="P19\Services\F1934Service.cs" />
+    <Compile Include="P19\Services\P192019Service.cs" />
+    <Compile Include="P19\Services\P192018Service.cs" />
+    <Compile Include="P19\Services\P192021Service.cs" />
+    <Compile Include="P19\Services\P19470101Service.cs" />
+    <Compile Include="P19\Services\P19470801Service.cs" />
+    <Compile Include="P19\Services\P1947Service.cs" />
+    <Compile Include="P19\Services\P197001Service.cs" />
+    <Compile Include="P19\Services\P192002Service.cs" />
+    <Compile Include="P19\Services\P1980Service.cs" />
+    <Compile Include="P20\ExDataSources\P20ExDataSource.cs" />
+    <Compile Include="P20\P20ExDataService.cs" />
+    <Compile Include="P20\P20WcfService.cs" />
+    <Compile Include="P20\Services\P200101Service.cs" />
+    <Compile Include="P21\ExDataSources\P21ExDataSource.cs" />
+    <Compile Include="P21\P21ExDataService.cs" />
+    <Compile Include="P21\P21WcfService.cs" />
+    <Compile Include="P21\Services\P210201Service.cs" />
+    <Compile Include="P21\Services\P211602Service.cs" />
+    <Compile Include="P21\Services\P211501Service.cs" />
+    <Compile Include="P21\Services\P211601Service.cs" />
+    <Compile Include="P25\ExDataSources\P25ExDataSource.cs" />
+    <Compile Include="P25\P25ExDataService.cs" />
+    <Compile Include="P25\P25WcfService.cs" />
+    <Compile Include="P25\Services\P250103Service.cs" />
+    <Compile Include="P25\Services\P250201Service.cs" />
+    <Compile Include="P25\Services\P250202Service.cs" />
+    <Compile Include="P25\Services\P250303Service.cs" />
+    <Compile Include="P25\Services\P250302Service.cs" />
+    <Compile Include="P25\Services\P250301Service.cs" />
+    <Compile Include="P50\ExDataSources\P50ExDataSource.cs" />
+    <Compile Include="P50\P50ExDataService.cs" />
+    <Compile Include="P50\P50WcfServicecs.cs" />
+    <Compile Include="P50\Services\P500101Service.cs" />
+    <Compile Include="P50\Services\P500102Service.cs" />
+    <Compile Include="P50\Services\P500103Service.cs" />
+    <Compile Include="P50\Services\P500104Service.cs" />
+    <Compile Include="P50\Services\P500105Service.cs" />
+    <Compile Include="P50\Services\P500106Service.cs" />
+    <Compile Include="P50\Services\P500201Service.cs" />
+    <Compile Include="P70\ExDataSources\P70ExDataSource.cs" />
+    <Compile Include="P70\P70ExDataService.cs" />
+    <Compile Include="P70\P70WcfService.cs" />
+    <Compile Include="P70\Services\P700102Service.cs" />
+    <Compile Include="P70\Services\P70010401Service.cs" />
+    <Compile Include="P70\Services\P700104Service.cs" />
+    <Compile Include="P70\Services\P700105Service.cs" />
+    <Compile Include="P71\P71ExDataService.cs" />
+    <Compile Include="P71\Services\P710108Service.cs" />
+    <Compile Include="P71\Services\P710201Service.cs" />
+    <Compile Include="P71\Services\P710103Service.cs" />
+    <Compile Include="P71\Services\P710107Service.cs" />
+    <Compile Include="P71\Services\P710106Service.cs" />
+    <Compile Include="P71\Services\P710102Service.cs" />
+    <Compile Include="P71\Services\P710104Service.cs" />
+    <Compile Include="P02\ExDataSource\P02ExDataSource.cs" />
+    <Compile Include="P02\P02ExDataService.cs" />
+    <Compile Include="P02\Services\P020104Service.cs" />
+    <Compile Include="P02\Services\P020102Service.cs" />
+    <Compile Include="P02\Services\P020101Service.cs" />
+    <Compile Include="P02\Services\P02Service.cs" />
+    <Compile Include="P19\ExDataSources\P19ExDataSource.cs" />
+    <Compile Include="P19\P19WcfService.cs" />
+    <Compile Include="P19\P19ExDataService.cs" />
+    <Compile Include="P19\Services\P190501Service.cs" />
+    <Compile Include="P19\Services\P190506Service.cs" />
+    <Compile Include="P19\Services\P190507Service.cs" />
+    <Compile Include="P19\Services\P190508Service.cs" />
+    <Compile Include="P19\Services\P190505Service.cs" />
+    <Compile Include="P19\Services\P190504Service.cs" />
+    <Compile Include="P71\ExDataSources\P71ExDataSource.cs" />
+    <Compile Include="P71\P71WcfService.cs" />
+    <Compile Include="P71\Services\P710101Service.cs" />
+    <Compile Include="P71\Services\P710105Service.cs" />
+    <Compile Include="P71\Services\P710401Service.cs" />
+    <Compile Include="P71\Services\P710402Service.cs" />
+    <Compile Include="P71\Services\P710403Service.cs" />
+    <Compile Include="P71\Services\P710503Service.cs" />
+    <Compile Include="P71\Services\P710505Service.cs" />
+    <Compile Include="P71\Services\P710507Service.cs" />
+    <Compile Include="P71\Services\P710506Service.cs" />
+    <Compile Include="P71\Services\P710501Service.cs" />
+    <Compile Include="P71\Services\P710502Service.cs" />
+    <Compile Include="P71\Services\P710601Service.cs" />
+    <Compile Include="P71\Services\P710702Service.cs" />
+    <Compile Include="P71\Services\P710705Service.cs" />
+    <Compile Include="P71\Services\P710706Service.cs" />
+    <Compile Include="P71\Services\P710808Service.cs" />
+    <Compile Include="P71\Services\P710810Service.cs" />
+    <Compile Include="P71\Services\P710901Service.cs" />
+    <Compile Include="P71\Services\P710903Service.cs" />
+    <Compile Include="P71\Services\P711001Service.cs" />
+    <Compile Include="P71\Services\P711002Service.cs" />
+    <Compile Include="P71\Services\P711003Service.cs" />
+    <Compile Include="P91\ExDataSources\P91ExDataSource.cs" />
+    <Compile Include="P91\P91ExDataService.cs" />
+    <Compile Include="P91\P91WcfService.cs" />
+    <Compile Include="P91\Services\P910201Service.cs" />
+    <Compile Include="P91\Services\P910101Service.cs" />
+    <Compile Include="P91\Services\P910301Service.cs" />
+    <Compile Include="P91\Services\P910302Service.cs" />
+    <Compile Include="P91\Services\P910501Service.cs" />
+    <Compile Include="P91\Services\P910303Service.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="P19\Services\P19Service.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2fa6f2b6-e072-437a-8096-7aec69b461a1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F06\Wms3pl.Datas.F06.csproj">
+      <Project>{2006be43-61bd-4259-9255-8fb393c052e6}</Project>
+      <Name>Wms3pl.Datas.F06</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Client\Common\Wms3pl.Common\Wms3pl.Common.csproj">
+      <Project>{c7640a2e-5290-4dee-959d-ecdbf815f846}</Project>
+      <Name>Wms3pl.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{d3dc1679-3bfe-47b1-9302-9a17b90cd9f9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{f8f52a2a-9c65-4b62-912f-4146b62aab72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
+      <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
+      <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F07\Wms3pl.Datas.F07.csproj">
+      <Project>{61302189-f348-4c74-bc5e-ed5bc88a6484}</Project>
+      <Name>Wms3pl.Datas.F07</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.ForeignWebApi.Business\Wms3pl.WebServices.ForeignWebApi.Business.mssql.csproj">
+      <Project>{2feef342-61f3-4e27-8aa7-df40dd35f0d9}</Project>
+      <Name>Wms3pl.WebServices.ForeignWebApi.Business.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.Shared\Wms3pl.WebServices.Shared.mssql.csproj">
+      <Project>{e8775330-cea0-4a6e-b625-e55659f4f7e4}</Project>
+      <Name>Wms3pl.WebServices.Shared.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.Transaction\Wms3pl.WebServices.Transaction.mssql.csproj">
+      <Project>{3cacc153-6a9f-4065-98a6-81a24e7a043e}</Project>
+      <Name>Wms3pl.WebServices.Transaction.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F00\Wms3pl.Datas.F00.csproj">
+      <Project>{f9054276-1c3b-44d1-ba52-5f040a3b1488}</Project>
+      <Name>Wms3pl.Datas.F00</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F01\Wms3pl.Datas.F01.csproj">
+      <Project>{61238d14-28c6-4c66-84a1-51d134e0c9f8}</Project>
+      <Name>Wms3pl.Datas.F01</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F02\Wms3pl.Datas.F02.csproj">
+      <Project>{a82c1a68-acbb-4508-af25-6f388ffe0b7a}</Project>
+      <Name>Wms3pl.Datas.F02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F05\Wms3pl.Datas.F05.csproj">
+      <Project>{a1db887e-deb2-43c3-9f48-bc484186ef97}</Project>
+      <Name>Wms3pl.Datas.F05</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F11\Wms3pl.Datas.F11.csproj">
+      <Project>{1c438a7a-4942-42e5-abe0-ca693d0ddfda}</Project>
+      <Name>Wms3pl.Datas.F11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F14\Wms3pl.Datas.F14.csproj">
+      <Project>{6d42aa8a-3bab-46d7-b481-07314eae47e8}</Project>
+      <Name>Wms3pl.Datas.F14</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F15\Wms3pl.Datas.F15.csproj">
+      <Project>{59e7e4d0-cc8e-4509-8f2e-ff6e28ad9857}</Project>
+      <Name>Wms3pl.Datas.F15</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F16\Wms3pl.Datas.F16.csproj">
+      <Project>{361f2c23-8fa2-4288-a36d-7ed6659abf5d}</Project>
+      <Name>Wms3pl.Datas.F16</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F19\Wms3pl.Datas.F19.csproj">
+      <Project>{d48d1f67-d7ad-4eb7-8d8a-f4f2aa085a76}</Project>
+      <Name>Wms3pl.Datas.F19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F20\Wms3pl.Datas.F20.csproj">
+      <Project>{0f81a0e0-728f-4247-885b-6485ce150a5a}</Project>
+      <Name>Wms3pl.Datas.F20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F25\Wms3pl.Datas.F25.csproj">
+      <Project>{c0a80dfd-fbab-4717-8fe5-62d35ddbcd59}</Project>
+      <Name>Wms3pl.Datas.F25</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F50\Wms3pl.Datas.F50.csproj">
+      <Project>{ede9c7c0-211a-4549-9a78-18a5c63f947c}</Project>
+      <Name>Wms3pl.Datas.F50</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F51\Wms3pl.Datas.F51.csproj">
+      <Project>{b0a89937-c73a-4f50-b421-2cbfd94125c5}</Project>
+      <Name>Wms3pl.Datas.F51</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F70\Wms3pl.Datas.F70.csproj">
+      <Project>{066a2e2b-d78a-4379-b09d-f84798633333}</Project>
+      <Name>Wms3pl.Datas.F70</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F91\Wms3pl.Datas.F91.csproj">
+      <Project>{5f336702-0ad9-4d39-85a4-4547a475baf7}</Project>
+      <Name>Wms3pl.Datas.F91</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="P05\packages.config" />
+    <Content Include="P18\packages.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

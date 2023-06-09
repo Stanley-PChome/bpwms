@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P19.Views.P1902060000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P19.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P19.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" controls:PermissionService.FunctionId="P1902060000" controls:PermissionService.FunctionName="商品檢驗項目" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P1902060000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <viewModel:P1902060000_ViewModel x:Key="Vm" />
+      <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+      <converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter" />
+      <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1902060001" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP1902060002" Command="{Binding AddCommand}" />
+          <!--<Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1902060003" Command="{Binding EditCommand}" IsEnabled="False" />-->
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1902060004" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1902060005" Command="{Binding DeleteCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1902060006" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel>
+              <GroupBox DockPanel.Dock="Top" Header="{x:Static res:Resources.QueryCondition}">
+                <WrapPanel IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                  <Label Content="{x:Static Properties:Resources.ItemCode}" Style="{StaticResource LbStyle}" />
+                  <TextBox Name="txtItemCode" Style="{StaticResource TxtStyle}" Width="215" Height="30" Text="{Binding ITEM_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                  <Button Grid.Row="4" Grid.Column="0" Margin="4" Content="{x:Static Properties:Resources.ItemQuery}" Width="100" Height="30" Click="Button_Click" controls:PermissionService.FunctionId="BP1902060007"/>
+                </WrapPanel>
+              </GroupBox>
+              <GroupBox DockPanel.Dock="Top" Header="{x:Static res:Resources.OueryResult}">
+                <controls:ValidationDataGrid ItemsSource="{Binding DataList,UpdateSourceTrigger=PropertyChanged}" Name="dgList" SelectedItem="{Binding SelectedData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" IsReadOnly="False" RowHeaderStyle="{StaticResource UcSingleRowHeaderEdit}" CellStyle="{StaticResource UcSingleRowEdit}">
+                  <DataGrid.Columns>
+                    <DataGridComboBoxColumn Header="{x:Static Properties:Resources.CHECK_TYPE}" IsReadOnly="True" ItemsSource="{Binding CheckItemTypeList,ValidatesOnExceptions=true,NotifyOnValidationError=true,ValidatesOnDataErrors=True,Source={StaticResource Vm}}" SelectedValuePath="Value" DisplayMemberPath="Name" SelectedValueBinding="{Binding CHECK_TYPE}" />
+                    <DataGridComboBoxColumn Header="{x:Static Properties:Resources.CHECK_NO}" IsReadOnly="True" ItemsSource="{Binding CheckItemList,ValidatesOnExceptions=true,NotifyOnValidationError=true,ValidatesOnDataErrors=True,Source={StaticResource Vm}}" SelectedValuePath="CHECK_NO" DisplayMemberPath="CHECK_NAME" SelectedValueBinding="{Binding CHECK_NO}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" IsReadOnly="True" Binding="{Binding CRT_NAME}" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_DATE}" IsReadOnly="True" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
+                    <!--<DataGridTextColumn Header="異動人員" IsReadOnly="True" Binding="{Binding UPD_NAME}"/>										
+										<DataGridTextColumn Header="異動時間" IsReadOnly="True" Binding="{Binding UPD_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}"/>-->
+                  </DataGrid.Columns>
+                </controls:ValidationDataGrid>
+              </GroupBox>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

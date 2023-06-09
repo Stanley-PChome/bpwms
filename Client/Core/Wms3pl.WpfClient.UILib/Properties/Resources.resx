@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>資料已刪除</value>
+  </data>
+  <data name="ErrorAddFailed" xml:space="preserve">
+    <value>新增失敗!</value>
+  </data>
+  <data name="ErrorExportFailed" xml:space="preserve">
+    <value>匯出失敗</value>
+  </data>
+  <data name="ErrorImportFailed" xml:space="preserve">
+    <value>匯入失敗</value>
+  </data>
+  <data name="ErrorUpdateFailed" xml:space="preserve">
+    <value>修改失敗!</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>更新失敗</value>
+  </data>
+  <data name="FormService_AddFunctionForm_NotDefined" xml:space="preserve">
+    <value>未定義</value>
+  </data>
+  <data name="InfoAddSuccess" xml:space="preserve">
+    <value>新增成功!</value>
+  </data>
+  <data name="InfoApprove" xml:space="preserve">
+    <value>採購單已核准!</value>
+  </data>
+  <data name="InfoDebitSuccess" xml:space="preserve">
+    <value>已扣帳完成</value>
+  </data>
+  <data name="InfoDeleteSuccess" xml:space="preserve">
+    <value>刪除成功!</value>
+  </data>
+  <data name="InfoExportSuccess" xml:space="preserve">
+    <value>匯出成功</value>
+  </data>
+  <data name="InfoFileUploaded" xml:space="preserve">
+    <value>上傳成功</value>
+  </data>
+  <data name="InfoImportSuccess" xml:space="preserve">
+    <value>匯入成功</value>
+  </data>
+  <data name="InfoInvalidPassword" xml:space="preserve">
+    <value>密碼錯誤</value>
+  </data>
+  <data name="InfoInvalidUnlockCode" xml:space="preserve">
+    <value>解鎖碼錯誤</value>
+  </data>
+  <data name="InfoInvalidUnlockPermission" xml:space="preserve">
+    <value>此帳號無包裝解鎖權限</value>
+  </data>
+  <data name="InfoInvalidUserId" xml:space="preserve">
+    <value>無此帳號</value>
+  </data>
+  <data name="InfoNoData" xml:space="preserve">
+    <value>查無資料</value>
+  </data>
+  <data name="InfoOrderNotInWarehouse" xml:space="preserve">
+    <value>廠商尚未報到列印進倉單!</value>
+  </data>
+  <data name="InfoPickNoExists" xml:space="preserve">
+    <value>已開立揀料單，是否列印</value>
+  </data>
+  <data name="InfoSerialCountOver" xml:space="preserve">
+    <value>序號數量超過應刷數量</value>
+  </data>
+  <data name="InfoSerialNotAllImported" xml:space="preserve">
+    <value>匯入成功數與序號檔總筆數不符</value>
+  </data>
+  <data name="InfoUpdateSuccess" xml:space="preserve">
+    <value>修改成功!</value>
+  </data>
+  <data name="InputPickNoNoData" xml:space="preserve">
+    <value>請輸入揀貨單號或揀貨箱號</value>
+  </data>
+  <data name="InputSerialNoDuplicate" xml:space="preserve">
+    <value>輸入合流箱號重複</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>訊息</value>
+  </data>
+  <data name="PickListNoData" xml:space="preserve">
+    <value>此批次已無揀貨單可列印</value>
+  </data>
+  <data name="PickTimeNoData" xml:space="preserve">
+    <value>查無批次時段</value>
+  </data>
+  <data name="PrintFailed" xml:space="preserve">
+    <value>列印失敗</value>
+  </data>
+  <data name="PrintSuccess" xml:space="preserve">
+    <value>列印成功</value>
+  </data>
+  <data name="ScanSerialorBox" xml:space="preserve">
+    <value>請刷讀品號/序號/箱號</value>
+  </data>
+  <data name="ScanSerialOrBoxMessage" xml:space="preserve">
+    <value>此品項必須刷讀序號,請刷讀序號</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>已更新</value>
+  </data>
+  <data name="Success2" xml:space="preserve">
+    <value>更新成功</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="WarningAlreadySowing" xml:space="preserve">
+    <value>此商品項目已播種</value>
+  </data>
+  <data name="WarningBeenDeleted" xml:space="preserve">
+    <value>資料已被刪除, 請重新查詢</value>
+  </data>
+  <data name="WarningBeforeAdd" xml:space="preserve">
+    <value>資料已修改, 是否先儲存?</value>
+  </data>
+  <data name="WarningBeforeAddLack" xml:space="preserve">
+    <value>確定註記缺貨資料?</value>
+  </data>
+  <data name="WarningBeforeApproveF050101" xml:space="preserve">
+    <value>確定要核准?</value>
+  </data>
+  <data name="WarningBeforeCancel" xml:space="preserve">
+    <value>確定要取消編輯?</value>
+  </data>
+  <data name="WarningBeforeChangeContractObject" xml:space="preserve">
+    <value>已設定合約項目明細需清空,是否確認變更合約對象?</value>
+  </data>
+  <data name="WarningBeforeComfirmEditItem" xml:space="preserve">
+    <value>是否確認修改?</value>
+  </data>
+  <data name="WarningBeforeDebit" xml:space="preserve">
+    <value>確定要進行出貨扣帳?</value>
+  </data>
+  <data name="WarningBeforeDelete" xml:space="preserve">
+    <value>確定要刪除?</value>
+  </data>
+  <data name="WarningBeforeDisableFunction" xml:space="preserve">
+    <value>確定要修改為停用狀態?</value>
+  </data>
+  <data name="WarningBeforeEnableFunction" xml:space="preserve">
+    <value>確定要修改為非停用狀態?</value>
+  </data>
+  <data name="WarningBeforeExit" xml:space="preserve">
+    <value>確定要離開？</value>
+  </data>
+  <data name="WarningBeforeForceClose" xml:space="preserve">
+    <value>確定要強制結案?</value>
+  </data>
+  <data name="WarningBeforeGoP02020301" xml:space="preserve">
+    <value>此商品無可進貨序號檔, 是否進行序號收集?</value>
+  </data>
+  <data name="WarningBeforeImportF110101" xml:space="preserve">
+    <value>已匯入不同張借出外送單，是否清空明細重新匯入?</value>
+  </data>
+  <data name="WarningBeforePosting" xml:space="preserve">
+    <value>確定要過帳?</value>
+  </data>
+  <data name="WarningBeforePrint" xml:space="preserve">
+    <value>確定要列印?</value>
+  </data>
+  <data name="WarningBeforePrintInWarehouseTag" xml:space="preserve">
+    <value>是否列印重量標?</value>
+  </data>
+  <data name="WarningBeforePrintWarehouseInReport" xml:space="preserve">
+    <value>是否確認列印進倉單?</value>
+  </data>
+  <data name="WarningBeforeSave" xml:space="preserve">
+    <value>是否確定存檔?</value>
+  </data>
+  <data name="WarningBeforeSaveP020203" xml:space="preserve">
+    <value>修改驗收總量需重新檢驗商品? 是否確定修改?</value>
+  </data>
+  <data name="WarningBeforeUpdate" xml:space="preserve">
+    <value>確定要儲存?</value>
+  </data>
+  <data name="WarningBeforeUpdateProcessQty" xml:space="preserve">
+    <value>揀料單已開立，是否確認修改加工數量？</value>
+  </data>
+  <data name="WarningBeforeUploadRtFiles" xml:space="preserve">
+    <value>是否確定上傳檔案?</value>
+  </data>
+  <data name="WarningBoxBindingComplete" xml:space="preserve">
+    <value>箱號綁定完成 ，可開始播種!</value>
+  </data>
+  <data name="WarningCannotDelete" xml:space="preserve">
+    <value>無法刪除資料</value>
+  </data>
+  <data name="WarningCannotDeleteCheckItem" xml:space="preserve">
+    <value>無法刪除資料, 請先移除商品檢驗項目設定中的檢驗項目</value>
+  </data>
+  <data name="WarningCannotDeleteFunction" xml:space="preserve">
+    <value>無法刪除資料, 請先移除工作群組的設定</value>
+  </data>
+  <data name="WarningCannotDeleteGroup" xml:space="preserve">
+    <value>無法刪除資料, 請先移除該工作群組的人員</value>
+  </data>
+  <data name="WarningCannotDeleteGup" xml:space="preserve">
+    <value>無法刪除資料, 請先移除該貨主主檔的群組</value>
+  </data>
+  <data name="WarningCannotDeleteWordgroup" xml:space="preserve">
+    <value>無法刪除資料, 請先移除該作業群組的人員</value>
+  </data>
+  <data name="WarningCannotNext" xml:space="preserve">
+    <value>已為最後一區</value>
+  </data>
+  <data name="WarningCannotRevious" xml:space="preserve">
+    <value>已為第一區</value>
+  </data>
+  <data name="WarningCannotUpdateF910201" xml:space="preserve">
+    <value>加工單已加工完成，不可修改資料</value>
+  </data>
+  <data name="WarningCannotUpdateProcessQty" xml:space="preserve">
+    <value>揀料單開始揀貨則不可修改加工數量</value>
+  </data>
+  <data name="WarningDuplicatedData" xml:space="preserve">
+    <value>重複</value>
+  </data>
+  <data name="WarningExist" xml:space="preserve">
+    <value>資料已存在, 請重新查詢</value>
+  </data>
+  <data name="WarningFileLocked" xml:space="preserve">
+    <value>檔案已開啟</value>
+  </data>
+  <data name="WarningFileSizeExceedLimits" xml:space="preserve">
+    <value>檔案大小超過</value>
+  </data>
+  <data name="WarningFileUploadedFailure" xml:space="preserve">
+    <value>上傳失敗</value>
+  </data>
+  <data name="WarningInvalidLocCode" xml:space="preserve">
+    <value>儲位編號不正確</value>
+  </data>
+  <data name="WarningInvalidOrderNo" xml:space="preserve">
+    <value>進倉單號不正確</value>
+  </data>
+  <data name="WarningInvalidRecvQty" xml:space="preserve">
+    <value>驗收總量不正確，請勿超過未驗收數</value>
+  </data>
+  <data name="WarningInvalidSerialFile" xml:space="preserve">
+    <value>序號檔案格式不符</value>
+  </data>
+  <data name="WarningIsChickIn" xml:space="preserve">
+    <value>此揀貨單{0}</value>
+  </data>
+  <data name="WarningIsChickIn2" xml:space="preserve">
+    <value>已被{1}({2})綁定</value>
+  </data>
+  <data name="WarningIsManualAssignCar" xml:space="preserve">
+    <value>是否進行手動派車?</value>
+  </data>
+  <data name="WarningNoBoxNo" xml:space="preserve">
+    <value>合流箱號未輸入</value>
+  </data>
+  <data name="WarningNoCarNo" xml:space="preserve">
+    <value>車號尚未輸入</value>
+  </data>
+  <data name="WarningNoCaseHight" xml:space="preserve">
+    <value>外箱體積高度尚未輸入</value>
+  </data>
+  <data name="WarningNoCaseLength" xml:space="preserve">
+    <value>外箱體積長度尚未輸入</value>
+  </data>
+  <data name="WarningNoCaseWeight" xml:space="preserve">
+    <value>外箱重量尚未輸入</value>
+  </data>
+  <data name="WarningNoCaseWidth" xml:space="preserve">
+    <value>外箱體積寬度尚未輸入</value>
+  </data>
+  <data name="WarningNoCheckName" xml:space="preserve">
+    <value>檢驗項目名稱尚未輸入</value>
+  </data>
+  <data name="WarningNoCheckNo" xml:space="preserve">
+    <value>檢驗項目編號尚未輸入</value>
+  </data>
+  <data name="WarningNoCustCode" xml:space="preserve">
+    <value>貨主編號尚未輸入</value>
+  </data>
+  <data name="WarningNoCustName" xml:space="preserve">
+    <value>貨主名稱尚未輸入</value>
+  </data>
+  <data name="WarningNoDcCode" xml:space="preserve">
+    <value>DC編號尚未輸入</value>
+  </data>
+  <data name="WarningNoDcName" xml:space="preserve">
+    <value>DC名稱尚未輸入</value>
+  </data>
+  <data name="WarningNoEmpID" xml:space="preserve">
+    <value>員工編號尚未輸入</value>
+  </data>
+  <data name="WarningNoEmpName" xml:space="preserve">
+    <value>員工姓名尚未輸入</value>
+  </data>
+  <data name="WarningNoGupCode" xml:space="preserve">
+    <value>業主編號尚未輸入</value>
+  </data>
+  <data name="WarningNoGupName" xml:space="preserve">
+    <value>業主名稱尚未輸入</value>
+  </data>
+  <data name="WarningNoItem" xml:space="preserve">
+    <value>出貨明細查無此商品項目</value>
+  </data>
+  <data name="WarningNoItemCode" xml:space="preserve">
+    <value>商品品號尚未輸入</value>
+  </data>
+  <data name="WarningNoLackQty" xml:space="preserve">
+    <value>缺貨數量未輸入</value>
+  </data>
+  <data name="WarningNoMergeBoxNo" xml:space="preserve">
+    <value>合流箱號尚未輸入</value>
+  </data>
+  <data name="WarningNoPackHight" xml:space="preserve">
+    <value>收縮體積高度尚未輸入</value>
+  </data>
+  <data name="WarningNoPackLength" xml:space="preserve">
+    <value>收縮體積長度尚未輸入</value>
+  </data>
+  <data name="WarningNoPackWeight" xml:space="preserve">
+    <value>收縮重量尚未輸入</value>
+  </data>
+  <data name="WarningNoPackWidth" xml:space="preserve">
+    <value>收縮體積寬度尚未輸入</value>
+  </data>
+  <data name="WarningNoReceiptDate" xml:space="preserve">
+    <value>收貨日期尚未輸入</value>
+  </data>
+  <data name="WarningNoReturnNoOrPastNo" xml:space="preserve">
+    <value>託運單/退貨單尚未輸入</value>
+  </data>
+  <data name="WarningNoSelect" xml:space="preserve">
+    <value>請選擇資料</value>
+  </data>
+  <data name="WarningNotAllowedUCCTypeForSpecialPurchase" xml:space="preserve">
+    <value>已檢驗但序號未刷驗，原因才可選擇《先入帳進貨 》</value>
+  </data>
+  <data name="WarningNotModified" xml:space="preserve">
+    <value>資料沒有異動, 不需儲存</value>
+  </data>
+  <data name="WarningNoTransport" xml:space="preserve">
+    <value>運輸公司尚未輸入</value>
+  </data>
+  <data name="WarningNotUccSelected" xml:space="preserve">
+    <value>未選擇不通過的原因</value>
+  </data>
+  <data name="WarningNotValidFinishDate" xml:space="preserve">
+    <value>完工日期與報價單生效期間不符，請重新選擇項目名稱</value>
+  </data>
+  <data name="WarningNoValue" xml:space="preserve">
+    <value>資料未填寫正確</value>
+  </data>
+  <data name="WarningNoWmsOrdItem" xml:space="preserve">
+    <value>查無此出貨單商品</value>
+  </data>
+  <data name="WarningNoWmsOrdNo" xml:space="preserve">
+    <value>查無此出貨單</value>
+  </data>
+  <data name="WarningProcessFinished" xml:space="preserve">
+    <value>加工已完成，不可進行作業</value>
+  </data>
+  <data name="WarningProcessIp" xml:space="preserve">
+    <value>不符合加工單設定時的生產線對應之電腦IP</value>
+  </data>
+  <data name="WarningProgramSettingInvalid" xml:space="preserve">
+    <value>所選取的程式內容有錯誤, 請檢查XAML內容</value>
+  </data>
+  <data name="WarningSerialNoHasExist" xml:space="preserve">
+    <value>已匯入序號是否要重新匯入?</value>
+  </data>
+  <data name="WarningSmallTicketHasExist" xml:space="preserve">
+    <value>已匯入小單內容是否要重新匯入?</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CloseCase" xml:space="preserve">
+    <value>結案</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="Exist" xml:space="preserve">
+    <value>離開</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>匯出</value>
+  </data>
+  <data name="ExportExcel" xml:space="preserve">
+    <value>匯出Excel</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>上筆</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>匯入</value>
+  </data>
+  <data name="ImportExcel" xml:space="preserve">
+    <value>匯入Excel</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>末筆</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>下筆</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>列印</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>查詢</value>
+  </data>
+  <data name="ToolTip" xml:space="preserve">
+    <value>首筆</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>預覽</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>核准</value>
+  </data>
+</root>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<!--<Table name="F1924">
+		<Column name="EMP_NAME" />
+		<Column name="EMAIL" />
+		<Column name="MOBILE" />
+	</Table>-->
+	<Table name="F050301">		
+		<Column name="TEL" hideRule="TEL" />
+		<Column name="ADDRESS" hideRule="ADDR" />
+		<Column name="CONSIGNEE" hideRule="NAME" />
+		<Column name="CONTACT" hideRule="NAME" />
+		<Column name="CONTACT_TEL" hideRule="TEL" />
+		<Column name="TEL_AREA" hideRule="NOT" />
+		<Column name="TEL_1" hideRule="TEL" />
+		<Column name="TEL_2" hideRule="TEL" />
+		<Column name="ADDRESS_PARSE" hideRule="ADDR" />
+	</Table>
+	<Table name="F050101">
+		<Column name="TEL" hideRule="TEL" />
+		<Column name="ADDRESS" hideRule="ADDR" />
+		<Column name="CONSIGNEE" hideRule="NAME" />
+		<Column name="CONTACT" hideRule="NAME" />
+		<Column name="CONTACT_TEL" hideRule="TEL" />
+		<Column name="TEL_AREA" hideRule="NOT" />
+		<Column name="TEL_1" hideRule="TEL" />
+		<Column name="TEL_2" hideRule="TEL" />
+	</Table>
+	<Table name="F050001">
+		<Column name="TEL" hideRule="TEL" />
+		<Column name="ADDRESS" hideRule="ADDR" />
+		<Column name="CONSIGNEE" hideRule="NAME" />
+		<Column name="CONTACT" hideRule="NAME" />
+		<Column name="CONTACT_TEL" hideRule="TEL" />
+		<Column name="TEL_AREA" hideRule="NOT" />
+		<Column name="TEL_1" hideRule="TEL" />
+		<Column name="TEL_2" hideRule="TEL" />
+	</Table>
+</root>

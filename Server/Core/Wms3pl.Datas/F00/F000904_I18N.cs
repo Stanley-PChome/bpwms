@@ -1,0 +1,59 @@
+namespace Wms3pl.Datas.F00
+{
+            using System;
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Data.Services.Common;
+	using Wms3pl.WebServices.DataCommon;
+
+  /// <summary>
+  /// 程式下拉選單參數設定語系對應檔
+  /// </summary>
+  [Serializable]
+  [DataServiceKey("TOPIC","SUBTOPIC","VALUE","LANG")]
+  [Table("F000904_I18N")]
+  public class F000904_I18N 
+  {
+
+	  /// <summary>
+	  /// 程式編號(資料表)
+	  /// </summary>
+    [Key]
+    [Required]
+	  public string TOPIC { get; set; }
+
+	  /// <summary>
+	  /// 選單ID
+	  /// </summary>
+    [Key]
+    [Required]
+	  public string SUBTOPIC { get; set; }
+
+	  /// <summary>
+	  /// 參數值
+	  /// </summary>
+    [Key]
+    [Required]
+	  public string VALUE { get; set; }
+
+	  /// <summary>
+	  /// 參數名稱
+	  /// </summary>
+    [Required]
+	  public string NAME { get; set; }
+
+	  /// <summary>
+	  /// 選單名稱
+	  /// </summary>
+    [Required]
+	  public string SUB_NAME { get; set; }
+
+	  /// <summary>
+	  /// 語系
+	  /// </summary>
+    [Key]
+    [Required]
+	  public string LANG { get; set; }
+  }
+}
+        

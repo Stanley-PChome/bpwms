@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2e7b7aca-79f4-4ecb-ac4b-cffb948cd001" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/S16WcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="S16WcfService.wsdl" MetadataType="Wsdl" ID="9eea3fea-de90-4d12-87f8-d0e0ac46a445" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S16WcfService.svc?wsdl" />
+    <MetadataFile FileName="S16WcfService.disco" MetadataType="Disco" ID="3100b246-e26b-4700-8899-d0381c9e512c" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S16WcfService.svc?disco" />
+    <MetadataFile FileName="S16WcfService1.xsd" MetadataType="Schema" ID="cbec4bca-659f-4f1f-b64b-adfb8c5cba02" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S16WcfService.svc?xsd=xsd2" />
+    <MetadataFile FileName="S16WcfService.xsd" MetadataType="Schema" ID="7198b0fb-57e9-4fe8-8c2b-4c96c2d96a99" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S16WcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="S16WcfService2.xsd" MetadataType="Schema" ID="fa251c73-ecdb-411c-a08d-d7940f5e36a0" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/S16WcfService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

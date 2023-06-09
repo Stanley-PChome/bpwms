@@ -1,0 +1,732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddDetail" xml:space="preserve">
+    <value>新增明细</value>
+  </data>
+  <data name="ALLOCATION_DATE" xml:space="preserve">
+    <value>调拨日期</value>
+  </data>
+  <data name="A_SRC_QTY" xml:space="preserve">
+    <value>实际下架数量</value>
+  </data>
+  <data name="A_TAR_QTY" xml:space="preserve">
+    <value>实际上架数量</value>
+  </data>
+  <data name="BOX_NO" xml:space="preserve">
+    <value>箱号</value>
+  </data>
+  <data name="BUNDLE_SERIALLOC" xml:space="preserve">
+    <value>序号绑储位</value>
+  </data>
+  <data name="CHECK_SERIALNO" xml:space="preserve">
+    <value>已刷读序号</value>
+  </data>
+  <data name="CREATE" xml:space="preserve">
+    <value>人员</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立时间</value>
+  </data>
+  <data name="DeleteDetail" xml:space="preserve">
+    <value>删除明细</value>
+  </data>
+  <data name="DgItem" xml:space="preserve">
+    <value>调拨商品</value>
+  </data>
+  <data name="Emergency" xml:space="preserve">
+    <value>紧急</value>
+  </data>
+  <data name="ENTER_DATE" xml:space="preserve">
+    <value>入库日</value>
+  </data>
+  <data name="EXPEND" xml:space="preserve">
+    <value>展开</value>
+  </data>
+  <data name="HelpTime" xml:space="preserve">
+    <value>求救时间</value>
+  </data>
+  <data name="HELP_NAME" xml:space="preserve">
+    <value>作业类别</value>
+  </data>
+  <data name="ISEXPENDDATE" xml:space="preserve">
+    <value>效期与入库日</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ItemColor" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ItemSize" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ItemSpec" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>品号</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="LocCodeS" xml:space="preserve">
+    <value>储位</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="MOVE_QTY" xml:space="preserve">
+    <value>调拨数</value>
+  </data>
+  <data name="MustScanSerialNoQty" xml:space="preserve">
+    <value>应刷数</value>
+  </data>
+  <data name="ORD_NO" xml:space="preserve">
+    <value>单据编号</value>
+  </data>
+  <data name="P1502010000_CheckEnoughTAR_Qty" xml:space="preserve">
+    <value>请确认调拨商品是否有足够调拨数量!</value>
+  </data>
+  <data name="P1502010000_CheckLocCodeInWarehouseId" xml:space="preserve">
+    <value>请确认调拨商品目的储位是否包含在目的仓别中!</value>
+  </data>
+  <data name="P1502010000_CheckOutItemCannotModify" xml:space="preserve">
+    <value>此单据已过帐商品，不可修改</value>
+  </data>
+  <data name="P1502010000_ChooseTARWarehouseID" xml:space="preserve">
+    <value>请选择目的仓别!</value>
+  </data>
+  <data name="P1502010000_ColumnCountNotSufficient" xml:space="preserve">
+    <value>栏位数不足，必须为业主代码 货主代码 来源DC 目的DC 来源仓别代码 目的仓别代码 商品代码 来源储位 目的储位 数量</value>
+  </data>
+  <data name="P1502010000_ConfirmToDelAllDetailDataByModifyDC" xml:space="preserve">
+    <value>修改来源物流中心，系统将删除全部明细资料，确认是否修改？</value>
+  </data>
+  <data name="P1502010000_ConfirmToDelAllDetailDataByModifyWarehouseId" xml:space="preserve">
+    <value>修改来源仓别，系统将删除全部明细资料，确认是否修改？</value>
+  </data>
+  <data name="P1502010000_ConfirmToReturnTAR_QTYByModifyDC" xml:space="preserve">
+    <value>修改目的物流中心，系统将上架数回复为下架数，确认是否修改？</value>
+  </data>
+  <data name="P1502010000_ConfirmToReturnTAR_QTYByModifyWarehouseId" xml:space="preserve">
+    <value>修改目的仓别，系统将上架数回复为下架数，确认是否修改？</value>
+  </data>
+  <data name="P1502010000_CRTDateEmpty" xml:space="preserve">
+    <value>过帐日期起迄日皆需输入!</value>
+  </data>
+  <data name="P1502010000_CRTDateIllegal" xml:space="preserve">
+    <value>建立日期起始日不得大於迄止日</value>
+  </data>
+  <data name="P1502010000_CSVisnotCorrectOrOpening" xml:space="preserve">
+    <value>请检查汇入档案是否正确或开启中!</value>
+  </data>
+  <data name="P1502010000_Cust_Code" xml:space="preserve">
+    <value>货主</value>
+  </data>
+  <data name="P1502010000_DeleteFail" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="P1502010000_destFileName" xml:space="preserve">
+    <value>选择储存路径</value>
+  </data>
+  <data name="P1502010000_DoSendCarCheck" xml:space="preserve">
+    <value>是否跳至手动派车?</value>
+  </data>
+  <data name="P1502010000_EmptyitemList" xml:space="preserve">
+    <value>无明细商品资料</value>
+  </data>
+  <data name="P1502010000_EmptyReportDataCannotViewOrPrint" xml:space="preserve">
+    <value>查询无资料，无法预览或列印！</value>
+  </data>
+  <data name="P1502010000_EmptySRC_LOC_CODE" xml:space="preserve">
+    <value>请输入来源储位</value>
+  </data>
+  <data name="P1502010000_ExportQuertResultFail" xml:space="preserve">
+    <value>汇出查询结果失败</value>
+  </data>
+  <data name="P1502010000_ExportQuertResultSuccess" xml:space="preserve">
+    <value>汇出查询结果完成</value>
+  </data>
+  <data name="P1502010000_GenerateAndPrintTransfer" xml:space="preserve">
+    <value>是否确定产生并列印调拨单?</value>
+  </data>
+  <data name="P1502010000_Gup_Code" xml:space="preserve">
+    <value>业主</value>
+  </data>
+  <data name="P1502010000_ImportFail" xml:space="preserve">
+    <value>汇入失败!</value>
+  </data>
+  <data name="P1502010000_ImportTransferDataResult" xml:space="preserve">
+    <value>汇入调拨单结果</value>
+  </data>
+  <data name="P1502010000_InventoryData" xml:space="preserve">
+    <value>库存资料!</value>
+  </data>
+  <data name="P1502010000_Item" xml:space="preserve">
+    <value>商品:</value>
+  </data>
+  <data name="P1502010000_ItemDiscontinuedCannotModify" xml:space="preserve">
+    <value>此单据已下架商品，不可修改</value>
+  </data>
+  <data name="P1502010000_ItemNotFound" xml:space="preserve">
+    <value>查无商品:</value>
+  </data>
+  <data name="P1502010000_ItemOntheMarketCannotModify" xml:space="preserve">
+    <value>此单据已上架商品，不可修改</value>
+  </data>
+  <data name="P1502010000_ItemQtyInsufficient" xml:space="preserve">
+    <value>库存数量不足!</value>
+  </data>
+  <data name="P1502010000_ITEM_CODE" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="P1502010000_LocCodeExportStatusCanNotTransfer" xml:space="preserve">
+    <value>该储位{0}状态为冻结出或冻结进出，无法进行调拨</value>
+  </data>
+  <data name="P1502010000_LocCodeImportStatusCanNotTransfer" xml:space="preserve">
+    <value>该储位{0}状态为冻结进或冻结进出，无法进行调拨</value>
+  </data>
+  <data name="P1502010000_NoDetailData" xml:space="preserve">
+    <value>至少必须有一笔明细资料</value>
+  </data>
+  <data name="P1502010000_NotCorrectCount" xml:space="preserve">
+    <value>{0}不是正确的数量</value>
+  </data>
+  <data name="P1502010000_PleaseTextTarLocCode" xml:space="preserve">
+    <value>请输入目的储位</value>
+  </data>
+  <data name="P1502010000_PostingDateIllegal" xml:space="preserve">
+    <value>过帐日期起始日不得大於迄止日</value>
+  </data>
+  <data name="P1502010000_QRT" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="P1502010000_SOURCE_TYPEIsEmpty" xml:space="preserve">
+    <value>调拨单只可输入下列来源单据类型：\n进仓A,订单(补货建议)S,退货R,流通加工W,报废T</value>
+  </data>
+  <data name="P1502010000_SRC_DC_CODE" xml:space="preserve">
+    <value>来源物流中心</value>
+  </data>
+  <data name="P1502010000_SRC_LOC_CODE" xml:space="preserve">
+    <value>来源储位</value>
+  </data>
+  <data name="P1502010000_SRC_LOC_CODENotFound" xml:space="preserve">
+    <value>{0} 来源储位不存在</value>
+  </data>
+  <data name="P1502010000_SRC_WAREHOUSE_ID" xml:space="preserve">
+    <value>来源仓别</value>
+  </data>
+  <data name="P1502010000_TARSRC_LOC_CODENotFound" xml:space="preserve">
+    <value>{0} 目的储位不存在</value>
+  </data>
+  <data name="P1502010000_TAR_DC_CODE" xml:space="preserve">
+    <value>目的物流中心</value>
+  </data>
+  <data name="P1502010000_TAR_LOC_CODE" xml:space="preserve">
+    <value>目的储位</value>
+  </data>
+  <data name="P1502010000_TAR_WAREHOUSE_ID" xml:space="preserve">
+    <value>目的仓别</value>
+  </data>
+  <data name="P1502010000_TranferStatusCannotDelete" xml:space="preserve">
+    <value>此调拨单状态只能在待处理、已列印调拨单、异常才可进行删除</value>
+  </data>
+  <data name="P1502010000_TranferStatusCannotModify" xml:space="preserve">
+    <value>单据状态必须为待处理、已列印调拨单、异常、已下架处理、上架处理中才可修改</value>
+  </data>
+  <data name="P1502010100_ChooseCheckOutItems" xml:space="preserve">
+    <value>请选择过帐商品</value>
+  </data>
+  <data name="P1502010100_ScanBundleSerialNoBeforeOntheMarket" xml:space="preserve">
+    <value>序号绑储位商品必须先刷读後才可上架</value>
+  </data>
+  <data name="P1502010200_LocCodeStartEndEmpty" xml:space="preserve">
+    <value>储位必须输入起讫!</value>
+  </data>
+  <data name="P1502010200_QueryConditionEmpty" xml:space="preserve">
+    <value>至少需输入一个查询条件!</value>
+  </data>
+  <data name="P1502010200_SRCDataError" xml:space="preserve">
+    <value>来源资料错误,请重新执行!</value>
+  </data>
+  <data name="P1502010200_TransferDataIsNullOrEmpty" xml:space="preserve">
+    <value>调拨数不得为0或大於库存数!</value>
+  </data>
+  <data name="P1502010300_FirstCountShouldBeTotalCount" xml:space="preserve">
+    <value>第一笔必须为总笔数</value>
+  </data>
+  <data name="P1502010300_ImportCount" xml:space="preserve">
+    <value>您汇入的笔数{0}笔+已刷数{1}笔&gt;应刷数{2}笔</value>
+  </data>
+  <data name="P1502010300_SerialNoEmpty" xml:space="preserve">
+    <value>序号不可为空白</value>
+  </data>
+  <data name="P1502010300_SerialNoExist" xml:space="preserve">
+    <value>序号已存在</value>
+  </data>
+  <data name="P1502010300_SuccessCount" xml:space="preserve">
+    <value>成功笔数{0}笔,失败笔数{1}，共{2}笔</value>
+  </data>
+  <data name="P1503010000_Pending" xml:space="preserve">
+    <value>待处理</value>
+  </data>
+  <data name="P1503010000_Processed" xml:space="preserve">
+    <value>已处理</value>
+  </data>
+  <data name="POSTING" xml:space="preserve">
+    <value>过帐</value>
+  </data>
+  <data name="PostingDateS" xml:space="preserve">
+    <value>过帐日期</value>
+  </data>
+  <data name="QTY" xml:space="preserve">
+    <value>库存数</value>
+  </data>
+  <data name="REAL_TAR_LOC_CODE" xml:space="preserve">
+    <value>实际上架储位</value>
+  </data>
+  <data name="ROWNUM" xml:space="preserve">
+    <value>调拨单明细</value>
+  </data>
+  <data name="ScanSerialNo" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="ScanSerialNoQty" xml:space="preserve">
+    <value>已刷数</value>
+  </data>
+  <data name="SelectDetailCount" xml:space="preserve">
+    <value>总计明细笔数：</value>
+  </data>
+  <data name="SelectSourceWarehouse" xml:space="preserve">
+    <value>来源仓别</value>
+  </data>
+  <data name="SelectSTATUS" xml:space="preserve">
+    <value>单据状态</value>
+  </data>
+  <data name="SelectTargetWarehouse" xml:space="preserve">
+    <value>目的仓别</value>
+  </data>
+  <data name="SEND_CAR" xml:space="preserve">
+    <value>派车</value>
+  </data>
+  <data name="SEND_CARNOTE" xml:space="preserve">
+    <value>派车注记</value>
+  </data>
+  <data name="SerialLocCheck" xml:space="preserve">
+    <value>序号储位刷读</value>
+  </data>
+  <data name="SourceDcCode" xml:space="preserve">
+    <value>来源物流中心</value>
+  </data>
+  <data name="SOURCE_NO" xml:space="preserve">
+    <value>来源单据</value>
+  </data>
+  <data name="SRC_DATE" xml:space="preserve">
+    <value>下架时间</value>
+  </data>
+  <data name="SRC_LOC_CODE" xml:space="preserve">
+    <value>来源储位</value>
+  </data>
+  <data name="SRC_NAME" xml:space="preserve">
+    <value>下架人员</value>
+  </data>
+  <data name="SRC_QTY" xml:space="preserve">
+    <value>下架数量</value>
+  </data>
+  <data name="STATUS_DESC" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="SUG_LOC_CODE" xml:space="preserve">
+    <value>建议上架储位</value>
+  </data>
+  <data name="TargetDcCode" xml:space="preserve">
+    <value>目的物流中心</value>
+  </data>
+  <data name="TAR_DATE" xml:space="preserve">
+    <value>上架时间</value>
+  </data>
+  <data name="TAR_LOC_CODE" xml:space="preserve">
+    <value>目的储位</value>
+  </data>
+  <data name="TAR_NAME" xml:space="preserve">
+    <value>上架人员</value>
+  </data>
+  <data name="TAR_QTY" xml:space="preserve">
+    <value>上架数量</value>
+  </data>
+  <data name="TxtALLOCATION_NO" xml:space="preserve">
+    <value>汇入序号</value>
+  </data>
+  <data name="TxtSearchAllocationNo" xml:space="preserve">
+    <value>调拨单号</value>
+  </data>
+  <data name="TxtSearchAllocationNoWithSpace" xml:space="preserve">
+    <value>调拨单号</value>
+  </data>
+  <data name="TxtSearchSourceNo" xml:space="preserve">
+    <value>来源单号</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>异动时间</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="BuildTransfer" xml:space="preserve">
+    <value>建立调拨单</value>
+  </data>
+  <data name="DiscontinuedTransfer" xml:space="preserve">
+    <value>调拨下架</value>
+  </data>
+  <data name="SelectSourceWarehouse1" xml:space="preserve">
+    <value>来源仓别</value>
+  </data>
+  <data name="SelectTargetWarehouse1" xml:space="preserve">
+    <value>目的仓别</value>
+  </data>
+  <data name="SourceDcCode1" xml:space="preserve">
+    <value>来源物流中心</value>
+  </data>
+  <data name="SRC_QTY1" xml:space="preserve">
+    <value>下架数量</value>
+  </data>
+  <data name="TargetDcCode1" xml:space="preserve">
+    <value>目的物流中心</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>调拨完成</value>
+  </data>
+  <data name="TransferOntheMarket" xml:space="preserve">
+    <value>调拨上架</value>
+  </data>
+  <data name="P1502010000xamlcs_CheckConfirmToModify" xml:space="preserve">
+    <value>您确定要{0}效期和入库日，变更後将清除商品明细!{1}您是否要变更?</value>
+  </data>
+  <data name="P1502010000xamlcs_CheckOut" xml:space="preserve">
+    <value>确认进行过帐？</value>
+  </data>
+  <data name="P1502010000xamlcs_EmptyData" xml:space="preserve">
+    <value> 查询无资料，无法预览或列印！</value>
+  </data>
+  <data name="P1502010000xamlcs_Fold" xml:space="preserve">
+    <value>收合</value>
+  </data>
+  <data name="P1502010000xamlcs_Information" xml:space="preserve">
+    <value>讯息</value>
+  </data>
+  <data name="P1502010000xamlcs_OntheMarket" xml:space="preserve">
+    <value>  上架纪录表</value>
+  </data>
+  <data name="P1502010000xamlcs_TransferDiscontinued" xml:space="preserve">
+    <value>  调拨下架单</value>
+  </data>
+  <data name="P1502010000xamlcs_TransferOntheMarket" xml:space="preserve">
+    <value>  调拨上架单</value>
+  </data>
+  <data name="P1502010100xamlcs_CancelEdit" xml:space="preserve">
+    <value>确定要取消编辑?</value>
+  </data>
+  <data name="P1502010100xamlcs_CannotModifyLocCode" xml:space="preserve">
+    <value>此商品为序号绑储位，不可修改上架储位</value>
+  </data>
+  <data name="P1502010300xamlcs_ItemSerialNoCSV" xml:space="preserve">
+    <value>商品序号档 (.csv)|*.csv</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>批号</value>
+  </data>
+  <data name="ORIGINAL_MAKE_NO" xml:space="preserve">
+    <value>原批号</value>
+  </data>
+  <data name="ORIGINAL_VALID_DATE" xml:space="preserve">
+    <value>原效期</value>
+  </data>
+  <data name="SRC_MAKE_NO" xml:space="preserve">
+    <value>下架批号</value>
+  </data>
+  <data name="SRC_VALID_DATE" xml:space="preserve">
+    <value>下架效期</value>
+  </data>
+  <data name="TAR_MAKE_NO" xml:space="preserve">
+    <value>上架批号</value>
+  </data>
+  <data name="TAR_VALID_DATE" xml:space="preserve">
+    <value>上架效期</value>
+  </data>
+  <data name="P1502010000_NotCorrectDate" xml:space="preserve">
+    <value>{0}不是正确的日期</value>
+  </data>
+  <data name="P1502010000_NotCorrectCol" xml:space="preserve">
+    <value>字段「{0}」不可为空值</value>
+  </data>
+  <data name="P1502010000_NotCorrectIndex" xml:space="preserve">
+    <value>第{0}笔 {1}</value>
+  </data>
+  <data name="P1502010000_ExcelRule" xml:space="preserve">
+    <value>在一个Excel文件内，调拨数据的检核规则必须相同:</value>
+  </data>
+  <data name="P1502010000_ExcelRule1" xml:space="preserve">
+    <value>(1) 若需要指定效期或批号进行调拨，则每一笔数据的效期与批号字段为必填。若该数据在库存数据文件中不存在，则视为错误，无法进行调拨。</value>
+  </data>
+  <data name="P1502010000_ExcelRule2" xml:space="preserve">
+    <value>(2) 若效期与批号字段空白，则视为不须指定效期与批号，系统将从最短效期的库存进行调拨。</value>
+  </data>
+  <data name="P1502010000_ExcelVExist" xml:space="preserve">
+    <value>该汇入档案的规则不相同，请统一规则或拆成两个档案。{0}以下为有效期的资料，第{1}行</value>
+  </data>
+  <data name="P1502010000_ExcelVNotExist" xml:space="preserve">
+    <value>该汇入档案的规则不相同，请统一规则或拆成两个档案。{0}以下为无效期的资料，第{1}行</value>
+  </data>
+  <data name="P1502010000_ExportSerialData" xml:space="preserve">
+    <value>汇出序号资料</value>
+  </data>
+  <data name="P1502010000_DetailSerialData" xml:space="preserve">
+    <value>调拨单明细序号-</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>储位</value>
+  </data>
+  <data name="P1502010000_ExportSerialDataFail" xml:space="preserve">
+    <value>汇出序号资料失败</value>
+  </data>
+  <data name="P1502010000_ExportSerialDataSuccess" xml:space="preserve">
+    <value>汇出序号资料成功</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="P1504010000_ViewModel_CheckItemDetail" xml:space="preserve">
+    <value>请勾选商品明细</value>
+  </data>
+  <data name="P1504010000_ViewModel_OutofStockQtyGreaterThanZero" xml:space="preserve">
+    <value>缺货数必须大於0</value>
+  </data>
+  <data name="P1504010000_ViewModel_OutofStockQtyNotOverTransQty" xml:space="preserve">
+    <value>缺货数不可超过调拨数</value>
+  </data>
+  <data name="P1504010000_ViewModel_OutofStockQtyNotZero" xml:space="preserve">
+    <value>缺货数不能为 0</value>
+  </data>
+  <data name="cbDC_CODE_ALLOT" xml:space="preserve">
+    <value>确认缺货资料-调拨</value>
+  </data>
+  <data name="cbRETURN_FLAG" xml:space="preserve">
+    <value>处理结果</value>
+  </data>
+  <data name="cbSTATUS" xml:space="preserve">
+    <value>处理状态</value>
+  </data>
+  <data name="ISSELECTED" xml:space="preserve">
+    <value>删除明细</value>
+  </data>
+  <data name="LACK_QTY" xml:space="preserve">
+    <value>缺货数</value>
+  </data>
+  <data name="NOTE" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="PICK_ORD_SEQ" xml:space="preserve">
+    <value>拣货项次</value>
+  </data>
+  <data name="REASON" xml:space="preserve">
+    <value>缺货原因</value>
+  </data>
+  <data name="SHOWQUERYPAGE" xml:space="preserve">
+    <value>缺货处理设定</value>
+  </data>
+  <data name="tbPICK_ORD_NO_ALLOT" xml:space="preserve">
+    <value>调拨单号</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>调拨</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>作业类型</value>
+  </data>
+  <data name="ALLOCATION_SEQ" xml:space="preserve">
+    <value>调拨项次</value>
+  </data>
+  <data name="LACK_TYPE" xml:space="preserve">
+    <value>缺货类型</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>厂商编号</value>
+  </data>
+  <data name="PALLET_CTRL_NO" xml:space="preserve">
+    <value>板号</value>
+  </data>
+  <data name="CRT_NAME" xml:space="preserve">
+    <value>建立人员</value>
+  </data>
+  <data name="UPD_NAME" xml:space="preserve">
+    <value>异动人员</value>
+  </data>
+  <data name="ItemSearch" xml:space="preserve">
+    <value>商品搜寻</value>
+  </data>
+  <data name="PASTE" xml:space="preserve">
+    <value>贴上</value>
+  </data>
+  <data name="FINISHED_OFF_SHELF" xml:space="preserve">
+    <value>纸本下架完成</value>
+  </data>
+  <data name="PRINT_ALLOCATION_STICKER" xml:space="preserve">
+    <value>列印调拨单贴纸</value>
+  </data>
+  <data name="NotSetPrint1" xml:space="preserve">
+    <value>未设定印表机，请至装置设定维护-设定印表机1</value>
+  </data>
+  <data name="NotSetPrint3" xml:space="preserve">
+    <value>未设定印表机，请至装置设定维护-设定快速标签机</value>
+  </data>
+  <data name="P1502010000_PrintDescription1" xml:space="preserve">
+    <value>调拨单纸本报表：设定印表机1列印</value>
+  </data>
+  <data name="P1502010000_PrintDescription2" xml:space="preserve">
+    <value>调拨单贴纸：设定快速标签机列印</value>
+  </data>
+  <data name="CUST_ITEM_CODE" xml:space="preserve">
+    <value>货主品号</value>
+  </data>
+  <data name="EAN_CODE1" xml:space="preserve">
+    <value>国际条码</value>
+  </data>
+  <data name="TxtOperator" xml:space="preserve">
+    <value>作业人员</value>
+  </data>
+  <data name="P1504010000_ViewModel_CheckAllocNoStatus" xml:space="preserve">
+    <value>目前调拨单状态为待处理</value>
+  </data>
+</root>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="AutoGenConsignParam">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ScheduleParamBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Channel" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ConsignType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomerId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsTest" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AutoGenConsignParam" nillable="true" type="tns:AutoGenConsignParam" />
+  <xs:complexType name="ScheduleParamBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DcCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GupCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScheduleParamBase" nillable="true" type="tns:ScheduleParamBase" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+  <xs:complexType name="EgsReturnConsignParam">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ScheduleParamBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Channel" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomerId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DISTR_USE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DelvEDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DelvSDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DelvTimes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrdEDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OrdSDate" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EgsReturnConsignParam" nillable="true" type="tns:EgsReturnConsignParam" />
+  <xs:complexType name="ArrayOfEgsReturnConsign">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EgsReturnConsign" nillable="true" type="tns:EgsReturnConsign" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEgsReturnConsign" nillable="true" type="tns:ArrayOfEgsReturnConsign" />
+  <xs:complexType name="EgsReturnConsign">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALL_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ARRIVEDPAY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COLLECT_AMT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CONSIGN_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONSIGN_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUSTOMER_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_TIMEZONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DISTANCE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DISTR_USE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ISCOLLECT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ISFRAGILE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ISPRECISON_INSTRUMENT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MEMBER_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MEMO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PAYCASH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICKUP_TIMEZONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_MOBILE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_PHONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_SUDA5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SD_ROUTE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SENDER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SENDER_MOBILE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SENDER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SENDER_SUDA5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SENDER_TEL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SHIP_DATE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPEC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TEMPERATURE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WMS_ORD_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EgsReturnConsign" nillable="true" type="tns:EgsReturnConsign" />
+  <xs:complexType name="BoxPalletNoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BARCODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BOX_PALLET_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoxPalletNoData" nillable="true" type="tns:BoxPalletNoData" />
+  <xs:complexType name="HctShipReturnParam">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ScheduleParamBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Channel" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomerId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DelvEDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DelvSDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DelvTimes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DistrUse" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrdEDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OrdSDate" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HctShipReturnParam" nillable="true" type="tns:HctShipReturnParam" />
+  <xs:complexType name="ArrayOfHctShipReturn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HctShipReturn" nillable="true" type="tns:HctShipReturn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHctShipReturn" nillable="true" type="tns:ArrayOfHctShipReturn" />
+  <xs:complexType name="HctShipReturn">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ADD_PIECES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ALL_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ARRIVAL_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSIGN_DATE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSIGN_TIME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COLLECT_AMT" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CONSIGN_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTRACT_CUST_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EBAMT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EDAMT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EGAMT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EKAMT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ELAMT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EPRINT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ERAMT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESAMT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESEL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_KIND" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MEMO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PIECES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_MOBILE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_PHONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_ZIP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SEND_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SEND_DATE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUMMON_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_MOBILE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_PHONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WEIGHT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WMS_ORD_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HctShipReturn" nillable="true" type="tns:HctShipReturn" />
+  <xs:complexType name="ArrayOfKTJShipReturn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KTJShipReturn" nillable="true" type="tns:KTJShipReturn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKTJShipReturn" nillable="true" type="tns:ArrayOfKTJShipReturn" />
+  <xs:complexType name="KTJShipReturn">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALL_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSIGN_TIME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="A_ARRIVAL_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="COLLECT_AMT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CONSIGN_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTRACT_CUST_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MEMO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PIECES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_PHONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVER_ZIP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SEND_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SEND_DATE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_PHONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUPPLIER_ZIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VOLUME_QTY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WMS_ORD_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KTJShipReturn" nillable="true" type="tns:KTJShipReturn" />
+  <xs:complexType name="ByteData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSucess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ByteData" nillable="true" type="tns:ByteData" />
+  <xs:complexType name="GetItemAllDlnAndAllShpRes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALL_DLN" type="xs:int" />
+      <xs:element minOccurs="0" name="ALL_SHP" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetItemAllDlnAndAllShpRes" nillable="true" type="tns:GetItemAllDlnAndAllShpRes" />
+</xs:schema>

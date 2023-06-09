@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P19WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F05" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F00" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd8" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P19WcfService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P19WcfService_GetF1929WithF1909Tests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909Tests" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetF1929WithF1909Tests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909TestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190504_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190504" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190504_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190504Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_AddP190504_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddP190504" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_AddP190504_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddP190504Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_F1963CheckDuplicateByIdName_InputMessage">
+    <wsdl:part name="parameters" element="tns:F1963CheckDuplicateByIdName" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_F1963CheckDuplicateByIdName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:F1963CheckDuplicateByIdNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190507_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190507" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190507_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190507Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190507_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190507" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190507_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190507Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190508_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190508" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190508_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190508Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190501_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190501" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190501_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190501Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190501_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190501" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190501_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190501Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteP190501_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteP190501" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteP190501_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteP190501Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190506_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190506" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190506_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190506Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190101_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190101" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190101Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190101New1_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190101New1" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190101New1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190101New1Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190101_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190101" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190101Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190101New1_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190101New1" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190101New1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190101New1Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190102_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190102" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateP190102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP190102Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190102_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190102" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertP190102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP190102Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_SaveItemPack_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveItemPack" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_SaveItemPack_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveItemPackResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF197001_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF197001" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF197001_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF197001Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF197001_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF197001" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF197001_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF197001Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DelF197001s_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelF197001s" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DelF197001s_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelF197001sResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetScrapItemStock_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetScrapItemStock" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetScrapItemStock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetScrapItemStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetNonAllowedF1912LocDatas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNonAllowedF1912LocDatas" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetNonAllowedF1912LocDatas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNonAllowedF1912LocDatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF0003_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF0003" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF0003_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF0003Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_SaveData_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveData" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_SaveData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetQueryData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQueryData" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetQueryData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQueryDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetQueryDataByCombo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQueryDataByCombo" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetQueryDataByCombo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQueryDataByComboResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_ParseImportF197001Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:ParseImportF197001Data" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_ParseImportF197001Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ParseImportF197001DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_ValidateImportF197001Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateImportF197001Data" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_ValidateImportF197001Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateImportF197001DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF197001s_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF197001s" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF197001s_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF197001sResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_ImportData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportData" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_ImportData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteCls_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCls" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteCls_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteClsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateCls_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateCls" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateCls_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateClsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF191201Datas_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF191201Datas" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF191201Datas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF191201DatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeletedF191201Datas_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletedF191201Datas" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeletedF191201Datas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletedF191201DatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF1910_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF1910" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF1910_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF1910Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF194716_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF194716" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF194716_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF194716Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_F0070LoginDatasDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:F0070LoginDatasDelete" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_F0070LoginDatasDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:F0070LoginDatasDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF190105AndF190106_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF190105AndF190106" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF190105AndF190106_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF190105AndF190106Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetF191201Floors_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF191201Floors" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetF191201Floors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF191201FloorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetF1912LocCodeList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1912LocCodeList" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_GetF1912LocCodeList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1912LocCodeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF191206_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF191206" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF191206_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF191206Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF1946_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF1946" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF1946_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF1946Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteF1946_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF1946" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteF1946_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF1946Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF194501_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF194501" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF194501_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF194501Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteF194501_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF194501" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteF194501_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF194501Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF1945_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF1945" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertF1945_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF1945Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_IsCellNumCanReduce_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsCellNumCanReduce" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_IsCellNumCanReduce_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsCellNumCanReduceResponse" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF051401_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF051401" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_UpdateF051401_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF051401Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF0002_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF0002" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_InsertOrUpdateF0002_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF0002Response" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteF0002_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF0002" />
+  </wsdl:message>
+  <wsdl:message name="P19WcfService_DeleteF0002_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF0002Response" />
+  </wsdl:message>
+  <wsdl:portType name="P19WcfService">
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/GetF1929WithF1909Tests" message="tns:P19WcfService_GetF1929WithF1909Tests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/GetF1929WithF1909TestsResponse" message="tns:P19WcfService_GetF1929WithF1909Tests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190504">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190504" message="tns:P19WcfService_UpdateP190504_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190504Response" message="tns:P19WcfService_UpdateP190504_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddP190504">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/AddP190504" message="tns:P19WcfService_AddP190504_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/AddP190504Response" message="tns:P19WcfService_AddP190504_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="F1963CheckDuplicateByIdName">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/F1963CheckDuplicateByIdName" message="tns:P19WcfService_F1963CheckDuplicateByIdName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/F1963CheckDuplicateByIdNameResponse" message="tns:P19WcfService_F1963CheckDuplicateByIdName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190507">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertP190507" message="tns:P19WcfService_InsertP190507_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertP190507Response" message="tns:P19WcfService_InsertP190507_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190507">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190507" message="tns:P19WcfService_UpdateP190507_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190507Response" message="tns:P19WcfService_UpdateP190507_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190508">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190508" message="tns:P19WcfService_UpdateP190508_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190508Response" message="tns:P19WcfService_UpdateP190508_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190501">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190501" message="tns:P19WcfService_UpdateP190501_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190501Response" message="tns:P19WcfService_UpdateP190501_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190501">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertP190501" message="tns:P19WcfService_InsertP190501_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertP190501Response" message="tns:P19WcfService_InsertP190501_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteP190501">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/DeleteP190501" message="tns:P19WcfService_DeleteP190501_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/DeleteP190501Response" message="tns:P19WcfService_DeleteP190501_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190506">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190506" message="tns:P19WcfService_UpdateP190506_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190506Response" message="tns:P19WcfService_UpdateP190506_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190101" message="tns:P19WcfService_UpdateP190101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190101Response" message="tns:P19WcfService_UpdateP190101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190101New1">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190101New1" message="tns:P19WcfService_UpdateP190101New1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190101New1Response" message="tns:P19WcfService_UpdateP190101New1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertP190101" message="tns:P19WcfService_InsertP190101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertP190101Response" message="tns:P19WcfService_InsertP190101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190101New1">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertP190101New1" message="tns:P19WcfService_InsertP190101New1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertP190101New1Response" message="tns:P19WcfService_InsertP190101New1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190102" message="tns:P19WcfService_UpdateP190102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateP190102Response" message="tns:P19WcfService_UpdateP190102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertP190102" message="tns:P19WcfService_InsertP190102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertP190102Response" message="tns:P19WcfService_InsertP190102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveItemPack">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/SaveItemPack" message="tns:P19WcfService_SaveItemPack_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/SaveItemPackResponse" message="tns:P19WcfService_SaveItemPack_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF197001">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertF197001" message="tns:P19WcfService_InsertF197001_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertF197001Response" message="tns:P19WcfService_InsertF197001_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF197001">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateF197001" message="tns:P19WcfService_UpdateF197001_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateF197001Response" message="tns:P19WcfService_UpdateF197001_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DelF197001s">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/DelF197001s" message="tns:P19WcfService_DelF197001s_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/DelF197001sResponse" message="tns:P19WcfService_DelF197001s_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScrapItemStock">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/GetScrapItemStock" message="tns:P19WcfService_GetScrapItemStock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/GetScrapItemStockResponse" message="tns:P19WcfService_GetScrapItemStock_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNonAllowedF1912LocDatas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/GetNonAllowedF1912LocDatas" message="tns:P19WcfService_GetNonAllowedF1912LocDatas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/GetNonAllowedF1912LocDatasResponse" message="tns:P19WcfService_GetNonAllowedF1912LocDatas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF0003">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateF0003" message="tns:P19WcfService_UpdateF0003_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateF0003Response" message="tns:P19WcfService_UpdateF0003_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/SaveData" message="tns:P19WcfService_SaveData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/SaveDataResponse" message="tns:P19WcfService_SaveData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/GetQueryData" message="tns:P19WcfService_GetQueryData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/GetQueryDataResponse" message="tns:P19WcfService_GetQueryData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryDataByCombo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/GetQueryDataByCombo" message="tns:P19WcfService_GetQueryDataByCombo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/GetQueryDataByComboResponse" message="tns:P19WcfService_GetQueryDataByCombo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ParseImportF197001Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/ParseImportF197001Data" message="tns:P19WcfService_ParseImportF197001Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/ParseImportF197001DataResponse" message="tns:P19WcfService_ParseImportF197001Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateImportF197001Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/ValidateImportF197001Data" message="tns:P19WcfService_ValidateImportF197001Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/ValidateImportF197001DataResponse" message="tns:P19WcfService_ValidateImportF197001Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF197001s">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF197001s" message="tns:P19WcfService_InsertOrUpdateF197001s_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF197001sResponse" message="tns:P19WcfService_InsertOrUpdateF197001s_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportData">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/ImportData" message="tns:P19WcfService_ImportData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/ImportDataResponse" message="tns:P19WcfService_ImportData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCls">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/DeleteCls" message="tns:P19WcfService_DeleteCls_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/DeleteClsResponse" message="tns:P19WcfService_DeleteCls_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateCls">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateCls" message="tns:P19WcfService_InsertOrUpdateCls_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateClsResponse" message="tns:P19WcfService_InsertOrUpdateCls_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF191201Datas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertF191201Datas" message="tns:P19WcfService_InsertF191201Datas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertF191201DatasResponse" message="tns:P19WcfService_InsertF191201Datas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletedF191201Datas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/DeletedF191201Datas" message="tns:P19WcfService_DeletedF191201Datas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/DeletedF191201DatasResponse" message="tns:P19WcfService_DeletedF191201Datas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF1910">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF1910" message="tns:P19WcfService_InsertOrUpdateF1910_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF1910Response" message="tns:P19WcfService_InsertOrUpdateF1910_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF194716">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF194716" message="tns:P19WcfService_InsertOrUpdateF194716_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF194716Response" message="tns:P19WcfService_InsertOrUpdateF194716_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="F0070LoginDatasDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/F0070LoginDatasDelete" message="tns:P19WcfService_F0070LoginDatasDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/F0070LoginDatasDeleteResponse" message="tns:P19WcfService_F0070LoginDatasDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF190105AndF190106">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateF190105AndF190106" message="tns:P19WcfService_UpdateF190105AndF190106_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateF190105AndF190106Response" message="tns:P19WcfService_UpdateF190105AndF190106_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF191201Floors">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/GetF191201Floors" message="tns:P19WcfService_GetF191201Floors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/GetF191201FloorsResponse" message="tns:P19WcfService_GetF191201Floors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF1912LocCodeList">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/GetF1912LocCodeList" message="tns:P19WcfService_GetF1912LocCodeList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/GetF1912LocCodeListResponse" message="tns:P19WcfService_GetF1912LocCodeList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF191206">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF191206" message="tns:P19WcfService_InsertOrUpdateF191206_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF191206Response" message="tns:P19WcfService_InsertOrUpdateF191206_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF1946">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertF1946" message="tns:P19WcfService_InsertF1946_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertF1946Response" message="tns:P19WcfService_InsertF1946_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF1946">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/DeleteF1946" message="tns:P19WcfService_DeleteF1946_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/DeleteF1946Response" message="tns:P19WcfService_DeleteF1946_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF194501">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF194501" message="tns:P19WcfService_InsertOrUpdateF194501_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF194501Response" message="tns:P19WcfService_InsertOrUpdateF194501_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF194501">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/DeleteF194501" message="tns:P19WcfService_DeleteF194501_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/DeleteF194501Response" message="tns:P19WcfService_DeleteF194501_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF1945">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertF1945" message="tns:P19WcfService_InsertF1945_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertF1945Response" message="tns:P19WcfService_InsertF1945_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCellNumCanReduce">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/IsCellNumCanReduce" message="tns:P19WcfService_IsCellNumCanReduce_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/IsCellNumCanReduceResponse" message="tns:P19WcfService_IsCellNumCanReduce_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF051401">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/UpdateF051401" message="tns:P19WcfService_UpdateF051401_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/UpdateF051401Response" message="tns:P19WcfService_UpdateF051401_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF0002">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF0002" message="tns:P19WcfService_InsertOrUpdateF0002_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/InsertOrUpdateF0002Response" message="tns:P19WcfService_InsertOrUpdateF0002_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF0002">
+      <wsdl:input wsaw:Action="http://tempuri.org/P19WcfService/DeleteF0002" message="tns:P19WcfService_DeleteF0002_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P19WcfService/DeleteF0002Response" message="tns:P19WcfService_DeleteF0002_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P19WcfService" type="tns:P19WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/GetF1929WithF1909Tests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190504">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190504" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddP190504">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/AddP190504" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="F1963CheckDuplicateByIdName">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/F1963CheckDuplicateByIdName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190507">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertP190507" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190507">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190507" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190508">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190508" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190501">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190501" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190501">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertP190501" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteP190501">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/DeleteP190501" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190506">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190506" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190101">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190101New1">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190101New1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190101">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertP190101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190101New1">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertP190101New1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP190102">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateP190102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP190102">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertP190102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveItemPack">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/SaveItemPack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF197001">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertF197001" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF197001">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateF197001" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelF197001s">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/DelF197001s" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScrapItemStock">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/GetScrapItemStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNonAllowedF1912LocDatas">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/GetNonAllowedF1912LocDatas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF0003">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateF0003" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveData">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/SaveData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryData">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/GetQueryData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryDataByCombo">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/GetQueryDataByCombo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ParseImportF197001Data">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/ParseImportF197001Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateImportF197001Data">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/ValidateImportF197001Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF197001s">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertOrUpdateF197001s" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportData">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/ImportData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCls">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/DeleteCls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateCls">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertOrUpdateCls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF191201Datas">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertF191201Datas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletedF191201Datas">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/DeletedF191201Datas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF1910">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertOrUpdateF1910" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF194716">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertOrUpdateF194716" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="F0070LoginDatasDelete">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/F0070LoginDatasDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF190105AndF190106">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateF190105AndF190106" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF191201Floors">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/GetF191201Floors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF1912LocCodeList">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/GetF1912LocCodeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF191206">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertOrUpdateF191206" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF1946">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertF1946" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF1946">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/DeleteF1946" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF194501">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertOrUpdateF194501" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF194501">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/DeleteF194501" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF1945">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertF1945" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCellNumCanReduce">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/IsCellNumCanReduce" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF051401">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/UpdateF051401" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF0002">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/InsertOrUpdateF0002" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF0002">
+      <soap:operation soapAction="http://tempuri.org/P19WcfService/DeleteF0002" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P19WcfService">
+    <wsdl:port name="BasicHttpBinding_P19WcfService" binding="tns:BasicHttpBinding_P19WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P19WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

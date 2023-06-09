@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8CB1F8BC-854E-4452-88F2-61E7B173D66E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WebServices.ToWmsWebApi.Business.mssql</RootNamespace>
+    <AssemblyName>Wms3pl.WebServices.ToWmsWebApi.Business.mssql</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\InventoryAdjustConfirmService.cs" />
+    <Compile Include="Services\OutSidePackageService.cs" />
+    <Compile Include="Services\OutWarehouseContainerReceiptService.cs" />
+    <Compile Include="Services\ShipDebitService.cs" />
+    <Compile Include="Services\StockCompareService.cs" />
+    <Compile Include="Services\InventoryConfirmService.cs" />
+    <Compile Include="Services\OutboundConfirmService.cs" />
+    <Compile Include="Services\StockSnapshotService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2FA6F2B6-E072-437A-8096-7AEC69B461A1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\WebServices.WebApi.Common\WebServices.WebApi.Common.csproj">
+      <Project>{448B94B8-4B09-4F1F-BA65-1A4A55001CD5}</Project>
+      <Name>WebServices.WebApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{d3dc1679-3bfe-47b1-9302-9a17b90cd9f9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{F8F52A2A-9C65-4B62-912F-4146B62AAB72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
+      <Project>{D65C6F0B-8ED3-436D-A0C4-D452D4B54CC7}</Project>
+      <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F00\Wms3pl.Datas.F00.csproj">
+      <Project>{F9054276-1C3B-44D1-BA52-5F040A3B1488}</Project>
+      <Name>Wms3pl.Datas.F00</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F02\Wms3pl.Datas.F02.csproj">
+      <Project>{A82C1A68-ACBB-4508-AF25-6F388FFE0B7A}</Project>
+      <Name>Wms3pl.Datas.F02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F05\Wms3pl.Datas.F05.csproj">
+      <Project>{A1DB887E-DEB2-43C3-9F48-BC484186EF97}</Project>
+      <Name>Wms3pl.Datas.F05</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F06\Wms3pl.Datas.F06.csproj">
+      <Project>{2006BE43-61BD-4259-9255-8FB393C052E6}</Project>
+      <Name>Wms3pl.Datas.F06</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F14\Wms3pl.Datas.F14.csproj">
+      <Project>{6D42AA8A-3BAB-46D7-B481-07314EAE47E8}</Project>
+      <Name>Wms3pl.Datas.F14</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F15\Wms3pl.Datas.F15.csproj">
+      <Project>{59E7E4D0-CC8E-4509-8F2E-FF6E28AD9857}</Project>
+      <Name>Wms3pl.Datas.F15</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F19\Wms3pl.Datas.F19.csproj">
+      <Project>{D48D1F67-D7AD-4EB7-8D8A-F4F2AA085A76}</Project>
+      <Name>Wms3pl.Datas.F19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F25\Wms3pl.Datas.F25.csproj">
+      <Project>{C0A80DFD-FBAB-4717-8FE5-62D35DDBCD59}</Project>
+      <Name>Wms3pl.Datas.F25</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F51\Wms3pl.Datas.F51.csproj">
+      <Project>{B0A89937-C73A-4F50-B421-2CBFD94125C5}</Project>
+      <Name>Wms3pl.Datas.F51</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.Schedule\Wms3pl.Datas.Schedule.csproj">
+      <Project>{28C186D5-1EA4-4DD4-BF0B-B50A92E1B294}</Project>
+      <Name>Wms3pl.Datas.Schedule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WebServices.Shared\Wms3pl.WebServices.Shared.mssql.csproj">
+      <Project>{E8775330-CEA0-4A6E-B625-E55659F4F7E4}</Project>
+      <Name>Wms3pl.WebServices.Shared.mssql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

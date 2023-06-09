@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P19.Views.P1905080000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P19.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P19.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" controls:PermissionService.FunctionId="P1905080000" controls:PermissionService.FunctionName="作業群組人員設定" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P1905080000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+      <Style TargetType="WrapPanel">
+        <Setter Property="Margin" Value="5" />
+      </Style>
+      <Style TargetType="TextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Height" Value="30" />
+      </Style>
+      <Style TargetType="Button">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Width" Value="100" />
+      </Style>
+      <Style x:Key="moveButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Width" Value="100" />
+      </Style>
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1905080001" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1905080008" Command="{Binding EditCommand}" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1905080009" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1905080002" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel>
+              <!-- 由此處開始加入畫面項目 -->
+              <DockPanel DockPanel.Dock="Top">
+                <GroupBox Header="{x:Static res:Resources.QueryCondition}">
+                  <WrapPanel Orientation="Horizontal">
+                    <Label Content="{x:Static Properties:Resources.SearchWorkgroupName}" Foreground="Blue" />
+                    <TextBox Name="txtWorkgroupName" VerticalContentAlignment="Center" MaxLength="30" Width="400" Text="{Binding SearchWorkgroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}" />
+                  </WrapPanel>
+                </GroupBox>
+              </DockPanel>
+              <DockPanel DockPanel.Dock="Left">
+                <DataGrid Name="dgWorkgroupList" Width="400" ItemsSource="{Binding WorkgroupList}" SelectedItem="{Binding SelectedWorkgroupItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.GRP_ID}" Binding="{Binding WORK_ID}" Width="60*" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.GRP_NAME}" Binding="{Binding WORK_NAME}" Width="180*" />
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.GRP_DESC}" Binding="{Binding WORK_DESC}" Width="140*" />
+                  </DataGrid.Columns>
+                  <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="DodgerBlue" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White" />
+                  </DataGrid.Resources>
+                </DataGrid>
+              </DockPanel>
+              <DockPanel DockPanel.Dock="Left">
+                <GroupBox Header="{x:Static Properties:Resources.EmpQUERY_CONDITION}" DockPanel.Dock="Top">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="88" />
+                      <ColumnDefinition Width="160" />
+                      <ColumnDefinition Width="88" />
+                      <ColumnDefinition Width="160" />
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_SPEC}" HorizontalAlignment="Right" />
+                    <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Width="408" Name="cbDep" ItemsSource="{Binding DepList, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDep, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"></ComboBox>
+                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.SearchEmpId}" VerticalContentAlignment="Center" Foreground="Blue" Style="{StaticResource LbTitleStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtSearchEmpId" Width="160" MaxLength="16" VerticalContentAlignment="Center" Text="{Binding EmpId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Label Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.EMP_NAME}" VerticalContentAlignment="Center" Foreground="Blue" Style="{StaticResource LbTitleStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="3" Width="160" MaxLength="16" VerticalContentAlignment="Center" Text="{Binding EmpName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Button Grid.Row="1" Grid.Column="4" Command="{Binding SearchEmployeeCommand}" controls:PermissionService.FunctionId="BP1905080003" Content="{x:Static Properties:Resources.SEARCH}" Width="100" HorizontalAlignment="Left" />
+                  </Grid>
+                </GroupBox>
+                <Grid DockPanel.Dock="Top" Margin="10, 0, 10, 0">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <Label Content="{x:Static Properties:Resources.UnassignEmps}" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="0" />
+                  <Label Content="{x:Static Properties:Resources.AssignEmps}" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="0" />
+                  <ListBox Width="Auto" Grid.Column="0" Grid.Row="1" Name="lstUnAssigned" SelectionMode="Multiple" ItemsSource="{Binding UnAssignedList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate>
+                        <WrapPanel Orientation="Horizontal">
+                          <TextBlock Text="{Binding Item.EMP_ID}" />
+                          <TextBlock Text=" - " />
+                          <TextBlock Text="{Binding Item.EMP_NAME}" />
+                        </WrapPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                      <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}" />
+                      </Style>
+                    </ListBox.ItemContainerStyle>
+                  </ListBox>
+                  <WrapPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                    <Button Name="btnAssignAll" Content="＞＞" Command="{Binding MoveItemsCommand}" CommandParameter="{x:Static uiLib:ListboxMovingType.AssignAll}" controls:PermissionService.FunctionId="BP1905080004" Style="{StaticResource moveButtonStyle}" />
+                    <Button Name="btnAssign" Content="＞" Command="{Binding MoveItemsCommand}" CommandParameter="{x:Static uiLib:ListboxMovingType.Assign}" controls:PermissionService.FunctionId="BP1905080005" Style="{StaticResource moveButtonStyle}" />
+                    <Button Name="btnUnAssign" Content="＜" Command="{Binding MoveItemsCommand}" CommandParameter="{x:Static uiLib:ListboxMovingType.UnAssign}" controls:PermissionService.FunctionId="BP1905080006" Style="{StaticResource moveButtonStyle}" />
+                    <Button Name="btnUnAssignAll" Content="＜＜" Command="{Binding MoveItemsCommand}" CommandParameter="{x:Static uiLib:ListboxMovingType.UnAssignAll }" controls:PermissionService.FunctionId="BP1905080007" Style="{StaticResource moveButtonStyle}" />
+                  </WrapPanel>
+                  <ListBox Width="Auto" Grid.Column="2" Grid.Row="1" Name="lstAssigned" SelectionMode="Multiple" ItemsSource="{Binding AssignedList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate>
+                        <WrapPanel Orientation="Horizontal">
+                          <TextBlock Text="{Binding Item.EMP_ID}" />
+                          <TextBlock Text=" - " />
+                          <TextBlock Text="{Binding Item.EMP_NAME}" />
+                        </WrapPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                      <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}" />
+                      </Style>
+                    </ListBox.ItemContainerStyle>
+                  </ListBox>
+                </Grid>
+              </DockPanel>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

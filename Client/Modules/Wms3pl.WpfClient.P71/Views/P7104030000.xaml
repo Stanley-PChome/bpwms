@@ -1,0 +1,133 @@
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P71.Views.P7104030000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:converter="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P71.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P71.Properties" 
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources"    
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500"
+			Title="{x:Static Properties:Resources.StockStatusManage}" WindowState="Maximized"
+			controls:PermissionService.CheckPermission="False"
+			controls:PermissionService.FunctionId="P7104030000"
+			controls:PermissionService.FunctionName="進貨狀況管控"
+			FormException="{Binding Exception}" Closed="P7104030000_OnClosed">
+	<uiLib:Wms3plWindow.DataContext>
+		<viewModel:P7104030000_ViewModel x:Name="Vm"/>
+	</uiLib:Wms3plWindow.DataContext>
+	<uiLib:Wms3plWindow.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+			<converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+		</ResourceDictionary>
+	</uiLib:Wms3plWindow.Resources>
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.MainContent>
+				<DockPanel Style="{StaticResource WindowDockPanelStyle}">
+					<WrapPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="5" />
+					<!-- 由此處開始加入畫面項目 -->
+					<Viewbox>
+						<DockPanel>
+							<DockPanel DockPanel.Dock="Top">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition Width="Auto"/>
+									</Grid.ColumnDefinitions>
+									<Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LbStyle}" FontSize="30" HorizontalContentAlignment="Center" Foreground="Red" Content="{Binding NowTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource DateTimeToStringConverter},ConverterParameter=HH:mm}"/>
+									<Label Grid.Row="0" Grid.Column="1" Style="{StaticResource LbTitleStyle}" Content="{x:Static res:Resources.Dc}"/>
+									<ComboBox Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList}" SelectedValue="{Binding SelectedDcCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" DisplayMemberPath="Name" />
+									<Label Grid.Row="0" Grid.Column="3"  Content="{x:Static Properties:Resources.Stock_Board}" FontSize="30"  HorizontalContentAlignment="Center" ></Label>
+								</Grid>
+							</DockPanel>
+							
+							<DockPanel DockPanel.Dock="Left">
+								<DockPanel>
+									<ListBox DockPanel.Dock="Top" ItemsSource="{Binding LineBarInfoList,UpdateSourceTrigger=PropertyChanged}" Width="500" Height="250" Margin="1" FontSize="20" Background="Transparent" BorderThickness="0">
+										<ListBox.ItemTemplate>
+											<DataTemplate>
+												<DockPanel>
+													<WrapPanel DockPanel.Dock="Top" >
+														<Label Style="{StaticResource LbStyle}" Content="{Binding Name,UpdateSourceTrigger=PropertyChanged}" MinWidth="250" />
+														<Label Style="{StaticResource LbTitleStyle}" Content="{Binding FinishCount,UpdateSourceTrigger=PropertyChanged}" MinWidth="50"/>
+														<Label Style="{StaticResource LbStyle}" HorizontalAlignment="Center" Content="/" MinWidth="20"/>
+														<Label Style="{StaticResource LbStyle}" Content="{Binding UnFinishCount,UpdateSourceTrigger=PropertyChanged}" MinWidth="50"/>
+														<Label Style="{StaticResource LbStyle}" HorizontalAlignment="Center" Content="{x:Static Properties:Resources.No}" MinWidth="20"/>
+													</WrapPanel>
+													<WrapPanel  DockPanel.Dock="Top" >
+														<ProgressBar Background="White" Foreground="LightGreen" Width="440" Height="20" Value="{Binding FinishCount,UpdateSourceTrigger=PropertyChanged }" Maximum="{Binding TotalCount,UpdateSourceTrigger=PropertyChanged}" Minimum="0"/>
+													</WrapPanel>
+												</DockPanel>
+											</DataTemplate>
+										</ListBox.ItemTemplate>
+									</ListBox>
+									<Grid DockPanel.Dock="Top">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto"/>
+											<RowDefinition Height="Auto"/>
+											<RowDefinition Height="Auto"/>
+											<RowDefinition Height="Auto"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="Auto"/>
+										</Grid.ColumnDefinitions>
+										<Label Grid.Row="0" Grid.Column="0" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.ItemCntByA}"/>
+										<Label Grid.Row="0" Grid.Column="1" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{Binding ItemCntByA,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+										<Label Grid.Row="0" Grid.Column="2" FontSize="20" Style="{StaticResource LbStyle}"  Content="{x:Static Properties:Resources.Item}"/>
+										<Label Grid.Row="1" Grid.Column="0" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.TotalQtyByA}"/>
+										<Label Grid.Row="1" Grid.Column="1" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{Binding TotalQtyByA,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+										<Label Grid.Row="1" Grid.Column="2" FontSize="20" Style="{StaticResource LbStyle}"  Content="pcs"/>
+										<Label Grid.Row="2" Grid.Column="0" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.FinishRecvQty}"/>
+										<Label Grid.Row="2" Grid.Column="1" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{Binding FinishRecvQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+										<Label Grid.Row="2" Grid.Column="2" FontSize="20" Style="{StaticResource LbStyle}"  Content="pcs"/>
+										<Label Grid.Row="3" Grid.Column="0" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.FinishCheckQty}"/>
+										<Label Grid.Row="3" Grid.Column="1" FontSize="20" Style="{StaticResource LbTitleStyle}" Content="{Binding FinishCheckQty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+										<Label Grid.Row="3" Grid.Column="2" FontSize="20" Style="{StaticResource LbStyle}"  Content="pcs"/>
+									</Grid>
+								</DockPanel>
+							</DockPanel>
+							<DockPanel DockPanel.Dock="Right">
+								<DockPanel DockPanel.Dock="Top">
+									<Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.AcceptingOverThirtyMin}"/>
+									<DataGrid DockPanel.Dock="Top" Style="{StaticResource DgStyle}" Height="200" ItemsSource="{Binding ReceProcessList,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedReceProcess,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+										<DataGrid.Columns>
+											<DataGridTextColumn Header="{x:Static Properties:Resources.PurchaseNo}" Binding="{Binding WMS_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+											<DataGridTextColumn Header="{x:Static Properties:Resources.EMP_NAME}" Binding="{Binding STAFF_NAME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+											<DataGridTextColumn Header="{x:Static Properties:Resources.START_DATE}" Binding="{Binding START_DATE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource DateTimeToStringConverter},ConverterParameter=HH:mm}"/>
+										</DataGrid.Columns>
+									</DataGrid>
+								</DockPanel>
+								<DockPanel DockPanel.Dock="Top">
+									<Label DockPanel.Dock="Top" Content="{x:Static Properties:Resources.WaitForSaleOverThirtyMin}"/>
+									<DataGrid DockPanel.Dock="Top" Style="{StaticResource DgStyle}"   Height="200" ItemsSource="{Binding ReceUnUpLocList,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedReceUnUpLoc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+										<DataGrid.Columns>
+											<DataGridTextColumn Header="{x:Static Properties:Resources.PurchaseNo}" Binding="{Binding WMS_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+											<DataGridTextColumn Header="{x:Static Properties:Resources.EMP_NAME}" Binding="{Binding STAFF_NAME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+											<DataGridTextColumn Header="{x:Static Properties:Resources.START_DATE}" Binding="{Binding START_DATE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource DateTimeToStringConverter},ConverterParameter=HH:mm}"/>
+										</DataGrid.Columns>
+									</DataGrid>
+								</DockPanel>
+							</DockPanel>
+						</DockPanel>
+					</Viewbox>
+				</DockPanel>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

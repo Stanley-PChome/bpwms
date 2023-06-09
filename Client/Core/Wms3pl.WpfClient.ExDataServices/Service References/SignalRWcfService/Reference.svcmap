@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bac8e5fa-401f-4a90-bebd-80400677cbfc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/SignalRWcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SignalRWcfService.wsdl" MetadataType="Wsdl" ID="d4c33484-63f5-45b9-9e9a-120adaefb519" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SignalRWcfService.svc?wsdl" />
+    <MetadataFile FileName="SignalRWcfService1.xsd" MetadataType="Schema" ID="b6e19a91-bbfe-4c75-8a23-16a81b05b169" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SignalRWcfService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SignalRWcfService.xsd" MetadataType="Schema" ID="8ce0ddbf-b42f-4e3f-9bb0-96d7f9a8e5bd" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SignalRWcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SignalRWcfService.disco" MetadataType="Disco" ID="fd66d716-5796-41dc-a727-de917d4c23f0" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SignalRWcfService.svc?disco" />
+    <MetadataFile FileName="SignalRWcfService2.xsd" MetadataType="Schema" ID="567580c8-1bc8-4002-8b95-ce939a814454" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/SignalRWcfService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

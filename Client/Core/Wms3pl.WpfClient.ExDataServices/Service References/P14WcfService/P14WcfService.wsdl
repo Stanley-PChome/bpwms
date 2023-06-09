@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P14WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F14" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P14WcfService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P14WcfService_GetSampleResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleResults" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_GetSampleResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_InsertP140101_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP140101" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_InsertP140101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertP140101Response" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_UpdateP140101_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP140101" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_UpdateP140101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateP140101Response" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CheckInventoryItemExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckInventoryItemExist" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CheckInventoryItemExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckInventoryItemExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CheckImorImportInventorySerial_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckImorImportInventorySerial" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CheckImorImportInventorySerial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckImorImportInventorySerialResponse" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_UpdateF140101PostingStauts_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF140101PostingStauts" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_UpdateF140101PostingStauts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF140101PostingStautsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_ImportInventoryDetailItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportInventoryDetailItems" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_ImportInventoryDetailItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportInventoryDetailItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CountInventoryDetailItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountInventoryDetailItems" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CountInventoryDetailItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountInventoryDetailItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_InsertF140106_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF140106" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_InsertF140106_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF140106Response" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CaseClosedP140102_InputMessage">
+    <wsdl:part name="parameters" element="tns:CaseClosedP140102" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_CaseClosedP140102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CaseClosedP140102Response" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_GetF1980ByLocCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1980ByLocCode" />
+  </wsdl:message>
+  <wsdl:message name="P14WcfService_GetF1980ByLocCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1980ByLocCodeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P14WcfService">
+    <wsdl:operation name="GetSampleResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/GetSampleResults" message="tns:P14WcfService_GetSampleResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/GetSampleResultsResponse" message="tns:P14WcfService_GetSampleResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertP140101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/InsertP140101" message="tns:P14WcfService_InsertP140101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/InsertP140101Response" message="tns:P14WcfService_InsertP140101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP140101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/UpdateP140101" message="tns:P14WcfService_UpdateP140101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/UpdateP140101Response" message="tns:P14WcfService_UpdateP140101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckInventoryItemExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/CheckInventoryItemExist" message="tns:P14WcfService_CheckInventoryItemExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/CheckInventoryItemExistResponse" message="tns:P14WcfService_CheckInventoryItemExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckImorImportInventorySerial">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/CheckImorImportInventorySerial" message="tns:P14WcfService_CheckImorImportInventorySerial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/CheckImorImportInventorySerialResponse" message="tns:P14WcfService_CheckImorImportInventorySerial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF140101PostingStauts">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/UpdateF140101PostingStauts" message="tns:P14WcfService_UpdateF140101PostingStauts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/UpdateF140101PostingStautsResponse" message="tns:P14WcfService_UpdateF140101PostingStauts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportInventoryDetailItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/ImportInventoryDetailItems" message="tns:P14WcfService_ImportInventoryDetailItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/ImportInventoryDetailItemsResponse" message="tns:P14WcfService_ImportInventoryDetailItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountInventoryDetailItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/CountInventoryDetailItems" message="tns:P14WcfService_CountInventoryDetailItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/CountInventoryDetailItemsResponse" message="tns:P14WcfService_CountInventoryDetailItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF140106">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/InsertF140106" message="tns:P14WcfService_InsertF140106_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/InsertF140106Response" message="tns:P14WcfService_InsertF140106_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CaseClosedP140102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/CaseClosedP140102" message="tns:P14WcfService_CaseClosedP140102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/CaseClosedP140102Response" message="tns:P14WcfService_CaseClosedP140102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF1980ByLocCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P14WcfService/GetF1980ByLocCode" message="tns:P14WcfService_GetF1980ByLocCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P14WcfService/GetF1980ByLocCodeResponse" message="tns:P14WcfService_GetF1980ByLocCode_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P14WcfService" type="tns:P14WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSampleResults">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/GetSampleResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertP140101">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/InsertP140101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateP140101">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/UpdateP140101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckInventoryItemExist">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/CheckInventoryItemExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckImorImportInventorySerial">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/CheckImorImportInventorySerial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF140101PostingStauts">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/UpdateF140101PostingStauts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportInventoryDetailItems">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/ImportInventoryDetailItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountInventoryDetailItems">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/CountInventoryDetailItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF140106">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/InsertF140106" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CaseClosedP140102">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/CaseClosedP140102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF1980ByLocCode">
+      <soap:operation soapAction="http://tempuri.org/P14WcfService/GetF1980ByLocCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P14WcfService">
+    <wsdl:port name="BasicHttpBinding_P14WcfService" binding="tns:BasicHttpBinding_P14WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P14WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

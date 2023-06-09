@@ -1,0 +1,481 @@
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P91.Views.P9103020000"
+			xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                        
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+			xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib"
+			xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common"
+			xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P91.ViewModel"
+			xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P91.Properties" 
+			xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+			xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common"
+			x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800"	
+						 controls:PermissionService.FunctionId="P9103020000"
+						 controls:PermissionService.FunctionName="{x:Static Properties:Resources.QuoteMaintain}"
+			FormException="{Binding Exception}">
+	<uiLib:Wms3plUserControl.DataContext>
+		<viewModel:P9103020000_ViewModel x:Name="Vm"/>
+
+	</uiLib:Wms3plUserControl.DataContext>
+
+	<uiLib:Wms3plUserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+			<converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter"/>
+			<converters:EnumToNotBooleanConverter x:Key="EnumToNotBooleanConverter"/>
+			<converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+			<converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter"/>
+			<converters:ZeroPointConverter x:Key="ZeroPointConverter"/>
+			<converters:NameValuePairMultiConverter  x:Key="NameValuePairMultiConverter"/>
+			<Style x:Key="UcSingleRowEditProcess" TargetType="DataGridCell" BasedOn="{StaticResource SingleClickEdit}">
+				<Style.Triggers>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, Path=DataContext.ProcessMode, Converter={StaticResource EnumToNotBooleanConverter}, ConverterParameter={x:Static uiLib:OperateMode.Query}}" Value="True"/>
+							<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+						</MultiDataTrigger.Conditions>
+						<Setter Property="IsEnabled" Value="False" />
+						<Setter Property="Background" Value="{Binding DataGridRow.Background}" />
+					</MultiDataTrigger>
+				</Style.Triggers>
+			</Style>
+			<Style x:Key="UcSingleRowEditSupplies" TargetType="DataGridCell" BasedOn="{StaticResource SingleClickEdit}">
+				<Style.Triggers>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, Path=DataContext.AddSuppliesMode}" Value="True"/>
+							<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+						</MultiDataTrigger.Conditions>
+						<Setter Property="IsEnabled" Value="False" />
+						<Setter Property="Background" Value="{Binding DataGridRow.Background}" />
+					</MultiDataTrigger>
+				</Style.Triggers>
+			</Style>
+			<FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"></FrameworkElement>
+		</ResourceDictionary>
+
+	</uiLib:Wms3plUserControl.Resources>
+
+	<telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+		<uiLib:BasicMaster x:Name="Master">
+
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+					<Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP9103020001" Command="{Binding SearchCommand}" />
+					<Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP9103020002" Command="{Binding AddCommand}" />
+					<Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP9103020003" Command="{Binding EditCommand}" />
+					<Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP9103020004" Command="{Binding CancelCommand}" />
+					<Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP9103020005" Command="{Binding DeleteCommand}" />
+					<Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP9103020006" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}"/>
+					<Button Style="{StaticResource PreviewButton}" controls:PermissionService.FunctionId="BP9103020007" Command="{Binding PreviewCommand}" />
+					<Button Style="{StaticResource PrintButton}" controls:PermissionService.FunctionId="BP9103020008" Command="{Binding PrintCommand}"/>
+				</WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
+				<TabControl x:Name="LayoutRoot" >
+					<TabControl.BindingGroup>
+						<BindingGroup Name="errorGroup" />
+					</TabControl.BindingGroup>
+					<TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+						<DockPanel>
+							<!-- 由此處開始加入畫面項目 -->
+							<DockPanel>
+								<ContentControl Visibility="Collapsed" Content="{StaticResource ProxyElement}"></ContentControl>
+								<Expander Header="{x:Static res:Resources.QueryCondition}" DockPanel.Dock="Top" IsExpanded="{Binding SearchResultIsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+										  Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+									<Grid DockPanel.Dock="Top">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="*"/>
+											<RowDefinition Height="*"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="Auto"/>
+										</Grid.ColumnDefinitions>
+										<Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbTitleStyle}"/>
+										<ComboBox Grid.Row="0" Grid.Column="1"  Style="{StaticResource ComboStyle}"
+												  x:Name="cboSearchDcCode"
+													  ItemsSource="{Binding DcList}" 
+													  DisplayMemberPath="Name" SelectedValuePath="Value"
+													  SelectedValue="{Binding SearchDcCode, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+										<Label Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.SearchStartEnableDate}" HorizontalAlignment="Right" Style="{StaticResource LbStyle}"/>
+										<DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{Binding SearchStartEnableDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource DateStyle}" />
+										<Label Content="~" Grid.Row="0" Grid.Column="4" Style="{StaticResource LbTitleStyle}"/>
+										<DatePicker  Grid.Row="0" Grid.Column="5" SelectedDate="{Binding SearchEndEnableDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource DateStyle}" />
+										<Label  Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.SearchQuoteNo}"  Style="{StaticResource LbTitleStyle}"/>
+										<TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource TxtStyle}" InputMethod.IsInputMethodEnabled="False"
+												 Text="{Binding SearchQuoteNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="20" />
+										<Label  Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.ProcessStatus}" HorizontalAlignment="Right"  Style="{StaticResource LbTitleStyle}"/>
+										<ComboBox Grid.Row="1" Grid.Column="3" Style="{StaticResource ComboStyle}"
+													  ItemsSource="{Binding StatusSearchList}" 
+													  DisplayMemberPath="Name" SelectedValuePath="Value"
+													  SelectedValue="{Binding SearchStatus, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+									</Grid>
+								</Expander>
+								<Expander Header="{x:Static res:Resources.OueryResult}" DockPanel.Dock="Top" IsExpanded="{Binding QueryResultIsExpanded,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+										  Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+									<DataGrid Style="{StaticResource DgStyle}" Height="160"
+											  ItemsSource="{Binding F910401List}" SelectedItem="{Binding SelectedF910401, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+										<DataGrid.Columns>
+											<DataGridTextColumn Header="{x:Static Properties:Resources.SearchStartEnableDate}" Binding="{Binding ENABLE_DATE, StringFormat=\{0:yyyy/MM/dd\}}" />
+											<DataGridTextColumn Header="{x:Static Properties:Resources.DISABLE_DATE}" Binding="{Binding DISABLE_DATE, StringFormat=\{0:yyyy/MM/dd\}}" />
+											<DataGridTextColumn Header="{x:Static Properties:Resources.SearchQuoteNo}" Binding="{Binding QUOTE_NO}" />
+											<DataGridTextColumn Header="{x:Static Properties:Resources.ITEMNAME}" Binding="{Binding QUOTE_NAME}" />
+											<DataGridComboBoxColumn Header="{x:Static Properties:Resources.ProcessStatus}" SelectedValueBinding="{Binding STATUS}" 
+																		SelectedValuePath="Value" DisplayMemberPath="Name" >
+												<DataGridComboBoxColumn.ElementStyle>
+													<Style TargetType="ComboBox">
+														<Setter Property="ItemsSource" Value="{Binding DataContext.StatusSearchList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+													</Style>
+												</DataGridComboBoxColumn.ElementStyle>
+											</DataGridComboBoxColumn>
+										</DataGrid.Columns>
+									</DataGrid>
+								</Expander>
+								<GroupBox Header="{Binding QuoteHeaderText,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top">
+									<!--Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}"-->
+									<DockPanel>
+										<ScrollViewer>
+											<DockPanel>
+												<Grid DockPanel.Dock="Top">
+													<Grid.RowDefinitions>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+														<RowDefinition/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="Auto"/>
+														<ColumnDefinition Width="Auto"/>
+														<ColumnDefinition Width="Auto"/>
+														<ColumnDefinition Width="Auto"/>
+														<ColumnDefinition Width="Auto"/>
+														<ColumnDefinition Width="Auto"/>
+													</Grid.ColumnDefinitions>
+													<Label Grid.Row="0" Grid.Column="0" Content="{x:Static res:Resources.Dc}" Style="{StaticResource LbTitleStyle}" />
+													<ComboBox Grid.Row="0" Grid.Column="1"  Style="{StaticResource ComboStyle}" 
+															  ItemsSource="{Binding DcList}"
+															  DisplayMemberPath="Name" SelectedValuePath="Value"
+															  SelectedItem="{Binding SelectedDcItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+															  SelectedValue="{Binding EditableF910401.DC_CODE, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+															  IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" />
+													<Label Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.SearchQuoteNo}" 
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" Style="{StaticResource LbTitleStyle}" />
+													<Label Grid.Row="0" Grid.Column="3" Content="{Binding EditableF910401.QUOTE_NO}" 
+														   IsEnabled="{Binding CanEditData}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}" Style="{StaticResource LbStyle}" />
+													<Button Grid.Row="0" Grid.Column="4" Content="{x:Static Properties:Resources.Permission}" 
+															controls:PermissionService.FunctionId="BP9103020009" Command="{Binding ApprovedCommand}" 
+															Style="{StaticResource BtnStyle}" MinHeight="35" Width="60"
+															Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}"/>
+													<Button Grid.Row="0" Grid.Column="5" Content="{x:Static Properties:Resources.Upload}" 
+															controls:PermissionService.FunctionId="BP9103020010" Command="{Binding UploadCommand}" 
+															Style="{StaticResource BtnStyle}" MinHeight="35" Width="60"
+															Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}"
+															Click="Upload_Click"/>
+													<Button Grid.Row="0" Grid.Column="5" Content="{x:Static Properties:Resources.View}" Name="btnViewUpload" Click="btnViewUpload_Click"
+															controls:PermissionService.FunctionId="BP9103020025" Command="{Binding UploadViewCommand}" 
+															Style="{StaticResource BtnStyle}" MinHeight="35" Width="60"
+															Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}"
+															/>
+													
+													<Label Content="{x:Static Properties:Resources.ITEMNAME}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+													<TextBox x:Name="txtQUOTE_NAME"
+														Text="{Binding EditableF910401.QUOTE_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" 
+															 IsEnabled="{Binding CanEditData}"
+															 Width="450" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Style="{StaticResource TxtStyle}"
+															 MaxLength="100"/>
+													<Label Grid.Row="1" Grid.Column="4" Content="{x:Static Properties:Resources.ProcessStatus}" Style="{StaticResource LbTitleStyle}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Grid.Row="1" Grid.Column="5" Style="{StaticResource LbStyle}"
+														   IsEnabled="{Binding CanEditData}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}">
+														<Label.Content>
+															<MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+																<Binding Path="EditableF910401.STATUS" />
+																<Binding Path="DataContext.StatusSearchList" RelativeSource="{RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}" />
+															</MultiBinding>
+														</Label.Content>
+													</Label>
+													<Label Content="{x:Static Properties:Resources.NET_RATE}" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+													<TextBox Grid.Row="2" Grid.Column="1" 
+															 Text="{Binding EditableF910401.NET_RATE, Converter={StaticResource ZeroPointConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" 
+															 IsEnabled="{Binding CanEditData}" MaxLength="9" InputMethod.IsInputMethodEnabled="False"
+															 TextChanged="NET_RATE_TextChanged" Style="{StaticResource TxtStyle}"
+															 LostFocus="NET_RATE_LostFocus"/>
+													<Label Content="{x:Static Properties:Resources.SearchStartEnableDate}" Grid.Row="2" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+													<DatePicker x:Name="dpEditableStartEnableDate" Grid.Row="2" Grid.Column="3" Style="{StaticResource DateStyle}"
+																SelectedDate="{Binding EditableStartEnableDate, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
+																
+																IsEnabled="{Binding CanEditData}"/>
+													<Label Content="{x:Static Properties:Resources.DISABLE_DATE}" Grid.Row="2" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+													<DatePicker x:Name="dpEditableEndEnableDate" Grid.Row="2" Grid.Column="5" Style="{StaticResource DateStyle}"
+																SelectedDate="{Binding EditableEndEnableDate, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+																
+																IsEnabled="{Binding CanEditData}"/>
+													<Label Content="{x:Static Properties:Resources.COST_PRICE}" Grid.Row="3" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+													<TextBox Grid.Row="3" Grid.Column="1" 
+															 Text="{Binding EditableF910401.COST_PRICE, Converter={StaticResource ZeroPointConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" 
+															 IsEnabled="{Binding CanEditData}" MaxLength="14" InputMethod.IsInputMethodEnabled="False"
+															 TextChanged="COST_PRICE_TextChanged" Style="{StaticResource TxtStyle}"  />
+													<Label Content="{x:Static Properties:Resources.APPLY_PRICE}" Grid.Row="3" Grid.Column="2"  Style="{StaticResource LbTitleStyle}" />
+													<TextBox Grid.Row="3" Grid.Column="3"
+															 Text="{Binding EditableF910401.APPLY_PRICE, Converter={StaticResource ZeroPointConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" Style="{StaticResource TxtStyle}" MaxLength="14" InputMethod.IsInputMethodEnabled="False"
+															 IsEnabled="{Binding CanEditData}"/>
+													<Label Content="{x:Static Properties:Resources.APPROVED_PRICE}" Grid.Row="3" Grid.Column="4"  Style="{StaticResource LbTitleStyle}" />
+													<TextBox Grid.Row="3" Grid.Column="5"
+															 Text="{Binding EditableF910401.APPROVED_PRICE, Converter={StaticResource ZeroPointConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" Style="{StaticResource TxtStyle}" MaxLength="14" InputMethod.IsInputMethodEnabled="False"
+															 IsEnabled="{Binding CanEditData}"/>
+													<Label Content="{x:Static res:Resources.CRT_STAFF}" Grid.Row="5" Grid.Column="0" Style="{StaticResource LbTitleStyle}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Content="{Binding EditableF910401.CRT_NAME}" Grid.Row="5" Grid.Column="1" Style="{StaticResource LbStyle}"
+														   IsEnabled="{Binding CanEditData}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Content="{x:Static Properties:Resources.CRT_DATE}" Grid.Row="5" Grid.Column="2" Style="{StaticResource LbTitleStyle}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Content="{Binding EditableF910401.CRT_DATE}" ContentStringFormat="{}{0:yyyy/MM/dd HH:mm}" Grid.Row="5" Grid.Column="3" Style="{StaticResource LbStyle}"
+														   IsEnabled="{Binding CanEditData}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Grid.Row="5" Grid.Column="4" Content="{x:Static Properties:Resources.OutsourceId}" Style="{StaticResource LbTitleStyle}"/>
+													<ComboBox Grid.Row="5" Grid.Column="5"  Style="{StaticResource ComboStyle}" IsSynchronizedWithCurrentItem ="True"
+															  ItemsSource="{Binding OutSourceList}" 
+															  DisplayMemberPath="Name" SelectedValuePath="Value"
+															  SelectedItem="{Binding SelectedOutsource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+															  SelectedValue="{Binding EditableF910401.OUTSOURCE_ID, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+															  IsEnabled="{Binding CanEditData}" HorizontalAlignment="Stretch" MinWidth="200"/>
+													<Label Content="{x:Static res:Resources.UPD_STAFF}" Grid.Row="6" Grid.Column="0" Style="{StaticResource LbTitleStyle}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Content="{Binding EditableF910401.UPD_NAME}" Grid.Row="6" Grid.Column="1" Style="{StaticResource LbStyle}"
+														   IsEnabled="{Binding CanEditData}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Content="{x:Static Properties:Resources.UPD_DATE}" Grid.Row="6" Grid.Column="2" Style="{StaticResource LbTitleStyle}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Label Content="{Binding EditableF910401.UPD_DATE}" ContentStringFormat="{}{0:yyyy/MM/dd HH:mm}" Grid.Row="6" Grid.Column="3" Style="{StaticResource LbStyle}"
+														   IsEnabled="{Binding CanEditData}"
+														   Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"/>
+													<Button Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" Content="{x:Static Properties:Resources.CopyQuote}" Width="100" MinHeight="35" Style="{StaticResource BtnStyle}"
+															 controls:PermissionService.FunctionId="BP9103020011" Command="{Binding CopyQuoteCommand}"
+															Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}"/>
+												</Grid>
+												<GroupBox Header="{x:Static Properties:Resources.Quote}" DockPanel.Dock="Top">
+													<DockPanel>
+														<TabControl >
+															<TabControl.BindingGroup>
+																<BindingGroup Name="errorDetailGroup" />
+															</TabControl.BindingGroup>
+															<TabItem Header="{x:Static Properties:Resources.ACT_ANALYSIS}" Width="Auto">
+																<DockPanel>
+																	<WrapPanel DockPanel.Dock="Top" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+																		<Button Content="{x:Static Properties:Resources.InsertAct}" Height="35" Width="100" Margin="5"
+																				 controls:PermissionService.FunctionId="BP9103020012" Command="{Binding AddProcessCommand}"/>
+																		<Button Content="{x:Static Properties:Resources.EditAct}" Height="35" Width="100" Margin="5"
+																				 controls:PermissionService.FunctionId="BP9103020013" Command="{Binding EditProcessCommand}"/>
+																		<Button Content="{x:Static Properties:Resources.DelAct}" Height="35" Width="100" Margin="5"
+																				 controls:PermissionService.FunctionId="BP9103020014" Command="{Binding DeleteProcessCommand}"/>
+																		<Button Content="{x:Static Properties:Resources.CancelAct}" Height="35" Width="100" Margin="5"
+																				 controls:PermissionService.FunctionId="BP9103020015" Command="{Binding CancelProcessCommand}"/>
+																		<Button Content="{x:Static Properties:Resources.SaveAct}" Height="35" Width="100" Margin="5"
+																				 controls:PermissionService.FunctionId="BP9103020016" Command="{Binding SaveProcessCommand}"/>
+																	</WrapPanel>
+																	<controls:ValidationDataGrid Name="gdProcess" 
+																								 CellStyle="{StaticResource UcSingleRowEditProcess}" 
+																								 RowHeaderStyle="{StaticResource UcSingleRowHeaderEdit}"
+																								 IsReadOnly="False"  Height="400" Style="{StaticResource DgStyle}"
+																								 SelectionMode="Single"
+																								 ItemsSource="{Binding EditableF910402List}" SelectedItem="{Binding SelectedEditableF910402, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+																		<DataGrid.Columns>
+																			<DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"
+																									Visibility="{Binding DataContext.UserOperateMode, Source={StaticResource ProxyElement}, 
+																										Converter={StaticResource EnumToNotVisibilityConverter}, ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+
+																				<DataGridCheckBoxColumn.HeaderTemplate>
+																					<DataTemplate>
+																						<CheckBox Style="{StaticResource CheckStyle}" Content="{x:Static res:Resources.SelectAll}" 
+																								  IsChecked="{Binding DataContext.CheckAllProcess, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																								  Command="{Binding DataContext.CheckAllProcessCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+																					</DataTemplate>
+																				</DataGridCheckBoxColumn.HeaderTemplate>
+																				<DataGridCheckBoxColumn.ElementStyle>
+																					<Style TargetType="CheckBox">
+																						<Setter Property="VerticalAlignment" Value="Center"/>
+																						<Setter Property="HorizontalAlignment" Value="Center"/>
+																					</Style>
+																				</DataGridCheckBoxColumn.ElementStyle>
+																				<DataGridCheckBoxColumn.EditingElementStyle>
+																					<Style TargetType="CheckBox">
+																						<Setter Property="VerticalAlignment" Value="Center"/>
+																						<Setter Property="HorizontalAlignment" Value="Center"/>
+																					</Style>
+																				</DataGridCheckBoxColumn.EditingElementStyle>
+																			</DataGridCheckBoxColumn>
+																			<DataGridComboBoxColumn Header="{x:Static Properties:Resources.ACT}" SelectedValueBinding="{Binding Item.PROCESS_ID, UpdateSourceTrigger=LostFocus, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" 
+																					SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="True">
+																				<DataGridComboBoxColumn.ElementStyle>
+																					<Style TargetType="ComboBox">
+																						<Setter Property="ItemsSource"  Value="{Binding DataContext.ProcessList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																					</Style>
+																				</DataGridComboBoxColumn.ElementStyle>
+																				<DataGridComboBoxColumn.EditingElementStyle>
+																					<Style TargetType="ComboBox">
+																						<Setter Property="ItemsSource"  Value="{Binding DataContext.ProcessList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																						<!--<EventSetter  Event="SelectionChanged" Handler="ComboBox_SelectionChanged" />-->
+																					</Style>
+																				</DataGridComboBoxColumn.EditingElementStyle>
+																			</DataGridComboBoxColumn>
+																			<DataGridComboBoxColumn Header="{x:Static Properties:Resources.UNIT}" SelectedValueBinding="{Binding Item.UNIT_ID, UpdateSourceTrigger=LostFocus, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" 
+																					SelectedValuePath="Value" DisplayMemberPath="Name" IsReadOnly="True">
+																				<DataGridComboBoxColumn.ElementStyle>
+																					<Style TargetType="ComboBox">
+																						<Setter Property="ItemsSource"  Value="{Binding DataContext.UnitList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																					</Style>
+																				</DataGridComboBoxColumn.ElementStyle>
+																				<DataGridComboBoxColumn.EditingElementStyle>
+																					<Style TargetType="ComboBox">
+																						<Setter Property="ItemsSource"  Value="{Binding DataContext.UnitList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																						<!--<EventSetter  Event="SelectionChanged" Handler="ComboBox_SelectionChanged" />-->
+																					</Style>
+																				</DataGridComboBoxColumn.EditingElementStyle>
+																			</DataGridComboBoxColumn>
+
+																			<DataGridTextColumn Header="{x:Static Properties:Resources.WORK_HOUR}" Binding="{Binding Item.WORK_HOUR, UpdateSourceTrigger=LostFocus, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" IsReadOnly="True">
+																				<DataGridTextColumn.EditingElementStyle>
+																					<Style TargetType="TextBox">
+																						<Setter Property="MaxLength" Value="9"></Setter>
+																					</Style>
+																				</DataGridTextColumn.EditingElementStyle>
+																			</DataGridTextColumn>
+																			<DataGridTextColumn Header="{x:Static Properties:Resources.WORK_COST}" Binding="{Binding Item.WORK_COST, Converter={StaticResource ZeroPointConverter}, UpdateSourceTrigger=LostFocus, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" IsReadOnly="True">
+																				<!--<DataGridTextColumn.EditingElementStyle>
+																					<Style TargetType="TextBox">
+																						<Setter Property="MaxLength" Value="12"></Setter>
+																					</Style>
+																				</DataGridTextColumn.EditingElementStyle>-->
+																			</DataGridTextColumn>
+																		</DataGrid.Columns>
+																	</controls:ValidationDataGrid>
+																</DockPanel>
+															</TabItem>
+															<TabItem Header="{x:Static Properties:Resources.Consumables_Statistic}" Width="Auto">
+																<DockPanel>
+																	<WrapPanel DockPanel.Dock="Top" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+																		<Button Content="{x:Static Properties:Resources.InsertConsume}" Height="35" Width="100" Margin="5" controls:PermissionService.FunctionId="BP9103020017" 
+																				Command="{Binding AddSuppliesCommand}" />
+																		<!--<Button Content="{x:Static Properties:Resources.EditConsume}" Height="35" Width="100" Margin="5" controls:PermissionService.FunctionId="BP9103020018" 
+																				Command="{Binding EditSuppliesCommand}" />-->
+																		<Button Content="{x:Static Properties:Resources.DelConsume}" Height="35" Width="100" Margin="5"
+																				 controls:PermissionService.FunctionId="BP9103020019" Command="{Binding DeleteSuppliesCommand}"/>
+																		<Button Content="{x:Static Properties:Resources.CancelConsume}" Height="35" Width="100" Margin="5" controls:PermissionService.FunctionId="BP9103020020" 
+																				Command="{Binding CancelSuppliesCommand}" />
+																		<Button Content="{x:Static Properties:Resources.SaveConsume}" Height="35" Width="100" Margin="5"
+																				 controls:PermissionService.FunctionId="BP9103020021" Command="{Binding SaveSuppliesCommand}"/>
+																	</WrapPanel>
+																	<controls:ValidationDataGrid x:Name="gdSupplies" 
+																								 CellStyle="{StaticResource UcSingleRowEditSupplies}" 
+																								 RowHeaderStyle="{StaticResource UcSingleRowHeaderEdit}"
+																								 IsReadOnly="False"  Height="400" Style="{StaticResource DgStyle}" 
+																								 ItemsSource="{Binding EditableF910403DataList}" 
+																								 SelectionMode="Single"
+																								 SelectedItem="{Binding SelectedEditableF910403, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+																		<DataGrid.Columns>
+																			<DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																									Visibility="{Binding DataContext.UserOperateMode, Source={StaticResource ProxyElement}, Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}"
+																									IsReadOnly="True">
+																				<DataGridCheckBoxColumn.HeaderTemplate>
+																					<DataTemplate>
+																						<CheckBox Style="{StaticResource CheckStyle}" Content="{x:Static res:Resources.SelectAll}" 
+																								  IsChecked="{Binding DataContext.CheckAllItem, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																								  Command="{Binding DataContext.CheckAllItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+																					</DataTemplate>
+																				</DataGridCheckBoxColumn.HeaderTemplate>
+																				<DataGridCheckBoxColumn.ElementStyle>
+																					<Style TargetType="CheckBox">
+																						<Setter Property="VerticalAlignment" Value="Center"/>
+																						<Setter Property="HorizontalAlignment" Value="Center"/>
+																					</Style>
+																				</DataGridCheckBoxColumn.ElementStyle>
+																				<DataGridCheckBoxColumn.EditingElementStyle>
+																					<Style TargetType="CheckBox">
+																						<Setter Property="VerticalAlignment" Value="Center"/>
+																						<Setter Property="HorizontalAlignment" Value="Center"/>
+																					</Style>
+																				</DataGridCheckBoxColumn.EditingElementStyle>
+																			</DataGridCheckBoxColumn>
+																			<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" IsReadOnly="True"
+																								Binding="{Binding Item.ITEM_CODE, UpdateSourceTrigger=LostFocus,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" >
+																				<DataGridTextColumn.EditingElementStyle>
+																					<Style TargetType="TextBox">
+																						<EventSetter  Event="KeyDown" Handler="ITEM_CODE_KeyDown" />
+																					</Style>
+																				</DataGridTextColumn.EditingElementStyle>
+																			</DataGridTextColumn>
+																			<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM__NAME}" IsReadOnly="True"
+																								Binding="{Binding Item.ITEM_NAME, UpdateSourceTrigger=LostFocus,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" />
+																			<DataGridTextColumn Header="{x:Static Properties:Resources.LTYPE}" IsReadOnly="True"
+																								Binding="{Binding Item.CLA_NAME, UpdateSourceTrigger=LostFocus,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" />
+																			<DataGridComboBoxColumn Header="{x:Static Properties:Resources.UNIT}" IsReadOnly="True"
+																									SelectedValueBinding="{Binding Item.UNIT_ID, UpdateSourceTrigger=LostFocus,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}" 
+																					SelectedValuePath="Value" DisplayMemberPath="Name">
+																				<DataGridComboBoxColumn.ElementStyle>
+																					<Style TargetType="ComboBox">
+																						<Setter Property="ItemsSource"  Value="{Binding DataContext.UnitList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																					</Style>
+																				</DataGridComboBoxColumn.ElementStyle>
+																				<DataGridComboBoxColumn.EditingElementStyle>
+																					<Style TargetType="ComboBox">
+																						<Setter Property="ItemsSource"  Value="{Binding DataContext.UnitList,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}}}"/>
+																						<!--<EventSetter  Event="SelectionChanged" Handler="ComboBox_SelectionChanged" />-->
+																					</Style>
+																				</DataGridComboBoxColumn.EditingElementStyle>
+																			</DataGridComboBoxColumn>
+																			<DataGridTextColumn Header="{x:Static Properties:Resources.STANDARD}" IsReadOnly="True"
+																								Binding="{Binding Item.STANDARD, UpdateSourceTrigger=LostFocus,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+																				<DataGridTextColumn.EditingElementStyle>
+																					<Style TargetType="TextBox">
+																						<EventSetter  Event="LostFocus" Handler="STANDARD_LostFocus" />
+																						<Setter Property="MaxLength" Value="9"></Setter>
+																					</Style>
+																				</DataGridTextColumn.EditingElementStyle>
+																			</DataGridTextColumn>
+																			<DataGridTextColumn Header="{x:Static Properties:Resources.STANDARD_COST}" IsReadOnly="True"
+																								Binding="{Binding Item.STANDARD_COST, Converter={StaticResource ZeroPointConverter}, UpdateSourceTrigger=LostFocus,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+																				<DataGridTextColumn.EditingElementStyle>
+																					<Style TargetType="TextBox">
+																						<EventSetter  Event="LostFocus" Handler="STANDARD_COST_LostFocus" />
+																						<!--<Setter Property="MaxLength" Value="12"></Setter>-->
+																					</Style>
+																				</DataGridTextColumn.EditingElementStyle>
+																			</DataGridTextColumn>
+																		</DataGrid.Columns>
+																	</controls:ValidationDataGrid>
+																</DockPanel>
+															</TabItem>
+														</TabControl>
+													</DockPanel>
+												</GroupBox>
+											</DockPanel>
+										</ScrollViewer>
+									</DockPanel>
+								</GroupBox>
+
+							</DockPanel>
+						</DockPanel>
+					</TabItem>
+				</TabControl>
+			</uiLib:BasicMaster.MainContent>
+		</uiLib:BasicMaster>
+	</telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

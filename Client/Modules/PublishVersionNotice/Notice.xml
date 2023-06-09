@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<notice name="佈版通知" value="系統即將於{佈版日期} {佈版時間}進行系統更新，預計{佈版完成時間}完成。\r\n系統更新時將會停止所有服務，\r\n請提前將資料存檔後登出，感謝配合。"></notice>
+</root>

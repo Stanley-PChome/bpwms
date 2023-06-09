@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<!-- -1_全部 -->
+	<dc code="-1">
+		<gup code="-1" name ="全部" Schema="" />
+	</dc>
+	<!-- 網家12庫(開發機) -->
+	<dc code="12">
+		<gup code="10" name ="PHWMS_DEV" Schema="BP5E3C4W3M8SMMSWMS" />
+	</dc>
+</root>

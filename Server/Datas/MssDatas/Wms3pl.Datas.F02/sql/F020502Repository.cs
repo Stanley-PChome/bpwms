@@ -1,0 +1,124 @@
+﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.DBCore;
+using Wms3pl.WebServices.DataCommon;
+
+namespace Wms3pl.Datas.F02
+{
+  public partial class F020502Repository : RepositoryBase<F020502, Wms3plDbContext, F020502Repository>
+  {
+    public IQueryable<F020502> GetDataByF020501Id(string dcCode, string gupCode, string custCode, long f020501Id, string binCode)
+    {
+      var parms = new List<SqlParameter> {
+                new SqlParameter("@p0", dcCode),
+                new SqlParameter("@p1", gupCode),
+                new SqlParameter("@p2", custCode),
+                new SqlParameter("@p3", f020501Id)
+            };
+
+      string insql = string.Empty;
+      if (!string.IsNullOrWhiteSpace(binCode))
+      {
+        insql = " AND BIN_CODE = @p4 ";
+        parms.Add(new SqlParameter("@p4", binCode));
+      }
+
+      string sql = $@"
+        					SELECT * 
+                            FROM F020502
+                            WHERE DC_CODE = @p0
+                            AND GUP_CODE = @p1
+                            AND CUST_CODE = @p2
+                            AND F020501_ID = @p3
+        					{insql} ";
+
+      return SqlQuery<F020502>(sql, parms.ToArray());
+    }
+
+    /// <summary>
+    /// 取得最新一筆F020502
+    /// </summary>
+    /// <returns></returns>
+    public F020502 GetNewestData()
+    {
+      var sql = @"SELECT TOP 1 * FROM F020502 ORDER BY ID DESC";
+      return SqlQuery<F020502>(sql).FirstOrDefault();
+    }
+
+    public IQueryable<ContainerRecheckFaildItem> GetContainerRecheckFaildItem(string dcCode, string gupCode, string custCode, string ContainerCode)
+    {
+      var para = new List<SqlParameter>() {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", ContainerCode) { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = $@"
+								SELECT C.ID F020502_ID,C.STOCK_NO,C.STOCK_SEQ,C.RT_NO,C.RT_SEQ,B.CONTAINER_CODE,C.BIN_CODE,C.ITEM_CODE,D.ITEM_NAME,C.QTY,E.NAME ACCE_STATUS,C.STATUS,C.F020501_ID
+								FROM F0701 A
+								JOIN F020501 B
+								ON B.F0701_ID = A.ID
+								JOIN F020502 C
+								ON C.F020501_ID = B.ID
+								LEFT JOIN F1903 D 
+									ON D.GUP_CODE =C.GUP_CODE AND D.CUST_CODE =C.CUST_CODE AND D.ITEM_CODE =C.ITEM_CODE 
+								LEFT JOIN VW_F000904_LANG E
+									ON E.TOPIC='F020502' AND E.SUBTOPIC='STATUS' AND C.STATUS=E.VALUE AND E.LANG='{Current.Lang}'
+								WHERE B.DC_CODE =@p0 
+									AND B.GUP_CODE =@p1 
+									AND B.CUST_CODE=@p2 
+									AND (B.CONTAINER_CODE=@p3 OR C.BIN_CODE=@p3) ";
+     
+      //加上ROW_NUM
+      sql = $@"
+SELECT 
+  ROW_NUMBER()OVER(ORDER BY aa.F020502_ID) AS ROW_NUM,
+  aa.*
+FROM
+({sql}) aa";
+
+      return SqlQuery<ContainerRecheckFaildItem>(sql, para.ToArray());
+    }
+		public IQueryable<F020502> GetDatasByF020501Id(long f020501Id)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",f020501Id){SqlDbType= SqlDbType.BigInt}
+			};
+			var sql = @" SELECT *
+                     FROM F020502
+                    WHERE F020501_ID= @p0";
+			return SqlQuery<F020502>(sql, parms.ToArray());
+		}
+
+		public IQueryable<F020502> GetDatasByRtNos(List<string> rtNos)
+		{
+			var parms = new List<object>
+			{
+			};
+			
+			var sql = @" SELECT *
+                     FROM F020502
+                    WHERE 1 = 1 ";
+			sql+= parms.CombineSqlInParameters("AND RT_NO", rtNos);
+			return SqlQuery<F020502>(sql, parms.ToArray());
+		}
+
+    public string LockF020502()
+    {
+      var sql = @"Select Top 1 UPD_LOCK_TABLE_NAME From F0000 With(UPDLOCK) Where UPD_LOCK_TABLE_NAME='F020502';";
+      return SqlQuery<string>(sql).FirstOrDefault();
+    }
+
+    public long GetF020502NextId()
+    {
+      var sql = @"SELECT NEXT VALUE FOR SEQ_F020502_ID";
+
+      return SqlQuery<long>(sql).Single();
+    }
+
+  }
+}

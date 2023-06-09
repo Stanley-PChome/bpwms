@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACCKIND" xml:space="preserve">
+    <value>计价方式</value>
+  </data>
+  <data name="AccKindDetail" xml:space="preserve">
+    <value>依材积</value>
+  </data>
+  <data name="AccKindWeight" xml:space="preserve">
+    <value>依重量</value>
+  </data>
+  <data name="ACCNUM" xml:space="preserve">
+    <value>计价数量</value>
+  </data>
+  <data name="AccProjectName" xml:space="preserve">
+    <value>专案名称</value>
+  </data>
+  <data name="AccProjectNo" xml:space="preserve">
+    <value>专案编号</value>
+  </data>
+  <data name="ACC_AREA_ID" xml:space="preserve">
+    <value>计费区域</value>
+  </data>
+  <data name="ACC_ITEM_NAME" xml:space="preserve">
+    <value>计价项目名称</value>
+  </data>
+  <data name="ACC_KIND" xml:space="preserve">
+    <value>结算方式</value>
+  </data>
+  <data name="ACC_NUM" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="ACC_Size" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ACC_UNIT" xml:space="preserve">
+    <value>计价单位</value>
+  </data>
+  <data name="ACC__NUM" xml:space="preserve">
+    <value>材积</value>
+  </data>
+  <data name="Approv" xml:space="preserve">
+    <value>核准</value>
+  </data>
+  <data name="APPROV_BASIC_FEE" xml:space="preserve">
+    <value>货主核定基本费用</value>
+  </data>
+  <data name="APPROV_BASIC_FEE_Invalid" xml:space="preserve">
+    <value>货主核定设定基本费用不得小於 0 !\n</value>
+  </data>
+  <data name="APPROV_FEE" xml:space="preserve">
+    <value>货主核定单一费用</value>
+  </data>
+  <data name="APPROV_FEE_Invalid" xml:space="preserve">
+    <value>货主核定单一费用不得小於 0 !\n</value>
+  </data>
+  <data name="APPROV_OVER_FEE" xml:space="preserve">
+    <value>货主核定加收费用</value>
+  </data>
+  <data name="APPROV_OVER_FEE_Invalid" xml:space="preserve">
+    <value>货主核定加收费用不得小於 0 !\n</value>
+  </data>
+  <data name="APPROV_OVER_UNIT_FEE_Invalid" xml:space="preserve">
+    <value>货主核定超标每单位费用不得小於 0 !\n</value>
+  </data>
+  <data name="APPROV_UNIT_FEE" xml:space="preserve">
+    <value>货主核定价</value>
+  </data>
+  <data name="APPROV_UNIT_FEE_Empty" xml:space="preserve">
+    <value>请填写货主核定价!</value>
+  </data>
+  <data name="APPROV_UNIT_FEE_Invalid" xml:space="preserve">
+    <value>货主核定价不得小於 0 !\n</value>
+  </data>
+  <data name="BASIC_FEE" xml:space="preserve">
+    <value>≦计价数量 , 费用</value>
+  </data>
+  <data name="CarTonne" xml:space="preserve">
+    <value>吨数</value>
+  </data>
+  <data name="CAR_KIND_ID" xml:space="preserve">
+    <value>车辆种辆</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立时间</value>
+  </data>
+  <data name="CUST_APPROV_FEE" xml:space="preserve">
+    <value>货主核定费用</value>
+  </data>
+  <data name="CUST_APPROV_OVER_FEE" xml:space="preserve">
+    <value>货主核定超标费用</value>
+  </data>
+  <data name="DELV_ACC_TYPE" xml:space="preserve">
+    <value>配送计价类别</value>
+  </data>
+  <data name="DELV_EFFIC" xml:space="preserve">
+    <value>配送效率</value>
+  </data>
+  <data name="DELV_TMPR" xml:space="preserve">
+    <value>配送温层</value>
+  </data>
+  <data name="DISABLE_DATE" xml:space="preserve">
+    <value>失效日期</value>
+  </data>
+  <data name="DISABLE_DATE_Invalid" xml:space="preserve">
+    <value>失效日期不得小於生效日期! \n</value>
+  </data>
+  <data name="DOLLAR" xml:space="preserve">
+    <value>元</value>
+  </data>
+  <data name="EnableDate" xml:space="preserve">
+    <value>专案日期</value>
+  </data>
+  <data name="EnableSDataQuery" xml:space="preserve">
+    <value>生效日期</value>
+  </data>
+  <data name="Enable_Date_GreaterThanToday" xml:space="preserve">
+    <value>专案起始日期须大於今日</value>
+  </data>
+  <data name="ENABLE_DATE_Invalid" xml:space="preserve">
+    <value>生效日期须大於今日!\n</value>
+  </data>
+  <data name="FEE" xml:space="preserve">
+    <value>结算金额</value>
+  </data>
+  <data name="FEE_GreaterThanZero_Required" xml:space="preserve">
+    <value>结算金额需大於或等於0</value>
+  </data>
+  <data name="GrossMargin" xml:space="preserve">
+    <value>毛利率</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="IN_TAX" xml:space="preserve">
+    <value>税别</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>长</value>
+  </data>
+  <data name="LocType" xml:space="preserve">
+    <value>储位型态</value>
+  </data>
+  <data name="LOGI_TYPE" xml:space="preserve">
+    <value>物流类型</value>
+  </data>
+  <data name="MAX_WEIGHT" xml:space="preserve">
+    <value>重量上限</value>
+  </data>
+  <data name="NET_RATE_Invalid" xml:space="preserve">
+    <value>毛利率不得 &lt; 0 !\n</value>
+  </data>
+  <data name="NoCurrentRecord_InsertOrEdit" xml:space="preserve">
+    <value>无资料可新增或编辑</value>
+  </data>
+  <data name="NoSpecify" xml:space="preserve">
+    <value>不指定</value>
+  </data>
+  <data name="NUM" xml:space="preserve">
+    <value>材</value>
+  </data>
+  <data name="OnePrice" xml:space="preserve">
+    <value>均一价</value>
+  </data>
+  <data name="ORD_TYPE" xml:space="preserve">
+    <value>物流单据</value>
+  </data>
+  <data name="OVER_FEE" xml:space="preserve">
+    <value>  &gt;计价数量,费用</value>
+  </data>
+  <data name="OVER_VALUE" xml:space="preserve">
+    <value>超尺寸  每</value>
+  </data>
+  <data name="OVER_Weight" xml:space="preserve">
+    <value>超重  每</value>
+  </data>
+  <data name="OVER__VALUE" xml:space="preserve">
+    <value>超材  每</value>
+  </data>
+  <data name="P5001020000xamlcs_FileNotFound" xml:space="preserve">
+    <value>找不到此档案!</value>
+  </data>
+  <data name="P5001020000xamlcs_UploadFile" xml:space="preserve">
+    <value>上传档案</value>
+  </data>
+  <data name="P5001020000xamlcs_UploadFile_WithFormat" xml:space="preserve">
+    <value>上传档案 (.*)|*.*</value>
+  </data>
+  <data name="P5001020000xamlcs_ViewFile" xml:space="preserve">
+    <value>检视档案</value>
+  </data>
+  <data name="PROJECT_DATE" xml:space="preserve">
+    <value>专案期间</value>
+  </data>
+  <data name="PRO_Date" xml:space="preserve">
+    <value>专案日期</value>
+  </data>
+  <data name="PRO_ENABLE_CannotDelete" xml:space="preserve">
+    <value>专案已生效不能删除</value>
+  </data>
+  <data name="PRO_ENABLE_CannotEdit" xml:space="preserve">
+    <value>专案已生效不能修改</value>
+  </data>
+  <data name="QuoteNo" xml:space="preserve">
+    <value>报价单号</value>
+  </data>
+  <data name="RealSize" xml:space="preserve">
+    <value>实际尺寸(长+宽+高)</value>
+  </data>
+  <data name="SelectACC_KIND" xml:space="preserve">
+    <value>请选择计费方式</value>
+  </data>
+  <data name="SelectData" xml:space="preserve">
+    <value>请选取资料</value>
+  </data>
+  <data name="SelectDC" xml:space="preserve">
+    <value>请选择物流中心</value>
+  </data>
+  <data name="SelectEditData" xml:space="preserve">
+    <value>请先选择欲编辑资料!</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>请选择档案!</value>
+  </data>
+  <data name="SelectIN_TAX" xml:space="preserve">
+    <value>请选择税别</value>
+  </data>
+  <data name="Select_Disable_Date" xml:space="preserve">
+    <value>请选择专案失效日期</value>
+  </data>
+  <data name="Select_Enable_Date" xml:space="preserve">
+    <value>请选择专案生效日期</value>
+  </data>
+  <data name="SERVICES" xml:space="preserve">
+    <value>服务内容</value>
+  </data>
+  <data name="SingleFEE" xml:space="preserve">
+    <value>单一费用 , 费用</value>
+  </data>
+  <data name="SPECIAL_CAR" xml:space="preserve">
+    <value>专车</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="StatusQuery" xml:space="preserve">
+    <value>单据状态</value>
+  </data>
+  <data name="Status_Invalid_Delete" xml:space="preserve">
+    <value>状态需为\"待处理\",才可进行删除</value>
+  </data>
+  <data name="Status_Invalid_Edit" xml:space="preserve">
+    <value>状态需为\"待处理\",才可进行编辑</value>
+  </data>
+  <data name="TMPR_TYPE" xml:space="preserve">
+    <value>温层</value>
+  </data>
+  <data name="UNIT_FEE" xml:space="preserve">
+    <value>费用</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>异动时间</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>上传文件</value>
+  </data>
+  <data name="Uploadtxt" xml:space="preserve">
+    <value>上传文件</value>
+  </data>
+  <data name="ViewDoc" xml:space="preserve">
+    <value>检视文件</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>重量</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>宽</value>
+  </data>
+  <data name="Write_ACC_PROJECT_NAME" xml:space="preserve">
+    <value>请填写专案名称</value>
+  </data>
+  <data name="Write_APPROV_BASIC_FEE_Or_APPROV_OVER_FEE" xml:space="preserve">
+    <value>请填写货主核定设定基本费用或货主核定加收费用!</value>
+  </data>
+  <data name="Write_APPROV_FEE" xml:space="preserve">
+    <value>请填写货主核定单一费用!</value>
+  </data>
+  <data name="Write_APPROV_FEE_Or_APPROV_OVER_UNIT_FEE" xml:space="preserve">
+    <value>请填写货主核基本费用或货主核定超标单位费用!</value>
+  </data>
+  <data name="Write_Quote_No" xml:space="preserve">
+    <value>请填写报价单号</value>
+  </data>
+  <data name="Write_SERVICES" xml:space="preserve">
+    <value>请填写服务内容</value>
+  </data>
+</root>

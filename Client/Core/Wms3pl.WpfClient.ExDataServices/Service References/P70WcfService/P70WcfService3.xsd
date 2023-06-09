@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfF700102Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F700102Data" nillable="true" type="tns:F700102Data" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF700102Data" nillable="true" type="tns:ArrayOfF700102Data" />
+  <xs:complexType name="F700102Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAN_FAST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAR_NO_A" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAR_NO_B" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAR_NO_C" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTACT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTACT_TEL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COUDIV_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CRT_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CRT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CRT_STAFF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_EFFIC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DELV_TMPR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DISTR_CAR_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DISTR_CAR_SEQ" type="xs:int" />
+      <xs:element minOccurs="0" name="DISTR_USE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ENTRUST_DEPT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ISSEAL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="MEMO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RETAIL_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TAKE_TIME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPD_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UPD_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPD_STAFF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WMS_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZIP_CODE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F700102Data" nillable="true" type="tns:F700102Data" />
+  <xs:complexType name="ExecuteResult">
+    <xs:sequence>
+      <xs:element name="_x003C_IsSuccessed_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Message_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExecuteResult" nillable="true" type="tns:ExecuteResult" />
+</xs:schema>

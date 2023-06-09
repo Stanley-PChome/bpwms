@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P19.Views.P1901010000" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P19.ViewModel" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P19.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" controls:PermissionService.FunctionId="P1901010000" controls:PermissionService.FunctionName="DC主檔維護" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P1901010000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <viewModel:DELVEFFICCodeToDELVEFFICNameConverter x:Key="DELVEFFICCodeToDELVEFFICNameConverter" />
+      <viewModel:ZipCodeToZipNameConverter x:Key="ZipCodeToZipNameConverter" />
+      <viewModel:P1901010000_ViewModel x:Key="P1901010000_ViewModel" />
+      <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+      </Style>
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <uiLib:Wms3plUserControl.InputBindings>
+    <!--<KeyBinding Command="{Binding SearchCommand}" Modifiers="Alt" Key="Q" />
+        <KeyBinding Command="{Binding SaveCommand}" Modifiers="Alt" Key="S" />
+        <KeyBinding Command="{Binding AddCommand}" Modifiers="ALT" Key="A" />
+        <KeyBinding Command="{Binding DeleteCommand}" Modifiers="Alt" Key="D" />
+        <KeyBinding Command="{Binding MovePreviousCommand}" Key="PageUp" />
+        <KeyBinding Command="{Binding MoveNextCommand}" Key="PageDown" />
+        <KeyBinding Command="{Binding MoveFirstCommand}"  Key="Home" />
+        <KeyBinding Command="{Binding MoveLastCommand}"  Key="End" />-->
+  </uiLib:Wms3plUserControl.InputBindings>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource FirstButton}" controls:PermissionService.FunctionId="BP1901010007" Command="{Binding MoveFirstCommand}" />
+          <Button Style="{StaticResource PriorButton}" controls:PermissionService.FunctionId="BP1901010008" Command="{Binding MovePreviousCommand}" />
+          <Button Style="{StaticResource NextButton}" controls:PermissionService.FunctionId="BP1901010009" Command="{Binding MoveNextCommand}" />
+          <Button Style="{StaticResource LastButton}" controls:PermissionService.FunctionId="BP1901010010" Command="{Binding MoveLastCommand}" />
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1901010001" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1901010003" Command="{Binding EditCommand}" />
+          <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP1901010002" Command="{Binding AddCommand}" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1901010004" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1901010005" Command="{Binding DeleteCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1901010006" Command="{Binding SaveCommand}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <ScrollViewer>
+              <StackPanel IsEnabled="{Binding IsCanEdit,Mode=TwoWay}">
+                <Border BorderBrush="#FFD5DFE5" BorderThickness="1">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                      <!--<ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />-->
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{x:Static Properties:Resources.DC_CODENo}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.ColumnSpan="3" IsEnabled="{Binding dC_CODETextBox_IsEnabled}" Grid.Column="1" Grid.Row="0" MaxLength="3" HorizontalAlignment="Left" Margin="3" Name="dC_CODETextBox" Text="{Binding CurrentRecord.DC_CODE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120">
+                      <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="LostFocus">
+                          <i:InvokeCommandAction Command="{Binding DcCodeCheckCommand}" />
+                        </i:EventTrigger>
+                      </i:Interaction.Triggers>
+                      <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding DcCodeCheckCommand}" />
+                      </TextBox.InputBindings>
+                    </TextBox>
+                    <Label Content="{x:Static Properties:Resources.DC_NAME}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" MaxLength="80" HorizontalAlignment="Left" Margin="3" Name="dC_NAMETextBox" Text="{Binding CurrentRecord.DC_NAME, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="403" />
+                    <Label Content="{x:Static Properties:Resources.ADDRESS}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" MaxLength="120" HorizontalAlignment="Left" Margin="3" Name="aDDRESSTextBox" Text="{Binding CurrentRecord.ADDRESS, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="622" />
+                    <Label Content="{x:Static Properties:Resources.MAIL_BOX}" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" MaxLength="80" HorizontalAlignment="Left" Margin="3" Name="mAIL_BOXTextBox" Text="{Binding CurrentRecord.MAIL_BOX, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="622" />
+                    <Label Content="{x:Static Properties:Resources.BOSS}" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" MaxLength="40" HorizontalAlignment="Left" Margin="3" Name="bOSSTextBox" Text="{Binding CurrentRecord.BOSS, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="622" />
+                    <Label Content="{x:Static Properties:Resources.TEL}" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="5" MaxLength="40" HorizontalAlignment="Left" Margin="3" Name="tELTextBox" Text="{Binding CurrentRecord.TEL, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static Properties:Resources.FAX}" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="5" MaxLength="40" HorizontalAlignment="Left" Margin="3" Name="fAXTextBox" Text="{Binding CurrentRecord.FAX, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static Properties:Resources.SHORT_CODE}" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="6" MaxLength="1" HorizontalAlignment="Left" Margin="3" Name="sHORT_CODETextBox" Text="{Binding CurrentRecord.SHORT_CODE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static Properties:Resources.ZIP_CODE}" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="6" MaxLength="5" HorizontalAlignment="Left" Margin="3" Name="ZipCodeTextBox" Text="{Binding CurrentRecord.ZIP_CODE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static Properties:Resources.LAND_AREA}" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="7" MaxLength="5" HorizontalAlignment="Left" Margin="3" Name="lAND_AREATextBox" Text="{Binding CurrentRecord.LAND_AREA, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static Properties:Resources.BUILD_AREA}" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="7" MaxLength="5" HorizontalAlignment="Left" Margin="3" Name="bUILD_AREATextBox" Text="{Binding CurrentRecord.BUILD_AREA, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static res:Resources.CRT_STAFF}" Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="8" MaxLength="1" IsReadOnly="True" HorizontalAlignment="Left" Margin="3" Text="{Binding CurrentRecord.CRT_NAME, Mode=TwoWay}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static res:Resources.CRT_DATE}" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="8" MaxLength="5" IsReadOnly="True" HorizontalAlignment="Left" Margin="3" Text="{Binding CurrentRecord.CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static res:Resources.UPD_STAFF}" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="9" MaxLength="1" IsReadOnly="True" HorizontalAlignment="Left" Margin="3" Text="{Binding CurrentRecord.UPD_NAME, Mode=TwoWay}" VerticalAlignment="Center" Width="246" />
+                    <Label Content="{x:Static res:Resources.UPD_DATE}" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Right" Margin="3" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="9" MaxLength="5" IsReadOnly="True" HorizontalAlignment="Left" Margin="3" Text="{Binding CurrentRecord.UPD_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" VerticalAlignment="Center" Width="246" />
+                  </Grid>
+                </Border>
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
+          <TabItem Header="{x:Static Properties:Resources.IsSelected}">
+            <ListBox IsEnabled="{Binding IsCanEdit,Mode=TwoWay}" Name="lstboxDcs" ItemsSource="{Binding DCServiceList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <WrapPanel DockPanel.Dock="Top" Orientation="Vertical">
+                    <CheckBox Name="CUST_NAME" Unchecked="OnCheckBoxCheckChange" Checked="OnCheckBoxCheckChange" Content="{Binding Item.CUST_NAME}" IsChecked="{Binding IsSelected}"></CheckBox>
+                    <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                      <Label Content="{x:Static Properties:Resources.LOC_CODE}" Style="{StaticResource LbTitleStyle}" />
+                      <TextBox HorizontalAlignment="Right" MaxLength="50" Name="txtLOCCODE" Style="{StaticResource TxtStyle}" LostFocus="txtLOCCODE_LostFocus" Text="{Binding Item.LOC_CODE,Mode=TwoWay,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsSelected}"></TextBox>
+                      <TextBox HorizontalAlignment="Right" Visibility="Hidden" MaxLength="50" Name="txtGUPCODE" Style="{StaticResource TxtStyle}" Text="{Binding Item.GUP_CODE}" IsEnabled="{Binding IsSelected}"></TextBox>
+                      <TextBox HorizontalAlignment="Right" MaxLength="50" Visibility="Hidden" Name="txtCUSTCODE" Style="{StaticResource TxtStyle}" Text="{Binding Item.CUST_CODE}" IsEnabled="{Binding IsSelected}"></TextBox>
+                    </WrapPanel>
+                  </WrapPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </TabItem>
+          <TabItem Header="{x:Static Properties:Resources.SelectedZipCode}" Width="Auto">
+            <DockPanel>
+              <GroupBox DockPanel.Dock="Top" Header="" IsEnabled="{Binding IsCanEdit,Mode=TwoWay}">
+                <WrapPanel>
+                  <Label Content="{x:Static Properties:Resources.SelectedZipCode}" Style="{StaticResource LbStyle}" />
+                  <ComboBox SelectedValue="{Binding SelectedZipCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding F1934_Selected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="cbZIPCODE" ItemsSource="{Binding F1934List}" Margin="3,4,0,0" VerticalAlignment="Top" MinWidth="140" SelectedValuePath="ZIP_CODE" DisplayMemberPath="ZIP_NAME"></ComboBox>
+                  <ComboBox ItemsSource="{Binding CustCodeList}" SelectedValue="{Binding SelectedCustCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="3,4,0,0" VerticalAlignment="Top" MinWidth="140" SelectedValuePath="Value" DisplayMemberPath="Name" />
+                  <Button Margin="10,0,10,0" Content="{x:Static Properties:Resources.INSERT}" Width="100" Name="F050006AddCommand" MinHeight="20" Command="{Binding F050006AddCommand}" controls:PermissionService.FunctionId="BP1901010011" controls:PermissionService.FunctionName="新增" />
+                  <!--<Button  Margin="10,0,10,0" Content="刪除" Width="100" MinHeight="20" Command="{Binding F050006DeleteCommand}"
+												controls:PermissionService.FunctionId="BP1901010012" controls:PermissionService.FunctionName="刪除" />-->
+                </WrapPanel>
+              </GroupBox>
+              <GroupBox DockPanel.Dock="Top" Header="{x:Static Properties:Resources.SelectedZipCode}">
+                <ScrollViewer>
+                  <controls:ValidationDataGrid IsEnabled="{Binding IsCanEdit,Mode=TwoWay}" ItemsSource="{Binding F050006List,UpdateSourceTrigger=PropertyChanged}" Name="F050006List" SelectedItem="{Binding F050006_Selected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" RowHeaderStyle="{StaticResource UcSingleRowHeaderEdit}">
+                    <DataGrid.Columns>
+                      <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                          <DataTemplate>
+                            <Button Content="{x:Static Properties:Resources.CLEAR}" Click="F050006SDelete_Click" controls:PermissionService.FunctionId="BP1901010013" controls:PermissionService.FunctionName="清除" />
+                          </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                      </DataGridTemplateColumn>
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.SelectedZipCode}" IsReadOnly="True" Binding="{Binding ZIP_CODE, UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                        <DataGridTextColumn.CellStyle>
+                          <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowAddFocus}" />
+                        </DataGridTextColumn.CellStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                          <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                            <Setter Property="MaxLength" Value="50" />
+                            <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                          </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                      </DataGridTextColumn>
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.ZIP_CODE_NAME}" IsReadOnly="True" Binding="{Binding ZIP_CODE,Converter={StaticResource ZipCodeToZipNameConverter}, ConverterParameter={ StaticResource P1901010000_ViewModel }, UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                        <DataGridTextColumn.CellStyle>
+                          <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowAddFocus}" />
+                        </DataGridTextColumn.CellStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                          <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                            <Setter Property="MaxLength" Value="50" />
+                            <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                          </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                      </DataGridTextColumn>
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.DC_CODE}" Visibility="Collapsed" IsReadOnly="True" Binding="{Binding DC_CODE,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                        <DataGridTextColumn.CellStyle>
+                          <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowEditFocus}" />
+                        </DataGridTextColumn.CellStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                          <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                            <Setter Property="MaxLength" Value="3" />
+                            <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                          </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                      </DataGridTextColumn>
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.GUP_CODE}" Visibility="Collapsed" IsReadOnly="True" Binding="{Binding GUP_CODE,UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                        <DataGridTextColumn.CellStyle>
+                          <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowEditFocus}" />
+                        </DataGridTextColumn.CellStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                          <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                            <Setter Property="MaxLength" Value="10" />
+                            <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                          </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                      </DataGridTextColumn>
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.CUST_CODE}" IsReadOnly="True" Binding="{Binding CUST_CODE,UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                        <DataGridTextColumn.CellStyle>
+                          <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowEditFocus}" />
+                        </DataGridTextColumn.CellStyle>
+                      </DataGridTextColumn>
+                      <DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" Visibility="Collapsed" IsReadOnly="True" Binding="{Binding CRT_NAME}" />
+                      <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_DATE}" Visibility="Collapsed" IsReadOnly="True" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
+                      <!--<DataGridTextColumn Header="異動人員" IsReadOnly="True" Binding="{Binding UPD_NAME}"/>
+                                                    <DataGridTextColumn Header="異動時間" IsReadOnly="True" Binding="{Binding UPD_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}"/>-->
+                    </DataGrid.Columns>
+                  </controls:ValidationDataGrid>
+                </ScrollViewer>
+              </GroupBox>
+            </DockPanel>
+            <!--<Border BorderBrush="Black" BorderThickness="1">                                                                    
+                                   
+                                </Border>-->
+          </TabItem>
+          <TabItem Header="{x:Static Properties:Resources.Selected_DELV_EFFIC_ORDER}" Width="Auto">
+            <ScrollViewer>
+              <StackPanel IsEnabled="{Binding IsCanEdit,Mode=TwoWay}">
+                <DockPanel>
+                  <GroupBox DockPanel.Dock="Top" Header="">
+                    <WrapPanel>
+                      <Label Content="{x:Static Properties:Resources.Selected_DELV_EFFIC}" Style="{StaticResource LbStyle}" />
+                      <ComboBox SelectedValue="{Binding Selected_DELV_EFFIC,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding F000904S_DELV_EFFIC_Selected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="cbDELV_EFFIC" ItemsSource="{Binding F000904S_DELV_EFFIC}" Margin="3,4,0,0" VerticalAlignment="Top" MinWidth="140" SelectedValuePath="VALUE" DisplayMemberPath="NAME"></ComboBox>
+                      <Label Content="{x:Static Properties:Resources.Order_Selected}" Style="{StaticResource LbStyle}" />
+                      <ComboBox SelectedValue="{Binding Order_Selected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="cbOrderList" ItemsSource="{Binding OrderList}" Margin="3,4,0,0" VerticalAlignment="Top" MinWidth="140"></ComboBox>
+                      <Button Margin="10,0,10,0" Content="{x:Static Properties:Resources.INSERT}" Width="100" Name="F190102_DELV_EFFIC_AddCommand" MinHeight="20" Command="{Binding F190102_DELV_EFFIC_AddCommand}" controls:PermissionService.FunctionId="BP1901010014" controls:PermissionService.FunctionName="新增" />
+                      <!--<Button  Margin="10,0,10,0" Content="刪除" Width="100" MinHeight="20" Command="{Binding F190102_DELV_EFFIC_DeleteCommand}"
+												controls:PermissionService.FunctionId="BP1901010015" controls:PermissionService.FunctionName="刪除" />-->
+                    </WrapPanel>
+                  </GroupBox>
+                  <GroupBox DockPanel.Dock="Top" Header="{x:Static Properties:Resources.Selected_DELV_EFFIC_ORDER}">
+                    <controls:ValidationDataGrid ItemsSource="{Binding F190102List,UpdateSourceTrigger=PropertyChanged}" Name="F190102List" SelectedItem="{Binding F190102_Selected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DgStyle}" IsReadOnly="False" CellStyle="{StaticResource SingleClickEdit}" RowHeaderStyle="{StaticResource UcSingleRowHeaderEdit}">
+                      <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="">
+                          <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                              <Button Content="{x:Static Properties:Resources.CLEAR}" Click="F190102SDelete_Click" controls:PermissionService.FunctionId="BP1901010016" controls:PermissionService.FunctionName="清除" />
+                            </DataTemplate>
+                          </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.Order_Selected}" IsReadOnly="True" Binding="{Binding SORT, UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                          <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowAddFocus}" />
+                          </DataGridTextColumn.CellStyle>
+                          <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                              <Setter Property="MaxLength" Value="50" />
+                              <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                            </Style>
+                          </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.Selected_DELV_EFFIC}" IsReadOnly="True" Visibility="Collapsed" Binding="{Binding DELV_EFFIC , UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                          <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowAddFocus}" />
+                          </DataGridTextColumn.CellStyle>
+                          <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                              <Setter Property="MaxLength" Value="50" />
+                              <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                            </Style>
+                          </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.Selected_DELV_EFFIC}" IsReadOnly="True" Binding="{Binding DELV_EFFIC  ,Converter={StaticResource DELVEFFICCodeToDELVEFFICNameConverter}, ConverterParameter={ StaticResource P1901010000_ViewModel }, UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                          <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowAddFocus}" />
+                          </DataGridTextColumn.CellStyle>
+                          <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                              <Setter Property="MaxLength" Value="50" />
+                              <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                            </Style>
+                          </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.DC_CODE}" IsReadOnly="True" Visibility="Collapsed" Binding="{Binding DC_CODE,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=True}">
+                          <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource UcSingleRowEditFocus}" />
+                          </DataGridTextColumn.CellStyle>
+                          <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource DataGridEditingElement}">
+                              <Setter Property="MaxLength" Value="3" />
+                              <EventSetter Event="GotFocus" Handler="CellElement_GotFocus" />
+                            </Style>
+                          </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" Visibility="Collapsed" IsReadOnly="True" Binding="{Binding CRT_NAME}" />
+                        <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_DATE}" Visibility="Collapsed" IsReadOnly="True" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
+                      </DataGrid.Columns>
+                    </controls:ValidationDataGrid>
+                  </GroupBox>
+                </DockPanel>
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

@@ -1,0 +1,11 @@
+﻿<Window x:Class="Wms3pl.WpfClient.UILib.Wms3plViewer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Forms="clr-namespace:CrystalDecisions.Windows.Forms;assembly=CrystalDecisions.Windows.Forms" Title="報表" ShowInTaskbar="False" WindowState="Maximized"  >
+  <!--<my:CrystalReportsViewer Name="ReportsViewer" ShowLogo="False" ToggleSidePanel="None"  ShowRefreshButton="False" ShowToggleSidePanelButton="False" />-->
+  <WindowsFormsHost>
+    <Forms:CrystalReportViewer x:Name="ReportsViewer" ShowLogo="False" ShowRefreshButton="False" ToolPanelView="None" ShowParameterPanelButton="False" ShowGroupTreeButton="True"/>
+  </WindowsFormsHost>
+
+
+</Window>

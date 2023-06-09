@@ -1,0 +1,902 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plUserControl x:Class="Wms3pl.WpfClient.P19.Views.P1901020000" 
+                         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+                         xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" 
+                         xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" 
+                         xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" 
+                         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+                         xmlns:Custom="http://www.galasoft.ch/mvvmlight" 
+                         xmlns:converters="clr-namespace:Wms3pl.WpfClient.Common.Converters;assembly=Wms3pl.WpfClient.Common" 
+                         xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P19.ViewModel" 
+                         xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P19.Properties" 
+                         xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" 
+                         x:Name="Window" 
+                         Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="18" MinWidth="800" controls:PermissionService.FunctionId="P1901020000" controls:PermissionService.FunctionName="商品主檔維護" FormException="{Binding Exception}">
+  <uiLib:Wms3plUserControl.DataContext>
+    <viewModel:P1901020000_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plUserControl.DataContext>
+  <uiLib:Wms3plUserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+      <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+      <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+      <converters:EnumToNotBooleanConverter x:Key="EnumToNotBooleanConverter" />
+      <converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter" />
+      <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter" />
+      <converters:NameValuePairMultiConverter x:Key="NameValuePairMultiConverter" />
+      <converters:ZeroPointConverter x:Key="ZeroPointConverter" />
+      <converters:StringEmptyToNullConverter x:Key="StringEmptyToNullConverter" />
+      <converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+      <converters:NullOrWhiteSpaceToBoolConverter x:Key="NullOrWhiteSpaceToBoolConverter" />
+      <converters:StringToNotBoolConverter x:Key="StringToNotBoolConverter" />
+      <converters:OwnerItemsSourceConverter x:Key="OwnerItemsSourceConverter" />
+      <Style TargetType="TextBox" x:Key="txtRcvMemoStyle" BasedOn="{StaticResource TxtMultiLineStyle}">
+        <Setter Property="Width" Value="800"/>
+        <Setter Property="Margin" Value="3,3,1,3" />
+        <Setter Property="MaxLength" Value="200"/>
+        
+      </Style>
+      <Style TargetType="TextBox" x:Key="txtVnrItemCodeStyle" BasedOn="{StaticResource TxtStyle}">
+        <Setter Property="Width" Value="430"/>
+        <Setter Property="Margin" Value="3,3,4,3" />
+        <Setter Property="MaxLength" Value="50"/>
+      </Style>
+
+    </ResourceDictionary>
+  </uiLib:Wms3plUserControl.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.ToolBarArea>
+        <WrapPanel>
+          <Button Style="{StaticResource SearchButton}" controls:PermissionService.FunctionId="BP1901020001" Command="{Binding SearchCommand}" />
+          <Button Style="{StaticResource AddButton}" controls:PermissionService.FunctionId="BP1901020002" Command="{Binding AddCommand}" />
+          <Button Style="{StaticResource EditButton}" controls:PermissionService.FunctionId="BP1901020003" Command="{Binding EditCommand}" />
+          <Button Style="{StaticResource CancelButton}" controls:PermissionService.FunctionId="BP1901020004" Command="{Binding CancelCommand}" />
+          <Button Style="{StaticResource DeleteButton}" controls:PermissionService.FunctionId="BP1901020005" Command="{Binding DeleteCommand}" />
+          <Button Style="{StaticResource SaveButton}" controls:PermissionService.FunctionId="BP1901020006" Command="{Binding SaveCommand}" />
+          <Button Style="{StaticResource ImportButton}" controls:PermissionService.FunctionId="BP1901020010" Command="{Binding ImportCommand}" />
+        </WrapPanel>
+      </uiLib:BasicMaster.ToolBarArea>
+      <uiLib:BasicMaster.MainContent>
+        <TabControl x:Name="LayoutRoot">
+          <TabControl.BindingGroup>
+            <BindingGroup Name="errorGroup" />
+          </TabControl.BindingGroup>
+          <TabItem Header="{x:Static res:Resources.Main}" Width="Auto">
+            <DockPanel>
+              <!-- 由此處開始加入畫面項目 -->
+              <DockPanel>
+                <ScrollViewer>
+                  <DockPanel>
+                    <DockPanel Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                      <DockPanel DockPanel.Dock="Top">
+                        <GroupBox Header="{x:Static res:Resources.QueryCondition}" DockPanel.Dock="Top">
+                          <Grid>
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="Auto" />
+                              <RowDefinition Height="Auto" />
+                              <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto" />
+                              <ColumnDefinition Width="Auto" />
+                              <ColumnDefinition Width="Auto" />
+                              <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.ItemCode}" Style="{StaticResource LbTitleStyle}" />
+                            <TextBox Width="425" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TxtStyle}" MaxLength="1000" Text="{Binding ItemCode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                            <Button Content="{x:Static Properties:Resources.PASTE}" Grid.Row="0" Grid.Column="3" Command="{Binding PasteCommand}" Width="100" />
+                            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ItemName}" Foreground="Blue" Style="{StaticResource LbTitleStyle}" />
+                            <WrapPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                              <TextBox Style="{StaticResource TxtStyle}" MaxLength="300" Text="{Binding ItemName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="200" />
+                              <Label Content="{x:Static Properties:Resources.SearchLTypes}" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Width="150" ItemsSource="{Binding SearchLTypes}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding SearchLTypeItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></ComboBox>
+                            </WrapPanel>
+                            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.ItemSpec}" Style="{StaticResource LbTitleStyle}" />
+                            <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource TxtStyle}" Width="200" MaxLength="80" Text="{Binding ItemSpec, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                          </Grid>
+                        </GroupBox>
+                        <DataGrid DockPanel.Dock="Top" Height="200" Style="{StaticResource DgStyle}" ItemsSource="{Binding Records,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedData, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                          <DataGrid.Columns>
+                            <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" IsReadOnly="True">
+                              <DataGridTextColumn.Binding>
+                                <MultiBinding Converter="{StaticResource DataGridRowNumberConverter}">
+                                  <Binding />
+                                  <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType=DataGrid}" />
+                                </MultiBinding>
+                              </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ItemCode}" Binding="{Binding ITEM_CODE}" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ItemName}" Binding="{Binding ITEM_NAME}" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.EAN_CODE1}" Binding="{Binding EAN_CODE1}" />
+                            <DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" Binding="{Binding CRT_NAME}" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_DATE}" Binding="{Binding CRT_DATE, StringFormat={}{0:yyyy/MM/dd HH:mm}}" />
+                            <DataGridTextColumn Header="{x:Static res:Resources.UPD_STAFF}" Binding="{Binding UPD_NAME}" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.UPD_DATE}" Binding="{Binding UPD_DATE, StringFormat={}{0:yyyy/MM/dd HH:mm}}" />
+                          </DataGrid.Columns>
+                        </DataGrid>
+                      </DockPanel>
+                      <DockPanel>
+                        <TabControl x:Name="LayoutDetail">
+                          <TabControl.BindingGroup>
+                            <BindingGroup Name="errorGroup" />
+                          </TabControl.BindingGroup>
+                          <TabItem Header="{x:Static Properties:Resources.DETAILS}" Width="Auto">
+                            <DockPanel>
+                              <GroupBox Header="{x:Static Properties:Resources.GUPItemSet}" DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="TOP" Margin="5">
+                                  <Grid>
+                                    <Grid.RowDefinitions>
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="100" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto"/>
+                                      <RowDefinition Height="Auto"/>
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.GUPCODE}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.GUP_CODE" />
+                                          <Binding Path="SelectedGupList" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                                      <Image Height="120" Source="{Binding ItemImageSource, UpdateSourceTrigger=PropertyChanged}">
+                                        <Image.Style>
+                                          <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                              <DataTrigger Binding="{Binding ItemImageSource}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                              </DataTrigger>
+                                            </Style.Triggers>
+                                          </Style>
+                                        </Image.Style>
+                                      </Image>
+                                      <TextBlock>
+                                        <TextBlock.Style>
+                                          <Style TargetType="{x:Type TextBlock}">
+                                            <Style.Triggers>
+                                              <DataTrigger Binding="{Binding NotFound}" Value="false">
+                                                <Setter Property="TextBlock.Text" Value=""></Setter>
+                                              </DataTrigger>
+                                              <DataTrigger Binding="{Binding NotFound}" Value="true">
+                                                <Setter Property="TextBlock.Text" Value="上傳圖檔"></Setter>
+                                                <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
+                                                <Setter Property="TextBlock.VerticalAlignment" Value="Center"></Setter>
+                                              </DataTrigger>
+                                            </Style.Triggers>
+                                          </Style>
+                                        </TextBlock.Style>
+                                      </TextBlock>
+                                    </StackPanel>
+                                    <Label Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_ENGNAME}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="0" Grid.Column="3" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_ENGNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_CODE}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Width="440" MaxWidth="440" HorizontalAlignment="Stretch" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_CODE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="4,3" />
+                                    <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Content="{x:Static Properties:Resources.ITEM_NAME}" Style="{StaticResource LbTitleStyle}" Margin="3,3,3,0" />
+                                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Width="440" MaxWidth="440" HorizontalAlignment="Stretch"  VerticalContentAlignment="Top" TextWrapping="Wrap" MaxLength="300" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_NAME, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="4,3" />
+                                    <Label Grid.Row="3" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_NICKNAME}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_NICKNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="3" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_TYPE}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource TxtStyle}" MaxLength="4" Text="{Binding CurrentRecordByView.ITEM_TYPE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="3" Grid.Column="4" Content="{x:Static Properties:Resources.ITEM_SPEC}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="3" Grid.Column="5" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.ITEM_UNIT" />
+                                          <Binding Path="UnitList" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Grid.Row="4" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_COLOR}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_COLOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="4" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_CLASS}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="4" Grid.Column="3" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_CLASS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="4" Grid.Column="4" Content="{x:Static Properties:Resources.SIM_SPEC}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="4" Grid.Column="5" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.SIM_SPEC, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="5" Grid.Column="0" Content="{x:Static Properties:Resources.EAN_CODE4}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.EAN_CODE4, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" CharacterCasing="Upper"/>
+                                    <Label Content="{x:Static Properties:Resources.FIRST_IN_DATE}" Grid.Row="5" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <DatePicker Grid.Row="5" Grid.Column="3" IsEnabled="False" SelectedDate="{Binding CurrentRecordByView.FIRST_IN_DATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <Label Grid.Row="5" Grid.Column="4" Content="{x:Static Properties:Resources.SAVE_DAY}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="5" Grid.Column="5" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.SAVE_DAY, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="6" Grid.Column="0" Content="{x:Static Properties:Resources.EAN_CODE1}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.EAN_CODE1, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="6" Grid.Column="2" Content="{x:Static Properties:Resources.EAN_CODE2}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="6" Grid.Column="3" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.EAN_CODE2, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="6" Grid.Column="4" Content="{x:Static Properties:Resources.EAN_CODE3}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="6" Grid.Column="5" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.EAN_CODE3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Content="{x:Static Properties:Resources.SearchLTypes}" Grid.Row="7" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.LTYPE" />
+                                          <Binding Path="LTypes" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.MTYPE}" Grid.Row="7" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="7" Grid.Column="3" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.MTYPE" />
+                                          <Binding Path="MTypesByView" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.STYPE}" Grid.Row="7" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="7" Grid.Column="5" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.STYPE" />
+                                          <Binding Path="STypesByView" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.TYPE}" Grid.Row="8" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="8" Grid.Column="1" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.TYPE" />
+                                          <Binding Path="ItemTypes" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.ItemAttr}" Grid.Row="8" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="8" Grid.Column="3" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="SelectedItemAttrByView" />
+                                          <Binding Path="ItemAttrs" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.TMPR_TYPE}" Grid.Row="8" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="8" Grid.Column="5" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.TMPR_TYPE" />
+                                          <Binding Path="ItemTmprTypes" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.ITEM_HUMIDITY}" Grid.Row="9" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="9" Grid.Column="1" MaxLength="3" Text="{Binding CurrentRecordByView.ITEM_HUMIDITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Grid.Row="9" Grid.Column="2" Content="{x:Static Properties:Resources.ItemSpec}" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="9" Grid.Column="3" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_SPEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="3,3,0,3" />
+
+                                    <!--<Label Content="{x:Static Properties:Resources.VIRTUAL_TYPE}" Grid.Row="9" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="9" Grid.Column="3" Text="{Binding CurrentRecordByView.VIRTUAL_TYPE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />-->
+                                    <Label Content="{x:Static Properties:Resources.STOP_DATE}" Grid.Row="9" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <DatePicker Grid.Row="9" Grid.Column="5" IsEnabled="False" SelectedDate="{Binding CurrentRecordByView.STOP_DATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <Label Content="{x:Static Properties:Resources.ITEM_SIZE}" Grid.Row="10" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+																		<TextBox Grid.Row="10" Grid.Column="1"  Text="{Binding CurrentRecordByView.ITEM_SIZE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" Margin="3,3,0,3" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.PackLengthByView}" Grid.Row="10" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="10" Grid.Column="3" Text="{Binding PackLengthByView, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Content="{x:Static Properties:Resources.PackWidthByView}" Grid.Row="10" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="10" Grid.Column="5" Text="{Binding PackWidthByView, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Content="{x:Static Properties:Resources.PackHightByView}" Grid.Row="11" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding PackHightByView, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Content="{x:Static Properties:Resources.PackWeightByView}" Grid.Row="11" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="11" Grid.Column="3" Text="{Binding PackWeightByView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3" />
+                                    <Label Content="{x:Static Properties:Resources.MEMO}" Grid.Row="12" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3" Width="Auto" HorizontalAlignment="Stretch" Text="{Binding CurrentRecordByView.MEMO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,7,3" />
+                                    <Label Content="{x:Static Properties:Resources.ACC_TYPE}" Grid.Row="12" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="12" Grid.Column="5" Style="{StaticResource TxtStyle}" IsReadOnly="True" Margin="3,3,0,3">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.ACC_TYPE" />
+                                          <Binding Path="AccTypes" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Grid.Row="13" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="廠商料號"/>
+                                    <TextBox Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CurrentRecordByView.VNR_ITEM_CODE}" Style="{StaticResource txtVnrItemCodeStyle}" IsReadOnly="True"/>
+                                    <Label Grid.Row="14" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="驗收註記"/>
+                                    <ScrollViewer Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="5" Height="100" VerticalAlignment="Stretch" Margin="3">
+                                      <TextBox  Text="{Binding CurrentRecordByView.RCV_MEMO}" Style="{StaticResource TxtStyle}" Width="Auto" HorizontalAlignment="Stretch" IsReadOnly="True" />
+                                    </ScrollViewer>
+
+                                    <!--<TextBox Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding CurrentRecordByView.RCV_MEMO}" TextWrapping="Wrap" AcceptsReturn="True" Width="Auto" VerticalAlignment="Stretch" Height="100" 
+                                             ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                             ScrollViewer.CanContentScroll="True">
+                                      <TextBox.Style>
+                                        <Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle }">
+                                          <Setter Property="IsReadOnly" Value="True"/>
+                                          <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
+                                        </Style>
+                                      </TextBox.Style>
+                                    </TextBox>-->
+
+                                    <CheckBox Content="{x:Static Properties:Resources.FRAGILE}" Grid.Row="15" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.FRAGILE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                     UpdateSourceTrigger=PropertyChanged}" Margin="3,3,0,3" VerticalAlignment="Center" IsEnabled="False" Grid.RowSpan="2" />
+                                    <CheckBox Content="{x:Static Properties:Resources.SPILL}" Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.SPILL, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                     UpdateSourceTrigger=PropertyChanged}" Margin="3,3,0,3" VerticalAlignment="Center" IsEnabled="False" Grid.RowSpan="2" />
+                                    <CheckBox Content="{x:Static Properties:Resources.IS_EASY_LOSE}" Grid.Row="15" Grid.Column="2" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.IS_EASY_LOSE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                     UpdateSourceTrigger=PropertyChanged}" Margin="3,3,0,3" VerticalAlignment="Center" IsEnabled="False" Grid.RowSpan="2" />
+                                    <CheckBox Content="{x:Static Properties:Resources.IS_PRECIOUS}" Grid.Row="15" Grid.Column="3" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.IS_PRECIOUS, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                     UpdateSourceTrigger=PropertyChanged}" Margin="3,3,0,3" VerticalAlignment="Center" IsEnabled="False" Grid.RowSpan="2" />
+                                    <CheckBox Content="{x:Static Properties:Resources.IS_MAGNETIC}" Grid.Row="15" Grid.Column="4" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.IS_MAGNETIC, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                     UpdateSourceTrigger=PropertyChanged}" Margin="3,3,0,3" VerticalAlignment="Center" IsEnabled="False" Grid.RowSpan="2" />
+                                    <CheckBox Content="易變質" Grid.Row="15" Grid.Column="5" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.IS_PERISHABLE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" Margin="3,3,0,3" VerticalAlignment="Center" IsEnabled="False" Grid.RowSpan="2" />
+                                    <CheckBox Content="需溫控" Grid.Row="15" Grid.Column="6" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.IS_TEMP_CONTROL, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" Margin="3,3,0,3" VerticalAlignment="Center" IsEnabled="False" Grid.RowSpan="2" />
+                                    <!--<CheckBox Content="是否為蘋果商品" Grid.Row="12" Grid.Column="2" HorizontalAlignment="Left"-->
+                                    <!--<CheckBox Content="是否為蘋果商品" Grid.Row="12" Grid.Column="2" HorizontalAlignment="Left"
+																	  IsChecked="{Binding CurrentRecordByView.ISAPPLE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},
+																	   UpdateSourceTrigger=PropertyChanged}"
+																	  Margin="3" VerticalAlignment="Center" IsEnabled="False"/>-->
+                                  </Grid>
+                                </DockPanel>
+                              </GroupBox>
+                              <GroupBox Header="{x:Static Properties:Resources.CUSTITEMSET}" DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="TOP" Margin="5">
+                                  <Grid>
+                                    <Grid.RowDefinitions>
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                      <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                      <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{x:Static Properties:Resources.CHECK_PERCENT}" Grid.Row="0" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="0" Grid.Column="1" MaxLength="13" Width="230" Text="{Binding CurrentRecordByView.CHECK_PERCENT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.PICK_SAVE_QTY}" Grid.Row="0" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="0" Grid.Column="3" MaxLength="10" Text="{Binding CurrentRecordByView.PICK_SAVE_QTY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <!--<Label Content="{x:Static Properties:Resources.SAVE_DAY}" Grid.Row="0" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="0" Grid.Column="5" MaxLength="5" Text="{Binding CurrentRecordByView.SAVE_DAY,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />-->
+                                    <Label Content="{x:Static Properties:Resources.PICK_SAVE_ORD}" Grid.Row="0" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="0" Grid.Column="5" MaxLength="9" Text="{Binding CurrentRecordByView.PICK_SAVE_ORD,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <!--<Label Content="{x:Static Properties:Resources.ORD_SAVE_QTY}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="1" Grid.Column="1" MaxLength="10" Text="{Binding CurrentRecordByView.ORD_SAVE_QTY, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />-->
+                                    <Label Content="{x:Static Properties:Resources.BORROW_DAY}" Grid.Row="1" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="1" Grid.Column="3" MaxLength="4" Text="{Binding CurrentRecordByView.BORROW_DAY,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <!--<Label Content="環保稅" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}"/>
+																		<TextBox Grid.Row="2" Grid.Column="1" MaxLength="9"
+                                  Text="{Binding CurrentRecordByView.EP_TAX,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Style="{StaticResource TxtStyle}" IsReadOnly="True"/>-->
+                                    <Label Content="{x:Static Properties:Resources.SERIALNO_DIGIT}" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="2" Grid.Column="1" Width="230" MaxLength="3" Text="{Binding CurrentRecordByView.SERIALNO_DIGIT,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.SERIAL_BEGIN}" Grid.Row="2" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="2" Grid.Column="3" MaxLength="10" Text="{Binding CurrentRecordByView.SERIAL_BEGIN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.ItemSerialRule}" Grid.Row="2" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="2" Grid.Column="5" Style="{StaticResource TxtStyle}" IsReadOnly="True">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="SelectedItemSerialRuleByView" />
+                                          <Binding Path="ItemSerialRules" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.PICK_WAREType}" Grid.Row="3" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="3" Grid.Column="1" Width="230" Style="{StaticResource TxtStyle}" IsReadOnly="True">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                          <Binding Path="CurrentRecordByView.PICK_WARE" />
+                                          <Binding Path="WarehouseTypeList" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.PICK_WARE_ID}" Grid.Row="3" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource TxtStyle}" IsReadOnly="True">
+                                      <TextBox.Text>
+                                        <MultiBinding Converter="{StaticResource OwnerItemsSourceConverter}">
+                                          <Binding Path="CurrentRecordByView.PICK_WARE" />
+                                          <Binding Path="WarehouseIdListGroupByWareHouseType" />
+                                          <Binding Path="CurrentRecordByView.PICK_WARE_ID" />
+                                        </MultiBinding>
+                                      </TextBox.Text>
+                                    </TextBox>
+                                    <Label Content="{x:Static Properties:Resources.P1901020000_CustItemCode}" Grid.Row="4" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="4" Grid.Column="1" Width="230" MaxLength="20" Text="{Binding CurrentRecordByView.CUST_ITEM_CODE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.DELV_QTY_AVG}" Grid.Row="4" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="4" Grid.Column="3" MaxLength="9" Text="{Binding CurrentRecordByView.DELV_QTY_AVG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.AMORTIZATION_NO}" Grid.Row="4" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="4" Grid.Column="5" MaxLength="9" Text="{Binding CurrentRecordByView.AMORTIZATION_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.PICK_ORD}" Grid.Row="5" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="5" Grid.Column="1" MaxLength="10" Width="230" Text="{Binding CurrentRecordByView.PICK_ORD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <Label Content="{x:Static Properties:Resources.CTNS}" Grid.Row="5" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                    <TextBox Grid.Row="5" Grid.Column="3" MaxLength="10" Text="{Binding CurrentRecordByView.CTNS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                    <CheckBox Content="{x:Static Properties:Resources.C_D_FLAG}" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.C_D_FLAG, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.BUNDLE_SERIALLOC}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" DataContext="{Binding CurrentRecordByView}" IsChecked="{Binding BUNDLE_SERIALLOC, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.BUNDLE_SERIALNO}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecordByView.BUNDLE_SERIALNO, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.ALLOWORDITEM}" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecordByView.ALLOWORDITEM, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.LOC_MIX_ITEM}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.LOC_MIX_ITEM, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   UpdateSourceTrigger=PropertyChanged}" Margin="3" IsEnabled="False" VerticalAlignment="Center" />
+                                    <CheckBox Content="{x:Static Properties:Resources.MIX_BATCHNO}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.MIX_BATCHNO, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.ITEM_MERGE}" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" Visibility="Collapsed" IsChecked="{Binding CurrentRecordByView.ITEM_MERGE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" IsEnabled="False" VerticalAlignment="Center" />
+                                    <CheckBox Content="{x:Static Properties:Resources.NO_PRICE}" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.NO_PRICE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" IsEnabled="False" VerticalAlignment="Center" />
+                                    <CheckBox Content="{x:Static Properties:Resources.ISCARTON}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.ISCARTON, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.NEED_EXPIRED}" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecordByView.NEED_EXPIRED, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.ISOEM}" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.ISOEM , Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" IsEnabled="False" />
+                                    <CheckBox Content="{x:Static Properties:Resources.ISBOX}" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecordByView.ISBOX, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+                                    <CheckBox Content="批號控管" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecordByView.MAKENO_REQU,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" IsEnabled="False"/>
+                                  </Grid>
+                                </DockPanel>
+                              </GroupBox>
+                            </DockPanel>
+                          </TabItem>
+                          <TabItem Header="{x:Static Properties:Resources.ORDERSET}" Width="Auto">
+                            <DockPanel>
+                              <!-- 由此處開始加入畫面項目 -->
+                              <DockPanel>
+                                <DockPanel>
+                                  <DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                      <GroupBox Header="{x:Static Properties:Resources.ORDERSET}" DockPanel.Dock="Top">
+                                        <DockPanel DockPanel.Dock="TOP" Margin="5">
+                                          <Grid>
+                                            <Grid.RowDefinitions>
+                                              <RowDefinition Height="Auto" />
+                                              <RowDefinition Height="Auto" />
+                                              <RowDefinition Height="Auto" />
+                                              <RowDefinition Height="Auto" />
+                                              <RowDefinition Height="Auto" />
+                                              <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                              <ColumnDefinition Width="Auto" />
+                                              <ColumnDefinition Width="Auto" />
+                                              <ColumnDefinition Width="Auto" />
+                                              <ColumnDefinition Width="Auto" />
+                                              <ColumnDefinition Width="Auto" />
+                                              <ColumnDefinition Width="Auto" />
+                                              <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{x:Static Properties:Resources.P1901020000_VNR_CODE}" Grid.Row="0" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Grid.Row="0" Grid.Column="1" MaxLength="6" Text="{Binding CurrentRecordByView.VNR_CODE,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                            <Label Content="{x:Static Properties:Resources.P1901020000_VNR_NAME}" Grid.Row="0" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" MinWidth="394" Text="{Binding VNR_NAME,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                            <Label Content="{x:Static Properties:Resources.VEN_ORD}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Grid.Row="1" Grid.Column="1" MaxLength="6" Text="{Binding CurrentRecordByView.VEN_ORD,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                            <Label Content="{x:Static Properties:Resources.RET_ORD}" Grid.Row="1" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Grid.Row="1" Grid.Column="3" MaxLength="6" Text="{Binding CurrentRecordByView.RET_ORD,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                            <Label Content="{x:Static Properties:Resources.ITEM_STAFF}" Grid.Row="1" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Grid.Row="1" Grid.Column="5" MaxLength="20" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecordByView.ITEM_STAFF, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" />
+                                            <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding ItemStaffNameByView, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></TextBlock>
+                                            <Label Content="{x:Static Properties:Resources.ALL_DLN}" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Grid.Row="2" Grid.Column="1" MaxLength="4" Text="{Binding CurrentRecordByView.ALL_DLN,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                                            <!--<Label Content="{x:Static Properties:Resources.ALLOW_ALL_DLN}" Grid.Row="2" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                                                                        <TextBox Grid.Row="2" Grid.Column="3" MaxLength="4" Text="{Binding CurrentRecordByView.ALLOW_ALL_DLN,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />-->
+                                            <Label Content="{x:Static Properties:Resources.ALL_SHP}" Grid.Row="2" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                            <TextBox Grid.Row="2" Grid.Column="3" MaxLength="4" Text="{Binding CurrentRecordByView.ALL_SHP,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+
+
+                                            <CheckBox Content="{x:Static Properties:Resources.CAN_SELL}" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Visibility="Collapsed" IsChecked="{Binding CurrentRecordByView.CAN_SELL, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" IsEnabled="False" VerticalAlignment="Center" />
+                                            <CheckBox Content="{x:Static Properties:Resources.CAN_SPILT_IN}" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.CAN_SPILT_IN, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                    UpdateSourceTrigger=PropertyChanged}" Margin="3" IsEnabled="False" VerticalAlignment="Center" />
+                                            <CheckBox Content="{x:Static Properties:Resources.LG}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.LG, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   UpdateSourceTrigger=PropertyChanged}" Margin="3" IsEnabled="False" VerticalAlignment="Center" />
+                                            <CheckBox Content="{x:Static Properties:Resources.MULTI_FLAG}" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecordByView.MULTI_FLAG, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   UpdateSourceTrigger=PropertyChanged}" Margin="3" IsEnabled="False" VerticalAlignment="Center" />
+                                          </Grid>
+                                        </DockPanel>
+                                      </GroupBox>
+                                    </DockPanel>
+                                  </DockPanel>
+                                </DockPanel>
+                              </DockPanel>
+                            </DockPanel>
+                          </TabItem>
+                          <TabItem Visibility="{Binding Path=DataContext.HasSelectedRecordVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged ,RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+                            <TabItem.Header>
+                              <Button Content="{x:Static Properties:Resources.ITEMDECORATE}" Click="btnSize_Click" controls:PermissionService.FunctionId="BP1901020011" controls:PermissionService.FunctionName="商品包裝維護" IsEnabled="{Binding Path=DataContext.HasSelectedRecord,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged ,RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                            </TabItem.Header>
+                          </TabItem>
+                          <TabItem Visibility="{Binding Path=DataContext.HasSelectedRecordVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged ,RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+                            <TabItem.Header>
+                              <Button Content="{x:Static Properties:Resources.ITEMCHECK}" Click="btnCheckItem_Click" controls:PermissionService.FunctionId="BP1901020012" controls:PermissionService.FunctionName="商品檢驗項目" IsEnabled="{Binding Path=DataContext.HasSelectedRecord,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged ,RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                            </TabItem.Header>
+                          </TabItem>
+                          <TabItem Header="{x:Static Properties:Resources.PalletLevel}" Width="Auto">
+                            <Grid>
+                              <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                              </Grid.ColumnDefinitions>
+                              <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                              </Grid.RowDefinitions>
+                              <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.PalletLevelCaseQty}"/>
+                              <TextBox Grid.Row="0" Grid.Column="1" MaxLength="6" Text="{Binding PalletLevelItemByView.PALLET_LEVEL_CASEQTY,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                              <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.PalletLevelCnt}"/>
+                              <TextBox Grid.Row="0" Grid.Column="3" MaxLength="6" Text="{Binding PalletLevelItemByView.PALLET_LEVEL_CNT,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True" />
+                            </Grid>
+                          </TabItem>
+                        </TabControl>
+                      </DockPanel>
+                    </DockPanel>
+
+                    <!--<DockPanel>-->
+                    <DockPanel Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                      <DockPanel>
+                        <GroupBox Header="{x:Static Properties:Resources.GUPItemSet}" DockPanel.Dock="Top">
+                          <DockPanel DockPanel.Dock="TOP" Margin="5">
+                            <Grid>
+                              <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="150" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                              </Grid.RowDefinitions>
+                              <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                              </Grid.ColumnDefinitions>
+                              <Label Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.GUPCODE}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource TxtStyle}" IsReadOnly="True">
+                                <TextBox.Text>
+                                  <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                    <Binding Path="CurrentRecord.GUP_CODE" />
+                                    <Binding Path="SelectedGupList" />
+                                  </MultiBinding>
+                                </TextBox.Text>
+                              </TextBox>
+                              <!--↓商品英文名稱移到這-->
+                              <Label Grid.Row="0" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_ENGNAME}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="3" Style="{StaticResource TxtStyle}" MaxLength="400" InputMethod.IsInputMethodEnabled="False" Text="{Binding CurrentRecord.ITEM_ENGNAME, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+
+                              <Button Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="3" controls:PermissionService.FunctionId="BP1901020007" controls:PermissionService.FunctionName="上傳" Click="Upload_Click">
+                                <StackPanel>
+                                  <Image Height="120" Source="{Binding ItemImageSource, UpdateSourceTrigger=PropertyChanged}">
+                                    <Image.Style>
+                                      <Style TargetType="{x:Type Image}">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                          <DataTrigger Binding="{Binding ItemImageSource}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                          </DataTrigger>
+                                        </Style.Triggers>
+                                      </Style>
+                                    </Image.Style>
+                                  </Image>
+                                  <TextBlock>
+                                    <TextBlock.Style>
+                                      <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                          <DataTrigger Binding="{Binding NotFound}" Value="false">
+                                            <Setter Property="TextBlock.Text" Value=""></Setter>
+                                          </DataTrigger>
+                                          <DataTrigger Binding="{Binding NotFound}" Value="true">
+                                            <Setter Property="TextBlock.Text" Value="上傳圖檔"></Setter>
+                                            <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
+                                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"></Setter>
+                                          </DataTrigger>
+                                        </Style.Triggers>
+                                      </Style>
+                                    </TextBlock.Style>
+                                  </TextBlock>
+                                </StackPanel>
+                              </Button>
+                              <Label Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_CODE}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Width="440" MaxWidth="440" HorizontalAlignment="Stretch" Style="{StaticResource TxtStyle}" MaxLength="20" Text="{Binding CurrentRecord.ITEM_CODE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" KeyDown="ItemCode_OnKeyDown" CharacterCasing="Upper"/>
+                              <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Content="{x:Static Properties:Resources.ITEM_NAME}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Width="440" MaxWidth="440" HorizontalAlignment="Stretch"  VerticalContentAlignment="Top" TextWrapping="Wrap" MaxLength="300" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecord.ITEM_NAME, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+                              <Label Grid.Row="3" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_NICKNAME}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource TxtStyle}" MaxLength="300" InputMethod.IsInputMethodEnabled="False" Text="{Binding CurrentRecord.ITEM_NICKNAME, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+                              <Label Grid.Row="3" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_TYPE}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource TxtStyle}" MaxLength="4" Text="{Binding CurrentRecord.ITEM_TYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+                              <Label Grid.Row="3" Grid.Column="4" Content="{x:Static Properties:Resources.ITEM_SPEC}" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="3" Grid.Column="5" ItemsSource="{Binding UnitList}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.ITEM_UNIT, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center"></ComboBox>
+                              <Label Grid.Row="4" Grid.Column="0" Content="{x:Static Properties:Resources.ITEM_COLOR}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource TxtStyle}" MaxLength="80" Text="{Binding CurrentRecord.ITEM_COLOR, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+                              <Label Grid.Row="4" Grid.Column="2" Content="{x:Static Properties:Resources.ITEM_CLASS}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="4" Grid.Column="3" Style="{StaticResource TxtStyle}" MaxLength="18" InputMethod.IsInputMethodEnabled="False" Text="{Binding CurrentRecord.ITEM_CLASS, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+                              <Label Grid.Row="4" Grid.Column="4" Content="{x:Static Properties:Resources.SIM_SPEC}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="4" Grid.Column="5" Style="{StaticResource TxtStyle}" MaxLength="40" Text="{Binding CurrentRecord.SIM_SPEC, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+                              <Label Grid.Row="5" Grid.Column="0" Content="{x:Static Properties:Resources.EAN_CODE4}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource TxtStyle}" MaxLength="26" InputMethod.IsInputMethodEnabled="False" Text="{Binding CurrentRecord.EAN_CODE4, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" CharacterCasing="Upper"/>
+                              <Label Content="{x:Static Properties:Resources.FIRST_IN_DATE}" Grid.Row="5" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <DatePicker Grid.Row="5" Grid.Column="3" SelectedDate="{Binding CurrentRecord.FIRST_IN_DATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EnableFirstInDate}"/>
+                              <Label Grid.Row="5" Grid.Column="4" Content="{x:Static Properties:Resources.SAVE_DAY}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="5" Grid.Column="5" Style="{StaticResource TxtStyle}" InputMethod.IsInputMethodEnabled="True" Text="{Binding CurrentRecord.SAVE_DAY, Mode=TwoWay, ValidatesOnExceptions=False, NotifyOnValidationError=False, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged}" LostFocus="TxtSaveDay_LostFocus" IsReadOnly="{Binding CurrentRecord.NEED_EXPIRED,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToNotBoolConverter}}"/>
+                              <Label Grid.Row="6" Grid.Column="0" Content="{x:Static Properties:Resources.EAN_CODE1}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource TxtStyle}" MaxLength="26" InputMethod.IsInputMethodEnabled="False" Text="{Binding CurrentRecord.EAN_CODE1, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" CharacterCasing="Upper"/>
+                              <Label Grid.Row="6" Grid.Column="2" Content="{x:Static Properties:Resources.EAN_CODE2}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="6" Grid.Column="3" Style="{StaticResource TxtStyle}" MaxLength="26" InputMethod.IsInputMethodEnabled="False" Text="{Binding CurrentRecord.EAN_CODE2, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}"  CharacterCasing="Upper"/>
+                              <Label Grid.Row="6" Grid.Column="4" Content="{x:Static Properties:Resources.EAN_CODE3}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="6" Grid.Column="5" Style="{StaticResource TxtStyle}" MaxLength="26" InputMethod.IsInputMethodEnabled="False" Text="{Binding CurrentRecord.EAN_CODE3, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}"  CharacterCasing="Upper"/>
+                              <Label Content="{x:Static Properties:Resources.SearchLTypes}" Grid.Row="7" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Name="ACode" Grid.Row="7" Grid.Column="1" Margin="3" ItemsSource="{Binding LTypes}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.LTYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" SelectedItem="{Binding SelectedLTypeItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></ComboBox>
+                              <Label Content="{x:Static Properties:Resources.MTYPE}" Grid.Row="7" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Name="BCode" Grid.Row="7" Grid.Column="3" Margin="3" ItemsSource="{Binding MTypes}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.MTYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" SelectedItem="{Binding SelectedMTypeItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></ComboBox>
+                              <Label Content="{x:Static Properties:Resources.STYPE}" Grid.Row="7" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="7" Grid.Column="5" Margin="3" ItemsSource="{Binding STypes}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.STYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" SelectedItem="{Binding SelectedSTypeItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></ComboBox>
+                              <Label Content="{x:Static Properties:Resources.TYPE}" Grid.Row="8" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="8" Grid.Column="1" Margin="3" ItemsSource="{Binding ItemTypes}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.TYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" />
+                              <Label Content="{x:Static Properties:Resources.ItemAttr}" Grid.Row="8" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="8" Grid.Column="3" Margin="3" ItemsSource="{Binding ItemAttrs}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding SelectedItemAttr, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" />
+                              <Label Content="{x:Static Properties:Resources.TMPR_TYPE}" Grid.Row="8" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="8" Grid.Column="5" Margin="3" ItemsSource="{Binding ItemTmprTypes}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.TMPR_TYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" />
+                              <Label Content="{x:Static Properties:Resources.ITEM_HUMIDITY}" Grid.Row="9" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="9" Grid.Column="1" MaxLength="3" Text="{Binding CurrentRecord.ITEM_HUMIDITY,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Grid.Row="9" Grid.Column="2" Content="{x:Static Properties:Resources.ItemSpec}" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="9" Grid.Column="3" Style="{StaticResource TxtStyle}" MaxLength="80" Text="{Binding CurrentRecord.ITEM_SPEC, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" />
+
+                              <!--<Label Content="{x:Static Properties:Resources.VIRTUAL_TYPE}" Grid.Row="9" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="9" Grid.Column="3" Name="txtVIRTUAL_TYPE" MaxLength="10" Text="{Binding CurrentRecord.VIRTUAL_TYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CurrentRecord.ALLOWORDITEM, Mode=OneWay, Converter={StaticResource StringToNotBoolConverter}}" Style="{StaticResource TxtStyle}" />-->
+                              <Label Content="{x:Static Properties:Resources.STOP_DATE}" Grid.Row="9" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <DatePicker Grid.Row="9" Grid.Column="5" SelectedDate="{Binding CurrentRecord.STOP_DATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                              <Label Content="{x:Static Properties:Resources.ITEM_SIZE}" Grid.Row="10" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+															<TextBox Grid.Row="10" Grid.Column="1" MaxLength="100" Text="{Binding CurrentRecord.ITEM_SIZE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}"  />
+                              <Label Content="{x:Static Properties:Resources.PackLengthByView}" Grid.Row="10" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="10" Grid.Column="3" MaxLength="9" Text="{Binding PackLength, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.PackWidthByView}" Grid.Row="10" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="10" Grid.Column="5" MaxLength="9"  Text="{Binding PackWidth, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.PackHightByView}" Grid.Row="11" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="11" Grid.Column="1" MaxLength="9" Text="{Binding PackHight, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.PackWeightByView}" Grid.Row="11" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="11" Grid.Column="3" MaxLength="11" Text="{Binding PackWeight, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.MEMO}" Grid.Row="12" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3" Width="436" MaxLength="100" Text="{Binding CurrentRecord.MEMO, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.ACC_TYPE}" Grid.Row="12" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="12" Grid.Column="5" Margin="3" ItemsSource="{Binding AccTypes}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.ACC_TYPE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="Auto" HorizontalAlignment="Stretch"/>
+                              <Label Grid.Row="13" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="廠商料號"/>
+                              <TextBox Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CurrentRecord.VNR_ITEM_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource txtVnrItemCodeStyle}" />
+                              <Label Grid.Row="14" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="驗收註記"/>
+                              <TextBox Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding CurrentRecord.RCV_MEMO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="800" Margin="3,3,1,3" Style="{StaticResource txtRcvMemoStyle}" />
+                              <CheckBox Content="{x:Static Properties:Resources.FRAGILE}" Grid.Row="15" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.FRAGILE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                    ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="FRAGILECheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.SPILL}" Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.SPILL, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                    ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="SPILLCheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.IS_EASY_LOSE }" Grid.Row="15" Grid.Column="2" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.IS_EASY_LOSE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                    ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.IS_PRECIOUS }" Grid.Row="15" Grid.Column="3" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.IS_PRECIOUS, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                    ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.IS_MAGNETIC }" Grid.Row="15" Grid.Column="4" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.IS_MAGNETIC, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                    ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" />
+                              <CheckBox Content="易變質" Grid.Row="15" Grid.Column="5" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.IS_PERISHABLE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                    ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" />
+                              <CheckBox Content="需溫控" Grid.Row="15" Grid.Column="6" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.IS_TEMP_CONTROL, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                    ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" />
+                              <!--<CheckBox Content="是否為蘋果商品" Grid.Row="12" Grid.Column="2" HorizontalAlignment="Left"
+																	  IsChecked="{Binding CurrentRecord.ISAPPLE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},
+																	  ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}"
+																	  Margin="3" Name="ISAPPLECheckBox" VerticalAlignment="Center" />-->
+                            </Grid>
+                          </DockPanel>
+                        </GroupBox>
+                        <GroupBox Header="{x:Static Properties:Resources.CUSTITEMSET}" DockPanel.Dock="Top">
+                          <DockPanel DockPanel.Dock="TOP" Margin="5">
+                            <Grid>
+                              <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                              </Grid.RowDefinitions>
+                              <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                              </Grid.ColumnDefinitions>
+                              <Label Content="{x:Static Properties:Resources.CHECK_PERCENT}" Grid.Row="0" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="1" MaxLength="13" Width="230" Name="txtCheckPercent" Text="{Binding CurrentRecord.CHECK_PERCENT, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ZeroPointConverter}}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.PICK_SAVE_QTY}" Grid.Row="0" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="3" MaxLength="10" Text="{Binding CurrentRecord.PICK_SAVE_QTY, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <!--<Label Content="{x:Static Properties:Resources.SAVE_DAY}" Grid.Row="0" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="5" MaxLength="5" Text="{Binding CurrentRecord.SAVE_DAY,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />-->
+                              <Label Content="{x:Static Properties:Resources.PICK_SAVE_ORD}" Grid.Row="0" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="5" MaxLength="9" Text="{Binding CurrentRecord.PICK_SAVE_ORD,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <!--<Label Content="{x:Static Properties:Resources.ORD_SAVE_QTY}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="1" Grid.Column="1" MaxLength="10" Text="{Binding CurrentRecord.ORD_SAVE_QTY, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />-->
+                              <Label Content="{x:Static Properties:Resources.BORROW_DAY}" Grid.Row="1" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="1" Grid.Column="3" MaxLength="4" Text="{Binding CurrentRecord.BORROW_DAY,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <!--<Label Content="環保稅" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}"/>
+															<TextBox Grid.Row="2" Grid.Column="1" MaxLength="9"
+                                  Text="{Binding CurrentRecord.EP_TAX,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}"
+                                  Style="{StaticResource TxtStyle}" />-->
+                              <Label Content="{x:Static Properties:Resources.SERIALNO_DIGIT}" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="2" Grid.Column="1" Width="230" MaxLength="3" Text="{Binding CurrentRecord.SERIALNO_DIGIT,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.SERIAL_BEGIN}" Grid.Row="2" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="2" Grid.Column="3" MaxLength="10" Text="{Binding CurrentRecord.SERIAL_BEGIN, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.ItemSerialRule}" Grid.Row="2" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Name="SERIAL_RULEComboBox" Grid.Row="2" Grid.Column="5" Margin="3" ItemsSource="{Binding ItemSerialRules}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding SelectedItemSerialRule, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Style="{StaticResource ComboStyle}"></ComboBox>
+                              <Label Content="{x:Static Properties:Resources.PICK_WAREType}" Grid.Row="3" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="3" Grid.Column="1" Margin="3" SelectionChanged="WarehouseType_SelectionChanged" ItemsSource="{Binding WarehouseTypeList}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding CurrentRecord.PICK_WARE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                              <Label Content="{x:Static Properties:Resources.PICK_WARE_ID}" Grid.Row="3" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <ComboBox Grid.Row="3" Grid.Column="3" Style="{StaticResource ComboStyle}" SelectedValuePath="Value" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding WareHouseIdList}" SelectedValue="{Binding CurrentRecord.PICK_WARE_ID,Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></ComboBox>
+                              <Label Content="{x:Static Properties:Resources.P1901020000_CustItemCode}" Grid.Row="4" Grid.Column="0"  Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="4" Grid.Column="1"  MaxLength="20" Width="230" Text="{Binding CurrentRecord.CUST_ITEM_CODE, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.DELV_QTY_AVG}" Grid.Row="4" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="4" Grid.Column="3" MaxLength="13" Text="{Binding CurrentRecord.DELV_QTY_AVG, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.AMORTIZATION_NO}" Grid.Row="4" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="4" Grid.Column="5" MaxLength="9" Text="{Binding CurrentRecord.AMORTIZATION_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.PICK_ORD}" Grid.Row="5" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="5" Grid.Column="1" MaxLength="10" Width="230" Text="{Binding CurrentRecord.PICK_ORD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}"  />
+                              <Label Content="{x:Static Properties:Resources.CTNS}" Grid.Row="5" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="5" Grid.Column="3" MaxLength="10" Text="{Binding CurrentRecord.CTNS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <CheckBox Content="{x:Static Properties:Resources.C_D_FLAG}" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.C_D_FLAG, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="C_D_FLAGCheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.BUNDLE_SERIALLOC}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Name="BUNDLE_SERIALLOCCheckBox" VerticalAlignment="Center" DataContext="{Binding CurrentRecord}" IsChecked="{Binding BUNDLE_SERIALLOC, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}">
+                                <CheckBox.Style>
+                                  <Style TargetType="CheckBox">
+                                    <Style.Triggers>
+                                      <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                          <Condition Binding="{Binding BUNDLE_SERIALNO}" Value="0" />
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                          <Setter Property="IsEnabled" Value="False" />
+                                        </MultiDataTrigger.Setters>
+                                      </MultiDataTrigger>
+                                    </Style.Triggers>
+                                  </Style>
+                                </CheckBox.Style>
+                              </CheckBox>
+                              <CheckBox Content="{x:Static Properties:Resources.BUNDLE_SERIALNO}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Name="BUNDLE_SERIALNOCheckBox" VerticalAlignment="Center" IsChecked="{Binding CurrentRecord.BUNDLE_SERIALNO, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Unchecked="BUNDLE_SERIALNOCheckBox_Unchecked"/>
+                              <CheckBox Content="{x:Static Properties:Resources.ALLOWORDITEM}" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Left" Margin="3" Name="ALLOWORDITEMCheckBox" VerticalAlignment="Center" IsChecked="{Binding CurrentRecord.ALLOWORDITEM, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}"/>
+                              <CheckBox Content="{x:Static Properties:Resources.LOC_MIX_ITEM}" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.LOC_MIX_ITEM, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="LOC_MIX_ITEMCheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.MIX_BATCHNO}" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.MIX_BATCHNO, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="MIX_BATCHNOCheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.ITEM_MERGE}" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" Visibility="Collapsed" IsChecked="{Binding CurrentRecord.ITEM_MERGE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="ITEM_MERGECheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.NO_PRICE}" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.NO_PRICE, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="NO_PRICECheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.ISCARTON}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.ISCARTON, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.NEED_EXPIRED}" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecord.NEED_EXPIRED, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" Unchecked="CheckBoxNeedExpired_UnCecked" IsEnabled="{Binding EnableNeedExpired,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                              <CheckBox Content="{x:Static Properties:Resources.ISOEM}" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.ISOEM, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.ISBOX}" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecord.ISBOX, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                              <CheckBox Content="批號控管" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" IsChecked="{Binding CurrentRecord.MAKENO_REQU,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}"/>
+                            </Grid>
+                          </DockPanel>
+                        </GroupBox>
+                      </DockPanel>
+                    </DockPanel>
+                  </DockPanel>
+                </ScrollViewer>
+              </DockPanel>
+            </DockPanel>
+          </TabItem>
+          <TabItem Header="{x:Static Properties:Resources.ORDERSET}" Width="Auto" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+            <DockPanel>
+              <!-- 由此處開始加入畫面項目 -->
+              <DockPanel>
+                <ScrollViewer>
+                  <DockPanel>
+                    <DockPanel Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+                      <DockPanel DockPanel.Dock="Top">
+                        <GroupBox Header="{x:Static Properties:Resources.ORDERSET}" DockPanel.Dock="Top">
+                          <DockPanel DockPanel.Dock="TOP" Margin="5">
+                            <Grid>
+                              <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                              </Grid.RowDefinitions>
+                              <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                              </Grid.ColumnDefinitions>
+                              <Label Content="{x:Static Properties:Resources.P1901020000_VNR_CODE}" Grid.Row="0" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="1" MaxLength="6" Text="{Binding CurrentRecord.VNR_CODE,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" LostFocus="TxtVnrCode_LostFocus" KeyDown="TxtVnrCode_OnKeyDown" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.P1901020000_VNR_NAME}" Grid.Row="0" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" MinWidth="394" IsReadOnly="True" Text="{Binding VNR_NAME,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.VEN_ORD}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="1" Grid.Column="1" MaxLength="6" Text="{Binding CurrentRecord.VEN_ORD,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.RET_ORD}" Grid.Row="1" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="1" Grid.Column="3" MaxLength="6" Text="{Binding CurrentRecord.RET_ORD,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+                              <Label Content="{x:Static Properties:Resources.ALL_DLN}" Grid.Row="2" Grid.Column="0" Style="{StaticResource LbTitleStyle}" />
+                              <Label Content="{x:Static Properties:Resources.ITEM_STAFF}" Grid.Row="1" Grid.Column="4" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="1" Grid.Column="5" MaxLength="20" Style="{StaticResource TxtStyle}" Text="{Binding CurrentRecord.ITEM_STAFF, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}">
+                                <i:Interaction.Triggers>
+                                  <i:EventTrigger EventName="LostFocus">
+                                    <i:InvokeCommandAction Command="{Binding SetItemStaffNameCommand}" />
+                                  </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <TextBox.InputBindings>
+                                  <KeyBinding Key="Enter" Command="{Binding SetItemStaffNameCommand}" />
+                                </TextBox.InputBindings>
+                              </TextBox>
+                              <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding ItemStaffName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></TextBlock>
+                              <TextBox Grid.Row="2" Grid.Column="1" MaxLength="4" Text="{Binding CurrentRecord.ALL_DLN,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True"/>
+                              <!--<Label Content="{x:Static Properties:Resources.ALLOW_ALL_DLN}" Grid.Row="2" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                                                            <TextBox Grid.Row="2" Grid.Column="3" MaxLength="4" Text="{Binding CurrentRecord.ALLOW_ALL_DLN,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />-->
+                              <Label Content="{x:Static Properties:Resources.ALL_SHP}" Grid.Row="2" Grid.Column="2" Style="{StaticResource LbTitleStyle}" />
+                              <TextBox Grid.Row="2" Grid.Column="3" MaxLength="4" Text="{Binding CurrentRecord.ALL_SHP,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" IsReadOnly="True"/>
+                              <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Text="(總保存天數異動時，不會重新計算警示天數與允收天數)" TextWrapping="Wrap" Width="280" Margin="3" Foreground="Red" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}"/>
+                              <CheckBox Content="{x:Static Properties:Resources.CAN_SELL}" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Visibility="Collapsed" IsChecked="{Binding CurrentRecord.CAN_SELL, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="CAN_SELLCheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.CAN_SPILT_IN}" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.CAN_SPILT_IN, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="CAN_SPILT_INCheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.LG}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.LG, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="LGCheckBox" VerticalAlignment="Center" />
+                              <CheckBox Content="{x:Static Properties:Resources.MULTI_FLAG}" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" IsChecked="{Binding CurrentRecord.MULTI_FLAG, Mode=TwoWay, Converter={StaticResource StringToBoolConverter},                                   ValidatesOnExceptions=true, NotifyOnValidationError=true, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged}" Margin="3" Name="MULTI_FLAGCheckBox" VerticalAlignment="Center" IsThreeState="False" IsEnabled="{Binding UserOperateMode ,Converter={StaticResource EnumToNotBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" />
+                            </Grid>
+                          </DockPanel>
+                        </GroupBox>
+                      </DockPanel>
+                    </DockPanel>
+                  </DockPanel>
+                </ScrollViewer>
+              </DockPanel>
+            </DockPanel>
+          </TabItem>
+          <TabItem Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+            <TabItem.Header>
+              <Button Name="btnSize" Content="{x:Static Properties:Resources.ITEMDECORATE}" Click="btnSize_Click" controls:PermissionService.FunctionId="BP1901020008" controls:PermissionService.FunctionName="商品包裝維護" IsEnabled="{Binding Path=IsNewF1902, ElementName=Vm, Converter={StaticResource NotConverter}}" />
+            </TabItem.Header>
+          </TabItem>
+          <TabItem Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+            <TabItem.Header>
+              <Button Name="btnCheckItem" Content="{x:Static Properties:Resources.ITEMCHECK}" Click="btnCheckItem_Click" controls:PermissionService.FunctionId="BP1901020009" controls:PermissionService.FunctionName="商品檢驗項目" IsEnabled="{Binding Path=IsNewF1902, ElementName=Vm, Converter={StaticResource NotConverter}}" />
+            </TabItem.Header>
+          </TabItem>
+          <TabItem Header="{x:Static Properties:Resources.PalletLevel}" Width="Auto" Visibility="{Binding UserOperateMode ,Converter={StaticResource EnumToNotVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.PalletLevelCaseQty}"/>
+              <TextBox Grid.Row="0" Grid.Column="1" MaxLength="6" Text="{Binding PalletLevelItem.PALLET_LEVEL_CASEQTY,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+              <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.PalletLevelCnt}"/>
+              <TextBox Grid.Row="0" Grid.Column="3" MaxLength="6" Text="{Binding PalletLevelItem.PALLET_LEVEL_CNT,Converter={StaticResource StringEmptyToNullConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
+            </Grid>
+          </TabItem>
+        </TabControl>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plUserControl>

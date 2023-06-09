@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="S03WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_S03WcfService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/S03WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/S03WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/S03WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/S03WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F00" />
+      <xsd:import schemaLocation="http://ewmsap/wms3pl.webservices/S03WcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F19" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="S03WcfService_GetBoxNumIsProblem_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoxNumIsProblem" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_GetBoxNumIsProblem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoxNumIsProblemResponse" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_GetF0020Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF0020Data" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_GetF0020Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF0020DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_GetF1924DataBySchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1924DataBySchedule" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_GetF1924DataBySchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1924DataByScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_GetF190103BySchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF190103BySchedule" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_GetF190103BySchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF190103ByScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_InsertSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSchedule" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_InsertSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_InsertSchLoMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSchLoMessage" />
+  </wsdl:message>
+  <wsdl:message name="S03WcfService_InsertSchLoMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSchLoMessageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="S03WcfService">
+    <wsdl:operation name="GetBoxNumIsProblem">
+      <wsdl:input wsaw:Action="http://tempuri.org/S03WcfService/GetBoxNumIsProblem" message="tns:S03WcfService_GetBoxNumIsProblem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S03WcfService/GetBoxNumIsProblemResponse" message="tns:S03WcfService_GetBoxNumIsProblem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF0020Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/S03WcfService/GetF0020Data" message="tns:S03WcfService_GetF0020Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S03WcfService/GetF0020DataResponse" message="tns:S03WcfService_GetF0020Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF1924DataBySchedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/S03WcfService/GetF1924DataBySchedule" message="tns:S03WcfService_GetF1924DataBySchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S03WcfService/GetF1924DataByScheduleResponse" message="tns:S03WcfService_GetF1924DataBySchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF190103BySchedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/S03WcfService/GetF190103BySchedule" message="tns:S03WcfService_GetF190103BySchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S03WcfService/GetF190103ByScheduleResponse" message="tns:S03WcfService_GetF190103BySchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertSchedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/S03WcfService/InsertSchedule" message="tns:S03WcfService_InsertSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S03WcfService/InsertScheduleResponse" message="tns:S03WcfService_InsertSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertSchLoMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/S03WcfService/InsertSchLoMessage" message="tns:S03WcfService_InsertSchLoMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/S03WcfService/InsertSchLoMessageResponse" message="tns:S03WcfService_InsertSchLoMessage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_S03WcfService" type="tns:S03WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetBoxNumIsProblem">
+      <soap:operation soapAction="http://tempuri.org/S03WcfService/GetBoxNumIsProblem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF0020Data">
+      <soap:operation soapAction="http://tempuri.org/S03WcfService/GetF0020Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF1924DataBySchedule">
+      <soap:operation soapAction="http://tempuri.org/S03WcfService/GetF1924DataBySchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF190103BySchedule">
+      <soap:operation soapAction="http://tempuri.org/S03WcfService/GetF190103BySchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSchedule">
+      <soap:operation soapAction="http://tempuri.org/S03WcfService/InsertSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSchLoMessage">
+      <soap:operation soapAction="http://tempuri.org/S03WcfService/InsertSchLoMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_S03WcfService" type="tns:S03WcfService">
+    <wsp:PolicyReference URI="#NetTcpBinding_S03WcfService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetBoxNumIsProblem">
+      <soap12:operation soapAction="http://tempuri.org/S03WcfService/GetBoxNumIsProblem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF0020Data">
+      <soap12:operation soapAction="http://tempuri.org/S03WcfService/GetF0020Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF1924DataBySchedule">
+      <soap12:operation soapAction="http://tempuri.org/S03WcfService/GetF1924DataBySchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF190103BySchedule">
+      <soap12:operation soapAction="http://tempuri.org/S03WcfService/GetF190103BySchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSchedule">
+      <soap12:operation soapAction="http://tempuri.org/S03WcfService/InsertSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSchLoMessage">
+      <soap12:operation soapAction="http://tempuri.org/S03WcfService/InsertSchLoMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="S03WcfService">
+    <wsdl:port name="BasicHttpBinding_S03WcfService" binding="tns:BasicHttpBinding_S03WcfService">
+      <soap:address location="http://ewmsap/wms3pl.webservices/S03WcfService.svc" />
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_S03WcfService" binding="tns:NetTcpBinding_S03WcfService">
+      <soap12:address location="net.tcp://hp-pc.bankpro.com.tw/wms3pl.webservices/S03WcfService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://hp-pc.bankpro.com.tw/wms3pl.webservices/S03WcfService.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

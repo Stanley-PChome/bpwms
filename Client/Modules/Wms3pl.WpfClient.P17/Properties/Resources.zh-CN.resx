@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="a4Printer" xml:space="preserve">
+    <value>A4纸张列印</value>
+  </data>
+  <data name="AREA_CODE" xml:space="preserve">
+    <value>储区型态</value>
+  </data>
+  <data name="bartender" xml:space="preserve">
+    <value>Bartender标签机列印</value>
+  </data>
+  <data name="BY_LOC_AREA" xml:space="preserve">
+    <value>依储区　　</value>
+  </data>
+  <data name="BY_LOC_CODE" xml:space="preserve">
+    <value>依储位编号</value>
+  </data>
+  <data name="CAL_FEE" xml:space="preserve">
+    <value>计费</value>
+  </data>
+  <data name="CAL_STOCK" xml:space="preserve">
+    <value>计库存</value>
+  </data>
+  <data name="ControlAction" xml:space="preserve">
+    <value>管制动作</value>
+  </data>
+  <data name="CUST_COUNT" xml:space="preserve">
+    <value>货主数目</value>
+  </data>
+  <data name="CUST_NAME" xml:space="preserve">
+    <value>货主</value>
+  </data>
+  <data name="DC" xml:space="preserve">
+    <value>　　　　　　 物流中心</value>
+  </data>
+  <data name="DISTANCE" xml:space="preserve">
+    <value>水平距离(公尺)</value>
+  </data>
+  <data name="dtRENT_BEGIN_DATE" xml:space="preserve">
+    <value>租用期限(起)</value>
+  </data>
+  <data name="dtRENT_END_DATE" xml:space="preserve">
+    <value>租用期限(迄)</value>
+  </data>
+  <data name="EMP_NAME" xml:space="preserve">
+    <value>作业人员</value>
+  </data>
+  <data name="GUP_COUNT" xml:space="preserve">
+    <value>业主数目</value>
+  </data>
+  <data name="GUP_NAME" xml:space="preserve">
+    <value>业主</value>
+  </data>
+  <data name="HANDY" xml:space="preserve">
+    <value>便利性</value>
+  </data>
+  <data name="HOR_DISTANCE" xml:space="preserve">
+    <value>水平距离</value>
+  </data>
+  <data name="IsAdjust" xml:space="preserve">
+    <value>是否调整</value>
+  </data>
+  <data name="IsCheckAll" xml:space="preserve">
+    <value>勾选</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="labelPrinter" xml:space="preserve">
+    <value>标签机列印(装置设定维护-快速标签机)</value>
+  </data>
+  <data name="LOCCODE" xml:space="preserve">
+    <value>储位编号</value>
+  </data>
+  <data name="LOCCOUNT" xml:space="preserve">
+    <value>储位数目</value>
+  </data>
+  <data name="LOCType" xml:space="preserve">
+    <value>料架设备</value>
+  </data>
+  <data name="LOC_ATTRIBUTE_MODIFY" xml:space="preserve">
+    <value>储位属性修改</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>储区</value>
+  </data>
+  <data name="LOC_CODE_E" xml:space="preserve">
+    <value>储位编号(迄)</value>
+  </data>
+  <data name="LOC_CODE_S" xml:space="preserve">
+    <value>储位编号(起)</value>
+  </data>
+  <data name="LOC_TYPE_NAME" xml:space="preserve">
+    <value>料架</value>
+  </data>
+  <data name="ModifyPeriod" xml:space="preserve">
+    <value>异动期间</value>
+  </data>
+  <data name="P1703030000xamlcs_NoData" xml:space="preserve">
+    <value> 查询无资料，无法预览或列印！</value>
+  </data>
+  <data name="Past" xml:space="preserve">
+    <value>复制贴上</value>
+  </data>
+  <data name="PERCENTAGE" xml:space="preserve">
+    <value>所占比例(%)</value>
+  </data>
+  <data name="PrintChoose" xml:space="preserve">
+    <value>列印选择</value>
+  </data>
+  <data name="PrintEmpty" xml:space="preserve">
+    <value>仅列印空储位</value>
+  </data>
+  <data name="PrintSpec" xml:space="preserve">
+    <value>列印规格</value>
+  </data>
+  <data name="RemoveAll" xml:space="preserve">
+    <value>全部删除</value>
+  </data>
+  <data name="RENT_BEGIN_DATE" xml:space="preserve">
+    <value>租用期间(起)</value>
+  </data>
+  <data name="RENT_END_DATE" xml:space="preserve">
+    <value>租用期间(迄)</value>
+  </data>
+  <data name="SearchByItem" xml:space="preserve">
+    <value>依商品</value>
+  </data>
+  <data name="SearchByLoc" xml:space="preserve">
+    <value>依储位</value>
+  </data>
+  <data name="SelectedCount" xml:space="preserve">
+    <value>管制数量</value>
+  </data>
+  <data name="SelectedItemCode" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="SelectedLocStatus" xml:space="preserve">
+    <value>管制状态</value>
+  </data>
+  <data name="SelectedUcc" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="SelectedWarehouse" xml:space="preserve">
+    <value>仓别名称</value>
+  </data>
+  <data name="SingleLabelSize" xml:space="preserve">
+    <value>单一标签尺寸</value>
+  </data>
+  <data name="TEMP_TYPE_NAME" xml:space="preserve">
+    <value>温层</value>
+  </data>
+  <data name="TRANS_STATUS" xml:space="preserve">
+    <value>异动作业</value>
+  </data>
+  <data name="UseLocStatus" xml:space="preserve">
+    <value>使用状态</value>
+  </data>
+  <data name="WAREHOUSE_CODE" xml:space="preserve">
+    <value>仓别编号</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>仓别</value>
+  </data>
+  <data name="WAREHOUSE_TYPE" xml:space="preserve">
+    <value>仓别型态</value>
+  </data>
+  <data name="WAREHOUSE_TYPE_NAME" xml:space="preserve">
+    <value>仓别数目</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>商品搜寻</value>
+  </data>
+</root>

@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddDetail" xml:space="preserve">
+    <value>New Details</value>
+  </data>
+  <data name="Ask" xml:space="preserve">
+    <value>Ask</value>
+  </data>
+  <data name="BegStockDate" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="ChangeDateBegin" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="ChangeNumber" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="ContactTel" xml:space="preserve">
+    <value>contact phone</value>
+  </data>
+  <data name="CrtDate" xml:space="preserve">
+    <value>Create Time</value>
+  </data>
+  <data name="CrtStaff" xml:space="preserve">
+    <value>Create Staff</value>
+  </data>
+  <data name="CustOrdNo" xml:space="preserve">
+    <value>The owner of a single number</value>
+  </data>
+  <data name="CUST_COST" xml:space="preserve">
+    <value>The owner of a custom classification</value>
+  </data>
+  <data name="DelDetail" xml:space="preserve">
+    <value>Delete details</value>
+  </data>
+  <data name="DeliverDateGridColumn" xml:space="preserve">
+    <value>Japan is expected to purchase</value>
+  </data>
+  <data name="DeliverDateLabel" xml:space="preserve">
+    <value>Scheduled purchase date</value>
+  </data>
+  <data name="EDI_FLAG" xml:space="preserve">
+    <value>Whether EDI</value>
+  </data>
+  <data name="EShopDate" xml:space="preserve">
+    <value>~</value>
+  </data>
+  <data name="InvAddress" xml:space="preserve">
+    <value>Invoice address</value>
+  </data>
+  <data name="InvoiceDate" xml:space="preserve">
+    <value>Invoice Date</value>
+  </data>
+  <data name="InvoType" xml:space="preserve">
+    <value>Invoice Style</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Line item</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ItemCodeDetail" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>Jincang details</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>specification</value>
+  </data>
+  <data name="MAKE_NO" xml:space="preserve">
+    <value>lot number</value>
+  </data>
+  <data name="Memo" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="OrdProp" xml:space="preserve">
+    <value>Job Category</value>
+  </data>
+  <data name="P010201_ConfirmPalletStickerExistToDo" xml:space="preserve">
+    <value>The pallet into the warehouse has been printed stickers, \ n is selected from [a] complement pallet printed sticker \ n selected from the [NO] recalculated pallet sticker \ n selected from the [Cancel] Back screen</value>
+  </data>
+  <data name="PayType" xml:space="preserve">
+    <value>payment method</value>
+  </data>
+  <data name="PrintPallet" xml:space="preserve">
+    <value>Print pallet label</value>
+  </data>
+  <data name="SelectedDcCode" xml:space="preserve">
+    <value>Distribution Center</value>
+  </data>
+  <data name="SelectedStatus" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="ShopCause" xml:space="preserve">
+    <value>Purchase reason</value>
+  </data>
+  <data name="ShopDetail" xml:space="preserve">
+    <value>Purchasing Details</value>
+  </data>
+  <data name="ShopNo" xml:space="preserve">
+    <value>Purchase Order No</value>
+  </data>
+  <data name="SHOP_DATE" xml:space="preserve">
+    <value>search result</value>
+  </data>
+  <data name="SHOP_QTY" xml:space="preserve">
+    <value>Procurement Number</value>
+  </data>
+  <data name="SourceNo" xml:space="preserve">
+    <value>No single source</value>
+  </data>
+  <data name="SOURCE_NAME" xml:space="preserve">
+    <value>Source documents</value>
+  </data>
+  <data name="SShopeDate" xml:space="preserve">
+    <value>Purchase Date</value>
+  </data>
+  <data name="StockNo" xml:space="preserve">
+    <value>No. into the warehouse</value>
+  </data>
+  <data name="STOCK_QTY" xml:space="preserve">
+    <value>Order number</value>
+  </data>
+  <data name="TaxType" xml:space="preserve">
+    <value>Your tax</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>Supplier Phone</value>
+  </data>
+  <data name="TotalDetailCount" xml:space="preserve">
+    <value>Details Total items:</value>
+  </data>
+  <data name="UNIT_TRANS" xml:space="preserve">
+    <value>Packaging Reference</value>
+  </data>
+  <data name="updDate" xml:space="preserve">
+    <value>Update Time</value>
+  </data>
+  <data name="UpdStaff" xml:space="preserve">
+    <value>Update Staff</value>
+  </data>
+  <data name="VALI_DATE" xml:space="preserve">
+    <value>Validity Date</value>
+  </data>
+  <data name="VendorAddress" xml:space="preserve">
+    <value>Supplier's Address</value>
+  </data>
+  <data name="VendorContact" xml:space="preserve">
+    <value>Contact the manufacturer</value>
+  </data>
+  <data name="VnrCode" xml:space="preserve">
+    <value>Supplier number</value>
+  </data>
+  <data name="VnrName" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="VNR_CODE" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="P010101_ItemCodeRepeat" xml:space="preserve">
+    <value />
+    <comment>商品品號已重複!</comment>
+  </data>
+  <data name="P010101_Message" xml:space="preserve">
+    <value />
+    <comment>訊息</comment>
+  </data>
+  <data name="P010101_SaveError" xml:space="preserve">
+    <value />
+    <comment>無效的操作</comment>
+  </data>
+  <data name="P010101_SelectOrdProp" xml:space="preserve">
+    <value />
+    <comment>請選擇作業類別</comment>
+  </data>
+  <data name="P010101_StartDateError" xml:space="preserve">
+    <value />
+    <comment>起始日不得大於迄止日!</comment>
+  </data>
+  <data name="P010101_VentorError" xml:space="preserve">
+    <value />
+    <comment>查無廠商資料</comment>
+  </data>
+  <data name="P010201_CheckValidQtyMessage" xml:space="preserve">
+    <value />
+    <comment>PO_NO:{0},品號:{1},{2}</comment>
+  </data>
+  <data name="P010201_EarlyTodayProduct" xml:space="preserve">
+    <value />
+    <comment>PO_NO:{0},品號:{1};</comment>
+  </data>
+  <data name="P010201_ExcelIsOpen" xml:space="preserve">
+    <value />
+    <comment>請檢查匯入檔案是否正確或開啟中!</comment>
+  </data>
+  <data name="P010201_ImportColumnMessage" xml:space="preserve">
+    <value />
+    <comment>匯入欄位至少要有 PO_NO、廠商編號、廠商名稱、商品編號、商品名稱、實際訂貨量、效期、批號</comment>
+  </data>
+  <data name="P010201_ImportFail" xml:space="preserve">
+    <value />
+    <comment>匯入失敗!</comment>
+  </data>
+  <data name="P010201_ImportFailNull" xml:space="preserve">
+    <value />
+    <comment>匯入失敗，資料有空值</comment>
+  </data>
+  <data name="P010201_ImportFormatError" xml:space="preserve">
+    <value />
+    <comment>匯入格式不正確</comment>
+  </data>
+  <data name="P010201_ItemCodeIsNull" xml:space="preserve">
+    <value />
+    <comment>請選擇商品</comment>
+  </data>
+  <data name="P010201_ItemCodeRepeat" xml:space="preserve">
+    <value />
+    <comment>商品品號已重複!</comment>
+  </data>
+  <data name="P010201_OrderQtyError" xml:space="preserve">
+    <value />
+    <comment>訂購數必須等於該訂購數量的倍數</comment>
+  </data>
+  <data name="P010201_OrderQtyIsNull" xml:space="preserve">
+    <value />
+    <comment>請輸入訂貨數</comment>
+  </data>
+  <data name="P010201_OrderQtyIsZero" xml:space="preserve">
+    <value />
+    <comment>訂購數必須大於0</comment>
+  </data>
+  <data name="P010201_OrderQtyLessThanVentorQty" xml:space="preserve">
+    <value />
+    <comment>訂購數必須大於供用商最低訂量</comment>
+  </data>
+  <data name="P010201_OrderQtyOverStockQty" xml:space="preserve">
+    <value />
+    <comment>請注意!! 目前庫存加上訂購數量尚不足安全庫存量({0})</comment>
+  </data>
+  <data name="P010201_ValidDateIsNull" xml:space="preserve">
+    <value />
+    <comment>請選擇商品效期</comment>
+  </data>
+  <data name="P010201_VendorNoNotExist" xml:space="preserve">
+    <value />
+    <comment>廠商編號不存在!</comment>
+  </data>
+  <data name="P010202_ChangeStartEndDateIsNull" xml:space="preserve">
+    <value />
+    <comment>異動日期的起迄日皆需輸入</comment>
+  </data>
+  <data name="P010202_QueryIntervalDateOver" xml:space="preserve">
+    <value />
+    <comment>查詢期間不得超過90天</comment>
+  </data>
+  <data name="P010201_EarlyTodayInfo" xml:space="preserve">
+    <value>The expiration date of the following products is short today. Are you sure to enter the warehouse?</value>
+  </data>
+  <data name="TotalCount" xml:space="preserve">
+    <value>Number of documents:</value>
+  </data>
+  <data name="TotalItemCount" xml:space="preserve">
+    <value>Total number of items:</value>
+  </data>
+</root>

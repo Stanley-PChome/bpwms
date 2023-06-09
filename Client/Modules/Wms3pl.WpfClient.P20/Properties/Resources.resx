@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualCount" xml:space="preserve">
+    <value>實收數</value>
+  </data>
+  <data name="AddConsignee" xml:space="preserve">
+    <value>收貨人</value>
+  </data>
+  <data name="AddOrdNo" xml:space="preserve">
+    <value>訂單單號</value>
+  </data>
+  <data name="ADDRESS" xml:space="preserve">
+    <value>送貨地址</value>
+  </data>
+  <data name="AdjustNo" xml:space="preserve">
+    <value>調整單號</value>
+  </data>
+  <data name="AdjustQty" xml:space="preserve">
+    <value>調入庫存數</value>
+  </data>
+  <data name="AdjustType" xml:space="preserve">
+    <value>調整單類別</value>
+  </data>
+  <data name="ADJUST_Data" xml:space="preserve">
+    <value>調整單主檔</value>
+  </data>
+  <data name="ADJUST_Detail" xml:space="preserve">
+    <value>調整單明細</value>
+  </data>
+  <data name="ADJUST_NO" xml:space="preserve">
+    <value>調整單編號</value>
+  </data>
+  <data name="ADJ_QTY_IN" xml:space="preserve">
+    <value>調入數</value>
+  </data>
+  <data name="ADJ_QTY_OUT" xml:space="preserve">
+    <value>調出數</value>
+  </data>
+  <data name="ADR" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="ALL_COMP" xml:space="preserve">
+    <value>配送商</value>
+  </data>
+  <data name="BUNDLE_SERIALNO" xml:space="preserve">
+    <value>序號控管</value>
+  </data>
+  <data name="CAUSENAME" xml:space="preserve">
+    <value>異動原因</value>
+  </data>
+  <data name="CELL_NUM" xml:space="preserve">
+    <value>門號</value>
+  </data>
+  <data name="Checked" xml:space="preserve">
+    <value>通過</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立時間</value>
+  </data>
+  <data name="CUST_ORD_NO" xml:space="preserve">
+    <value>貨主單號</value>
+  </data>
+  <data name="DeleteDetail" xml:space="preserve">
+    <value>刪除調整單明細</value>
+  </data>
+  <data name="DELV_DATE" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="Delv_Time" xml:space="preserve">
+    <value>出車時段</value>
+  </data>
+  <data name="EditDetail" xml:space="preserve">
+    <value>編輯調整單明細</value>
+  </data>
+  <data name="ENTER_DATE" xml:space="preserve">
+    <value>入庫日</value>
+  </data>
+  <data name="FalureCount" xml:space="preserve">
+    <value>錯誤數</value>
+  </data>
+  <data name="ItemAdd" xml:space="preserve">
+    <value>新增商品庫存</value>
+  </data>
+  <data name="ItemEdit" xml:space="preserve">
+    <value>調整商品庫存</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>品號</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>顏色</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ITEM_QTY" xml:space="preserve">
+    <value>庫存量</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>規格</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>儲位</value>
+  </data>
+  <data name="MustScanCount" xml:space="preserve">
+    <value>應刷數</value>
+  </data>
+  <data name="NEW_DC_NAME" xml:space="preserve">
+    <value>出貨物流中心</value>
+  </data>
+  <data name="OrdSearch" xml:space="preserve">
+    <value>訂單搜尋</value>
+  </data>
+  <data name="ORD_NO" xml:space="preserve">
+    <value>訂單編號</value>
+  </data>
+  <data name="ORG_PICK_TIME" xml:space="preserve">
+    <value>原批次時段</value>
+  </data>
+  <data name="PICK_TIME" xml:space="preserve">
+    <value>批次時段</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>數量</value>
+  </data>
+  <data name="ScanCount" xml:space="preserve">
+    <value>已刷數</value>
+  </data>
+  <data name="SearchItem" xml:space="preserve">
+    <value>商品搜尋</value>
+  </data>
+  <data name="SelectedDeliver" xml:space="preserve">
+    <value>選擇配送商</value>
+  </data>
+  <data name="SelectedNEW_DC_CODE" xml:space="preserve">
+    <value>選擇出貨物流中心</value>
+  </data>
+  <data name="SERIALNO_SCAN" xml:space="preserve">
+    <value>序號刷讀</value>
+  </data>
+  <data name="SERIALNO_SCANOK" xml:space="preserve">
+    <value>序號刷讀完成</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="StockEdit" xml:space="preserve">
+    <value>庫存調整</value>
+  </data>
+  <data name="StockQTY" xml:space="preserve">
+    <value>庫存數</value>
+  </data>
+  <data name="TransferDetail" xml:space="preserve">
+    <value>調撥單明細</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>異動時間</value>
+  </data>
+  <data name="VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="VNR_NAME" xml:space="preserve">
+    <value>廠商</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>倉別名稱</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>作業類別</value>
+  </data>
+  <data name="ZIP_CODE" xml:space="preserve">
+    <value>郵遞區號</value>
+  </data>
+  <data name="P2001010000_ViewModel_AddCause_Required" xml:space="preserve">
+    <value>請輸入異動原因</value>
+  </data>
+  <data name="P2001010000_ViewModel_AddItemCode_AddItemName_Required" xml:space="preserve">
+    <value>商品品號或品名至少則一輸入</value>
+  </data>
+  <data name="P2001010000_ViewModel_AddItemCode_Required" xml:space="preserve">
+    <value>商品品號至少輸入6碼</value>
+  </data>
+  <data name="P2001010000_ViewModel_checkDatas_Required" xml:space="preserve">
+    <value>請選擇至少一筆訂單</value>
+  </data>
+  <data name="P2001010000_ViewModel_Exist" xml:space="preserve">
+    <value>已存在</value>
+  </data>
+  <data name="P2001010000_ViewModel_InsertSuccess" xml:space="preserve">
+    <value>調整單號：{0} 新增成功</value>
+  </data>
+  <data name="P2001010000_ViewModel_NotSetAnyChange" xml:space="preserve">
+    <value>此筆資料已勾選但未設定任何異動</value>
+  </data>
+  <data name="P2001010000_ViewModel_PICK_IN" xml:space="preserve">
+    <value>調入</value>
+  </data>
+  <data name="P2001010000_ViewModel_PICK_OUT" xml:space="preserve">
+    <value>調出</value>
+  </data>
+  <data name="P2001010000_ViewModel_SerailNo_Data" xml:space="preserve">
+    <value>序號資料</value>
+  </data>
+  <data name="P2001010000_ViewModel_SerialNo" xml:space="preserve">
+    <value>此筆資料中序號</value>
+  </data>
+  <data name="P2001010000_ViewModel_SERIALNO_SCANOK_Required" xml:space="preserve">
+    <value>此筆資料必須序號刷讀完成</value>
+  </data>
+  <data name="P2001010000_ViewModel_SureClearAllSet_To_ChangeDC" xml:space="preserve">
+    <value>已有勾選設定若要變更將會清除所有設定，\r\n您是否要更改物流中心?</value>
+  </data>
+  <data name="P2001010000_ViewModel_SureEditRelateORD_To_SelfTake" xml:space="preserve">
+    <value>此訂單與其它訂單已合併為一至多張出貨單\r是否確認修改此相關訂單與出貨單為自取？</value>
+  </data>
+  <data name="P2001010000_ViewModel_ZIPCode_NotFound" xml:space="preserve">
+    <value>無此郵遞區號!</value>
+  </data>
+  <data name="P2001010000_ViewModel_ZIPCode_Required" xml:space="preserve">
+    <value>郵遞區號未輸入!</value>
+  </data>
+  <data name="P2001010000_ViewModel_ZIPCode_Wrong" xml:space="preserve">
+    <value>郵遞區號錯誤!</value>
+  </data>
+  <data name="P2001010100_ViewModel_AdjustQtyGreaterThanZero" xml:space="preserve">
+    <value>數量必須大於0</value>
+  </data>
+  <data name="P2001010100_ViewModel_AdjustQtyLessThanStockQty" xml:space="preserve">
+    <value>調出數量必須小於等於庫存量</value>
+  </data>
+  <data name="P2001010100_ViewModel_Checked_Over_MustScan" xml:space="preserve">
+    <value>已刷數已超過應刷數</value>
+  </data>
+  <data name="P2001010100_ViewModel_SerailNo_Exist" xml:space="preserve">
+    <value>此序號已存在</value>
+  </data>
+  <data name="P2001010100_ViewModel_SerailNo_Required" xml:space="preserve">
+    <value>序號不可為空白</value>
+  </data>
+  <data name="P2001010200xamlcs_VNR_CODE_NotFound" xml:space="preserve">
+    <value>廠商編號不存在</value>
+  </data>
+  <data name="P2001010200_ViewModel_AdjustQtyGreaterThanZero" xml:space="preserve">
+    <value>調入庫存數必須大於0</value>
+  </data>
+  <data name="P2001010200_ViewModel_ItemInDCAndWarehouseIDNotFound" xml:space="preserve">
+    <value>此儲位不存在於目前物流中心與倉別</value>
+  </data>
+  <data name="P2001010200_ViewModel_LocCodeCannotInsert" xml:space="preserve">
+    <value>指定儲位與該商品的貨主不同，不可以新增</value>
+  </data>
+  <data name="P2001010200_ViewModel_SelectedLocCode_DifferenceTo_ItemCustCode_IsSureToAdjust" xml:space="preserve">
+    <value>指定儲位與該商品的貨主不同，請確認是否進行調整?</value>
+  </data>
+  <data name="P2001010200_ViewModel_SerialNoNotFound" xml:space="preserve">
+    <value>此品號不存在</value>
+  </data>
+  <data name="P2001010200_ViewModel_SureClearSerialNo_To_ChangeItem" xml:space="preserve">
+    <value>更換商品將會清空序號，是否確認更換?</value>
+  </data>
+  <data name="MakeNo" xml:space="preserve">
+    <value>批號</value>
+  </data>
+  <data name="SOURCE_NO" xml:space="preserve">
+    <value>來源單號</value>
+  </data>
+  <data name="SOURCE_TYPE" xml:space="preserve">
+    <value>來源單據</value>
+  </data>
+  <data name="P2001010000_ExcelImport" xml:space="preserve">
+    <value>庫存匯入</value>
+  </data>
+  <data name="P2001010000_ImportFail" xml:space="preserve">
+    <value>匯入失敗!</value>
+  </data>
+  <data name="P2001010000_ColumnCountNotSufficient" xml:space="preserve">
+    <value>欄位數不正確，請檢查匯入的檔案是否正確</value>
+  </data>
+  <data name="P2001010000_CSVisnotCorrectOrOpening" xml:space="preserve">
+    <value>請檢查匯入檔案是否正確或開啟中!</value>
+  </data>
+  <data name="P2001010000_Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="P2001010000_WarningDeleteGridData" xml:space="preserve">
+    <value>將刪除資料表中的所有筆數，請確認是否匯入?</value>
+  </data>
+  <data name="P2001010000_WarningOver" xml:space="preserve">
+    <value>匯入筆數一次以1000為限</value>
+  </data>
+  <data name="P2001010000_ImportSuccessDetail" xml:space="preserve">
+    <value>匯入成功{0}筆，失敗{1}筆，共{2}筆</value>
+  </data>
+  <data name="P2001010000_ExcelName" xml:space="preserve">
+    <value>失敗異動調整單明細表</value>
+  </data>
+  <data name="P2001010000_ExportFailDataDetail" xml:space="preserve">
+    <value>匯出異動庫存調整單失敗明細</value>
+  </data>
+  <data name="P2001010000_StockChangeDetail" xml:space="preserve">
+    <value>異動調整單明細</value>
+  </data>
+  <data name="P2001010000_ADJ_QTY_IN" xml:space="preserve">
+    <value>調入數</value>
+  </data>
+  <data name="P2001010000_ADJ_QTY_OUT" xml:space="preserve">
+    <value>調出數</value>
+  </data>
+  <data name="P2001010000_CAUSE" xml:space="preserve">
+    <value>異動原因</value>
+  </data>
+  <data name="P2001010000_DC_CODE" xml:space="preserve">
+    <value>物流中心</value>
+  </data>
+  <data name="P2001010000_ENTER_DATE" xml:space="preserve">
+    <value>入庫日</value>
+  </data>
+  <data name="P2001010000_FailMessage" xml:space="preserve">
+    <value>錯誤訊息</value>
+  </data>
+  <data name="P2001010000_ITEM_CODE" xml:space="preserve">
+    <value>品號</value>
+  </data>
+  <data name="P2001010000_LOC_CODE" xml:space="preserve">
+    <value>儲位</value>
+  </data>
+  <data name="P2001010000_MAKE_NO" xml:space="preserve">
+    <value>批號</value>
+  </data>
+  <data name="P2001010000_SERIAL_NO" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="P2001010000_VALID_DATE" xml:space="preserve">
+    <value>效期</value>
+  </data>
+  <data name="P2001010000_ExportInventoryDetailFailDataFail" xml:space="preserve">
+    <value>匯出失敗異動庫存調整單明細失敗</value>
+  </data>
+  <data name="P2001010000_ExportInventoryDetailFailDataSuccess" xml:space="preserve">
+    <value>匯出失敗異動庫存調整單明細成功</value>
+  </data>
+  <data name="P2001010100_ViewModel_SeriakNoInLoc" xml:space="preserve">
+    <value>儲位不存此序號</value>
+  </data>
+  <data name="P2001010000_ViewModel_Search" xml:space="preserve">
+    <value>查詢</value>
+  </data>
+  <data name="P2001010000_IsAutoWarehourseCanNotChange" xml:space="preserve">
+    <value>{0}為自動倉不可新增及調整庫存數</value>
+  </data>
+  <data name="P2001010200_MakeNo_Required" xml:space="preserve">
+    <value>批號不得為空!</value>
+  </data>
+</root>

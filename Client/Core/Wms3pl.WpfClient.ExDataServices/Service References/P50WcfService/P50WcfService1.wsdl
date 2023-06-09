@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P50WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_P50WcfService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://wmsap/wms3pl.webservices/P50WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://wmsap/wms3pl.webservices/P50WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://wmsap/wms3pl.webservices/P50WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://wmsap/wms3pl.webservices/P50WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F50" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P50WcfService_GetF1929WithF1909Tests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909Tests" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_GetF1929WithF1909Tests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF1929WithF1909TestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_GetProjectNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectNo" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_GetProjectNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500101_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500101" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500101Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050101Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050101Status" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050101Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050101StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500101_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500101" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500101Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500101_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500101" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500101_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500101Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500104_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500104" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500104_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500104Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500104_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500104" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500104_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500104Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050104Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050104Status" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050104Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050104StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500104_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500104" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500104_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500104Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500103_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500103" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500103_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500103Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500103_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500103" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500103_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500103Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050103Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050103Status" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050103Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050103StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500103_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500103" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500103_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500103Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500102_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500102" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500102Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500102_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500102" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500102Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050102Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050102Status" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050102Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050102StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500102_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500102" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500102_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500102Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500105_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500105" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_InsertF500105_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertF500105Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500105_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500105" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF500105_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF500105Response" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050105Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050105Status" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_UpdateF050105Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF050105StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500105_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500105" />
+  </wsdl:message>
+  <wsdl:message name="P50WcfService_DeleteF500105_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF500105Response" />
+  </wsdl:message>
+  <wsdl:portType name="P50WcfService">
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/GetF1929WithF1909Tests" message="tns:P50WcfService_GetF1929WithF1909Tests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/GetF1929WithF1909TestsResponse" message="tns:P50WcfService_GetF1929WithF1909Tests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/GetProjectNo" message="tns:P50WcfService_GetProjectNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/GetProjectNoResponse" message="tns:P50WcfService_GetProjectNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/InsertF500101" message="tns:P50WcfService_InsertF500101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/InsertF500101Response" message="tns:P50WcfService_InsertF500101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050101Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050101Status" message="tns:P50WcfService_UpdateF050101Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050101StatusResponse" message="tns:P50WcfService_UpdateF050101Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500101" message="tns:P50WcfService_UpdateF500101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500101Response" message="tns:P50WcfService_UpdateF500101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500101">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500101" message="tns:P50WcfService_DeleteF500101_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500101Response" message="tns:P50WcfService_DeleteF500101_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500104">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/InsertF500104" message="tns:P50WcfService_InsertF500104_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/InsertF500104Response" message="tns:P50WcfService_InsertF500104_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500104">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500104" message="tns:P50WcfService_UpdateF500104_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500104Response" message="tns:P50WcfService_UpdateF500104_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050104Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050104Status" message="tns:P50WcfService_UpdateF050104Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050104StatusResponse" message="tns:P50WcfService_UpdateF050104Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500104">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500104" message="tns:P50WcfService_DeleteF500104_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500104Response" message="tns:P50WcfService_DeleteF500104_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500103">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/InsertF500103" message="tns:P50WcfService_InsertF500103_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/InsertF500103Response" message="tns:P50WcfService_InsertF500103_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500103">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500103" message="tns:P50WcfService_UpdateF500103_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500103Response" message="tns:P50WcfService_UpdateF500103_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050103Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050103Status" message="tns:P50WcfService_UpdateF050103Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050103StatusResponse" message="tns:P50WcfService_UpdateF050103Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500103">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500103" message="tns:P50WcfService_DeleteF500103_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500103Response" message="tns:P50WcfService_DeleteF500103_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/InsertF500102" message="tns:P50WcfService_InsertF500102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/InsertF500102Response" message="tns:P50WcfService_InsertF500102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500102" message="tns:P50WcfService_UpdateF500102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500102Response" message="tns:P50WcfService_UpdateF500102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050102Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050102Status" message="tns:P50WcfService_UpdateF050102Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050102StatusResponse" message="tns:P50WcfService_UpdateF050102Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500102">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500102" message="tns:P50WcfService_DeleteF500102_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500102Response" message="tns:P50WcfService_DeleteF500102_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500105">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/InsertF500105" message="tns:P50WcfService_InsertF500105_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/InsertF500105Response" message="tns:P50WcfService_InsertF500105_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500105">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500105" message="tns:P50WcfService_UpdateF500105_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF500105Response" message="tns:P50WcfService_UpdateF500105_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050105Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050105Status" message="tns:P50WcfService_UpdateF050105Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/UpdateF050105StatusResponse" message="tns:P50WcfService_UpdateF050105Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500105">
+      <wsdl:input wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500105" message="tns:P50WcfService_DeleteF500105_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P50WcfService/DeleteF500105Response" message="tns:P50WcfService_DeleteF500105_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P50WcfService" type="tns:P50WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/GetF1929WithF1909Tests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectNo">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/GetProjectNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500101">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/InsertF500101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050101Status">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050101Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500101">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500101">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500101" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500104">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/InsertF500104" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500104">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500104" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050104Status">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050104Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500104">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500104" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500103">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/InsertF500103" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500103">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500103" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050103Status">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050103Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500103">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500103" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500102">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/InsertF500102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500102">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050102Status">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050102Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500102">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500102" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500105">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/InsertF500105" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500105">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500105" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050105Status">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050105Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500105">
+      <soap:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500105" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_P50WcfService" type="tns:P50WcfService">
+    <wsp:PolicyReference URI="#NetTcpBinding_P50WcfService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetF1929WithF1909Tests">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/GetF1929WithF1909Tests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectNo">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/GetProjectNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500101">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/InsertF500101" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050101Status">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050101Status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500101">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500101" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500101">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500101" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500104">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/InsertF500104" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500104">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500104" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050104Status">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050104Status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500104">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500104" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500103">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/InsertF500103" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500103">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500103" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050103Status">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050103Status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500103">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500103" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500102">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/InsertF500102" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500102">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500102" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050102Status">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050102Status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500102">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500102" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertF500105">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/InsertF500105" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF500105">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF500105" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateF050105Status">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/UpdateF050105Status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF500105">
+      <soap12:operation soapAction="http://tempuri.org/P50WcfService/DeleteF500105" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P50WcfService">
+    <wsdl:port name="BasicHttpBinding_P50WcfService" binding="tns:BasicHttpBinding_P50WcfService">
+      <soap:address location="http://wmsap/wms3pl.webservices/P50WcfService.svc" />
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_P50WcfService" binding="tns:NetTcpBinding_P50WcfService">
+      <soap12:address location="net.tcp://hp-pc.bankpro.com.tw/wms3pl.webservices/P50WcfService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://hp-pc.bankpro.com.tw/wms3pl.webservices/P50WcfService.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

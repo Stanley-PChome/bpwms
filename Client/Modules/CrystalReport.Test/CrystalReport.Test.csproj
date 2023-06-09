@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9187878B-43BF-4CC8-AEA8-6D4C0194D9E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CrystalReport.Test</RootNamespace>
+    <AssemblyName>CrystalReport.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Dlls\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Dlls\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Dlls\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="Trp0501010001.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trp0809010000.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Wms3pl.Common\Wms3pl.Common.csproj">
+      <Project>{c7640a2e-5290-4dee-959d-ecdbf815f846}</Project>
+      <Name>Wms3pl.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.Common\Wms3pl.WpfClient.Common.csproj">
+      <Project>{0c8c673b-4390-4825-8605-6b2a70095b4f}</Project>
+      <Name>Wms3pl.WpfClient.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.DataServices\Wms3pl.WpfClient.DataServices.csproj">
+      <Project>{ab389260-f6f9-4b37-9d53-6aa8fa5c0cd4}</Project>
+      <Name>Wms3pl.WpfClient.DataServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.ExDataServices\Wms3pl.WpfClient.ExDataServices.csproj">
+      <Project>{056bbb13-890d-432d-858f-4bd6ef840006}</Project>
+      <Name>Wms3pl.WpfClient.ExDataServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P01\Wms3pl.WpfClient.P01.csproj">
+      <Project>{09a80484-b06c-4730-a535-27715f4a4451}</Project>
+      <Name>Wms3pl.WpfClient.P01</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P02\Wms3pl.WpfClient.P02.csproj">
+      <Project>{12aaad78-fc5f-4c36-bc64-a7784b546802}</Project>
+      <Name>Wms3pl.WpfClient.P02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P05\Wms3pl.WpfClient.P05.csproj">
+      <Project>{f39feab1-fe92-47d9-899d-45740593f647}</Project>
+      <Name>Wms3pl.WpfClient.P05</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P06\Wms3pl.WpfClient.P06.csproj">
+      <Project>{03bb7f98-71d5-45c3-954b-7b8a1d35dc19}</Project>
+      <Name>Wms3pl.WpfClient.P06</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P08\Wms3pl.WpfClient.P08.csproj">
+      <Project>{df30b19f-9eea-486c-8679-e528512538c4}</Project>
+      <Name>Wms3pl.WpfClient.P08</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P14\Wms3pl.WpfClient.P14.csproj">
+      <Project>{4b1eebe7-52ae-4ed0-be26-54ff0a1e861e}</Project>
+      <Name>Wms3pl.WpfClient.P14</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P15\Wms3pl.WpfClient.P15.csproj">
+      <Project>{0bea1371-cf29-4415-b89f-a8cd16bb6354}</Project>
+      <Name>Wms3pl.WpfClient.P15</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P16\Wms3pl.WpfClient.P16.csproj">
+      <Project>{2302999a-da53-4769-a800-573be7cbe745}</Project>
+      <Name>Wms3pl.WpfClient.P16</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P17\Wms3pl.WpfClient.P17.csproj">
+      <Project>{b197b86d-955f-4062-960a-47fcddf7b6a5}</Project>
+      <Name>Wms3pl.WpfClient.P17</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P18\Wms3pl.WpfClient.P18.csproj">
+      <Project>{afc46713-4bc8-41cb-bdea-9d0a5c34deb3}</Project>
+      <Name>Wms3pl.WpfClient.P18</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P19\Wms3pl.WpfClient.P19.csproj">
+      <Project>{77403299-ba9a-4746-a5e3-28d93bc2597b}</Project>
+      <Name>Wms3pl.WpfClient.P19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P20\Wms3pl.WpfClient.P20.csproj">
+      <Project>{58be172a-35c8-49dd-906b-d1de5a1b98ed}</Project>
+      <Name>Wms3pl.WpfClient.P20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P21\Wms3pl.WpfClient.P21.csproj">
+      <Project>{74feff79-2e09-44a0-9486-00662c63765a}</Project>
+      <Name>Wms3pl.WpfClient.P21</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P25\Wms3pl.WpfClient.P25.csproj">
+      <Project>{8b94060a-5f3b-4383-a9bb-134564278d04}</Project>
+      <Name>Wms3pl.WpfClient.P25</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P50\Wms3pl.WpfClient.P50.csproj">
+      <Project>{b55e3aad-48c1-4c42-9878-e5250fbeb4a6}</Project>
+      <Name>Wms3pl.WpfClient.P50</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P71\Wms3pl.WpfClient.P71.csproj">
+      <Project>{e745f324-4cea-4384-97d2-4af8b403a5cf}</Project>
+      <Name>Wms3pl.WpfClient.P71</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms3pl.WpfClient.P91\Wms3pl.WpfClient.P91.csproj">
+      <Project>{bd618563-992c-43c2-832c-6c2a3ece42e4}</Project>
+      <Name>Wms3pl.WpfClient.P91</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.UILib\Wms3pl.WpfClient.UILib.csproj">
+      <Project>{71cc6808-45bb-470e-9d22-f4863669f18b}</Project>
+      <Name>Wms3pl.WpfClient.UILib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+  </ItemGroup>
+</Project>

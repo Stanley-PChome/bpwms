@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="524be95d-64f3-4a46-aefc-99a45e735347" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/P02WcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="P02WcfService45.xsd" MetadataType="Schema" ID="a2e240ad-d139-4076-b1ae-8965070a8974" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd5" />
+    <MetadataFile FileName="P02WcfService.disco" MetadataType="Disco" ID="1fc405ee-bc8f-4f2d-a9e7-8a6268417c62" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?disco" />
+    <MetadataFile FileName="P02WcfService.xsd" MetadataType="Schema" ID="94ccb8cf-f789-4ae8-91d1-373db634f222" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd2" />
+    <MetadataFile FileName="P02WcfService1.xsd" MetadataType="Schema" ID="2055ac4a-66b0-41cd-a4dd-d3b7f0e0f20f" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="P02WcfService2.xsd" MetadataType="Schema" ID="bff4d244-e16b-48a4-b655-1267a788081c" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd1" />
+    <MetadataFile FileName="P02WcfService3.xsd" MetadataType="Schema" ID="6675c341-31c1-4e0a-9aab-511b11492e9a" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd3" />
+    <MetadataFile FileName="P02WcfService46.xsd" MetadataType="Schema" ID="a288409c-dff7-41d4-83fa-aab11edd4088" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd6" />
+    <MetadataFile FileName="P02WcfService.wsdl" MetadataType="Wsdl" ID="bd56ff05-c61a-4478-ad44-1f4c75515f9b" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?wsdl" />
+    <MetadataFile FileName="P02WcfService44.xsd" MetadataType="Schema" ID="af3c1806-8f37-489d-a75e-300fdf859555" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/P02WcfService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

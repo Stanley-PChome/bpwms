@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d97d9636-9753-47e6-bc54-9ceba24db2be" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ewmsap/iWms.WebServices/MembershipProviderService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MembershipProviderService21.wsdl" MetadataType="Wsdl" ID="e986cd89-445f-48f3-9ca1-126a12ff26ca" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="MembershipProviderService2.wsdl" MetadataType="Wsdl" ID="e77a8413-1acc-4736-9f48-4dd0c2f54c9a" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?wsdl" />
+    <MetadataFile FileName="MembershipProviderService4.xsd" MetadataType="Schema" ID="2a205913-ac18-4f26-9bc8-1e370363e247" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MembershipProviderService41.xsd" MetadataType="Schema" ID="0f9ed211-e0aa-4247-af8b-e9c9cd7f50fd" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MembershipProviderService42.xsd" MetadataType="Schema" ID="1314f987-93f8-41d4-8a09-462de27d248e" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MembershipProviderService43.xsd" MetadataType="Schema" ID="306d549e-8c5e-4e7b-9d24-a3bafedc6a72" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MembershipProviderService1.disco" MetadataType="Disco" ID="c504772b-6461-4a50-8247-26ed29b628f2" SourceId="1" SourceUrl="http://ewmsap/iWms.WebServices/MembershipProviderService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

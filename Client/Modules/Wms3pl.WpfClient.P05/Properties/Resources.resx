@@ -1,0 +1,1426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddItem" xml:space="preserve">
+    <value>新增明細</value>
+  </data>
+  <data name="ADDRESS" xml:space="preserve">
+    <value>出貨單地址</value>
+  </data>
+  <data name="AGE" xml:space="preserve">
+    <value>年齡</value>
+  </data>
+  <data name="ALL_COMP" xml:space="preserve">
+    <value>批次出車時段</value>
+  </data>
+  <data name="ALL_NO" xml:space="preserve">
+    <value>配送商</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>核准</value>
+  </data>
+  <data name="APPROVE_DATE" xml:space="preserve">
+    <value>過帳日期</value>
+  </data>
+  <data name="ARRIVE_DATE_FROM" xml:space="preserve">
+    <value>指定到貨日期</value>
+  </data>
+  <data name="A_DELV_QTY" xml:space="preserve">
+    <value>實際出貨數</value>
+  </data>
+  <data name="BatchApprove" xml:space="preserve">
+    <value>批次核准</value>
+  </data>
+  <data name="BATCH_NO" xml:space="preserve">
+    <value>批次號</value>
+  </data>
+  <data name="BUSINESS_NO" xml:space="preserve">
+    <value>營利編號</value>
+  </data>
+  <data name="ByHouse" xml:space="preserve">
+    <value>超取</value>
+  </data>
+  <data name="BySelf" xml:space="preserve">
+    <value>自取</value>
+  </data>
+  <data name="ByVendor" xml:space="preserve">
+    <value>宅配</value>
+  </data>
+  <data name="ByWMSOrPick" xml:space="preserve">
+    <value>彙總方式依</value>
+  </data>
+  <data name="B_DELV_QTY" xml:space="preserve">
+    <value>出貨數量</value>
+  </data>
+  <data name="CAN_FAST" xml:space="preserve">
+    <value>快速到貨</value>
+  </data>
+  <data name="CHANNEL" xml:space="preserve">
+    <value>通路類型</value>
+  </data>
+  <data name="CHANNEL_Area" xml:space="preserve">
+    <value>　～</value>
+  </data>
+  <data name="CHANNEL_BEGIN" xml:space="preserve">
+    <value>通道(起)</value>
+  </data>
+  <data name="CHANNEL_ComboBox" xml:space="preserve">
+    <value>　　通道</value>
+  </data>
+  <data name="CHANNEL_END" xml:space="preserve">
+    <value>通道(迄)</value>
+  </data>
+  <data name="CLIENT_PC" xml:space="preserve">
+    <value>電腦名稱</value>
+  </data>
+  <data name="COLLECT" xml:space="preserve">
+    <value>是否代收</value>
+  </data>
+  <data name="COLLECT_AMT" xml:space="preserve">
+    <value>代收金額</value>
+  </data>
+  <data name="CONSIGNEE" xml:space="preserve">
+    <value>收貨人資料</value>
+  </data>
+  <data name="ConsignStatus" xml:space="preserve">
+    <value>託運狀態</value>
+  </data>
+  <data name="CONSIGN_NO" xml:space="preserve">
+    <value>配送編號</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>聯絡人</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>聯絡資料</value>
+  </data>
+  <data name="CONTACT_TEL" xml:space="preserve">
+    <value>聯絡電話</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>張</value>
+  </data>
+  <data name="CreateBatch" xml:space="preserve">
+    <value>產生批次</value>
+  </data>
+  <data name="CreateOrder" xml:space="preserve">
+    <value>建立訂單</value>
+  </data>
+  <data name="CRT_DATE" xml:space="preserve">
+    <value>建立時間</value>
+  </data>
+  <data name="CRT_NAME" xml:space="preserve">
+    <value>人員姓名</value>
+  </data>
+  <data name="CRT_STAFF" xml:space="preserve">
+    <value>人員編號</value>
+  </data>
+  <data name="CustOrderNo" xml:space="preserve">
+    <value>挑選貨主單號</value>
+  </data>
+  <data name="CUST_COST" xml:space="preserve">
+    <value>貨主自定分類</value>
+  </data>
+  <data name="CUST_NAME" xml:space="preserve">
+    <value>客戶名稱</value>
+  </data>
+  <data name="DATA_COUNT" xml:space="preserve">
+    <value>派車狀態</value>
+  </data>
+  <data name="DelayData" xml:space="preserve">
+    <value>揀貨時間延遲</value>
+  </data>
+  <data name="DeletedItem" xml:space="preserve">
+    <value>刪除明細</value>
+  </data>
+  <data name="Delimiter" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="DelvDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="DELV_DATE" xml:space="preserve">
+    <value>挑選批次</value>
+  </data>
+  <data name="DELV_NO" xml:space="preserve">
+    <value>車次</value>
+  </data>
+  <data name="DELV_RETAILCODE" xml:space="preserve">
+    <value>門市編號</value>
+  </data>
+  <data name="DELV_RETAILNAME" xml:space="preserve">
+    <value>門市名稱</value>
+  </data>
+  <data name="DELV_RETAIL_CODE" xml:space="preserve">
+    <value>配送門市編號</value>
+  </data>
+  <data name="DELV_RETAIL_NAME" xml:space="preserve">
+    <value>配送門市名稱</value>
+  </data>
+  <data name="DELV_WAY" xml:space="preserve">
+    <value>路順</value>
+  </data>
+  <data name="DetailCount" xml:space="preserve">
+    <value>總計貨主單數：</value>
+  </data>
+  <data name="DeviceBathQty" xml:space="preserve">
+    <value>台車批量</value>
+  </data>
+  <data name="DeviceCount" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="DevicePick" xml:space="preserve">
+    <value>台車揀貨單</value>
+  </data>
+  <data name="DISTR_CAR_ADDRESS" xml:space="preserve">
+    <value>託運地址</value>
+  </data>
+  <data name="DISTR_CAR_NO" xml:space="preserve">
+    <value>派車單號</value>
+  </data>
+  <data name="DOC_NAME" xml:space="preserve">
+    <value>表單</value>
+  </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>修改明細</value>
+  </data>
+  <data name="Edit_DELV_RETAIL_CODE" xml:space="preserve">
+    <value>修改配送門市</value>
+  </data>
+  <data name="EDIT_ITEM" xml:space="preserve">
+    <value>收貨人</value>
+  </data>
+  <data name="EDIT_TEL_1" xml:space="preserve">
+    <value>收貨人聯絡電話1</value>
+  </data>
+  <data name="EDIT_TEL_2" xml:space="preserve">
+    <value>收貨人聯絡電話2</value>
+  </data>
+  <data name="EFFIC_NAME" xml:space="preserve">
+    <value>效率</value>
+  </data>
+  <data name="ESERVICE" xml:space="preserve">
+    <value>超取服務商</value>
+  </data>
+  <data name="ExcelFileMustEqualColLength" xml:space="preserve">
+    <value>匯入檔案欄位必須為{0}欄</value>
+  </data>
+  <data name="FLOOR" xml:space="preserve">
+    <value>樓層</value>
+  </data>
+  <data name="FLOOR_ComboBox" xml:space="preserve">
+    <value>　樓層</value>
+  </data>
+  <data name="GENDER" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="HCT" xml:space="preserve">
+    <value>新竹貨運</value>
+  </data>
+  <data name="INCAR_DATE" xml:space="preserve">
+    <value>裝車時間</value>
+  </data>
+  <data name="InvoiceInformation" xml:space="preserve">
+    <value>發票資料</value>
+  </data>
+  <data name="IsBatch" xml:space="preserve">
+    <value>配庫處理</value>
+  </data>
+  <data name="IsCheckAll" xml:space="preserve">
+    <value>全選</value>
+  </data>
+  <data name="IsCheckAllByNoDelv" xml:space="preserve">
+    <value>不出貨</value>
+  </data>
+  <data name="ISPASS" xml:space="preserve">
+    <value>通過</value>
+  </data>
+  <data name="ITEMCOUNT" xml:space="preserve">
+    <value>品項數</value>
+  </data>
+  <data name="ItemSearch" xml:space="preserve">
+    <value>商品搜尋</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>品號</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>顏色</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>規格</value>
+  </data>
+  <data name="LACK_DO_STATUS" xml:space="preserve">
+    <value>缺貨處理結果</value>
+  </data>
+  <data name="LACK_QTY" xml:space="preserve">
+    <value>缺貨數</value>
+  </data>
+  <data name="LastUpdateTime" xml:space="preserve">
+    <value>※包裝燈號顏色：紅色(距出車時間低於15分)、黃色(距出車時間15-30分)、綠色(距出車時間超過30分)</value>
+  </data>
+  <data name="LightColor" xml:space="preserve">
+    <value>※揀貨燈號顏色：紅色(進度落後)、黃色(警告)、綠色(正常)</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>裝車</value>
+  </data>
+  <data name="LOC_CODE" xml:space="preserve">
+    <value>儲位</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>注意事項</value>
+  </data>
+  <data name="ORDCOUNT" xml:space="preserve">
+    <value>訂單數</value>
+  </data>
+  <data name="OrderDetail" xml:space="preserve">
+    <value>訂單明細</value>
+  </data>
+  <data name="OrderQty" xml:space="preserve">
+    <value>單數</value>
+  </data>
+  <data name="OrderType" xml:space="preserve">
+    <value>訂單類型</value>
+  </data>
+  <data name="ORD_DATE_FROM" xml:space="preserve">
+    <value>訂單日期</value>
+  </data>
+  <data name="ORD_DATE_TO" xml:space="preserve">
+    <value> ~ </value>
+  </data>
+  <data name="ORD_ITEM" xml:space="preserve">
+    <value>訂單商品</value>
+  </data>
+  <data name="ORD_NO" xml:space="preserve">
+    <value>單據編號</value>
+  </data>
+  <data name="ORD_PIER_CODE" xml:space="preserve">
+    <value>預設碼頭</value>
+  </data>
+  <data name="ORD_QTY" xml:space="preserve">
+    <value>訂單數量</value>
+  </data>
+  <data name="OutDetail" xml:space="preserve">
+    <value>出貨明細</value>
+  </data>
+  <data name="P0501010000_DataNotExist" xml:space="preserve">
+    <value>查詢無資料，無法預覽或列印！</value>
+  </data>
+  <data name="P0501010000_NotSelectData" xml:space="preserve">
+    <value>請輸入或勾選揀貨單號</value>
+  </data>
+  <data name="P0501020000_AllotStocksSuccess" xml:space="preserve">
+    <value>已分配完成</value>
+  </data>
+  <data name="P0501020000_DataTypeIsNumber" xml:space="preserve">
+    <value>台車分配揀貨單比例必須為數值</value>
+  </data>
+  <data name="P0501020000_InputPickProportion" xml:space="preserve">
+    <value>請輸入PDA分配揀貨單比例</value>
+  </data>
+  <data name="P0501020000_NotSelectPick" xml:space="preserve">
+    <value>尚未選擇揀貨單</value>
+  </data>
+  <data name="P0501020000_PickProportionError" xml:space="preserve">
+    <value>台車分配揀貨單比例必須為0~100</value>
+  </data>
+  <data name="P0501030000_PickReport" xml:space="preserve">
+    <value> 揀貨總表</value>
+  </data>
+  <data name="P0501120000_ActQtyMustNumber" xml:space="preserve">
+    <value>實際播種數必須為數值!</value>
+  </data>
+  <data name="P0501120000_ACT_QTY" xml:space="preserve">
+    <value>實際播種數</value>
+  </data>
+  <data name="P0501120000_AGVStartup" xml:space="preserve">
+    <value>AGV啟動</value>
+  </data>
+  <data name="P0501120000_AGVStationSetting" xml:space="preserve">
+    <value>AGV工作站設定</value>
+  </data>
+  <data name="P0501120000_AllotCnt" xml:space="preserve">
+    <value>分配份數</value>
+  </data>
+  <data name="P0501120000_AllotCntMustBetterThenZero" xml:space="preserve">
+    <value>分配份數必須大於0!</value>
+  </data>
+  <data name="P0501120000_AllotCntMustLessAgvStation" xml:space="preserve">
+    <value>分配份數必須小於等於AGV工作站數{0}</value>
+  </data>
+  <data name="P0501120000_AllotType" xml:space="preserve">
+    <value>分配方式</value>
+  </data>
+  <data name="P0501120000_APickQty" xml:space="preserve">
+    <value>實揀數</value>
+  </data>
+  <data name="P0501120000_Area" xml:space="preserve">
+    <value>儲區</value>
+  </data>
+  <data name="P0501120000_AreaCode" xml:space="preserve">
+    <value>儲區編號</value>
+  </data>
+  <data name="P0501120000_AreaName" xml:space="preserve">
+    <value>儲區名稱</value>
+  </data>
+  <data name="P0501120000_ArtificalPick" xml:space="preserve">
+    <value>人工揀貨</value>
+  </data>
+  <data name="P0501120000_ArtificalSow" xml:space="preserve">
+    <value>人工播種</value>
+  </data>
+  <data name="P0501120000_ArtificalSowReturn" xml:space="preserve">
+    <value>人工播種回傳</value>
+  </data>
+  <data name="P0501120000_BatchDate" xml:space="preserve">
+    <value>彙總日期</value>
+  </data>
+  <data name="P0501120000_BatchNo" xml:space="preserve">
+    <value>彙總批號</value>
+  </data>
+  <data name="P0501120000_BeforeDeleteConfirm" xml:space="preserve">
+    <value>是否要取消彙總批號{0}?</value>
+  </data>
+  <data name="P0501120000_BPickQty" xml:space="preserve">
+    <value>應揀數</value>
+  </data>
+  <data name="P0501120000_CapsReturn" xml:space="preserve">
+    <value>CAPS回傳</value>
+  </data>
+  <data name="P0501120000_CapsReturnDataError" xml:space="preserve">
+    <value>CAPS回傳資料異常{0}筆，將產生異常檔案!</value>
+  </data>
+  <data name="P0501120000_ChoosePickOrder" xml:space="preserve">
+    <value>選擇揀貨單</value>
+  </data>
+  <data name="P0501120000_ConfirmPickToolFromAGVToPickOrder" xml:space="preserve">
+    <value>您確定要將揀貨工具從AGV變更為揀貨單?</value>
+  </data>
+  <data name="P0501120000_DelvDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="P0501120000_DirectAllotCnt" xml:space="preserve">
+    <value>指定分配份數</value>
+  </data>
+  <data name="P0501120000_DownToCaps" xml:space="preserve">
+    <value>CAPS下傳</value>
+  </data>
+  <data name="P0501120000_Export" xml:space="preserve">
+    <value>匯出</value>
+  </data>
+  <data name="P0501120000_ExportFileTo" xml:space="preserve">
+    <value>已匯出檔案至{0}</value>
+  </data>
+  <data name="P0501120000_FileIsLocked" xml:space="preserve">
+    <value>要覆蓋的檔案與路徑無法儲存或鎖定中，請選擇其他路徑!</value>
+  </data>
+  <data name="P0501120000_ImportMustExcel" xml:space="preserve">
+    <value>匯入的檔案必須為Excel!</value>
+  </data>
+  <data name="P0501120000_ItemCnt" xml:space="preserve">
+    <value>品項數</value>
+  </data>
+  <data name="P0501120000_ITEM_CODE" xml:space="preserve">
+    <value>品號</value>
+  </data>
+  <data name="P0501120000_ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="P0501120000_LOC_CODE" xml:space="preserve">
+    <value>儲位</value>
+  </data>
+  <data name="P0501120000_NoDataCanExport" xml:space="preserve">
+    <value>查無資料可匯出!</value>
+  </data>
+  <data name="P0501120000_OverCapsUsedQty" xml:space="preserve">
+    <value>所選的門市數為{0}，超過{1}家無法使用CAPS播種</value>
+  </data>
+  <data name="P0501120000_OverCapsUsedQtyWithAgv" xml:space="preserve">
+    <value>所選的門市數為{0}，超過{1}家將無法使用CAPS播種，請重新挑選揀貨單</value>
+  </data>
+  <data name="P0501120000_OverCapsUsedQtyWithOther" xml:space="preserve">
+    <value>所選的門市數為{0}，超過{1}家將無法使用CAPS播種，請確認?</value>
+  </data>
+  <data name="P0501120000_PickMode" xml:space="preserve">
+    <value>揀貨模式</value>
+  </data>
+  <data name="P0501120000_PickOrdNo" xml:space="preserve">
+    <value>揀貨單號</value>
+  </data>
+  <data name="P0501120000_PickStatus" xml:space="preserve">
+    <value>揀貨狀態</value>
+  </data>
+  <data name="P0501120000_PickSumProcess" xml:space="preserve">
+    <value>揀貨彙總作業</value>
+  </data>
+  <data name="P0501120000_PickTime" xml:space="preserve">
+    <value>批次時段</value>
+  </data>
+  <data name="P0501120000_PickTool" xml:space="preserve">
+    <value>揀貨工具</value>
+  </data>
+  <data name="P0501120000_PlanQtyMustNumber" xml:space="preserve">
+    <value>應播種數必須為數值!</value>
+  </data>
+  <data name="P0501120000_PLAN_QTY" xml:space="preserve">
+    <value>應播種數</value>
+  </data>
+  <data name="P0501120000_PleaseCheckedPickOrders" xml:space="preserve">
+    <value>請勾選揀貨單!</value>
+  </data>
+  <data name="P0501120000_PleaseChooseAllotType" xml:space="preserve">
+    <value>請選擇分配方式!</value>
+  </data>
+  <data name="P0501120000_Print" xml:space="preserve">
+    <value>列印</value>
+  </data>
+  <data name="P0501120000_PutMode" xml:space="preserve">
+    <value>播種模式</value>
+  </data>
+  <data name="P0501120000_PutPool" xml:space="preserve">
+    <value>播種工具</value>
+  </data>
+  <data name="P0501120000_PutStatus" xml:space="preserve">
+    <value>播種狀態</value>
+  </data>
+  <data name="P0501120000_PutTool" xml:space="preserve">
+    <value>播種工具</value>
+  </data>
+  <data name="P0501120000_RecvDate" xml:space="preserve">
+    <value>回傳CAPS時間</value>
+  </data>
+  <data name="P0501120000_RetailCnt" xml:space="preserve">
+    <value>門市數</value>
+  </data>
+  <data name="P0501120000_RetailMaxCnt" xml:space="preserve">
+    <value>門店數上限</value>
+  </data>
+  <data name="P0501120000_RETAIL_CODE" xml:space="preserve">
+    <value>門市編號</value>
+  </data>
+  <data name="P0501120000_RETAIL_NAME" xml:space="preserve">
+    <value>門市名稱</value>
+  </data>
+  <data name="P0501120000_ROWNUM" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="P0501120000_SetBatchRule" xml:space="preserve">
+    <value>設定批量條件</value>
+  </data>
+  <data name="P0501120000_ShelfNo" xml:space="preserve">
+    <value>貨架編號</value>
+  </data>
+  <data name="P0501120000_TotalQty" xml:space="preserve">
+    <value>總數量</value>
+  </data>
+  <data name="P0501120000_TransDate" xml:space="preserve">
+    <value>下傳CAPS時間</value>
+  </data>
+  <data name="P0501120100_BatchPickNo" xml:space="preserve">
+    <value>彙總單號</value>
+  </data>
+  <data name="P0501120100_Station" xml:space="preserve">
+    <value>工作站</value>
+  </data>
+  <data name="P050112_CapsRrturnMessage" xml:space="preserve">
+    <value>彙總批號 {0}-彙總單號 {1} 尚未完成揀貨</value>
+  </data>
+  <data name="P0502010000_NotSelectPier" xml:space="preserve">
+    <value>尚未指定碼頭！</value>
+  </data>
+  <data name="P0503010000_Alert" xml:space="preserve">
+    <value>警示</value>
+  </data>
+  <data name="P0503010000_ConsignReportIsNull" xml:space="preserve">
+    <value>查無託運單格式</value>
+  </data>
+  <data name="P0503010000_SearchDelvDateIsNull" xml:space="preserve">
+    <value>搜尋條件-批次日期 不得為空!</value>
+  </data>
+  <data name="P0503020000_AddressNotEqualDCAddress" xml:space="preserve">
+    <value>特殊出貨為互賣， 出貨單地址必須是物流中心地址</value>
+  </data>
+  <data name="P0503020000_AgainSerialNo" xml:space="preserve">
+    <value>為序號綁儲位商品,先前匯入的序號已被清除,請重新匯入序號</value>
+  </data>
+  <data name="P0503020000_AgeFormatError" xml:space="preserve">
+    <value>請輸入正確的年齡格式</value>
+  </data>
+  <data name="P0503020000_AllIDIsNull" xml:space="preserve">
+    <value>請選擇配送商</value>
+  </data>
+  <data name="P0503020000_ArrivalDateOver" xml:space="preserve">
+    <value>指定到貨日期不能大於訂單日7天</value>
+  </data>
+  <data name="P0503020000_A_DELV_QTY" xml:space="preserve">
+    <value>實際出貨數量</value>
+  </data>
+  <data name="P0503020000_BatchApprove" xml:space="preserve">
+    <value>批次核准結果</value>
+  </data>
+  <data name="P0503020000_BatchApproveAsk" xml:space="preserve">
+    <value>您確定要執行批次核准?</value>
+  </data>
+  <data name="P0503020000_BatchNoInput" xml:space="preserve">
+    <value>POSM包裝量更新為 YES，請輸入批次號</value>
+  </data>
+  <data name="P0503020000_BatchNoIsNull" xml:space="preserve">
+    <value>請輸入批次號</value>
+  </data>
+  <data name="P0503020000_B_DELV_QTY" xml:space="preserve">
+    <value>配庫出貨數量</value>
+  </data>
+  <data name="P0503020000_CheckItemStopSelling" xml:space="preserve">
+    <value>該商品已停售!!</value>
+  </data>
+  <data name="P0503020000_CollectTypeIsNoAmtNotZero" xml:space="preserve">
+    <value>是否代收選擇NO，代收金額請等於0</value>
+  </data>
+  <data name="P0503020000_CollectTypeIsYesAmtZero" xml:space="preserve">
+    <value>是否代收選擇YES，代收金額請大於0</value>
+  </data>
+  <data name="P0503020000_Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="P0503020000_ConsignNoIsNull" xml:space="preserve">
+    <value>請輸入配送編號</value>
+  </data>
+  <data name="P0503020000_CustNameIsNull" xml:space="preserve">
+    <value>請輸入客戶名稱</value>
+  </data>
+  <data name="P0503020000_DetailTotal" xml:space="preserve">
+    <value>總計明細筆數：</value>
+  </data>
+  <data name="P0503020000_EserviceIsNull" xml:space="preserve">
+    <value>請選擇超取服務商</value>
+  </data>
+  <data name="P0503020000_ExcelDataIsNull" xml:space="preserve">
+    <value>請匯入小單資料</value>
+  </data>
+  <data name="P0503020000_FileFormatError" xml:space="preserve">
+    <value>檔案格式錯誤</value>
+  </data>
+  <data name="P0503020000_ImportClearDetail" xml:space="preserve">
+    <value>匯入小單將會清除明細?</value>
+  </data>
+  <data name="P0503020000_ImportDataFail" xml:space="preserve">
+    <value>匯入失敗！不存在的品號：\r\n{0}</value>
+  </data>
+  <data name="P0503020000_ImportItemNotSerial" xml:space="preserve">
+    <value>匯入序號所對應的商品不是序號商品</value>
+  </data>
+  <data name="P0503020000_ImportOrderItemError" xml:space="preserve">
+    <value>匯入的訂單品號不正確，不正確的品號 暫時用{0}取代，請修改為正確的品號</value>
+  </data>
+  <data name="P0503020000_ImportSerialNoItemExist" xml:space="preserve">
+    <value>匯入序號所對應的商品不在訂單明細中</value>
+  </data>
+  <data name="P0503020000_Input" xml:space="preserve">
+    <value>請輸入</value>
+  </data>
+  <data name="P0503020000_InputDataLack" xml:space="preserve">
+    <value>部分資料值為[請輸入]，請填入正確資料</value>
+  </data>
+  <data name="P0503020000_IsManualCar" xml:space="preserve">
+    <value>是否進行手動派車?</value>
+  </data>
+  <data name="P0503020000_ItemRepeat" xml:space="preserve">
+    <value>商品編號已重覆</value>
+  </data>
+  <data name="P0503020000_ItemStopSelling" xml:space="preserve">
+    <value>該商品{detail.ITEM_CODE}已停售!!</value>
+  </data>
+  <data name="P0503020000_NotSelectDeleteItem" xml:space="preserve">
+    <value>請勾選要刪除的商品</value>
+  </data>
+  <data name="P0503020000_NotSerialLocItem" xml:space="preserve">
+    <value>『已為POSM包裝量更新』，系統不允許輸入序號綁儲位商品。</value>
+  </data>
+  <data name="P0503020000_NoUsageRights" xml:space="preserve">
+    <value>無使用權限</value>
+  </data>
+  <data name="P0503020000_OrderIsApproved" xml:space="preserve">
+    <value>此訂單已核准，請重新查詢</value>
+  </data>
+  <data name="P0503020000_OrderIsCancel" xml:space="preserve">
+    <value>此訂單已取消，請重新查詢</value>
+  </data>
+  <data name="P0503020000_OrderIsCreateBatch" xml:space="preserve">
+    <value>此訂單已產生新批次，請重新查詢</value>
+  </data>
+  <data name="P0503020000_OrderTypeB2BError" xml:space="preserve">
+    <value>有客戶代號但訂單類型不是B2B，請重新確認</value>
+  </data>
+  <data name="P0503020000_OrderTypeB2BInputCustCode" xml:space="preserve">
+    <value>訂單類型為B2B，請輸入客戶代號</value>
+  </data>
+  <data name="P0503020000_OutAddressIsNull" xml:space="preserve">
+    <value>請輸入出貨地址</value>
+  </data>
+  <data name="P0503020000_Prompt" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="P0503020000_QtyFormatError" xml:space="preserve">
+    <value>數量只能輸入非0的數字</value>
+  </data>
+  <data name="P0503020000_QtyZero" xml:space="preserve">
+    <value>數量要大於0</value>
+  </data>
+  <data name="P0503020000_RetailCodeIsNull" xml:space="preserve">
+    <value>請輸入配送門市編號</value>
+  </data>
+  <data name="P0503020000_RetailNameIsNull" xml:space="preserve">
+    <value>請輸入配送門市名稱</value>
+  </data>
+  <data name="P0503020000_SerialBatchError" xml:space="preserve">
+    <value>該訂單會自成一個批次，不需過刷即可出貨，非序號商品可用</value>
+  </data>
+  <data name="P0503020000_SerialNoA1" xml:space="preserve">
+    <value>序號需為可出貨狀態 A1</value>
+  </data>
+  <data name="P0503020000_SerialNoRepeat" xml:space="preserve">
+    <value>序號不能重覆</value>
+  </data>
+  <data name="P0503020000_SerialQtyNotEqualItemQty" xml:space="preserve">
+    <value>序號數量與商品數量不符</value>
+  </data>
+  <data name="P0503020000_SpDelv02B2B" xml:space="preserve">
+    <value>特殊出貨為互賣，訂單類型須為B2B</value>
+  </data>
+  <data name="P0503020000_TmpTypeIdIsNull" xml:space="preserve">
+    <value>請選擇出貨倉別!</value>
+  </data>
+  <data name="P0503020100_Box" xml:space="preserve">
+    <value>箱明細</value>
+  </data>
+  <data name="P0503020100_Delv" xml:space="preserve">
+    <value>送貨單</value>
+  </data>
+  <data name="P0503020100_PastNo" xml:space="preserve">
+    <value>託運單</value>
+  </data>
+  <data name="P0503020100_Receipt" xml:space="preserve">
+    <value>發票</value>
+  </data>
+  <data name="P0503020100_Take" xml:space="preserve">
+    <value>自取單</value>
+  </data>
+  <data name="P05030201_ADDRESS" xml:space="preserve">
+    <value>出貨地址</value>
+  </data>
+  <data name="P05030201_CONSIGNEE" xml:space="preserve">
+    <value>收件人</value>
+  </data>
+  <data name="P05030201_CONSIGN_NO" xml:space="preserve">
+    <value>托運單號</value>
+  </data>
+  <data name="P05030201_MEMO" xml:space="preserve">
+    <value>備註</value>
+  </data>
+  <data name="P05030202_ADDRESS" xml:space="preserve">
+    <value>收件人地址</value>
+  </data>
+  <data name="P05030202_TEL" xml:space="preserve">
+    <value>收件人聯絡電話</value>
+  </data>
+  <data name="P0503020400_DelvRetailCodeIsNull" xml:space="preserve">
+    <value>配送門市編號不可為空白</value>
+  </data>
+  <data name="P0503020400_DelvRetailNameIsNull" xml:space="preserve">
+    <value>配送門市名稱不可為空白</value>
+  </data>
+  <data name="P0503020400_UnEditData" xml:space="preserve">
+    <value>配送門市資料未修改，儲存取消</value>
+  </data>
+  <data name="P050302_B2BRetailCodeIsNull" xml:space="preserve">
+    <value>B2B訂單客戶代號必填</value>
+  </data>
+  <data name="P050302_B2CCustNameIsNull" xml:space="preserve">
+    <value>B2C訂單客戶名稱必填</value>
+  </data>
+  <data name="P050302_CheckExcelNull" xml:space="preserve">
+    <value>欄位「{0}」不得為空值!</value>
+  </data>
+  <data name="P050302_ExcelCollectYes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="P050302_ExcelDataRepeat" xml:space="preserve">
+    <value>Excel訂單資料重複</value>
+  </data>
+  <data name="P050302_ExcelDateError" xml:space="preserve">
+    <value>Excel日期格式錯誤</value>
+  </data>
+  <data name="P050302_ExcelFormatError" xml:space="preserve">
+    <value>Excel格式錯誤</value>
+  </data>
+  <data name="P050302_ExcelImport" xml:space="preserve">
+    <value>Excel匯入</value>
+  </data>
+  <data name="P050302_NoData" xml:space="preserve">
+    <value>無資料</value>
+  </data>
+  <data name="P0503030000_ConsignNoIsNull" xml:space="preserve">
+    <value>請至少輸入一項查詢條件（批次日期、訂單單號、貨主單號、出貨單號、託運單號）</value>
+  </data>
+  <data name="P050303_CRT_DATE" xml:space="preserve">
+    <value>包裝開始</value>
+  </data>
+  <data name="P050303_SA_QTY" xml:space="preserve">
+    <value>SA 份數</value>
+  </data>
+  <data name="P050303_TAKE_TIME" xml:space="preserve">
+    <value>出車時間</value>
+  </data>
+  <data name="P050303_TEL_1" xml:space="preserve">
+    <value>電話2</value>
+  </data>
+  <data name="P050303_TEL_2" xml:space="preserve">
+    <value>電話3</value>
+  </data>
+  <data name="P050303_UPD_DATE" xml:space="preserve">
+    <value>包裝結束</value>
+  </data>
+  <data name="P0503040000_AllocationNoA" xml:space="preserve">
+    <value>單號</value>
+  </data>
+  <data name="P0503040000_AllocationNoB" xml:space="preserve">
+    <value>產生補貨調撥單</value>
+  </data>
+  <data name="P0503040000_AllotStocksSuccess" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="P0503040000_Calculation" xml:space="preserve">
+    <value>總庫試算</value>
+  </data>
+  <data name="P0503040000_CalculationFinish" xml:space="preserve">
+    <value>試算完成！</value>
+  </data>
+  <data name="P0503040000_CheckYesNo" xml:space="preserve">
+    <value>請問是否</value>
+  </data>
+  <data name="P0503040100_AllotQty" xml:space="preserve">
+    <value>配庫數量</value>
+  </data>
+  <data name="P0503040100_AllotResult" xml:space="preserve">
+    <value>分配結果</value>
+  </data>
+  <data name="P0503040100_AreaDelvRatio" xml:space="preserve">
+    <value>各儲區出貨占比</value>
+  </data>
+  <data name="P0503040100_AreaName" xml:space="preserve">
+    <value>儲區名稱</value>
+  </data>
+  <data name="P0503040100_CalNo" xml:space="preserve">
+    <value>試算編號</value>
+  </data>
+  <data name="P0503040100_CustOrdNo" xml:space="preserve">
+    <value>貨主單號</value>
+  </data>
+  <data name="P0503040100_DelvQty" xml:space="preserve">
+    <value>出貨數</value>
+  </data>
+  <data name="P0503040100_DelvRatio" xml:space="preserve">
+    <value>出貨占比</value>
+  </data>
+  <data name="P0503040100_ItemOutOfStock" xml:space="preserve">
+    <value>商品缺貨明細</value>
+  </data>
+  <data name="P0503040100_OrdNo" xml:space="preserve">
+    <value>訂單編號</value>
+  </data>
+  <data name="P0503040100_OrdQty" xml:space="preserve">
+    <value>訂購數量</value>
+  </data>
+  <data name="P0503040100_OrdSeq" xml:space="preserve">
+    <value>訂單序號</value>
+  </data>
+  <data name="P0503040100_OutOfStockOrder" xml:space="preserve">
+    <value>缺貨訂單</value>
+  </data>
+  <data name="P0503040100_OutOfStockOrderDetail" xml:space="preserve">
+    <value>缺貨訂單明細</value>
+  </data>
+  <data name="P0503040100_PickStockQty" xml:space="preserve">
+    <value>揀貨區庫存數</value>
+  </data>
+  <data name="P0503040100_QueryDetail" xml:space="preserve">
+    <value>查詢明細</value>
+  </data>
+  <data name="P0503040100_ReSupplyStockQty" xml:space="preserve">
+    <value>補區庫存數</value>
+  </data>
+  <data name="P0503040100_ReSupplySuggest" xml:space="preserve">
+    <value>執行補貨調撥</value>
+  </data>
+  <data name="P0503040100_SugResupplyStockQty" xml:space="preserve">
+    <value>建議補貨庫存數</value>
+  </data>
+  <data name="P0503040100_SugVirtualStockQty" xml:space="preserve">
+    <value>建議虛擬儲位回復數</value>
+  </data>
+  <data name="P0503040100_TotalOrdQty" xml:space="preserve">
+    <value>總訂購數</value>
+  </data>
+  <data name="P0503040100_TotalOutStockQty" xml:space="preserve">
+    <value>缺貨數</value>
+  </data>
+  <data name="P0503040100_TotalStockQty" xml:space="preserve">
+    <value>總庫存</value>
+  </data>
+  <data name="P0503040100_TTLItemCnt" xml:space="preserve">
+    <value>品項數(實際/預計)</value>
+  </data>
+  <data name="P0503040100_TTLOrderCnt" xml:space="preserve">
+    <value>訂單數(實際/預計)</value>
+  </data>
+  <data name="P0503040100_TTLQty" xml:space="preserve">
+    <value>出貨數(實際/預計)</value>
+  </data>
+  <data name="P0503040100_TTLRetailCnt" xml:space="preserve">
+    <value>門店數(實際/預計)</value>
+  </data>
+  <data name="P0503040100_TTLShelfNo" xml:space="preserve">
+    <value>貨架數</value>
+  </data>
+  <data name="P0503040100_VirtualStockQty" xml:space="preserve">
+    <value>虛擬儲位可回復庫存數</value>
+  </data>
+  <data name="P0503040100_WarehouseName" xml:space="preserve">
+    <value>倉庫名稱</value>
+  </data>
+  <data name="P050304_CUST_COST" xml:space="preserve">
+    <value>貨主自訂分類</value>
+  </data>
+  <data name="P050304_DelvWay" xml:space="preserve">
+    <value>配送方式必須為「自取」或「宅配」</value>
+  </data>
+  <data name="P050304_ExcelOrderTypeError" xml:space="preserve">
+    <value>訂單類型必須為「B2B」或「B2C」</value>
+  </data>
+  <data name="P050304_RETAIL_CODE" xml:space="preserve">
+    <value>客戶編號</value>
+  </data>
+  <data name="P0503050000_CalCreatDate" xml:space="preserve">
+    <value>試算建立日期</value>
+  </data>
+  <data name="P0503050000_CalNo" xml:space="preserve">
+    <value>試算編號</value>
+  </data>
+  <data name="P0503050000_CalOrdCnt" xml:space="preserve">
+    <value>訂單數(實際/預計)</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>包裝</value>
+  </data>
+  <data name="PACKAGE_NAME" xml:space="preserve">
+    <value>包裝人員</value>
+  </data>
+  <data name="PackingProgress" xml:space="preserve">
+    <value>包裝進度</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>貼上</value>
+  </data>
+  <data name="PAST_DATE" xml:space="preserve">
+    <value>配達時間</value>
+  </data>
+  <data name="PAST_NO" xml:space="preserve">
+    <value>託運單號</value>
+  </data>
+  <data name="PICKCOUNT" xml:space="preserve">
+    <value>揀貨單數</value>
+  </data>
+  <data name="PickData" xml:space="preserve">
+    <value>揀貨區資料</value>
+  </data>
+  <data name="Picking" xml:space="preserve">
+    <value>揀貨</value>
+  </data>
+  <data name="PickOrd" xml:space="preserve">
+    <value>揀貨單</value>
+  </data>
+  <data name="PickOrdDetail" xml:space="preserve">
+    <value>揀貨單分頁明細</value>
+  </data>
+  <data name="PickOrdNo" xml:space="preserve">
+    <value>揀貨單號</value>
+  </data>
+  <data name="PickOrdNoPrint" xml:space="preserve">
+    <value>揀貨單補印</value>
+  </data>
+  <data name="PickProgress" xml:space="preserve">
+    <value>揀貨進度</value>
+  </data>
+  <data name="PICK_AREA" xml:space="preserve">
+    <value>揀貨區</value>
+  </data>
+  <data name="PICK_AREA_NO" xml:space="preserve">
+    <value>揀貨區編號</value>
+  </data>
+  <data name="PICK_NAME" xml:space="preserve">
+    <value>揀貨人員</value>
+  </data>
+  <data name="PICK_QTY" xml:space="preserve">
+    <value>揀次</value>
+  </data>
+  <data name="PICK_TIME" xml:space="preserve">
+    <value>批次時段</value>
+  </data>
+  <data name="PierStatus" xml:space="preserve">
+    <value>指派狀態</value>
+  </data>
+  <data name="PIER_CODE" xml:space="preserve">
+    <value>指派碼頭</value>
+  </data>
+  <data name="PleaseCheckFileIsOpenOrCorrect" xml:space="preserve">
+    <value>請檢查匯入檔案是否正確或開啟中!</value>
+  </data>
+  <data name="POSM" xml:space="preserve">
+    <value>不包裝出貨</value>
+  </data>
+  <data name="PrintBoxNo" xml:space="preserve">
+    <value>列印箱號</value>
+  </data>
+  <data name="PrintList" xml:space="preserve">
+    <value>包裝列印表單</value>
+  </data>
+  <data name="PrintReport" xml:space="preserve">
+    <value>補印表單</value>
+  </data>
+  <data name="PRINT_RECEIPT" xml:space="preserve">
+    <value>列印發票/收據</value>
+  </data>
+  <data name="QueryResult" xml:space="preserve">
+    <value>查詢結果/設定配庫</value>
+  </data>
+  <data name="RaPier" xml:space="preserve">
+    <value>指定批次臨時碼頭</value>
+  </data>
+  <data name="RbReportTypeA" xml:space="preserve">
+    <value>列印種類</value>
+  </data>
+  <data name="RbReportTypeB" xml:space="preserve">
+    <value>播種單</value>
+  </data>
+  <data name="ReadSerialNoList" xml:space="preserve">
+    <value>包裝序號刷驗紀錄</value>
+  </data>
+  <data name="RECEIPT_ADDRESS" xml:space="preserve">
+    <value>發票地址</value>
+  </data>
+  <data name="RECEIPT_NO" xml:space="preserve">
+    <value>指定發票號碼</value>
+  </data>
+  <data name="RECEIPT_NO_HELP" xml:space="preserve">
+    <value>代產生發票號碼</value>
+  </data>
+  <data name="RECEIPT_TITLE" xml:space="preserve">
+    <value>發票抬頭</value>
+  </data>
+  <data name="RETAIL_CODE" xml:space="preserve">
+    <value>客戶代號</value>
+  </data>
+  <data name="ROUND_PIECE" xml:space="preserve">
+    <value>來回件</value>
+  </data>
+  <data name="SA" xml:space="preserve">
+    <value>SA申裝書</value>
+  </data>
+  <data name="SA_QTY" xml:space="preserve">
+    <value>SA申裝書份數</value>
+  </data>
+  <data name="SearchCUST_ORD_NO" xml:space="preserve">
+    <value>貨主單號</value>
+  </data>
+  <data name="SearchORD_NO" xml:space="preserve">
+    <value>訂單單號</value>
+  </data>
+  <data name="SelectedChannel" xml:space="preserve">
+    <value>通路</value>
+  </data>
+  <data name="SelectedDcCode" xml:space="preserve">
+    <value>出貨進度</value>
+  </data>
+  <data name="SelectedDelvType" xml:space="preserve">
+    <value>配送方式</value>
+  </data>
+  <data name="SelectedPrintStatus" xml:space="preserve">
+    <value>列印狀態</value>
+  </data>
+  <data name="SelectSTATUS" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="SEND_DATE" xml:space="preserve">
+    <value>發送日期</value>
+  </data>
+  <data name="SERIAL_NO" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="SharePercent" xml:space="preserve">
+    <value>PDA分配揀貨單比例</value>
+  </data>
+  <data name="ShippingComplete" xml:space="preserve">
+    <value>出貨完成</value>
+  </data>
+  <data name="SMALL_ORD_SEQ" xml:space="preserve">
+    <value>小單序號</value>
+  </data>
+  <data name="SOURCE_NAME" xml:space="preserve">
+    <value>來源單據</value>
+  </data>
+  <data name="SOURCE_NO" xml:space="preserve">
+    <value>來源單號</value>
+  </data>
+  <data name="SPECIAL_BUS" xml:space="preserve">
+    <value>指定專車</value>
+  </data>
+  <data name="SP_DELV" xml:space="preserve">
+    <value>特殊出貨</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>單據狀態</value>
+  </data>
+  <data name="Str5" xml:space="preserve">
+    <value>累計作業時間</value>
+  </data>
+  <data name="SUBCHANNEL" xml:space="preserve">
+    <value>子通路類型</value>
+  </data>
+  <data name="TAKE_DATE" xml:space="preserve">
+    <value>出車日期</value>
+  </data>
+  <data name="TAKE_TIME" xml:space="preserve">
+    <value>出車時段</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>電話</value>
+  </data>
+  <data name="TEL_1" xml:space="preserve">
+    <value>收貨聯絡電話1</value>
+  </data>
+  <data name="TEL_2" xml:space="preserve">
+    <value>收貨聯絡電話2</value>
+  </data>
+  <data name="TEL_AREA" xml:space="preserve">
+    <value>市話</value>
+  </data>
+  <data name="TMPR_TYPE" xml:space="preserve">
+    <value>溫層</value>
+  </data>
+  <data name="TOTALPICK_QTY" xml:space="preserve">
+    <value>總揀貨數</value>
+  </data>
+  <data name="TRAN_CODE" xml:space="preserve">
+    <value>作業類別</value>
+  </data>
+  <data name="txtBoxEndNo" xml:space="preserve">
+    <value>~</value>
+  </data>
+  <data name="txtBoxStartNo" xml:space="preserve">
+    <value>箱號</value>
+  </data>
+  <data name="txtPICK_AREA_Q" xml:space="preserve">
+    <value>　揀貨區</value>
+  </data>
+  <data name="TYPE_ID" xml:space="preserve">
+    <value>出貨倉別</value>
+  </data>
+  <data name="UPD_DATE" xml:space="preserve">
+    <value>異動時間</value>
+  </data>
+  <data name="Urgent" xml:space="preserve">
+    <value>緊急</value>
+  </data>
+  <data name="UserOperateMode" xml:space="preserve">
+    <value>配送資料</value>
+  </data>
+  <data name="VirturalPickOrdQty" xml:space="preserve">
+    <value>虛擬商品揀貨單共</value>
+  </data>
+  <data name="WAREHOUSE_NAME" xml:space="preserve">
+    <value>倉別</value>
+  </data>
+  <data name="WMSOrder" xml:space="preserve">
+    <value>出貨單</value>
+  </data>
+  <data name="WmsOrdNo" xml:space="preserve">
+    <value>出貨單號</value>
+  </data>
+  <data name="WMS_ORD_NO" xml:space="preserve">
+    <value>出貨單號</value>
+  </data>
+  <data name="P0501120000_ViewModel_UnSetCapsMaxRetailQty" xml:space="preserve">
+    <value>未設定CAPS 門店數上限數量</value>
+  </data>
+  <data name="CUST_CODE" xml:space="preserve">
+    <value>貨主自訂分類</value>
+  </data>
+  <data name="RP0501010006_TITLE" xml:space="preserve">
+    <value> 單一揀貨單</value>
+  </data>
+  <data name="IS_OUT_SERIAL_NO_READ" xml:space="preserve">
+    <value>是否出貨刷讀完成</value>
+  </data>
+  <data name="ITEM_SERIAL_NO" xml:space="preserve">
+    <value>商品序號</value>
+  </data>
+  <data name="OutSerialNo" xml:space="preserve">
+    <value>出貨序號</value>
+  </data>
+  <data name="P0501040000_CustCost" xml:space="preserve">
+    <value>客戶自訂分類</value>
+  </data>
+  <data name="P0501040000_SourceNo" xml:space="preserve">
+    <value>來源單據</value>
+  </data>
+  <data name="P0501040000_BatchPicking" xml:space="preserve">
+    <value>批次揀貨單</value>
+  </data>
+  <data name="P0501040000_ATFL_B_PICK_CNT" xml:space="preserve">
+    <value>批量揀貨
+紙本張數</value>
+  </data>
+  <data name="P0501040000_ATFL_N_PICK_CNT" xml:space="preserve">
+    <value>單一揀貨
+紙本張數</value>
+  </data>
+  <data name="P0501040000_CUST_COST" xml:space="preserve">
+    <value>客戶自訂分類</value>
+  </data>
+  <data name="P0501040000_FAST_DEAL_TYPE" xml:space="preserve">
+    <value>優先處理旗標</value>
+  </data>
+  <data name="P0501040000_ORD_TYPE" xml:space="preserve">
+    <value>單據類型</value>
+  </data>
+  <data name="P0501040000_PDA_PICK_PERCENT" xml:space="preserve">
+    <value>分配到PDA百分比</value>
+  </data>
+  <data name="P0501040000_PICK_TIME" xml:space="preserve">
+    <value>批次時段</value>
+  </data>
+  <data name="P0501040000_ReBatchPicking" xml:space="preserve">
+    <value>補揀單</value>
+  </data>
+  <data name="P0501040000_SOURCE_TYPE" xml:space="preserve">
+    <value>來源單據</value>
+  </data>
+  <data name="P0501040000_COLLECTION_CODE" xml:space="preserve">
+    <value>集貨站</value>
+  </data>
+  <data name="P0501040000_CRT_DATE" xml:space="preserve">
+    <value>建立時間</value>
+  </data>
+  <data name="P0501040000_PICK_ORD_NO" xml:space="preserve">
+    <value>揀貨單號</value>
+  </data>
+  <data name="P0501040000_PICK_TOOL" xml:space="preserve">
+    <value>揀貨工具</value>
+  </data>
+  <data name="P0501040000_ATFL_BP_PICK_CNT" xml:space="preserve">
+    <value>批量揀貨
+PDA貼紙數</value>
+  </data>
+  <data name="P0501040000_ATFL_NP_PICK_CNT" xml:space="preserve">
+    <value>單一揀貨
+PDA貼紙數</value>
+  </data>
+  <data name="P0501040000_PICK_NO" xml:space="preserve">
+    <value>揀貨單號</value>
+  </data>
+  <data name="P0501040000_PrintDescription1" xml:space="preserve">
+    <value>印表機1：紙本揀貨單</value>
+  </data>
+  <data name="P0501040000_PrintDescription2" xml:space="preserve">
+    <value>標籤印表機：揀貨貼紙</value>
+  </data>
+  <data name="P0501040000_ReprintPickNo" xml:space="preserve">
+    <value>補印揀貨單</value>
+  </data>
+  <data name="P0501040000_UnprintedpickNo" xml:space="preserve">
+    <value>未列印的揀貨單</value>
+  </data>
+  <data name="P0501040000_WMS_ORD_NO" xml:space="preserve">
+    <value>出貨單號</value>
+  </data>
+  <data name="P050104_CalcateSuccess" xml:space="preserve">
+    <value>計算成功</value>
+  </data>
+  <data name="P0501040000_OFF_AUTO_SEARCH" xml:space="preserve">
+    <value>暫停自動更新</value>
+  </data>
+  <data name="P0501040000_ON_AUTO_SEARCH" xml:space="preserve">
+    <value>啟動自動更新</value>
+  </data>
+  <data name="P050304_FAST_DEAL_TYPE" xml:space="preserve">
+    <value>優先處理旗標</value>
+  </data>
+  <data name="FAST_DEAL_TYPE" xml:space="preserve">
+    <value>優先處理旗標</value>
+  </data>
+  <data name="P0501040000_DELV_DATE" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="ArrangedInOrderOfStorage" xml:space="preserve">
+    <value>依儲位順序排列</value>
+  </data>
+  <data name="CancelPrinting" xml:space="preserve">
+    <value>取消列印</value>
+  </data>
+  <data name="Reacquire" xml:space="preserve">
+    <value>重新取得</value>
+  </data>
+  <data name="MOVE_OUT_TARGET" xml:space="preserve">
+    <value>跨庫目的地</value>
+  </data>
+  <data name="P050304_CROSS_CODE" xml:space="preserve">
+    <value>跨庫目的地</value>
+  </data>
+  <data name="P0501040000_CROSS_NAME" xml:space="preserve">
+    <value>跨庫目的地</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="P0503020000_MAKE_NO" xml:space="preserve">
+    <value>指定出貨批號</value>
+  </data>
+  <data name="P0503020000_MakeNoError" xml:space="preserve">
+    <value>貨主自訂分類為超商出貨、一般出貨，指定出貨批號不能有值</value>
+  </data>
+  <data name="P0503020000_DetailItmeCodeIsRepect" xml:space="preserve">
+    <value>不是跨庫出貨訂單明細不可重複</value>
+  </data>
+  <data name="P0503020000_DetailMakeNoIsRepect" xml:space="preserve">
+    <value>指定出貨批號不可重複</value>
+  </data>
+  <data name="P0503040000_Pls_Select_Item" xml:space="preserve">
+    <value>請勾選訂單</value>
+  </data>
+  <data name="SearchSUG_LOGISTIC_CODE" xml:space="preserve">
+    <value>建議物流商</value>
+  </data>
+</root>

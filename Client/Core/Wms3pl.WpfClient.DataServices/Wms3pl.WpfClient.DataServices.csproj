@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB389260-F6F9-4B37-9D53-6AA8FA5C0CD4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.WpfClient.DataServices</RootNamespace>
+    <AssemblyName>Wms3pl.WpfClient.DataServices</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>bpwms.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigurationHelper.cs" />
+    <Compile Include="DataServiceQueryExtensions.cs" />
+    <Compile Include="Interface\IF500101To5.cs" />
+    <Compile Include="Metadata\F00MetadataHelper.cs" />
+    <Compile Include="Metadata\F01MetadataHelper.cs" />
+    <Compile Include="Metadata\F02MetadataHelper.cs" />
+    <Compile Include="Metadata\F05MetadataHelper.cs" />
+    <Compile Include="Metadata\F14MetadataHelper.cs" />
+    <Compile Include="Metadata\F15MetadataHelper.cs" />
+    <Compile Include="Metadata\F16MetadataHelper.cs" />
+    <Compile Include="Metadata\F19MetadataHelper.cs" />
+    <Compile Include="DataContextExtension.cs" />
+    <Compile Include="Metadata\F20MetadataHelper.cs" />
+    <Compile Include="Metadata\F25MetadataHelper.cs" />
+    <Compile Include="Metadata\F50MetadataHelper.cs" />
+    <Compile Include="Metadata\F70MetadataHelper.cs" />
+    <Compile Include="Metadata\F91MetadataHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\F00DataService\F00DataService.cs" />
+    <Compile Include="Service References\F01DataService\F01DataService.cs" />
+    <Compile Include="Service References\F02DataService\F02DataService.cs" />
+    <Compile Include="Service References\F06DataService\F06DataService.cs" />
+    <Compile Include="Service References\F05DataService\F05DataService.cs" />
+    <Compile Include="Service References\F14DataService\F14DataService.cs" />
+    <Compile Include="Service References\F15DataService\F15DataService.cs" />
+    <Compile Include="Service References\F16DataService\F16DataService.cs" />
+    <Compile Include="Service References\F19DataService\F19DataService.cs" />
+    <Compile Include="Service References\F20DataService\F20DataService.cs" />
+    <Compile Include="Service References\F25DataService\F25DataService.cs" />
+    <Compile Include="Service References\F50DataService\F50DataService.cs" />
+    <Compile Include="Service References\F70DataService\F70DataService.cs" />
+    <Compile Include="Service References\F91DataService\F91DataService.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bpwms.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F00DataService.F00Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F01DataService.F01Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F02DataService.F02Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F05DataService.F05Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F15DataService.F15Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F16DataService.F16Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F19DataService.F19Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F20DataService.F20Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F25DataService.F25Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F50DataService.F50Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F54DataService.F54Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F70DataService.F70Entities.datasource" />
+    <None Include="Properties\DataSources\Wms3pl.WpfClient.DataServices.F91DataService.F91Entities.datasource" />
+    <None Include="Service References\F00DataService\ConnectedService.json" />
+    <None Include="Service References\F01DataService\ConnectedService.json" />
+    <None Include="Service References\F02DataService\ConnectedService.json" />
+    <None Include="Service References\F06DataService\ConnectedService.json" />
+    <None Include="Service References\F05DataService\ConnectedService.json" />
+    <None Include="Service References\F14DataService\ConnectedService.json" />
+    <None Include="Service References\F15DataService\ConnectedService.json" />
+    <None Include="Service References\F16DataService\ConnectedService.json" />
+    <None Include="Service References\F19DataService\ConnectedService.json" />
+    <None Include="Service References\F20DataService\ConnectedService.json" />
+    <None Include="Service References\F25DataService\ConnectedService.json" />
+    <None Include="Service References\F50DataService\ConnectedService.json" />
+    <None Include="Service References\F70DataService\ConnectedService.json" />
+    <None Include="Service References\F91DataService\ConnectedService.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wms3pl.WpfClient.Common\Wms3pl.WpfClient.Common.csproj">
+      <Project>{0c8c673b-4390-4825-8605-6b2a70095b4f}</Project>
+      <Name>Wms3pl.WpfClient.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+  </ItemGroup>
+</Project>

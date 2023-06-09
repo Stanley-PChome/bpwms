@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="P15WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P15WcfService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P15WcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P15WcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" />
+      <xsd:import schemaLocation="http://ewmsap/iWms.WebServices/P15WcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.F15" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="P15WcfService_UpdateF1510Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1510Data" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_UpdateF1510Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateF1510DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_InsertOrUpdateF151001Datas_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF151001Datas" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_InsertOrUpdateF151001Datas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrUpdateF151001DatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_DeleteF151001Datas_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF151001Datas" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_DeleteF151001Datas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteF151001DatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_GetF151001ReportDataByTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF151001ReportDataByTicket" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_GetF151001ReportDataByTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF151001ReportDataByTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_UpdateSourceNoStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSourceNoStatus" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_UpdateSourceNoStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSourceNoStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_ImportSerialNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSerialNo" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_ImportSerialNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSerialNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_ImportF150201Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF150201Data" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_ImportF150201Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportF150201DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_GetSuggestLocByF1913WithF1912MovedList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuggestLocByF1913WithF1912MovedList" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_GetSuggestLocByF1913WithF1912MovedList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuggestLocByF1913WithF1912MovedListResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_FinishedOffShelf_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishedOffShelf" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_FinishedOffShelf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinishedOffShelfResponse" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_FinishedOffShelfWithLack_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishedOffShelfWithLack" />
+  </wsdl:message>
+  <wsdl:message name="P15WcfService_FinishedOffShelfWithLack_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinishedOffShelfWithLackResponse" />
+  </wsdl:message>
+  <wsdl:portType name="P15WcfService">
+    <wsdl:operation name="UpdateF1510Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/UpdateF1510Data" message="tns:P15WcfService_UpdateF1510Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/UpdateF1510DataResponse" message="tns:P15WcfService_UpdateF1510Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF151001Datas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/InsertOrUpdateF151001Datas" message="tns:P15WcfService_InsertOrUpdateF151001Datas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/InsertOrUpdateF151001DatasResponse" message="tns:P15WcfService_InsertOrUpdateF151001Datas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF151001Datas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/DeleteF151001Datas" message="tns:P15WcfService_DeleteF151001Datas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/DeleteF151001DatasResponse" message="tns:P15WcfService_DeleteF151001Datas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF151001ReportDataByTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/GetF151001ReportDataByTicket" message="tns:P15WcfService_GetF151001ReportDataByTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/GetF151001ReportDataByTicketResponse" message="tns:P15WcfService_GetF151001ReportDataByTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSourceNoStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/UpdateSourceNoStatus" message="tns:P15WcfService_UpdateSourceNoStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/UpdateSourceNoStatusResponse" message="tns:P15WcfService_UpdateSourceNoStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSerialNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/ImportSerialNo" message="tns:P15WcfService_ImportSerialNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/ImportSerialNoResponse" message="tns:P15WcfService_ImportSerialNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportF150201Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/ImportF150201Data" message="tns:P15WcfService_ImportF150201Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/ImportF150201DataResponse" message="tns:P15WcfService_ImportF150201Data_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuggestLocByF1913WithF1912MovedList">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/GetSuggestLocByF1913WithF1912MovedList" message="tns:P15WcfService_GetSuggestLocByF1913WithF1912MovedList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/GetSuggestLocByF1913WithF1912MovedListResponse" message="tns:P15WcfService_GetSuggestLocByF1913WithF1912MovedList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishedOffShelf">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/FinishedOffShelf" message="tns:P15WcfService_FinishedOffShelf_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/FinishedOffShelfResponse" message="tns:P15WcfService_FinishedOffShelf_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishedOffShelfWithLack">
+      <wsdl:input wsaw:Action="http://tempuri.org/P15WcfService/FinishedOffShelfWithLack" message="tns:P15WcfService_FinishedOffShelfWithLack_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P15WcfService/FinishedOffShelfWithLackResponse" message="tns:P15WcfService_FinishedOffShelfWithLack_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_P15WcfService" type="tns:P15WcfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateF1510Data">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/UpdateF1510Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrUpdateF151001Datas">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/InsertOrUpdateF151001Datas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteF151001Datas">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/DeleteF151001Datas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF151001ReportDataByTicket">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/GetF151001ReportDataByTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSourceNoStatus">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/UpdateSourceNoStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSerialNo">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/ImportSerialNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportF150201Data">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/ImportF150201Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuggestLocByF1913WithF1912MovedList">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/GetSuggestLocByF1913WithF1912MovedList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinishedOffShelf">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/FinishedOffShelf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinishedOffShelfWithLack">
+      <soap:operation soapAction="http://tempuri.org/P15WcfService/FinishedOffShelfWithLack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="P15WcfService">
+    <wsdl:port name="BasicHttpBinding_P15WcfService" binding="tns:BasicHttpBinding_P15WcfService">
+      <soap:address location="http://ewmsap/iWms.WebServices/P15WcfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

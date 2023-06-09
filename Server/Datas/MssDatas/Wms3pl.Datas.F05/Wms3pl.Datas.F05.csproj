@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1DB887E-DEB2-43C3-9F48-BC484186EF97}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wms3pl.Datas.F05</RootNamespace>
+    <AssemblyName>Wms3pl.Datas.F05</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.Abstractions.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.Relational.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.EntityFrameworkCore.SqlServer.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Caching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Caching.Memory.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+    <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlClient, Version=4.5.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Data.SqlClient.4.6.1\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="linq\F05000101Repository.cs" />
+    <Compile Include="linq\F050001Repository.cs" />
+    <Compile Include="linq\F05000201Repository.cs" />
+    <Compile Include="linq\F050002Repository.cs" />
+    <Compile Include="linq\F05000301Repository.cs" />
+    <Compile Include="linq\F050003Repository.cs" />
+    <Compile Include="linq\F050004Repository.cs" />
+    <Compile Include="linq\F050006Repository.cs" />
+    <Compile Include="linq\F050007Repository.cs" />
+    <Compile Include="linq\F0500Repository.cs" />
+    <Compile Include="linq\F05010103Repository.cs" />
+    <Compile Include="linq\F050101Repository.cs" />
+    <Compile Include="linq\F050101Repository.part1.cs" />
+    <Compile Include="linq\F050102Repository.cs" />
+    <Compile Include="linq\F05010301Repository.cs" />
+    <Compile Include="linq\F050104Repository.cs" />
+    <Compile Include="linq\F050103Repository.cs" />
+    <Compile Include="linq\F0501_HISTORYRepository.cs" />
+    <Compile Include="linq\F0501Repository.cs" />
+    <Compile Include="linq\F05030101Repository.cs" />
+    <Compile Include="linq\F050301Repository.cs" />
+    <Compile Include="linq\F050301Repository.part1.cs" />
+    <Compile Include="linq\F050301Repository.part2.cs" />
+    <Compile Include="linq\F050301Repository.part3.cs" />
+    <Compile Include="linq\F05030201Repository.cs" />
+    <Compile Include="linq\F05030202Repository.cs" />
+    <Compile Include="linq\F050302Repository.cs" />
+    <Compile Include="linq\F050303Repository.cs" />
+    <Compile Include="linq\F050305Repository.cs" />
+    <Compile Include="linq\F050304Repository.cs" />
+    <Compile Include="linq\F050306_HISTORYRepository.cs" />
+    <Compile Include="linq\F050306Repository.cs" />
+    <Compile Include="linq\F050801Repository.cs" />
+    <Compile Include="linq\F050801Repository.part1.cs" />
+    <Compile Include="linq\F050802Repository.cs" />
+    <Compile Include="linq\F050803Repository.cs" />
+    <Compile Include="linq\F05080401Repository.cs" />
+    <Compile Include="linq\F050804Repository.cs" />
+    <Compile Include="linq\F05080501Repository.cs" />
+    <Compile Include="linq\F05080502Repository.cs" />
+    <Compile Include="linq\F05080503Repository.cs" />
+    <Compile Include="linq\F05080504Repository.cs" />
+    <Compile Include="linq\F05080506Repository.cs" />
+    <Compile Include="linq\F05080505Repository.cs" />
+    <Compile Include="linq\F050805Repository.cs" />
+    <Compile Include="linq\F050901Repository.cs" />
+    <Compile Include="linq\F050901Repository.part1.cs" />
+    <Compile Include="linq\F05120101Repository.cs" />
+    <Compile Include="linq\F051201Repository.cs" />
+    <Compile Include="linq\F051202Repository.cs" />
+    <Compile Include="linq\F051203Repository.cs" />
+    <Compile Include="linq\F05120601Repository.cs" />
+    <Compile Include="linq\F051206Repository.cs" />
+    <Compile Include="linq\F051301Repository.cs" />
+    <Compile Include="linq\F051301_HISTORYRepository.cs" />
+    <Compile Include="linq\F0513Repository.cs" />
+    <Compile Include="linq\F051401Repository.cs" />
+    <Compile Include="linq\F051402Repository.cs" />
+    <Compile Include="linq\F051501Repository.cs" />
+    <Compile Include="linq\F051502Repository.cs" />
+    <Compile Include="linq\F051503Repository.cs" />
+    <Compile Include="linq\F051504Repository.cs" />
+    <Compile Include="linq\F0515Repository.cs" />
+    <Compile Include="linq\F051601Repository.cs" />
+    <Compile Include="linq\F051602Repository.cs" />
+    <Compile Include="linq\F051803Repository.cs" />
+    <Compile Include="linq\F051802Repository.cs" />
+    <Compile Include="linq\F051801Repository.cs" />
+    <Compile Include="linq\F051603Repository.cs" />
+    <Compile Include="linq\F052901Repository.cs" />
+    <Compile Include="linq\F052902Repository.cs" />
+    <Compile Include="linq\F05290301Repository.cs" />
+    <Compile Include="linq\F052903Repository.cs" />
+    <Compile Include="linq\F05290501Repository.cs" />
+    <Compile Include="linq\F05290401Repository.cs" />
+    <Compile Include="linq\F052905Repository.cs" />
+    <Compile Include="linq\F052904Repository.cs" />
+    <Compile Include="linq\F05500101Repository.cs" />
+    <Compile Include="linq\F05500103Repository.cs" />
+    <Compile Include="linq\F05500102Repository.cs" />
+    <Compile Include="linq\F055004Repository.cs" />
+    <Compile Include="linq\F055001Repository.cs" />
+    <Compile Include="linq\F055002Repository.cs" />
+    <Compile Include="linq\F055003Repository.cs" />
+    <Compile Include="linq\F056002Repository.cs" />
+    <Compile Include="linq\F056001Repository.cs" />
+    <Compile Include="linq\F055007Repository.cs" />
+    <Compile Include="linq\F055006Repository.cs" />
+    <Compile Include="linq\F055005Repository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sql\F05000101Repository.cs" />
+    <Compile Include="sql\F050001Repository.cs" />
+    <Compile Include="sql\F05000201Repository.cs" />
+    <Compile Include="sql\F050002Repository.cs" />
+    <Compile Include="sql\F05000301Repository.cs" />
+    <Compile Include="sql\F050003Repository.cs" />
+    <Compile Include="sql\F050004Repository.cs" />
+    <Compile Include="sql\F050006Repository.cs" />
+    <Compile Include="sql\F050007Repository.cs" />
+    <Compile Include="sql\F0500Repository.cs" />
+    <Compile Include="sql\F05010103Repository.cs" />
+    <Compile Include="sql\F050101Repository.cs" />
+    <Compile Include="sql\F050101Repository.part1.cs" />
+    <Compile Include="sql\F050102Repository.cs" />
+    <Compile Include="sql\F05010301Repository.cs" />
+    <Compile Include="sql\F050104Repository.cs" />
+    <Compile Include="sql\F050103Repository.cs" />
+    <Compile Include="sql\F0501Repository.cs" />
+    <Compile Include="sql\F0501_HISTORYRepository.cs" />
+    <Compile Include="sql\F05030101Repository.cs" />
+    <Compile Include="sql\F050301Repository.cs" />
+    <Compile Include="sql\F050301Repository.part1.cs" />
+    <Compile Include="sql\F050301Repository.part2.cs" />
+    <Compile Include="sql\F050301Repository.part3.cs" />
+    <Compile Include="sql\F05030201Repository.cs" />
+    <Compile Include="sql\F05030202Repository.cs" />
+    <Compile Include="sql\F050302Repository.cs" />
+    <Compile Include="sql\F050303Repository.cs" />
+    <Compile Include="sql\F050305Repository.cs" />
+    <Compile Include="sql\F050304Repository.cs" />
+    <Compile Include="sql\F050306_HISTORYRepository.cs" />
+    <Compile Include="sql\F050306Repository.cs" />
+    <Compile Include="sql\F050801Repository.cs" />
+    <Compile Include="sql\F050801Repository.part1.cs" />
+    <Compile Include="sql\F050802Repository.cs" />
+    <Compile Include="sql\F050803Repository.cs" />
+    <Compile Include="sql\F05080401Repository.cs" />
+    <Compile Include="sql\F050804Repository.cs" />
+    <Compile Include="sql\F05080501Repository.cs" />
+    <Compile Include="sql\F05080502Repository.cs" />
+    <Compile Include="sql\F05080503Repository.cs" />
+    <Compile Include="sql\F05080504Repository.cs" />
+    <Compile Include="sql\F05080505Repository.cs" />
+    <Compile Include="sql\F05080506Repository.cs" />
+    <Compile Include="sql\F050805Repository.cs" />
+    <Compile Include="sql\F050901Repository.cs" />
+    <Compile Include="sql\F050901Repository.part1.cs" />
+    <Compile Include="sql\F05120101Repository.cs" />
+    <Compile Include="sql\F051201Repository.cs" />
+    <Compile Include="sql\F051202Repository.cs" />
+    <Compile Include="sql\F051203Repository.cs" />
+    <Compile Include="sql\F05120601Repository.cs" />
+    <Compile Include="sql\F051206Repository.cs" />
+    <Compile Include="sql\F051301_HISTORYRepository.cs" />
+    <Compile Include="sql\F051301Repository.cs" />
+    <Compile Include="sql\F0513Repository.cs" />
+    <Compile Include="sql\F051401Repository.cs" />
+    <Compile Include="sql\F051402Repository.cs" />
+    <Compile Include="sql\F051501Repository.cs" />
+    <Compile Include="sql\F051502Repository.cs" />
+    <Compile Include="sql\F051503Repository.cs" />
+    <Compile Include="sql\F051504Repository.cs" />
+    <Compile Include="sql\F0515Repository.cs" />
+    <Compile Include="sql\F051601Repository.cs" />
+    <Compile Include="sql\F051602Repository.cs" />
+    <Compile Include="sql\F051803Repository.cs" />
+    <Compile Include="sql\F051802Repository.cs" />
+    <Compile Include="sql\F051801Repository.cs" />
+    <Compile Include="sql\F051603Repository.cs" />
+    <Compile Include="sql\F052901Repository.cs" />
+    <Compile Include="sql\F052902Repository.cs" />
+    <Compile Include="sql\F05290301Repository.cs" />
+    <Compile Include="sql\F052903Repository.cs" />
+    <Compile Include="sql\F05290401Repository.cs" />
+    <Compile Include="sql\F052904Repository.cs" />
+    <Compile Include="sql\F05290501Repository.cs" />
+    <Compile Include="sql\F052905Repository.cs" />
+    <Compile Include="sql\F05500101Repository.cs" />
+    <Compile Include="sql\F05500103Repository.cs" />
+    <Compile Include="sql\F05500102Repository.cs" />
+    <Compile Include="sql\F055004Repository.cs" />
+    <Compile Include="sql\F055001Repository.cs" />
+    <Compile Include="sql\F055002Repository.cs" />
+    <Compile Include="sql\F055003Repository.cs" />
+    <Compile Include="sql\F056002Repository.cs" />
+    <Compile Include="sql\F056001Repository.cs" />
+    <Compile Include="sql\F055007Repository.cs" />
+    <Compile Include="sql\F055006Repository.cs" />
+    <Compile Include="sql\F055005Repository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2fa6f2b6-e072-437a-8096-7aec69b461a1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{d3dc1679-3bfe-47b1-9302-9a17b90cd9f9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{f8f52a2a-9c65-4b62-912f-4146b62aab72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
+      <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
+      <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

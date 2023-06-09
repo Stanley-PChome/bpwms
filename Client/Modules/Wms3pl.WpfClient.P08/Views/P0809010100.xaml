@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiLib:Wms3plWindow x:Class="Wms3pl.WpfClient.P08.Views.P0809010100" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:uiLib="clr-namespace:Wms3pl.WpfClient.UILib;assembly=Wms3pl.WpfClient.UILib" xmlns:controls="clr-namespace:Wms3pl.WpfClient.UILib.Controls;assembly=Wms3pl.WpfClient.UILib" xmlns:common="clr-namespace:Wms3pl.WpfClient.Common;assembly=Wms3pl.WpfClient.Common" xmlns:Properties="clr-namespace:Wms3pl.WpfClient.P08.Properties" xmlns:res="clr-namespace:Wms3pl.WpfClient.Resources;assembly=Wms3pl.WpfClient.Resources" xmlns:viewModel="clr-namespace:Wms3pl.WpfClient.P08.ViewModel" x:Name="Window" Margin="0,0,0,0" HorizontalAlignment="Stretch" FontSize="16" MinWidth="600" MinHeight="500" Title="檢視封條照片" controls:PermissionService.FunctionId="P0809010100" controls:PermissionService.FunctionName="列印出車明細" controls:PermissionService.CheckPermission="False" FormException="{Binding Exception}" ResizeMode="NoResize">
+  <uiLib:Wms3plWindow.DataContext>
+    <viewModel:P0809010100_ViewModel x:Name="Vm" />
+  </uiLib:Wms3plWindow.DataContext>
+  <uiLib:Wms3plWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <common:NotConverter x:Key="NotConverter" />
+    </ResourceDictionary>
+  </uiLib:Wms3plWindow.Resources>
+  <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
+    <uiLib:BasicMaster x:Name="Master">
+      <uiLib:BasicMaster.MainContent>
+        <DockPanel Style="{StaticResource WindowDockPanelStyle}">
+          <WrapPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="5" />
+          <Viewbox>
+            <DockPanel>
+              <DockPanel DockPanel.Dock="Top">
+                <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                  <TextBlock Text="{x:Static res:Resources.Dc}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5" FontSize="40" FontStyle="Normal" />
+                  <ComboBox Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcCodes}" SelectedValue="{Binding DC_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" DisplayMemberPath="Name" DockPanel.Dock="Left" MinWidth="180" Margin="5" HorizontalAlignment="Left" IsEnabled="False" FontSize="40" />
+                  <TextBlock Text="{x:Static Properties:Resources.SearchDelvDate}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5" FontSize="40" FontStyle="Normal" />
+                  <TextBox Margin="5" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="40" AutoWordSelection="True" Width="280" IsReadOnly="True" Text="{Binding DELV_DATE,StringFormat=\{0:yyyy/MM/dd\} ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                  <!--<TextBlock Text="批次時段" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5" FontSize="40" FontStyle="Normal" />
+									<TextBox  Margin="5" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="40" AutoWordSelection="True" Width="130" IsReadOnly="True" Text="{Binding PICK_TIME ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
+                  <TextBlock Text="{x:Static Properties:Resources.SelectedChkOutTime}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5" FontSize="40" FontStyle="Normal" />
+                  <TextBox Margin="5" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="40" AutoWordSelection="True" Width="130" IsReadOnly="True" Text="{Binding CHECKOUT_TIME ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </WrapPanel>
+              </DockPanel>
+              <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <DataGrid Margin="2" Height="500" Width="500" Style="{StaticResource DgStyle}" FontSize="50" SelectedItem="{Binding SelectedData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DataList}" Name="dgList" HorizontalAlignment="left">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="" Binding="{Binding FILE_NAME}" />
+                  </DataGrid.Columns>
+                </DataGrid>
+              </StackPanel>
+              <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Image Source="{Binding ItemImageSource, UpdateSourceTrigger=PropertyChanged}" />
+              </StackPanel>
+            </DockPanel>
+          </Viewbox>
+        </DockPanel>
+      </uiLib:BasicMaster.MainContent>
+    </uiLib:BasicMaster>
+  </telerik:RadBusyIndicator>
+</uiLib:Wms3plWindow>

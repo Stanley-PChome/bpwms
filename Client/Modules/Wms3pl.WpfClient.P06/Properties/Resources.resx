@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ArrivalDateFrom" xml:space="preserve">
+    <value>指定到貨日期</value>
+  </data>
+  <data name="AUDIT_COUNT" xml:space="preserve">
+    <value>已稽核單數</value>
+  </data>
+  <data name="BatchDate" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="BATCH_NO" xml:space="preserve">
+    <value>批次號</value>
+  </data>
+  <data name="BUSINESS_NO" xml:space="preserve">
+    <value>營利編號</value>
+  </data>
+  <data name="B_PICK_QTY" xml:space="preserve">
+    <value>揀貨數</value>
+  </data>
+  <data name="cbDC_CODE_ALLOT" xml:space="preserve">
+    <value>確認缺貨資料-調撥</value>
+  </data>
+  <data name="cbRETURN_FLAG" xml:space="preserve">
+    <value>處理結果</value>
+  </data>
+  <data name="cbSTATUS" xml:space="preserve">
+    <value>處理狀態</value>
+  </data>
+  <data name="CHANNEL" xml:space="preserve">
+    <value>通路類型</value>
+  </data>
+  <data name="ConfirmLeakData_pick" xml:space="preserve">
+    <value>確認缺貨資料-揀貨</value>
+  </data>
+  <data name="ConfirmPartialDebit" xml:space="preserve">
+    <value>出貨單扣帳</value>
+  </data>
+  <data name="CONSIGNEE" xml:space="preserve">
+    <value>收貨人</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>聯絡人</value>
+  </data>
+  <data name="CONTACT_TEL" xml:space="preserve">
+    <value>聯絡電話</value>
+  </data>
+  <data name="CustName" xml:space="preserve">
+    <value>出貨單地址</value>
+  </data>
+  <data name="CustNo" xml:space="preserve">
+    <value>貨主單號</value>
+  </data>
+  <data name="CustOrdNo" xml:space="preserve">
+    <value>客戶代號</value>
+  </data>
+  <data name="CUST_COST" xml:space="preserve">
+    <value>貨主自定分類</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>出貨扣帳</value>
+  </data>
+  <data name="DEBIT_COUNT" xml:space="preserve">
+    <value>已扣帳單數</value>
+  </data>
+  <data name="DELV_DATE" xml:space="preserve">
+    <value>批次日期</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>批次明細</value>
+  </data>
+  <data name="DgList" xml:space="preserve">
+    <value>批次</value>
+  </data>
+  <data name="ErrorQty" xml:space="preserve">
+    <value>錯誤數</value>
+  </data>
+  <data name="ImportSerial" xml:space="preserve">
+    <value>匯入序號</value>
+  </data>
+  <data name="ISPASSk__BackingField" xml:space="preserve">
+    <value>通過</value>
+  </data>
+  <data name="ISSELECTED" xml:space="preserve">
+    <value>刪除明細</value>
+  </data>
+  <data name="ITEM_CODE" xml:space="preserve">
+    <value>品號</value>
+  </data>
+  <data name="ITEM_COLOR" xml:space="preserve">
+    <value>顏色</value>
+  </data>
+  <data name="ITEM_NAME" xml:space="preserve">
+    <value>品名</value>
+  </data>
+  <data name="ITEM_SIZE" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="ITEM_SPEC" xml:space="preserve">
+    <value>規格</value>
+  </data>
+  <data name="LACK_QTY" xml:space="preserve">
+    <value>缺貨數</value>
+  </data>
+  <data name="MEMO" xml:space="preserve">
+    <value>注意事項</value>
+  </data>
+  <data name="NeedScanQty" xml:space="preserve">
+    <value>應刷數</value>
+  </data>
+  <data name="NOSHIP_COUNT" xml:space="preserve">
+    <value>不出貨單數</value>
+  </data>
+  <data name="NOTE" xml:space="preserve">
+    <value>備註</value>
+  </data>
+  <data name="OrderDetail" xml:space="preserve">
+    <value>訂單明細</value>
+  </data>
+  <data name="OrdNo" xml:space="preserve">
+    <value>訂單編號</value>
+  </data>
+  <data name="ORD_DATE" xml:space="preserve">
+    <value>訂單日期</value>
+  </data>
+  <data name="ORD_QTY" xml:space="preserve">
+    <value>訂單數量</value>
+  </data>
+  <data name="ORD_TYPE" xml:space="preserve">
+    <value>訂單類型</value>
+  </data>
+  <data name="P0601030000_ViewModel_ChkRecoverVirtualLoc" xml:space="preserve">
+    <value>確定要將已選擇的訂單做虛擬儲位回復?</value>
+  </data>
+  <data name="P0601030000_ViewModel_SelectBatchTime" xml:space="preserve">
+    <value>請先選擇批次時間</value>
+  </data>
+  <data name="P0601030000_ViewModel_SelectBathcDate" xml:space="preserve">
+    <value>請先選擇批次日期</value>
+  </data>
+  <data name="P0601030000_ViewModel_SelectDC" xml:space="preserve">
+    <value>請先選擇物流中心</value>
+  </data>
+  <data name="P0601030000_ViewModel_selectedOrdNoList" xml:space="preserve">
+    <value>請先選擇要回復的訂單編號</value>
+  </data>
+  <data name="P0601030000_ViewModel_VirtualLocRecoverConfirm" xml:space="preserve">
+    <value>虛擬儲位回復確認</value>
+  </data>
+  <data name="P0602010000_ViewModel_CancelORD" xml:space="preserve">
+    <value>取消訂單</value>
+  </data>
+  <data name="P0602010000_ViewModel_CheckItemDetail" xml:space="preserve">
+    <value>請勾選商品明細</value>
+  </data>
+  <data name="P0602010000_ViewModel_Close" xml:space="preserve">
+    <value>結案</value>
+  </data>
+  <data name="P0602010000_ViewModel_Confirmed" xml:space="preserve">
+    <value>已確認</value>
+  </data>
+  <data name="P0602010000_ViewModel_Cust_Check" xml:space="preserve">
+    <value>貨主待確認</value>
+  </data>
+  <data name="P0602010000_ViewModel_FoundItem" xml:space="preserve">
+    <value>找到商品</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyGreaterThanZero" xml:space="preserve">
+    <value>缺貨數必須大於0</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyNotOverPickQty" xml:space="preserve">
+    <value>缺貨數不可超過揀貨數</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyNotOverTransQty" xml:space="preserve">
+    <value>缺貨數不可超過調撥數</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStockQtyNotZero" xml:space="preserve">
+    <value>缺貨數不能為 0</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStock_Check" xml:space="preserve">
+    <value>缺貨待確認</value>
+  </data>
+  <data name="P0602010000_ViewModel_OutofStock_Shipment" xml:space="preserve">
+    <value>缺品出貨</value>
+  </data>
+  <data name="PassQty" xml:space="preserve">
+    <value>通過數</value>
+  </data>
+  <data name="Pick" xml:space="preserve">
+    <value>揀貨</value>
+  </data>
+  <data name="PickLeakProcess" xml:space="preserve">
+    <value>揀貨缺貨處理</value>
+  </data>
+  <data name="PICK_ORD_SEQ" xml:space="preserve">
+    <value>揀貨項次</value>
+  </data>
+  <data name="PICK_TIME" xml:space="preserve">
+    <value>批次時段</value>
+  </data>
+  <data name="PrintInvoice" xml:space="preserve">
+    <value>列印發票</value>
+  </data>
+  <data name="PRINT_RECEIPT" xml:space="preserve">
+    <value>列印發票/收據</value>
+  </data>
+  <data name="REASON" xml:space="preserve">
+    <value>缺貨原因</value>
+  </data>
+  <data name="RECEIPT_ADDRESS" xml:space="preserve">
+    <value>發票地址</value>
+  </data>
+  <data name="RECEIPT_NO" xml:space="preserve">
+    <value>指定發票號碼</value>
+  </data>
+  <data name="RECEIPT_TITLE" xml:space="preserve">
+    <value>發票抬頭</value>
+  </data>
+  <data name="RetailCode" xml:space="preserve">
+    <value>客戶名稱</value>
+  </data>
+  <data name="ScannedQty" xml:space="preserve">
+    <value>已刷數</value>
+  </data>
+  <data name="SearchOrdNo" xml:space="preserve">
+    <value>查詢單號</value>
+  </data>
+  <data name="SearchOrdNo1" xml:space="preserve">
+    <value>訂單單號</value>
+  </data>
+  <data name="SerialNo" xml:space="preserve">
+    <value>序號/箱號</value>
+  </data>
+  <data name="SERIAL_NOk__BackingField" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="SHOWQUERYPAGE" xml:space="preserve">
+    <value>缺貨處理設定</value>
+  </data>
+  <data name="SOURCE_NAME" xml:space="preserve">
+    <value>來源單據</value>
+  </data>
+  <data name="SP_DELV" xml:space="preserve">
+    <value>特殊出貨</value>
+  </data>
+  <data name="SRC_QTY" xml:space="preserve">
+    <value>調撥數</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>單據狀態</value>
+  </data>
+  <data name="tbPICK_ORD_NO" xml:space="preserve">
+    <value>揀貨單號</value>
+  </data>
+  <data name="tbPICK_ORD_NO_ALLOT" xml:space="preserve">
+    <value>調撥單號</value>
+  </data>
+  <data name="TEL_1" xml:space="preserve">
+    <value>收貨聯絡電話1</value>
+  </data>
+  <data name="TEL_2" xml:space="preserve">
+    <value>收貨聯絡電話2</value>
+  </data>
+  <data name="TEL_AREA" xml:space="preserve">
+    <value>市話</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>調撥</value>
+  </data>
+  <data name="TRAN_CODE" xml:space="preserve">
+    <value>作業類別</value>
+  </data>
+  <data name="TxtPICK_TIME" xml:space="preserve">
+    <value>批次時段</value>
+  </data>
+  <data name="TYPE_ID" xml:space="preserve">
+    <value>出貨倉別</value>
+  </data>
+  <data name="WMS_ORD_COUNT" xml:space="preserve">
+    <value>總出貨單數</value>
+  </data>
+  <data name="WMS_ORD_NO" xml:space="preserve">
+    <value>出貨單號</value>
+  </data>
+  <data name="WorkType" xml:space="preserve">
+    <value>作業類型</value>
+  </data>
+  <data name="TransferToManagerWarehouse" xml:space="preserve">
+    <value>轉移至管理倉</value>
+  </data>
+  <data name="OrderType" xml:space="preserve">
+    <value>訂單類型</value>
+  </data>
+  <data name="QueryAllOrder" xml:space="preserve">
+    <value>查詢全部訂單</value>
+  </data>
+  <data name="QueryB2COrder" xml:space="preserve">
+    <value>查詢B2C訂單</value>
+  </data>
+  <data name="QueryNotOrder" xml:space="preserve">
+    <value>查詢非出貨單</value>
+  </data>
+  <data name="PICK_LOC" xml:space="preserve">
+    <value>原揀貨單儲位</value>
+  </data>
+  <data name="ContainerBarcode" xml:space="preserve">
+    <value>容器條碼</value>
+  </data>
+  <data name="CONTAINER_CODE" xml:space="preserve">
+    <value>容器編碼</value>
+  </data>
+  <data name="ModifyQtyOutOfStock" xml:space="preserve">
+    <value>修改缺貨數</value>
+  </data>
+  <data name="PickLoc" xml:space="preserve">
+    <value>揀貨儲位</value>
+  </data>
+  <data name="ConfirmExit" xml:space="preserve">
+    <value>確定要離開?</value>
+  </data>
+  <data name="LackQtyNotGreaterOrigin" xml:space="preserve">
+    <value>缺貨數不可大於原數量</value>
+  </data>
+  <data name="LackQtyNotLessZero" xml:space="preserve">
+    <value>缺貨數不可小於0</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>訊息</value>
+  </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>商品搜尋</value>
+  </data>
+</root>
