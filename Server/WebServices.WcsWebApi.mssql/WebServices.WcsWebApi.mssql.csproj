@@ -245,7 +245,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="WebServices.WebApi.Common">
-      <HintPath>..\Common\WebServices.WebApi.Common\bin\Release\WebServices.WebApi.Common.dll</HintPath>
+      <HintPath>..\Common\WebServices.WebApi.Common\bin\Debug\WebServices.WebApi.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
