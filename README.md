@@ -43,21 +43,23 @@ https://www.microsoft.com/en-us/download/details.aspx?id=15104
 
 ### 1.5 下載程式
 
+XXX 是您在 github 所建立的 token
+
 ```powershell
-git clone https://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@github.com/PChome-logistics/cs-bpwms-202305.git
+git clone https://XXX@github.com/PChome-logistics/cs-bpwms.git
 ```
 
-> 假設目錄在 C:\cs-bpwms-202305
+> 假設目錄在 C:\cs-bpwms
 
 ### 1.6 手動加入憑證
 
-Double-click 此檔案 `C:\cs-bpwms-202305\WMS_PC\Client\WpfClient\WpfClient_TemporaryKey.pfx`
+Double-click 此檔案 `C:\cs-bpwms\WMS_PC\Client\WpfClient\WpfClient_TemporaryKey.pfx`
 
 啟動憑證匯入精靈，遇到輸入密碼時請輸入`bankpro`，接下來一直按 NEXT 到結束。
 
 ### 1.7 編譯程式
 
-用 Visual Studio 2017 開啟 `C:\cs-bpwms-202305\WMS_PC\iWms_mss_ph.sln`。
+用 Visual Studio 2017 開啟 `C:\cs-bpwms\WMS_PC\iWms_mss_ph.sln`。
 
 依序重新建置 Client 目錄下的專案：
 
