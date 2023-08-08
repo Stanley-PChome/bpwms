@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -211,11 +212,12 @@ namespace Wms3pl.Datas.F16
                 new SqlParameter("@p3", dcCode),
                 new SqlParameter("@p4", gupCode),
                 new SqlParameter("@p5", custCode),
-                new SqlParameter("@p6", wmsOrdNo)
+                new SqlParameter("@p6", wmsOrdNo),
+                new SqlParameter("@p7", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             var sql = @"
-                        UPDATE X SET PROC_FLAG=@p0, UPD_DATE = dbo.GetSysDate(), UPD_STAFF=@p1, UPD_NAME=@p2 FROM F160204 X
+                        UPDATE X SET PROC_FLAG=@p0, UPD_DATE = @p7, UPD_STAFF=@p1, UPD_NAME=@p2 FROM F160204 X
                         WHERE EXISTS(
                         SELECT A.DC_CODE, A.GUP_CODE, A.CUST_CODE, A.RTN_WMS_NO, A.RTN_WMS_SEQ 
 						FROM F160204 A

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -12,19 +13,19 @@ namespace Wms3pl.Datas.F05
 	{
         public void UpdateStatusByBatchNo(string dcCode, string gupCode, string custCode, string batchNo, string status)
         {
-            var sql = @" UPDATE A SET A.STATUS=@p0,UPD_DATE =dbo.GetSysDate(),UPD_STAFF=@p1,UPD_NAME =@p2 from F051502 A
+            var sql = @" UPDATE A SET A.STATUS=@p0,UPD_DATE =@p1,UPD_STAFF=@p2,UPD_NAME =@p3 from F051502 A
 									WHERE EXISTS(SELECT DC_CODE,GUP_CODE,CUST_CODE,BATCH_PICK_NO
 											FROM F051501 B
-										WHERE B.DC_CODE =@p3
-											AND B.GUP_CODE =@p4
-											AND B.CUST_CODE =@p5
-											AND B.BATCH_NO = @p6
+										WHERE B.DC_CODE =@p4
+											AND B.GUP_CODE =@p5
+											AND B.CUST_CODE =@p6
+											AND B.BATCH_NO = @p7
 											AND B.DC_CODE = A.DC_CODE
 											AND B.GUP_CODE = A.GUP_CODE
 											AND B.CUST_CODE = A.CUST_CODE
 											AND B.BATCH_PICK_NO = A.BATCH_PICK_NO
 											)";
-            var parms = new List<object> { status, Current.Staff, Current.StaffName, dcCode, gupCode, custCode, batchNo };
+            var parms = new List<object> { status, DateTime.Now, Current.Staff, Current.StaffName, dcCode, gupCode, custCode, batchNo };
             ExecuteSqlCommand(sql, parms.ToArray());
         }
 

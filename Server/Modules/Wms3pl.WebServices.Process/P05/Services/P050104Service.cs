@@ -116,11 +116,11 @@ namespace Wms3pl.WebServices.Process.P05.Services
 			#region 補揀單修改揀貨工具
 			if (changePickToolList.Any())
 			{
-				var fillF051201s = f051201Repo.GetDatasByChangePickToolDatas(changePickToolList);
+        var matchPickOrder = f051201Repo.GetDataByPickNoList(dcCode, gupCode, custCode, changePickToolList.Select(o => o.PICK_ORD_NO).ToList());
 
 				changePickToolList.ForEach(obj =>
 				{
-					var f051201 = fillF051201s.Where(x => x.DC_CODE == obj.DC_CODE && x.GUP_CODE == obj.GUP_CODE && x.CUST_CODE == obj.CUST_CODE && x.PICK_ORD_NO == obj.PICK_ORD_NO).FirstOrDefault();
+					var f051201 = matchPickOrder.Where(x => x.DC_CODE == obj.DC_CODE && x.GUP_CODE == obj.GUP_CODE && x.CUST_CODE == obj.CUST_CODE && x.PICK_ORD_NO == obj.PICK_ORD_NO).FirstOrDefault();
 
 					if (f051201 != null && f051201.PICK_TOOL != obj.PICK_TOOL)
 					{
@@ -346,7 +346,7 @@ namespace Wms3pl.WebServices.Process.P05.Services
 															 y.DELV_DATE == rePickNoList.DELV_DATE &&
 															 y.PICK_TIME == rePickNoList.PICK_TIME);
 
-				var f051202s = f051202Repo.GetDatasByPickNosNotStatus(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, "9", f051201.PICK_ORD_NO).ToList();
+				var f051202s = f051202Repo.GetDatasByPickNosNotStatus(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, "9", new List<string> { f051201.PICK_ORD_NO }).ToList();
 
 				var routeType = f0513.SOURCE_TYPE == "13" ? 2 : 1;
 				var res = UpdateRouteReq(updateF051202s, null, pickRouteService, null, f051202s, routeType, f051201, true);

@@ -5,6 +5,7 @@ using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 using System.Data.SqlClient;
 using System.Data;
+using System;
 
 namespace Wms3pl.Datas.F05
 {
@@ -42,12 +43,13 @@ namespace Wms3pl.Datas.F05
 				new SqlParameter("@p0",Current.Staff){SqlDbType = SqlDbType.VarChar},
 				new SqlParameter("@p1",Current.StaffName){SqlDbType = SqlDbType.NVarChar},
 				new SqlParameter("@p2",allotBatchNo){SqlDbType = SqlDbType.VarChar},
-			};
+        new SqlParameter("@p3", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 			var sql = @"  UPDATE F0501
-                    SET IS_LOCK='0',ALLOT_BATCH_NO=NULL,UPD_DATE= dbo.GetSysDate(),UPD_STAFF=@p0,UPD_NAME=@p1
+                    SET IS_LOCK='0',ALLOT_BATCH_NO=NULL,UPD_DATE= @p3,UPD_STAFF=@p0,UPD_NAME=@p1
                     WHERE ALLOT_BATCH_NO = @p2 ";
 
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
 	}
 }

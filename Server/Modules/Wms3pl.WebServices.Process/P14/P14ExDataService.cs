@@ -31,10 +31,10 @@ namespace Wms3pl.WebServices.Process.P14
 
 		[WebGet]
 		public IQueryable<InventoryDetailItem> GetInventoryDetailItems(string dcCode, string gupCode, string custCode,
-	string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode)
+	string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode, string procType)
 		{
 			var service = new P140101Service();
-			return service.GetInventoryDetailItems(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode);
+			return service.GetInventoryDetailItems(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, procType);
 		}
 
 		[WebGet]
@@ -47,10 +47,10 @@ namespace Wms3pl.WebServices.Process.P14
 
 		[WebGet]
 		public IQueryable<InventoryDetailItem> GetInventoryDetailItemsExport(string dcCode, string gupCode, string custCode,
-		string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode)
+		string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode, string procType)
 		{
 			var service = new P140101Service();
-			return service.GetInventoryDetailItemsExport(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode);
+			return service.GetInventoryDetailItemsExport(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, procType);
 		}
 
         [WebGet]
@@ -65,10 +65,10 @@ namespace Wms3pl.WebServices.Process.P14
 		}
 		[WebGet]
 		public IQueryable<InventoryItem> GetInventoryItems(string gupCode, string custCode, string type, string lType,
-			string mType, string sType,string vnrCode,string vnrName, string itemCode)
+			string mType, string sType, string vnrCode, string oriVnrCode, string vnrName, string itemCode)
 		{
 			var service = new P140101Service();
-			return service.GetInventoryItems(gupCode, custCode, type, lType, mType, sType, vnrCode, vnrName, itemCode);
+			return service.GetInventoryItems(gupCode, custCode, type, lType, mType, sType,  vnrCode, oriVnrCode, vnrName, itemCode);
 
 		}
 

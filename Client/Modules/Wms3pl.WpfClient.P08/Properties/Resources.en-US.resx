@@ -2189,4 +2189,28 @@
   <data name="CancelArriveRecord" xml:space="preserve">
     <value>CancelArriveRecord</value>
   </data>
+  <data name="BoxDetail" xml:space="preserve">
+    <value>Box Detail</value>
+  </data>
+  <data name="CloseBox" xml:space="preserve">
+    <value>Close Box</value>
+  </data>
+  <data name="DataGridRowNum" xml:space="preserve">
+    <value>Row No.</value>
+  </data>
+  <data name="MoveOutTarget" xml:space="preserve">
+    <value>MoveOutTarget</value>
+  </data>
+  <data name="OutContainerCode" xml:space="preserve">
+    <value>Out Container Code</value>
+  </data>
+  <data name="PickContainer" xml:space="preserve">
+    <value>Pick Container</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="TotalPCS" xml:space="preserve">
+    <value>Total PCS</value>
+  </data>
 </root>

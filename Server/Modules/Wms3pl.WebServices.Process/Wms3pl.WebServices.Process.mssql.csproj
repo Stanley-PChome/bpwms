@@ -94,6 +94,7 @@
     <Compile Include="P01\Services\P010101Service.cs" />
     <Compile Include="P01\Services\P010201Service.cs" />
     <Compile Include="P02\P02WcfService.cs" />
+    <Compile Include="P02\Services\P020209Service.cs" />
     <Compile Include="P02\Services\P020208Service.cs" />
     <Compile Include="P02\Services\P020105Service.cs" />
     <Compile Include="P02\Services\P020201Service.cs" />
@@ -139,6 +140,8 @@
     <Compile Include="P08\Services\P080614Service.cs" />
     <Compile Include="P08\Services\P080802Service.cs" />
     <Compile Include="P08\Services\P080803Service.cs" />
+    <Compile Include="P08\Services\P080806Service.cs" />
+    <Compile Include="P08\Services\P080805Service.cs" />
     <Compile Include="P08\Services\P080804Service.cs" />
     <Compile Include="P08\Services\P080901Service.cs" />
     <Compile Include="P08\Services\P081001Service.cs" />

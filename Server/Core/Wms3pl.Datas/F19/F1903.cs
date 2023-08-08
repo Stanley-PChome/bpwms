@@ -534,7 +534,9 @@ namespace Wms3pl.Datas.F19
     /// 驗收註記
     /// </summary>
     public string RCV_MEMO { get; set; }
-
-
+    /// <summary>
+    /// 原廠商編號
+    /// </summary>
+    public string ORI_VNR_CODE { get; set; }
   }
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.DBCore;
@@ -46,10 +48,11 @@ namespace Wms3pl.Datas.F05
 								new SqlParameter("@p2", Current.StaffName),
 								new SqlParameter("@p3", dcCode),
 								new SqlParameter("@p4", convenientCode),
-								new SqlParameter("@p5", cellCode)
-						};
+								new SqlParameter("@p5", cellCode),
+                new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
-			var sql = @" UPDATE F051801 SET STATUS = @p0, VNR_CODE = NULL, GUP_CODE = NULL, CUST_CODE = NULL, UPD_DATE = dbo.GetSysDate(), UPD_STAFF=@p1, UPD_NAME=@p2 
+			var sql = @" UPDATE F051801 SET STATUS = @p0, VNR_CODE = NULL, GUP_CODE = NULL, CUST_CODE = NULL, UPD_DATE = @p6, UPD_STAFF=@p1, UPD_NAME=@p2 
 										WHERE DC_CODE = @p3
 										AND CONVENIENT_CODE =@p4
 										AND CELL_CODE = @p5
@@ -77,15 +80,16 @@ namespace Wms3pl.Datas.F05
 								new SqlParameter("@p1", Current.StaffName),
 								new SqlParameter("@p2", dcCode),
 								new SqlParameter("@p3", exclideCellCode),
-								new SqlParameter("@p4", Current.Staff)
-						};
+								new SqlParameter("@p4", Current.Staff),
+                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
 			var sql = @" UPDATE F051801 
 									 SET STATUS='0',
 									 VNR_CODE=NULL,
 									 GUP_CODE=NULL,
 									 CUST_CODE=NULL, 
-									 UPD_DATE = dbo.GetSysDate(), 
+									 UPD_DATE = @p5, 
 									 UPD_STAFF= @p0, 
 									 UPD_NAME= @p1 
 									 WHERE DC_CODE = @p2

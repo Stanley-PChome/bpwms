@@ -23,7 +23,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 
         public ItemBindContainerData SendToP0202060300Data;
         public Action DoShowP0202060300 = delegate { };
-        public Action DoExitWin = delegate { };
+        public Action<bool> DoExitWin = delegate { };
         public P0202060100_ViewModel()
         {
             if (!IsInDesignMode)
@@ -435,7 +435,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
                 return CreateBusyAsyncCommand(
                     o => _IsSuccess = DoBindComplete(),
                     () => true,
-                    o => { if (_IsSuccess) DoExitWin(); }
+                    o => { if (_IsSuccess) DoExitWin(true); }
                     );
             }
         }

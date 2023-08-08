@@ -315,13 +315,109 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\WebServices.DataCommon\WebServices.DataCommon.csproj">
+      <Project>{2fa6f2b6-e072-437a-8096-7aec69b461a1}</Project>
+      <Name>WebServices.DataCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\WebServices.WebApi.Common\WebServices.WebApi.Common.csproj">
       <Project>{448B94B8-4B09-4F1F-BA65-1A4A55001CD5}</Project>
       <Name>WebServices.WebApi.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
+      <Project>{d3dc1679-3bfe-47b1-9302-9a17b90cd9f9}</Project>
+      <Name>Wms3pl.Datas.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Wms3pl.Datas\Wms3pl.Datas.csproj">
+      <Project>{f8f52a2a-9c65-4b62-912f-4146b62aab72}</Project>
+      <Name>Wms3pl.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
+      <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
+      <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F00\Wms3pl.Datas.F00.csproj">
+      <Project>{f9054276-1c3b-44d1-ba52-5f040a3b1488}</Project>
+      <Name>Wms3pl.Datas.F00</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F01\Wms3pl.Datas.F01.csproj">
+      <Project>{61238d14-28c6-4c66-84a1-51d134e0c9f8}</Project>
+      <Name>Wms3pl.Datas.F01</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F02\Wms3pl.Datas.F02.csproj">
+      <Project>{a82c1a68-acbb-4508-af25-6f388ffe0b7a}</Project>
+      <Name>Wms3pl.Datas.F02</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F05\Wms3pl.Datas.F05.csproj">
+      <Project>{a1db887e-deb2-43c3-9f48-bc484186ef97}</Project>
+      <Name>Wms3pl.Datas.F05</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F06\Wms3pl.Datas.F06.csproj">
+      <Project>{2006be43-61bd-4259-9255-8fb393c052e6}</Project>
+      <Name>Wms3pl.Datas.F06</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F07\Wms3pl.Datas.F07.csproj">
+      <Project>{61302189-f348-4c74-bc5e-ed5bc88a6484}</Project>
+      <Name>Wms3pl.Datas.F07</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F11\Wms3pl.Datas.F11.csproj">
+      <Project>{1c438a7a-4942-42e5-abe0-ca693d0ddfda}</Project>
+      <Name>Wms3pl.Datas.F11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F14\Wms3pl.Datas.F14.csproj">
+      <Project>{6d42aa8a-3bab-46d7-b481-07314eae47e8}</Project>
+      <Name>Wms3pl.Datas.F14</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F15\Wms3pl.Datas.F15.csproj">
+      <Project>{59e7e4d0-cc8e-4509-8f2e-ff6e28ad9857}</Project>
+      <Name>Wms3pl.Datas.F15</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F16\Wms3pl.Datas.F16.csproj">
+      <Project>{361f2c23-8fa2-4288-a36d-7ed6659abf5d}</Project>
+      <Name>Wms3pl.Datas.F16</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F19\Wms3pl.Datas.F19.csproj">
+      <Project>{d48d1f67-d7ad-4eb7-8d8a-f4f2aa085a76}</Project>
+      <Name>Wms3pl.Datas.F19</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F20\Wms3pl.Datas.F20.csproj">
+      <Project>{0f81a0e0-728f-4247-885b-6485ce150a5a}</Project>
+      <Name>Wms3pl.Datas.F20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F25\Wms3pl.Datas.F25.csproj">
+      <Project>{c0a80dfd-fbab-4717-8fe5-62d35ddbcd59}</Project>
+      <Name>Wms3pl.Datas.F25</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F50\Wms3pl.Datas.F50.csproj">
+      <Project>{ede9c7c0-211a-4549-9a78-18a5c63f947c}</Project>
+      <Name>Wms3pl.Datas.F50</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F51\Wms3pl.Datas.F51.csproj">
+      <Project>{b0a89937-c73a-4f50-b421-2cbfd94125c5}</Project>
+      <Name>Wms3pl.Datas.F51</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F70\Wms3pl.Datas.F70.csproj">
+      <Project>{066a2e2b-d78a-4379-b09d-f84798633333}</Project>
+      <Name>Wms3pl.Datas.F70</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.F91\Wms3pl.Datas.F91.csproj">
+      <Project>{5f336702-0ad9-4d39-85a4-4547a475baf7}</Project>
+      <Name>Wms3pl.Datas.F91</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datas\MssDatas\Wms3pl.Datas.Schedule\Wms3pl.Datas.Schedule.csproj">
+      <Project>{28c186d5-1ea4-4dd4-bf0b-b50a92e1b294}</Project>
+      <Name>Wms3pl.Datas.Schedule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Wms3pl.WebServices.PdaWebApi.Business\Wms3pl.WebServices.PdaWebApi.Business.mssql.csproj">
+      <Project>{ac9afc33-7b04-4927-866f-0d95a7f702c4}</Project>
+      <Name>Wms3pl.WebServices.PdaWebApi.Business.mssql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Wms3pl.WebServices.PdaWebApiLib\Wms3pl.WebServices.PdaWebApiLib.mssql.csproj">
       <Project>{101f216f-4bca-473a-ae68-5c0c8ae62a46}</Project>
       <Name>Wms3pl.WebServices.PdaWebApiLib.mssql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Wms3pl.WebServices.Shared\Wms3pl.WebServices.Shared.mssql.csproj">
+      <Project>{e8775330-cea0-4a6e-b625-e55659f4f7e4}</Project>
+      <Name>Wms3pl.WebServices.Shared.mssql</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

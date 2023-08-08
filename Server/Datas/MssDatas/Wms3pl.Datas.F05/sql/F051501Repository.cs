@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -11,9 +12,11 @@ namespace Wms3pl.Datas.F05
 	{
         public void UpdateStatusByBatcnNo(string dcCode, string gupCode, string custCode, string batchNo, string status)
         {
-            var sql = @" UPDATE F051501 SET STATUS = @p0,UPD_DATE = dbo.GetSysDate(),UPD_STAFF=@p1,UPD_NAME= @p2
-                    WHERE DC_CODE = @p3 AND GUP_CODE =@p4 AND CUST_CODE =@p5 AND BATCH_NO= @p6 ";
-            var parms = new List<object> { status, Current.Staff, Current.StaffName, dcCode, gupCode, custCode, batchNo };
+            var sql = @" UPDATE F051501 SET STATUS = @p0,UPD_DATE = @p1,UPD_STAFF=@p2,UPD_NAME= @p3
+                    WHERE DC_CODE = @p4 AND GUP_CODE =@p5 AND CUST_CODE =@p6 AND BATCH_NO= @p7 ";
+
+            var parms = new List<object> { status, DateTime.Now, Current.Staff, Current.StaffName, dcCode, gupCode, custCode, batchNo };
+
             ExecuteSqlCommand(sql, parms.ToArray());
         }
 

@@ -29,7 +29,7 @@ namespace Wms3pl.Datas.Test.F25
             string poNo = "";
             string[] wmsNo = new string[] { };
             string status = "";
-            string itemType = "";
+            string OrdProp = "";
             string retailCode = "";
             Int16? combinNo = null;
             string crtName = "";
@@ -50,7 +50,7 @@ namespace Wms3pl.Datas.Test.F25
                 poNo,
                 wmsNo,
                 status,
-                itemType,
+                OrdProp,
                 retailCode,
                 combinNo,
                 crtName,
@@ -69,7 +69,7 @@ namespace Wms3pl.Datas.Test.F25
                 poNo,
                 wmsNo,
                 status,
-                itemType,
+                OrdProp,
                 retailCode,
                 combinNo,
                 crtName,

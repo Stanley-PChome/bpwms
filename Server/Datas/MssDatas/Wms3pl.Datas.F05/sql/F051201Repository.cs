@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
@@ -1036,11 +1037,11 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
 		public void UpdateF051201PickStatus(string dcCode, string gupCode, string custCode, List<string> pickOrdNos, string pickStatus)
 		{
 			var sql = @" UPDATE F051201 
-                      SET PICK_STATUS = @p0,UPD_DATE = dbo.GetSysDate(),UPD_STAFF= @p1,UPD_NAME =@p2
-                    WHERE DC_CODE = @p3
-                      AND GUP_CODE =@p4
-                      AND CUST_CODE = @p5 ";
-			var parms = new List<object> { pickStatus, Current.Staff, Current.StaffName, dcCode, gupCode, custCode };
+                      SET PICK_STATUS = @p0,UPD_DATE = @p1,UPD_STAFF= @p2,UPD_NAME =@p3
+                    WHERE DC_CODE = @p4
+                      AND GUP_CODE =@p5
+                      AND CUST_CODE = @p6 ";
+			var parms = new List<object> { pickStatus, DateTime.Now, Current.Staff, Current.StaffName, dcCode, gupCode, custCode };
 			if (pickOrdNos.Any())
 			{
 				sql += parms.CombineSqlInParameters("AND PICK_ORD_NO", pickOrdNos);
@@ -1376,7 +1377,8 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
 						{
 								status,
 								Current.Staff,
-								Current.StaffName,
+                DateTime.Now,
+                Current.StaffName,
 								dcCode,
 								gupCode,
 								custCode,
@@ -1386,12 +1388,12 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
 			var sql = @"
 				UPDATE  F051201  SET PICK_STATUS= @p0,
                                      UPD_STAFF = @p1,
-						             UPD_DATE = dbo.GetSysDate(),
-						             UPD_NAME = @p2
-				 Where DC_CODE = @p3
-                     And GUP_CODE = @p4
-					 And CUST_CODE = @p5
-					 And PICK_ORD_NO = @p6 ";
+						             UPD_DATE = @p2,
+						             UPD_NAME = @p3
+				 Where DC_CODE = @p4
+                     And GUP_CODE = @p5
+					 And CUST_CODE = @p6
+					 And PICK_ORD_NO = @p7";
 
 			ExecuteSqlCommand(sql, parameters.ToArray());
 		}
@@ -1658,7 +1660,7 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
 			return SqlQuery<F051201WithF051202>(sql, param); 
 		}
 
-		public F051201 GetData(string dcCode,string gupCode,string custCode,string pickOrdNo)
+		public F051201 GetF051201(string dcCode, string gupCode, string custCode, string pickOrdNo)
 		{
 			var parms = new List<SqlParameter>
 			{
@@ -1667,13 +1669,63 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
 				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
 				new SqlParameter("@p3",pickOrdNo){ SqlDbType = SqlDbType.VarChar},
 			};
-			var sql = @" SELECT *
+			var sql = @" SELECT TOP (1) *
                      FROM F051201 
                     WHERE DC_CODE = @p0
                       AND GUP_CODE = @p1
                       AND CUST_CODE = @p2
                       AND PICK_ORD_NO = @p3 ";
+
 			return SqlQuery<F051201>(sql, parms.ToArray()).FirstOrDefault();
+		}
+
+    public IQueryable<F051201> GetDataByPickNoList(string dcCode, string gupCode, string custCode, List<string> pickNoList)
+    {
+      var sql = @"SELECT *
+                    FROM F051201 
+                   WHERE DC_CODE = @p0
+                     AND GUP_CODE = @p1
+                     AND CUST_CODE = @p2
+                     AND PICK_ORD_NO IN ({0})";
+
+      StringBuilder sqlIn = new StringBuilder();
+
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",dcCode) {SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p1",gupCode) {SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2",custCode) {SqlDbType = SqlDbType.VarChar}
+      };
+
+      foreach (var pickNo in pickNoList)
+      {
+        sqlIn.Append($"@p{param.Count},");
+        param.Add(new SqlParameter($"@p{param.Count}", pickNo) {SqlDbType = SqlDbType.VarChar});
+      }
+
+      sqlIn.Remove(sqlIn.Length - 1, 1);
+      sql = string.Format(sql, sqlIn.ToString());
+
+      return SqlQuery<F051201>(sql, param.ToArray());
+    }
+
+		public IQueryable<F051201> GetF051201s(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+			};
+			
+			var sql = @" SELECT *
+                     FROM F051201 
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2 ";
+			sql += parms.CombineSqlInParameters("AND PICK_ORD_NO", pickOrdNos, SqlDbType.VarChar); 
+
+			return SqlQuery<F051201>(sql, parms.ToArray());
 		}
 	}
 }

@@ -220,7 +220,7 @@ namespace Wms3pl.Datas.F00
           sql = APISQL;
       }
 
-      var result = SqlQuery<F0090x>(sql, para.ToArray()).ToList();
+      var result = SqlQueryWithSqlParameterSetDbType<F0090x>(sql, para.ToArray()).ToList();
 
       return result.AsQueryable();
     }
@@ -257,7 +257,7 @@ namespace Wms3pl.Datas.F00
         new SqlParameter("@p2",SqlDbType.DateTime2){ Value = DateTime.Now }
       };
       var sql = $@" UPDATE {tableName} SET STATUS = '9', UPD_DATE = @p2, UPD_NAME = @p0, UPD_STAFF = @p1 WHERE ISNULL(STATUS,'') = '' AND CRT_DATE <= DATEADD(minute,-15,@p2)";
-      ExecuteSqlCommand(sql, param.ToArray());
+      ExecuteSqlCommandWithSqlParameterSetDbType(sql, param.ToArray());
     }
 
 		public IQueryable<F009X> GetDelF009XData(DateTime removeDate)

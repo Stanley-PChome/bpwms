@@ -130,12 +130,26 @@ namespace Wms3pl.WebServices.DataCommon
 			var value = Convert.ToDecimal(GetRequireColumnValue(obj, colName));
 			return value > 0;
 		}
-		/// <summary>
-		/// 檢核資料是否有空白
+
+    /// <summary>
+		/// 檢核資料是否大於等於0
 		/// </summary>
-		/// <param name="inputString"></param>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="obj"></param>
+		/// <param name="colName"></param>
 		/// <returns></returns>
-		public static bool CheckStringIncludeWhiteSpace(string inputString)
+		public static bool CheckDataEqualOrGreaterThanZero<T>(T obj, string colName)
+    {
+      var value = Convert.ToDecimal(GetRequireColumnValue(obj, colName));
+      return value >= 0;
+    }
+
+    /// <summary>
+    /// 檢核資料是否有空白
+    /// </summary>
+    /// <param name="inputString"></param>
+    /// <returns></returns>
+    public static bool CheckStringIncludeWhiteSpace(string inputString)
 		{
 			if (inputString == null)
 				return false;

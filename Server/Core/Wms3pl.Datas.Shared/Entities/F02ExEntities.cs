@@ -324,6 +324,10 @@ namespace Wms3pl.Datas.Shared.Entities
     /// 需溫控標示
     /// </summary>
     public string IS_TEMP_CONTROL { get; set; }
+    /// <summary>
+    /// 是否為蘋果商品
+    /// </summary>
+    public string ISAPPLE { get; set; }
   }
   /// <summary>
   /// 序號刷讀資料結構
@@ -1628,4 +1632,106 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string F020501_STATUS { get; set; }
 		public string ALLOCATION_NO { get; set; }
 	}
+
+	public class ItemSn
+	{
+		public string GUP_CODE { get; set; }
+		public string CUST_CODE { get; set; }
+		public string ITEM_CODE { get; set; }
+		public string SERIAL_NO { get; set; }
+	}
+
+  public class CloseBoxDetail
+  {
+    public string DC_CODE { get; set; }
+    public string GUP_CODE { get; set; }
+    public string CUST_CODE { get; set; }
+    public string ITEM_CODE { get; set; }
+    public DateTime? VALI_DATE { get; set; }
+    public string MAKE_NO { get; set; }
+    public string BIN_CODE { get; set; }
+    public int QTY { get; set; }
+  }
+
+  /// <summary>
+  /// 商品標籤列印 - 進倉驗收檔
+  /// </summary>
+  [Serializable]
+  [DataContract]
+  [DataServiceKey("RT_NO", "RT_SEQ")]
+  public class RecvRecords
+  {
+    [DataMember]
+    public string PALLET_LOCATION { get; set; }
+    [DataMember]
+    public string PURCHASE_NO { get; set; }
+    [DataMember]
+    public string CUST_ORD_NO { get; set; }
+    [DataMember]
+    public string RT_NO { get; set; }
+    [DataMember]
+    public string RT_SEQ { get; set; }
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+    [DataMember]
+    public int RECV_QTY { get; set; }
+    [DataMember]
+    public DateTime? VALI_DATE { get; set; }
+    [DataMember]
+    public string MAKE_NO { get; set; }
+    [DataMember]
+    public string CRT_STAFF { get; set; }
+    [DataMember]
+    public string CRT_NAME { get; set; }
+    [DataMember]
+    public string IS_PRINT_ITEM_ID { get; set; }
+    [DataMember]
+    public string IS_PRINT_ITEM_ID_RAW { get; set; }
+    [DataMember]
+    public string IS_PRINT_RECVNOTE { get; set; }
+    [DataMember]
+    public string IS_PRINT_RECVNOTE_RAW { get; set; }
+    [DataMember]
+    public string PRINT_MODE { get; set; }
+    [DataMember]
+    public DateTime? CRT_DATE { get; set; }
+    [DataMember]
+    public string PRINT_NAME { get; set; }
+    [DataMember]
+    public DateTime? PRINT_TIME { get; set; }
+    [DataMember]
+    public string IsEnabledString { get; set; }
+    [DataMember]
+    public bool IsEnabled => IsEnabledString == "1";
+  }
+
+  /// <summary>
+  /// 商品標籤列印 - 列印商品標籤用資料
+  /// </summary>
+  [Serializable]
+  [DataContract]
+  [DataServiceKey("ROW_NUM")]
+  public class ItemLabelData
+  {
+    [DataMember]
+    public Decimal ROW_NUM { get; set; }
+    [DataMember]
+    public string CUST_ITEM_CODE { get; set; }
+    [DataMember]
+    public string CUST_ITEM_CODE_BAR { get; set; }
+    [DataMember]
+    public string ITEM_NAME { get; set; }
+    [DataMember]
+    public string ORDER_TYPE { get; set; }
+    [DataMember]
+    public DateTime VALI_DATE { get; set; }
+    [DataMember]
+    public string VALI_DATE_MONTH { get; set; }
+    [DataMember]
+    public string VALI_DATE_YEAR { get; set; }
+    [DataMember]
+    public int RECV_QTY { get; set; }
+  }
+
+	
 }

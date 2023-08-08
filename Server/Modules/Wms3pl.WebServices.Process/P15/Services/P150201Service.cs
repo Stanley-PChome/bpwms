@@ -294,23 +294,40 @@ namespace Wms3pl.WebServices.Process.P15.Services
 
     public F151001ReportDataByTicket GetF151001ReportDataByTicket(P1502010000Data f151001)
     {
-      // 調撥單來源人工倉、目的自動倉時，調撥單貼紙顯示最新任務單號條碼
+      var f060101Repo = new F060101Repository(Schemas.CoreSchema);
+      // 當目的倉別非人工倉(自動倉)，調撥單據狀態在已下架處理、上架處理中、結案，人員列印調撥單貼紙，抓F060101.DOC_ID最新一筆資料
       // 找F060101.DOC_ID WHERE WMS_NO = 調撥單號 AND CMD_TYPE = 1 AND STATUS IN(0, 1, 2, 3) ORDER BY CRT_DATE DESC
-      if (f151001.SRC_WH_DEVICE_TYPE == "0" && f151001.TAR_WH_DEVICE_TYPE != "0")
+      if (f151001.TAR_WH_DEVICE_TYPE != "0" && new[] { "3", "4", "5" }.Contains(f151001.STATUS))
       {
-        var f060101Repo = new F060101Repository(Schemas.CoreSchema);
-
-        var f060101 = f060101Repo.GetDataByTicketReport(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO);
+        var f060101 = f060101Repo.GetDataByTicketReport(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, true);
 
         if (f060101 != null)
         {
           return new F151001ReportDataByTicket
           {
             SRC_WAREHOUSE_ID = f151001.SRC_WAREHOUSE_ID,
-            SRC_WAREHOUSE_NAME = f151001.SRC_WH_NAME.Replace(f151001.SRC_WAREHOUSE_ID, string.Empty).Trim(),
+            SRC_WAREHOUSE_NAME = string.IsNullOrWhiteSpace(f151001.SRC_WH_NAME) ? string.Empty : f151001.SRC_WH_NAME.Replace(f151001.SRC_WAREHOUSE_ID, string.Empty).Trim(),
             TAR_WAREHOUSE_ID = f060101.WAREHOUSE_ID,
-            TAR_WAREHOUSE_NAME = f060101.WAREHOUSE_NAME,
+            TAR_WAREHOUSE_NAME = string.IsNullOrWhiteSpace(f060101.WAREHOUSE_NAME) ? string.Empty : f060101.WAREHOUSE_NAME,
             ALLOCATION_NO = f060101.DOC_ID
+          };
+        }
+      }
+
+      //當來源倉別非人工倉(自動倉)，調撥單據狀態在待處理、下架處理中，人員列印調撥單貼紙，抓F060201.DOC_ID最新一筆資料
+      if (f151001.SRC_WH_DEVICE_TYPE != "0" && new[] { "0", "2" }.Contains(f151001.STATUS))
+      {
+        var f060201 = f060101Repo.GetDataByTicketReport(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, false);
+
+        if (f060201 != null)
+        {
+          return new F151001ReportDataByTicket
+          {
+            SRC_WAREHOUSE_ID = f060201.WAREHOUSE_ID,
+            SRC_WAREHOUSE_NAME = string.IsNullOrWhiteSpace(f060201.WAREHOUSE_NAME) ? string.Empty : f060201.WAREHOUSE_NAME,
+            TAR_WAREHOUSE_ID = f151001.TAR_WAREHOUSE_ID,
+            TAR_WAREHOUSE_NAME = string.IsNullOrWhiteSpace(f151001.TAR_WH_NAME) ? string.Empty : f151001.TAR_WH_NAME.Replace(f151001.TAR_WAREHOUSE_ID, string.Empty).Trim(),
+            ALLOCATION_NO = f060201.DOC_ID
           };
         }
       }
@@ -330,7 +347,10 @@ namespace Wms3pl.WebServices.Process.P15.Services
     public ExecuteResult FinishedOffShelf(string dcCode, string gupCode, string custCode, string allocationNo)
     {
       var sharedService = new SharedService(_wmsTransaction);
+      var stockService = new StockService(_wmsTransaction);
       var f151001Repo = new F151001Repository(Schemas.CoreSchema, _wmsTransaction);
+      sharedService.StockService = stockService;
+      
       var f151001 = f151001Repo.Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.ALLOCATION_NO == allocationNo);
 
       var checkStatusRes = CheckF151001StatusToDown(f151001);
@@ -355,8 +375,9 @@ namespace Wms3pl.WebServices.Process.P15.Services
 					Qty = (int)x.SRC_QTY
 				}).ToList()
 			});
+      stockService.SaveChange();
 
-			return new ExecuteResult() { IsSuccessed = true, Message = "" };
+      return new ExecuteResult() { IsSuccessed = true, Message = "" };
 		}
 		#endregion
 
@@ -373,7 +394,9 @@ namespace Wms3pl.WebServices.Process.P15.Services
     public ExecuteResult FinishedOffShelfWithLack(string dcCode, string gupCode, string custCode, string allocationNo, List<P1502010500Data> p1502010500Data)
     {
       var sharedService = new SharedService(_wmsTransaction);
+      var stockService = new StockService(_wmsTransaction);
       var f151001Repo = new F151001Repository(Schemas.CoreSchema, _wmsTransaction);
+      sharedService.StockService = stockService;
       var f151001 = f151001Repo.Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.ALLOCATION_NO == allocationNo);
 
       var checkStatusRes = CheckF151001StatusToDown(f151001);
@@ -413,8 +436,9 @@ namespace Wms3pl.WebServices.Process.P15.Services
         }).ToList()
       }, isPosting);
 
+      stockService.SaveChange();
 
-			return new ExecuteResult() { IsSuccessed = true, Message = "", No = isPosting.ToString().ToUpper() };
+      return new ExecuteResult() { IsSuccessed = true, Message = "", No = isPosting.ToString().ToUpper() };
 		}
 		#endregion 紙本下架完成(有缺貨)
 

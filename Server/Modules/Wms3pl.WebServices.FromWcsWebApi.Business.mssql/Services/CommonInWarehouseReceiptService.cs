@@ -226,6 +226,8 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 
               var f060102Repo = new F060102Repository(Schemas.CoreSchema, wmsTransation);
               var sharedService = new SharedService(wmsTransation);
+              var stockService = new StockService(wmsTransation);
+              sharedService.StockService = stockService;
               var details = new List<AllocationConfirmDetail>();
 
               if (receipt.Status == 0)   // 派發失敗
@@ -287,6 +289,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
                   Details = details
                 };
                 sharedService.AllocationConfirm(param);
+                stockService.SaveChange();
                 #endregion
               }
 

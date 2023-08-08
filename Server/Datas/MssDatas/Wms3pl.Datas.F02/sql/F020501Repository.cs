@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -54,6 +55,7 @@ namespace Wms3pl.Datas.F02
             parm.Add(new SqlParameter("@p8", Current.Staff));
             parm.Add(new SqlParameter("@p9", Current.StaffName));
             parm.Add(new SqlParameter("@p10", typeCode));
+            parm.Add(new SqlParameter("@p11", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
             var sql = @"  DECLARE @a INT;
                             BEGIN TRAN
@@ -80,7 +82,7 @@ namespace Wms3pl.Datas.F02
                             @p5,
                             @p6,
                             @p7,
-                            dbo.GetSysDate(),
+                            @p11,
                             @p8,
                             @p9,
                             @p10);
@@ -219,12 +221,12 @@ WHERE a.DC_CODE=@p0 AND a.GUP_CODE=@p1 AND a.CUST_CODE=@p2 AND a.TYPE_CODE=@p3 A
 			return SqlQuery<F020501>(sql, parms.ToArray()).FirstOrDefault();
 		}
 
-		public IQueryable<RtNoContainerStatus> GetRtNoContainerStatuses(string dcCode,string gupCode,string custCode,List<string> rtNoList,List<long> excludeF020501IdList)
-		{
-			var parms = new List<object> { dcCode, gupCode, custCode };
-			var sqlIn = parms.CombineSqlInParameters(" AND B.RT_NO", rtNoList);
-			sqlIn += parms.CombineSqlNotInParameters("AND A.ID ", excludeF020501IdList);
-			var sql = $@"SELECT B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.STOCK_NO,B.RT_NO,B.F020501_ID,A.STATUS F020501_STATUS,A.ALLOCATION_NO
+    public IQueryable<RtNoContainerStatus> GetRtNoContainerStatuses(string dcCode, string gupCode, string custCode, List<string> rtNoList, List<long> excludeF020501IdList)
+    {
+      var parms = new List<object> { dcCode, gupCode, custCode };
+      var sqlIn = parms.CombineSqlInParameters(" AND B.RT_NO", rtNoList);
+      sqlIn += parms.CombineSqlNotInParameters("AND A.ID ", excludeF020501IdList);
+      var sql = $@"SELECT B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.STOCK_NO,B.RT_NO,B.F020501_ID,A.STATUS F020501_STATUS,A.ALLOCATION_NO
 										FROM F020501 A
 										JOIN F020502 B
 										ON B.F020501_ID = A.ID
@@ -234,7 +236,140 @@ WHERE a.DC_CODE=@p0 AND a.GUP_CODE=@p1 AND a.CUST_CODE=@p2 AND a.TYPE_CODE=@p3 A
 										AND B.CUST_CODE =@p2
 										{sqlIn}
 										GROUP BY B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.STOCK_NO,B.RT_NO,B.F020501_ID,A.STATUS,A.ALLOCATION_NO ";
-			return SqlQuery<RtNoContainerStatus>(sql, parms.ToArray());
+      return SqlQuery<RtNoContainerStatus>(sql, parms.ToArray());
+    }
+
+    public IQueryable<RecvBindContainerByAreaCheckAndQueryRes> GetRecvBindContainerByAreaCheckAndQueryRes(
+      string dcCode, string gupCode, string custCode, string rtNo, string rtSeq, string typeCode)
+    {
+      var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar)  { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar)  { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar)  { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar)  { Value = rtNo },
+        new SqlParameter("@p4", SqlDbType.VarChar)  { Value = rtSeq },
+        new SqlParameter("@p5", SqlDbType.Char)     { Value = typeCode },
+      };
+
+      var sql = @"
+SELECT 
+	CASE ISNULL(B.BIN_CODE, '')
+		WHEN '' THEN A.CONTAINER_CODE
+		ELSE B.BIN_CODE
+	END ContainerCode,
+	B.QTY Qty,
+	A.ID F020501_ID,
+	B.ID F020502_ID 
+FROM F020501 A 
+INNER JOIN F020502 B 
+	ON A.ID = B.F020501_ID 
+WHERE 
+	B.DC_CODE = @p0
+	AND B.GUP_CODE = @p1
+	AND B.CUST_CODE = @p2
+	AND B.RT_NO = @p3
+	AND B.RT_SEQ = @p4
+	AND A.TYPE_CODE = @p5
+	AND A.STATUS = '0'";
+
+      return SqlQuery<RecvBindContainerByAreaCheckAndQueryRes>(sql, parms.ToArray());
+    }
+
+    /// <summary>
+    /// 取得不良品容器頭檔資料
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <param name="rtSeq"></param>
+    /// <returns></returns>
+    public IQueryable<F020501> GetNoGoodDataByRtNo(string dcCode,string gupCode,string custCode, string rtNo,string rtSeq)
+    {
+      var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar)  { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar)  { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar)  { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar)  { Value = rtNo },
+        new SqlParameter("@p4", SqlDbType.VarChar)  { Value = rtSeq },
+      };
+
+      var sql = @"
+SELECT 
+	DISTINCT
+  A.*
+FROM F020501 A 
+INNER JOIN F020502 B 
+	ON A.ID = B.F020501_ID 
+WHERE 
+	B.DC_CODE = @p0
+	AND B.GUP_CODE = @p1
+	AND B.CUST_CODE = @p2
+	AND B.RT_NO = @p3
+	AND B.RT_SEQ = @p4
+	AND A.STATUS = '0'
+  AND TYPE_CODE = 'R'";
+
+      return SqlQuery<F020501>(sql, parms.ToArray());
+
+    }
+
+		/// <summary>
+		/// 取得進貨容器待關箱資料
+		/// </summary>
+		/// <param name="dcCode"></param>
+		/// <param name="gupCode"></param>
+		/// <param name="custCode"></param>
+		/// <param name="rtNo"></param>
+		/// <param name="rtSeq"></param>
+		/// <returns></returns>
+		public IQueryable<RecvNotCloseBindContainerQueryRes> GetNotCloseContainerDatas(string dcCode, string gupCode, string custCode, string containerCode = "")
+		{
+			var para = new List<SqlParameter>()
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("@p3", SqlDbType.VarChar) { Value = Current.Lang },
+			};
+
+			var sql = @"
+SELECT
+	F020501.ID F020501_ID,
+	F020501.DC_CODE DcCode,
+	F020501.GUP_CODE GupCode,
+	F020501.CUST_CODE CustCode,
+	F020501.TYPE_CODE TypeCode,
+	VW_F000904_LANG.NAME TypeName,
+	F020501.CONTAINER_CODE ContainerCode,
+	F020501.PICK_WARE_ID TarWarehouseId,
+	F1980.WAREHOUSE_NAME TarWarehouseName
+FROM F020501
+LEFT JOIN F1980 With(NOLOCK) ON F020501.DC_CODE = F1980.DC_CODE AND F020501.PICK_WARE_ID = F1980.WAREHOUSE_ID
+LEFT JOIN VW_F000904_LANG ON
+	VW_F000904_LANG.TOPIC = 'F0205'
+	AND VW_F000904_LANG.SUBTOPIC = 'TYPE_CODE'
+	AND VW_F000904_LANG.LANG = @p3
+	AND VW_F000904_LANG.VALUE = F020501.TYPE_CODE
+WHERE
+	F020501.DC_CODE = @p0
+	AND F020501.GUP_CODE = @p1
+	AND F020501.CUST_CODE = @p2
+						";
+			if (!string.IsNullOrWhiteSpace(containerCode))
+			{
+				sql += " AND F020501.CONTAINER_CODE = @p" + para.Count;
+				para.Add(new SqlParameter("@p" + para.Count, SqlDbType.VarChar) { Value = containerCode });
+			}
+			else
+			{
+				sql += " AND F020501.STATUS = '0' ";
+			}
+			sql += " ORDER BY F020501.CONTAINER_CODE ";
+
+			return SqlQuery<RecvNotCloseBindContainerQueryRes>(sql, para.ToArray());
 		}
-	}
+  }
 }

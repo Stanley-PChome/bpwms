@@ -69,13 +69,17 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
                                                                        o.ITEM_CODE == ord.ITEM_CODE &&
                                                                        new[] { "A","B" }.Contains(o.ATYPE_CODE));
 
-                            if (!string.IsNullOrWhiteSpace(ord.MAKE_NO))
+							if (!string.IsNullOrWhiteSpace(ord.SERIAL_NO))
+							{
+								availableStock = availableStock.Where(o => o.SERIAL_NO == ord.SERIAL_NO);
+							}
+							else if (!string.IsNullOrWhiteSpace(ord.MAKE_NO))
                             {
                                 availableStock = availableStock.Where(o => o.MAKE_NO == ord.MAKE_NO);
-                            }
+							}
 
-                            // 取得商品揀區庫存數量
-                            var availableQty = availableStock.Sum(o => o.QTY);
+							// 取得商品揀區庫存數量
+							var availableQty = availableStock.Sum(o => o.QTY);
                         
                             // 分配商品揀區庫存給訂單數量
                             foreach (var compare in availableStock)
@@ -83,8 +87,33 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
                               // 該商品是否還有訂單數量未分配到庫存
                               if (ord.ORD_QTY > 0)
                               {
+									// 是否有指定序號
+									if (!string.IsNullOrWhiteSpace(ord.SERIAL_NO))
+									{
+
+										if (compare.ITEM_CODE == ord.ITEM_CODE && compare.SERIAL_NO == ord.SERIAL_NO && (compare.ATYPE_CODE == "A" || compare.ATYPE_CODE == "B") && compare.QTY > 0)
+										{
+											// 揀區庫存 >= 商品訂單數量，不用補貨
+											if (compare.QTY >= ord.ORD_QTY)
+											{
+												compare.QTY -= ord.ORD_QTY;
+												ord.ORD_QTY = 0;
+												msgList.Add("品號：" + ord.ITEM_CODE + " 序號：" + ord.SERIAL_NO + " 揀區數量足夠，不產生補貨調撥單");
+											}
+											else
+											{
+												// 揀區庫存 < 商品訂單數量，訂單數量扣除揀區庫存數量得出要補貨數量
+												ord.ORD_QTY = Convert.ToInt32(ord.ORD_QTY - compare.QTY);
+												compare.QTY = 0;
+											}
+										}
+										else
+										{
+											continue;
+										}
+									}
                                 // 是否有指定批號
-                                if (!string.IsNullOrWhiteSpace(ord.MAKE_NO))
+                                else if (!string.IsNullOrWhiteSpace(ord.MAKE_NO))
                                 { 
                                   if (compare.ITEM_CODE == ord.ITEM_CODE && compare.MAKE_NO == ord.MAKE_NO && (compare.ATYPE_CODE == "A" || compare.ATYPE_CODE == "B") && compare.QTY > 0)
                                   {
@@ -144,18 +173,22 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
                                                                       o.ITEM_CODE == ord.ITEM_CODE &&
                                                                       o.ATYPE_CODE == "C");
 
-                            if (!string.IsNullOrWhiteSpace(ord.MAKE_NO))
+							if (!string.IsNullOrWhiteSpace(ord.SERIAL_NO))
+							{
+								replenishmentStock = replenishmentStock.Where(o => o.SERIAL_NO == ord.SERIAL_NO);
+							}
+							else if (!string.IsNullOrWhiteSpace(ord.MAKE_NO))
                             {
                                 replenishmentStock = replenishmentStock.Where(o => o.MAKE_NO == ord.MAKE_NO);
-                            }
+							}
 
-                            // 取得商品補區庫存數量
-                            var replenishmentQty = replenishmentStock.Sum(o => o.QTY);
+							// 取得商品補區庫存數量
+							var replenishmentQty = replenishmentStock.Sum(o => o.QTY);
 
                             // 如果商品補區庫存數[D2] <= 0
                             if (replenishmentQty <= 0 && ord.ORD_QTY > 0)
                             {
-                                msgList.Add("品號：" + ord.ITEM_CODE + " 批號：" + ord.MAKE_NO + " 補區無庫存數量，不產生補貨調撥單");
+                                msgList.Add("品號：" + ord.ITEM_CODE + " 批號：" + ord.MAKE_NO + " 序號號：" + ord.SERIAL_NO + " 補區無庫存數量，不產生補貨調撥單");
                                 continue;
                             }
                             else if (ord.ORD_QTY > 0)
@@ -166,10 +199,11 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
                                     {
                                         ItemCode = ord.ITEM_CODE,
                                         MakeNo = ord.MAKE_NO,
+										SerialNo = ord.SERIAL_NO,
                                         NeedQty = ord.ORD_QTY
                                     }
                                 );
-                                msgList.Add("品號：" + ord.ITEM_CODE + " 批號：" + ord.MAKE_NO + " 需補數量：" + ord.ORD_QTY);
+                                msgList.Add("品號：" + ord.ITEM_CODE + " 批號：" + ord.MAKE_NO + " 序號：" + ord.SERIAL_NO + " 需補數量：" + ord.ORD_QTY);
                             }
                         }
 

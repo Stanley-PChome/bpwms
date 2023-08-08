@@ -25,13 +25,14 @@ namespace Wms3pl.Datas.F19
 				UPDATE F1924 SET ISDELETED = '1'
 				, UPD_STAFF = @p1
 				, UPD_NAME = @p2
-				, UPD_DATE = dbo.GetSysDate()
+				, UPD_DATE = @p3
 				WHERE EMP_ID = @p0
 			";
             var param = new[] {
                 new SqlParameter("@p0", empId),
                 new SqlParameter("@p1", userId),
-                new SqlParameter("@p2", Current.StaffName)
+                new SqlParameter("@p2", Current.StaffName),
+                new SqlParameter("@p3", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
             ExecuteSqlCommand(sql, param);
         }
@@ -146,5 +147,37 @@ namespace Wms3pl.Datas.F19
 			var sql = @"SELECT * FROM F1924 WHERE EMP_ID = @p0";
 			return SqlQuery<F1924Data>(sql, param.ToArray());
 		}
-	}
+
+		public string GetEmpName(string empId)
+		{
+			var parm = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",empId){SqlDbType = SqlDbType.VarChar}
+			};
+			var sql = @" SELECT TOP (1) EMP_NAME
+                     FROM F1924 
+                    WHERE EMP_ID = @p0 ";
+			var empName = SqlQuery<string>(sql, empId).FirstOrDefault();
+			if (string.IsNullOrEmpty(empName))
+				empName = "支援人員";
+
+			return empName;
+		}
+
+    public IQueryable<F1924> GetDatasForEmpIds(List<string> empIds)
+    {
+      var para = new List<SqlParameter>();
+
+      var sql = @"SELECT * FROM F1924 WHERE ";
+      sql += para.CombineSqlInParameters(" EMP_ID", empIds, SqlDbType.VarChar);
+      return SqlQuery<F1924>(sql, para.ToArray());
+
+      #region 原LINQ語法
+      /*
+      return _db.F1924s.AsNoTracking().Where(x => empIds.Contains(x.EMP_ID) && x.ISDELETED == "0");
+      */
+      #endregion
+    }
+
+  }
 }

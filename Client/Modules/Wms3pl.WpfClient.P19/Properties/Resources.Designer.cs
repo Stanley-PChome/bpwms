@@ -6267,6 +6267,24 @@ namespace Wms3pl.WpfClient.P19.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 出貨優先權代碼 的當地語系化字串。
+        /// </summary>
+        public static string PRIORITY_CODE {
+            get {
+                return ResourceManager.GetString("PRIORITY_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 出貨優先權名稱 的當地語系化字串。
+        /// </summary>
+        public static string PRIORITY_NAME {
+            get {
+                return ResourceManager.GetString("PRIORITY_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 加工動作 的當地語系化字串。
         /// </summary>
         public static string PROCESS_ACT {

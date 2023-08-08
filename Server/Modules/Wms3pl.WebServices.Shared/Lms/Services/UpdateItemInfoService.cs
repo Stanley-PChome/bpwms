@@ -33,7 +33,7 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
         () =>
         {
           var apiResult = new ApiResult();
-#if (DEBUG)
+#if (DEBUG || TEST)
           apiResult = LmsApiFuncTest(req, Url);
 #else
           apiResult = LmsApiFunc(req, Url);

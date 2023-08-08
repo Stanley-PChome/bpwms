@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.Datas.View;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -139,7 +140,7 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<P0808040100_PrintData>(sql, parm.ToArray());
 		}
 
-		public IQueryable<F05290501> GetF05290501ByWmsNos(string dcCode,string gupCode,string custCode,List<string> wmsNos)
+		public IQueryable<string> GetCrossOrderCancelSerailS(string dcCode,string gupCode,string custCode,List<string> wmsNos)
 		{
 			var para = new List<SqlParameter>
 			{
@@ -147,19 +148,17 @@ namespace Wms3pl.Datas.F05
 				new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
 				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
 			};
-			var sql = @" SELECT *
-                     FROM F05290501 A
-                     JOIN F051201 B
-                       ON B.DC_CODE = A.DC_CODE
-                      AND B.GUP_CODE = A.GUP_CODE
-                      AND B.CUST_CODE = A.CUST_CODE
-                      AND B.PICK_ORD_NO = A.PICK_ORD_NO
-                    WHERE A.DC_CODE = @p0
-                      AND A.GUP_CODE = @p1
-                      AND A.CUST_CODE = @p2
-                      AND B.DISP_SYSTEM = '1' ";
-			sql += para.CombineSqlInParameters(" AND A.WMS_ORD_NO", wmsNos, SqlDbType.VarChar);
-			return SqlQuery<F05290501>(sql, para.ToArray());
+      var sql = @"
+SELECT DISTINCT SERIAL_NO
+  FROM VW_CrossOrderCancelSerail
+  WHERE DC_CODE = @p0
+    AND GUP_CODE = @p1
+    AND CUST_CODE = @p2
+    AND DISP_SYSTEM = '1'
+    AND SERIAL_NO !=''";
+
+      sql += para.CombineSqlInParameters(" AND WMS_ORD_NO", wmsNos, SqlDbType.VarChar);
+			return SqlQuery<string>(sql, para.ToArray());
 		}
 	}
 }

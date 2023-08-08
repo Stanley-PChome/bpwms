@@ -51,7 +51,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 		public Action OnDcCodeChanged = () => { };
 		public Action OnEdit = delegate { };
 		public Action OnCancel = delegate { };
-
+		public Action SetPurchaseNoFocus = delegate { };
 		private string _userId = Wms3plSession.Get<UserInfo>().Account;
 		private string _custCode { get { return Wms3plSession.Get<GlobalInfo>().CustCode; } }
 		private string _gupCode { get { return Wms3plSession.Get<GlobalInfo>().GupCode; } }
@@ -111,9 +111,13 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 			RaisePropertyChanged("SetDefectQtyEnabled");
 		}
 		#region Form - 群組標題
+		private string _groupHeader;
 		public string GroupHeader
 		{
-			get { return string.Format("{0}{1}        {2}{3}", Properties.Resources.P0202030000_PurchaseNo, SelectedPurchaseNo, Properties.Resources.P0202030000_CustOrdNo, string.IsNullOrEmpty(SelectedCustOrdNo) ? "" : SelectedCustOrdNo); }
+			get {  
+				return _groupHeader;
+			}
+			set { Set(() => GroupHeader, ref _groupHeader, value);  }
 		}
 		#endregion
 		#region Form - 可用的DC (物流中心)清單
@@ -238,7 +242,6 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 			set
 			{
 				Set(() => DgList, ref _dgList, value);
-				RaisePropertyChanged("GroupHeader");
 			}
 		}
 		private P020203Data _selectedData;
@@ -624,8 +627,17 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 		public void DoSearch(bool showTotalRecvQtyMsg = false)
 		{
 			// 0. 無條件將資料初始化
+
 			DgList = new ObservableCollection<P020203Data>();
 			SelectedData = null;
+			SelectedCustOrdNo = null;
+			SelectedDt = DateTime.Today;
+			ShopNo = null;
+			FastPassTypeColor = Brushes.Black;
+			FastPassTypeName = string.Empty;
+			SetPurchaseNoFocus();
+			GroupHeader = null;
+
 			SelectedPurchaseNo = SelectedPurchaseNo.Trim();
 			var f01Proxy = GetProxy<F01Entities>();
 			var proxyP02Wcf = new wcf.P02WcfServiceClient();
@@ -637,42 +649,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 			//取得進倉主檔
 			var item = f01Proxy.F010201s.Where(o => o.DC_CODE == SelectedDc && o.GUP_CODE == this._gupCode && o.CUST_CODE == this._custCode
 						&& o.STOCK_NO == SelectedPurchaseNo).FirstOrDefault();
-
-			SelectedCustOrdNo = item.CUST_ORD_NO ?? "";
-			SelectedDt = item.DELIVER_DATE;
-			ShopNo = item.SHOP_NO;
-
-			// 今日已驗收XXX數量
-			if (showTotalRecvQtyMsg)
-			{
-				var todayRecvQty = RunWcfMethod<int>(proxyP02Wcf.InnerChannel, () => proxyP02Wcf.GetTodayRecvQty(SelectedDc, this._gupCode, this._custCode, SelectedPurchaseNo, DateTime.Today));
-				if (todayRecvQty > 0)
-				{
-					ShowMessage(new MessagesStruct
-					{
-						Button = DialogButton.OK,
-						Image = DialogImage.Information,
-						Message = string.Format(Properties.Resources.TodayAcceptancedQty, todayRecvQty),
-						Title = Properties.Resources.Message
-					});
-				}
-			}
-
-			// 快速通關分類
-			var fastPassType = FastPassTypeList.FirstOrDefault(x => x.Value == item.FAST_PASS_TYPE);
-			if (fastPassType != null)
-			{
-				FastPassTypeName = fastPassType.Name;
-				if (fastPassType.Value == "3")
-					FastPassTypeColor = Brushes.Red;
-				else
-					FastPassTypeColor = Brushes.Black;
-			}
-			else
-			{
-				FastPassTypeColor = Brushes.Black;
-				FastPassTypeName = string.Empty;
-			}
+			
 
 			// 1.2 當進倉單沒有填採購單號時，詢問是否繼續作業，是的話，採購單號自動填入進倉單號
 			if (!new PurchaseService().CheckShopNo(this, SelectedDc, _gupCode, _custCode, SelectedPurchaseNo))
@@ -685,9 +662,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 				return;
 			}
 
-			var check = CallVideoService(item.DC_CODE, item.GUP_CODE, item.CUST_CODE, item.STOCK_NO);
-			if (!check)
-				return;
+			
 
 			// 2. 如果存在進倉單號, 則產生F02020101, 成功回傳true
 			var resultUpdate = RunWcfMethod<wcf.ExecuteResult>(proxyP02Wcf.InnerChannel, () => proxyP02Wcf.UpdateP020203(SelectedDc, this._gupCode, this._custCode, SelectedPurchaseNo, WarehouseList.Where(x => !string.IsNullOrWhiteSpace(x.Value)).Select(x => x.Value).ToArray(), RT_MODE));
@@ -709,10 +684,50 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 				if (!result.Any()) ShowMessage(Messages.InfoNoData);
 				else
 				{
+					SelectedCustOrdNo = item.CUST_ORD_NO ?? "";
+					SelectedDt = item.DELIVER_DATE;
+					ShopNo = item.SHOP_NO;
+
+					// 今日已驗收XXX數量
+					if (showTotalRecvQtyMsg)
+					{
+						var todayRecvQty = RunWcfMethod<int>(proxyP02Wcf.InnerChannel, () => proxyP02Wcf.GetTodayRecvQty(SelectedDc, this._gupCode, this._custCode, SelectedPurchaseNo, DateTime.Today));
+						if (todayRecvQty > 0)
+						{
+							ShowMessage(new MessagesStruct
+							{
+								Button = DialogButton.OK,
+								Image = DialogImage.Information,
+								Message = string.Format(Properties.Resources.TodayAcceptancedQty, todayRecvQty),
+								Title = Properties.Resources.Message
+							});
+						}
+					}
+
+					// 快速通關分類
+					var fastPassType = FastPassTypeList.FirstOrDefault(x => x.Value == item.FAST_PASS_TYPE);
+					if (fastPassType != null)
+					{
+						FastPassTypeName = fastPassType.Name;
+						if (fastPassType.Value == "3")
+							FastPassTypeColor = Brushes.Red;
+						else
+							FastPassTypeColor = Brushes.Black;
+					}
+					else
+					{
+						FastPassTypeColor = Brushes.Black;
+						FastPassTypeName = string.Empty;
+					}
+
+					var check = CallVideoService(item.DC_CODE, item.GUP_CODE, item.CUST_CODE, item.STOCK_NO);
+					if (!check)
+						return;
+
 					var porxy = GetProxy<F19Entities>();
 					_isUpLoad = porxy.F1909s.Where(o => o.CUST_CODE == this._custCode && o.GUP_CODE == this._gupCode).FirstOrDefault().ISUPLOADFILE;
 					DgList = result.ToObservableCollection();
-
+					GroupHeader = string.Format("{0}{1}        {2}{3}", Properties.Resources.P0202030000_PurchaseNo, SelectedPurchaseNo, Properties.Resources.P0202030000_CustOrdNo, string.IsNullOrEmpty(SelectedCustOrdNo) ? "" : SelectedCustOrdNo);
 					if (SelectedPurchaseNoItemCodeSelfTemp != SelectedPurchaseNo)
 					{
 						SelectedPurchaseNoItemCodeSelfTemp = SelectedPurchaseNo;
@@ -980,10 +995,27 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 							if (Print()) AfterDoAcceptance();
 							// 列印序號報表和調撥單貼紙
 							if (PrintAcceptanceSerialAndAcceptanceAlloction()) SerialAndAlloctionReport();
+
+							if(RT_MODE == "0")
+								Init();
+
 						}
 					}
 				);
 			}
+		}
+
+		public void Init()
+		{
+			DgList = new ObservableCollection<P020203Data>();
+			SelectedData = null;
+			SelectedCustOrdNo = null;
+			SelectedDt = DateTime.Today;
+			ShopNo = null;
+			FastPassTypeColor = Brushes.Black;
+			FastPassTypeName = string.Empty;
+			SetPurchaseNoFocus();
+			GroupHeader = null;
 		}
 
 		/// <summary>
@@ -1021,53 +1053,84 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 				//通知影資系統驗收完成
 				//_lastPurchaseNo = null; //先把保存的前一張進倉單清空，避免後續呼叫CallVideoService時不會執行的問題
 				var ItemDoneVideoData = DgList.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.PURCHASE_NO });
-				foreach (var item in ItemDoneVideoData)
+				//foreach (var item in ItemDoneVideoData)
+    //    {
+    //      //CallVideoService(item.Key.DC_CODE, item.Key.GUP_CODE, item.Key.CUST_CODE, item.Key.PURCHASE_NO, item.Select(x => x.ITEM_CODE).ToList());
+    //      //#2149 1. 驗收完成時，呼叫 收單驗貨上架API時，單號的位置改傳驗收單號   
+    //      CallVideoService(item.Key.DC_CODE, item.Key.GUP_CODE, item.Key.CUST_CODE, tmp.RT_NO , item.Select(x => x.ITEM_CODE).ToList());
+    //    }
+        foreach (var item in ItemDoneVideoData)
         {
           //CallVideoService(item.Key.DC_CODE, item.Key.GUP_CODE, item.Key.CUST_CODE, item.Key.PURCHASE_NO, item.Select(x => x.ITEM_CODE).ToList());
-          //#2149 1. 驗收完成時，呼叫 收單驗貨上架API時，單號的位置改傳驗收單號   
-          CallVideoService(item.Key.DC_CODE, item.Key.GUP_CODE, item.Key.CUST_CODE, tmp.RT_NO , item.Select(x => x.ITEM_CODE).ToList());
+          //#2145 1. 驗收完成時，呼叫 收單驗貨上架API時，單號的位置改傳驗收單號   
+          CallVideoService(item.Key.DC_CODE, item.Key.GUP_CODE, item.Key.CUST_CODE, tmp.RT_NO, item.Select(x => x.ITEM_CODE).ToList());
         }
-					
-
-				// 寫入成功
-				AcceptanceReportData = ReportService.GetAcceptancePurchaseReport(SelectedDc, this._gupCode, this._custCode, SelectedPurchaseNo, tmp.RT_NO, FunctionCode, "0", "0");
-				AcceptanceReportData1 = ReportService.GetAcceptancePurchaseReport(SelectedDc, this._gupCode, this._custCode, SelectedPurchaseNo, tmp.RT_NO, FunctionCode, "1", "0");
 				var porxyEx = GetExProxy<P02ExDataSource>();
-				if (!string.IsNullOrEmpty(tmp.OrderNo))
+				if (Print())
 				{
-					F051201ReportDataADatas = porxyEx.CreateQuery<F051201ReportDataA>("GetF051201ReportDataAs")
+					// 寫入成功
+					AcceptanceReportData = ReportService.GetAcceptancePurchaseReport(SelectedDc, this._gupCode, this._custCode, SelectedPurchaseNo, tmp.RT_NO, FunctionCode, "0", "0");
+					AcceptanceReportData1 = ReportService.GetAcceptancePurchaseReport(SelectedDc, this._gupCode, this._custCode, SelectedPurchaseNo, tmp.RT_NO, FunctionCode, "1", "0");
+				
+					if (!string.IsNullOrEmpty(tmp.OrderNo))
+					{
+						F051201ReportDataADatas = porxyEx.CreateQuery<F051201ReportDataA>("GetF051201ReportDataAs")
+							.AddQueryExOption("dcCode", SelectedDc)
+							.AddQueryExOption("gupCode", _gupCode)
+							.AddQueryExOption("custCode", _custCode)
+							.AddQueryExOption("ordNo", tmp.OrderNo).ToList();
+					}
+
+					// 調撥單貼紙資料
+					List<string> defectWarehouse = proxyEntities.F02020109s.Where(x => x.DC_CODE == SelectedDc &&
+					x.GUP_CODE == this._gupCode &&
+					x.CUST_CODE == this._custCode &&
+					x.STOCK_NO == SelectedPurchaseNo && x.RT_NO == tmp.RT_NO).ToList().Select(x => x.WAREHOUSE_ID).Distinct().ToList(); //不良品的倉別編號
+					var f151001ReportByAcceptance = porxyEx.CreateQuery<F151001ReportByAcceptance>("GetF151001ReportByAcceptance")
 						.AddQueryExOption("dcCode", SelectedDc)
 						.AddQueryExOption("gupCode", _gupCode)
 						.AddQueryExOption("custCode", _custCode)
-						.AddQueryExOption("ordNo", tmp.OrderNo).ToList();
+						.AddQueryExOption("purchaseNo", SelectedPurchaseNo)
+						.AddQueryExOption("rtNo", tmp.RT_NO).ToList();
+					F151001ReportByAcceptance = f151001ReportByAcceptance.Where(x => !defectWarehouse.Contains(x.WAREHOUSE_ID)).ToList();
+					F151001ReportByAcceptanceDefect = f151001ReportByAcceptance.Except(F151001ReportByAcceptance).ToList();
+
+					// 不良品明細資料
+					DefectDetailReport = GetExProxy<P02ExDataSource>().CreateQuery<DefectDetailReport>("GetDefectDetailReportData")
+						.AddQueryExOption("dcCode", SelectedDc)
+						.AddQueryExOption("gupCode", _gupCode)
+						.AddQueryExOption("custCode", _custCode)
+						.AddQueryExOption("rtNo", tmp.RT_NO).ToList();
 				}
+        
+				if (PrintAcceptanceSerialAndAcceptanceAlloction())
+				{
+					AcceptanceSerialDatas = tmp.AcceptanceSerialDatas.ToList();
+					if (!Print())
+					{
+						// 調撥單貼紙資料
+						List<string> defectWarehouse = proxyEntities.F02020109s.Where(x => x.DC_CODE == SelectedDc &&
+						x.GUP_CODE == this._gupCode &&
+						x.CUST_CODE == this._custCode &&
+						x.STOCK_NO == SelectedPurchaseNo && x.RT_NO == tmp.RT_NO).ToList().Select(x => x.WAREHOUSE_ID).Distinct().ToList(); //不良品的倉別編號
+						var f151001ReportByAcceptance = porxyEx.CreateQuery<F151001ReportByAcceptance>("GetF151001ReportByAcceptance")
+							.AddQueryExOption("dcCode", SelectedDc)
+							.AddQueryExOption("gupCode", _gupCode)
+							.AddQueryExOption("custCode", _custCode)
+							.AddQueryExOption("purchaseNo", SelectedPurchaseNo)
+							.AddQueryExOption("rtNo", tmp.RT_NO).ToList();
+						F151001ReportByAcceptance = f151001ReportByAcceptance.Where(x => !defectWarehouse.Contains(x.WAREHOUSE_ID)).ToList();
+						F151001ReportByAcceptanceDefect = f151001ReportByAcceptance.Except(F151001ReportByAcceptance).ToList();
+					}
+				}
+				
 
-				AcceptanceSerialDatas = tmp.AcceptanceSerialDatas.ToList();
-
-				// 調撥單貼紙資料
-				List<string> defectWarehouse = proxyEntities.F02020109s.Where(x => x.DC_CODE == SelectedDc &&
-				x.GUP_CODE == this._gupCode &&
-				x.CUST_CODE == this._custCode &&
-				x.STOCK_NO == SelectedPurchaseNo).ToList().Select(x => x.WAREHOUSE_ID).ToList(); //不良品的倉別編號
-				var f151001ReportByAcceptance = porxyEx.CreateQuery<F151001ReportByAcceptance>("GetF151001ReportByAcceptance")
-					.AddQueryExOption("dcCode", SelectedDc)
-					.AddQueryExOption("gupCode", _gupCode)
-					.AddQueryExOption("custCode", _custCode)
-					.AddQueryExOption("purchaseNo", SelectedPurchaseNo)
-					.AddQueryExOption("rtNo", tmp.RT_NO).ToList();
-				F151001ReportByAcceptance = f151001ReportByAcceptance.Where(x => !defectWarehouse.Contains(x.WAREHOUSE_ID)).ToList();
-				F151001ReportByAcceptanceDefect = f151001ReportByAcceptance.Except(F151001ReportByAcceptance).ToList();
-				// 不良品明細資料
-				DefectDetailReport = GetExProxy<P02ExDataSource>().CreateQuery<DefectDetailReport>("GetDefectDetailReportData")
-					.AddQueryExOption("dcCode", SelectedDc)
-					.AddQueryExOption("gupCode", _gupCode)
-					.AddQueryExOption("custCode", _custCode)
-					.AddQueryExOption("rtNo", tmp.RT_NO).ToList();
-
-
-				DoSearch();
-				SetSelectedData();
-
+				if(RT_MODE == "1")
+				{
+					DoSearch();
+					SetSelectedData();
+				}
+			
 				if (DgList != null && DgList.Any())
 					SelectedData = DgList.First();
 
@@ -1107,32 +1170,42 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 		}
 		#endregion
 
+		private bool? _canPrint;
 		/// <summary>
 		/// 若F0030.SYS_PATH=0不列印驗收單、揀貨單，若F0030.SYS_PATH=1，則列印驗收單、揀貨單
 		/// </summary>
 		/// <returns></returns>
 		protected bool Print()
 		{
-			var proxy = GetProxy<F00Entities>();
-			return proxy.F0003s.Where(x => x.AP_NAME == "AutoPrintReports" &&
-																		 x.CUST_CODE == _custCode &&
-																		 x.GUP_CODE == _gupCode &&
-																		 x.DC_CODE == SelectedDc).Select(x => x.SYS_PATH)
-												 .FirstOrDefault() == "1" ? true : false;
+			if (!_canPrint.HasValue)
+			{
+				var proxy = GetProxy<F00Entities>();
+				_canPrint = proxy.F0003s.Where(x => x.AP_NAME == "AutoPrintReports" &&
+																			x.CUST_CODE == _custCode &&
+																			x.GUP_CODE == _gupCode &&
+																			x.DC_CODE == SelectedDc).Select(x => x.SYS_PATH)
+													 .FirstOrDefault() == "1" ? true : false;
+			}
+			return _canPrint.Value;
 		}
 
+		private bool? _canPrintNote;
 		/// <summary>
 		/// 若F0003.SYS_PATH=0不自動印調撥貼紙及序號表，若F0030.SYS_PATH=1，則列印調撥貼紙及序號表
 		/// </summary>
 		/// <returns></returns>
 		public bool PrintAcceptanceSerialAndAcceptanceAlloction()
 		{
-			var proxy = GetProxy<F00Entities>();
-			return proxy.F0003s.Where(x => x.AP_NAME == "AutoPrintInNote" &&
-											 x.CUST_CODE == _custCode &&
-											 x.GUP_CODE == _gupCode &&
-											 x.DC_CODE == SelectedDc).Select(x => x.SYS_PATH)
-								 .FirstOrDefault() == "1" ? true : false;
+			if(!_canPrintNote.HasValue)
+			{
+				var proxy = GetProxy<F00Entities>();
+				_canPrintNote = proxy.F0003s.Where(x => x.AP_NAME == "AutoPrintInNote" &&
+												 x.CUST_CODE == _custCode &&
+												 x.GUP_CODE == _gupCode &&
+												 x.DC_CODE == SelectedDc).Select(x => x.SYS_PATH)
+									 .FirstOrDefault() == "1" ? true : false;
+			}
+			return _canPrintNote.Value;
 		}
 
 		#region 取消驗收
@@ -1163,7 +1236,8 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 					{
 						// 只在驗收單產生成功才顯示報表
 						if (isCancelSuccessed)
-							SearchCommand.Execute(null);
+							Init();
+							//SearchCommand.Execute(null);
 					}
 				);
 			}
@@ -1391,6 +1465,16 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 		}
 		#endregion 重新取得LMS上架倉別指示命令
 
+		#endregion
+
+		#region 更新驗收單列印資訊
+		public void UpdatePrintRecvNote(string rtNo)
+		{
+			var wcfproxy = GetWcfProxy<wcf.P02WcfServiceClient>();
+			var result = wcfproxy.RunWcfMethod(w => w.UpdateRecvNotePrintInfo(SelectedDc, this._gupCode, this._custCode, new List<string> { rtNo }.ToArray()));
+			if (!result.IsSuccessed)
+				ShowWarningMessage(result.Message);
+		}
 		#endregion
 	}
 }

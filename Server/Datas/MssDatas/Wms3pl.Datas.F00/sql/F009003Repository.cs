@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Transactions;
@@ -37,11 +38,13 @@ namespace Wms3pl.Datas.F00
       parm.Add(new SqlParameter("@p3", Current.Staff));
       parm.Add(new SqlParameter("@p4", Current.StaffName));
       parm.Add(new SqlParameter("@p5", id));
+      parm.Add(new SqlParameter("@p6", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
+
       var sql = @" UPDATE F009003
                      SET STATUS = @p0,
                          ERRMSG = @p1,
                          RETURN_DATA = @p2,
-                         UPD_DATE = dbo.GetSysDate(),
+                         UPD_DATE = @p6,
                          UPD_STAFF = @p3,
                          UPD_NAME = @p4
                    WHERE ID = @p5 ";
@@ -62,10 +65,11 @@ namespace Wms3pl.Datas.F00
       parm.Add(new SqlParameter("@p8", startTime));
       parm.Add(new SqlParameter("@p9", Current.Staff));
       parm.Add(new SqlParameter("@p10", Current.StaffName));
+      parm.Add(new SqlParameter("@p11", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
       var sql = @" INSERT INTO F009003(DC_CODE,GUP_CODE,CUST_CODE,NAME,SEND_DATA,RETURN_DATA,ERRMSG,STATUS,
 																			 CRT_DATE,CRT_STAFF,CRT_NAME,UPD_DATE,UPD_STAFF,UPD_NAME)
-											VALUES(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,dbo.GetSysDate(),@p9,@p10); ";
+											VALUES(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11,@p9,@p10); ";
 
       ExecuteSqlCommand(sql, parm.ToArray());
     }

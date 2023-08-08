@@ -2579,4 +2579,10 @@
   <data name="IS_VENDOR_RETURN" xml:space="preserve">
     <value>廠退出貨扣帳使用</value>
   </data>
+  <data name="PRIORITY_CODE" xml:space="preserve">
+    <value>出貨優先權代碼</value>
+  </data>
+  <data name="PRIORITY_NAME" xml:space="preserve">
+    <value>出貨優先權名稱</value>
+  </data>
 </root>

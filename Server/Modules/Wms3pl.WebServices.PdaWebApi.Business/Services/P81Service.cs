@@ -90,6 +90,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         new MsgModel{ MsgCode = "20073", MsgContent = "該儲位{0}的溫層資料不存在" },
         new MsgModel{ MsgCode = "20074", MsgContent = "此儲位已經存放其他貨主的商品" },
         new MsgModel{ MsgCode = "30001", MsgContent = "該單據已有人員(%s)進行作業中，請問是否要更換作業人員?" },
+
         #endregion
 
         #region 01權限作業
@@ -113,6 +114,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         new MsgModel{ MsgCode = "20354", MsgContent = "此儲位{0}不存在" },
         new MsgModel{ MsgCode = "20355", MsgContent = "此儲位{0}不存在於{1}" },
         new MsgModel{ MsgCode = "20356", MsgContent = "此序號{0}無法找到對應的調撥單號" },
+        //20357
+        new MsgModel{ MsgCode = "20357", MsgContent = "此調撥單已有人員列印並處理中，不可作業" },
         #endregion
 
         #region 04 出貨作業
@@ -218,7 +221,9 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         new MsgModel{ MsgCode = "21121", MsgContent = "此容器{0}綁定的單號{1}未完成預約集貨格，不可集貨進場確認，請重新執行集貨進場" },
         new MsgModel{ MsgCode = "21122", MsgContent = "此第一箱容器{0}綁定多張單{1}，不可進場" },
         new MsgModel{ MsgCode = "21123", MsgContent = "此容器系統正在處理中，請稍後再試" },
-
+        //#2202_集貨進場 20230425 
+        new MsgModel{ MsgCode = "21124", MsgContent = "此為跨庫調撥出揀貨容器，不可進行集貨進場" },
+         new MsgModel{ MsgCode = "21125", MsgContent = "此揀貨單{0}未完成分貨，不可進行集貨進場" },   
         #endregion
 
         #region 12 進貨收發
@@ -311,6 +316,105 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         new MsgModel{ MsgCode = "21801", MsgContent = "請先設定跨庫調撥驗收的上架倉別清單"},
         new MsgModel{ MsgCode = "21802", MsgContent = "請先設定跨庫調撥驗收的上架倉別清單"},
         #endregion 18 跨庫調撥驗收入自動倉
+
+        #region 19 進貨驗收
+        new MsgModel{ MsgCode = "21901", MsgContent = "單據號碼或商品條碼不得為空"},
+        new MsgModel{ MsgCode = "21902", MsgContent = "進倉單資料不存在"},
+        new MsgModel{ MsgCode = "21903", MsgContent = "未完成的驗收進倉單中無此商品{0}可驗收"},
+        new MsgModel{ MsgCode = "21904", MsgContent = "序號檢查失敗"}, //實際內容為序號共用函數檢查後訊息
+        new MsgModel{ MsgCode = "21905", MsgContent = "進倉單狀態為{0}，不可進行驗收"},
+        new MsgModel{ MsgCode = "21906", MsgContent = "虛擬商品序號數最多{0}個," + Environment.NewLine + "已存在序號數{1}+本次匯入序號數{2}已超過{0}個"},
+        new MsgModel{ MsgCode = "21907", MsgContent = "序號不可為空白"},
+        new MsgModel{ MsgCode = "21908", MsgContent = "實收總數已等於應刷數，不用刷讀序號!"},
+        new MsgModel{ MsgCode = "21909", MsgContent = "序號已存在"},
+        new MsgModel{ MsgCode = "21910", MsgContent = "資料已被刪除, 請重新查詢"},
+        new MsgModel{ MsgCode = "21911", MsgContent = "請改使用[商品檢驗與容器綁定]功能，完成上一次驗收未完成容器綁定"},
+        new MsgModel{ MsgCode = "21912", MsgContent = "取得上架倉別指示相關錯誤訊息"},
+        new MsgModel{ MsgCode = "21913", MsgContent = "品號{0}上架倉別代碼為「{1}」，不在倉別清單內。"},
+        new MsgModel{ MsgCode = "21914", MsgContent = "無法辨識RT_MODE參數內容"},
+        new MsgModel{ MsgCode = "21915", MsgContent = "查無驗收單暫存資料"},
+        new MsgModel{ MsgCode = "21916", MsgContent = "PDA無法列印進倉棧板標籤，請使用電腦版進行作業"},
+        new MsgModel{ MsgCode = "21917", MsgContent = "PDA無法上傳檔案，請使用電腦版進行作業"},
+        new MsgModel{ MsgCode = "21918", MsgContent = "棧板的儲位條碼不得為空"},
+        new MsgModel{ MsgCode = "21919", MsgContent = "影資串接已開啟，必須提供工作站編號"},
+        new MsgModel{ MsgCode = "21920", MsgContent = "工作站編號{0}不屬於驗貨區，必需為{1}開頭的"},
+        new MsgModel{ MsgCode = "21921", MsgContent = "無法識別的工作群組名稱[驗貨區]"},
+        new MsgModel{ MsgCode = "21922", MsgContent = "此商品為虛擬商品，請使用電腦版進行驗收"},
+        new MsgModel{ MsgCode = "21923", MsgContent = "進倉單狀態為{0}，不可進行驗收"},
+        new MsgModel{ MsgCode = "21924", MsgContent = "此商品已無可驗收數量"},
+        new MsgModel{ MsgCode = "21925", MsgContent = "這張驗收單是由{0}正在進行中，請問是否要換人驗收?" },
+        new MsgModel{ MsgCode = "21927", MsgContent = "此進倉單正在驗收中，但無此商品明細可進行驗收"},
+        new MsgModel{ MsgCode = "21928", MsgContent = "此商品已檢驗完成"},
+        new MsgModel{ MsgCode = "21929", MsgContent = "此進倉單尚有驗收單未完成容器綁定，不可作業"},
+        new MsgModel{ MsgCode = "21930", MsgContent = "新品規格的長寬高需大於1"},
+        new MsgModel{ MsgCode = "21931", MsgContent = "商品長/寬/高/重量必需大於0"},
+        new MsgModel{ MsgCode = "21932", MsgContent = "效期商品必須填入效期"},
+        new MsgModel{ MsgCode = "21933", MsgContent = "效期商品保存天數必須大於30天"},
+        new MsgModel{ MsgCode = "21934", MsgContent = "效期必須大於今天"},
+        new MsgModel{ MsgCode = "21935", MsgContent = "效期不可超過{0}年"},
+        new MsgModel{ MsgCode = "21936", MsgContent = "非效期商品，不可調整效期，請設定為9999/12/31"},
+        new MsgModel{ MsgCode = "21937", MsgContent = "進倉單驗收暫存資料不存在"},
+        new MsgModel{ MsgCode = "21938", MsgContent = "該商品效期必須大於允收日期{0}，不符合正常商品允收規則，請利用設定不良品驗退"},
+        new MsgModel{ MsgCode = "21939", MsgContent = "本商品的總保存天數為{0}，商品效期不可以大於{1}"},
+        new MsgModel{ MsgCode = "21940", MsgContent = "這張進倉單已被{0}使用{1}作業，不可使用"},
+        new MsgModel{ MsgCode = "21941", MsgContent = "本商品未完成檢驗"},
+        new MsgModel{ MsgCode = "21942", MsgContent = "本商品為序號商品，未完成序號收集"},
+        new MsgModel{ MsgCode = "21943", MsgContent = "驗收完成"},
+        new MsgModel{ MsgCode = "21944", MsgContent = "驗收總數量不得超過進貨數"},
+        new MsgModel{ MsgCode = "21945", MsgContent = "此驗收單已完成驗收，無法取消驗收"},
+				new MsgModel{ MsgCode = "21946", MsgContent = "不良品明細不存在"},
+				new MsgModel{ MsgCode = "21947", MsgContent = "刷讀的序號不存在進貨序號檔"},
+				new MsgModel{ MsgCode = "21948", MsgContent = "已存在相同序號，不可重複刷讀"},
+				new MsgModel{ MsgCode = "21949", MsgContent = "不良品數量總和不可超過驗收數量"},
+				new MsgModel{ MsgCode = "21950", MsgContent = "驗收數量必須大於等於0"},
+				new MsgModel{ MsgCode = "21951", MsgContent = "驗收數量必須大於等於已設定不良品數量總和"},
+				new MsgModel{ MsgCode = "21952", MsgContent = "此進倉單所有驗收明細驗收數量都為0，不可驗收完成，若要放棄此次驗收，請執行刪除驗收紀錄"},
+				new MsgModel{ MsgCode = "21953", MsgContent = "此進倉單為跨庫調撥入，不可進行進貨驗收作業"},
+				new MsgModel{ MsgCode = "21954", MsgContent = "刷讀的不良品序號不存在進貨序號檔，請先進行序號刷讀"},
+				new MsgModel{ MsgCode = "21955", MsgContent = "刷讀的不良品序號已存在，不可重複刷讀"},
+				new MsgModel{ MsgCode = "21956", MsgContent = "此進倉單的序號總筆數必須等於驗收數量"},
+				new MsgModel{ MsgCode = "21957", MsgContent = "驗收效期欄位資料格式不正確，請人員再次確認"},
+				new MsgModel{ MsgCode = "21958", MsgContent = "工作站編號 {0} 未設定，請通知資訊管理人員新增工作站編號"},
+				new MsgModel{ MsgCode = "21959", MsgContent = "原棧板號為 {0} 與目前棧板號 {1} 不同不可作業"},
+				new MsgModel{ MsgCode = "21960", MsgContent = "請先設定該商品檢驗項目"},
+				new MsgModel{ MsgCode = "21961", MsgContent = "效期商品必須填入總保存天數"},
+				new MsgModel{ MsgCode = "21962", MsgContent = "{0}長度不可超過{1}個字"},
+
+        #endregion 19 進貨驗收
+
+        #region  20 進貨容器綁定
+        new MsgModel{ MsgCode = "22001", MsgContent = "此驗收單已被{0}使用{1}作業，不可使用"},
+        new MsgModel{ MsgCode = "22003", MsgContent = "容器條碼檢查失敗"}, //非實際內容，直接回傳ContainerService.CheckContainer中的訊息
+        new MsgModel{ MsgCode = "22004", MsgContent = "原本的容器是混和型容器，並不允許使用"}, 
+        new MsgModel{ MsgCode = "22005", MsgContent = "此容器以被其他貨主使用，不可重複使用"}, 
+        new MsgModel{ MsgCode = "22006", MsgContent = "該容器已被其他作業使用，不可綁定"},
+        new MsgModel{ MsgCode = "22007", MsgContent = "此容器已被使用，不可綁定"},
+        new MsgModel{ MsgCode = "22008", MsgContent = "此容器已綁定{0}，不可綁定"},
+        new MsgModel{ MsgCode = "22009", MsgContent = "此容器上架倉別為{0}，與目前商品上架倉別{1}不同，不可綁定"},
+        new MsgModel{ MsgCode = "22010", MsgContent = "不良品容器不允許混放不同驗收不良品商品"},
+        new MsgModel{ MsgCode = "22011", MsgContent = "此容器分格已綁定商品，不可綁定"},
+        new MsgModel{ MsgCode = "22012", MsgContent = "此容器為非分格容器，且已有綁定商品資料，不可刷入容器分格條碼"},
+        new MsgModel{ MsgCode = "22013", MsgContent = "此容器為有分格容器，已有綁定商品資料，必須刷入分格條碼"},
+        new MsgModel{ MsgCode = "22014", MsgContent = "您輸入的放入數量{0}已綁定容器數量{1}超過該區預計分播數{2}"},
+        new MsgModel{ MsgCode = "22015", MsgContent = "找不到驗收分播紀錄"},
+        new MsgModel{ MsgCode = "22016", MsgContent = "找不到工作中容器紀錄"},
+        new MsgModel{ MsgCode = "22017", MsgContent = "此驗收容器{0}系統正在處理中，請稍後再試"},
+        new MsgModel{ MsgCode = "22018", MsgContent = "尚有驗收單未完成分貨，不可關箱"},
+        new MsgModel{ MsgCode = "22019", MsgContent = "必須先完成此驗收單容器綁定後再進行綁定完成"},
+        new MsgModel{ MsgCode = "22020", MsgContent = "此驗收單已綁定完成，不可重複綁定"},
+        new MsgModel{ MsgCode = "22021", MsgContent = "驗收單已分播完成，請送至複驗區"},
+        new MsgModel{ MsgCode = "22022", MsgContent = "驗收單已分播完成"},
+        new MsgModel{ MsgCode = "22023", MsgContent = "容器關箱失敗"}, //非實際內容，直接回傳WarehouseInService.ContainerCloseBox中的訊息
+        new MsgModel{ MsgCode = "22024", MsgContent = "所有容器都呼叫容器上架共用服務後處理失敗"}, //非實際內容，直接回傳WarehouseInService.AfterConatinerTargetFinishedProcess中的訊息
+        new MsgModel{ MsgCode = "22025", MsgContent = "只有揀區才允許使用分格容器"},
+
+	      #endregion 20 進貨容器綁定
+
+        #region  21 進貨容器關箱
+        new MsgModel{ MsgCode = "23001", MsgContent = "此容器狀態為{0}，不可關箱"},
+
+	      #endregion 21 進貨容器關箱
+
       };
     }
 
@@ -903,31 +1007,6 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       }
 
       return result;
-    }
-
-    public List<string> GetItemCodeByBarcode(ref bool isSn, string dcCode, string gupCode, string custCode, string barcode)
-    {
-      var itemService = new ItemService();
-      var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-      var f020302Repo = new F020302Repository(Schemas.CoreSchema);
-
-      F2501 f2501 = null;
-      var itemCodes = itemService.FindItems(gupCode, custCode, barcode, ref f2501);
-
-      if (itemCodes.Any())
-      {
-        isSn = f2501 != null;
-        return itemCodes;
-      }
-
-      var f020302 = f020302Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode && o.GUP_CODE == gupCode && o.CUST_CODE == custCode && o.SERIAL_NO == barcode).FirstOrDefault();
-      if (f020302 != null)
-      {
-        isSn = true;
-        return new List<string> { f020302.ITEM_CODE };
-      }
-
-      return null;
     }
   }
 }

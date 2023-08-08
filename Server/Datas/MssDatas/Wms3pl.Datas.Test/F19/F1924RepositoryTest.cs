@@ -2,6 +2,9 @@
 using Wms3pl.Datas.F19;
 using Wms3pl.WebServices.DataCommon;
 using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace Wms3pl.Datas.Test.F19
 {
@@ -115,6 +118,14 @@ namespace Wms3pl.Datas.Test.F19
 
 			_f1924Repo.GetEmpName(AccNo);
 		}
-	}
+
+    [TestMethod]
+    public void GetDatasForEmpIds()
+    {
+      var res = _f1924Repo.GetDatasForEmpIds(new[] { "tester10" }.ToList());
+      Trace.WriteLine(JsonSerializer.Serialize(res));
+    }
+
+  }
 
 }

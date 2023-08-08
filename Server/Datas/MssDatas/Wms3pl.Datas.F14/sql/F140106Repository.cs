@@ -1,4 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -114,10 +116,10 @@ namespace Wms3pl.Datas.F14
                                PALLET_CTRL_NO, 
                                @p4 CRT_STAFF, 
                                @p5 CRT_NAME, 
-                               dbo.GetSysDate() CRT_DATE, 
+                               @p6 CRT_DATE, 
                                @p4 UPD_STAFF, 
                                @p5 UPD_NAME, 
-                               dbo.GetSysDate() UPD_DATE, 
+                               @p6 UPD_DATE, 
                                MAKE_NO,
 															 {(isSecond ? "NULL" : "(ISNULL(FIRST_QTY, 0) - QTY - ISNULL(UNMOVE_STOCK_QTY, 0)) ")} FIRST_STOCK_DIFF_QTY,
 															 {(isSecond ? "(ISNULL(SECOND_QTY, 0) - QTY - ISNULL(UNMOVE_STOCK_QTY, 0)) " : "NULL")} SECOND_STOCK_DIFF_QTY,
@@ -138,8 +140,9 @@ namespace Wms3pl.Datas.F14
 				new SqlParameter("@p2", custCode),
 				new SqlParameter("@p3", inventorNo),
 				new SqlParameter("@p4", userId),
-				new SqlParameter("@p5", userName)
-			};
+				new SqlParameter("@p5", userName),
+        new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 
 			ExecuteSqlCommand(sql, param);
 		}

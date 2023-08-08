@@ -15,7 +15,7 @@ using Wms3pl.WpfClient.UILib;
 using Wms3pl.WpfClient.UILib.Services;
 using P01Wcf = Wms3pl.WpfClient.ExDataServices.P01WcfService;
 using P25Wcf = Wms3pl.WpfClient.ExDataServices.P25WcfService;
-
+using ExP25Wcf = Wms3pl.WpfClient.ExDataServices.P25ExDataService;
 namespace Wms3pl.WpfClient.P25.ViewModel
 {
   public partial class P2501030000_ViewModel : InputViewModelBase
@@ -239,7 +239,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
       //執行查詢動作
 
       var globalInfo = Wms3plSession.Get<GlobalInfo>();
-      var f2501WcfData = GetF2501Data(globalInfo.CustCode, globalInfo.GupCode, serialNo);
+      var f2501WcfData = GetF2501Data( globalInfo.GupCode , globalInfo.CustCode, serialNo);
       errorMsg = ValidateSerachResult(f2501WcfData);
       if (!string.IsNullOrEmpty(errorMsg))
       {
@@ -404,7 +404,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
       {
         var f1909 = GetProxy<F19Entities>().F1909s.Where(x => x.GUP_CODE == EditableF2501WcfData.GUP_CODE && x.CUST_CODE == EditableF2501WcfData.CUST_CODE).FirstOrDefault();
         var f1908s = GetProxy<F19Entities>().F1908s.Where(x => x.VNR_CODE == EditableF2501WcfData.VNR_CODE
-                              && x.GUP_CODE == EditableF2501WcfData.GUP_CODE).ToList();
+                              && x.GUP_CODE == EditableF2501WcfData.GUP_CODE && x.CUST_CODE == EditableF2501WcfData.CUST_CODE).ToList();
         if (f1909.ALLOWGUP_VNRSHARE == "0")
           f1908s = f1908s.Where(x => x.CUST_CODE == EditableF2501WcfData.CUST_CODE).ToList();
 
@@ -491,7 +491,8 @@ namespace Wms3pl.WpfClient.P25.ViewModel
         Message = Properties.Resources.P2501030000_ViewModel_SaveSuccess,
         Title = Resources.Resources.Information
       };
-
+      DoAdd();
+      //EditableF2501WcfData = new F2501WcfData { STATUS = SnStatusList.Select(x => x.Value).FirstOrDefault(), };
       var errorMeg = string.Empty;
       var excelTable = DataTableHelper.ReadExcelDataTable(fullFilePath, ref errorMeg);
       if (excelTable != null)
@@ -499,6 +500,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
         if (excelTable.Rows.Count > 100)
         {
           ShowWarningMessage("Excel匯入檔每次最多只能100筆資料");
+          F250103VerificationData = null;   //#2149-1 
           return;
         }
         var dataTableColumnName = new List<string>
@@ -518,6 +520,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
         {
           msg = new MessagesStruct() { Message = Properties.Resources.P2501030000_ViewModel_ImportTableFormatError, Button = DialogButton.OKCancel, Image = DialogImage.Warning, Title = Resources.Resources.Information };
           ShowMessage(msg);
+          F250103VerificationData = null;   //#2149-1 
           return;
         }
 
@@ -541,25 +544,65 @@ namespace Wms3pl.WpfClient.P25.ViewModel
         if (list.Any(x => x.GUP_CODE != gupCode))
         {
           ShowWarningMessage(string.Format(Properties.Resources.P2501030000_ViewModel_ImportGUPCode_Different, gupCode));
+          F250103VerificationData = null;   //#2149-1 
+
           return;
         }
         var custCode = globalInfo.CustCode;
         if (list.Any(x => x.CUST_CODE != custCode))
         {
           ShowWarningMessage(string.Format(Properties.Resources.P2501030000_ViewModel_ImportCUSTCode_Different, custCode));
+          F250103VerificationData = null;   //#2149-1 
           return;
         }
 
         if (list.Any(x => !CanEditStatus.Contains(x.STATUS)))
         {
           ShowWarningMessage(Properties.Resources.P2501030000_ViewModel_ImportSTATUS_Invalid);
+          F250103VerificationData = null;   //#2149-1 
           return;
         }
+
+
+        var repeatSerails = new List<string>();
+        //var OverLengthSerails = new List<string>();
+        
+        bool checkSnDuplicate;
+        foreach (var item in list)
+        {
+          checkSnDuplicate = false;
+   
+          //自己檢查自己，如果>1才算是重複
+          if (list.Count(x => x.SERIAL_NO.ToUpper() == item.SERIAL_NO.ToUpper()) > 1)
+            checkSnDuplicate = true;
+
+          if (checkSnDuplicate && !repeatSerails.Any(x => x.ToUpper() == item.SERIAL_NO.ToUpper()))
+            repeatSerails.Add(item.SERIAL_NO);
+          //if( item.SERIAL_NO.Length>50)
+          //  OverLengthSerails.Add(item.SERIAL_NO);
+        }     
+        var repeatSerailNo = string.Join(Environment.NewLine, repeatSerails);
+        if (!string.IsNullOrEmpty(repeatSerailNo))
+        {
+          ShowWarningMessage(string.Format("序號重複:\r\n{0}", repeatSerailNo));
+          F250103VerificationData = null;   //#2149-1 若滙入重複則清除 上筆滙入結果.
+       
+          return ;
+        }
+        //var OverLengthSerailNo = string.Join(Environment.NewLine, OverLengthSerails);
+        //if (!string.IsNullOrEmpty(OverLengthSerailNo))
+        //{
+        //  ShowWarningMessage(string.Format("序號長度過長:\r\n{0}", OverLengthSerailNo));
+        //  F250103VerificationData = null;   //#2149-1 
+        
+        //  return;
+        //}
+
 
         F250103VerificationData = InsertF2501S(list);
 
         SelectedF2501WcfData = null;
-        EditableF2501WcfData = null;
+        //EditableF2501WcfData = null;
       }
       else if (string.IsNullOrWhiteSpace(errorMeg))
       {
@@ -705,6 +748,14 @@ namespace Wms3pl.WpfClient.P25.ViewModel
           && !string.IsNullOrWhiteSpace(EditableF2501WcfData.STATUS));
     }
 
+    private bool CanImport()
+    {
+      if (UserOperateMode == OperateMode.Add )
+        return true;
+
+      return false;
+    }
+
     #endregion
 
     #region Data
@@ -758,19 +809,25 @@ namespace Wms3pl.WpfClient.P25.ViewModel
       return result.Barcode;
     }
 
-    private F2501WcfData GetF2501Data(string custCode, string gupCode, string serialNo)
+    private ExDataServices.P25ExDataService.F2501WcfData GetF2501Data(string custCode, string gupCode, string serialNo)
     {
-      var porxyEx = GetExProxy<P25ExDataSource>();
-      var f2501Data = porxyEx.CreateQuery<F2501WcfData>("GetF2501Data")
-                  .AddQueryOption("custCode", QueryFormat(custCode))
-                  .AddQueryOption("gupCode", QueryFormat(gupCode))
-                  .AddQueryOption("serialNo", QueryFormat(serialNo))
-                  .ToList()
-                  .FirstOrDefault();
+      //var porxyEx = GetExProxy<P25ExDataSource>();
+      //var f2501Data = porxyEx.CreateQuery<F2501WcfData>("GetF2501Data")
+      //            .AddQueryOption("custCode", QueryFormat(custCode))
+      //            .AddQueryOption("gupCode", QueryFormat(gupCode))
+      //            .AddQueryOption("serialNo", QueryFormat(serialNo))
+      //            .ToList()
+      //            .FirstOrDefault();
 
+      var wcfproxy = GetWcfProxy<P25Wcf.P25WcfServiceClient>();
+      var f2501Data = wcfproxy.RunWcfMethod(w => w.GetF2501Data(custCode, gupCode, serialNo));
+
+   
       VnrName = (f2501Data == null) ? string.Empty : GetVnrName(f2501Data.VNR_CODE, f2501Data.GUP_CODE);
 
-      return f2501Data;
+      ExDataServices.P25ExDataService.F2501WcfData result = null;
+      result= f2501Data==null? null : ExDataMapper.Map<ExDataServices.P25WcfService.F2501WcfData, F2501WcfData>(f2501Data);
+      return result;
     }
     /// <summary>
     /// 取得[序號狀態] - 選單類別

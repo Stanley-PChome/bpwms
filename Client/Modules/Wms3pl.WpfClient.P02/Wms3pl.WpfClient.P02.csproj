@@ -193,6 +193,12 @@
       <DependentUpon>P0202030000.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\P0202090000.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>P0202090000.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\RP0202030502en_US.cs">
       <DependentUpon>RP0202030502en_US.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -244,6 +250,8 @@
     <Compile Include="ViewModel\P0202060200_ViewModel.cs" />
     <Compile Include="ViewModel\P0202060100_ViewModel.cs" />
     <Compile Include="ViewModel\P0202060300_ViewModel.cs" />
+    <Compile Include="ViewModel\P0202090100_ViewModel.cs" />
+    <Compile Include="ViewModel\P0202090000_ViewModel.cs" />
     <Compile Include="ViewModel\P0202080000_ViewModel.cs" />
     <Compile Include="ViewModel\P0202080100_ViewModel.cs" />
     <Compile Include="ViewModel\P0203010000_ViewModel.cs" />
@@ -326,6 +334,12 @@
     </Compile>
     <Compile Include="Views\P0202060300.xaml.cs">
       <DependentUpon>P0202060300.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0202090100.xaml.cs">
+      <DependentUpon>P0202090100.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0202090000.xaml.cs">
+      <DependentUpon>P0202090000.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\P0202080000.xaml.cs">
       <DependentUpon>P0202080000.xaml</DependentUpon>
@@ -453,6 +467,14 @@
     <Page Include="Views\P0202060300.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\P0202090100.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\P0202090000.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\P0202080000.xaml">
       <SubType>Designer</SubType>
@@ -590,6 +612,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\P0202090000.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>P0202090000.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\RP0202030502en_US.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

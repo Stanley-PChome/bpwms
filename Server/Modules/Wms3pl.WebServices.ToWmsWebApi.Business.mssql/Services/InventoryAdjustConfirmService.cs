@@ -105,9 +105,11 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 				{
 					var wmsTransaction = new WmsTransaction();
 					var sharedService = new SharedService(wmsTransaction);
-					var f140101Repo = new F140101Repository(Schemas.CoreSchema, wmsTransaction);
+					var stockService = new StockService(wmsTransaction);
+          var f140101Repo = new F140101Repository(Schemas.CoreSchema, wmsTransaction);
 					var f140106Repo = new F140106Repository(Schemas.CoreSchema, wmsTransaction);
 					var f060406Repo = new F060406Repository(Schemas.CoreSchema, wmsTransaction);
+          sharedService.StockService = stockService;
 
 					var f140101 = f140101s.Where(x => x.INVENTORY_NO == f060405.WMS_NO).FirstOrDefault();
 
@@ -419,8 +421,8 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 						f140101.POSTING_DATE = DateTime.Now;
 						f140101Repo.Update(f140101);
 					}
-					#endregion
-
+          #endregion
+          stockService.SaveChange();
 					wmsTransaction.Complete();
 					successCnt++;
 					#endregion

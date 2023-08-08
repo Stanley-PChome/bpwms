@@ -83,7 +83,7 @@ namespace Wms3pl.Datas.F02
         /// </summary>
         public Int32? A_QTY { get; set; }
         /// <summary>
-        /// 狀態(0: 待分播 1: 分播完成)
+        /// 狀態(0: 開箱、1: 已關箱待複驗、2: 可上架、3: 不可上架、4: 上架移動中、5: 移動完成、6:上架完成、7:已關箱待產生調撥單)
         /// </summary>
         [Required]
         public string STATUS { get; set; }

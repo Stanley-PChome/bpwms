@@ -54,8 +54,9 @@ namespace Wms3pl.WebServices.Process.P02.Services
     /// </summary>
     /// <param name="tmp"></param>
     /// <returns></returns>
-    protected F020201 CreateF020201(F02020101 tmp, String RT_MODE = "0")
+    protected F020201 CreateF020201(F02020101 tmp, String rtMode,F010201 f010201)
     {
+			var isPrintRecvNote = CommonService.GetSysGlobalValue(tmp.DC_CODE, tmp.GUP_CODE, tmp.CUST_CODE, "AutoPrintReports");
       return new F020201
       {
         CHECK_ITEM = tmp.CHECK_ITEM,
@@ -85,8 +86,14 @@ namespace Wms3pl.WebServices.Process.P02.Services
         QUICK_CHECK = tmp.QUICK_CHECK,
         TARWAREHOUSE_ID = tmp.TARWAREHOUSE_ID,
         MAKE_NO = tmp.MAKE_NO,
-        RT_MODE = RT_MODE
-      };
+        RT_MODE = rtMode,
+				IS_PRINT_ITEM_ID = tmp.IS_PRINT_ITEM_ID,
+				DEFECT_QTY = tmp.DEFECT_QTY,
+				DEVICE_MODE = tmp.DEVICE_MODE,
+				IS_PRINT_RECVNOTE = isPrintRecvNote,
+				CUST_ORD_NO = f010201.CUST_ORD_NO,
+				PRINT_MODE = isPrintRecvNote == "1" ? "1" : "0",
+			};
     }
     #endregion
 
@@ -129,8 +136,9 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			var logSvc = new LogService("商品檢驗_" + DateTime.Now.ToString("yyyyMMdd"));
 			SerialNoService.CommonService = CommonService;
 			var f2501Repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
-			var result = SerialNoService.CheckLargeSerialNoFull(tmp.DC_CODE, tmp.GUP_CODE, tmp.CUST_CODE, tmp.ITEM_CODE, f020302s.Select(x => x.SERIAL_NO).Distinct().ToArray(), "A1").ToList();
-			if(result.Any(x=> !x.Checked))
+			//var result = SerialNoService.CheckLargeSerialNoFull(tmp.DC_CODE, tmp.GUP_CODE, tmp.CUST_CODE, tmp.ITEM_CODE, f020302s.Select(x => x.SERIAL_NO).Distinct().ToArray(), "A1").ToList();
+      var result= SerialNoService.CheckItemLargeSerialWithBeforeInWarehouse( tmp.GUP_CODE, tmp.CUST_CODE, tmp.ITEM_CODE, f020302s.Select(x => x.SERIAL_NO).Distinct().ToList() ).ToList();
+      if (result.Any(x=> !x.Checked))
 			{
 				return new ExecuteResult(false, string.Join(Environment.NewLine, result.Select(x => x.Message)));
 			}
@@ -270,6 +278,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
         SrcWarehouseId = srcLoc.WAREHOUSE_ID,
         TarDcCode = acp.DcCode,
         AllocationType = AllocationType.Both,
+        AllocationTypeCode = "0",
         ReturnStocks = returnStocks,
         isIncludeResupply = true,
         SrcStockFilterDetails = group.Select((x, rowIndex) => new StockFilter
@@ -966,7 +975,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
         logDt = DateTime.Now;
         //產生驗收明細
-        addF020201List.Add(CreateF020201(tmp));
+        addF020201List.Add(CreateF020201(tmp,"0", f010201));
         logSvc.Log($"產生驗收明細 {logSvc.DateDiff(logDt, DateTime.Now)}");
 
         logDt = DateTime.Now;

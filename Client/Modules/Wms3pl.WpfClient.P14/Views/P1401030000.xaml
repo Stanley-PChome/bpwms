@@ -99,7 +99,7 @@
                                             <DataGridTextColumn Header="{x:Static Properties:Resources.QueryInventorySDate}" Binding="{Binding INVENTORY_DATE, StringFormat=\{0:yyyy/MM/dd\}}" IsReadOnly="True" />
                                             <DataGridTextColumn Header="{x:Static Properties:Resources.QueryInventoryNo}" Binding="{Binding INVENTORY_NO}" IsReadOnly="True" />
                                             <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CNT}" Binding="{Binding ITEM_CNT}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="{x:Static Properties:Resources.ITEMQTY}" Binding="{Binding ITEMQTY}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="差異筆數" Binding="{Binding ITEMQTY}" IsReadOnly="True" />
                                             <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_QTY}" Binding="{Binding QTY}" IsReadOnly="True" />
                                             <DataGridTextColumn Header="盤點工具" Binding="{Binding CHECK_TOOL_NAME}" IsReadOnly="True" />
                                             <DataGridTextColumn Header="單據狀態" Binding="{Binding STATUS_NAME}" IsReadOnly="True" />

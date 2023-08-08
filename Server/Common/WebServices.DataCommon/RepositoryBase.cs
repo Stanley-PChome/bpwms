@@ -142,7 +142,7 @@ namespace Wms3pl.WebServices.DataCommon
 			var sql = string.Format("Select * From {0} Where {1}", typeof(T).Name, keyConditionStr);
 			_isForUpdate = isForUpdate;
 
-			entity = DoSqlQuery<T>(sql, paramers.ToArray()).SingleOrDefault();
+			entity = DoSqlQuery<T>(sql,false, paramers.ToArray()).SingleOrDefault();
 			if (entity != null)
 			{
 				if (_wmsTransaction != null)
@@ -187,7 +187,7 @@ namespace Wms3pl.WebServices.DataCommon
 				inSql = " And " + inSql;
 
 			var sql = string.Format("Select * From {0} Where {1}{2}", typeof(T).Name, keyConditionStr, inSql);
-			return DoSqlQuery<T>(sql, paramers.ToArray());
+			return DoSqlQuery<T>(sql, false,paramers.ToArray());
 		}
 
 		/// <summary>
@@ -206,7 +206,7 @@ namespace Wms3pl.WebServices.DataCommon
 				keyConditionStr = " Where " + keyConditionStr;
 
 			var sql = string.Format("Select * From {0}{1}", typeof(T).Name, keyConditionStr);
-			return DoSqlQuery<T>(sql, paramers.ToArray());
+			return DoSqlQuery<T>(sql, false, paramers.ToArray());
 		}
 
 		private IQueryable<T> All { get { return _db.Set<T>(); } }
@@ -269,7 +269,7 @@ namespace Wms3pl.WebServices.DataCommon
 			}
 			var sql = string.Format("Insert Into {0}({1}) Values({2})", typeof(T).Name, string.Join(",", colNames.ToArray()), string.Join(",", pStrs.ToArray()));
 			_Encoded = true;
-			ExecuteSqlCommandObjectParams(sql, false, false, null, paramers.ToArray());
+			ExecuteSqlCommandObjectParams(sql, false, false, null,false, paramers.ToArray());
 			_Encoded = false;
 			if (entity != null)
 			{
@@ -450,7 +450,7 @@ namespace Wms3pl.WebServices.DataCommon
 				i++;
 			}
 			var sql = string.Format("Update {0} Set {1} Where {2}", typeof(T).Name, string.Join(",", colNames.ToArray()), keyConditionStr);
-			ExecuteSqlCommandObjectParams(sql, false, false, null, paramers.ToArray());
+			ExecuteSqlCommandObjectParams(sql, false, false, null,false, paramers.ToArray());
 		}
 
 
@@ -545,7 +545,7 @@ namespace Wms3pl.WebServices.DataCommon
 			}
 
 			var sql = string.Format("Delete From {0} Where {1}", typeof(T).Name, keyConditionStr);
-			ExecuteSqlCommandObjectParams(sql, false, false, null, paramers.ToArray());
+			ExecuteSqlCommandObjectParams(sql, false, false, null,false, paramers.ToArray());
 		}
 
 
@@ -560,23 +560,28 @@ namespace Wms3pl.WebServices.DataCommon
 
 		protected void ExeSqlCmdCountMustGreaterZero(string sqlcommand, string exeCountZeroMessage, params SqlParameter[] parameters)
 		{
-			ExecuteSqlCommand(sqlcommand, true, exeCountZeroMessage, parameters);
+			ExecuteSqlCommand(sqlcommand, true, exeCountZeroMessage,false, parameters);
 		}
 
 		protected void ExecuteSqlCommand(string sqlcommand, params SqlParameter[] parameters)
 		{
-			ExecuteSqlCommand(sqlcommand, false, null, parameters);
+			ExecuteSqlCommand(sqlcommand, false, null,false, parameters);
 		}
 
-		private void ExecuteSqlCommand(string sqlcommand, bool exeCountMustGreaterZero, string exeCountZeroMessage, params SqlParameter[] parameters)
+		protected void ExecuteSqlCommandWithSqlParameterSetDbType(string sqlcommand, params SqlParameter[] parameters)
+		{
+			ExecuteSqlCommand(sqlcommand, false, null, true, parameters);
+		}
+
+		private void ExecuteSqlCommand(string sqlcommand, bool exeCountMustGreaterZero, string exeCountZeroMessage,bool isSqlParameterSetDbType, params SqlParameter[] parameters)
 		{
 			_isForUpdate = false;
 			EncodeForSqlUpdate(sqlcommand, parameters);
 
 			if (_wmsTransaction == null)
-				ExecuteResultCount = ExecuteCommandHelper.ExecuteSqlCommand(_db, sqlcommand, parameters);
+				ExecuteResultCount = ExecuteCommandHelper.ExecuteSqlCommand(_db, sqlcommand, isSqlParameterSetDbType, parameters);
 			else
-				_wmsTransaction.SqlCommands.Add(new WmsTransSqlCommand { DbContext = _db, SqlCommandText = sqlcommand, Parameters = parameters, ExeCountMustGreaterZero = exeCountMustGreaterZero, ExeCountZeroMessage = exeCountZeroMessage });
+				_wmsTransaction.SqlCommands.Add(new WmsTransSqlCommand { DbContext = _db, SqlCommandText = sqlcommand, Parameters = parameters, ExeCountMustGreaterZero = exeCountMustGreaterZero, ExeCountZeroMessage = exeCountZeroMessage,IsSqlParameterSetDbType = isSqlParameterSetDbType });
 		}
 
 
@@ -622,54 +627,67 @@ namespace Wms3pl.WebServices.DataCommon
 
 		protected void ExeSqlCmdCountMustGreaterZero(string sqlcommand, string exeCountZeroMessage, params object[] parameters)
 		{
-			ExecuteSqlCommandObjectParams(sqlcommand, true, true, exeCountZeroMessage, parameters);
+			ExecuteSqlCommandObjectParams(sqlcommand, true, true, exeCountZeroMessage,false, parameters);
 		}
 
 		protected void ExecuteSqlCommand(string sqlcommand, params object[] parameters)
 		{
-			ExecuteSqlCommandObjectParams(sqlcommand, true, false, null, parameters);
+			ExecuteSqlCommandObjectParams(sqlcommand, true, false, null,false, parameters);
 		}
 
-		private void ExecuteSqlCommandObjectParams(string sqlcommand, bool isEncodeForSqlUpdate, bool exeCountMustGreaterZero, string exeCountZeroMessage, params object[] parameters)
+		private void ExecuteSqlCommandObjectParams(string sqlcommand, bool isEncodeForSqlUpdate, bool exeCountMustGreaterZero, string exeCountZeroMessage,bool isSqlParameterSetDbType, params object[] parameters)
 		{
 			_isForUpdate = false;
 			if (isEncodeForSqlUpdate)
 				EncodeForSqlUpdate(sqlcommand, parameters);
 
 			if (_wmsTransaction == null)
-				ExecuteResultCount = ExecuteCommandHelper.ExecuteSqlCommand(_db, sqlcommand, parameters);
+				ExecuteResultCount = ExecuteCommandHelper.ExecuteSqlCommand(_db, sqlcommand,false, parameters);
 			else
 				_wmsTransaction.SqlCommands.Add(new WmsTransSqlCommand { DbContext = _db, SqlCommandText = sqlcommand, Parameters = parameters, ExeCountMustGreaterZero = exeCountMustGreaterZero, ExeCountZeroMessage = exeCountZeroMessage });
 		}
 
 		protected IQueryable<TE> SqlQuery<TE>(string sqlcommand)
 		{
-			var results = DoSqlQuery<TE>(sqlcommand, null);
+			var results = DoSqlQuery<TE>(sqlcommand,false, null);
 			return results.AsQueryable();
 		}
 
 		protected IQueryable<TE> SqlQuery<TE>(string sqlcommand, params SqlParameter[] parameters)
 		{
-			var results = DoSqlQuery<TE>(sqlcommand, parameters);
+			var results = DoSqlQuery<TE>(sqlcommand, false, parameters);
+			return results.AsQueryable();
+		}
+
+		/// <summary>
+		/// 用於查詢條件有nvarchar的欄位並有指定資料庫型態
+		/// </summary>
+		/// <typeparam name="TE"></typeparam>
+		/// <param name="sqlcommand"></param>
+		/// <param name="parameters"></param>
+		/// <returns></returns>
+		protected IQueryable<TE> SqlQueryWithSqlParameterSetDbType<TE>(string sqlcommand, params SqlParameter[] parameters)
+		{
+			var results = DoSqlQuery<TE>(sqlcommand, true, parameters);
 			return results.AsQueryable();
 		}
 
 		protected IQueryable<TE> SqlQuery<TE>(string sqlcommand, params object[] parameters)
 		{
-			var results = DoSqlQuery<TE>(sqlcommand, parameters);
+			var results = DoSqlQuery<TE>(sqlcommand,false, parameters);
 			return results.AsQueryable();
 		}
 
-		private IQueryable<TE> DoSqlQuery<TE>(string sqlcommand, params object[] parameters)
+		private IQueryable<TE> DoSqlQuery<TE>(string sqlcommand, bool isSqlParameterSetDbType = false, params object[] parameters)
 		{
 			_db.IsSqlQuery = true;
 			List<TE> results;
 			if (parameters == null)
 				results = ExecuteCommandHelper.ExecuteQuery<TE>(_db, sqlcommand).ToList();
 			else if (parameters is SqlParameter[])
-				results = ExecuteCommandHelper.ExecuteQuery<TE>(_db, sqlcommand, (SqlParameter[])parameters).ToList();
+				results = ExecuteCommandHelper.ExecuteQuery<TE>(_db, sqlcommand, isSqlParameterSetDbType,(SqlParameter[])parameters).ToList();
 			else
-				results = ExecuteCommandHelper.ExecuteQuery<TE>(_db, sqlcommand, (object[])parameters).ToList();
+				results = ExecuteCommandHelper.ExecuteQuery<TE>(_db, sqlcommand, isSqlParameterSetDbType,(object[])parameters).ToList();
 
 			var encryptionSecretPropInfos = GetEncryptionSecretPropInfos(typeof(TE));
 			var encryptPropertyInfos = encryptionSecretPropInfos.Where(e => e.HasEncryption).Select(e => e.PropertyInfo).ToList();

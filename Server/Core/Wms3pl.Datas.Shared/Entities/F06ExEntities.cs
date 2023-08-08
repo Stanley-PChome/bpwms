@@ -185,6 +185,7 @@ namespace Wms3pl.Datas.Shared.Entities
   {
     public string WMS_NO { get; set; }
     public string SERIALNUMLIST { get; set; }
+    public string SERIAL_NO { get; set; }
   }
 
 }

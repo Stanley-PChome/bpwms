@@ -26,7 +26,8 @@ namespace Wms3pl.WpfClient.P08.Services
 {
 	public partial class DeliveryReportService:Wms3plWindow
 	{
-		private string _functionCode;
+    public Action OnReprintClicked = delegate { };
+    private string _functionCode;
 
 		public DeliveryReportService(string functionCode)
 		{
@@ -81,6 +82,7 @@ namespace Wms3pl.WpfClient.P08.Services
 			var tmpReportList = new List<DynamicButtonData>();
 			var p08Proxy = GetExProxyConnect<P08ExDataSource>();
 			var delvdtlInfo = p08Proxy.GetDelvdtlInfo(deliveryData.DC_CODE, deliveryData.GUP_CODE, deliveryData.CUST_CODE, deliveryData.WMS_ORD_NO).ToList().FirstOrDefault();
+      
 
       //補印箱明細，如果F050801.SHIP_MODE=3(外部出貨包裝紀錄)，不顯示補印按鈕
       if (deliveryData.SHIP_MODE == "3")
@@ -93,9 +95,15 @@ namespace Wms3pl.WpfClient.P08.Services
 				new DynamicButtonData(Properties.Resources.DeliveryReportService_RtnLableReport, CreateBusyAsyncCommand(
 							o => littleWhiteReport = p08Proxy.GetLittleWhiteReport(deliveryData.DC_CODE, deliveryData.GUP_CODE, deliveryData.CUST_CODE, deliveryData.WMS_ORD_NO).ToList(),
 							() => true,
-							o => PrintRtnLable(f910501Data, littleWhiteReport)), "BP0807010051"));
-			}
-			else
+              o =>
+              {
+                p08Proxy.LogPrintBoxDetailPacking(f055001Data.DC_CODE, f055001Data.GUP_CODE, f055001Data.CUST_CODE, f055001Data.WMS_ORD_NO, f055001Data.PACKAGE_BOX_NO.ToString());
+                PrintRtnLable(f910501Data, littleWhiteReport);
+                OnReprintClicked();
+              }), 
+              "BP0807010051"));
+      }
+      else
 			{
 				bool isSingleBox = f055001Data != null ;
 				if (!isSingleBox)
@@ -108,15 +116,21 @@ namespace Wms3pl.WpfClient.P08.Services
 						// PcHome
 						var pcHomeData = p08Proxy.GetPcHomeDelivery(deliveryData.DC_CODE, deliveryData.GUP_CODE, deliveryData.CUST_CODE, deliveryData.WMS_ORD_NO).FirstOrDefault();
 
-						tmpReportList.Add(
-						new DynamicButtonData(Properties.Resources.DeliveryReportService_BoxDetailReport, CreateBusyAsyncCommand(
-								//產生箱明細資料
-								o => boxDetailList = p08Proxy.GetDeliveryReport(deliveryData.DC_CODE, deliveryData.GUP_CODE, deliveryData.CUST_CODE, deliveryData.WMS_ORD_NO, null).ToList(),
-								() => true,
-								o => PrintBoxData(boxDetailList, f910501Data, f050301Datas, f1909, delvdtlInfo, pcHomeData)), "BP0807010050"));
-					}
-				}
-				else
+            tmpReportList.Add(
+            new DynamicButtonData(Properties.Resources.DeliveryReportService_BoxDetailReport, CreateBusyAsyncCommand(
+                //產生箱明細資料
+                o => boxDetailList = p08Proxy.GetDeliveryReport(deliveryData.DC_CODE, deliveryData.GUP_CODE, deliveryData.CUST_CODE, deliveryData.WMS_ORD_NO, null).ToList(),
+                () => true,
+                o =>
+                {
+                  p08Proxy.LogPrintBoxDetailPacking(f055001Data.DC_CODE, f055001Data.GUP_CODE, f055001Data.CUST_CODE, f055001Data.WMS_ORD_NO, f055001Data.PACKAGE_BOX_NO.ToString());
+                  PrintBoxData(boxDetailList, f910501Data, f050301Datas, f1909, delvdtlInfo, pcHomeData);
+                  OnReprintClicked();
+                }),
+                "BP0807010050"));
+          }
+        }
+        else
 				{
 					// 產生按鈕
 
@@ -130,10 +144,16 @@ namespace Wms3pl.WpfClient.P08.Services
 						new DynamicButtonData(Properties.Resources.DeliveryReportService_BoxDetailReport, CreateBusyAsyncCommand(
 								o => boxDetailList = p08Proxy.GetDeliveryReport(f055001Data.DC_CODE, f055001Data.GUP_CODE, f055001Data.CUST_CODE, f055001Data.WMS_ORD_NO, f055001Data.PACKAGE_BOX_NO).ToList(),
 								() => true,
-								o => PrintBoxData( boxDetailList, f910501Data, f050301Datas, f1909, delvdtlInfo, pcHomeData)), "BP0807010050"));
-					}
-				}
-			}
+                o =>
+                {
+                  p08Proxy.LogPrintBoxDetailPacking(f055001Data.DC_CODE, f055001Data.GUP_CODE, f055001Data.CUST_CODE, f055001Data.WMS_ORD_NO, f055001Data.PACKAGE_BOX_NO.ToString());
+                  PrintBoxData(boxDetailList, f910501Data, f050301Datas, f1909, delvdtlInfo, pcHomeData);
+                  OnReprintClicked();
+                }),
+                "BP0807010050"));
+          }
+        }
+      }
 			return tmpReportList.ToObservableCollection();
 		}
 		#endregion
@@ -748,6 +768,97 @@ namespace Wms3pl.WpfClient.P08.Services
 				PrintReport(report, selectedF910501, PrinterType.A4);
 			}
 		}
-		#endregion
-	}
+    #endregion
+
+    #region MyRegion
+
+    /// <summary>
+    /// 列印稽核出庫箱明細
+    /// </summary>
+    /// <param name="dcCode">物流中心編號</param>
+    /// <param name="sowType">播種類別</param>
+    /// <param name="datas">報表資料</param>
+    public void P080805PrintBoxData(F0532Ex f0532Ex, List<P0808050000_PrintData> datas)
+    {
+      var selectedF910501 = OpenDeviceWindow(_functionCode, Wms3plSession.Get<GlobalInfo>().ClientIp, f0532Ex.DC_CODE).First();
+
+      ReportClass report = ReportHelper.CreateAndLoadReport<P0808050000>();
+
+      if (datas.Any())
+      {
+        f0532Ex.OUT_CONTAINER_CODE_BARCODE = BarcodeConverter128.StringToBarcode(f0532Ex.OUT_CONTAINER_CODE);
+
+        report.SetDataSource(datas);
+
+        report.SetParameterValue("PACKAGE_BOX_BAR_CODE", f0532Ex.OUT_CONTAINER_CODE_BARCODE);
+        report.SetParameterValue("PACKAGE_BOX", f0532Ex.OUT_CONTAINER_CODE);
+        report.SetParameterValue("出貨箱明細", "出貨箱明細");
+        report.SetParameterValue("目的地", "目的地：");
+        report.SetParameterValue("MOVE_OUT_TARGET", f0532Ex.MOVE_OUT_TARGET_NAME);
+        report.SetParameterValue("頁數", "頁數：");
+        report.SetParameterValue("建立時間", "建立時間：");
+        report.SetParameterValue("CRT_DATE", f0532Ex.CRT_DATE.ToString("yyyy/MM/dd HH:mm:ss"));
+        report.SetParameterValue("關箱時間", "關箱時間：");
+        report.SetParameterValue("CLOSE_DATE", f0532Ex.CLOSE_DATE.HasValue ? f0532Ex.CLOSE_DATE.Value.ToString("yyyy/MM/dd HH:mm:ss") : "");
+        report.SetParameterValue("印單時間", "印單時間：");
+        report.SetParameterValue("PRINT_DATE", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+        report.SetParameterValue("序號", Properties.Resources.SerialNo);
+        report.SetParameterValue("品名", Properties.Resources.ITEM_NAME);
+        report.SetParameterValue("數量", Properties.Resources.A_SRC_QTY);
+
+        report.SummaryInfo.ReportAuthor = Wms3plSession.CurrentUserInfo.AccountName;
+
+        PrintReport(report, selectedF910501, PrinterType.A4);
+      }
+    }
+
+    /// <summary>
+    /// 列印稽核出庫取消箱明細
+    /// </summary>
+    /// <param name="dcCode">物流中心編號</param>
+    /// <param name="sowType">播種類別</param>
+    /// <param name="datas">報表資料</param>
+    public void P080805PrintCancelBoxData(F0532Ex f0532Ex, List<P0808050000_CancelPrintData> datas)
+    {
+      var selectedF910501 = OpenDeviceWindow(_functionCode, Wms3plSession.Get<GlobalInfo>().ClientIp, f0532Ex.DC_CODE).First();
+
+      ReportClass report = ReportHelper.CreateAndLoadReport<P0808050000_CN>();
+
+      if (datas.Any())
+      {
+        f0532Ex.OUT_CONTAINER_CODE_BARCODE = BarcodeConverter128.StringToBarcode(f0532Ex.OUT_CONTAINER_CODE);
+
+        foreach (var data in datas)
+        {
+          if (!string.IsNullOrWhiteSpace(data.ORD_NO))
+          {
+            data.ORDER_NO_BAR = BarcodeConverter128.StringToBarcode(data.ORD_NO);
+          }
+        }
+
+        report.SetDataSource(datas);
+
+        report.SetParameterValue("PACKAGE_BOX_BAR_CODE", f0532Ex.OUT_CONTAINER_CODE_BARCODE);
+        report.SetParameterValue("PACKAGE_BOX", f0532Ex.OUT_CONTAINER_CODE);
+        report.SetParameterValue("出貨箱明細", "取消箱明細");
+        report.SetParameterValue("頁數", "頁數：");
+        report.SetParameterValue("建立時間", "建立時間：");
+        report.SetParameterValue("CRT_DATE", f0532Ex.CRT_DATE.ToString("yyyy/MM/dd HH:mm:ss"));
+        report.SetParameterValue("關箱時間", "關箱時間：");
+        report.SetParameterValue("CLOSE_DATE", f0532Ex.CLOSE_DATE.HasValue ? f0532Ex.CLOSE_DATE.Value.ToString("yyyy/MM/dd HH:mm:ss") : "");
+        report.SetParameterValue("印單時間", "印單時間：");
+        report.SetParameterValue("PRINT_DATE", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+        report.SetParameterValue("序號", Properties.Resources.SerialNo);
+        report.SetParameterValue("品名", Properties.Resources.ITEM_NAME);
+        report.SetParameterValue("數量", Properties.Resources.A_SRC_QTY);
+        report.SetParameterValue("數量", Properties.Resources.A_SRC_QTY);
+        report.SetParameterValue("訂單單號", "訂單單號");
+
+        report.SummaryInfo.ReportAuthor = Wms3plSession.CurrentUserInfo.AccountName;
+
+        PrintReport(report, selectedF910501, PrinterType.A4);
+      }
+    }
+    #endregion
+  }
 }

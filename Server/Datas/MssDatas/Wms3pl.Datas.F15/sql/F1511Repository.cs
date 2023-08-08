@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace Wms3pl.Datas.F15
             {
                 Current.Staff,
                 Current.StaffName,
+                DateTime.Now,
                 gupCode,
                 custCode,
                 dcCode
@@ -34,7 +36,7 @@ namespace Wms3pl.Datas.F15
 
             int paramStartIndex = parameters.Count;
             var inSql = parameters.CombineSqlInParameters("A.ORD_NO", ordNoList, ref paramStartIndex);
-            var sql = @"UPDATE F1511 SET A_PICK_QTY = 0, STATUS = '9', UPD_STAFF = @p0, UPD_NAME = @p1, UPD_DATE = dbo.GetSysDate()
+            var sql = @"UPDATE F1511 SET A_PICK_QTY = 0, STATUS = '9', UPD_STAFF = @p0, UPD_NAME = @p1, UPD_DATE = @p2
 						WHERE EXISTS (
 						SELECT ORDER_NO, ORDER_SEQ, A.DC_CODE, A.GUP_CODE, A.CUST_CODE
 						FROM 
@@ -61,9 +63,9 @@ namespace Wms3pl.Datas.F15
 							AND F1511.DC_CODE = A.DC_CODE
 							AND F1511.GUP_CODE = A.GUP_CODE
 							AND F1511.CUST_CODE = A.CUST_CODE
-							AND A.GUP_CODE = @p2                                         -- 以下為查詢過濾條件
-							AND A.CUST_CODE = @p3
-							AND A.DC_CODE = @p4
+							AND A.GUP_CODE = @p3                                         -- 以下為查詢過濾條件
+							AND A.CUST_CODE = @p4
+							AND A.DC_CODE = @p5
 							AND " + inSql + " )";
 
             ExecuteSqlCommand(sql, parameters.ToArray());
@@ -143,6 +145,7 @@ namespace Wms3pl.Datas.F15
                 new SqlParameter("@p7", Current.Staff),
                 new SqlParameter("@p8", Current.StaffName),
                 new SqlParameter("@p9", status),
+                new SqlParameter("@p10", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
             var sql = @"
 						UPDATE F1511
@@ -150,7 +153,7 @@ namespace Wms3pl.Datas.F15
 							   A_PICK_QTY = @p6,
 							   UPD_STAFF = @p7,
 							   UPD_NAME = @p8,
-							   UPD_DATE = dbo.GetSysDate(),
+							   UPD_DATE = @p10,
 							   STATUS = @p9
 						 WHERE     DC_CODE = @p0
 							   AND GUP_CODE = @p1
@@ -169,16 +172,16 @@ namespace Wms3pl.Datas.F15
 		/// <param name="wmsOrdNos"></param>
 		public void SetAlreadyDebitByWmsOrdNos(string dcCode, string gupCode, string custCode, IEnumerable<string> wmsOrdNos)
         {
-            var paramList = new List<object> { Current.Staff, Current.StaffName, dcCode, gupCode, custCode };
+            var paramList = new List<object> { DateTime.Now, Current.Staff, Current.StaffName, dcCode, gupCode, custCode };
 
             int paramStartIndex = paramList.Count;
             var inSql = paramList.CombineSqlInParameters("A.WMS_ORD_NO", wmsOrdNos, ref paramStartIndex);
 
             var sql = $@"UPDATE F1511
 						SET STATUS = '2'
-							, UPD_DATE =dbo.GetSysDate()  
-							, UPD_STAFF = @p0  
-							, UPD_NAME = @p1 
+							, UPD_DATE = @p0 
+							, UPD_STAFF = @p1  
+							, UPD_NAME = @p2 
                         FROM (SELECT C.DC_CODE,C.GUP_CODE ,C.CUST_CODE ,C.ORDER_NO ORDER_NO,C.ORDER_SEQ ORDER_SEQ
                                       FROM F050801 A
                                            JOIN F051202 B
@@ -192,9 +195,9 @@ namespace Wms3pl.Datas.F15
                                            AND B.GUP_CODE = C.GUP_CODE
                                            AND B.CUST_CODE = C.CUST_CODE
                                            AND B.DC_CODE = C.DC_CODE
-                                      WHERE C.DC_CODE = @p2
-                                           AND C.GUP_CODE = @p3
-                                           AND C.CUST_CODE = @p4
+                                      WHERE C.DC_CODE = @p3
+                                           AND C.GUP_CODE = @p4
+                                           AND C.CUST_CODE = @p5
                                            AND {inSql} ) D
                                         WHERE F1511.DC_CODE  = D.DC_CODE
                                     AND F1511.GUP_CODE = D.GUP_CODE
@@ -248,19 +251,18 @@ namespace Wms3pl.Datas.F15
 
         public void UpdateAPickQtyForWcsApi(string dcCode, string gupCode, string custCode, string wmsNo, string rowNum, int skuQty)
         {
-            var paramList = new List<object> { skuQty, Current.Staff, Current.StaffName, dcCode, gupCode, custCode, wmsNo, rowNum };
+            var paramList = new List<object> { skuQty, DateTime.Now, Current.Staff, Current.StaffName, dcCode, gupCode, custCode, wmsNo, rowNum };
 
             var sql = @"UPDATE F1511
 						   SET STATUS = '2', A_PICK_QTY = @p0
-						    , UPD_DATE = dbo.GetSysDate()  
-							, UPD_STAFF = @p1  
-							, UPD_NAME = @p2
-						 WHERE     DC_CODE = @p3
-							   AND GUP_CODE = @p4
-							   AND CUST_CODE = @p5
-							   AND ORDER_NO = @p6
-							   AND ORDER_SEQ = @p7
-                    ";
+						    , UPD_DATE = @p1
+							, UPD_STAFF = @p2  
+							, UPD_NAME = @p3
+						 WHERE     DC_CODE = @p4
+							   AND GUP_CODE = @p5
+							   AND CUST_CODE = @p6
+							   AND ORDER_NO = @p7
+							   AND ORDER_SEQ = @p8 ";
 
             ExecuteSqlCommand(sql, paramList.ToArray());
         }
@@ -280,7 +282,14 @@ namespace Wms3pl.Datas.F15
 
 		public IQueryable<F1511> GetDatas(string dcCode, string gupCode, string custCode, string orderNo)
 		{
-			var parms = new List<object> { dcCode, gupCode, custCode,orderNo };
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p3",orderNo){ SqlDbType = SqlDbType.VarChar},
+			};
+
 			var sql = @" SELECT *
 														 FROM F1511
 														WHERE DC_CODE = @p0
@@ -291,7 +300,32 @@ namespace Wms3pl.Datas.F15
 			return SqlQuery<F1511>(sql, parms.ToArray());
 		}
 
-		public IQueryable<F1511> GetDatasByWmsOrdNo(string dcCode,string gupCode,string custCode,string wmsOrdNo)
+    public F1511 GetData(string dcCode, string gupCode, string custCode, string orderNo,string orderSeq)
+    {
+      var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", orderNo)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", orderSeq) { SqlDbType = SqlDbType.VarChar },
+      };
+
+      var sql = @" 
+SELECT 
+  *
+FROM F1511
+WHERE DC_CODE = @p0
+  AND GUP_CODE = @p1
+  AND CUST_CODE = @p2 
+  AND ORDER_NO = @p3
+  and ORDER_SEQ = @p4";
+
+      return SqlQuery<F1511>(sql, parms.ToArray()).FirstOrDefault();
+    }
+
+
+    public IQueryable<F1511> GetDatasByWmsOrdNo(string dcCode,string gupCode,string custCode,string wmsOrdNo)
 		{
 			var parms = new List<object> { dcCode, gupCode, custCode, wmsOrdNo };
 			var sql = @" SELECT A.*
@@ -331,5 +365,23 @@ namespace Wms3pl.Datas.F15
 			return SqlQuery<F1511>(sql, parms.ToArray());
 		}
 
+		public IQueryable<F1511> GetNotCacnelDatasByPickNo(string dcCode, string gupCode, string custCode, string pickOrdNo)
+		{
+			var parms = new List<SqlParameter>();
+			parms.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar });
+
+			var sql = @" SELECT *
+                     FROM F1511
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND ORDER_NO = @p3
+                      AND STATUS <> '9' ";
+
+			return SqlQuery<F1511>(sql, parms.ToArray());
+		}
 	}
 }

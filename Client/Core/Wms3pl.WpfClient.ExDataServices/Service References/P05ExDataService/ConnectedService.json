@@ -1,6 +1,6 @@
 ﻿{
   "ProviderId": "Microsoft.OData.ConnectedService",
-  "Version": "1.0.1.0",
+  "Version": "1.0.0.0",
   "GettingStartedDocument": {
     "Uri": "https://msdn.microsoft.com/en-us/library/cc668772(v=vs.110).aspx"
   },

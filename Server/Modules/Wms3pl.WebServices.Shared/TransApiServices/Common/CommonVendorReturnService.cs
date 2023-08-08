@@ -150,11 +150,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 			F075103Repository f075103Repo = new F075103Repository(Schemas.CoreSchema);
 			F160201Repository f160201Repo = new F160201Repository(Schemas.CoreSchema, _wmsTransation);
 			F160202Repository f160202Repo = new F160202Repository(Schemas.CoreSchema, _wmsTransation);
-			F160203Repository f160203Repo = new F160203Repository(Schemas.CoreSchema);
-			F1908Repository f1908Repo = new F1908Repository(Schemas.CoreSchema);
-			F1951Repository f1951Repo = new F1951Repository(Schemas.CoreSchema);
 			F1903Repository f1903Repo = new F1903Repository(Schemas.CoreSchema);
-			F198001Repository f198001Repo = new F198001Repository(Schemas.CoreSchema);
 			TransApiBaseService tacService = new TransApiBaseService();
 			VendorReturnService vrtService = new VendorReturnService(_wmsTransation);
 			SharedService sharedService = new SharedService(_wmsTransation);
@@ -162,21 +158,28 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 
 			#region Private Property
 
-			// 取得廠商編號清單
-			_vnrCodeList = f1908Repo.GetDatas(gupCode, custCode, vnrReturns.Select(x => x.SupCode).Distinct().ToList()).ToList();
+      if (vnrReturns.Any(o => o.ProcFlag != "D"))
+      {
+        // 取得廠商編號清單
+        F1908Repository f1908Repo = new F1908Repository(Schemas.CoreSchema);
+        _vnrCodeList = f1908Repo.GetDatas(gupCode, custCode, vnrReturns.Select(x => x.SupCode).Distinct().ToList()).ToList();
 
-			// 取得退貨類型清單
-			_vnrReturnTypeList = f160203Repo.GetALLF160203().ToList();
+        // 取得退貨類型清單
+        F160203Repository f160203Repo = new F160203Repository(Schemas.CoreSchema);
+        _vnrReturnTypeList = f160203Repo.GetALLF160203().ToList();
 
-			// 取得退貨原因清單
-			_vnrReturnCauseList = f1951Repo.GetDatasByTrueAndCondition(o => o.UCT_ID == "RV").Select(x => x.UCC_CODE).ToList();
+        // 取得退貨原因清單
+        F1951Repository f1951Repo = new F1951Repository(Schemas.CoreSchema);
+        _vnrReturnCauseList = f1951Repo.GetDatasByTrueAndCondition(o => o.UCT_ID == "RV").Select(x => x.UCC_CODE).ToList();
 
-			// 取得第一筆廠退原因
-			var cause = _vnrReturnCauseList.FirstOrDefault();
-			_firstVnrReturnCause = cause == null ? string.Empty : cause;
+			  // 取得第一筆廠退原因
+			  var cause = _vnrReturnCauseList.FirstOrDefault();
+			  _firstVnrReturnCause = cause == null ? string.Empty : cause;
 
-			// 取得倉別清單
-			_typeIdList = f198001Repo.GetDatasByTypeIds(vnrReturns.Select(x => x.TypeId).ToList()).Select(x => x.TYPE_ID).ToList();
+        // 取得倉別清單
+        F198001Repository f198001Repo = new F198001Repository(Schemas.CoreSchema);
+        _typeIdList = f198001Repo.GetDatasByTypeIds(vnrReturns.Select(x => x.TypeId).ToList()).Select(x => x.TYPE_ID).ToList();
+      }
 			
 			// 取得已存在退貨單編號清單
 			_thirdPartVnrReturnsList = f160201Repo.GetDatasByCustVnrRetrunNos(dcCode, gupCode, custCode, vnrReturns.Select(x => x.CustVnrRetrunNo).ToList()).Select(x => new ThirdPartVendorReturns { CUST_ORD_NO = x.CUST_ORD_NO, RTN_VNR_NO = x.RTN_VNR_NO }).ToList();
@@ -191,24 +194,27 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 
 			vnrReturns.ForEach(currVnrReturn =>
 			{
-				// 資料處理2
-				var res1 = CheckReturn(dcCode, gupCode, custCode, currVnrReturn);
+        if (currVnrReturn.ProcFlag != "D")
+        {
+				  // 資料處理2
+				  var res1 = CheckReturn(dcCode, gupCode, custCode, currVnrReturn);
 
-				if (!res1.IsSuccessed)
-				{
-					data.AddRange((List<ApiResponse>)res1.Data);
+				  if (!res1.IsSuccessed)
+				  {
+					  data.AddRange((List<ApiResponse>)res1.Data);
 
-					_thirdPartVnrReturnsList = _thirdPartVnrReturnsList.Where(x => x.CUST_ORD_NO != currVnrReturn.CustVnrRetrunNo).ToList();
+					  _thirdPartVnrReturnsList = _thirdPartVnrReturnsList.Where(x => x.CUST_ORD_NO != currVnrReturn.CustVnrRetrunNo).ToList();
 
-					var currCustOrdNo = paramCustOrdNos.Where(x => x.CustVnrRetrunNo == currVnrReturn.CustVnrRetrunNo).FirstOrDefault();
+					  var currCustOrdNo = paramCustOrdNos.Where(x => x.CustVnrRetrunNo == currVnrReturn.CustVnrRetrunNo).FirstOrDefault();
 
-					// 若驗證失敗 刪除新增的F075103
-					if (_IsAddF075103CustOrdNoList.Contains(currVnrReturn.CustVnrRetrunNo) && currCustOrdNo != null && currCustOrdNo.Cnt == 1)
-					{
-						f075103Repo.DelF075103ByKey(custCode, currVnrReturn.CustVnrRetrunNo);
-						_IsAddF075103CustOrdNoList = _IsAddF075103CustOrdNoList.Where(x => x != currVnrReturn.CustVnrRetrunNo).ToList();
-					}
-				}
+					  // 若驗證失敗 刪除新增的F075103
+					  if (_IsAddF075103CustOrdNoList.Contains(currVnrReturn.CustVnrRetrunNo) && currCustOrdNo != null && currCustOrdNo.Cnt == 1)
+					  {
+						  f075103Repo.DelF075103ByKey(custCode, currVnrReturn.CustVnrRetrunNo);
+						  _IsAddF075103CustOrdNoList = _IsAddF075103CustOrdNoList.Where(x => x != currVnrReturn.CustVnrRetrunNo).ToList();
+					  }
+				  }
+        }
 			});
 			#endregion
 

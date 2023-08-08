@@ -700,6 +700,16 @@ namespace Wms3pl.WpfClient.ExDataServices.P08ExDataService
 						.AddQueryExOption("custCode", custCode)
 						.AddQueryExOption("wmsOrdNo", wmsOrdNo);
 		}
-	}
+
+    public Boolean LogPrintBoxDetailPacking(string dcCode, string gupCode, string custCode, string wmsOrdNo, string packageBoxNo)
+    {
+      return CreateQuery<Boolean>("LogPrintBoxDetailPacking")
+                .AddQueryExOption("dcCode", dcCode)
+                .AddQueryExOption("gupCode", gupCode)
+                .AddQueryExOption("custCode", custCode)
+                .AddQueryExOption("wmsOrdNo", wmsOrdNo)
+                .AddQueryExOption("packageBoxNo", packageBoxNo).ToList().FirstOrDefault();
+    }
+  }
 }
 

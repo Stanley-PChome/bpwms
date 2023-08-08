@@ -302,7 +302,7 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
         return result;
       }
       var f051201Repo = new F051201Repository(Schemas.CoreSchema);
-      var f051201 = f051201Repo.GetData(_curF060209.DC_CODE, _curF060209.GUP_CODE, _curF060209.CUST_CODE, _curF060209.PICK_NO);
+      var f051201 = f051201Repo.GetF051201(_curF060209.DC_CODE, _curF060209.GUP_CODE, _curF060209.CUST_CODE, _curF060209.PICK_NO);
       if (f051201 == null) // 揀貨單不存在
       {
         if (_curF060209.PROC_FLAG == 1 || _curF060209.PROC_FLAG == 8)
@@ -456,15 +456,18 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 					PACKAGE_NAME = _empName,
 					STATUS = "0",
 					IS_CLOSED = string.IsNullOrWhiteSpace(x.CONSIGN_NO) ? "0" : "1",
-					IS_ORIBOX = x.BOX_NO == "ORI" ? "1" : "0",
-					CRT_DATE = now,
-					CRT_STAFF = _curF060209.OPERATOR,
-					CRT_NAME = _empName
-				};
-				#endregion
+          IS_ORIBOX = x.BOX_NO == "ORI" ? "1" : "0",
+          CRT_DATE = now,
+          CRT_STAFF = _curF060209.OPERATOR,
+          CRT_NAME = _empName,
+          ORG_BOX_NUM = x.BOX_NO,
+          ORG_PAST_NO = x.CONSIGN_NO,
+          PACK_CLIENT_PC = "Shuttle"
+        };
+        #endregion
 
-				// 有託運單產生F050901
-				if(!string.IsNullOrWhiteSpace(x.CONSIGN_NO))
+        // 有託運單產生F050901
+        if (!string.IsNullOrWhiteSpace(x.CONSIGN_NO))
 					boxDetail.F050901 = CreateF050901(x,now);
 
 				boxDetail.F055002List = new List<F055002>();
@@ -802,12 +805,12 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 			{
 				shipPackageService.UpdateBoxStock(x.F055001.DC_CODE, x.F055001.GUP_CODE, x.F055001.CUST_CODE, x.F055001.BOX_NUM);
 			});
-		
-			// 	更新出貨單狀態為已稽核[F050802.STATUS=2],PRINT_FLAG=1，排除出貨單狀態已取消避免被覆蓋
-			f050801Repo.UpdateStatusWithNoCancelAndHasPrintFlag(_curF050801.DC_CODE, _curF050801.GUP_CODE, _curF050801.CUST_CODE, _curF050801.WMS_ORD_NO,2);
 
-			//產生訂單回檔紀錄[包裝結束=3]
-			var finishRecord = f05030101Repo.GetOrderRtnInsertDatas(_curF050801.DC_CODE, _curF050801.GUP_CODE, _curF050801.CUST_CODE, "3", new List<string> { _curF050801.WMS_ORD_NO }).FirstOrDefault();
+      // 	更新出貨單狀態為已稽核[F050802.STATUS=2],PRINT_FLAG=1，排除出貨單狀態已取消避免被覆蓋
+      f050801Repo.UpdateStatusWithNoCancelAndHasPrintFlag(_curF050801.DC_CODE, _curF050801.GUP_CODE, _curF050801.CUST_CODE, _curF050801.WMS_ORD_NO, 2, DateTime.Parse(_curF060209.START_TIME), DateTime.Parse(_curF060209.COMPLETE_TIME));
+
+      //產生訂單回檔紀錄[包裝結束=3]
+      var finishRecord = f05030101Repo.GetOrderRtnInsertDatas(_curF050801.DC_CODE, _curF050801.GUP_CODE, _curF050801.CUST_CODE, "3", new List<string> { _curF050801.WMS_ORD_NO }).FirstOrDefault();
 			if (finishRecord != null)
 			{
 				finishRecord.CRT_DATE = DateTime.Parse(_curF060209.COMPLETE_TIME);
@@ -877,7 +880,11 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 					wmsBoxDetail.F055001.PRINT_DATE = DateTime.Now;
 					wmsBoxDetail.F055001.PRINT_FLAG = 1;
 					wmsBoxDetail.F055001.IS_CLOSED = "1";
-					wmsBoxDetail.F050901 = CreateF050901(f06020901);
+          wmsBoxDetail.F055001.ORG_PAST_NO = rtnData.TransportCode;
+          wmsBoxDetail.F055001.ORG_LOGISTIC_CODE = rtnData.TransportProvider;
+          wmsBoxDetail.F055001.LOGISTIC_CODE = rtnData.TransportProvider;
+          wmsBoxDetail.F055001.CLOSEBOX_TIME = DateTime.Now;
+          wmsBoxDetail.F050901 = CreateF050901(f06020901);
 				}
 				else
 				{

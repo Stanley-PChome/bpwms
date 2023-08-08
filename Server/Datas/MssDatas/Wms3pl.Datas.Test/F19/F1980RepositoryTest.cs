@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,18 +79,20 @@ namespace Wms3pl.Datas.Test.F19
             _f1980Repo.GetInventoryWareHouses(dcCode, wareHouseType, tool);
         }
 
-        [TestMethod]
-        public void GetF1980ByLocCode()
-        {
-            #region Params
-            var dcCode = "001";
-            var locCode = "10C020404";
-            #endregion
+    [TestMethod]
+    public void GetF1980ByLocCode()
+    {
+      #region Params
+      var dcCode = "12";
+      var locCode = "A01010107";
+      #endregion
 
-            _f1980Repo.GetF1980ByLocCode(dcCode, locCode);
-        }
+      var res = _f1980Repo.GetF1980ByLocCode(dcCode, locCode);
+      //var res0 = _f1980Repo.GetF1980ByLocCode0(dcCode, locCode);
+      //Assert.AreEqual(JsonConvert.SerializeObject(res), JsonConvert.SerializeObject(res0));
+    }
 
-        [TestMethod]
+    [TestMethod]
         public void GetWareHouseTmprTypeByLocCode()
         {
             #region Params
@@ -100,17 +104,20 @@ namespace Wms3pl.Datas.Test.F19
         }
 
         [TestMethod]
-        public void GetDatas()
-        {
-            #region Params
-            var dcCode = "001";
-            var warehouseIds = new List<string> { "G07"};
-            #endregion
+    public void GetDatas()
+    {
+      #region Params
+      var dcCode = "001";
+      var warehouseIds = new List<string> { "G07" };
+      #endregion
 
-            _f1980Repo.GetDatas(dcCode, warehouseIds);
-        }
+      var res = _f1980Repo.GetDatas(dcCode, warehouseIds);
 
-        [TestMethod]
+      var res1 = _f1980Repo.GetDatas(dcCode, warehouseIds);
+      Assert.AreEqual(JsonConvert.SerializeObject(res), JsonConvert.SerializeObject(res1));
+    }
+
+    [TestMethod]
         public void GetWareHouseTmprTypeByLocCodes()
         {
             #region Params

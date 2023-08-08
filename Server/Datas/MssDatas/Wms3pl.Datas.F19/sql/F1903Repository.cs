@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F19;
@@ -769,7 +770,7 @@ namespace Wms3pl.Datas.F19
 			return result;
 		}
 
-		public IQueryable<InventoryItem> GetInventoryItems(string gupCode, string custCode, string type, string lType, string mType, string sType,string vnrCode,string vnrName, string itemCode)
+		public IQueryable<InventoryItem> GetInventoryItems(string gupCode, string custCode, string type, string lType, string mType, string sType, string vnrCode, string oriVnrCode, string vnrName, string itemCode)
 		{
 			var param = new List<SqlParameter> {
 								new SqlParameter("@p0", gupCode),
@@ -809,7 +810,12 @@ namespace Wms3pl.Datas.F19
 				sql += " AND A.VNR_CODE = @p" + param.Count;
 				param.Add(new SqlParameter("@p" + param.Count, vnrCode));
 			}
-			if (!string.IsNullOrWhiteSpace(vnrName))
+      if (!string.IsNullOrWhiteSpace(oriVnrCode))
+      {
+        sql += " AND A.ORI_VNR_CODE = @p" + param.Count;
+        param.Add(new SqlParameter("@p" + param.Count, oriVnrCode));
+      }
+      if (!string.IsNullOrWhiteSpace(vnrName))
 			{
 				sql += $" AND B.VNR_NAME LIKE '%{vnrName}%'";
 			}
@@ -926,6 +932,33 @@ namespace Wms3pl.Datas.F19
 
       return false;
     }
+
+    public IQueryable<F1903> GetDatasByItems(string gupCode, string custCode, List<string> itemCodes)
+    {
+      var sql = @"SELECT * FROM F1903 WHERE GUP_CODE=@p0 AND CUST_CODE=@p1";
+
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+        new SqlParameter("@p1", custCode) { SqlDbType = System.Data.SqlDbType.VarChar }
+      };
+      if (itemCodes.Any())
+        sql += param.CombineSqlInParameters(" AND ITEM_CODE", itemCodes, System.Data.SqlDbType.VarChar);
+      else
+        return null;
+
+      return SqlQuery<F1903>(sql, param.ToArray());
+
+      #region 原LINQ語法
+      /*
+      var result = _db.F1903s.Where(x => x.GUP_CODE == gupCode
+                                    && x.CUST_CODE == custCode
+                                    && itemCodes.Contains(x.ITEM_CODE));
+      return result;
+      */
+      #endregion
+    }
+
 		public IQueryable<F1903> GetDatasByWcsItemAsync(string gupCode, string custCode, int maxRecord)
 		{
 			var sqlParamers = new List<SqlParameter>();
@@ -941,6 +974,111 @@ namespace Wms3pl.Datas.F19
                            ORDER BY B.CRT_DATE ";
 
 			return SqlQuery<F1903>(sql, sqlParamers);
+		}
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="itemCode"></param>
+    /// <param name="itemName">起始字串為模糊查詢</param>
+    /// <param name="itemSpec"></param>
+    /// <returns></returns>
+    public IQueryable<F1903> GetF1903(string gupCode, string custCode, string[] itemCodes, string itemName, string itemSpec, string lType, string oriVnrCode)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = custCode },
+      };
+
+      var sql = @"SELECT * FROM F1903 WHERE GUP_CODE=@p0 AND CUST_CODE=@p1 AND SND_TYPE!='9'";
+
+      if (!string.IsNullOrWhiteSpace(itemSpec))
+      {
+        sql += $" AND ITEM_SPEC=@p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.NVarChar) { Value = itemSpec });
+      }
+
+      if (!string.IsNullOrWhiteSpace(itemName))
+      {
+        sql += $" AND ITEM_NAME LIKE @p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.NVarChar) { Value = itemName + "%" });
+      }
+
+      if (itemCodes.Any())
+      {
+        List<string> itemCodesSqls = new List<string>();
+        sql += " AND (";
+        foreach (var item in itemCodes)
+        {
+          itemCodesSqls.Add($"(ITEM_CODE=@p{para.Count} OR EAN_CODE1=@p{para.Count} OR EAN_CODE2=@p{para.Count} OR EAN_CODE3=@p{para.Count})");
+          para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = item });
+        }
+        sql += string.Join(" OR", itemCodesSqls);
+        sql += ")";
+      }
+
+      if (!string.IsNullOrWhiteSpace(oriVnrCode))
+      {
+        sql += $" AND ORI_VNR_CODE =@p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = oriVnrCode });
+      }
+
+      return SqlQuery<F1903>(sql, para.ToArray());
+      #region 原LINQ
+      /*
+     var result = _db.F1903s.Where(x => x.SND_TYPE != "9"
+                              && x.CUST_CODE == custCode);
+     if (!string.IsNullOrWhiteSpace(itemSpec))
+     {
+       result = result.Where(x => x.ITEM_SPEC == itemSpec);
+     }
+
+     if (!string.IsNullOrWhiteSpace(lType))
+     {
+       result = result.Where(x => x.LTYPE == lType);
+     }
+
+     if (!string.IsNullOrWhiteSpace(itemName))
+     {
+       result = result.Where(x => x.ITEM_NAME.StartsWith(itemName));
+     }
+
+
+     if (itemCodes.Any())
+     {
+       result = result.Where(x => itemCodes.Contains(x.ITEM_CODE) ||
+                                  itemCodes.Contains(x.EAN_CODE1) ||
+                                  itemCodes.Contains(x.EAN_CODE2) ||
+                                  itemCodes.Contains(x.EAN_CODE3));
+     }
+
+     return result;
+     // */
+      #endregion
+    }
+		public void UpdateRcvMemo(string gupCode, string custCode, string itemCode, string rcvMemo)
+		{
+			var sqlParameters = new List<SqlParameter>()
+			{
+				new SqlParameter("@p0", rcvMemo) { SqlDbType = System.Data.SqlDbType.NVarChar },
+				new SqlParameter("@p1", Current.Staff) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p2", DateTime.Now) { SqlDbType = System.Data.SqlDbType.DateTime2 },
+				new SqlParameter("@p3", Current.StaffName) { SqlDbType = System.Data.SqlDbType.NVarChar },
+				new SqlParameter("@p4", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p5", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p6", itemCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+			};
+
+			var sql = @"UPDATE F1903
+                     SET RCV_MEMO = @p0, UPD_STAFF = @p1, UPD_DATE = @p2, UPD_NAME = @p3
+                   WHERE GUP_CODE = @p4
+                     AND CUST_CODE = @p5
+                     AND ITEM_CODE = @p6 ";
+
+			ExecuteSqlCommand(sql, sqlParameters.ToArray());
 		}
 	}
 }

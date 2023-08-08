@@ -251,13 +251,5 @@ namespace Wms3pl.Datas.F14
 			return q;
 		}
 
-		public IQueryable<F140104> GetDatasByWcsInventoryNos(string dcCode, string gupCode, string custCode, List<string> inventoryNos)
-		{
-			return _db.F140104s.AsNoTracking().Where(x =>
-			x.DC_CODE == dcCode &&
-			x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			inventoryNos.Contains(x.INVENTORY_NO));
-		}
 	}
 }

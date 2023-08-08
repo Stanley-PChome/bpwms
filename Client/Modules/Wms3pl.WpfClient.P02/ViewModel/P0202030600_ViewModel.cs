@@ -303,10 +303,10 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 					return null;
 				}
 
-				var serialNoList = DoCheckSerialNo(largeSerialNo);
-
-				// 組合最多六筆錯誤訊息的內容
-				const int maxDisplayCount = 6;
+        var serialNoList = DoCheckSerialNo(largeSerialNo);
+        //var serialNoList = CheckItemLargeSerialWithBeforeInWarehouse(largeSerialNo);
+        // 組合最多六筆錯誤訊息的內容
+        const int maxDisplayCount = 6;
 				errorMeg = string.Join(Environment.NewLine, serialNoList.Where(x => !x.Checked)
 																																.Take(maxDisplayCount)
 																																.Select(x => x.Message));
@@ -487,8 +487,9 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 			get
 			{
 				return CreateBusyAsyncCommand(
-					o => DoCheckSerialNo(),
-					() => true,
+          o => DoCheckSerialNo(),
+          //o=>SerialService.CheckItemSingleSerialWithBeforeInWarehouse(
+          () => true,
 					o =>
 					{
 						RaisePropertyChanged("DgSerialList");
@@ -497,77 +498,77 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 				);
 			}
 		}
-		#endregion
-		#region 序號刷讀作業
-		/// <summary>
-		/// 刷讀後判斷該序號在F2501裡的狀態
-		/// 只要Status非空即顯示其訊息
-		/// </summary>
-		/// <returns></returns>
-		public void DoCheckSerialNo()
-		{
-			var proxy = GetProxy<F01Entities>();
-			//var proxyF02 = GetProxy<F02Entities>();
-			var message = new MessagesStruct
-			{
-				Button = DialogButton.OK,
-				Image = DialogImage.Warning,
-				Title = Properties.Resources.Message
-			};
+    #endregion
+    #region 序號刷讀作業
+    /// <summary>
+    /// 刷讀後判斷該序號在F2501裡的狀態
+    /// 只要Status非空即顯示其訊息
+    /// </summary>
+    /// <returns></returns>
+    public void DoCheckSerialNo()
+    {
+      var proxy = GetProxy<F01Entities>();
+      //var proxyF02 = GetProxy<F02Entities>();
+      var message = new MessagesStruct
+      {
+        Button = DialogButton.OK,
+        Image = DialogImage.Warning,
+        Title = Properties.Resources.Message
+      };
 
-			//var f010202Data = proxy.F010202s.Where(o => o.DC_CODE == BaseData.DC_CODE && o.GUP_CODE == BaseData.GUP_CODE && o.CUST_CODE == BaseData.CUST_CODE
-			//								&& o.STOCK_NO == BaseData.PURCHASE_NO && o.ITEM_CODE == BaseData.ITEM_CODE).FirstOrDefault();
+      //var f010202Data = proxy.F010202s.Where(o => o.DC_CODE == BaseData.DC_CODE && o.GUP_CODE == BaseData.GUP_CODE && o.CUST_CODE == BaseData.CUST_CODE
+      //								&& o.STOCK_NO == BaseData.PURCHASE_NO && o.ITEM_CODE == BaseData.ITEM_CODE).FirstOrDefault();
 
-			if (DgSerialList == null) DgSerialList = new ObservableCollection<wcf.SerialNoResult>();
+      if (DgSerialList == null) DgSerialList = new ObservableCollection<wcf.SerialNoResult>();
 
-			if (NewSerialNo != null)
-				NewSerialNo = NewSerialNo.Trim();
-			if (SerialCount.ValidCount >= MustQty)
-			{
-				message.Message = Properties.Resources.P0202030600_SerialCountOverMustQty;
-				ShowMessage(message);
-			}
-			else if (string.IsNullOrEmpty(NewSerialNo))
-			{
-				message.Message = Properties.Resources.P0202030600_SerialNoNotNull;
-				ShowMessage(message);
-			}
-			else if (DgSerialList.Any(o => o.SerialNo.ToUpper() == NewSerialNo.ToUpper()))
-			{
-				message.Message = Properties.Resources.P0202030600_SerialNoExist;
-				ShowMessage(message);
-			}
-			else
-			{
-				// 檢查F020302序號是否重複
-				var executeResult = CheckRepeatSerails(NewSerialNo);
-				if (!executeResult.IsSuccessed)
-				{
-					ShowWarningMessage(executeResult.Message);
-					return;
-				}
+      if (NewSerialNo != null)
+        NewSerialNo = NewSerialNo.Trim();
+      if (SerialCount.ValidCount >= MustQty)
+      {
+        message.Message = Properties.Resources.P0202030600_SerialCountOverMustQty;
+        ShowMessage(message);
+      }
+      else if (string.IsNullOrEmpty(NewSerialNo))
+      {
+        message.Message = Properties.Resources.P0202030600_SerialNoNotNull;
+        ShowMessage(message);
+      }
+      else if (DgSerialList.Any(o => o.SerialNo.ToUpper() == NewSerialNo.ToUpper()))
+      {
+        message.Message = Properties.Resources.P0202030600_SerialNoExist;
+        ShowMessage(message);
+      }
+      else
+      {
+        // 檢查F020302序號是否重複
+        var executeResult = CheckRepeatSerails(NewSerialNo);
+        if (!executeResult.IsSuccessed)
+        {
+          ShowWarningMessage(executeResult.Message);
+          return;
+        }
 
-				var tmp = DgSerialList.ToList();
-				var result = DoCheckSerialNo(NewSerialNo);
-				if (result.First().Checked)
-				{
-					result = result.Where(o => !tmp.Select(c => c.SerialNo).Contains(o.SerialNo)).ToList();
-					tmp.AddRange(result);
-					DgSerialList = tmp.ToObservableCollection();
-					DoRefreshReadCount();
-				}
-				else
-				{
-					var msg = result.First().Message;
-					var tipMessage = GetC1TipMessage(msg);
-					message.Message = string.Format("{0}{1}", msg, tipMessage);
+        var tmp = DgSerialList.ToList();
+        var result = DoCheckSerialNo(NewSerialNo);
+        if (result.First().Checked)
+        {
+          result = result.Where(o => !tmp.Select(c => c.SerialNo).Contains(o.SerialNo)).ToList();
+          tmp.AddRange(result);
+          DgSerialList = tmp.ToObservableCollection();
+          DoRefreshReadCount();
+        }
+        else
+        {
+          var msg = result.First().Message;
+          var tipMessage = GetC1TipMessage(msg);
+          message.Message = string.Format("{0}{1}", msg, tipMessage);
 
-					ShowMessage(message);
-				}
-			}
-		}
+          ShowMessage(message);
+        }
+      }
+    }
 
-		string GetC1TipMessage(string msg)
+    string GetC1TipMessage(string msg)
 		{
 			return (msg.IndexOf(Properties.Resources.P0202030600_GetC1TipMessageCheck) != -1 && msg.IndexOf("C1") != -1) ? Properties.Resources.P0202030600_GetC1TipMessage : "";
 		}
@@ -588,7 +589,6 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 																			string.Empty));
 			return wcfSerialNoResults.ToList();
 		}
-
 
 
 		/// <summary>
@@ -641,6 +641,8 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 			public int ValidCount { get; set; }
 			public int InvalidCount { get; set; }
 		}
-		#endregion
-	}
+    #endregion
+
+
+  }
 }

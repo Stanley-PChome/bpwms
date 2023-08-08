@@ -240,81 +240,99 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         if (!getF070104Res.IsSuccessed)
           return getF070104Res;
       }
+			// 該容器品號的進倉單號清單
+			var stockNos = f070104s.Select(x => x.SOURCE_NO).Distinct().ToList();
 
-      var f07010401s = f07010401Repo.GetDatasByF070104Ids(f070104s.Select(x => x.ID).ToList()).ToList();
-
-      bool isSn = false;
-      var itemCodes = _p81Service.GetItemCodeByBarcode(ref isSn, req.DcNo, gupCode, req.CustNo, req.ItemCode);
-      if (itemCodes == null || (itemCodes != null && !itemCodes.Any()))
-        return new ApiResult { IsSuccessed = false, MsgCode = "21007", MsgContent = _p81Service.GetMsg("21007") };
-
-      // 取得F070104 By ItemCode
-      var f070104sByItem = f070104s.Select(x => x.ITEM_CODE).Intersect(itemCodes).ToList();
-      if (!f070104sByItem.Any())
-        return new ApiResult { IsSuccessed = false, MsgCode = "21008", MsgContent = _p81Service.GetMsg("21008") };
-
-      // 檢核該序號是否在容器資料內
-      if (isSn)
+			#region 檢查商品條碼是否正確
+			var isScanSn = false;
+			var itemCodes = new List<string>();
+			var itemService = new ItemService();
+			var findSn = string.Empty;
+			F2501 f2501 = null;
+			var findItemCodes = itemService.FindItems(gupCode, req.CustNo, req.ItemCode, ref f2501);
+      if (f2501 == null)
       {
-        var snList = f070104s.Where(x => !string.IsNullOrWhiteSpace(x.SERIAL_NO_LIST)).SelectMany(x => x.SERIAL_NO_LIST.Split(','));
-
-        var snList01 = f07010401s.Select(x => x.SERIAL_NO);
-
-        if (!snList.Contains(req.ItemCode) && !snList01.Contains(req.ItemCode))
-          return new ApiResult { IsSuccessed = false, MsgCode = "21012", MsgContent = _p81Service.GetMsg("21012") };
+        if (findItemCodes.Any())
+          itemCodes.AddRange(findItemCodes);
+        else
+        {
+          var findPurchaseItemSn = f020302Repo.FindPurchaseItemSn(req.DcNo, gupCode, req.CustNo, stockNos, req.ItemCode);
+          if (findPurchaseItemSn != null)
+          {
+            itemCodes.Add(findPurchaseItemSn.ITEM_CODE);
+            findSn = findPurchaseItemSn.SERIAL_NO;
+          }
+        }
+      }
+      else
+      {
+        isScanSn = true;
+        if (f2501.STATUS == "A1")
+        {
+          itemCodes.AddRange(findItemCodes);
+          findSn = f2501.SERIAL_NO;
+        }
+        else
+        {
+          var findPurchaseItemSn = f020302Repo.FindPurchaseItemSn(req.DcNo, gupCode, req.CustNo, stockNos, req.ItemCode);
+          if (findPurchaseItemSn != null)
+          {
+            itemCodes.Add(findPurchaseItemSn.ITEM_CODE);
+            findSn = findPurchaseItemSn.SERIAL_NO;
+          }
+        }
       }
 
-      // 該容器品號的進倉單號清單
-      var stockNos = f070104s.Select(x => x.SOURCE_NO).Distinct().ToList();
+			if (!itemCodes.Any())
+				return new ApiResult { IsSuccessed = false, MsgCode = "21007", MsgContent = _p81Service.GetMsg("21007") };
+
+			#endregion
+
+			// 檢查商品是否在容器內商品
+			var findItem = f070104s.FirstOrDefault(x => itemCodes.Contains(x.ITEM_CODE));
+			if (findItem == null)
+				return new ApiResult { IsSuccessed = false, MsgCode = "21008", MsgContent = _p81Service.GetMsg("21008") };
+
+			var f07010401s = f07010401Repo.GetDatasByF070104Ids(f070104s.Select(x => x.ID).ToList()).ToList();
+			var itemSnList = new List<string>();
+			itemSnList.AddRange(f070104s.Where(x => !string.IsNullOrWhiteSpace(x.SERIAL_NO_LIST)).SelectMany(x => x.SERIAL_NO_LIST.Split(',').ToList()));
+			itemSnList.AddRange(f07010401s.Select(x => x.SERIAL_NO).ToList());
+
+			// 檢查商品序號是否在容器內
+			if (isScanSn)
+			{
+			
+				if(!itemSnList.Any(x=> x == req.ItemCode))
+					return new ApiResult { IsSuccessed = false, MsgCode = "21012", MsgContent = _p81Service.GetMsg("21012") };
+			}
 
       // 取得進倉單
-      var f010201s = f010201Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos);
+      var f010201s = f010201Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
       // 取得進倉單明細
       var f010202s = f010202Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
       // 取得序號匯入頭檔
-      var f020301s = f020301Repo.GetDatasByShopNos(req.DcNo, gupCode, req.CustNo, f010201s.Select(x => x.STOCK_NO).ToList());
+      var f020301s = f020301Repo.GetDatasByShopNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
       // 取得序號匯入身檔
-      var f020302s = f020302Repo.GetDatasByFileNames(req.DcNo, gupCode, req.CustNo, f020301s.Select(x => x.FILE_NAME).ToList());
-
-      if (isSn && !f020302s.Select(x => x.SERIAL_NO).Contains(req.ItemCode))
-        return new ApiResult { IsSuccessed = false, MsgCode = "21012", MsgContent = _p81Service.GetMsg("21012") };
+      var f020302s = f020302Repo.GetDatasByFileNames(req.DcNo, gupCode, req.CustNo, f020301s.Select(x => x.FILE_NAME).ToList()).ToList();
 
       // 取得進倉回檔歷程紀錄表
-      var f010205s = f010205Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos);
+      var f010205s = f010205Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
-      #region 先新增所有進倉單明細至F010204
-      // 取得進倉驗收上架結果表
-      var f010204sByF010202s = f010204Repo.GetDatasForF010202s(req.DcNo, gupCode, req.CustNo, f010202s);
+			#region 先新增所有進倉單明細至F010204，讓後面只做更新，所以獨立連線先寫入commit
+			f010204Repo2.InsertNotExistDatas(req.DcNo, gupCode, req.CustNo, stockNos);
 
-      // 過濾已存在於進倉驗收上架結果表的進倉單明細後，用以新增
-      var addF010204Datas = f010202s.Where(x => !f010204sByF010202s.Any(z => z.STOCK_NO == x.STOCK_NO &&
-      z.STOCK_SEQ == x.STOCK_SEQ)).Select(x => new F010204
-      {
-        DC_CODE = x.DC_CODE,
-        GUP_CODE = x.GUP_CODE,
-        CUST_CODE = x.CUST_CODE,
-        STOCK_NO = x.STOCK_NO,
-        STOCK_SEQ = x.STOCK_SEQ,
-        ITEM_CODE = x.ITEM_CODE,
-        STOCK_QTY = x.STOCK_QTY,
-        TOTAL_REC_QTY = 0,
-        TOTAL_DEFECT_RECV_QTY = 0,
-        TOTAL_TAR_QTY = 0,
-        TOTAL_DEFECT_TAR_QTY = 0
-      }).ToList();
-
-      //todo Neo:這個為何要另外獨立一個repo要研究一下，很像有點沒必要
-      if (addF010204Datas.Any())
-        f010204Repo2.BulkInsert(addF010204Datas);
       #endregion
 
       // 取得進倉驗收上架結果表
-      var f010204s = f010204Repo.GetDatasForF010202s(req.DcNo, gupCode, req.CustNo, f010202s);
+      var f010204s = f010204Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo,stockNos).ToList();
+			var addF2501List = new List<F2501>();
+			var updF2501List = new List<F2501>();
+			var delSnList = new List<string>();
 
-      foreach (var f070104 in f070104s)
+			foreach (var f070104 in f070104s)
       {
         var itemSeq = Convert.ToInt32(f070104.ITEM_SEQ);
 
@@ -349,43 +367,44 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           if (f07010401s != null && f07010401s.Any())
             procSerialNos.AddRange(f07010401s.Where(x => f070104.ID == x.F070104_ID).Select(x => x.SERIAL_NO));
 
-          var currF020302s = f020302s.Where(o => o.FILE_NAME == f020301.FILE_NAME && procSerialNos.Contains(o.SERIAL_NO)).ToList();
-          if (currF020302s.Any())
-          {
-            var addF2501List = new List<F2501>();
-            var updF2501List = new List<F2501>();
-            var delSnList = new List<string>();
-            // 將F020302的序號寫入F2501並更新F020302.STATUS=1 (已匯入) by FILE_NAME + STATUS =0 (待匯入) (請參考商品檢驗中的驗收確認
-            currF020302s.ForEach(item =>
-            {
-              var updF020302 = updF020302Datas.Where(x => x.FILE_NAME == item.FILE_NAME && x.SERIAL_NO == item.SERIAL_NO).FirstOrDefault();
-              if (updF020302 == null)
-              {
-                var checkSerialList = serialNoService.SerialNoStatusCheckAll(item.GUP_CODE, item.CUST_CODE, item.ITEM_CODE, item.SERIAL_NO, "A1");
-                if (checkSerialList.Checked)
-                {
-                  // 新增、更新F2501
-                  serialNoService.UpdateSerialNoFull(ref addF2501s, ref updF2501s, ref delSnList, item.DC_CODE, item.GUP_CODE, item.CUST_CODE, "A1", checkSerialList,
-                                    f010201.STOCK_NO, f010201.VNR_CODE, item.VALID_DATE, null,
-                                    item.PO_NO, f010201.ORD_PROP, null, item.PUK,
-                                    item.CELL_NUM, item.BATCH_NO);
+					if(procSerialNos.Any())
+					{
+						var currF020302s = f020302s.Where(o => o.FILE_NAME == f020301.FILE_NAME && procSerialNos.Contains(o.SERIAL_NO)).ToList();
+						var checkResList = serialNoService.CheckItemLargeSerialWithBeforeInWarehouse(f070104.GUP_CODE, f070104.CUST_CODE,f070104.ITEM_CODE, procSerialNos);
+						if (checkResList.All(x => x.Checked))
+						{
+							foreach(var sn in procSerialNos)
+							{
+								var checkRes = checkResList.First(x => x.SerialNo == sn);
+								var currF020302 = currF020302s.FirstOrDefault(x => x.SERIAL_NO == sn);
+								if(currF020302!=null)
+								{
+									// 新增、更新F2501
+									serialNoService.UpdateSerialNoFull(ref addF2501s, ref updF2501s, ref delSnList, currF020302.DC_CODE, currF020302.GUP_CODE, currF020302.CUST_CODE, "A1", checkRes,
+																		f010201.STOCK_NO, f010201.VNR_CODE, currF020302.VALID_DATE, null,
+																		currF020302.PO_NO, f010201.ORD_PROP, null, currF020302.PUK,
+																		currF020302.CELL_NUM, currF020302.BATCH_NO);
+									currF020302.STATUS = "1";
+									updF020302Datas.Add(currF020302);
+								}
+								else
+									serialNoService.UpdateSerialNoFull(ref addF2501s, ref updF2501s, ref delSnList, f010201.DC_CODE, f010201.GUP_CODE, f010201.CUST_CODE, "A1", checkRes,
+																	f010201.STOCK_NO, f010201.VNR_CODE, null, null,
+																	f010201.SHOP_NO, f010201.ORD_PROP, null, null,
+																	null, null);
+							}
+						}
+						else
+							serialnoCheckFailResult.AddRange(checkResList.Where(x => !x.Checked));
 
-                  item.STATUS = "1";
-                  updF020302Datas.Add(item);
-                }
-                else
-                  serialnoCheckFailResult.Add(checkSerialList);
-
-              }
-            });
-            if (serialnoCheckFailResult.Any())
+						if (serialnoCheckFailResult.Any())
               return new ApiResult()
               {
                 IsSuccessed = false,
                 MsgCode = "21011",
                 MsgContent = string.Format(_p81Service.GetMsg("21011"), "\r\n" + string.Join("\r\n", serialnoCheckFailResult.Select(x => x.SerialNo + x.Message)))
               };
-          }
+					}
         }
 
         // 若F010201.STATUS = 0，新增回檔資訊F010205
@@ -613,6 +632,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 			var f010205Repo = new F010205Repository(Schemas.CoreSchema, _wmsTransation);
 			var f0701Repo = new F0701Repository(Schemas.CoreSchema, _wmsTransation);
 			var f070104Repo = new F070104Repository(Schemas.CoreSchema, _wmsTransation);
+			var f07010401Repo = new F07010401Repository(Schemas.CoreSchema, _wmsTransation);
 			var f020202Repo = new F020202Repository(Schemas.CoreSchema, _wmsTransation);
 			var f02020107Repo = new F02020107Repository(Schemas.CoreSchema, _wmsTransation);
 			var f02020108Repo = new F02020108Repository(Schemas.CoreSchema, _wmsTransation);
@@ -687,6 +707,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 			if (!getF070104Res.IsSuccessed)
 				return getF070104Res;
 
+      var f07010401s = f07010401Repo.GetDatasByF070104Ids(f070104s.Select(x => x.ID).ToList()).ToList();
+
 			// 尋找建議儲位
 			//(1) 撈F1912.min(loc_code) by DC_CODE、NOW_CUST_CODE = 0、WAREHOUSE_ID = (撈F0003.SYS_PATH by DC_CODE、AP_NAME = MoveInWhID) 
 			//(2) 若完全找不到空儲位，請在建議儲位上顯示”目前無空儲位，請自行尋找適當的儲位”
@@ -706,8 +728,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 			// 若該儲位不屬於此區，錯誤訊息”此儲位並不允許進行跨庫調撥上架，請輸入正確儲位”
 			if (locCode != req.LocCode)
 			{
-				f1912 = f1912Repo.Find(o => o.LOC_CODE == req.LocCode && o.WAREHOUSE_ID == f0003.SYS_PATH);
-				if (f1912 == null)
+        f1912 = f1912Repo.Find(o => o.DC_CODE == req.DcNo && o.LOC_CODE == req.LocCode && o.WAREHOUSE_ID == f0003.SYS_PATH);
+        if (f1912 == null)
 					return new ApiResult { IsSuccessed = false, MsgCode = "21015", MsgContent = _p81Service.GetMsg("21015") };
 			}
 			else
@@ -734,14 +756,17 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 			// 該容器品號的進倉單號清單
 			var stockNos = f070104s.Select(x => x.SOURCE_NO).Distinct().ToList();
 
-			// 取得進倉單
-			var f010201s = f010201Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
+      // 取得進倉單
+      //var f010201s = f010201Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
-			// 取得進倉單明細
-			var f010202s = f010202Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
+      // 取貨主單號是TR開頭的進倉單號清單
+      var startWithTr = f010201Repo.CheckAndGetCustOrdNoStartWithTr(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
+
+      // 取得進倉單明細
+      var f010202s = f010202Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
 			// 取得進倉驗收上架結果表
-			var f010204s = f010204Repo.GetDatasForF010202s(req.DcNo, gupCode, req.CustNo, f010202s).ToList();
+			var f010204s = f010204Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
 			// 取得進倉回檔歷程紀錄表
 			var f010205s = f010205Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
@@ -756,25 +781,28 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
 				var details = new List<StockDetail>();
 
-				var detailsTmp = from A in obj.F070104s
-												 join B in f1903s
-												 on A.ITEM_CODE equals B.ITEM_CODE
-												 join C in f010202s
-												 on new { A.SOURCE_NO, ITEM_SEQ = A.ITEM_SEQ.PadLeft(2, '0') } equals new { SOURCE_NO = C.STOCK_NO, ITEM_SEQ = C.STOCK_SEQ.ToString().PadLeft(2, '0') }
-												 select new
-												 {
-													 SEQ = A.ITEM_SEQ,
-													 B.BUNDLE_SERIALLOC,
-													 A.ITEM_CODE,
-													 VALID_DATE = Convert.ToDateTime(A.VALID_DATE),
-													 ENTER_DATE = today,
-													 A.MAKE_NO,
-													 SN_LIST = B.BUNDLE_SERIALLOC == "1" && !string.IsNullOrWhiteSpace(A.SERIAL_NO_LIST) ? A.SERIAL_NO_LIST.Split(',').ToList() : new List<string>(),
-													 A.QTY
-												 };
+        var detailsTmp = from A in obj.F070104s
+                         join B in f1903s
+                         on A.ITEM_CODE equals B.ITEM_CODE
+                         join C in f010202s
+                         on new { A.SOURCE_NO, ITEM_SEQ = A.ITEM_SEQ.PadLeft(2, '0') } equals new { SOURCE_NO = C.STOCK_NO, ITEM_SEQ = C.STOCK_SEQ.ToString().PadLeft(2, '0') }
+                         let SERIAL_NOs = f07010401s.Where(x => x.F070104_ID == A.ID).Select(x => x.SERIAL_NO)
+                         select new
+                         {
+                           SEQ = A.ITEM_SEQ,
+                           B.BUNDLE_SERIALLOC,
+                           A.ITEM_CODE,
+                           VALID_DATE = Convert.ToDateTime(A.VALID_DATE),
+                           ENTER_DATE = ComposeEnterDate(A.MAKE_NO, A.SOURCE_NO, startWithTr),
+                           A.MAKE_NO,
+                           SN_LIST = B.BUNDLE_SERIALLOC == "1" && (!string.IsNullOrWhiteSpace(A.SERIAL_NO_LIST) || SERIAL_NOs.Any())
+                            ? A.SERIAL_NO_LIST?.Split(',').ToList() ?? new List<string>().Union(SERIAL_NOs).ToList()
+                            : new List<string>(),
+                           A.QTY,
+                         };
 
-				// 序號綁儲位，需要帶入序號且要拆一個序號一筆明細
-				var serialLocDatas = detailsTmp.Where(x => x.BUNDLE_SERIALLOC == "1").ToList();
+        // 序號綁儲位，需要帶入序號且要拆一個序號一筆明細
+        var serialLocDatas = detailsTmp.Where(x => x.BUNDLE_SERIALLOC == "1").ToList();
 				serialLocDatas.ForEach(serialLocData =>
 				{
 					for (int index = 0; index < serialLocData.QTY; index++)
@@ -1060,5 +1088,26 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
 			return new ApiResult { IsSuccessed = true };
 		}
-	}
+
+    /// <summary>
+		/// 組成跨庫進倉商品入庫日
+		/// </summary>
+		/// <param name="makeNo"></param>
+		/// <returns></returns>
+    public DateTime ComposeEnterDate(string makeNo, string stockNo, List<string> startWithTrNos)
+    {
+      if (startWithTrNos.Contains(stockNo) && makeNo.StartsWith("PR") && makeNo.Length >= 8)
+      {
+        DateTime result;
+        var conposedDate = $"20{makeNo.Substring(2, 6)}";
+
+        if (DateTime.TryParseExact(conposedDate, "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out result))
+        {
+          return result;
+        };
+      }
+
+      return DateTime.Today;
+    }
+  }
 }

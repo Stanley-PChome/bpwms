@@ -817,7 +817,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				if (noExistsItemCode.Any())
 				{
-					var currData = f1905Repo.GetF1905ByItems(gupCode, custCode, noExistsItemCode).ToList();
+					var currData = f1905Repo.GetF1905ByItemCodes(gupCode, custCode, noExistsItemCode).ToList();
 
 					_f1905CacheList.AddRange(currData);
 
@@ -873,6 +873,9 @@ namespace Wms3pl.WebServices.Shared.Services
 		public bool IsAutoWarehouse(string dcCode, string warehouseId)
 		{
 			var f1980 = GetWarehouse(dcCode, warehouseId);
+			if (f1980 == null)
+				return false;
+
 			return string.IsNullOrWhiteSpace(f1980.DEVICE_TYPE) ? false : f1980.DEVICE_TYPE != "0";
 		}
 		public List<F000904> GetF000904s(string topic, string subtopic, List<string> valueList = null)

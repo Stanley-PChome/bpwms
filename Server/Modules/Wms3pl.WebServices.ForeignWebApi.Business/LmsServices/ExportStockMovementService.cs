@@ -41,7 +41,7 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 			bool isSaveWmsData = string.IsNullOrWhiteSpace(outputJsonInLog) ? false : outputJsonInLog == "1";
 
 			// 取得庫存跨倉移動紀錄表
-			var f191303s = f191303Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PROC_FLAG == "0");
+			var f191303s = f191303Repo.GetProcessData(dcCode, gupCode, custCode);
 
 			if (f191303s.Any())
 			{

@@ -190,6 +190,8 @@
     <Compile Include="ViewModel\P1920180000_ViewModel.cs" />
     <Compile Include="ViewModel\P1920190000_ViewModel.cs" />
     <Compile Include="ViewModel\P1920210000_ViewModel.cs" />
+    <Compile Include="ViewModel\P1920220000_ViewModel.cs" />
+    <Compile Include="ViewModel\P1920230000_ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\P1905050000_ViewModel.cs" />
     <Compile Include="Views\P1901010000.xaml.cs">
@@ -343,6 +345,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P1920220000.xaml.cs">
+      <DependentUpon>P1920220000.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P1920230000.xaml.cs">
+      <DependentUpon>P1920230000.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -542,6 +550,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\P1920210000.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\P1920220000.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\P1920230000.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

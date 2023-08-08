@@ -54,20 +54,20 @@ namespace Wms3pl.Datas.F16
 											AND D.BOX_SERIAL IS NOT NULL)                     --盒號
 										OR (C.BATCH_NO = D.BATCH_NO AND D.BATCH_NO IS NOT NULL) --儲值卡盒號
 																								)
-									AND (CONVERT(DATE,dbo.GetSysDate()) BETWEEN D.FREEZE_BEGIN_DATE
+									AND (CONVERT(DATE,@p0) BETWEEN D.FREEZE_BEGIN_DATE
 															AND D.FREEZE_END_DATE)
 									AND D.FREEZE_TYPE = '0'  -- 凍結中
 								LEFT JOIN F25010201 E
 								ON D.LOG_SEQ = E.FREEZE_LOG_SEQ AND E.CONTROL = '04' -- 管制作業 04:退貨
-						WHERE     A.DC_CODE = @p0
-								AND A.GUP_CODE = @p1
-								AND A.CUST_CODE = @p2
-								AND A.RETURN_NO = @p3
-								AND A.AUDIT_STAFF = @p4
-								AND A.AUDIT_NAME = @p5
+						WHERE     A.DC_CODE = @p1
+								AND A.GUP_CODE = @p2
+								AND A.CUST_CODE = @p3
+								AND A.RETURN_NO = @p4
+								AND A.AUDIT_STAFF = @p5
+								AND A.AUDIT_NAME = @p6
 					ORDER BY A.LOG_SEQ";
 
-			return SqlQuery<F16140101Data>(sql, new object[] { dcCode, gupCode, custCode, returnNo, Current.Staff, Current.StaffName });
+			return SqlQuery<F16140101Data>(sql, new object[] { DateTime.Now, dcCode, gupCode, custCode, returnNo, Current.Staff, Current.StaffName });
 		}
         /// <summary>
         /// 刪除未過帳商品序號紀錄

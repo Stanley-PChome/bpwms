@@ -136,7 +136,7 @@ namespace Wms3pl.Datas.F16
 		public void CancelNotProcessReturn(string dcCode, string gupCode, string custCode, string returnNo, string importFlag)
 		{
 			string sql = @"
-				           update F161201 set STATUS = '9', UPD_DATE = dbo.GetSysDate(), UPD_STAFF = @p0, UPD_NAME = @p1, IMPORT_FLAG = @p6
+				           update F161201 set STATUS = '9', UPD_DATE = @p7, UPD_STAFF = @p0, UPD_NAME = @p1, IMPORT_FLAG = @p6
                            Where DC_CODE =@p2
 				             and GUP_CODE =@p3
 				             and CUST_CODE =@p4
@@ -151,8 +151,9 @@ namespace Wms3pl.Datas.F16
 								 new SqlParameter("@p3", gupCode),
 								 new SqlParameter("@p4", custCode),
 								 new SqlParameter("@p5", returnNo),
-								 new SqlParameter("@p6", importFlag)
-			};
+								 new SqlParameter("@p6", importFlag),
+                 new SqlParameter("@p7", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 
 			ExecuteSqlCommand(sql, sqlParams);
 		}

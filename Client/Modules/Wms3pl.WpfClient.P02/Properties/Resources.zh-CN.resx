@@ -1230,4 +1230,7 @@
   <data name="LoadTodayUncheckedCargoInfo" xml:space="preserve">
     <value>加载今日未核的货物资料</value>
   </data>
+  <data name="BundleSerial" xml:space="preserve">
+    <value>是否为序号商品</value>
+  </data>
 </root>

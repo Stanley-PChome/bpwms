@@ -73,7 +73,8 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 					f51010501Repo.BulkInsert(addF51010501Datas);
 				}
 
-				var todayIsExist = f510105Repo.GetDatasEqualCalDate(dcCode, gupCode, custCode, now.ToString("yyyy/MM/dd")).Any();
+				//var todayIsExist = f510105Repo.GetDatasEqualCalDate(dcCode, gupCode, custCode, now.ToString("yyyy/MM/dd")).Any();
+				var todayIsExist = f510105Repo.ChktDatasExists(dcCode, gupCode, custCode, now.ToString("yyyy/MM/dd"));
 				if (todayIsExist)
 				{
 					wmsTransaction.Complete();

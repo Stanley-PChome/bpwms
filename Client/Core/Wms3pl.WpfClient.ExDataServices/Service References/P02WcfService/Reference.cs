@@ -5554,6 +5554,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P02WcfService {
                     string isPerishable, 
                     string tmprType, 
                     string IsTempControl, 
+                    string bundleSerial, 
+                    string IsApple, 
                     Wms3pl.WpfClient.ExDataServices.P02WcfService.F1905 updateVolumn);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/UpdateF1903", ReplyAction="http://tempuri.org/P02WcfService/UpdateF1903Response")]
@@ -5577,6 +5579,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P02WcfService {
                     string isPerishable, 
                     string tmprType, 
                     string IsTempControl, 
+                    string bundleSerial, 
+                    string IsApple, 
                     Wms3pl.WpfClient.ExDataServices.P02WcfService.F1905 updateVolumn);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/UpdateP020203", ReplyAction="http://tempuri.org/P02WcfService/UpdateP020203Response")]
@@ -5692,6 +5696,34 @@ namespace Wms3pl.WpfClient.ExDataServices.P02WcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/UpdateF010201Status", ReplyAction="http://tempuri.org/P02WcfService/UpdateF010201StatusResponse")]
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult> UpdateF010201StatusAsync(string dcCode, string gupCode, string custCode, string stockNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/CheckItemSingleSerialWithBeforeInWarehouse", ReplyAction="http://tempuri.org/P02WcfService/CheckItemSingleSerialWithBeforeInWarehouseRespon" +
+            "se")]
+        Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[] CheckItemSingleSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode, string serialNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/CheckItemSingleSerialWithBeforeInWarehouse", ReplyAction="http://tempuri.org/P02WcfService/CheckItemSingleSerialWithBeforeInWarehouseRespon" +
+            "se")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[]> CheckItemSingleSerialWithBeforeInWarehouseAsync(string gupCode, string custCode, string itemCode, string serialNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/CheckItemLargeSerialWithBeforeInWarehouse", ReplyAction="http://tempuri.org/P02WcfService/CheckItemLargeSerialWithBeforeInWarehouseRespons" +
+            "e")]
+        Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[] CheckItemLargeSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode, string[] serialNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/CheckItemLargeSerialWithBeforeInWarehouse", ReplyAction="http://tempuri.org/P02WcfService/CheckItemLargeSerialWithBeforeInWarehouseRespons" +
+            "e")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[]> CheckItemLargeSerialWithBeforeInWarehouseAsync(string gupCode, string custCode, string itemCode, string[] serialNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/CheckCanBindContainer", ReplyAction="http://tempuri.org/P02WcfService/CheckCanBindContainerResponse")]
+        Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult CheckCanBindContainer(string dcCode, string gupCode, string custCode, string rtNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/CheckCanBindContainer", ReplyAction="http://tempuri.org/P02WcfService/CheckCanBindContainerResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult> CheckCanBindContainerAsync(string dcCode, string gupCode, string custCode, string rtNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/UpdateRecvNotePrintInfo", ReplyAction="http://tempuri.org/P02WcfService/UpdateRecvNotePrintInfoResponse")]
+        Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult UpdateRecvNotePrintInfo(string dcCode, string gupCode, string custCode, string[] rtNoList);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P02WcfService/UpdateRecvNotePrintInfo", ReplyAction="http://tempuri.org/P02WcfService/UpdateRecvNotePrintInfoResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult> UpdateRecvNotePrintInfoAsync(string dcCode, string gupCode, string custCode, string[] rtNoList);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -5893,8 +5925,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P02WcfService {
                     string isPerishable, 
                     string tmprType, 
                     string IsTempControl, 
+                    string bundleSerial, 
+                    string IsApple, 
                     Wms3pl.WpfClient.ExDataServices.P02WcfService.F1905 updateVolumn) {
-            return base.Channel.UpdateF1903(gupCode, custCode, itemCode, needExpired, firstInDate, saveDay, eanCode1, eanCode2, eanCode3, allDln, allShp, isPrecious, fragile, isEasyLos, spill, isMagnetic, isPerishable, tmprType, IsTempControl, updateVolumn);
+            return base.Channel.UpdateF1903(gupCode, custCode, itemCode, needExpired, firstInDate, saveDay, eanCode1, eanCode2, eanCode3, allDln, allShp, isPrecious, fragile, isEasyLos, spill, isMagnetic, isPerishable, tmprType, IsTempControl, bundleSerial, IsApple, updateVolumn);
         }
         
         public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult> UpdateF1903Async(
@@ -5917,8 +5951,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P02WcfService {
                     string isPerishable, 
                     string tmprType, 
                     string IsTempControl, 
+                    string bundleSerial, 
+                    string IsApple, 
                     Wms3pl.WpfClient.ExDataServices.P02WcfService.F1905 updateVolumn) {
-            return base.Channel.UpdateF1903Async(gupCode, custCode, itemCode, needExpired, firstInDate, saveDay, eanCode1, eanCode2, eanCode3, allDln, allShp, isPrecious, fragile, isEasyLos, spill, isMagnetic, isPerishable, tmprType, IsTempControl, updateVolumn);
+            return base.Channel.UpdateF1903Async(gupCode, custCode, itemCode, needExpired, firstInDate, saveDay, eanCode1, eanCode2, eanCode3, allDln, allShp, isPrecious, fragile, isEasyLos, spill, isMagnetic, isPerishable, tmprType, IsTempControl, bundleSerial, IsApple, updateVolumn);
         }
         
         public Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult UpdateP020203(string dcCode, string gupCode, string custCode, string purchaseNo, string[] warehouseList, string RT_MODE) {
@@ -6071,6 +6107,38 @@ namespace Wms3pl.WpfClient.ExDataServices.P02WcfService {
         
         public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult> UpdateF010201StatusAsync(string dcCode, string gupCode, string custCode, string stockNo) {
             return base.Channel.UpdateF010201StatusAsync(dcCode, gupCode, custCode, stockNo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[] CheckItemSingleSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode, string serialNo) {
+            return base.Channel.CheckItemSingleSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, serialNo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[]> CheckItemSingleSerialWithBeforeInWarehouseAsync(string gupCode, string custCode, string itemCode, string serialNo) {
+            return base.Channel.CheckItemSingleSerialWithBeforeInWarehouseAsync(gupCode, custCode, itemCode, serialNo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[] CheckItemLargeSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode, string[] serialNo) {
+            return base.Channel.CheckItemLargeSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, serialNo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.SerialNoResult[]> CheckItemLargeSerialWithBeforeInWarehouseAsync(string gupCode, string custCode, string itemCode, string[] serialNo) {
+            return base.Channel.CheckItemLargeSerialWithBeforeInWarehouseAsync(gupCode, custCode, itemCode, serialNo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult CheckCanBindContainer(string dcCode, string gupCode, string custCode, string rtNo) {
+            return base.Channel.CheckCanBindContainer(dcCode, gupCode, custCode, rtNo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult> CheckCanBindContainerAsync(string dcCode, string gupCode, string custCode, string rtNo) {
+            return base.Channel.CheckCanBindContainerAsync(dcCode, gupCode, custCode, rtNo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult UpdateRecvNotePrintInfo(string dcCode, string gupCode, string custCode, string[] rtNoList) {
+            return base.Channel.UpdateRecvNotePrintInfo(dcCode, gupCode, custCode, rtNoList);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P02WcfService.ExecuteResult> UpdateRecvNotePrintInfoAsync(string dcCode, string gupCode, string custCode, string[] rtNoList) {
+            return base.Channel.UpdateRecvNotePrintInfoAsync(dcCode, gupCode, custCode, rtNoList);
         }
     }
 }

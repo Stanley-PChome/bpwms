@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -13,7 +14,7 @@ namespace Wms3pl.Datas.F51
 		{
 			var sql = @"
 					SELECT @p3 CAL_DATE, B.DC_CODE,@p1 GUP_CODE,B.CUST_CODE, B.LOC_TYPE_ID ,D.TMPR_TYPE,
-								 COUNT(1) LOC_QTY, 0 LOC_AMT,@p4 CRT_STAFF,@p5 CRT_NAME,dbo.GetSysDate() CRT_DATE,'' UPD_STAFF,''UPD_NAME,NULL UPD_DATE,
+								 COUNT(1) LOC_QTY, 0 LOC_AMT,@p4 CRT_STAFF,@p5 CRT_NAME,@p7 CRT_DATE,'' UPD_STAFF,''UPD_NAME,NULL UPD_DATE,
 								 '01' ACC_ITEM_KIND_ID,'01' DELV_ACC_TYPE,@p6 CONTRACT_NO,'' QUOTE_NO
 						FROM F1912 B
 						JOIN F1980 D ON B.DC_CODE = D.DC_CODE AND B.WAREHOUSE_ID = D.WAREHOUSE_ID
@@ -21,6 +22,7 @@ namespace Wms3pl.Datas.F51
 						 AND (B.RENT_BEGIN_DATE < @p3 OR B.RENT_BEGIN_DATE IS NULL) 
 						 AND (B.RENT_END_DATE > @p3 OR B.RENT_END_DATE IS NULL)
 					 GROUP BY B.DC_CODE,B.CUST_CODE, B.LOC_TYPE_ID ,D.TMPR_TYPE ";
+
 			var param = new SqlParameter[]
 			{
 				new SqlParameter("@p0", dcCode),
@@ -30,7 +32,9 @@ namespace Wms3pl.Datas.F51
 				new SqlParameter("@p4", Current.Staff),
 				new SqlParameter("@p5", Current.StaffName),
 				new SqlParameter("@p6", contractNo),
-			};
+        new SqlParameter("@p7", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
+
 			return SqlQuery<F5102>(sql, param);
 		}
 

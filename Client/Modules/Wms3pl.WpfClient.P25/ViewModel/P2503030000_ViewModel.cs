@@ -104,7 +104,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 		{
 			if (QueryResultList != null)
 			{
-				foreach (var p in QueryResultList.Where(w => w.Item.STATUS == "A1" && string.IsNullOrWhiteSpace(w.Item.PO_NO)))
+				foreach (var p in QueryResultList.Where(w => w.Item.STATUS == "A1" && w.Item.BUNDLE_SERIALLOC !="1"))
 				{
 					p.IsSelected = IsSelectedAll;
 				}
@@ -129,17 +129,29 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 				DialogService.ShowMessage("品號、序號 至少輸入一項查詢條件");
 			}
 			else
-			{
-				var proxyEx = GetExProxy<P25ExDataSource>();
-				var f2501QueryData = proxyEx.CreateQuery<F2501QueryData>("Get2501QueryData")
-					.AddQueryExOption("gupCode", _gupCode)
-					.AddQueryExOption("custCode", _custCode)
-					.AddQueryOption("itemCode", string.Format("'{0}'", QueryData.ITEM_CODE))
-					.AddQueryOption("serialNo", string.Format("'{0}'", QueryData.SERIAL_NO))
-					.AddQueryOption("status", string.Format("'{0}'", QueryData.STATUS))
-					.ToObservableCollection();
+			{			   
+        var wcfproxy = GetWcfProxy<wcf.P25WcfServiceClient>();       
+          var DgQueryDataF250101 = wcfproxy.RunWcfMethod(w => w.Get2501QueryData(_gupCode, _custCode
+          , string.Format("{0}", StringHelper.JoinSplitDistinct(QueryData.ITEM_CODE, ","))
+           , string.Format("{0}", "")   
+           , string.Format("{0}", "")
+          , string.Format("{0}", StringHelper.JoinSplitDistinct(QueryData.SERIAL_NO, ","))       
+          , string.Format("{0}", "")
+          , string.Format("{0}", "")
+          , string.Format("{0}", StringHelper.JoinSplitDistinct("", ","))
+          , string.Format("{0}", string.IsNullOrEmpty(QueryData.STATUS) ? null : QueryData.STATUS)
+          , string.Format("{0}", "")
+          , string.Format("{0}", "")        
+          , short.Parse("0")
+          , string.Format("{0}", "")
+          , string.Format("{0}", "")
+          , string.Format("{0}", "")
+          , string.Format("{0}", "")
+          , string.Format("{0}", "")));      
+       var f2501QueryData = ExDataMapper.MapCollection<wcf.F2501QueryData, ExDataServices.P25ExDataService.F2501QueryData>(DgQueryDataF250101).ToObservableCollection();
 
-				if ((f2501QueryData == null || !f2501QueryData.Any()))
+
+        if ((f2501QueryData == null || !f2501QueryData.Any()))
 				{
 					ShowMessage(Messages.InfoNoData);
 				}
@@ -214,7 +226,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 			get
 			{
 				return CreateBusyAsyncCommand(
-					o => DoDelete(), () => UserOperateMode == OperateMode.Query
+					o => DoDelete(), () => CanDelete()
 					);
 			}
 		}
@@ -223,23 +235,55 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 		{
 			//執行刪除動作
 			var proxy = new wcf.P25WcfServiceClient();
-			var deleteData = QueryResultList.Where(x => x.IsSelected && x.Item.STATUS == "A1" && string.IsNullOrWhiteSpace(x.Item.PO_NO)).Select(s => s.Item.SERIAL_NO);
+			var deleteData = QueryResultList.Where(x => x.IsSelected && x.Item.STATUS == "A1" && x.Item.BUNDLE_SERIALLOC != "1").Select(s => s.Item.SERIAL_NO);
 			if (!deleteData.ToList().Any())
 			{
 				ShowWarningMessage("請選擇刪除資料!!");
 				return;
 			}
-			var result = RunWcfMethod<wcf.ExecuteResult>(proxy.InnerChannel, () => proxy.DeleteSerialNo(_gupCode, _custCode, deleteData.ToArray()));
+      string err_msg = null;
+
+       var BUNDLE_SERIALLOCs = QueryResultList.Where(x => x.IsSelected && x.Item.STATUS == "A1" && x.Item.BUNDLE_SERIALLOC=="1").Select(s => s.Item.ITEM_CODE).Distinct();
+      if (BUNDLE_SERIALLOCs.ToList().Any())
+      {    
+       
+        ShowWarningMessage(string.Format("此商品{0}為序號綁儲位商品，商品序號狀態為進貨，不可刪除!!", BUNDLE_SERIALLOCs.First()));
+        return;
+      }
+      var Ststus_C1s = QueryResultList.Where(x => x.IsSelected && x.Item.STATUS == "C1" && string.IsNullOrWhiteSpace(x.Item.PO_NO) ).Select(s => s.Item.SERIAL_NO).Distinct();
+      if (Ststus_C1s.ToList().Any())
+      {
+        ShowWarningMessage(string.Format("此商品序號{0}狀態為出貨，不可刪除!!", Ststus_C1s.First()));
+        return;
+      }
+      var Ststus_D2s = QueryResultList.Where(x => x.IsSelected && x.Item.STATUS == "D2" && string.IsNullOrWhiteSpace(x.Item.PO_NO)).Select(s => s.Item.SERIAL_NO).Distinct();
+      if (Ststus_D2s.ToList().Any())
+      {
+        ShowWarningMessage(string.Format("此商品序號{0}狀態為報廢，不可刪除!!", Ststus_D2s.First()));
+        return;
+      }
+      var result = RunWcfMethod<wcf.ExecuteResult>(proxy.InnerChannel, () => proxy.DeleteSerialNo(_gupCode, _custCode, deleteData.ToArray()));
 			if (result.IsSuccessed)
-			{
-				DoSearch();
+			{				
 				ShowMessage(Messages.DeleteSuccess);
+        DoSearch();
 			}
 		}
-		#endregion Delete
+    #endregion Delete
 
-		#region Save
-		public ICommand SaveCommand
+    private bool CanDelete()
+    {
+      if (QueryResultList != null)
+      {
+        var deleteData = QueryResultList.Where(x => x.IsSelected && x.Item.STATUS == "A1" && x.Item.BUNDLE_SERIALLOC != "1").Select(s => s.Item.SERIAL_NO);
+                return deleteData.ToList().Any();
+      }
+      else
+        return false;
+    }
+
+    #region Save
+    public ICommand SaveCommand
 		{
 			get
 			{

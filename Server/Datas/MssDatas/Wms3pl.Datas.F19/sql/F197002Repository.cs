@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,17 @@ namespace Wms3pl.Datas.F19
         public ExecuteResult UpdateF197002(string year, string labelType, string upNo)
         {
             string type = labelType == "1" ? " BOX_NO = @p0 " : " PALLET_NO =@p0 ";
-            string sql = $@" UPDATE F197002 SET {type} , UPD_DATE = dbo.GetSysDate(),UPD_STAFF = @p1 ,UPD_NAME = @p2 WHERE YEAR = @p3 ";
+            string sql = $@" UPDATE F197002 SET {type} , UPD_DATE = @p4,UPD_STAFF = @p1 ,UPD_NAME = @p2 WHERE YEAR = @p3 ";
+
             var sqlParamers = new List<SqlParameter>();
             sqlParamers.Add(new SqlParameter("@p0", upNo));
             sqlParamers.Add(new SqlParameter("@p1", upNo));
             sqlParamers.Add(new SqlParameter("@p2", upNo));
             sqlParamers.Add(new SqlParameter("@p3", year));
+            sqlParamers.Add(new SqlParameter("@p4", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
+
             ExecuteSqlCommand(sql, sqlParamers.ToArray());
+
             return new ExecuteResult { IsSuccessed = true };
         }
     }

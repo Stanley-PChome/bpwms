@@ -43,7 +43,7 @@ namespace Wms3pl.WebServices.Shared.Services
         /// <param name="itemCode"></param>
         /// <param name="makeNo"></param>
         /// <returns></returns>
-        private List<AllocDetailByReplenish> GetAllocDetailListByReplenish(string dcCode, string gupCode, string custCode, string itemCode, string makeNo)
+        private List<AllocDetailByReplenish> GetAllocDetailListByReplenish(string dcCode, string gupCode, string custCode, string itemCode, string makeNo, string serialNo)
         {
             #region 找Cache
             if (_allocDetailCacheList == null)
@@ -59,13 +59,15 @@ namespace Wms3pl.WebServices.Shared.Services
 
                 if (datas.Any())
                     _allocDetailCacheList.AddRange(datas);
-                #endregion
-            }
+				#endregion
+			}
 
-            if (!string.IsNullOrWhiteSpace(makeNo))
-                datas = datas.Where(x => x.MakeNo == makeNo);
-            
-            return datas.Where(x => x.TarQty > 0).ToList();
+			if (!string.IsNullOrWhiteSpace(serialNo))
+				datas = datas.Where(x => x.SerialNo == serialNo);
+			else if (!string.IsNullOrWhiteSpace(makeNo))
+				datas = datas.Where(x => x.MakeNo == makeNo);
+
+			return datas.Where(x => x.TarQty > 0).ToList();
             #endregion
         }
 
@@ -78,13 +80,28 @@ namespace Wms3pl.WebServices.Shared.Services
         /// <param name="itemCode"></param>
         /// <param name="makeNo"></param>
         /// <returns></returns>
-		private List<ReplensihModel> GetReplenishStockData(string dcCode, string gupCode, string custCode, string itemCode, string makeNo)
+		private List<ReplensihModel> GetReplenishStockData(string dcCode, string gupCode, string custCode, string itemCode, string makeNo, string serialNo)
         {
             var f1913Repo = new F1913Repository(Schemas.CoreSchema);
             if (_replenishStockList == null)
                 _replenishStockList = new List<ReplensihModel>();
 
-            if (!string.IsNullOrWhiteSpace(makeNo))
+			if (!string.IsNullOrWhiteSpace(serialNo))
+			{
+				#region 找Cache
+				var datas = _replenishStockList.Where(x => x.ItemCode == itemCode && x.SerialNo == serialNo && x.ReplensihQty > 0).ToList();
+				if (datas.Any())
+					return datas;
+				#endregion
+
+				#region 找資料庫
+				var data = f1913Repo.GetReplensihData(dcCode, gupCode, custCode, itemCode, null, serialNo).ToList();
+				if (data.Any())
+					_replenishStockList.AddRange(data);
+				return data;
+				#endregion
+			}
+			else if (!string.IsNullOrWhiteSpace(makeNo))
             {
                 #region 找Cache
                 var datas = _replenishStockList.Where(x => x.ItemCode == itemCode && x.MakeNo == makeNo && x.ReplensihQty > 0).ToList();
@@ -93,7 +110,7 @@ namespace Wms3pl.WebServices.Shared.Services
                 #endregion
 
                 #region 找資料庫
-                var data = f1913Repo.GetReplensihData(dcCode, gupCode, custCode, itemCode, makeNo).ToList();
+                var data = f1913Repo.GetReplensihData(dcCode, gupCode, custCode, itemCode, makeNo, null).ToList();
                 if (data.Any())
                     _replenishStockList.AddRange(data);
                 return data;
@@ -108,7 +125,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
                 returnList.AddRange(currStock);
 
-                var existData = f1913Repo.GetReplensihData(dcCode, gupCode, custCode, itemCode, null).ToList();
+                var existData = f1913Repo.GetReplensihData(dcCode, gupCode, custCode, itemCode, null, null).ToList();
 
                 if(currStock.Any())
                     existData = existData.Where(x => !currStock.Select(z => z.MakeNo).Contains(x.MakeNo)).ToList();
@@ -167,7 +184,8 @@ namespace Wms3pl.WebServices.Shared.Services
                     proRes = ReplenishProcess(ReplenishType.Daily, dcCode, gupCode, custCode, replensihStockData.Select(x => new ItemNeedQtyModel
                     {
                         ItemCode = x.ITEM_CODE,
-                        NeedQty = x.RESULT_QTY
+                        NeedQty = x.RESULT_QTY,
+						SerialNo = x.SERIAL_NO
                     }).ToList(), "2");
                 }
             }
@@ -225,7 +243,8 @@ namespace Wms3pl.WebServices.Shared.Services
                     {
                         ItemCode = x.ITEM_CODE,
                         NeedQty = x.RESULT_QTY,
-                        MakeNo = x.MAKE_NO
+                        MakeNo = x.MAKE_NO,
+						SerialNo = x.SERIAL_NO
                     }).ToList(), "3");
                 }
             }
@@ -276,11 +295,11 @@ namespace Wms3pl.WebServices.Shared.Services
             var commonService = new CommonService();
             var itemService = new ItemService();
 
-            // 商品需求量清單依照品號批號排序，若商品有指定批號優先分配
-            itemNeedQtyList = itemNeedQtyList.OrderBy(x => x.ItemCode).OrderByDescending(x => x.MakeNo).ToList();
+			// 商品需求量清單依照品號批號排序，若商品有指定序號優先分配，若有指定批號再分配
+			itemNeedQtyList = itemNeedQtyList.OrderBy(x => x.ItemCode).OrderByDescending(x => x.SerialNo).OrderByDescending(x => x.MakeNo).ToList();
 
-            // 一箱總Pcs
-            var unitQtyList = itemService.GetSysItemUnitQtyList(gupCode, custCode, itemNeedQtyList.Select(x => x.ItemCode).Distinct().ToList(), Datas.Shared.Enums.SysUnit.Case);
+			// 一箱總Pcs
+			var unitQtyList = itemService.GetSysItemUnitQtyList(gupCode, custCode, itemNeedQtyList.Select(x => x.ItemCode).Distinct().ToList(), Datas.Shared.Enums.SysUnit.Case);
 
             itemNeedQtyList.ForEach(item =>
             {
@@ -292,7 +311,7 @@ namespace Wms3pl.WebServices.Shared.Services
                     item.NeedQty = pickSaveQty;
 
                 // [B] = 取得未上架完成的補貨調撥單該商品清單(F151002 WHERE IN(SELECT ALLOCATION_NO WHERE F151001.MEMO = ‘每日補貨區調撥’ OR F151001.MEMO = ‘配庫補貨區調撥’ &STATUS != 5 & 9))[欄位: 調撥單號，品號，批號，數量]，請做cache
-                var allocDetailData = GetAllocDetailListByReplenish(dcCode, gupCode, custCode, item.ItemCode, item.MakeNo);
+                var allocDetailData = GetAllocDetailListByReplenish(dcCode, gupCode, custCode, item.ItemCode, item.MakeNo, item.SerialNo);
 
                 // [C] = 從[B]取得商品未上架數量(排除調撥單號加總)(SUM(TAR_QTY) GROUP BY品號，批號)，若有指定批號，增加批號篩選
                 var sumTarQty = allocDetailData.Sum(x => x.TarQty);
@@ -333,7 +352,7 @@ namespace Wms3pl.WebServices.Shared.Services
                     allocDetailData.ForEach(currAllocDetail => { currAllocDetail.TarQty = 0; });
 
                     // [D] = 取得商品補貨區庫存清單(REPLENSIH_QTY)[欄位: 品號、批號、數量]，請做cache
-                    var replenishStockData = GetReplenishStockData(dcCode, gupCode, custCode, item.ItemCode, item.MakeNo);
+                    var replenishStockData = GetReplenishStockData(dcCode, gupCode, custCode, item.ItemCode, item.MakeNo, item.SerialNo);
 
                     // [E] = 從[D]取得商品可補貨區數量((REPLENSIH_QTY))，若有指定批號，增加批號篩選
                     var sumReplensihQty = replenishStockData.Sum(x => x.ReplensihQty);
@@ -411,10 +430,10 @@ namespace Wms3pl.WebServices.Shared.Services
 
             // 補貨調撥單調整為一品一張調撥單，若有指定批號，則為一品一批號一張調撥單。
             foreach (var item in itemSuggetReplenishList)
-            {
-                var inStr = string.IsNullOrEmpty(item.MakeNo) ? string.Empty : $",批號:{item.MakeNo}";
+			{
+				var inStr = string.IsNullOrWhiteSpace(item.SerialNo) ? (string.IsNullOrEmpty(item.MakeNo) ? string.Empty : $",批號:{item.MakeNo}") : $",序號:{item.SerialNo}";
 
-                if (item.SuggestReplenishQty > 0)
+				if (item.SuggestReplenishQty > 0)
                 {
                     string tarWarehouseId = null;
 
@@ -449,8 +468,9 @@ namespace Wms3pl.WebServices.Shared.Services
                             {
                                 ItemCode = item.ItemCode,
                                 Qty = item.SuggestReplenishQty,
-                                MakeNos = string.IsNullOrWhiteSpace(item.MakeNo) ? new List<string>() : new List<string>{ item.MakeNo }
-                            }
+                                MakeNos = string.IsNullOrWhiteSpace(item.MakeNo) ? new List<string>() : new List<string>{ item.MakeNo },
+								SerialNos = string.IsNullOrWhiteSpace(item.SerialNo) ? new List<string>() : new List<string>{ item.SerialNo }
+							}
                         },
                         SrcWarehouseType = "G",
                         TarDcCode = dcCode,

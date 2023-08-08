@@ -100,12 +100,16 @@
 												</WrapPanel>
 												<Label  Grid.Row="5" Grid.Column="0" Content="{x:Static Properties:Resources.STATUS}"  Style="{StaticResource LbTitleStyle}"/>
 												<ComboBox Grid.Row="5" Grid.Column="1" Style="{StaticResource ComboStyle}" ItemsSource="{Binding StatusList, UpdateSourceTrigger=PropertyChanged}" 
-																							 DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding QueryData.STATUS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-												<Label Grid.Row="5" Grid.Column="2" Content="{x:Static Properties:Resources.ItemTypeQ}" Style="{StaticResource LbTitleStyle}"/>
+														DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding QueryData.STATUS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+												<!--<Label Grid.Row="5" Grid.Column="2" Content="{x:Static Properties:Resources.ItemTypeQ}" Style="{StaticResource LbTitleStyle}"/>
 												<ComboBox Grid.Row="5" Grid.Column="3" Style="{StaticResource ComboStyle}" ItemsSource="{Binding TypeList, UpdateSourceTrigger=PropertyChanged}" 
-																							 DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding ItemTypeQ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-												<Label Grid.Row="5" Grid.Column="4" Content="{x:Static Properties:Resources.RETAIL_CODE}" Style="{StaticResource LbTitleStyle}"/>
-												<TextBox Grid.Row="5" Grid.Column="5"  Width="160" Style="{StaticResource TxtStyle}" Text="{Binding QueryData.RETAIL_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+																							 DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding ItemTypeQ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+                                                <Label  Grid.Row="5" Grid.Column="2" Content="作業類別"  Style="{StaticResource LbTitleStyle}"/>
+                                                <ComboBox Grid.Row="5" Grid.Column="3" Style="{StaticResource ComboStyle}" ItemsSource="{Binding OpTypeList, UpdateSourceTrigger=PropertyChanged}" 
+                                                           DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding OpItemType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+												<!--<Label Grid.Row="5" Grid.Column="4" Content="{x:Static Properties:Resources.RETAIL_CODE}" Style="{StaticResource LbTitleStyle}"/>
+												<TextBox Grid.Row="5" Grid.Column="5"  Width="160" Style="{StaticResource TxtStyle}" Text="{Binding QueryData.RETAIL_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
 												<!--<Label Grid.Row="6" Grid.Column="0" Content="Bundle ID" Style="{StaticResource LbTitleStyle}"/>
 												<TextBox Grid.Row="6" Grid.Column="1" Width="160" Style="{StaticResource TxtStyle}" Text="{Binding QueryData.COMBIN_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
 												<Label  Grid.Row="6" Grid.Column="0" Content="{x:Static res:Resources.CRT_DATE}"  Style="{StaticResource LbTitleStyle}"/>
@@ -138,7 +142,7 @@
 													<DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SPEC}" Binding="{Binding ITEM_SPEC}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static Properties:Resources.STATUS}" Binding="{Binding STATUS_NAME}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static Properties:Resources.SerialNo}" Binding="{Binding SERIAL_NO}" IsReadOnly="True"/>
-													<DataGridTextColumn Header="{x:Static Properties:Resources.ItemTypeQ}" Binding="{Binding ITEM_TYPE}" IsReadOnly="True"/>
+													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.ItemTypeQ}" Binding="{Binding ITEM_TYPE}" IsReadOnly="True"/>-->
 													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.BoxSerial}" Binding="{Binding BOX_SERIAL}" IsReadOnly="True"/>-->
 													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.BatchNo}" Binding="{Binding BATCH_NO}" IsReadOnly="True"/>-->
 													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.TAG3G}" Binding="{Binding TAG3G}" IsReadOnly="True"/>-->
@@ -149,14 +153,14 @@
 													<DataGridTextColumn Header="{x:Static Properties:Resources.WMS_NO}" Binding="{Binding WMS_NO}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static Properties:Resources.IN_DATE}" Binding="{Binding IN_DATE,StringFormat={}{0:yyyy/MM/dd}}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static Properties:Resources.ORD_PROP_NAME}" Binding="{Binding ORD_PROP_NAME}" IsReadOnly="True"/>
-													<DataGridTextColumn Header="{x:Static Properties:Resources.RETAIL_CODE}" Binding="{Binding RETAIL_CODE}" IsReadOnly="True"/>
-													<DataGridTextColumn Header="{x:Static Properties:Resources.ACTIVATED}" Binding="{Binding ACTIVATED}" IsReadOnly="True"/>
+													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.RETAIL_CODE}" Binding="{Binding RETAIL_CODE}" IsReadOnly="True"/>-->
+                                                    <DataGridTextColumn Header="{x:Static Properties:Resources.ACTIVATED}" Binding="{Binding ACTIVATED}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static Properties:Resources.PROCESS_NO}" Binding="{Binding PROCESS_NO}" IsReadOnly="True"/>
 													<!--<DataGridTextColumn Header="Bundle ID" Binding="{Binding COMBIN_NO}" IsReadOnly="True"/>-->
 													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.CELL_NUM}" Binding="{Binding CELL_NUM}" IsReadOnly="True"/>-->
 													<DataGridTextColumn Header="{x:Static Properties:Resources.VNR_NAME}" Binding="{Binding VNR_NAME}" IsReadOnly="True"/>
-													<DataGridTextColumn Header="{x:Static Properties:Resources.SYS_NAME}" Binding="{Binding SYS_NAME}" IsReadOnly="True"/>
-													<DataGridTextColumn Header="{x:Static Properties:Resources.CAMERA_NO}" Binding="{Binding CAMERA_NO}" IsReadOnly="True"/>
+													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.SYS_NAME}" Binding="{Binding SYS_NAME}" IsReadOnly="True"/>-->
+													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.CAMERA_NO}" Binding="{Binding CAMERA_NO}" IsReadOnly="True"/>-->
 													<DataGridTextColumn Header="{x:Static Properties:Resources.CLIENT_IP}" Binding="{Binding CLIENT_IP}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static Properties:Resources.Unit}" IsReadOnly="True">
 														<DataGridTextColumn.Binding>
@@ -166,7 +170,7 @@
 															</MultiBinding>
 														</DataGridTextColumn.Binding>
 													</DataGridTextColumn>
-													<DataGridTextColumn Header="{x:Static Properties:Resources.SEND_CUST}" Binding="{Binding SEND_CUST}" IsReadOnly="True"/>
+													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.SEND_CUST}" Binding="{Binding SEND_CUST}" IsReadOnly="True"/>-->
 													<DataGridTextColumn Header="{x:Static res:Resources.CRT_DATE}" Binding="{Binding CRT_DATE,StringFormat={}{0:yyyy/MM/dd hh:mm}}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" Binding="{Binding CRT_NAME}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static res:Resources.UPD_DATE}" Binding="{Binding UPD_DATE,StringFormat={}{0:yyyy/MM/dd hh:mm}}" IsReadOnly="True"/>

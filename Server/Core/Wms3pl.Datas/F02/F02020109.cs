@@ -49,7 +49,6 @@ namespace Wms3pl.Datas.F02
         /// <summary>
         /// 商品序號
         /// </summary>
-        [Required]
         public string SERIAL_NO { get; set; }
         /// <summary>
         /// 原因代碼

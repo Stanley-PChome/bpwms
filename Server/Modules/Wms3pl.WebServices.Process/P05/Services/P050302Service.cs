@@ -38,7 +38,7 @@ namespace Wms3pl.WebServices.Process.P05.Services
 
 		#region 取得訂單資料
 		public IQueryable<F050101Ex> GetF050101ExDatas(string gupCode, string custCode, string dcCode, string ordDateFrom, string ordDateTo, string ordNo, string arriveDateFrom,
-			string arriveDateTo, string custOrdNo, string status, string retailCode, string custName, string wmsOrdNo, string pastNo, string address, string channel, string delvType, string allId,string moveOutTarget)
+			string arriveDateTo, string custOrdNo, string status, string retailCode, string custName, string wmsOrdNo, string pastNo, string address, string channel, string delvType, string allId, string moveOutTarget, string subChannel)
 		{
 			DateTime? ordDateFromDate = null;
 			DateTime? ordDateToDate = null;
@@ -74,7 +74,8 @@ namespace Wms3pl.WebServices.Process.P05.Services
 												channel,
 												delvType,
 												allId,
-												moveOutTarget);
+												moveOutTarget,
+												subChannel);
 		}
 
 		public IQueryable<F050102Ex> GetF050102ExDatas(string dcCode, string gupCode, string custCode, string ordNo)

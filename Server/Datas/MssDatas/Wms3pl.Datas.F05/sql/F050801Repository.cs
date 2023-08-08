@@ -214,17 +214,18 @@ namespace Wms3pl.Datas.F05
 						{
 								Current.Staff,
 								Current.StaffName,
-								gupCode,
+                DateTime.Now,
+                gupCode,
 								custCode,
 								dcCode
 						};
 
 			int paramStartIndex = parameters.Count;
 			var inSql = parameters.CombineSqlInParameters("WMS_ORD_NO", wmsOdrNoList, ref paramStartIndex);
-			var sql = @"Update F050801 Set STATUS = 9, UPD_STAFF = @p0, UPD_NAME = @p1, UPD_DATE = dbo.GetSysDate()
-						Where GUP_CODE = @p2
-						And CUST_CODE = @p3
-						And DC_CODE = @p4
+			var sql = @"Update F050801 Set STATUS = 9, UPD_STAFF = @p0, UPD_NAME = @p1, UPD_DATE = @p2
+						Where GUP_CODE = @p3
+						And CUST_CODE = @p4
+						And DC_CODE = @p5
 						And " + inSql;
 
 			ExecuteSqlCommand(sql, parameters.ToArray());
@@ -445,15 +446,15 @@ namespace Wms3pl.Datas.F05
 		/// <returns></returns>
 		public IQueryable<P05030201BasicData> GetP05030201BasicData(string gupCode, string custCode, string dcCode, string wmsOrdNo, string ordNo)
 		{
-      var paramList = new List<SqlParameter>
-                        {
-                                new SqlParameter("@p0", SqlDbType.VarChar){ Value = gupCode},
-                                new SqlParameter("@p1", SqlDbType.VarChar){ Value = custCode},
-                                new SqlParameter("@p2", SqlDbType.VarChar){ Value = dcCode},
-                                new SqlParameter("@p3", SqlDbType.VarChar){ Value = wmsOrdNo}
-                        };
+			var paramList = new List<SqlParameter>
+						{
+								new SqlParameter("@p0", SqlDbType.VarChar){ Value = gupCode},
+								new SqlParameter("@p1", SqlDbType.VarChar){ Value = custCode},
+								new SqlParameter("@p2", SqlDbType.VarChar){ Value = dcCode},
+								new SqlParameter("@p3", SqlDbType.VarChar){ Value = wmsOrdNo}
+						};
 
-      var sql = @"
+			var sql = @"
 									SELECT TOP(1) A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.WMS_ORD_NO,
 									CASE WHEN C.PROC_FLAG = '9' THEN 29
 											 WHEN A.STATUS ='0' AND E.WMS_ORD_NO IS NULL THEN 10 
@@ -667,12 +668,12 @@ namespace Wms3pl.Datas.F05
 		{
 			var parameterList = new List<SqlParameter>()
 			{
-        new SqlParameter("@p0",SqlDbType.VarChar) {Value = custCode},
-        new SqlParameter("@p1",SqlDbType.VarChar) {Value = gupCode},
-        new SqlParameter("@p2",SqlDbType.VarChar) {Value = dcCode},
-        new SqlParameter("@p3",SqlDbType.DateTime2) {Value = changeDateBegin.Date.ToString("yyyy/MM/dd HH:mm:ss")},
-        new SqlParameter("@p4",SqlDbType.DateTime2) {Value = changeDateEnd.Date.AddDays(1).AddSeconds(-1).ToString("yyyy/MM/dd HH:mm:ss")},
-      };
+		new SqlParameter("@p0",SqlDbType.VarChar) {Value = custCode},
+		new SqlParameter("@p1",SqlDbType.VarChar) {Value = gupCode},
+		new SqlParameter("@p2",SqlDbType.VarChar) {Value = dcCode},
+		new SqlParameter("@p3",SqlDbType.DateTime2) {Value = changeDateBegin.Date.ToString("yyyy/MM/dd HH:mm:ss")},
+		new SqlParameter("@p4",SqlDbType.DateTime2) {Value = changeDateEnd.Date.AddDays(1).AddSeconds(-1).ToString("yyyy/MM/dd HH:mm:ss")},
+	  };
 			//var parameterList = new List<object> { custCode, gupCode, dcCode, changeDateBegin.ToString("yyyy/MM/dd"), changeDateEnd.ToString("yyyy/MM/dd") };
 
 			// 商品編號條件
@@ -857,7 +858,7 @@ namespace Wms3pl.Datas.F05
 																													 + itemNameSql
 											 + " ORDER BY F.ReceiptNo,F.ITEM_CODE,F.VALID_DATE,F.MAKE_NO,F.SOURCE_TYPE,F.SOURCE_LOC ";
 
-			var result = SqlQuery<P710802SearchResult>(sql, parameterList.ToArray());
+			var result = SqlQueryWithSqlParameterSetDbType<P710802SearchResult>(sql, parameterList.ToArray());
 			return result;
 		}
 
@@ -866,15 +867,15 @@ namespace Wms3pl.Datas.F05
 			DateTime changeDateBegin, DateTime changeDateEnd, string itemCode, string itemName, string receiptType, string makeNo)
 		{
 			var sqlParamers = new List<SqlParameter>
-      { 
-        new SqlParameter("@p0",SqlDbType.VarChar) {Value = custCode},
-        new SqlParameter("@p1",SqlDbType.VarChar) {Value = gupCode},
-        new SqlParameter("@p2",SqlDbType.VarChar) {Value = dcCode},
-        new SqlParameter("@p3",SqlDbType.DateTime2) {Value = changeDateBegin.Date.ToString("yyyy/MM/dd HH:mm:ss")},
-        new SqlParameter("@p4",SqlDbType.DateTime2) {Value = changeDateEnd.Date.AddDays(1).AddSeconds(-1).ToString("yyyy/MM/dd HH:mm:ss")},
-      };
+	  {
+		new SqlParameter("@p0",SqlDbType.VarChar) {Value = custCode},
+		new SqlParameter("@p1",SqlDbType.VarChar) {Value = gupCode},
+		new SqlParameter("@p2",SqlDbType.VarChar) {Value = dcCode},
+		new SqlParameter("@p3",SqlDbType.DateTime2) {Value = changeDateBegin.Date.ToString("yyyy/MM/dd HH:mm:ss")},
+		new SqlParameter("@p4",SqlDbType.DateTime2) {Value = changeDateEnd.Date.AddDays(1).AddSeconds(-1).ToString("yyyy/MM/dd HH:mm:ss")},
+	  };
 
-      string sql = @"	SELECT	A.DC_CODE,A.GUP_CODE,A.CUST_CODE,F.GUP_NAME,G.CUST_NAME,A.ALLOCATION_DATE AS ChangeDate, A.SOURCE_TYPE,
+			string sql = @"	SELECT	A.DC_CODE,A.GUP_CODE,A.CUST_CODE,F.GUP_NAME,G.CUST_NAME,A.ALLOCATION_DATE AS ChangeDate, A.SOURCE_TYPE,
 									ISNULL(ISNULL(B.SOURCE_NO,A.SOURCE_NO),A.ALLOCATION_NO) AS ReceiptNo, B.ITEM_CODE,
 									E.ITEM_NAME, E.ITEM_SIZE, E.ITEM_SPEC, E.ITEM_COLOR,
 									CASE WHEN A.SRC_WAREHOUSE_ID IS NULL THEN '' ELSE B.SRC_LOC_CODE END AS SOURCE_LOC, 
@@ -939,13 +940,13 @@ namespace Wms3pl.Datas.F05
 				if (receiptType == "17") //調撥除了SOURCE_TYPE=17之外 還要抓SOURCE_TYPE IS NULL
 				{
 					sql += " AND (A.SOURCE_TYPE IS NULL OR A.SOURCE_TYPE='17' AND A.ALLOCATION_TYPE != '4') ";
-        }
-        else
+				}
+				else
 				{
 					if (receiptType == "04")// 
-                                  //sql += $" AND (A.SOURCE_TYPE = @p{sqlParamers.Count} OR A.ALLOCATION_TYPE = '4' )";
-            sql += $" AND (A.SOURCE_TYPE = @p{sqlParamers.Count} OR (A.SOURCE_TYPE !='30' AND A.ALLOCATION_TYPE = '4' ))";
-          else
+											//sql += $" AND (A.SOURCE_TYPE = @p{sqlParamers.Count} OR A.ALLOCATION_TYPE = '4' )";
+						sql += $" AND (A.SOURCE_TYPE = @p{sqlParamers.Count} OR (A.SOURCE_TYPE !='30' AND A.ALLOCATION_TYPE = '4' ))";
+					else
 						sql += " AND A.SOURCE_TYPE = @p" + sqlParamers.Count;
 
 					sqlParamers.Add(new SqlParameter("@p" + sqlParamers.Count, SqlDbType.VarChar) { Value = receiptType });
@@ -968,7 +969,7 @@ namespace Wms3pl.Datas.F05
                 B.SOURCE_NO
 					  ORDER BY ISNULL(A.SOURCE_NO,A.ALLOCATION_NO),B.ITEM_CODE  ";
 
-			var result = SqlQuery<P710802SearchResult>(sql, sqlParamers.ToArray());
+			var result = SqlQueryWithSqlParameterSetDbType<P710802SearchResult>(sql, sqlParamers.ToArray());
 			return result;
 		}
 
@@ -1031,7 +1032,7 @@ namespace Wms3pl.Datas.F05
 								a.MAKE_NO,a.VALID_DATE,a.CRT_NAME,a.UPD_NAME,A.CRT_DATE,A.UPD_DATE
 					  ORDER BY a.ADJUST_NO,a.ITEM_CODE";
 
-			var result = SqlQuery<P710802SearchResult>(sql, sqlParamers.ToArray());
+			var result = SqlQueryWithSqlParameterSetDbType<P710802SearchResult>(sql, sqlParamers.ToArray());
 			return result;
 		}
 		#endregion
@@ -1083,7 +1084,8 @@ namespace Wms3pl.Datas.F05
 								allId,
 								Current.Staff,
 								Current.StaffName,
-								gupCode,
+                DateTime.Now,
+                gupCode,
 								custCode,
 								dcCode
 						};
@@ -1094,10 +1096,10 @@ namespace Wms3pl.Datas.F05
 			var sql = @"Update F050801 Set ALL_ID = @p0, 
                                            UPD_STAFF = @p1, 
                                            UPD_NAME = @p2, 
-                                           UPD_DATE = dbo.GetSysDate()
-				         Where GUP_CODE = @p3
-				           And CUST_CODE = @p4
-				           And DC_CODE = @p5
+                                           UPD_DATE = @p3
+				         Where GUP_CODE = @p4
+				           And CUST_CODE = @p5
+				           And DC_CODE = @p6
 				           And " + inSql;
 
 			ExecuteSqlCommand(sql, parameters.ToArray());
@@ -1108,8 +1110,9 @@ namespace Wms3pl.Datas.F05
 			var parameters = new List<SqlParameter> {
 																new SqlParameter("@p0",dcCode),
 																new SqlParameter("@p1",gupCode),
-																new SqlParameter("@p2",custCode)
-												};
+																new SqlParameter("@p2",custCode),
+                                new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+                        };
 			string insSql = string.Empty;
 			string column = string.Empty;
 			if (baseDay > 0)
@@ -1117,7 +1120,7 @@ namespace Wms3pl.Datas.F05
 				parameters.Add(new SqlParameter("@p3", baseDay));
 				insSql = @"     --以下為 GROUP BY ITEM_CODE / 出貨量 (前 1-90 天) 的平均量
                                 SELECT 
-										A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE 
+										A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE , NULL SERIAL_NO
 										,CAST(CEILING((CAST(SUM(A.A_DELV_QTY) AS float) / A.START_DATE)  * 7 )as int) AVG_QTY, A.PICK_SAVE_QTY, A.PICK_SAVE_ORD, 0 OUTSTOCK_QTY
 								FROM 
 								(
@@ -1130,15 +1133,15 @@ namespace Wms3pl.Datas.F05
 									JOIN F050802 B ON A.WMS_ORD_NO =B.WMS_ORD_NO AND A.DC_CODE=B.DC_CODE AND A.GUP_CODE =B.GUP_CODE AND A.CUST_CODE =B.CUST_CODE
 									JOIN F1903 C ON C.GUP_CODE =B.GUP_CODE AND C.ITEM_CODE = B.ITEM_CODE AND C.CUST_CODE = B.CUST_CODE 
 									WHERE
-									A.DELV_DATE <= CONVERT(datetime, CONVERT(varchar, dbo.GetSysDate() , 111))  
-									AND A.DELV_DATE >= CONVERT(datetime, CONVERT(varchar, dbo.GetSysDate() - @p3, 111)) 
+									A.DELV_DATE <= CONVERT(datetime, CONVERT(varchar, @p4 , 111))  
+									AND A.DELV_DATE >= CONVERT(datetime, CONVERT(varchar, @p4 - @p3, 111)) 
 									AND A.STATUS in (5,6)
 								) A 
 								GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE , A.START_DATE, A.PICK_SAVE_QTY, A.PICK_SAVE_ORD";
 			}
 			else if (ids != null && ids.Any())
 			{
-				insSql = $@"SELECT A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE 
+				insSql = $@"SELECT A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE , A.SERIAL_NO
 												,A.TTL_OUTSTOCK_QTY AVG_QTY, B.PICK_SAVE_QTY, B.PICK_SAVE_ORD, ISNULL(A.TTL_OUTSTOCK_QTY, 0) OUTSTOCK_QTY, A.MAKE_NO
 										FROM F050805 A
 										JOIN F1903 B ON A.GUP_CODE =B.GUP_CODE AND A.ITEM_CODE = B.ITEM_CODE AND A.CUST_CODE = B.CUST_CODE 
@@ -1152,6 +1155,7 @@ namespace Wms3pl.Datas.F05
 								A.GUP_CODE ,
 								A.CUST_CODE , 
 								A.ITEM_CODE , 
+								A.SERIAL_NO , 
                                 {column}
 								ISNULL(A.QTY, 0) QTY  , -- 所有 (黃金揀貨區/一般揀貨區)(良品倉) 數量
                                 A.OUTSTOCK_QTY OUTSTOCK_QTY, --缺貨數(只有手動挑單才有)
@@ -1193,7 +1197,7 @@ namespace Wms3pl.Datas.F05
 									JOIN F1912 B ON A.LOC_CODE =B.LOC_CODE AND A.DC_CODE =B.DC_CODE
 									JOIN F1919 C ON C.AREA_CODE =B.AREA_CODE AND C.WAREHOUSE_ID = B.WAREHOUSE_ID AND C.DC_CODE =A.DC_CODE AND C.ATYPE_CODE IN ('A','B')
 									JOIN F1980 E ON E.DC_CODE= A.DC_CODE AND E.WAREHOUSE_ID = B.WAREHOUSE_ID AND E.WAREHOUSE_TYPE ='G'
-									WHERE dbo.GetSysDate() >= A.ENTER_DATE AND dbo.GetSysDate() <= A.VALID_DATE AND B.NOW_STATUS_ID IN ('01', '02')
+									WHERE @p4 >= A.ENTER_DATE AND @p4 <= A.VALID_DATE AND B.NOW_STATUS_ID IN ('01', '02')
 								) A GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE ,A.ITEM_CODE 
 							) B ON A.DC_CODE =B.DC_CODE AND A.GUP_CODE =B.GUP_CODE AND A.CUST_CODE =B.CUST_CODE AND A.ITEM_CODE = B.ITEM_CODE
 						) A WHERE 
@@ -1212,8 +1216,9 @@ namespace Wms3pl.Datas.F05
 			var parameters = new List<SqlParameter> {
 								new SqlParameter("@p0",dcCode),
 								new SqlParameter("@p1",gupCode),
-								new SqlParameter("@p2",custCode)
-						};
+								new SqlParameter("@p2",custCode),
+                new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 			string insSql = string.Empty;
 			if (baseDay > 0)
 			{
@@ -1295,7 +1300,7 @@ namespace Wms3pl.Datas.F05
 									JOIN F1912 B ON A.LOC_CODE =B.LOC_CODE AND A.DC_CODE =B.DC_CODE
 									JOIN F1919 C ON C.AREA_CODE =B.AREA_CODE AND C.WAREHOUSE_ID = B.WAREHOUSE_ID AND C.DC_CODE =A.DC_CODE AND C.ATYPE_CODE IN ('A','B')
 									JOIN F1980 E ON E.DC_CODE= A.DC_CODE AND E.WAREHOUSE_ID = B.WAREHOUSE_ID AND E.WAREHOUSE_TYPE ='G'
-									WHERE dbo.GetSysDate() >= A.ENTER_DATE AND dbo.GetSysDate() <= A.VALID_DATE AND B.NOW_STATUS_ID IN ('01', '02')
+									WHERE @p4 >= A.ENTER_DATE AND @p4 <= A.VALID_DATE AND B.NOW_STATUS_ID IN ('01', '02')
 								) A GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE ,A.ITEM_CODE 
 							) B ON A.DC_CODE =B.DC_CODE AND A.GUP_CODE =B.GUP_CODE AND A.CUST_CODE =B.CUST_CODE AND A.ITEM_CODE = B.ITEM_CODE
 							LEFT JOIN 
@@ -1312,7 +1317,7 @@ namespace Wms3pl.Datas.F05
 									JOIN F1912 B ON A.LOC_CODE =B.LOC_CODE AND A.DC_CODE =B.DC_CODE
 									JOIN F1919 C ON C.AREA_CODE =B.AREA_CODE AND C.WAREHOUSE_ID = B.WAREHOUSE_ID AND C.DC_CODE =A.DC_CODE AND C.ATYPE_CODE IN ('C')        
 									JOIN F1980 E ON E.DC_CODE= A.DC_CODE AND E.WAREHOUSE_ID = B.WAREHOUSE_ID AND E.WAREHOUSE_TYPE ='G'
-									WHERE dbo.GetSysDate() >= A.ENTER_DATE AND dbo.GetSysDate() <= A.VALID_DATE AND B.NOW_STATUS_ID IN ('01', '02')
+									WHERE @p4 >= A.ENTER_DATE AND @p4 <= A.VALID_DATE AND B.NOW_STATUS_ID IN ('01', '02')
 								) A GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE ,A.ITEM_CODE
 							) C  ON A.DC_CODE =C.DC_CODE AND A.GUP_CODE =C.GUP_CODE AND A.CUST_CODE =C.CUST_CODE AND A.ITEM_CODE = C.ITEM_CODE
 
@@ -1668,18 +1673,19 @@ namespace Wms3pl.Datas.F05
 								status,
 								Current.Staff,
 								Current.StaffName,
-								gupCode,
+                DateTime.Now,
+                gupCode,
 								custCode,
 								dcCode,
 								wmsOrdNo
 						};
 
 			var sql = @"
-				Update F050801 Set STATUS = @p0, UPD_STAFF = @p1, UPD_NAME = @p2, UPD_DATE = dbo.GetSysDate()
-				 Where GUP_CODE = @p3
-				   And CUST_CODE = @p4
-				   And DC_CODE = @p5
-				   And WMS_ORD_NO = @p6";
+				Update F050801 Set STATUS = @p0, UPD_STAFF = @p1, UPD_NAME = @p2, UPD_DATE = @p3
+				 Where GUP_CODE = @p4
+				   And CUST_CODE = @p5
+				   And DC_CODE = @p6
+				   And WMS_ORD_NO = @p7";
 
 			ExecuteSqlCommand(sql, parameters.ToArray());
 		}
@@ -1977,30 +1983,48 @@ namespace Wms3pl.Datas.F05
 			if (!wmsOdrNoList.Any())
 				return;
 
-			var parms = new List<object> { startTime, empId, empName, startTime, gupCode, custCode, dcCode };
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",startTime){SqlDbType = SqlDbType.DateTime2},
+				new SqlParameter("@p1",empId){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",empName){ SqlDbType = SqlDbType.NVarChar},
+				new SqlParameter("@p3",DateTime.Now){ SqlDbType = SqlDbType.DateTime2},
+				new SqlParameter("@p4",gupCode){SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p5",custCode){SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p6",dcCode){ SqlDbType = SqlDbType.VarChar},
+			};
 
 			var sql = $@"Update F050801 Set START_TIME = @p0, UPD_STAFF = @p1, UPD_NAME = @p2, UPD_DATE = @p3
 			    		Where GUP_CODE = @p4
 			    		And CUST_CODE = @p5
 			    		And DC_CODE = @p6
-              And START_TIME IS NULL";
-			sql += parms.CombineNotNullOrEmptySqlInParameters("AND WMS_ORD_NO", wmsOdrNoList);
+              And START_TIME IS NULL ";
+			sql += parms.CombineSqlInParameters("AND WMS_ORD_NO", wmsOdrNoList,SqlDbType.VarChar);
 			ExecuteSqlCommand(sql, parms.ToArray());
 		}
 
-		public void UpdateCompleteTime(string dcCode, string gupCode, string custCode, List<string> wmsOdrNoList, DateTime completeDate)
+		public void UpdateCompleteTime(string dcCode, string gupCode, string custCode, List<string> wmsOdrNoList, DateTime completeDate, string empId, string empName)
 		{
 			//避免傳入空的單號資料，導致全部的記錄都被更新
 			if (!wmsOdrNoList.Any())
 				return;
 
-			var parms = new List<object> { completeDate, Current.Staff, Current.StaffName, gupCode, custCode, dcCode };
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",completeDate){SqlDbType = SqlDbType.DateTime2},
+				new SqlParameter("@p1",empId){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",empName){ SqlDbType = SqlDbType.NVarChar},
+				new SqlParameter("@p3",DateTime.Now){ SqlDbType = SqlDbType.DateTime2},
+				new SqlParameter("@p4",gupCode){SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p5",custCode){SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p6",dcCode){ SqlDbType = SqlDbType.VarChar},
+			};
 
-			var sql = $@"Update F050801 Set COMPLETE_TIME = @p0, UPD_STAFF = @p1, UPD_NAME = @p2, UPD_DATE = dbo.GetSysDate()
-			    		Where GUP_CODE = @p3
-			    		And CUST_CODE = @p4
-			    		And DC_CODE = @p5 ";
-			sql += parms.CombineNotNullOrEmptySqlInParameters("AND WMS_ORD_NO", wmsOdrNoList);
+			var sql = $@"Update F050801 Set COMPLETE_TIME = @p0, UPD_STAFF = @p1, UPD_NAME = @p2, UPD_DATE = @p3
+			    		Where GUP_CODE = @p4
+			    		And CUST_CODE = @p5
+			    		And DC_CODE = @p6 ";
+			sql += parms.CombineSqlInParameters("AND WMS_ORD_NO", wmsOdrNoList, SqlDbType.VarChar);
 			ExecuteSqlCommand(sql, parms.ToArray());
 		}
 
@@ -2077,15 +2101,15 @@ namespace Wms3pl.Datas.F05
 				new SqlParameter("@p7",SqlDbType.VarChar){ Value = dcCode},
 				new SqlParameter("@p8",SqlDbType.VarChar){ Value = wmsOrdNo},
 			};
-		
+
 			var sql = @"
-				Update F050801 Set STATUS = @p0, PRINT_FLAG = @p1, UPD_STAFF = @p2, UPD_NAME = @p3, UPD_DATE = @p4
+				Update F050801 Set STATUS = @p0, PRINT_FLAG = @p1, UPD_STAFF = @p2, UPD_NAME = @p3, UPD_DATE = @p4, PACK_FINISH_TIME = @p4
 				 Where GUP_CODE = @p5
 				   And CUST_CODE = @p6
 				   And DC_CODE = @p7
 				   And WMS_ORD_NO = @p8 ";
 
-			ExecuteSqlCommand(sql, param.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, param.ToArray());
 		}
 
 		public void UpdateIsPackCheck(string dcCode, string gupCode, string custCode, string wmsOrdNo, string isPackCheck)
@@ -2099,7 +2123,7 @@ namespace Wms3pl.Datas.F05
 			ExecuteSqlCommand(sql, param);
 		}
 
-		public F050801 GetF050801ByWmsOrdNo(string dcCode, string gupCode,string custCode,string wmsOrdNo)
+		public F050801 GetF050801ByWmsOrdNo(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
 			var param = new List<SqlParameter>
 			{
@@ -2117,32 +2141,35 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<F050801>(sql, param.ToArray()).FirstOrDefault();
 		}
 
-    public string LockF050801()
-    {
-      var sql = @"Select Top 1 UPD_LOCK_TABLE_NAME From F0000 With(UPDLOCK) Where UPD_LOCK_TABLE_NAME='F050801';";
-      return SqlQuery<string>(sql).FirstOrDefault();
-    }
-
-		public void UpdateStatusWithNoCancelAndHasPrintFlag(string dcCode, string gupCode, string custCode, string wmsOrdNo, int status)
+		public string LockF050801()
 		{
-			var parameters = new List<object>
-						{
-								status,
-								Current.Staff,
-								Current.StaffName,
-								gupCode,
-								custCode,
-								dcCode,
-								wmsOrdNo
-						};
+			var sql = @"Select Top 1 UPD_LOCK_TABLE_NAME From F0000 With(UPDLOCK) Where UPD_LOCK_TABLE_NAME='F050801';";
+			return SqlQuery<string>(sql).FirstOrDefault();
+		}
+
+    public void UpdateStatusWithNoCancelAndHasPrintFlag(string dcCode, string gupCode, string custCode, string wmsOrdNo, int status, DateTime startTime, DateTime completeTime)
+    {
+      var parameters = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", status) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", Current.Staff) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", Current.StaffName) { SqlDbType = SqlDbType.NVarChar },
+        new SqlParameter("@p3", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p4", startTime) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p5", completeTime) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p6", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p7", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p8", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p9", wmsOrdNo) { SqlDbType = SqlDbType.VarChar },
+      };
 
 			var sql = @"
-				Update F050801 Set STATUS = @p0, UPD_STAFF = @p1, UPD_NAME = @p2, UPD_DATE = dbo.GetSysDate(),PRINT_FLAG = '1'
-				 Where GUP_CODE = @p3
-				   And CUST_CODE = @p4
-				   And DC_CODE = @p5
-				   And WMS_ORD_NO = @p6
-           And STATUS <>'9'";
+				Update F050801 Set STATUS = @p0, UPD_STAFF = @p1, UPD_NAME = @p2, UPD_DATE = @p3, PRINT_FLAG = '1', PACK_START_TIME = @p4, PACK_FINISH_TIME = @p5
+          Where GUP_CODE = @p6
+            And CUST_CODE = @p7
+            And DC_CODE = @p8
+            And WMS_ORD_NO = @p9
+            And STATUS <>'9'";
 
 			ExecuteSqlCommand(sql, parameters.ToArray());
 		}
@@ -2162,7 +2189,7 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<CanDebitShipOrder>(sql);
 		}
 
-		public IQueryable<F050801> GetNotDebitAndNotCancelShipOrdersByBatch(string dcCode,string gupCode,string custCode,DateTime delvDate,string pickTime)
+		public IQueryable<F050801> GetNotDebitAndNotCancelShipOrdersByBatch(string dcCode, string gupCode, string custCode, DateTime delvDate, string pickTime)
 		{
 			var parms = new List<SqlParameter>
 			{
@@ -2194,7 +2221,7 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<F050801>(sql, parms.ToArray());
 		}
 
-		public F050801 GetF050801(string dcCode,string gupCode,string custCode,string wmsOrdNo)
+		public F050801 GetF050801(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
 			var param = new List<SqlParameter>
 			{
@@ -2212,7 +2239,7 @@ namespace Wms3pl.Datas.F05
 
 			return SqlQuery<F050801>(sql, param.ToArray()).FirstOrDefault();
 		}
-		public void UpdateShipMode(string dcCode,string gupCode,string custCode,string wmsOrdNo,string shipMode)
+		public void UpdateShipMode(string dcCode, string gupCode, string custCode, string wmsOrdNo, string shipMode)
 		{
 			var param = new List<SqlParameter>
 			{
@@ -2234,5 +2261,88 @@ namespace Wms3pl.Datas.F05
 
 			ExecuteSqlCommand(sql, param.ToArray());
 		}
-	}
+
+		public bool IsCancelOrdByPickOrdNo(List<string> pickOrdNos)
+		{
+			var param = new List<SqlParameter>();
+			var ordNoSql = param.CombineSqlInParameters(" AND F051202.PICK_ORD_NO ", pickOrdNos, SqlDbType.VarChar);
+
+			var sql = $@" 
+						SELECT TOP(1) 1
+						  FROM F050801
+						  JOIN F051202 ON F051202.DC_CODE = F050801.DC_CODE
+									  AND F051202.GUP_CODE = F050801.GUP_CODE
+									  AND F051202.CUST_CODE = F050801.CUST_CODE
+									  AND F051202.WMS_ORD_NO = F050801.WMS_ORD_NO
+						 WHERE F050801.STATUS = 9
+							   { ordNoSql }
+						";
+
+			var result = SqlQuery<int>(sql, param.ToArray());
+
+			if (result != null && result.Any())
+				return true;
+			return false;
+		}
+
+		public IQueryable<F050801> GetDatasForWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
+		{
+			var param = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+			};
+			var sql = @" SELECT *
+                    FROM F050801 
+                   WHERE DC_CODE = @p0
+                     AND GUP_CODE = @p1
+                     AND CUST_CODE = @p2
+                     ";
+			sql += param.CombineSqlInParameters(" AND WMS_ORD_NO ", wmsOrdNos, SqlDbType.VarChar);
+
+			return SqlQuery<F050801>(sql, param.ToArray());
+		}
+
+		public F050801 GetDataByWmsOrdNo(string dcCode, string gupCode, string custCode, string wmsOrdNo)
+		{
+			var param = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("@p3", SqlDbType.VarChar) { Value = wmsOrdNo },
+			};
+			var sql = @" SELECT TOP(1) *
+                    FROM F050801 
+                   WHERE DC_CODE = @p0
+                     AND GUP_CODE = @p1
+                     AND CUST_CODE = @p2
+                     AND WMS_ORD_NO = @p3
+                     ";
+
+			return SqlQuery<F050801>(sql, param.ToArray()).FirstOrDefault();
+    }
+
+    public void UpdatePackFinishTime(string dcCode, string gupCode, string custCode, List<string> canShipWmsNos, DateTime PackFinishTime)
+    {
+      var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",dcCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p1",gupCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2",custCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p3",PackFinishTime){SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p4",DateTime.Now){SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p5",Current.Staff){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p6",Current.StaffName){SqlDbType = SqlDbType.VarChar},
+      };
+
+      var sql = @"UPDATE F050801 
+SET PACK_START_TIME = @p3, UPD_DATE=@p4, UPD_STAFF=@p5, UPD_NAME=@p6 
+WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2";
+      sql += parms.CombineSqlInParameters(" AND WMS_ORD_NO", canShipWmsNos, SqlDbType.VarChar);
+
+      ExecuteSqlCommand(sql, parms.ToArray());
+    }
+  }
 }

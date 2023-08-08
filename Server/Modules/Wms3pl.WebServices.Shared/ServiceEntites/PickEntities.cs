@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Wms3pl.Datas.F05;
 using Wms3pl.Datas.F06;
 using Wms3pl.Datas.F15;
@@ -53,9 +54,17 @@ namespace Wms3pl.WebServices.Shared.ServiceEntites
 		/// </summary>
 		public string EmpId { get; set; }
     /// <summary>
+    /// 是否為自動倉系統報缺
+    /// </summary>
+    public Boolean IsAutoWHException { get; set; } = false;
+    /// <summary>
     /// 待新增的容器資料
     /// </summary>
     public List<F060206> ContainerData { get; set; }
+    /// <summary>
+    /// 建立容器資料的回傳結果
+    /// </summary>
+    public List<ContainerExecuteResult> ContainerResults { get; set; }
   }
 
   public class PickConfirmDetail
@@ -87,9 +96,10 @@ namespace Wms3pl.WebServices.Shared.ServiceEntites
 		public List<F051301> F051301s { get; set; }
 		public List<F060201> F060201s { get; set; }
     public List<F050306_HISTORY> F050306_HISTORYs { get; set; }
-	}
+    public List<F0535> F0535s { get; set; }
+  }
 
-	public class WmsOrderItemSumQty
+  public class WmsOrderItemSumQty
 	{
 		public string ItemCode { get; set; }
 		public int Qty { get; set; }

@@ -101,7 +101,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 
         private string _WmsOrdNo;
         /// <summary>
-        /// 出貨單號
+        /// 出貨單號/貨主單號
         /// </summary>
         public string WmsOrdNo
         {
@@ -289,26 +289,27 @@ namespace Wms3pl.WpfClient.P08.ViewModel
             }
         }
 
-        private void DoPrint()
+    private void DoPrint()
+    {
+      if (f910501Data == null)
+      {
+        var _proxy = ConfigurationHelper.GetProxy<F91Entities>(false, FunctionCode);
+        f910501Data = _proxy.F910501s.Where(x => x.DEVICE_IP == Wms3plSession.Get<GlobalInfo>().ClientIp && x.DC_CODE == SelectedDc).FirstOrDefault();
+        if (f910501Data == null || string.IsNullOrWhiteSpace(f910501Data?.PRINTER))
         {
-            if (f910501Data == null)
-            {
-                var _proxy = ConfigurationHelper.GetProxy<F91Entities>(false, FunctionCode);
-                f910501Data = _proxy.F910501s.Where(x => x.DEVICE_IP == Wms3plSession.Get<GlobalInfo>().ClientIp && x.DC_CODE == SelectedDc).FirstOrDefault();
-                if (f910501Data == null || string.IsNullOrWhiteSpace(f910501Data?.PRINTER))
-                {
-                    DialogService.ShowMessage("尚未未設定印表機，請至裝置維護設定印表機");
-                    return;
-                }
-            }
-
-            ShipPackageService shipPackageService = new ShipPackageService(FunctionCode);
-            var result = shipPackageService.PrintShipPackage(SelectedDc, _gupCode, _custCode, ReportNameList.Where(x => x.IsSelected).Select(x => x.Item).ToList(), f910501Data, WmsOrdNo, 1);
-            if (!result.IsSuccessed)
-            {
-                ShowWarningMessage(result.Message);
-            }
+          DialogService.ShowMessage("尚未未設定印表機，請至裝置維護設定印表機");
+          return;
         }
+      }
+
+      ShipPackageService shipPackageService = new ShipPackageService(FunctionCode);
+      var printReportList = ReportNameList.Where(x => x.IsSelected).Select(x => x.Item).ToList();
+      var result = shipPackageService.PrintShipPackage(SelectedDc, _gupCode, _custCode, printReportList, f910501Data, printReportList.First().WmsOrdNo, 1);
+      if (!result.IsSuccessed)
+      {
+        ShowWarningMessage(result.Message);
+      }
+    }
 
         #endregion ICommand
 

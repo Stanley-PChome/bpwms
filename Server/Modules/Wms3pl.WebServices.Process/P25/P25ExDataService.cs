@@ -43,13 +43,13 @@ namespace Wms3pl.WebServices.Process.P25
 		[WebGet]
 		public IQueryable<F2501QueryData> Get2501QueryData(string gupCode, string custCode,
 		   string itemCode, string boxSerial, string batchNo, string serialNo, string cellNum, string poNo
-		  , string wmsNo, string status, string itemType, string retailCode, Int16? combinNo
+		  , string wmsNo, string status, string OrdProp, string retailCode, Int16? combinNo
 		  , string crtName, string crtSDate, string crtEDate, string updSDate, string updEDate)
 		{
 
 			var srv = new P250201Service();
 			var result = srv.Get2501QueryData(gupCode, custCode, itemCode, boxSerial, batchNo, serialNo, cellNum, poNo
-			  , wmsNo, status, itemType, retailCode, combinNo
+			  , wmsNo, status, OrdProp, retailCode, combinNo
 			  , crtName, crtSDate, crtEDate, updSDate, updEDate);
 
 			return result;
@@ -62,13 +62,13 @@ namespace Wms3pl.WebServices.Process.P25
 		public IQueryable<P2502QueryData> GetP2502QueryDatas(string gupCode, string custCode,
 		   string itemCode, string serialNo, string batchNo, string cellNum, string poNo, string wmsNo
 		  , string status, string retailCode, Int16? combinNo, string crtName, string updSDate
-		  , string updEDate, string boxSerial, string itemType)
+		  , string updEDate, string boxSerial, string OpItemType)
 		{
 
 			var srv = new P250202Service();
 			var result = srv.GetP2502QueryDatas(gupCode, custCode, itemCode, serialNo, batchNo, cellNum, poNo, wmsNo
 			  , status, retailCode, combinNo, crtName, updSDate
-			  , updEDate, boxSerial, itemType);
+			  , updEDate, boxSerial, OpItemType);
 
 			return result;
 		}

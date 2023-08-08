@@ -332,7 +332,7 @@ namespace Wms3pl.WebServices.Shared.Services
         _f1980Repo = new F1980Repository(Schemas.CoreSchema);
 
       // 檢核是否為自動倉
-      if (_f1980Repo.CheckAutoWarehouse(dcCode, srcWarehouseId))
+      if (CommonService.IsAutoWarehouse(dcCode, srcWarehouseId))
       {
         var service = new WcsOutboundCancelService();
         var res = service.PromptOutboundCancel(dcCode, gupCode, custCode, allocNo, srcWarehouseId);
@@ -350,7 +350,7 @@ namespace Wms3pl.WebServices.Shared.Services
         _f1980Repo = new F1980Repository(Schemas.CoreSchema);
 
       // 檢核是否為自動倉
-      if (_f1980Repo.CheckAutoWarehouse(dcCode, tarWarehouseId))
+      if (CommonService.IsAutoWarehouse(dcCode, tarWarehouseId))
       {
         var service = new WcsInboundCancelService();
         var res = service.PromptInboundCancel(dcCode, gupCode, custCode, allocNo, tarWarehouseId);
@@ -1197,7 +1197,10 @@ namespace Wms3pl.WebServices.Shared.Services
 
             //尚未指定目的儲位 => 改取建議儲位
             var srcF1912s = new List<F1912>();
-            srcF1912s.AddRange(GetF1912s(item.SrcDcCode, stockDetailList.Select(x => x.SrcLocCode).ToList()));
+            var srcDcLocs = stockDetailList.Where(x => !string.IsNullOrWhiteSpace(x.SrcLocCode)).GroupBy(x => x.SrcDcCode);
+            if(srcDcLocs.Any())
+                foreach (var srcDcLoc in srcDcLocs)
+                    srcF1912s.AddRange(GetF1912s(srcDcLoc.Key, srcDcLoc.Select(x => x.SrcLocCode).ToList()));
 
             var noSetTarLocDetails = stockDetailList.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode) && x.AllocationType != AllocationType.NoTarget);
             var group = noSetTarLocDetails.GroupBy(x => new { x.GupCode, x.CustCode, x.ItemCode, x.EnterDate, x.ValidDate, x.VnrCode, x.TarWarehouseId, x.DataId });
@@ -2115,7 +2118,7 @@ namespace Wms3pl.WebServices.Shared.Services
                 _f1980Repo = new F1980Repository(Schemas.CoreSchema);
 
             // 檢核是否為自動倉
-            if (_f1980Repo.CheckAutoWarehouse(dcCode, warehouseId))
+            if(CommonService.IsAutoWarehouse(dcCode,warehouseId))
                 insertCnt = CreateF060101(dcCode, gupCode, custCode, wmsNo, warehouseId);
 
             return insertCnt;
@@ -2136,7 +2139,7 @@ namespace Wms3pl.WebServices.Shared.Services
                 _f1980Repo = new F1980Repository(Schemas.CoreSchema);
 
             // 檢核是否為自動倉
-            if (_f1980Repo.CheckAutoWarehouse(dcCode, warehouseId))
+            if (CommonService.IsAutoWarehouse(dcCode, warehouseId))
                 CreateCancelF060101(dcCode, gupCode, custCode, wmsNo, warehouseId, expectedInsertCnt);
         }
 
@@ -2215,53 +2218,48 @@ namespace Wms3pl.WebServices.Shared.Services
                 _f1980Repo = new F1980Repository(Schemas.CoreSchema);
 
             // 檢核是否為自動倉
-            if (_f1980Repo.CheckAutoWarehouse(dcCode, warehouseId))
+            if (CommonService.IsAutoWarehouse(dcCode, warehouseId))
                 CreateF060201(dcCode, gupCode, custCode, wmsNo, pickNo, warehouseId);
         }
 
-        /// <summary>
-        /// 新增AGV入庫任務清單
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="wmsNo"></param>
-        /// <param name="warehouseId"></param>
-        public int CreateF060101(string dcCode, string gupCode, string custCode, string wmsNo, string warehouseId)
-        {
-            int insertCnt = 0;
-            var f060101Repo = new F060101Repository(Schemas.CoreSchema, _wmsTransaction);
+    /// <summary>
+    /// 新增AGV入庫任務清單
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="wmsNo"></param>
+    /// <param name="warehouseId"></param>
+    public int CreateF060101(string dcCode, string gupCode, string custCode, string wmsNo, string warehouseId)
+    {
+      int insertCnt = 0;
+      var f060101Repo = new F060101Repository(Schemas.CoreSchema, _wmsTransaction);
+      var docIdNum = f060101Repo.GetDocIdCount(dcCode, gupCode, custCode, wmsNo);
 
-            var f060101s = f060101Repo.GetDatasByTrueAndCondition(o => o.CMD_TYPE == "1" &&
-            o.DC_CODE == dcCode &&
-            o.GUP_CODE == gupCode &&
-            o.CUST_CODE == custCode &&
-            o.WMS_NO == wmsNo);
+      var docId = string.Empty;
 
-            var docId = string.Empty;
+      if (docIdNum == 0)
+        //ii.若筆數為0任務單號 = < 參數4 >
+        docId = wmsNo;
+      else
+        //iii.若筆數 > 0任務單號 = < 參數4 > +2碼流水號
+        //流水號 = 筆數(不足2位則補0)  例: 筆數 = 1 則流水號為01
+        docId = $"{wmsNo}{docIdNum.ToString().PadLeft(2, '0')}";
 
-            if (!f060101s.Any())
-                //ii.若筆數為0任務單號 = < 參數4 >
-                docId = wmsNo;
-            else
-                //iii.若筆數 > 0任務單號 = < 參數4 > +2碼流水號
-                //流水號 = 筆數(不足2位則補0)  例: 筆數 = 1 則流水號為01
-                docId = $"{wmsNo}{Convert.ToString(f060101s.Count()).PadLeft(2, '0')}";
-
-            f060101Repo.Add(new F060101
-            {
-                DOC_ID = docId,
-                DC_CODE = dcCode,
-                GUP_CODE = gupCode,
-                CUST_CODE = custCode,
-                WMS_NO = wmsNo,
-                WAREHOUSE_ID = warehouseId,
-                CMD_TYPE = "1",
-                STATUS = "0"
-            });
-            insertCnt++;
-            return insertCnt;
-        }
+      f060101Repo.Add(new F060101
+      {
+        DOC_ID = docId,
+        DC_CODE = dcCode,
+        GUP_CODE = gupCode,
+        CUST_CODE = custCode,
+        WMS_NO = wmsNo,
+        WAREHOUSE_ID = warehouseId,
+        CMD_TYPE = "1",
+        STATUS = "0"
+      });
+      insertCnt++;
+      return insertCnt;
+    }
 
         /// <summary>
         /// 新增AGV出庫任務清單
@@ -2307,516 +2305,525 @@ namespace Wms3pl.WebServices.Shared.Services
         }
 
 
-        /// <summary>
-        /// 調撥上/下架
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="isPosting">true:下架時一併做上架(過帳) , false:只做上架or下架 </param>
-        public void AllocationConfirm(AllocationConfirmParam param, bool isPosting = false)
+    /// <summary>
+    /// 調撥上/下架 需注意是否有從外部傳入StockService，完成後需呼叫StockService.
+    /// </summary>
+    /// <param name="param"></param>
+    /// <param name="isPosting">true:下架時一併做上架(過帳) , false:只做上架or下架 </param>
+    public void AllocationConfirm(AllocationConfirmParam param, bool isPosting = false)
+    {
+      #region 變數
+      var shardService = new SharedService(_wmsTransaction);
+      var f151001Repo = new F151001Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f151002Repo = new F151002Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f151003Repo = new F151003Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f1913Repo = new F1913Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f191302Repo = new F191302Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f1924Repo = new F1924Repository(Schemas.CoreSchema);
+      var f191204Repo = new F191204Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f2501Repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f010205Repo = new F010205Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f020501Repo = new F020501Repository(Schemas.CoreSchema, _wmsTransaction);
+      var serialNoService = new SerialNoService(_wmsTransaction);
+      var warehouseInService = new WarehouseInService(_wmsTransaction);
+      var sharedService = new SharedService(_wmsTransaction);
+      var containerService = new ContainerService(_wmsTransaction);
+      var returnAllotList = new List<ReturnNewAllocation>();
+      var returnStocks = new List<F1913>();
+      var addF151002Datas = new List<F151002>();
+      var updF151002Datas = new List<F151002>();
+      var addF1913Datas = new List<F1913>();
+      var updF1913Datas = new List<F1913>();
+      var addF191302List = new List<F191302>();
+      var updF2501Datas = new List<F2501>();
+      var delF191204Datas = new List<F191204>();
+      var addF151003Datas = new List<F151003>();
+      var addF1511Datas = new List<F1511>();
+      var updF1511Datas = new List<F1511>();
+      var now = DateTime.Now;
+      var startDate = string.IsNullOrWhiteSpace(param.StartTime) ? default(DateTime?) : Convert.ToDateTime(param.StartTime);
+      var completeDate = string.IsNullOrWhiteSpace(param.CompleteTime) ? default(DateTime?) : Convert.ToDateTime(param.CompleteTime);
+      #endregion
+
+      // 調撥單資料
+      var f151001 = f151001Repo.GetAllocDatas(param.DcCode, param.GupCode, param.CustCode, param.AllocNo, new List<string> { "0", "1", "2", "3", "4" });
+      // 調撥明細資料
+      var f151002s = f151002Repo.GetDatas(param.DcCode, param.GupCode, param.CustCode, param.AllocNo).ToList();
+      if (f151001 != null && f151002s.Any())
+      {
+        #region 變數
+        // 是否為下架
+        var downStatus = new List<string> { "0", "1", "2" };
+        var isDown = downStatus.Contains(f151001.STATUS);
+        // 是否純下架
+        bool isOnlySrc = string.IsNullOrWhiteSpace(f151001.TAR_WAREHOUSE_ID);
+        // 取得上/下架人員資料
+        var f1924 = f1924Repo.Find(x => x.EMP_ID == param.Operator && x.ISDELETED == "0");
+        var empName = f1924 == null ? "支援人員" : f1924.EMP_NAME;
+        // 找出虛擬儲位檔資料
+        var f1511s = f1511Repo.GetDatas(param.DcCode, param.GupCode, param.CustCode, param.AllocNo);
+        // 找出序號商品資料
+        var serialNos = f151002s.Where(x => !string.IsNullOrWhiteSpace(x.SERIAL_NO)).Select(x => x.SERIAL_NO).ToList();
+        var f2501s = serialNos.Any() ? f2501Repo.GetDatasAndCombin(param.GupCode, param.CustCode, serialNos) : new List<F2501>();
+
+        // 取得最大調撥明細序號，用以上架數量不同則要新增F151002用
+        var maxSeq = f151002s.Select(x => x.ALLOCATION_SEQ).Max();
+
+        var isAllAutoWH = CommonService.IsAutoWarehouse(f151001.SRC_DC_CODE, f151001.SRC_WAREHOUSE_ID) && CommonService.IsAutoWarehouse(f151001.TAR_DC_CODE, f151001.TAR_WAREHOUSE_ID);
+
+        #endregion
+
+        #region 下架:更新F151002、F1511、新增F151003；上架:新增、更新F151002、F1511、F1913
+        int seqTmp = 1;
+
+        f151002s.ForEach(f151002 =>
         {
-            #region 變數
-            var shardService = new SharedService(_wmsTransaction);
-            var f151001Repo = new F151001Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f151002Repo = new F151002Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f151003Repo = new F151003Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f1913Repo = new F1913Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f191302Repo = new F191302Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f1924Repo = new F1924Repository(Schemas.CoreSchema);
-            var f191204Repo = new F191204Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f2501Repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f010205Repo = new F010205Repository(Schemas.CoreSchema, _wmsTransaction);
-            var f020501Repo = new F020501Repository(Schemas.CoreSchema, _wmsTransaction);
-            var serialNoService = new SerialNoService(_wmsTransaction);
-            var warehouseInService = new WarehouseInService(_wmsTransaction);
-            var sharedService = new SharedService(_wmsTransaction);
-            var containerService = new ContainerService(_wmsTransaction);
-            var returnAllotList = new List<ReturnNewAllocation>();
-            var returnStocks = new List<F1913>();
-            var addF151002Datas = new List<F151002>();
-            var updF151002Datas = new List<F151002>();
-            var addF1913Datas = new List<F1913>();
-            var updF1913Datas = new List<F1913>();
-            var addF191302List = new List<F191302>();
-            var updF2501Datas = new List<F2501>();
-            var delF191204Datas = new List<F191204>();
-            var addF151003Datas = new List<F151003>();
-            var addF1511Datas = new List<F1511>();
-            var updF1511Datas = new List<F1511>();
-            var now = DateTime.Now;
-            var startDate = string.IsNullOrWhiteSpace(param.StartTime) ? default(DateTime?) : Convert.ToDateTime(param.StartTime);
-            var completeDate = string.IsNullOrWhiteSpace(param.CompleteTime) ? default(DateTime?) : Convert.ToDateTime(param.CompleteTime);
-            #endregion
+          // 找出對應調撥單明細的傳入明細
+          var currDetail = param.Details.Where(x => x.Seq == f151002.ALLOCATION_SEQ).FirstOrDefault();
+          if (currDetail != null)
+          {
+            // 找出對應調撥單明細的儲位資料
+            var f1511 = f1511s.Where(x => x.ORDER_SEQ == f151002.ALLOCATION_SEQ.ToString()).FirstOrDefault();
+            // 找出建議儲位紀錄表
+            var f191204s = f191204Repo.AsForUpdate().GetDatasByTrueAndCondition(o => o.DC_CODE == f151001.DC_CODE && o.GUP_CODE == f151001.GUP_CODE && o.CUST_CODE == f151001.CUST_CODE && o.ALLOCATION_NO == f151001.ALLOCATION_NO && o.STATUS == "0");
 
-            // 調撥單資料
-            var f151001 = f151001Repo.GetAllocDatas(param.DcCode, param.GupCode, param.CustCode, param.AllocNo, new List<string> { "0", "1", "2", "3", "4" });
-            // 調撥明細資料
-            var f151002s = f151002Repo.GetDatas(param.DcCode, param.GupCode, param.CustCode, param.AllocNo).ToList();
-            if (f151001 != null && f151002s.Any())
+            #region 下架
+            if (isDown)
             {
-                #region 變數
-                // 是否為下架
-                var downStatus = new List<string> { "0", "1", "2" };
-                var isDown = downStatus.Contains(f151001.STATUS);
-                // 是否純下架
-                bool isOnlySrc = string.IsNullOrWhiteSpace(f151001.TAR_WAREHOUSE_ID);
-                // 取得上/下架人員資料
-                var f1924 = f1924Repo.Find(x => x.EMP_ID == param.Operator && x.ISDELETED == "0");
-                var empName = f1924 == null ? "支援人員" : f1924.EMP_NAME;
-                // 找出虛擬儲位檔資料
-                var f1511s = f1511Repo.GetDatas(param.DcCode, param.GupCode, param.CustCode, param.AllocNo);
-                // 找出序號商品資料
-                var serialNos = f151002s.Where(x => !string.IsNullOrWhiteSpace(x.SERIAL_NO)).Select(x => x.SERIAL_NO).ToList();
-                var f2501s = serialNos.Any() ? f2501Repo.GetDatasAndCombin(param.GupCode, param.CustCode, serialNos) : new List<F2501>();
+              #region 更新151002
+              // 如果實際出庫數量<=預計出庫數量
+              if (currDetail.Qty <= f151002.SRC_QTY)
+              {
+                f151002.A_SRC_QTY = currDetail.Qty;
+                f151002.SRC_DATE = completeDate ?? now;
+                f151002.SRC_STAFF = param.Operator;
+                f151002.SRC_NAME = empName;
 
-                // 取得最大調撥明細序號，用以上架數量不同則要新增F151002用
-                var maxSeq = f151002s.Select(x => x.ALLOCATION_SEQ).Max();
-                #endregion
-
-                #region 下架:更新F151002、F1511、新增F151003；上架:新增、更新F151002、F1511、F1913
-                int seqTmp = 1;
-
-                f151002s.ForEach(f151002 =>
-                {
-                    // 找出對應調撥單明細的傳入明細
-                    var currDetail = param.Details.Where(x => x.Seq == f151002.ALLOCATION_SEQ).FirstOrDefault();
-                    if (currDetail != null)
-                    {
-                        // 找出對應調撥單明細的儲位資料
-                        var f1511 = f1511s.Where(x => x.ORDER_SEQ == f151002.ALLOCATION_SEQ.ToString()).FirstOrDefault();
-                        // 找出建議儲位紀錄表
-                        var f191204s = f191204Repo.AsForUpdate().GetDatasByTrueAndCondition(o => o.DC_CODE == f151001.DC_CODE && o.GUP_CODE == f151001.GUP_CODE && o.CUST_CODE == f151001.CUST_CODE && o.ALLOCATION_NO == f151001.ALLOCATION_NO && o.STATUS == "0");
-
-                        #region 下架
-                        if (isDown)
-                        {
-                            #region 更新151002
-                            // 如果實際出庫數量<=預計出庫數量
-                            if (currDetail.Qty <= f151002.SRC_QTY)
-                            {
-                                f151002.A_SRC_QTY = currDetail.Qty;
-                                f151002.SRC_DATE = completeDate ?? now;
-                                f151002.SRC_STAFF = param.Operator;
-                                f151002.SRC_NAME = empName;
-
-                                // 如果有目的倉別F151001.TAR_WAREHOUSE_ID 則TAR_QTY=已下架數
-                                if (isOnlySrc)
-                                    f151002.STATUS = "2";// 如果無目的倉別則狀態更新為2(上架完成)
-                                else
-                                {
-                                    f151002.TAR_QTY = currDetail.Qty;
-
-                                    // 若要過帳，上架也要做
-                                    if (isPosting)
-                                    {
-                                        f151002.STATUS = "2"; // 如果無目的倉別則狀態更新為2(已上架)
-                                        f151002.A_TAR_QTY = currDetail.Qty;
-                                        f151002.TAR_DATE = completeDate ?? now;
-                                        f151002.TAR_STAFF = param.Operator;
-                                        f151002.TAR_NAME = empName;
-                                    }
-                                    else if(f151002.TAR_QTY == 0)
-                                        f151002.STATUS = "2";
-                                    else
-                                        f151002.STATUS = "1"; // 若沒有要過帳，代表只做到下架，別則狀態更新為1(下架完成上架未處理)
-                                }
-
-                                updF151002Datas.Add(f151002);
-
-
-                            }
-                            #endregion
-
-                            #region 新增F151003
-                            // 如果預計下架數量 - 實際出庫數量 > 0，即寫入缺貨
-                            int lackQty = Convert.ToInt32(f151002.SRC_QTY) - currDetail.Qty;
-                            if (lackQty > 0)
-                            {
-                                addF151003Datas.Add(new F151003
-                                {
-                                    ALLOCATION_NO = param.AllocNo,
-                                    ALLOCATION_SEQ = f151002.ALLOCATION_SEQ,
-                                    ITEM_CODE = f151002.ITEM_CODE,
-                                    MOVE_QTY = Convert.ToInt32(f151002.SRC_QTY),
-                                    LACK_QTY = lackQty,
-                                    REASON = "001",
-                                    STATUS = "2",
-                                    CUST_CODE = param.CustCode,
-                                    GUP_CODE = param.GupCode,
-                                    DC_CODE = param.DcCode,
-                                    LACK_TYPE = "0"
-                                });
-                                var lackWarehouseId = GetPickLossWarehouseId(param.DcCode, param.GupCode, param.CustCode);
-                                var lackLocCode = sharedService.GetPickLossLoc(param.DcCode, lackWarehouseId);
-                                var allotResult = CreateAllocationLackProcess(new AllocationStockLack()
-                                {
-                                    DcCode = param.DcCode,
-                                    GupCode = param.GupCode,
-                                    CustCode = param.CustCode,
-                                    LackQty = lackQty,
-                                    LackWarehouseId = lackWarehouseId,
-                                    LackLocCode = lackLocCode,
-                                    F151002 = f151002,
-                                    F1511 = f1511,
-                                    ReturnStocks = returnStocks
-                                });
-                                if (!allotResult.IsSuccessed)
-                                    throw new Exception(allotResult.Message);
-                                returnStocks = allotResult.ReturnStocks;
-                                returnAllotList.AddRange(allotResult.ReturnNewAllocations);
-                                addF191302List.AddRange(allotResult.AddF191302List);
-
-                                //如果全缺，直接改成完成
-                                if (currDetail.Qty == 0)
-                                    f151002.STATUS = "2";
-                            }
-                            #endregion
-
-                            #region 更新F1511
-                            // 更新虛擬儲位檔
-                            if (f1511 != null)
-                            {
-                                f1511.STATUS = f151002.STATUS;
-                                f1511.A_PICK_QTY = currDetail.Qty;
-                                updF1511Datas.Add(f1511);
-                            }
-                            #endregion
-                        }
-                        #endregion
-
-                        #region 上架
-                        if (!isDown)
-                        {
-                            // 是否為純上架
-                            var isOnlyTar = !string.IsNullOrWhiteSpace(f151001.TAR_WAREHOUSE_ID) && string.IsNullOrWhiteSpace(f151001.SRC_WAREHOUSE_ID);
-
-                            #region 更新F151002
-                            if (currDetail.Qty == f151002.TAR_QTY)
-                            {
-                                #region 更新原調撥明細
-                                f151002.A_TAR_QTY = currDetail.Qty;
-                                f151002.STATUS = "2";
-                                f151002.TAR_DATE = completeDate ?? now;
-                                f151002.TAR_STAFF = param.Operator;
-                                f151002.TAR_NAME = empName;
-
-                                // 指定上架儲位
-                                if (!string.IsNullOrWhiteSpace(currDetail.TarLocCode))
-                                    f151002.TAR_LOC_CODE = currDetail.TarLocCode;
-
-                                updF151002Datas.Add(f151002);
-                                #endregion
-                            }
-                            else
-                            {
-                                #region 新增新調撥明細、新虛擬儲位檔
-                                // 取得現在最大Seq +1
-                                short seq = Convert.ToInt16(maxSeq + seqTmp);
-
-                                addF151002Datas.Add(new F151002
-                                {
-                                    ALLOCATION_NO = f151002.ALLOCATION_NO,
-                                    ALLOCATION_SEQ = seq,
-                                    ORG_SEQ = f151002.ORG_SEQ,
-                                    ALLOCATION_DATE = f151002.ALLOCATION_DATE,
-                                    STATUS = "2",
-                                    ITEM_CODE = f151002.ITEM_CODE,
-                                    SRC_LOC_CODE = f151002.SRC_LOC_CODE,
-                                    SUG_LOC_CODE = f151002.SUG_LOC_CODE,
-                                    TAR_LOC_CODE = string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
-                                    SRC_QTY = currDetail.Qty, // 應下架數
-                                    A_SRC_QTY = currDetail.Qty, // 已下架數
-                                    TAR_QTY = currDetail.Qty,
-                                    A_TAR_QTY = currDetail.Qty,
-                                    SERIAL_NO = f151002.SERIAL_NO,
-                                    VALID_DATE = f151002.VALID_DATE,
-                                    CHECK_SERIALNO = f151002.CHECK_SERIALNO,
-                                    SRC_STAFF = f151002.SRC_STAFF,
-                                    SRC_DATE = f151002.SRC_DATE,
-                                    SRC_NAME = f151002.SRC_NAME,
-                                    TAR_STAFF = param.Operator,
-                                    TAR_DATE = completeDate ?? now,
-                                    TAR_NAME = empName,
-                                    DC_CODE = f151002.DC_CODE,
-                                    GUP_CODE = f151002.GUP_CODE,
-                                    CUST_CODE = f151002.CUST_CODE,
-                                    SRC_VALID_DATE = f151002.SRC_VALID_DATE,
-                                    TAR_VALID_DATE = f151002.TAR_VALID_DATE,
-                                    ENTER_DATE = f151002.ENTER_DATE,
-                                    VNR_CODE = f151002.VNR_CODE,
-                                    BOX_NO = f151002.BOX_NO,
-                                    BOX_CTRL_NO = f151002.BOX_CTRL_NO,
-                                    PALLET_CTRL_NO = f151002.PALLET_CTRL_NO,
-                                    STICKER_PALLET_NO = f151002.STICKER_PALLET_NO,
-                                    MAKE_NO = f151002.MAKE_NO,
-                                    SRC_MAKE_NO = f151002.SRC_MAKE_NO,
-                                    TAR_MAKE_NO = f151002.TAR_MAKE_NO,
-                                    CONTAINER_CODE = f151002.CONTAINER_CODE,
-                                    BIN_CODE = f151002.BIN_CODE,
-                                    RECEIPTFLAG = f151002.RECEIPTFLAG,
-                                    SOURCE_TYPE = f151002.SOURCE_TYPE,
-                                    SOURCE_NO = f151002.SOURCE_NO,
-                                    REFENCE_NO = f151002.REFENCE_NO,
-                                    REFENCE_SEQ = f151002.REFENCE_SEQ,
-                                });
-
-                                // 調整原明細應上架數 = 應上架數 - 數量
-                                f151002.TAR_QTY -= currDetail.Qty;
-                                f151002.A_SRC_QTY -= currDetail.Qty;
-                                f151002.SRC_QTY -= currDetail.Qty;
-                                updF151002Datas.Add(f151002);
-
-                                // 如果是純上架不需要異動F1511
-                                if (!isOnlyTar)
-                                {
-                                    // 如果是新明細 新增F1511
-                                    addF1511Datas.Add(new F1511
-                                    {
-                                        ORDER_NO = f151002.ALLOCATION_NO,
-                                        ORDER_SEQ = seq.ToString(),
-                                        DC_CODE = f151002.DC_CODE,
-                                        GUP_CODE = f151002.GUP_CODE,
-                                        CUST_CODE = f151002.CUST_CODE,
-                                        ITEM_CODE = f151002.ITEM_CODE,
-                                        VALID_DATE = f151002.VALID_DATE,
-                                        ENTER_DATE = f151002.ENTER_DATE,
-                                        SERIAL_NO = f151002.SERIAL_NO,
-                                        LOC_CODE = string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
-                                        BOX_CTRL_NO = f151002.BOX_CTRL_NO,
-                                        PALLET_CTRL_NO = f151002.PALLET_CTRL_NO,
-                                        MAKE_NO = f151002.MAKE_NO,
-                                        STATUS = "2",
-                                        B_PICK_QTY = currDetail.Qty,
-                                        A_PICK_QTY = currDetail.Qty
-                                    });
-                                }
-
-                                seqTmp++;
-                                #endregion
-                            }
-                            #endregion
-
-                            #region 更新原F1511
-                            // 如果是純上架不需要異動F1511
-                            if (!isOnlyTar && f1511 != null)
-                            {
-                                // 更新虛擬儲位檔
-                                f1511.STATUS = f151002.STATUS;
-                                f1511.A_PICK_QTY = Convert.ToInt32(f151002.A_SRC_QTY);
-                                f1511.B_PICK_QTY = Convert.ToInt32(f151002.SRC_QTY);
-                                updF1511Datas.Add(f1511);
-                            }
-                            #endregion
-
-                        }
-                        #endregion
-
-                        // 若為過帳或上架需要進行更新 庫存數 和 釋放預約儲位
-                        if (isPosting || !isDown)
-                        {
-                            #region 釋放預約儲位
-                            var f191204 = f191204s.Where(x => x.ALLOCATION_SEQ == f151002.ALLOCATION_SEQ).FirstOrDefault();
-                            if (f191204 != null)
-                                delF191204Datas.Add(f191204);
-                            #endregion
-
-                            #region 更新or新增 F1913庫存數
-                            StockRecovery(ref addF1913Datas,
-                                ref updF1913Datas,
-                                currDetail.Qty,
-                                f151002.DC_CODE,
-                                f151002.GUP_CODE,
-                                f151002.CUST_CODE,
-                                f151002.ITEM_CODE,
-                                string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
-                                f151002.VALID_DATE,
-                                f151002.ENTER_DATE,
-                                f151002.VNR_CODE,
-                                f151002.SERIAL_NO,
-                                f151002.BOX_CTRL_NO,
-                                f151002.PALLET_CTRL_NO,
-                                f151002.MAKE_NO);
-                            #endregion
-                        }
-
-                        if (f2501s.Any())
-                            UpdateF2501ByAlloc(ref updF2501Datas, isDown, f2501s, f151001, f151002, now);
-                    }
-                });
-
-                //調撥單整批上架
-                var AllotUpResult = shardService.BulkAllocationToAllUp(returnAllotList, returnStocks, false);
-                //調撥單整批寫入
-                var AllotExeResult = shardService.BulkInsertAllocation(returnAllotList, returnStocks, true);
-
-                if (addF151002Datas.Any())
-                    f151002Repo.BulkInsert(addF151002Datas);
-                if (updF151002Datas.Any())
-                    f151002Repo.BulkUpdate(updF151002Datas);
-                if (addF151003Datas.Any())
-                    f151003Repo.BulkInsert(addF151003Datas);
-                if (addF1511Datas.Any())
-                    f1511Repo.BulkInsert(addF1511Datas);
-                if (updF1511Datas.Any())
-                    f1511Repo.BulkUpdate(updF1511Datas);
-                if (addF1913Datas.Any())
-                    f1913Repo.BulkInsert(addF1913Datas);
-                if (updF1913Datas.Any())
-                    f1913Repo.BulkUpdate(updF1913Datas);
-                if (updF2501Datas.Any())
-                    f2501Repo.BulkUpdate(updF2501Datas);
-                if (delF191204Datas.Any())
-                    f191204Repo.DeleteByIDs(delF191204Datas.Select(x=>x.ID).ToArray());
-                if (addF191302List.Any())
-                    f191302Repo.BulkInsert(addF191302List);
-                #endregion
-
-                #region 更新F151001
-                if (isDown)// 下架
-                {
-                    if (isPosting && f151002s.Count() == f151002s.Where(x => x.STATUS == "2").Count())
-                    {
-                        f151001.STATUS = "5";
-                        f151001.LOCK_STATUS = "4";
-                        f151001.POSTING_DATE = now;
-                        if (f151001.TAR_START_DATE == null)
-                            f151001.TAR_START_DATE = f151001.UPD_DATE;
-                        if (f151001.SRC_START_DATE == null)
-                            f151001.SRC_START_DATE = f151001.UPD_DATE;
-                    }
-                    // 此單據所有明細是否都下架完成或取消(Status=1 or 9)
-                    else if (f151002s.Count() == f151002s.Where(x => new[] { "1", "2", "9" }.Contains(x.STATUS)).Count() ||
-                        (!string.IsNullOrWhiteSpace(f151001.SOURCE_NO) && f151001.SOURCE_NO.StartsWith("W") && f151002s.Count() == f151002s.Where(x => x.STATUS == "2").Count()))
-                    {
-                        if (f151001.SRC_START_DATE == null)
-                            f151001.SRC_START_DATE = startDate ?? f151001.UPD_DATE;
-
-                        // 代表純下架 或明細內容均全缺就把調撥單狀態改完成
-                        if (isOnlySrc|| (f151002s.Count() == f151002s.Where(x => x.STATUS == "2").Count()&& f151002s.All(x => x.A_SRC_QTY == 0)))
-                        {
-                            f151001.STATUS = "5";
-                            f151001.LOCK_STATUS = "4";
-                        }
-                        // 代表有上架倉庫
-                        else
-                        {
-                            f151001.STATUS = "3";
-                            f151001.LOCK_STATUS = "2";
-                            
-                            CreateInBoundJob(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, f151001.TAR_WAREHOUSE_ID);
-                        }
-                    }
-
-                }
-
-                if (!isDown) // 上架
-                {
-                    var finishStatus = new List<string> { "2", "9" };
-                    if (f151002s.All(x => finishStatus.Contains(x.STATUS)) && addF151002Datas.All(x => finishStatus.Contains(x.STATUS)))
-                    {
-                        f151001.STATUS = "5";
-                        f151001.LOCK_STATUS = "4";
-                        f151001.POSTING_DATE = now;
-                        if (f151001.TAR_START_DATE == null)
-                            f151001.TAR_START_DATE = startDate ?? f151001.UPD_DATE;
-                    }
-                    // 新增進倉驗收結果上架表
-                    var f020202s = warehouseInService.CreateF020202sForTar(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, updF151002Datas, addList: addF151002Datas);
-
-                    // 更新進倉驗收歷史表
-                    warehouseInService.UpdateF010204s(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, f020202s);
-
-                }
-
-                f151001Repo.Update(f151001);
-                #endregion
-
-                if (f151001.STATUS == "5")
-                {
-                    #region 新增F191303 庫存跨倉移動紀錄表
-                    CrtSpanWhMoveLogByAlloc(f151001, f151002s);
-                    #endregion
-
-                    #region 更新來源單號狀態
-                    UpdateSourceNoStatus(SourceType.Allocation, param.DcCode, param.GupCode, param.CustCode, f151001.ALLOCATION_NO, f151001.STATUS);
-                    #endregion
-
-                    #region 清除此調撥單已拆開序號的箱號/盒號/儲值卡盒號
-                    serialNoService.ClearSerialByBoxOrCaseNo(param.DcCode, param.GupCode, param.CustCode, param.AllocNo, isDown ? "TD" : "TU");
-                    #endregion
-
-                    #region 容器釋放
-                    containerService.DelContainer(param.DcCode, param.GupCode, param.CustCode, param.AllocNo);
-                    #endregion
-
-                    #region 新增F010205進倉回檔歷程紀錄表
-                    // 如果調撥單類型=4(驗收上架單)，要依照調撥明細來源單據號碼與參考單號產生進倉回檔紀錄(F010205 STATUS=3)
-                    if (f151001.ALLOCATION_TYPE == "4")
-                    {
-                        List<F010205> f010205Data = new List<F010205>();
-                        var f151002Group = f151002s.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.ALLOCATION_NO, x.SOURCE_NO, x.REFENCE_NO }).ToList();
-                        f151002Group.ForEach(x =>
-                        {
-                            f010205Data.Add(new F010205
-                            {
-                                DC_CODE = x.Key.DC_CODE,
-                                GUP_CODE = x.Key.GUP_CODE,
-                                CUST_CODE = x.Key.CUST_CODE,
-                                STOCK_NO = x.Key.SOURCE_NO,
-                                RT_NO = x.Key.REFENCE_NO,
-                                ALLOCATION_NO = x.Key.ALLOCATION_NO,
-                                STATUS = "3",
-                                PROC_FLAG = "0"
-                            });
-                        });
-                        f010205Repo.BulkInsert(f010205Data);
-                    }
-                    #endregion
-
-                    #region 更新F020501.STATUS=6(上架完成)
-                    var f020501 = f020501Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == f151001.DC_CODE &&
-                    x.GUP_CODE == f151001.GUP_CODE &&
-                    x.CUST_CODE == f151001.CUST_CODE &&
-                    x.ALLOCATION_NO == f151001.ALLOCATION_NO).FirstOrDefault();
-                    if (f020501 != null)
-                    {
-                        f020501.STATUS = "6";
-
-                        f020501Repo.Update(f020501);
-                    }
-                    #endregion
-
-                }
-
-                #region 更新儲位容積 (上架、純下架(沒有目的儲位)才需要更新)
-                // 過帳
-                if (isPosting)
-                {
-                    // 傳入這次更新或新增的調撥明細
-                    var updLocF151002s = new List<F151002>();
-                    updLocF151002s.AddRange(addF151002Datas);
-                    updLocF151002s.AddRange(updF151002Datas);
-                    UpdateAllocationLocVolumn(f151001, updLocF151002s);
-                }
+                // 如果有目的倉別F151001.TAR_WAREHOUSE_ID 則TAR_QTY=已下架數
+                if (isOnlySrc)
+                  f151002.STATUS = "2";// 如果無目的倉別則狀態更新為2(上架完成)
                 else
                 {
-                    var locCodes = new List<string>();
+                  f151002.TAR_QTY = currDetail.Qty;
 
-                    // 如果是純下架或下架只傳入這次更新的F151002.SRC_LOC_CODE
-                    if (isDown || (isDown && isOnlySrc))
-                        locCodes = updF151002Datas.Select(x => x.SRC_LOC_CODE).Distinct().ToList();
-                    else // 如果是純上架或上架，傳入這次新增或更新的上架儲位
-                    {
-                        locCodes = updF151002Datas.Select(x => x.TAR_LOC_CODE).Distinct().ToList();
-                        locCodes.AddRange(addF151002Datas.Select(x => x.TAR_LOC_CODE).Distinct().ToList());
-                    }
-                    //如果有執行過缺貨處理流程的話就不再跑這段不然會跳出F191205 PK 重複錯誤
-                    if (!returnAllotList.Any())
-                        UpdateUsedVolumnByLocCodes(f151001.DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, locCodes);
+                  // 若要過帳，上架也要做
+                  if (isPosting)
+                  {
+                    f151002.STATUS = "2"; // 如果無目的倉別則狀態更新為2(已上架)
+                    f151002.A_TAR_QTY = currDetail.Qty;
+                    f151002.TAR_DATE = completeDate ?? now;
+                    f151002.TAR_STAFF = param.Operator;
+                    f151002.TAR_NAME = empName;
+                  }
+                  else if (f151002.TAR_QTY == 0)
+                    f151002.STATUS = "2";
+                  else
+                  {
+                    f151002.STATUS = "1"; // 若沒有要過帳，代表只做到下架，別則狀態更新為1(下架完成上架未處理)
+                    if (isAllAutoWH)
+                      f151002.CONTAINER_CODE = currDetail.ContainerCode;
+                  }
                 }
-                #endregion
+
+                updF151002Datas.Add(f151002);
+
+
+              }
+              #endregion
+
+              #region 新增F151003
+              // 如果預計下架數量 - 實際出庫數量 > 0，即寫入缺貨
+              int lackQty = Convert.ToInt32(f151002.SRC_QTY) - currDetail.Qty;
+              if (lackQty > 0)
+              {
+                addF151003Datas.Add(new F151003
+                {
+                  ALLOCATION_NO = param.AllocNo,
+                  ALLOCATION_SEQ = f151002.ALLOCATION_SEQ,
+                  ITEM_CODE = f151002.ITEM_CODE,
+                  MOVE_QTY = Convert.ToInt32(f151002.SRC_QTY),
+                  LACK_QTY = lackQty,
+                  REASON = "001",
+                  STATUS = "2",
+                  CUST_CODE = param.CustCode,
+                  GUP_CODE = param.GupCode,
+                  DC_CODE = param.DcCode,
+                  LACK_TYPE = "0"
+                });
+                var lackWarehouseId = GetPickLossWarehouseId(param.DcCode, param.GupCode, param.CustCode);
+                var lackLocCode = GetPickLossLoc(param.DcCode, lackWarehouseId);
+                var allotResult = CreateAllocationLackProcess(new AllocationStockLack()
+                {
+                  DcCode = param.DcCode,
+                  GupCode = param.GupCode,
+                  CustCode = param.CustCode,
+                  LackQty = lackQty,
+                  LackWarehouseId = lackWarehouseId,
+                  LackLocCode = lackLocCode,
+                  F151002 = f151002,
+                  F1511 = f1511,
+                  ReturnStocks = returnStocks
+                });
+                if (!allotResult.IsSuccessed)
+                  throw new Exception(allotResult.Message);
+                returnStocks = allotResult.ReturnStocks;
+                returnAllotList.AddRange(allotResult.ReturnNewAllocations);
+                addF191302List.AddRange(allotResult.AddF191302List);
+
+                //如果全缺，直接改成完成
+                if (currDetail.Qty == 0)
+                  f151002.STATUS = "2";
+              }
+              #endregion
+
+              #region 更新F1511
+              // 更新虛擬儲位檔
+              if (f1511 != null)
+              {
+                f1511.STATUS = f151002.STATUS;
+                f1511.A_PICK_QTY = currDetail.Qty;
+                updF1511Datas.Add(f1511);
+              }
+              #endregion
             }
+            #endregion
+
+            #region 上架
+            if (!isDown)
+            {
+              // 是否為純上架
+              var isOnlyTar = !string.IsNullOrWhiteSpace(f151001.TAR_WAREHOUSE_ID) && string.IsNullOrWhiteSpace(f151001.SRC_WAREHOUSE_ID);
+
+              #region 更新F151002
+              if (currDetail.Qty == f151002.TAR_QTY)
+              {
+                #region 更新原調撥明細
+                f151002.A_TAR_QTY = currDetail.Qty;
+                f151002.STATUS = "2";
+                f151002.TAR_DATE = completeDate ?? now;
+                f151002.TAR_STAFF = param.Operator;
+                f151002.TAR_NAME = empName;
+
+                // 指定上架儲位
+                if (!string.IsNullOrWhiteSpace(currDetail.TarLocCode))
+                  f151002.TAR_LOC_CODE = currDetail.TarLocCode;
+
+                updF151002Datas.Add(f151002);
+                #endregion
+              }
+              else
+              {
+                #region 新增新調撥明細、新虛擬儲位檔
+                // 取得現在最大Seq +1
+                short seq = Convert.ToInt16(maxSeq + seqTmp);
+
+                addF151002Datas.Add(new F151002
+                {
+                  ALLOCATION_NO = f151002.ALLOCATION_NO,
+                  ALLOCATION_SEQ = seq,
+                  ORG_SEQ = f151002.ORG_SEQ,
+                  ALLOCATION_DATE = f151002.ALLOCATION_DATE,
+                  STATUS = "2",
+                  ITEM_CODE = f151002.ITEM_CODE,
+                  SRC_LOC_CODE = f151002.SRC_LOC_CODE,
+                  SUG_LOC_CODE = f151002.SUG_LOC_CODE,
+                  TAR_LOC_CODE = string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
+                  SRC_QTY = currDetail.Qty, // 應下架數
+                  A_SRC_QTY = currDetail.Qty, // 已下架數
+                  TAR_QTY = currDetail.Qty,
+                  A_TAR_QTY = currDetail.Qty,
+                  SERIAL_NO = f151002.SERIAL_NO,
+                  VALID_DATE = f151002.VALID_DATE,
+                  CHECK_SERIALNO = f151002.CHECK_SERIALNO,
+                  SRC_STAFF = f151002.SRC_STAFF,
+                  SRC_DATE = f151002.SRC_DATE,
+                  SRC_NAME = f151002.SRC_NAME,
+                  TAR_STAFF = param.Operator,
+                  TAR_DATE = completeDate ?? now,
+                  TAR_NAME = empName,
+                  DC_CODE = f151002.DC_CODE,
+                  GUP_CODE = f151002.GUP_CODE,
+                  CUST_CODE = f151002.CUST_CODE,
+                  SRC_VALID_DATE = f151002.SRC_VALID_DATE,
+                  TAR_VALID_DATE = f151002.TAR_VALID_DATE,
+                  ENTER_DATE = f151002.ENTER_DATE,
+                  VNR_CODE = f151002.VNR_CODE,
+                  BOX_NO = f151002.BOX_NO,
+                  BOX_CTRL_NO = f151002.BOX_CTRL_NO,
+                  PALLET_CTRL_NO = f151002.PALLET_CTRL_NO,
+                  STICKER_PALLET_NO = f151002.STICKER_PALLET_NO,
+                  MAKE_NO = f151002.MAKE_NO,
+                  SRC_MAKE_NO = f151002.SRC_MAKE_NO,
+                  TAR_MAKE_NO = f151002.TAR_MAKE_NO,
+                  CONTAINER_CODE = f151002.CONTAINER_CODE,
+                  BIN_CODE = f151002.BIN_CODE,
+                  RECEIPTFLAG = f151002.RECEIPTFLAG,
+                  SOURCE_TYPE = f151002.SOURCE_TYPE,
+                  SOURCE_NO = f151002.SOURCE_NO,
+                  REFENCE_NO = f151002.REFENCE_NO,
+                  REFENCE_SEQ = f151002.REFENCE_SEQ,
+                });
+
+                // 調整原明細應上架數 = 應上架數 - 數量
+                f151002.TAR_QTY -= currDetail.Qty;
+                f151002.A_SRC_QTY -= currDetail.Qty;
+                f151002.SRC_QTY -= currDetail.Qty;
+                updF151002Datas.Add(f151002);
+
+                // 如果是純上架不需要異動F1511
+                if (!isOnlyTar)
+                {
+                  // 如果是新明細 新增F1511
+                  addF1511Datas.Add(new F1511
+                  {
+                    ORDER_NO = f151002.ALLOCATION_NO,
+                    ORDER_SEQ = seq.ToString(),
+                    DC_CODE = f151002.DC_CODE,
+                    GUP_CODE = f151002.GUP_CODE,
+                    CUST_CODE = f151002.CUST_CODE,
+                    ITEM_CODE = f151002.ITEM_CODE,
+                    VALID_DATE = f151002.VALID_DATE,
+                    ENTER_DATE = f151002.ENTER_DATE,
+                    SERIAL_NO = f151002.SERIAL_NO,
+                    LOC_CODE = string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
+                    BOX_CTRL_NO = f151002.BOX_CTRL_NO,
+                    PALLET_CTRL_NO = f151002.PALLET_CTRL_NO,
+                    MAKE_NO = f151002.MAKE_NO,
+                    STATUS = "2",
+                    B_PICK_QTY = currDetail.Qty,
+                    A_PICK_QTY = currDetail.Qty
+                  });
+                }
+
+                seqTmp++;
+                #endregion
+              }
+              #endregion
+
+              #region 更新原F1511
+              // 如果是純上架不需要異動F1511
+              if (!isOnlyTar && f1511 != null)
+              {
+                // 更新虛擬儲位檔
+                f1511.STATUS = f151002.STATUS;
+                f1511.A_PICK_QTY = Convert.ToInt32(f151002.A_SRC_QTY);
+                f1511.B_PICK_QTY = Convert.ToInt32(f151002.SRC_QTY);
+                updF1511Datas.Add(f1511);
+              }
+              #endregion
+
+            }
+            #endregion
+
+            // 若為過帳或上架需要進行更新 庫存數 和 釋放預約儲位
+            if (isPosting || !isDown)
+            {
+              #region 釋放預約儲位
+              var f191204 = f191204s.Where(x => x.ALLOCATION_SEQ == f151002.ALLOCATION_SEQ).FirstOrDefault();
+              if (f191204 != null)
+                delF191204Datas.Add(f191204);
+              #endregion
+
+              #region 更新or新增 F1913庫存數
+              StockRecovery(ref addF1913Datas,
+                  ref updF1913Datas,
+                  currDetail.Qty,
+                  f151002.DC_CODE,
+                  f151002.GUP_CODE,
+                  f151002.CUST_CODE,
+                  f151002.ITEM_CODE,
+                  string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
+                  f151002.VALID_DATE,
+                  f151002.ENTER_DATE,
+                  f151002.VNR_CODE,
+                  f151002.SERIAL_NO,
+                  f151002.BOX_CTRL_NO,
+                  f151002.PALLET_CTRL_NO,
+                  f151002.MAKE_NO);
+              #endregion
+            }
+
+            if (f2501s.Any())
+              UpdateF2501ByAlloc(ref updF2501Datas, isDown, f2501s, f151001, f151002, now);
+          }
+        });
+
+        //調撥單整批上架
+        var AllotUpResult = shardService.BulkAllocationToAllUp(returnAllotList, returnStocks, false);
+        //調撥單整批寫入
+        var AllotExeResult = shardService.BulkInsertAllocation(returnAllotList, returnStocks, true);
+
+        if (addF151002Datas.Any())
+          f151002Repo.BulkInsert(addF151002Datas);
+        if (updF151002Datas.Any())
+          f151002Repo.BulkUpdate(updF151002Datas);
+        if (addF151003Datas.Any())
+          f151003Repo.BulkInsert(addF151003Datas);
+        if (addF1511Datas.Any())
+          f1511Repo.BulkInsert(addF1511Datas);
+        if (updF1511Datas.Any())
+          f1511Repo.BulkUpdate(updF1511Datas);
+        if (addF1913Datas.Any())
+          f1913Repo.BulkInsert(addF1913Datas);
+        if (updF1913Datas.Any())
+          f1913Repo.BulkUpdate(updF1913Datas);
+        if (updF2501Datas.Any())
+          f2501Repo.BulkUpdate(updF2501Datas);
+        if (delF191204Datas.Any())
+          f191204Repo.DeleteByIDs(delF191204Datas.Select(x => x.ID).ToArray());
+        if (addF191302List.Any())
+          f191302Repo.BulkInsert(addF191302List);
+        #endregion
+
+        #region 更新F151001
+        if (isDown)// 下架
+        {
+          if (isPosting && f151002s.Count() == f151002s.Where(x => x.STATUS == "2").Count())
+          {
+            f151001.STATUS = "5";
+            f151001.LOCK_STATUS = "4";
+            f151001.POSTING_DATE = now;
+            if (f151001.TAR_START_DATE == null)
+              f151001.TAR_START_DATE = f151001.UPD_DATE;
+            if (f151001.SRC_START_DATE == null)
+              f151001.SRC_START_DATE = f151001.UPD_DATE;
+          }
+          // 此單據所有明細是否都下架完成或取消(Status=1 or 9)
+          else if (f151002s.Count() == f151002s.Where(x => new[] { "1", "2", "9" }.Contains(x.STATUS)).Count() ||
+              (!string.IsNullOrWhiteSpace(f151001.SOURCE_NO) && f151001.SOURCE_NO.StartsWith("W") && f151002s.Count() == f151002s.Where(x => x.STATUS == "2").Count()))
+          {
+            if (f151001.SRC_START_DATE == null)
+              f151001.SRC_START_DATE = startDate ?? f151001.UPD_DATE;
+
+            // 代表純下架 或明細內容均全缺就把調撥單狀態改完成
+            if (isOnlySrc || (f151002s.Count() == f151002s.Where(x => x.STATUS == "2").Count() && f151002s.All(x => x.A_SRC_QTY == 0)))
+            {
+              f151001.STATUS = "5";
+              f151001.LOCK_STATUS = "4";
+            }
+            // 代表有上架倉庫
+            else
+            {
+              f151001.STATUS = "3";
+              f151001.LOCK_STATUS = "2";
+              //來源倉＆自動倉都是自動倉時把容器寫入
+              if (isAllAutoWH)
+                f151001.CONTAINER_CODE = param.ContainerCode;
+              CreateInBoundJob(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, f151001.TAR_WAREHOUSE_ID);
+            }
+          }
+
         }
+
+        if (!isDown) // 上架
+        {
+          var finishStatus = new List<string> { "2", "9" };
+          if (f151002s.All(x => finishStatus.Contains(x.STATUS)) && addF151002Datas.All(x => finishStatus.Contains(x.STATUS)))
+          {
+            f151001.STATUS = "5";
+            f151001.LOCK_STATUS = "4";
+            f151001.POSTING_DATE = now;
+            if (f151001.TAR_START_DATE == null)
+              f151001.TAR_START_DATE = startDate ?? f151001.UPD_DATE;
+          }
+          // 新增進倉驗收結果上架表
+          var f020202s = warehouseInService.CreateF020202sForTar(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, updF151002Datas, addList: addF151002Datas);
+
+          // 更新進倉驗收歷史表
+          warehouseInService.UpdateF010204s(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, f020202s);
+
+        }
+
+        f151001Repo.Update(f151001);
+        #endregion
+
+        if (f151001.STATUS == "5")
+        {
+          #region 新增F191303 庫存跨倉移動紀錄表
+          CrtSpanWhMoveLogByAlloc(f151001, f151002s);
+          #endregion
+
+          #region 更新來源單號狀態
+          UpdateSourceNoStatus(SourceType.Allocation, param.DcCode, param.GupCode, param.CustCode, f151001.ALLOCATION_NO, f151001.STATUS);
+          #endregion
+
+          #region 清除此調撥單已拆開序號的箱號/盒號/儲值卡盒號
+          serialNoService.ClearSerialByBoxOrCaseNo(param.DcCode, param.GupCode, param.CustCode, param.AllocNo, isDown ? "TD" : "TU");
+          #endregion
+
+          #region 容器釋放
+          containerService.DelContainer(param.DcCode, param.GupCode, param.CustCode, param.AllocNo);
+          #endregion
+
+          #region 新增F010205進倉回檔歷程紀錄表
+          // 如果調撥單類型=4(驗收上架單)，要依照調撥明細來源單據號碼與參考單號產生進倉回檔紀錄(F010205 STATUS=3)
+          if (f151001.ALLOCATION_TYPE == "4")
+          {
+            List<F010205> f010205Data = new List<F010205>();
+            var f151002Group = f151002s.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.ALLOCATION_NO, x.SOURCE_NO, x.REFENCE_NO }).ToList();
+            f151002Group.ForEach(x =>
+            {
+              f010205Data.Add(new F010205
+              {
+                DC_CODE = x.Key.DC_CODE,
+                GUP_CODE = x.Key.GUP_CODE,
+                CUST_CODE = x.Key.CUST_CODE,
+                STOCK_NO = x.Key.SOURCE_NO,
+                RT_NO = x.Key.REFENCE_NO,
+                ALLOCATION_NO = x.Key.ALLOCATION_NO,
+                STATUS = "3",
+                PROC_FLAG = "0"
+              });
+            });
+            f010205Repo.BulkInsert(f010205Data);
+          }
+          #endregion
+
+          #region 更新F020501.STATUS=6(上架完成)
+          var f020501 = f020501Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == f151001.DC_CODE &&
+          x.GUP_CODE == f151001.GUP_CODE &&
+          x.CUST_CODE == f151001.CUST_CODE &&
+          x.ALLOCATION_NO == f151001.ALLOCATION_NO).FirstOrDefault();
+          if (f020501 != null)
+          {
+            f020501.STATUS = "6";
+
+            f020501Repo.Update(f020501);
+          }
+          #endregion
+
+        }
+
+        #region 更新儲位容積 (上架、純下架(沒有目的儲位)才需要更新)
+        // 過帳
+        if (isPosting)
+        {
+          // 傳入這次更新或新增的調撥明細
+          var updLocF151002s = new List<F151002>();
+          updLocF151002s.AddRange(addF151002Datas);
+          updLocF151002s.AddRange(updF151002Datas);
+          UpdateAllocationLocVolumn(f151001, updLocF151002s);
+        }
+        else
+        {
+          var locCodes = new List<string>();
+
+          // 如果是純下架或下架只傳入這次更新的F151002.SRC_LOC_CODE
+          if (isDown || (isDown && isOnlySrc))
+            locCodes = updF151002Datas.Select(x => x.SRC_LOC_CODE).Distinct().ToList();
+          else // 如果是純上架或上架，傳入這次新增或更新的上架儲位
+          {
+            locCodes = updF151002Datas.Select(x => x.TAR_LOC_CODE).Distinct().ToList();
+            locCodes.AddRange(addF151002Datas.Select(x => x.TAR_LOC_CODE).Distinct().ToList());
+          }
+          //如果有執行過缺貨處理流程的話就不再跑這段不然會跳出F191205 PK 重複錯誤
+          if (!returnAllotList.Any())
+            UpdateUsedVolumnByLocCodes(f151001.DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, locCodes);
+        }
+        #endregion
+      }
+    }
 
         private void UpdateF2501ByAlloc(ref List<F2501> updF2501Datas, bool isDown, List<F2501> f2501s, F151001 f151001Data, F151002 f151002Data, DateTime now)
         {

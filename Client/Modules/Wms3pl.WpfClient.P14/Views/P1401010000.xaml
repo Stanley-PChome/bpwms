@@ -437,7 +437,9 @@
                                             <GroupBox Header="{x:Static Properties:Resources.QueryDetailWareHouseList}">
                                                 <DockPanel>
                                                     <WrapPanel DockPanel.Dock="Top">
-                                                        <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.QueryDetialWareHouseId}" />
+                            <Label Style="{StaticResource LbTitleStyle}" Content="盤點階段"/>
+                            <ComboBox Style="{StaticResource ComboStyle}" ItemsSource="{Binding ProcTypeList,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedProcType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value"/>
+                            <Label Style="{StaticResource LbTitleStyle}" Content="{x:Static Properties:Resources.QueryDetialWareHouseId}" />
                                                         <ComboBox ItemsSource="{Binding QueryDetailWareHouseList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedQueryDetialWareHouseId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value">
                                                             <ComboBox.Style>
                                                                 <Style TargetType="ComboBox" BasedOn="{StaticResource ComboStyle}">
@@ -893,7 +895,7 @@
                                                                 <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource DgCheckBoxItemStyle}" EditingElementStyle="{StaticResource DgCheckBoxItemStyle}">
                                                                     <DataGridCheckBoxColumn.HeaderTemplate>
                                                                         <DataTemplate>
-                                                                            <CheckBox Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllWareHouse,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllWareHouse_OnChecked" Unchecked="CheckAllWareHouse_OnChecked" />
+                                      <CheckBox Content="{x:Static res:Resources.SelectAll}" Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllWareHouse,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllWareHouse_OnChecked" Unchecked="CheckAllWareHouse_OnChecked" />
                                                                         </DataTemplate>
                                                                     </DataGridCheckBoxColumn.HeaderTemplate>
                                                                 </DataGridCheckBoxColumn>
@@ -979,14 +981,18 @@
                                                                 <ColumnDefinition Width="Auto" />
                                                                 <ColumnDefinition Width="Auto" />
                                                                 <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
                                                             </Grid.ColumnDefinitions>
                                                             <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="0" Content="{x:Static Properties:Resources.INVENTORY_TYPE}"/>
                                                             <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboStyle}" DisplayMemberPath="Name" SelectedValuePath="Value" ItemsSource="{Binding ItemTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItemType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                                             <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="2" Content="廠商編號"/>
                                                             <TextBox Style="{StaticResource TxtStyle}" Grid.Row="0" Grid.Column="3" Text="{Binding SelectedVnrCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="4" Content="廠商名稱" Foreground="Blue"/>
-                                                            <TextBox Style="{StaticResource TxtStyle}" Grid.Row="0" Grid.Column="5" Text="{Binding SelectedVnrName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                                            <Button Grid.Row="0" Grid.Column="6" Style="{StaticResource BtnStyle}" Content="{x:Static res:Resources.Query}" controls:PermissionService.FunctionId="BP1401010010" Command="{Binding SearchItemCommand}" MinHeight="30" />
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="6" Content="廠商名稱" Foreground="Blue"/>
+                                                            <TextBox Style="{StaticResource TxtStyle}" Grid.Row="0" Grid.Column="7" Text="{Binding SelectedVnrName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            <Label Style="{StaticResource LbTitleStyle}" Grid.Row="0" Grid.Column="4" Content="原廠商編號"/>
+                                                            <TextBox Style="{StaticResource TxtStyle}" Grid.Row="0" Grid.Column="5" Text="{Binding SelectedOriVnrCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            <Button Grid.Row="1" Grid.Column="7" Style="{StaticResource BtnStyle}" Content="{x:Static res:Resources.Query}" controls:PermissionService.FunctionId="BP1401010010" Command="{Binding SearchItemCommand}" MinHeight="30" Width="100"/>
                                                             <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.SelectedItemLType}" />
                                                             <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboStyle}" DisplayMemberPath="Name" SelectedValuePath="Value" ItemsSource="{Binding ItemLTypeList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItemLType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                                             <Label Style="{StaticResource LbTitleStyle}" Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.SelectedItemMType}" />
@@ -1014,7 +1020,7 @@
                                                                 <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource DgCheckBoxStyle}" EditingElementStyle="{StaticResource DgCheckBoxStyle}">
                                                                     <DataGridCheckBoxColumn.HeaderTemplate>
                                                                         <DataTemplate>
-                                                                            <CheckBox Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllItem_OnChecked" Unchecked="CheckAllItem_OnChecked" />
+                                      <CheckBox Content="{x:Static res:Resources.SelectAll}" Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllItem_OnChecked" Unchecked="CheckAllItem_OnChecked" />
                                                                         </DataTemplate>
                                                                     </DataGridCheckBoxColumn.HeaderTemplate>
                                                                 </DataGridCheckBoxColumn>
@@ -1198,7 +1204,7 @@
                                                             <DataGridCheckBoxColumn Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource DgCheckBoxStyle}" EditingElementStyle="{StaticResource DgCheckBoxStyle}">
                                                                 <DataGridCheckBoxColumn.HeaderTemplate>
                                                                     <DataTemplate>
-                                                                        <CheckBox Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllEditInventoryDetailItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllEditInventoryDetailItem_OnChecked" Unchecked="CheckAllEditInventoryDetailItem_OnChecked" />
+                                    <CheckBox Content="{x:Static res:Resources.SelectAll}" Style="{StaticResource CheckStyle}" IsChecked="{Binding DataContext.IsCheckAllEditInventoryDetailItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type uiLib:Wms3plUserControl}}}" Checked="CheckAllEditInventoryDetailItem_OnChecked" Unchecked="CheckAllEditInventoryDetailItem_OnChecked" />
                                                                     </DataTemplate>
                                                                 </DataGridCheckBoxColumn.HeaderTemplate>
                                                                 <DataGridCheckBoxColumn.Visibility>

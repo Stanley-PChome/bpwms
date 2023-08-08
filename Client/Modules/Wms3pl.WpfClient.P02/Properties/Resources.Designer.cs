@@ -214,6 +214,15 @@ namespace Wms3pl.WpfClient.P02.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 是否為序號商品 的當地語系化字串。
+        /// </summary>
+        public static string BundleSerial {
+            get {
+                return ResourceManager.GetString("BundleSerial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 取消驗收 的當地語系化字串。
         /// </summary>
         public static string CancelAcceptance {

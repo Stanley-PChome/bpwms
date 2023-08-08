@@ -14,11 +14,6 @@ namespace Wms3pl.Datas.F07
 		{
 		}
 
-		public IQueryable<F0701> GetDatasByF0701Ids(List<long> ids)
-		{
-			return _db.F0701s.Where(x => ids.Contains(x.ID));
-		}
-
 		public F0701 GetDatasByF0701ContainerCode(string dcCode, string containerCode)
 		{
 			return _db.F0701s.Where(x => x.DC_CODE == dcCode && x.CONTAINER_CODE == containerCode && x.CONTAINER_TYPE == "0").FirstOrDefault();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -68,6 +69,20 @@ namespace Wms3pl.Datas.F01
 			var result = SqlQuery<int>(sql, param.ToArray()).FirstOrDefault();
 
 			return result;
-		}
-	}
+    }
+
+    public F010202 GetData(string dcCode, string gupCode, string custCode, string stockNo, int stockSeq)
+    {
+      var para = new List<SqlParameter>()
+      {
+        new SqlParameter("@p0",dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1",gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2",custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3",stockNo) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4",stockSeq) { SqlDbType = SqlDbType.Int }
+      };
+      var sql = @"SELECT TOP(1) * FROM F010202 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND STOCK_NO=@p3 AND STOCK_SEQ=@p4";
+      return SqlQuery<F010202>(sql, para.ToArray()).FirstOrDefault();
+    }
+  }
 }

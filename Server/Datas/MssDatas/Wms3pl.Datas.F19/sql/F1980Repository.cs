@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -201,5 +203,92 @@ namespace Wms3pl.Datas.F19
 
 						return SqlQuery<F1980>(sql, parameters.ToArray());
 				}
+
+    public IQueryable<F1980> GetDatas(string dcCode, List<string> warehouseIds)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar }
+      };
+      var sql = @"SELECT * FROM F1980 WHERE DC_CODE=@p0";
+      if (warehouseIds.Any())
+        sql += para.CombineSqlInParameters(" AND WAREHOUSE_ID", warehouseIds, SqlDbType.VarChar);
+      else
+        return null;
+      return SqlQuery<F1980>(sql, para.ToArray());
+      #region 原Linq
+      /*
+      var result = _db.F1980s.Where(x => x.DC_CODE == dcCode
+                                  && warehouseIds.Contains(x.WAREHOUSE_ID));
+      return result;
+      */
+      #endregion
+    }
+
+    public F1980 GetF1980ByLocCode(string dcCode, string locCode)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", locCode)  { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = @"
+SELECT A.*
+FROM   F1980 A
+       INNER JOIN F1912 B
+               ON A.DC_CODE = B.DC_CODE
+                  AND A.WAREHOUSE_ID = B.WAREHOUSE_ID
+WHERE  B.DC_CODE = @p0
+       AND B.LOC_CODE = @p1  
+";
+      return SqlQuery<F1980>(sql, para.ToArray()).FirstOrDefault();
+      #region 原linq語法
+      /*
+      var f1980s = _db.F1980s;
+      var f1912s = _db.F1912s.Where(x => x.DC_CODE == dcCode
+                                 && x.LOC_CODE == locCode);
+
+      var result = from A in f1980s
+                   join B in f1912s on new { A.DC_CODE, A.WAREHOUSE_ID } equals new { B.DC_CODE, B.WAREHOUSE_ID }
+                   select A;
+
+      return result.FirstOrDefault();
+      */
+      #endregion
+    }
+
+    public IQueryable<string> GetWarehouseIDForNotWarehouseTypes(string dcCode, List<string> warehouseTypes)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode }
+      };
+      var sql = @"SELECT WAREHOUSE_ID FROM F1980 WHERE DC_CODE=@p0";
+      sql += para.CombineSqlNotInParameters("AND WAREHOUSE_TYPE", warehouseTypes, SqlDbType.VarChar);
+      return SqlQuery<string>(sql, para.ToArray());
+      //var result = _db.F1980s.Where(x => x.DC_CODE == dcCode && warehouseTypes.Contains(x.WAREHOUSE_TYPE));
+      //return result;
+    }
+
+    public IQueryable<F1980> GetDatasForNotWarehouseTypes(string dcCode, List<string> warehouseTypes)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode }
+      };
+      var sql = @"SELECT * FROM F1980 WHERE DC_CODE = @p0";
+      sql += para.CombineSqlNotInParameters("AND WAREHOUSE_TYPE", warehouseTypes, SqlDbType.VarChar);
+      return SqlQuery<F1980>(sql, para.ToArray());
+    }
+
+		public IQueryable<WarehouseItem> GetDefectWarehouseList(string dcCode)
+		{
+			var para = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode }
+			};
+			var sql = @"SELECT WAREHOUSE_ID AS WarehouseId,WAREHOUSE_NAME WarehouseName FROM F1980 WHERE DC_CODE = @p0 AND WAREHOUSE_TYPE = 'R' ";
+			return SqlQuery<WarehouseItem>(sql, para.ToArray());
+		}
 	}
 }

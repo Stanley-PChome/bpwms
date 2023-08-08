@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -80,29 +81,29 @@ namespace Wms3pl.Datas.F19
                               MAIL = @p3,
                               ADDRESS = @p4,
                               CHANNEL = @p5,
-                              UPD_DATE = dbo.GetSysDate(),
-                              UPD_STAFF = @p6,
-                              UPD_NAME = @p7,
-                              SHORT_SALESBASE_NAME = @p8,
-                              UNIFIED_BUSINESS_NO = @p9,
-                              TEL2 = @p10,
-                              FAX = @p11,
-                              NOTE = @p12,
-                              SALES_BASE_GROUP = @p13,
-                              SELF_TAKE = @p14,
-                              DELV_NO = @p15,
-                              NEED_SHIPPING_MARK = @p16,
-                              CUSTOM_DELVDAYS_TYPE = @p17,
-                              DELV_DAYS = @p18,
-                              DELV_DAYS_LIMIT = @p19,
-                              DELV_DAYS_INFO = @p20
-                        WHERE GUP_CODE = @p21
-                          AND CUST_CODE = @p22
-                          AND CHANNEL = @p23
-                          AND RETAIL_CODE = @p24
+                              UPD_DATE = @p6,
+                              UPD_STAFF = @p7,
+                              UPD_NAME = @p8,
+                              SHORT_SALESBASE_NAME = @p9,
+                              UNIFIED_BUSINESS_NO = @p10,
+                              TEL2 = @p11,
+                              FAX = @p12,
+                              NOTE = @p13,
+                              SALES_BASE_GROUP = @p14,
+                              SELF_TAKE = @p15,
+                              DELV_NO = @p16,
+                              NEED_SHIPPING_MARK = @p17,
+                              CUSTOM_DELVDAYS_TYPE = @p18,
+                              DELV_DAYS = @p19,
+                              DELV_DAYS_LIMIT = @p20,
+                              DELV_DAYS_INFO = @p21
+                        WHERE GUP_CODE = @p22
+                          AND CUST_CODE = @p23
+                          AND CHANNEL = @p24
+                          AND RETAIL_CODE = @p25
                         ";
             var parms = new List<object> {data.RETAIL_NAME,data.CONTACT,data.TEL,data.MAIL,data.ADDRESS,
-                data.CHANNEL,Current.Staff,Current.StaffName,
+                data.CHANNEL,DateTime.Now,Current.Staff,Current.StaffName,
 
                 data.SHORT_SALESBASE_NAME,
                 data.UNIFIED_BUSINESS_NO,

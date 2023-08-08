@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -408,19 +409,22 @@ SELECT --
 		{
 			var sql = @"
 						UPDATE F500201
-						SET PRINT_DATE = dbo.GetSysDate(),							   
-							   UPD_DATE = dbo.GetSysDate(),
+						SET PRINT_DATE = @p5,							   
+							   UPD_DATE = @p5,
 							   UPD_STAFF = @p0,
 							   UPD_NAME = @p1
 						 WHERE CNT_DATE = @p2 AND GUP_CODE = @p3 AND CUST_CODE = @p4 AND STATUS = '0'
 			";
+
 			var param = new[] {
 				new SqlParameter("@p0", updStaff),
 				new SqlParameter("@p1", updStaffName),
 				new SqlParameter("@p2", cntDate),
         new SqlParameter("@p3", gupCode),
-				new SqlParameter("@p4", custCode)
-			};
+				new SqlParameter("@p4", custCode),
+        new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
+
 			ExecuteSqlCommand(sql, param);
 		}
 
@@ -432,36 +436,42 @@ SELECT --
 			var sql = @"
 						UPDATE F500201
 						SET STATUS = '1',
-							   CLOSE_DATE = dbo.GetSysDate(),
-							   UPD_DATE = dbo.GetSysDate(),
+							   CLOSE_DATE = @p5,
+							   UPD_DATE = @p5,
 							   UPD_STAFF = @p0,
 							   UPD_NAME = @p1
 						 WHERE CNT_DATE = @p2 AND GUP_CODE = @p3 AND CUST_CODE = @p4 AND STATUS = '0'
 			";
+
 			var param = new[] {
 				new SqlParameter("@p0", updStaff),
 				new SqlParameter("@p1", updStaffName),
 				new SqlParameter("@p2", cntDate),
-                new SqlParameter("@p3", gupCode),
-				new SqlParameter("@p4", custCode)
-			};
+        new SqlParameter("@p3", gupCode),
+				new SqlParameter("@p4", custCode),
+        new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
+
 			ExecuteSqlCommand(sql, param);
 		}
 
 		public IQueryable<BaseDay> GetBaseDay()
 		{
-			var sqlParamers = new List<object>();
+			var sqlParamers = new List<object> { DateTime.Now };
+
 			var sql = @"						
                         select  
 								A.DC_CODE 
 								,A.GUP_CODE 
 								,A.CUST_CODE 
 							    , MIN(A.CNT_DATE) CNT_DATE
-							    ,DATEDIFF(DAY,MIN(A.CNT_DATE),dbo.GetSysDate()) BASE_DAY
+							    ,DATEDIFF(DAY,MIN(A.CNT_DATE),@p0) BASE_DAY
 						from F500201 A 
 						group by A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE  
 					";
+
 			var result = SqlQuery<BaseDay>(sql, sqlParamers.ToArray()).AsQueryable();
+
 			return result;
 		}
 

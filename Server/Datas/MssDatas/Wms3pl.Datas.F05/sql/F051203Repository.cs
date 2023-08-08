@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.Shared.ApiEntities;
+using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
@@ -15,13 +17,20 @@ namespace Wms3pl.Datas.F05
 	{
 		public IQueryable<F051203> GetDataByPickNo(string dcCode,string gupCode,string custCode,string pickOrdNo)
 		{
+
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p3",pickOrdNo){ SqlDbType = SqlDbType.VarChar},
+			};
 			var sql = @" SELECT * FROM F051203
                     WHERE DC_CODE = @p0
                       AND GUP_CODE = @p1
                       AND CUST_CODE = @p2
                       AND PICK_ORD_NO= @p3";
-			var parms = new object[] { dcCode, gupCode, custCode, pickOrdNo };
-			return SqlQuery<F051203>(sql, parms);
+			return SqlQuery<F051203>(sql, parms.ToArray());
 		}
 
 		public IQueryable<GetPickDetailDetail> GetBatchPickDetail(
@@ -172,6 +181,27 @@ namespace Wms3pl.Datas.F05
 
 			var result = SqlQuery<WcsOutboundSkuModel>(sql, parameters.ToArray());
 			return result;
+		}
+
+		public IQueryable<PickInfoWithLackItem> GetLackPickDtl(string dcCode, string gupCode, string custCode, string pickOrdNo)
+		{
+			var parms = new List<SqlParameter>();
+			parms.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar });
+
+			var sql = @" SELECT PICK_LOC, ITEM_CODE, VALID_DATE, MAKE_NO, SERIAL_NO, B_PICK_QTY - A_PICK_QTY AS LACK_QTY
+                     FROM F051203
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND PICK_ORD_NO = @p3
+                      AND PICK_STATUS <> 9
+                      AND B_PICK_QTY > A_PICK_QTY
+                      ORDER BY SERIAL_NO DESC,ITEM_CODE ";
+
+			return SqlQuery<PickInfoWithLackItem>(sql, parms.ToArray());
 		}
 	}
 }

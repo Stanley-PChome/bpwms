@@ -44,11 +44,23 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 				//初始化執行時所需的值及資料
 				//初始化執行時所需的值及資料
 				//DcList = GetDcList();								//設定DC
-				StatusList = GetBaseTableService.GetF000904List(FunctionCode, "F2501", "STATUS", true);		//設定序號狀態
-				TypeList = GetBaseTableService.GetF000904List(FunctionCode, "F1903", "TYPE", true);			//設定序號狀態
-				ItemType = TypeList.Select(x => x.Value).FirstOrDefault();
+				StatusList = GetBaseTableService.GetF000904List(FunctionCode, "F2501", "STATUS", true);   //設定序號狀態
+        var proxy00 = GetProxy<F00Entities>();
+        //A1,A2,JI,O3,T1,UD
+        var ordPropList = proxy00.F000903s.Where(
+          o => o.ORD_PROP.Equals("A1") || o.ORD_PROP.Equals("A2") || o.ORD_PROP.Equals("J1")
+            || o.ORD_PROP.Equals("O3") || o.ORD_PROP.Equals("T1") || o.ORD_PROP.Equals("UD"))
+             .Select(x => new NameValuePair<string>(x.ORD_PROP_NAME, x.ORD_PROP))
+          .ToList();
+        ordPropList.Insert(0, new NameValuePair<string> { Name = "全部", Value = "" });
+        OpTypeList = ordPropList;
+          
+        
+        //OpTypeList = GetF000904List(FunctionCode, "F1903", "TYPE", true);			//設定序號狀態
+				OpItemType = OpTypeList.Select(x => x.Value).FirstOrDefault();
 				QueryData = new F250101();
-				QueryData.STATUS = "";								//預設下拉全部													
+				QueryData.STATUS = "";								//預設下拉全部			
+        QueryData.ORD_PROP = "";
 				IsShowExport = "False";								//預設匯出按鈕 IsEnable=False		
 
 			}
@@ -77,24 +89,27 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 				RaisePropertyChanged("StatusList");
 			}
 		}
-		#endregion
+    #endregion
 
-		#region 序號類號參數
-		private List<NameValuePair<string>> _typeList;
-		public List<NameValuePair<string>> TypeList
+    #region 作業類別參數
+    private List<NameValuePair<string>> _optypeList;
+    /// <summary>
+    /// 作業類別
+    /// </summary>
+		public List<NameValuePair<string>> OpTypeList
 		{
-			get { return _typeList; }
+			get { return _optypeList; }
 			set
 			{
-				_typeList = value;
-				RaisePropertyChanged("TypeList");
+        _optypeList = value;
+				RaisePropertyChanged("OpTypeList");
 			}
 		}
-		#endregion
+    # endregion 作業類別參數
 
-		#region 日期查詢 -建立/新增 參數
+    #region 日期查詢 -建立/新增 參數
 
-		private string _updSDate;
+    private string _updSDate;
 		public string UpdSDate
 		{
 			get { return _updSDate; }
@@ -117,14 +132,16 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 		}
 		#endregion
 
-		private string _itemType = string.Empty;
-
-		public string ItemType
+		private string _opitemType = string.Empty;
+    /// <summary>
+    /// 作業類別
+    /// </summary>
+		public string OpItemType
 		{
-			get { return _itemType; }
+			get { return _opitemType; }
 			set
 			{
-				Set(() => ItemType, ref _itemType, value);
+				Set(() => OpItemType, ref _opitemType, value);
 			}
 		}
 
@@ -270,7 +287,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 				{
 					Type elemType = ary.GetType().GetElementType();
 					StringBuilder sb = new StringBuilder();
-					wr.Write(title);
+					wr.WriteLine(title);
 					foreach (var elem in ary)
 					{
 						//日期轉換
@@ -279,16 +296,15 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 						var converCrtDate = elem.CRT_DATE == null ? "" : ((DateTime)elem.CRT_DATE).ToString("yyyy/MM/dd HH:mm");
 						var converUpdDate = elem.UPD_DATE == null ? "" : ((DateTime)elem.UPD_DATE).ToString("yyyy/MM/dd HH:mm");
 						var statusName = StatusList.Where(x => x.Value == elem.STATUS).Select(x => x.Name).FirstOrDefault() ?? string.Empty;
-						var itemType = TypeList.Where(x => x.Value == elem.TYPE).Select(x => x.Name).FirstOrDefault() ?? string.Empty;
 
 						data = elem.GUP_NAME + "," + elem.CUST_NAME + "," + elem.ITEM_CODE + "," + elem.ITEM_NAME + "," + elem.ITEM_SPEC;
-						data += "," + statusName + "," + elem.SERIAL_NO + "," + itemType ;
+						data += "," + statusName + "," + elem.SERIAL_NO;
 						data += "," + converVALID_DATE;
 
 						data += "," + elem.PO_NO + "," + elem.WMS_NO + "," + converInDate + "," + elem.ORD_PROP_NAME;
-						data += "," + elem.RETAIL_CODE + "," + elem.ACTIVATED + "," + elem.PROCESS_NO ;
-						data += "," + elem.VNR_NAME + "," + elem.SYS_NAME + "," + elem.CAMERA_NO + "," + elem.CLIENT_IP + "," + elem.ITEM_UNIT;
-						data += "," + elem.SEND_CUST + "," + converCrtDate + "," + elem.CRT_NAME + "," + converUpdDate + "," + elem.UPD_NAME;
+						data += "," + elem.ACTIVATED + "," + elem.PROCESS_NO ;
+						data += "," + elem.VNR_NAME + "," + elem.CLIENT_IP + "," + elem.ITEM_UNIT;
+						data += "," + converCrtDate + "," + elem.CRT_NAME + "," + converUpdDate + "," + elem.UPD_NAME;
 
 						data += "\n";
 						wr.Write(data);
@@ -331,28 +347,49 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 			}
 			else
 			{
-				var proxyEx = GetExProxy<P25ExDataSource>();
-				var f5250101QueryData = proxyEx.CreateQuery<P2502QueryData>("GetP2502QueryDatas")
-					.AddQueryExOption("gupCode", _gupCode)
-					.AddQueryExOption("custCode", _custCode)
-					.AddQueryOption("itemCode", string.Format("'{0}'", StringHelper.JoinSplitDistinct(QueryData.ITEM_CODE, ",")))
-					.AddQueryOption("serialNo", string.Format("'{0}'", StringHelper.JoinSplitDistinct(QueryData.SERIAL_NO, ",")))
-					.AddQueryOption("batchNo", string.Format("'{0}'", QueryData.BATCH_NO))
-					.AddQueryOption("cellNum", string.Format("'{0}'", QueryData.CELL_NUM))
-					.AddQueryOption("poNo", string.Format("'{0}'", QueryData.PO_NO))
-					.AddQueryOption("wmsNo", string.Format("'{0}'", StringHelper.JoinSplitDistinct(QueryData.WMS_NO, ",")))
-					.AddQueryOption("status", string.Format("'{0}'", QueryData.STATUS))
-					.AddQueryOption("retailCode", string.Format("'{0}'", QueryData.RETAIL_CODE))
-					.AddQueryOption("combinNo", QueryData.COMBIN_NO == null ? 0 : QueryData.COMBIN_NO)
-					.AddQueryOption("crtName", string.Format("'{0}'", QueryData.CRT_NAME))
-					.AddQueryOption("updSDate", string.Format("'{0}'", UpdSDate))
-					.AddQueryOption("updEDate", string.Format("'{0}'", UpdEDate))
-					.AddQueryExOption("boxSerial", QueryData.BOX_SERIAL)
-					.AddQueryExOption("itemType", ItemType);
+        //var proxyEx = GetExProxy<P25ExDataSource>();
+        //var f5250101QueryData = proxyEx.CreateQuery<P2502QueryData>("GetP2502QueryDatas")
+        //	.AddQueryExOption("gupCode", _gupCode)
+        //	.AddQueryExOption("custCode", _custCode)
+        //	.AddQueryOption("itemCode", string.Format("'{0}'", StringHelper.JoinSplitDistinct(QueryData.ITEM_CODE, ",")))
+        //	.AddQueryOption("serialNo", string.Format("'{0}'", StringHelper.JoinSplitDistinct(QueryData.SERIAL_NO, ",")))
+        //	.AddQueryOption("batchNo", string.Format("'{0}'", QueryData.BATCH_NO))
+        //	.AddQueryOption("cellNum", string.Format("'{0}'", QueryData.CELL_NUM))
+        //	.AddQueryOption("poNo", string.Format("'{0}'", QueryData.PO_NO))
+        //	.AddQueryOption("wmsNo", string.Format("'{0}'", StringHelper.JoinSplitDistinct(QueryData.WMS_NO, ",")))
+        //	.AddQueryOption("status", string.Format("'{0}'", QueryData.STATUS))
+        //	.AddQueryOption("retailCode", string.Format("'{0}'", QueryData.RETAIL_CODE))
+        //	.AddQueryOption("combinNo", QueryData.COMBIN_NO == null ? 0 : QueryData.COMBIN_NO)
+        //	.AddQueryOption("crtName", string.Format("'{0}'", QueryData.CRT_NAME))
+        //	.AddQueryOption("updSDate", string.Format("'{0}'", UpdSDate))
+        //	.AddQueryOption("updEDate", string.Format("'{0}'", UpdEDate))
+        //	.AddQueryExOption("boxSerial", QueryData.BOX_SERIAL)
+        //	.AddQueryExOption("itemType", ItemType);
 
-				DgQueryDataF250101 = f5250101QueryData.ToObservableCollection();
+        //DgQueryDataF250101 = f5250101QueryData.ToObservableCollection();
 
-				if ((DgQueryDataF250101 == null || !DgQueryDataF250101.Any()))
+        long? _combinNo = QueryData.COMBIN_NO == null ? 0 : QueryData.COMBIN_NO;
+        var wcfproxy = GetWcfProxy<wcf.P25WcfServiceClient>();
+
+        var f2502QueryData = wcfproxy.RunWcfMethod(w => w.GetP2502QueryDatas(_gupCode, _custCode
+          , string.Format("{0}", StringHelper.JoinSplitDistinct(QueryData.ITEM_CODE, ","))
+          , string.Format("{0}", StringHelper.JoinSplitDistinct(QueryData.SERIAL_NO, ","))
+          , string.Format("{0}", QueryData.BATCH_NO)
+          , string.Format("{0}", QueryData.CELL_NUM)
+          , string.Format("{0}", QueryData.PO_NO)
+          , string.Format("{0}", StringHelper.JoinSplitDistinct(QueryData.WMS_NO, ","))
+          , string.Format("{0}", string.IsNullOrEmpty(QueryData.STATUS) ? null : QueryData.STATUS)
+          , string.Format("{0}", QueryData.RETAIL_CODE)
+          , short.Parse(_combinNo.ToString())
+          , string.Format("{0}", QueryData.CRT_NAME)
+          , UpdSDate
+          , UpdEDate
+          , string.Format("{0}", QueryData.BOX_SERIAL)
+					, string.Format("{0}", string.IsNullOrEmpty(OpItemType) ? null : OpItemType)));
+        //DgQueryDataF250101 = f2502QueryData.ToObservableCollection();
+        DgQueryDataF250101 = ExDataMapper.MapCollection<wcf.P2502QueryData, ExDataServices.P25ExDataService.P2502QueryData>(f2502QueryData).ToObservableCollection();
+
+        if ((DgQueryDataF250101 == null || !DgQueryDataF250101.Any()))
 				{
 					IsShowExport = "False";
 					ShowMessage(Messages.InfoNoData);

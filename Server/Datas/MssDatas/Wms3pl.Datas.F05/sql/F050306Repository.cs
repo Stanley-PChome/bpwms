@@ -55,8 +55,9 @@ namespace Wms3pl.Datas.F05
 			{
 				new SqlParameter("@p0",SqlDbType.VarChar){ Value = dcCode},
 				new SqlParameter("@p1",SqlDbType.VarChar){ Value = gupCode},
-				new SqlParameter("@p2",SqlDbType.VarChar){ Value = custCode}
-			};
+				new SqlParameter("@p2",SqlDbType.VarChar){ Value = custCode},
+        new SqlParameter("@p3", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 			var sql = @"SELECT B.ID, C.ORD_DATE ,
 							B.WMS_NO ,
 							C.CUST_ORD_NO ,
@@ -65,7 +66,7 @@ namespace Wms3pl.Datas.F05
 							(SELECT TOP(1) NAME  FROM F000904 WHERE TOPIC='F050101' AND SUBTOPIC='FAST_DEAL_TYPE' AND VALUE = B.FAST_DEAL_TYPE) FAST_DEAL_TYPE_NAME ,
 							B.MOVE_OUT_TARGET ,
 							B.CRT_DATE,
-						(CASE WHEN C.CRT_DATE < DateAdd(hour,-4,dbo.GetSysDate()) THEN '1' ELSE '0' END) MORE_THEN_FOUR_HOURS
+						(CASE WHEN C.CRT_DATE < DateAdd(hour,-4,@p3) THEN '1' ELSE '0' END) MORE_THEN_FOUR_HOURS
 						FROM (SELECT * FROM F050306 WHERE ID IN(SELECT MIN(ID) ID FROM (SELECT B.ID, B.DC_CODE, B.GUP_CODE ,B.CUST_CODE ,B.WMS_NO , B.SOURCE_TYPE,B.CRT_DATE FROM f050306 B WHERE 1=1 ) A  
 						GROUP BY A.WMS_NO)) B
 						JOIN  F050301 C 
@@ -110,12 +111,13 @@ namespace Wms3pl.Datas.F05
 
 			if (onlyShowMoreThanFourHours)
 			{
-				sql += " AND B.CRT_DATE < DateAdd(hour,-4,dbo.GetSysDate())";
-			}
+				sql += $" AND B.CRT_DATE < DateAdd(hour,-4,@p{param.Count})";
+        param.Add(new SqlParameter("@p" + param.Count(), SqlDbType.DateTime2) { Value = DateTime.Now });
+      }
 
-			sql += " ORDER BY CRT_DATE";
+      sql += " ORDER BY CRT_DATE";
 			
-			return SqlQuery<NotGeneratedPick>(sql, param.ToArray());
+			return SqlQueryWithSqlParameterSetDbType<NotGeneratedPick>(sql, param.ToArray());
 		}
 		#endregion
 	}

@@ -14,8 +14,9 @@ namespace Wms3pl.Datas.F06
 		{
 			if (docIds != null && docIds.Any())
 			{
-				var param = new List<object> { Current.Staff, Current.StaffName };
-				var sql = @"UPDATE F060404 SET STATUS = '0', UPD_DATE = dbo.GetSysDate(), UPD_STAFF = @p0, UPD_NAME = @p1 WHERE 1=1";
+				var param = new List<object> { DateTime.Now, Current.Staff, Current.StaffName };
+
+				var sql = @"UPDATE F060404 SET STATUS = '0', UPD_DATE = @p0, UPD_STAFF = @p1, UPD_NAME = @p2 WHERE 1=1";
 
 				sql += param.CombineSqlInParameters(" AND DOC_ID", docIds);
 

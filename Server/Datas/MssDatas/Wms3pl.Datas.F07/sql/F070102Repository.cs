@@ -52,5 +52,27 @@ namespace Wms3pl.Datas.F07
                          WHERE A.F0701_ID = @p0";
 			     return SqlQuery<F070102>(sql,parm.ToArray());
 				}
-    }
+
+		public IQueryable<PickContainerDetail> GetContainerDetailByF0701Ids(List<long> f0701Ids)
+		{
+			var param = new List<SqlParameter>();
+
+			var sql = @" SELECT F070101.F0701_ID,
+                                F070101.PICK_ORD_NO,
+                                F070102.ITEM_CODE,
+                                F1903.BUNDLE_SERIALNO,
+                                F070102.SERIAL_NO,
+                                F070102.QTY
+                          FROM F070101
+                          JOIN F070102 ON F070102.F070101_ID = F070101.ID
+                          JOIN F1903 With(nolock)
+                            ON F1903.GUP_CODE = F070102.GUP_CODE
+                           AND F1903.CUST_CODE = F070102.CUST_CODE
+                           AND F1903.ITEM_CODE = F070102.ITEM_CODE
+                         WHERE ";
+			sql += param.CombineSqlInParameters(" F070101.F0701_ID ", f0701Ids, SqlDbType.BigInt);
+
+			return SqlQuery<PickContainerDetail>(sql, param.ToArray());
+		}
+	}
 }

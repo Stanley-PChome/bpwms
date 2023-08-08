@@ -358,6 +358,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 箱內明細 的當地語系化字串。
+        /// </summary>
+        public static string BoxDetail {
+            get {
+                return ResourceManager.GetString("BoxDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 盒號 的當地語系化字串。
         /// </summary>
         public static string BoxNo {
@@ -628,6 +637,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 關箱 的當地語系化字串。
+        /// </summary>
+        public static string CloseBox {
+            get {
+                return ResourceManager.GetString("CloseBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 此箱尚未開始包裝 的當地語系化字串。
         /// </summary>
         public static string CloseBoxErrorMsg {
@@ -742,6 +760,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         public static string CustOrdNos {
             get {
                 return ResourceManager.GetString("CustOrdNos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 項次 的當地語系化字串。
+        /// </summary>
+        public static string DataGridRowNum {
+            get {
+                return ResourceManager.GetString("DataGridRowNum", resourceCulture);
             }
         }
         
@@ -1909,6 +1936,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 目的地 的當地語系化字串。
+        /// </summary>
+        public static string MoveOutTarget {
+            get {
+                return ResourceManager.GetString("MoveOutTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 組合商品 的當地語系化字串。
         /// </summary>
         public static string MULTI_FLAG {
@@ -2005,6 +2041,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         public static string OrderQty {
             get {
                 return ResourceManager.GetString("OrderQty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 跨庫箱號 的當地語系化字串。
+        /// </summary>
+        public static string OutContainerCode {
+            get {
+                return ResourceManager.GetString("OutContainerCode", resourceCulture);
             }
         }
         
@@ -5043,6 +5088,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 揀貨容器 的當地語系化字串。
+        /// </summary>
+        public static string PickContainer {
+            get {
+                return ResourceManager.GetString("PickContainer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 揀貨缺貨處理 的當地語系化字串。
         /// </summary>
         public static string PickingOutOfStock {
@@ -5265,6 +5319,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         public static string PURCHASE_SEQ {
             get {
                 return ResourceManager.GetString("PURCHASE_SEQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 查詢 的當地語系化字串。
+        /// </summary>
+        public static string Query {
+            get {
+                return ResourceManager.GetString("Query", resourceCulture);
             }
         }
         
@@ -6138,6 +6201,15 @@ namespace Wms3pl.WpfClient.P08.Properties {
         public static string TotalPackQty {
             get {
                 return ResourceManager.GetString("TotalPackQty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 總PCS數 的當地語系化字串。
+        /// </summary>
+        public static string TotalPCS {
+            get {
+                return ResourceManager.GetString("TotalPCS", resourceCulture);
             }
         }
         

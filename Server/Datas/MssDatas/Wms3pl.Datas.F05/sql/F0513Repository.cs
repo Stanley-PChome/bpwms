@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -381,7 +382,7 @@ namespace Wms3pl.Datas.F05
         parms.Add(new SqlParameter("@p" + parms.Count, DelvDate.Value) { SqlDbType = System.Data.SqlDbType.DateTime2 });
       }
 
-      var result = SqlQuery<BatchPickNoList>(sql, parms.ToArray());
+      var result = SqlQueryWithSqlParameterSetDbType<BatchPickNoList>(sql, parms.ToArray());
       return result;
 		}
 
@@ -920,6 +921,26 @@ CASE WHEN A.SOURCE_TYPE='13' THEN B.RTN_VNR_CODE ELSE '' END RTN_VNR_CODE from F
                        AND A.DELV_DATE = B.DELV_DATE
                        AND A.PICK_TIME = B.PICK_TIME) ";
 			return SqlQuery<F0513>(sql, parms.ToArray());
+		}
+
+		public F0513 GetF0513(string dcCode,string gupCode,string custCode,DateTime? delvDate,string pickTime)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p3",delvDate.Value){SqlDbType = SqlDbType.DateTime2},
+				new SqlParameter("@p4",pickTime){SqlDbType = SqlDbType.VarChar }
+			};
+			var sql = @" SELECT TOP (1) *
+                     FROM F0513 
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND DELV_DATE = @p3
+                      AND PICK_TIME = @p4 ";
+			return SqlQuery<F0513>(sql, parms.ToArray()).FirstOrDefault();
 		}
 	}
 }

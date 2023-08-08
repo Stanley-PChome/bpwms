@@ -56,7 +56,7 @@ WHERE
 				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
 			};
 
-			var sql = @"SELECT A.WMS_NO,B.SERIALNUMLIST
+			var sql = @"SELECT A.WMS_NO,B.SERIALNUMLIST,B.SERIAL_NO
 										FROM F060202 A 
 										INNER JOIN F060203 B
 										   ON A.DOC_ID = B.DOC_ID

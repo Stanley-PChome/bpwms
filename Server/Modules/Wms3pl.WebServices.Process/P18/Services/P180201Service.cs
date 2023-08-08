@@ -73,6 +73,9 @@ namespace Wms3pl.WebServices.Process.P18.Services
 				if (f191302 == null)
 					return new ExecuteResult(false, Properties.Resources.P080201Service_NotData);
 
+        if (f191302.PROC_FLAG != "0")
+          return new ExecuteResult(false, "此庫存異動紀錄已完成，不可重複處理");
+
 				#region 當處理方式為1(找到商品)
 				if (data.PROC_FLAG == "1")
 				{
@@ -109,31 +112,31 @@ namespace Wms3pl.WebServices.Process.P18.Services
 						ReturnStocks = returnStocks,
 						isIncludeResupply = true,
 						SrcStockFilterDetails = new List<StockFilter>
-					{
-						new StockFilter
 						{
-							DataId = 0,
-							ItemCode = f191302.ITEM_CODE,
-							LocCode = f191302.TAR_LOC_CODE,
-							Qty = data.QTY,
-							ValidDates = new List<DateTime> { f191302.VALID_DATE },
-							MakeNos = string.IsNullOrWhiteSpace(f191302.MAKE_NO) ? new List<string> { "0" } : new List<string> { f191302.MAKE_NO?.Trim() },
-              SerialNos = string.IsNullOrWhiteSpace(f191302.SERIAL_NO) ? null : new List<string> { f191302.SERIAL_NO }
-            }
-          },
+							new StockFilter
+							{
+								DataId = 0,
+								ItemCode = f191302.ITEM_CODE,
+								LocCode = f191302.TAR_LOC_CODE,
+								Qty = data.QTY,
+								ValidDates = new List<DateTime> { f191302.VALID_DATE },
+								MakeNos = string.IsNullOrWhiteSpace(f191302.MAKE_NO) ? new List<string> { "0" } : new List<string> { f191302.MAKE_NO?.Trim() },
+								SerialNos = string.IsNullOrWhiteSpace(f191302.SERIAL_NO) ? null : new List<string> { f191302.SERIAL_NO }
+							}
+						},
 						SrcLocMapTarLocs = new List<SrcLocMapTarLoc>
-					{
-						new SrcLocMapTarLoc
 						{
-							DataId = 0,
-							ItemCode = f191302.ITEM_CODE,
-							SrcLocCode = f191302.TAR_LOC_CODE,
-							TarWarehouseId = f191302.SRC_WAREHOUSE_ID,
-							TarLocCode = f191302.SRC_LOC_CODE,
-							ValidDate = f191302.VALID_DATE,
-							MakeNo = f191302.MAKE_NO
+							new SrcLocMapTarLoc
+							{
+								DataId = 0,
+								ItemCode = f191302.ITEM_CODE,
+								SrcLocCode = f191302.TAR_LOC_CODE,
+								TarWarehouseId = f191302.SRC_WAREHOUSE_ID,
+								TarLocCode = f191302.SRC_LOC_CODE,
+								ValidDate = f191302.VALID_DATE,
+								MakeNo = f191302.MAKE_NO
+							}
 						}
-					}
 					};
 
 					var returnAllocationResult = sharedService.CreateOrUpdateAllocation(newAllocationParam);
@@ -141,12 +144,16 @@ namespace Wms3pl.WebServices.Process.P18.Services
 					if (!returnAllocationResult.Result.IsSuccessed)
 						return new ExecuteResult(false, returnAllocationResult.Result.Message);
 
+					var bulkAllocationResult = new ExecuteResult(false);
 					// 該調撥單自動完成過帳。
-					sharedService.BulkAllocationToAllDown(returnAllocationResult.AllocationList);
-					sharedService.BulkAllocationToAllUp(returnAllocationResult.AllocationList, returnStocks);
+					bulkAllocationResult = sharedService.BulkAllocationToAllDown(returnAllocationResult.AllocationList);
+					if (!bulkAllocationResult.IsSuccessed) return new ExecuteResult(false, bulkAllocationResult.Message);
+					bulkAllocationResult = sharedService.BulkAllocationToAllUp(returnAllocationResult.AllocationList, returnStocks);
+					if (!bulkAllocationResult.IsSuccessed) return new ExecuteResult(false, bulkAllocationResult.Message);
 
 					if (returnAllocationResult.AllocationList.Any())
-						sharedService.BulkInsertAllocation(returnAllocationResult.AllocationList, returnStocks);
+						bulkAllocationResult = sharedService.BulkInsertAllocation(returnAllocationResult.AllocationList, returnStocks);
+					if (!bulkAllocationResult.IsSuccessed) return new ExecuteResult(false, bulkAllocationResult.Message);
 
 					f191302.PROC_WMS_NO = returnAllocationResult.AllocationList.First().Master.ALLOCATION_NO;
 				}
@@ -362,8 +369,9 @@ namespace Wms3pl.WebServices.Process.P18.Services
           var inventoryWareHouseList = objSub.AreaCode.Select(x => new InventoryWareHouse { AREA_CODE = x, WAREHOUSE_ID = objSub.WarehouseId, WAREHOUSE_NAME = objSub.WarehouseName }).ToList();
 					var inventoryItemList = objSub.ItemCodes.Select(x => new InventoryItem { ITEM_CODE = x }).ToList();
 
+          //上方的f140101直接指定INVENTORY_TYPE=0，不用另外判斷是否使用GetDatasByInventoryWareHouseChangeList查詢
           var f1913ExList = f1913Repo.GetDatasByInventoryWareHouseList(f140101.DC_CODE, f140101.GUP_CODE, f140101.CUST_CODE,
-            inventoryWareHouseList, inventoryItemList.Select(o => o.ITEM_CODE).ToList(), f140101.INVENTORY_TYPE, f140101.INVENTORY_DATE).ToList();
+            inventoryWareHouseList, inventoryItemList.Select(o => o.ITEM_CODE).ToList(), f140101.INVENTORY_DATE).ToList();
 
           var stockNotEnough = f1913ExList
             .GroupBy(g => g.ITEM_CODE)
@@ -380,7 +388,7 @@ namespace Wms3pl.WebServices.Process.P18.Services
             return; //這邊是迴圈的Continue，非離開程式
           }
 
-          var currRes = service.InsertP140101(f140101, inventoryWareHouseList, inventoryItemList);
+          var currRes = service.InsertP140101(f140101, inventoryWareHouseList, inventoryItemList, true);
 
           if (currRes.IsSuccessed)
             sucessedInventoryNos.AddRange(currRes.Message.Split(',').ToList());

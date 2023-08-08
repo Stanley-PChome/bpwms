@@ -2670,6 +2670,8 @@ namespace Wms3pl.Datas.Shared.Entities
 		public int PICK_SAVE_ORD { get; set; }
 		[DataMember]
 		public string MAKE_NO { get; set; }
+		[DataMember]
+		public string SERIAL_NO { get; set; }
 
 	}
 	#endregion
@@ -6670,7 +6672,9 @@ namespace Wms3pl.Datas.Shared.Entities
         public string ITEM_CODE { get; set; }
         [DataMember]
         public string MAKE_NO { get; set; }
-        [DataMember]
+		[DataMember]
+		public string SERIAL_NO { get; set; }
+		[DataMember]
         public int ORD_QTY { get; set; }
     }
     #endregion
@@ -6692,5 +6696,351 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string GUP_CODE { get; set; }
 		public string CUST_CODE { get; set; }
 		public int DELV_DAY { get; set; }
+	}
+
+  /// <summary>
+  /// 跨庫訂單整箱出庫-箱內明細 容器清單
+  /// </summary>
+  [DataContract]
+  [Serializable]
+  [DataServiceKey("F0531_ID", "OUT_CONTAINER_CODE")]
+  public class F0532Ex
+  {
+    /// <summary>
+    /// 跨庫出貨容器使用中流水號
+    /// </summary>
+    [DataMember]
+    public long F0531_ID { get; set; }
+
+    [DataMember]
+    public string DC_CODE { get; set; } 
+
+    /// <summary>
+    /// 建立日期
+    /// </summary>
+    [DataMember]
+    public DateTime CRT_DATE { get; set; }
+
+    /// <summary>
+    /// 關箱時間(列印用)
+    /// </summary>
+    [DataMember]
+    public DateTime? CLOSE_DATE { get; set; }
+
+    /// <summary>
+    /// 跨庫箱號
+    /// </summary>
+    [DataMember]
+    public string OUT_CONTAINER_CODE { get; set; }
+
+    /// <summary>
+    /// 容器類型
+    /// </summary>
+    [DataMember]
+    public string SOW_TYPE { get; set; }
+
+    /// <summary>
+    /// 容器類型名稱
+    /// </summary>
+    [DataMember]
+    public string SOW_TYPE_NAME { get; set; }
+
+    /// <summary>
+    /// 跨庫箱號條碼(列印用)
+    /// </summary>
+    [DataMember]
+    public string OUT_CONTAINER_CODE_BARCODE { get; set; }
+
+    /// <summary>
+    /// 訂單單號條碼(列印用)
+    /// </summary>
+    [DataMember]
+    public string ORDER_NO_BARCODE { get; set; }
+
+    /// <summary>
+    /// 目的地
+    /// </summary>
+    [DataMember]
+    public string MOVE_OUT_TARGET_NAME { get; set; }
+
+    /// <summary>
+    /// 總PCS數
+    /// </summary>
+    [DataMember]
+    public int TOTAL_PCS { get; set; }
+
+    /// <summary>
+    /// 狀態名稱
+    /// </summary>
+    [DataMember]
+    public string STATUS_NAME { get; set; }
+
+    /// <summary>
+    /// 狀態
+    /// </summary>
+    [DataMember]
+    public string STATUS { get; set; }
+  }
+
+  /// <summary>
+  /// 跨庫訂單整箱出庫-箱內明細 容器內商品清單
+  /// </summary>
+  [DataContract]
+  [Serializable]
+  [DataServiceKey("ITEM_CODE")]
+  public class F053202Ex
+  {
+    /// <summary>
+    /// 商品品號
+    /// </summary>
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+    /// <summary>
+    /// 商品品名
+    /// </summary>
+    [DataMember]
+    public string ITEM_NAME { get; set; }
+    /// <summary>
+    /// 數量
+    /// </summary>
+    [DataMember]
+    public int QTY { get; set; }
+  }
+
+  [DataContract]
+  [Serializable]
+  [DataServiceKey("ROWNUM")]
+  public class P0808050000_PrintData
+  {
+    /// <summary>
+    /// 流水號
+    /// </summary>
+    [DataMember]
+    public int ROWNUM { get; set; }
+
+    /// <summary>
+    /// 品編
+    /// </summary>
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+
+    /// <summary>
+    /// 數量
+    /// </summary>
+    [DataMember]
+    public int QTY { get; set; }
+
+    /// <summary>
+    /// 品名
+    /// </summary>
+    [DataMember]
+    public string ITEM_NAME { get; set; }
+
+    [DataMember]
+    public string EAN_CODE1 { get; set; }
+
+    [DataMember]
+    public string EAN_CODE2 { get; set; }
+
+    [DataMember]
+    public string EAN_CODE3 { get; set; }
+  }
+
+  [DataContract]
+  [Serializable]
+  [DataServiceKey("ROWNUM")]
+  public class P0808050000_CancelPrintData
+  {
+    /// <summary>
+    /// 流水號
+    /// </summary>
+    [DataMember]
+    public int ROWNUM { get; set; }
+
+    /// <summary>
+    /// 品編
+    /// </summary>
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+
+    /// <summary>
+    /// 品名
+    /// </summary>
+    [DataMember]
+    public string ITEM_NAME { get; set; }
+
+    [DataMember]
+    public string EAN_CODE1 { get; set; }
+
+    [DataMember]
+    public string EAN_CODE2 { get; set; }
+
+    [DataMember]
+    public string EAN_CODE3 { get; set; }
+
+    /// <summary>
+    /// 數量
+    /// </summary>
+    [DataMember]
+    public int QTY { get; set; }
+
+    /// <summary>
+    /// 訂單編號
+    /// </summary>
+    [DataMember]
+    public string ORD_NO { get; set; }
+
+    /// <summary>
+    /// 訂單編號條碼
+    /// </summary>
+    [DataMember]
+    public string ORDER_NO_BAR { get; set; }
+  }
+
+  /// <summary>
+  /// 跨庫箱號資料
+  /// </summary>
+  [Serializable]
+	[DataContract]
+	[DataServiceKey("F0531_ID")]
+	public class OutContainerInfo
+	{
+		[DataMember]
+		public long F0531_ID { get; set; }
+		[DataMember]
+		public string DC_CODE { get; set; }
+		[DataMember]
+		public string GUP_CODE { get; set; }
+		[DataMember]
+		public string CUST_CODE { get; set; }
+		[DataMember]
+		public string OUT_CONTAINER_CODE { get; set; }
+		[DataMember]
+		public string MOVE_OUT_TARGET { get; set; }
+		[DataMember]
+		public string CROSS_NAME { get; set; }
+		[DataMember]
+		public int TOTAL { get; set; }
+		[DataMember]
+		public string WORK_TYPE { get; set; }
+		[DataMember]
+		public string STATUS { get; set; }
+		[DataMember]
+		public DateTime CRT_DATE { get; set; }
+		[DataMember]
+		public long F0701_ID { get; set; }
+		[DataMember]
+		public string SOW_TYPE { get; set; }
+	}
+
+	/// <summary>
+	/// 跨庫箱號資訊
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	[DataServiceKey("IsSuccessed")]
+	public class OutContainerResult : ExecuteResult
+	{
+		[DataMember]
+		public string ContainerCode { get; set; }
+		[DataMember]
+		public OutContainerInfo OutContainerInfo { get; set; }
+		[DataMember]
+		public string MoveOutTargetName { get; set; }
+		[DataMember]
+		public int TotalPcs { get; set; }
+	}
+
+	/// <summary>
+	/// 跨庫箱號資訊
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	[DataServiceKey("IsSuccessed")]
+	public class PickContainerPutIntoOutContainerResult : ExecuteResult
+	{
+		[DataMember]
+		public bool IsOutContainerError { get; set; }
+		[DataMember]
+		public bool IsPickContainerError { get; set; }
+		[DataMember]
+		public OutContainerResult UpdateOutContainerResult { get; set; }
+	}
+
+	public class F0534_NotAllotPick
+	{
+		public string DC_CODE { get; set; }
+		public string GUP_CODE { get; set; }
+		public string CUST_CODE { get; set; }
+		public string PICK_ORD_NO { get; set; }
+	}
+
+	public class F051202Ex : F051202
+	{
+		public int LACK_QTY { get; set; }
+	}
+
+	public class PickInfoWithLackItem
+	{
+		public string PICK_LOC { get; set; }
+		public string ITEM_CODE { get; set; }
+		public DateTime VALID_DATE { get; set; }
+		public string MAKE_NO { get; set; }
+		public string SERIAL_NO { get; set; }
+		public int LACK_QTY { get; set; }
+	}
+
+	public class MoveOutContainerDtl
+	{
+		public string OUT_CONTAINER_CODE { get; set; }
+		public int OUT_CONTAINER_SEQ { get; set; }
+		public string SOW_TYPE { get; set; }
+		public long F0531_ID { get; set; }
+		public long F0701_ID { get; set; }
+		public string ITEM_CODE { get; set; }
+		public string SERIAL_NO { get; set; }
+		public int QTY { get; set; }
+		public string WMS_ORD_NO { get; set; }
+		public string WMS_ORD_SEQ { get; set; }
+	}
+
+	public class F0535_NotDebitOrder
+	{
+		public string DC_CODE { get; set; }
+		public string GUP_CODE { get; set; }
+		public string CUST_CODE { get; set; }
+		public string WMS_ORD_NO { get; set; }
+	}
+
+	public class ScanItemBarcodeResult : ExecuteResult
+	{
+		public bool bindNewNormalContainer { get; set; }
+		public bool bindNewCancelContainer { get; set; }
+		public string ITEM_CODE { get; set; }
+		public string ITEM_NAME { get; set; }
+		public bool IsNormalShipItem { get; set; }
+		public bool IsFinishAllot { get; set; }
+		public BindingPickContainerInfo BindingPickContainerInfo { get; set; }
+	}
+
+	public class F053601_NotAllotData
+	{
+		public string ITEM_CODE { get; set; }
+		public string ITEM_NAME { get; set; }
+		public int NOALLOT_QTY { get; set; }
+	}
+
+	public class F0537_LackData
+	{
+		public string ITEM_CODE { get; set; }
+		public string PICK_ORD_SEQ { get; set; }
+		public int B_LACK_QTY { get; set; }
+		public int A_LACK_QTY { get; set; }
+	}
+
+	public class PickWithWmsMap
+	{
+		public string PICK_ORD_NO { get; set; }
+		public string WMS_ORD_NO { get; set; }
 	}
 }

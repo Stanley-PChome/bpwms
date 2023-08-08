@@ -70,6 +70,9 @@
     <Compile Include="Services\P810113Service.cs" />
     <Compile Include="Services\P810112Service.cs" />
     <Compile Include="Services\P810118Service.cs" />
+    <Compile Include="Services\P810121Service.cs" />
+    <Compile Include="Services\P810120Service.cs" />
+    <Compile Include="Services\P810119Service.cs" />
     <Compile Include="Services\P81Service.cs" />
   </ItemGroup>
   <ItemGroup />

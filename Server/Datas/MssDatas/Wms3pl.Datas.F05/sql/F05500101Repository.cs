@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.DBCore;
@@ -132,5 +134,41 @@ namespace Wms3pl.Datas.F05
 			return result;
 		}
 
-	}
+    /// <summary>
+    /// For 包裝作業/單人包裝站/包裝線包裝站下方刷讀記錄用
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="wmsOrdNo"></param>
+    /// <returns></returns>
+    public IQueryable<SearchWmsOrderScanLogRes> GetSearchWmsOrderScanLog(string dcCode,string gupCode,string custCode,string wmsOrdNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", wmsOrdNo) { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = @"
+SELECT 
+	ROW_NUMBER() OVER(ORDER BY CRT_DATE ,LOG_SEQ) AS RowNum,
+	SERIAL_NO AS SerialNo,
+	ITEM_CODE AS ItemCode,
+	ISPASS AS IsPass,
+	MESSAGE AS Message
+FROM F05500101 
+WHERE 
+  DC_CODE=@p0 
+  AND GUP_CODE=@p1 
+  AND CUST_CODE=@p2 
+  AND WMS_ORD_NO=@p3 
+  AND FLAG='0'
+ORDER BY
+  CRT_DATE,LOG_SEQ";
+      return SqlQuery<SearchWmsOrderScanLogRes>(sql, para.ToArray());
+    }
+
+  }
 }

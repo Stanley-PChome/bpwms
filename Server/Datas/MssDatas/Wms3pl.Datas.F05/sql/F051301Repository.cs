@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,15 @@ namespace Wms3pl.Datas.F05
 	{
 		public IQueryable<F051301> GetF051301s(string dcCode,string gupCode,string custCode,DateTime delvDate,string pickTime,List<string> wmsOrdNos)
 		{
-			var parms = new List<object> { dcCode, gupCode, custCode, delvDate, pickTime };
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p3",delvDate){ SqlDbType = SqlDbType.DateTime2},
+				new SqlParameter("@p4",pickTime){ SqlDbType = SqlDbType.VarChar},
+			};
+
 			var sql = @" SELECT *
                      FROM F051301
                     WHERE DC_CODE = @p0
@@ -23,15 +32,23 @@ namespace Wms3pl.Datas.F05
                       AND DELV_DATE = @p3
                       AND PICK_TIME = @p4 ";
 			 if(wmsOrdNos.Any())
-				sql += parms.CombineNotNullOrEmptySqlInParameters("AND WMS_NO", wmsOrdNos);
+				sql += parms.CombineSqlInParameters("AND WMS_NO", wmsOrdNos, SqlDbType.VarChar);
 
 			return SqlQuery<F051301>(sql, parms.ToArray());
 		}
 
         public F051301 GetF051301(string dcCode, string gupCode, string custCode, DateTime delvDate, string pickTime, string wmsNo)
         {
-            var parms = new List<object> { dcCode, gupCode, custCode, delvDate, pickTime, wmsNo };
-            var sql = @" SELECT *
+						var parms = new List<SqlParameter>
+						{
+							new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+							new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+							new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+							new SqlParameter("@p3",delvDate){ SqlDbType = SqlDbType.DateTime2},
+							new SqlParameter("@p4",pickTime){ SqlDbType = SqlDbType.VarChar},
+							new SqlParameter("@p5",wmsNo){ SqlDbType = SqlDbType.VarChar},
+						};
+            var sql = @" SELECT TOP(1) *
                      FROM F051301
                     WHERE DC_CODE = @p0
                       AND GUP_CODE = @p1
@@ -170,11 +187,12 @@ namespace Wms3pl.Datas.F05
                 new SqlParameter("@p5", custCode),
                 new SqlParameter("@p6", delvDate),
                 new SqlParameter("@p7", pickTime),
-                new SqlParameter("@p8", wmsNo)
+                new SqlParameter("@p8", wmsNo),
+                new SqlParameter("@p9", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             var sql = @"
-                        UPDATE F051301 SET COLLECTION_POSITION=@p0, UPD_STAFF=@p1, UPD_NAME=@p2,UPD_DATE = dbo.GetSysDate()
+                        UPDATE F051301 SET COLLECTION_POSITION=@p0, UPD_STAFF=@p1, UPD_NAME=@p2,UPD_DATE = @p9
                         WHERE DC_CODE = @p3
                         AND GUP_CODE = @p4
                         AND CUST_CODE = @p5

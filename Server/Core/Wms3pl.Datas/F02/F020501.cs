@@ -56,7 +56,7 @@ namespace Wms3pl.Datas.F02
         [Required]
         public string TYPE_CODE { get; set; }
         /// <summary>
-        /// 狀態(0: 開箱、1: 已關箱待複驗、2: 可上架、3: 不可上架、4: 已上架)
+        /// 狀態(0: 開箱、1: 已關箱待複驗、2: 可上架、3: 不可上架、4: 已上架、7:已關箱待產生調撥單)
         /// </summary>
         [Required]
         public string STATUS { get; set; }

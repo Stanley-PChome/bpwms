@@ -909,28 +909,103 @@ namespace Wms3pl.WebServices.Process.P08
             }).AsQueryable();
         }
 
-        /// <summary>
-        /// 查詢出貨單刷讀紀錄
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="wmsOrdNo"></param>
-        /// <returns></returns>
-        [WebGet]
-        public IQueryable<SearchWmsOrderScanLogRes> SearchWmsOrderScanLog(string dcCode, string gupCode, string custCode, string wmsOrdNo)
-        {
-            var srv = new ShipPackageService();
-            return srv.SearchWmsOrderScanLog(new SearchWmsOrderScanLogReq
-            {
-                DcCode = dcCode,
-                GupCode = gupCode,
-                CustCode = custCode,
-                WmsOrdNo = wmsOrdNo
-            }).AsQueryable();
-        }
-		#endregion
+    /// <summary>
+    /// 查詢出貨單刷讀紀錄
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="wmsOrdNo"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<SearchWmsOrderScanLogRes> SearchWmsOrderScanLog(string dcCode, string gupCode, string custCode, string wmsOrdNo)
+    {
+      var srv = new ShipPackageService();
+      return srv.SearchWmsOrderScanLog(dcCode, gupCode, custCode, wmsOrdNo);
+    }
+    #endregion
 
-		
-	}
+    #region 跨庫訂單整箱出庫-箱內明細
+    /// <summary>
+    /// 跨庫訂單整箱出庫-箱內明細 查詢箱資料
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="startDate"></param>
+    /// <param name="endDate"></param>
+    /// <param name="status"></param>
+    /// <param name="containerSowType"></param>
+    /// <param name="ContainerCode"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<F0532Ex> GetF0532Ex(string dcCode, string gupCode, string custCode, DateTime startDate, DateTime endDate, string status, string containerSowType, string outContainerCode, string workType)
+    {
+      var srv = new P080805Service();
+      return srv.GetF0532Ex(dcCode, gupCode, custCode, startDate, endDate, status, containerSowType, outContainerCode, workType);
+    }
+
+    /// <summary>
+    /// 跨庫訂單整箱出庫-箱內明細 查詢箱明細資料
+    /// </summary>
+    /// <param name="F0531ID"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<F053202Ex> GetF053202Ex(string F0531ID)
+    {
+      var srv = new P080805Service();
+      return srv.GetF053202Ex(Convert.ToInt64(F0531ID));
+    }
+
+    /// <summary>
+    /// 跨庫訂單整箱出庫-取得要列印的箱明細
+    /// </summary>
+    /// <param name="F0531ID"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<P0808050000_PrintData> GetPrintData(string F0531ID)
+    {
+      var srv = new P080805Service();
+      return srv.GetPrintData(Convert.ToInt64(F0531ID));
+    }
+
+    /// <summary>
+    /// 跨庫訂單整箱出庫-取得要列印的取消箱明細
+    /// </summary>
+    /// <param name="F0531ID"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<P0808050000_CancelPrintData> GetCancelPrintData(string F0531ID)
+    {
+      var srv = new P080805Service();
+      return srv.GetCancelPrintData(Convert.ToInt64(F0531ID));
+    }
+
+    /// <summary>
+    /// 新稽核出庫-揀貨單查詢
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="startDate"></param>
+    /// <param name="endDate"></param>
+    /// <param name="moveOutTarget"></param>
+    /// <param name="pickContainerCode"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<MoveOutPickOrders> GetMoveOutPickOrders(string dcCode, string gupCode, string custCode, DateTime startDate, DateTime endDate, string moveOutTarget, string pickContainerCode)
+    {
+      var srv = new P080806Service();
+      return srv.GetMoveOutPickOrders(dcCode, gupCode, custCode, startDate, endDate, moveOutTarget, pickContainerCode);
+    }
+
+    #endregion
+
+    [WebGet]
+    public bool LogPrintBoxDetailPacking(string dcCode, string gupCode, string custCode, string wmsOrdNo, string packageBoxNo)
+    {
+      var service = new ShipPackageService();
+      service.LogF05500101(dcCode, gupCode, custCode, wmsOrdNo, null, null, null, "1", "人員列印箱明細", short.Parse(packageBoxNo), null);
+      return true;
+    }
+
+  }
 }

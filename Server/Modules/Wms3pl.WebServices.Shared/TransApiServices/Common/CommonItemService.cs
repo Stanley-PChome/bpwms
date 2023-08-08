@@ -80,6 +80,11 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// </summary>
 		private List<string> _accUnitList;
 
+    /// <summary>
+    /// 廠商主檔清單
+    /// </summary>
+    private List<string> _vnrCodeList;
+
 		/// <summary>
 		/// PCS代碼
 		/// </summary>
@@ -165,6 +170,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
       F1916Repository f1916Repo = new F1916Repository(Schemas.CoreSchema);
       F1917Repository f1917Repo = new F1917Repository(Schemas.CoreSchema);
       F1980Repository f1980Repo = new F1980Repository(Schemas.CoreSchema);
+      F1908Repository f1908Repo = new F1908Repository(Schemas.CoreSchema);
       F91000302Repository f91000302Repo = new F91000302Repository(Schemas.CoreSchema);
       TransApiBaseService tacService = new TransApiBaseService();
 
@@ -175,7 +181,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
       var bCodes = items.Where(x => !string.IsNullOrWhiteSpace(x.Mtype)).Select(x => x.Mtype).Distinct().ToList();
       var cCodes = items.Where(x => !string.IsNullOrWhiteSpace(x.Stype)).Select(x => x.Stype).Distinct().ToList();
       var pickWarehouseIds = items.Where(x => !string.IsNullOrWhiteSpace(x.PickWarehouseId)).Select(x => x.PickWarehouseId).Distinct().ToList();
-
+      var oriVnrCodes = items.Where(x => !string.IsNullOrWhiteSpace(x.OriVnrCode)).Select(x => x.OriVnrCode).Distinct().ToList();
       // 取得大分類代碼資料
       _aCodeList = f1915Repo.GetDatasByACode(gupCode, custCode, aCodes).Select(x => x.ACODE).ToList();
 
@@ -196,6 +202,9 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 
       // 取得計價單位編號清單
       _accUnitList = _f91000302List.Select(x => x.ACC_UNIT).ToList();
+
+      // 取得廠商主檔清單
+      _vnrCodeList = f1908Repo.GetDatas(gupCode, custCode, oriVnrCodes).Select(x => x.VNR_CODE).ToList();
 
       // 取得PCS編號
       var pcsData = _f91000302List.Where(x => x.ACC_UNIT_NAME == "PCS").SingleOrDefault();
@@ -394,6 +403,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
           updData.IS_TEMP_CONTROL = currData.IS_TEMP_CONTROL;
           updData.IS_ASYNC = "N";
           updData.VNR_ITEM_CODE = currData.VNR_ITEM_CODE;
+          updData.ORI_VNR_CODE = currData.ORI_VNR_CODE;
           updF1903Datas.Add(updData);
         }
       });
@@ -669,6 +679,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
                 new ApiCkeckColumnModel{  Name = "IsPerishable",        Type = typeof(string),   MaxLength = 1 ,    Nullable = false},
 								new ApiCkeckColumnModel{  Name = "IsTempControl",       Type = typeof(string),   MaxLength = 1 ,    Nullable = false},
 								new ApiCkeckColumnModel{  Name = "VnrItemCode",         Type = typeof(string),   MaxLength = 50 ,   },
+								new ApiCkeckColumnModel{  Name = "OriVnrCode",          Type = typeof(string),   MaxLength = 20 ,   },
 						};
 			#endregion
 
@@ -797,7 +808,10 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 			//檢查序號綁儲位商品規則
 			ciService.CheckBoundleSerialLoc(data, item);
 
-			res.Data = data;
+      // 檢核原廠商編號是否存在
+      ciService.CheckOriVnrCode(data, item, _vnrCodeList);
+
+      res.Data = data;
 			return res;
 		}
 
@@ -944,6 +958,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 				IS_TEMP_CONTROL = item.IsTempControl,
         IS_ASYNC = "N",
         VNR_ITEM_CODE = item.VnrItemCode,
+        ORI_VNR_CODE = item.OriVnrCode
       };
 		}
 

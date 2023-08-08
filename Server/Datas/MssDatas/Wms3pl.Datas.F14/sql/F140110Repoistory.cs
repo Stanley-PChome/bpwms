@@ -27,25 +27,26 @@ namespace Wms3pl.Datas.F14
         public void UpdateItemForSql(string dcCode, string gupCode, string custCode, string inventoryNo, string isSecond,
             string locCode, string itemCode, string itemName, string orginalItemCode)
         {
-
             var sql = @"
                         UPDATE F140110 
                         SET    ITEM_CODE = @p0, 
                                ITEM_NAME = @p1, 
-                               UPD_DATE = dbo.GetSysDate(), 
-                               UPD_STAFF = @p2, 
-                               UPD_NAME = @p3 
-                        WHERE  DC_CODE = @p4 
-                           AND GUP_CODE = @p5 
-                           AND CUST_CODE = @p6 
-                           AND INVENTORY_NO = @p7 
-                           AND ISSECOND = @p8 
-                           AND LOC_CODE = @p9 
-                           AND ITEM_CODE = @p10 
+                               UPD_DATE = @p2, 
+                               UPD_STAFF = @p3, 
+                               UPD_NAME = @p4 
+                        WHERE  DC_CODE = @p5 
+                           AND GUP_CODE = @p6 
+                           AND CUST_CODE = @p7 
+                           AND INVENTORY_NO = @p8 
+                           AND ISSECOND = @p9 
+                           AND LOC_CODE = @p10 
+                           AND ITEM_CODE = @p11 
                         ";
+
             var param = new object[]{
                 itemCode
                 ,itemName
+                ,DateTime.Now
                 ,Current.Staff
                 ,Current.StaffName
                 ,dcCode
@@ -55,8 +56,8 @@ namespace Wms3pl.Datas.F14
                 ,isSecond
                 ,locCode
                 ,orginalItemCode};
-            ExecuteSqlCommand(sql, param);
 
+            ExecuteSqlCommand(sql, param);
         }
 
         /// <summary>

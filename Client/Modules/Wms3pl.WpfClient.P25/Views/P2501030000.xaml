@@ -67,7 +67,9 @@
 									IsEnabled="{Binding Path=(Validation.HasError), ElementName=gdEditableF2501WcfData, Converter={StaticResource NotConverter}}"/>
 					<Button Style="{StaticResource ImportExcelButton}" ToolTip="{x:Static Properties:Resources.ImportExcel}" controls:PermissionService.FunctionId="BP2501030003" 
 									Command="{Binding ImportExcelCommand}" 
-									IsEnabled="{Binding Path=(Validation.HasError), ElementName=LayoutRoot, Converter={StaticResource NotConverter}}"/>
+									IsEnabled="{Binding DataContext.UserOperateMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uiLib:Wms3plUserControl}},
+														Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Add}}"
+                            />
 				</WrapPanel>
 			</uiLib:BasicMaster.ToolBarArea>
 			<uiLib:BasicMaster.MainContent>

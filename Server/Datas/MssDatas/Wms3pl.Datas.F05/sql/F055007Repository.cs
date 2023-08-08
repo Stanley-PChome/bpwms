@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -48,12 +50,13 @@ namespace Wms3pl.Datas.F05
 				new SqlParameter("@p4", PrintTime) { SqlDbType = System.Data.SqlDbType.DateTime2 },
 				new SqlParameter("@p5", Current.Staff) { SqlDbType = System.Data.SqlDbType.VarChar },
 				new SqlParameter("@p6", Current.StaffName) { SqlDbType = System.Data.SqlDbType.NVarChar },
-			};
-			var sql = @"UPDATE F055007 with(rowlock) SET ISPRINTED=@p3, PRINT_TIME=@p4,UPD_DATE=dbo.GetSysDate(),UPD_STAFF=@p5,UPD_NAME=@p6 WHERE WMS_ORD_NO=@p0 AND REPORT_SEQ=@p1 AND PACKAGE_BOX_NO=@p2 AND (ISPRINTED='0' OR ISPRINTED IS NULL)";
+        new SqlParameter("@p7", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
+			var sql = @"UPDATE F055007 with(rowlock) SET ISPRINTED=@p3, PRINT_TIME=@p4,UPD_DATE=@p7,UPD_STAFF=@p5,UPD_NAME=@p6 WHERE WMS_ORD_NO=@p0 AND REPORT_SEQ=@p1 AND PACKAGE_BOX_NO=@p2 AND (ISPRINTED='0' OR ISPRINTED IS NULL)";
 			ExecuteSqlCommand(sql, para.ToArray());
 		}
 
-    public IQueryable<F055007> GetDataByWmsOrCustOrdNo(string dcCode, string gupCode, string custCode, string orderNo)
+    public IQueryable<ShipPackageReportModel> GetDataByWmsOrCustOrdNo(string dcCode, string gupCode, string custCode, string orderNo)
     {
       var param = new List<SqlParameter>
       {
@@ -63,9 +66,20 @@ namespace Wms3pl.Datas.F05
         new SqlParameter("@p3", orderNo){ SqlDbType = System.Data.SqlDbType.VarChar }
       };
 
-      var sql = @"SELECT * FROM F055007 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND (WMS_ORD_NO=@p3 OR CUST_ORD_NO=@p3);";
+      var sql = @"SELECT 
+  WMS_ORD_NO WmsOrdNo,
+  PACKAGE_BOX_NO PackageBoxNo,
+  CUST_ORD_NO CustOrdNo,
+  REPORT_CODE ReportCode,
+  LMS_NAME ReportName,
+  LMS_URL ReportUrl,
+  PRINTER_NO PrinterNo,
+  REPORT_SEQ ReportSeq,
+  ISPRINTED ISPRINTED,
+  PRINT_TIME PRINT_TIME
+FROM F055007 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND (WMS_ORD_NO=@p3 OR CUST_ORD_NO=@p3);";
 
-      return SqlQuery<F055007>(sql,param.ToArray());
+      return SqlQuery<ShipPackageReportModel>(sql,param.ToArray());
     }
 	}
 }

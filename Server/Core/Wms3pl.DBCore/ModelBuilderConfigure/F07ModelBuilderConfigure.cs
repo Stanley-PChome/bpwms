@@ -21,12 +21,17 @@ namespace Wms3pl.DBCore
       modelBuilder.Entity<F075107>().HasKey(key => new { key.DC_CODE, key.DOC_ID });
       modelBuilder.Entity<F075108>().HasKey(key => new { key.DC_CODE, key.DOC_ID });
 			modelBuilder.Entity<F075109>().HasKey(key => new { key.DC_CODE, key.DOC_ID });
+			modelBuilder.Entity<F075110>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F075111>().HasKey(key => new { key.ID });
 			modelBuilder.Entity<F076101>().HasKey(key => new { key.CONTAINER_CODE });
 			modelBuilder.Entity<F076102>().HasKey(key => new { key.CONTAINER_CODE });
 			modelBuilder.Entity<F077101>().HasKey(key => new { key.ID });
-      modelBuilder.Entity<F077102>().HasKey(key => new { key.ID });
-      modelBuilder.Entity<F076103>().HasKey(key => new { key.DC_CODE, key.CUST_ORD_NO });
-      modelBuilder.Entity<F076104>().HasKey(key => new { key.CONTAINER_CODE });
-    }
-  }
+			modelBuilder.Entity<F077102>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F076103>().HasKey(key => new { key.DC_CODE, key.CUST_ORD_NO });
+			modelBuilder.Entity<F076104>().HasKey(key => new { key.CONTAINER_CODE });
+			modelBuilder.Entity<F076105>().HasKey(key => new { key.CONTAINER_CODE });
+			modelBuilder.Entity<F076106>().HasKey(key => new { key.CONTAINER_CODE });
+			modelBuilder.Entity<F076107>().HasKey(key => new { key.CONTAINER_CODE });
+		}
+	}
 }

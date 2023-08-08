@@ -33,7 +33,7 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 		/// <returns></returns>
 		public ExecuteResult ApplyConsign(string dcCode, string gupCode, string custCode, string wmsOrdNo, short packageBoxNo, string isScanBox = null, string sugBoxNo = null, F055001 f055001 = null)
 		{
-			ExecuteResult res = new ExecuteResult { IsSuccessed = true };
+      ExecuteResult res = new ExecuteResult { IsSuccessed = true };
 			var transportCode = string.Empty;
 			var apiResult2 = ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "ApplyConsign", new { DcCode = dcCode, GupCode = gupCode, CustCode = custCode, WmsOrdNo = wmsOrdNo, PackageBoxNo = packageBoxNo, IsScanBox = isScanBox, SugBoxNo = sugBoxNo }, () =>
 			{
@@ -49,11 +49,11 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 			}
 			,false);
 
-			if (!apiResult2.IsSuccessed)
-				res = new ExecuteResult { IsSuccessed = apiResult2.IsSuccessed, Message = "[LMS申請宅配單]" + apiResult2.MsgCode + " " + apiResult2.MsgContent, No = transportCode };
-			else
-				res.No = transportCode;
-			return res;
+      if (!apiResult2.IsSuccessed)
+        res = new ExecuteResult { IsSuccessed = apiResult2.IsSuccessed, Message = "[LMS申請宅配單]" + apiResult2.MsgCode + " " + apiResult2.MsgContent, No = transportCode };
+      else
+        res.No = transportCode;
+      return res;
 		}
 
 		public ApiResult LmsApplyConsign(ShipOrderInsertReq req,string gupCode)
@@ -237,12 +237,18 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 			if (f055001 != null)
 			{
 				f055001.PAST_NO = transportCode;
+        f055001.ORG_PAST_NO = transportCode;
 				f055001.PRINT_FLAG = 1;
 				f055001.PRINT_DATE = DateTime.Now;
 				f055001.IS_CLOSED = "1";
-				if (string.IsNullOrWhiteSpace(f055001.BOX_NUM))
-					f055001.BOX_NUM = SugBoxNo;
-				f055001Repo.Update(f055001);
+        if (string.IsNullOrWhiteSpace(f055001.BOX_NUM))
+        {
+          f055001.BOX_NUM = SugBoxNo;
+        }
+        f055001.ORG_BOX_NUM = f055001.BOX_NUM;
+        f055001.LOGISTIC_CODE = apiResData.TransportProvider;
+        f055001.ORG_LOGISTIC_CODE= apiResData.TransportProvider;
+        f055001Repo.Update(f055001);
 			}
 			#endregion
 

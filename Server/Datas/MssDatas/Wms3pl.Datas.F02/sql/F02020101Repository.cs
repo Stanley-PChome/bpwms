@@ -1,9 +1,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -94,8 +96,8 @@ namespace Wms3pl.Datas.F02
 								A.GUP_CODE,
 								A.CUST_CODE,
 								A.RECE_DATE,
-								A.UPD_DATE,
-								A.UPD_NAME,
+								A.CRT_DATE AS UPD_DATE,
+								A.CRT_NAME AS UPD_NAME,
 								A.FAST_PASS_TYPE,
 								A.CUST_ORD_NO,
 								A.PURCHASE_NO,
@@ -111,8 +113,8 @@ namespace Wms3pl.Datas.F02
 								A.GUP_CODE,
 								A.CUST_CODE,
 								A.RECE_DATE,
-								A.UPD_DATE,
-								A.UPD_NAME,
+								A.CRT_DATE,
+								A.CRT_NAME,
 								(SELECT NAME FROM f000904 WHERE f000904.TOPIC = 'F010201' AND SUBTOPIC = 'FAST_PASS_TYPE' AND VALUE = B.FAST_PASS_TYPE) FAST_PASS_TYPE,
 								B.CUST_ORD_NO,
 								A.PURCHASE_NO,
@@ -157,8 +159,8 @@ namespace Wms3pl.Datas.F02
 								A.GUP_CODE,
 								A.CUST_CODE,
 								A.RECE_DATE,
-								A.UPD_DATE,
-								A.UPD_NAME,
+								A.CRT_DATE,
+								A.CRT_NAME,
 								B.FAST_PASS_TYPE,
 								B.CUST_ORD_NO,
 								A.PURCHASE_NO,
@@ -172,8 +174,8 @@ namespace Wms3pl.Datas.F02
 								A.GUP_CODE,
 								A.CUST_CODE,
 								A.RECE_DATE,
-								A.UPD_DATE,
-								A.UPD_NAME,
+								A.CRT_DATE,
+								A.CRT_NAME,
 								A.FAST_PASS_TYPE,
 								A.CUST_ORD_NO,
 								A.PURCHASE_NO,
@@ -283,10 +285,10 @@ namespace Wms3pl.Datas.F02
 											 FROM F02020101 A
 											WHERE  A.DC_CODE = @p0
 												AND A.RECE_DATE = @p1
-												AND (DATEDIFF(MINUTE,dbo.GetSysDate(),A.CRT_DATE))>30
+												AND (DATEDIFF(MINUTE,@p2,A.CRT_DATE))>30
 											GROUP BY A.PURCHASE_NO,A.CRT_STAFF,A.CRT_NAME,A.CRT_DATE ) A 
                                             ";
-			var param = new object[] { dcCode, receDate.Date };
+			var param = new object[] { dcCode, receDate.Date, DateTime.Now };
 			return SqlQuery<DcWmsNoStatusItem>(sql, param);
 		}
 
@@ -410,7 +412,7 @@ namespace Wms3pl.Datas.F02
 									 E.VIRTUAL_TYPE,E.ISOEM,E.EAN_CODE1,E.EAN_CODE2,E.EAN_CODE3,E.EAN_CODE4,
 									 E.NEED_EXPIRED,E.ALL_SHP,E.ALL_DLN,E.FIRST_IN_DATE,E.SAVE_DAY,E.IS_EASY_LOSE,
 									 E.IS_PRECIOUS,E.IS_MAGNETIC,E.FRAGILE,E.SPILL,E.IS_PERISHABLE,E.TMPR_TYPE,
-									 E.IS_TEMP_CONTROL 
+									 E.IS_TEMP_CONTROL,E.ISAPPLE
 							FROM 
 							(SELECT DC_CODE,GUP_CODE,CUST_CODE,PURCHASE_NO,PURCHASE_SEQ,RT_NO,RT_SEQ,ITEM_CODE,
 							ORDER_QTY,RECV_QTY,CHECK_QTY,CHECK_SERIAL,CHECK_ITEM,ISPRINT,ISUPLOAD,STATUS,VNR_CODE,
@@ -497,7 +499,7 @@ namespace Wms3pl.Datas.F02
 									 E.VIRTUAL_TYPE,E.ISOEM,E.EAN_CODE1,E.EAN_CODE2,E.EAN_CODE3,E.EAN_CODE4,
 									 E.NEED_EXPIRED,E.ALL_SHP,E.ALL_DLN,E.FIRST_IN_DATE,E.SAVE_DAY,E.IS_EASY_LOSE,
 									 E.IS_PRECIOUS,E.IS_MAGNETIC,E.FRAGILE,E.SPILL,E.IS_PERISHABLE,E.TMPR_TYPE,
-									 E.IS_TEMP_CONTROL 
+									 E.IS_TEMP_CONTROL,E.ISAPPLE
 							FROM 
 							(
 							SELECT DC_CODE,GUP_CODE,CUST_CODE,PURCHASE_NO,PURCHASE_SEQ,RT_NO,RT_SEQ,ITEM_CODE,
@@ -677,6 +679,406 @@ FROM
 		AND (A.RT_NO = @p5 OR  A.RT_NO IS NULL)
 		";
 			return SqlQuery<P020203Data>(sql, parms.ToArray()).FirstOrDefault();
+		}
+
+    public IQueryable<F02020101> GetDatas(string dcCode, string gupCode, string custCode, string purchaseNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = purchaseNo },
+      };
+      var sql = @"SELECT * FROM F02020101 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND PURCHASE_NO=@p3";
+      return SqlQuery<F02020101>(sql, para.ToArray());
+    }
+
+    /// <summary>
+    /// 取得PDA驗收明細資料
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="purchaseNo"></param>
+    /// <param name="purchaseSeq"></param>
+    /// <returns></returns>
+    public GetStockReceivedDetDataRes GetPdaPurchaseTemp(string dcCode, string gupCode, string custCode, string purchaseNo,string purchaseSeq)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = purchaseNo },
+        new SqlParameter("@p4", SqlDbType.VarChar) { Value = purchaseSeq },
+      };
+      var sql = $@"
+SELECT 
+	A.STOCK_NO StockNo,
+	A.CUST_ORD_NO CustOrdNo,
+	A.FAST_PASS_TYPE FastPassType,
+	ALngFastPassType.NAME FastPassTypeDesc,
+	B.ITEM_CODE ItemCode,
+	C.CUST_ITEM_CODE CustItemCode,
+	C.ITEM_NAME ItemName,
+	C.VNR_ITEM_CODE VnrItemCode,
+	B.ORDER_QTY OrderQty,
+	B.RECV_QTY RecvQty,
+	CASE WHEN B.CHECK_ITEM ='0' THEN 0 ELSE B.RECV_QTY - SUM(ISNULL(E.DEFECT_QTY,0)) END RecvGoodQty,
+	CASE WHEN B.CHECK_ITEM ='0' THEN 0 ELSE SUM(ISNULL(E.DEFECT_QTY,0)) END RecvBadQty,
+	C.BUNDLE_SERIALNO BundleSerialNo,
+	B.CHECK_ITEM CheckItem,
+	B.CHECK_SERIAL CheckSerial,
+	B.TARWAREHOUSE_ID TarWarehouseId,
+	D.WAREHOUSE_NAME TarWarehouseName
+FROM 
+	F010201 A
+  LEFT JOIN VW_F000904_LANG ALngFastPassType
+    ON TOPIC='F010201' 
+    AND SUBTOPIC='FAST_PASS_TYPE' 
+    AND LANG='{Current.Lang}' 
+    AND VALUE=A.FAST_PASS_TYPE
+	INNER JOIN F02020101 B
+		ON A.DC_CODE = B.DC_CODE 
+		AND A.GUP_CODE = B.GUP_CODE 
+		AND A.CUST_CODE =B.CUST_CODE 
+		AND A.STOCK_NO = B.PURCHASE_NO 
+	INNER JOIN F1903 C WITH(NOLOCK)
+		ON B.GUP_CODE = C.GUP_CODE 
+		AND B.CUST_CODE = C.CUST_CODE 
+		AND B.ITEM_CODE = C.ITEM_CODE 
+	INNER JOIN F1980 D WITH(NOLOCK)
+		ON B.DC_CODE = D.DC_CODE 
+		AND B.TARWAREHOUSE_ID = D.WAREHOUSE_ID 
+	LEFT JOIN 
+		F02020109 E
+		ON B.DC_CODE = E.DC_CODE 
+		AND B.GUP_CODE = E.GUP_CODE 
+		AND B.CUST_CODE = E.CUST_CODE 
+		AND B.PURCHASE_NO = E.STOCK_NO 
+		AND B.PURCHASE_SEQ = E.STOCK_SEQ
+WHERE 
+  B.DC_CODE=@p0
+  AND B.GUP_CODE=@p1
+  AND B.CUST_CODE=@p2
+  AND B.PURCHASE_NO=@p3
+  AND B.PURCHASE_SEQ=@p4
+GROUP BY A.STOCK_NO,A.CUST_ORD_NO,A.FAST_PASS_TYPE,B.ITEM_CODE,C.CUST_ITEM_CODE,C.ITEM_NAME,C.VNR_ITEM_CODE,B.ORDER_QTY,B.RECV_QTY,C.BUNDLE_SERIALNO,B.CHECK_ITEM,B.CHECK_SERIAL,B.TARWAREHOUSE_ID,D.WAREHOUSE_NAME
+";
+      return SqlQuery<GetStockReceivedDetDataRes>(sql, para.ToArray()).SingleOrDefault();
+
+    }
+
+    /// <summary>
+    /// 取得PDA進貨檢驗商品資料
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <param name="rtSeq"></param>
+    /// <returns></returns>
+    public RecvItemDataRes GetRecvItemDataRes(string dcCode,string gupCode,string custCode,string rtNo,string rtSeq)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = rtNo },
+        new SqlParameter("@p4", SqlDbType.VarChar) { Value = rtSeq},
+      };
+
+      var sql = @"SELECT TOP 1
+  A.ITEM_CODE ItemCode,
+  B.CUST_ITEM_CODE CustItemCode,
+  B.VNR_ITEM_CODE VnrItemCode,
+  B.EAN_CODE1 EanCode1,
+  B.EAN_CODE2 EanCode2,
+  B.EAN_CODE3 EanCode3,
+  B.ITEM_NAME ItemName,
+  B.ITEM_SIZE ItemSize,
+  B.ITEM_COLOR ItemColor,
+  B.ITEM_SPEC ItemSpec,
+  A.CHECK_QTY CheckQty,
+  B.RCV_MEMO RcvMemo,
+  B.NEED_EXPIRED NeedExpired,
+  B.SAVE_DAY SaveDay,
+  B.ALL_DLN AllowDelvDay,
+  B.ALL_SHP AllowShipDay,
+  B.BUNDLE_SERIALNO BundleSerialNo,
+  B.TMPR_TYPE TmprType,
+  CASE WHEN B.ISAPPLE IS NULL THEN '0' ELSE B.ISAPPLE END IsApple,
+  A.RECV_QTY RecvQty,
+  CASE WHEN A.IS_PRINT_ITEM_ID IS NULL THEN '0' ELSE A.IS_PRINT_ITEM_ID END IsPrintItemId,
+  CONVERT(varchar(10), A.VALI_DATE, 111) ValidDate,
+  CASE WHEN B.IS_PRECIOUS IS NULL THEN '0' ELSE B.IS_PRECIOUS END IsPrecious,
+  CASE WHEN B.FRAGILE IS NULL THEN '0' ELSE B.FRAGILE END IsFragile,
+  CASE WHEN B.IS_EASY_LOSE IS NULL THEN '0' ELSE B.IS_EASY_LOSE END IsEasyLose,
+  CASE WHEN B.IS_MAGNETIC IS NULL THEN '0' ELSE B.IS_MAGNETIC END IsMagentic,
+  CASE WHEN B.SPILL IS NULL THEN '0' ELSE B.SPILL END IsSpill,
+  CASE WHEN B.IS_PERISHABLE IS NULL THEN '0' ELSE B.IS_PERISHABLE END IsPerishable,
+  CASE WHEN B.IS_TEMP_CONTROL IS NULL THEN '0' ELSE B.IS_TEMP_CONTROL END IsTempControl,
+  CASE
+    WHEN  B.FIRST_IN_DATE IS NULL THEN '1'
+    ELSE '0'
+  END IsFirstInDate,
+  CASE WHEN A.TARWAREHOUSE_ID IS NULL OR A.TARWAREHOUSE_ID='' THEN '' ELSE A.TARWAREHOUSE_ID END TarWarehouseId,
+  CASE WHEN C.WAREHOUSE_NAME IS NULL THEN N'' ELSE C.WAREHOUSE_NAME END TarWarehouseName
+FROM F02020101 A
+LEFT JOIN F1903 B WITH (NOLOCK)
+  ON A.GUP_CODE = B.GUP_CODE
+  AND A.CUST_CODE = B.CUST_CODE
+  AND A.ITEM_CODE = B.ITEM_CODE
+LEFT JOIN F1980 C WITH (NOLOCK)
+  ON A.DC_CODE = C.DC_CODE
+  AND A.TARWAREHOUSE_ID = C.WAREHOUSE_ID
+WHERE A.DC_CODE = @p0 AND A.GUP_CODE = @p1 AND A.CUST_CODE = @p2 AND A.RT_NO =@p3 AND A.RT_SEQ = @p4";
+
+      return SqlQuery<RecvItemDataRes>(sql, para.ToArray()).SingleOrDefault();
+    }
+
+    /// <summary>
+    /// 進倉驗收暫存資料
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <param name="rtSeq"></param>
+    /// <returns></returns>
+    public F02020101 GetF02020101ByRt(string dcCode, string gupCode, string custCode, string rtNo, string rtSeq)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = rtNo },
+        new SqlParameter("@p4", SqlDbType.VarChar) { Value = rtSeq },
+      };
+      var sql = $@"
+                   SELECT TOP(1) *
+                     FROM F02020101
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND RT_NO = @p3
+                      AND RT_SEQ = @p4 ";
+
+      return SqlQuery<F02020101>(sql, para.ToArray()).SingleOrDefault();
+    }
+
+    /// <summary>
+    /// 檢查驗收單是否還有其他明細還沒驗收完成
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="purchaseNo"></param>
+    /// <param name="purchaseSeq"></param>
+    /// <returns></returns>
+    public bool IsAcceptanceComplete(string dcCode, string gupCode, string custCode, string rtNo, string rtSeq)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = rtNo },
+        new SqlParameter("@p4", SqlDbType.VarChar) { Value = rtSeq },
+      };
+      var sql = $@"
+                   SELECT TOP(1) 1
+                     FROM F02020101
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND RT_NO = @p3
+                      AND RT_SEQ <> @p4
+                      AND CHECK_DETAIL = '0' ";
+
+      return !SqlQuery<int>(sql, para.ToArray()).Any();
+    }
+
+    /// <summary>
+    /// 驗收單所有明細
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <returns></returns>
+    public IQueryable<F02020101> GetF02020101sByRtNo(string dcCode, string gupCode, string custCode, string rtNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = rtNo },
+      };
+      var sql = $@"
+                   SELECT *
+                     FROM F02020101
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND RT_NO = @p3 ";
+
+      return SqlQuery<F02020101>(sql, para.ToArray());
+    }
+
+    public void Delete(string dcCode, string gupCode, string custCode, string rtNo)
+    {
+      var parameter = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = rtNo },
+      };
+      var sql = @" DELETE F02020101 WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2 AND RT_NO = @p3 ";
+      ExecuteSqlCommand(sql, parameter.ToArray());
+    }
+
+		public void UpdateDefectQty(string dcCode,string gupCode,string custCode,string stockNo,string stockSeq)
+		{
+			var parameter = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("@p3", SqlDbType.VarChar) { Value = stockNo },
+				new SqlParameter("@p4", SqlDbType.VarChar) { Value = stockSeq },
+				new SqlParameter("@p5", SqlDbType.DateTime2) { Value = DateTime.Now },
+				new SqlParameter("@p6", SqlDbType.VarChar) { Value = Current.Staff },
+				new SqlParameter("@p7", SqlDbType.NVarChar) { Value = Current.StaffName },
+			};
+
+			var sql = @" UPDATE F02020101
+										SET DEFECT_QTY =
+										ISNULL((SELECT SUM(DEFECT_QTY)
+												FROM F02020109 B where B.RT_NO IS NULL
+												AND B.DC_CODE = F02020101.DC_CODE
+												AND B.GUP_CODE = F02020101.GUP_CODE
+												AND B.CUST_CODE = F02020101.CUST_CODE
+												AND B.STOCK_NO = F02020101.PURCHASE_NO
+												AND B.STOCK_SEQ = CONVERT(int,F02020101.PURCHASE_SEQ)
+												GROUP BY B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.STOCK_NO,B.STOCK_SEQ),0),UPD_DATE =@p5,UPD_STAFF=@p6,UPD_NAME=@p7
+										WHERE DC_CODE = @p0
+										AND GUP_CODE = @p1
+										AND CUST_CODE = @p2
+										AND PURCHASE_NO = @p3
+										AND PURCHASE_SEQ = @p4";
+			ExecuteSqlCommand(sql, parameter.ToArray());
+
+    }
+
+    public IQueryable<F02020101> GetOtherSeqFinishCheckDatas(string dcCode, string gupCode, string custCode, string purchaseNo, string purchaseSeq, string rtNo)
+    {
+      var parameter = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", purchaseNo) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", purchaseSeq) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p5", rtNo) { SqlDbType = SqlDbType.VarChar },
+      };
+
+      var sql = $@"
+                   SELECT *
+                     FROM F02020101
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND PURCHASE_NO = @p3
+                      AND PURCHASE_SEQ <> @p4
+                      AND RT_NO = @p5
+                      AND (CHECK_ITEM = '1' OR CHECK_DETAIL = '1') ";
+
+      return SqlQuery<F02020101>(sql, parameter.ToArray());
+    }
+
+    public void UpdateForCancelAcceptance(string dcCode, string gupCode, string custCode, string purchaseNo, string purchaseSeq, string rtNo, int recvQty, DateTime valiDate)
+    {
+      var parameter = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", purchaseNo) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", purchaseSeq) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p5", rtNo) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p6", recvQty) { SqlDbType = SqlDbType.Int },
+        new SqlParameter("@p7", valiDate) { SqlDbType = SqlDbType.DateTime2 },
+				new SqlParameter("@p8", SqlDbType.DateTime2) { Value = DateTime.Now },
+				new SqlParameter("@p9", SqlDbType.VarChar) { Value = Current.Staff },
+				new SqlParameter("@p10", SqlDbType.NVarChar) { Value = Current.StaffName },
+
+			};
+      var sql = @" UPDATE F02020101 
+                      SET IS_PRINT_ITEM_ID = '0', CHECK_ITEM = '0', CHECK_DETAIL = '0', RECE_DATE = NULL, CHECK_SERIAL = '0', RECV_QTY = @p6, DEFECT_QTY = 0, STATUS = '0', VALI_DATE = @p7 ,UPD_DATE =@p8,UPD_STAFF=@p9,UPD_NAME=@p10
+                    WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2 AND PURCHASE_NO = @p3 AND PURCHASE_SEQ = @p4 AND RT_NO = @p5 ";
+      ExecuteSqlCommand(sql, parameter.ToArray());
+    }
+		
+		public void UpdateDefectQty(string dcCode, string gupCode, string custCode, string purchaseNo, string purchaseSeq,int adjQty)
+		{
+			var parameter = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("@p3", SqlDbType.VarChar) { Value = purchaseNo },
+				new SqlParameter("@p4", SqlDbType.VarChar) { Value = purchaseSeq },
+				new SqlParameter("@p5", SqlDbType.Int) { Value = adjQty },
+				new SqlParameter("@p6", SqlDbType.DateTime2) { Value = DateTime.Now },
+				new SqlParameter("@p7", SqlDbType.VarChar) { Value = Current.Staff },
+				new SqlParameter("@p8", SqlDbType.NVarChar) { Value = Current.StaffName },
+			};
+
+			var sql = @" UPDATE F02020101
+										SET DEFECT_QTY += @p5,UPD_DATE =@p6,UPD_STAFF=@p7,UPD_NAME=@p8
+										WHERE DC_CODE = @p0
+										AND GUP_CODE = @p1
+										AND CUST_CODE = @p2
+										AND PURCHASE_NO = @p3
+										AND PURCHASE_SEQ = @p4 ";
+			ExecuteSqlCommand(sql, parameter.ToArray());
+
+		}
+
+		public void UpdateCheckSerial(string dcCode, string gupCode, string custCode, string purchaseNo, string purchaseSeq, string rtNo,string rtSeq,string checkSerial)
+		{
+			var parameter = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = checkSerial },
+				new SqlParameter("@p1", SqlDbType.DateTime2) { Value = DateTime.Now },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = Current.Staff },
+				new SqlParameter("@p3", SqlDbType.NVarChar) { Value = Current.StaffName },
+				new SqlParameter("@p4", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("@p5", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p6", SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("@p7", SqlDbType.VarChar) { Value = purchaseNo },
+				new SqlParameter("@p8", SqlDbType.VarChar) { Value = purchaseSeq },
+				new SqlParameter("@p9", SqlDbType.VarChar) { Value = rtNo },
+				new SqlParameter("@p10", SqlDbType.VarChar) { Value = rtSeq },
+
+			};
+
+			var sql = @" UPDATE F02020101
+										SET CHECK_SERIAL = @p0,UPD_DATE =@p1,UPD_STAFF=@p2,UPD_NAME=@p3
+										WHERE DC_CODE = @p4
+										AND GUP_CODE = @p5
+										AND CUST_CODE = @p6
+										AND PURCHASE_NO = @p7
+										AND PURCHASE_SEQ = @p8
+                    AND RT_NO = @p9
+                    AND RT_SEQ = @p10 ";
+			ExecuteSqlCommand(sql, parameter.ToArray());
 		}
 	}
 }

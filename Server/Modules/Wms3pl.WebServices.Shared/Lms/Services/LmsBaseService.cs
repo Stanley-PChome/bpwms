@@ -177,7 +177,7 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 					break;
         case "Items/Reply":
           var rd_UpdateItemInfo = new Random();
-          var d_UpdateItemInfo = rd_UpdateItemInfo.Next(5);
+          var d_UpdateItemInfo = rd_UpdateItemInfo.Next(1,5);
           if (d_UpdateItemInfo == 1)
           {
             res.IsSuccessed = false;
@@ -187,8 +187,8 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
           else
           {
             res.IsSuccessed = true;
-            res.MsgCode = "21XXX";
-            res.MsgContent = "轉入WMS建立庫存成功";
+            res.MsgCode = "10005";
+            res.MsgContent = "更新LMS商品主檔成功";
           }
           break;
 

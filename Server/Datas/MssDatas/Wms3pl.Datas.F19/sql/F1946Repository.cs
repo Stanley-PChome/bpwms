@@ -83,7 +83,7 @@ namespace Wms3pl.Datas.F19
 						WHERE DC_CODE = @p5
 						AND WORKSTATION_CODE = @p6";
 
-			ExecuteSqlCommand(sql, param.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, param.ToArray());
 		}
 	}
 }

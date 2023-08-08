@@ -173,5 +173,49 @@ namespace Wms3pl.Datas.F05
 		/// 工作站編號
 		/// </summary>
 		public string WORKSTATION_CODE { get; set; }
-	}
+    /// <summary>
+    /// 封箱工作站編號
+    /// </summary>
+    public string CLOSEBOX_WORKSTATION_CODE { get; set; }
+    /// <summary>
+    /// 分揀機編號
+    /// </summary>
+    public string SORTER_CODE { get; set; }
+    /// <summary>
+    /// 配箱電腦名稱
+    /// </summary>
+    public string PACK_CLIENT_PC { get; set; }
+    /// <summary>
+    /// 扣帳電腦名稱
+    /// </summary>
+    public string AUDIT_CLIENT_PC { get; set; }
+    /// <summary>
+    /// 配箱站與封箱站是否分開(0:否 1:是)
+    /// </summary>
+    public string NO_SPEC_REPROTS { get; set; }
+    /// <summary>
+    /// 是否刷讀紙箱關箱(0:否 1:是)
+    /// </summary>
+    public string CLOSE_BY_BOXNO { get; set; }
+    /// <summary>
+    /// 人員關箱時間
+    /// </summary>
+    public DateTime? CLOSEBOX_TIME { get; set; }
+    /// <summary>
+    /// 物流商編號
+    /// </summary>
+    public string LOGISTIC_CODE { get; set; }
+    /// <summary>
+    /// 原包裝時申請物流商編號
+    /// </summary>
+    public string ORG_LOGISTIC_CODE { get; set; }
+    /// <summary>
+    /// 原包裝時申請宅配單號
+    /// </summary>
+    public string ORG_PAST_NO { get; set; }
+    /// <summary>
+    /// 原包裝時紙箱編號
+    /// </summary>
+    public string ORG_BOX_NUM { get; set; }
+  }
 }

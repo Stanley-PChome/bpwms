@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,15 @@ namespace Wms3pl.Datas.F25
         new SqlParameter("@p0", userId),
         new SqlParameter("@p1", userName),
         new SqlParameter("@p2", gupCode),
-        new SqlParameter("@p3", custCode)
+        new SqlParameter("@p3", custCode),
+        new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
       };
             var sql = @"
                         UPDATE F250105
                            SET STATUS = '1',
                                UPD_STAFF = @p0,
                                UPD_NAME = @p1,
-                               UPD_DATE = dbo.GetSysDate()
+                               UPD_DATE = @p4
                          WHERE     GUP_CODE = @p2
                                AND CUST_CODE = @p3
                                AND ISPASS = '1'
@@ -45,7 +47,8 @@ namespace Wms3pl.Datas.F25
         new SqlParameter("@p1", userName),
         new SqlParameter("@p2", gupCode),
         new SqlParameter("@p3", custCode),
-        new SqlParameter("@p4", clientIp)
+        new SqlParameter("@p4", clientIp),
+        new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
       };
 
             var sql = @"
@@ -53,7 +56,7 @@ namespace Wms3pl.Datas.F25
                            SET STATUS = '9',
                                UPD_STAFF = @p0,
                                UPD_NAME = @p1,
-                               UPD_DATE = dbo.GetSysDate()
+                               UPD_DATE = @p5
                          WHERE     GUP_CODE = @p2
                                AND CUST_CODE = @p3
                                AND STATUS = '0'

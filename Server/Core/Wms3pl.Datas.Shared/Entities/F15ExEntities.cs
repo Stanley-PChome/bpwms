@@ -1253,8 +1253,9 @@ namespace Wms3pl.Datas.Shared.Entities
     {
         public string AllocNo { get; set; }
         public string ItemCode { get; set; }
-        public string MakeNo { get; set; }
-        public Int64 TarQty { get; set; }
+		public string MakeNo { get; set; }
+		public string SerialNo { get; set; }
+		public Int64 TarQty { get; set; }
     }
   #endregion
 

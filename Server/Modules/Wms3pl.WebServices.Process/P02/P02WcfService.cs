@@ -200,7 +200,19 @@ namespace Wms3pl.WebServices.Process.P02.Services
       {
         logSvc.Log($"NewAcceptancePurchase {logSvc.DateDiff(acceptanceConfirmDt, DateTime.Now)}");
         var acceptanceConfirmCompleteDt = DateTime.Now;
-        wmsTransaction.Complete();
+				// 進倉單解鎖
+				if (acp.RT_MODE == "0")
+				{
+					var warehouseInRecvService = new WarehouseInRecvService(wmsTransaction);
+					warehouseInRecvService.UnLockAcceptenceOrder(new UnLockAcceptenceOrderReq
+					{
+						DcCode = acp.DcCode,
+						GupCode = acp.GupCode,
+						CustCode = acp.CustCode,
+						StockNo = acp.PurchaseNo,
+					});
+				}
+				wmsTransaction.Complete();
         logSvc.Log($"NewAcceptancePurchaseComplete {logSvc.DateDiff(acceptanceConfirmCompleteDt, DateTime.Now)}");
 
         var RecvCompleteCustNoUploadDt = DateTime.Now;
@@ -215,7 +227,8 @@ namespace Wms3pl.WebServices.Process.P02.Services
 					wmsTransaction.Complete();
 					logSvc.Log($"RecvCompleteCustNoUploadComplete {logSvc.DateDiff(recvCompleteCustNoUploadCompleteDt, DateTime.Now)}");
         }
-      }
+				
+			}
       logSvc.Log($"******************驗收確認NewAcceptancePurchase ({acp.PurchaseNo}) End******************");
       logSvc.Log(string.Empty, false);
       return result;
@@ -295,10 +308,12 @@ namespace Wms3pl.WebServices.Process.P02.Services
                                                              string status, string ignoreCheckOfStatus = "")
     {
       var srv = new SerialNoService();
-      return srv.CheckLargeSerialNoFull(dcCode, gupCode, custCode,
-                                          itemCode, largeSerialNo, status,
-                                          ProcessWork.ScanSerial, ignoreCheckOfStatus)
-                  .AsQueryable();
+      //return srv.CheckLargeSerialNoFull(dcCode, gupCode, custCode,
+      //                                    itemCode, largeSerialNo, status,
+      //                                    ProcessWork.ScanSerial, ignoreCheckOfStatus)
+      //            .AsQueryable();
+
+       return srv.CheckItemLargeSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, largeSerialNo.ToList()).AsQueryable();
     }
 
     [OperationContract]
@@ -360,11 +375,11 @@ namespace Wms3pl.WebServices.Process.P02.Services
     [OperationContract]
     public ExecuteResult UpdateF1903(string gupCode, string custCode
         , string itemCode, string needExpired, DateTime? firstInDate, int? saveDay, string eanCode1, string eanCode2, string eanCode3, short? allDln, int? allShp, string isPrecious, string fragile,
-        string isEasyLos, string spill, string isMagnetic, string isPerishable, string tmprType, string IsTempControl, F1905 updateVolumn)
+        string isEasyLos, string spill, string isMagnetic, string isPerishable, string tmprType, string IsTempControl,string bundleSerial, string IsApple, F1905 updateVolumn)
     {
       var wmsTransaction = new WmsTransaction();
       var srv = new P020203Service(wmsTransaction);
-			var result = srv.UpdateF1903(gupCode, custCode, itemCode, needExpired, firstInDate, saveDay, eanCode1, eanCode2, eanCode3, allDln, allShp, isPrecious, fragile, isEasyLos, spill, isMagnetic, isPerishable, tmprType, IsTempControl, updateVolumn);
+			var result = srv.UpdateF1903(gupCode, custCode, itemCode, needExpired, firstInDate, saveDay, eanCode1, eanCode2, eanCode3, allDln, allShp, isPrecious, fragile, isEasyLos, spill, isMagnetic, isPerishable, tmprType, IsTempControl, bundleSerial, IsApple, updateVolumn);
       if (result.IsSuccessed) wmsTransaction.Complete();
       return result;
     }
@@ -542,7 +557,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
       try
       {
-        var lockRes = warehouseInService.LockContainerProcess(f020501);
+        var lockRes = warehouseInService.LockContainerProcess(f020501.CONTAINER_CODE);
         if (!lockRes.IsSuccessed)
           return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.ContainerIsProcessingTryLater, f020501.CONTAINER_CODE) };
 
@@ -584,7 +599,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
       try
       {
-        var lockRes = warehouseInService.LockContainerProcess(f020501);
+        var lockRes = warehouseInService.LockContainerProcess(f020501.CONTAINER_CODE);
         if (!lockRes.IsSuccessed)
           return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.ContainerIsProcessingTryLater, f020501.CONTAINER_CODE) };
 
@@ -619,7 +634,6 @@ namespace Wms3pl.WebServices.Process.P02.Services
     {
       var wmsTransaction = new WmsTransaction();
       var f020501Repo = new F020501Repository(Schemas.CoreSchema, wmsTransaction);
-      var f2501Repo = new F2501Repository(Schemas.CoreSchema, wmsTransaction);
       var warehouseInService = new WarehouseInService(wmsTransaction);
       var srv = new P020208Service(wmsTransaction);
       var lockContainers = new List<F020501>();
@@ -631,7 +645,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
       try
       {
         lockContainers.Add(f020501);
-        var lockRes = warehouseInService.LockContainerProcess(f020501);
+        var lockRes = warehouseInService.LockContainerProcess(f020501.CONTAINER_CODE);
         if (!lockRes.IsSuccessed)
           return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.ContainerIsProcessingTryLater, f020501.CONTAINER_CODE) };
 
@@ -643,28 +657,9 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
         var ngF020501 = new F020501 { CONTAINER_CODE = ngContainerCode };
         lockContainers.Add(ngF020501);
-        lockRes = warehouseInService.LockContainerProcess(ngF020501);
+        lockRes = warehouseInService.LockContainerProcess(ngF020501.CONTAINER_CODE);
         if (!lockRes.IsSuccessed)
           return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.ContainerIsProcessingTryLater, f020501.CONTAINER_CODE) };
-
-        // No.2091 序號商品在複驗異常處理設為不良品時，要標註序號為不良品序號(F2501.ACTIVATED = 1)
-        var ngSerialItem = ngItem.Where(o => !string.IsNullOrWhiteSpace(o.SERIAL_NO));
-        if (ngSerialItem.Any())
-        {
-          var tarItems = new List<string>();
-          foreach (var ngSerial in ngSerialItem)
-          {
-            var f2501 = f2501Repo.Find(o => o.GUP_CODE == ngSerial.GUP_CODE && o.CUST_CODE == ngSerial.CUST_CODE && o.SERIAL_NO == ngSerial.SERIAL_NO);
-            if (f2501 == null)
-            {
-              return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.SerialDataNotFound, f020501.CONTAINER_CODE) };
-            }
-
-            tarItems.Add(f2501.SERIAL_NO);
-          }
-
-          f2501Repo.UpdateSerialActivated(f020501.GUP_CODE, f020501.CUST_CODE, tarItems, "1");
-        }
 
         var result = srv.InsertModifyNGQtyData(f020501Id, f020502Id, ngItem, memo, ngContainerCode);
         if (result.IsSuccessed)
@@ -688,6 +683,52 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			if (result.IsSuccessed)
 				wmsTransaction.Complete();
 			return result;
+		}
+
+    [OperationContract]
+    public IQueryable<SerialNoResult> CheckItemSingleSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode, string serialNo)
+    {
+      var wmsTransaction = new WmsTransaction();
+      var srv = new SerialNoService(wmsTransaction);
+     return srv.CheckItemSingleSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, serialNo).AsQueryable();     
+    }
+
+
+    [OperationContract]
+    public IQueryable<SerialNoResult> CheckItemLargeSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode,params string[] serialNo)
+    {
+      var wmsTransaction = new WmsTransaction();
+      var srv = new SerialNoService(wmsTransaction);
+      return srv.CheckItemLargeSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, serialNo.ToList()).AsQueryable();
+    }
+    //public IQueryable<SerialNoResult> CheckLargeSerialNoFull(string dcCode, string gupCode, string custCode,
+    //                                                     string itemCode, string[] largeSerialNo,
+    //                                                     string status, string ignoreCheckOfStatus = "")
+    //{
+    //  var srv = new SerialNoService();
+    //  return srv.CheckLargeSerialNoFull(dcCode, gupCode, custCode,
+    //                                      itemCode, largeSerialNo, status,
+    //                                      ProcessWork.ScanSerial, ignoreCheckOfStatus)
+    //              .AsQueryable();
+    //}
+
+		[OperationContract]
+		public ExecuteResult CheckCanBindContainer(string dcCode, string gupCode, string custCode, string rtNo)
+		{
+			var service = new P020206Service();
+			return service.CheckCanBindContainer(dcCode, gupCode, custCode, rtNo);
+		}
+
+		[OperationContract]
+		public ExecuteResult UpdateRecvNotePrintInfo(string dcCode, string gupCode, string custCode, List<string> rtNoList)
+		{
+			var wmsTransation = new WmsTransaction();
+			var service = new WarehouseInRecvService(wmsTransation);
+			var res = service.UpdateRecvNotePrintInfo(dcCode, gupCode, custCode, rtNoList);
+			if (res.IsSuccessed)
+				wmsTransation.Complete();
+
+			return res;
 		}
 	}
 }

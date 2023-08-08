@@ -181,10 +181,8 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 						SkuList = skuList
 					};
 					var productList = CommonService.GetProductList(gupCode, custCode, details.Select(x => x.ITEM_CODE).Distinct().ToList());
-					if (productList.Any(a => _f0003AppleVendorList.Contains(a.VNR_CODE)))
-					{
+          if (productList.Any(a => _f0003AppleVendorList.Contains(a.ORI_VNR_CODE) || a.ISAPPLE == "1"))
 						req.PutawayType = 1;
-					}
 
 
 				#endregion

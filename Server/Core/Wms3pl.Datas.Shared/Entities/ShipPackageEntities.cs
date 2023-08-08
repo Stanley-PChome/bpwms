@@ -64,38 +64,46 @@ namespace Wms3pl.Datas.Shared.Entities
         /// </summary>
         public string PickType { get; set; }
     }
-    #endregion
+  #endregion
 
-    #region 查詢與檢核出貨單資訊
-    public class SearchAndCheckWmsOrderInfoReq
-    {
-        /// <summary>
-        /// 物流中心編號
-        /// </summary>
-        public string DcCode { get; set; }
-        /// <summary>
-        /// 業主編號
-        /// </summary>
-        public string GupCode { get; set; }
-        /// <summary>
-        /// 貨主編號
-        /// </summary>
-        public string CustCode { get; set; }
-        /// <summary>
-        /// 出貨單號
-        /// </summary>
-        public string WmsOrdNo { get; set; }
-        /// <summary>
-        /// 工作站編號
-        /// </summary>
-        public string WorkStationId { get; set; }
-        /// <summary>
-        /// 出貨模式(1:單人包裝站 2:包裝線包裝站)
-        /// </summary>
-        public string ShipMode { get; set; }
-    }
+  #region 查詢與檢核出貨單資訊
+  public class SearchAndCheckWmsOrderInfoReq
+  {
+    /// <summary>
+    /// 物流中心編號
+    /// </summary>
+    public string DcCode { get; set; }
+    /// <summary>
+    /// 業主編號
+    /// </summary>
+    public string GupCode { get; set; }
+    /// <summary>
+    /// 貨主編號
+    /// </summary>
+    public string CustCode { get; set; }
+    /// <summary>
+    /// 出貨單號
+    /// </summary>
+    public string WmsOrdNo { get; set; }
+    /// <summary>
+    /// 工作站編號
+    /// </summary>
+    public string WorkStationId { get; set; }
+    /// <summary>
+    /// 出貨模式(1:單人包裝站 2:包裝線包裝站)
+    /// </summary>
+    public string ShipMode { get; set; }
+    /// <summary>
+    /// 是否為配箱站與封箱站分開
+    /// </summary>
+    public string NoSpecReprots { get; set; }
+    /// <summary>
+    /// 是否為需刷讀紙箱條碼關箱
+    /// </summary>
+    public string CloseByBoxno { get; set; }
+  }
 
-    public class SearchAndCheckWmsOrderInfoRes
+  public class SearchAndCheckWmsOrderInfoRes
     {
         public ExecuteResult Result { get; set; } = new ExecuteResult();
         /// <summary>
@@ -238,25 +246,6 @@ namespace Wms3pl.Datas.Shared.Entities
     #endregion
 
     #region 查詢出貨單刷讀紀錄
-    public class SearchWmsOrderScanLogReq
-    {
-        /// <summary>
-        /// 物流中心編號
-        /// </summary>
-        public string DcCode { get; set; }
-        /// <summary>
-        /// 業主編號
-        /// </summary>
-        public string GupCode { get; set; }
-        /// <summary>
-        /// 貨主編號
-        /// </summary>
-        public string CustCode { get; set; }
-        /// <summary>
-        /// 出貨單號
-        /// </summary>
-        public string WmsOrdNo { get; set; }
-    }
 
     [Serializable]
     [DataContract]
@@ -286,62 +275,70 @@ namespace Wms3pl.Datas.Shared.Entities
         [DataMember]
         public string Message { get; set; }
     }
-    #endregion
+  #endregion
 
-    #region 刷讀商品條碼
-    public class ScanItemBarcodeReq
-    {
-        /// <summary>
-        /// 物流中心編號
-        /// </summary>
-        public string DcCode { get; set; }
-        /// <summary>
-        /// 業主編號
-        /// </summary>
-        public string GupCode { get; set; }
-        /// <summary>
-        /// 貨主編號
-        /// </summary>
-        public string CustCode { get; set; }
-        /// <summary>
-        /// 出貨單號
-        /// </summary>
-        public string WmsOrdNo { get; set; }
-        /// <summary>
-        /// 批次日期
-        /// </summary>
-        public DateTime DelvDate { get; set; }
-        /// <summary>
-        /// 批次時段
-        /// </summary>
-        public string PickTime { get; set; }
-        /// <summary>
-        /// 刷讀商品條碼
-        /// </summary>
-        public string BarCode { get; set; }
-        /// <summary>
-        /// 數量(預設為1)
-        /// </summary>
-        public int Qty { get; set; } = 1;
-        /// <summary>
-        /// 單據類型(01:一般出貨 02:廠退出貨)
-        /// </summary>
-        public string OrdType { get; set; }
-        /// <summary>
-        /// 出貨品號商品清單
-        /// </summary>
-        public List<ItemModel> ItemList { get; set; }
-        /// <summary>
-        /// 紙箱商品清單
-        /// </summary>
-        public List<BoxItemModel> BoxItemList { get; set; }
-        /// <summary>
-        /// 動作 01:刷讀條碼 02:數量點擊確認按鈕
-        /// </summary>
-        public string Action { get; set; }
-    }
+  #region 刷讀商品條碼
+  public class ScanItemBarcodeReq
+  {
+    /// <summary>
+    /// 物流中心編號
+    /// </summary>
+    public string DcCode { get; set; }
+    /// <summary>
+    /// 業主編號
+    /// </summary>
+    public string GupCode { get; set; }
+    /// <summary>
+    /// 貨主編號
+    /// </summary>
+    public string CustCode { get; set; }
+    /// <summary>
+    /// 出貨單號
+    /// </summary>
+    public string WmsOrdNo { get; set; }
+    /// <summary>
+    /// 批次日期
+    /// </summary>
+    public DateTime DelvDate { get; set; }
+    /// <summary>
+    /// 批次時段
+    /// </summary>
+    public string PickTime { get; set; }
+    /// <summary>
+    /// 刷讀商品條碼
+    /// </summary>
+    public string BarCode { get; set; }
+    /// <summary>
+    /// 數量(預設為1)
+    /// </summary>
+    public int Qty { get; set; } = 1;
+    /// <summary>
+    /// 單據類型(01:一般出貨 02:廠退出貨)
+    /// </summary>
+    public string OrdType { get; set; }
+    /// <summary>
+    /// 出貨品號商品清單
+    /// </summary>
+    public List<ItemModel> ItemList { get; set; }
+    /// <summary>
+    /// 紙箱商品清單
+    /// </summary>
+    public List<BoxItemModel> BoxItemList { get; set; }
+    /// <summary>
+    /// 動作 01:刷讀條碼 02:數量點擊確認按鈕
+    /// </summary>
+    public string Action { get; set; }
+    /// <summary>
+    /// 工作站編號
+    /// </summary>
+    public string WorkstationId { get; set; }
+    /// <summary>
+    /// 是否為配箱站與封箱站分開
+    /// </summary>
+    public string NoSpecReprots { get; set; }
+  }
 
-    public class ScanItemBarcodeRes
+  public class ScanItemBarcodeRes
     {
         /// <summary>
         /// 是否成功
@@ -364,7 +361,7 @@ namespace Wms3pl.Datas.Shared.Entities
         /// </summary>
         public bool IsCloseBox { get; set; }
     }
-    #endregion
+  #endregion
 
     #region 關箱處理
     public class CloseShipBoxReq
@@ -417,9 +414,13 @@ namespace Wms3pl.Datas.Shared.Entities
         /// 動作是否為加箱
         /// </summary>
         public bool IsAppendBox { get; set; }
+        /// <summary>
+        /// 是否為手動關箱
+        /// </summary>
+        public bool IsManualCloseBox { get; set; }
     }
 
-    public class CloseShipBoxRes
+  public class CloseShipBoxRes
     {
         /// <summary>
         /// 是否成功
@@ -439,40 +440,44 @@ namespace Wms3pl.Datas.Shared.Entities
         public List<ShipPackageReportModel> ReportList { get; set; }
     }
 
-    public class ShipPackageReportModel
-    {
-        /// <summary>
-        /// 箱序
-        /// </summary>
-        public Int16 PackageBoxNo { get; set; }
-        /// <summary>
-        /// 貨主單號
-        /// </summary>
-        public string CustOrdNo { get; set; }
-        /// <summary>
-        /// 報表編號
-        /// </summary>
-        public string ReportCode { get; set; }
-        /// <summary>
-        /// 報表名稱
-        /// </summary>
-        public string ReportName { get; set; }
-        /// <summary>
-        /// 報表下載檔案位置
-        /// </summary>
-        public string ReportUrl { get; set; }
-        /// <summary>
-        /// 印表機編號(1=印表機1;2=印表機2;3=快速標籤機
-        /// </summary>
-        public string PrinterNo { get; set; }
-        /// <summary>
-        /// 報表項次
-        /// </summary>
-        public int ReportSeq { get; set; }
+  public class ShipPackageReportModel
+  {
+    /// <summary>
+    /// 出貨單號
+    /// </summary>
+    public string WmsOrdNo { get; set; }
+    /// <summary>
+    /// 箱序
+    /// </summary>
+    public Int16 PackageBoxNo { get; set; }
+    /// <summary>
+    /// 貨主單號
+    /// </summary>
+    public string CustOrdNo { get; set; }
+    /// <summary>
+    /// 報表編號
+    /// </summary>
+    public string ReportCode { get; set; }
+    /// <summary>
+    /// 報表名稱
+    /// </summary>
+    public string ReportName { get; set; }
+    /// <summary>
+    /// 報表下載檔案位置
+    /// </summary>
+    public string ReportUrl { get; set; }
+    /// <summary>
+    /// 印表機編號(1=印表機1;2=印表機2;3=快速標籤機
+    /// </summary>
+    public string PrinterNo { get; set; }
+    /// <summary>
+    /// 報表項次
+    /// </summary>
+    public int ReportSeq { get; set; }
 
     public string ISPRINTED { get; set; }
     public DateTime? PRINT_TIME { get; set; }
-    }
+  }
 
   /// <summary>
   /// 系統設定的建議箱號
@@ -528,10 +533,14 @@ namespace Wms3pl.Datas.Shared.Entities
     /// <summary>
     /// 工作站編號
     /// </summary>
-    public string WorkStationId { get; set; }
-    }
+    public string WorkstationId { get; set; }
+    /// <summary>
+    /// 是否為配箱站與封箱站分開
+    /// </summary>
+    public string NoSpecReprots { get; set; }
+  }
 
-    public class UseShipContainerToBoxDetailRes
+  public class UseShipContainerToBoxDetailRes
     {
         /// <summary>
         /// 是否成功

@@ -51,7 +51,8 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 				//SetItemMTypeList();
 				//SetItemSTypeList();
 				SetReportTypeList();
-				QueryInventorySDate = DateTime.Today;
+        SetProcTypeList();
+        QueryInventorySDate = DateTime.Today;
 				QueryInventoryEDate = DateTime.Today;
 				ImportLocCode = "";
 				ImportType = ImportType.Excel;
@@ -364,9 +365,10 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 				QueryDetailItemSize = null;
 				QueryDetailItemSpec = null;
 				QueryDetailSerialNo = null;
+        SetProcTypeList();
 
 
-			}
+      }
 		}
 
 
@@ -582,15 +584,43 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 				Set(() => QueryDetailItemIsEnabled, ref _queryDetailItemIsEnabled, value);
 			}
 		}
-		#endregion
+    #endregion
+
+    #region 商品類別
+    private List<NameValuePair<string>> _itemTypeList;
+
+    public List<NameValuePair<string>> ItemTypeList
+    {
+      get { return _itemTypeList; }
+      set
+      {
+        if (_itemTypeList == value)
+          return;
+        Set(() => ItemTypeList, ref _itemTypeList, value);
+      }
+    }
+
+    private string _selectedItemType;
+
+    public string SelectedItemType
+    {
+      get { return _selectedItemType; }
+      set
+      {
+        if (_selectedItemType == value)
+          return;
+        Set(() => SelectedItemType, ref _selectedItemType, value);
+      }
+    }
+    #endregion
 
 
-		#endregion
+    #endregion
 
-		#region 新增/修改
+    #region 新增/修改
 
-		#region 盤點單主檔
-		private F140101 _addOrEditF140101;
+    #region 盤點單主檔
+    private F140101 _addOrEditF140101;
 
 		public F140101 AddOrEditF140101
 		{
@@ -1106,37 +1136,6 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 		}
 		#endregion
 
-		#region 商品類別
-		private List<NameValuePair<string>> _itemTypeList;
-
-		public List<NameValuePair<string>> ItemTypeList
-		{
-			get { return _itemTypeList; }
-			set
-			{
-				if (_itemTypeList == value)
-					return;
-				Set(() => ItemTypeList, ref _itemTypeList, value);
-			}
-		}
-
-		private string _selectedItemType;
-
-		public string SelectedItemType
-		{
-			get { return _selectedItemType; }
-			set
-			{
-				if (_selectedItemType == value)
-					return;
-				Set(() => SelectedItemType, ref _selectedItemType, value);
-			}
-		}
-
-
-		#endregion
-
-
 		#region 商品大類
 		private List<NameValuePair<string>> _itemLTypeList;
 
@@ -1181,7 +1180,7 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 		}
 
 		/// <summary>
-		/// 商品編號
+		/// 廠商編號
 		/// </summary>
 		private string _selectedVnrCode;
 		public string SelectedVnrCode
@@ -1190,10 +1189,20 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 			set { Set(() => SelectedVnrCode, ref _selectedVnrCode, value); }
 		}
 
-		/// <summary>
-		/// 廠商名稱
+    /// <summary>
+		/// 原廠商編號
 		/// </summary>
-		private string _selectedVnrName;
+		private string _selectedOriVnrCode;
+    public string SelectedOriVnrCode
+    {
+      get { return _selectedOriVnrCode; }
+      set { Set(() => SelectedOriVnrCode, ref _selectedOriVnrCode, value); }
+    }
+
+    /// <summary>
+    /// 廠商名稱
+    /// </summary>
+    private string _selectedVnrName;
 		public string SelectedVnrName
 		{
 			get { return _selectedVnrName; }
@@ -1934,17 +1943,43 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 				Set(() => CustReadOnlyFlushBack, ref _custReadOnlyFlushBack, value);
 			}
 		}
-		#endregion
+    #endregion
 
-		#endregion
+    #endregion
 
-		#endregion
+    #endregion
 
-		#endregion
+    #region 盤點階段下拉選單
+    /// <summary>
+    /// 存完整的盤點階段內容用，避免重複DB撈取
+    /// </summary>
+    private List<NameValuePair<string>> _fullProcTypeList;
 
-		#region 下拉選單資料繫結
+    private List<NameValuePair<string>> _procTypeList;
+    /// <summary>
+    /// 盤點階段下拉選單
+    /// </summary>
+    public List<NameValuePair<string>> ProcTypeList
+    {
+      get { return _procTypeList; }
+      set { Set(() => ProcTypeList, ref _procTypeList, value); }
+    }
 
-		private void SetReportTypeList()
+    private string _selectedProcType;
+    /// <summary>
+    /// 盤點階段下拉選單選中的內容
+    /// </summary>
+    public string SelectedProcType
+    { get { return _selectedProcType; }
+      set { Set(() => SelectedProcType, ref _selectedProcType, value); }
+    }
+    #endregion
+
+    #endregion
+
+    #region 下拉選單資料繫結
+
+    private void SetReportTypeList()
 		{
 			ReportTypeList = GetBaseTableService.GetF000904List(FunctionCode, "P140101", "Report");
 			if (ReportTypeList.Any())
@@ -2142,11 +2177,37 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 			if (ItemSTypeList.Any())
 				SelectedItemSType = ItemSTypeList.First().Value;
 		}
-		#endregion
 
-		#region Method
+    /// <summary>
+    /// 設定盤點階段清單內容
+    /// </summary>
+    private void SetProcTypeList()
+    {
+      if (_fullProcTypeList == null || !_fullProcTypeList.Any())
+        _fullProcTypeList = GetBaseTableService.GetF000904List(FunctionCode, "P1401010000", "PROC_TYPE");
 
-		public void SetInventoryName()
+      if (_fullProcTypeList == null || !_fullProcTypeList.Any())
+        return;
+
+      if (SelectedF140101 != null)
+      {
+        if (SelectedF140101.ISSECOND == "1")
+          ProcTypeList = _fullProcTypeList;
+        else
+          ProcTypeList = _fullProcTypeList.Where(x => x.Value == "0").ToList();
+      }
+      else
+        ProcTypeList = _fullProcTypeList;
+
+      if (ProcTypeList != null && ProcTypeList.Any())
+        SelectedProcType = ProcTypeList.First().Value;
+    }
+
+    #endregion
+
+    #region Method
+
+    public void SetInventoryName()
 		{
 
 			if (AddOrEditF140101 != null)
@@ -2411,7 +2472,8 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 					.AddQueryExOption("begLocCode", QueryDetailBegLocCode.Trim())
 					.AddQueryExOption("endLocCode", QueryDetailEndLocCode.Trim())
 					.AddQueryExOption("itemCode", ((!string.IsNullOrWhiteSpace(QueryDetailItemCode) ? QueryDetailItemCode.Trim() : "")))
-					.ToList();
+					.AddQueryExOption("procType", SelectedProcType)
+          .ToList();
 				if (!InventoryDetailItemList.Any())
 					ShowMessage(Messages.InfoNoData);
 			}
@@ -2439,13 +2501,14 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 			if ((AddOrEditF140101.INVENTORY_TYPE == "0" || AddOrEditF140101.INVENTORY_TYPE == "2") &&
 				string.IsNullOrWhiteSpace(SelectedItemType) &&
 				string.IsNullOrWhiteSpace(SelectedVnrCode) &&
-				string.IsNullOrWhiteSpace(SelectedVnrName) &&
+        string.IsNullOrWhiteSpace(SelectedOriVnrCode) &&
+        string.IsNullOrWhiteSpace(SelectedVnrName) &&
 				string.IsNullOrWhiteSpace(SelectedItemLType) &&
 				string.IsNullOrWhiteSpace(SelectedItemMType) &&
 				string.IsNullOrWhiteSpace(SelectedItemSType) &&
 				string.IsNullOrWhiteSpace(itemCode))
 			{
-				ShowWarningMessage("[類別、廠商編號、廠商名稱、大類、中類、小類、品號、商品條碼] 盤點商品篩選至少選擇或輸入一項條件");
+				ShowWarningMessage("[類別、廠商編號、原廠商編號、廠商名稱、大類、中類、小類、品號、商品條碼] 盤點商品篩選至少選擇或輸入一項條件");
 				return;
 			}
 
@@ -2459,7 +2522,8 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 				.AddQueryExOption("mType", SelectedItemMType)
 				.AddQueryExOption("sType", SelectedItemSType)
 				.AddQueryExOption("vnrCode", SelectedVnrCode)
-				.AddQueryExOption("vnrName", SelectedVnrName)
+        .AddQueryExOption("oriVnrCode", SelectedOriVnrCode)
+        .AddQueryExOption("vnrName", SelectedVnrName)
 				.AddQueryExOption("itemCode", itemCode).ToList();
 			if (!data.Any())
 			{
@@ -2762,16 +2826,17 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 				var proxyEx = GetExProxy<P14ExDataSource>();
 
 				var list = proxyEx.CreateQuery<InventoryDetailItem>("GetInventoryDetailItems")
-	.AddQueryExOption("dcCode", AddOrEditF140101.DC_CODE)
-	.AddQueryExOption("gupCode", AddOrEditF140101.GUP_CODE)
-	.AddQueryExOption("custCode", AddOrEditF140101.CUST_CODE)
-	.AddQueryExOption("inventoryNo", AddOrEditF140101.INVENTORY_NO)
-	.AddQueryExOption("wareHouseId", SelectedEditQueryDetailWareHouseId)
-	.AddQueryExOption("begLocCode", EditQueryDetailBegLocCode.Trim())
-	.AddQueryExOption("endLocCode", EditQueryDetailEndLocCode.Trim())
-	.AddQueryExOption("itemCode", ((!string.IsNullOrWhiteSpace(EditQueryItemCode) ? EditQueryItemCode.Trim() : "")))
-	.ToList();
-				if (!list.Any())
+          .AddQueryExOption("dcCode", AddOrEditF140101.DC_CODE)
+          .AddQueryExOption("gupCode", AddOrEditF140101.GUP_CODE)
+          .AddQueryExOption("custCode", AddOrEditF140101.CUST_CODE)
+          .AddQueryExOption("inventoryNo", AddOrEditF140101.INVENTORY_NO)
+          .AddQueryExOption("wareHouseId", SelectedEditQueryDetailWareHouseId)
+          .AddQueryExOption("begLocCode", EditQueryDetailBegLocCode.Trim())
+          .AddQueryExOption("endLocCode", EditQueryDetailEndLocCode.Trim())
+          .AddQueryExOption("itemCode", ((!string.IsNullOrWhiteSpace(EditQueryItemCode) ? EditQueryItemCode.Trim() : "")))
+          .AddQueryExOption("procType", "")
+          .ToList();
+        if (!list.Any())
 				{
 					EditInventoryDetailItemList = list.ToList();
 					ShowMessage(Messages.InfoNoData);
@@ -3646,7 +3711,8 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 				MTypeIsEnabled = false;
 				STypeIsEnabled = false;
 				ImportType = ImportType.Excel;
-			}
+        SelectedOriVnrCode = null;
+      }
 		}
 		#endregion Save
 
@@ -3685,10 +3751,6 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 						.AddQueryExOption("inventoryNo", SelectedF140101.INVENTORY_NO).ToList();
 					break;
 			}
-			var item = SelectedF140101;
-			SelectedF140101 = null;
-			DoSearch();
-			SelectedF140101 = F140101List.FirstOrDefault(o => o.DC_CODE == item.DC_CODE && o.GUP_CODE == item.GUP_CODE && o.CUST_CODE == item.CUST_CODE && o.INVENTORY_NO == item.INVENTORY_NO);
 			DoReportShow(printType);
 		}
 		#endregion
@@ -3725,7 +3787,8 @@ namespace Wms3pl.WpfClient.P14.ViewModel
 					.AddQueryExOption("begLocCode", QueryDetailBegLocCode.Trim())
 					.AddQueryExOption("endLocCode", QueryDetailEndLocCode.Trim())
 					.AddQueryExOption("itemCode", ((!string.IsNullOrWhiteSpace(QueryDetailItemCode) ? QueryDetailItemCode.Trim() : "")))
-					.ToList();
+					.AddQueryExOption("procType", SelectedProcType)
+          .ToList();
 				if (!results.Any())
 					ShowMessage(Messages.InfoNoData);
 			}

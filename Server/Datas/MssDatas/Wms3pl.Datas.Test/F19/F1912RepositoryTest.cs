@@ -4,6 +4,7 @@ using Wms3pl.Datas.F19;
 using Wms3pl.WebServices.DataCommon;
 using System.Diagnostics;
 using System;
+using System.Collections.Generic;
 
 namespace Wms3pl.Datas.Test
 {
@@ -222,6 +223,42 @@ namespace Wms3pl.Datas.Test
             var r = _f1912Repo.GetLocStatisticForLocControl("001", "01", "010001", "", "","");
             System.Diagnostics.Trace.Write(JsonSerializer.Serialize(r));
         }
-        
+
+    [TestMethod]
+    public void GetDatasByLocCodes()
+    {
+      #region Params
+      var dcCode = "12";
+      var gupCode = "10";
+      var custCode = "010001";
+      var locCod =new List<string>() { "A01010101", "A01010102", "A01010103", "A01010104", "A01010105", "A01010106", "A01010107", "A01010108", "A01010109", "A01010110" };
+      #endregion
+
+      var r = _f1912Repo.GetDatasByLocCodes(dcCode,gupCode,custCode,locCod);
+      System.Diagnostics.Trace.WriteLine(JsonSerializer.Serialize(r));
+
+      //var r1 = _f1912Repo.GetDatasByLocCodes0(dcCode, gupCode, custCode, locCod);
+      //System.Diagnostics.Trace.WriteLine(JsonSerializer.Serialize(r1));
+
+      //Assert.AreEqual(JsonSerializer.Serialize(r), JsonSerializer.Serialize(r1));
     }
+
+    [TestMethod]
+    public void GetDatasByLocCodes0()
+    {
+      #region Params
+      var dcCode = "12";
+      var locCod = new List<string>() { "A01010101", "A01010102", "A01010103", "A01010104", "A01010105", "A01010106", "A01010107", "A01010108", "A01010109", "A01010110" };
+      #endregion
+
+      var r = _f1912Repo.GetDatasByLocCodes(dcCode, locCod);
+      System.Diagnostics.Trace.WriteLine(JsonSerializer.Serialize(r));
+
+      //var r1 = _f1912Repo.GetDatasByLocCodes0(dcCode, locCod);
+      //System.Diagnostics.Trace.WriteLine(JsonSerializer.Serialize(r1));
+
+      //Assert.AreEqual(JsonSerializer.Serialize(r), JsonSerializer.Serialize(r1));
+    }
+
+  }
 }

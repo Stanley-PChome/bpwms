@@ -51,8 +51,9 @@ namespace Wms3pl.Datas.F19
 																new SqlParameter("@p0", dcCode),
 																new SqlParameter("@p1", gupCode),
 																new SqlParameter("@p2", custCode),
-																new SqlParameter("@p3", itemCode)
-												};
+																new SqlParameter("@p3", itemCode),
+                                new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+                        };
 
 			string sql = @"
 				SELECT A.ITEM_CODE, A.LOC_CODE, C.WAREHOUSE_ID, C.WAREHOUSE_NAME, C.WAREHOUSE_TYPE, D.TYPE_NAME, SUM(A.QTY) AS QTY, A.VALID_DATE
@@ -61,7 +62,7 @@ namespace Wms3pl.Datas.F19
 				  LEFT JOIN F1980 C ON C.DC_CODE = B.DC_CODE AND C.WAREHOUSE_ID = B.WAREHOUSE_ID
 				  LEFT JOIN F198001 D ON C.WAREHOUSE_TYPE = D.TYPE_ID
 				 WHERE A.ITEM_CODE = @p3
-			     AND A.DC_CODE = @p0 AND A.GUP_CODE = @p1 AND A.CUST_CODE = @p2 AND cast(A.VALID_DATE As Date) >= CAST(dbo.GetSysDate() As Date)
+			     AND A.DC_CODE = @p0 AND A.GUP_CODE = @p1 AND A.CUST_CODE = @p2 AND cast(A.VALID_DATE As Date) >= CAST(@p4 As Date)
            AND C.WAREHOUSE_TYPE!='T' AND C.WAREHOUSE_TYPE!='I'
 				 GROUP BY A.ITEM_CODE, A.LOC_CODE, C.WAREHOUSE_ID, C.WAREHOUSE_NAME, C.WAREHOUSE_TYPE, D.TYPE_NAME, A.VALID_DATE
 			";
@@ -78,8 +79,9 @@ namespace Wms3pl.Datas.F19
 																new SqlParameter("@p1", custCode),
 																new SqlParameter("@p2", dcCode),
 																new SqlParameter("@p3", itemCode),
-																new SqlParameter("@p4", warehouseType)
-												};
+																new SqlParameter("@p4", warehouseType),
+                                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+                        };
 
 
 			var makeNoF1913Cond = string.Empty;
@@ -95,7 +97,7 @@ namespace Wms3pl.Datas.F19
 				 Where A.LOC_CODE=B.LOC_CODE And A.DC_CODE=B.DC_CODE
 				   And B.WAREHOUSE_ID=C.WAREHOUSE_ID And B.DC_CODE=C.DC_CODE
 				   And B.WAREHOUSE_ID=D.WAREHOUSE_ID And B.DC_CODE=D.DC_CODE And B.AREA_CODE=D.AREA_CODE
-				   And A.VALID_DATE>=dbo.GetSysDate()
+				   And A.VALID_DATE>=@p5
 				   And A.GUP_CODE=@p0
 				   And A.CUST_CODE=@p1
 				   And A.DC_CODE=@p2
@@ -202,8 +204,9 @@ namespace Wms3pl.Datas.F19
 																new SqlParameter("@p0", dcCode),
 																new SqlParameter("@p1", gupCode),
 																new SqlParameter("@p2", custCode),
-																new SqlParameter("@p3", warehouseType)
-												};
+																new SqlParameter("@p3", warehouseType),
+                                new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+                        };
 
 			var sqlFilter = string.Empty;
 			if (isForIn)
@@ -226,7 +229,7 @@ namespace Wms3pl.Datas.F19
 										AND B.WAREHOUSE_ID = C.WAREHOUSE_ID
 										AND B.AREA_CODE<>'-1'
 										AND A.QTY >0
-										And A.VALID_DATE>dbo.GetSysDate()
+										And A.VALID_DATE>@p4
 										AND B.NOW_STATUS_ID<>'04'
 										AND A.DC_CODE = @p0
 										AND A.GUP_CODE = @p1
@@ -279,8 +282,9 @@ namespace Wms3pl.Datas.F19
 																new SqlParameter("@p1", custCode),
 																new SqlParameter("@p2", dcCode),
 																new SqlParameter("@p3", itemCode),
-																new SqlParameter("@p4", warehouseType)
-												};
+																new SqlParameter("@p4", warehouseType),
+                                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+                        };
 
 			var sqlFilter = string.Empty;
 			if (isForIn)
@@ -307,7 +311,7 @@ namespace Wms3pl.Datas.F19
 				          From F1913 A, F1912 B, F1980 C
 				         Where A.LOC_CODE=B.LOC_CODE And A.DC_CODE=B.DC_CODE
 				           And B.WAREHOUSE_ID=C.WAREHOUSE_ID And B.DC_CODE=C.DC_CODE
-				           And A.VALID_DATE>dbo.GetSysDate()
+				           And A.VALID_DATE>@p5
 				           And B.NOW_STATUS_ID<>'04'
 				           And A.GUP_CODE=@p0
 				           And A.CUST_CODE=@p1
@@ -372,8 +376,9 @@ namespace Wms3pl.Datas.F19
 										new SqlParameter("@p1",custCode),
 										new SqlParameter("@p2",dcCode),
 										new SqlParameter("@p3",itemCode),
-										new SqlParameter("@p4",warehouseType)
-						};
+										new SqlParameter("@p4",warehouseType),
+                    new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
 			var sqlFilter = string.Empty;
 			if (isForIn)
@@ -389,7 +394,7 @@ namespace Wms3pl.Datas.F19
 				          From F1913 A, F1912 B, F1980 C
 				         Where A.LOC_CODE=B.LOC_CODE And A.DC_CODE=B.DC_CODE
 				           And B.WAREHOUSE_ID=C.WAREHOUSE_ID And B.DC_CODE=C.DC_CODE
-				           And A.VALID_DATE > dbo.GetSysDate()
+				           And A.VALID_DATE > @p5
 				           And B.NOW_STATUS_ID<>'04'
 				           And A.GUP_CODE=@p0
 				           And A.CUST_CODE=@p1
@@ -422,7 +427,8 @@ namespace Wms3pl.Datas.F19
 								new SqlParameter("@p2",dcCode),
 								new SqlParameter("@p3",itemCode),
 								new SqlParameter("@p4",aTypeCode),
-						};
+                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
 			var sqlFilter = string.Empty;
 
@@ -447,7 +453,7 @@ namespace Wms3pl.Datas.F19
 
 			var sqlFilterValidDate = string.Empty;
 			if (!isAllowExpiredItem)
-				sqlFilterValidDate = " AND A.VALID_DATE>dbo.GetSysDate() ";
+				sqlFilterValidDate = " AND A.VALID_DATE>@p5 ";
 
 			string sql = @"
 				
@@ -514,7 +520,8 @@ namespace Wms3pl.Datas.F19
 								new SqlParameter("@p1",custCode),
 								new SqlParameter("@p2",dcCode),
 								new SqlParameter("@p3",itemCode),
-						};
+                new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
 			var sqlFilter = string.Empty;
 
@@ -539,7 +546,7 @@ namespace Wms3pl.Datas.F19
 
 			var sqlFilterValidDate = string.Empty;
 			if (!isAllowExpiredItem)
-				sqlFilterValidDate = " AND A.VALID_DATE>dbo.GetSysDate() ";
+				sqlFilterValidDate = " AND A.VALID_DATE>@p4 ";
 
 
 
@@ -650,12 +657,13 @@ namespace Wms3pl.Datas.F19
 								new SqlParameter("@p11",string.IsNullOrEmpty(serialNo)?"0":serialNo),
 								new SqlParameter("@p12",boxCtrlNo),
 								new SqlParameter("@p13",palletCtrlNo),
-								new SqlParameter("@p14",makeNo)
-						};
+								new SqlParameter("@p14",makeNo),
+                new SqlParameter("@p15", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
 
 			var sql = @" UPDATE F1913 
-                            SET QTY = @p0,UPD_STAFF = @p1 ,UPD_NAME=@p2 , UPD_DATE = dbo.GetSysDate()  
+                            SET QTY = @p0,UPD_STAFF = @p1 ,UPD_NAME=@p2 , UPD_DATE = @p15  
                             WHERE DC_CODE =@p3  
                             AND GUP_CODE =@p4 
                             AND CUST_CODE = @p5  
@@ -693,10 +701,11 @@ namespace Wms3pl.Datas.F19
 										new SqlParameter("@p11",serialNo),
 										new SqlParameter("@p12",boxCtrlNo),
 										new SqlParameter("@p13",palletCtrlNo),
-										new SqlParameter("@p14",makeNo)
-						};
+										new SqlParameter("@p14",makeNo),
+                    new SqlParameter("@p15", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
-			var sql = " UPDATE F1913 SET QTY = QTY - @p0,UPD_STAFF = @p1 ,UPD_NAME=@p2 , UPD_DATE = dbo.GetSysDate() " +
+			var sql = " UPDATE F1913 SET QTY = QTY - @p0,UPD_STAFF = @p1 ,UPD_NAME=@p2 , UPD_DATE = @p15 " +
 													"  WHERE DC_CODE =@p3 " +
 													"    AND GUP_CODE =@p4 " +
 													"    AND CUST_CODE = @p5 " +
@@ -738,23 +747,111 @@ namespace Wms3pl.Datas.F19
 		/// <returns></returns>
 		public IQueryable<ItemLocPriorityInfo> GetItemResupplyLocPriorityInfo(string dcCode, string gupCode, string custCode, List<string> itemCodes, bool isForIn, string warehouseType = "", string targetWarehouseId = "", string wareHouseTmpr = "")
 		{
-			return GetItemLocPriorityInfo(dcCode, gupCode, custCode, itemCodes, false, isForIn, warehouseType, targetWarehouseId, wareHouseTmpr);
-		}
+      //return GetItemLocPriorityInfo(dcCode, gupCode, custCode, itemCodes, false, isForIn, warehouseType, targetWarehouseId, wareHouseTmpr);
+      return GetItemLocPriorityInfo_Resupply(dcCode, gupCode, custCode, itemCodes, false, isForIn, warehouseType, targetWarehouseId, wareHouseTmpr);
+    }
 
-		private IQueryable<ItemLocPriorityInfo> GetItemLocPriorityInfo(string dcCode, string gupCode, string custCode, List<string> itemCodes, bool isPickLoc, bool isForIn, string warehouseType = "", string targetWarehouseId = "", string wareHouseTmpr = "")
+
+    private IQueryable<ItemLocPriorityInfo> GetItemLocPriorityInfo_Resupply(string dcCode, string gupCode, string custCode, List<string> itemCodes, bool isPickLoc, bool isForIn, string warehouseType = "", string targetWarehouseId = "", string wareHouseTmpr = "")
+    {
+      var parameters = new List<SqlParameter>
+      {
+          new SqlParameter("@p0",SqlDbType.VarChar){ Value = dcCode},
+          new SqlParameter("@p1",SqlDbType.VarChar){ Value = gupCode},
+          new SqlParameter("@p2",SqlDbType.VarChar){ Value = custCode},
+          new SqlParameter("@p3",SqlDbType.VarChar){ Value = custCode}
+      };
+
+      var inSql = string.Empty;
+      if (itemCodes.Count == 1)
+      {
+        inSql = string.Format(@" And A.ITEM_CODE=@p{0} ", parameters.Count);
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.VarChar) { Value = itemCodes[0] });
+      }
+   
+      string sql = @"
+			SELECT A.ITEM_CODE, A.LOC_CODE, A.VALID_DATE, A.ENTER_DATE, A.VNR_CODE,
+						 A.SERIAL_NO, A.QTY, A.GUP_CODE, A.CUST_CODE, A.DC_CODE,
+						 B.WAREHOUSE_ID, B.HOR_DISTANCE, B.FLOOR, B.USEFUL_VOLUMN, B.USED_VOLUMN,
+						 D.ATYPE_CODE, E.HANDY, C.WAREHOUSE_TYPE, C.TMPR_TYPE,  A.BOX_CTRL_NO,
+             A.PALLET_CTRL_NO, ROW_NUMBER()OVER(ORDER BY A.LOC_CODE ASC) ROWNUM, D.AREA_CODE, Case When A.MAKE_NO='' Then null Else A.MAKE_NO End MAKE_NO, C.PICK_FLOOR,
+             C.DEVICE_TYPE, null, null, C.WAREHOUSE_NAME 
+			 From F1913 A
+			 INNER JOIN F1912 B     on B.DC_CODE = A.DC_CODE and B.LOC_CODE = A.LOC_CODE
+			 INNER JOIN F1980 C     on C.DC_CODE = B.DC_CODE and C.WAREHOUSE_ID = B.WAREHOUSE_ID
+			 INNER JOIN F1919 D     on D.DC_CODE = B.DC_CODE and D.WAREHOUSE_ID = B.WAREHOUSE_ID and D.AREA_CODE = B.AREA_CODE
+			 INNER JOIN F1942 E     on B.LOC_TYPE_ID=E.LOC_TYPE_ID       
+       INNER JOIN F198001 J   on J.TYPE_ID = C.WAREHOUSE_TYPE                       
+    
+       Where        
+              A.DC_CODE=@p0
+				 And  A.GUP_CODE=@p1
+				 And  A.CUST_CODE=@p2
+			   And  B.NOW_STATUS_ID<>'04' and (J.LOC_MUSTSAME_NOWCUSTCODE = '0' or B.NOW_CUST_CODE = '0' or  B.NOW_CUST_CODE = @p3)
+         " + inSql;
+
+      // 若有填倉別 Id，就只針對該倉別 Id 做篩選
+      if (!string.IsNullOrEmpty(targetWarehouseId))
+      {
+        sql += string.Format(" And C.WAREHOUSE_ID=@p{0} ", parameters.Count);
+        //parameters.Add(targetWarehouseId);
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.VarChar) { Value = targetWarehouseId });
+      }
+      else if (!string.IsNullOrEmpty(warehouseType))
+      {
+        sql += string.Format(" And C.WAREHOUSE_TYPE=@p{0} ", parameters.Count);
+        //parameters.Add(warehouseType);
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.VarChar) { Value = warehouseType });
+      }
+
+      // 若不是報廢倉的話，則加上效期條件
+      if (!(warehouseType == "D" || (targetWarehouseId != null && targetWarehouseId.StartsWith("D"))))
+      {
+        sql += string.Format(" AND A.VALID_DATE > @p{0} ", parameters.Count);
+        //parameters.Add(DateTime.Now);
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.DateTime2) { Value = DateTime.Now });
+      }
+
+      if (isPickLoc)
+        sql += @"
+				   And (D.ATYPE_CODE='A' Or D.ATYPE_CODE='B')";
+      else
+        sql += @"
+				   And D.ATYPE_CODE='C'";
+
+      if (isForIn)
+        sql += @"
+				   And B.NOW_STATUS_ID<>'02'";
+      else
+        sql += @"
+				   And B.NOW_STATUS_ID<>'03'";
+
+      if (!string.IsNullOrEmpty(wareHouseTmpr))
+      {
+        sql += parameters.CombineSqlInParameters(" AND   C.TMPR_TYPE ", wareHouseTmpr.Split(','), SqlDbType.VarChar);
+      }
+
+      var result = SqlQuery<ItemLocPriorityInfo>(sql, parameters.ToArray()).AsQueryable();
+      return result;
+    }
+
+
+    private IQueryable<ItemLocPriorityInfo> GetItemLocPriorityInfo(string dcCode, string gupCode, string custCode, List<string> itemCodes, bool isPickLoc, bool isForIn, string warehouseType = "", string targetWarehouseId = "", string wareHouseTmpr = "")
 		{
-			var parameters = new List<object> {
-																gupCode,
-																custCode,
-																dcCode,
-																custCode
-												};
+			var parameters = new List<SqlParameter>
+      {
+          new SqlParameter("@p0",SqlDbType.VarChar){ Value = dcCode},
+          new SqlParameter("@p1",SqlDbType.VarChar){ Value = gupCode},
+          new SqlParameter("@p2",SqlDbType.VarChar){ Value = custCode},         
+          new SqlParameter("@p3",SqlDbType.VarChar){ Value = custCode}
+      };
 
 			var inSql = string.Empty;
 			if (itemCodes.Count == 1)
 			{
 				inSql = string.Format(@" And A.ITEM_CODE=@p{0} ", parameters.Count);
-				parameters.Add(itemCodes[0]);
+        //parameters.Add(itemCodes[0]);      
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.VarChar) { Value = itemCodes[0] });
 			}
 			//else
 			//{
@@ -766,54 +863,44 @@ namespace Wms3pl.Datas.F19
 			SELECT A.ITEM_CODE, A.LOC_CODE, A.VALID_DATE, A.ENTER_DATE, A.VNR_CODE,
 						 A.SERIAL_NO, A.QTY, A.GUP_CODE, A.CUST_CODE, A.DC_CODE,
 						 B.WAREHOUSE_ID, B.HOR_DISTANCE, B.FLOOR, B.USEFUL_VOLUMN, B.USED_VOLUMN,
-						 D.ATYPE_CODE, E.HANDY, C.WAREHOUSE_TYPE, C.TMPR_TYPE,
-						 A.BOX_CTRL_NO,A.PALLET_CTRL_NO, ROW_NUMBER()OVER(ORDER BY A.LOC_CODE ASC) ROWNUM,D.AREA_CODE, Case When A.MAKE_NO='' Then null Else A.MAKE_NO End MAKE_NO,
-             C.PICK_FLOOR,C.DEVICE_TYPE,L.PK_AREA,M.PK_NAME,C.WAREHOUSE_NAME 
-			  FROM F1913 A
-			 INNER JOIN F1912 B
-					ON B.DC_CODE = A.DC_CODE
-				 AND B.LOC_CODE = A.LOC_CODE
-			 INNER JOIN F1980 C
-					ON C.DC_CODE = B.DC_CODE
-				 AND C.WAREHOUSE_ID = B.WAREHOUSE_ID
-			 INNER JOIN F1919 D
-					ON D.DC_CODE = B.DC_CODE
-				 AND D.WAREHOUSE_ID = B.WAREHOUSE_ID
-				 AND D.AREA_CODE = B.AREA_CODE
-			 INNER JOIN F1942 E
-					ON B.LOC_TYPE_ID=E.LOC_TYPE_ID
-       INNER JOIN F198001 J
-          ON J.TYPE_ID = C.WAREHOUSE_TYPE
-       LEFT JOIN F19120602 L
-         ON L.DC_CODE = A.DC_CODE
-        AND L.CHK_LOC_CODE = SUBSTRING(A.LOC_CODE,1,5)
-       LEFT JOIN F191206 M
-         ON M.DC_CODE = L.DC_CODE
-        AND M.PK_AREA = L.PK_AREA
-       WHERE B.NOW_STATUS_ID<>'04'
-				 And A.GUP_CODE=@p0
-				 And A.CUST_CODE=@p1
-			   And A.DC_CODE=@p2
-         AND (J.LOC_MUSTSAME_NOWCUSTCODE = '0' OR B.NOW_CUST_CODE = '0' OR  B.NOW_CUST_CODE = @p3)
+						 D.ATYPE_CODE, E.HANDY, C.WAREHOUSE_TYPE, C.TMPR_TYPE,  A.BOX_CTRL_NO,
+             A.PALLET_CTRL_NO, ROW_NUMBER()OVER(ORDER BY A.LOC_CODE ASC) ROWNUM, D.AREA_CODE, Case When A.MAKE_NO='' Then null Else A.MAKE_NO End MAKE_NO, C.PICK_FLOOR,
+             C.DEVICE_TYPE, L.PK_AREA, M.PK_NAME, C.WAREHOUSE_NAME 
+			 From F1913 A
+			 INNER JOIN F1912 B     on B.DC_CODE = A.DC_CODE and B.LOC_CODE = A.LOC_CODE
+			 INNER JOIN F1980 C     on C.DC_CODE = B.DC_CODE and C.WAREHOUSE_ID = B.WAREHOUSE_ID
+			 INNER JOIN F1919 D     on D.DC_CODE = B.DC_CODE and D.WAREHOUSE_ID = B.WAREHOUSE_ID and D.AREA_CODE = B.AREA_CODE
+			 INNER JOIN F1942 E     on B.LOC_TYPE_ID=E.LOC_TYPE_ID       
+       INNER JOIN F198001 J   on J.TYPE_ID = C.WAREHOUSE_TYPE                       
+       LEFT JOIN F19120602 L  on L.DC_CODE = A.DC_CODE  and L.CHK_LOC_CODE = SUBSTRING(A.LOC_CODE,1,5)
+       LEFT JOIN F191206 M    on M.DC_CODE = L.DC_CODE  and M.PK_AREA = L.PK_AREA
+       Where        
+              A.DC_CODE=@p0
+				 And  A.GUP_CODE=@p1
+				 And  A.CUST_CODE=@p2
+			   And  B.NOW_STATUS_ID<>'04' and (J.LOC_MUSTSAME_NOWCUSTCODE = '0' or B.NOW_CUST_CODE = '0' or  B.NOW_CUST_CODE = @p3)
          " + inSql;
 
 			// 若有填倉別 Id，就只針對該倉別 Id 做篩選
 			if (!string.IsNullOrEmpty(targetWarehouseId))
 			{
 				sql += string.Format(" And C.WAREHOUSE_ID=@p{0} ", parameters.Count);
-				parameters.Add(targetWarehouseId);
-			}
+				//parameters.Add(targetWarehouseId);
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.VarChar) { Value = targetWarehouseId });
+      }
 			else if (!string.IsNullOrEmpty(warehouseType))
 			{
 				sql += string.Format(" And C.WAREHOUSE_TYPE=@p{0} ", parameters.Count);
-				parameters.Add(warehouseType);
-			}
+				//parameters.Add(warehouseType);
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.VarChar) { Value = warehouseType });
+      }
 
 			// 若不是報廢倉的話，則加上效期條件
 			if (!(warehouseType == "D" || (targetWarehouseId != null && targetWarehouseId.StartsWith("D"))))
 			{
         sql += string.Format(" AND A.VALID_DATE > @p{0} ", parameters.Count);
-        parameters.Add(DateTime.Now);
+        //parameters.Add(DateTime.Now);
+        parameters.Add(new SqlParameter("@p" + parameters.Count, SqlDbType.DateTime2) { Value = DateTime.Now });
       }
 
 			if (isPickLoc)
@@ -832,8 +919,8 @@ namespace Wms3pl.Datas.F19
 
 			if (!string.IsNullOrEmpty(wareHouseTmpr))
 			{
-				sql += parameters.CombineSqlInParameters(" AND   C.TMPR_TYPE ", wareHouseTmpr.Split(','));
-			}
+				sql += parameters.CombineSqlInParameters(" AND   C.TMPR_TYPE ", wareHouseTmpr.Split(','), SqlDbType.VarChar);    
+      }
 
 			var result = SqlQuery<ItemLocPriorityInfo>(sql, parameters.ToArray()).AsQueryable();
 			return result;
@@ -928,7 +1015,7 @@ namespace Wms3pl.Datas.F19
         					 else (SELECT F190301.UNIT_QTY FROM F190301  WHERE F190301.GUP_CODE = F1913.GUP_CODE AND F190301.ITEM_CODE = F1903.ITEM_CODE  AND F190301.CUST_CODE = F1913.CUST_CODE AND F190301.UNIT_LEVEL = 1 ) END
                          as UNIT
         		  FROM F1913
-        			   LEFT OUTER JOIN F1912
+        			   LEFT OUTER JOIN F1912 
         				  ON     F1913.DC_CODE = F1912.DC_CODE
         					 AND F1913.LOC_CODE = F1912.LOC_CODE
         			   LEFT OUTER JOIN F1980
@@ -1185,33 +1272,33 @@ namespace Wms3pl.Datas.F19
                     RESERVATION_QTY
             FROM (SELECT A.*,
                           ISNULL (
-                            (  SELECT SUM (F1511.B_PICK_QTY)
-                                  FROM F1511
-                                WHERE     F1511.ITEM_CODE = A.ITEM_CODE
-                                      AND F1511.DC_CODE = A.DC_CODE
-                                      AND F1511.GUP_CODE = A.GUP_CODE
-                                      AND F1511.CUST_CODE = A.CUST_CODE
-                                      AND F1511.STATUS IN ( '0', '1')
-                                      AND F1511.ORDER_NO LIKE 'P%'
-                              GROUP BY F1511.ITEM_CODE,
-                                      F1511.DC_CODE,
-                                      F1511.GUP_CODE,
-                                      F1511.CUST_CODE),
+                            (  SELECT SUM (VW_VirtualStock.B_PICK_QTY)
+                                  FROM VW_VirtualStock
+                                WHERE     VW_VirtualStock.ITEM_CODE = A.ITEM_CODE
+                                      AND VW_VirtualStock.DC_CODE = A.DC_CODE
+                                      AND VW_VirtualStock.GUP_CODE = A.GUP_CODE
+                                      AND VW_VirtualStock.CUST_CODE = A.CUST_CODE
+                                      AND VW_VirtualStock.STATUS IN ('0','1')
+                                      AND VW_VirtualStock.ORDER_NO LIKE 'P%'
+                              GROUP BY VW_VirtualStock.ITEM_CODE,
+                                      VW_VirtualStock.DC_CODE,
+                                      VW_VirtualStock.GUP_CODE,
+                                      VW_VirtualStock.CUST_CODE),
                             0)
                             PICK_SUM_QTY,
                           ISNULL (
-                            (  SELECT SUM (F1511.B_PICK_QTY)
-                                  FROM F1511
-                                WHERE     F1511.ITEM_CODE = A.ITEM_CODE
-                                      AND F1511.DC_CODE = A.DC_CODE
-                                      AND F1511.GUP_CODE = A.GUP_CODE
-                                      AND F1511.CUST_CODE = A.CUST_CODE
-                                      AND F1511.STATUS IN ('0','1')
-                                      AND F1511.ORDER_NO LIKE 'T%'
-                              GROUP BY F1511.ITEM_CODE,
-                                      F1511.DC_CODE,
-                                      F1511.GUP_CODE,
-                                      F1511.CUST_CODE),
+                            (  SELECT SUM (VW_VirtualStock.B_PICK_QTY)
+                                  FROM VW_VirtualStock
+                                WHERE     VW_VirtualStock.ITEM_CODE = A.ITEM_CODE
+                                      AND VW_VirtualStock.DC_CODE = A.DC_CODE
+                                      AND VW_VirtualStock.GUP_CODE = A.GUP_CODE
+                                      AND VW_VirtualStock.CUST_CODE = A.CUST_CODE
+                                      AND VW_VirtualStock.STATUS IN ('0','1')
+                                      AND VW_VirtualStock.ORDER_NO LIKE 'T%'
+                              GROUP BY VW_VirtualStock.ITEM_CODE,
+                                      VW_VirtualStock.DC_CODE,
+                                      VW_VirtualStock.GUP_CODE,
+                                      VW_VirtualStock.CUST_CODE),
                             0)
                             ALLOCATION_SUM_QTY,
                           ISNULL (
@@ -1226,7 +1313,47 @@ namespace Wms3pl.Datas.F19
                                       F91020501.GUP_CODE,
                                       F91020501.CUST_CODE),
                             0)
-                            PROCESS_PICK_SUM_QTY
+                            PROCESS_PICK_SUM_QTY,
+                          ISNULL (
+                            (  SELECT SUM (F151002.TAR_QTY - F151002.A_TAR_QTY)
+                                  FROM F151001
+                                  JOIN F151002
+                                     ON F151002.DC_CODE = F151001.DC_CODE
+                                    AND F151002.GUP_CODE = F151001.GUP_CODE
+                                    AND F151002.CUST_CODE = F151001.CUST_CODE
+                                    AND F151002.ALLOCATION_NO = F151001.ALLOCATION_NO
+                                WHERE     F151002.ITEM_CODE = A.ITEM_CODE
+                                      AND F151002.DC_CODE = A.DC_CODE
+                                      AND F151002.GUP_CODE = A.GUP_CODE
+                                      AND F151002.CUST_CODE = A.CUST_CODE
+                                      AND F151001.ALLOCATION_TYPE = '1'
+                                      AND F151002.STATUS = '1'
+                              GROUP BY F151002.ITEM_CODE,
+                                      F151002.DC_CODE,
+                                      F151002.GUP_CODE,
+                                      F151002.CUST_CODE),
+                            0)
+                            VIRTUAL_STOCK_QTY,
+                          ISNULL (
+                            (  SELECT SUM (F151002.TAR_QTY - F151002.A_TAR_QTY)
+                                  FROM F151001
+                                  JOIN F151002
+                                     ON F151002.DC_CODE = F151001.DC_CODE
+                                    AND F151002.GUP_CODE = F151001.GUP_CODE
+                                    AND F151002.CUST_CODE = F151001.CUST_CODE
+                                    AND F151002.ALLOCATION_NO = F151001.ALLOCATION_NO
+                                WHERE     F151002.ITEM_CODE = A.ITEM_CODE
+                                      AND F151002.DC_CODE = A.DC_CODE
+                                      AND F151002.GUP_CODE = A.GUP_CODE
+                                      AND F151002.CUST_CODE = A.CUST_CODE
+                                      AND F151001.ALLOCATION_TYPE = '6'
+                                      AND F151002.STATUS = '1'
+                              GROUP BY F151002.ITEM_CODE,
+                                      F151002.DC_CODE,
+                                      F151002.GUP_CODE,
+                                      F151002.CUST_CODE),
+                            0)
+                            A7_PRE_TAR_QTY
                     FROM (  SELECT F1913.DC_CODE,
                                     F1913.GUP_CODE,
                                     F1913.CUST_CODE,
@@ -1310,12 +1437,14 @@ namespace Wms3pl.Datas.F19
                     ) B
 					WHERE (B.QTY > 0 OR B.PICK_SUM_QTY > 0 OR B.ALLOCATION_SUM_QTY > 0 OR B.PROCESS_PICK_SUM_QTY > 0 /*OR B.LEND_QTY > 0*/)";
 
-			var paramList = new List<object>
-												{
-																gupCode,custCode, dcCode
-												};
+			var paramList = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", gupCode) {SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1", custCode) {SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2", dcCode) {SqlDbType = SqlDbType.VarChar},
+			};
 
-			var condition = paramList.CombineSqlInParameters(" AND F1912.WAREHOUSE_ID", wareHouseIds);
+			var condition = paramList.CombineSqlInParameters(" AND F1912.WAREHOUSE_ID", wareHouseIds, SqlDbType.VarChar);
 
 			if (!string.IsNullOrWhiteSpace(typeBegin) && !string.IsNullOrWhiteSpace(typeEnd))
 			{
@@ -1354,11 +1483,8 @@ namespace Wms3pl.Datas.F19
 
 			if (itemCodes.Any())
 			{
-				condition += paramList.CombineSqlInParameters(" AND F1913.ITEM_CODE", itemCodes);
+				condition += paramList.CombineSqlInParameters(" AND F1913.ITEM_CODE", itemCodes, SqlDbType.VarChar);
 			}
-
-			if (itemCodes.Any())
-				condition += paramList.CombineSqlInParameters(" AND F1913.ITEM_CODE", itemCodes);
       if (!string.IsNullOrWhiteSpace(vnrCode))
         condition += paramList.Combine(" AND F1903.VNR_CODE=@p{0}", vnrCode);
 
@@ -1590,16 +1716,27 @@ namespace Wms3pl.Datas.F19
 			return query.AsQueryable();
 		}
 
+    /// <summary>
+    /// 取得盤點前商品庫存數值 For商品抽盤、循環盤、全盤、半年盤
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="inventoryWareHouses"></param>
+    /// <param name="itemCodeList"></param>
+    /// <param name="inventoryDate"></param>
+    /// <returns></returns>
 		public IQueryable<F1913Ex> GetDatasByInventoryWareHouseList(string dcCode, string gupCode, string custCode,
-				List<InventoryWareHouse> inventoryWareHouses, List<string> itemCodeList, string inventoryType, DateTime inventoryDate)
+				List<InventoryWareHouse> inventoryWareHouses, List<string> itemCodeList, DateTime inventoryDate)
 		{
 			var param = new List<SqlParameter>
-												{
-																new SqlParameter("@p0",dcCode),
-																new SqlParameter("@p1",gupCode),
-																new SqlParameter("@p2",custCode)
-												};
-			var sql = @" SELECT  ROW_NUMBER ()OVER(ORDER BY A.LOC_CODE,A.ITEM_CODE,A.VALID_DATE,A.ENTER_DATE,A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.SERIAL_NO ,A.MAKE_NO,A.BOX_CTRL_NO,A.PALLET_CTRL_NO) ROWNUM,ISNULL(SUM(B.B_PICK_QTY),0) UNMOVE_STOCK_QTY,
+      {
+        new SqlParameter("@p0",dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar },
+
+      };
+			var sql = @" SELECT ISNULL(SUM(B.B_PICK_QTY),0) UNMOVE_STOCK_QTY,
                             A.*
                      FROM ( ";
 
@@ -1623,16 +1760,14 @@ namespace Wms3pl.Datas.F19
 					if (!string.IsNullOrEmpty(inventoryWareHouse.PLAIN_BEGIN))
 						sqlStr += " AND B.PLAIN >= '" + inventoryWareHouse.PLAIN_BEGIN + "' ";
 					if (!string.IsNullOrEmpty(inventoryWareHouse.PLAIN_END))
-						sqlStr += " AND B.PLAIN <= '" + inventoryWareHouse.PLAIN_END + "' ";
-					sqlStr += " ) ";
-					sqlList.Add(sqlStr);
-				}
-				f1912Condition += " AND ( " + string.Join(" OR ", sqlList.ToArray()) + ") ";
-			}
+            sqlStr += " AND B.PLAIN <= '" + inventoryWareHouse.PLAIN_END + "' ";
+          sqlStr += " ) ";
+          sqlList.Add(sqlStr);
+        }
+        f1912Condition += " AND ( " + string.Join(" OR ", sqlList.ToArray()) + ") ";
+      }
 
-			if (inventoryType != "2")
-			{
-				sql += $@" SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.LOC_CODE,A.ITEM_CODE,A.VALID_DATE,A.ENTER_DATE,B.WAREHOUSE_ID,A.SERIAL_NO,A.QTY,A.BOX_CTRL_NO,A.PALLET_CTRL_NO,A.MAKE_NO
+      sql += $@" SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.LOC_CODE,A.ITEM_CODE,A.VALID_DATE,A.ENTER_DATE,B.WAREHOUSE_ID,A.SERIAL_NO,A.QTY,A.BOX_CTRL_NO,A.PALLET_CTRL_NO,A.MAKE_NO
 				             FROM F1913 A
 				            INNER JOIN F1912 B
 				               ON B.DC_CODE = A.DC_CODE
@@ -1642,12 +1777,177 @@ namespace Wms3pl.Datas.F19
 				              AND A.CUST_CODE = @p2
 				              AND A.QTY >= 0 
 											{f1912Condition} ";
-			}
-			else //異動盤
-			{
-				param.Add(new SqlParameter("@p3", inventoryDate));
-				param.Add(new SqlParameter("@p4", inventoryDate.AddDays(1).AddSeconds(-1)));
-				var mainSql = @" SELECT DISTINCT M.*
+
+      var itemSql = "";
+      if (itemCodeList.Any())
+        itemSql = param.CombineSqlInParameters("AND A.ITEM_CODE", itemCodeList, SqlDbType.VarChar);
+      
+      sql += itemSql;
+      sql += " ) A ";
+      sql += @"  
+          LEFT JOIN 
+          VW_VirtualStock  B ON A.DC_CODE = B.DC_CODE 
+          AND A.GUP_CODE = B.GUP_CODE 
+          AND A.CUST_CODE = B.CUST_CODE 
+          AND A.LOC_CODE = B.LOC_CODE 
+          AND A.ITEM_CODE = B.ITEM_CODE 
+          AND A.VALID_DATE = B.VALID_DATE 
+          AND A.ENTER_DATE = B.ENTER_DATE 
+          AND A.MAKE_NO = B.MAKE_NO 
+          AND A.BOX_CTRL_NO = B.BOX_CTRL_NO 
+          AND A.PALLET_CTRL_NO = B.PALLET_CTRL_NO 
+          AND A.SERIAL_NO = B.SERIAL_NO
+          AND B.STATUS = '0' 
+        GROUP BY 
+          A.DC_CODE, 
+          A.GUP_CODE, 
+          A.CUST_CODE, 
+          A.LOC_CODE, 
+          A.ITEM_CODE, 
+          A.VALID_DATE, 
+          A.ENTER_DATE, 
+          A.WAREHOUSE_ID, 
+          A.SERIAL_NO, 
+          A.QTY, 
+          A.BOX_CTRL_NO, 
+          A.PALLET_CTRL_NO, 
+          A.MAKE_NO
+";
+
+      #region 撈出F1913沒有但虛擬庫存有的資料
+      sql += $@" 
+UNION ALL
+SELECT 
+       A.B_PICK_QTY AS UNMOVE_STOCK_QTY,
+       A.DC_CODE,
+       A.GUP_CODE,
+       A.CUST_CODE,
+       A.LOC_CODE,
+       A.ITEM_CODE,
+       A.VALID_DATE,
+       A.ENTER_DATE,
+       B.WAREHOUSE_ID,
+       A.SERIAL_NO,
+       0            AS QTY,
+       A.BOX_CTRL_NO,
+       A.PALLET_CTRL_NO,
+       A.MAKE_NO
+FROM   VW_VIRTUALSTOCK A
+       INNER JOIN F1912 B
+               ON B.DC_CODE = A.DC_CODE
+                  AND B.LOC_CODE = A.LOC_CODE
+WHERE  A.DC_CODE = @p0
+       AND A.GUP_CODE = @p1
+       AND A.CUST_CODE = @p2
+       AND A.STATUS = '0'
+       {f1912Condition}
+       {itemSql}
+       AND NOT EXISTS (SELECT TOP 1 1
+                       FROM   F1913 C
+                       WHERE  A.DC_CODE = C.DC_CODE
+                              AND A.GUP_CODE = C.GUP_CODE
+                              AND A.CUST_CODE = C.CUST_CODE
+                              AND A.LOC_CODE = C.LOC_CODE
+                              AND A.ITEM_CODE = C.ITEM_CODE
+                              AND A.VALID_DATE = C.VALID_DATE
+                              AND A.ENTER_DATE = C.ENTER_DATE
+                              AND A.MAKE_NO = C.MAKE_NO
+                              AND A.BOX_CTRL_NO = C.BOX_CTRL_NO
+                              AND A.PALLET_CTRL_NO = C.PALLET_CTRL_NO
+                              AND C.SERIAL_NO = C.SERIAL_NO) 
+";
+      #endregion
+
+      #region 產生ROWNUM
+      sql = $@"
+SELECT   ROW_NUMBER ()OVER(ORDER BY LOC_CODE,ITEM_CODE,VALID_DATE,ENTER_DATE,DC_CODE,GUP_CODE,CUST_CODE,SERIAL_NO,MAKE_NO,BOX_CTRL_NO,PALLET_CTRL_NO) ROWNUM,
+         SUM(UNMOVE_STOCK_QTY) UNMOVE_STOCK_QTY,
+         DC_CODE,
+         GUP_CODE,
+         CUST_CODE,
+         LOC_CODE,
+         ITEM_CODE,
+         VALID_DATE,
+         ENTER_DATE,
+         WAREHOUSE_ID,
+         SERIAL_NO,
+         SUM(QTY) QTY,
+         BOX_CTRL_NO,
+         PALLET_CTRL_NO,
+         MAKE_NO
+FROM ({sql}) AS RNT
+GROUP BY DC_CODE,
+         GUP_CODE,
+         CUST_CODE,
+         LOC_CODE,
+         ITEM_CODE,
+         VALID_DATE,
+         ENTER_DATE,
+         WAREHOUSE_ID,
+         SERIAL_NO,
+         BOX_CTRL_NO,
+         PALLET_CTRL_NO,
+         MAKE_NO";
+      #endregion
+
+      var result = SqlQuery<F1913Ex>(sql, param.ToArray());
+      return result;
+		}
+
+    /// <summary>
+    /// 取得盤點前商品庫存數值 For異動盤
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="inventoryWareHouses"></param>
+    /// <param name="itemCodeList"></param>
+    /// <param name="inventoryDate"></param>
+    /// <returns></returns>
+    public IQueryable<F1913Ex> GetDatasByInventoryWareHouseChangeList(string dcCode, string gupCode, string custCode,
+    List<InventoryWareHouse> inventoryWareHouses, List<string> itemCodeList, DateTime inventoryDate)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar },
+
+      };
+      var sql = @" SELECT  ROW_NUMBER ()OVER(ORDER BY A.LOC_CODE,A.ITEM_CODE,A.VALID_DATE,A.ENTER_DATE,A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.SERIAL_NO ,A.MAKE_NO,A.BOX_CTRL_NO,A.PALLET_CTRL_NO) ROWNUM,ISNULL(SUM(B.B_PICK_QTY),0) UNMOVE_STOCK_QTY,
+                            A.*
+                     FROM ( ";
+
+      var f1912Condition = string.Empty;
+      if (inventoryWareHouses.Any())
+      {
+        var sqlList = new List<string>();
+        foreach (var inventoryWareHouse in inventoryWareHouses)
+        {
+          var sqlStr = " (B.DC_CODE =@p0 AND B.WAREHOUSE_ID = '" + inventoryWareHouse.WAREHOUSE_ID + "' ";
+          if (!string.IsNullOrWhiteSpace(inventoryWareHouse.AREA_CODE))
+            sqlStr += " AND B.AREA_CODE = '" + inventoryWareHouse.AREA_CODE + "' ";
+          if (!string.IsNullOrEmpty(inventoryWareHouse.FLOOR_BEGIN))
+            sqlStr += " AND B.FLOOR >= '" + inventoryWareHouse.FLOOR_BEGIN + "' ";
+          if (!string.IsNullOrEmpty(inventoryWareHouse.FLOOR_END))
+            sqlStr += " AND B.FLOOR <= '" + inventoryWareHouse.FLOOR_END + "' ";
+          if (!string.IsNullOrEmpty(inventoryWareHouse.CHANNEL_BEGIN))
+            sqlStr += " AND B.CHANNEL >= '" + inventoryWareHouse.CHANNEL_BEGIN + "' ";
+          if (!string.IsNullOrEmpty(inventoryWareHouse.CHANNEL_END))
+            sqlStr += " AND B.CHANNEL <= '" + inventoryWareHouse.CHANNEL_END + "' ";
+          if (!string.IsNullOrEmpty(inventoryWareHouse.PLAIN_BEGIN))
+            sqlStr += " AND B.PLAIN >= '" + inventoryWareHouse.PLAIN_BEGIN + "' ";
+          if (!string.IsNullOrEmpty(inventoryWareHouse.PLAIN_END))
+            sqlStr += " AND B.PLAIN <= '" + inventoryWareHouse.PLAIN_END + "' ";
+          sqlStr += " ) ";
+          sqlList.Add(sqlStr);
+        }
+        f1912Condition += " AND ( " + string.Join(" OR ", sqlList.ToArray()) + ") ";
+      }
+
+      param.Add(new SqlParameter("@p3", inventoryDate) { SqlDbType = SqlDbType.DateTime2 });
+      param.Add(new SqlParameter("@p4", inventoryDate.AddDays(1).AddSeconds(-1)) { SqlDbType = SqlDbType.DateTime2 });
+      var mainSql = @" SELECT DISTINCT M.*
 										FROM (
 											 SELECT   A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.PICK_LOC AS LOC_CODE,A.ITEM_CODE,A.VALID_DATE,A.ENTER_DATE,A.BOX_CTRL_NO,A.PALLET_CTRL_NO,A.MAKE_NO
 														FROM F051202 A --揀貨
@@ -1659,8 +1959,8 @@ namespace Wms3pl.Datas.F19
 													 WHERE A.DC_CODE = @p0
 														 AND A.GUP_CODE =@p1
 														 AND A.CUST_CODE =@p2
-														 AND B.DELV_DATE >= CONVERT(datetime,@p3)
-														 AND B.DELV_DATE <=  CONVERT(datetime,@p4)
+														 AND B.DELV_DATE >= @p3
+														 AND B.DELV_DATE <=  @p4
 														 AND A.PICK_STATUS ='1' --揀貨完成
 										 UNION ALL
 										 SELECT B.SRC_DC_CODE AS DC_CODE,A.GUP_CODE,A.CUST_CODE,A.SRC_LOC_CODE AS LOC_CODE,A.ITEM_CODE,A.VALID_DATE,A.ENTER_DATE,A.BOX_CTRL_NO,A.PALLET_CTRL_NO,A.MAKE_NO
@@ -1673,8 +1973,8 @@ namespace Wms3pl.Datas.F19
 														WHERE A.DC_CODE =@p0
 															AND A.GUP_CODE =@p1
 															AND A.CUST_CODE =@p2
-															AND A.UPD_DATE >= CONVERT(datetime,@p3)
-															AND A.UPD_DATE <= CONVERT(datetime,@p4)
+															AND A.UPD_DATE >= @p3
+															AND A.UPD_DATE <= @p4
 															AND A.SRC_LOC_CODE <>'000000000'
 															AND A.STATUS >=1 --已下架
 										 UNION ALL
@@ -1688,8 +1988,8 @@ namespace Wms3pl.Datas.F19
 														WHERE A.DC_CODE =@p0
 															AND A.GUP_CODE =@p1
 															AND A.CUST_CODE =@p2
-															AND A.UPD_DATE >= CONVERT(datetime,@p3)
-															AND A.UPD_DATE <= CONVERT(datetime,@p4)
+															AND A.UPD_DATE >= @p3
+															AND A.UPD_DATE <= @p4
 															AND A.TAR_LOC_CODE <>'000000000'
 															AND A.STATUS =2 --已上架
 										 UNION ALL
@@ -1698,19 +1998,19 @@ namespace Wms3pl.Datas.F19
 														WHERE A.DC_CODE =@p0
 															AND A.GUP_CODE =@p1
 															AND A.CUST_CODE =@p2
-															AND A.CRT_DATE >=CONVERT(datetime,@p3)
-															AND A.CRT_DATE <= CONVERT(datetime,@p4)
+															AND A.CRT_DATE >=@p3
+															AND A.CRT_DATE <=@p4
 										 UNION ALL
 										 SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.PICK_LOC AS LOC_CODE,A.ITEM_CODE,A.VALID_DATE,A.ENTER_DATE,A.BOX_CTRL_NO,A.PALLET_CTRL_NO,A.MAKE_NO
 														 FROM F91020501 A --加工揀料單
 														WHERE A.DC_CODE =@p0
 															AND A.GUP_CODE =@p1
 															AND A.CUST_CODE =@p2
-															AND A.CRT_DATE >= CONVERT(datetime,@p3)
-															AND A.CRT_DATE <= CONVERT(datetime,@p4)
+															AND A.CRT_DATE >=@p3
+															AND A.CRT_DATE <=@p4
 										) M ";
 
-				sql += string.Format(@"
+      sql += string.Format(@"
                     SELECT A.*,B.WAREHOUSE_ID
                       FROM (
                       --取得有異動的儲位和品項但有庫存資料(不看入庫日和生效日)
@@ -1744,14 +2044,15 @@ namespace Wms3pl.Datas.F19
 											{1}
 										 WHERE 1 = 1
                ", mainSql, f1912Condition);
-			}
-			
-			if (itemCodeList.Any())
-				sql += " AND A.ITEM_CODE IN ('" + string.Join("','", itemCodeList.ToArray()) + "') ";
-			sql += " ) A ";
+
+
+      if (itemCodeList.Any())
+        sql += param.CombineSqlInParameters("AND A.ITEM_CODE", itemCodeList, SqlDbType.VarChar);
+
+      sql += " ) A ";
       sql += @"  
           LEFT JOIN 
-          F1511 B ON A.DC_CODE = B.DC_CODE 
+          VW_VirtualStock  B ON A.DC_CODE = B.DC_CODE 
           AND A.GUP_CODE = B.GUP_CODE 
           AND A.CUST_CODE = B.CUST_CODE 
           AND A.LOC_CODE = B.LOC_CODE 
@@ -1784,11 +2085,11 @@ namespace Wms3pl.Datas.F19
           A.BOX_CTRL_NO, 
           A.PALLET_CTRL_NO, 
           A.MAKE_NO";
-      var result = SqlQuery<F1913Ex>(sql, param.ToArray()).ToList();
-			return result.AsQueryable();
-		}
+      var result = SqlQuery<F1913Ex>(sql, param.ToArray());
+      return result;
+    }
 
-		public IQueryable<P710705BackWarehouseInventory> GetP710705BackWarehouseInventory(
+    public IQueryable<P710705BackWarehouseInventory> GetP710705BackWarehouseInventory(
 				string dcCode, string gupCode, string custCode, string vnrCode, string account)
 		{
 			string sql = @"
@@ -2290,7 +2591,7 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 										SELECT
 												A.DC_CODE , A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE
 												, MAX(A.DELV_DATE) LAST_DAY
-                                                , DATEDIFF(DAY,MAX(A.DELV_DATE),dbo.GetSysDate()) DIFF_7DAY
+                                                , DATEDIFF(DAY,MAX(A.DELV_DATE),@p2) DIFF_7DAY
 												, SUM(A.A_DELV_QTY) A_DELV_QTY ,
 												'符合過去7天以來，累計出貨數量大於30pcs' MEMO
 										FROM
@@ -2298,7 +2599,7 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 											SELECT
 													A.WMS_ORD_NO , A.DC_CODE , A.GUP_CODE , A.CUST_CODE , B.ITEM_CODE , C.PICK_LOC
 													, E.AREA_CODE , D.WAREHOUSE_ID  , B.A_DELV_QTY , A.DELV_DATE
-													, DATEDIFF(DAY, A.DELV_DATE,dbo.GetSysDate()) DIFF_7DAY
+													, DATEDIFF(DAY, A.DELV_DATE,@p2) DIFF_7DAY
 											FROM F050801 A
 											JOIN F050802 B ON A.DC_CODE=B.DC_CODE AND A.GUP_CODE = B.GUP_CODE AND A.CUST_CODE = B.CUST_CODE AND A.WMS_ORD_NO =B.WMS_ORD_NO
 											JOIN F051202 C ON C.WMS_ORD_NO = A.WMS_ORD_NO AND A.DC_CODE = C.DC_CODE AND A.GUP_CODE = C.GUP_CODE AND A.CUST_CODE = C.CUST_CODE AND C.ITEM_CODE = B.ITEM_CODE
@@ -2306,7 +2607,7 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 											JOIN F1919 E ON E.AREA_CODE =D.AREA_CODE AND E.WAREHOUSE_ID = D.WAREHOUSE_ID AND E.DC_CODE =A.DC_CODE AND E.ATYPE_CODE IN ('B')  --儲位類型
 											JOIN F1980 F ON F.DC_CODE= A.DC_CODE AND F.WAREHOUSE_ID = D.WAREHOUSE_ID AND F.WAREHOUSE_TYPE ='G'
 											WHERE  A.STATUS in (5,6)
-											AND DATEDIFF(DAY,A.DELV_DATE,dbo.GetSysDate()) <= @p0 --過去幾天 參數 (7 OR 14)
+											AND DATEDIFF(DAY,A.DELV_DATE,@p2) <= @p0 --過去幾天 參數 (7 OR 14)
 										)  A
 											GROUP BY A.DC_CODE , A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE
 								) F ON F.DC_CODE = A.DC_CODE AND F.GUP_CODE = A.GUP_CODE AND F.CUST_CODE = A.CUST_CODE AND F.ITEM_CODE  = A.ITEM_CODE
@@ -2328,7 +2629,7 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 										JOIN F1919 E ON E.AREA_CODE =D.AREA_CODE AND E.WAREHOUSE_ID = D.WAREHOUSE_ID AND E.DC_CODE =A.DC_CODE AND E.ATYPE_CODE IN ('B')  --儲位類型
 										JOIN F1980 F ON F.DC_CODE= A.DC_CODE AND F.WAREHOUSE_ID = D.WAREHOUSE_ID AND F.WAREHOUSE_TYPE ='G'
 										WHERE  A.STATUS in(5,6)
-											   AND DATEDIFF(DAY,A.DELV_DATE,dbo.GetSysDate()) <= @p1   --過去幾天 參數 (7 OR 14)
+											   AND DATEDIFF(DAY,A.DELV_DATE,@p2) <= @p1   --過去幾天 參數 (7 OR 14)
 									) A
 									GROUP BY
 											A.DC_CODE , A.GUP_CODE ,A.CUST_CODE , A.ITEM_CODE
@@ -2347,8 +2648,9 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 			var sqlParamers = new List<SqlParameter>();
 			sqlParamers.Add(new SqlParameter("@p0", checkDay1));
 			sqlParamers.Add(new SqlParameter("@p1", checkDay2));
+      sqlParamers.Add(new SqlParameter("@p2", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
-			var result = SqlQuery<SchF700501Data>(sql, sqlParamers.ToArray()).AsQueryable();
+      var result = SqlQuery<SchF700501Data>(sql, sqlParamers.ToArray()).AsQueryable();
 			return result;
 		}
 
@@ -2404,7 +2706,7 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
                                     -- 一搬揀貨區出貨商品記錄
                                     SELECT
                                             A.WMS_ORD_NO , A.DC_CODE , A.GUP_CODE , A.CUST_CODE , B.ITEM_CODE , C.PICK_LOC
-                                            , E.AREA_CODE , D.WAREHOUSE_ID  , B.A_DELV_QTY , A.DELV_DATE ,  CEILING(DATEDIFF(ss,A.DELV_DATE,dbo.GetSysDate())/(24*60.0*60.0)) AVERAGE
+                                            , E.AREA_CODE , D.WAREHOUSE_ID  , B.A_DELV_QTY , A.DELV_DATE ,  CEILING(DATEDIFF(ss,A.DELV_DATE,@p1)/(24*60.0*60.0)) AVERAGE
                                     FROM F050801 A
                                     JOIN F050802 B ON A.DC_CODE=B.DC_CODE AND A.GUP_CODE = B.GUP_CODE AND A.CUST_CODE = B.CUST_CODE AND A.WMS_ORD_NO =B.WMS_ORD_NO
                                     JOIN F051202 C ON C.WMS_ORD_NO = A.WMS_ORD_NO AND A.DC_CODE = C.DC_CODE AND A.GUP_CODE = C.GUP_CODE AND A.CUST_CODE = C.CUST_CODE AND C.ITEM_CODE = B.ITEM_CODE
@@ -2412,7 +2714,7 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
                                     JOIN F1919 E ON E.AREA_CODE =D.AREA_CODE AND E.WAREHOUSE_ID = D.WAREHOUSE_ID AND E.DC_CODE =A.DC_CODE AND E.ATYPE_CODE IN ('A')  --儲位類型
                                     JOIN F1980 F ON F.DC_CODE= A.DC_CODE AND F.WAREHOUSE_ID = D.WAREHOUSE_ID AND F.WAREHOUSE_TYPE ='G'
                                     WHERE  A.STATUS in (5,6)
-                                    AND CEILING(DATEDIFF(ss,A.DELV_DATE,dbo.GetSysDate())/(24*60.0*60.0)) <= @p0  --過去x個月以來，平均出貨間隔天數<=3天  ex:三個月 = 90
+                                    AND CEILING(DATEDIFF(ss,A.DELV_DATE,@p1)/(24*60.0*60.0)) <= @p0  --過去x個月以來，平均出貨間隔天數<=3天  ex:三個月 = 90
                                 ) A
                                 GROUP BY  A.DC_CODE , A.GUP_CODE , A.CUST_CODE , A.ITEM_CODE , A.DELV_DATE
                             ) B ON A.DC_CODE =B.DC_CODE AND A.GUP_CODE =B.GUP_CODE AND A.CUST_CODE = B.CUST_CODE
@@ -2424,8 +2726,9 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 
 			var sqlParamers = new List<SqlParameter>();
 			sqlParamers.Add(new SqlParameter("@p0", baseDay));
+      sqlParamers.Add(new SqlParameter("@p1", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
-			var result = SqlQuery<SchF700501Data>(sql, sqlParamers.ToArray()).AsQueryable();
+      var result = SqlQuery<SchF700501Data>(sql, sqlParamers.ToArray()).AsQueryable();
 			return result;
 		}
 
@@ -2465,7 +2768,7 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 								JOIN F1919 E ON E.AREA_CODE =D.AREA_CODE AND E.WAREHOUSE_ID = D.WAREHOUSE_ID AND E.DC_CODE =A.DC_CODE AND E.ATYPE_CODE IN ('A','B')  --儲位類型
 								JOIN F1980 F ON F.DC_CODE= A.DC_CODE AND F.WAREHOUSE_ID = D.WAREHOUSE_ID AND F.WAREHOUSE_TYPE ='G'
 								WHERE  A.STATUS in (5,6)
-								AND ceiling(datediff(ss,A.DELV_DATE,dbo.GetSysDate())/(24*60.0*60.0)) -1 <= @p0 --過去幾天
+								AND ceiling(datediff(ss,A.DELV_DATE,@p1)/(24*60.0*60.0)) -1 <= @p0 --過去幾天
 						   ) B ON B.DC_CODE = A.DC_CODE AND B.GUP_CODE = A.GUP_CODE AND B.CUST_CODE = A.CUST_CODE AND B.ITEM_CODE  = A.ITEM_CODE
 						JOIN F1901 DC ON DC.DC_CODE =A.DC_CODE
 						JOIN F1929 GUP ON GUP.GUP_CODE = A.GUP_CODE
@@ -2477,8 +2780,9 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 
 			var sqlParamers = new List<SqlParameter>();
 			sqlParamers.Add(new SqlParameter("@p0", baseDay));
+      sqlParamers.Add(new SqlParameter("@p1", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
-			var result = SqlQuery<SchF700501Data>(sql, sqlParamers.ToArray()).AsQueryable();
+      var result = SqlQuery<SchF700501Data>(sql, sqlParamers.ToArray()).AsQueryable();
 			return result;
 		}
 
@@ -2638,15 +2942,16 @@ GROUP BY F1913.GUP_CODE,F1929.GUP_NAME,F1913.CUST_CODE,F1909.CUST_NAME,F1912.WAR
 								new SqlParameter("@p1", userId),
 								new SqlParameter("@p2", userName),
 								new SqlParameter("@p3", gupCode),
-								new SqlParameter("@p4", custCode)
-						};
+								new SqlParameter("@p4", custCode),
+                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 
 			var sql = @"
 UPDATE F1913
    SET VALID_DATE = @p0,
        UPD_STAFF = @p1,
        UPD_NAME = @p2,
-       UPD_DATE = dbo.GetSysDate()
+       UPD_DATE = @p5
  WHERE GUP_CODE = @p3 AND CUST_CODE = @p4
   AND SERIAL_NO IN ({0})
 ";
@@ -2665,7 +2970,8 @@ UPDATE F1913
                 new SqlParameter("@p2", string.IsNullOrWhiteSpace(userName) ? (object)DBNull.Value : userName),
                 new SqlParameter("@p3", gupCode),
                 new SqlParameter("@p4", custCode),
-                new SqlParameter("@p5", oldSerialNo)
+                new SqlParameter("@p5", oldSerialNo),
+                new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
 			var sql = @"
@@ -2673,7 +2979,7 @@ UPDATE F1913
    SET SERIAL_NO = @p0,
        UPD_STAFF = @p1,
        UPD_NAME = @p2,
-       UPD_DATE = dbo.GetSysDate()
+       UPD_DATE = @p6
  WHERE GUP_CODE = @p3 AND CUST_CODE = @p4
   AND SERIAL_NO = @p5
 ";
@@ -2919,10 +3225,10 @@ UPDATE F1913
 			{
 				//是否允許過期商品調撥
 				if (!isAllowExpiredItem)
-					filterSql += " AND A.VALID_DATE>dbo.GetSysDate() ";
-			}
+          filterSql += param.CombineNotNullOrEmpty(" AND A.VALID_DATE> @p{0} ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+      }
 
-			else
+      else
 				filterSql += param.CombineSqlInParameters(" AND A.VALID_DATE ", validDates);
 
 			if (enterDates != null && enterDates.Any())
@@ -3018,15 +3324,18 @@ UPDATE F1913
 																new SqlParameter("@p12",f1913s.VALID_DATE.ToString("yyyy/MM/dd")),
 																new SqlParameter("@p13",string.IsNullOrEmpty(f1913s.SERIAL_NO) ? "0" :f1913s.SERIAL_NO),
 																new SqlParameter("@p14",string.IsNullOrEmpty(f1913s.MAKE_NO) ? "0" :f1913s.MAKE_NO),
-                                                                new SqlParameter("@p15",NewQty)
-                                                };
+                                new SqlParameter("@p15",NewQty),
+                                new SqlParameter("@p16", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+                        };
+
 			var sql = " UPDATE F1913 " +
-											" SET VALID_DATE  = CONVERT(datetime, @p0 ),MAKE_NO= @p1, QTY=@p15,UPD_DATE = dbo.GetSysDate(),UPD_STAFF = @p2, UPD_NAME = @p3 " +
+                      " SET VALID_DATE  = CONVERT(datetime, @p0 ),MAKE_NO= @p1, QTY=@p15,UPD_DATE = @p16,UPD_STAFF = @p2, UPD_NAME = @p3 " +
 											" WHERE LOC_CODE = @p4 AND ITEM_CODE = @p5 " +
 											" AND DC_CODE = @p6 AND GUP_CODE =@p7 " +
 											" AND CUST_CODE = @p8 AND BOX_CTRL_NO = @p9 " +
 											" AND PALLET_CTRL_NO =@p10 AND ENTER_DATE = CONVERT(datetime,@p11)  " +
 											" AND VALID_DATE = CONVERT(datetime, @p12) AND SERIAL_NO = @p13  AND MAKE_NO = @p14 ";
+
 			ExecuteSqlCommand(sql, parameters.ToArray());
 		}
 
@@ -3289,35 +3598,36 @@ UPDATE F1913
 										new SqlParameter("@p0",SqlDbType.BigInt){ Value = changeQty },
 										new SqlParameter("@p1",SqlDbType.VarChar){Value = Current.Staff },
 										new SqlParameter("@p2",SqlDbType.NVarChar){Value = Current.StaffName },
-										new SqlParameter("@p3", SqlDbType.VarChar){Value = dcCode },
-										new SqlParameter("@p4", SqlDbType.VarChar){Value = gupCode },
-										new SqlParameter("@p5", SqlDbType.VarChar) {Value = custCode },
-										new SqlParameter("@p6", SqlDbType.VarChar){ Value = itemCode },
-										new SqlParameter("@p7", SqlDbType.VarChar) {Value  = locCode },
-										new SqlParameter("@p8", SqlDbType.DateTime2){Value = validDate },
-										new SqlParameter("@p9",SqlDbType.DateTime2){Value = enterDate },
-										new SqlParameter("@p10",SqlDbType.VarChar){Value = vnrCode },
-										new SqlParameter("@p11",SqlDbType.VarChar){Value = serialNo },
-										new SqlParameter("@p12",SqlDbType.VarChar){Value = boxCtrlNo },
-										new SqlParameter("@p13",SqlDbType.VarChar){Value = palletCtrlNo },
-										new SqlParameter("@p14",SqlDbType.VarChar){ Value = makeNo }
+										new SqlParameter("@p3",SqlDbType.DateTime2){Value = DateTime.Now },
+										new SqlParameter("@p4", SqlDbType.VarChar){Value = dcCode },
+										new SqlParameter("@p5", SqlDbType.VarChar){Value = gupCode },
+										new SqlParameter("@p6", SqlDbType.VarChar) {Value = custCode },
+										new SqlParameter("@p7", SqlDbType.VarChar){ Value = itemCode },
+										new SqlParameter("@p8", SqlDbType.VarChar) {Value  = locCode },
+										new SqlParameter("@p9", SqlDbType.DateTime2){Value = validDate },
+										new SqlParameter("@p10",SqlDbType.DateTime2){Value = enterDate },
+										new SqlParameter("@p11",SqlDbType.VarChar){Value = vnrCode },
+										new SqlParameter("@p12",SqlDbType.VarChar){Value = serialNo },
+										new SqlParameter("@p13",SqlDbType.VarChar){Value = boxCtrlNo },
+										new SqlParameter("@p14",SqlDbType.VarChar){Value = palletCtrlNo },
+										new SqlParameter("@p15",SqlDbType.VarChar){ Value = makeNo }
 						};
 
-			var sql = " UPDATE F1913 SET QTY = QTY + @p0,UPD_STAFF = @p1 ,UPD_NAME=@p2 , UPD_DATE = dbo.GetSysDate() " +
-													"  WHERE DC_CODE =@p3 " +
-													"    AND GUP_CODE =@p4 " +
-													"    AND CUST_CODE = @p5 " +
-													"    AND ITEM_CODE = @p6 " +
-													"    AND LOC_CODE = @p7 " +
-													"    AND VALID_DATE = @p8 " +
-													"    AND ENTER_DATE = @p9 " +
-													"    AND VNR_CODE = @p10 " +
-													"    AND SERIAL_NO = @p11 " +
-													"    AND BOX_CTRL_NO =@p12 " +
-													"    AND PALLET_CTRL_NO =@p13 " +
-													"    AND MAKE_NO =@p14 ";
+			var sql = " UPDATE F1913 SET QTY = QTY + @p0,UPD_STAFF = @p1 ,UPD_NAME=@p2 , UPD_DATE = @p3 " +
+													"  WHERE DC_CODE =@p4 " +
+													"    AND GUP_CODE =@p5 " +
+													"    AND CUST_CODE = @p6 " +
+													"    AND ITEM_CODE = @p7 " +
+													"    AND LOC_CODE = @p8 " +
+													"    AND VALID_DATE = @p9 " +
+													"    AND ENTER_DATE = @p10 " +
+													"    AND VNR_CODE = @p11 " +
+													"    AND SERIAL_NO = @p12 " +
+													"    AND BOX_CTRL_NO =@p13 " +
+													"    AND PALLET_CTRL_NO =@p14 " +
+													"    AND MAKE_NO =@p15 ";
 
-			ExecuteSqlCommand(sql, parameters.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parameters.ToArray());
 		}
 
 		public void UpdateF1913ByP2501030000(F2501WcfData data)
@@ -3331,15 +3641,16 @@ UPDATE F1913
 				new SqlParameter("@p4", data.DC_CODE),
 				new SqlParameter("@p5", data.GUP_CODE),
 				new SqlParameter("@p6", data.CUST_CODE),
-				new SqlParameter("@p7", data.SERIAL_NO)
-			};
+				new SqlParameter("@p7", data.SERIAL_NO),
+        new SqlParameter("@p8", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 
 			var sqlTmp = string.Empty;
 
 			if (data.IsChangeItemCode)
 			{
-				sqlTmp = " , ITEM_CODE = @p8 ";
-				parameters.Add(new SqlParameter("@p8", data.ITEM_CODE));
+				sqlTmp = " , ITEM_CODE = @p9 ";
+				parameters.Add(new SqlParameter("@p9", data.ITEM_CODE));
 			}
 
 			var sql = $@"
@@ -3347,7 +3658,7 @@ UPDATE F1913
 									   SET VALID_DATE = @p0,
 									       UPD_STAFF = @p1,
 									       UPD_NAME = @p2,
-									       UPD_DATE = dbo.GetSysDate(),
+									       UPD_DATE = @p8,
 												 LOC_CODE = @p3 
 									{sqlTmp}
 									 WHERE DC_CODE = @p4
@@ -3397,25 +3708,32 @@ UPDATE F1913
 
     
 
-        public IQueryable<ReplensihModel> GetReplensihData(string dcCode, string gupCode, string custCode, string itemCode, string makeNo)
+        public IQueryable<ReplensihModel> GetReplensihData(string dcCode, string gupCode, string custCode, string itemCode, string makeNo, string serialNo)
         {
             var parms = new List<SqlParameter>
             {
                 new SqlParameter("@p0", dcCode),
                 new SqlParameter("@p1", gupCode),
                 new SqlParameter("@p2", custCode),
-                new SqlParameter("@p3", itemCode)
+                new SqlParameter("@p3", itemCode),
+                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             var inSql = string.Empty;
-            if (!string.IsNullOrWhiteSpace(makeNo))
-            {
-                parms.Add(new SqlParameter("@p4", makeNo));
-                inSql = " AND A.MAKE_NO = @p4 ";
-            }
-            var sql = $@" SELECT 
+			if (!string.IsNullOrWhiteSpace(serialNo))
+			{
+				inSql += string.Format(" AND A.SERIAL_NO = @p{0} ", parms.Count);
+				parms.Add(new SqlParameter(string.Format("@p{0}", parms.Count), serialNo));
+			}
+			else if (!string.IsNullOrWhiteSpace(makeNo))
+			{
+                inSql += string.Format(" AND A.MAKE_NO = @p{0} ", parms.Count);
+				parms.Add(new SqlParameter(string.Format("@p{0}", parms.Count), makeNo));
+			}
+			var sql = $@" SELECT 
 						 A.ITEM_CODE ItemCode, 
 						 A.MAKE_NO MakeNo, 
+						 A.SERIAL_NO SerialNo, 
 						 SUM(A.QTY) ReplensihQty 
 								FROM 
 								(
@@ -3424,16 +3742,16 @@ UPDATE F1913
 									JOIN F1912 B ON A.LOC_CODE =B.LOC_CODE AND A.DC_CODE =B.DC_CODE
 									JOIN F1919 C ON C.AREA_CODE =B.AREA_CODE AND C.WAREHOUSE_ID = B.WAREHOUSE_ID AND C.DC_CODE =A.DC_CODE AND C.ATYPE_CODE IN ('C')        
 									JOIN F1980 E ON E.DC_CODE= A.DC_CODE AND E.WAREHOUSE_ID = B.WAREHOUSE_ID AND E.WAREHOUSE_TYPE ='G'
-									WHERE dbo.GetSysDate() >= A.ENTER_DATE 
-									AND dbo.GetSysDate() <= A.VALID_DATE 
+									WHERE @p5 >= A.ENTER_DATE 
+									AND @p5 <= A.VALID_DATE 
 									AND B.NOW_STATUS_ID IN ('01', '02')
 									AND A.DC_CODE = @p0
 									AND A.GUP_CODE = @p1
 									AND A.CUST_CODE = @p2
                                     AND A.ITEM_CODE = @p3
                                     { inSql }
-								) A GROUP BY A.ITEM_CODE, A.MAKE_NO
-								ORDER BY A.ITEM_CODE, A.MAKE_NO
+								) A GROUP BY A.ITEM_CODE, A.MAKE_NO, A.SERIAL_NO
+								ORDER BY A.ITEM_CODE, A.MAKE_NO, A.SERIAL_NO
                       ";
             return SqlQuery<ReplensihModel>(sql, parms.ToArray());
         }
@@ -3629,8 +3947,9 @@ WHERE
 			// 若不是報廢倉的話，則加上效期條件
 			if (!(warehouseType == "D" || (targetWarehouseId != null && targetWarehouseId.StartsWith("D"))))
 			{
-				filterSql += " AND A.VALID_DATE > dbo.GetSysDate() ";
-			}
+        filterSql += string.Format(" AND A.VALID_DATE > @p{0} ", parameters.Count);
+        parameters.Add(DateTime.Now);
+      }
 
 			if (isPickLoc)
 				filterSql += @"
@@ -3694,6 +4013,7 @@ WHERE
                         A.CUST_CODE, 
                         A.ITEM_CODE, 
                         A.MAKE_NO, 
+                        A.SERIAL_NO, 
                         C.ATYPE_CODE, 
                         SUM(A.QTY) QTY
                         FROM F1913 A 
@@ -3703,7 +4023,7 @@ WHERE
                         AND A.GUP_CODE = @p1
                         AND A.CUST_CODE = @p2
                         AND A.ITEM_CODE IN ({0})
-                        AND A.VALID_DATE > dbo.GetSysDate()
+                        AND A.VALID_DATE > @p3
                         AND B.NOW_STATUS_ID NOT IN ('03','04')
 						            AND B.WAREHOUSE_ID LIKE 'G%'
                         GROUP BY A.DC_CODE, A.GUP_CODE, A.CUST_CODE, A.ITEM_CODE, A.MAKE_NO, C.ATYPE_CODE";
@@ -3719,6 +4039,7 @@ WHERE
                     new SqlParameter("@p0", SqlDbType.VarChar) {Value = dcCode},
                     new SqlParameter("@p1", SqlDbType.VarChar) {Value = gupCode},
                     new SqlParameter("@p2", SqlDbType.VarChar) {Value = custCode},
+                    new SqlParameter("@p3", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
                 };
 
                 foreach (var item in list)
@@ -3798,5 +4119,282 @@ WHERE A.DC_CODE = @p0
       return result.AsQueryable();
 
     }
-  }
+
+		public F1913 FindDataByKey(string dcCode, string gupCode, string custCode, string itemCode, string locCode, DateTime validDate, DateTime enterDate, string vnrCode, string serialNo, string boxCtrlNo, string palletCtrlNo, string makeNo)
+		{
+			var param = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p3",itemCode){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p4",locCode){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p5",validDate){SqlDbType=SqlDbType.DateTime2},
+				new SqlParameter("@p6",enterDate){SqlDbType=SqlDbType.DateTime2},
+				new SqlParameter("@p7",serialNo){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p8",boxCtrlNo){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p9",palletCtrlNo){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p10",makeNo){SqlDbType=SqlDbType.VarChar},
+				new SqlParameter("@p11",vnrCode){SqlDbType=SqlDbType.VarChar},
+			};
+
+			var sql = @" SELECT TOP (1) *
+                    FROM F1913 
+                  WHERE DC_CODE = @p0
+                    AND GUP_CODE = @p1
+                    AND CUST_CODE = @p2
+                    AND ITEM_CODE = @p3
+                    AND LOC_CODE = @p4
+                    AND VALID_DATE = @p5
+                    AND ENTER_DATE = @p6
+                    AND SERIAL_NO = @p7
+                    AND BOX_CTRL_NO = @p8
+                    AND PALLET_CTRL_NO = @p9
+                    AND MAKE_NO = @p10 
+                    AND VNR_CODE = @p11 ";
+
+			return SqlQuery<F1913>(sql, param.ToArray()).FirstOrDefault();
+		}
+
+    public IQueryable<StockDataByInventory> GetStockQtyByInventory(string dcCode, string gupCode, string custCode, string warehouseId, StockDataByInventoryParam param)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)           { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)          { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode)         { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", warehouseId)      { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", param.ITEM_CODE)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p5", param.VALID_DATE) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p6", param.MAKE_NO)    { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p7", param.LOC_CODE)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p8", param.ENTER_DATE) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p9", param.BOX_CTRL_NO){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p10", param.PALLET_CTRL_NO){ SqlDbType = SqlDbType.VarChar },
+
+      };
+
+      var sql = @"
+SELECT 
+  ITEM_CODE, 
+  VALID_DATE, 
+  MAKE_NO, 
+  LOC_CODE, 
+  ENTER_DATE, 
+  BOX_CTRL_NO, 
+  PALLET_CTRL_NO, 
+  SUM(QTY) AS QTY, 
+  SUM(UNMOVE_STOCK_QTY) AS UNMOVE_STOCK_QTY 
+FROM 
+  (
+    SELECT 
+      A.ITEM_CODE, 
+      A.VALID_DATE, 
+      A.MAKE_NO, 
+      A.LOC_CODE, 
+      A.ENTER_DATE, 
+      A.BOX_CTRL_NO, 
+      A.PALLET_CTRL_NO, 
+      A.QTY, 
+      0 AS UNMOVE_STOCK_QTY 
+    FROM 
+      F1913 A 
+      INNER JOIN(
+        SELECT 
+          DC_CODE, 
+          LOC_CODE 
+        FROM 
+          F1912 
+        WHERE 
+          DC_CODE = @p0 
+          AND GUP_CODE = @p1 
+          AND CUST_CODE = @p2 
+          AND WAREHOUSE_ID = @p3
+      ) B ON A.DC_CODE = B.DC_CODE 
+      AND A.LOC_CODE = B.LOC_CODE 
+    WHERE 
+      A.DC_CODE = @p0 
+      AND A.GUP_CODE = @p1 
+      AND A.CUST_CODE = @p2 
+      AND A.ITEM_CODE = @p4 
+      AND A.VALID_DATE = @p5 
+      AND A.MAKE_NO = @p6 
+      AND A.LOC_CODE = @p7 
+      AND A.ENTER_DATE = @p8 
+      AND A.BOX_CTRL_NO = @p9 
+      AND A.PALLET_CTRL_NO = @p10 
+    UNION ALL 
+    SELECT 
+      A.ITEM_CODE, 
+      A.VALID_DATE, 
+      A.MAKE_NO, 
+      A.LOC_CODE, 
+      A.ENTER_DATE, 
+      A.BOX_CTRL_NO, 
+      A.PALLET_CTRL_NO, 
+      0 AS QTY, 
+      A.B_PICK_QTY AS UNMOVE_STOCK_QTY 
+    FROM 
+      VW_VirtualStock A 
+      INNER JOIN(
+        SELECT 
+          DC_CODE, 
+          LOC_CODE 
+        FROM 
+          F1912 
+        WHERE 
+          DC_CODE = @p0 
+          AND GUP_CODE = @p1 
+          AND CUST_CODE = @p2 
+          AND WAREHOUSE_ID = @p3
+      ) B ON A.DC_CODE = B.DC_CODE 
+      AND A.LOC_CODE = B.LOC_CODE 
+    WHERE 
+      A.DC_CODE = @p0 
+      AND A.GUP_CODE = @p1 
+      AND A.CUST_CODE = @p2 
+      AND A.ITEM_CODE = @p4 
+      AND A.VALID_DATE = @p5 
+      AND A.MAKE_NO = @p6 
+      AND A.LOC_CODE = @p7 
+      AND A.ENTER_DATE = @p8 
+      AND A.BOX_CTRL_NO = @p9 
+      AND A.PALLET_CTRL_NO = @p10
+      AND A.STATUS='0'
+  ) U 
+GROUP BY 
+  ITEM_CODE, 
+  VALID_DATE, 
+  MAKE_NO, 
+  LOC_CODE, 
+  ENTER_DATE, 
+  BOX_CTRL_NO, 
+  PALLET_CTRL_NO
+";
+
+      return SqlQuery<StockDataByInventory>(sql, para.ToArray());
+      /*
+      var f1912s = _db.F1912s.AsNoTracking().Where(x => x.DC_CODE == dcCode &&
+                    x.GUP_CODE == gupCode &&
+                    x.CUST_CODE == custCode &&
+                    x.WAREHOUSE_ID == warehouseId);
+
+      var locCodes = f1912s.Select(z => z.LOC_CODE);
+
+      #region 實際庫存數
+      var f1913s = _db.F1913s.AsNoTracking().Where(x =>
+      x.DC_CODE == dcCode &&
+      x.GUP_CODE == gupCode &&
+      x.CUST_CODE == custCode &&
+      locCodes.Contains(x.LOC_CODE) &&
+      param.Any(z =>
+      z.ITEM_CODE == x.ITEM_CODE &&
+      z.VALID_DATE == x.VALID_DATE &&
+      z.MAKE_NO == x.MAKE_NO &&
+            z.LOC_CODE == x.LOC_CODE &&
+            z.ENTER_DATE == x.ENTER_DATE &&
+            z.BOX_CTRL_NO == x.BOX_CTRL_NO &&
+            z.PALLET_CTRL_NO == x.PALLET_CTRL_NO));
+
+      var stockDatas = f1913s.GroupBy(x => new StockDataByInventoryParam
+      {
+        ITEM_CODE = x.ITEM_CODE,
+        VALID_DATE = Convert.ToDateTime(x.VALID_DATE),
+        MAKE_NO = x.MAKE_NO,
+        LOC_CODE = x.LOC_CODE,
+        ENTER_DATE = x.ENTER_DATE,
+        BOX_CTRL_NO = x.BOX_CTRL_NO,
+        PALLET_CTRL_NO = x.PALLET_CTRL_NO
+      })
+      .Select(x => new StockDataByInventory
+      {
+        ITEM_CODE = x.Key.ITEM_CODE,
+        VALID_DATE = x.Key.VALID_DATE,
+        MAKE_NO = x.Key.MAKE_NO,
+        LOC_CODE = x.Key.LOC_CODE,
+        ENTER_DATE = x.Key.ENTER_DATE,
+        BOX_CTRL_NO = x.Key.BOX_CTRL_NO,
+        PALLET_CTRL_NO = x.Key.PALLET_CTRL_NO,
+        QTY = Convert.ToInt32(x.Sum(z => z.QTY))
+      });
+      #endregion
+
+      #region 虛擬未搬動庫存數
+      var f1511s = _db.F1511s.AsNoTracking().Where(x =>
+      x.DC_CODE == dcCode &&
+      x.GUP_CODE == gupCode &&
+      x.CUST_CODE == custCode &&
+      locCodes.Contains(x.LOC_CODE) &&
+      x.STATUS == "0" &&
+      param.Any(z =>
+      z.ITEM_CODE == x.ITEM_CODE &&
+      z.VALID_DATE == x.VALID_DATE &&
+      z.MAKE_NO == x.MAKE_NO &&
+            z.LOC_CODE == x.LOC_CODE &&
+            z.ENTER_DATE == x.ENTER_DATE &&
+            z.BOX_CTRL_NO == x.BOX_CTRL_NO &&
+            z.PALLET_CTRL_NO == x.PALLET_CTRL_NO));
+
+      var virtualDatas = f1511s.GroupBy(x => new
+      {
+        x.ITEM_CODE,
+        VALID_DATE = Convert.ToDateTime(x.VALID_DATE),
+        x.MAKE_NO,
+        x.LOC_CODE,
+        x.ENTER_DATE,
+        x.BOX_CTRL_NO,
+        x.PALLET_CTRL_NO
+      }).ToList()
+      .Select(x => new StockDataByInventory
+      {
+        ITEM_CODE = x.Key.ITEM_CODE,
+        VALID_DATE = x.Key.VALID_DATE,
+        MAKE_NO = x.Key.MAKE_NO,
+        LOC_CODE = x.Key.LOC_CODE,
+        ENTER_DATE = Convert.ToDateTime(x.Key.ENTER_DATE),
+        BOX_CTRL_NO = x.Key.BOX_CTRL_NO,
+        PALLET_CTRL_NO = x.Key.PALLET_CTRL_NO,
+        QTY = x.Sum(z => z.B_PICK_QTY)
+      });
+      #endregion
+
+      var datas = from A in param
+                  join B in stockDatas
+                  on new { A.ITEM_CODE, A.VALID_DATE, A.MAKE_NO, A.LOC_CODE, A.ENTER_DATE, A.BOX_CTRL_NO, A.PALLET_CTRL_NO } equals new { B.ITEM_CODE, B.VALID_DATE, B.MAKE_NO, B.LOC_CODE, B.ENTER_DATE, B.BOX_CTRL_NO, B.PALLET_CTRL_NO } into subB
+                  from B in subB.DefaultIfEmpty()
+                  join C in virtualDatas
+                  on new { A.ITEM_CODE, A.VALID_DATE, A.MAKE_NO, A.LOC_CODE, A.ENTER_DATE, A.BOX_CTRL_NO, A.PALLET_CTRL_NO } equals new { C.ITEM_CODE, C.VALID_DATE, C.MAKE_NO, C.LOC_CODE, C.ENTER_DATE, C.BOX_CTRL_NO, C.PALLET_CTRL_NO } into subC
+                  from C in subC.DefaultIfEmpty()
+                  select new StockDataByInventory
+                  {
+                    ITEM_CODE = A.ITEM_CODE,
+                    VALID_DATE = A.VALID_DATE,
+                    MAKE_NO = A.MAKE_NO,
+                    LOC_CODE = A.LOC_CODE,
+                    ENTER_DATE = A.ENTER_DATE,
+                    BOX_CTRL_NO = A.BOX_CTRL_NO,
+                    PALLET_CTRL_NO = A.PALLET_CTRL_NO,
+                    QTY = B == null ? 0 : B.QTY,
+                    UNMOVE_STOCK_QTY = C == null ? 0 : C.QTY
+                  };
+
+      return datas.AsQueryable();
+      */
+    }
+
+		public void ExecSpStockChange(DataTable dtStockChange,string batchNo)
+		{
+			var parameters = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",SqlDbType.Structured){ Value = dtStockChange,TypeName = "dbo.UT_StockChange"},
+				new SqlParameter("@p1",SqlDbType.VarChar){Value = Current.Staff},
+				new SqlParameter("@p2",SqlDbType.NVarChar){Value = Current.StaffName},
+				new SqlParameter("@p3",SqlDbType.VarChar){Value = batchNo}
+			};
+
+			var sql = " exec SP_MergeStockChange @utSC = @p0, @execStaff= @p1,@execName =@p2,@batchNo = @p3 ";
+			ExecuteSqlCommand(sql, parameters.ToArray());
+		}
+
+	}
 }

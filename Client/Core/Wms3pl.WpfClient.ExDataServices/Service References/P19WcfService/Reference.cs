@@ -2297,6 +2297,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P19WcfService {
         
         private long ORD_SAVE_QTYk__BackingFieldField;
         
+        private string ORI_VNR_CODEk__BackingFieldField;
+        
         private long PICK_ORDk__BackingFieldField;
         
         private int PICK_SAVE_ORDk__BackingFieldField;
@@ -3319,6 +3321,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P19WcfService {
                 if ((this.ORD_SAVE_QTYk__BackingFieldField.Equals(value) != true)) {
                     this.ORD_SAVE_QTYk__BackingFieldField = value;
                     this.RaisePropertyChanged("ORD_SAVE_QTYk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORI_VNR_CODE>k__BackingField", IsRequired=true)]
+        public string ORI_VNR_CODEk__BackingField {
+            get {
+                return this.ORI_VNR_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORI_VNR_CODEk__BackingFieldField, value) != true)) {
+                    this.ORI_VNR_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORI_VNR_CODEk__BackingField");
                 }
             }
         }

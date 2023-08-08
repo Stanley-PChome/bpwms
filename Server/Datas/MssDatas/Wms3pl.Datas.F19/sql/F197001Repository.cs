@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,7 @@ namespace Wms3pl.Datas.F19
             sqlParamers.Add(new SqlParameter("@p14", f197001Data.LABEL_CODE));
             sqlParamers.Add(new SqlParameter("@p15", f197001Data.GUP_CODE));
             sqlParamers.Add(new SqlParameter("@p16", f197001Data.CUST_CODE));
+            sqlParamers.Add(new SqlParameter("@p17", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
             string sql = @"
 				update F197001 set 
@@ -49,7 +51,7 @@ namespace Wms3pl.Datas.F19
 				ITEM_DESC_C=@p10,
 				UPD_STAFF =@p11,
 				UPD_NAME = @p12,
-				UPD_DATE=dbo.GetSysDate()	
+				UPD_DATE=@p17
 				where	LABEL_SEQ =@p13  AND LABEL_CODE =@P14
 						AND GUP_CODE =@P15	AND CUST_CODE =@P16											
 			";

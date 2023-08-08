@@ -125,30 +125,8 @@ namespace Wms3pl.Datas.F00
             return result.AsEnumerable();
         }
 
-        public IQueryable<F0011> GetDatas(string dcCode, string gupCode, string custCode, List<string> orderNos)
-        {
-            return _db.F0011s.Where(x => x.DC_CODE == dcCode &&
-                                         x.GUP_CODE == gupCode &&
-                                         x.CUST_CODE == custCode &&
-                                         orderNos.Contains(x.ORDER_NO));
-        }
 
-        public IQueryable<F0011> GetDatas(string dcCode, string gupCode, string custCode, string orderNo)
-        {
-            return _db.F0011s.Where(x => x.DC_CODE == dcCode &&
-                                         x.GUP_CODE == gupCode &&
-                                         x.CUST_CODE == custCode &&
-                                         x.ORDER_NO == orderNo);
-        }
-
-		public F0011 GetDatasForNotClosed(string dcCode, string gupCode, string custCode, string orderNo)
-		{
-			return _db.F0011s.Where(x => x.DC_CODE == dcCode &&
-																	 x.GUP_CODE == gupCode &&
-																	 x.CUST_CODE == custCode &&
-																	 x.ORDER_NO == orderNo &&
-																	 x.CLOSE_DATE == null).FirstOrDefault();
-		}
+		
 	}
 }
 

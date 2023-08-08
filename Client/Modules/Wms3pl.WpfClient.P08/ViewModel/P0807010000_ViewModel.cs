@@ -127,7 +127,8 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 				_statusList = PackingService.GetStatusList(FunctionCode);
 
 				_deliveryReport = new DeliveryReportService(FunctionCode);
-				_videoServerHelper = new VideoServerHelper(); //錄影設備元件
+        _deliveryReport.OnReprintClicked += () => OnReprintClicked();
+        _videoServerHelper = new VideoServerHelper(); //錄影設備元件
 
 				#region 僅缺貨包裝使用
 				if (IsShortStockPackage)
@@ -416,21 +417,21 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 
 		#region Form Grid 序號/品號刷讀記錄(UI顯示)  刷讀記錄清單 / 選取的刷讀記錄
 
-		private ObservableCollection<SerialReadingStatus> _serialReadingLog = new ObservableCollection<SerialReadingStatus>();
+		private ObservableCollection<SearchWmsOrderScanLogRes> _serialReadingLog = new ObservableCollection<SearchWmsOrderScanLogRes>();
 		/// <summary>
 		/// 序號/品號刷讀記錄
 		/// </summary>
-		public ObservableCollection<SerialReadingStatus> SerialReadingLog
+		public ObservableCollection<SearchWmsOrderScanLogRes> SerialReadingLog
 		{
 			get { return _serialReadingLog; }
 			set { _serialReadingLog = value; RaisePropertyChanged("SerialReadingLog"); }
 		}
 
-		private SerialReadingStatus _selectedSerialReadingStatus;
+		private SearchWmsOrderScanLogRes _selectedSerialReadingStatus;
 		/// <summary>
 		/// 目前選擇的序號刷讀紀錄
 		/// </summary>
-		public SerialReadingStatus SelectedSerialReadingStatus
+		public SearchWmsOrderScanLogRes SelectedSerialReadingStatus
 		{
 			get { return _selectedSerialReadingStatus; }
 			set
@@ -969,7 +970,12 @@ namespace Wms3pl.WpfClient.P08.ViewModel
       }
       //重新取得資料庫的出貨單資料，避免前端暫存的資料是舊的
       var ReGetF050801 = proxyF05.F050801s.Where(x => x.DC_CODE == F050801Data.DC_CODE && x.GUP_CODE == F050801Data.GUP_CODE && x.CUST_CODE == F050801Data.CUST_CODE && x.WMS_ORD_NO == F050801Data.WMS_ORD_NO).First();
-      if (ReGetF050801.STATUS == 5)
+      if (ReGetF050801.STATUS == 5)  //5	單據狀態	已出貨
+      {
+        ShowWarningMessage("該出貨單已出貨，不可取消包裝");
+        return false;
+      }
+      else if (ReGetF050801.STATUS == 6)  //6	單據狀態	已扣帳
       {
         ShowWarningMessage("該出貨單已經扣帳完成，不可取消包裝");
         return false;
@@ -1072,14 +1078,12 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 						_isTicketNoVerified = DoSearchTicket();
 						if (_isTicketNoVerified && o != null)
 						{
-							mode = (bool)o;
-							if (F050801Data != null && mode)
-              {
+              mode = (bool)o;
+              if (F050801Data != null && mode)
                 if (DoStartPacking())
                   DispatcherAction(() => { DoStartPackingComplete(); });
-              }
             }
-					},
+          },
           () => ValidTicket && UserOperateMode == OperateMode.Query && F050801Data != null && F050801Data.STATUS == 0,
           o => DoSearchTicketComplete(),
           null,
@@ -1092,7 +1096,21 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 
 		#region Private Method
 
-		private bool DoSearchTicket()
+    /// <summary>
+    /// 按下補印箱明細後動作
+    /// </summary>
+    private void OnReprintClicked()
+    {
+      DispatcherAction(() =>
+      {
+        //更新刷讀記錄
+        UpdateSerialRecords();
+        OnScrollIntoSerialReadingLog();
+      });
+    }
+
+
+    private bool DoSearchTicket()
     {
       // 尋找出貨單
       TicketNo = TicketNo.ToUpper();
@@ -1113,9 +1131,13 @@ namespace Wms3pl.WpfClient.P08.ViewModel
       }
 
       var tmpF050801Data = ExDataMapper.Map<wcf.F050801, F050801>(result);
+			if (tmpF050801Data.CUST_COST == "MoveOut")
+			{
+				Message = "跨庫出貨單不允許進行出貨包裝，請至跨庫整箱出貨/新稽核出庫處理";
+				return false;
+			}
 
-
-      var proxyF05 = GetProxy<F05Entities>();
+	  var proxyF05 = GetProxy<F05Entities>();
       Date = tmpF050801Data.DELV_DATE;
       // 找到出貨單就可以判斷有無庫存, 再來決定後要面不要做
       CheckStock(tmpF050801Data);
@@ -1462,30 +1484,20 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 		{
 			var userInfo = Wms3plSession.Get<UserInfo>();
 
-			var proxy = GetProxy<F05Entities>();
-			var data = proxy.F05500101s.Where(o => o.WMS_ORD_NO == F050801Data.WMS_ORD_NO
-												&& o.DC_CODE == _selectedDc
-												&& o.GUP_CODE == _gupCode
-												&& o.CUST_CODE == _custCode
-                        && o.FLAG == "0")
-                    .OrderBy(x => x.CRT_DATE)
-										.ToList();
+			var proxy = GetExProxy<P08ExDataSource>();
+      SerialReadingLog = proxy.CreateQuery<SearchWmsOrderScanLogRes>("SearchWmsOrderScanLog")
+                                              .AddQueryExOption("dcCode", _selectedDc)
+                                              .AddQueryExOption("gupCode", _gupCode)
+                                              .AddQueryExOption("custCode", _custCode)
+                                              .AddQueryExOption("wmsOrdNo", F050801Data.WMS_ORD_NO)
+                                              .ToObservableCollection();
+    }
 
-			SerialReadingLog = (from o in data
-													select new SerialReadingStatus
-													{
-														IsPass = o.ISPASS,
-														ItemCode = o.ITEM_CODE,
-														Message = o.MESSAGE,
-														SerialNo = o.SERIAL_NO
-													}).ToObservableCollection();
-		}
-
-		/// <summary>
-		/// 設定客戶資訊
-		/// </summary>
-		/// <param name="f050801"></param>
-		private void SetCustNameInfo(F050801 f050801)
+    /// <summary>
+    /// 設定客戶資訊
+    /// </summary>
+    /// <param name="f050801"></param>
+    private void SetCustNameInfo(F050801 f050801)
 		{
 			var proxyF19 = GetProxy<F19Entities>();
 			var custCode = f050801.CUST_CODE;
@@ -1867,7 +1879,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
         return CreateBusyAsyncCommand(
             o => {},
             () => (F050801Data != null && (F050801Data.STATUS == 1 || F050801Data.STATUS == 2 || (F050801Data.STATUS == 0 && SerialReadingLog != null && SerialReadingLog.Any()))),
-            o =>FinishCurrentBox()
+            o =>FinishCurrentBox(true)
         );
       }
     }
@@ -1882,7 +1894,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
     /// 2. 顯示提示訊息
     /// 3. 列印報表
     /// </summary>
-    private void FinishCurrentBox(bool isApply = true)
+    private void FinishCurrentBox(bool isManualClose = false)
 		{
 			_finishCurrentBox = false;
 
@@ -1900,7 +1912,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 			if (IsCompletePackage)
 				EndVideo();
 
-			FinishPackageUpdateCommand.Execute(null);
+			FinishPackageUpdateCommand.Execute(isManualClose);
 
 		}
 
@@ -1969,12 +1981,13 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 
 						if (info.AUTO_PRINT_DELVDTL == "1")
 						{
-							// PcHome
+							// PcHome 
 							var pcHomeData = p08Proxy.GetPcHomeDelivery(F055001Data.DC_CODE, F055001Data.GUP_CODE, F055001Data.CUST_CODE, F055001Data.WMS_ORD_NO).FirstOrDefault();
 							var count = pcHomeData != null ? 1 : 0;
 							TxtLog($"取得箱頭檔，資料筆數{count}");
 							TxtLog($"列印箱明細");
-							_deliveryReport.PrintBoxData(boxDetailList, SelectedF910501, f050301s, F1909Data, info, pcHomeData);
+
+              _deliveryReport.PrintBoxData(boxDetailList, SelectedF910501, f050301s, F1909Data, info, pcHomeData);
 						}
 					}));
 				}
@@ -1995,6 +2008,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
         return _finishPackageUpdateCommand ??
 				(_finishPackageUpdateCommand = CreateBusyAsyncCommand(o =>
 				{
+          Boolean? isManualCloseBox = (Boolean?)o;
           ExecIsSuccess = true;
 					
           SetMyLastNoPrintF055001(F050801Data);
@@ -2025,10 +2039,10 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 
 					TxtLog($"後端關箱處理中");
 					var proxy = GetWcfProxy<wcf.P08WcfServiceClient>();
-					var result = proxy.RunWcfMethod(w => w.FinishCurrentBox(wcfF050801, wcfF055001, IsCompletePackage));
+          var result = proxy.RunWcfMethod(w => w.FinishCurrentBox(wcfF050801, wcfF055001, IsCompletePackage, isManualCloseBox ?? false));
 
-					#region 託運單錯誤訊息顯示
-					if (_printPassTask != null)
+          #region 託運單錯誤訊息顯示
+          if (_printPassTask != null)
 					{
 						_printPassTask.Wait();
 						if (!_printPassTask.Result.IsSuccessed)
@@ -2067,12 +2081,19 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 						if(!IsCompletePackage)
 							StartPackOrNewBoxStartInitMessage();
 
-					}
+            //SerialReadingLog.Add(new SerialReadingStatus { IsPass = "1", Message = "人員按下手動關箱" });
+
+          }
 
 					if (result.IsSuccessed)
 					{
             // 3.0 準備好有哪些東西要印
             BindingReportButton(F050801Data);
+
+            //寫入F05500101列印箱明細
+            var exproxy = GetExProxy<P08ExDataSource>();
+            exproxy.LogPrintBoxDetailPacking(F055001Data.DC_CODE, F055001Data.GUP_CODE, F055001Data.CUST_CODE, F055001Data.WMS_ORD_NO, F055001Data.PACKAGE_BOX_NO.ToString());
+
             var tasks = PrintReportAsync();
 
             F050801Data = result.F050801Data.Map<wcf.F050801, F050801>();
@@ -2102,9 +2123,11 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 					}
 					else
 					{
-						OnSearchSerialComplete();
-					}
-				}));
+            UpdateSerialRecords();
+            OnScrollIntoSerialReadingLog();
+            //OnSearchSerialComplete();
+          }
+        }));
 			}
 		}
 
@@ -2237,7 +2260,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 			BoxType = string.Empty;
 			SA = string.Empty;
 			ItemCode = string.Empty;
-			SerialReadingLog = new ObservableCollection<SerialReadingStatus>();
+			SerialReadingLog = new ObservableCollection<SearchWmsOrderScanLogRes>();
 			DlvData = new List<DeliveryData>();
 			Message = string.Empty;
 			Serial = string.Empty;
@@ -2301,8 +2324,8 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 		/// </summary>
 		private void AppendLog()
 		{
-			var list = SerialReadingLog == null ? new List<SerialReadingStatus>() : SerialReadingLog.ToList();
-			list.Add(new SerialReadingStatus { IsPass = _scanPackageCodeResult.IsPass ? "1" : "0", ItemCode = _scanPackageCodeResult.ItemCode, Message = _scanPackageCodeResult.Message, SerialNo = _scanPackageCodeResult.SerialNo });
+			var list = SerialReadingLog == null ? new List<SearchWmsOrderScanLogRes>() : SerialReadingLog.ToList();
+			list.Add(new SearchWmsOrderScanLogRes { IsPass = _scanPackageCodeResult.IsPass ? "1" : "0", ItemCode = _scanPackageCodeResult.ItemCode, Message = _scanPackageCodeResult.Message, SerialNo = _scanPackageCodeResult.SerialNo });
 			SerialReadingLog = list.ToObservableCollection();
 		}
 
@@ -2367,9 +2390,23 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 		/// </summary>
 		private void BindingReportButton(F050801 prevDeliveryNoteData)
 		{
-			ReportList = _deliveryReport.BindingReportButton(prevDeliveryNoteData, F055001Data,
+      //避免使用者要補印已完成單據造成寫入F05500101"人員按下補印"訊息會發生錯誤用
+      F055001 tmpF055001 = null;
+      if (F055001Data != null)
+        tmpF055001 = F055001Data;
+      else
+      {
+        var proxy = GetProxy<F05Entities>();
+        tmpF055001 = proxy.F055001s.Where(x => x.DC_CODE == prevDeliveryNoteData.DC_CODE
+                          && x.GUP_CODE == prevDeliveryNoteData.GUP_CODE
+                          && x.CUST_CODE == prevDeliveryNoteData.CUST_CODE
+                          && x.WMS_ORD_NO == prevDeliveryNoteData.WMS_ORD_NO)
+                      .OrderByDescending(x => x.PACKAGE_BOX_NO)
+                      .FirstOrDefault();
+      }
+      ReportList = _deliveryReport.BindingReportButton(prevDeliveryNoteData, tmpF055001,
 				SelectedF910501, F1947Data, F1909Data, CreateBusyAsyncCommand, GetF050301S(prevDeliveryNoteData), false);
-		}
+    }
 
     //private void BindingReportRtnButton(F055001 F055001Data)
     //{

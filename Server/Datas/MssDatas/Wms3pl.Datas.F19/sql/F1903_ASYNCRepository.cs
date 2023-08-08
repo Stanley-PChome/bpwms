@@ -51,7 +51,7 @@ namespace Wms3pl.Datas.F19
                        ";
 
 			sql += sqlParamers.CombineSqlInParameters(" AND ID", f1903_IDs, System.Data.SqlDbType.BigInt);
-			ExecuteSqlCommand(sql, sqlParamers.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, sqlParamers.ToArray());
 		}
 
 		public bool CheckItemAsync(string gupCode, string custCode, List<string> itemCodes)

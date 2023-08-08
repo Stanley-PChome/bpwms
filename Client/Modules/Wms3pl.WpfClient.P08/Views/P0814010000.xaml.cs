@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -47,10 +48,9 @@ namespace Wms3pl.WpfClient.P08.Views
 			}
 			else
 			{
-				var deviceWindow = new DeviceWindow(Vm.SelectedDc);
-				deviceWindow.Owner = this;
-				deviceWindow.ShowDialog();
-				Vm.SelectedF910501 = deviceWindow.SelectedF910501;
+        Vm.ShowWarningMessage("請先設定印表機與工作站編號，請至裝置設定維護調整，本功能即將關閉");
+        this.Close();
+        return;
 			}
 
 			// 組印表機資訊、工作站編號
@@ -65,7 +65,8 @@ namespace Wms3pl.WpfClient.P08.Views
 		/// <param name="e"></param>
 		private void txtContainer_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Enter && !string.IsNullOrWhiteSpace(txtContainer.Text))
+      Boolean deviceCheckOk = true;
+      if (e.Key == Key.Enter && !string.IsNullOrWhiteSpace(txtContainer.Text))
 			{
 				var isScan = false;
 				try
@@ -79,8 +80,11 @@ namespace Wms3pl.WpfClient.P08.Views
 						if (!string.IsNullOrWhiteSpace(Vm.ContainerCode))
 							Vm.ContainerCode = Vm.ContainerCode.ToUpper();
 
-						// 檢查裝置設定
-						CheckDeviceSetting(ref Vm.SelectedF910501, Vm.ShipMode, Vm.SelectedDc);
+            // 檢查裝置設定
+            deviceCheckOk = CheckDeviceSetting(ref Vm.SelectedF910501, Vm.ShipMode, Vm.SelectedDc);
+            if(!deviceCheckOk)
+              return;
+
 						Vm.BindingDeviceSetting();
 						Vm.IsBusy = false;
 						Vm.SearchContainerCommand.Execute(true);
@@ -89,7 +93,13 @@ namespace Wms3pl.WpfClient.P08.Views
 				}
 				finally
 				{
-					if (_isContainerLock && isScan)
+          if (!deviceCheckOk)
+          {
+            Vm.IsBusy = false;
+            this.Close();
+          }
+
+          if (_isContainerLock && isScan)
 					{
 						_isContainerLock = false;
 					}
@@ -140,8 +150,12 @@ namespace Wms3pl.WpfClient.P08.Views
 		/// <param name="e"></param>
 		private void WorkStationSetting_OnClick(object sender, RoutedEventArgs e)
 		{
-			// 檢查裝置設定
-			CheckDeviceSetting(ref Vm.SelectedF910501, Vm.ShipMode, Vm.SelectedDc);
+      // 檢查裝置設定
+      if (!CheckDeviceSetting(ref Vm.SelectedF910501, Vm.ShipMode, Vm.SelectedDc))
+      {
+        this.Close();
+        return;
+      }
 
 			var win = new P0814010100(Vm.SelectedDc, Vm.ShipMode);
 			win.ShowDialog();
@@ -256,72 +270,25 @@ namespace Wms3pl.WpfClient.P08.Views
 		/// <param name="f910501"></param>
 		/// <param name="shipMode"></param>
 		/// <param name="dcCode"></param>
-		public void CheckDeviceSetting(ref F910501 f910501, string shipMode, string dcCode)
+		public Boolean CheckDeviceSetting(ref F910501 f910501, string shipMode, string dcCode)
 		{
-			var isAgain = true;
+      var errMsgs = new List<string>();
+      // 是否列印一般出貨小白標
+      var f0003 = GetSysSetting(Wms3plSession.Get<GlobalInfo>().FunctionCode, dcCode, "IsPrintShipLittleLabel");
+      var isPrintShipLittleLabel = f0003 != null && f0003.SYS_PATH == "0" ? "0" : "1";
 
-			// 是否列印一般出貨小白標
-			var f0003 = GetSysSetting(Wms3plSession.Get<GlobalInfo>().FunctionCode, dcCode, "IsPrintShipLittleLabel");
-			var isPrintShipLittleLabel = f0003 != null && f0003.SYS_PATH == "0" ? "0" : "1";
+      var f910501Exist = OpenDeviceWindow(Wms3plSession.Get<GlobalInfo>().FunctionCode, Wms3plSession.Get<GlobalInfo>().ClientIp, dcCode).FirstOrDefault();
 
-			do
-			{
-				var f910501Exist = OpenDeviceWindow(Wms3plSession.Get<GlobalInfo>().FunctionCode, Wms3plSession.Get<GlobalInfo>().ClientIp, dcCode).FirstOrDefault();
+      return Vm._shipPackageService.CheckDeviceSetting(ref f910501, shipMode, dcCode, f0003, f910501Exist);
+    }
 
-				// 如果[C]不存在，彈出訊息視窗，顯示[請先設定印表機與工作站編號]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
-				if (f910501Exist == null)
-				{
-					ShowDeviceSettingMsgAndOpenSetting(ref f910501, "請先設定印表機與工作站編號", dcCode);
-					continue;
-				}
-				// 如果[C].PRINTER = NULL OR 空白，顯示[未設定印表機1，請設定]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
-				else if (string.IsNullOrWhiteSpace(f910501Exist.PRINTER))
-				{
-					ShowDeviceSettingMsgAndOpenSetting(ref f910501, "未設定印表機1，請設定", dcCode);
-					continue;
-				}
-				// 如果[C].MATRIX_PRINTER = NULL OR 空白，顯示[未設定印表機2，請設定]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
-				else if (string.IsNullOrWhiteSpace(f910501Exist.MATRIX_PRINTER))
-				{
-					ShowDeviceSettingMsgAndOpenSetting(ref f910501, "未設定印表機2，請設定", dcCode);
-					continue;
-				}
-				// 如果[D]=1 且[C].LABELING = NULL OR 空白，顯示[未設定快速標籤機，請設定]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
-				else if (isPrintShipLittleLabel == "1" && string.IsNullOrWhiteSpace(f910501Exist.LABELING))
-				{
-					ShowDeviceSettingMsgAndOpenSetting(ref f910501, "未設定快速標籤機，請設定", dcCode);
-					continue;
-				}
-				// <參數1>=1(單人包裝站)，如果[C].WORKSTATION_TYPE not in ( PACK,FACT) 顯示[工作站類型必須選單人包裝站或廠退處理區]
-				else if (shipMode == "1" && f910501Exist.WORKSTATION_TYPE != "PACK" && f910501Exist.WORKSTATION_TYPE != "FACT")
-				{
-					ShowDeviceSettingMsgAndOpenSetting(ref f910501, "工作站類型必須選單人包裝站或廠退處理區", dcCode);
-					continue;
-				}
-				// <參數1>=2(包裝線包裝站)，如果[C].WORKSTATION_TYPE 不是包裝大線站、包裝小線站 顯示[工作站類型必須選包裝線大線或包裝線小線]
-				else if (shipMode == "2" && f910501Exist.WORKSTATION_TYPE != "PA1" && f910501Exist.WORKSTATION_TYPE != "PA2")
-				{
-					ShowDeviceSettingMsgAndOpenSetting(ref f910501, "工作站類型必須選包裝線大線或包裝線小線", dcCode);
-					continue;
-				}
-				else if (string.IsNullOrWhiteSpace(f910501Exist.WORKSTATION_CODE))
-				{
-					ShowDeviceSettingMsgAndOpenSetting(ref f910501, "未設定工作站編號", dcCode);
-					continue;
-				}
-
-				isAgain = false;
-			}
-			while (isAgain);
-		}
-
-		/// <summary>
-		/// 開啟裝置設定
-		/// </summary>
-		/// <param name="f910501"></param>
-		/// <param name="msg"></param>
-		/// <param name="dcCode"></param>
-		private void ShowDeviceSettingMsgAndOpenSetting(ref F910501 f910501, string msg, string dcCode)
+    /// <summary>
+    /// 開啟裝置設定
+    /// </summary>
+    /// <param name="f910501"></param>
+    /// <param name="msg"></param>
+    /// <param name="dcCode"></param>
+    private void ShowDeviceSettingMsgAndOpenSetting(ref F910501 f910501, string msg, string dcCode)
 		{
 			if (Vm.ShowWarningMessage(msg) == UILib.Services.DialogResponse.OK)
 			{

@@ -401,19 +401,6 @@ namespace Wms3pl.WebServices.Transaction.T05.Services
                                             _wmsLogHelper.AddRecord("執行db commit 開始");
                                             _wmsTransaction.Complete();
                                             _wmsLogHelper.AddRecord("執行db commit 結束");
-
-                                            _wmsLogHelper.AddRecord("檢查訂單狀態 開始");
-                                            var result3 = _sharedService.AfterCreatePickCheckOrder(_f050306s, out CanceledOrders);
-                                            if (result3.IsSuccessed)
-                                            {
-                                                _wmsLogHelper.AddRecord("執行db commit 開始");
-                                                _wmsTransaction.Complete();
-                                                _wmsLogHelper.AddRecord("執行db commit 結束");
-                                            }
-                                            else
-                                                _exeResults.Add(result3);
-                                            _wmsLogHelper.AddRecord("檢查訂單狀態 結束");
-
                                         }
                                         else
                                             _exeResults.Add(result2);

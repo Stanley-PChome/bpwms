@@ -81,8 +81,20 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 				return getF070101Res;
 			var f070101 = (F070101)getF070101Res.Data;
 
-			// 檢查是否要集貨且集貨場是否正確?
-			var f051301 = f051301Repo.Find(o => o.DC_CODE == req.DcNo && o.GUP_CODE == gupCode && o.CUST_CODE == req.CustNo &&  o.WMS_NO == f070101.WMS_NO);
+      var F051201Repo = new F051201Repository(Schemas.CoreSchema);
+      var F051202Repo = new F051202Repository(Schemas.CoreSchema);
+      var f051201 = F051201Repo.GetF051201(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, f070101.PICK_ORD_NO);
+      if (f051201.NEXT_STEP=="6")  // 調撥場
+        return new ApiResult { IsSuccessed = false, MsgCode = "21124", MsgContent = p81Service.GetMsg("21124") };
+      if (f051201.DISP_SYSTEM=="0")  //人工倉
+      {
+        var f051202 = F051202Repo.GetDataByPickNo(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, f070101.PICK_ORD_NO).Where(x=> x.PICK_STATUS=="0");
+        if (f051202.Any())  //未完成分貨
+          return new ApiResult { IsSuccessed = false, MsgCode = "21125", MsgContent = string.Format( p81Service.GetMsg("21125"),f070101.PICK_ORD_NO ) };
+      }
+
+      // 檢查是否要集貨且集貨場是否正確?
+      var f051301 = f051301Repo.Find(o => o.DC_CODE == req.DcNo && o.GUP_CODE == gupCode && o.CUST_CODE == req.CustNo &&  o.WMS_NO == f070101.WMS_NO);
 			if (f051301 == null)
 				return new ApiResult { IsSuccessed = false, MsgCode = "21103", MsgContent = p81Service.GetMsg("21103") };
 
@@ -187,12 +199,6 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           return updF051401;
         });
 
-        if (data.IsFirst == "1")
-        {
-          f051301.STATUS = "2";
-          f051301Repo.Update(f051301);
-        }
-
         if (f051401Res == null)
           return new ApiResult { IsSuccessed = false, MsgCode = "21107", MsgContent = string.Format(p81Service.GetMsg("21107"), f1945.COLLECTION_NAME, f194501.CELL_NAME) };
         else
@@ -218,6 +224,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 			var p81Service = new P81Service();
 			var f1945Repo = new F1945Repository(Schemas.CoreSchema);
 			var f070102Repo = new F070102Repository(Schemas.CoreSchema, _wmsTransation);
+			var f051301Repo = new F051301Repository(Schemas.CoreSchema, _wmsTransation);
 			var f051401Repo = new F051401Repository(Schemas.CoreSchema, _wmsTransation);
 			var f060201Repo = new F060201Repository(Schemas.CoreSchema, _wmsTransation);
 			var f060302Repo = new F060302Repository(Schemas.CoreSchema, _wmsTransation);
@@ -307,7 +314,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
       try
       {
-      #region 資料異動
+        #region 資料異動
         var lockRes = LockContainerProcess(f070101.CONTAINER_CODE);
         if (!lockRes.IsSuccessed)
           return new ApiResult { IsSuccessed = false, MsgCode = "21123", MsgContent = p81Service.GetMsg("21123") };
@@ -331,6 +338,15 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           #region 更新F051401
           f051401.STATUS = "2"; //更新已放入
           f051401Repo.Update(f051401);
+          #endregion
+
+          #region 更新F051301.STATUS=2(集貨中)
+          var f051301 = f051301Repo.Find(o => o.DC_CODE == req.DcNo && o.GUP_CODE == gupCode && o.CUST_CODE == req.CustNo && o.WMS_NO == f070101.WMS_NO);
+          if (f051301 == null)
+            return new ApiResult { IsSuccessed = false, MsgCode = "21103", MsgContent = p81Service.GetMsg("21103") };
+
+          f051301.STATUS = "2";
+          f051301Repo.UpdateFields(new { f051301.STATUS }, o => o.DC_CODE == req.DcNo && o.GUP_CODE == gupCode && o.CUST_CODE == req.CustNo && o.WMS_NO == f070101.WMS_NO);
           #endregion
         }
         // 此單號非第一箱處理
@@ -402,7 +418,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         //(1) 當IsFirst = 0,MsgContent = 商品放入成功，請回收容器
         //(2) 當IsFirst = 1,MsgContent = 第一箱容器進場成功
         return new ApiResult { IsSuccessed = true, MsgCode = "10005", MsgContent = p81Service.GetMsg("10005"), Data = isFirst == "0" ? p81Service.GetMsg("10006") : p81Service.GetMsg("10007") };
-			#endregion
+        #endregion
       }
       catch (Exception ex)
       { return new ApiResult { IsSuccessed = false, MsgCode = "99999", MsgContent = ex.Message }; }

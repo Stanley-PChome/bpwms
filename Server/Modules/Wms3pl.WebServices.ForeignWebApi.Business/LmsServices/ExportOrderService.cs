@@ -38,11 +38,12 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
             var outputJsonInLog = commonService.GetSysGlobalValue("OutputJsonInLog");
             bool isSaveWmsData = string.IsNullOrWhiteSpace(outputJsonInLog) ? false : outputJsonInLog == "1";
 
-            #region 取得 訂單出貨未回檔資料
-            var f050305s = f050305Repo.GetDatasForExport(dcCode, gupCode, custCode).ToList();
-            #endregion
+      #region 取得 訂單出貨未回檔資料
+      //var f050305s = f050305Repo.GetDatasForExport(dcCode, gupCode, custCode).ToList();
+      var f050305s = f050305Repo.GetDatasForExport_Sql(dcCode, gupCode, custCode).ToList();
+      #endregion
 
-            f050305s.ForEach(f050305 =>
+      f050305s.ForEach(f050305 =>
             {
                 SaleOrderReplyReq req = new SaleOrderReplyReq { DcCode = dcCode, CustCode = custCode };
 

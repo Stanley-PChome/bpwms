@@ -4,6 +4,7 @@ using Wms3pl.WebServices.DataCommon;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Wms3pl.Datas.F06
 {
@@ -13,10 +14,14 @@ namespace Wms3pl.Datas.F06
 		{
 			var param = new List<SqlParameter>
 						{
-								new SqlParameter("@p0", dcCode),
-								new SqlParameter("@p1", gupCode),
-								new SqlParameter("@p2", custCode),
-								new SqlParameter("@p3", procFlag)
+        new SqlParameter("@p0",SqlDbType.VarChar){ Value = dcCode},
+        new SqlParameter("@p1",SqlDbType.VarChar){ Value = gupCode},
+        new SqlParameter("@p2",SqlDbType.VarChar){ Value = custCode},
+        new SqlParameter("@p3",SqlDbType.VarChar){ Value = procFlag},
+        //new SqlParameter("@p0", dcCode),
+				//new SqlParameter("@p1", gupCode),
+				//new SqlParameter("@p2", custCode),
+				//new SqlParameter("@p3", procFlag)
 						};
 			string sql = $@"SELECT TOP({topRecord}) * FROM F060209 WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2 AND PROC_FLAG = @p3 ORDER BY CRT_DATE ";
 

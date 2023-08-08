@@ -1245,4 +1245,7 @@
   <data name="P0202010000_EndCheckinDate" xml:space="preserve">
     <value>請選取 點收日期(迄)</value>
   </data>
+  <data name="BundleSerial" xml:space="preserve">
+    <value>是否為序號商品</value>
+  </data>
 </root>

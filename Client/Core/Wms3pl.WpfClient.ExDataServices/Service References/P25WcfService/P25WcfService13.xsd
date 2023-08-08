@@ -124,6 +124,7 @@
       <xs:element name="_x003C_BATCH_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_BOUNDLE_ITEM_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_BOX_SERIAL_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_BUNDLE_SERIALLOC_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_CAMERA_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_CASE_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_CELL_NUM_x003E_k__BackingField" nillable="true" type="xs:string" />
@@ -133,6 +134,7 @@
       <xs:element name="_x003C_CRT_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_CUST_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CanDelete_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_GUP_NAME_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_IN_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
@@ -161,4 +163,52 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="F2501QueryData" nillable="true" type="tns:F2501QueryData" />
+  <xs:complexType name="ArrayOfP2502QueryData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="P2502QueryData" nillable="true" type="tns:P2502QueryData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfP2502QueryData" nillable="true" type="tns:ArrayOfP2502QueryData" />
+  <xs:complexType name="P2502QueryData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVATED" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BATCH_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BOX_SERIAL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CAMERA_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CASE_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CELL_NUM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CLIENT_IP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COMBIN_NO" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CRT_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CRT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IN_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_SPEC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_UNIT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_PROP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORD_PROP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PO_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROCESS_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PUK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RETAIL_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SEND_CUST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SERIAL_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SYS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TAG3G" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPD_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UPD_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VALID_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VNR_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WMS_NO" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="P2502QueryData" nillable="true" type="tns:P2502QueryData" />
 </xs:schema>

@@ -42,16 +42,24 @@
       <HintPath>..\..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dlls\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dlls\CrystalDecisions.ReportSource.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dlls\CrystalDecisions.Shared.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\..\..\packages\MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -179,6 +187,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Report\P0808050000_CN.cs">
+      <DependentUpon>P0808050000_CN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Report\R0807010000en_US.cs">
       <DependentUpon>R0807010000en_US.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -232,6 +246,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>R0807010001zh_CN.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\P0808050000.cs">
+      <DependentUpon>P0808050000.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Report\R0808040102zh_CN.cs">
       <DependentUpon>R0808040102zh_CN.rpt</DependentUpon>
@@ -791,6 +811,11 @@
     <Compile Include="ViewModel\P0806130000_ViewModel.cs" />
     <Compile Include="ViewModel\P0806140000_ViewModel.cs" />
     <Compile Include="ViewModel\P0806140100_ViewModel.cs" />
+    <Compile Include="ViewModel\P0808060200_ViewModel.cs" />
+    <Compile Include="ViewModel\P0808060000_ViewModel.cs" />
+    <Compile Include="ViewModel\P0808050100_ViewModel.cs" />
+    <Compile Include="ViewModel\P0808050000_ViewModel.cs" />
+    <Compile Include="ViewModel\P0808060300_ViewModel.cs" />
     <Compile Include="ViewModel\P0814010000_ViewModel.cs" />
     <Compile Include="ViewModel\P0807010000_ViewModel.cs" />
     <Compile Include="ViewModel\P0807010100_ViewModel.cs" />
@@ -860,6 +885,21 @@
     </Compile>
     <Compile Include="Views\P0806140100.xaml.cs">
       <DependentUpon>P0806140100.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0808060300.xaml.cs">
+      <DependentUpon>P0808060300.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0808060200.xaml.cs">
+      <DependentUpon>P0808060200.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0808060100.xaml.cs">
+      <DependentUpon>P0808060100.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0808050100.xaml.cs">
+      <DependentUpon>P0808050100.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0808050000.xaml.cs">
+      <DependentUpon>P0808050000.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\P0814020000.xaml.cs">
       <DependentUpon>P0814020000.xaml</DependentUpon>
@@ -935,6 +975,9 @@
     <Compile Include="Views\P0814010300.xaml.cs">
       <DependentUpon>P0814010300.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\P0808060000.xaml.cs">
+      <DependentUpon>P0808060000.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="App.xaml">
@@ -1004,6 +1047,26 @@
     <Page Include="Views\P0806140100.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\P0808060300.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\P0808060200.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\P0808060100.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\P0808050100.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\P0808050000.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\P0814020000.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1093,6 +1156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\P0814010300.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\P0808060000.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1209,6 +1276,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>P0202030002en_US.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\P0808050000_CN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>P0808050000_CN.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\R0807010000en_US.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R0807010000en_US.cs</LastGenOutput>
@@ -1244,6 +1315,10 @@
     <EmbeddedResource Include="Report\R0807010001zh_CN.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R0807010001zh_CN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\P0808050000.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>P0808050000.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\R0808040102zh_CN.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

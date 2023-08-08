@@ -18,7 +18,7 @@ using System.Text;
 
 namespace Wms3pl.WebServices.Process.P02.Services
 {
-    public partial class P020203Service
+	public partial class P020203Service
 	{
 		protected WmsTransaction _wmsTransaction;
 		private CommonService _commonService;
@@ -50,26 +50,49 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			}
 		}
 
+		#region UpdateItemInfoService
+		private UpdateItemInfoService _updatdeItemInfoService;
+		public UpdateItemInfoService UpdatdeItemInfoService
+		{
+			get { return _updatdeItemInfoService == null ? _updatdeItemInfoService = new UpdateItemInfoService() : _updatdeItemInfoService; }
+			set { _updatdeItemInfoService = value; }
+		}
+		#endregion
+
 		public P020203Service(WmsTransaction wmsTransaction = null)
 		{
 			_wmsTransaction = wmsTransaction;
 		}
 
-        #region 取得資料
-        /// <summary>
-        /// 商品檢驗
-        /// 檢查F02020101, 不存在則寫入, 存在則更新
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="purchaseNo"></param>
-        /// <param name="deliveryDate"></param>
-        /// <param name="RT_MODE">舊商品檢驗=0 商品檢驗與容器綁定=1</param>
-        /// <returns></returns>
-        public ExecuteResult Update(string dcCode, string gupCode, string custCode, string purchaseNo, string[] warehouseList, string RT_MODE)
-        {
-            var repoF010201 = new F010201Repository(Schemas.CoreSchema, _wmsTransaction);
+		#region 取得資料
+		/// <summary>
+		/// 商品檢驗
+		/// 檢查F02020101, 不存在則寫入, 存在則更新
+		/// </summary>
+		/// <param name="dcCode"></param>
+		/// <param name="gupCode"></param>
+		/// <param name="custCode"></param>
+		/// <param name="purchaseNo"></param>
+		/// <param name="deliveryDate"></param>
+		/// <param name="RT_MODE">舊商品檢驗=0 商品檢驗與容器綁定=1</param>
+		/// <returns></returns>
+		public ExecuteResult Update(string dcCode, string gupCode, string custCode, string purchaseNo, string[] warehouseList, string RT_MODE)
+		{
+			// 進倉單鎖定
+			var warehouseInRecvService = new WarehouseInRecvService(_wmsTransaction);
+			var res = warehouseInRecvService.LockAcceptenceOrder(new LockAcceptenceOrderReq
+			{
+				DcCode = dcCode,
+				GupCode = gupCode,
+				CustCode = custCode,
+				StockNo = purchaseNo,
+				IsChangeUser = false,
+				DeviceTool = "0"
+			});
+			if (!res.IsSuccessed)
+				return new ExecuteResult(false, res.MsgContent);
+
+			var repoF010201 = new F010201Repository(Schemas.CoreSchema, _wmsTransaction);
 			var repoF010202 = new F010202Repository(Schemas.CoreSchema);
 			var repoF190207 = new F190207Repository(Schemas.CoreSchema);
 			var repoF020201 = new F020201Repository(Schemas.CoreSchema);
@@ -78,179 +101,183 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			var f1908Repo = new F1908Repository(Schemas.CoreSchema);
 			var sharedService = new SharedService(_wmsTransaction);
 
-            // 0. 檢查進倉單是否存在
-            var order = repoF010201.AsForUpdate().Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.STOCK_NO == purchaseNo);
+			// 0. 檢查進倉單是否存在
+			var order = repoF010201.AsForUpdate().Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.STOCK_NO == purchaseNo);
 			if (order == null || order.STATUS == "9")
 				return new ExecuteResult() { IsSuccessed = false, Message = Properties.Resources.DataDelete };
 
 
-            //No1130-3 (1)[AA] = 增加傳入參數RT_MODE，如果從舊商品檢驗請設為0，從商品檢驗與容器綁定請設為1)
-            var checkRTmode = CheckRTModeValue(RT_MODE);
-            if (!checkRTmode.IsSuccessed)
-                return checkRTmode;
+			//No1130-3 (1)[AA] = 增加傳入參數RT_MODE，如果從舊商品檢驗請設為0，從商品檢驗與容器綁定請設為1)
+			var checkRTmode = CheckRTModeValue(RT_MODE);
+			if (!checkRTmode.IsSuccessed)
+				return checkRTmode;
 
 
-      //No1130-3 (2)	[BB]=用進倉單取得最新一筆驗收資料[F020201] AND STATUS=3
-      var LastWarehouseOrder = repoF020201.GetLastOrder(dcCode, gupCode, custCode, purchaseNo);
-      //如果[BB] IS NULL OR [BB.STAUTS=2(已上傳)]，跳至(3)
-      //如果[BB] IS NOT NULL AND [BB].STATUS==3(綁容器) && [AA]== 0，回傳訊息”請改使用[商品檢驗與容器綁定]功能，完成上一次驗收未完成容器綁定”。
-      if (LastWarehouseOrder != null)
-      {
-        if (RT_MODE == "0")
-          return new ExecuteResult() { IsSuccessed = false, Message = "請改使用[商品檢驗與容器綁定]功能，完成上一次驗收未完成容器綁定" };
+			//No1130-3 (2)	[BB]=用進倉單取得最新一筆驗收資料[F020201] AND STATUS=3
+			var LastWarehouseOrder = repoF020201.GetLastOrder(dcCode, gupCode, custCode, purchaseNo);
+			//如果[BB] IS NULL OR [BB.STAUTS=2(已上傳)]，跳至(3)
+			//如果[BB] IS NOT NULL AND [BB].STATUS==3(綁容器) && [AA]== 0，回傳訊息”請改使用[商品檢驗與容器綁定]功能，完成上一次驗收未完成容器綁定”。
+			if (LastWarehouseOrder != null)
+			{
+				if (RT_MODE == "0")
+					return new ExecuteResult() { IsSuccessed = false, Message = "請改使用[商品檢驗與容器綁定]功能，完成上一次驗收未完成容器綁定" };
 
-                //如果驗收內容中還有待綁定容器的就不繼續進行（不產生驗收單暫存檔）
-                return new ExecuteResult() { IsSuccessed = true,No = LastWarehouseOrder.RT_NO };
-            }
+				//如果驗收內容中還有待綁定容器的就不繼續進行（不產生驗收單暫存檔）
+				return new ExecuteResult() { IsSuccessed = true, No = LastWarehouseOrder.RT_NO };
+			}
 
 
-      //取得進倉單明細
-      var orderDetail = repoF010202.GetDatas(dcCode, gupCode, custCode, purchaseNo).ToList();
+			//取得進倉單明細
+			var orderDetail = repoF010202.GetDatas(dcCode, gupCode, custCode, purchaseNo).ToList();
 
-      //取得驗收檔資料
-      var f020201s = repoF020201.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PURCHASE_NO == purchaseNo).ToList();
-      //取得驗收暫存檔資料
-      var f02020101s = repoF02020101.AsForUpdate().GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PURCHASE_NO == purchaseNo).ToList();
-      var rtNo = string.Empty;
-      if (f02020101s.Any())
-        rtNo = f02020101s.First().RT_NO;
+			//取得驗收檔資料
+			var f020201s = repoF020201.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PURCHASE_NO == purchaseNo).ToList();
+			//取得驗收暫存檔資料
+			var f02020101s = repoF02020101.AsForUpdate().GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PURCHASE_NO == purchaseNo).ToList();
+			var rtNo = string.Empty;
+			if (f02020101s.Any())
+				rtNo = f02020101s.First().RT_NO;
 
-      // 1. 寫入F02020101
-      bool canUpdateF010201Status = false;
-      var inDate = DateTime.Now;
-      var addF02020101List = new List<F02020101>();
-      foreach (var p in orderDetail)
-      {
-        // 如果已驗收數 >= 進貨數, 就不做新增
-        var totalRecv = f020201s.Where(x => x.PURCHASE_SEQ == p.STOCK_SEQ.ToString()).Sum(x => x.RECV_QTY) ?? 0;
-        if (totalRecv >= p.STOCK_QTY) continue;
+			// 1. 寫入F02020101
+			bool canUpdateF010201Status = false;
+			var inDate = DateTime.Now;
+			var addF02020101List = new List<F02020101>();
+			foreach (var p in orderDetail)
+			{
+				// 如果已驗收數 >= 進貨數, 就不做新增
+				var totalRecv = f020201s.Where(x => x.PURCHASE_SEQ == p.STOCK_SEQ.ToString()).Sum(x => x.RECV_QTY) ?? 0;
+				if (totalRecv >= p.STOCK_QTY) continue;
 
-        // 如果已驗收數 < 進貨數, 就新增資料
-        var tmp = f02020101s.Find(x => x.DC_CODE == p.DC_CODE && x.GUP_CODE == p.GUP_CODE && x.CUST_CODE == p.CUST_CODE && x.PURCHASE_NO == p.STOCK_NO && x.PURCHASE_SEQ == p.STOCK_SEQ.ToString());
-        if (tmp != null) continue;
+				// 如果已驗收數 < 進貨數, 就新增資料
+				var tmp = f02020101s.Find(x => x.DC_CODE == p.DC_CODE && x.GUP_CODE == p.GUP_CODE && x.CUST_CODE == p.CUST_CODE && x.PURCHASE_NO == p.STOCK_NO && x.PURCHASE_SEQ == p.STOCK_SEQ.ToString());
+				if (tmp != null) continue;
 
-        var imageIsExist = repoF190207.GetDataIsExist(p.GUP_CODE, p.ITEM_CODE, p.CUST_CODE);
+				var imageIsExist = repoF190207.GetDataIsExist(p.GUP_CODE, p.ITEM_CODE, p.CUST_CODE);
 
-        var item = GetF1903(p.GUP_CODE, p.CUST_CODE, p.ITEM_CODE);
+				var item = GetF1903(p.GUP_CODE, p.CUST_CODE, p.ITEM_CODE);
 
-        //是否為虛擬商品
-        bool isVirtualItem = !string.IsNullOrEmpty(item.VIRTUAL_TYPE);
-        // 找出抽驗比例
-        var recvQty = p.STOCK_QTY - totalRecv;
-        //只有無驗收暫存資料且要產生新的驗收資料才取新的驗收單號
-        if (string.IsNullOrWhiteSpace(rtNo))
-          rtNo = sharedService.GetRtNo(dcCode, gupCode, custCode, Current.Staff);
+				//是否為虛擬商品
+				bool isVirtualItem = !string.IsNullOrEmpty(item.VIRTUAL_TYPE);
+				// 找出抽驗比例
+				var recvQty = p.STOCK_QTY - totalRecv;
+				//只有無驗收暫存資料且要產生新的驗收資料才取新的驗收單號
+				if (string.IsNullOrWhiteSpace(rtNo))
+					rtNo = sharedService.GetRtNo(dcCode, gupCode, custCode, Current.Staff);
 
-        tmp = new F02020101()
-        {
-          RT_NO = rtNo,
-          DC_CODE = p.DC_CODE,
-          GUP_CODE = p.GUP_CODE,
-          CUST_CODE = p.CUST_CODE,
-          PURCHASE_NO = p.STOCK_NO,
-          PURCHASE_SEQ = p.STOCK_SEQ.ToString(),
-          VNR_CODE = order.VNR_CODE,
-          ITEM_CODE = p.ITEM_CODE,
-          ORDER_QTY = p.STOCK_QTY,
-          RECV_QTY = recvQty, // 初始化時就先寫入驗收總量
-          CHECK_QTY = sharedService.GetQtyByRatio(recvQty, p.ITEM_CODE, p.GUP_CODE, p.CUST_CODE, p.STOCK_NO),
-          STATUS = "0", // 狀態初始為"待驗收"
-          ISUPLOAD = imageIsExist ? "1" : "0", // 如果該商品已有圖檔就寫入1
-          ISSPECIAL = "0",
-          CHECK_ITEM = (isVirtualItem) ? "1" : "0",
-          CHECK_SERIAL = "0",
-          IN_DATE = inDate,
-          //批號
-          MAKE_NO = p.MAKE_NO,
-          ISPRINT = "0",
-          QUICK_CHECK = "0"
-        };
+				tmp = new F02020101()
+				{
+					RT_NO = rtNo,
+					DC_CODE = p.DC_CODE,
+					GUP_CODE = p.GUP_CODE,
+					CUST_CODE = p.CUST_CODE,
+					PURCHASE_NO = p.STOCK_NO,
+					PURCHASE_SEQ = p.STOCK_SEQ.ToString(),
+					VNR_CODE = order.VNR_CODE,
+					ITEM_CODE = p.ITEM_CODE,
+					ORDER_QTY = p.STOCK_QTY,
+					RECV_QTY = recvQty, // 初始化時就先寫入驗收總量
+					CHECK_QTY = sharedService.GetQtyByRatio(recvQty, p.ITEM_CODE, p.GUP_CODE, p.CUST_CODE, p.STOCK_NO),
+					STATUS = "0", // 狀態初始為"待驗收"
+					ISUPLOAD = imageIsExist ? "1" : "0", // 如果該商品已有圖檔就寫入1
+					ISSPECIAL = "0",
+					CHECK_ITEM = (isVirtualItem) ? "1" : "0",
+					CHECK_SERIAL = "0",
+					IN_DATE = inDate,
+					//批號
+					MAKE_NO = p.MAKE_NO,
+					ISPRINT = "0",
+					QUICK_CHECK = "0",
+					DEVICE_MODE ="1",
+					CHECK_DETAIL = "0",
+					DEFECT_QTY = 0,
+					IS_PRINT_ITEM_ID= "0"
+				};
 
-        // 沒有匯入的效期，才預設 9999/12/31
-        var valiDate = p.VALI_DATE.HasValue ? p.VALI_DATE.Value : new DateTime(9999, 12, 31);
-        if (isVirtualItem)
-        {
-          // 優先採用匯入的效期，沒有才是虛擬商品
-          tmp.VALI_DATE = valiDate;
-        }
-        else
-        {
-          tmp.VALI_DATE = p.VALI_DATE;
-        }
-        addF02020101List.Add(tmp);
-        canUpdateF010201Status = true;
-      }
+				// 沒有匯入的效期，才預設 9999/12/31
+				var valiDate = p.VALI_DATE.HasValue ? p.VALI_DATE.Value : new DateTime(9999, 12, 31);
+				if (isVirtualItem)
+				{
+					// 優先採用匯入的效期，沒有才是虛擬商品
+					tmp.VALI_DATE = valiDate;
+				}
+				else
+				{
+					tmp.VALI_DATE = p.VALI_DATE;
+				}
+				addF02020101List.Add(tmp);
+				canUpdateF010201Status = true;
+			}
 
-      // Insert廠商報到F0202,進場預排F020103,Update F010201 STATUS = 驗收中(1)
-      if (canUpdateF010201Status)
-      {
-        if (order.STATUS == "3")
-        {
-          order.STATUS = "1";
-          repoF010201.Update(order);
-        }
-      }
+			// Insert廠商報到F0202,進場預排F020103,Update F010201 STATUS = 驗收中(1)
+			if (canUpdateF010201Status)
+			{
+				if (order.STATUS == "3")
+				{
+					order.STATUS = "1";
+					repoF010201.Update(order);
+				}
+			}
 
-            #region 呼叫LmsApi上架倉別指示，檢核是否呼叫成功
-            if (addF02020101List.Any())
-            {
-                // 呼叫LmsApi上架倉別指示，檢核是否呼叫成功
-                var custInNo = order.CUST_ORD_NO;
+			#region 呼叫LmsApi上架倉別指示，檢核是否呼叫成功
+			if (addF02020101List.Any())
+			{
+				// 呼叫LmsApi上架倉別指示，檢核是否呼叫成功
+				var custInNo = order.CUST_ORD_NO;
 #if (DEBUG || TEST)
-                if (string.IsNullOrWhiteSpace(custInNo))
-                    custInNo = order.STOCK_NO;
+				if (string.IsNullOrWhiteSpace(custInNo))
+					custInNo = order.STOCK_NO;
 #endif
-                var lmsRes = CallLmsApiStowShelfAreaGuide(dcCode, gupCode, custCode, custInNo, addF02020101List.Select(x => x.ITEM_CODE).Distinct().ToList());
-                var diffWhId = new List<LmsStowShelfAreaGuideRespense>();
+				var lmsRes = CallLmsApiStowShelfAreaGuide(dcCode, gupCode, custCode, custInNo, addF02020101List.Select(x => x.ITEM_CODE).Distinct().ToList());
+				var diffWhId = new List<LmsStowShelfAreaGuideRespense>();
 
-                if (lmsRes.Data.Any())
-                {
-                    addF02020101List.ForEach(addF02020101 =>
-                    {
-                        var lmsItemData = lmsRes.Data.Where(x => x.ItemCode == addF02020101.ITEM_CODE).FirstOrDefault();
-                        if (lmsItemData != null)
-                        {
-                            if (warehouseList.Contains(lmsItemData.WhId))
-                                addF02020101.TARWAREHOUSE_ID = lmsItemData.WhId;
-                            else
-                                diffWhId.Add(lmsItemData);
-                        }
-                    });
-                }
+				if (lmsRes.Data.Any())
+				{
+					addF02020101List.ForEach(addF02020101 =>
+					{
+						var lmsItemData = lmsRes.Data.Where(x => x.ItemCode == addF02020101.ITEM_CODE).FirstOrDefault();
+						if (lmsItemData != null)
+						{
+							if (warehouseList.Contains(lmsItemData.WhId))
+								addF02020101.TARWAREHOUSE_ID = lmsItemData.WhId;
+							else
+								diffWhId.Add(lmsItemData);
+						}
+					});
+				}
 
-                repoF02020101.BulkInsert(addF02020101List);
+				repoF02020101.BulkInsert(addF02020101List);
 
-                if (!lmsRes.IsSucessed)
-                    return new ExecuteResult() { IsSuccessed = true, No = rtNo, Message = lmsRes.Msg };
-                else if (diffWhId.Any())
-                    return new ExecuteResult() { IsSuccessed = true, No = rtNo, Message = string.Join("\r", diffWhId.Select(x => $"品號{x.ItemCode}上架倉別代碼為「{x.WhId}」，不在倉別清單內。").ToList()) };
-            }
-            #endregion
+				if (!lmsRes.IsSucessed)
+					return new ExecuteResult() { IsSuccessed = true, No = rtNo, Message = lmsRes.Msg };
+				else if (diffWhId.Any())
+					return new ExecuteResult() { IsSuccessed = true, No = rtNo, Message = string.Join("\r", diffWhId.Select(x => $"品號{x.ItemCode}上架倉別代碼為「{x.WhId}」，不在倉別清單內。").ToList()) };
+			}
+			#endregion
 
-            return new ExecuteResult() { IsSuccessed = true, No = rtNo };
+			return new ExecuteResult() { IsSuccessed = true, No = rtNo };
 		}
 
-        public int GetTodayRecvQty(string dcCode, string gupCode, string custCode, string purchaseNo, DateTime receDate)
-        {
-            var repo = new F020201Repository(Schemas.CoreSchema);
-            return repo.GetTodayRecvQty(dcCode, gupCode, custCode, purchaseNo, receDate);
-        }
+		public int GetTodayRecvQty(string dcCode, string gupCode, string custCode, string purchaseNo, DateTime receDate)
+		{
+			var repo = new F020201Repository(Schemas.CoreSchema);
+			return repo.GetTodayRecvQty(dcCode, gupCode, custCode, purchaseNo, receDate);
+		}
 
 
-        /// <summary>
-        /// 取得要顯示的驗收單資料集 (驗收單主檔)
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="purchaseNo"></param>
-        /// <param name="rtNo"></param>
-        /// <param name="vnrCode"></param>
-        /// <param name="startDt"></param>
-        /// <param name="endDt"></param>
-        /// <returns></returns>
-        public IQueryable<P020203Data> Get(string dcCode, string gupCode, string custCode, string purchaseNo
-					, string rtNo, string vnrCode, string custOrdNo, string allocationNo, string vnrNameConditon, string startDt = null, string endDt = null)
+		/// <summary>
+		/// 取得要顯示的驗收單資料集 (驗收單主檔)
+		/// </summary>
+		/// <param name="dcCode"></param>
+		/// <param name="gupCode"></param>
+		/// <param name="custCode"></param>
+		/// <param name="purchaseNo"></param>
+		/// <param name="rtNo"></param>
+		/// <param name="vnrCode"></param>
+		/// <param name="startDt"></param>
+		/// <param name="endDt"></param>
+		/// <returns></returns>
+		public IQueryable<P020203Data> Get(string dcCode, string gupCode, string custCode, string purchaseNo
+			, string rtNo, string vnrCode, string custOrdNo, string allocationNo, string vnrNameConditon, string startDt = null, string endDt = null)
 		{
 			var repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
 			var repo1 = new F1909Repository(Schemas.CoreSchema, _wmsTransaction);
@@ -259,23 +286,23 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			return result;
 		}
 
-        #endregion
+		#endregion
 
-        #region 更新驗收數
-        /// <summary>
-        /// 更新驗收數, 同時取消勾選已檢驗與序號LOG檔
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="purchaseNo"></param>
-        /// <param name="purchaseSeq"></param>
-        /// <param name="recvQty"></param>
-        /// <param name="userId"></param>
-        /// <param name="rtNo"></param>
-        /// <returns></returns>
-        public ExecuteResult UpdateRecvQty(string dcCode, string gupCode, string custCode
-			, string purchaseNo, string purchaseSeq, int recvQty, string userId, string rtNo)
+		#region 更新驗收數
+		/// <summary>
+		/// 更新驗收數, 同時取消勾選已檢驗與序號LOG檔
+		/// </summary>
+		/// <param name="dcCode"></param>
+		/// <param name="gupCode"></param>
+		/// <param name="custCode"></param>
+		/// <param name="purchaseNo"></param>
+		/// <param name="purchaseSeq"></param>
+		/// <param name="recvQty"></param>
+		/// <param name="userId"></param>
+		/// <param name="rtNo"></param>
+		/// <returns></returns>
+		public ExecuteResult UpdateRecvQty(string dcCode, string gupCode, string custCode
+	, string purchaseNo, string purchaseSeq, int recvQty, string userId, string rtNo)
 		{
 			var repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
 			var result = repo.Find(x => x.DC_CODE.Equals(EntityFunctions.AsNonUnicode(dcCode))
@@ -424,33 +451,33 @@ namespace Wms3pl.WebServices.Process.P02.Services
 				var repo05 = new F1905Repository(Schemas.CoreSchema, _wmsTransaction);
 
 
-        var org1905 = CommonService.GetProductSize(gupCode, custCode, searchItem.ITEM_CODE);
-        if (org1905 != null)
-        {
-          //商品長寬高、重量有異動時，才進行更新
-          if (org1905.PACK_LENGTH != searchItem.PACK_LENGTH ||
-            org1905.PACK_WIDTH != searchItem.PACK_WIDTH ||
-            org1905.PACK_HIGHT != searchItem.PACK_HIGHT ||
-            org1905.PACK_WEIGHT != searchItem.PACK_WEIGHT)
-          {
-            //var size = string.Format("{0}*{1}*{2}", searchItem.PACK_LENGTH, searchItem.PACK_WIDTH, searchItem.PACK_HIGHT);
+				var org1905 = CommonService.GetProductSize(gupCode, custCode, searchItem.ITEM_CODE);
+				if (org1905 != null)
+				{
+					//商品長寬高、重量有異動時，才進行更新
+					if (org1905.PACK_LENGTH != searchItem.PACK_LENGTH ||
+						org1905.PACK_WIDTH != searchItem.PACK_WIDTH ||
+						org1905.PACK_HIGHT != searchItem.PACK_HIGHT ||
+						org1905.PACK_WEIGHT != searchItem.PACK_WEIGHT)
+					{
+						//var size = string.Format("{0}*{1}*{2}", searchItem.PACK_LENGTH, searchItem.PACK_WIDTH, searchItem.PACK_HIGHT);
 
-            //var item03 = CommonService.GetProduct(gupCode, custCode, searchItem.ITEM_CODE);
-            ////var item05 = CommonService.GetProductSize(gupCode, custCode, searchItem.ITEM_CODE);
-            //if (item03 != null)
-            //{
-            //  //f1903 = SetObject(item03, f1903) as F1903;
-            //  item03.ITEM_SIZE = size;
-            //  repo03.Update(item03);
-            //}
+						//var item03 = CommonService.GetProduct(gupCode, custCode, searchItem.ITEM_CODE);
+						////var item05 = CommonService.GetProductSize(gupCode, custCode, searchItem.ITEM_CODE);
+						//if (item03 != null)
+						//{
+						//  //f1903 = SetObject(item03, f1903) as F1903;
+						//  item03.ITEM_SIZE = size;
+						//  repo03.Update(item03);
+						//}
 
-            org1905.PACK_LENGTH = searchItem.PACK_LENGTH;
-            org1905.PACK_WIDTH = searchItem.PACK_WIDTH;
-            org1905.PACK_HIGHT = searchItem.PACK_HIGHT;
-            org1905.PACK_WEIGHT = searchItem.PACK_WEIGHT;
-            repo05.Update(org1905);
-          }
-        }
+						org1905.PACK_LENGTH = searchItem.PACK_LENGTH;
+						org1905.PACK_WIDTH = searchItem.PACK_WIDTH;
+						org1905.PACK_HIGHT = searchItem.PACK_HIGHT;
+						org1905.PACK_WEIGHT = searchItem.PACK_WEIGHT;
+						repo05.Update(org1905);
+					}
+				}
 
 				#endregion
 			}
@@ -948,7 +975,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 				var query = f020302List.Where(x => !searialList.Any(s => s == x.SERIAL_NO));
 				if (query.Any())
 				{
-					f020301FileName = string.Format("SYSCHK99_{0}{1}", purchaseNo, fileseq.ToString("D2"));
+					f020301FileName = string.Format("USERCHK99_{0}{1}", purchaseNo, fileseq.ToString("D2"));
 
 					F020301 f020301 = new F020301
 					{
@@ -1109,7 +1136,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 		/// <param name="rtNo"></param>
 		/// <returns></returns>
 		public IQueryable<AcceptancePurchaseReport> GetAcceptancePurchaseReport(string dcCode, string gupCode, string custCode
-			, string purchaseNo, string rtNo,bool isDefect,bool isAcceptanceContainer)
+			, string purchaseNo, string rtNo, bool isDefect, bool isAcceptanceContainer)
 		{
 			var repo = new F020201Repository(Schemas.CoreSchema);
 
@@ -1123,7 +1150,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			}
 			else
 			{
-				result = repo.GetAcceptancePurchaseReport(dcCode, gupCode, custCode, purchaseNo, rtNo, f1909.ALLOWGUP_VNRSHARE == "1" ? "0" : custCode, isDefect).ToList();				
+				result = repo.GetAcceptancePurchaseReport(dcCode, gupCode, custCode, purchaseNo, rtNo, f1909.ALLOWGUP_VNRSHARE == "1" ? "0" : custCode, isDefect).ToList();
 			}
 
 			var itemService = new ItemService();
@@ -1310,25 +1337,25 @@ namespace Wms3pl.WebServices.Process.P02.Services
 		/// <param name="rtNo"></param>
 		public bool UpdateCheckSerialByVirtualItem(string dcCode, string gupCode, string custCode, string purchaseNo, string rtNo)
 		{
-            var f02020101Repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
+			var f02020101Repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
 
 			var f02020101s = f02020101Repo.AsForUpdate()
 											.GetF02020101sByVirtualItem(dcCode, gupCode, custCode, purchaseNo, rtNo); // 底層已經 ToList 就不再多做了...
 
-            if (f02020101s.Any())
-            {
-                foreach (var f02020101 in f02020101s)
-                {
-                    f02020101.CHECK_SERIAL = "1";
-                    f02020101Repo.Update(f02020101);
-                }
+			if (f02020101s.Any())
+			{
+				foreach (var f02020101 in f02020101s)
+				{
+					f02020101.CHECK_SERIAL = "1";
+					f02020101Repo.Update(f02020101);
+				}
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 		/// <summary>
@@ -1393,16 +1420,16 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			for (var i = 0; i < loopCnt; i++)
 			{
 				var f020302Repo = new F020302Repository(Schemas.CoreSchema);
-                //原方法，沒有排除自己以外的資料，會導致在前端刪除重新新增跳出序號重複問題
-                //var serailRepeatQuery = f020302Repo.InWithTrueAndCondition("SERIAL_NO",
-                //	largeSerialNo.Skip(i * range).Take(range).ToList(),
-                //	x => x.DC_CODE == dcCode
-                //		 && x.GUP_CODE == gupCode
-                //		 && x.CUST_CODE == custCode
-                //		 && x.ITEM_CODE == itemCode
-                //		 && x.STATUS == "0");
-                var serailRepeatQuery = f020302Repo.CheckRepeatSerails(dcCode, gupCode, custCode, poNo, itemCode, largeSerialNo.Skip(i * range).Take(range).ToArray());
-                if (serailRepeatQuery.Any())
+				//原方法，沒有排除自己以外的資料，會導致在前端刪除重新新增跳出序號重複問題
+				//var serailRepeatQuery = f020302Repo.InWithTrueAndCondition("SERIAL_NO",
+				//	largeSerialNo.Skip(i * range).Take(range).ToList(),
+				//	x => x.DC_CODE == dcCode
+				//		 && x.GUP_CODE == gupCode
+				//		 && x.CUST_CODE == custCode
+				//		 && x.ITEM_CODE == itemCode
+				//		 && x.STATUS == "0");
+				var serailRepeatQuery = f020302Repo.CheckRepeatSerails(dcCode, gupCode, custCode, poNo, itemCode, largeSerialNo.Skip(i * range).Take(range).ToArray());
+				if (serailRepeatQuery.Any())
 				{
 					var repeatSerails = string.Join(Environment.NewLine, serailRepeatQuery.Select(x => x.SERIAL_NO));
 					return new ExecuteResult(false, Properties.Resources.RepeatSerails + Environment.NewLine + repeatSerails);
@@ -1524,33 +1551,56 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			return result;
 		}
 
-    public ExecuteResult UpdateF1903(string gupCode, string custCode, string itemCode, string needExpired, DateTime? firstInDate,
-  int? saveDay, string eanCode1, string eanCode2, string eanCode3, short? allDln, int? allShp, string isPrecious, string fragile,
-  string isEasyLos, string spill, string isMagnetic, string isPerishable, string tmprType, string IsTempControl, F1905 updateVolumn)
+		public ExecuteResult UpdateF1903(string gupCode, string custCode, string itemCode, string needExpired, DateTime? firstInDate,
+	int? saveDay, string eanCode1, string eanCode2, string eanCode3, short? allDln, int? allShp, string isPrecious, string fragile,
+	string isEasyLos, string spill, string isMagnetic, string isPerishable, string tmprType, string IsTempControl,string bundleSerial, string IsApple, F1905 updateVolumn)
 		{
-      //
-      var f1903Repo = new F1903Repository(Schemas.CoreSchema, _wmsTransaction);
-      var updateF1903 = f1903Repo.Find(x => x.GUP_CODE.Equals(EntityFunctions.AsNonUnicode(gupCode))
-          && x.CUST_CODE.Equals(EntityFunctions.AsNonUnicode(custCode))
-          && x.ITEM_CODE.Equals(EntityFunctions.AsNonUnicode(itemCode)));
 
-      updateF1903.FIRST_IN_DATE = firstInDate;
-      updateF1903.NEED_EXPIRED = needExpired;
-      updateF1903.SAVE_DAY = saveDay;
-      updateF1903.ALL_DLN = allDln;
-      updateF1903.ALL_SHP = allShp;
-      updateF1903.EAN_CODE1 = eanCode1;
-      updateF1903.EAN_CODE2 = eanCode2;
-      updateF1903.EAN_CODE3 = eanCode3;
-      updateF1903.IS_PRECIOUS = isPrecious;
-      updateF1903.FRAGILE = fragile;
-      updateF1903.IS_EASY_LOSE = isEasyLos;
-      updateF1903.SPILL = spill;
-      updateF1903.IS_MAGNETIC = isMagnetic;
-      updateF1903.IS_PERISHABLE = isPerishable;
-      updateF1903.TMPR_TYPE = tmprType;
-      updateF1903.IS_TEMP_CONTROL = IsTempControl;
-      updateF1903.IS_ASYNC = "N";
+			
+			//
+			var f1903Repo = new F1903Repository(Schemas.CoreSchema, _wmsTransaction);
+			var updateF1903 = f1903Repo.Find(x => x.GUP_CODE.Equals(EntityFunctions.AsNonUnicode(gupCode))
+					&& x.CUST_CODE.Equals(EntityFunctions.AsNonUnicode(custCode))
+					&& x.ITEM_CODE.Equals(EntityFunctions.AsNonUnicode(itemCode)));
+
+			if (string.IsNullOrEmpty(bundleSerial))
+				bundleSerial = "0";
+
+			/// 檢查商品主檔是否序號商品 != 傳入的BundleSerialNo
+			if (updateF1903.BUNDLE_SERIALNO != bundleSerial)
+			{
+				#region 呼叫更新商品主檔API
+				var apiRes = UpdatdeItemInfoService.UpdateItemInfo(
+					updateF1903.CUST_CODE,
+					updateF1903.CUST_ITEM_CODE,
+					bundleSerial,
+					string.IsNullOrWhiteSpace(eanCode1) ? updateF1903.EAN_CODE4 : eanCode1);
+				if (!apiRes.IsSuccessed)
+					return apiRes;
+				#endregion
+			}
+
+			updateF1903.FIRST_IN_DATE = firstInDate;
+			updateF1903.NEED_EXPIRED = needExpired;
+			updateF1903.SAVE_DAY = saveDay;
+			updateF1903.ALL_DLN = allDln;
+			updateF1903.ALL_SHP = allShp;
+			updateF1903.EAN_CODE1 = eanCode1;
+			updateF1903.EAN_CODE2 = eanCode2;
+			updateF1903.EAN_CODE3 = eanCode3;
+			updateF1903.IS_PRECIOUS = isPrecious;
+			updateF1903.FRAGILE = fragile;
+			updateF1903.IS_EASY_LOSE = isEasyLos;
+			updateF1903.SPILL = spill;
+			updateF1903.IS_MAGNETIC = isMagnetic;
+			updateF1903.IS_PERISHABLE = isPerishable;
+			updateF1903.TMPR_TYPE = tmprType;
+			updateF1903.IS_TEMP_CONTROL = IsTempControl;
+			updateF1903.BUNDLE_SERIALNO = bundleSerial;
+			if (updateF1903.BUNDLE_SERIALNO == "0")
+				updateF1903.BUNDLE_SERIALLOC = "0";
+			updateF1903.ISAPPLE = IsApple;
+			updateF1903.IS_ASYNC = "N";
 
 			if (updateVolumn != null)
 			{
@@ -1560,73 +1610,73 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
 			f1903Repo.Update(updateF1903);
 
-      return new ExecuteResult { IsSuccessed = true };
+			return new ExecuteResult { IsSuccessed = true };
 
-    }
+		}
 
-        public ExecuteResult ReGetLmsApiStowShelfAreaGuide(string dcCode, string gupCode, string custCode, string purchaseNo, string[] warehouseList)
-        {
-            var diffWhId = new List<LmsStowShelfAreaGuideRespense>();
+		public ExecuteResult ReGetLmsApiStowShelfAreaGuide(string dcCode, string gupCode, string custCode, string purchaseNo, string[] warehouseList)
+		{
+			var diffWhId = new List<LmsStowShelfAreaGuideRespense>();
 
-            var f010201Repo = new F010201Repository(Schemas.CoreSchema);
-            var f02020101Repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
-            var order = f010201Repo.AsForUpdate().Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.STOCK_NO == purchaseNo);
-            var f02020101s = f02020101Repo.AsForUpdate().GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PURCHASE_NO == purchaseNo).ToList();
-            var custInNo = order.CUST_ORD_NO;
+			var f010201Repo = new F010201Repository(Schemas.CoreSchema);
+			var f02020101Repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
+			var order = f010201Repo.AsForUpdate().Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.STOCK_NO == purchaseNo);
+			var f02020101s = f02020101Repo.AsForUpdate().GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PURCHASE_NO == purchaseNo).ToList();
+			var custInNo = order.CUST_ORD_NO;
 
-            var lmsRes = CallLmsApiStowShelfAreaGuide(dcCode, gupCode, custCode, custInNo, f02020101s.Select(x => x.ITEM_CODE).Distinct().ToList());
-            if(!lmsRes.IsSucessed)
-            {
-                return new ExecuteResult() { IsSuccessed = lmsRes.IsSucessed, Message = lmsRes.Msg };
-            }
-            if (lmsRes.Data.Any())
-            {
-                foreach (var f02020101 in f02020101s)
-                {
-                    var lmsItemData = lmsRes.Data.Where(x => x.ItemCode == f02020101.ITEM_CODE).FirstOrDefault();
-                    if (lmsItemData != null)
-                    {
-                        if (warehouseList.Contains(lmsItemData.WhId))
-                            f02020101.TARWAREHOUSE_ID = lmsItemData.WhId;
-                        else
-                            diffWhId.Add(lmsItemData);
-                    }
-                }
-                f02020101Repo.BulkUpdate(f02020101s);
-            }
+			var lmsRes = CallLmsApiStowShelfAreaGuide(dcCode, gupCode, custCode, custInNo, f02020101s.Select(x => x.ITEM_CODE).Distinct().ToList());
+			if (!lmsRes.IsSucessed)
+			{
+				return new ExecuteResult() { IsSuccessed = lmsRes.IsSucessed, Message = lmsRes.Msg };
+			}
+			if (lmsRes.Data.Any())
+			{
+				foreach (var f02020101 in f02020101s)
+				{
+					var lmsItemData = lmsRes.Data.Where(x => x.ItemCode == f02020101.ITEM_CODE).FirstOrDefault();
+					if (lmsItemData != null)
+					{
+						if (warehouseList.Contains(lmsItemData.WhId))
+							f02020101.TARWAREHOUSE_ID = lmsItemData.WhId;
+						else
+							diffWhId.Add(lmsItemData);
+					}
+				}
+				f02020101Repo.BulkUpdate(f02020101s);
+			}
 
-            if (diffWhId.Any())
-                return new ExecuteResult() { IsSuccessed = true, Message = string.Join("\r", diffWhId.Select(x => $"品號{x.ItemCode}上架倉別代碼為「{x.WhId}」，不在倉別清單內。").ToList()) };
+			if (diffWhId.Any())
+				return new ExecuteResult() { IsSuccessed = true, Message = string.Join("\r", diffWhId.Select(x => $"品號{x.ItemCode}上架倉別代碼為「{x.WhId}」，不在倉別清單內。").ToList()) };
 
-            return new ExecuteResult() { IsSuccessed = true, Message = lmsRes.Msg };
-        }
+			return new ExecuteResult() { IsSuccessed = true, Message = lmsRes.Msg };
+		}
 
-        private LmsStowShelfAreaGuideResult CallLmsApiStowShelfAreaGuide(string dcCode, string gupCode, string custCode, string custInNo, List<string> itemCodeList)
-        {
-            var res = new LmsStowShelfAreaGuideResult { Data = new List<LmsStowShelfAreaGuideRespense>() };
-            var srv = new StowShelfAreaService();
-            var lmsRes = srv.StowShelfAreaGuide(dcCode, gupCode, custCode, "1", custInNo, itemCodeList);
-            res.IsSucessed = lmsRes.IsSuccessed;
-            if (lmsRes.IsSuccessed)
-            {
-                var data = JsonConvert.DeserializeObject<List<Datas.Shared.ApiEntities.StowShelfAreaGuideData>>(
-                                    JsonConvert.SerializeObject(lmsRes.Data));
-                if (data != null && data.Any())
-                {
-                    res.Data = data.Select(x => new LmsStowShelfAreaGuideRespense
-                    {
-                        ItemCode = x.ItemCode,
-                        WhId = x.ShelfAreaCode
-                    }).ToList();
-                } 
-            }
-            else
-            {
-                res.Msg = $"[LMS上架倉別指示]{lmsRes.MsgCode + lmsRes.MsgContent + Environment.NewLine}雖然無法取得上架倉別的指示，但仍然可視為收貨成功";
-            }
+		private LmsStowShelfAreaGuideResult CallLmsApiStowShelfAreaGuide(string dcCode, string gupCode, string custCode, string custInNo, List<string> itemCodeList)
+		{
+			var res = new LmsStowShelfAreaGuideResult { Data = new List<LmsStowShelfAreaGuideRespense>() };
+			var srv = new StowShelfAreaService();
+			var lmsRes = srv.StowShelfAreaGuide(dcCode, gupCode, custCode, "1", custInNo, itemCodeList);
+			res.IsSucessed = lmsRes.IsSuccessed;
+			if (lmsRes.IsSuccessed)
+			{
+				var data = JsonConvert.DeserializeObject<List<Datas.Shared.ApiEntities.StowShelfAreaGuideData>>(
+														JsonConvert.SerializeObject(lmsRes.Data));
+				if (data != null && data.Any())
+				{
+					res.Data = data.Select(x => new LmsStowShelfAreaGuideRespense
+					{
+						ItemCode = x.ItemCode,
+						WhId = x.ShelfAreaCode
+					}).ToList();
+				}
+			}
+			else
+			{
+				res.Msg = $"[LMS上架倉別指示]{lmsRes.MsgCode + lmsRes.MsgContent + Environment.NewLine}雖然無法取得上架倉別的指示，但仍然可視為收貨成功";
+			}
 
-            return res;
-        }
+			return res;
+		}
 
-  }
+	}
 }

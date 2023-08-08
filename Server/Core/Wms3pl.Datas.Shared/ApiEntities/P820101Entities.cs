@@ -272,6 +272,10 @@ namespace Wms3pl.Datas.Shared.ApiEntities
     /// 廠商料號 (料號)
     /// </summary>
     public string VnrItemCode { get; set; }
+    /// <summary>
+    /// 原廠商編號
+    /// </summary>
+    public string OriVnrCode { get; set; }
   }
 
 	public class PostItemGroupModel

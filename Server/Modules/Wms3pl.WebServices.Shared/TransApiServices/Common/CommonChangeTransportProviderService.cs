@@ -281,6 +281,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 
                         /* (2)	更新F055001.PAST_NO =  pack.TransportCode*/
                         f055001.PAST_NO = pack.TransportCode;
+                        f055001.LOGISTIC_CODE = pack.TransportProvider;
                         f055001Repo.Update(f055001);
                     }
                 }

@@ -22,7 +22,7 @@ namespace Wms3pl.WebServices.Process.P25.Services
 		public IQueryable<P2502QueryData> GetP2502QueryDatas(string gupCode, string custCode,
 			 string itemCode, string serialNo, string batchNo, string cellNum, string poNo, string wmsNo
 			, string status, string retailCode, Int16? combinNo, string crtName, string updSDate
-			, string updEDate, string boxSerial, string itemType)
+			, string updEDate, string boxSerial, string OpItemType)
 		{
 
 			var coverUpdSDate = (string.IsNullOrEmpty(updSDate)) ? ((DateTime?)null) : Convert.ToDateTime(updSDate);
@@ -37,7 +37,7 @@ namespace Wms3pl.WebServices.Process.P25.Services
 			var repF250101 = new F250101Repository(Schemas.CoreSchema);
 			var f2502QueryData = repF250101.GetP2502QueryDatas(gupCode, custCode, itemCodeArray, serialNoArray, batchNo, cellNum, poNo, wmsNoArray
 																, status, retailCode, combinNo, crtName, coverUpdSDate
-																, coverUpdEDate, boxSerial, itemType);
+																, coverUpdEDate, boxSerial, OpItemType);
 			return f2502QueryData; 
 		}
 

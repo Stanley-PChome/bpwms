@@ -63,7 +63,7 @@
                                     <CheckBox Grid.Row="0" Grid.Column="4" IsChecked="{Binding SoundOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CheckStyle}" FontSize="22">語音</CheckBox>
                                     <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center">
                                         <Label FontSize="22" Content="{x:Static Properties:Resources.TicketNo}" FontWeight="Bold" Style="{StaticResource LbStyleForPackage}" />
-                                        <TextBox Name="txtTicketNo" Text="{Binding TicketNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" AutoWordSelection="True" Width="310" FontSize="22" FontWeight="Bold" Background="SkyBlue" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" KeyDown="txtTicketNo_KeyDown" IsEnabled="{Binding EnableReadSerial, Converter={StaticResource NotConverter}}" InputMethod.IsInputMethodEnabled="False" MaxLength="20"/>
+                                        <TextBox Name="txtTicketNo" Text="{Binding TicketNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" AutoWordSelection="True" Width="310" FontSize="22" FontWeight="Bold" Background="SkyBlue" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" KeyDown="txtTicketNo_KeyDown" IsEnabled="{Binding EnableReadSerial, Converter={StaticResource NotConverter}}" InputMethod.IsInputMethodEnabled="False" MaxLength="32"/>
                                         <!--<Border Style="{StaticResource MarkBoderStyle}" Visibility="{Binding hasData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                       <TextBlock Margin="10" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding AllId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" FontSize="25" FontWeight="Bold" Foreground="DarkGreen" />
                     </Border>-->
@@ -105,7 +105,7 @@
               <DockPanel Grid.Row="1">
                 <DockPanel DockPanel.Dock="Left" HorizontalAlignment="Left">
                   <WrapPanel DockPanel.Dock="Top">
-                    <Grid Width="650">
+                    <Grid>
                       <Grid.RowDefinitions>
                         <RowDefinition Height="45" />
                         <RowDefinition Height="45" />
@@ -116,7 +116,7 @@
                       </Grid.ColumnDefinitions>
                       <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                         <Label Content="{x:Static res:Resources.Information}" FontSize="22" FontWeight="Bold" />
-                        <TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Foreground="{Binding MessageForeground, UpdateSourceTrigger=PropertyChanged}" FontSize="22" FontWeight="Bold" BorderBrush="Gray" BorderThickness="2" Width="580" VerticalAlignment="Center" Background="{Binding MessageBackground, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Foreground="{Binding MessageForeground, UpdateSourceTrigger=PropertyChanged}" FontSize="22" FontWeight="Bold" BorderBrush="Gray" BorderThickness="2" Width="800" VerticalAlignment="Center" Background="{Binding MessageBackground, UpdateSourceTrigger=PropertyChanged}" />
                       </WrapPanel>
                       <WrapPanel Grid.Row="1" Grid.Column="0" IsEnabled="{Binding EnableReadSerial}">
                         <Label Content="{x:Static Properties:Resources.InputSerailNo}" FontSize="22" FontWeight="Bold" Width="55" VerticalAlignment="Center" />

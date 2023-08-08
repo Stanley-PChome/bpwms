@@ -111,8 +111,10 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 						else if (f050801.STATUS == 2 || f050801.STATUS == 6)
 						{
 							var orderService = new OrderService(wmsTransaction);
-							var result = orderService.PackageBoxDebit(f050801, currf055001.PACKAGE_BOX_NO,currf055001.PAST_NO,currf055001.WORKSTATION_CODE, f060701.BOX_CODE, f060701.CREATE_TIME);
-							if (!result.IsSuccessed)
+              var result = orderService.PackageBoxDebit(f050801, currf055001.PACKAGE_BOX_NO, currf055001.PAST_NO, currf055001.WORKSTATION_CODE, f060701.BOX_CODE, 
+                f060701.CREATE_TIME, "SORTER", f060701.SORTER_CODE);
+
+              if (!result.IsSuccessed)
 							{
 								f060701.STATUS = "2";
 								f060701.MSG_CONTENT = string.Format("物流單號{0}{1}", f060701.SHIP_CODE, result.Message);

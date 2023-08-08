@@ -27,6 +27,7 @@ namespace Wms3pl.WebServices.Shared.Services
       var f0701Repo = new F0701Repository(Schemas.CoreSchema, _wmsTransaction);
       var f070101Repo = new F070101Repository(Schemas.CoreSchema, _wmsTransaction);
       var f070102Repo = new F070102Repository(Schemas.CoreSchema, _wmsTransaction);
+      var addF070102 = new List<F070102>();
 
       var addDatas = param.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.WAREHOUSE_ID, x.CONTAINER_CODE, x.CONTAINER_TYPE, x.PICK_ORD_NO })
           .Select(x => new
@@ -71,32 +72,51 @@ namespace Wms3pl.WebServices.Shared.Services
           {
             f0701_ID = f0701Id,
             WMS_NO = f070101.WMS_NO,
-            ContainerCode = data.CONTAINER_CODE
+            ContainerCode = data.CONTAINER_CODE,
+            Qty = f070101.F070102s.Sum(o => o.QTY)
           });
 
           f070101.F070102s.ForEach(f070102 =>
           {
             if (f070102.QTY > 0)
             {
-              f070102Repo.Add(new F070102
-              {
-                F070101_ID = f070101Id,
-                GUP_CODE = data.GUP_CODE,
-                CUST_CODE = data.CUST_CODE,
-                ITEM_CODE = f070102.ITEM_CODE,
-                VALID_DATE = f070102.VALID_DATE,
-                MAKE_NO = f070102.MAKE_NO,
-                QTY = f070102.QTY,
-                SERIAL_NO_LIST = f070102.SERIAL_NO_LIST,
-                BIN_CODE = f070102.BIN_CODE,
-                PICK_ORD_NO = data.PICK_ORD_NO,
-                ORG_F070101_ID = f070101Id
-              });
+              if (f070102 != null && f070102.SERIAL_NO_LIST != null && f070102.SERIAL_NO_LIST.Any())
+                addF070102.AddRange(f070102.SERIAL_NO_LIST.Select(x => new F070102
+                {
+                  F070101_ID = f070101Id,
+                  GUP_CODE = data.GUP_CODE,
+                  CUST_CODE = data.CUST_CODE,
+                  ITEM_CODE = f070102.ITEM_CODE,
+                  VALID_DATE = f070102.VALID_DATE,
+                  MAKE_NO = f070102.MAKE_NO,
+                  QTY = 1,
+                  BIN_CODE = f070102.BIN_CODE,
+                  PICK_ORD_NO = data.PICK_ORD_NO,
+                  ORG_F070101_ID = f070101Id,
+                  SERIAL_NO = x,
+                }));
+              else
+                addF070102.Add(new F070102
+                {
+                  F070101_ID = f070101Id,
+                  GUP_CODE = data.GUP_CODE,
+                  CUST_CODE = data.CUST_CODE,
+                  ITEM_CODE = f070102.ITEM_CODE,
+                  VALID_DATE = f070102.VALID_DATE,
+                  MAKE_NO = f070102.MAKE_NO,
+                  QTY = f070102.QTY,
+                  BIN_CODE = f070102.BIN_CODE,
+                  PICK_ORD_NO = data.PICK_ORD_NO,
+                  ORG_F070101_ID = f070101Id,
+                  //SERIAL_NO = f070102.SERIAL_NO,
+                });
             }
           });
         });
       });
 
+      if (addF070102 != null && addF070102.Any())
+        f070102Repo.BulkInsert(addF070102);
       return result;
     }
 

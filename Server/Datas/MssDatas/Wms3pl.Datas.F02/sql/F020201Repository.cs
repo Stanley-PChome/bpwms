@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -399,10 +400,10 @@ namespace Wms3pl.Datas.F02
 							WHERE A.DC_CODE = @p0 
 								AND A.RECE_DATE = @p1
 								AND C.STATUS<>'5' 
-								AND DateDiff(minute,dbo.GetSysDate(),C.CRT_DATE) >30 
+								AND DateDiff(minute,@p2,C.CRT_DATE) >30 
 							GROUP BY A.PURCHASE_NO,C.CRT_STAFF,C.CRT_NAME,C.CRT_DATE 
 							) A";
-            var param = new object[] { dcCode, receDate.Date };
+            var param = new object[] { dcCode, receDate.Date, DateTime.Now };
             return SqlQuery<DcWmsNoStatusItem>(sql, param);
 
         }
@@ -886,13 +887,14 @@ namespace Wms3pl.Datas.F02
                 new SqlParameter("@p3", purchaseNo),
                 new SqlParameter("@p4", receDate)
             };
-            var sql = @"SELECT RECV_QTY FROM F020201
+            var sql = @"SELECT TOP (1) SUM(RECV_QTY) TodayRecvQty FROM F020201
 						WHERE DC_CODE = @p0
 						AND GUP_CODE = @p1
 						AND CUST_CODE = @p2
 						AND PURCHASE_NO = @p3
-						AND RECE_DATE = @p4 ";
-            return SqlQuery<int>(sql, parameter.ToArray()).Sum(x => x);
+						AND RECE_DATE = @p4 
+            GROUP BY DC_CODE,GUP_CODE,CUST_CODE,PURCHASE_NO";
+            return SqlQuery<int>(sql, parameter.ToArray()).FirstOrDefault();
         }
 		     
 		    public IQueryable<F020201> GetDatasByF020501_ID(long f020501Id)
@@ -912,6 +914,41 @@ namespace Wms3pl.Datas.F02
 													 WHERE A.F020501_ID = @p0 ";
 						return SqlQuery<F020201>(sql, parameter.ToArray());
 				}
+
+    public IQueryable<CloseBoxDetail> GetCloseBoxDetail(long f020501Id)
+    {
+      var parameter = new List<SqlParameter>
+          {
+              new SqlParameter("@p0", f020501Id){ SqlDbType = SqlDbType.BigInt }
+          };
+      var sql = @"SELECT 
+	A.DC_CODE,
+	A.GUP_CODE,
+	A.CUST_CODE,
+	A.CUST_CODE, 
+	A.ITEM_CODE,
+	B.VALI_DATE,
+	B.MAKE_NO,
+	A.BIN_CODE,
+	SUM(A.QTY) QTY
+FROM 
+  F020502 A
+  INNER JOIN F020201 B
+  	ON A.DC_CODE = B.DC_CODE 
+	  AND A.GUP_CODE = B.GUP_CODE 
+	  AND A.CUST_CODE = B.CUST_CODE 
+	  AND A.STOCK_NO = B.PURCHASE_NO 
+	  AND A.STOCK_SEQ = B.PURCHASE_SEQ 
+	  AND A.RT_NO = B.RT_NO 
+	  AND A.RT_SEQ = B.RT_SEQ 
+WHERE 
+	A.F020501_ID = @p0
+GROUP BY 
+	A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.CUST_CODE, 
+	A.ITEM_CODE,B.VALI_DATE,B.MAKE_NO,A.BIN_CODE";
+      return SqlQuery<CloseBoxDetail>(sql, parameter.ToArray());
+    }
+
     public IQueryable<F020201> GetDatasByRtNoList(string dcCode, string gupCode, string custCode, List<string> rtNoList)
     {
       var parameter = new List<SqlParameter>
@@ -980,5 +1017,298 @@ WHERE
       //z.RT_SEQ == x.RT_SEQ));
     }
 
+    public IQueryable<RecvNeedBindContainerQueryRes> GetRecvNeedBindContainerQuery(string dcCode, string gupCode, string custCode, string wmsNo, string itemCode)
+    {
+      var parameter = new List<SqlParameter>
+            {
+              new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+            };
+
+      var whereSql = "";
+      if (!string.IsNullOrWhiteSpace(wmsNo) && string.IsNullOrWhiteSpace(itemCode))
+      {
+        parameter.Add(new SqlParameter("@p3", wmsNo) { SqlDbType = SqlDbType.VarChar });
+
+        whereSql = @"  
+  AND B.STATUS IN ('1','3')
+  AND (A.STOCK_NO = @p3 OR A.CUST_ORD_NO = @p3 OR B.RT_NO = @p3)";
+      }
+      else if (string.IsNullOrWhiteSpace(wmsNo) && !string.IsNullOrWhiteSpace(itemCode))
+      {
+        parameter.Add(new SqlParameter("@p3", itemCode) { SqlDbType = SqlDbType.VarChar });
+
+        whereSql = @"  
+  AND B.STATUS IN ('3')
+  AND (B.ITEM_CODE = @p3 OR C.EAN_CODE1 = @p3 OR C.EAN_CODE2 = @p3 OR C.EAN_CODE3 = @p3 OR C.CUST_ITEM_CODE = @p3)";
+      }
+      else if (!string.IsNullOrWhiteSpace(wmsNo) && !string.IsNullOrWhiteSpace(itemCode))
+      {
+        parameter.Add(new SqlParameter("@p3", wmsNo) { SqlDbType = SqlDbType.VarChar });
+        parameter.Add(new SqlParameter("@p4", itemCode) { SqlDbType = SqlDbType.VarChar });
+
+        whereSql = @"  
+  AND B.STATUS IN ('3')
+  AND (A.STOCK_NO = @p3 OR A.CUST_ORD_NO = @p3 OR B.RT_NO=@p3)
+  AND (B.ITEM_CODE = @p4 OR C.EAN_CODE1 = @p4 OR C.EAN_CODE2 = @p4 OR C.EAN_CODE3 = @p4 OR C.CUST_ITEM_CODE = @p4)";
+      }
+      else
+        whereSql = "1=0";
+
+      var sql = $@"SELECT 
+  B.DC_CODE DcNo,
+  B.CUST_CODE CustNo,
+	B.PURCHASE_NO StockNo,
+	B.PURCHASE_SEQ StockSeq,
+	A.CUST_ORD_NO CustOrdNo,
+	B.RT_NO RtNo,
+	B.RT_SEQ RtSeq,
+	B.STATUS Status,
+	BLngSTATUS.NAME StatusDesc,
+	B.VNR_CODE VnrCode,
+	D.VNR_NAME VnrName,
+	A.FAST_PASS_TYPE FastPassType,
+	ALngFastPassType.NAME FastPassTypeDesc,
+	B.ITEM_CODE ItemCode,
+	C.CUST_ITEM_CODE CustItemCode,
+  C.VNR_ITEM_CODE VnrItemCode,
+	C.ITEM_NAME ItemName,
+	B.RECV_QTY RecvQty
+FROM 
+	F010201 A
+	LEFT JOIN VW_F000904_LANG ALngFastPassType
+    ON ALngFastPassType.TOPIC='F010201' 
+    AND ALngFastPassType.SUBTOPIC='FAST_PASS_TYPE' 
+    AND ALngFastPassType.LANG='{Current.Lang}' 
+    AND ALngFastPassType.VALUE=A.FAST_PASS_TYPE
+	INNER JOIN F020201 B
+		ON A.DC_CODE = B.DC_CODE 
+		AND A.GUP_CODE = B.GUP_CODE 
+		AND A.CUST_CODE =B.CUST_CODE 
+		AND A.STOCK_NO = B.PURCHASE_NO 
+    AND B.STATUS IN('1','3')
+	LEFT JOIN VW_F000904_LANG BLngSTATUS
+    ON BLngSTATUS.TOPIC='F020201' 
+    AND BLngSTATUS.SUBTOPIC='STATUS' 
+    AND BLngSTATUS.LANG='{Current.Lang}' 
+    AND BLngSTATUS.VALUE=B.STATUS
+	INNER JOIN F1903 C WITH(NOLOCK)
+		ON B.GUP_CODE = C.GUP_CODE 
+		AND B.CUST_CODE = C.CUST_CODE 
+		AND B.ITEM_CODE = C.ITEM_CODE 
+	INNER JOIN F1908 D WITH(NOLOCK)
+		ON B.GUP_CODE = D.GUP_CODE 
+		AND B.CUST_CODE = D.CUST_CODE 
+		AND B.VNR_CODE = D.VNR_CODE
+WHERE 
+  B.DC_CODE=@p0
+  AND B.GUP_CODE=@p1
+  AND B.CUST_CODE=@p2
+  {whereSql}";
+      return SqlQuery<RecvNeedBindContainerQueryRes>(sql, parameter.ToArray());
+    }
+
+    /// <summary>
+    /// 檢查該筆驗收單是否已綁定完成
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <param name="rtSeq"></param>
+    /// <returns></returns>
+    public Boolean IsAllOrdBindComplete(string dcCode, string gupCode, string custCode, string rtNo, string rtSeq)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", rtNo)     { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", rtSeq)    { SqlDbType = SqlDbType.VarChar },
+      };
+
+      var sql = @"SELECT TOP 1 1 FROM F020201 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND RT_NO=@p3 AND RT_SEQ=@p4 AND STATUS='2'";
+
+      return !SqlQuery<int>(sql, para.ToArray()).Any();
+    }
+
+    /// <summary>
+    /// 檢查驗收單是否都綁定完成
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <param name="rtSeq"></param>
+    /// <returns></returns>
+    public Boolean IsAcceptenceIsComplete(string dcCode, string gupCode, string custCode, string rtNo, string rtSeq)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", rtNo)     { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", rtSeq)    { SqlDbType = SqlDbType.VarChar },
+      };
+
+      var sql = @"SELECT TOP 1 1 FROM F020201 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND RT_NO=@p3 AND RT_SEQ!=@p4 AND STATUS='3'";
+
+      return !SqlQuery<int>(sql, para.ToArray()).Any();
+    }
+
+    public IQueryable<RecvRecords> GetF020209RecvRecord(string dcCode, string gupCode, string custCode, DateTime RecvDateBegin, DateTime RecvDateEnd, string PurchaseNo,
+      string CustOrdNo, string PrintMode, string PalletLocation, string ItemCode, string RecvStaff)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                SELECT
+	                A.PALLET_LOCATION,
+	                A.PURCHASE_NO,
+	                A.CUST_ORD_NO,
+	                A.RT_NO, 
+	                A.RT_SEQ,
+	                A.ITEM_CODE,
+	                A.RECV_QTY,
+	                A.VALI_DATE,
+	                A.MAKE_NO,
+                  A.CRT_STAFF,
+	                A.CRT_NAME,
+	                CASE WHEN A.IS_PRINT_ITEM_ID = '1' THEN '是' ELSE '否' END IS_PRINT_ITEM_ID,
+                  A.IS_PRINT_ITEM_ID IS_PRINT_ITEM_ID_RAW,
+	                CASE WHEN A.IS_PRINT_RECVNOTE = '1' THEN '是' ELSE '否' END IS_PRINT_RECVNOTE,
+                  A.IS_PRINT_RECVNOTE IS_PRINT_RECVNOTE_RAW,
+	                A.CRT_DATE,
+	                A.PRINT_NAME,
+	                A.PRINT_TIME,
+					        B.NAME PRINT_MODE,
+                  A.PRINT_MODE IsEnabledString
+                FROM 
+	                F020201 A
+				        LEFT JOIN
+					        VW_F000904_LANG B ON B.TOPIC='F020201' AND B.SUBTOPIC='PRINT_MODE' AND A.PRINT_MODE=B.VALUE
+                WHERE
+                  A.DC_CODE = @p0
+                  AND A.GUP_CODE = @p1
+                  AND A.CUST_CODE = @p2
+                  AND A.PRINT_MODE <> '0'
+                ";
+
+      var sql2 = "";
+
+      if (!string.IsNullOrWhiteSpace(RecvDateBegin.ToString()))
+      {
+        sql2 += $" AND CRT_DATE > @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", RecvDateBegin) { SqlDbType = SqlDbType.DateTime2 });
+      }
+
+      if (!string.IsNullOrWhiteSpace(RecvDateEnd.ToString()))
+      {
+        sql2 += $" AND CRT_DATE < @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", RecvDateEnd.AddDays(1)) { SqlDbType = SqlDbType.DateTime2 });
+      }
+
+      if (!string.IsNullOrWhiteSpace(PurchaseNo))
+      {
+        sql2 += $" AND PURCHASE_NO = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", PurchaseNo) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      if (!string.IsNullOrWhiteSpace(CustOrdNo))
+      {
+        sql2 += $" AND CUST_ORD_NO = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", CustOrdNo) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      if (!string.IsNullOrWhiteSpace(PrintMode))
+      {
+        sql2 += $" AND PRINT_MODE = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", PrintMode) { SqlDbType = SqlDbType.Char });
+      }
+
+      if (!string.IsNullOrWhiteSpace(PalletLocation))
+      {
+        sql2 += $" AND PALLET_LOCATION = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", PalletLocation) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      if (!string.IsNullOrWhiteSpace(ItemCode))
+      {
+        sql2 += $" AND ITEM_CODE = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", ItemCode) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      if (!string.IsNullOrWhiteSpace(RecvStaff))
+      {
+        sql2 += $" AND CRT_STAFF = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", RecvStaff) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      sql += sql2;
+
+      var result = SqlQuery<RecvRecords>(sql, param.ToArray());
+      return result;
+    }
+
+    public IQueryable<ItemLabelData> GetF020209ItemLabelData(string dcCode, string gupCode, string custCode, List<string> rtNos)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                SELECT 
+                B.CUST_ITEM_CODE,
+                B.ITEM_NAME,
+                A.CUST_ORD_NO,
+                A.RECV_QTY,
+                A.VALI_DATE,
+                CASE WHEN LEFT(A.CUST_ORD_NO, 2) = 'BR' THEN 'B' ELSE 'N' END ORDER_TYPE
+                FROM F020201 A 
+	                JOIN F1903 B 
+		                ON A.GUP_CODE=B.GUP_CODE 
+		                AND A.CUST_CODE=B.CUST_CODE 
+		                AND A.ITEM_CODE=B.ITEM_CODE
+                WHERE
+	                A.DC_CODE = @p0
+	                AND A.GUP_CODE = @p1
+	                AND A.CUST_CODE = @p2
+                ";
+
+      sql += param.CombineSqlInParameters(" AND RT_NO", rtNos, SqlDbType.VarChar);
+
+      //加上ROW_NUM
+      sql = $@"
+            SELECT 
+              ROW_NUMBER()OVER(ORDER BY aa.CUST_ITEM_CODE) AS ROW_NUM,
+              aa.*
+            FROM
+              ({sql}) aa";
+
+      var result = SqlQuery<ItemLabelData>(sql, param.ToArray());
+
+      foreach (var item in result)
+      {
+        if (item.VALI_DATE.ToString("yyyy-MM-dd") != "9999-12-31")
+        {
+          var month = "0" + item.VALI_DATE.Month;
+          item.VALI_DATE_MONTH = month.Substring(month.Length - 2);
+          item.VALI_DATE_YEAR = (item.VALI_DATE.Year - 1911).ToString();
+        }
+      }
+
+      return result;
+    }
   }
 }

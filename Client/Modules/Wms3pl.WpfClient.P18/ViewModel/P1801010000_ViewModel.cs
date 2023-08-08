@@ -867,11 +867,13 @@ namespace Wms3pl.WpfClient.P18.ViewModel
 							 p.ITEM_SPEC,
 							 p.ITEM_SIZE,
 							 p.ITEM_COLOR,
-               p.VNR_CODE,
+							 p.VNR_CODE,
 							 p.RESERVATION_QTY,
 							 p.PICK_SUM_QTY,
 							 p.ALLOCATION_SUM_QTY,
-							 p.PROCESS_PICK_SUM_QTY
+							 p.PROCESS_PICK_SUM_QTY,
+							 p.VIRTUAL_STOCK_QTY,
+							 p.A7_PRE_TAR_QTY
 						 }
 							 into g
 						 select new StockQueryData1
@@ -880,11 +882,11 @@ namespace Wms3pl.WpfClient.P18.ViewModel
 							 CUST_NAME = g.Key.CUST_NAME,
 							 ITEM_CODE = g.Key.ITEM_CODE,
 							 ITEM_NAME = g.Key.ITEM_NAME,
-               VNR_CODE = g.Key.VNR_CODE,
-               LTYPE = g.Key.LTYPE,
-               LTYPE_NAME = g.Key.LTYPE_NAME,
-               MTYPE = g.Key.MTYPE,
-               MTYPE_NAME = g.Key.MTYPE_NAME,
+							 VNR_CODE = g.Key.VNR_CODE,
+							 LTYPE = g.Key.LTYPE,
+							 LTYPE_NAME = g.Key.LTYPE_NAME,
+							 MTYPE = g.Key.MTYPE,
+							 MTYPE_NAME = g.Key.MTYPE_NAME,
 							 STYPE = g.Key.STYPE,
 							 STYPE_NAME = g.Key.STYPE_NAME,
 							 ITEM_SPEC = g.Key.ITEM_SPEC,
@@ -893,7 +895,9 @@ namespace Wms3pl.WpfClient.P18.ViewModel
 							 RESERVATION_QTY = g.Key.RESERVATION_QTY,
 							 PICK_SUM_QTY = g.Key.PICK_SUM_QTY,
 							 ALLOCATION_SUM_QTY = g.Key.ALLOCATION_SUM_QTY,
-							 PROCESS_PICK_SUM_QTY = g.Key.PROCESS_PICK_SUM_QTY
+							 PROCESS_PICK_SUM_QTY = g.Key.PROCESS_PICK_SUM_QTY,
+							 VIRTUAL_STOCK_QTY = g.Key.VIRTUAL_STOCK_QTY,
+							 A7_PRE_TAR_QTY = g.Key.A7_PRE_TAR_QTY
 						 }).ToList();
 
 			var dt = new DataTable();
@@ -908,55 +912,56 @@ namespace Wms3pl.WpfClient.P18.ViewModel
 			dt.Columns.Add(Properties.Resources.ITEM_SIZE);
 			dt.Columns.Add(Properties.Resources.ITEM_COLOR);
 			dt.Columns.Add("廠商編號");
-      dt.Columns.Add(Properties.Resources.P1801010000_LimitQty);
+			dt.Columns.Add(Properties.Resources.P1801010000_LimitQty);
 			dt.Columns.Add(Properties.Resources.P1801010000_RESERVATION_QTY);
-      dt.Columns.Add(Properties.Resources.P1801010000_TotalInventory);
-      dt.Columns.Add(Properties.Resources.P1801010000_PickingQty);
-      foreach (var w in WarehouseList)
-        dt.Columns.Add(w.Item.Name);
-      dt.Columns.Add(Properties.Resources.P1801010000_PICK_SUM_QTY);
+			dt.Columns.Add(Properties.Resources.P1801010000_TotalInventory);
+			dt.Columns.Add(Properties.Resources.P1801010000_PickingQty);
+			foreach (var w in WarehouseList)
+				dt.Columns.Add(w.Item.Name.Replace(".", "\x2024")); //DataGrid Header有特殊符號會使下方資料顯示不出來，將"."轉Unicode即正常顯示
+			dt.Columns.Add(Properties.Resources.P1801010000_PICK_SUM_QTY);
 			dt.Columns.Add(Properties.Resources.P1801010000_ALLOCATION_SUM_QTY);
 			dt.Columns.Add(Properties.Resources.P1801010000_PROCESS_PICK_SUM_QTY);
 			//dt.Columns.Add(Properties.Resources.P1801010000_LEND_QTY);
+			dt.Columns.Add("待虛擬庫存回復數量");
+			dt.Columns.Add("A7補貨倉待上架數量");
 
-      var index = 1;
-      foreach (var d in items)
-      {
-        DataRow row = dt.NewRow();
-        row[0] = index;
-        row[1] = d.CUST_NAME;
-        row[2] = d.ITEM_CODE;
-        row[3] = d.ITEM_NAME;
-        row[4] = d.LTYPE_NAME;
-        row[5] = d.MTYPE_NAME;
-        row[6] = d.STYPE_NAME;
-        row[7] = d.ITEM_SPEC;
-        row[8] = d.ITEM_SIZE;
-        row[9] = d.ITEM_COLOR;
-        row[10] = d.VNR_CODE;
+			var index = 1;
+			foreach (var d in items)
+			{
+				DataRow row = dt.NewRow();
+				row[0] = index;
+				row[1] = d.CUST_NAME;
+				row[2] = d.ITEM_CODE;
+				row[3] = d.ITEM_NAME;
+				row[4] = d.LTYPE_NAME;
+				row[5] = d.MTYPE_NAME;
+				row[6] = d.STYPE_NAME;
+				row[7] = d.ITEM_SPEC;
+				row[8] = d.ITEM_SIZE;
+				row[9] = d.ITEM_COLOR;
+				row[10] = d.VNR_CODE;
 
-        // 管制數
-        row[11] =
-          ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE && new[] { "02", "03", "04" }.Contains(p.NOW_STATUS_ID))
-          .Sum(p => p.QTY);
+				// 管制數
+				var LimitQty = ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE && new[] { "02", "03", "04" }.Contains(p.NOW_STATUS_ID)).Sum(p => p.QTY);
+				row[11] = LimitQty;
 
-        // 預約數
-        row[12] = d.RESERVATION_QTY;
-        // 總庫存數
-        row[13] = ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE).Sum(p => p.QTY);
-        // 可揀數 = 庫存總數 - 管制數 
-        //no1213 可揀數計算排除不可出貨數量(只計算G和W倉)
-        row[14] = ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE && new string[] { "G", "W" }.Contains(p.WAREHOUSE_TYPE)).Sum(p => p.QTY) - ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE && new[] { "02", "03", "04" }.Contains(p.NOW_STATUS_ID))
-            .Sum(p => p.QTY);
+				// 預約數
+				row[12] = d.RESERVATION_QTY;
+				// 總庫存數
+				row[13] = ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE).Sum(p => p.QTY);
+				// 可揀數 = 庫存總數 (良品倉總庫存+加工倉總庫存) - 管制數
+				//no1213 可揀數計算排除不可出貨數量(只計算G和W倉)
+				var PickingQty = ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE && new string[] { "G", "W" }.Contains(p.WAREHOUSE_TYPE)).Sum(p => p.QTY);
+				row[14] = PickingQty - LimitQty;
 
-        var col = 15;
-        foreach (var w in WarehouseList)
-        {
-          var qty =
-            ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE && p.WAREHOUSE_ID == w.Item.Value).Sum(p => p.QTY);
-          row[col] = (w.IsSelected) ? qty.ToString() : string.Empty;
-          col++;
-        }
+				var col = 15;
+				foreach (var w in WarehouseList)
+				{
+					var qty =
+					  ListQueryData2.Where(p => p.ITEM_CODE == d.ITEM_CODE && p.WAREHOUSE_ID == w.Item.Value).Sum(p => p.QTY);
+					row[col] = (w.IsSelected) ? qty.ToString() : string.Empty;
+					col++;
+				}
 
 				// 出貨虛擬、調撥虛擬、加工虛擬、借出外送數
 				row[col] = d.PICK_SUM_QTY;
@@ -964,12 +969,16 @@ namespace Wms3pl.WpfClient.P18.ViewModel
 				row[col + 2] = d.PROCESS_PICK_SUM_QTY;
 				//row[col + 3] = d.LEND_QTY;
 
-        dt.Rows.Add(row);
-        index++;
-      }
+				//待虛擬庫存回復數量、A7補貨倉待上架數量
+				row[col + 3] = d.VIRTUAL_STOCK_QTY;
+				row[col + 4] = d.A7_PRE_TAR_QTY;
 
-      DtQueryData2 = dt;
-    }
+				dt.Rows.Add(row);
+				index++;
+			}
+
+			DtQueryData2 = dt;
+		}
 
     private void DoSearchComplete()
     {

@@ -700,7 +700,7 @@ namespace Wms3pl.WpfClient.P25.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 ,序號狀態,序號,序號類別 的當地語系化字串。
+        ///   查詢類似 ,序號狀態,序號 的當地語系化字串。
         /// </summary>
         public static string P2502010000_ViewModel_Title2 {
             get {
@@ -727,7 +727,7 @@ namespace Wms3pl.WpfClient.P25.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 ,客戶代號,序號開通狀態,加工單號 的當地語系化字串。
+        ///   查詢類似 ,序號開通狀態,加工單號 的當地語系化字串。
         /// </summary>
         public static string P2502010000_ViewModel_Title5 {
             get {
@@ -736,7 +736,7 @@ namespace Wms3pl.WpfClient.P25.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 ,供應商,系統商,攝影機編號,電腦編號,單位 的當地語系化字串。
+        ///   查詢類似 ,供應商,電腦編號,單位 的當地語系化字串。
         /// </summary>
         public static string P2502010000_ViewModel_Title6 {
             get {
@@ -745,7 +745,7 @@ namespace Wms3pl.WpfClient.P25.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 ,序號是否已上傳給客戶,建立日期,建立人員,異動日期,異動人員\n 的當地語系化字串。
+        ///   查詢類似 ,建立日期,建立人員,異動日期,異動人員 的當地語系化字串。
         /// </summary>
         public static string P2502010000_ViewModel_Title7 {
             get {

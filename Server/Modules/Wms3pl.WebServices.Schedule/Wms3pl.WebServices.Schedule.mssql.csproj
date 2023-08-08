@@ -173,6 +173,10 @@
       <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
       <Name>Wms3pl.DBCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F07\Wms3pl.Datas.F07.csproj">
+      <Project>{61302189-F348-4C74-BC5E-ED5BC88A6484}</Project>
+      <Name>Wms3pl.Datas.F07</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wms3pl.WebServices.ForeignWebApi.Business\Wms3pl.WebServices.ForeignWebApi.Business.mssql.csproj">
       <Project>{2feef342-61f3-4e27-8aa7-df40dd35f0d9}</Project>
       <Name>Wms3pl.WebServices.ForeignWebApi.Business.mssql</Name>

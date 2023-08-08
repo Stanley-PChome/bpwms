@@ -6,10 +6,10 @@
     using System.Data.Services.Common;
     using Wms3pl.WebServices.DataCommon;
 
-    /// <summary>
-    /// 出貨明細人員播種紀錄資料檔
-    /// </summary>
-    [Serializable]
+	/// <summary>
+	/// 出庫容器資料檔
+	/// </summary>
+	[Serializable]
     [DataServiceKey("ID")]
     [Table("F060205")]
     public class F060205 : IAuditInfo

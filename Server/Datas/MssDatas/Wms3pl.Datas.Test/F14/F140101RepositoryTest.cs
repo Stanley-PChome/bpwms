@@ -4,6 +4,7 @@ using Wms3pl.Datas.F14;
 using Wms3pl.WebServices.DataCommon;
 using System.Text.Json;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Wms3pl.Datas.Test.F14
 {
@@ -98,20 +99,24 @@ namespace Wms3pl.Datas.Test.F14
         }
 
         [TestMethod]
-        public void IsExistDatasByTheSameCycleTimes()
-        {
-            var dcCode = "001";
-            var gupCode = "01";
-            var custCode = "010001";
-            var inventoryYear = (short)0;
-            var inventoryMon = (short)0;
-            var cycleTimes = (short)0;
-            Console.WriteLine($"{JsonSerializer.Serialize(new { dcCode, gupCode, custCode, inventoryYear, inventoryMon, cycleTimes })}");
-            var result = _f140101Repository.IsExistDatasByTheSameCycleTimes(dcCode, gupCode, custCode, inventoryYear, inventoryMon, cycleTimes);
-            Console.WriteLine(JsonSerializer.Serialize(result));
-        }
+    public void IsExistDatasByTheSameCycleTimes()
+    {
+      var dcCode = "12";
+      var gupCode = "01";
+      var custCode = "010001";
+      var inventoryYear = (short)0;
+      var inventoryMon = (short)0;
+      var cycleTimes = (short)0;
+      Console.WriteLine($"{JsonSerializer.Serialize(new { dcCode, gupCode, custCode, inventoryYear, inventoryMon, cycleTimes })}");
+      var result = _f140101Repository.IsExistDatasByTheSameCycleTimes(dcCode, gupCode, custCode, inventoryYear, inventoryMon, cycleTimes);
+      Console.WriteLine(JsonSerializer.Serialize(result));
+      Trace.WriteLine(JsonSerializer.Serialize(result));
+      //var data2 = _f140101Repository.IsExistDatasByTheSameCycleTimes0(dcCode, gupCode, custCode, inventoryYear, inventoryMon, cycleTimes);
+      //Trace.WriteLine(JsonSerializer.Serialize(data2));
+      //Assert.AreEqual(JsonSerializer.Serialize(result), JsonSerializer.Serialize(data2));
+    }
 
-        [TestMethod]
+    [TestMethod]
         public void UpdateItemCntAndQty()
         {
             var dcCode = "001";
@@ -150,16 +155,19 @@ namespace Wms3pl.Datas.Test.F14
         [TestMethod]
         public void GetEnabledData()
         {
-            var dcCode = "001";
-            var gupCode = "01";
-            var custCode = "030002";
-            var inventoryNo = "I2019073100002";
+            var dcCode = "12";
+            var gupCode = "10";
+            var custCode = "010001";
+            var inventoryNo = "I20210129000001";
             Console.WriteLine($"{JsonSerializer.Serialize(new { dcCode, gupCode, custCode, inventoryNo })}");
             var result = _f140101Repository.GetEnabledData(dcCode, gupCode, custCode, inventoryNo);
             Console.WriteLine(JsonSerializer.Serialize(result));
-        }
 
-        [TestMethod]
+      //var result0 = _f140101Repository.GetEnabledData0(dcCode, gupCode, custCode, inventoryNo);
+      //Assert.AreEqual(JsonSerializer.Serialize(result), JsonSerializer.Serialize(result0));
+    }
+
+    [TestMethod]
         public void GetInventoryDetailData()
         {
             var dcCode = "001";

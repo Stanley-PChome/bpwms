@@ -127,10 +127,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="linq\F07010401Repository.cs" />
+    <Compile Include="linq\F075111Repository.cs" />
+    <Compile Include="linq\F075110Repository.cs" />
     <Compile Include="linq\F075109Repository.cs" />
     <Compile Include="linq\F076102Repository.cs" />
     <Compile Include="linq\F076101Repository.cs" />
     <Compile Include="linq\F076103Repository.cs" />
+    <Compile Include="linq\F076107Repository.cs" />
+    <Compile Include="linq\F076106Repository.cs" />
+    <Compile Include="linq\F076105Repository.cs" />
     <Compile Include="linq\F076104Repository.cs" />
     <Compile Include="linq\F077101Repository.cs" />
     <Compile Include="linq\F070101Repository.cs" />
@@ -149,10 +154,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sql\F07010401Repository.cs" />
     <Compile Include="sql\F075109Repository.cs" />
+    <Compile Include="sql\F075110Repository.cs" />
+    <Compile Include="sql\F075111Repository.cs" />
     <Compile Include="sql\F076101Repository.cs" />
     <Compile Include="sql\F076102Repository.cs" />
     <Compile Include="sql\F076103Repository.cs" />
     <Compile Include="sql\F076104Repository.cs" />
+    <Compile Include="sql\F076107Repository.cs" />
+    <Compile Include="sql\F076106Repository.cs" />
+    <Compile Include="sql\F076105Repository.cs" />
     <Compile Include="sql\F077101Repository.cs" />
     <Compile Include="sql\F070101Repository.cs" />
     <Compile Include="sql\F070103Repository.cs" />

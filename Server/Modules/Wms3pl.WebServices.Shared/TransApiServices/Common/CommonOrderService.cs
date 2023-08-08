@@ -370,14 +370,14 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 
 					//檢查 本訂單中所有的商品 的廠商編號(F1903.VNR_CODE)，其中有一個商品廠商編號在蘋果廠商編號清單設定檔
 					var productList = CommonService.GetProductList(gupCode, custCode, addF050102Data.Select(x => x.ITEM_CODE).Distinct().ToList());
-					if (productList.Any(x => _f0003AppleVendorList.Contains(x.VNR_CODE)))
-					{
-						addF050101Data.NP_FLAG = "1";
-						if (addF050001Data != null)
-							addF050001Data.NP_FLAG = "1";
-					}
+          if (productList.Any(x => _f0003AppleVendorList.Contains(x.ORI_VNR_CODE) || x.ISAPPLE == "1"))
+          {
+            addF050101Data.NP_FLAG = "1";
+            if (addF050001Data != null)
+              addF050001Data.NP_FLAG = "1";
+          }
 
-					addF050101.Add(addF050101Data);
+          addF050101.Add(addF050101Data);
 					f050101Repo.Add(addF050101Data);
 					f050102Repo.BulkInsert(addF050102Data);
 					f050103Repo.Add(addF050103Data);

@@ -328,17 +328,60 @@ namespace Wms3pl.Datas.F05
 
     public IQueryable<F051202> GetDataByPickNo(string dcCode, string gupCode, string custCode, string pickOrdNo)
     {
-      var parms = new object[] { dcCode, gupCode, custCode, pickOrdNo };
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p3",pickOrdNo){ SqlDbType = SqlDbType.VarChar},
+			};
       var sql = @" SELECT *
                       FROM F051202
                      WHERE DC_CODE = @p0
                        AND GUP_CODE = @p1
                        AND CUST_CODE = @p2
                        AND PICK_ORD_NO = @p3";
-      return SqlQuery<F051202>(sql, parms);
+      return SqlQuery<F051202>(sql, parms.ToArray());
     }
+		public IQueryable<F051202> GetDataByPickNos(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+			};
+			
+			var sql = @" SELECT *
+                      FROM F051202
+                     WHERE DC_CODE = @p0
+                       AND GUP_CODE = @p1
+                       AND CUST_CODE = @p2 ";
+			sql += parms.CombineSqlInParameters(" AND PICK_ORD_NO", pickOrdNos, SqlDbType.VarChar);
+			return SqlQuery<F051202>(sql, parms.ToArray());
+		}
 
-    public IQueryable<F051202> GetCollectionOutboundDatas()
+		public IQueryable<F051202> GetDatasByPickNosNotStatus(string dcCode, string gupCode, string custCode, string pickStatus, List<string> pickOrdNos)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",custCode){ SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p3",pickStatus){SqlDbType = SqlDbType.Char}
+			};
+			var sql = @" SELECT *
+                      FROM F051202
+                     WHERE DC_CODE = @p0
+                       AND GUP_CODE = @p1
+                       AND CUST_CODE = @p2
+                       AND PICK_STATUS <> @p3 ";
+			sql += parms.CombineSqlInParameters(" AND PICK_ORD_NO ", pickOrdNos, SqlDbType.VarChar);
+			return SqlQuery<F051202>(sql, parms.ToArray());
+		}
+
+
+		public IQueryable<F051202> GetCollectionOutboundDatas()
     {
       var parms = new object[] { };
 
@@ -400,46 +443,65 @@ namespace Wms3pl.Datas.F05
     }
 
     public IQueryable<F051202> GetDatasByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
-    {
-      var parms = new List<object> { dcCode, gupCode, custCode };
+		{
+			var parms = new List<SqlParameter>()
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+			};
       var sql = @" SELECT *
                       FROM F051202
                      WHERE DC_CODE = @p0
                        AND GUP_CODE = @p1
                        AND CUST_CODE = @p2 ";
       if (wmsOrdNos.Any())
-        sql += parms.CombineNotNullOrEmptySqlInParameters(" AND WMS_ORD_NO", wmsOrdNos);
+        sql += parms.CombineSqlInParameters(" AND WMS_ORD_NO", wmsOrdNos, SqlDbType.VarChar);
 
       return SqlQuery<F051202>(sql, parms.ToArray());
     }
 
+		public IQueryable<F051202> GetDatasWithPickByWmsOrdNos(string dcCode, string gupCode, string custCode,string pickOrdNo, List<string> wmsOrdNos)
+		{
+			var parms = new List<SqlParameter>()
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar },
+			};
+			var sql = @" SELECT *
+                      FROM F051202
+                     WHERE DC_CODE = @p0
+                       AND GUP_CODE = @p1
+                       AND CUST_CODE = @p2
+                       AND PICK_ORD_NO = @p3 ";
+			if (wmsOrdNos.Any())
+				sql += parms.CombineSqlInParameters(" AND WMS_ORD_NO", wmsOrdNos, SqlDbType.VarChar);
 
-    public bool AnyWmsOrdIntAudit(string dcCode, string gupCode, string custCode, string ordNo)
-    {
-      var parms = new List<object> { dcCode, gupCode, custCode, ordNo };
-      var sql = @"Select Case When Exists(
-													SELECT A.WMS_ORD_NO 
-														FROM F051202 A
-														JOIN F052904 B
-														  ON A.DC_CODE = B.DC_CODE
-														 AND A.GUP_CODE = B.GUP_CODE
-														 AND A.CUST_CODE = B.CUST_CODE
-														 AND A.PICK_ORD_NO = B.PICK_ORD_NO  
-														Join F05030101 C
-														  ON A.DC_CODE = C.DC_CODE
-														 AND A.GUP_CODE = C.GUP_CODE
-														 AND A.CUST_CODE = C.CUST_CODE
-														 AND A.WMS_ORD_NO = C.WMS_ORD_NO
-														Join F050301 D
-														  ON C.DC_CODE = D.DC_CODE
-														 AND C.GUP_CODE = D.GUP_CODE
-														 AND C.CUST_CODE = D.CUST_CODE
-														 AND C.ORD_NO = D.ORD_NO
-													 Where B.DC_CODE = @p0 AND B.GUP_CODE = @p1 AND B.CUST_CODE = @p2 And D.ORD_NO = @p3)
-								Then Cast(1 as bit) Else Cast(0 as bit) End
-								";
-      return SqlQuery<bool>(sql, parms.ToArray()).Single();
-    }
+			return SqlQuery<F051202>(sql, parms.ToArray());
+		}
+
+
+		public bool AnyWmsOrdIntAudit(string dcCode, string gupCode, string custCode, string ordNo)
+		{
+			var parms = new List<SqlParameter>()
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p3", ordNo) { SqlDbType = SqlDbType.VarChar },
+			};
+
+			var sql = @"SELECT TOP(1) 1
+                          FROM VW_CROSSORDERISPROCESS
+                         WHERE DC_CODE = @p0
+                           AND GUP_CODE = @p1
+                           AND CUST_CODE = @p2
+                           AND ORD_NO = @p3 ";
+
+			return SqlQuery<int>(sql, parms.ToArray()).Any();
+		}
 
 
     public IQueryable<string> GetCanShipWmsNosByPick(string dcCode, string gupCode, string custCode, string pickOrdNo)
@@ -461,7 +523,12 @@ namespace Wms3pl.Datas.F05
     }
     public IQueryable<F051202> GetNotCacnelDataByPickNo(string dcCode, string gupCode, string custCode, string pickOrdNo)
     {
-      var parms = new object[] { dcCode, gupCode, custCode, pickOrdNo };
+      var parms = new List<SqlParameter>();
+      parms.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+      parms.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+      parms.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+      parms.Add(new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar });
+
       var sql = @" SELECT *
                       FROM F051202
                      WHERE DC_CODE = @p0
@@ -469,7 +536,7 @@ namespace Wms3pl.Datas.F05
                        AND CUST_CODE = @p2
                        AND PICK_ORD_NO = @p3
                        AND PICK_STATUS <> '9'";
-      return SqlQuery<F051202>(sql, parms);
+      return SqlQuery<F051202>(sql, parms.ToArray());
     }
     public IQueryable<F051202> GetNotFinishDataByPickNo(string dcCode, string gupCode, string custCode, string pickOrdNo)
     {
@@ -510,20 +577,14 @@ namespace Wms3pl.Datas.F05
     }
 
     // 取得揀貨單對應的出貨單單號及狀態
-    public IQueryable<F051202WithF050801> GetOrderStatusByPickNos(string dcCode, string gupCode, string custCode, List<string> PickOrdNoList)
+    public IQueryable<F051202WithF050801> GetOrderStatusByPickNos(string dcCode, string gupCode, string custCode, List<string> pickOrdNoList)
     {
       var param = new List<SqlParameter> {
                                         new SqlParameter("@p0",SqlDbType.VarChar){Value= dcCode },
                                         new SqlParameter("@p1",SqlDbType.VarChar){Value= gupCode },
                                         new SqlParameter("@p2",SqlDbType.VarChar){Value= custCode },
                                 };
-      var sbSQLIn = new StringBuilder();
-      foreach (var item in PickOrdNoList)
-      {
-        sbSQLIn.Append($"@p{param.Count},");
-        param.Add(new SqlParameter($"@p{param.Count}", SqlDbType.VarChar) { Value = item });
-      }
-      sbSQLIn.Remove(sbSQLIn.Length - 1, 1);
+			var sqlIn = param.CombineSqlInParameters("AND a.PICK_ORD_NO ", pickOrdNoList, SqlDbType.VarChar);
 
       var sql = $@"
 SELECT
@@ -539,7 +600,7 @@ FROM F051202 a
 		AND a.GUP_CODE = b.GUP_CODE
 		AND a.CUST_CODE = b.CUST_CODE
 		AND a.WMS_ORD_NO = b.WMS_ORD_NO
-WHERE a.DC_CODE = @p0 AND a.GUP_CODE = @p1 AND a.CUST_CODE = @p2 AND a.PICK_ORD_NO IN ({sbSQLIn.ToString()})
+WHERE a.DC_CODE = @p0 AND a.GUP_CODE = @p1 AND a.CUST_CODE = @p2 {sqlIn}
 GROUP BY
 	a.DC_CODE,
 	a.GUP_CODE,
@@ -575,5 +636,58 @@ GROUP BY
 
       return result;
     }
+
+		public IQueryable<PickWithWmsMap> GetWmsOrdNoListByPickOrdNos(string dcCode,string gupCode,string custCode,List<string> pickOrdNos)
+		{
+			var parameters = new List<SqlParameter>
+						{
+								new SqlParameter("@p0", dcCode){SqlDbType=SqlDbType.VarChar},
+								new SqlParameter("@p1", gupCode){SqlDbType=SqlDbType.VarChar},
+								new SqlParameter("@p2", custCode){SqlDbType=SqlDbType.VarChar},
+						};
+			var sql = @" SELECT DISTINCT PICK_ORD_NO,WMS_ORD_NO 
+                     FROM F051202 
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2 ";
+			sql += parameters.CombineSqlInParameters("AND PICK_ORD_NO", pickOrdNos,SqlDbType.VarChar);
+			return SqlQuery<PickWithWmsMap>(sql, parameters.ToArray());
+		}
+
+    public IQueryable<F051202> GetDatasByWmsOrdNosAndPickStatus1(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
+    {
+      var parameters = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = @" 
+SELECT
+	*
+FROM
+	F051202
+WHERE
+	DC_CODE = @p0
+	AND GUP_CODE = @p1
+	AND CUST_CODE = @p2
+	AND PICK_STATUS = '1'";
+
+      sql += parameters.CombineSqlInParameters("AND WMS_ORD_NO", wmsOrdNos, SqlDbType.VarChar);
+
+      return SqlQuery<F051202>(sql, parameters.ToArray());
+
+      #region 原LINQ語法
+      /*
+      return _db.F051202s.AsNoTracking().Where(x =>
+      x.DC_CODE == dcCode &&
+      x.GUP_CODE == gupCode &&
+      x.CUST_CODE == custCode &&
+      wmsOrdNos.Contains(x.WMS_ORD_NO) &&
+      x.PICK_STATUS == "1");
+      */
+      #endregion
+    }
+
   }
 }

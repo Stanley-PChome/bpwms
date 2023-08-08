@@ -45,7 +45,38 @@ namespace Wms3pl.Datas.F05
 			var sql = @" UPDATE F050305 with(rowlock,updlock) 
                    SET PROC_FLAG=@p0,TRANS_DATE = @p4,UPD_DATE = @p4,UPD_STAFF=@p1,UPD_NAME=@p2
                    WHERE ID = @p3 ";
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
-	}
+
+    public IQueryable<F050305> GetDatasForExport_Sql(string dcCode, string gupCode, string custCode)
+    {
+      var param = new List<SqlParameter>
+              {
+                  new SqlParameter("@dcCode",     dcCode)   {SqlDbType=System.Data.SqlDbType.VarChar},
+                  new SqlParameter("@gupCode",    gupCode)  {SqlDbType=System.Data.SqlDbType.VarChar},
+                  new SqlParameter("@custCode",   custCode) {SqlDbType=System.Data.SqlDbType.VarChar}
+              };
+      string sql = $@"Select * FROM F050305 WHERE  DC_CODE=@dcCode  and  GUP_CODE = @gupCode  and CUST_CODE = @custCode
+                      AND PROC_FLAG = N'0' AND (SOURCE_TYPE is null or SOURCE_TYPE = '') ORDER BY CRT_DATE";
+
+      var result = SqlQuery<F050305>(sql, param.ToArray());
+      return result;
+    }
+
+
+    public IQueryable<F050305> GetDatasFor_SourceType13(string dcCode, string gupCode, string custCode)
+    {
+      var param = new List<SqlParameter>
+              {
+                  new SqlParameter("@dcCode",     dcCode)   {SqlDbType=System.Data.SqlDbType.VarChar},
+                  new SqlParameter("@gupCode",    gupCode)  {SqlDbType=System.Data.SqlDbType.VarChar},
+                  new SqlParameter("@custCode",   custCode) {SqlDbType=System.Data.SqlDbType.VarChar}
+              };
+      string sql = $@"Select * FROM F050305 WHERE  DC_CODE=@dcCode  and  GUP_CODE = @gupCode  and CUST_CODE = @custCode
+                      AND PROC_FLAG = N'0' AND  SOURCE_TYPE = '13' ORDER BY CRT_DATE";
+
+      var result = SqlQuery<F050305>(sql, param.ToArray());
+      return result;
+    }
+  }
 }

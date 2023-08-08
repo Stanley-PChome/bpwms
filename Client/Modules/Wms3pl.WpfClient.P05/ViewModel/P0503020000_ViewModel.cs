@@ -702,6 +702,17 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 				Set(() => QueryChannelList, ref _queryChannelList, value);
 			}
 		}
+
+		private List<NameValuePair<string>> _querySubChannelList;
+
+		public List<NameValuePair<string>> QuerySubChannelList
+		{
+			get { return _querySubChannelList; }
+			set
+			{
+				Set(() => QuerySubChannelList, ref _querySubChannelList, value);
+			}
+		}
 		#endregion
 
 
@@ -714,6 +725,17 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 			set
 			{
 				Set(() => SelectedChannel, ref _selectedChannel, value);
+			}
+		}
+
+		private string _selectedSubChannel;
+
+		public string SelectedSubChannel
+		{
+			get { return _selectedSubChannel; }
+			set
+			{
+				Set(() => SelectedSubChannel, ref _selectedSubChannel, value);
 			}
 		}
 		#endregion
@@ -1063,6 +1085,7 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 																									.AddQueryExOption("delvType", SelectedDelvType)
 																									.AddQueryExOption("allId", SelectedAllId)
 																									.AddQueryExOption("moveOutTarget", MOVE_OUT_TARGET)
+																									.AddQueryExOption("subChannel", SelectedSubChannel)
 																									.ToObservableCollection();
 		}
 
@@ -2287,6 +2310,8 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		public void GET_SUBCHANNEL_LIST()
 		{
 			SUBCHANNEL_LIST = GetBaseTableService.GetF000904List(FunctionCode, "F050101", "SUBCHANNEL");
+			QuerySubChannelList = GetBaseTableService.GetF000904List(FunctionCode, "F050101", "SUBCHANNEL", true);
+			SelectedSubChannel = QuerySubChannelList.First().Value;
 		}
 
 		#endregion

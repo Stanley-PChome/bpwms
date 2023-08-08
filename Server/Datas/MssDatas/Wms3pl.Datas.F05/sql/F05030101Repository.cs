@@ -222,13 +222,12 @@ namespace Wms3pl.Datas.F05
 
 		public IQueryable<F050305> GetOrderRtnInsertDatas(string dcCode, string gupCode, string custCode, string status, List<string> ordNos)
 		{
-			var parameters = new List<object>
+			var parameters = new List<SqlParameter>
 			{
-				status,
-				status,
-				dcCode,
-				gupCode,
-				custCode,
+				new SqlParameter("@p0",status){SqlDbType = SqlDbType.Char},
+				new SqlParameter("@p1",dcCode){SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p2",gupCode){SqlDbType = SqlDbType.VarChar},
+				new SqlParameter("@p3",custCode){SqlDbType = SqlDbType.VarChar},
 			};
 
 			var sql = @"SELECT Distinct A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.ORD_NO,B.SOURCE_NO,B.SOURCE_TYPE,@p0 As STATUS,'0' As PROC_FLAG,A.WMS_ORD_NO
@@ -240,13 +239,13 @@ namespace Wms3pl.Datas.F05
 									                     And A.GUP_CODE=C.GUP_CODE
 									                     And A.CUST_CODE=C.CUST_CODE
 									                     And A.ORD_NO=C.ORD_NO
-									                     And C.STATUS=@p1)
+									                     And C.STATUS=@p0)
                      AND C.STATUS <> '9' 
-									   And A.DC_CODE = @p2
-									   AND A.GUP_CODE = @p3
-									   AND A.CUST_CODE = @p4";
+									   And A.DC_CODE = @p1
+									   AND A.GUP_CODE = @p2
+									   AND A.CUST_CODE = @p3";
 
-			sql += parameters.CombineSqlInParameters(" AND A.WMS_ORD_NO ", ordNos);
+			sql += parameters.CombineSqlInParameters(" AND A.WMS_ORD_NO ", ordNos, SqlDbType.VarChar);
 			var result = SqlQuery<F050305>(sql, parameters.ToArray());
 			return result;
 		}

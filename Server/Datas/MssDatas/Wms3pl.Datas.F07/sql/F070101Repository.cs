@@ -13,17 +13,18 @@ namespace Wms3pl.Datas.F07
         public void InsertF070101(long f070101Id, long f0701Id, string dcCode, string gupCode, string custCode, string containerCode, string wmsNo, string wmsType, string pickOrdNo)
         {
             var parm = new List<SqlParameter>();
-			parm.Add(new SqlParameter("@p0", f070101Id));
-			parm.Add(new SqlParameter("@p1", f0701Id));
-			parm.Add(new SqlParameter("@p2", dcCode));
-			parm.Add(new SqlParameter("@p3", string.IsNullOrWhiteSpace(containerCode) ? (object)DBNull.Value : containerCode));
-			parm.Add(new SqlParameter("@p4", string.IsNullOrWhiteSpace(gupCode) ? (object)DBNull.Value : gupCode));
-			parm.Add(new SqlParameter("@p5", string.IsNullOrWhiteSpace(custCode) ? (object)DBNull.Value : custCode));
-			parm.Add(new SqlParameter("@p6", wmsNo));
-			parm.Add(new SqlParameter("@p7", wmsType));
-			parm.Add(new SqlParameter("@p8", Current.Staff));
-			parm.Add(new SqlParameter("@p9", Current.StaffName));
-            parm.Add(new SqlParameter("@p10", string.IsNullOrWhiteSpace(pickOrdNo) ? (object)DBNull.Value : pickOrdNo));
+						parm.Add(new SqlParameter("@p0", f070101Id) { SqlDbType = SqlDbType.BigInt });
+						parm.Add(new SqlParameter("@p1", f0701Id) { SqlDbType = SqlDbType.BigInt });
+						parm.Add(new SqlParameter("@p2", dcCode) { SqlDbType = SqlDbType.VarChar });
+						parm.Add(new SqlParameter("@p3", string.IsNullOrWhiteSpace(containerCode) ? (object)DBNull.Value : containerCode) { SqlDbType = SqlDbType.VarChar });
+						parm.Add(new SqlParameter("@p4", string.IsNullOrWhiteSpace(gupCode) ? (object)DBNull.Value : gupCode) { SqlDbType = SqlDbType.VarChar });
+						parm.Add(new SqlParameter("@p5", string.IsNullOrWhiteSpace(custCode) ? (object)DBNull.Value : custCode) { SqlDbType = SqlDbType.VarChar });
+						parm.Add(new SqlParameter("@p6", wmsNo) { SqlDbType = SqlDbType.VarChar });
+						parm.Add(new SqlParameter("@p7", wmsType) { SqlDbType = SqlDbType.VarChar });
+						parm.Add(new SqlParameter("@p8", Current.Staff) { SqlDbType = SqlDbType.VarChar });
+						parm.Add(new SqlParameter("@p9", Current.StaffName) { SqlDbType = SqlDbType.NVarChar });
+            parm.Add(new SqlParameter("@p10", string.IsNullOrWhiteSpace(pickOrdNo) ? (object)DBNull.Value : pickOrdNo) { SqlDbType = SqlDbType.VarChar});
+            parm.Add(new SqlParameter("@p11", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
             var sql = @"INSERT INTO F070101(
 													ID,
@@ -47,7 +48,7 @@ namespace Wms3pl.Datas.F07
 													@p5,
 													@p6,
 													@p7,
-													dbo.GetSysDate(),
+													@p11,
 													@p8,
 													@p9,
                                                     @p10
@@ -124,6 +125,7 @@ namespace Wms3pl.Datas.F07
             parm.Add(new SqlParameter("@p6", wmsType));
             parm.Add(new SqlParameter("@p7", Current.Staff));
             parm.Add(new SqlParameter("@p8", Current.StaffName));
+            parm.Add(new SqlParameter("@p9", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
             var sql = @"DECLARE @a INT;
                         BEGIN TRAN
@@ -145,9 +147,9 @@ namespace Wms3pl.Datas.F07
                         @p2,
                         @p3,
                         @p4,
-						@p5,
+						            @p5,
                         @p6,
-                        dbo.GetSysDate(),
+                        @p9,
                         @p7,
                         @p8);
                         SELECT @a=CAST(current_value as int)
@@ -231,5 +233,52 @@ WHERE
   AND B.CONTAINER_CODE = @p3";
       return SqlQuery<F070101>(sql, para.ToArray()).SingleOrDefault();
     }
-  }
+
+
+
+		public IQueryable<F070101> GetContainerInfoByF0701Id(List<long> f0701_IDs)
+		{
+			var sqlParameter = new List<SqlParameter>();
+
+			var sql = @"
+						SELECT A.F0701_ID, A.DC_CODE, A.GUP_CODE, A.CUST_CODE, A.WMS_NO AS PICK_ORD_NO, A.CONTAINER_CODE, B.ITEM_CODE, B.SERIAL_NO, B.QTY
+
+						  FROM F070101 A
+						  JOIN F070102 B ON B.F070101_ID = A.ID
+						 WHERE 1 = 1
+						";
+			sql += sqlParameter.CombineSqlInParameters(" AND A.F0701_ID ", f0701_IDs, SqlDbType.BigInt);
+
+			return SqlQuery<F070101>(sql, sqlParameter.ToArray());
+		}
+
+		public IQueryable<BindingPickContainerDetail> GetContainerDetailByF0701Id(long f0701_ID)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", f0701_ID) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @"
+						SELECT F070102.ITEM_CODE, 
+							   F1903.ITEM_NAME, 
+                               F1903.EAN_CODE1, 
+                               F1903.EAN_CODE2, 
+                               F1903.EAN_CODE3, 
+                               F1903.BUNDLE_SERIALNO, 
+                               SUM(F070102.QTY) B_SET_QTY, 
+                               0 A_SET_QTY 
+						  FROM F070101
+						  JOIN F070102 ON F070102.F070101_ID = F070101.ID
+						  JOIN F1903 ON F1903.GUP_CODE = F070101.GUP_CODE AND F1903.CUST_CODE = F070101.CUST_CODE AND F1903.ITEM_CODE = F070102.ITEM_CODE
+						 WHERE F0701_ID = @p0 
+						 GROUP BY F070102.ITEM_CODE, 
+							   F1903.ITEM_NAME, 
+                               F1903.EAN_CODE1, 
+                               F1903.EAN_CODE2, 
+                               F1903.EAN_CODE3, 
+                               F1903.BUNDLE_SERIALNO 
+						";
+
+			return SqlQuery<BindingPickContainerDetail>(sql, sqlParameter.ToArray());
+		}
+	}
 }

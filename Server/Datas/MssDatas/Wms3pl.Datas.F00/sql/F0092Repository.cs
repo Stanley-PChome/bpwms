@@ -20,8 +20,9 @@ namespace Wms3pl.Datas.F00
                 new SqlParameter("@p0",SqlDbType.VarChar){ Value= procType.ToString() },
                 new SqlParameter("@p1", SqlDbType.VarChar){Value = batchNo },
                 new SqlParameter("@p2", SqlDbType.NVarChar){Value =  procMsg.Length>200 ? procMsg.Substring(0,200) : procMsg },
-                new SqlParameter("@p3", SqlDbType.VarChar){Value = Current.Staff },
-                new SqlParameter("@p4", SqlDbType.NVarChar){Value = Current.StaffName}
+								new SqlParameter("@p3", SqlDbType.DateTime2){Value = DateTime.Now },
+								new SqlParameter("@p4", SqlDbType.VarChar){Value = Current.Staff },
+								new SqlParameter("@p5", SqlDbType.NVarChar){Value = Current.StaffName}
             };
             var sql = @"
                             INSERT INTO [F0092]
@@ -34,9 +35,9 @@ namespace Wms3pl.Datas.F00
                             VALUES      (@p0,
                                          @p1,
                                          @p2,
-                                         dbo.GetSysDate(),
                                          @p3,
-                                         @p4);  
+                                         @p4,
+                                         @p5);  
                         ";
              ExecuteSqlCommand(sql, parm.ToArray());
         }

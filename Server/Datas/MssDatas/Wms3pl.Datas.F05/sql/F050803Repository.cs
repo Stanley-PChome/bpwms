@@ -16,7 +16,7 @@ namespace Wms3pl.Datas.F05
                            CRT_STAFF,CRT_NAME,CRT_DATE)								 
                     SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,C.WMS_ORD_NO,C.RETAIL_CODE,C.DELV_DATE,C.ARRIVAL_DATE,D.DELV_NO,
 						   E.CAR_PERIOD,E.CAR_GUP,E.DRIVER_ID,E.DRIVER_NAME,E.EXTRA_FEE,D.DELV_WAY,D.ARRIVAL_TIME_S,D.ARRIVAL_TIME_E,
-                           '{Current.Staff}'   CRT_STAFF,'{Current.StaffName}' CRT_NAME,dbo.GetSysDate() CRT_DATE
+                           '{Current.Staff}'   CRT_STAFF,'{Current.StaffName}' CRT_NAME,@p0 CRT_DATE
 						    FROM F0515 A
 						    JOIN F051503 B
 						    ON B.DC_CODE = A.DC_CODE
@@ -44,12 +44,12 @@ namespace Wms3pl.Datas.F05
 						    AND F.CUST_CODE = C.CUST_CODE
 						    AND F.WMS_ORD_NO = C.WMS_ORD_NO
 						    WHERE F.WMS_ORD_NO	IS NULL 
-						    AND A.DC_CODE = @p0
-						    AND A.GUP_CODE = @p1
-						    AND A.CUST_CODE = @p2
-						    AND A.BATCH_NO=@p3 ";
+						    AND A.DC_CODE = @p1
+						    AND A.GUP_CODE = @p2
+						    AND A.CUST_CODE = @p3
+						    AND A.BATCH_NO=@p4";
 
-            var parms = new object[] { dcCode, gupCode, custCode, batchNo };
+            var parms = new object[] { DateTime.Now, dcCode, gupCode, custCode, batchNo };
             ExecuteSqlCommand(sql, parms);
         }
     }

@@ -1227,4 +1227,7 @@
   <data name="LoadTodayUncheckedCargoInfo" xml:space="preserve">
     <value>Load today's unchecked cargo information</value>
   </data>
+  <data name="BundleSerial" xml:space="preserve">
+    <value>IsSerialItem</value>
+  </data>
 </root>

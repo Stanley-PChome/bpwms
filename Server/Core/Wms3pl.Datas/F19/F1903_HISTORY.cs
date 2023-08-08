@@ -524,5 +524,10 @@ namespace Wms3pl.Datas.F19
     public DateTime? UPD_DATE { get; set; }
     public string UPD_STAFF { get; set; }
     public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 原廠商編號
+    /// </summary>
+    public string ORI_VNR_CODE { get; set; }
+
   }
 }

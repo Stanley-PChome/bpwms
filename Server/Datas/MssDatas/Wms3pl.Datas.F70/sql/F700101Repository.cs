@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -289,7 +290,8 @@ WHERE     a.DC_CODE = @p0
 		public void UpdateF700101StatusToCancel(string dcCode, List<string> wmsNo)
 		{
 			var parameters = new List<object> {
-				Current.Staff,
+        DateTime.Now,
+        Current.Staff,
 				Current.StaffName,
 				dcCode
 			};
@@ -300,10 +302,10 @@ WHERE     a.DC_CODE = @p0
 			string sql = @"
 							UPDATE F700101 SET
 									  F700101.STATUS ='9'
-									, F700101.UPD_DATE =dbo.GetSysDate()
-									, F700101.UPD_STAFF = @p0
-									, F700101.UPD_NAME = @p1
-								WHERE F700101.DC_CODE =@p2
+									, F700101.UPD_DATE = @p0
+									, F700101.UPD_STAFF = @p1
+									, F700101.UPD_NAME = @p2
+								WHERE F700101.DC_CODE =@p3
                 AND Exists (
 											SELECT 0 FROM F700102
 											 WHERE F700101.DISTR_CAR_NO = F700102.DISTR_CAR_NO 
@@ -429,30 +431,34 @@ SELECT ROW_NUMBER()OVER(ORDER BY DISTR_CAR_NO,TAKE_TIME,WMS_NO,PAST_NO,ITEM_CODE
 		{
 			foreach (var d in datas)
 			{
-				var parms = new object[4];
-				parms[0] = Current.Staff;
-				parms[1] = Current.StaffName;
+				var parms = new object[5];
+        parms[0] = DateTime.Now;
+        parms[1] = Current.Staff;
+				parms[2] = Current.StaffName;
+
 				foreach (var property in typeof(T).GetProperties())
 				{
 					if (property.Name == "DC_CODE")
-						parms[2] = property.GetValue(d);
-					if (property.Name == "WMS_ORD_NO")
 						parms[3] = property.GetValue(d);
+					if (property.Name == "WMS_ORD_NO")
+						parms[4] = property.GetValue(d);
 				}
+
 				var sql = $@" UPDATE F700101 
                       SET F700101.STATUS = '2',
-                          F700101.UPD_DATE = dbo.GetSysDate(),
-                          F700101.UPD_STAFF = @p0,
-                          F700101.UPD_NAME = @p1
+                          F700101.UPD_DATE = @p0,
+                          F700101.UPD_STAFF = @p1,
+                          F700101.UPD_NAME = @p2
                     WHERE EXISTS(
                           SELECT 0 
                             FROM F700102 B
                            WHERE B.DC_CODE = F700101.DC_CODE
                              AND B.DISTR_CAR_NO = F700101.DISTR_CAR_NO
-                             AND F700101.DC_CODE = @p2
+                             AND F700101.DC_CODE = @p3
                              AND F700101.STATUS = '0'
-                             AND B.WMS_NO = @p3
+                             AND B.WMS_NO = @p4
                    )";
+
 				ExecuteSqlCommand(sql, parms);
 			}
 		}
@@ -559,7 +565,7 @@ SELECT ROW_NUMBER()OVER(ORDER BY DISTR_CAR_NO,TAKE_TIME,WMS_NO,PAST_NO,ITEM_CODE
 													 B.CUST_NAME RETAIL_NAME,
 													 B.CUST_NAME,
 													 '' CHANNEL,
-													 CONVERT (VARCHAR,dbo.GetSysDate(),111)+ ' ' + CONVERT (VARCHAR,dbo.GetSysDate(),108) AS PRINT_TIME,
+													 CONVERT (VARCHAR,@p0,111)+ ' ' + CONVERT (VARCHAR,@p0,108) AS PRINT_TIME,
 													 E.CONSIGN_ID,E.MEMO AS CONSIGN_MEMO,E.CONSIGN_NAME,
 													 NULL RETAIL_DELV_DATE,
 													 NULL RETAIL_RETURN_DATE,
@@ -606,13 +612,16 @@ SELECT ROW_NUMBER()OVER(ORDER BY DISTR_CAR_NO,TAKE_TIME,WMS_NO,PAST_NO,ITEM_CODE
 									  LEFT JOIN VW_F000904_LANG  F ON F.TOPIC='F050301' AND F.SUBTOPIC='DELV_PERIOD' AND F.VALUE = B.DELV_PERIOD AND F.LANG = '{Current.Lang}'
 									  LEFT JOIN F19471201 G ON G.DC_CODE = B.DC_CODE AND G.GUP_CODE = B.GUP_CODE AND G.CUST_CODE = B.CUST_CODE AND G.CHANNEL='00' AND G.ALL_ID = A.ALL_ID AND G.CONSIGN_NO = C.CONSIGN_NO {sql2}
 									WHERE A.HAVE_WMS_NO = '0' --無單派車
-										AND A.DC_CODE = @p0
-										AND A.DISTR_CAR_NO = @p1 ";
-			var parameters = new List<object>
+										AND A.DC_CODE = @p1
+										AND A.DISTR_CAR_NO = @p2 ";
+
+			var parameters = new List<SqlParameter>
 						{
-							dcCode,
-							distrCarNo
+              new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2},
+              new SqlParameter("@p1", dcCode) {SqlDbType = SqlDbType.VarChar},
+              new SqlParameter("@p2", distrCarNo) {SqlDbType = SqlDbType.VarChar}
 						};
+
 			return SqlQuery<F055001Data>(sql, parameters.ToArray());
 		}
 		/// <summary>
@@ -622,7 +631,11 @@ SELECT ROW_NUMBER()OVER(ORDER BY DISTR_CAR_NO,TAKE_TIME,WMS_NO,PAST_NO,ITEM_CODE
 		/// <returns></returns>
 		public IQueryable<EgsReturnConsign2> GetEgsReturnConsignsByHaveWmsNoBack(EgsReturnConsignParam param)
 		{
-			var parms = new List<SqlParameter>();
+			var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
+
 			var sql = @" 
                     SELECT DISTINCT 
 													A.DC_CODE, --物流中心
@@ -697,7 +710,7 @@ SELECT ROW_NUMBER()OVER(ORDER BY DISTR_CAR_NO,TAKE_TIME,WMS_NO,PAST_NO,ITEM_CODE
 										  AND A.STATUS <> '9' -- 非取消派車單
 										  AND A.HAVE_WMS_NO = '1' --有單派車
 										  AND B.DISTR_USE = '02' 
-										  AND CONVERT(DATE,dbo.GetSysDate()) =  CONVERT(DATE,DATEADD(DAY,-1,B.DELV_DATE)) --逆物流 且系統日=預計配達日/收貨日-1
+										  AND CONVERT(DATE,@p0) =  CONVERT(DATE,DATEADD(DAY,-1,B.DELV_DATE)) --逆物流 且系統日=預計配達日/收貨日-1
                    ";
 			//客戶代號
 			if (!string.IsNullOrWhiteSpace(param.CustomerId))
@@ -764,7 +777,11 @@ SELECT ROW_NUMBER()OVER(ORDER BY DISTR_CAR_NO,TAKE_TIME,WMS_NO,PAST_NO,ITEM_CODE
 		/// <returns></returns>
 		public IQueryable<EgsReturnConsign2> GetEgsReturnConsignsByNoWmsNo(EgsReturnConsignParam param)
 		{
-			var parms = new List<SqlParameter>();
+			var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
+
 			var sql = @" 
 SELECT DISTINCT 
 													A.DC_CODE, --物流中心
@@ -804,7 +821,7 @@ SELECT DISTINCT
 												CASE WHEN B.DISTR_USE ='01' THEN '' ELSE '' END SENDER_MOBILE, --寄件者手機
 												CASE WHEN B.DISTR_USE ='01' THEN ISNULL(G.ZIP_CODE,'') ELSE '' END SENDER_SUDA5, --寄件者地址速達五碼郵遞區號(必填)
 												CASE WHEN B.DISTR_USE ='01' THEN F.ADDRESS ELSE B.ADDRESS END  SENDER_ADDRESS, --寄件者地址(必填)
-												CASE WHEN B.DISTR_USE ='01' THEN CONVERT(VARCHAR,dbo.GetSysDate(),112)+REPLACE(CONVERT(VARCHAR,dbo.GetSysDate(),108),':','') ELSE CONVERT(VARCHAR,B.DELV_DATE,112)+REPLACE(CONVERT(VARCHAR,B.DELV_DATE,108),':','') END SHIP_DATE, --契客出貨日期(系統日YYYYMMDDhhmmss共14碼) 正物流為系統日 逆物流為預定配達日/出貨日的時間
+												CASE WHEN B.DISTR_USE ='01' THEN CONVERT(VARCHAR,@p0,112)+REPLACE(CONVERT(VARCHAR,@p0,108),':','') ELSE CONVERT(VARCHAR,B.DELV_DATE,112)+REPLACE(CONVERT(VARCHAR,B.DELV_DATE,108),':','') END SHIP_DATE, --契客出貨日期(系統日YYYYMMDDhhmmss共14碼) 正物流為系統日 逆物流為預定配達日/出貨日的時間
 												'4' PICKUP_TIMEZONE, --預定取件時段(1: 9~12    2: 12~17    3: 17~20   4: 不限時(固定4不限時))
 												B.DELV_PERIOD  DELV_TIMEZONE, --預定配達時段(1: 9~12    2: 12~17   3: 17~20   4: 不限時  5:20~21(需限定區域))
                         '' MEMBER_ID, --會員編號
@@ -852,7 +869,7 @@ SELECT DISTINCT
                    AND A.HAVE_WMS_NO = '0' --無單派車
                    AND B.GUP_CODE= '00' --無單派車固定00
                    AND B.CUST_CODE = '0' --無單派車固定0
-                   AND (B.DISTR_USE = '01' OR ( B.DISTR_USE = '02'  AND CONVERT(date,dbo.GetSysDate()) =  convert(date,dateadd(DAY,-1,B.DELV_DATE)) ))
+                   AND (B.DISTR_USE = '01' OR ( B.DISTR_USE = '02'  AND CONVERT(date,@p0) =  convert(date,dateadd(DAY,-1,B.DELV_DATE)) ))
                    ";
 			//客戶代號
 			if (!string.IsNullOrWhiteSpace(param.CustomerId))

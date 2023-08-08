@@ -199,6 +199,25 @@ namespace Wms3pl.Datas.F02
 	  /// 批號
 	  /// </summary>
 	  public string MAKE_NO { get; set; }
+    /// <summary>
+    /// 驗收工具(0: 舊版資料、1: 電腦版、2:PDA)
+    /// </summary>
+    public string DEVICE_MODE { get; set; }
+    /// <summary>
+    /// 棧板容器編號
+    /// </summary>
+    public string PALLET_LOCATION { get; set; }
+    /// <summary>
+    /// 是否列印商品ID標
+    /// </summary>
+    public string IS_PRINT_ITEM_ID { get; set; }
+    /// <summary>
+    /// 已檢驗該明細
+    /// </summary>
+    public string CHECK_DETAIL { get; set; }
+    /// <summary>
+    /// 不良品數
+    /// </summary>
+    public int? DEFECT_QTY { get; set; }
   }
 }
-        

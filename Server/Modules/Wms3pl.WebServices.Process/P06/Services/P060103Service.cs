@@ -163,10 +163,15 @@ namespace Wms3pl.WebServices.Process.P06.Services
 					return shareResult;
 			}
 
+      var gupCancelWmsOrd = f05030101WithF051202Data.GroupBy(x => new { x.ORDER_NO, x.ORDER_SEQ });
+      var f1511s = new List<F1511>();
       //Step 4 : 將未揀貨的揀貨明細回復至庫存儲位中
-      var f1511s = f1511Repo.AsForUpdate()
-        .GetDatas(dcCode, gupCode, custCode, f05030101WithF051202Data.Select(x => x.ORDER_NO).Distinct().ToList())
-        .ToList();
+      foreach (var item in gupCancelWmsOrd)
+      {
+        var f1511 = f1511Repo.GetData(dcCode, gupCode, custCode, item.Key.ORDER_NO, item.Key.ORDER_SEQ);
+        if (f1511 != null)  //避免add(NULL)這種詭異的情況
+          f1511s.Add(f1511);
+      }
 
       //只要把STATUS=0的丟去處裡虛擬庫存回復
       orderService.RestoreVirtualStock(f1511s.Where(x => x.STATUS == "0").ToList());
@@ -307,13 +312,14 @@ namespace Wms3pl.WebServices.Process.P06.Services
 				var f060202Repo = new F060202Repository(Schemas.CoreSchema);
 				var restoreSerialNos = f060202Repo.GetAutoPickSerialNosByWmsNos(dcCode, gupCode, custCode, wmsOrdNos).ToList();
 				serialNoList.AddRange(restoreSerialNos.Where(x => !string.IsNullOrWhiteSpace(x.SERIALNUMLIST)).SelectMany(x => x.SERIALNUMLIST.Split(',')).ToList());
-			}
+        serialNoList.AddRange(restoreSerialNos.Where(x => !string.IsNullOrWhiteSpace(x.SERIAL_NO)).Select(x => x.SERIAL_NO));
+      }
 			if (crossWmsNos.Any())
 			{
 				// 跨庫訂單，取得稽核出庫取消訂單分出來的序號並且揀貨單為自動倉
 				var f05290501Repo = new F05290501Repository(Schemas.CoreSchema);
-				var restoreDatas = f05290501Repo.GetF05290501ByWmsNos(dcCode, gupCode, custCode, wmsOrdNos).ToList();
-				serialNoList.AddRange(restoreDatas.Where(x => !string.IsNullOrWhiteSpace(x.SERIAL_NO)).Select(x => x.SERIAL_NO).Distinct().ToList());
+				var restoreDatas = f05290501Repo.GetCrossOrderCancelSerailS(dcCode, gupCode, custCode, wmsOrdNos).ToList();
+				serialNoList.AddRange(restoreDatas);
 			}
 		  if(serialNoList.Any())
 			{

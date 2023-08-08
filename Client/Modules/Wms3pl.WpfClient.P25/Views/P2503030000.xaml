@@ -80,7 +80,7 @@
                                                 <Label Grid.Column="0" Content="{x:Static Properties:Resources.ItemCode}" Style="{StaticResource LbTitleStyle}"/>
                                                 <TextBox Grid.Column="1" Grid.ColumnSpan="3" Width="200" Style="{StaticResource TxtStyle}" Text="{Binding QueryData.ITEM_CODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                                 <Label Grid.Row="1" Content="{x:Static Properties:Resources.SerialNo}" Style="{StaticResource LbTitleStyle}"/>
-                                                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Width="200" Style="{StaticResource TxtStyle}" Text="{Binding QueryData.SERIAL_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" MinWidth="450" Width="auto" MaxLength="50" Style="{StaticResource TxtStyle}" Text="{Binding QueryData.SERIAL_NO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                                 <Label Grid.Column="4" Content="{x:Static Properties:Resources.STATUS}"  Style="{StaticResource LbTitleStyle}"/>
                                                 <ComboBox Grid.Column="5" Style="{StaticResource ComboStyle}" ItemsSource="{Binding StatusList, UpdateSourceTrigger=PropertyChanged}" 
 																							 DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding QueryData.STATUS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -108,8 +108,10 @@
                                                                 <Setter Property="IsEnabled">
                                                                     <Setter.Value>
                                                                         <MultiBinding Converter="{StaticResource MultiBoolNorConverter}">
-                                                                            <Binding Path="Item.STATUS" Converter="{StaticResource StringTypeToNotBoolConverter}" ConverterParameter="A1" />
-                                                                            <Binding Path="Item.PO_NO" Converter="{StaticResource NullOrWhiteSpaceToNotBoolConverter}"/>
+                                                                            <Binding Path="Item.CanDelete" Converter="{StaticResource StringTypeToNotBoolConverter}" ConverterParameter="1" />
+                                                                            <!--<Binding Path="Item.STATUS" Converter="{StaticResource StringTypeToNotBoolConverter}" ConverterParameter="A1" />-->
+                                                                            <!--<Binding Path="Item.BUNDLE_SERIALLOC" Converter="{StaticResource NullOrWhiteSpaceToNotBoolConverter}"/>-->
+                                                                            
                                                                         </MultiBinding>
                                                                     </Setter.Value>
                                                                 </Setter>

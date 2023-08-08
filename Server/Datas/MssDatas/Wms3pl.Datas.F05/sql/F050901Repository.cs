@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -29,56 +30,59 @@ namespace Wms3pl.Datas.F05
 
             var sql = @" UPDATE F050901
                        SET DISTR_EDI_STATUS ='1',
-						   UPD_DATE =dbo.GetSysDate(),
-						   UPD_STAFF = @p{0}, 
-						   UPD_NAME = @p{1}
+						   UPD_DATE = @p{0},
+						   UPD_STAFF = @p{1}, 
+						   UPD_NAME = @p{2}
 					   WHERE	DISTR_EDI_STATUS ='0'
-						    AND DC_CODE =@p{2}
-						    AND GUP_CODE =@p{3}
-						    AND CUST_CODE =@p{4}
-                            AND CONSIGN_NO = @p{5};
+						    AND DC_CODE =@p{3}
+						    AND GUP_CODE =@p{4}
+						    AND CUST_CODE =@p{5}
+                            AND CONSIGN_NO = @p{6};
                         ";
 
             // 用於資料筆數計步
             int index = 0;
 
             // 宣告ObjArray 共 參數*資料比數 長度
-            var parmsList = new object[6 * datas.Count];
+            var parmsList = new object[7 * datas.Count];
 
             var properties = typeof(T).GetProperties();
 
             foreach (var d in datas)
             {
-                int subIndex = index * 6;
+                int subIndex = index * 7;
 
                 // 指定位置依序填入對應的參數資料
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 7; i++)
                 {
                     switch (i)
                     {
                         case 0: 
-                            parmsList[i + subIndex] = Current.Staff;
+                            parmsList[i + subIndex] = DateTime.Now;
                             break;
                         case 1: 
-                            parmsList[i + subIndex] = Current.StaffName;
+                            parmsList[i + subIndex] = Current.Staff;
                             break;
                         case 2: 
+                            parmsList[i + subIndex] = Current.StaffName;
+                            break;
+                        case 3: 
                             parmsList[i + subIndex] = properties.Where(x => x.Name == "DC_CODE").SingleOrDefault().GetValue(d);
                             break;
-                        case 3:
+                        case 4:
                             parmsList[i + subIndex] = properties.Where(x => x.Name == "GUP_CODE").SingleOrDefault().GetValue(d);
                             break;
-                        case 4:
+                        case 5:
                             parmsList[i + subIndex] = properties.Where(x => x.Name == "CUST_CODE").SingleOrDefault().GetValue(d);
                             break;
-                        case 5:
+                        case 6:
                             parmsList[i + subIndex] = properties.Where(x => x.Name == "CONSIGN_NO").SingleOrDefault().GetValue(d);
                             break;
                     }
                 }
 
                 // 將每筆UpdateCommand的參數替換後，累加至AllCommand
-                sqls += string.Format(sql, subIndex, subIndex + 1, subIndex + 2, subIndex + 3, subIndex + 4, subIndex + 5);
+                sqls += string.Format(sql, subIndex, subIndex + 1, subIndex + 2, subIndex + 3, subIndex + 4, subIndex + 5, subIndex + 6);
 
                 index++;
             }
@@ -189,6 +193,7 @@ namespace Wms3pl.Datas.F05
         {
             var parameters = new List<object>
             {
+                DateTime.Now,
                 Current.Staff,
                 Current.StaffName,
                 consinNo,
@@ -200,14 +205,14 @@ namespace Wms3pl.Datas.F05
 
             var sql = $@" UPDATE F050901 
                        SET 
-						   UPD_DATE =dbo.GetSysDate(),
-						   UPD_STAFF = @p0, 
-						   UPD_NAME = @p1,
-						   CONSIGN_NO =@p2
-							WHERE	    DC_CODE =@p3
-									AND GUP_CODE =@p4
-									AND CUST_CODE =@p5
-									AND WMS_NO = @p6";
+						   UPD_DATE =@p0,
+						   UPD_STAFF = @p1, 
+						   UPD_NAME = @p2,
+						   CONSIGN_NO =@p3
+							WHERE	    DC_CODE =@p4
+									AND GUP_CODE =@p5
+									AND CUST_CODE =@p6
+									AND WMS_NO = @p7";
 
             ExecuteSqlCommand(sql, parameters.ToArray());
         }
@@ -223,7 +228,11 @@ namespace Wms3pl.Datas.F05
 #endif
 
 
-            var parms = new List<object>();
+            var parms = new List<object>
+            {
+              new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
+
             var sql = $@" SELECT A.DC_CODE,
                                  A.GUP_CODE,
                                  A.CUST_CODE,
@@ -238,7 +247,7 @@ namespace Wms3pl.Datas.F05
                                  D.TEL_1 RECEIVER_MOBILE,
                                  D.ADDRESS RECEIVER_ADDRESS,
                                  CASE WHEN L.PACKAGE_BOX_NO = '1' AND B.COLLECT_AMT >0 THEN B.COLLECT_AMT ELSE 0 END  COLLECT_AMT,
-                                 '' EGAMT,CONVERT(varchar, dbo.GetSysDate(),112) SEND_DATE,
+                                 '' EGAMT,CONVERT(varchar, @p0,112) SEND_DATE,
                                  G.ZIP_CODE SEND_CODE,
                                  '' ARRIVAL_CODE,
                                  '' EKAMT,CONVERT(varchar,A.BOXQTY) PIECES,
@@ -410,7 +419,11 @@ namespace Wms3pl.Datas.F05
 #endif
 
 
-            var parms = new List<object>();
+            var parms = new List<object>
+            {
+              new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
+
             var sql = $@" 
 				SELECT A.DC_CODE,
                        A.GUP_CODE,
@@ -431,7 +444,7 @@ namespace Wms3pl.Datas.F05
 							 0
 					   END
 						  COLLECT_AMT,                                                  --代收金額
-					   CONVERT (varchar, dbo.GetSysDate(), 112) SEND_DATE,                         --出貨日期
+					   CONVERT (varchar, @p0, 112) SEND_DATE,                         --出貨日期
 					   G.ZIP_CODE SEND_CODE,                                             --集貨站
 					   CONVERT (varchar, A.BOXQTY) PIECES,                                         --件數
 					   D.DELV_PERIOD  ASSIGN_TIME,                                     --配送時段

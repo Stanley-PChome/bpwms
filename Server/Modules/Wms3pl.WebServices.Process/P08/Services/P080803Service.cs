@@ -46,8 +46,8 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					return new HomeDeliveryOrderDebitResult { IsSuccessed = false, Message = "訂單已出貨" };
 				default:
 					var orderSerivce = new OrderService(_wmsTransaction);
-					var res = orderSerivce.PackageBoxDebit(f050801, item.PACKAGE_BOX_NO,item.PAST_NO,item.WORKSTATION_CODE,item.BOX_NUM);
-					if(!res.IsSuccessed)
+          var res = orderSerivce.PackageBoxDebit(f050801, item.PACKAGE_BOX_NO, item.PAST_NO, item.WORKSTATION_CODE, item.BOX_NUM, clientPc: Current.DeviceIp);
+          if (!res.IsSuccessed)
 						return new HomeDeliveryOrderDebitResult { IsSuccessed = false, Message = res.Message };
 
 					item.TMPR_TYPE = f050801.TMPR_TYPE;

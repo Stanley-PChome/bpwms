@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -134,7 +135,8 @@ namespace Wms3pl.Datas.F16
 				new SqlParameter("@p3", returnNo),
 				new SqlParameter("@p4", Current.Staff),
 				new SqlParameter("@p5", Current.StaffName),
-			};
+        new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 			var sql = @"SELECT  A.DC_CODE,
 													A.GUP_CODE,
 													A.CUST_CODE,
@@ -148,7 +150,7 @@ namespace Wms3pl.Datas.F16
 													@p4 AS AUDIT_STAFF,
 													@p5 AS AUDIT_NAME,
 													NULL AS MEMO,
-													dbo.GetSysDate() AS CRT_DATE,
+													@p6 AS CRT_DATE,
 													@p4 AS CRT_STAFF,
 													@p5 AS CRT_NAME,
                           NULL AS UPD_DATE,
@@ -283,12 +285,13 @@ namespace Wms3pl.Datas.F16
                 new SqlParameter("@p7", custCode),
                 new SqlParameter("@p8", returnNo),
                 new SqlParameter("@p9", itemCode),
+                new SqlParameter("@p10", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
             var sql = @" UPDATE F161402
                              SET LOC_CODE = @p0,
                                  CAUSE = @p1,
                                  MEMO = @p2,
-                                 UPD_DATE = dbo.GetSysDate(),
+                                 UPD_DATE = @p10,
                                  UPD_STAFF = @p3,
                                  UPD_NAME  = @p4
                            WHERE DC_CODE = @p5

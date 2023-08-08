@@ -30,7 +30,7 @@ namespace Wms3pl.WebServices.DataCommon
         /// <param name="sqlcommand"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static int ExecuteSqlCommand(DbContext context, string sqlcommand, params object[] parameters)
+        public static int ExecuteSqlCommand(DbContext context, string sqlcommand, bool isSqlParameterSetDbType = false, params object[] parameters)
         {
 
             if (parameters == null)
@@ -40,7 +40,7 @@ namespace Wms3pl.WebServices.DataCommon
             else
             {
                 object[] parameterByPosition;
-                parameterByPosition = ParameterByNameToByPosition(context, sqlcommand, parameters);
+                parameterByPosition = ParameterByNameToByPosition(context, sqlcommand, parameters, isSqlParameterSetDbType);
 
                 return ExecuteSqlCommandImpl(context, sqlcommand, parameterByPosition);
             }
@@ -79,12 +79,12 @@ namespace Wms3pl.WebServices.DataCommon
         /// <param name="isByPositionOrName">是否參數已依位置或名稱</param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static IQueryable<T> ExecuteQuery<T>(DbContext context, string sqlcommand, params object[] parameters)
+        public static IQueryable<T> ExecuteQuery<T>(DbContext context, string sqlcommand, bool isSqlParameterSetDbType = false, params object[] parameters)
         {
             if (parameters != null)
             {
                 object[] parameterByPosition;
-                parameterByPosition = SqlQueryParameterByNameToByPosition(context, sqlcommand, parameters);
+                parameterByPosition = SqlQueryParameterByNameToByPosition(context, sqlcommand, parameters, isSqlParameterSetDbType);
                 return SqlQueryImpl<T>(context, sqlcommand, parameterByPosition);
             }
             else
@@ -228,10 +228,30 @@ namespace Wms3pl.WebServices.DataCommon
         /// <param name="sqlcommand"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        private static object[] ParameterByNameToByPosition(DbContext context, string sqlcommand, object[] parameters)
+        private static object[] ParameterByNameToByPosition(DbContext context, string sqlcommand, object[] parameters,bool isSqlParameterSetDbType=false)
         {
 						if (parameters is SqlParameter[])
 						{
+				      if(!isSqlParameterSetDbType)
+							{
+									// 強制轉換nvarchar 轉varchar
+									foreach (SqlParameter p in parameters)
+									{
+										if (p.SqlDbType == SqlDbType.NVarChar)
+											p.SqlDbType = SqlDbType.VarChar;
+										if (p.Value == null)
+											p.Value = DBNull.Value;
+									}
+							}
+							else
+							{
+								foreach (SqlParameter p in (SqlParameter[])parameters)
+								{
+									if (p.Value == null)
+										p.Value = DBNull.Value;
+								}
+							}
+							
 							return parameters;
 						}
 						else
@@ -246,14 +266,34 @@ namespace Wms3pl.WebServices.DataCommon
         /// <param name="sqlcommand"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        private static object[] SqlQueryParameterByNameToByPosition(DbContext context, string sqlcommand, object[] parameters)
+        private static object[] SqlQueryParameterByNameToByPosition(DbContext context, string sqlcommand, object[] parameters,bool isSqlParameterSetDbType = false)
         {
 						if (!(parameters is SqlParameter[]))
 						{
 							parameters = ParameterByNameToByPositionImpl(context, sqlcommand, parameters, true);
 						}
+						// 只針對UPDATE 與 DELETE 才強制轉換
+						else if(!isSqlParameterSetDbType && !sqlcommand.ToUpper().Contains("INSERT"))
+						{
+				      // 強制轉換nvarchar 轉varchar
+							foreach(SqlParameter p in parameters)
+							{
+					       if(p.SqlDbType == SqlDbType.NVarChar)
+						          p.SqlDbType = SqlDbType.VarChar;
+								 if (p.Value == null)
+										p.Value = DBNull.Value;
+							}
+						}
+						else
+						{
+								foreach (SqlParameter p in parameters)
+								{
+									if (p.Value == null)
+										p.Value = DBNull.Value;
+								}
+						}
 						return parameters;
-        }
+				}
 
 
         /// <summary>
@@ -322,6 +362,7 @@ namespace Wms3pl.WebServices.DataCommon
 																				{
 																					p1.Value = DBNull.Value;
 																				}
+																				
 																				parameterByPosition.Add(p1.Value);
                                     }
                                 }
@@ -337,8 +378,15 @@ namespace Wms3pl.WebServices.DataCommon
 										                    if(parameters[parmIndex] == null)
 																				{
 																					parameters[parmIndex] = DBNull.Value;
+																					parameterByPosition.Add(new SqlParameter(string.Format("{0}p{1}", PreDbParamSymbol, index), parameters[parmIndex]));
+
 																				}
-                                        parameterByPosition.Add(new SqlParameter(string.Format("{0}p{1}", PreDbParamSymbol, index), parameters[parmIndex]));
+																				else if(parameters[parmIndex].GetType().Equals(typeof(string)))
+																				{
+																					parameterByPosition.Add(new SqlParameter(string.Format("{0}p{1}", PreDbParamSymbol, index), parameters[parmIndex]) { SqlDbType = SqlDbType.VarChar});
+																				}
+																				else
+																					 parameterByPosition.Add(new SqlParameter(string.Format("{0}p{1}", PreDbParamSymbol, index), parameters[parmIndex]));
                                     }
                                 }
                                 else
@@ -579,7 +627,10 @@ namespace Wms3pl.WebServices.DataCommon
                 }
                 else
                 {
-                  dbParam = new SqlParameter($"@p{i}", parm);
+					        if(parm!=null && parm.GetType().Equals(typeof(string)))
+										dbParam = new SqlParameter($"@p{i}", parm) { SqlDbType = SqlDbType.VarChar};
+													else
+										dbParam = new SqlParameter($"@p{i}", parm);
                 }
                 dbParams.Add(dbParam);
                 i++;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.WebServices.DataCommon;
@@ -17,6 +18,7 @@ namespace Wms3pl.Datas.F06
         public void CancelRepeatData(string dcCode, string calDate)
         {
             var parameters = new List<object> {
+                DateTime.Now,
                 Current.Staff,
                 Current.StaffName,
                 dcCode,
@@ -27,20 +29,20 @@ namespace Wms3pl.Datas.F06
 
             var sql = @"  UPDATE F060601 
                           SET PROC_FLAG = '9', 
-                          UPD_DATE =dbo.GetSysDate(), 
-                          UPD_STAFF = @p0, 
-                          UPD_NAME = @p1
+                          UPD_DATE = @p0, 
+                          UPD_STAFF = @p1, 
+                          UPD_NAME = @p2
                           WHERE ID IN (
                           SELECT ID FROM F060601 Z
-                          WHERE Z.DC_CODE = @p2
-                          AND Z.CAL_DATE = @p3
+                          WHERE Z.DC_CODE = @p3
+                          AND Z.CAL_DATE = @p4
                           AND Z.PROC_FLAG = '0'
                           AND EXISTS (
                           SELECT * FROM (
                           SELECT CURRENT_PAGE,MAX(ID) MAX_ID 
                           FROM F060601 
-                          WHERE DC_CODE = @p4
-                          AND CAL_DATE = @p5
+                          WHERE DC_CODE = @p5
+                          AND CAL_DATE = @p6
                           AND PROC_FLAG = '0'
                           GROUP BY CURRENT_PAGE) X
                           WHERE X.CURRENT_PAGE = Z.CURRENT_PAGE

@@ -163,7 +163,11 @@ namespace Wms3pl.WebServices.Shared.Services
 				CurrentlyStatus = string.Empty
 			};
 			//查詢該商品的序號設定資料
-
+			if (string.IsNullOrWhiteSpace(serialNo))
+			{
+				result.Message = "序號不能為空!";
+				return result;
+			}
 			var serialNoSetting = CommonService.GetProduct(gupCode, custCode, itemCode);
 
 			#region 設定檔資料 檢查
@@ -193,6 +197,13 @@ namespace Wms3pl.WebServices.Shared.Services
 					return result;
 				}
 			}
+
+			if(serialNo.Trim().Length > 50)
+			{
+				result.Message = string.Format("序號長度不可超過50碼", 50);
+				return result;
+			}
+
 			#endregion
 
 			#region 序號為純數/非純數 檢查
@@ -262,12 +273,8 @@ namespace Wms3pl.WebServices.Shared.Services
 			};
 
 			#region 輸入資料基本檢查
-			if (string.IsNullOrWhiteSpace(serialNo))
-			{
-				result.Message = "序號不能為空!";
-				return result;
-			}
-			if (string.IsNullOrWhiteSpace(status))
+		
+      if (string.IsNullOrWhiteSpace(status))
 			{
 				result.Message = "請輸入欲變更狀態!";
 				return result;
@@ -951,7 +958,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			if (orif2501?.STATUS == "C1" && status == "A1")
 			{
-				//f2501.IN_DATE = DateTime.Today;    #2149 新建的才指定進倉日期
+        f2501.IN_DATE = DateTime.Today;   // #2149 新建的才指定進倉日期
         f2501.PO_NO = poNo;
       }
 
@@ -982,8 +989,10 @@ namespace Wms3pl.WebServices.Shared.Services
         }
         if (status=="A1")
         {
+          f2501.IN_DATE = DateTime.Today;  //20230418  調入(C1->A1)後，F2501.IN_DATE應該更新系統日
           f2501.IS_ASYNC = "N";    //20230323 KK #2149  2. 若序號資料已存在但該序號可以改為進貨，請更新IS_ASYNC=N
-        }
+					f2501.ACTIVATED = needMarkActivated ? "1" : "0"; // 重新進來時，要更新是否為不良品序號狀態
+				}
           
 				updF2501s.Add(f2501);
 			}
@@ -1379,8 +1388,83 @@ namespace Wms3pl.WebServices.Shared.Services
 			return PalletOrBox;
 		}
 
-		#region 檢查序號綁除位是否為此儲位商品
+    #region 檢查序號綁除位是否為此儲位商品
 
-		#endregion
-	}
+    #endregion
+    /// <summary>
+    /// 檢核入庫前商品單筆序號
+    /// </summary>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="itemCode"></param>
+    /// <param name="serialNo"></param>
+    /// <returns></returns>
+    public List<SerialNoResult> CheckItemSingleSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode,  string serialNo)
+    {
+      return CheckItemLargeSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, new List<string>{ serialNo} );      
+      }
+    /// <summary>
+    /// 檢核入庫前商品多筆序號
+    /// </summary>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="itemCode"></param>
+    /// <param name="serialNoList"></param>
+    /// <returns></returns>
+    #region 檢核入庫前商品多筆序號
+    public List<SerialNoResult> CheckItemLargeSerialWithBeforeInWarehouse(string gupCode, string custCode, string itemCode, List<string> serialNoList)
+    {
+      SerialNoResult check=null;
+     
+      string itemName = GetItemName(gupCode, custCode, itemCode);
+      List<F2501> f2501s = CommonService.GetItemSerialList(gupCode, custCode, serialNoList);
+			var serialNoResList = new List<SerialNoResult>();
+      foreach( string serialNo in serialNoList)
+      {
+        check = CheckSeralNoBase(gupCode, custCode,itemCode, serialNo, itemName);
+				if (!check.Checked)
+					serialNoResList.Add(check);
+				F2501 f2501 = f2501s.Where(x => x.SERIAL_NO == serialNo).FirstOrDefault();
+        if (f2501 == null)
+        {
+					serialNoResList.Add( new SerialNoResult
+          {
+            Checked = true,
+            ItemCode = itemCode,
+            ItemName = itemName,
+            SerialNo = serialNo,
+          });
+        }
+        else
+        {
+          check= SerialNoStatusCheckImpl(f2501, serialNo, "A1", null, itemName);
+          if (!check.Checked)
+						serialNoResList.Add(check);
+					else
+          {
+						if(f2501.ITEM_CODE != itemCode)
+						{
+							serialNoResList.Add(new SerialNoResult
+							{
+								Checked = false,
+								ItemCode = itemCode,
+								ItemName = itemName,
+								SerialNo = serialNo,
+								Message = string.Format("此商品序號原品號為{0}，與新品號{1}不同，不允許更換品號", f2501.ITEM_CODE, itemCode)
+							});
+						}
+						serialNoResList.Add(new SerialNoResult
+            {
+              Checked = true,
+              ItemCode = itemCode,
+              ItemName = itemName,
+              SerialNo = serialNo,
+            });
+          }
+        }
+      }
+			return serialNoResList;
+    }
+    #endregion
+  }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -648,7 +649,7 @@ ORDER BY C.RETURN_DATE,
         public void CancelNotProcessVnrReturn(string dcCode, string gupCode, string custCode, string rtnVnrNo, string importFlag)
         {
             string sql = @"
-				           update F160201 set STATUS = '9', UPD_DATE = dbo.GetSysDate(), UPD_STAFF = @p0, UPD_NAME = @p1, IMPORT_FLAG = @p6
+				           update F160201 set STATUS = '9', UPD_DATE = @p7, UPD_STAFF = @p0, UPD_NAME = @p1, IMPORT_FLAG = @p6
                            Where DC_CODE =@p2
 				             and GUP_CODE =@p3
 				             and CUST_CODE =@p4
@@ -663,7 +664,8 @@ ORDER BY C.RETURN_DATE,
                  new SqlParameter("@p3", gupCode),
                  new SqlParameter("@p4", custCode),
                  new SqlParameter("@p5", rtnVnrNo),
-                 new SqlParameter("@p6", importFlag)
+                 new SqlParameter("@p6", importFlag),
+                 new SqlParameter("@p7", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             ExecuteSqlCommand(sql, sqlParams);

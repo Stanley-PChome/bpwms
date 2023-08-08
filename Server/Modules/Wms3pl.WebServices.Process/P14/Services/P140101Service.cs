@@ -21,9 +21,14 @@ namespace Wms3pl.WebServices.Process.P14.Services
 	{
 		private WmsTransaction _wmsTransaction;
 		private SharedService _sharedService;
-    public CommonService CommonService { get; set; }
+    private CommonService _commonService;
+    public CommonService CommonService
+    {
+      get { return _commonService ?? new CommonService(); }
+      set { _commonService = value; }
+    }
 
-		public P140101Service(WmsTransaction wmsTransaction = null)
+    public P140101Service(WmsTransaction wmsTransaction = null)
 		{
 			_wmsTransaction = wmsTransaction;
 		}
@@ -68,45 +73,55 @@ namespace Wms3pl.WebServices.Process.P14.Services
 		/// <param name="itemCode"></param>
 		/// <returns></returns>
 		public IQueryable<InventoryDetailItem> GetInventoryDetailItems(string dcCode, string gupCode, string custCode,
-	string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode)
+	    string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode, string procType)
 		{
-			var f141001Repo = new F140101Repository(Schemas.CoreSchema);
-			var item = f141001Repo.Find(o => o.DC_CODE == dcCode && o.GUP_CODE == gupCode && o.CUST_CODE == custCode && o.INVENTORY_NO == inventoryNo);
-			if (item.ISSECOND == "1") //已產生複盤 抓複盤資料
-			{
-				var f140105Repo = new F140105Repository(Schemas.CoreSchema);
-				return f140105Repo.GetInventoryDetailItems(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
-			}
-			//初盤資料
-			var f140104Repo = new F140104Repository(Schemas.CoreSchema);
-			return f140104Repo.GetInventoryDetailItems(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
-		}
+			var F140101Repo = new F140101Repository(Schemas.CoreSchema);
+			var item = F140101Repo.Find(o => o.DC_CODE == dcCode && o.GUP_CODE == gupCode && o.CUST_CODE == custCode && o.INVENTORY_NO == inventoryNo);
 
-		/// <summary>
-		/// 盤點詳細查詢 匯出Excel
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="inventoryNo"></param>
-		/// <param name="wareHouseId"></param>
-		/// <param name="begLocCode"></param>
-		/// <param name="endLocCode"></param>
-		/// <param name="itemCode"></param>
-		/// <returns></returns>
-		public IQueryable<InventoryDetailItem> GetInventoryDetailItemsExport(string dcCode, string gupCode, string custCode,
-			 string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode)
+      if (procType == "0" || item.ISSECOND == "0")
+      {
+        var f140104Repo = new F140104Repository(Schemas.CoreSchema);
+        return f140104Repo.GetInventoryDetailItems(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
+      }
+      else if (procType == "1" || item.ISSECOND == "1")
+      {
+        var f140105Repo = new F140105Repository(Schemas.CoreSchema);
+        return f140105Repo.GetInventoryDetailItems(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
+      }
+      return null;
+    }
+
+    /// <summary>
+    /// 盤點詳細查詢 匯出Excel
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="inventoryNo"></param>
+    /// <param name="wareHouseId"></param>
+    /// <param name="begLocCode"></param>
+    /// <param name="endLocCode"></param>
+    /// <param name="itemCode"></param>
+    /// <returns></returns>
+    public IQueryable<InventoryDetailItem> GetInventoryDetailItemsExport(string dcCode, string gupCode, string custCode,
+			 string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode, string procType)
 		{
 			var f141001Repo = new F140101Repository(Schemas.CoreSchema);
 			var item = f141001Repo.Find(o => o.DC_CODE == dcCode && o.GUP_CODE == gupCode && o.CUST_CODE == custCode && o.INVENTORY_NO == inventoryNo);
-			if (item.ISSECOND == "1") //已產生複盤 抓複盤資料
-			{
-				var f140105Repo = new F140105Repository(Schemas.CoreSchema);
-				return f140105Repo.GetInventoryDetailItemsExport(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
-			}
-			//初盤資料
-			var f140104Repo = new F140104Repository(Schemas.CoreSchema);
-			return f140104Repo.GetInventoryDetailItemsExport(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
+
+      switch (procType)
+      {
+        case "0": //初盤資料
+          var f140104Repo = new F140104Repository(Schemas.CoreSchema);
+          return f140104Repo.GetInventoryDetailItemsExport(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
+
+        case "1": //複盤資料
+          var f140105Repo = new F140105Repository(Schemas.CoreSchema);
+          return f140105Repo.GetInventoryDetailItemsExport(dcCode, gupCode, custCode, inventoryNo, wareHouseId, begLocCode, endLocCode, itemCode, item.CHECK_TOOL);
+
+        default:
+          return null;
+      }
 		}
 
 		public IQueryable<InventoryDetailItem> FindInventoryDetailItems(string dcCode, string gupCode, string custCode,
@@ -144,10 +159,10 @@ namespace Wms3pl.WebServices.Process.P14.Services
 		}
 
 		public IQueryable<InventoryItem> GetInventoryItems(string gupCode, string custCode, string type, string lType,
-			string mType, string sType,string vnrCode,string vnrName, string itemCode)
+			string mType, string sType, string vnrCode, string oriVnrCode, string vnrName, string itemCode)
 		{
 			var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-			return f1903Repo.GetInventoryItems(gupCode, custCode, type, lType, mType, sType,vnrCode,vnrName, itemCode);
+			return f1903Repo.GetInventoryItems(gupCode, custCode, type, lType, mType, sType, vnrCode, oriVnrCode, vnrName, itemCode);
 		}
 		public IQueryable<InventoryWareHouse> GetInventoryWareHouses(string dcCode, string wareHouseType, string tool)
 		{
@@ -190,8 +205,10 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
     /// <param name="inventoryItemList"></param>
     /// <param name="IsOutSideCheckStock">已經在外部檢查過庫存</param>
     /// <returns></returns>
-    public ExecuteResult InsertP140101(F140101 f140101, List<InventoryWareHouse> inventoryWareHouseList, List<InventoryItem> inventoryItemList)
+    public ExecuteResult InsertP140101(F140101 f140101, List<InventoryWareHouse> inventoryWareHouseList, List<InventoryItem> inventoryItemList, bool stockAbnormal = false)
     {
+      //這邊邏輯更動後需注意在P180201Service.CreateInventory是否有相同邏輯要一起調整
+
       var f140101Repo = new F140101Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f140102Repo = new F140102Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f140103Repo = new F140103Repository(Schemas.CoreSchema, _wmsTransaction);
@@ -220,12 +237,18 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
 				}
 			}
 
-			// 取得盤點商品
-			var f1913ExList = f1913Repo.GetDatasByInventoryWareHouseList(f140101.DC_CODE, f140101.GUP_CODE, f140101.CUST_CODE,
-				inventoryWareHouseList, inventoryItemList.Select(o => o.ITEM_CODE).ToList(), f140101.INVENTORY_TYPE, f140101.INVENTORY_DATE).ToList();
+      // 取得盤點商品
+      var f1913ExList = new List<F1913Ex>();
 
-      //商品抽盤的話要檢查所有商品都有庫存才可建單
-      if (f140101.INVENTORY_TYPE == "0")
+      if (f140101.INVENTORY_TYPE != "2")
+        f1913ExList = f1913Repo.GetDatasByInventoryWareHouseList(f140101.DC_CODE, f140101.GUP_CODE, f140101.CUST_CODE,
+          inventoryWareHouseList, inventoryItemList.Select(o => o.ITEM_CODE).ToList(), f140101.INVENTORY_DATE).ToList();
+      else
+        f1913ExList = f1913Repo.GetDatasByInventoryWareHouseChangeList(f140101.DC_CODE, f140101.GUP_CODE, f140101.CUST_CODE,
+          inventoryWareHouseList, inventoryItemList.Select(o => o.ITEM_CODE).ToList(), f140101.INVENTORY_DATE).ToList();
+
+      //商品抽盤、異動盤要檢查所有商品都有庫存才可建單
+      if (new[] { "0", "2" }.Contains(f140101.INVENTORY_TYPE))
       {
         var stockNotEnough = f1913ExList.GroupBy(g => g.ITEM_CODE)
           .Select(x => new
@@ -238,7 +261,8 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
           .Where(x => x.QTY == 0 && x.UNMOVE_STOCK_QTY == 0);
 
         //沒有庫存就回傳失敗訊息
-        if (stockNotEnough.Any() || !f1913ExList.Any())
+		//20230517 Hunter Modify, stockNotEnough用於異常庫存判斷，因此新增stockAbnormal旗標判斷是正常建立盤點或從異常庫存進來
+        if ((stockNotEnough.Any() && stockAbnormal) || !f1913ExList.Any())
           return new ExecuteResult
           {
             IsSuccessed = false,
@@ -805,7 +829,7 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
       //檢查品號模式
       if (mode == "0")
       {
-        f1903s = f1903Repo.GetDatasByItems(gupCode, custCode, inventoryItemList).ToList();
+        f1903s = CommonService.GetProductList(gupCode, custCode, inventoryItemList).ToList();
         var notExistsItem = inventoryItemList.Except(f1903s.Select(x => x.ITEM_CODE));
         if (notExistsItem.Any())
           return new CheckInventoryItemRes
@@ -863,8 +887,8 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
 				return new ImportInventoryDetailResult { Result = new ExecuteResult(false, Properties.Resources.P140101Service_InventoryDetailItemsHaveDeleted) };
 
 			var itemCodes = importInventoryDetailItems.Where(x => !string.IsNullOrWhiteSpace(x.ItemCode)).Select(x => x.ItemCode).Distinct().ToList();
-			var items = f1903Repo.GetDatasByItems(gupCode, custCode, itemCodes).ToList();
-			var locs = f1912Repo.GetDatasByLocCodes(dcCode, gupCode, custCode, importInventoryDetailItems.Where(x => !string.IsNullOrWhiteSpace(x.LocCode)).Select(x => x.LocCode).Distinct().ToList()).ToList();
+			var items = CommonService.GetProductList(gupCode, custCode, itemCodes).ToList();
+      var locs = f1912Repo.GetDatasByLocCodes(dcCode, gupCode, custCode, importInventoryDetailItems.Where(x => !string.IsNullOrWhiteSpace(x.LocCode)).Select(x => x.LocCode).Distinct().ToList()).ToList();
 			var warehouses = f1980Repo.GetDatas(dcCode, locs.Select(x => x.WAREHOUSE_ID).Distinct().ToList()).ToList();
 			var isSecond = f140101.ISSECOND == "1";
 			var inventoryDetails = f140104Repo.GetInventoryDetailItems(dcCode, gupCode, custCode, inventoryNo, isSecond, itemCodes);

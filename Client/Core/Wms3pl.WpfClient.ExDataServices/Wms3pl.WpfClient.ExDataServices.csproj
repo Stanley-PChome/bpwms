@@ -467,6 +467,9 @@
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.BindBoxResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.CancelShipOrderRes.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -483,6 +486,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.F053601_NotAllotData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult.datasource">
@@ -512,10 +518,19 @@
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.LackItemResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickAllotData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickAllotResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerPutIntoOutContainerResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickOutOfStockResult.datasource">
@@ -528,6 +543,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeRes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanPackageCodeResult.datasource">
@@ -787,6 +805,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P25WcfService\Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501QueryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P25WcfService\Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501WcfData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P25WcfService\Wms3pl.WpfClient.ExDataServices.P25WcfService.P2502QueryData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P50ExDataService\ConnectedService.json" />
