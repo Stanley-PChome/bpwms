@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/1/19 下午 02:31:16
+// Generation date: 2023/4/20 下午 03:52:24
 namespace Wms3pl.WpfClient.ExDataServices.T05ExDataService
 {
     
@@ -102,64 +102,81 @@ namespace Wms3pl.WpfClient.ExDataServices.T05ExDataService
                 "ed.Entities.ExecuteResult\"><Property Name=\"F020502_ID\" Type=\"Edm.Int64\" Nullable" +
                 "=\"false\" /><Property Name=\"F020501_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Prop" +
                 "erty Name=\"NeedFocuseContanerCode\" Type=\"Edm.Boolean\" Nullable=\"false\" /></Entit" +
-                "yType><EntityType Name=\"PickAllotResult\" BaseType=\"Wms3pl.Datas.Shared.Entities." +
-                "ExecuteResult\"><Property Name=\"PickLocNo\" Type=\"Edm.String\" /><Property Name=\"Pi" +
-                "ckOrdSeq\" Type=\"Edm.String\" /><Property Name=\"ItemCode\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"IsPickSowFinished\" Typ" +
-                "e=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"CancelWmsOrdNos\" Type=\"Collec" +
-                "tion(Edm.String)\" Nullable=\"false\" /></EntityType><EntityType Name=\"ScanContaine" +
-                "rResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"C" +
-                "ontainerCode\" Type=\"Edm.String\" /><Property Name=\"ContainerPickInfo\" Type=\"Wms3p" +
-                "l.Datas.Shared.Entities.ContainerPickInfo\" /><Property Name=\"NormalBox\" Type=\"Wm" +
-                "s3pl.Datas.Shared.Entities.BoxInfo\" /><Property Name=\"CancelBox\" Type=\"Wms3pl.Da" +
-                "tas.Shared.Entities.BoxInfo\" /><Property Name=\"IsPickLastBox\" Type=\"Edm.Boolean\"" +
-                " Nullable=\"false\" /><Property Name=\"IsFisrtAllot\" Type=\"Edm.Boolean\" Nullable=\"f" +
-                "alse\" /></EntityType><ComplexType Name=\"ContainerPickInfo\"><Property Name=\"Id\" T" +
-                "ype=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"PickOrdNo\" Type=\"Edm.String\" " +
-                "/><Property Name=\"DelvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Nam" +
-                "e=\"PickTime\" Type=\"Edm.String\" /><Property Name=\"BatchPickCnt\" Type=\"Edm.Int32\" " +
-                "Nullable=\"false\" /><Property Name=\"BatchPickQty\" Type=\"Edm.Int32\" Nullable=\"fals" +
-                "e\" /><Property Name=\"PickQty\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name" +
-                "=\"MoveOutTarget\" Type=\"Edm.String\" /><Property Name=\"MoveOutTargetName\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"NormalOrderCnt\" Type=\"Edm.Int32\" Nullable=\"false\" />" +
-                "<Property Name=\"CancelOrderCnt\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexTyp" +
-                "e><ComplexType Name=\"BoxInfo\"><Property Name=\"SowType\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"BoxNo\" Type=\"Edm.String\" /><Property Name=\"SowQty\" Type=\"Edm.Int32\" N" +
-                "ullable=\"false\" /></ComplexType><EntityType Name=\"BindBoxResult\" BaseType=\"Wms3p" +
-                "l.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"BoxInfo\" Type=\"Wms3pl.Dat" +
-                "as.Shared.Entities.BoxInfo\" /></EntityType><EntityType Name=\"SowItemResult\" Base" +
-                "Type=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"BoxInfo\" Type=" +
-                "\"Wms3pl.Datas.Shared.Entities.BoxInfo\" /><Property Name=\"ItemCode\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"IsContainer" +
-                "Finished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsBatchFinished\"" +
-                " Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><EntityType Name=\"LackItemRe" +
-                "sult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"Lack" +
-                "ItemDetails\" Type=\"Collection(Wms3pl.Datas.Shared.Entities.LackItem)\" Nullable=\"" +
-                "false\" /></EntityType><ComplexType Name=\"LackItem\"><Property Name=\"ItemCode\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"L" +
-                "ackQty\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexType><EntityType Name=\"Pick" +
-                "OutOfStockResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Propert" +
-                "y Name=\"IsContainerFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Nam" +
-                "e=\"IsBatchFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><EntityTy" +
-                "pe Name=\"CheckLoc\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Proper" +
-                "ty Name=\"DcCode\" Type=\"Edm.String\" /><Property Name=\"WarehouseId\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"LocCode\" Type=\"Edm.String\" /><Property Name=\"LocType\" Type" +
-                "=\"Edm.String\" /></EntityType><EntityType Name=\"CheckLocItem\" BaseType=\"Wms3pl.Da" +
-                "tas.Shared.Entities.CheckLoc\"><Property Name=\"ItemCode\" Type=\"Edm.String\" /></En" +
-                "tityType><EntityType Name=\"SetPackageStationStatusLogRes\" BaseType=\"Wms3pl.Datas" +
-                ".Shared.Entities.ExecuteResult\" /><EntityType Name=\"SetPackageLineStationStatusR" +
-                "es\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntityType Name=\"Ch" +
-                "angeShipPackCheckRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><E" +
-                "ntityType Name=\"GetShipLogisticBoxRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.Ex" +
-                "ecuteResult\"><Property Name=\"Datas\" Type=\"Collection(Wms3pl.Datas.Shared.Entitie" +
-                "s.GetShipLogisticBoxData)\" Nullable=\"false\" /></EntityType><ComplexType Name=\"Ge" +
-                "tShipLogisticBoxData\"><Property Name=\"ContainerCode\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"IsScan\" Type=\"Edm.Boolean\" Nullable=\"false\" /></ComplexType></Schema><S" +
-                "chema Namespace=\"Wms3pl.WebServices.Transaction.T05.ExDataSources\" xmlns=\"http:/" +
-                "/schemas.microsoft.com/ado/2009/11/edm\"><EntityContainer Name=\"T05ExDataSource\" " +
-                "m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"ExecuteResults\" EntityType=\"W" +
-                "ms3pl.Datas.Shared.Entities.ExecuteResult\" /></EntityContainer></Schema></edmx:D" +
-                "ataServices></edmx:Edmx>";
+                "yType><EntityType Name=\"PickContainerResult\" BaseType=\"Wms3pl.Datas.Shared.Entit" +
+                "ies.ExecuteResult\"><Property Name=\"ContainerCode\" Type=\"Edm.String\" /><Property " +
+                "Name=\"PickContainerInfos\" Type=\"Collection(Wms3pl.Datas.Shared.Entities.PickCont" +
+                "ainerInfo)\" Nullable=\"false\" /><Property Name=\"MoveOutTargetName\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"TotalPcs\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Na" +
+                "me=\"NormalBox\" Type=\"Wms3pl.Datas.Shared.Entities.BoxInfo\" /><Property Name=\"Can" +
+                "celBox\" Type=\"Wms3pl.Datas.Shared.Entities.BoxInfo\" /><Property Name=\"IsPickLast" +
+                "Box\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsFisrtAllot\" Type=\"E" +
+                "dm.Boolean\" Nullable=\"false\" /></EntityType><ComplexType Name=\"PickContainerInfo" +
+                "\"><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_COD" +
+                "E\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"PICK_ORD_NO\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"CONTAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"DEVICE_" +
+                "TYPE\" Type=\"Edm.String\" /><Property Name=\"DEVICE_TYPE_NAME\" Type=\"Edm.String\" />" +
+                "<Property Name=\"MOVE_OUT_TARGET\" Type=\"Edm.String\" /><Property Name=\"CROSS_NAME\"" +
+                " Type=\"Edm.String\" /><Property Name=\"TOTAL\" Type=\"Edm.Int32\" Nullable=\"false\" />" +
+                "</ComplexType><ComplexType Name=\"BoxInfo\"><Property Name=\"SowType\" Type=\"Edm.Str" +
+                "ing\" /><Property Name=\"BoxNo\" Type=\"Edm.String\" /><Property Name=\"SowQty\" Type=\"" +
+                "Edm.Int32\" Nullable=\"false\" /></ComplexType><EntityType Name=\"PickAllotResult\" B" +
+                "aseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"PickLocNo\" " +
+                "Type=\"Edm.String\" /><Property Name=\"PickOrdSeq\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"ItemCode\" Type=\"Edm.String\" /><Property Name=\"ItemName\" Type=\"Edm.String\" />" +
+                "<Property Name=\"IsPickSowFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Proper" +
+                "ty Name=\"CancelWmsOrdNos\" Type=\"Collection(Edm.String)\" Nullable=\"false\" /></Ent" +
+                "ityType><EntityType Name=\"ScanContainerResult\" BaseType=\"Wms3pl.Datas.Shared.Ent" +
+                "ities.ExecuteResult\"><Property Name=\"ContainerCode\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"ContainerPickInfo\" Type=\"Wms3pl.Datas.Shared.Entities.ContainerPickInfo\"" +
+                " /><Property Name=\"NormalBox\" Type=\"Wms3pl.Datas.Shared.Entities.BoxInfo\" /><Pro" +
+                "perty Name=\"CancelBox\" Type=\"Wms3pl.Datas.Shared.Entities.BoxInfo\" /><Property N" +
+                "ame=\"IsPickLastBox\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsFisr" +
+                "tAllot\" Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><ComplexType Name=\"Co" +
+                "ntainerPickInfo\"><Property Name=\"Id\" Type=\"Edm.Int64\" Nullable=\"false\" /><Proper" +
+                "ty Name=\"PickOrdNo\" Type=\"Edm.String\" /><Property Name=\"DelvDate\" Type=\"Edm.Date" +
+                "Time\" Nullable=\"false\" /><Property Name=\"PickTime\" Type=\"Edm.String\" /><Property" +
+                " Name=\"BatchPickCnt\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"BatchPi" +
+                "ckQty\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PickQty\" Type=\"Edm.In" +
+                "t32\" Nullable=\"false\" /><Property Name=\"MoveOutTarget\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"MoveOutTargetName\" Type=\"Edm.String\" /><Property Name=\"NormalOrderCnt" +
+                "\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CancelOrderCnt\" Type=\"Edm." +
+                "Int32\" Nullable=\"false\" /></ComplexType><EntityType Name=\"BindBoxResult\" BaseTyp" +
+                "e=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"BoxInfo\" Type=\"Wm" +
+                "s3pl.Datas.Shared.Entities.BoxInfo\" /></EntityType><EntityType Name=\"SowItemResu" +
+                "lt\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"BoxInf" +
+                "o\" Type=\"Wms3pl.Datas.Shared.Entities.BoxInfo\" /><Property Name=\"ItemCode\" Type=" +
+                "\"Edm.String\" /><Property Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"IsC" +
+                "ontainerFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsBatchF" +
+                "inished\" Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><EntityType Name=\"La" +
+                "ckItemResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Na" +
+                "me=\"LackItemDetails\" Type=\"Collection(Wms3pl.Datas.Shared.Entities.LackItem)\" Nu" +
+                "llable=\"false\" /></EntityType><ComplexType Name=\"LackItem\"><Property Name=\"ItemC" +
+                "ode\" Type=\"Edm.String\" /><Property Name=\"ItemName\" Type=\"Edm.String\" /><Property" +
+                " Name=\"LackQty\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexType><EntityType Na" +
+                "me=\"PickOutOfStockResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\">" +
+                "<Property Name=\"IsContainerFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Prop" +
+                "erty Name=\"IsBatchFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><" +
+                "EntityType Name=\"CheckLoc\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"" +
+                "><Property Name=\"DcCode\" Type=\"Edm.String\" /><Property Name=\"WarehouseId\" Type=\"" +
+                "Edm.String\" /><Property Name=\"LocCode\" Type=\"Edm.String\" /><Property Name=\"LocTy" +
+                "pe\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"CheckLocItem\" BaseType=\"W" +
+                "ms3pl.Datas.Shared.Entities.CheckLoc\"><Property Name=\"ItemCode\" Type=\"Edm.String" +
+                "\" /></EntityType><EntityType Name=\"ContainerCloseBoxRes\" BaseType=\"Wms3pl.Datas." +
+                "Shared.Entities.ExecuteResult\" /><EntityType Name=\"SetPackageStationStatusLogRes" +
+                "\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntityType Name=\"SetP" +
+                "ackageLineStationStatusRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult" +
+                "\" /><EntityType Name=\"ChangeShipPackCheckRes\" BaseType=\"Wms3pl.Datas.Shared.Enti" +
+                "ties.ExecuteResult\" /><EntityType Name=\"GetShipLogisticBoxRes\" BaseType=\"Wms3pl." +
+                "Datas.Shared.Entities.ExecuteResult\"><Property Name=\"Datas\" Type=\"Collection(Wms" +
+                "3pl.Datas.Shared.Entities.GetShipLogisticBoxData)\" Nullable=\"false\" /></EntityTy" +
+                "pe><ComplexType Name=\"GetShipLogisticBoxData\"><Property Name=\"ContainerCode\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"IsScan\" Type=\"Edm.Boolean\" Nullable=\"false\" /><" +
+                "/ComplexType></Schema><Schema Namespace=\"Wms3pl.WebServices.Transaction.T05.ExDa" +
+                "taSources\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><EntityContainer" +
+                " Name=\"T05ExDataSource\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"Execu" +
+                "teResults\" EntityType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /></EntityCon" +
+                "tainer></Schema></edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -381,6 +398,597 @@ namespace Wms3pl.WpfClient.ExDataServices.T05ExDataService
         private bool _NeedFocuseContanerCode;
         partial void OnNeedFocuseContanerCodeChanging(bool value);
         partial void OnNeedFocuseContanerCodeChanged();
+    }
+    /// <summary>
+    /// There are no comments for ComplexType Wms3pl.Datas.Shared.Entities.PickContainerInfo in the schema.
+    /// </summary>
+    public partial class PickContainerInfo : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new PickContainerInfo object.
+        /// </summary>
+        /// <param name="ID">Initial value of ID.</param>
+        /// <param name="tOTAL">Initial value of TOTAL.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static PickContainerInfo CreatePickContainerInfo(long ID, int tOTAL)
+        {
+            PickContainerInfo pickContainerInfo = new PickContainerInfo();
+            pickContainerInfo.ID = ID;
+            pickContainerInfo.TOTAL = tOTAL;
+            return pickContainerInfo;
+        }
+        /// <summary>
+        /// There are no comments for Property ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this._ID = value;
+                this.OnIDChanged();
+                this.OnPropertyChanged("ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _ID;
+        partial void OnIDChanging(long value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for Property DC_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DC_CODE
+        {
+            get
+            {
+                return this._DC_CODE;
+            }
+            set
+            {
+                this.OnDC_CODEChanging(value);
+                this._DC_CODE = value;
+                this.OnDC_CODEChanged();
+                this.OnPropertyChanged("DC_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DC_CODE;
+        partial void OnDC_CODEChanging(string value);
+        partial void OnDC_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property GUP_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string GUP_CODE
+        {
+            get
+            {
+                return this._GUP_CODE;
+            }
+            set
+            {
+                this.OnGUP_CODEChanging(value);
+                this._GUP_CODE = value;
+                this.OnGUP_CODEChanged();
+                this.OnPropertyChanged("GUP_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _GUP_CODE;
+        partial void OnGUP_CODEChanging(string value);
+        partial void OnGUP_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_CODE
+        {
+            get
+            {
+                return this._CUST_CODE;
+            }
+            set
+            {
+                this.OnCUST_CODEChanging(value);
+                this._CUST_CODE = value;
+                this.OnCUST_CODEChanged();
+                this.OnPropertyChanged("CUST_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_CODE;
+        partial void OnCUST_CODEChanging(string value);
+        partial void OnCUST_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property PICK_ORD_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PICK_ORD_NO
+        {
+            get
+            {
+                return this._PICK_ORD_NO;
+            }
+            set
+            {
+                this.OnPICK_ORD_NOChanging(value);
+                this._PICK_ORD_NO = value;
+                this.OnPICK_ORD_NOChanged();
+                this.OnPropertyChanged("PICK_ORD_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PICK_ORD_NO;
+        partial void OnPICK_ORD_NOChanging(string value);
+        partial void OnPICK_ORD_NOChanged();
+        /// <summary>
+        /// There are no comments for Property CONTAINER_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CONTAINER_CODE
+        {
+            get
+            {
+                return this._CONTAINER_CODE;
+            }
+            set
+            {
+                this.OnCONTAINER_CODEChanging(value);
+                this._CONTAINER_CODE = value;
+                this.OnCONTAINER_CODEChanged();
+                this.OnPropertyChanged("CONTAINER_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CONTAINER_CODE;
+        partial void OnCONTAINER_CODEChanging(string value);
+        partial void OnCONTAINER_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property DEVICE_TYPE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DEVICE_TYPE
+        {
+            get
+            {
+                return this._DEVICE_TYPE;
+            }
+            set
+            {
+                this.OnDEVICE_TYPEChanging(value);
+                this._DEVICE_TYPE = value;
+                this.OnDEVICE_TYPEChanged();
+                this.OnPropertyChanged("DEVICE_TYPE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DEVICE_TYPE;
+        partial void OnDEVICE_TYPEChanging(string value);
+        partial void OnDEVICE_TYPEChanged();
+        /// <summary>
+        /// There are no comments for Property DEVICE_TYPE_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DEVICE_TYPE_NAME
+        {
+            get
+            {
+                return this._DEVICE_TYPE_NAME;
+            }
+            set
+            {
+                this.OnDEVICE_TYPE_NAMEChanging(value);
+                this._DEVICE_TYPE_NAME = value;
+                this.OnDEVICE_TYPE_NAMEChanged();
+                this.OnPropertyChanged("DEVICE_TYPE_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DEVICE_TYPE_NAME;
+        partial void OnDEVICE_TYPE_NAMEChanging(string value);
+        partial void OnDEVICE_TYPE_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property MOVE_OUT_TARGET in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MOVE_OUT_TARGET
+        {
+            get
+            {
+                return this._MOVE_OUT_TARGET;
+            }
+            set
+            {
+                this.OnMOVE_OUT_TARGETChanging(value);
+                this._MOVE_OUT_TARGET = value;
+                this.OnMOVE_OUT_TARGETChanged();
+                this.OnPropertyChanged("MOVE_OUT_TARGET");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MOVE_OUT_TARGET;
+        partial void OnMOVE_OUT_TARGETChanging(string value);
+        partial void OnMOVE_OUT_TARGETChanged();
+        /// <summary>
+        /// There are no comments for Property CROSS_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CROSS_NAME
+        {
+            get
+            {
+                return this._CROSS_NAME;
+            }
+            set
+            {
+                this.OnCROSS_NAMEChanging(value);
+                this._CROSS_NAME = value;
+                this.OnCROSS_NAMEChanged();
+                this.OnPropertyChanged("CROSS_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CROSS_NAME;
+        partial void OnCROSS_NAMEChanging(string value);
+        partial void OnCROSS_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property TOTAL in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TOTAL
+        {
+            get
+            {
+                return this._TOTAL;
+            }
+            set
+            {
+                this.OnTOTALChanging(value);
+                this._TOTAL = value;
+                this.OnTOTALChanged();
+                this.OnPropertyChanged("TOTAL");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TOTAL;
+        partial void OnTOTALChanging(int value);
+        partial void OnTOTALChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for ComplexType Wms3pl.Datas.Shared.Entities.BoxInfo in the schema.
+    /// </summary>
+    public partial class BoxInfo : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new BoxInfo object.
+        /// </summary>
+        /// <param name="sowQty">Initial value of SowQty.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static BoxInfo CreateBoxInfo(int sowQty)
+        {
+            BoxInfo boxInfo = new BoxInfo();
+            boxInfo.SowQty = sowQty;
+            return boxInfo;
+        }
+        /// <summary>
+        /// There are no comments for Property SowType in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string SowType
+        {
+            get
+            {
+                return this._SowType;
+            }
+            set
+            {
+                this.OnSowTypeChanging(value);
+                this._SowType = value;
+                this.OnSowTypeChanged();
+                this.OnPropertyChanged("SowType");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _SowType;
+        partial void OnSowTypeChanging(string value);
+        partial void OnSowTypeChanged();
+        /// <summary>
+        /// There are no comments for Property BoxNo in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string BoxNo
+        {
+            get
+            {
+                return this._BoxNo;
+            }
+            set
+            {
+                this.OnBoxNoChanging(value);
+                this._BoxNo = value;
+                this.OnBoxNoChanged();
+                this.OnPropertyChanged("BoxNo");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _BoxNo;
+        partial void OnBoxNoChanging(string value);
+        partial void OnBoxNoChanged();
+        /// <summary>
+        /// There are no comments for Property SowQty in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int SowQty
+        {
+            get
+            {
+                return this._SowQty;
+            }
+            set
+            {
+                this.OnSowQtyChanging(value);
+                this._SowQty = value;
+                this.OnSowQtyChanged();
+                this.OnPropertyChanged("SowQty");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _SowQty;
+        partial void OnSowQtyChanging(int value);
+        partial void OnSowQtyChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.Shared.Entities.PickContainerResult in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IsSuccessed
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("IsSuccessed")]
+    public partial class PickContainerResult : ExecuteResult
+    {
+        /// <summary>
+        /// Create a new PickContainerResult object.
+        /// </summary>
+        /// <param name="isSuccessed">Initial value of IsSuccessed.</param>
+        /// <param name="pickContainerInfos">Initial value of PickContainerInfos.</param>
+        /// <param name="totalPcs">Initial value of TotalPcs.</param>
+        /// <param name="isPickLastBox">Initial value of IsPickLastBox.</param>
+        /// <param name="isFisrtAllot">Initial value of IsFisrtAllot.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static PickContainerResult CreatePickContainerResult(bool isSuccessed, global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> pickContainerInfos, int totalPcs, bool isPickLastBox, bool isFisrtAllot)
+        {
+            PickContainerResult pickContainerResult = new PickContainerResult();
+            pickContainerResult.IsSuccessed = isSuccessed;
+            if ((pickContainerInfos == null))
+            {
+                throw new global::System.ArgumentNullException("pickContainerInfos");
+            }
+            pickContainerResult.PickContainerInfos = pickContainerInfos;
+            pickContainerResult.TotalPcs = totalPcs;
+            pickContainerResult.IsPickLastBox = isPickLastBox;
+            pickContainerResult.IsFisrtAllot = isFisrtAllot;
+            return pickContainerResult;
+        }
+        /// <summary>
+        /// There are no comments for Property ContainerCode in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ContainerCode
+        {
+            get
+            {
+                return this._ContainerCode;
+            }
+            set
+            {
+                this.OnContainerCodeChanging(value);
+                this._ContainerCode = value;
+                this.OnContainerCodeChanged();
+                this.OnPropertyChanged("ContainerCode");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ContainerCode;
+        partial void OnContainerCodeChanging(string value);
+        partial void OnContainerCodeChanged();
+        /// <summary>
+        /// There are no comments for Property PickContainerInfos in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> PickContainerInfos
+        {
+            get
+            {
+                return this._PickContainerInfos;
+            }
+            set
+            {
+                this.OnPickContainerInfosChanging(value);
+                this._PickContainerInfos = value;
+                this.OnPickContainerInfosChanged();
+                this.OnPropertyChanged("PickContainerInfos");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> _PickContainerInfos = new global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo>();
+        partial void OnPickContainerInfosChanging(global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> value);
+        partial void OnPickContainerInfosChanged();
+        /// <summary>
+        /// There are no comments for Property MoveOutTargetName in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MoveOutTargetName
+        {
+            get
+            {
+                return this._MoveOutTargetName;
+            }
+            set
+            {
+                this.OnMoveOutTargetNameChanging(value);
+                this._MoveOutTargetName = value;
+                this.OnMoveOutTargetNameChanged();
+                this.OnPropertyChanged("MoveOutTargetName");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MoveOutTargetName;
+        partial void OnMoveOutTargetNameChanging(string value);
+        partial void OnMoveOutTargetNameChanged();
+        /// <summary>
+        /// There are no comments for Property TotalPcs in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TotalPcs
+        {
+            get
+            {
+                return this._TotalPcs;
+            }
+            set
+            {
+                this.OnTotalPcsChanging(value);
+                this._TotalPcs = value;
+                this.OnTotalPcsChanged();
+                this.OnPropertyChanged("TotalPcs");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TotalPcs;
+        partial void OnTotalPcsChanging(int value);
+        partial void OnTotalPcsChanged();
+        /// <summary>
+        /// There are no comments for Property NormalBox in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public BoxInfo NormalBox
+        {
+            get
+            {
+                if (((this._NormalBox == null) 
+                            && (this._NormalBoxInitialized != true)))
+                {
+                    this._NormalBox = new BoxInfo();
+                    this._NormalBoxInitialized = true;
+                }
+                return this._NormalBox;
+            }
+            set
+            {
+                this.OnNormalBoxChanging(value);
+                this._NormalBox = value;
+                this._NormalBoxInitialized = true;
+                this.OnNormalBoxChanged();
+                this.OnPropertyChanged("NormalBox");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private BoxInfo _NormalBox;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _NormalBoxInitialized;
+        partial void OnNormalBoxChanging(BoxInfo value);
+        partial void OnNormalBoxChanged();
+        /// <summary>
+        /// There are no comments for Property CancelBox in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public BoxInfo CancelBox
+        {
+            get
+            {
+                if (((this._CancelBox == null) 
+                            && (this._CancelBoxInitialized != true)))
+                {
+                    this._CancelBox = new BoxInfo();
+                    this._CancelBoxInitialized = true;
+                }
+                return this._CancelBox;
+            }
+            set
+            {
+                this.OnCancelBoxChanging(value);
+                this._CancelBox = value;
+                this._CancelBoxInitialized = true;
+                this.OnCancelBoxChanged();
+                this.OnPropertyChanged("CancelBox");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private BoxInfo _CancelBox;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _CancelBoxInitialized;
+        partial void OnCancelBoxChanging(BoxInfo value);
+        partial void OnCancelBoxChanged();
+        /// <summary>
+        /// There are no comments for Property IsPickLastBox in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool IsPickLastBox
+        {
+            get
+            {
+                return this._IsPickLastBox;
+            }
+            set
+            {
+                this.OnIsPickLastBoxChanging(value);
+                this._IsPickLastBox = value;
+                this.OnIsPickLastBoxChanged();
+                this.OnPropertyChanged("IsPickLastBox");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _IsPickLastBox;
+        partial void OnIsPickLastBoxChanging(bool value);
+        partial void OnIsPickLastBoxChanged();
+        /// <summary>
+        /// There are no comments for Property IsFisrtAllot in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool IsFisrtAllot
+        {
+            get
+            {
+                return this._IsFisrtAllot;
+            }
+            set
+            {
+                this.OnIsFisrtAllotChanging(value);
+                this._IsFisrtAllot = value;
+                this.OnIsFisrtAllotChanged();
+                this.OnPropertyChanged("IsFisrtAllot");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _IsFisrtAllot;
+        partial void OnIsFisrtAllotChanging(bool value);
+        partial void OnIsFisrtAllotChanged();
     }
     /// <summary>
     /// There are no comments for Wms3pl.Datas.Shared.Entities.PickAllotResult in the schema.
@@ -813,99 +1421,6 @@ namespace Wms3pl.WpfClient.ExDataServices.T05ExDataService
         private int _CancelOrderCnt;
         partial void OnCancelOrderCntChanging(int value);
         partial void OnCancelOrderCntChanged();
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        protected virtual void OnPropertyChanged(string property)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for ComplexType Wms3pl.Datas.Shared.Entities.BoxInfo in the schema.
-    /// </summary>
-    public partial class BoxInfo : global::System.ComponentModel.INotifyPropertyChanged
-    {
-        /// <summary>
-        /// Create a new BoxInfo object.
-        /// </summary>
-        /// <param name="sowQty">Initial value of SowQty.</param>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static BoxInfo CreateBoxInfo(int sowQty)
-        {
-            BoxInfo boxInfo = new BoxInfo();
-            boxInfo.SowQty = sowQty;
-            return boxInfo;
-        }
-        /// <summary>
-        /// There are no comments for Property SowType in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string SowType
-        {
-            get
-            {
-                return this._SowType;
-            }
-            set
-            {
-                this.OnSowTypeChanging(value);
-                this._SowType = value;
-                this.OnSowTypeChanged();
-                this.OnPropertyChanged("SowType");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _SowType;
-        partial void OnSowTypeChanging(string value);
-        partial void OnSowTypeChanged();
-        /// <summary>
-        /// There are no comments for Property BoxNo in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string BoxNo
-        {
-            get
-            {
-                return this._BoxNo;
-            }
-            set
-            {
-                this.OnBoxNoChanging(value);
-                this._BoxNo = value;
-                this.OnBoxNoChanged();
-                this.OnPropertyChanged("BoxNo");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _BoxNo;
-        partial void OnBoxNoChanging(string value);
-        partial void OnBoxNoChanged();
-        /// <summary>
-        /// There are no comments for Property SowQty in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public int SowQty
-        {
-            get
-            {
-                return this._SowQty;
-            }
-            set
-            {
-                this.OnSowQtyChanging(value);
-                this._SowQty = value;
-                this.OnSowQtyChanged();
-                this.OnPropertyChanged("SowQty");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private int _SowQty;
-        partial void OnSowQtyChanging(int value);
-        partial void OnSowQtyChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1659,6 +2174,27 @@ namespace Wms3pl.WpfClient.ExDataServices.T05ExDataService
         private string _ItemCode;
         partial void OnItemCodeChanging(string value);
         partial void OnItemCodeChanged();
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.Shared.Entities.ContainerCloseBoxRes in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IsSuccessed
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("IsSuccessed")]
+    public partial class ContainerCloseBoxRes : ExecuteResult
+    {
+        /// <summary>
+        /// Create a new ContainerCloseBoxRes object.
+        /// </summary>
+        /// <param name="isSuccessed">Initial value of IsSuccessed.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static ContainerCloseBoxRes CreateContainerCloseBoxRes(bool isSuccessed)
+        {
+            ContainerCloseBoxRes containerCloseBoxRes = new ContainerCloseBoxRes();
+            containerCloseBoxRes.IsSuccessed = isSuccessed;
+            return containerCloseBoxRes;
+        }
     }
     /// <summary>
     /// There are no comments for Wms3pl.Datas.Shared.Entities.SetPackageStationStatusLogRes in the schema.

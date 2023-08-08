@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F00;
@@ -54,7 +56,7 @@ namespace Wms3pl.Datas.F00
 				                     ISNULL (b.COUNT_C, 0) COUNTS_C
 		                    FROM VW_F000904_LANG a With(nolock)
 		                    LEFT JOIN 
-							(SELECT '01' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0102010000' AS FUNC_ID,'進倉單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'2' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'2' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+							(SELECT '01' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0102010000' AS FUNC_ID,'進倉單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'2' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'2' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 		                       FROM F010201 With(nolock)
 		                      WHERE 1=1
 			                    AND DC_CODE =@p0
@@ -62,7 +64,7 @@ namespace Wms3pl.Datas.F00
 			                    AND CUST_CODE= @p2
 		                      
 		                      UNION
-			                    SELECT '02' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1601010000' AS FUNC_ID,'退貨單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND RETURN_DATE >= CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'2' AND RETURN_DATE >= CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+			                    SELECT '02' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1601010000' AS FUNC_ID,'退貨單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND RETURN_DATE >= CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'2' AND RETURN_DATE >= CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 			                    FROM F161201 With(nolock)
 			                    WHERE 1=1
 			                    AND DC_CODE =@p0
@@ -70,7 +72,7 @@ namespace Wms3pl.Datas.F00
 			                    AND CUST_CODE= @p2
 			                    
 			                    UNION
-			                    SELECT '04' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1502010000' AS FUNC_ID,'調撥單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'5' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'5' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+			                    SELECT '04' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1502010000' AS FUNC_ID,'調撥單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'5' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <>'5' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 			                    FROM F151001 With(nolock)
 			                    WHERE 1=1
 			                    AND DC_CODE =@p0
@@ -78,7 +80,7 @@ namespace Wms3pl.Datas.F00
 			                    AND CUST_CODE= @p2
 			                    
 			                    UNION
-			                    SELECT '05' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1401010000' AS FUNC_ID,'盤點單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+			                    SELECT '05' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1401010000' AS FUNC_ID,'盤點單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 			                    FROM F140101 With(nolock)
 			                    WHERE 1=1
 			                    AND DC_CODE =@p0
@@ -86,7 +88,7 @@ namespace Wms3pl.Datas.F00
 			                    AND CUST_CODE= @p2
 			                    
 			                    UNION
-			                    SELECT '06' AS WORK_TYPE,'office' AS APP_TYPE,'P0503020000' AS FUNC_ID,'訂單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND A.CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL AND A.CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+			                    SELECT '06' AS WORK_TYPE,'office' AS APP_TYPE,'P0503020000' AS FUNC_ID,'訂單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND A.CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL AND A.CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 			                    FROM F050101 A With(nolock)
 			                    LEFT JOIN F05030101 B With(nolock)
 			                    ON B.DC_CODE = A.DC_CODE
@@ -103,7 +105,7 @@ namespace Wms3pl.Datas.F00
 			                    AND A.GUP_CODE= @p1
 			                    AND A.CUST_CODE= @p2
 			                    UNION
-			                    SELECT '06' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1602010000' AS FUNC_ID,'廠退單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND RTN_VNR_DATE >= CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <> '2' AND RTN_VNR_DATE >= CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+			                    SELECT '06' AS WORK_TYPE, 'office' AS APP_TYPE, 'P1602010000' AS FUNC_ID,'廠退單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND RTN_VNR_DATE >= CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS <> '2' AND RTN_VNR_DATE >= CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 			                    FROM F160201 With(nolock)
 			                    WHERE 1=1
 			                    AND DC_CODE =@p0
@@ -121,6 +123,7 @@ namespace Wms3pl.Datas.F00
                 new SqlParameter("@p2", custCode),
                 new SqlParameter("@p3", apType),
                 new SqlParameter("@p4", Current.Lang),
+                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             //補 ROWNUM、
@@ -153,21 +156,21 @@ namespace Wms3pl.Datas.F00
 		                FROM VW_F000904_LANG a With(nolock)
 			                LEFT JOIN 
 			                (
-				                SELECT '03' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0501040000' AS FUNC_ID,'揀貨單列印' AS FUNC_NAME,ISNULL(SUM(CASE WHEN PICK_STATUS <>'9' AND PICK_STATUS <>'2' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN PICK_STATUS <>'9' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN PICK_STATUS <>'9' AND PICK_STATUS <>'2' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+				                SELECT '03' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0501040000' AS FUNC_ID,'揀貨單列印' AS FUNC_NAME,ISNULL(SUM(CASE WHEN PICK_STATUS <>'9' AND PICK_STATUS <>'2' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN PICK_STATUS <>'9' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN PICK_STATUS <>'9' AND PICK_STATUS <>'2' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 				                FROM F051201 With(nolock)
 				                WHERE 1=1
 				                AND DC_CODE =@p0
 				                AND GUP_CODE= @p1
 				                AND CUST_CODE= @p2
 				                UNION
-				                SELECT '06' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0807010000' AS FUNC_ID,'出貨包裝/包裝站' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9'  AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+				                SELECT '06' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0807010000' AS FUNC_ID,'出貨包裝/包裝站' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9'  AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='0' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 				                FROM F050801 With(nolock)
 				                WHERE 1=1
 				                AND DC_CODE =@p0
 				                AND GUP_CODE= @p1
 				                AND CUST_CODE= @p2
 				                UNION
-				                SELECT '06' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0808030000' AS FUNC_ID,'宅單扣帳' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='2' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS IN('2','5','6') AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='2' AND CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+				                SELECT '06' AS WORK_TYPE, 'office' AS APP_TYPE, 'P0808030000' AS FUNC_ID,'宅單扣帳' AS FUNC_NAME,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='2' THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS IN('2','5','6') AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN STATUS <>'9' AND STATUS ='2' AND CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 				                FROM F050801 With(nolock)
 				                WHERE 1=1
 				                AND DC_CODE =@p0
@@ -175,7 +178,7 @@ namespace Wms3pl.Datas.F00
 				                AND CUST_CODE= @p2
 				               
 				                UNION
-			                SELECT '06' AS WORK_TYPE,'office' AS APP_TYPE,'P0503020000' AS FUNC_ID,'訂單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND A.CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL AND A.CRT_DATE > CONVERT(date, dbo.GetSysDate()) THEN 1 ELSE 0 END),0) COUNT_C 
+			                SELECT '06' AS WORK_TYPE,'office' AS APP_TYPE,'P0503020000' AS FUNC_ID,'訂單維護' AS FUNC_NAME,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL THEN 1 ELSE 0 END),0) COUNTS,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND A.CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_B,ISNULL(SUM(CASE WHEN A.STATUS<>'9' AND C.WMS_ORD_NO IS  NULL AND A.CRT_DATE > CONVERT(date, @p5) THEN 1 ELSE 0 END),0) COUNT_C 
 				                FROM F050101 A With(nolock)
 				                LEFT JOIN F05030101 B With(nolock)
 				                ON B.DC_CODE = A.DC_CODE
@@ -205,9 +208,40 @@ namespace Wms3pl.Datas.F00
                 new SqlParameter("@p2", custCode),
                 new SqlParameter("@p3", apType),
                 new SqlParameter("@p4", Current.Lang),
+                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             return SqlQuery<WorkList>(sql, param.ToArray()).AsQueryable();
+        }
+
+        public string GetWorkStationGroupCode()
+        {
+            var sql = @"
+                SELECT TOP(1) VALUE
+	                FROM F000904
+                 WHERE TOPIC = 'F1946'
+                   AND SUBTOPIC  = 'GROUP'
+                   AND NAME = '驗貨區'
+                            ";
+
+            return SqlQuery<string>(sql).SingleOrDefault();
+        }
+
+        public string GetF010201StatusName(string value)
+        {
+            var sqlParameter = new List<SqlParameter>()
+            {
+                new SqlParameter("@p0", value) { SqlDbType = SqlDbType.VarChar },
+            };
+            var sql = @"
+                SELECT TOP(1) NAME
+	                FROM F000904
+                 WHERE TOPIC = 'F010201'
+                   AND SUBTOPIC  = 'STATUS'
+                   AND VALUE = @p0
+                ";
+
+            return SqlQuery<string>(sql,sqlParameter.ToArray()).FirstOrDefault();
         }
     }
 }

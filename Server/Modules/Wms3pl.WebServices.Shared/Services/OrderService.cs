@@ -757,19 +757,19 @@ namespace Wms3pl.WebServices.Shared.Services
 				f050901Repo.Delete(x => x.WMS_NO == f050901.WMS_NO && x.DC_CODE == f050901.DC_CODE && x.GUP_CODE == f050901.GUP_CODE && x.CUST_CODE == f050901.CUST_CODE);
 			}
 		}
-		
-		/// <summary>
-		/// 新增訂單回檔歷程紀錄表
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="ordNos"></param>
-		/// <param name="status"></param>
-		/// <returns></returns>
-		public void AddF050305(string dcCode, string gupCode, string custCode, List<string> ordNos, string status)
-		{
-			var f050305Repo = new F050305Repository(Schemas.CoreSchema, _wmsTransaction);
+
+    /// <summary>
+    /// 新增訂單回檔歷程紀錄表
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="ordNos"></param>
+    /// <param name="status"></param>
+    /// <returns></returns>
+    public void AddF050305(string dcCode, string gupCode, string custCode, List<string> ordNos, string status, DateTime? crtDate = null)
+    {
+      var f050305Repo = new F050305Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransaction);
 
@@ -780,8 +780,8 @@ namespace Wms3pl.WebServices.Shared.Services
 				{
 					#region P單
 
-					var f051202s = f051202Repo.GetDatasByF0011BindDatas(dcCode, gupCode, custCode, ordNos);
-					wmsOrdNos = f051202s.Select(x => x.WMS_ORD_NO).Distinct().ToList();
+					var pickWmsNoList = f051202Repo.GetWmsOrdNoListByPickOrdNos(dcCode, gupCode, custCode, ordNos);
+					wmsOrdNos = pickWmsNoList.Select(x => x.WMS_ORD_NO).Distinct().ToList();
 					#endregion
 				}
 				else
@@ -790,10 +790,22 @@ namespace Wms3pl.WebServices.Shared.Services
 				}
 
 				var insertF050305s = f05030101Repo.GetOrderRtnInsertDatas(dcCode, gupCode, custCode, status, wmsOrdNos).ToList();
-
-				#region 新增訂單回檔歷程紀錄表
-				if (insertF050305s.Any())
-					f050305Repo.BulkInsert(insertF050305s);
+        #region 新增訂單回檔歷程紀錄表
+        if (insertF050305s.Any())
+        {
+          if (crtDate.HasValue)
+          {
+            insertF050305s.ForEach(x =>
+            {
+              x.CRT_DATE = crtDate.Value;
+              x.CRT_STAFF = Current.Staff;
+              x.CRT_NAME = Current.StaffName;
+            });
+            f050305Repo.BulkInsert(insertF050305s, true);
+          }
+          else
+            f050305Repo.BulkInsert(insertF050305s);
+        }
 				#endregion
 
 			}
@@ -1040,7 +1052,7 @@ namespace Wms3pl.WebServices.Shared.Services
                 });
 
                 //如果集貨位置是自動集貨場，要改成人工集貨場
-                if (f051301.STATUS == "1")
+                if (f051301.COLLECTION_POSITION == "1")
                   f051301Repo.UpdateCollectionPosition(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, f051201.DELV_DATE.Value, f051201.PICK_TIME, f060201.WMS_NO, "0");
               }
             }
@@ -1189,36 +1201,39 @@ namespace Wms3pl.WebServices.Shared.Services
 			}
 		}
 
-		#endregion
-
-		
+    #endregion
 
 
-		/// <summary>
-		/// 出貨箱宅單扣帳
-		/// </summary>
-		/// <param name="f050801"></param>
-		/// <param name="packageBoxNo"></param>
-		/// <param name="auditDate"></param>
-		/// <param name="boxNum"></param>
-		/// <returns></returns>
-		public ExecuteResult PackageBoxDebit(F050801 f050801, short packageBoxNo,string pastNo,string workStationCode,string boxNum, DateTime? auditDate = null)
-		{
-			pastNo = pastNo?.ToUpper();
-			boxNum = boxNum?.ToUpper();
-			workStationCode = workStationCode?.ToUpper();
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema,_wmsTransaction);
-			var f055005Repo = new F055005Repository(Schemas.CoreSchema, _wmsTransaction);
-			if (f050801.STATUS == 2)
-			{
-				f050801.STATUS = 6;//更新出貨單狀態為已扣帳
-				f050801Repo.Update(f050801);
-			}
-			// 更新出貨箱已扣帳
-			f055001Repo.UpdateToAudit(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, packageBoxNo, "1", auditDate ?? DateTime.Now, Current.Staff, Current.StaffName, boxNum);
 
-			f055005Repo.Add(new F055005
+
+    /// <summary>
+    /// 出貨箱宅單扣帳
+    /// </summary>
+    /// <param name="f050801"></param>
+    /// <param name="packageBoxNo"></param>
+    /// <param name="auditDate"></param>
+    /// <param name="boxNum"></param>
+    /// <returns></returns>
+    public ExecuteResult PackageBoxDebit(F050801 f050801, short packageBoxNo, string pastNo, string workStationCode, string boxNum,
+      DateTime? auditDate = null, string clientPc = null, string sorterCode = null)
+    {
+      pastNo = pastNo?.ToUpper();
+      boxNum = boxNum?.ToUpper();
+      workStationCode = workStationCode?.ToUpper();
+      var f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f055005Repo = new F055005Repository(Schemas.CoreSchema, _wmsTransaction);
+      if (f050801.STATUS == 2)
+      {
+        f050801.STATUS = 6;//更新出貨單狀態為已扣帳
+        f050801Repo.Update(f050801);
+      }
+      if (string.IsNullOrWhiteSpace(clientPc))
+        clientPc = Current.DeviceIp;
+      // 更新出貨箱已扣帳
+      f055001Repo.UpdateToAudit(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, packageBoxNo, "1", auditDate ?? DateTime.Now, Current.Staff, Current.StaffName, boxNum, clientPc, sorterCode);
+
+      f055005Repo.Add(new F055005
 			{
 				DC_CODE = f050801.DC_CODE,
 				GUP_CODE = f050801.GUP_CODE,
@@ -1325,6 +1340,22 @@ namespace Wms3pl.WebServices.Shared.Services
 			var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
 			var canDebitWmsOrders = f050801Repo.GetDatasForWmsOrdNos(dcCode, gupCode, custCode, wmsOrdNos).ToList();
 			var res = MultiShipOrderDebit(dcCode, gupCode, custCode, canDebitWmsOrders, out updF050801s, out updF050802s, out updF05030202s, out updF1511s, out updF0513s);
+			if (!res.IsSuccessed)
+				return res;
+			return new ExecuteResult { IsSuccessed = true, Message = "" };
+		}
+		/// <summary>
+		/// 單筆出貨單進行扣帳
+		/// </summary>
+		/// <param name="dcCode"></param>
+		/// <param name="gupCode"></param>
+		/// <param name="custCode"></param>
+		/// <param name="wmsOrdNos"></param>
+		public ExecuteResult MultiShipOrderDebit(string dcCode, string gupCode, string custCode, F050801 canDebitWmsOrder,
+			out List<F050801> updF050801s, out List<F050802> updF050802s, out List<F05030202> updF05030202s, out List<F1511> updF1511s, out List<F0513> updF0513s)
+		{
+			var res = MultiShipOrderDebit(dcCode, gupCode, custCode, new List<F050801> { canDebitWmsOrder }
+										, out updF050801s, out updF050802s, out updF05030202s, out updF1511s, out updF0513s);
 			if (!res.IsSuccessed)
 				return res;
 			return new ExecuteResult { IsSuccessed = true, Message = "" };

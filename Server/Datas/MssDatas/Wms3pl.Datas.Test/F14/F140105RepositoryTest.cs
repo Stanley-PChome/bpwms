@@ -18,14 +18,14 @@ namespace Wms3pl.Datas.Test.F14
         [TestMethod]
         public void CountInventoryDetailItems()
         {
-            string dcCode = "001";
-            string gupCode = "01";
-            string custCode = "010002";
-            string inventoryNo = "I2019042500001";
+            string dcCode = "12";
+            string gupCode = "10";
+            string custCode = "010001";
+            string inventoryNo = "I20230425000004";
             string wareHouseId = "T01";
-            string begLocCode = "10Q010201";
-            string endLocCode = "10Q010202";
-            string itemCode = "PS17002-C0002";
+            string begLocCode = "A02010A01";
+            string endLocCode = "A02010A03";
+            string itemCode = "KK003";
             Console.WriteLine($@"{JsonSerializer.Serialize(new
             {
                 dcCode,
@@ -46,9 +46,19 @@ namespace Wms3pl.Datas.Test.F14
                 endLocCode,
                 itemCode);
             Console.WriteLine(JsonSerializer.Serialize(result));
-        }
 
-        [TestMethod]
+      //var result0 = _f140105Repository.CountInventoryDetailItems0(dcCode,
+      //          gupCode,
+      //          custCode,
+      //          inventoryNo,
+      //          wareHouseId,
+      //          begLocCode,
+      //          endLocCode,
+      //          itemCode);
+      //Assert.AreEqual(JsonSerializer.Serialize(result), JsonSerializer.Serialize(result0));
+    }
+
+    [TestMethod]
         public void GetInventoryDetailItems()
         {
             string dcCode = "001";

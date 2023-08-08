@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -59,15 +60,17 @@ namespace Wms3pl.Datas.F19
 										, UPLOAD_DATE = Convert(datetime,@p3)
 										, UPD_STAFF = @p4
 										, UPD_NAME = @p5
-										, UPD_DATE = dbo.GetSysDate()
+										, UPD_DATE = @p6
 						WHERE FUN_CODE = @p0";
+
             var param = new[]{
                 new SqlParameter("@p0", funCode),
                 new SqlParameter("@p1", status),
                 new SqlParameter("@p2", funName),
                 new SqlParameter("@p3", uploadDate.ToString("yyyy/MM/dd HH:mm:ss")),
                 new SqlParameter("@p4", userId),
-                new SqlParameter("@p5", Current.StaffName)
+                new SqlParameter("@p5", Current.StaffName),
+                new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             ExecuteSqlCommand(sql, param);
@@ -85,13 +88,15 @@ namespace Wms3pl.Datas.F19
 				SET DISABLE = @p1
 					, UPD_STAFF = @p2
 					, UPD_NAME = @p3
-					, UPD_DATE = dbo.GetSysDate() 
+					, UPD_DATE = @p4
 				WHERE FUN_CODE = @p0";
+
             var param = new[]{
                 new SqlParameter("@p0", funCode),
                 new SqlParameter("@p1", status),
                 new SqlParameter("@p2", userId),
-                new SqlParameter("@p3", Current.StaffName)
+                new SqlParameter("@p3", Current.StaffName),
+                new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             ExecuteSqlCommand(sql, param);

@@ -385,8 +385,9 @@ namespace Wms3pl.WebServices.Process.P02.Services
       var f1912Repo = new F1912Repository(Schemas.CoreSchema, _wmsTransaction);
       var f191204Repo = new F191204Repository(Schemas.CoreSchema, _wmsTransaction);
       var sharedService = new SharedService(_wmsTransaction);
+      var stockService = new StockService(_wmsTransaction);
       var details = new List<AllocationConfirmDetail>();
-
+      sharedService.StockService = stockService;
       var f151001 = f151001Repo.Find(
         o =>
           o.ALLOCATION_NO == allocationNo && o.TAR_DC_CODE == tarDcCode && o.GUP_CODE == gupCode &&
@@ -574,6 +575,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 				Details = details
 			};
 			sharedService.AllocationConfirm(param, IsAllocationPosting);
+      stockService.SaveChange();
 			#endregion
 
       return result ?? (result = new ExecuteResult { IsSuccessed = true });

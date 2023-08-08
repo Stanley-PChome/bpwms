@@ -75,7 +75,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 			#endregion
 
 			#region 主要邏輯
-			var dcCodeList = f1901Repo.GetAllDcCode().ToList();
+			var dcCodeList = f1901Repo.GetAllDcCodes().ToList();
 
 			//取得商品主檔同步紀錄
 			var f1903AsyncList = f1903AsyncRepo.AsForUpdate().GetDatas(gupCode, custCode, GetMidApiMisMax()).ToList();

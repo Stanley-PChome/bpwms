@@ -8,17 +8,18 @@ using Wms3pl.WebServices.DataCommon;
 
 namespace Wms3pl.Datas.F06
 {
-    public partial class F060101Repository
+  public partial class F060101Repository
+  {
+    public AllocTicketReportModel GetDataByTicketReport(string dcCode, string gupCode, string custCode, string allocationNo, Boolean isInProc)
     {
-        public AllocTicketReportModel GetDataByTicketReport(string dcCode, string gupCode, string custCode, string allocationNo)
-        {
-            var sql =
-                @"   SELECT
+      var table = isInProc ? "F060101" : "F060201";
+      var sql =
+          $@"   SELECT
                      TOP 1 
                      A.DOC_ID,
                      A.WAREHOUSE_ID,
                      B.WAREHOUSE_NAME
-                     FROM F060101 A
+                     FROM {table} A
                      JOIN F1980 B
                      ON A.DC_CODE = B.DC_CODE
                      AND A.WAREHOUSE_ID = B.WAREHOUSE_ID
@@ -29,9 +30,15 @@ namespace Wms3pl.Datas.F06
                      AND A.CMD_TYPE = '1'
                      AND A.STATUS IN ('0', '1', '2', '3')
                      ORDER BY A.CRT_DATE DESC ";
-            var param = new object[] { dcCode, gupCode, custCode, allocationNo };
-            return SqlQuery<AllocTicketReportModel>(sql, param).FirstOrDefault();
-        }
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1",SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2",SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3",SqlDbType.VarChar) { Value = allocationNo },
+      };
+      return SqlQuery<AllocTicketReportModel>(sql, param.ToArray()).FirstOrDefault();
+    }
 
 		public IQueryable<TaskDispatchData> GetF060101Data(string dcCode, string gupCode, string custCode, DateTime? beginCreateDate, DateTime? endCreateDate, string status, List<string> docNums, List<string> taskNums)
 		{
@@ -93,8 +100,9 @@ namespace Wms3pl.Datas.F06
 		{
 			if(docIds != null && docIds.Any())
 			{
-				var param = new List<object> { Current.Staff, Current.StaffName };
-				var sql = @"UPDATE F060101 SET STATUS = '0', UPD_DATE = dbo.GetSysDate(), UPD_STAFF = @p0, UPD_NAME = @p1 WHERE 1=1";
+				var param = new List<object> { DateTime.Now, Current.Staff, Current.StaffName };
+
+				var sql = @"UPDATE F060101 SET STATUS = '0', UPD_DATE = @p0, UPD_STAFF = @p1, UPD_NAME = @p2 WHERE 1=1";
 
 				sql += param.CombineSqlInParameters(" AND DOC_ID", docIds);
 
@@ -218,7 +226,7 @@ namespace Wms3pl.Datas.F06
 										UPD_DATE=@p2,UPD_STAFF=@p3,UPD_NAME=@p4
                   WHERE CMD_TYPE = @p5
                     AND DOC_ID = @p6 ";
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
 
 		public void UpdateExecResult(string cmdType, string docId, string status, string message, DateTime procDate, int resentCnt)
@@ -240,9 +248,39 @@ namespace Wms3pl.Datas.F06
 										UPD_DATE=@p4,UPD_STAFF=@p5,UPD_NAME=@p6
                   WHERE CMD_TYPE = @p7
                     AND DOC_ID = @p8 ";
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 
 		}
 
-	}
+    /// <summary>
+    /// 取得入庫任務任務ID流水號
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="wmsNo"></param>
+    /// <returns></returns>
+    public int GetDocIdCount(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = wmsNo },
+      };
+
+      var sql = @"SELECT 
+	COUNT(*) 
+FROM 
+(
+  SELECT 1 AS col FROM F060101 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND WMS_NO=@p3
+  UNION ALL
+  SELECT 1 AS col FROM F060201 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND WMS_NO=@p3
+) A";
+
+      return SqlQuery<int>(sql, para.ToArray()).FirstOrDefault();
+    }
+
+  }
 }

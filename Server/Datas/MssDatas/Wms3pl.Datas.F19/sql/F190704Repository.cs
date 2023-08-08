@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F19;
@@ -31,12 +33,13 @@ namespace Wms3pl.Datas.F19
 				new SqlParameter("@p0", gid),
         new SqlParameter("@p1", qid),
         new SqlParameter("@p2", staff),
-        new SqlParameter("@p3", name)
-			};
+        new SqlParameter("@p3", name),
+        new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 
       var sql = @"
 INSERT INTO F190704 (GRP_ID, QID, CRT_STAFF, CRT_NAME, CRT_DATE) 
-VALUES (@p0, @p1, @p2, @p3 , dbo.GetSysDate())
+VALUES (@p0, @p1, @p2, @p3, @p4)
 ";
 
       ExecuteSqlCommand(sql, parameters.ToArray());

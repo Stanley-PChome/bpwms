@@ -14,8 +14,9 @@ namespace Wms3pl.Datas.F06
 		{
 			if (docIds != null && docIds.Any())
 			{
-				var param = new List<object> { Current.Staff, Current.StaffName };
-				var sql = @"UPDATE F060201 SET STATUS = '0', UPD_DATE = dbo.GetSysDate(), UPD_STAFF = @p0, UPD_NAME = @p1 WHERE 1=1";
+				var param = new List<object> { DateTime.Now, Current.Staff, Current.StaffName };
+
+				var sql = @"UPDATE F060201 SET STATUS = '0', UPD_DATE = @p0, UPD_STAFF = @p1, UPD_NAME = @p2 WHERE 1=1";
 
 				sql += param.CombineSqlInParameters(" AND DOC_ID", docIds);
 
@@ -189,7 +190,7 @@ namespace Wms3pl.Datas.F06
 										UPD_DATE=@p2,UPD_STAFF=@p3,UPD_NAME=@p4
                   WHERE CMD_TYPE = @p5
                     AND DOC_ID = @p6 ";
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
 
 		public void UpdateExecResult(string cmdType, string docId, string status, string message,DateTime procDate,int resentCnt)
@@ -197,7 +198,7 @@ namespace Wms3pl.Datas.F06
 			var parms = new List<SqlParameter>
 			{
 				new SqlParameter("@p0",SqlDbType.Char){Value = status},
-				new SqlParameter("@p1",SqlDbType.VarChar){Value = message},
+				new SqlParameter("@p1",SqlDbType.NVarChar){Value = message},
 				new SqlParameter("@p2",SqlDbType.DateTime2){Value = procDate},
 				new SqlParameter("@p3",SqlDbType.Int){Value = resentCnt},
 				new SqlParameter("@p4",SqlDbType.DateTime2){Value = DateTime.Now},
@@ -211,7 +212,7 @@ namespace Wms3pl.Datas.F06
 										UPD_DATE=@p4,UPD_STAFF=@p5,UPD_NAME=@p6
                   WHERE CMD_TYPE = @p7
                     AND DOC_ID = @p8 ";
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 				 
 		}
 	}

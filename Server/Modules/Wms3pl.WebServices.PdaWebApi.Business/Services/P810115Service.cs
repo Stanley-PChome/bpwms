@@ -22,128 +22,128 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
             _p81Service = new P81Service();
         }
 
-        /// <summary>
-        /// 容器查詢
-        /// </summary>
-        /// <param name="req"></param>
-        /// <param name="gupCode"></param>
-        /// <returns></returns>
-        public ApiResult GetContainerInfo(GetContainerInfoReq req, string gupCode)
+    /// <summary>
+    /// 容器查詢
+    /// </summary>
+    /// <param name="req"></param>
+    /// <param name="gupCode"></param>
+    /// <returns></returns>
+    public ApiResult GetContainerInfo(GetContainerInfoReq req, string gupCode)
+    {
+      var commonService = new CommonService();
+      var f0701Repo = new F0701Repository(Schemas.CoreSchema);
+
+      #region 資料檢核
+
+      // 帳號檢核
+      var accData = _p81Service.CheckAcc(req.AccNo);
+
+      // 檢核人員功能權限
+      var accFunctionCount = _p81Service.CheckAccFunction(req.FuncNo, req.AccNo);
+
+      // 檢核人員貨主權限
+      var accCustCount = _p81Service.CheckAccCustCode(req.CustNo, req.AccNo);
+
+      // 檢核人員物流中心權限
+      var accDcCount = _p81Service.CheckAccDc(req.DcNo, req.AccNo);
+
+      // 傳入的參數驗證
+      if (string.IsNullOrWhiteSpace(req.FuncNo) ||
+              string.IsNullOrWhiteSpace(req.AccNo) ||
+              string.IsNullOrWhiteSpace(req.DcNo) ||
+              string.IsNullOrWhiteSpace(req.CustNo) ||
+              !accData.Any() ||
+              accFunctionCount == 0 ||
+              accCustCount == 0 ||
+              accDcCount == 0)
+        return new ApiResult { IsSuccessed = false, MsgCode = "20069", MsgContent = _p81Service.GetMsg("20069") };
+
+      // 檢核傳入容器條碼不得為空
+      if (string.IsNullOrWhiteSpace(req.ContainerCode))
+        return new ApiResult { IsSuccessed = false, MsgCode = "21001", MsgContent = _p81Service.GetMsg("21001") };
+
+      // 容器條碼轉大寫
+      req.ContainerCode = req.ContainerCode.ToUpper();
+
+      //1.[A1] = 取得容器資料頭檔 資料表: F0701 條件: CONTAINER_CODE = 傳入參數.ContainerCode
+      var f0701 = f0701Repo.GetDatasByTrueAndCondition(o => o.CONTAINER_CODE == req.ContainerCode).OrderByDescending(x => x.ID).FirstOrDefault();
+
+      //2.如果[A1] = null，回傳訊息[false, 容器條碼不存在]
+      if (f0701 == null)
+        return new ApiResult { IsSuccessed = false, MsgCode = "21002", MsgContent = _p81Service.GetMsg("21002") };
+      #endregion
+
+      #region 資料處理
+      if (f0701.CONTAINER_TYPE == "0")// 單一型容器
+      {
+        var f070101Repo = new F070101Repository(Schemas.CoreSchema);
+        var f070102Repo = new F070102Repository(Schemas.CoreSchema);
+        F020501 f020501 = null;
+
+        #region 單一型容器檢核
+        //1.  [A2] = 取得容器單據頭檔 資料表: F070101 條件: F0701.ID = [A1].ID
+        var f070101 = f070101Repo.GetDataByF0701Id(f0701.ID);
+
+        //2.如果[A2] = null，回傳訊息[false, 此容器條碼等待單據綁定中，請稍後再查詢]
+        //若F070101有資料，只是WMS_NO=NULL(剛綁完容器關箱)，還是接著取容器資料
+        if (f070101 == null || string.IsNullOrWhiteSpace(f070101.WMS_NO))
         {
-            var commonService = new CommonService();
-            var f0701Repo = new F0701Repository(Schemas.CoreSchema);
-
-            #region 資料檢核
-
-            // 帳號檢核
-            var accData = _p81Service.CheckAcc(req.AccNo);
-
-            // 檢核人員功能權限
-            var accFunctionCount = _p81Service.CheckAccFunction(req.FuncNo, req.AccNo);
-
-            // 檢核人員貨主權限
-            var accCustCount = _p81Service.CheckAccCustCode(req.CustNo, req.AccNo);
-
-            // 檢核人員物流中心權限
-            var accDcCount = _p81Service.CheckAccDc(req.DcNo, req.AccNo);
-
-            // 傳入的參數驗證
-            if (string.IsNullOrWhiteSpace(req.FuncNo) ||
-                    string.IsNullOrWhiteSpace(req.AccNo) ||
-                    string.IsNullOrWhiteSpace(req.DcNo) ||
-                    string.IsNullOrWhiteSpace(req.CustNo) ||
-                    !accData.Any() ||
-                    accFunctionCount == 0 ||
-                    accCustCount == 0 ||
-                    accDcCount == 0)
-                return new ApiResult { IsSuccessed = false, MsgCode = "20069", MsgContent = _p81Service.GetMsg("20069") };
-
-            // 檢核傳入容器條碼不得為空
-            if (string.IsNullOrWhiteSpace(req.ContainerCode))
-                return new ApiResult { IsSuccessed = false, MsgCode = "21001", MsgContent = _p81Service.GetMsg("21001") };
-
-            // 容器條碼轉大寫
-            req.ContainerCode = req.ContainerCode.ToUpper();
-
-            //1.[A1] = 取得容器資料頭檔 資料表: F0701 條件: CONTAINER_CODE = 傳入參數.ContainerCode
-            var f0701 = f0701Repo.GetDatasByTrueAndCondition(o => o.CONTAINER_CODE == req.ContainerCode).OrderByDescending(x => x.ID).FirstOrDefault();
-
-            //2.如果[A1] = null，回傳訊息[false, 容器條碼不存在]
-            if (f0701 == null)
-                return new ApiResult { IsSuccessed = false, MsgCode = "21002", MsgContent = _p81Service.GetMsg("21002") };
-            #endregion
-
-            #region 資料處理
-            if (f0701.CONTAINER_TYPE == "0")// 單一型容器
-            {
-                var f070101Repo = new F070101Repository(Schemas.CoreSchema);
-                var f070102Repo = new F070102Repository(Schemas.CoreSchema);
-                F020501 f020501 = null;
-
-                #region 單一型容器檢核
-                //1.  [A2] = 取得容器單據頭檔 資料表: F070101 條件: F0701.ID = [A1].ID
-                var f070101 = f070101Repo.GetDataByF0701Id(f0701.ID);
-
-                //2.如果[A2] = null，回傳訊息[false, 此容器條碼等待單據綁定中，請稍後再查詢]
-                //若F070101有資料，只是WMS_NO=NULL(剛綁完容器關箱)，還是接著取容器資料
-                if (f070101 == null || string.IsNullOrWhiteSpace(f070101.WMS_NO))
-                {
-                  var f020501Repo = new F020501Repository(Schemas.CoreSchema);
-                  f020501 = f020501Repo.GetDatasByF0701idAndExcepStatus(f0701.ID, new string[] { "0", "9" });
-                  if (f020501 == null)
-                  {
-                    return new ApiResult { IsSuccessed = false, MsgCode = "21403", MsgContent = _p81Service.GetMsg("21403") };
-                  }
-                }
-                #endregion
-
-                #region 單一容器資料處理
-                var apiResult = GetContainerSingle(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, f070101.WMS_NO, f0701.CONTAINER_CODE, f020501);
-                if (!apiResult.IsSuccessed)
-                    return apiResult;
-
-                var containerInfo = JsonConvert.DeserializeObject<GetContainerInfoRes>(
-                                    JsonConvert.SerializeObject(apiResult.Data));
-                containerInfo.NotifyFontColor = GetNotifyFontColor(containerInfo.Notify1);
-                #endregion
-
-                #region 取得容器明細資料
-                var f070102s = f070102Repo.GetDatasByTrueAndCondition(o => o.F070101_ID == f070101.ID);
-                var f1903s = commonService.GetProductList(gupCode, req.CustNo, f070102s.Select(x => x.ITEM_CODE).Distinct().ToList());
-                containerInfo.Detail = (from A in f070102s
-                                        join B in f1903s
-                                        on new { A.GUP_CODE, A.CUST_CODE, A.ITEM_CODE } equals new { B.GUP_CODE, B.CUST_CODE, B.ITEM_CODE }
-                                        select new { A.BIN_CODE, A.ITEM_CODE, B.CUST_ITEM_CODE, B.ITEM_NAME, A.QTY })
-                                          .GroupBy(x => x.BIN_CODE)
-                                          .OrderBy(x => x.Key)
-                                          .Select(x => new GetContainerInfoDetailModel
-                                          {
-                                              BinCode = string.IsNullOrWhiteSpace(x.Key) ? "無" : x.Key,
-                                              ItemDetail = x.Select(z => new GetContainerInfoItemDetailModel
-                                              {
-                                                  ItemCode = z.ITEM_CODE,
-                                                  ItemName = z.ITEM_NAME,
-                                                  CustItemCode = z.CUST_ITEM_CODE,
-                                                  Qty = z.QTY
-                                              }).ToList()
-                                          }).ToList();
-                #endregion
-
-                return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = _p81Service.GetMsg("10001"), Data = containerInfo };
-            }
-            else if (f0701.CONTAINER_TYPE == "2")// 混和型容器
-                return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = _p81Service.GetMsg("10001"), Data = GetMixContainer(f0701) };
-            else
-                return new ApiResult { IsSuccessed = false, MsgCode = "21402", MsgContent = _p81Service.GetMsg("21402") };
-            #endregion
+          var f020501Repo = new F020501Repository(Schemas.CoreSchema);
+          f020501 = f020501Repo.GetDatasByF0701idAndExcepStatus(f0701.ID, new string[] { "0", "9" });
+          if (f020501 == null)
+          {
+            return new ApiResult { IsSuccessed = false, MsgCode = "21403", MsgContent = _p81Service.GetMsg("21403") };
+          }
         }
+        #endregion
 
-        /// <summary>
-        /// 重點提示1顯示顏色
-        /// </summary>
-        /// <param name="notify1"></param>
-        /// <returns></returns>
-        private string GetNotifyFontColor(string notify1)
+        #region 單一容器資料處理
+        var apiResult = GetContainerSingle(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, f070101.WMS_NO, f0701.CONTAINER_CODE, f020501);
+        if (!apiResult.IsSuccessed)
+          return apiResult;
+
+        var containerInfo = JsonConvert.DeserializeObject<GetContainerInfoRes>(
+                            JsonConvert.SerializeObject(apiResult.Data));
+        containerInfo.NotifyFontColor = GetNotifyFontColor(containerInfo.Notify1);
+        #endregion
+
+        #region 取得容器明細資料
+        var f070102s = f070102Repo.GetDatasByTrueAndCondition(o => o.F070101_ID == f070101.ID);
+        var f1903s = commonService.GetProductList(gupCode, req.CustNo, f070102s.Select(x => x.ITEM_CODE).Distinct().ToList());
+        containerInfo.Detail = (from A in f070102s
+                                join B in f1903s
+                                on new { A.GUP_CODE, A.CUST_CODE, A.ITEM_CODE } equals new { B.GUP_CODE, B.CUST_CODE, B.ITEM_CODE }
+                                select new { A.BIN_CODE, A.ITEM_CODE, B.CUST_ITEM_CODE, B.ITEM_NAME, A.QTY })
+                                  .GroupBy(x => x.BIN_CODE)
+                                  .OrderBy(x => x.Key)
+                                  .Select(x => new GetContainerInfoDetailModel
+                                  {
+                                    BinCode = string.IsNullOrWhiteSpace(x.Key) ? "無" : x.Key,
+                                    ItemDetail = x.GroupBy(z => new { z.ITEM_CODE, z.ITEM_NAME, z.CUST_ITEM_CODE }).Select(z => new GetContainerInfoItemDetailModel
+                                    {
+                                      ItemCode = z.Key.ITEM_CODE,
+                                      ItemName = z.Key.ITEM_NAME,
+                                      CustItemCode = z.Key.CUST_ITEM_CODE,
+                                      Qty = z.Sum(q => q.QTY)
+                                    }).ToList()
+                                  }).ToList();
+        #endregion
+
+        return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = _p81Service.GetMsg("10001"), Data = containerInfo };
+      }
+      else if (f0701.CONTAINER_TYPE == "2")// 混和型容器
+        return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = _p81Service.GetMsg("10001"), Data = GetMixContainer(f0701) };
+      else
+        return new ApiResult { IsSuccessed = false, MsgCode = "21402", MsgContent = _p81Service.GetMsg("21402") };
+      #endregion
+    }
+
+    /// <summary>
+    /// 重點提示1顯示顏色
+    /// </summary>
+    /// <param name="notify1"></param>
+    /// <returns></returns>
+    private string GetNotifyFontColor(string notify1)
         {
             switch (notify1)
             {

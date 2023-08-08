@@ -245,6 +245,30 @@
   <wsdl:message name="P02WcfService_UpdateF010201Status_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateF010201StatusResponse" />
   </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckItemSingleSerialWithBeforeInWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckItemSingleSerialWithBeforeInWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckItemSingleSerialWithBeforeInWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckItemSingleSerialWithBeforeInWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckItemLargeSerialWithBeforeInWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckItemLargeSerialWithBeforeInWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckItemLargeSerialWithBeforeInWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckItemLargeSerialWithBeforeInWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckCanBindContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckCanBindContainer" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_CheckCanBindContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckCanBindContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateRecvNotePrintInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecvNotePrintInfo" />
+  </wsdl:message>
+  <wsdl:message name="P02WcfService_UpdateRecvNotePrintInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecvNotePrintInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="P02WcfService">
     <wsdl:operation name="UpdateF02020102">
       <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF02020102" message="tns:P02WcfService_UpdateF02020102_InputMessage" />
@@ -401,6 +425,22 @@
     <wsdl:operation name="UpdateF010201Status">
       <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010201Status" message="tns:P02WcfService_UpdateF010201Status_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateF010201StatusResponse" message="tns:P02WcfService_UpdateF010201Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckItemSingleSerialWithBeforeInWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CheckItemSingleSerialWithBeforeInWarehouse" message="tns:P02WcfService_CheckItemSingleSerialWithBeforeInWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CheckItemSingleSerialWithBeforeInWarehouseResponse" message="tns:P02WcfService_CheckItemSingleSerialWithBeforeInWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckItemLargeSerialWithBeforeInWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CheckItemLargeSerialWithBeforeInWarehouse" message="tns:P02WcfService_CheckItemLargeSerialWithBeforeInWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CheckItemLargeSerialWithBeforeInWarehouseResponse" message="tns:P02WcfService_CheckItemLargeSerialWithBeforeInWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCanBindContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/CheckCanBindContainer" message="tns:P02WcfService_CheckCanBindContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/CheckCanBindContainerResponse" message="tns:P02WcfService_CheckCanBindContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecvNotePrintInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/P02WcfService/UpdateRecvNotePrintInfo" message="tns:P02WcfService_UpdateRecvNotePrintInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P02WcfService/UpdateRecvNotePrintInfoResponse" message="tns:P02WcfService_UpdateRecvNotePrintInfo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_P02WcfService" type="tns:P02WcfService">
@@ -749,6 +789,42 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateF010201Status">
       <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateF010201Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckItemSingleSerialWithBeforeInWarehouse">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CheckItemSingleSerialWithBeforeInWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckItemLargeSerialWithBeforeInWarehouse">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CheckItemLargeSerialWithBeforeInWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCanBindContainer">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/CheckCanBindContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecvNotePrintInfo">
+      <soap:operation soapAction="http://tempuri.org/P02WcfService/UpdateRecvNotePrintInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

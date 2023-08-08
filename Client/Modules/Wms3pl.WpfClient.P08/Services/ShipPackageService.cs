@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Wms3pl.WpfClient.Common;
 using Wms3pl.WpfClient.Common.Helpers;
+using Wms3pl.WpfClient.DataServices.F00DataService;
 using Wms3pl.WpfClient.DataServices.F05DataService;
 using Wms3pl.WpfClient.DataServices.F19DataService;
 using Wms3pl.WpfClient.DataServices.F91DataService;
@@ -530,5 +531,51 @@ namespace Wms3pl.WpfClient.P08.Services
             wcfproxy.RunWcfMethod(w => w.InsertF050305Data(dcCode, gupCode, custCode, wmsOrdNo, status, procFlag, WorkStationId));
         }
 
+
+    /// <summary>
+    /// 單人包裝站、包裝線包裝站檢查裝置維護設定共用
+    /// </summary>
+    /// <param name="f910501"></param>
+    /// <param name="shipMode"></param>
+    /// <param name="dcCode"></param>
+    /// <param name="IsPrintShipLittleLabel"></param>
+    /// <param name="f910501Exist"></param>
+    /// <returns></returns>
+    public Boolean CheckDeviceSetting(ref F910501 f910501, string shipMode, string dcCode,F0003 IsPrintShipLittleLabel, F910501 f910501Exist)
+    {
+      var errMsgs = new List<string>();
+      // 是否列印一般出貨小白標
+      var isPrintShipLittleLabel = IsPrintShipLittleLabel != null && IsPrintShipLittleLabel.SYS_PATH == "0" ? "0" : "1";
+
+      // 如果[C]不存在，彈出訊息視窗，顯示[請先設定印表機與工作站編號]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
+      if (f910501Exist == null)
+        errMsgs.Add("請先設定印表機與工作站編號");
+      else
+      {
+        // 如果[C].PRINTER = NULL OR 空白，顯示[未設定印表機1，請設定]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
+        if (string.IsNullOrWhiteSpace(f910501Exist.PRINTER))
+          errMsgs.Add("未設定印表機1，請設定");
+        // 如果[C].MATRIX_PRINTER = NULL OR 空白，顯示[未設定印表機2，請設定]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
+        else if (string.IsNullOrWhiteSpace(f910501Exist.MATRIX_PRINTER))
+          errMsgs.Add("未設定印表機2，請設定");
+        // 如果[D]=1 且[C].LABELING = NULL OR 空白，顯示[未設定快速標籤機，請設定]，按下<確認>後，開啟[P1905140000裝置設定維護UI]，儲存後關閉，再回到3
+        else if (isPrintShipLittleLabel == "1" && string.IsNullOrWhiteSpace(f910501Exist.LABELING))
+          errMsgs.Add("未設定快速標籤機，請設定");
+        // <參數1>=1(單人包裝站)，如果[C].WORKSTATION_TYPE not in ( PACK,FACT) 顯示[工作站類型必須選單人包裝站或廠退處理區]
+        else if (shipMode == "1" && f910501Exist.WORKSTATION_TYPE != "PACK" && f910501Exist.WORKSTATION_TYPE != "FACT")
+          errMsgs.Add("工作站類型必須選單人包裝站或廠退處理區");
+        // <參數1>=2(包裝線包裝站)，如果[C].WORKSTATION_TYPE 不是包裝大線站、包裝小線站 顯示[工作站類型必須選包裝線大線或包裝線小線]
+        else if (shipMode == "2" && f910501Exist.WORKSTATION_TYPE != "PA1" && f910501Exist.WORKSTATION_TYPE != "PA2")
+          errMsgs.Add("工作站類型必須選包裝線大線或包裝線小線");
+        else if (string.IsNullOrWhiteSpace(f910501Exist.WORKSTATION_CODE))
+          errMsgs.Add("未設定工作站編號");
+      }
+      if (errMsgs.Any())
+      {
+        ShowWarningMessage(string.Join("\r\n", errMsgs) + "\r\n請至裝置設定維護調整，本功能即將關閉");
+        return false;
+      }
+      return true;
     }
+  }
 }

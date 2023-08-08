@@ -60,10 +60,11 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       var f070101Repo = new F070101Repository(Schemas.CoreSchema, _wmsTransaction);
       var f070102Repo = new F070102Repository(Schemas.CoreSchema, _wmsTransaction);
       var f070104Repo = new F070104Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f07010401Repo = new F07010401Repository(Schemas.CoreSchema);
 
       F0701 f0701;
       F070101 f070101;
-      List<F070102> f070102s;
+      List<F070102> addF070102s;
       #endregion 宣告
 
       #region 資料檢核
@@ -97,13 +98,6 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       if (string.IsNullOrWhiteSpace(req.ContainerCode))
         return new ApiResult { IsSuccessed = false, MsgCode = "21001", MsgContent = _p81Service.GetMsg("21001") };
 
-
-      //檢核商品條碼是否正確
-      bool isSn = false;
-      var itemCodes = _p81Service.GetItemCodeByBarcode(ref isSn, req.DcNo, gupCode, req.CustNo, req.ItemCode);
-      if (itemCodes == null || (itemCodes != null && !itemCodes.Any()))
-        return new ApiResult { IsSuccessed = false, MsgCode = "21007", MsgContent = _p81Service.GetMsg("21007") };
-
       //把User畫面輸入的內容轉大寫
       req.ContainerCode = req.ContainerCode.ToUpper();
       req.ItemCode = req.ItemCode.ToUpper();
@@ -112,6 +106,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       var getF070104Res = p810110Service.GetF070104Data(ref f070104s, req.ContainerCode);
       if (!getF070104Res.IsSuccessed)
         return getF070104Res;
+
+      var f07010401s = f07010401Repo.GetDatasByF070104Ids(f070104s.Select(x => x.ID).Distinct().ToList()).ToList();
 
       #endregion 資料檢核
 
@@ -174,30 +170,56 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         CONTAINER_CODE = req.ContainerCode,
       };
 
-      f070102s = new List<F070102>();
+      addF070102s = new List<F070102>();
 		
 			foreach (var f070104 in f070104s)
       {
+        var curF07010401 = f07010401s.Where(x => x.F070104_ID == f070104.ID).ToList();
+        if (!string.IsNullOrWhiteSpace(f070104.SERIAL_NO_LIST))
+        {
+          var serialNos = f070104.SERIAL_NO_LIST.Split(',');
+          foreach (var serialNo in serialNos)
+            curF07010401.Add(new F07010401
+            {
+              ITEM_CODE = f070104.ITEM_CODE,
+              SERIAL_NO = serialNo
+            });
+        }
         if (f070104.QTY > 0)
         {
-          f070102s.Add(new F070102
-          {
-            F070101_ID = f070101Id,
-            GUP_CODE = f070104.GUP_CODE,
-            CUST_CODE = f070104.CUST_CODE,
-            ITEM_CODE = f070104.ITEM_CODE,
-            VALID_DATE = f070104.VALID_DATE,
-            MAKE_NO = f070104.MAKE_NO,
-            QTY = f070104.QTY,
-            SERIAL_NO_LIST = f070104.SERIAL_NO_LIST,
-            ORG_F070101_ID = f070101Id
-          });
+          if (curF07010401 != null && curF07010401.Any())
+            addF070102s.AddRange(curF07010401.Select(x => new F070102
+            {
+              F070101_ID = f070101Id,
+              GUP_CODE = f070104.GUP_CODE,
+              CUST_CODE = f070104.CUST_CODE,
+              ITEM_CODE = f070104.ITEM_CODE,
+              VALID_DATE = f070104.VALID_DATE,
+              MAKE_NO = f070104.MAKE_NO,
+              QTY = 1,
+              //SERIAL_NO_LIST = f070104.SERIAL_NO_LIST,
+              ORG_F070101_ID = f070101Id,
+              SERIAL_NO = x.SERIAL_NO
+            }));
+          else
+            addF070102s.Add(new F070102
+            {
+              F070101_ID = f070101Id,
+              GUP_CODE = f070104.GUP_CODE,
+              CUST_CODE = f070104.CUST_CODE,
+              ITEM_CODE = f070104.ITEM_CODE,
+              VALID_DATE = f070104.VALID_DATE,
+              MAKE_NO = f070104.MAKE_NO,
+              QTY = f070104.QTY,
+              //SERIAL_NO_LIST = f070104.SERIAL_NO_LIST,
+              ORG_F070101_ID = f070101Id
+            });
         }
       }
       #endregion 建立容器檔F0701,F070101,F070102
 
       #region 容器上架
-      var containerMoveInRes = ContainerTargetMoveInProcess(req, gupCode, f070104s, f070101);
+      var containerMoveInRes = ContainerTargetMoveInProcess(req, gupCode, f070104s, f07010401s, f070101);
       if (!containerMoveInRes.IsSuccessed)
         return containerMoveInRes;
       #endregion 容器上架
@@ -211,15 +233,15 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         f0701Repo.Add(f0701);
       if (f070101 != null)
         f070101Repo.Add(f070101);
-      if (f070102s != null && f070102s.Any())
-        f070102Repo.BulkInsert(f070102s);
+      if (addF070102s != null && addF070102s.Any())
+        f070102Repo.BulkInsert(addF070102s);
       if (f070104s != null && f070104s.Any())
         f070104Repo.BulkUpdate(f070104s);
       #endregion 容器資料寫入DB
 
       _wmsTransaction.Complete();
 
-      return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = _p81Service.GetMsg("10001") };
+      return new ApiResult { IsSuccessed = true, MsgCode = "10005", MsgContent = _p81Service.GetMsg("10005") };
 
       #endregion 資料處理
 
@@ -233,8 +255,9 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
     /// <param name="f070104s"></param>
     /// <param name="f070101">待新增的容器頭檔，寫入WMS_NO&WMS_TYPE</param>
     /// <returns></returns>
-    public ApiResult ContainerTargetMoveInProcess(MoveInToAutoRecvFinishReq req, string gupCode, List<F070104> f070104s, F070101 f070101)
+    public ApiResult ContainerTargetMoveInProcess(MoveInToAutoRecvFinishReq req, string gupCode, List<F070104> f070104s, List<F07010401> f07010401s, F070101 f070101)
     {
+      var f010201Repo = new F010201Repository(Schemas.CoreSchema);
       var f010202Repo = new F010202Repository(Schemas.CoreSchema, _wmsTransaction);
       var f010205Repo = new F010205Repository(Schemas.CoreSchema, _wmsTransaction);
       var f070101Repo = new F070101Repository(Schemas.CoreSchema, _wmsTransaction);
@@ -251,12 +274,13 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       var stockNos = f070104s.Select(x => x.SOURCE_NO).Distinct().ToList();
 
       // 取得進倉單明細
-      var f010202s = f010202Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
+      //var f010202s = f010202Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
       // 取得進倉回檔歷程紀錄表
-      var f010205s = f010205Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
+      //var f010205s = f010205Repo.GetDatasByStockNos(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
-
+      // 取貨主單號是TR開頭的進倉單號清單
+      var startWithTr = f010201Repo.CheckAndGetCustOrdNoStartWithTr(req.DcNo, gupCode, req.CustNo, stockNos).ToList();
 
       // 取得來源儲位
       var srcLoc = _sharedService.GetSrcLoc(req.DcNo, gupCode, req.CustNo, "I");//I:進貨暫存倉
@@ -264,12 +288,16 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         return new ApiResult { IsSuccessed = false, MsgCode = "21802", MsgContent = _p81Service.GetMsg("21802") };
 
       // 產生進貨暫存倉庫存
-      InsertOrUpdateStock(f070104s, srcLoc.LOC_CODE, ref returnStocks);
-
-      #region 產生調撥上架單
-      var group = from A in f070104s
-                  group A by new { A.ITEM_CODE, A.VALID_DATE, A.MAKE_NO, A.SOURCE_NO, A.ITEM_SEQ } into g
-                  select g;
+      InsertOrUpdateStock(f070104s, f07010401s, srcLoc.LOC_CODE, startWithTr, ref returnStocks);
+			var f1903s = CommonService.GetProductList(gupCode, req.CustNo, f070104s.Select(x => x.ITEM_CODE).Distinct().ToList());
+			#region 產生調撥上架單
+			var group = from A in f070104s
+									join B in f1903s
+									on A.ITEM_CODE equals B.ITEM_CODE
+									group A by new { A.ITEM_CODE, A.VALID_DATE, A.MAKE_NO, A.SOURCE_NO, A.ITEM_SEQ,B.BUNDLE_SERIALLOC } into g
+                  let SerialNos = f07010401s.Where(x => g.Any(y => y.ID == x.F070104_ID)).Select(x => x.SERIAL_NO).ToList() ?? new List<string>()
+                    .Union(g.SelectMany(x => x.SERIAL_NO_LIST?.Split(',')).ToList() ?? new List<string>())
+                  select new { g, SerialNos };
 
       //呼叫調撥共用函數[不需要檢查配庫狀態IsCheckExecStatus設為false]
       var allocationParam = new NewAllocationItemParam
@@ -295,14 +323,15 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         {
           DataId = rowIndex,
           SrcWarehouseId = srcLoc.WAREHOUSE_ID,
-          ItemCode = x.Key.ITEM_CODE,
+          ItemCode = x.g.Key.ITEM_CODE,
           LocCode = srcLoc.LOC_CODE,
-          Qty = x.Sum(y => y.QTY),
-          ValidDates = x.Key.VALID_DATE.HasValue ? new List<DateTime> { x.Key.VALID_DATE.Value } : new List<DateTime>(),
-          EnterDates = new List<DateTime> { DateTime.Today },
+          Qty = x.g.Sum(y => y.QTY),
+          ValidDates = x.g.Key.VALID_DATE.HasValue ? new List<DateTime> { x.g.Key.VALID_DATE.Value } : new List<DateTime>(),
+          EnterDates = ComposeEnterDateList(x.g.Key.MAKE_NO, x.g.Key.SOURCE_NO, startWithTr),
           BoxCtrlNos = new List<string> { "0" },
           PalletCtrlNos = new List<string> { "0" },
-          MakeNos = string.IsNullOrWhiteSpace(x.Key.MAKE_NO) ? new List<string> { "0" } : new List<string> { x.Key.MAKE_NO?.Trim() },
+          MakeNos = string.IsNullOrWhiteSpace(x.g.Key.MAKE_NO) ? new List<string> { "0" } : new List<string> { x.g.Key.MAKE_NO?.Trim() },
+          SerialNos = x.g.Key.BUNDLE_SERIALLOC =="1" ? x.SerialNos.ToList() : null 
         }).ToList(),
         SrcLocMapTarLocs = group.Select((x, rowIndex) => new SrcLocMapTarLoc
         {
@@ -311,15 +340,15 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           VnrCode = "000000",
           BoxCtrlNo = "0",
           PalletCtrlNo = "0",
-          ItemCode = x.Key.ITEM_CODE,
-          EnterDate = DateTime.Today,
+          ItemCode = x.g.Key.ITEM_CODE,
+          EnterDate = ComposeEnterDate(x.g.Key.MAKE_NO, x.g.Key.SOURCE_NO, startWithTr),
           SrcLocCode = srcLoc.LOC_CODE,
           TarWarehouseId = req.WarehouseId,
-          SourceNo = x.Key.SOURCE_NO,
-          ValidDate = x.Key.VALID_DATE,
-          MakeNo = x.Key.MAKE_NO,
-          ReferenceNo = x.Key.SOURCE_NO,
-          ReferenceSeq = x.Key.ITEM_SEQ
+          SourceNo = x.g.Key.SOURCE_NO,
+          ValidDate = x.g.Key.VALID_DATE,
+          MakeNo = x.g.Key.MAKE_NO,
+          ReferenceNo = x.g.Key.SOURCE_NO,
+          ReferenceSeq = x.g.Key.ITEM_SEQ,
         }).ToList()
       };
 
@@ -423,7 +452,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
     /// <param name="f020302s"></param>
     /// <param name="f020201s"></param>
     /// <param name="returnStocks"></param>
-    private void InsertOrUpdateStock(List<F070104> f070104s, string locCode, ref List<F1913> returnStocks)
+    private void InsertOrUpdateStock(List<F070104> f070104s, List<F07010401> f07010401s, string locCode, List<string> startWithTrNos, ref List<F1913> returnStocks)
     {
       F1913Repository f1913Repo = new F1913Repository(Schemas.CoreSchema);
       F151002Repository f151002Repo = new F151002Repository(Schemas.CoreSchema);
@@ -442,7 +471,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
                    select new
                    {
                      f070104 = A,
-                     B.BUNDLE_SERIALLOC
+                     B.BUNDLE_SERIALLOC,
+                     composedEnterDate = ComposeEnterDate(A.MAKE_NO, A.SOURCE_NO, startWithTrNos)
                    };
 
       // 如果為序號綁儲位商品，找出排除後剩下可以寫入庫存的序號清單
@@ -451,7 +481,9 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       {
         foreach (var item in itemsBySnLoc)
         {
-          var currItemSn = item.f070104.SERIAL_NO_LIST.Split(',').Select(x => new ItemSnModel { ITEM_CODE = item.f070104.ITEM_CODE, SERIAL_NO = x }).ToList();
+          var currItemSn = item.f070104.SERIAL_NO_LIST?.Split(',')
+            .Select(x => new ItemSnModel { ITEM_CODE = item.f070104.ITEM_CODE, SERIAL_NO = x }).ToList() ?? new List<ItemSnModel>()
+            .Union(f07010401s.Select(x => new ItemSnModel { ITEM_CODE = x.ITEM_CODE, SERIAL_NO = x.SERIAL_NO }) ?? new List<ItemSnModel>()).ToList();
 
           if (currItemSn.Any())
           {
@@ -467,7 +499,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
                 ITEM_CODE = item.f070104.ITEM_CODE,
                 LOC_CODE = locCode,
                 VALID_DATE = Convert.ToDateTime(item.f070104.VALID_DATE),
-                ENTER_DATE = enterDate,
+                ENTER_DATE = item.composedEnterDate,
                 VNR_CODE = vnrCode,
                 SERIAL_NO = firstItem.SERIAL_NO,
                 QTY = 1,
@@ -490,7 +522,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         {
           var validDate = Convert.ToDateTime(item.f070104.VALID_DATE);
 
-          var returnStock = returnStocks.FirstOrDefault(o => F1913Func(o, item.f070104.DC_CODE, item.f070104.GUP_CODE, item.f070104.CUST_CODE, item.f070104.ITEM_CODE, locCode, validDate, enterDate, vnrCode, "0", boxCtrlNo, palletCtrlNo, item.f070104.MAKE_NO));
+          var returnStock = returnStocks.FirstOrDefault(o => F1913Func(o, item.f070104.DC_CODE, item.f070104.GUP_CODE, item.f070104.CUST_CODE, item.f070104.ITEM_CODE, locCode, validDate, item.composedEnterDate, vnrCode, "0", boxCtrlNo, palletCtrlNo, item.f070104.MAKE_NO));
           var f1913 = returnStock ??
                       f1913Repo.Find(o => o.DC_CODE == item.f070104.DC_CODE &&
                       o.GUP_CODE == item.f070104.GUP_CODE &&
@@ -498,7 +530,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
                       o.ITEM_CODE == item.f070104.ITEM_CODE &&
                       o.LOC_CODE == locCode &&
                       o.VALID_DATE == validDate &&
-                      o.ENTER_DATE == enterDate &&
+                      o.ENTER_DATE == item.composedEnterDate &&
                       o.VNR_CODE == vnrCode &&
                       o.SERIAL_NO == "0" &&
                       o.BOX_CTRL_NO == boxCtrlNo &&
@@ -520,7 +552,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
               ITEM_CODE = item.f070104.ITEM_CODE,
               LOC_CODE = locCode,
               VALID_DATE = validDate,
-              ENTER_DATE = enterDate,
+              ENTER_DATE = item.composedEnterDate,
               VNR_CODE = vnrCode,
               SERIAL_NO = "0",
               QTY = item.f070104.QTY,
@@ -534,5 +566,46 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
     }
     #endregion
 
+    /// <summary>
+		/// 組成跨庫進倉商品入庫日
+		/// </summary>
+		/// <param name="makeNo"></param>
+		/// <returns></returns>
+    public DateTime ComposeEnterDate(string makeNo, string stockNo, List<string> startWithTrNos)
+    {
+      if (startWithTrNos.Contains(stockNo) && makeNo.StartsWith("PR") && makeNo.Length >= 8)
+      {
+        DateTime result;
+        var conposedDate = $"20{makeNo.Substring(2, 6)}";
+
+        if (DateTime.TryParseExact(conposedDate, "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out result))
+        {
+          return result;
+        };
+      }
+
+      return DateTime.Today;
+    }
+
+    /// <summary>
+		/// 組成跨庫進倉商品入庫日
+		/// </summary>
+		/// <param name="makeNo"></param>
+		/// <returns></returns>
+    public List<DateTime> ComposeEnterDateList(string makeNo, string stockNo, List<string> startWithTrNos)
+    {
+      if (startWithTrNos.Contains(stockNo) && makeNo.StartsWith("PR") && makeNo.Length >= 8)
+      {
+        DateTime result;
+        var conposedDate = $"20{makeNo.Substring(2, 6)}";
+
+        if (DateTime.TryParseExact(conposedDate, "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out result))
+        {
+          return new List<DateTime> { result };
+        };
+      }
+
+      return new List<DateTime> { DateTime.Today };
+    }
   }
 }

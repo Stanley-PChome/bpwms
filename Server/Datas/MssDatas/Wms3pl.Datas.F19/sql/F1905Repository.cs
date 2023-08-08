@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F19;
@@ -42,7 +43,42 @@ namespace Wms3pl.Datas.F19
             return SqlQuery<F1905Data>(strSQL, paramers.ToArray());
         }
 
+    public IQueryable<F1905> GetF1905ByItemCodes(string gupCode, string custCode, List<string> itemCodes)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
 
+      var sql = $@"
+                SELECT 
+                  * 
+                FROM 
+                  F1905 
+                WHERE 
+                  GUP_CODE = @p0 
+                  AND CUST_CODE = @p1
+                ";
 
+      if (itemCodes.Any())
+        sql += param.CombineSqlInParameters("AND ITEM_CODE", itemCodes, SqlDbType.VarChar);
+      else
+        return null;
+
+      return SqlQuery<F1905>(sql, param.ToArray());
     }
+		public F1905 GetData(string gupCode, string custCode, string itemCode)
+		{
+			var para = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p1", SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = itemCode },
+			};
+
+			var sql = @"SELECT * FROM F1905 WHERE GUP_CODE = @p0 AND CUST_CODE = @p1 AND ITEM_CODE = @p2";
+			return SqlQuery<F1905>(sql, para.ToArray()).FirstOrDefault();
+		}
+	}
 }

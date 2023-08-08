@@ -73,14 +73,20 @@ namespace Wms3pl.Datas.Shared.ApiEntities
 		    public string HttpContent { get; set; }
     }
 
-    public class LmsDataResult
-    {
-        public string DcCode { get; set; }
-        public string CustCode { get; set; }
-        public string CustOrdNo { get; set; }
-        public string TransportCode { get; set; }
-        public string TransportProvider { get; set; }
-    }
+  public class LmsDataResult
+  {
+    public string DcCode { get; set; }
+    public string CustCode { get; set; }
+    public string CustOrdNo { get; set; }
+    /// <summary>
+    /// 宅配單號
+    /// </summary>
+    public string TransportCode { get; set; }
+    /// <summary>
+    /// 物流商編號
+    /// </summary>
+    public string TransportProvider { get; set; }
+  }
 
     public class WcsResult
     {

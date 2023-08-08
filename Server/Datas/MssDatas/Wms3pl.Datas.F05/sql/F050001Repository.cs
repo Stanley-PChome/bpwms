@@ -445,7 +445,7 @@ namespace Wms3pl.Datas.F05
 
 			sql += " ORDER BY CRT_DATE";
 
-			return SqlQuery<UndistributedOrder>(sql, param.ToArray());
+			return SqlQueryWithSqlParameterSetDbType<UndistributedOrder>(sql, param.ToArray());
 		}
         #endregion
 
@@ -471,7 +471,8 @@ namespace Wms3pl.Datas.F05
                         A.GUP_CODE, 
                         A.CUST_CODE, 
                         B.ITEM_CODE, 
-                        ISNULL(B.MAKE_NO,'') MAKE_NO,  
+                        ISNULL(B.MAKE_NO,'') MAKE_NO, 
+                        ISNULL(B.SERIAL_NO,'') SERIAL_NO, 
                         SUM(B.ORD_QTY) ORD_QTY 
                         FROM F050001 A 
                         JOIN F050002 B 
@@ -519,7 +520,7 @@ namespace Wms3pl.Datas.F05
                      AND F050001.ORD_NO = A.ORD_NO
                    ";
 
-      ExecuteSqlCommand(sql, parms.ToArray());
+      ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
     }
 
     public IQueryable<string> CheckHasAllotOrdNos(List<string> ordNos)
@@ -555,7 +556,7 @@ namespace Wms3pl.Datas.F05
 			else
 				sql += " AND 1 = 0 ";
 
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
 
 		public IQueryable<F050001> GetOrdersByAllotBatchNo(string allotBatchNo)
@@ -595,7 +596,7 @@ namespace Wms3pl.Datas.F05
 			var sql = @"  UPDATE F050001
                     SET PROC_FLAG='0',UPD_DATE = @p3, UPD_STAFF=@p0 , UPD_NAME=@p1,ALLOT_BATCH_NO = NULL
                     WHERE ALLOT_BATCH_NO = @p2 ";
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
 
 	}

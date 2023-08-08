@@ -2193,4 +2193,28 @@ Barcode</value>
   <data name="CancelArriveRecord" xml:space="preserve">
     <value>取消到站紀錄</value>
   </data>
+  <data name="BoxDetail" xml:space="preserve">
+    <value>箱内明细</value>
+  </data>
+  <data name="CloseBox" xml:space="preserve">
+    <value>关箱</value>
+  </data>
+  <data name="DataGridRowNum" xml:space="preserve">
+    <value>项次</value>
+  </data>
+  <data name="MoveOutTarget" xml:space="preserve">
+    <value>目的地</value>
+  </data>
+  <data name="OutContainerCode" xml:space="preserve">
+    <value>跨库箱号</value>
+  </data>
+  <data name="PickContainer" xml:space="preserve">
+    <value>拣货容器</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="TotalPCS" xml:space="preserve">
+    <value>总PCS数</value>
+  </data>
 </root>

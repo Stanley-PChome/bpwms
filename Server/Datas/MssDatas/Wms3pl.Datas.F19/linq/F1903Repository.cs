@@ -21,46 +21,6 @@ namespace Wms3pl.Datas.F19
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="itemCode"></param>
-        /// <param name="itemName">起始字串為模糊查詢</param>
-        /// <param name="itemSpec"></param>
-        /// <returns></returns>
-        public IQueryable<F1903> GetF1903(string gupCode, string custCode, string[] itemCodes, string itemName, string itemSpec, string lType)
-        {
-            var result = _db.F1903s.Where(x => x.SND_TYPE != "9"
-                                         && x.CUST_CODE == custCode);
-            if (!string.IsNullOrWhiteSpace(itemSpec))
-            {
-                result = result.Where(x => x.ITEM_SPEC == itemSpec);
-            }
-
-            if (!string.IsNullOrWhiteSpace(lType))
-            {
-                result = result.Where(x => x.LTYPE == lType);
-            }
-
-            if (!string.IsNullOrWhiteSpace(itemName))
-            {
-                result = result.Where(x => x.ITEM_NAME.StartsWith(itemName));
-            }
-
-
-            if (itemCodes.Any())
-            {
-                result = result.Where(x => itemCodes.Contains(x.ITEM_CODE) ||
-                                           itemCodes.Contains(x.EAN_CODE1) ||
-                                           itemCodes.Contains(x.EAN_CODE2) ||
-                                           itemCodes.Contains(x.EAN_CODE3));
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// 取得商品溫層
         /// </summary>
         /// <param name="gupCode"></param>
@@ -281,14 +241,6 @@ namespace Wms3pl.Datas.F19
                                                           && y.GUP_CODE == x.GUP_CODE 
                                                           && y.CUST_CODE == x.CUST_CODE));
             }
-            return result;
-        }
-
-        public IQueryable<F1903> GetDatasByItems(string gupCode, string custCode, List<string> itemCodes)
-        {
-            var result = _db.F1903s.Where(x => x.GUP_CODE == gupCode
-                                          && x.CUST_CODE == custCode
-                                          && itemCodes.Contains(x.ITEM_CODE));
             return result;
         }
 

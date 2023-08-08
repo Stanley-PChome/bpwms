@@ -207,10 +207,10 @@ namespace Wms3pl.WebServices.Process.P02.ExDataSources
         { get { return new List<ItemBindContainerData>().AsQueryable(); } }
     
 
-		public IQueryable<ContainerDetailData> ContainerDetailDatas
-		{
-			get { return new List<ContainerDetailData>().AsQueryable(); }
-		}
+		    public IQueryable<ContainerDetailData> ContainerDetailDatas
+		    {
+			    get { return new List<ContainerDetailData>().AsQueryable(); }
+		    }
 
         public IQueryable<BindContainerData> BindContainerDatas
         { get { return new List<BindContainerData>().AsQueryable(); } }
@@ -220,41 +220,49 @@ namespace Wms3pl.WebServices.Process.P02.ExDataSources
 
 
     
-		#region 商品檢驗與容器綁定
+		    #region 商品檢驗與容器綁定
 
-		/// <summary>
-		/// 驗收單與上架容器查詢
-		/// </summary>
-		public IQueryable<P020206Data> P020206Datas
-		{
-			get { return new List<P020206Data>().AsQueryable(); }
-		}
+		    /// <summary>
+		    /// 驗收單與上架容器查詢
+		    /// </summary>
+		    public IQueryable<P020206Data> P020206Datas
+		    {
+			    get { return new List<P020206Data>().AsQueryable(); }
+		    }
 
-		public IQueryable<AcceptanceDetail> AcceptanceDetails
-		{
-			get { return new List<AcceptanceDetail>().AsQueryable(); }
-		}
+		    public IQueryable<AcceptanceDetail> AcceptanceDetails
+		    {
+			    get { return new List<AcceptanceDetail>().AsQueryable(); }
+		    }
 
-		public IQueryable<AcceptanceContainerDetail> AcceptanceContainerDetails
-		{
-			get { return new List<AcceptanceContainerDetail>().AsQueryable(); }
-		}
+		    public IQueryable<AcceptanceContainerDetail> AcceptanceContainerDetails
+		    {
+			    get { return new List<AcceptanceContainerDetail>().AsQueryable(); }
+		    }
 
-		public IQueryable<DefectDetail> DefectDetails
-		{
-			get { return new List<DefectDetail>().AsQueryable(); }
-		}
-    #endregion
+		    public IQueryable<DefectDetail> DefectDetails
+		    {
+			    get { return new List<DefectDetail>().AsQueryable(); }
+		    }
+        #endregion
 
-    #region 複驗異常處理
-    public IQueryable<F020504ExData> F020504ExDatas
-    { get { return new List<F020504ExData>().AsQueryable(); } }
+        #region 複驗異常處理
+        public IQueryable<F020504ExData> F020504ExDatas
+        { get { return new List<F020504ExData>().AsQueryable(); } }
 
-    public IQueryable<UnnormalItemRecheckLog> UnnormalItemRecheckLogs
-    { get { return new List<UnnormalItemRecheckLog>().AsQueryable(); } }
+        public IQueryable<UnnormalItemRecheckLog> UnnormalItemRecheckLogs
+        { get { return new List<UnnormalItemRecheckLog>().AsQueryable(); } }
 
-    public IQueryable<ContainerRecheckFaildItem> ContainerRecheckFaildItems
-    { get { return new List<ContainerRecheckFaildItem>().AsQueryable(); } }
-    #endregion 複驗異常處理
+        public IQueryable<ContainerRecheckFaildItem> ContainerRecheckFaildItems
+        { get { return new List<ContainerRecheckFaildItem>().AsQueryable(); } }
+        #endregion 複驗異常處理
+
+        #region 商品標籤列印
+        public IQueryable<RecvRecords> RecvRecords
+        { get { return new List<RecvRecords>().AsQueryable(); } }
+
+        public IQueryable<ItemLabelData> ItemLabelData
+        { get { return new List<ItemLabelData>().AsQueryable(); } }
+        #endregion 商品標籤列印
   }
 }

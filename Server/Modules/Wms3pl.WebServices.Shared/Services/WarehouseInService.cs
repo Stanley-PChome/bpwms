@@ -1369,7 +1369,7 @@ namespace Wms3pl.WebServices.Shared.Services
     /// </summary>
     /// <param name="containerCode"></param>
     /// <returns></returns>
-    public ExecuteResult LockContainerProcess(F020501 f020501)
+    public ExecuteResult LockContainerProcess(string ContainerCode)
     {
       //要注意呼叫這個fun＆ContainerTargetProcess是同一個物件不然會導致不會解鎖
       if (_f076102Repo == null)
@@ -1380,12 +1380,12 @@ namespace Wms3pl.WebServices.Shared.Services
         () =>
         {
           var lockF076102 = _f076102Repo.LockF076102();
-          var chkF076102 = _f076102Repo.Find(x => x.CONTAINER_CODE == f020501.CONTAINER_CODE);
+          var chkF076102 = _f076102Repo.Find(x => x.CONTAINER_CODE == ContainerCode);
           if (chkF076102 != null)
             return null;
           var newF076102 = new F076102()
           {
-            CONTAINER_CODE = f020501.CONTAINER_CODE
+            CONTAINER_CODE = ContainerCode
           };
           _f076102Repo.Add(newF076102);
           _IsLockContainer = true;
@@ -1393,7 +1393,7 @@ namespace Wms3pl.WebServices.Shared.Services
         });
 
       if (f076102 == null)
-        return new ExecuteResult { IsSuccessed = false, Message = $"此驗收容器{f020501.CONTAINER_CODE}系統正在處理中，請稍後再試" };
+        return new ExecuteResult { IsSuccessed = false, Message = $"此驗收容器{ContainerCode}系統正在處理中，請稍後再試" };
 
       return new ExecuteResult(true);
     }
@@ -1405,11 +1405,11 @@ namespace Wms3pl.WebServices.Shared.Services
     /// <returns></returns>
     public ExecuteResult UnlockContainerProcess(List<string> f020501ContainerCode)
     {
-      if (_f076102Repo == null)
-        _f076102Repo = new F076102Repository(Schemas.CoreSchema);
-
       if (_IsLockContainer)
       {
+        if (_f076102Repo == null)
+          _f076102Repo = new F076102Repository(Schemas.CoreSchema);
+
         _f076102Repo.DeleteByContainerCode(f020501ContainerCode);
         _IsLockContainer = false;
       }
@@ -1432,7 +1432,10 @@ namespace Wms3pl.WebServices.Shared.Services
         var allocationResult = _sharedService.BulkInsertAllocation(_returnNewAllocations, _returnStocks);
         if (!allocationResult.IsSuccessed)
           return allocationResult;
-      }
+
+				//產生完要清空
+				_returnNewAllocations = null;
+			}
 
 			var f0205Repo = new F0205Repository(Schemas.CoreSchema);
 			var f020501Repo = new F020501Repository(Schemas.CoreSchema, _wmsTransaction);

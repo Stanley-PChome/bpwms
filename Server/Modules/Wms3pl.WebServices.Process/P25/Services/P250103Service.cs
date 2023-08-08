@@ -26,8 +26,17 @@ namespace Wms3pl.WebServices.Process.P25.Services
 		{
 			return string.IsNullOrWhiteSpace(text) || Regex.IsMatch(text, @"^[a-zA-Z0-9]+$");
 		}
+    /// <summary>
+    /// 檢核字元(英文字數字破折號及斜線){a-z,A-Z,0-9,-,/}
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    private bool IsEnglishOrNumberOrDashOrSlash(string text)
+    {
+      return string.IsNullOrWhiteSpace(text) || Regex.IsMatch(text, @"^[a-zA-Z0-9-/]+$");
+    }
 
-		public bool IsNumber(string text)
+    public bool IsNumber(string text)
 		{
 			return string.IsNullOrWhiteSpace(text) || Regex.IsMatch(text, @"^\d+$");
 		}
@@ -69,8 +78,7 @@ namespace Wms3pl.WebServices.Process.P25.Services
 
 				d.LOC_CODE = (d.LOC_CODE ?? string.Empty).Trim().Replace("-", string.Empty);
 
-				if (!IsEnglishOrNumber(d.SERIAL_NO) ||
-					!IsEnglishOrNumber(d.ITEM_CODE.Replace("-","")) ||
+				if (!IsEnglishOrNumber(d.ITEM_CODE.Replace("-","")) ||
 					!IsEnglishOrNumber(d.CELL_NUM) ||
 					!IsEnglishOrNumber(d.WMS_NO) ||
 					!IsEnglishOrNumber(d.BATCH_NO) ||
@@ -80,9 +88,17 @@ namespace Wms3pl.WebServices.Process.P25.Services
 					result.Message = Properties.Resources.P2501Service_CannotInputCorSpecialType;
 					return result;
 				}
-
+        //20230331 #2149_1 因商品檢驗之序號收集 不擋序號字元
+        //if (!IsEnglishOrNumberOrDashOrSlash(d.SERIAL_NO) )
+        //{
+        //  result.Message = "欄位請勿輸入英文字數字破折號及斜線以外字元!";
+        //  //result.Message = Properties.Resources.P2501Service_CannotInputOutEnglishOrNumberOrDashOrSlashType;
+        //  return result;
+        //}
 
         #endregion
+
+
 
         #region BOX_SERIAL、BATCH_NO 檢查(盒號or儲值卡盒號) 
         //若有輸入，則要檢查F2501效期
@@ -115,7 +131,7 @@ namespace Wms3pl.WebServices.Process.P25.Services
         // 供應商可為 null
         if (!string.IsNullOrEmpty(d.VNR_CODE))
 				{
-					var f1908Data = f1908Repo.Find(x => x.GUP_CODE == d.GUP_CODE && x.VNR_CODE == d.VNR_CODE);
+					var f1908Data = f1908Repo.Find(x => x.GUP_CODE == d.GUP_CODE && x.VNR_CODE == d.VNR_CODE  && x.CUST_CODE == d.CUST_CODE);
 					if (f1908Data == null)
 					{
 						result.Message = Properties.Resources.P2501Service_SupplyNotExist;

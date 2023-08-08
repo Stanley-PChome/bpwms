@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -25,7 +26,8 @@ namespace Wms3pl.Datas.F05
 								status,
 								Current.Staff,
 								Current.StaffName,
-								gupCode,
+                DateTime.Now,
+                gupCode,
 								custCode,
 								dcCode
 						};
@@ -36,10 +38,10 @@ namespace Wms3pl.Datas.F05
                             PROC_FLAG = @p0, 
                             UPD_STAFF = @p1,
                             UPD_NAME = @p2, 
-                            UPD_DATE = dbo.GetSysDate()
-						Where GUP_CODE = @p3
-						And CUST_CODE = @p4
-						And DC_CODE = @p5
+                            UPD_DATE = @p3
+						Where GUP_CODE = @p4
+						And CUST_CODE = @p5
+						And DC_CODE = @p6
 						And " + inSql;
 
 			ExecuteSqlCommand(sql, parameters.ToArray());
@@ -280,7 +282,11 @@ namespace Wms3pl.Datas.F05
 		public IQueryable<EgsReturnConsign> GetEgsReturnConsigns(EgsReturnConsignParam param)
 		{
 
-			var parms = new List<SqlParameter>();
+			var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
+
 			var sql = @" SELECT DISTINCT 
 													A.DC_CODE, --物流中心
 													A.GUP_CODE, --業主
@@ -315,7 +321,7 @@ namespace Wms3pl.Datas.F05
 												'' SENDER_MOBILE, --寄件者手機
 												ISNULL(K.ZIP_CODE,'') SENDER_SUDA5, --寄件者地址速達五碼郵遞區號(必填)
 												ISNULL(I.CHANNEL_ADDRESS,ISNULL(L.CHANNEL_ADDRESS,ISNULL(M.CHANNEL_ADDRESS,J.ADDRESS))) SENDER_ADDRESS, --寄件者地址(必填)
-												Format(dbo.GetSysDate(), N'yyyyMMddHHmmss') SHIP_DATE, --契客出貨日期(系統日YYYYMMDDhhmmss共14碼) 正物流為系統日 逆物流為預定配達日/出貨日的時間
+												Format(@p0, N'yyyyMMddHHmmss') SHIP_DATE, --契客出貨日期(系統日YYYYMMDDhhmmss共14碼) 正物流為系統日 逆物流為預定配達日/出貨日的時間
 												'4' PICKUP_TIMEZONE, --預定取件時段(1: 9~12    2: 12~17    3: 17~20   4: 不限時(固定4不限時))
 												C.DELV_PERIOD  DELV_TIMEZONE, --預定配達時段(1: 9~12    2: 12~17   3: 17~20   4: 不限時  5:20~21(需限定區域))
                         '' MEMBER_ID, --會員編號
@@ -492,7 +498,7 @@ namespace Wms3pl.Datas.F05
 		public void UpdateLackToCancelOrder(string gupCode, string custCode)
 		{
 			var sql = @"  UPDATE F050301
-							 SET PROC_FLAG ='8',UPD_DATE = dbo.GetSysDate(),UPD_STAFF=@p0,UPD_NAME=@p1 FROM F050301 F050301
+							 SET PROC_FLAG ='8',UPD_DATE = @p0,UPD_STAFF=@p1,UPD_NAME=@p2 FROM F050301 F050301
 										WHERE EXISTS(SELECT A.GUP_CODE,A.CUST_CODE,A.ORD_NO
 										 FROM F050101 A
 										 JOIN F050301 B
@@ -504,9 +510,9 @@ namespace Wms3pl.Datas.F05
 										 AND F050301.GUP_CODE = A.GUP_CODE
 										 AND F050301.CUST_CODE = A.CUST_CODE
 										 AND F050301.ORD_NO = A.ORD_NO)
-										 AND F050301.GUP_CODE = @p2
-										 AND F050301.CUST_CODE = @p3 ";
-			var parms = new object[] { Current.Staff, Current.StaffName, gupCode, custCode };
+										 AND F050301.GUP_CODE = @p3
+										 AND F050301.CUST_CODE = @p4";
+			var parms = new object[] { DateTime.Now, Current.Staff, Current.StaffName, gupCode, custCode };
 			ExecuteSqlCommand(sql, parms);
 		}
 
@@ -622,6 +628,7 @@ namespace Wms3pl.Datas.F05
 			var result = SqlQuery<F050301>(sql, param).FirstOrDefault();
 			return result;
 		}
+
 		public IQueryable<F050301> GetDatasByWmsOrdNo(string dcCode, string gupCode, string CustCode, string wmsOrdNo)
 		{
 			var param = new object[] { dcCode, gupCode, CustCode, wmsOrdNo };
@@ -639,5 +646,33 @@ namespace Wms3pl.Datas.F05
 			var result = SqlQuery<F050301>(sql, param);
 			return result;
 		}
-	}
+
+    /// <summary>
+    /// 撈可能在配庫執行中打取消過來的訂單 (F050101.STATUS=9 AND F050301.PROC_FLAG<>9)
+    /// </summary>
+    public IQueryable<F050301> GetCancelNotCompleteOrd()
+    {
+      var sql = @"SELECT * FROM F050301 A 
+                  JOIN F050101 B 
+                      ON A.DC_CODE = B.DC_CODE 
+                      AND A.GUP_CODE = B.GUP_CODE 
+                      AND A.CUST_CODE = B.CUST_CODE 
+                      AND A.ORD_NO = B.ORD_NO 
+				          JOIN F05030101 C
+				              ON B.DC_CODE=C.DC_CODE
+					            AND B.GUP_CODE=C.GUP_CODE
+					            AND C.CUST_CODE=C.CUST_CODE
+					            AND B.ORD_NO=C.ORD_NO
+				          JOIN F050801 D
+				              ON D.DC_CODE=C.DC_CODE
+					            AND D.GUP_CODE=C.GUP_CODE
+					            AND D.CUST_CODE=C.CUST_CODE
+					            AND D.WMS_ORD_NO=C.WMS_ORD_NO
+                  WHERE B.STATUS = '9'
+					            AND A.PROC_FLAG <> '9'
+					            AND D.STATUS='0'";
+
+      return SqlQuery<F050301>(sql);
+    }
+  }
 }

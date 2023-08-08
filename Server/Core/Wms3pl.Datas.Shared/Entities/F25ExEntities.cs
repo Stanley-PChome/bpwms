@@ -126,8 +126,18 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string BOUNDLE_ITEM_CODE { get; set; }
 		[DataMember]
 		public decimal? COMBIN_NO { get; set; }
+    /// <summary>
+    /// 序號綁儲位
+    /// </summary>
+    [DataMember]
+    public string BUNDLE_SERIALLOC { get; set; }
+    /// <summary>
+    /// F2501序號刪除
+    /// </summary>
+    [DataMember]
+    public string CanDelete { get; set; }
 
-	}
+  }
 
 	[DataContract]
 	[Serializable]
@@ -168,7 +178,9 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string WMS_NO { get; set; }
 		[DataMember]
 		public DateTime? IN_DATE { get; set; }
-		[DataMember]
+    [DataMember]
+    public string ORD_PROP { get; set; }
+    [DataMember]
 		public string ORD_PROP_NAME { get; set; }
 		[DataMember]
 		public string RETAIL_CODE { get; set; }

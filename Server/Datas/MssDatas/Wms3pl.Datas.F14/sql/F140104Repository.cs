@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -163,7 +164,7 @@ namespace Wms3pl.Datas.F14
 		public IQueryable<InventoryDetailItemsByIsSecond> GetInventoryDetailItemsByIsSecond(string dcCode, string gupCode, string custCode,
 						string inventoryNo, string isSecond, string wareHouseId = "", string itemCodes = "", string differencesRangeStart = "", string differencesRangeEnd = "", string isRepotTag = "1", string isLimitStatusTag = "0", string showCnt = "0")
 		{
-			var param = new List<object> { dcCode, gupCode, custCode, inventoryNo };
+			var param = new List<object> { DateTime.Now, dcCode, gupCode, custCode, inventoryNo };
 			var isFirst = isSecond == "0";//是否為初盤
 			var isRepot = isRepotTag == "1";//是否為報表用途
 			var isLimitStatus = isLimitStatusTag == "1";//是否要判斷狀態屬於F000904的F140102(因為此處屬於共用)
@@ -279,7 +280,7 @@ FROM   (SELECT A.DC_CODE,
                 FROM   F1901
                 WHERE  DC_CODE = B.DC_CODE)                                 AS DC_NAME,
                ''                                                           AS PRINT_STAFF,
-               dbo.GetSysDate()                                                    AS PRINT_DATE,
+               @p0                                                          AS PRINT_DATE,
                ''                                                           AS PRINT_TITLE,
                CASE
                  WHEN G.UNIT_QTY IS NULL THEN ''
@@ -317,10 +318,10 @@ LEFT JOIN {(isFirst ? "F140104" : "F140105")} B ON B.DC_CODE = A.DC_CODE AND B.G
                                   ON G.GUP_CODE = B.GUP_CODE 
                                   AND G.ITEM_CODE = B.ITEM_CODE
                                   AND G.CUST_CODE = B.CUST_CODE
-                WHERE	 A.DC_CODE = @p0
-                       AND A.GUP_CODE = @p1
-                       AND A.CUST_CODE = @p2
-                       AND A.INVENTORY_NO = @p3
+                WHERE	 A.DC_CODE = @p1
+                       AND A.GUP_CODE = @p2
+                       AND A.CUST_CODE = @p3
+                       AND A.INVENTORY_NO = @p4
                        {(isLimitStatus ? $@"AND (A.STATUS IN (SELECT VALUE
 										 FROM VW_F000904_LANG
 										 WHERE TOPIC = 'F140102' AND SUBTOPIC = 'STATUS' AND LANG = '{Current.Lang}'))" : string.Empty)}
@@ -371,7 +372,7 @@ LEFT JOIN {(isFirst ? "F140104" : "F140105")} B ON B.DC_CODE = A.DC_CODE AND B.G
 
 		public IQueryable<P140102ReportData> GetP140102ReportData(string dcCode, string gupCode, string custCode, string inventoryNo, string isSecond)
 		{
-			var param = new List<object> { dcCode, gupCode, custCode, inventoryNo };
+			var param = new List<object> { DateTime.Now, dcCode, gupCode, custCode, inventoryNo };
 
 			string sql = string.Empty;
 			if (isSecond == "0")
@@ -395,7 +396,7 @@ LEFT JOIN {(isFirst ? "F140104" : "F140105")} B ON B.DC_CODE = A.DC_CODE AND B.G
 					CONVERT(VARCHAR, A.INVENTORY_DATE, 111) INVENTORY_DATE,
 					D.NAME INVENTORY_TYPE_DESC,
 					B.WAREHOUSE_ID,
-					REPLACE(CONVERT(VARCHAR, dbo.GetSysDate(), 120), '-', '/') PRINT_DATE,
+					REPLACE(CONVERT(VARCHAR, @p0, 120), '-', '/') PRINT_DATE,
 					B.ITEM_CODE,
 					C.CUST_ITEM_CODE,
 					C.EAN_CODE1,
@@ -423,10 +424,10 @@ LEFT JOIN {(isFirst ? "F140104" : "F140105")} B ON B.DC_CODE = A.DC_CODE AND B.G
 					JOIN F140104 B ON B.DC_CODE = A.DC_CODE AND B.GUP_CODE = A.GUP_CODE AND B.CUST_CODE = A.CUST_CODE AND B.INVENTORY_NO = A.INVENTORY_NO
 					JOIN F1980 G ON B.DC_CODE = G.DC_CODE AND B.WAREHOUSE_ID = G.WAREHOUSE_ID
 					JOIN F1903 C ON C.GUP_CODE = B.GUP_CODE AND C.CUST_CODE = A.CUST_CODE AND C.ITEM_CODE = B.ITEM_CODE
-					 WHERE	 A.DC_CODE = @p0
-					        AND A.GUP_CODE = @p1
-					        AND A.CUST_CODE = @p2
-					        AND A.INVENTORY_NO = @p3
+					 WHERE	 A.DC_CODE = @p1
+					        AND A.GUP_CODE = @p2
+					        AND A.CUST_CODE = @p3
+					        AND A.INVENTORY_NO = @p4
 					 ) A ) Z
 			";
 			}
@@ -450,7 +451,7 @@ LEFT JOIN {(isFirst ? "F140104" : "F140105")} B ON B.DC_CODE = A.DC_CODE AND B.G
 											CONVERT(VARCHAR, A.INVENTORY_DATE, 111) INVENTORY_DATE,
 											D.NAME INVENTORY_TYPE_DESC,
 											B.WAREHOUSE_ID,
-											REPLACE(CONVERT(VARCHAR, dbo.GetSysDate(), 120), '-', '/') PRINT_DATE,
+											REPLACE(CONVERT(VARCHAR, @p0, 120), '-', '/') PRINT_DATE,
 											B.ITEM_CODE,
 											C.CUST_ITEM_CODE,
 											C.EAN_CODE1,
@@ -709,7 +710,7 @@ string inventoryNo)
 				string inventoryNo, string isSecond)
 		{
 			var isFirst = isSecond == "0";//是否為初盤
-			var param = new List<object> { dcCode, gupCode, custCode, inventoryNo };
+			var param = new List<object> { DateTime.Now, dcCode, gupCode, custCode, inventoryNo };
 
 			var sql = $@"
                         SELECT ROW_NUMBER()
@@ -774,7 +775,7 @@ string inventoryNo)
                                 FROM   F1901
                                 WHERE  DC_CODE = B.DC_CODE)                     AS DC_NAME,
                                ''                                               AS PRINT_STAFF,
-                               dbo.GetSysDate()                                        AS PRINT_DATE,
+                               @p0                                              AS PRINT_DATE,
                                ''                                               AS PRINT_TITLE,
                                A.SHOW_CNT,
                                B.MAKE_NO,
@@ -824,10 +825,10 @@ string inventoryNo)
                                       ON G.GUP_CODE = B.GUP_CODE
                                          AND G.ITEM_CODE = B.ITEM_CODE
                                            AND G.CUST_CODE = B.CUST_CODE
-                        WHERE  A.DC_CODE = @p0
-                               AND A.GUP_CODE = @p1
-                               AND A.CUST_CODE = @p2
-                               AND A.INVENTORY_NO = @p3
+                        WHERE  A.DC_CODE = @p1
+                               AND A.GUP_CODE = @p2
+                               AND A.CUST_CODE = @p3
+                               AND A.INVENTORY_NO = @p4
                         GROUP  BY B.DC_CODE,
                                   B.GUP_CODE,
                                   B.CUST_CODE,
@@ -1048,5 +1049,29 @@ string inventoryNo)
 
 			ExecuteSqlCommand(sql, param.ToArray());
 		}
-	}
+
+    public IQueryable<F140104> GetDatasByWcsInventoryNos(string dcCode, string gupCode, string custCode, List<string> inventoryNos)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = @"SELECT * FROM F140104 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2";
+      sql += para.CombineSqlInParameters(" AND INVENTORY_NO", inventoryNos, SqlDbType.VarChar);
+      return SqlQuery<F140104>(sql, para.ToArray());
+
+      #region 原LINQ語法
+      /*
+      return _db.F140104s.AsNoTracking().Where(x =>
+      x.DC_CODE == dcCode &&
+      x.GUP_CODE == gupCode &&
+      x.CUST_CODE == custCode &&
+      inventoryNos.Contains(x.INVENTORY_NO));
+      */
+      #endregion
+    }
+
+  }
 }

@@ -951,5 +951,36 @@ namespace Wms3pl.WebServices.Process.P02
       return srv.CheckSerialNo(dcCode, gupCode, custCode, rtNo, serialNo);
     }
 
+    /// <summary>
+    /// 商品標籤列印 - 進倉驗收檔
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <param name="serialNo"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<RecvRecords> GetF020209RecvRecord(string dcCode, string gupCode, string custCode, DateTime RecvDateBegin, DateTime RecvDateEnd, string PurchaseNo, 
+      string CustOrdNo, string PrintMode, string PalletLocation, string ItemCode, string RecvStaff)
+    {
+      var srv = new P020209Service();
+      return srv.GetF020209RecvRecord(dcCode, gupCode, custCode, RecvDateBegin, RecvDateEnd, PurchaseNo, CustOrdNo, PrintMode, PalletLocation, ItemCode, RecvStaff);
+    }
+
+    /// <summary>
+    /// 商品標籤列印 - 商品標籤資料
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="rtNo"></param>
+    /// <returns></returns>
+    [WebGet]
+    public IQueryable<ItemLabelData> GetF020209ItemLabelData(string dcCode, string gupCode, string custCode, string rtNos)
+    {
+      var srv = new P020209Service();
+      return srv.GetF020209ItemLabelData(dcCode, gupCode, custCode, rtNos);
+    }
   }
 }

@@ -484,7 +484,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 					#region 出貨出庫取消任務 檢核
 					if (f051201Repo == null)
 						f051201Repo = new F051201Repository(Schemas.CoreSchema, wmsTransaction);
-					var pickData = f051201Repo.GetData(f060201.DC_CODE, f060201.GUP_CODE, f060201.CUST_CODE, f060201.PICK_NO);
+					var pickData = f051201Repo.GetF051201(f060201.DC_CODE, f060201.GUP_CODE, f060201.CUST_CODE, f060201.PICK_NO);
 					if (pickData == null)
 					{
 						f060201.STATUS = "9";

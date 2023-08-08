@@ -88,7 +88,7 @@ namespace Wms3pl.WpfClient.P02.Views
 
     private void ShowSerialNoForm()
     {
-      var win = new P0202080100(Vm.SelectedDc, Vm._gupCode, Vm._custCode, Vm.SelectedContainerRecheckFaildItem.RT_NO, Vm.RemoveSerialNos);
+      var win = new P0202080100(Vm.AddSelectedDc, Vm._gupCode, Vm._custCode, Vm.SelectedContainerRecheckFaildItem.RT_NO, Vm.RemoveSerialNos);
       win.ShowDialog();
       if (win.DialogResult.HasValue && win.DialogResult.Value)
         Vm.RemoveSerialNos = win.Vm.RemoveSerialNos.ToList();

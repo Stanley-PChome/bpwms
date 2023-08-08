@@ -457,7 +457,13 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 		{
 			LogHelper.Log(FunctionCode, "人員按下取消到站資料 開始");
 
-			if (ShowConfirmMessage(string.Format("本箱的容器編號{0}、出貨單號{1}，是否跳過，{2} - 按下< 是 >，押掉目前這筆的容器到站資料，並取得下一箱資料 {2} - 按下< 否 >，回到原本畫面",
+      if (DetailData.Any(x => x.PackageQty > 0 || x.TotalPackageQty > 0))
+      {
+        ShowWarningMessage("已有商品過刷，請先[取消包裝]後，才可以[取消容器到站]");
+        return null;
+      }
+
+      if (ShowConfirmMessage(string.Format("本箱的容器編號{0}、出貨單號{1}，是否跳過，{2} - 按下< 是 >，押掉目前這筆的容器到站資料，並取得下一箱資料 {2} - 按下< 否 >，回到原本畫面",
 				_workStationShipData.ArrivalContainerCode, _workStationShipData.ArrivalWmsNo, Environment.NewLine)) == DialogResponse.Yes)
 			{
 				var proxy = new wcf.P08WcfServiceClient();

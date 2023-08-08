@@ -225,6 +225,7 @@
     <Compile Include="F05\F051602RepositoryTest.cs" />
     <Compile Include="F05\F051603RepositoryTest.cs" />
     <Compile Include="F05\F052901RepositoryTest.cs" />
+    <Compile Include="F05\F0532RepositoryTest.cs" />
     <Compile Include="F05\F052902RepositoryTest.cs" />
     <Compile Include="F05\F05500101RepositoryTest.cs" />
     <Compile Include="F05\F05500102RepositoryTest.cs" />

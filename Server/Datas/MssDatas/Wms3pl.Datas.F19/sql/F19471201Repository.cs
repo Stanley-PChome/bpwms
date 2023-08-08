@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -60,10 +61,13 @@ namespace Wms3pl.Datas.F19
             param.Add(new SqlParameter("@p2", dcCode));
             param.Add(new SqlParameter("@p3", gupCode));
             param.Add(new SqlParameter("@p4", custCode));
+            param.Add(new SqlParameter("@p5", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
+
             int paramCount = param.Count;
+
             string sql = @"UPDATE F19471201 
 							  SET ISUSED = '0',
-								  UPD_DATE = dbo.GetSysDate(),
+								  UPD_DATE = @p5,
 								  UPD_STAFF = @p0,
 								  UPD_NAME = @P1
 							WHERE DC_CODE = @p2

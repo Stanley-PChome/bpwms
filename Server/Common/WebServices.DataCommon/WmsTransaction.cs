@@ -50,9 +50,9 @@ namespace Wms3pl.WebServices.DataCommon
 					{
 						var resultCount = 0;
 						if (sql.Parameters is SqlParameter[])
-							resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText, (SqlParameter[])sql.Parameters);
+							resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText,sql.IsSqlParameterSetDbType, (SqlParameter[])sql.Parameters);
 						else
-							resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText, (object[])sql.Parameters);
+							resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText, sql.IsSqlParameterSetDbType, (object[])sql.Parameters);
 						if (sql.ExeCountMustGreaterZero && resultCount <= 0)
 						{
 							return sql.ExeCountZeroMessage;
@@ -164,6 +164,7 @@ namespace Wms3pl.WebServices.DataCommon
 
 
 		public int ArrayBindCount { get; set; }
+		public bool IsSqlParameterSetDbType { get; set; }
 
 	}
 

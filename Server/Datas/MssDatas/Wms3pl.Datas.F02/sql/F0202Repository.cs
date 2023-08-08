@@ -57,42 +57,47 @@ namespace Wms3pl.Datas.F02
       #region sql_Where Add
       if (begCrtDate.HasValue)
       {
-        sqlParamers.Add(new SqlParameter("@begCrtDate", begCrtDate));
+        sqlParamers.Add(new SqlParameter("@begCrtDate", begCrtDate) { SqlDbType = SqlDbType.DateTime2 });
         sql_Where += " and a.CRT_DATE>= @begCrtDate ";
       }
 
       if (endCrtDate.HasValue)
       {
-        sqlParamers.Add(new SqlParameter("@endCrtDate", endCrtDate));
+        sqlParamers.Add(new SqlParameter("@endCrtDate", endCrtDate) { SqlDbType = SqlDbType.DateTime2 });
         sql_Where += " and a.CRT_DATE < @endCrtDate ";
       }
       if (!string.IsNullOrWhiteSpace(orderNo))
       {
-        sqlParamers.Add(new SqlParameter("@orderNo", orderNo));
+        sqlParamers.Add(new SqlParameter("@orderNo", orderNo) { SqlDbType = SqlDbType.VarChar });
         sql_Where += " and a.ORDER_NO= @orderNo ";
       }
 
       if (!string.IsNullOrWhiteSpace(empId))
       {
-        sqlParamers.Add(new SqlParameter("@empId", empId));
+        sqlParamers.Add(new SqlParameter("@empId", empId) { SqlDbType = SqlDbType.VarChar });
         sql_Where += " and a.CRT_STAFF=@empId ";
+      }
+      if (!string.IsNullOrWhiteSpace(empName))
+      {
+        sqlParamers.Add(new SqlParameter("@empName", empName) { SqlDbType = SqlDbType.VarChar });
+        sql_Where += " and a.CRT_NAME=@empName ";
       }
 
       if (!string.IsNullOrWhiteSpace(custOrdNo))
       {
-        sqlParamers.Add(new SqlParameter("@custOrdNo", custOrdNo));
+        sqlParamers.Add(new SqlParameter("@custOrdNo", custOrdNo) { SqlDbType = SqlDbType.VarChar });
         sql_Where += " and b.CUST_ORD_NO = @custOrdNo ";
       }
 
       if (!string.IsNullOrWhiteSpace(itemCode))
       {
-        sqlParamers.Add(new SqlParameter("@itemCode", itemCode));
+        sqlParamers.Add(new SqlParameter("@itemCode", itemCode) { SqlDbType = SqlDbType.VarChar });
         sql_Where += " and c.ITEM_CODE = @itemCode ";
       }
 
       if (!string.IsNullOrWhiteSpace(selectedFastType))
       {
-        sqlParamers.Add(new SqlParameter("@selectedFastType", selectedFastType));
+        sqlParamers.Add(new SqlParameter("@selectedFastType", selectedFastType) { SqlDbType = SqlDbType.VarChar });
         sql_Where += " and b.FAST_PASS_TYPE = @selectedFastType ";
       }
       #endregion sql_Where Add
@@ -115,10 +120,9 @@ namespace Wms3pl.Datas.F02
         Where a.dc_code= @dcCode and a.gup_code= @gupCode and a.cust_code= @custcode and  a.checkin_date >= @begCheckinDate and a.checkin_date < @endCheckinDate     ";
 
       var sql_GroupBy = @"  Group by 
-        A.CRT_DATE    , A.CHECKIN_DATE    ,	B.CUST_ORD_NO   ,	A.ORDER_NO  , C.ITEM_CODE
-	      , D.ITEM_NAME , A.CRT_STAFF       ,	A.CRT_NAME      ,	A.VNR_CODE  , E.VNR_NAME
-        , B.STATUS    , B.FAST_PASS_TYPE  , B.DELIVER_DATE  , B.STOCK_DATE
-	      , B.BOOKING_IN_PERIOD ";
+        A.CRT_DATE    , A.CHECKIN_DATE    ,	B.CUST_ORD_NO   ,	A.ORDER_NO    , C.ITEM_CODE
+	      , D.ITEM_NAME , A.CRT_STAFF       ,	A.CRT_NAME      ,	A.VNR_CODE    , E.VNR_NAME
+        , B.STATUS    , B.FAST_PASS_TYPE  , B.DELIVER_DATE  , B.STOCK_DATE	, B.BOOKING_IN_PERIOD ";
       sql += sql_Where + sql_GroupBy;
       return SqlQuery<F0202Data>(sql, sqlParamers.ToArray());
 

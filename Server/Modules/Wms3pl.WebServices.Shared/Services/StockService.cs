@@ -171,7 +171,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			if (_f1913List == null)
 			{
-				_wmsLogHelper.StartRecord(WmsLogProcType.StockChange);
 				_f1913List = new List<F1913>();
 			}
 
@@ -272,7 +271,8 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="orderStockChanges"></param>
 		private void AddStock(List<OrderStockChange> orderStockChanges, bool notLog)
 		{
-			if(!notLog)
+			
+			if (!notLog)
 				_wmsLogHelper.AddRecord(string.Format("[執行時間:{0}]單據庫存異動(加庫) 開始", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
 			foreach (var osc in orderStockChanges)
 			{
@@ -365,46 +365,59 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// </summary>
 		public void SaveChange()
 		{
-			if (_stockChangeList == null)
-				_stockChangeList = new List<StockChange>();
+      if (_stockChangeList == null)
+				return;
+			;
 
-			var addF1913List = new List<F1913>();
-			_wmsLogHelper.AddRecord(string.Format("[執行時間:{0}]庫存異動 開始", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
-			foreach (var sc in _stockChangeList)
+			//var addF1913List = new List<F1913>();
+			//_wmsLogHelper.AddRecord(string.Format("[執行時間:{0}]庫存異動 開始", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
+
+			_stockChangeList = _stockChangeList.Where(x => x.Qty != 0).ToList();
+
+			if (!_stockChangeList.Any())
 			{
-				if (sc.Qty == 0)
-					continue;
-
-				var stock = _f1913Repo.FindDataByKey(sc.DcCode, sc.GupCode, sc.CustCode, sc.ItemCode, sc.LocCode,
-				sc.ValidDate, sc.EnterDate, sc.VnrCode, sc.SerialNo, sc.BoxCtrlNo, sc.PalletCtrlNo, sc.MakeNo);
-
-				var now = DateTime.Now;
-				if (stock == null && sc.Qty > 0)
-					addF1913List.Add(new F1913
-					{
-						DC_CODE = sc.DcCode,GUP_CODE=sc.GupCode,CUST_CODE =sc.CustCode,LOC_CODE = sc.LocCode,
-						ITEM_CODE = sc.ItemCode,VALID_DATE = sc.ValidDate,ENTER_DATE =sc.EnterDate,
-						VNR_CODE = sc.VnrCode,SERIAL_NO =sc.SerialNo,BOX_CTRL_NO =sc.BoxCtrlNo,PALLET_CTRL_NO =sc.PalletCtrlNo,
-						MAKE_NO = sc.MakeNo,QTY = sc.Qty,CRT_DATE = now,CRT_STAFF = Current.Staff,CRT_NAME = Current.StaffName
-					});
-				else
-					_f1913Repo.AdjustStockQty(sc.DcCode, sc.GupCode, sc.CustCode, sc.LocCode, sc.ItemCode,
-						sc.ValidDate, sc.EnterDate, sc.MakeNo, sc.SerialNo, sc.VnrCode, sc.BoxCtrlNo, sc.PalletCtrlNo, sc.Qty);
-
-				_wmsLogHelper.AddRecord(string.Format(_stockChangeMsgFormat, sc.DcCode, sc.GupCode, sc.CustCode, sc.LocCode, sc.ItemCode,
-				sc.ValidDate.ToString("yyyy/MM/dd"), sc.EnterDate.ToString("yyyy/MM/dd"), sc.MakeNo, sc.SerialNo, sc.VnrCode, sc.BoxCtrlNo, sc.PalletCtrlNo,
-				sc.Qty >= 0 ? "增加" : "減少", Math.Abs(sc.Qty)));
+				_wmsLogHelper.StopRecord();
+				return;
 			}
+				
 
-			if (addF1913List.Any())
-				_f1913Repo.BulkInsert(addF1913List,true);
+			_f1913Repo.ExecSpStockChange(_stockChangeList.ToDataTable("UT_StockChange"), _wmsLogHelper.BatchNo);
 
-			_wmsLogHelper.AddRecord(string.Format("[執行時間:{0}]庫存異動 結束", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
+			//foreach (var sc in _stockChangeList)
+			//{
+			//	if (sc.Qty == 0)
+			//		continue;
+
+			//	var stock = _f1913Repo.FindDataByKey(sc.DcCode, sc.GupCode, sc.CustCode, sc.ItemCode, sc.LocCode,
+			//	sc.ValidDate, sc.EnterDate, sc.VnrCode, sc.SerialNo, sc.BoxCtrlNo, sc.PalletCtrlNo, sc.MakeNo);
+
+			//	var now = DateTime.Now;
+			//	if (stock == null && sc.Qty > 0)
+			//		addF1913List.Add(new F1913
+			//		{
+			//			DC_CODE = sc.DcCode,GUP_CODE=sc.GupCode,CUST_CODE =sc.CustCode,LOC_CODE = sc.LocCode,
+			//			ITEM_CODE = sc.ItemCode,VALID_DATE = sc.ValidDate,ENTER_DATE =sc.EnterDate,
+			//			VNR_CODE = sc.VnrCode,SERIAL_NO =sc.SerialNo,BOX_CTRL_NO =sc.BoxCtrlNo,PALLET_CTRL_NO =sc.PalletCtrlNo,
+			//			MAKE_NO = sc.MakeNo,QTY = sc.Qty,CRT_DATE = now,CRT_STAFF = Current.Staff,CRT_NAME = Current.StaffName
+			//		});
+			//	else
+			//		_f1913Repo.AdjustStockQty(sc.DcCode, sc.GupCode, sc.CustCode, sc.LocCode, sc.ItemCode,
+			//			sc.ValidDate, sc.EnterDate, sc.MakeNo, sc.SerialNo, sc.VnrCode, sc.BoxCtrlNo, sc.PalletCtrlNo, sc.Qty);
+
+			//	_wmsLogHelper.AddRecord(string.Format(_stockChangeMsgFormat, sc.DcCode, sc.GupCode, sc.CustCode, sc.LocCode, sc.ItemCode,
+			//	sc.ValidDate.ToString("yyyy/MM/dd"), sc.EnterDate.ToString("yyyy/MM/dd"), sc.MakeNo, sc.SerialNo, sc.VnrCode, sc.BoxCtrlNo, sc.PalletCtrlNo,
+			//	sc.Qty >= 0 ? "增加" : "減少", Math.Abs(sc.Qty)));
+			//}
+
+			//if (addF1913List.Any())
+			//	_f1913Repo.BulkInsert(addF1913List,true);
+
+			//_wmsLogHelper.AddRecord(string.Format("[執行時間:{0}]庫存異動 結束", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
 	
 			// 清除暫存紀錄
 			_f1913List = null;
 			_stockChangeList = null;
-			_wmsLogHelper.StopRecord();
+			_wmsLogHelper.StopRecord(false);
 		}
 
 		#endregion

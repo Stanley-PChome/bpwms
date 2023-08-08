@@ -26,8 +26,9 @@ namespace Wms3pl.WpfClient.P02.Views
 			Vm.OnEdit += OnEdit;
 			Vm.OnCancel += OnCancel;
 			Vm.SerialAndAlloctionReport += SerialAndAlloctionReport;
-      Vm.OnDcCodeChanged += ShowDeviceWindowAndSetF910501;
-    }
+			Vm.OnDcCodeChanged += ShowDeviceWindowAndSetF910501;
+			Vm.SetPurchaseNoFocus += SetPurchaseNoFocus;
+		}
 
 		/// <summary>
 		/// 上傳檔案
@@ -70,12 +71,12 @@ namespace Wms3pl.WpfClient.P02.Views
 			Vm.SearchCommand.Execute(null);
 		}
 
-        /// <summary>
-        /// 序號刷讀
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ReadSerial_OnClick(object sender, RoutedEventArgs e)
+		/// <summary>
+		/// 序號刷讀
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ReadSerial_OnClick(object sender, RoutedEventArgs e)
 		{
 
 
@@ -110,7 +111,7 @@ namespace Wms3pl.WpfClient.P02.Views
 		/// <param name="e"></param>
 		private void PrintBoxLabel_OnClick(object sender, RoutedEventArgs e)
 		{
-			var win = new P0202030500(Vm.SelectedDc, Vm.SelectedData,Vm.SelectedPurchaseNo);
+			var win = new P0202030500(Vm.SelectedDc, Vm.SelectedData, Vm.SelectedPurchaseNo);
 			win.ShowDialog();
 			Vm.SearchCommand.Execute(null);
 		}
@@ -135,7 +136,7 @@ namespace Wms3pl.WpfClient.P02.Views
 		private void CollectSerial_OnClick(object sender, RoutedEventArgs e)
 		{
 			var win = new P0202030600(Vm.SelectedData, Vm.SelectedDc, Vm.RtNo);
-            win.ShowDialog();
+			win.ShowDialog();
 			Vm.SearchCommand.Execute(null);
 		}
 
@@ -193,7 +194,7 @@ namespace Wms3pl.WpfClient.P02.Views
 			//var report = new Report.P0202030000();
 			//report.Load("P0202030000.rpt");
 			//列印驗收單(良品)
-			if(Vm.AcceptanceReportData != null && Vm.AcceptanceReportData.Any())
+			if (Vm.AcceptanceReportData != null && Vm.AcceptanceReportData.Any())
 			{
 				var report = ReportHelper.CreateAndLoadReport<Report.P0202030000>();
 				report.SummaryInfo.ReportComments = Wms3plSession.Get<GlobalInfo>().DcCodeList.Find(x => x.Value.Equals(Vm.SelectedDc)).Name;
@@ -226,7 +227,21 @@ namespace Wms3pl.WpfClient.P02.Views
 				var crystalReportService = new CrystalReportService(report1, Vm.SelectedF910501);
 				crystalReportService.PrintToPrinter();
 			}
-			
+
+			if ((Vm.AcceptanceReportData != null && Vm.AcceptanceReportData.Any()) || (Vm.AcceptanceReportData1 != null && Vm.AcceptanceReportData1.Any()))
+			{
+				var rtNo = string.Empty;
+				if (Vm.AcceptanceReportData != null && Vm.AcceptanceReportData.Any())
+					rtNo = Vm.AcceptanceReportData.First().RT_NO;
+				if (Vm.AcceptanceReportData1 != null && Vm.AcceptanceReportData1.Any())
+					rtNo = Vm.AcceptanceReportData1.First().RT_NO;
+				if (!string.IsNullOrEmpty(rtNo))
+				{
+					Vm.UpdatePrintRecvNote(rtNo);
+				}
+			}
+
+
 		}
 
 		private void PrintAcceptanceSerialReport()
@@ -271,19 +286,19 @@ namespace Wms3pl.WpfClient.P02.Views
 
 		void ShowDeviceWindowAndSetF910501()
 		{
-            var openDeviceWindow = OpenDeviceWindow(Vm.FunctionCode, Wms3plSession.Get<GlobalInfo>().ClientIp, Vm.SelectedDc);
-            if (openDeviceWindow.Any())
-            {
-                Vm.SelectedF910501 = openDeviceWindow.FirstOrDefault();
-            }
-            else
-            {
-                var deviceWindow = new DeviceWindow(Vm.SelectedDc);
-                deviceWindow.Owner = this.Parent as Window;
-                deviceWindow.ShowDialog();
-                Vm.SelectedF910501 = deviceWindow.SelectedF910501;
-            }
-            
+			var openDeviceWindow = OpenDeviceWindow(Vm.FunctionCode, Wms3plSession.Get<GlobalInfo>().ClientIp, Vm.SelectedDc);
+			if (openDeviceWindow.Any())
+			{
+				Vm.SelectedF910501 = openDeviceWindow.FirstOrDefault();
+			}
+			else
+			{
+				var deviceWindow = new DeviceWindow(Vm.SelectedDc);
+				deviceWindow.Owner = this.Parent as Window;
+				deviceWindow.ShowDialog();
+				Vm.SelectedF910501 = deviceWindow.SelectedF910501;
+			}
+
 		}
 
 		private void CmbTarwarehouse_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -294,12 +309,16 @@ namespace Wms3pl.WpfClient.P02.Views
 				Vm.TarWarehouseChange(p020203Data.PURCHASE_NO, p020203Data.PURCHASE_SEQ, p020203Data.TARWAREHOUSE_ID);
 		}
 
-        private void SetDefectQty_OnClick(object sender,RoutedEventArgs e)
-        {
-            var win = new P0202030700(Vm.SelectedData);
-            win.ShowDialog();
-            Vm.SearchCommand.Execute(null);
-        }
+		private void SetDefectQty_OnClick(object sender, RoutedEventArgs e)
+		{
+			var win = new P0202030700(Vm.SelectedData);
+			win.ShowDialog();
+			Vm.SearchCommand.Execute(null);
+		}
 
-    }
+		private void SetPurchaseNoFocus()
+		{
+			SetFocusedElement(txtPurchaseNo, true);
+		}
+	}
 }

@@ -26,8 +26,20 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 
 			chkCols.ForEach(colName =>
 			{
-				if (!DataCheckHelper.CheckDataNotZero(item, colName))
-					failCols.Add(colName);
+        if (colName == "PackWeight")
+        {
+          if (!DataCheckHelper.CheckDataEqualOrGreaterThanZero(item, colName))
+          {
+            failCols.Add(colName);
+          }
+        }
+        else
+        {
+          if (!DataCheckHelper.CheckDataNotZero(item, colName))
+          {
+            failCols.Add(colName);
+          }
+        }
 			});
 
 			if (failCols.Count > 0)
@@ -202,5 +214,14 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			}
 
 		}
-	}
+
+    public void CheckOriVnrCode(List<ApiResponse> res, PostItemDataItemsModel item, List<string> vnrCodeList)
+    {
+      if (!string.IsNullOrWhiteSpace(item.OriVnrCode) && !vnrCodeList.Contains(item.OriVnrCode))
+        // [編號{0}]原廠商編號{1}不存在
+        res.Add(new ApiResponse { No = item.ItemCode, MsgCode = "20074", MsgContent = string.Format(_tacService.GetMsg("20074"), item.ItemCode, item.OriVnrCode) });
+    }
+
+
+  }
 }

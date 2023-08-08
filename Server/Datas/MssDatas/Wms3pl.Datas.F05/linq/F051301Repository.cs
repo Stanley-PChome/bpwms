@@ -13,15 +13,6 @@ namespace Wms3pl.Datas.F05
     {
     }
 
-    public IQueryable<F051301> GetDatasByF051202s(List<F051202> f051202s)
-    {
-      return _db.F051301s.Where(x =>
-      f051202s.Any(z =>
-      x.DC_CODE == z.DC_CODE &&
-      x.GUP_CODE == z.GUP_CODE &&
-      x.CUST_CODE == z.CUST_CODE &&
-      x.WMS_NO == z.WMS_ORD_NO));
-    }
 
     public F051301 GetData(string dcCode,string gupCode,string custCode,DateTime DelvDate,string pickTime)
     {

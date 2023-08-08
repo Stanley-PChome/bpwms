@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -107,7 +108,7 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
 					 FailureCnt = _msgList.Count(),
 					 SuccessCnt = f19130501s.Count - _msgList.Count,
 					 TotalCnt = f19130501s.Count,
-					 Data = _msgList.Select(x => new { ID = x.No, Message = x.Message })
+					 Data = JsonConvert.SerializeObject( _msgList.Select(x => new { ID = x.No, Message = x.Message }))
 				 };
 			 },
 			false);

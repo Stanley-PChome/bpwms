@@ -92,13 +92,26 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 
 		private string _itemSpec = string.Empty;
 		public string ItemSpec { get { return _itemSpec; } set { _itemSpec = value; RaisePropertyChanged(); } }
-		#endregion
 
-		#region 商品清單
-		/// <summary>
-		/// 商品主檔清單
-		/// </summary>
-		private List<F1903> _records;
+    #region 原廠商編號
+    private string _serOriVnrCode = string.Empty;
+    /// <summary>
+    /// 查詢條件原廠商編號
+    /// </summary>
+    public string ItemOriVnrCode
+    {
+      get { return _serOriVnrCode; }
+      set { _serOriVnrCode = value; RaisePropertyChanged(); }
+    }
+    #endregion
+
+    #endregion
+
+    #region 商品清單
+    /// <summary>
+    /// 商品主檔清單
+    /// </summary>
+    private List<F1903> _records;
 		public List<F1903> Records { get { return _records; } set { _records = value; RaisePropertyChanged(); } }
 		/// <summary>
 		/// 商品副檔清單
@@ -558,6 +571,9 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 
 		#region 廠商名稱
 		private string _vnrName = string.Empty;
+    /// <summary>
+    /// 顯示廠商名稱
+    /// </summary>
 		public string VNR_NAME
 		{
 			get { return _vnrName; }
@@ -568,10 +584,26 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 			}
 		}
 
-		#endregion
+    #endregion
 
-		#region 是否開啟首次進倉日
-		private bool _enableFirstInDate = false;
+    #region 原廠商名稱
+    private string _orivnrName = string.Empty;
+    /// <summary>
+    /// 顯示原廠商名稱
+    /// </summary>
+    public string ORI_VNR_NAME
+    {
+      get { return _orivnrName; }
+      set
+      {
+        _orivnrName = value;
+        RaisePropertyChanged();
+      }
+    }
+    #endregion
+
+    #region 是否開啟首次進倉日
+    private bool _enableFirstInDate = false;
 		public bool EnableFirstInDate
 		{
 			get { return _enableFirstInDate; }
@@ -621,8 +653,8 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 		#region function
 		public P1901020000_ViewModel()
 		{
-			if (!IsInDesignMode)
-			{
+      if (!IsInDesignMode)
+      {
 				//初始化執行時所需的值及資料
 				SetSearchGupList();
 				SetLTypes();
@@ -833,7 +865,8 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 				CurrentRecord.ISCARTON = "0";
 				CurrentRecord.MAKENO_REQU = "0";
 				VNR_NAME = GetVnrName(CurrentRecord.VNR_CODE);
-				ItemStaffName = null;
+				ORI_VNR_NAME = GetVnrName(CurrentRecord.ORI_VNR_CODE);
+        ItemStaffName = null;
 			}
 
 			if (CurrentRecord != null)
@@ -923,7 +956,8 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 
 			SelectedItemAttrByView = (!string.IsNullOrEmpty(CurrentRecordByView.ITEM_ATTR)) ? CurrentRecordByView.ITEM_ATTR : string.Empty;
 			VNR_NAME = GetVnrName(CurrentRecordByView.VNR_CODE);
-			var proxy = GetProxy<F19Entities>();
+			ORI_VNR_NAME = GetVnrName(CurrentRecordByView.ORI_VNR_CODE);
+      var proxy = GetProxy<F19Entities>();
 
 			if (CurrentRecordByView != null)
 			{
@@ -1027,7 +1061,7 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 			get
 			{
 				return CreateBusyAsyncCommand(
-					o => DoSearch(ItemCode, ItemName, ItemSpec), () => UserOperateMode == OperateMode.Query,
+          o => DoSearch(ItemCode, ItemName, ItemSpec, ItemOriVnrCode), () => UserOperateMode == OperateMode.Query,
 					o => DoSearchComplete()
 					);
 			}
@@ -1044,12 +1078,17 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 			}
 		}
 
-		private void DoSearch(string itemCode, string itemName, string itemSpec)
+		private void DoSearch(string itemCode, string itemName, string itemSpec,string oriVnrCode)
 		{
 			//檢核是否至少有輸入一查詢條件
-			if (string.IsNullOrEmpty(itemCode.Trim()) && string.IsNullOrEmpty(itemName.Trim()) && string.IsNullOrEmpty(itemSpec.Trim()) && string.IsNullOrEmpty(SearchLTypeItem.Value.Trim()))
-			{
-				if (UserOperateMode == OperateMode.Query)
+			if (string.IsNullOrEmpty(itemCode.Trim()) 
+        && string.IsNullOrEmpty(itemName.Trim())
+        && string.IsNullOrEmpty(itemSpec.Trim())
+        && string.IsNullOrEmpty(SearchLTypeItem.Value.Trim())
+        && string.IsNullOrEmpty(oriVnrCode.Trim()))
+
+      {
+        if (UserOperateMode == OperateMode.Query)
 					ShowMessage(new MessagesStruct() { Message = Properties.Resources.P1901020000_NEED_ONE_CONDITION, Title = Resources.Resources.Information });
 				return;
 			}
@@ -1063,7 +1102,8 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 							.AddQueryExOption("itemName", itemName)
 							.AddQueryExOption("itemSpec", itemSpec)
 							.AddQueryExOption("lType", SearchLTypeItem.Value)
-							.ToList();
+							.AddQueryExOption("oriVnrCode", oriVnrCode)
+              .ToList();
 
 			if (Records == null || !Records.Any())
 			{
@@ -1195,8 +1235,8 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 		{
 			//執行取消動作
 			CurrentRecord = null;
-			DoSearch(ItemCode, ItemName, ItemSpec);
-		}
+      DoSearch(ItemCode, ItemName, ItemSpec, ItemOriVnrCode);
+    }
 		#endregion Cancel
 
 		#region Delete
@@ -1225,8 +1265,8 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 							}
 							else
 							{
-								DoSearch(ItemCode, ItemName, ItemSpec);
-							}
+                DoSearch(ItemCode, ItemName, ItemSpec, ItemOriVnrCode);
+              }
 						}
 					}
 					);
@@ -1288,10 +1328,10 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 			if (isSuccess)
 			{
 				if (UserOperateMode == OperateMode.Add && CurrentRecord != null)
-					DoSearch(CurrentRecord.ITEM_CODE, CurrentRecord.ITEM_NAME, CurrentRecord.ITEM_SPEC);
-				else
-					DoSearch(ItemCode, ItemName, ItemSpec);
-				if (Records != null && Records.Any())
+          DoSearch(CurrentRecord.ITEM_CODE, CurrentRecord.ITEM_NAME, CurrentRecord.ITEM_SPEC, CurrentRecord.ORI_VNR_CODE);
+        else
+          DoSearch(ItemCode, ItemName, ItemSpec, ItemOriVnrCode);
+        if (Records != null && Records.Any())
 					SelectedData = Records.Where(x => x.GUP_CODE == CurrentRecord.GUP_CODE && x.ITEM_CODE == CurrentRecord.ITEM_CODE).FirstOrDefault();
 				BackToFirstTab();
 				UserOperateMode = OperateMode.Query;
@@ -1354,7 +1394,6 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 			{
 				CurrentRecord.BUNDLE_SERIALNO = "1";
 			}
-
 
 			// 儲存資料
 			wcf.ExecuteResult result = new wcf.ExecuteResult() { IsSuccessed = true };
@@ -1486,6 +1525,12 @@ namespace Wms3pl.WpfClient.P19.ViewModel
 
       if (CurrentRecord.NEED_EXPIRED == "1" && (!CurrentRecord.SAVE_DAY.HasValue || CurrentRecord.SAVE_DAY.Value <= 0))
         errMsgs.Add("當商品為效期商品時，則總保存天數為必填");
+
+      if (!string.IsNullOrWhiteSpace(CurrentRecord.VNR_CODE) && string.IsNullOrWhiteSpace(VNR_NAME))
+        errMsgs.Add("請輸入正確的廠商編號");
+
+      if (!string.IsNullOrWhiteSpace(CurrentRecord.ORI_VNR_CODE) && string.IsNullOrWhiteSpace(ORI_VNR_NAME))
+        errMsgs.Add("請輸入正確的原廠商編號");
 
       //優先驗證棧板每層箱數、棧板層數是否<1
       if (PalletLevelItem.PALLET_LEVEL_CASEQTY < 1 || _palletLevelItem.PALLET_LEVEL_CNT < 1)

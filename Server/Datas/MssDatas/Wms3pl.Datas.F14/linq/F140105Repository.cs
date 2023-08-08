@@ -30,7 +30,7 @@ namespace Wms3pl.Datas.F14
 		/// <param name="endLocCode"></param>
 		/// <param name="itemCode"></param>
 		/// <returns></returns>
-		public int CountInventoryDetailItems(string dcCode, string gupCode, string custCode,
+		public int CountInventoryDetailItems0(string dcCode, string gupCode, string custCode,
 		string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode)
 		{
 			var param = new List<object> { dcCode, gupCode, custCode, inventoryNo, begLocCode, endLocCode };
@@ -147,14 +147,6 @@ string itemCode, DateTime validDate, DateTime enterDate, string boxCtrlNo, strin
 			return q;
 		}
 
-		public IQueryable<F140105> GetDatasByWcsInventoryNos(string dcCode, string gupCode, string custCode, List<string> inventoryNos)
-		{
-			return _db.F140105s.AsNoTracking().Where(x =>
-			x.DC_CODE == dcCode &&
-			x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			inventoryNos.Contains(x.INVENTORY_NO));
-		}
 
 		public bool CheckSecondInventoryIsExist(string dcCode, string gupCode, string custCode, string inventoryNo)
 		{

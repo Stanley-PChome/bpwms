@@ -467,5 +467,29 @@ namespace Wms3pl.Datas.F05
     public string NP_FLAG { get; set; }
 
 
+    /// <summary>
+    /// 人員包裝開始時間
+    /// </summary>
+    public DateTime? PACK_START_TIME { get; set; }
+
+    /// <summary>
+    /// 人員包裝完成時間
+    /// </summary>
+    public DateTime? PACK_FINISH_TIME { get; set; }
+
+    /// <summary>
+    /// 人員取消包裝時間
+    /// </summary>
+    public DateTime? PACK_CANCEL_TIME { get; set; }
+
+    /// <summary>
+    /// 配箱站與封箱站是否分開(0:否 1:是)
+    /// </summary>
+    public string NO_SPEC_REPROTS { get; set; }
+
+    /// <summary>
+    /// 是否刷讀紙箱關箱(0:否 1:是)
+    /// </summary>
+    public string CLOSE_BY_BOXNO { get; set; }
   }
 }

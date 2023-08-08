@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Services.Common;
 using System.Runtime.Serialization;
 using Wms3pl.Common.Enums;
+using Wms3pl.Datas.F01;
 using Wms3pl.Datas.F02;
 using Wms3pl.Datas.F25;
 using Wms3pl.Datas.Shared.Enums;
@@ -1290,12 +1291,13 @@ namespace Wms3pl.Datas.Shared.Entities
 
   public class ContainerExecuteResult
   {
-
     public string ContainerCode { get; set; }
 
     public string WMS_NO { get; set; }
 
     public long f0701_ID { get; set; }
+
+    public int Qty { get; set; }
   }
 
 
@@ -1433,4 +1435,411 @@ namespace Wms3pl.Datas.Shared.Entities
     public F020501 f020501;
     public List<F020502> f020502s;
   }
+
+  #region 商品檢驗共用服務(WarehouseInRecvService)用Entity
+
+  #region LockAcceptenceOrder
+  public class LockAcceptenceOrderReq
+  {
+    public string DcCode { get; set; }
+    public string GupCode { get; set; }
+    public string CustCode { get; set; }
+    public string StockNo { get; set; }
+    public Boolean IsChangeUser { get; set; }
+		public string DeviceTool { get; set; }
+  }
+  #endregion LockAcceptenceOrder
+
+  #region UnLockAcceptenceOrder用請求參數
+  public class UnLockAcceptenceOrderReq
+  {
+    public string DcCode { get; set; }
+    public string GupCode { get; set; }
+    public string CustCode { get; set; }
+    public string StockNo { get; set; }
+  }
+  #endregion UnLockAcceptenceOrder用請求參數
+
+  #region AcceptanceConfirm
+  /// <summary>
+  /// 驗收確認參數
+  /// </summary>
+  public class AcceptanceConfirmPara
+  {
+    /// <summary>
+    /// 物流中心代碼
+    /// </summary>
+    public string DcCode { get; set; }
+    /// <summary>
+    /// 業主代碼
+    /// </summary>
+    public string GupCode { get; set; }
+    /// <summary>
+    /// 貨主代碼
+    /// </summary>
+    public string CustCode { get; set; }
+    /// <summary>
+    /// 進倉單號
+    /// </summary>
+    public string PurchaseNo { get; set; }
+    /// <summary>
+    /// 驗收單號
+    /// </summary>
+    public string RTNo { get; set; }
+    /// <summary>
+    /// 驗收單所有明細
+    /// </summary>
+    public List<F02020101> f02020101s { get; set; }
+    /// <summary>
+    /// 進倉單
+    /// </summary>
+    public F010201 f010201 { get; set; }
+    /// <summary>
+    /// 是否揀貨區優先儲位
+    /// </summary>
+    public bool IsPickLocFirst { get; set; }
+    ///// <summary>
+    ///// 舊商品檢驗=0 商品檢驗與容器綁定=1
+    ///// </summary>
+    //public string RT_MODE { get; set; } = "0";
+  }
+	#endregion
+
+	public class NotAcceptData
+	{
+		/// <summary>
+		/// 商品品號
+		/// </summary>
+		public string ITEM_CODE { get; set; }
+		/// <summary>
+		/// 進貨序號
+		/// </summary>
+		public string STOCK_SEQ { get; set; }
+		/// <summary>
+		/// 訂購數
+		/// </summary>
+		public int STOCK_QTY { get; set; }
+		/// <summary>
+		/// 未驗收數
+		/// </summary>
+		public int NOT_STOCK_QTY { get; set; }
+		/// <summary>
+		/// 商品有效日期
+		/// </summary>
+		public DateTime VALI_DATE { get; set; }
+	}
+	public class GetOrCreateRecvDataRes
+	{
+		public List<F02020101> F02020101List { get; set; }
+		public List<string> ApiInfoList { get; set; }
+	}
+
+  #region DeleteAcceptanceData
+  /// <summary>
+  /// 刪除驗收紀錄參數
+  /// </summary>
+  public class DeleteAcceptanceDataParam
+  {
+    /// <summary>
+    /// 物流中心代碼
+    /// </summary>
+    public string DcCode { get; set; }
+    /// <summary>
+    /// 業主代碼
+    /// </summary>
+    public string GupCode { get; set; }
+    /// <summary>
+    /// 貨主代碼
+    /// </summary>
+    public string CustCode { get; set; }
+    /// <summary>
+    /// 進倉單號
+    /// </summary>
+    public string PurchaseNo { get; set; }
+    /// <summary>
+    /// 進倉項次
+    /// </summary>
+    public string PurchaseSeq { get; set; }
+    /// <summary>
+    /// 驗收單號
+    /// </summary>
+    public string RTNo { get; set; }
+  }
+	#endregion
+
+  #region SaveRecvItem
+  /// <summary>
+  /// 儲存商品驗收結果參數
+  /// </summary>
+  public class SaveRecvItemParam
+  {
+    /// <summary>
+    /// 物流中心代碼
+    /// </summary>
+    public string DcCode { get; set; }
+    /// <summary>
+    /// 業主代碼
+    /// </summary>
+    public string GupCode { get; set; }
+    /// <summary>
+    /// 貨主代碼
+    /// </summary>
+    public string CustCode { get; set; }
+    /// <summary>
+    /// 進倉單號
+    /// </summary>
+    public string PurchaseNo { get; set; }
+    /// <summary>
+    /// 進倉單序號
+    /// </summary>
+    public string PurchaseSeq { get; set; }
+    /// <summary>
+    /// 驗收單號
+    /// </summary>
+    public string RtNo { get; set; }
+    /// <summary>
+    /// 驗收項次
+    /// </summary>
+    public string RtSeq { get; set; }
+
+		/// <summary>
+		/// 採購單號
+		/// </summary>
+		public string PoNo { get; set; }
+
+    /// <summary>
+    /// 商品編號
+    /// </summary>
+    public string ItemNo { get; set; }
+    /// <summary>
+    /// 國條
+    /// </summary>
+    public string EanCode1 { get; set; }
+    /// <summary>
+    /// 條碼二
+    /// </summary>
+    public string EanCode2 { get; set; }
+    /// <summary>
+    /// 條碼三
+    /// </summary>
+    public string EanCode3 { get; set; }
+    /// <summary>
+    /// 是否效期商品
+    /// </summary>
+    public string NeedExpired { get; set; }
+    /// <summary>
+    /// 保存天數
+    /// </summary>
+    public int? SaveDay { get; set; }
+    /// <summary>
+    /// 允收天數
+    /// </summary>
+    public int? AllowDelvDay { get; set; }
+    /// <summary>
+    /// 警示天數
+    /// </summary>
+    public int? AllowShipDay { get; set; }
+    /// <summary>
+    /// 是否序號商品
+    /// </summary>
+    public string BundleSerialNo { get; set; }
+    /// <summary>
+    /// 商品長
+    /// </summary>
+    public decimal PackLength { get; set; }
+    /// <summary>
+    /// 商品寬
+    /// </summary>
+    public decimal PackWidth { get; set; }
+    /// <summary>
+    /// 商品高
+    /// </summary>
+    public decimal PackHight { get; set; }
+    /// <summary>
+    /// 商品重量
+    /// </summary>
+    public decimal PackWeight { get; set; }
+    /// <summary>
+    /// 商品溫層
+    /// </summary>
+    public string TmprType { get; set; }
+    /// <summary>
+    /// 是否蘋果商品
+    /// </summary>
+    public string IsApple { get; set; }
+    /// <summary>
+    /// 驗收數量
+    /// </summary>
+    public int RecvQty { get; set; }
+    /// <summary>
+    /// 是否列印商品ID標
+    /// </summary>
+    public string IsPrintItemId { get; set; }
+    /// <summary>
+    /// 效期
+    /// </summary>
+    public DateTime ValidDate { get; set; }
+    /// <summary>
+    /// 是否貴重品
+    /// </summary>
+    public string IsPrecious { get; set; }
+    /// <summary>
+    /// 是否易碎品
+    /// </summary>
+    public string IsFragile { get; set; }
+    /// <summary>
+    /// 是否易遺失
+    /// </summary>
+    public string IsEasyLose { get; set; }
+    /// <summary>
+    /// 是否強磁標示
+    /// </summary>
+    public string IsMagentic { get; set; }
+    /// <summary>
+    /// 是否防溢漏包裝
+    /// </summary>
+    public string IsSpill { get; set; }
+    /// <summary>
+    /// 是否易變質標示
+    /// </summary>
+    public string IsPerishable { get; set; }
+    /// <summary>
+    /// 是否需溫控標示
+    /// </summary>
+    public string IsTempControl { get; set; }
+    /// <summary>
+    /// 是否首次驗收商品
+    /// </summary>
+    public string IsFirstInDate { get; set; }
+    /// <summary>
+    /// 上架倉別
+    /// </summary>
+    public string TarWarehouseId { get; set; }
+    /// <summary>
+    /// 商品檢驗項目清單
+    /// </summary>
+    public List<CheckItem> CheckItemList { get; set; }
+  }
+
+  public class CheckItem
+  {
+    /// <summary>
+    /// 檢項項目代碼
+    /// </summary>
+    public string CheckNo { get; set; }
+  }
+  #endregion
+
+	#endregion
+
+	#region 商品檢驗綁容器共用服務(WarehouseInRecvBindBoxService)用Entity
+
+	#region LockBindContainerAcceptenceOrder用請求參數
+	public class LockBindContainerAcceptenceOrderReq
+  {
+    //dcCode,gupCode,custCode,rtNo,IsChangeUser
+    public string DcCode { get; set; }
+    public string GupCode { get; set; }
+    public string CustCode { get; set; }
+    public string RtNo { get; set; }
+    public Boolean IsChangeUser { get; set; }
+		public string DeviceTool { get; set; }
+  }
+
+  #endregion LockBindContainerAcceptenceOrder用請求參數
+
+  #region UnLockBindContainerAcceptenceOrder用請求參數
+  public class UnLockBindContainerAcceptenceOrderReq
+  {
+    public string DcCode { get; set; }
+    public string GupCode { get; set; }
+    public string CustCode { get; set; }
+    public string RtNo { get; set; }
+  }
+  #endregion UnLockBindContainerAcceptenceOrder用請求參數
+
+  #region DeleteContainerBindData用請求參數
+  /// <summary>
+  /// 進貨容器綁定-驗收單各區綁定容器放入確認_傳入
+  /// </summary>
+  public class DeleteContainerBindDataReq
+  {
+    /// <summary>
+    /// 物流中心編號
+    /// </summary>
+    public string DcCode { get; set; }
+    /// <summary>
+    /// 業主編號
+    /// </summary>
+    public string GupCode { get; set; } 
+    /// <summary>
+    /// 貨主編號
+    /// </summary>
+    public string CustCode { get; set; }
+    /// <summary>
+    /// 驗收單號
+    /// </summary>
+    public string RtNo { get; set; }
+    /// <summary>
+    /// 驗收項次
+    /// </summary>
+    public string RtSeq { get; set; }
+    /// <summary>
+    /// 該區識別碼(F0205.ID)
+    /// </summary>
+    public int AreaId { get; set; }
+    /// <summary>
+    /// 進貨容器識別碼
+    /// </summary>
+    public long F020501_ID { get; set; }
+    /// <summary>
+    /// 進貨容器明細識別碼
+    /// </summary>
+    public long F020502_ID { get; set; }
+    /// <summary>
+    /// 進貨容器明細放入數量
+    /// </summary>
+    public int Qty { get; set; }
+  }
+	#endregion DeleteContainerBindData用請求參數
+
+	public class AddContainerBindDataReq
+	{
+		public string DcCode { get; set; }
+		public string GupCode { get; set; }
+		public string CustCode { get; set; }
+		public string PurchaseNo { get; set; }
+		public string PurchaseSeq { get; set; }
+		public string RtNo { get; set; }
+		public string RtSeq { get; set; }
+		public string ContainerCode { get; set; }
+		public string TypeCode { get; set; }
+		public long AreaId { get; set; }
+		public string WarehouseId { get; set; }
+		public int PutQty { get; set; }
+	}
+
+	public class AddContainerBindDataRes
+	{
+		public long F020501_ID { get; set; }
+		public long F020502_ID { get; set; }
+	}
+
+	public class ShareRecvBindContainerFinishedReq
+	{
+		public string DcCode { get; set; }
+		public string GupCode { get; set; }
+		public string CustCode { get; set; }
+		public string PurchaseNo { get; set; }
+		public string RtNo { get; set; }
+		public string RtSeq { get; set; }
+	}
+
+	public class ShareRecvBindContainerFinishedRes
+	{
+		public List<string> LockContainers { get; set; }
+		public List<string> AllocationNoList { get; set; }
+	}
+
+	#endregion
 }

@@ -218,7 +218,22 @@
                 </DataGrid>
               </GroupBox>
               <GroupBox Header="{x:Static res:Resources.OueryResult}" Visibility="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToVisiablityConverter},ConverterParameter=1}">
-                <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DtQueryData2}" AutoGenerateColumns="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                <DockPanel>
+                  <Expander Header="欄位說明" IsExpanded="False" DockPanel.Dock="Top">
+                    <DockPanel>
+                      <Label Style="{StaticResource LbStyle}" DockPanel.Dock="Top" Foreground="Blue" Padding="0">
+                        <TextBlock Text="管制數：被凍結進出的數量、預約數：出貨虛擬+調撥虛擬、庫存總數：各倉庫存加總(含管制數)、可揀數：良品倉總庫存+加工倉總庫存-管制數" />
+                      </Label>
+                      <Label Style="{StaticResource LbStyle}" DockPanel.Dock="Top" Foreground="Blue" Padding="0">
+                        <TextBlock Text="出貨虛擬：已配庫還在架上+已下架尚未出貨、調撥虛擬：已建單還在架上+已下架尚未上架" />
+                      </Label>
+                      <Label Style="{StaticResource LbStyle}" DockPanel.Dock="Top" Foreground="Blue" Padding="0">
+                        <TextBlock Text="A7補貨倉待上架數量：此處的資料來源為調撥單類型為補貨純下架單，建立調撥單後，尚未完成上架的數量" />
+                      </Label>
+                    </DockPanel>
+                  </Expander>
+                  <DataGrid Style="{StaticResource DgStyle}" DockPanel.Dock="Bottom" ItemsSource="{Binding DtQueryData2}" AutoGenerateColumns="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                </DockPanel>
               </GroupBox>
               <GroupBox Header="{x:Static res:Resources.OueryResult}" Visibility="{Binding SearchStockType,Mode = TwoWay , UpdateSourceTrigger=PropertyChanged,Converter= {StaticResource StringTypeToVisiablityConverter},ConverterParameter=2}">
                 <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DgQueryData3}" ScrollViewer.VerticalScrollBarVisibility="Auto">

@@ -12,6 +12,11 @@ namespace Wms3pl.Datas.F19
 {
 	public partial class F1901Repository : RepositoryBase<F1901, Wms3plDbContext, F1901Repository>
 	{
+    public IQueryable<string> GetAllDcCodes()
+    {
+      var sql = "SELECT DC_CODE FROM F1901";
 
-	}
+      return SqlQuery<string>(sql);
+    }
+  }
 }

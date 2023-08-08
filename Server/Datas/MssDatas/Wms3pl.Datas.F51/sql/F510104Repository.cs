@@ -12,10 +12,9 @@ namespace Wms3pl.Datas.F51
 		public void InsertVirtualByDate(string dcCode, string gupCode, string custCode, DateTime settleDate)
 		{
 			var sql = @"INSERT INTO F510104 
-					SELECT  @p3 CAL_DATE,A.*
-					FROM F1511 A
-					WHERE ((SUBSTRING(A.ORDER_NO,1,1)='T' AND A.STATUS IN('0','1')) OR (SUBSTRING(A.ORDER_NO,1,1)='P' AND A.STATUS IN('0','1')))  
-            AND A.DC_CODE =  @p0 AND A.GUP_CODE = @p1 AND A.CUST_CODE = @p2 ";
+SELECT  @p3 CAL_DATE,A.*
+FROM VW_VirtualStock A
+WHERE A.DC_CODE =  @p0 AND A.GUP_CODE = @p1 AND A.CUST_CODE = @p2 AND A.STATUS IN('0','1')";
 			var param = new SqlParameter[]
 			{
 				new SqlParameter("@p0", dcCode),

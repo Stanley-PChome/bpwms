@@ -7,6 +7,7 @@ using Wms3pl.Datas.F05;
 using Wms3pl.Datas.F06;
 using Wms3pl.Datas.F07;
 using Wms3pl.Datas.F15;
+using Wms3pl.Datas.F25;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.WebServices.DataCommon;
 using Wms3pl.WebServices.Shared.TransApiServices;
@@ -410,19 +411,19 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		}
 
 		/// <summary>
-		/// 檢查該明細序號是否存在
+		/// 檢查該明細序號是否存在及是否為在庫序號
 		/// </summary>
 		/// <param name="res"></param>
 		/// <param name="sku"></param>
 		/// <param name="receiptCode"></param>
 		/// <param name="index"></param>
 		/// <param name="_f2501"></param>
-		public void CheckSkuSerialNumIsExist(List<ApiResponse> res, OutWarehouseReceiptSkuModel sku, string receiptCode, int index, List<string> serialNoList)
+		public void CheckSkuSerialNumIsExist(List<ApiResponse> res, OutWarehouseReceiptSkuModel sku, string receiptCode, int index, List<F2501> serialNoList)
 		{
 			if (sku.SerialNumList != null && sku.SerialNumList.Any())
 			{
-				var data = serialNoList.Where(serialNo => sku.SerialNumList.Contains(serialNo));
-				if (data.Count() != sku.SerialNumList.Count)
+        var data = serialNoList.Where(serialNo => sku.SerialNumList.Contains(serialNo.SERIAL_NO));
+        if (data.Count() != sku.SerialNumList.Count)
 					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20042", MsgContent = string.Format(tacService.GetMsg("20042"), $"{receiptCode}第{index + 1}筆明細") });
 			}
 		}
@@ -458,6 +459,99 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 
 			return isAddF075106;
 		}
-		#endregion
-	}
+
+    /// <summary>
+    /// 檢查序號數量(去重複)是否與容器商品裝箱數量相同
+    /// </summary>
+    /// <param name="res"></param>
+    /// <param name="receiptCode"></param>
+    /// <param name="containers"></param>
+    public void CheckContainerSerialNosQty(List<ApiResponse> res, string receiptCode, OutWarehouseReceiptContainerModel container)
+    {
+      foreach (var containerSku in container.SkuList)
+      {
+        var SerialNumList = containerSku.SerialNumList.Distinct();
+        if (SerialNumList.Count() > 0 && SerialNumList.Count() != containerSku.SkuQty)
+        {
+          res.Add(new ApiResponse
+          {
+            No = receiptCode,
+            ErrorColumn = "SerialNumList",
+            MsgCode = "20006",
+            //20006, 容器{0}明細中商品{1}序號總數{2}與裝箱數量{3}不一致
+            MsgContent =
+              string.Format(tacService.GetMsg("20006"),
+                container.ContainerCode,
+                containerSku.SkuCode,
+                SerialNumList.Count(),
+                containerSku.SkuQty)
+          });
+        }
+      }
+    }
+
+    /// <summary>
+    /// 檢查揀貨明細商品總實際揀貨數量是否等於加總各箱該商品裝箱數量
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="orderCode"></param>
+    /// <param name="skuList"></param>
+    /// <param name="containerList"></param>
+    public void CheckContainerSkuQty(List<ApiResponse> res, string receiptCode, List<OutWarehouseReceiptSkuModel> skuList, List<OutWarehouseReceiptContainerSkuModel> containerSkuList)
+    {
+      var checkQtyEquals = from container in containerSkuList.GroupBy(x => x.SkuCode)
+                           join skus in skuList.GroupBy(x => x.SkuCode)
+                           on container.Key equals skus.Key into e1
+                           from j1 in e1.DefaultIfEmpty()
+                           where container.Sum(x => x.SkuQty) != j1.Sum(x => x.SkuQty ?? 0)
+                           select new { skuCode = container.Key, containerQty = container.Sum(x => x.SkuQty), skuQty = j1.Sum(x => x.SkuQty) };
+
+      res.AddRange(checkQtyEquals.Select(x => new ApiResponse
+      {
+        No = receiptCode,
+        ErrorColumn = "SkuQty",
+        MsgCode = "20005",
+        //20005, 容器明細中商品{0}總數量{1}與回傳揀貨明細商品實際揀貨數{2}不一致
+        MsgContent =
+                string.Format(tacService.GetMsg("20005"),
+                  x.skuCode,
+                  x.containerQty,
+                  x.skuQty)
+      }));
+    }
+
+    /// <summary>
+    /// 檢查容器中的商品序號是否存在
+    /// </summary>
+    /// <param name="res"></param>
+    /// <param name="receiptCode"></param>
+    /// <param name="containers"></param>
+    /// <param name="serialNoList"></param>
+    public void CheckContainerSerialNosExists(List<ApiResponse> res, string receiptCode, OutWarehouseReceiptContainerModel containers, List<F2501> serialNoList)
+    {
+      var containerSerialNoList = containers.SkuList.SelectMany(x1 => x1.SerialNumList);
+
+      var InSerialNoList = from x in containerSerialNoList
+                           join y in serialNoList.Where(x => x.STATUS == "A1").Select(x => x.SERIAL_NO)
+                           on x equals y
+                           select x;
+
+      containerSerialNoList = containerSerialNoList.Except(InSerialNoList);
+
+      if (containerSerialNoList.Any())
+        res.Add(new ApiResponse
+        {
+          No = receiptCode,
+          ErrorColumn = "SerialNumList",
+          MsgCode = "20007",
+          //20007, 容器{0}明細中，商品序號{1}不存在
+          MsgContent =
+          string.Format(tacService.GetMsg("20007"),
+            containers.ContainerCode,
+            string.Join(",", containerSerialNoList))
+        });
+
+    }
+    #endregion
+  }
 }

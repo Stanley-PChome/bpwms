@@ -365,5 +365,35 @@ namespace Wms3pl.WpfClient.P19.Views
       if (Vm.CurrentRecord?.BUNDLE_SERIALNO == "0")
         Vm.CurrentRecord.BUNDLE_SERIALLOC = "0";
     }
+
+    private void TxtOriVnrCode_LostFocus(object sender, RoutedEventArgs e)
+    {
+      // 廠商編號不為空
+      if (!string.IsNullOrWhiteSpace(Vm.CurrentRecord.ORI_VNR_CODE))
+      {
+        // 查詢廠商名稱
+        var vnrName = Vm.GetVnrName(Vm.CurrentRecord.ORI_VNR_CODE);
+        // 查無廠商名稱顯示錯誤訊息:查無此廠商編號，並將廠商編號清空
+        if (string.IsNullOrWhiteSpace(vnrName))
+        {
+          DialogService.ShowMessage(Properties.Resources.P1901020000_VnrCodeNotFind);
+          Vm.ORI_VNR_NAME = null;
+        }
+        else
+        {
+          Vm.ORI_VNR_NAME = vnrName;
+        }
+      }
+      else
+      {
+        Vm.ORI_VNR_NAME = null;
+      }
+    }
+
+    private void TxtOriVnrCode_OnKeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.Key != Key.Enter) return;
+      TxtOriVnrCode_LostFocus(sender, e);
+    }
   }
 }

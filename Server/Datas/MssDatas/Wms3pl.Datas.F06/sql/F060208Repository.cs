@@ -105,6 +105,7 @@ namespace Wms3pl.Datas.F06
             var parameters = new List<object>
             {
                 procFlag,
+                DateTime.Now,
                 Current.Staff,
                 Current.StaffName,
                 dcCode,
@@ -114,11 +115,11 @@ namespace Wms3pl.Datas.F06
             };
 
             string sql = $@" UPDATE F060208 
-                            SET PROC_FLAG = @p0, UPD_DATE = dbo.GetSysDate(), UPD_STAFF=@p1, UPD_NAME=@p2
-                            WHERE DC_CODE = @p3
-                            AND GUP_CODE = @p4 
-                            AND CUST_CODE = @p5
-                            AND ORI_ORDER_CODE = @p6  
+                            SET PROC_FLAG = @p0, UPD_DATE = @p1, UPD_STAFF=@p2, UPD_NAME=@p3
+                            WHERE DC_CODE = @p4
+                            AND GUP_CODE = @p5
+                            AND CUST_CODE = @p6
+                            AND ORI_ORDER_CODE = @p7  
                             AND PROC_FLAG = 0
                             ";
 
@@ -136,10 +137,11 @@ namespace Wms3pl.Datas.F06
         new SqlParameter("@p4", gupCode) { SqlDbType = SqlDbType.VarChar },
         new SqlParameter("@p5", custCode) { SqlDbType = SqlDbType.VarChar },
         new SqlParameter("@p6", oriOrderCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p7", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
       };
       
       string sql = $@" UPDATE F060208 
-                         SET PROC_FLAG = @p0, UPD_DATE = dbo.GetSysDate(), UPD_STAFF=@p1, UPD_NAME=@p2
+                         SET PROC_FLAG = @p0, UPD_DATE = @p7, UPD_STAFF=@p1, UPD_NAME=@p2
                        WHERE DC_CODE = @p3
                          AND GUP_CODE = @p4
                          AND CUST_CODE = @p5
@@ -147,7 +149,7 @@ namespace Wms3pl.Datas.F06
                             ";
       sql += parameters.CombineSqlNotInParameters(" AND PROC_FLAG", excludeProcFlags, SqlDbType.Int);
 
-      ExecuteSqlCommand(sql, parameters.ToArray());
+      ExecuteSqlCommandWithSqlParameterSetDbType(sql, parameters.ToArray());
     }
 
         public int GetDataCnt(string dcCode, string gupCode, string custCode, string oriOrderCode, List<int> excludeProcFlags)
@@ -240,7 +242,7 @@ namespace Wms3pl.Datas.F06
 				sql += " AND CONTAINER_CODE =@p" + param.Count;
 				param.Add(new SqlParameter("@p" + param.Count, SqlDbType.VarChar) { Value = containerCode });
 			}
-			ExecuteSqlCommand(sql, param.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, param.ToArray());
 		}
 	}
 }

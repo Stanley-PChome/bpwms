@@ -410,10 +410,6 @@
       <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
       <Name>Wms3pl.DBCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
-      <Project>{D65C6F0B-8ED3-436D-A0C4-D452D4B54CC7}</Project>
-      <Name>Wms3pl.DBCore</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

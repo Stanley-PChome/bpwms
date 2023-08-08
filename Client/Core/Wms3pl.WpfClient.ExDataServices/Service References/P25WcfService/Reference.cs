@@ -1234,6 +1234,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
         
         private string BOX_SERIALk__BackingFieldField;
         
+        private string BUNDLE_SERIALLOCk__BackingFieldField;
+        
         private string CAMERA_NOk__BackingFieldField;
         
         private string CASE_NOk__BackingFieldField;
@@ -1251,6 +1253,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
         private string CUST_CODEk__BackingFieldField;
         
         private string CUST_NAMEk__BackingFieldField;
+        
+        private string CanDeletek__BackingFieldField;
         
         private string GUP_CODEk__BackingFieldField;
         
@@ -1360,6 +1364,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                 if ((object.ReferenceEquals(this.BOX_SERIALk__BackingFieldField, value) != true)) {
                     this.BOX_SERIALk__BackingFieldField = value;
                     this.RaisePropertyChanged("BOX_SERIALk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<BUNDLE_SERIALLOC>k__BackingField", IsRequired=true)]
+        public string BUNDLE_SERIALLOCk__BackingField {
+            get {
+                return this.BUNDLE_SERIALLOCk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BUNDLE_SERIALLOCk__BackingFieldField, value) != true)) {
+                    this.BUNDLE_SERIALLOCk__BackingFieldField = value;
+                    this.RaisePropertyChanged("BUNDLE_SERIALLOCk__BackingField");
                 }
             }
         }
@@ -1477,6 +1494,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                 if ((object.ReferenceEquals(this.CUST_NAMEk__BackingFieldField, value) != true)) {
                     this.CUST_NAMEk__BackingFieldField = value;
                     this.RaisePropertyChanged("CUST_NAMEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<CanDelete>k__BackingField", IsRequired=true)]
+        public string CanDeletek__BackingField {
+            get {
+                return this.CanDeletek__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CanDeletek__BackingFieldField, value) != true)) {
+                    this.CanDeletek__BackingFieldField = value;
+                    this.RaisePropertyChanged("CanDeletek__BackingField");
                 }
             }
         }
@@ -1816,6 +1846,627 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="P2502QueryData", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class P2502QueryData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ACTIVATEDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BATCH_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BOX_SERIALField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CAMERA_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CASE_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CELL_NUMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CLIENT_IPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> COMBIN_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CRT_DATEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CRT_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CUST_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CUST_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GUP_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GUP_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> IN_DATEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_SPECField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_UNITField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ORD_PROPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ORD_PROP_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PO_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PROCESS_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PUKField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RETAIL_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal ROWNUMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SEND_CUSTField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SERIAL_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string STATUSField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SYS_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TAG3GField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TYPEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UPD_DATEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UPD_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> VALID_DATEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VNR_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WMS_NOField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ACTIVATED {
+            get {
+                return this.ACTIVATEDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ACTIVATEDField, value) != true)) {
+                    this.ACTIVATEDField = value;
+                    this.RaisePropertyChanged("ACTIVATED");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BATCH_NO {
+            get {
+                return this.BATCH_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BATCH_NOField, value) != true)) {
+                    this.BATCH_NOField = value;
+                    this.RaisePropertyChanged("BATCH_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BOX_SERIAL {
+            get {
+                return this.BOX_SERIALField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BOX_SERIALField, value) != true)) {
+                    this.BOX_SERIALField = value;
+                    this.RaisePropertyChanged("BOX_SERIAL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CAMERA_NO {
+            get {
+                return this.CAMERA_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CAMERA_NOField, value) != true)) {
+                    this.CAMERA_NOField = value;
+                    this.RaisePropertyChanged("CAMERA_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CASE_NO {
+            get {
+                return this.CASE_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CASE_NOField, value) != true)) {
+                    this.CASE_NOField = value;
+                    this.RaisePropertyChanged("CASE_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CELL_NUM {
+            get {
+                return this.CELL_NUMField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CELL_NUMField, value) != true)) {
+                    this.CELL_NUMField = value;
+                    this.RaisePropertyChanged("CELL_NUM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CLIENT_IP {
+            get {
+                return this.CLIENT_IPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CLIENT_IPField, value) != true)) {
+                    this.CLIENT_IPField = value;
+                    this.RaisePropertyChanged("CLIENT_IP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> COMBIN_NO {
+            get {
+                return this.COMBIN_NOField;
+            }
+            set {
+                if ((this.COMBIN_NOField.Equals(value) != true)) {
+                    this.COMBIN_NOField = value;
+                    this.RaisePropertyChanged("COMBIN_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CRT_DATE {
+            get {
+                return this.CRT_DATEField;
+            }
+            set {
+                if ((this.CRT_DATEField.Equals(value) != true)) {
+                    this.CRT_DATEField = value;
+                    this.RaisePropertyChanged("CRT_DATE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CRT_NAME {
+            get {
+                return this.CRT_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CRT_NAMEField, value) != true)) {
+                    this.CRT_NAMEField = value;
+                    this.RaisePropertyChanged("CRT_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CUST_CODE {
+            get {
+                return this.CUST_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CUST_CODEField, value) != true)) {
+                    this.CUST_CODEField = value;
+                    this.RaisePropertyChanged("CUST_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CUST_NAME {
+            get {
+                return this.CUST_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CUST_NAMEField, value) != true)) {
+                    this.CUST_NAMEField = value;
+                    this.RaisePropertyChanged("CUST_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GUP_CODE {
+            get {
+                return this.GUP_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GUP_CODEField, value) != true)) {
+                    this.GUP_CODEField = value;
+                    this.RaisePropertyChanged("GUP_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GUP_NAME {
+            get {
+                return this.GUP_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GUP_NAMEField, value) != true)) {
+                    this.GUP_NAMEField = value;
+                    this.RaisePropertyChanged("GUP_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> IN_DATE {
+            get {
+                return this.IN_DATEField;
+            }
+            set {
+                if ((this.IN_DATEField.Equals(value) != true)) {
+                    this.IN_DATEField = value;
+                    this.RaisePropertyChanged("IN_DATE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_CODE {
+            get {
+                return this.ITEM_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_CODEField, value) != true)) {
+                    this.ITEM_CODEField = value;
+                    this.RaisePropertyChanged("ITEM_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_NAME {
+            get {
+                return this.ITEM_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_NAMEField, value) != true)) {
+                    this.ITEM_NAMEField = value;
+                    this.RaisePropertyChanged("ITEM_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_SPEC {
+            get {
+                return this.ITEM_SPECField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_SPECField, value) != true)) {
+                    this.ITEM_SPECField = value;
+                    this.RaisePropertyChanged("ITEM_SPEC");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_UNIT {
+            get {
+                return this.ITEM_UNITField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_UNITField, value) != true)) {
+                    this.ITEM_UNITField = value;
+                    this.RaisePropertyChanged("ITEM_UNIT");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ORD_PROP {
+            get {
+                return this.ORD_PROPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORD_PROPField, value) != true)) {
+                    this.ORD_PROPField = value;
+                    this.RaisePropertyChanged("ORD_PROP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ORD_PROP_NAME {
+            get {
+                return this.ORD_PROP_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORD_PROP_NAMEField, value) != true)) {
+                    this.ORD_PROP_NAMEField = value;
+                    this.RaisePropertyChanged("ORD_PROP_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PO_NO {
+            get {
+                return this.PO_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PO_NOField, value) != true)) {
+                    this.PO_NOField = value;
+                    this.RaisePropertyChanged("PO_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PROCESS_NO {
+            get {
+                return this.PROCESS_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PROCESS_NOField, value) != true)) {
+                    this.PROCESS_NOField = value;
+                    this.RaisePropertyChanged("PROCESS_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PUK {
+            get {
+                return this.PUKField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PUKField, value) != true)) {
+                    this.PUKField = value;
+                    this.RaisePropertyChanged("PUK");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RETAIL_CODE {
+            get {
+                return this.RETAIL_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RETAIL_CODEField, value) != true)) {
+                    this.RETAIL_CODEField = value;
+                    this.RaisePropertyChanged("RETAIL_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal ROWNUM {
+            get {
+                return this.ROWNUMField;
+            }
+            set {
+                if ((this.ROWNUMField.Equals(value) != true)) {
+                    this.ROWNUMField = value;
+                    this.RaisePropertyChanged("ROWNUM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SEND_CUST {
+            get {
+                return this.SEND_CUSTField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SEND_CUSTField, value) != true)) {
+                    this.SEND_CUSTField = value;
+                    this.RaisePropertyChanged("SEND_CUST");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SERIAL_NO {
+            get {
+                return this.SERIAL_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SERIAL_NOField, value) != true)) {
+                    this.SERIAL_NOField = value;
+                    this.RaisePropertyChanged("SERIAL_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string STATUS {
+            get {
+                return this.STATUSField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.STATUSField, value) != true)) {
+                    this.STATUSField = value;
+                    this.RaisePropertyChanged("STATUS");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SYS_NAME {
+            get {
+                return this.SYS_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SYS_NAMEField, value) != true)) {
+                    this.SYS_NAMEField = value;
+                    this.RaisePropertyChanged("SYS_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TAG3G {
+            get {
+                return this.TAG3GField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TAG3GField, value) != true)) {
+                    this.TAG3GField = value;
+                    this.RaisePropertyChanged("TAG3G");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TYPE {
+            get {
+                return this.TYPEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TYPEField, value) != true)) {
+                    this.TYPEField = value;
+                    this.RaisePropertyChanged("TYPE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UPD_DATE {
+            get {
+                return this.UPD_DATEField;
+            }
+            set {
+                if ((this.UPD_DATEField.Equals(value) != true)) {
+                    this.UPD_DATEField = value;
+                    this.RaisePropertyChanged("UPD_DATE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UPD_NAME {
+            get {
+                return this.UPD_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UPD_NAMEField, value) != true)) {
+                    this.UPD_NAMEField = value;
+                    this.RaisePropertyChanged("UPD_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> VALID_DATE {
+            get {
+                return this.VALID_DATEField;
+            }
+            set {
+                if ((this.VALID_DATEField.Equals(value) != true)) {
+                    this.VALID_DATEField = value;
+                    this.RaisePropertyChanged("VALID_DATE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VNR_NAME {
+            get {
+                return this.VNR_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VNR_NAMEField, value) != true)) {
+                    this.VNR_NAMEField = value;
+                    this.RaisePropertyChanged("VNR_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WMS_NO {
+            get {
+                return this.WMS_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WMS_NOField, value) != true)) {
+                    this.WMS_NOField = value;
+                    this.RaisePropertyChanged("WMS_NO");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="P25WcfService.P25WcfService")]
     public interface P25WcfService {
@@ -1868,7 +2519,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                     string poNo, 
                     string wmsNo, 
                     string status, 
-                    string itemType, 
+                    string OrdProp, 
                     string retailCode, 
                     System.Nullable<short> combinNo, 
                     string crtName, 
@@ -1889,7 +2540,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                     string poNo, 
                     string wmsNo, 
                     string status, 
-                    string itemType, 
+                    string OrdProp, 
                     string retailCode, 
                     System.Nullable<short> combinNo, 
                     string crtName, 
@@ -1903,6 +2554,50 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P25WcfService/DeleteSerialNo", ReplyAction="http://tempuri.org/P25WcfService/DeleteSerialNoResponse")]
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P25WcfService.ExecuteResult> DeleteSerialNoAsync(string gupCode, string custCode, string[] SnList);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P25WcfService/GetP2502QueryDatas", ReplyAction="http://tempuri.org/P25WcfService/GetP2502QueryDatasResponse")]
+        Wms3pl.WpfClient.ExDataServices.P25WcfService.P2502QueryData[] GetP2502QueryDatas(
+                    string gupCode, 
+                    string custCode, 
+                    string itemCode, 
+                    string serialNo, 
+                    string batchNo, 
+                    string cellNum, 
+                    string poNo, 
+                    string wmsNo, 
+                    string status, 
+                    string retailCode, 
+                    System.Nullable<short> combinNo, 
+                    string crtName, 
+                    string updSDate, 
+                    string updEDate, 
+                    string boxSerial, 
+                    string opItemType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P25WcfService/GetP2502QueryDatas", ReplyAction="http://tempuri.org/P25WcfService/GetP2502QueryDatasResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P25WcfService.P2502QueryData[]> GetP2502QueryDatasAsync(
+                    string gupCode, 
+                    string custCode, 
+                    string itemCode, 
+                    string serialNo, 
+                    string batchNo, 
+                    string cellNum, 
+                    string poNo, 
+                    string wmsNo, 
+                    string status, 
+                    string retailCode, 
+                    System.Nullable<short> combinNo, 
+                    string crtName, 
+                    string updSDate, 
+                    string updEDate, 
+                    string boxSerial, 
+                    string opItemType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P25WcfService/GetF2501Data", ReplyAction="http://tempuri.org/P25WcfService/GetF2501DataResponse")]
+        Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501WcfData GetF2501Data(string gupCode, string custCode, string serialNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P25WcfService/GetF2501Data", ReplyAction="http://tempuri.org/P25WcfService/GetF2501DataResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501WcfData> GetF2501DataAsync(string gupCode, string custCode, string serialNo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1991,7 +2686,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                     string poNo, 
                     string wmsNo, 
                     string status, 
-                    string itemType, 
+                    string OrdProp, 
                     string retailCode, 
                     System.Nullable<short> combinNo, 
                     string crtName, 
@@ -1999,7 +2694,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                     string crtEDate, 
                     string updSDate, 
                     string updEDate) {
-            return base.Channel.Get2501QueryData(gupCode, custCode, itemCode, boxSerial, batchNo, serialNo, cellNum, poNo, wmsNo, status, itemType, retailCode, combinNo, crtName, crtSDate, crtEDate, updSDate, updEDate);
+            return base.Channel.Get2501QueryData(gupCode, custCode, itemCode, boxSerial, batchNo, serialNo, cellNum, poNo, wmsNo, status, OrdProp, retailCode, combinNo, crtName, crtSDate, crtEDate, updSDate, updEDate);
         }
         
         public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501QueryData[]> Get2501QueryDataAsync(
@@ -2013,7 +2708,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                     string poNo, 
                     string wmsNo, 
                     string status, 
-                    string itemType, 
+                    string OrdProp, 
                     string retailCode, 
                     System.Nullable<short> combinNo, 
                     string crtName, 
@@ -2021,7 +2716,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
                     string crtEDate, 
                     string updSDate, 
                     string updEDate) {
-            return base.Channel.Get2501QueryDataAsync(gupCode, custCode, itemCode, boxSerial, batchNo, serialNo, cellNum, poNo, wmsNo, status, itemType, retailCode, combinNo, crtName, crtSDate, crtEDate, updSDate, updEDate);
+            return base.Channel.Get2501QueryDataAsync(gupCode, custCode, itemCode, boxSerial, batchNo, serialNo, cellNum, poNo, wmsNo, status, OrdProp, retailCode, combinNo, crtName, crtSDate, crtEDate, updSDate, updEDate);
         }
         
         public Wms3pl.WpfClient.ExDataServices.P25WcfService.ExecuteResult DeleteSerialNo(string gupCode, string custCode, string[] SnList) {
@@ -2030,6 +2725,54 @@ namespace Wms3pl.WpfClient.ExDataServices.P25WcfService {
         
         public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P25WcfService.ExecuteResult> DeleteSerialNoAsync(string gupCode, string custCode, string[] SnList) {
             return base.Channel.DeleteSerialNoAsync(gupCode, custCode, SnList);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P25WcfService.P2502QueryData[] GetP2502QueryDatas(
+                    string gupCode, 
+                    string custCode, 
+                    string itemCode, 
+                    string serialNo, 
+                    string batchNo, 
+                    string cellNum, 
+                    string poNo, 
+                    string wmsNo, 
+                    string status, 
+                    string retailCode, 
+                    System.Nullable<short> combinNo, 
+                    string crtName, 
+                    string updSDate, 
+                    string updEDate, 
+                    string boxSerial, 
+                    string opItemType) {
+            return base.Channel.GetP2502QueryDatas(gupCode, custCode, itemCode, serialNo, batchNo, cellNum, poNo, wmsNo, status, retailCode, combinNo, crtName, updSDate, updEDate, boxSerial, opItemType);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P25WcfService.P2502QueryData[]> GetP2502QueryDatasAsync(
+                    string gupCode, 
+                    string custCode, 
+                    string itemCode, 
+                    string serialNo, 
+                    string batchNo, 
+                    string cellNum, 
+                    string poNo, 
+                    string wmsNo, 
+                    string status, 
+                    string retailCode, 
+                    System.Nullable<short> combinNo, 
+                    string crtName, 
+                    string updSDate, 
+                    string updEDate, 
+                    string boxSerial, 
+                    string opItemType) {
+            return base.Channel.GetP2502QueryDatasAsync(gupCode, custCode, itemCode, serialNo, batchNo, cellNum, poNo, wmsNo, status, retailCode, combinNo, crtName, updSDate, updEDate, boxSerial, opItemType);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501WcfData GetF2501Data(string gupCode, string custCode, string serialNo) {
+            return base.Channel.GetF2501Data(gupCode, custCode, serialNo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P25WcfService.F2501WcfData> GetF2501DataAsync(string gupCode, string custCode, string serialNo) {
+            return base.Channel.GetF2501DataAsync(gupCode, custCode, serialNo);
         }
     }
 }

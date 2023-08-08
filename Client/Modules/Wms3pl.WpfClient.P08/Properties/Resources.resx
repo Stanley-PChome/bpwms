@@ -2250,4 +2250,28 @@ Barcode</value>
   <data name="CancelArriveRecord" xml:space="preserve">
     <value>取消到站紀錄</value>
   </data>
+  <data name="BoxDetail" xml:space="preserve">
+    <value>箱內明細</value>
+  </data>
+  <data name="CloseBox" xml:space="preserve">
+    <value>關箱</value>
+  </data>
+  <data name="DataGridRowNum" xml:space="preserve">
+    <value>項次</value>
+  </data>
+  <data name="MoveOutTarget" xml:space="preserve">
+    <value>目的地</value>
+  </data>
+  <data name="OutContainerCode" xml:space="preserve">
+    <value>跨庫箱號</value>
+  </data>
+  <data name="PickContainer" xml:space="preserve">
+    <value>揀貨容器</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>查詢</value>
+  </data>
+  <data name="TotalPCS" xml:space="preserve">
+    <value>總PCS數</value>
+  </data>
 </root>

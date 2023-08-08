@@ -65,7 +65,7 @@ namespace Wms3pl.Datas.F91
 							WHERE DC_CODE = @p6
 							AND DEVICE_IP = @p7";
 
-			ExecuteSqlCommand(sql, param.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, param.ToArray());
 		}
 	}
 }

@@ -122,6 +122,7 @@
       <xs:element name="_x003C_A_ARRIVAL_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
       <xs:element name="_x003C_CAN_FAST_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_CHECK_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CLOSE_BY_BOXNO_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_COLLECT_AMT_x003E_k__BackingField" nillable="true" type="xs:decimal" />
       <xs:element name="_x003C_COMPLETE_TIME_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
       <xs:element name="_x003C_CONTAINER_B_CNT_x003E_k__BackingField" nillable="true" type="xs:int" />
@@ -159,6 +160,7 @@
       <xs:element name="_x003C_NO_AUDIT_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_NO_DELV_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_NO_LOADING_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NO_SPEC_REPROTS_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_NP_FLAG_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_OPERATOR_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ORDER_CRT_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
@@ -167,6 +169,9 @@
       <xs:element name="_x003C_ORD_PROP_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ORD_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_PACKING_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PACK_CANCEL_TIME_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_PACK_FINISH_TIME_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_PACK_START_TIME_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
       <xs:element name="_x003C_PICK_ORD_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_PICK_TIME_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_PRINT_BOX_x003E_k__BackingField" nillable="true" type="xs:string" />

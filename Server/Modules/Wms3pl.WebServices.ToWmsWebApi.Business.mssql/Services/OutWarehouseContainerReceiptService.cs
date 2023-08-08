@@ -397,8 +397,8 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 					MAKE_NO = x.F151002.MAKE_NO,
 					QTY = x.QTY,
 					BIN_CODE = x.BIN_CODE,
-					SERIAL_NO_LIST = x.SERIALNUMLIST
-				}).ToList();
+          SERIAL_NO_LIST = x.SERIALNUMLIST.Split(',').ToList(),
+        }).ToList();
 			var containerExecuteResult = _containerService.CreateContainer(containerParams);
 			return containerExecuteResult.First();
 		}

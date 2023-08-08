@@ -223,7 +223,7 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
         excelReportDataSource.Data = detailDataTable;
         excelExportService.AddExportReportSource(excelReportDataSource);
 
-        var filepath = $"{ConsoleHelper.FilePath}{importData.First().DC_CODE}_{importData.First().GUP_CODE}_{importData.First().CUST_CODE}";
+        var filepath = $"{ConsoleHelper.ExcelFilePath}{importData.First().DC_CODE}_{importData.First().GUP_CODE}_{importData.First().CUST_CODE}";
 
         if (!Directory.Exists(filepath))
           Directory.CreateDirectory(filepath);

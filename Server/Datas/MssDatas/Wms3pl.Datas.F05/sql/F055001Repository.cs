@@ -58,7 +58,7 @@ namespace Wms3pl.Datas.F05
                                C.RETAIL_NAME,
                                C.CUST_NAME,
                                C.CHANNEL,
-                               CONVERT(varchar, dbo.GetSysDate(), 120) AS PRINT_TIME,
+                               CONVERT(varchar, @p0, 120) AS PRINT_TIME,
                                I.CONSIGN_ID,I.MEMO AS CONSIGN_MEMO,I.CONSIGN_NAME,
                                C.RETAIL_DELV_DATE,
                                C.RETAIL_RETURN_DATE,
@@ -215,13 +215,14 @@ namespace Wms3pl.Datas.F05
                         	   LEFT JOIN F190905 P ON P.DC_CODE = C.DC_CODE AND P.GUP_CODE = C.GUP_CODE AND P.CUST_CODE = C.CUST_CODE AND P.ALL_ID = C.ALL_ID AND P.CHANNEL = '00' AND P.SUBCHANNEL = '00'
                              LEFT JOIN F194710 Q ON Q.DC_CODE = C.DC_CODE AND Q.ALL_ID= C.ALL_ID AND Q.LOG_ID = E.DELIVID_SEQ_NAME AND Q.GUP_CODE = C.GUP_CODE AND Q.CUST_CODE = C.CUST_CODE {sql3}
                              LEFT JOIN F194710 R ON R.DC_CODE = C.DC_CODE AND R.ALL_ID= C.ALL_ID AND R.LOG_ID = E.DELIVID_SEQ_NAME AND R.GUP_CODE = '00' AND R.CUST_CODE='00' {sql3}
-                         WHERE     A.DC_CODE = @p0
-                               AND A.GUP_CODE = @p1
-                               AND A.CUST_CODE = @p2
-                               AND A.WMS_ORD_NO = @p3 ";
+                         WHERE     A.DC_CODE = @p1
+                               AND A.GUP_CODE = @p2
+                               AND A.CUST_CODE = @p3
+                               AND A.WMS_ORD_NO = @p4 ";
 
             var parameters = new List<object>
             {
+              DateTime.Now,
               dcCode,
               gupCode,
               custCode,
@@ -230,7 +231,7 @@ namespace Wms3pl.Datas.F05
 
             if (!string.IsNullOrEmpty(packageBoxNo))
             {
-                sql += "AND A.PACKAGE_BOX_NO = @p4 ";
+                sql += "AND A.PACKAGE_BOX_NO = @p5 ";
                 parameters.Add(packageBoxNo);
             }
 
@@ -308,6 +309,7 @@ namespace Wms3pl.Datas.F05
 
             var parameters = new List<object>
             {
+                DateTime.Now,
                 Current.Staff,
                 Current.StaffName,
                 consignNo,
@@ -318,14 +320,14 @@ namespace Wms3pl.Datas.F05
             };
             var sql = $@" UPDATE F055001
                        SET 
-									UPD_DATE =dbo.GetSysDate(),
-									UPD_STAFF = @p0, 
-									UPD_NAME = @p1,
-									PAST_NO = @p2
-							WHERE   	DC_CODE =@p3
-									AND GUP_CODE =@p4
-									AND CUST_CODE =@p5
-									AND WMS_ORD_NO = @p6
+									UPD_DATE = @p0,
+									UPD_STAFF = @p1, 
+									UPD_NAME = @p2,
+									PAST_NO = @p3
+							WHERE   	DC_CODE = @p4
+									AND GUP_CODE = @p5
+									AND CUST_CODE = @p6
+									AND WMS_ORD_NO = @p7
 						
               ";
             ExecuteSqlCommand(sql, parameters.ToArray());
@@ -363,9 +365,10 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<HomeDeliveryOrderNumberData>(sql, parms.ToArray()).FirstOrDefault();
 		}
 
-		public void UpdateToAudit(string dcCode,string gupCode,string custCode,string wmsOrdNo,short packageBoxNo,string status,DateTime auditTime,string auditStaff,string auditName,string boxNum =null)
-		{
-			var parms = new List<SqlParameter>
+    public void UpdateToAudit(string dcCode, string gupCode, string custCode, string wmsOrdNo, short packageBoxNo, string status, DateTime auditTime, string auditStaff,
+      string auditName, string boxNum = null, string clientPc = null, string SorterCode = null)
+    {
+      var parms = new List<SqlParameter>
 			{
 				new SqlParameter("@p0",status){SqlDbType = System.Data.SqlDbType.VarChar},
 				new SqlParameter("@p1",auditTime){SqlDbType = System.Data.SqlDbType.DateTime2},
@@ -376,22 +379,32 @@ namespace Wms3pl.Datas.F05
 				new SqlParameter("@p6",custCode){SqlDbType = System.Data.SqlDbType.VarChar},
 				new SqlParameter("@p7",wmsOrdNo){SqlDbType = System.Data.SqlDbType.VarChar},
 				new SqlParameter("@p8",packageBoxNo){SqlDbType = System.Data.SqlDbType.SmallInt},
-			};
-			var boxNumSql = string.Empty;
+      };
+			var optionalUpdateField = string.Empty;
 			if (!string.IsNullOrEmpty(boxNum))
 			{
-				boxNumSql = ",BOX_NUM = @p" + parms.Count;
+        optionalUpdateField += ",BOX_NUM = @p" + parms.Count;
 				parms.Add(new SqlParameter("@p" + parms.Count, boxNum) { SqlDbType = System.Data.SqlDbType.VarChar });
 			}
+      if (!string.IsNullOrEmpty(clientPc))
+      {
+        optionalUpdateField += ",AUDIT_CLIENT_PC = @p" + parms.Count;
+        parms.Add(new SqlParameter("@p" + parms.Count, clientPc) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
+      if (!string.IsNullOrEmpty(SorterCode))
+      {
+        optionalUpdateField += ",SORTER_CODE = @p" + parms.Count;
+        parms.Add(new SqlParameter("@p" + parms.Count, SorterCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 
-			var sql = $@" UPDATE F055001 
-                    SET STATUS = @p0,AUDIT_DATE = @p1,AUDIT_STAFF = @p2, AUDIT_NAME = @p3 {boxNumSql} 
+      var sql = $@" UPDATE F055001 
+                    SET STATUS = @p0,AUDIT_DATE = @p1,AUDIT_STAFF = @p2, AUDIT_NAME = @p3 {optionalUpdateField}
                     WHERE DC_CODE = @p4
                       AND GUP_CODE = @p5
                       AND CUST_CODE = @p6
                       AND WMS_ORD_NO = @p7
                       AND PACKAGE_BOX_NO = @p8 ";
-			ExecuteSqlCommand(sql, parms.ToArray());
+			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
 	}
 }

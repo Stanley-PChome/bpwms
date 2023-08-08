@@ -85,19 +85,6 @@ namespace Wms3pl.Datas.F19
             return result;
         }
 
-        public F1980 GetF1980ByLocCode(string dcCode, string locCode)
-        {
-            var f1980s = _db.F1980s;
-            var f1912s = _db.F1912s.Where(x => x.DC_CODE == dcCode
-                                       && x.LOC_CODE == locCode);
-
-            var result = from A in f1980s
-                         join B in f1912s on new { A.DC_CODE, A.WAREHOUSE_ID } equals new { B.DC_CODE, B.WAREHOUSE_ID }
-                         select A;
-
-            return result.FirstOrDefault();
-        }
-
         public IQueryable<WareHouseTmprTypeByLocCode> GetWareHouseTmprTypeByLocCode(string dcCode, List<string> locCodes)
         {
             var result = from A in _db.F1980s.AsNoTracking()
@@ -131,13 +118,6 @@ namespace Wms3pl.Datas.F19
                          }).Distinct();
 
             return result.AsNoTracking();
-        }
-
-        public IQueryable<F1980> GetDatas(string dcCode, List<string> warehouseIds)
-        {
-            var result = _db.F1980s.Where(x => x.DC_CODE == dcCode
-                                        && warehouseIds.Contains(x.WAREHOUSE_ID));
-            return result;
         }
 
         public IQueryable<WareHouseTmprTypeByLocCode> GetWareHouseTmprTypeByLocCodes(List<string> dcCodes, List<string> locCodes)

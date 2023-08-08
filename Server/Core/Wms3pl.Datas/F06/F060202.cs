@@ -98,7 +98,7 @@
         public string OPERATOR { get; set; }
 
         /// <summary>
-        /// 是否異常(0:正常  1:異常)
+        /// 是否異常(0:正常  1:異常 是否異常(0:正常  1:異常 2:系統報缺)
         /// </summary>
         [Required]
         public int ISEXCEPTION { get; set; }

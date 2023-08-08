@@ -169,24 +169,6 @@ namespace Wms3pl.Datas.F19
 			return result;
 		}
 
-		/// <summary>
-		/// 取得人員名稱
-		/// </summary>
-		/// <param name="accNo">帳號</param>
-		/// <returns></returns>
-		public string GetEmpName(string accNo)
-		{
-			var result = _db.F1924s.AsNoTracking().Where(x => x.EMP_ID == accNo)
-																						.Select(x => x.EMP_NAME).FirstOrDefault();
-			if (string.IsNullOrEmpty(result))
-				result = "支援人員";
 
-			return result;
-		}
-
-		public IQueryable<F1924> GetDatasForEmpIds(List<string> empIds)
-		{
-			return _db.F1924s.AsNoTracking().Where(x => empIds.Contains(x.EMP_ID) && x.ISDELETED == "0");
-		}
 	}
 }

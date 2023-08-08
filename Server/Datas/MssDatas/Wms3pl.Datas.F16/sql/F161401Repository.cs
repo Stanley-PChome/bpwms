@@ -27,8 +27,10 @@ namespace Wms3pl.Datas.F16
 									 WHERE A.DC_CODE = @p0
 										 AND A.RETURN_DATE =@p1
 										 AND A.STATUS <>'2'
-									   AND DateDiff(MINUTE, dbo.GetSysDate(), A.CRT_DATE) >30 ";
-			var param = new object[] { dcCode, returnDate };
+									   AND DateDiff(MINUTE, @p2, A.CRT_DATE) >30 ";
+
+			var param = new object[] { dcCode, returnDate, DateTime.Now };
+
 			return SqlQuery<DcWmsNoStatusItem>(sql, param);
 		}
 

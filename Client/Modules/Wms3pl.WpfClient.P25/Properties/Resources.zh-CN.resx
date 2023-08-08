@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ACTIVATED" xml:space="preserve">
-    <value>序号开通状态</value>
+    <value>不良品序号</value>
   </data>
   <data name="BatchNo" xml:space="preserve">
     <value>储值卡盒号</value>
@@ -328,7 +328,7 @@
     <value>业主,货主,商品品号,商品名称,商品规格</value>
   </data>
   <data name="P2502010000_ViewModel_Title2" xml:space="preserve">
-    <value>,序号状态,序号,序号类别</value>
+    <value>,序号状态,序号</value>
   </data>
   <data name="P2502010000_ViewModel_Title3" xml:space="preserve">
     <value>,效期</value>
@@ -337,13 +337,13 @@
     <value>,PO单号,系统单号,进货日期,作业类别</value>
   </data>
   <data name="P2502010000_ViewModel_Title5" xml:space="preserve">
-    <value>,客户代号,序号开通状态,加工单号</value>
+    <value>,不良品序号,加工单号</value>
   </data>
   <data name="P2502010000_ViewModel_Title6" xml:space="preserve">
-    <value>,供应商,系统商,摄影机编号,电脑编号,单位</value>
+    <value>,供应商,电脑编号,单位</value>
   </data>
   <data name="P2502010000_ViewModel_Title7" xml:space="preserve">
-    <value>,序号是否已上传给客户,建立日期,建立人员,异动日期,异动人员\n</value>
+    <value>,建立日期,建立人员,异动日期,异动人员</value>
   </data>
   <data name="P2502020000_ViewModel_SearchCondition_Required" xml:space="preserve">
     <value>商品编号/序号/门号/系统单号/PO单号/储值卡盒号/盒号 至少输入一项查询条件</value>

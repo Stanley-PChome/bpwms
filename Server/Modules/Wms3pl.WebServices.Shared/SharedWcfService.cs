@@ -235,7 +235,7 @@ namespace Wms3pl.WebServices.Shared
       var f020501 = f020501Repo.Find(x => x.ID == f020501Id);
       try
       {
-        var lockRes = service.LockContainerProcess(f020501);
+        var lockRes = service.LockContainerProcess(f020501.CONTAINER_CODE);
         if (!lockRes.IsSuccessed)
           return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.ContainerIsProcessingTryLater, f020501.CONTAINER_CODE) };
 

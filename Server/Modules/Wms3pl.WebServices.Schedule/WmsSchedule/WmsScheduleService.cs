@@ -14,6 +14,7 @@ using Wms3pl.WebServices.Schedule.ReplenishStock.Services;
 using Wms3pl.WebServices.Schedule.S00.Services;
 using Wms3pl.WebServices.Schedule.S19.Services;
 using Wms3pl.WebServices.Schedule.WmsSchedule;
+using Wms3pl.WebServices.Shared.ApiService;
 using Wms3pl.WebServices.Shared.ServiceEntites;
 using Wms3pl.WebServices.Shared.Services;
 using Wms3pl.WebServices.Transaction.T05;
@@ -37,8 +38,7 @@ namespace Wms3pl.WebServices.Schedule
       var result = pickServie.AutoCreatePick(source);
       if (result.IsSuccessed)
       {
-        wmsTransation.Complete();
-        var checkResult = pickServie.AfterCreatePickCheckOrder(result.ProcF050306s, out CanceledOrders);
+        var checkResult = pickServie.AfterCreatePickCheckOrder(out CanceledOrders);
         if (!checkResult.IsSuccessed)
           return new ApiResult { IsSuccessed = checkResult.IsSuccessed, MsgCode = "", MsgContent = checkResult.Message };
         wmsTransation.Complete();
@@ -262,29 +262,38 @@ namespace Wms3pl.WebServices.Schedule
     public static ApiResult DailySettle(WmsScheduleParam param)
     {
       var srv = new SettleService();
-      srv.ProcessApiDatas(param);
-      return new ApiResult() { IsSuccessed = true };
+      return srv.ProcessApiDatas(param);
     }
 
     public static ApiResult ItemTurnoverRate()
     {
-      var srv = new RefineService();
-      srv.ItemTurnoverRate();
-      return new ApiResult() { IsSuccessed = true };
+			return ApiLogHelper.CreateApiLogInfo("0", "0", "0", "ItemTurnoverRate", null, () =>
+			{
+				var srv = new RefineService();
+				srv.ItemTurnoverRate();
+				return new ApiResult() { IsSuccessed = true, MsgCode = "10001", MsgContent = "商品低周轉統計完成" };
+				}, true);
+
     }
 
     public static ApiResult MoveGoldLocs()
     {
-      var srv = new RefineService();
-      srv.MoveGoldLocs();
-      return new ApiResult() { IsSuccessed = true };
+			return ApiLogHelper.CreateApiLogInfo("0", "0", "0", "MoveGoldLocs", null, () =>
+			{
+				var srv = new RefineService();
+				srv.MoveGoldLocs();
+				return new ApiResult() { IsSuccessed = true, MsgCode = "10001", MsgContent = "一般揀貨轉黃金揀貨區完成" };
+			}, true);
     }
 
     public static ApiResult RemoveGoldLoc()
     {
-      var srv = new RefineService();
-      srv.RemoveGoldLoc();
-      return new ApiResult() { IsSuccessed = true };
+			return ApiLogHelper.CreateApiLogInfo("0", "0", "0", "RemoveGoldLoc", null, () =>
+			{
+				var srv = new RefineService();
+				srv.RemoveGoldLoc();
+				return new ApiResult() { IsSuccessed = true, MsgCode = "10001", MsgContent = "黃金揀貨轉一般揀貨區" };
+			}, true);
     }
     /// <summary>
     /// 使用上次計算儲位容積時間更新儲位容積
@@ -297,5 +306,15 @@ namespace Wms3pl.WebServices.Schedule
       return service.ExecUpdateLocVolumnByCalvolumnTime(req);
     }
 
-  }
+
+		/// <summary>
+		/// 跨庫調撥出貨分配扣帳排程
+		/// </summary>
+		/// <returns></returns>
+		public static ApiResult MoveOutShipOrderDebit()
+		{
+			var service = new ShipDebitService();
+			return service.ExecMoveOutShipOrderDebit();
+		}
+	}
 }

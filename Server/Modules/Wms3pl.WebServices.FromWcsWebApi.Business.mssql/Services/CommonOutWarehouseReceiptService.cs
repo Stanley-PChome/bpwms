@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using Wms3pl.Datas.F05;
 using Wms3pl.Datas.F06;
 using Wms3pl.Datas.F07;
@@ -121,7 +122,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 		/// <summary>
 		/// 序號資料清單
 		/// </summary>
-		private List<string> _serialNoList;
+		private List<F2501> _serialNoList;
 
 		/// <summary>
 		/// 失敗出庫單數
@@ -252,16 +253,17 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
       {
         // 取得出貨單資料
         _f050801List = f050801Repo.GetDatasNoTracking(dcCode, gupCode, custCode, ordNos).ToList();
-        // 取得揀貨明細By 出貨單號
-        _f060202ListByO = f051202Repo.GetDatasByOrdNos(dcCode, gupCode, custCode, ordNos).ToList();
+				var pickNoList = _f060201List.Select(x => x.PICK_NO).ToList();
+				// 取得揀貨明細
+				_f060202ListByO = f051202Repo.GetDataByPickNos(dcCode, gupCode, custCode, pickNoList).ToList();
       }
 
       if (pickNos.Any())
       {
         // 取得揀貨單資料
         _f051201List = f051201Repo.GetDatasNoTracking(dcCode, gupCode, custCode, pickNos).ToList();
-        // 取得揀貨明細By 揀貨單號
-        _f060202ListByP = f051203Repo.GetDatasByPickNos(dcCode, gupCode, custCode, pickNos).ToList();
+				// 取得揀貨彙總明細
+				_f060202ListByP = f051203Repo.GetDatasByPickNos(dcCode, gupCode, custCode, pickNos).ToList();
       }
 
       // 取得參數序號資料
@@ -270,10 +272,10 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
       if (CommonService == null)
         CommonService = new CommonService();
 
-      _serialNoList = new List<string>();
+      _serialNoList = new List<F2501>();
       // 取得序號資料
       if (itemSerialNos.Any())
-        _serialNoList = CommonService.GetItemSerialList(gupCode, custCode, itemSerialNos).Select(x => x.SERIAL_NO).ToList();
+        _serialNoList = CommonService.GetItemSerialList(gupCode, custCode, itemSerialNos).ToList();
 			#endregion
 
 			#region Foreach [出庫單列表]
@@ -284,190 +286,232 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 			// Foreach[出庫單列表] in <參數4> 
 			receiptList.ForEach(receipt =>
 			{
-				var currRes = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSAPI_OW, dcCode, gupCode, custCode, "OutWarehouseReceipt_Record", receipt, () =>
-								 {
-									 if (!string.IsNullOrWhiteSpace(receipt.OrderCode) && successedReceiptCodes.Contains(receipt.OrderCode))
-									 {
-										 var sameWmsNoErrRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20041", MsgContent = string.Format(tacService.GetMsg("20041"), receipt.OrderCode) } };
-										 data.AddRange(sameWmsNoErrRes);
-										 return new ApiResult { IsSuccessed = false, MsgCode = "20041", MsgContent = string.Format(tacService.GetMsg("20041"), receipt.OrderCode), Data = sameWmsNoErrRes };
-									 }
-									 else
-									 {
-										 var f060201 = _f060201List.Where(x => x.DOC_ID == receipt.OrderCode).FirstOrDefault();
+        var currRes = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSAPI_OW, dcCode, gupCode, custCode, "OutWarehouseReceipt_Record", receipt, () =>
+        {
+          if (!string.IsNullOrWhiteSpace(receipt.OrderCode) && successedReceiptCodes.Contains(receipt.OrderCode))
+          {
+            var sameWmsNoErrRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20041", MsgContent = string.Format(tacService.GetMsg("20041"), receipt.OrderCode) } };
+            data.AddRange(sameWmsNoErrRes);
+            return new ApiResult { IsSuccessed = false, MsgCode = "20041", MsgContent = string.Format(tacService.GetMsg("20041"), receipt.OrderCode), Data = sameWmsNoErrRes };
+          }
+          else
+          {
+            var f060201 = _f060201List.Where(x => x.DOC_ID == receipt.OrderCode).FirstOrDefault();
 
-										 if (f060201 == null)
-										 {
-											 var wmsNoErrRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20040", MsgContent = string.Format(tacService.GetMsg("20040"), receipt.OrderCode) } };
-											 data.AddRange(wmsNoErrRes);
-											 return new ApiResult { IsSuccessed = false, MsgCode = "20040", MsgContent = string.Format(tacService.GetMsg("20040"), receipt.OrderCode), Data = wmsNoErrRes };
-										 }
-										 else
-										 {
-											 var wmsNo = f060201.WMS_NO;
+            if (f060201 == null)
+            {
+              var wmsNoErrRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20040", MsgContent = string.Format(tacService.GetMsg("20040"), receipt.OrderCode) } };
+              data.AddRange(wmsNoErrRes);
+              return new ApiResult { IsSuccessed = false, MsgCode = "20040", MsgContent = string.Format(tacService.GetMsg("20040"), receipt.OrderCode), Data = wmsNoErrRes };
+            }
+            else
+            {
+              var wmsNo = f060201.WMS_NO;
 
-											 if (_f060202List.Where(x => x.DOC_ID == receipt.OrderCode).Any())
-											 {
-												 var dataFinishRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20049", MsgContent = string.Format(tacService.GetMsg("20049"), receipt.OrderCode) } };
-												 data.AddRange(dataFinishRes);
-												 return new ApiResult { IsSuccessed = false, MsgCode = "20040", MsgContent = string.Format(tacService.GetMsg("20049"), receipt.OrderCode), Data = dataFinishRes };
-											 }
-											 else
-											 {
-												 if (receipt.Status == 0)
-												 {
-													 // 取得出庫任務資料
-													 F060201 newF060201 = _f060201List.Where(x => x.DC_CODE == dcCode &&
-																													x.GUP_CODE == gupCode &&
-																													x.CUST_CODE == custCode &&
-																													x.DOC_ID == receipt.OrderCode &&
-																													x.STATUS == "2").FirstOrDefault();
+              if (_f060202List.Where(x => x.DOC_ID == receipt.OrderCode).Any())
+              {
+                var dataFinishRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20049", MsgContent = string.Format(tacService.GetMsg("20049"), receipt.OrderCode) } };
+                data.AddRange(dataFinishRes);
+                return new ApiResult { IsSuccessed = false, MsgCode = "20040", MsgContent = string.Format(tacService.GetMsg("20049"), receipt.OrderCode), Data = dataFinishRes };
+              }
+              else
+              {
+                if (receipt.Status == 0)
+                {
+                  // 取得出庫任務資料
+                  F060201 newF060201 = _f060201List.Where(x => x.DC_CODE == dcCode &&
+                                                 x.GUP_CODE == gupCode &&
+                                                 x.CUST_CODE == custCode &&
+                                                 x.DOC_ID == receipt.OrderCode &&
+                                                 x.STATUS == "2").FirstOrDefault();
 
-													 if (newF060201 == null)
-													 {
-														 var dataNotExistRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20962", MsgContent = string.Format(tacService.GetMsg("20962"), receipt.OrderCode) } };
-														 data.AddRange(dataNotExistRes);
-														 return new ApiResult { IsSuccessed = false, MsgCode = "20962", MsgContent = string.Format(tacService.GetMsg("20962"), receipt.OrderCode), Data = dataNotExistRes };
-													 }
-													 else
-													 {
-														 var sharedService = new SharedService(wmsTransation);
-														 // 複製F060201 產生新的入庫任務資料(新增一筆新的F060201但DOC_ID產生新的編號，狀態為0)
-														 sharedService.CreateF060201(dcCode, gupCode, custCode, wmsNo, f060201.PICK_NO, f060201.WAREHOUSE_ID);
-														 // 將原F060101.STATUS 更新為4(中介回傳派發失敗)
-														 f060201.STATUS = "4";
-														 f060201Repo.Update(f060201);
-														 wmsTransation.Complete();
+                  if (newF060201 == null)
+                  {
+                    var dataNotExistRes = new List<ApiResponse> { new ApiResponse { No = receipt.OrderCode, MsgCode = "20962", MsgContent = string.Format(tacService.GetMsg("20962"), receipt.OrderCode) } };
+                    data.AddRange(dataNotExistRes);
+                    return new ApiResult { IsSuccessed = false, MsgCode = "20962", MsgContent = string.Format(tacService.GetMsg("20962"), receipt.OrderCode), Data = dataNotExistRes };
+                  }
+                  else
+                  {
+                    var sharedService = new SharedService(wmsTransation);
+                    // 複製F060201 產生新的入庫任務資料(新增一筆新的F060201但DOC_ID產生新的編號，狀態為0)
+                    sharedService.CreateF060201(dcCode, gupCode, custCode, wmsNo, f060201.PICK_NO, f060201.WAREHOUSE_ID);
+                    // 將原F060101.STATUS 更新為4(中介回傳派發失敗)
+                    f060201.STATUS = "4";
+                    f060201Repo.Update(f060201);
+                    wmsTransation.Complete();
 
-														 // 記錄成功的單號，用以再有同單號的不處理
-														 successedReceiptCodes.Add(receipt.OrderCode);
-													 }
-												 }
-												 else if (receipt.Status == 3)
-												 {
-                           //如果是系統報缺無法綁箱，就把ContainerList/SkuList清空，避免檢查＆寫入
-                           if (receipt.IsException.HasValue && receipt.IsException.Value == 2)
-                           {
-                             receipt.ContainerList = new List<OutWarehouseReceiptContainerModel>();
-                           }
-                           // 出庫單檢核
-                           var res1 = CheckOutWarehouseReceipt(dcCode, gupCode, custCode, wmsNo, receipt, f060201);
+                    // 記錄成功的單號，用以再有同單號的不處理
+                    successedReceiptCodes.Add(receipt.OrderCode);
+                  }
+                }
+                else if (receipt.Status == 3)
+                {
+                  //如果是系統報缺無法綁箱，就把ContainerList/SkuList清空，避免檢查＆寫入
+                  if (receipt.IsException.HasValue && receipt.IsException.Value == 2)
+                  {
+                    receipt.ContainerList = new List<OutWarehouseReceiptContainerModel>();
+                  }
+                  // 出庫單檢核
+                  var res1 = CheckOutWarehouseReceipt(dcCode, gupCode, custCode, wmsNo, receipt, f060201);
 
-													 if (!res1.IsSuccessed)
-													 {
-														 var currDatas = (List<ApiResponse>)res1.Data;
-														 data.AddRange(currDatas);
+                  if (!res1.IsSuccessed)
+                  {
+                    var currDatas = (List<ApiResponse>)res1.Data;
+                    data.AddRange(currDatas);
 
-														 if (_IsAddF075106DocIdList.Contains(receipt.OrderCode))
-														 {
-															 f075106Repo.DelF075106ByKey(dcCode, receipt.OrderCode);
-															 _IsAddF075106DocIdList = _IsAddF075106DocIdList.Where(x => x != receipt.OrderCode).ToList();
-														 }
-														 wmsTransation.Complete();
-														 return new ApiResult { IsSuccessed = false, MsgCode = "99999", MsgContent = "檢核失敗", Data = currDatas };
-													 }
-													 else
-													 {
-														 f060202Repo = new F060202Repository(Schemas.CoreSchema, wmsTransation);
-														 var f060203Repo = new F060203Repository(Schemas.CoreSchema, wmsTransation);
-														 var f060204Repo = new F060204Repository(Schemas.CoreSchema, wmsTransation);
-														 var f060205Repo = new F060205Repository(Schemas.CoreSchema, wmsTransation);
-														 var f060206Repo = new F060206Repository(Schemas.CoreSchema, wmsTransation);
+                    if (_IsAddF075106DocIdList.Contains(receipt.OrderCode))
+                    {
+                      f075106Repo.DelF075106ByKey(dcCode, receipt.OrderCode);
+                      _IsAddF075106DocIdList = _IsAddF075106DocIdList.Where(x => x != receipt.OrderCode).ToList();
+                    }
+                    wmsTransation.Complete();
+                    return new ApiResult { IsSuccessed = false, MsgCode = "99999", MsgContent = "檢核失敗", Data = currDatas };
+                  }
+                  else
+                  {
+                    f060202Repo = new F060202Repository(Schemas.CoreSchema, wmsTransation);
+                    var f060203Repo = new F060203Repository(Schemas.CoreSchema, wmsTransation);
+                    var f060204Repo = new F060204Repository(Schemas.CoreSchema, wmsTransation);
+                    var f060205Repo = new F060205Repository(Schemas.CoreSchema, wmsTransation);
+                    var f060206Repo = new F060206Repository(Schemas.CoreSchema, wmsTransation);
+                    List<F060203> addF060203 = new List<F060203>();
+                    List<F060206> addF060206 = new List<F060206>();
 
-														 #region 新增F060202
-														 f060202Repo.Add(new F060202
-														 {
-															 DC_CODE = dcCode,
-															 GUP_CODE = gupCode,
-															 CUST_CODE = custCode,
-															 WAREHOUSE_ID = warehouseId,
-															 DOC_ID = receipt.OrderCode,
-															 WMS_NO = wmsNo,
-															 PICK_NO = f060201.PICK_NO,
-															 STATUS = "0",
-															 M_STATUS = Convert.ToString(receipt.Status),
-															 STARTTIME = receipt.StartTime,
-															 COMPLETETIME = receipt.CompleteTime,
-															 OPERATOR = receipt.Operator,
-															 ISEXCEPTION = Convert.ToInt32(receipt.IsException),
-															 SKUTOTAL = receipt.SkuList.Count
-														 });
-														 #endregion
+                    #region 新增F060202
+                    f060202Repo.Add(new F060202
+                    {
+                      DC_CODE = dcCode,
+                      GUP_CODE = gupCode,
+                      CUST_CODE = custCode,
+                      WAREHOUSE_ID = warehouseId,
+                      DOC_ID = receipt.OrderCode,
+                      WMS_NO = wmsNo,
+                      PICK_NO = f060201.PICK_NO,
+                      STATUS = "0",
+                      M_STATUS = Convert.ToString(receipt.Status),
+                      STARTTIME = receipt.StartTime,
+                      COMPLETETIME = receipt.CompleteTime,
+                      OPERATOR = receipt.Operator,
+                      ISEXCEPTION = Convert.ToInt32(receipt.IsException),
+                      SKUTOTAL = receipt.SkuList.Count
+                    });
+                    #endregion
 
 														 #region 新增F060203、F060204
 														 receipt.SkuList.ForEach(sku =>
 														 {
-															 f060203Repo.Add(new F060203
-															 {
-																 DOC_ID = receipt.OrderCode,
-																 ROWNUM = Convert.ToInt32(sku.RowNum),
-																 SKUCODE = sku.SkuCode,
-																 SKUPLANQTY = Convert.ToInt32(sku.SkuPlanQty),
-																 SKUQTY = Convert.ToInt32(sku.SkuQty),
-																 SKULEVEL = Convert.ToInt32(sku.SkuLevel),
-																 EXPIRYDATE = sku.ExpiryDate,
-																 OUTBATCHCODE = sku.OutBatchCode,
-																 SERIALNUMLIST = sku.SerialNumList == null ? null : string.Join(",", sku.SerialNumList)
-															 });
+                               //如果是有帶序號的就拆分成一筆一個序號
+                               if (sku.SerialNumList != null && sku.SerialNumList.Any())
+                                 addF060203.AddRange(sku.SerialNumList.Select(x => new F060203
+                                 {
+                                   DOC_ID = receipt.OrderCode,
+                                   ROWNUM = Convert.ToInt32(sku.RowNum),
+                                   SKUCODE = sku.SkuCode,
+                                   SKUPLANQTY = 1,
+                                   SKUQTY = 1,
+                                   SKULEVEL = Convert.ToInt32(sku.SkuLevel),
+                                   EXPIRYDATE = sku.ExpiryDate,
+                                   OUTBATCHCODE = sku.OutBatchCode,
+                                   SERIAL_NO = x
+                                 }));
+                               else
+                                 addF060203.Add(new F060203
+                                 {
+                                   DOC_ID = receipt.OrderCode,
+                                   ROWNUM = Convert.ToInt32(sku.RowNum),
+                                   SKUCODE = sku.SkuCode,
+                                   SKUPLANQTY = Convert.ToInt32(sku.SkuPlanQty),
+                                   SKUQTY = Convert.ToInt32(sku.SkuQty),
+                                   SKULEVEL = Convert.ToInt32(sku.SkuLevel),
+                                   EXPIRYDATE = sku.ExpiryDate,
+                                   OUTBATCHCODE = sku.OutBatchCode,
+                                 });
 
-															 if (sku.ShelfBinList != null)
-															 {
-																 sku.ShelfBinList.ForEach(shelfBin =>
-																 {
-																	 f060204Repo.Add(new F060204
-																	 {
-																		 DOC_ID = receipt.OrderCode,
-																		 ORD_SEQ = Convert.ToInt32(sku.RowNum),
-																		 SHELFCODE = shelfBin.ShelfCode,
-																		 BINCODE = shelfBin.BinCode,
-																		 SKUQTY = shelfBin.SkuQty,
-																		 OPERATOR = shelfBin.Operator
-																	 });
-																 });
-															 }
-														 });
-														 #endregion
+                      if (sku.ShelfBinList != null)
+                      {
+                        sku.ShelfBinList.ForEach(shelfBin =>
+                        {
+                          f060204Repo.Add(new F060204
+                          {
+                            DOC_ID = receipt.OrderCode,
+                            ORD_SEQ = Convert.ToInt32(sku.RowNum),
+                            SHELFCODE = shelfBin.ShelfCode,
+                            BINCODE = shelfBin.BinCode,
+                            SKUQTY = shelfBin.SkuQty,
+                            OPERATOR = shelfBin.Operator
+                          });
+                        });
+                      }
+                    });
 
-														 #region 新增F060205、F060206
-														 receipt.ContainerList.ForEach(container =>
-														 {
-															 f060205Repo.Add(new F060205
-															 {
-																 DOC_ID = receipt.OrderCode,
-																 CONTAINERCODE = container.ContainerCode,
-																 OPERATOR = container.Operator,
-																 WORKSTATIONNO = container.WorkStationNo,
-																 SEEDBINCODE = container.SeedBinCode,
-																 SKUTOTAL = Convert.ToInt32(container.SkuTotal)
-															 });
+                    #endregion
 
-															 container.SkuList.ForEach(sku =>
-																{
-																	f060206Repo.Add(new F060206
-																	{
-																		DOC_ID = receipt.OrderCode,
-																		CONTAINERCODE = container.ContainerCode,
-																		SKUCODE = sku.SkuCode,
-																		SKUQTY = Convert.ToInt32(sku.SkuQty),
-																		SERIALNUMLIST = sku.SerialNumList == null ? null : string.Join(",", sku.SerialNumList),
-																		BIN_CODE = sku.BinCode
-																	});
-																});
-														 });
-														 #endregion
+                    #region 新增F060205、F060206
+                    receipt.ContainerList.ForEach(container =>
+                    {
+                      f060205Repo.Add(new F060205
+                      {
+                        DOC_ID = receipt.OrderCode,
+                        CONTAINERCODE = container.ContainerCode,
+                        OPERATOR = container.Operator,
+                        WORKSTATIONNO = container.WorkStationNo,
+                        SEEDBINCODE = container.SeedBinCode,
+                        SKUTOTAL = Convert.ToInt32(container.SkuTotal)
+                      });
 
-														 wmsTransation.Complete();
+                      container.SkuList.ForEach(sku =>
+                       {
+                         if (sku.SerialNumList != null && sku.SerialNumList.Any())
+                           addF060206.AddRange(sku.SerialNumList.Select(x => new F060206
+                           {
+                             DOC_ID = receipt.OrderCode,
+                             CONTAINERCODE = container.ContainerCode,
+                             SKUCODE = sku.SkuCode,
+                             SKUQTY = 1,
+                             BIN_CODE = sku.BinCode,
+                             SERIAL_NO = x
+                           }));
+                         else
+                           addF060206.Add(new F060206
+                           {
+                             DOC_ID = receipt.OrderCode,
+                             CONTAINERCODE = container.ContainerCode,
+                             SKUCODE = sku.SkuCode,
+                             SKUQTY = Convert.ToInt32(sku.SkuQty),
+                             BIN_CODE = sku.BinCode
+                           });
 
-														 // 記錄成功的單號，用以再有同單號的不處理
-														 successedReceiptCodes.Add(receipt.OrderCode);
-													 }
-												 }
-											 }
-											 return new ApiResult { IsSuccessed = true };
-										 }
-									 }
-								 }, false);
-				if (!currRes.IsSuccessed && currRes.MsgCode == "99999") //執行時有例外
+                       });
+                    });
+                    #endregion
+                    f060203Repo.BulkInsert(addF060203);
+                    f060206Repo.BulkInsert(addF060206);
+                    wmsTransation.Complete();
+
+                    // 記錄成功的單號，用以再有同單號的不處理
+                    successedReceiptCodes.Add(receipt.OrderCode);
+                  }
+                }
+              }
+              return new ApiResult { IsSuccessed = true };
+            }
+          }
+        }, false,
+        (fResult)=>
+        {
+          if (fResult.MsgCode == "99999")
+          {
+            if (_IsAddF075106DocIdList.Contains(receipt.OrderCode))
+            {
+              f075106Repo.DelF075106ByKey(dcCode, receipt.OrderCode);
+              _IsAddF075106DocIdList = _IsAddF075106DocIdList.Where(x => x != receipt.OrderCode).ToList();
+            }
+            wmsTransation.Complete();
+          }
+          return null;
+        });
+        if (!currRes.IsSuccessed && currRes.MsgCode == "99999") //執行時有例外
 					data.Add(new ApiResponse { MsgCode = "99999", MsgContent = currRes.MsgContent, No = receipt.OrderCode });
 			});
 			#endregion
@@ -751,7 +795,13 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 
 			// 檢查明細資料是否有誤
 			ciwService.CheckSkuCountEqualDatas(data, wmsNo, receipt, _f151002List, _f060202ListByO, _f060202ListByP);
-			#endregion
+
+      if (data.Any())
+      {
+        res.Data = data;
+        return res;
+      }
+      #endregion
 
 			#region 明細欄位資料檢核
 
@@ -789,20 +839,50 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 				//// 檢查該明細批號
 				//ciwService.CheckSkuOutBatchCode(data, wmsNo, sku, receipt.OrderCode, index, currF151002, currF051202ByO, currF051202ByP);
 
-				// 檢查該明細序號長度
-				ciwService.CheckSkuSerialNum(data, sku, receipt.OrderCode, index);
-
 				// 檢查該明細序號長度是否與實際出庫數相同
 				ciwService.CheckSkuSerialNumEquelSkuQty(data, sku, receipt.OrderCode, index);
 
 				// 檢查該明細序號是否存在
 				ciwService.CheckSkuSerialNumIsExist(data, sku, receipt.OrderCode, index, _serialNoList);
+
+        // 序號重複檢查？
 			}
-			#endregion
 
-			res.Data = data;
+      if (data.Any())
+      {
+        res.Data = data;
+        return res;
+      }
+      #endregion
 
-			return res;
+      #region 容器欄位資料檢核
+      if (f060201.PICK_NO.StartsWith("P"))
+      {
+        var curF051201 = _f051201List.FirstOrDefault(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PICK_ORD_NO == wmsNo);
+        if (curF051201 != null && curF051201.NEXT_STEP == ((int)NextStep.CrossAllotPier).ToString())
+        {
+          foreach (var container in receipt.ContainerList)
+          {
+            if (container.SkuList.SelectMany(x => x.SerialNumList).Any())
+            { 
+              //檢查商品序號是否存在
+              //檢查商品序號是否為在庫序號(F2501.STATUS=A1)
+              //稽核出庫不會走包裝作業流程，後面不會檢查到序號狀態，這邊要檢查
+              ciwService.CheckContainerSerialNosExists(data, receipt.OrderCode, container, _serialNoList);
+
+              //檢查序號數量(去重複)是否與容器商品裝箱數量相同
+              ciwService.CheckContainerSerialNosQty(data, receipt.OrderCode, container);
+            }
+          }
+
+          //檢查揀貨明細商品總實際揀貨數量是否等於加總各箱該商品裝箱數量
+          ciwService.CheckContainerSkuQty(data, receipt.OrderCode, receipt.SkuList, receipt.ContainerList.SelectMany(x => x.SkuList).ToList());
+        }
+      }
+      #endregion
+      res.Data = data;
+
+      return res;
 		}
 
 		/// <summary>
@@ -821,6 +901,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 			res.Data = new List<ApiResponse>();
 			return res;
 		}
-		#endregion
-	}
+    #endregion
+
+  }
 }

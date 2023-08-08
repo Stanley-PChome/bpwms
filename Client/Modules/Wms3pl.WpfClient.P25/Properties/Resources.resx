@@ -328,7 +328,7 @@
     <value>業主,貨主,商品品號,商品名稱,商品規格</value>
   </data>
   <data name="P2502010000_ViewModel_Title2" xml:space="preserve">
-    <value>,序號狀態,序號,序號類別</value>
+    <value>,序號狀態,序號</value>
   </data>
   <data name="P2502010000_ViewModel_Title3" xml:space="preserve">
     <value>,效期</value>
@@ -337,13 +337,13 @@
     <value>,PO單號,系統單號,進貨日期,作業類別</value>
   </data>
   <data name="P2502010000_ViewModel_Title5" xml:space="preserve">
-    <value>,客戶代號,序號開通狀態,加工單號</value>
+    <value>,序號開通狀態,加工單號</value>
   </data>
   <data name="P2502010000_ViewModel_Title6" xml:space="preserve">
-    <value>,供應商,系統商,攝影機編號,電腦編號,單位</value>
+    <value>,供應商,電腦編號,單位</value>
   </data>
   <data name="P2502010000_ViewModel_Title7" xml:space="preserve">
-    <value>,序號是否已上傳給客戶,建立日期,建立人員,異動日期,異動人員\n</value>
+    <value>,建立日期,建立人員,異動日期,異動人員</value>
   </data>
   <data name="P2502020000_ViewModel_SearchCondition_Required" xml:space="preserve">
     <value>商品編號/序號/門號/系統單號/PO單號/儲值卡盒號/盒號 至少輸入一項查詢條件</value>

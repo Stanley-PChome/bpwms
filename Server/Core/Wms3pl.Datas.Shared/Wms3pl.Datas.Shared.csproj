@@ -255,6 +255,9 @@
     <Compile Include="Pda.Entitues\P810114Entities.cs" />
     <Compile Include="Pda.Entitues\P810113Entities.cs" />
     <Compile Include="Pda.Entitues\P810112Entities.cs" />
+    <Compile Include="Pda.Entitues\P810121Entities.cs" />
+    <Compile Include="Pda.Entitues\P810120Entities.cs" />
+    <Compile Include="Pda.Entitues\P810119Entities.cs" />
     <Compile Include="Pda.Entitues\P810118Entities.cs" />
     <Compile Include="Pda.Entitues\P81Entities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

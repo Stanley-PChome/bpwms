@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.DBCore;
@@ -10,10 +11,10 @@ namespace Wms3pl.Datas.F05
 	{
         public void InsertF051602ByBatchNo(string dcCode, string gupCode, string custCode, string batchNo)
         {
-            var parms = new List<object> { Current.Staff, Current.StaffName, Current.Lang, dcCode, gupCode, custCode, batchNo };
+            var parms = new List<object> { DateTime.Now, Current.Staff, Current.StaffName, Current.Lang, dcCode, gupCode, custCode, batchNo };
             var sql = @" 
       INSERT INTO F051602(DC_CODE,GUP_CODE,CUST_CODE,BATCH_DATE,BATCH_NO,ITEM_CODE,ITEM_NAME,ITEM_UNIT,RETAIL_CODE,RETAIL_NAME,WMS_ORD_NO,CUST_ORD_LIST,LOC_CODE,PLAN_QTY,ORDER_QTY,CAR_PERIOD,DELV_NO,DELV_WAY,CRT_DATE,CRT_STAFF,CRT_NAME)
-			SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,D.BATCH_DATE,D.BATCH_NO ,A.ITEM_CODE,E.ITEM_NAME,F.ACC_UNIT_NAME ITEM_UNIT,B.RETAIL_CODE,K.RETAIL_NAME,A.WMS_ORD_NO,L.CUST_ORD_NO AS CUST_ORD_LIST,A.PICK_LOC LOC_CODE,SUM(B_PICK_QTY) PLAN_QTY,SUM(B_PICK_QTY) ORDER_QTY,I.NAME CAR_PERIOD,G.DELV_NO,G.DELV_WAY,dbo.GetSysDate() CRT_DATE,@p0 CRT_STAFF,@p1 CRT_NAME
+			SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,D.BATCH_DATE,D.BATCH_NO ,A.ITEM_CODE,E.ITEM_NAME,F.ACC_UNIT_NAME ITEM_UNIT,B.RETAIL_CODE,K.RETAIL_NAME,A.WMS_ORD_NO,L.CUST_ORD_NO AS CUST_ORD_LIST,A.PICK_LOC LOC_CODE,SUM(B_PICK_QTY) PLAN_QTY,SUM(B_PICK_QTY) ORDER_QTY,I.NAME CAR_PERIOD,G.DELV_NO,G.DELV_WAY,@p0 CRT_DATE,@p1 CRT_STAFF,@p2 CRT_NAME
 				FROM F051202 A
 				JOIN F050801 B
 				ON B.DC_CODE = A.DC_CODE
@@ -51,7 +52,7 @@ namespace Wms3pl.Datas.F05
 					ON I.TOPIC='F194716'
 					AND I.SUBTOPIC='CAR_PERIOD'
 					AND I.VALUE = H.CAR_PERIOD
-					AND I.LANG = @p2
+					AND I.LANG = @p3
 				 JOIN F1909 J
 				 ON J.GUP_CODE = A.GUP_CODE
 				 AND J.CUST_CODE = A.CUST_CODE
@@ -73,10 +74,10 @@ namespace Wms3pl.Datas.F05
 				AND L.GUP_CODE = A.GUP_CODE
 				AND L.CUST_CODE = A.CUST_CODE
 				AND L.WMS_ORD_NO = A.WMS_ORD_NO
-				WHERE D.DC_CODE= @p3
-					AND D.GUP_CODE = @p4
-					AND D.CUST_CODE =@p5
-					AND D.BATCH_NO =@p6
+				WHERE D.DC_CODE= @p4
+					AND D.GUP_CODE = @p5
+					AND D.CUST_CODE =@p6
+					AND D.BATCH_NO =@p7
 				GROUP BY A.DC_CODE,A.GUP_CODE,A.CUST_CODE,D.BATCH_DATE,D.BATCH_NO,A.ITEM_CODE,E.ITEM_NAME,F.ACC_UNIT_NAME,B.RETAIL_CODE,K.RETAIL_NAME,A.WMS_ORD_NO,L.CUST_ORD_NO,A.PICK_LOC ,I.NAME,G.DELV_NO,G.DELV_WAY";
             ExecuteSqlCommand(sql, parms.ToArray());
         }

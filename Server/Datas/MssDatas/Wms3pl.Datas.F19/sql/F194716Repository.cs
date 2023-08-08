@@ -18,17 +18,18 @@ namespace Wms3pl.Datas.F19
                           DRIVER_ID = @p2,
                           DRIVER_NAME = @p3,
                           EXTRA_FEE = @p4,
-                          UPD_DATE = dbo.GetSysDate(),
-                          UPD_STAFF = @p5,
-                          UPD_NAME = @p6,
-                          REGION_FEE = @p7,
-                          OIL_FEE = @p8,
-                          OVERTIME_FEE = @p9,
-                          PACK_FIELD = @p10
-                    WHERE GUP_CODE = @p11
-                      AND CUST_CODE = @p12
-                      AND DC_CODE = @p13
-                      AND DELV_NO = @p14";
+                          UPD_DATE = @p5,
+                          UPD_STAFF = @p6,
+                          UPD_NAME = @p7,
+                          REGION_FEE = @p8,
+                          OIL_FEE = @p9,
+                          OVERTIME_FEE = @p10,
+                          PACK_FIELD = @p11
+                    WHERE GUP_CODE = @p12
+                      AND CUST_CODE = @p13
+                      AND DC_CODE = @p14
+                      AND DELV_NO = @p15";
+
             var parms = new List<object>
             {
                 data.CAR_PERIOD,
@@ -36,6 +37,7 @@ namespace Wms3pl.Datas.F19
                 data.DRIVER_ID,
                 data.DRIVER_NAME,
                 data.EXTRA_FEE,
+                DateTime.Now,
                 Current.Staff,
                 Current.StaffName,
                 data.REGION_FEE,
@@ -47,6 +49,7 @@ namespace Wms3pl.Datas.F19
                 data.DC_CODE,
                 data.DELV_NO
             };
+
             ExecuteSqlCommand(sql, parms.ToArray());
         }
     }

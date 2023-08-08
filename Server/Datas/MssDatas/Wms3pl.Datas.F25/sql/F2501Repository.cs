@@ -17,183 +17,166 @@ namespace Wms3pl.Datas.F25
 	{
 		public IQueryable<F2501QueryData> Get2501QueryData(string gupCode, string custCode,
 			 string[] itemCode, string boxSerial, string batchNo, string[] serialNo, string cellNum, string poNo
-			, string[] wmsNo, string status, string itemType, string retailCode, Int16? combinNo
+			, string[] wmsNo, string status, string OrdProp, string retailCode, Int16? combinNo
 			, string crtName, DateTime? crtSDate, DateTime? crtEDate, DateTime? updSDate, DateTime? updEDate)
 		{
 
-			var sqlParamers = new List<object> { gupCode, custCode };
+      //var sqlParamers = new List<object> { gupCode, custCode };
+      var sqlParamers = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+        new SqlParameter("@p1",custCode) { SqlDbType = System.Data.SqlDbType.VarChar }
+      };
 
-
-			var sql = $@"	      
-                select a.SERIAL_NO,
-                       a.GUP_CODE,
-                       a.CUST_CODE,
-                       ISNULL(a.BOUNDLE_ITEM_CODE, a.ITEM_CODE) AS ITEM_CODE,                       
-                       b.ITEM_SPEC,
-                       a.STATUS,
-                       b.TYPE,
-                       a.BOX_SERIAL,
-                       a.BATCH_NO,
-                       a.TAG3G,
-                       a.PUK,
-                       a.VALID_DATE,
-                       a.CASE_NO,
-                       a.PO_NO,
-                       a.WMS_NO,
-                       a.IN_DATE,
-                       h.ORD_PROP_NAME,
-                       a.RETAIL_CODE,
-                       case
-                         when a.ACTIVATED = '1' then '是'
-                         else '否'
-                       end                                      ACTIVATED,
-                       a.PROCESS_NO,
-                       a.COMBIN_NO,
-                       a.CELL_NUM,
-                       i.VNR_NAME,
-                       j.VNR_NAME                               SYS_NAME,
-                       a.CAMERA_NO,
-                       CLIENT_IP,
-                       b.ITEM_UNIT,
-                       case
-                         when a.SEND_CUST = '1' then '是'
-                         else '否'
-                       end                                      SEND_CUST,
-                       f.NAME                                   STATUS_NAME,
-                       g.NAME                                   ITEM_TYPE,
-                       b.ITEM_NAME,
-                       d.GUP_NAME,
-                       e.CUST_NAME,
-                       a.CRT_DATE,
-                       a.CRT_NAME,
-                       a.UPD_DATE,
-                       a.UPD_NAME,
-                       a.BOUNDLE_ITEM_CODE,
-                       a.COMBIN_NO
-                from   F2501 a
-                       left join F1903 b
-                              on a.ITEM_CODE = b.ITEM_CODE
-                                 and a.GUP_CODE = b.GUP_CODE
-                                    and a.CUST_CODE = b.CUST_CODE
-                       join F1929 d
-                         on d.GUP_CODE = a.GUP_CODE
-                       join F1909 e
-                         on e.GUP_CODE = a.GUP_CODE
-                            and a.CUST_CODE = e.CUST_CODE
-                       left join VW_F000904_LANG f
-                              on f.TOPIC = 'F2501'
-                                 and f.SUBTOPIC = 'STATUS'
-                                 AND f.VALUE = a.STATUS
-                                 AND f.LANG = '{Current.Lang}'
-                       left join VW_F000904_LANG g
-                              on g.TOPIC = 'F1903'
-                                 and g.SUBTOPIC = 'TYPE'
-                                 AND g.VALUE = b.TYPE
-                                 AND g.LANG = '{Current.Lang}'
-                       left join F000903 h
-                              on h.ORD_PROP = a.ORD_PROP
-                       left join F1908 i
-                              on i.VNR_CODE = a.VNR_CODE
-                                 and i.GUP_CODE = a.GUP_CODE
-                                 and i.CUST_CODE = a.CUST_CODE
-                       left join F1908 j
-                              on j.VNR_CODE = a.SYS_VNR
-                                 and j.GUP_CODE = a.GUP_CODE
-                                 and j.CUST_CODE= a.CUST_CODE
-                where  a.GUP_CODE = @p0
-                   AND a.CUST_CODE = @p1 
-			";
+      var sql = $@"	      
+          select a.SERIAL_NO,			a.GUP_CODE,			a.CUST_CODE,			ISNULL(a.BOUNDLE_ITEM_CODE, a.ITEM_CODE) AS ITEM_CODE,              b.ITEM_SPEC,
+                  a.STATUS,			b.TYPE,					a.BOX_SERIAL,			a.BATCH_NO,				a.TAG3G,
+		            a.PUK,				a.VALID_DATE,			a.CASE_NO,				a.PO_NO,				a.WMS_NO,
+			          a.IN_DATE,			h.ORD_PROP_NAME,		a.RETAIL_CODE,		case	when a.ACTIVATED = '1' then '是'
+																					          else '否'
+																			          end         ACTIVATED,	a.PROCESS_NO,
+		          a.COMBIN_NO,		a.CELL_NUM,				i.VNR_NAME,				j.VNR_NAME  SYS_NAME,	a.CAMERA_NO,
+		          CLIENT_IP,			b.ITEM_UNIT,			case	when a.SEND_CUST = '1' then '是'
+														          else '否'
+													          end		SEND_CUST,		f.NAME  STATUS_NAME,	g.NAME  ITEM_TYPE,
+		          b.ITEM_NAME,		d.GUP_NAME,				e.CUST_NAME,			a.CRT_DATE,				a.CRT_NAME,
+		          a.UPD_DATE,			a.UPD_NAME,				a.BOUNDLE_ITEM_CODE,	a.COMBIN_NO	,			b.BUNDLE_SERIALLOC
+              , case when a.STATUS ='A1' and b.BUNDLE_SERIALLOC !=1 then '1' else '0' end CanDelete
+          from   F2501 a
+          left join F1903 b		on a.ITEM_CODE = b.ITEM_CODE        and a.GUP_CODE = b.GUP_CODE
+						          and a.CUST_CODE = b.CUST_CODE
+          join F1929 d on d.GUP_CODE = a.GUP_CODE
+          join F1909 e on e.GUP_CODE = a.GUP_CODE and a.CUST_CODE = e.CUST_CODE
+          left join VW_F000904_LANG f     on f.TOPIC = 'F2501'	and f.SUBTOPIC = 'STATUS'
+							          AND f.VALUE = a.STATUS	AND f.LANG = '{Current.Lang}'
+          left join VW_F000904_LANG g     on g.TOPIC = 'F1903'    and g.SUBTOPIC = 'TYPE'
+							          AND g.VALUE = b.TYPE	AND g.LANG = '{Current.Lang}'
+          left join F000903 h     on h.ORD_PROP = a.ORD_PROP
+          left join F1908 i     on i.VNR_CODE = a.VNR_CODE    and i.GUP_CODE = a.GUP_CODE
+							          and i.CUST_CODE = a.CUST_CODE
+          left join F1908 j     on j.VNR_CODE = a.SYS_VNR     and j.GUP_CODE = a.GUP_CODE
+							          and j.CUST_CODE= a.CUST_CODE
+          where  a.GUP_CODE = @p0
+          AND a.CUST_CODE = @p1 			";
 			var filterSql = string.Empty;
 
 			//ITEM_CODE
 			if (itemCode.Any())
 			{
-				filterSql += sqlParamers.CombineSqlInParameters("AND", "COALESCE(NULLIF(a.BOUNDLE_ITEM_CODE,''), a.ITEM_CODE)", itemCode);
-			}
+        //filterSql += sqlParamers.CombineSqlInParameters(" AND ", " COALESCE(NULLIF(a.BOUNDLE_ITEM_CODE,''), a.ITEM_CODE) ", itemCode);
+        //filterSql += "AND  isnull(a.BOUNDLE_ITEM_CODE, a.ITEM_CODE) = @itemcode";
+        //sqlParamers.Add(new SqlParameter("@itemCode", itemCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+        filterSql += sqlParamers.CombineSqlInParameters(" AND isnull(a.BOUNDLE_ITEM_CODE,a.ITEM_CODE) ", itemCode, SqlDbType.VarChar);
+       
+      }
 
 			//SERIAL_NO
 			if (serialNo.Any())
 			{
-				filterSql += sqlParamers.CombineNotNullOrEmptySqlInParameters(" AND a.SERIAL_NO ", serialNo);
+				filterSql += sqlParamers.CombineSqlInParameters(" AND a.SERIAL_NO ", serialNo,SqlDbType.VarChar);
 			}
 
 			//WMS_NO
 			if (wmsNo.Any())
 			{
-				filterSql += sqlParamers.CombineNotNullOrEmptySqlInParameters(" AND a.WMS_NO ", wmsNo);
+				filterSql += sqlParamers.CombineSqlInParameters(" AND a.WMS_NO ", wmsNo , SqlDbType.VarChar);
 			}
 
 			//BOX_SERIAL
 			if (!string.IsNullOrEmpty(boxSerial))
 			{
-				filterSql += sqlParamers.Combine(" AND a.BOX_SERIAL = @p{0} ", boxSerial);
-			}
+				filterSql += " AND a.BOX_SERIAL = @pboxSerial ";
+        sqlParamers.Add(new SqlParameter("@boxSerial", boxSerial) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 
 			//BATCH_NO
 			if (!string.IsNullOrEmpty(batchNo))
 			{
-				filterSql += sqlParamers.Combine(" AND a.BATCH_NO = @p{0} ", batchNo);
-			}
+        filterSql += " AND a.BATCH_NO = @batchNo ";
+        sqlParamers.Add(new SqlParameter("@batchNo", batchNo) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 
 			//CELL_NUM
 			if (!string.IsNullOrEmpty(cellNum))
 			{
-				filterSql += sqlParamers.Combine(" AND a.CELL_NUM = @p{0} ", cellNum);
-			}
+        filterSql += " AND a.CELL_NUM = @pcellNum ";
+        sqlParamers.Add(new SqlParameter("@cellNum", cellNum) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 
 			//PO_NO
-			sql += sqlParamers.CombineNotNullOrEmpty(" AND a.PO_NO = @p{0} ", poNo);
+			//sql += sqlParamers.CombineNotNullOrEmpty(" AND a.PO_NO = @p{0} ", poNo);
+      if (!string.IsNullOrEmpty(poNo))
+      {
+        //filterSql += sqlParamers.Combine(" AND a.PO_NO = @p{0} ", poNo);
+        filterSql += " AND a.PO_NO = @poNo ";
+        sqlParamers.Add(new SqlParameter("@poNo", poNo) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 
-
-			//STATUS
-			if (!string.IsNullOrEmpty(status))
+      //STATUS
+      if (!string.IsNullOrEmpty(status))
 			{
-				filterSql += sqlParamers.Combine(" AND a.STATUS = @p{0} ", status);
-			}
+				//filterSql += sqlParamers.Combine(" AND a.STATUS = @p{0} ", status);
+        filterSql += " AND a.STATUS = @status ";
+        sqlParamers.Add(new SqlParameter("@status", status) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 			//itemType
-			if (!string.IsNullOrEmpty(itemType))
+			if (!string.IsNullOrEmpty(OrdProp))
 			{
-				filterSql += sqlParamers.Combine(" AND b.TYPE = @p{0} ", itemType);
-			}
+				//filterSql += sqlParamers.Combine(" AND b.TYPE = @p{0} ", itemType);
+        filterSql += " AND h.ORD_PROP = @OrdProp ";
+        sqlParamers.Add(new SqlParameter("@OrdProp", OrdProp) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 			//RETAIL_CODE 客戶代號
-			if (!string.IsNullOrEmpty(retailCode))
-			{
-				filterSql += sqlParamers.Combine(" AND a.RETAIL_CODE = @p{0} ", retailCode);
-			}
+			//if (!string.IsNullOrEmpty(retailCode))
+			//{
+			//	filterSql += sqlParamers.Combine(" AND a.RETAIL_CODE = @p{0} ", retailCode);
+			//}
 			//COMBIN_NO BOUNDEL_ID組合商品編號
 			if (combinNo.HasValue && combinNo != 0)
 			{
-				filterSql += sqlParamers.Combine(" AND a.COMBIN_NO = @p{0} ", combinNo);
-			}
+				//filterSql += sqlParamers.Combine(" AND a.COMBIN_NO = @p{0} ", combinNo);
+        filterSql += " AND a.COMBIN_NO = @combinNo ";
+        sqlParamers.Add(new SqlParameter("@combinNo", combinNo) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 
 			//CRT_NAME
 			if (!string.IsNullOrEmpty(crtName))
 			{
-				filterSql += sqlParamers.Combine(" AND a.CRT_NAME = @p{0} ", crtName);
-			}
+				//filterSql += sqlParamers.Combine(" AND a.CRT_NAME = @p{0} ", crtName);
+        filterSql += " AND a.CRT_NAME = @crtName ";
+        sqlParamers.Add(new SqlParameter("@crtName", crtName) { SqlDbType = System.Data.SqlDbType.VarChar });
+      }
 
 			//建立日期-起
 			if (crtSDate.HasValue)
 			{
-				filterSql += sqlParamers.Combine(" AND a.CRT_DATE >= @p{0} ", crtSDate);
-			}
+				//filterSql += sqlParamers.Combine(" AND a.CRT_DATE >= @p{0} ", crtSDate);
+        filterSql += " AND a.CRT_DATE >= @crtSDate ";
+        sqlParamers.Add(new SqlParameter("@crtSDate", crtSDate) { SqlDbType = System.Data.SqlDbType.DateTime2 });
+      }
 			//建立日期-迄
 			if (crtEDate.HasValue)
 			{
 				crtEDate = crtEDate.Value.AddDays(1);
-				filterSql += sqlParamers.Combine(" AND a.CRT_DATE <= @p{0} ", crtEDate);
-			}
+				//filterSql += sqlParamers.Combine(" AND a.CRT_DATE <= @p{0} ", crtEDate);
+        filterSql += " AND a.CRT_DATE <= @crtEDate ";
+        sqlParamers.Add(new SqlParameter("@crtEDate", crtEDate) { SqlDbType = System.Data.SqlDbType.DateTime2 });
+      }
 			//修改日期-起
 			if (updSDate.HasValue)
 			{
-				filterSql += sqlParamers.Combine(" AND a.UPD_DATE >= @p{0} ", updSDate);
-			}
+				//filterSql += sqlParamers.Combine(" AND a.UPD_DATE >= @p{0} ", updSDate);
+        filterSql += " AND a.UPD_DATE >= @updSDate ";
+        sqlParamers.Add(new SqlParameter("@updSDate", updSDate) { SqlDbType = System.Data.SqlDbType.DateTime2 });
+      }
 			//修改日期-迄
 			if (updEDate.HasValue)
 			{
 				updEDate = updEDate.Value.AddDays(1);
-				filterSql += sqlParamers.Combine(" AND a.UPD_DATE <= @p{0} ", updEDate);
-			}
+				//filterSql += sqlParamers.Combine(" AND a.UPD_DATE <= @p{0} ", updEDate);
+        filterSql += " AND a.UPD_DATE <= @updEDate ";
+        sqlParamers.Add(new SqlParameter("@updEDate", updEDate) { SqlDbType = System.Data.SqlDbType.DateTime2 });
+      }
 
 			sql += filterSql;
 			sql += " order by a.SERIAL_NO ";
@@ -339,7 +322,8 @@ namespace Wms3pl.Datas.F25
 						{
 								Current.Staff,
 								Current.StaffName,
-								gupCode,
+                DateTime.Now,
+                gupCode,
 								custCode
 						};
 			var inSql = parameters.CombineSqlInParameters("AND SERIAL_NO", serialNo);
@@ -350,9 +334,9 @@ namespace Wms3pl.Datas.F25
                                COMBIN_NO = NULL,
                                UPD_STAFF=@p0,
                                UPD_NAME = @p1,
-                               UPD_DATE = dbo.GetSysDate()
-                        WHERE  GUP_CODE = @p2
-                        AND    CUST_CODE = @p3
+                               UPD_DATE = @p2
+                        WHERE  GUP_CODE = @p3
+                        AND    CUST_CODE = @p4
                         AND    COMBIN_NO IS NOT NULL {inSql}
                         ";
 			ExeSqlCmdCountMustGreaterZero(sql, "序號無組合編號，不可進行拆解", parameters.ToArray());
@@ -454,15 +438,16 @@ FROM   (
 																new SqlParameter("@p1", userId),
 																new SqlParameter("@p2", userName),
 																new SqlParameter("@p3", gupCode),
-																new SqlParameter("@p4", custCode)
-															};
+																new SqlParameter("@p4", custCode),
+                                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+                              };
 
 			var sql = @"
                         UPDATE F2501
                         SET    VALID_DATE = @p0,
                                UPD_STAFF = @p1,
                                UPD_NAME = @p2,
-                               UPD_DATE = dbo.GetSysDate()
+                               UPD_DATE = @p5
                         WHERE  GUP_CODE = @p3
                            AND CUST_CODE = @p4
                            AND SERIAL_NO IN ( {0} ) 
@@ -515,15 +500,16 @@ FROM   (
 								new SqlParameter("@p2", Current.StaffName),
 								new SqlParameter("@p3", gupCode),
 								new SqlParameter("@p4", custCode),
-								new SqlParameter("@p5", oldSn)
-			};
+								new SqlParameter("@p5", oldSn),
+                new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
 
 			var sql = @"
                             UPDATE F2501
                             SET    SERIAL_NO = @p0,
                                    UPD_STAFF = @p1,
                                    UPD_NAME = @p2,
-                                   UPD_DATE = dbo.GetSysDate()
+                                   UPD_DATE = @p6
                             WHERE  GUP_CODE = @p3
                                AND CUST_CODE = @p4
                                AND SERIAL_NO = @p5 
@@ -602,9 +588,15 @@ FROM   (
       var parms = new List<SqlParameter>
       {
         new SqlParameter("@p0",gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
-        new SqlParameter("@p1",custCode) { SqlDbType = System.Data.SqlDbType.VarChar }
+        new SqlParameter("@p1",custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+        new SqlParameter("@p2", Current.Staff ){ SqlDbType = System.Data.SqlDbType.VarChar },
+        new SqlParameter("@p3", Current.StaffName){ SqlDbType = System.Data.SqlDbType.VarChar },
       };
-      var sql = @" DELETE FROM F2501
+      var sql = @" Update  F2501
+                  set ORD_PROP = 'UD',
+                      UPD_STAFF = @p2,
+                      UPD_NAME = @p3,
+                      UPD_DATE = dbo.GetSysDate()
                    WHERE GUP_CODE = @p0
                      AND CUST_CODE = @p1 ";
       if (!SnList.Any())
@@ -675,5 +667,47 @@ FROM   (
 
       ExecuteSqlCommand(sql, parms.ToArray());
     }
+
+    public string GetSrialNoToProcess(string gupCode, string custCode, string serialNo)
+    {
+      var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", gupCode) {SqlDbType = System.Data.SqlDbType.VarChar},
+        new SqlParameter("@p1", custCode) {SqlDbType = System.Data.SqlDbType.VarChar},
+        new SqlParameter("@p2", serialNo) {SqlDbType = System.Data.SqlDbType.VarChar}
+      };
+
+      var sql = @"
+                SELECT 
+                  SERIAL_NO 
+                FROM 
+                  F2501 
+                WHERE 
+                  GUP_CODE = @p0 
+                  AND CUST_CODE = @p1 
+                  AND SERIAL_NO = @p2
+                ";
+
+      return SqlQuery<string>(sql, parms.ToArray()).FirstOrDefault();
+    }
+
+
+		public void UpdateOrdPropAndWmsOrdNo(string gupCode, string custCode, string ordProp, string wmsOrdNo, List<string> snList)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", ordProp) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", wmsOrdNo) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", gupCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p3", custCode) { SqlDbType = SqlDbType.VarChar });
+
+			var sql = @"UPDATE F2501
+						   SET ORD_PROP = @p0, WMS_NO = @p1
+						 WHERE GUP_CODE = @p2 AND CUST_CODE = @p3
+						";
+			if (snList.Any())
+				sql += sqlParameter.CombineSqlInParameters(" AND SERIAL_NO ", snList, SqlDbType.VarChar);
+
+			ExecuteSqlCommand(sql, sqlParameter.ToArray());
+		}
   }
 }

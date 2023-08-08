@@ -31,6 +31,8 @@ namespace Wms3pl.DBCore
       modelBuilder.Entity<F020504>().HasKey(key => new { key.ID });
       modelBuilder.Entity<F02050401>().HasKey(key => new { key.ID });
       modelBuilder.Entity<F02050402>().HasKey(key => new { key.ID });
+      modelBuilder.Entity<F020601>().HasKey(key => new { key.ID });
+      modelBuilder.Entity<F020603>().HasKey(key => new { key.ID });
     }
   }
 }

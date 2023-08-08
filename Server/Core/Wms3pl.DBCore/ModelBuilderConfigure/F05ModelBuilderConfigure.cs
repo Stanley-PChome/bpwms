@@ -90,6 +90,19 @@ namespace Wms3pl.DBCore
 			modelBuilder.Entity<F051801>().HasKey(key => new { key.DC_CODE, key.CONVENIENT_CODE, key.CELL_CODE });
 			modelBuilder.Entity<F051802>().HasKey(key => new { key.ID });
 			modelBuilder.Entity<F051803>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0530>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0531>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0532>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F053201>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F053202>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F053203>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0533>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0534>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0535>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0536>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F053601>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F053602>().HasKey(key => new { key.ID });
+			modelBuilder.Entity<F0537>().HasKey(key => new { key.ID });
 		}
 	}
 }

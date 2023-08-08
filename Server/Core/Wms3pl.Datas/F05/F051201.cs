@@ -177,7 +177,7 @@ namespace Wms3pl.Datas.F05
     /// </summary>
     public string PICK_TYPE { get; set; }
     /// <summary>
-    /// 下一個作業(0: 待確認、1: 分貨站、2: 集貨場、3: 包裝站、4: 跨庫調撥出貨碼頭)
+    /// 下一個作業(0: 待確認、1: 分貨站、2: 集貨場、3: 包裝站、4:異常區、5:廠退出貨碼頭 、6: 跨庫調撥出貨碼頭)
     /// </summary>
     public string NEXT_STEP { get; set; }
     /// <summary>

@@ -98,5 +98,21 @@ namespace Wms3pl.Datas.F02
       return SqlQuery<F0205>(sql, para.ToArray());
     }
 
+    public IQueryable<F0205> GetDatas(string dcCode, string gupCode, string custCode, string rtNo, string rtNoSeq)
+    {
+      var para = new List<SqlParameter>()
+      {
+        new SqlParameter("@p0", dcCode){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", rtNo){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", rtNoSeq){ SqlDbType = SqlDbType.VarChar },
+      };
+
+      var sql = @"SELECT * FROM F0205 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND RT_NO=@p3 AND RT_SEQ=@p4";
+
+      return SqlQuery<F0205>(sql, para.ToArray());
+    }
+
   }
 }

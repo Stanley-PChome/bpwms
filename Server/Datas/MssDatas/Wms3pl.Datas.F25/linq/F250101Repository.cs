@@ -19,7 +19,7 @@ namespace Wms3pl.Datas.F25
         public IQueryable<P2502QueryData> GetP2502QueryDatas(string gupCode, string custCode,
             string[] itemCode, string[] serialNo, string batchNo, string cellNum, string poNo, string[] wmsNo
             , string status, string retailCode, Int16? combinNo, string crtName, DateTime? updSDate
-            , DateTime? updEDate, string boxSerial, string itemType)
+            , DateTime? updEDate, string boxSerial, string OpItemType)
         {
             var q = from a in _db.F250101s
                     join b in _db.F1903s on new { a.ITEM_CODE, a.GUP_CODE, a.CUST_CODE }
@@ -52,6 +52,7 @@ namespace Wms3pl.Datas.F25
                         PO_NO = a.PO_NO,
                         WMS_NO = a.WMS_NO,
                         IN_DATE = a.IN_DATE,
+                        ORD_PROP = h.ORD_PROP,
                         ORD_PROP_NAME = h.ORD_PROP_NAME,
                         RETAIL_CODE = a.RETAIL_CODE,
                         ACTIVATED = a.ACTIVATED == "1" ? "是" : "否",
@@ -59,7 +60,8 @@ namespace Wms3pl.Datas.F25
                         COMBIN_NO = Convert.ToInt32(a.COMBIN_NO),
                         CELL_NUM = a.CELL_NUM,
                         VNR_NAME = i.VNR_NAME,
-                        SYS_NAME = j.VNR_NAME,
+                      SYS_NAME = j.VNR_NAME,
+                   
                         CAMERA_NO = a.CAMERA_NO,
                         CLIENT_IP = a.CLIENT_IP,
                         ITEM_UNIT = b.ITEM_UNIT,
@@ -147,9 +149,9 @@ namespace Wms3pl.Datas.F25
             {
                 q = q.Where(c => c.BOX_SERIAL == boxSerial);
             }
-            if (!string.IsNullOrEmpty(itemType))
+            if (!string.IsNullOrEmpty(OpItemType))
             {
-                q = q.Where(c => c.TYPE == itemType);
+                q = q.Where(c => c.ORD_PROP == OpItemType);
             }
             q = q.OrderByDescending(c => c.SERIAL_NO).ThenByDescending(c => c.UPD_DATE);
             var result = q.ToList();

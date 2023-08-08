@@ -168,6 +168,8 @@
     <Compile Include="Services\StockService.cs" />
     <Compile Include="Services\SuggestLocService.cs" />
     <Compile Include="Services\VendorReturnService.cs" />
+    <Compile Include="Services\WarehouseInRecvBindBoxService.cs" />
+    <Compile Include="Services\WarehouseInRecvService.cs" />
     <Compile Include="Services\WarehouseInService.cs" />
     <Compile Include="Services\WorkstationService.cs" />
     <Compile Include="SharedWcfService.cs" />

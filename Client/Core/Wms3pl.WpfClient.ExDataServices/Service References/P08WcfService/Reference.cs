@@ -27,6 +27,11 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.SetPackageLineStationStatusRes))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.ChangeShipPackCheckRes))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.GetShipLogisticBoxRes))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerPutIntoOutContainerResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeResult))]
     public partial class ExecuteResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -524,6 +529,361 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PickContainerResult", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class PickContainerResult : Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContainerCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MoveOutTargetNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerInfo[] PickContainerInfosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalPcsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContainerCode {
+            get {
+                return this.ContainerCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContainerCodeField, value) != true)) {
+                    this.ContainerCodeField = value;
+                    this.RaisePropertyChanged("ContainerCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MoveOutTargetName {
+            get {
+                return this.MoveOutTargetNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MoveOutTargetNameField, value) != true)) {
+                    this.MoveOutTargetNameField = value;
+                    this.RaisePropertyChanged("MoveOutTargetName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerInfo[] PickContainerInfos {
+            get {
+                return this.PickContainerInfosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PickContainerInfosField, value) != true)) {
+                    this.PickContainerInfosField = value;
+                    this.RaisePropertyChanged("PickContainerInfos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalPcs {
+            get {
+                return this.TotalPcsField;
+            }
+            set {
+                if ((this.TotalPcsField.Equals(value) != true)) {
+                    this.TotalPcsField = value;
+                    this.RaisePropertyChanged("TotalPcs");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OutContainerResult", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class OutContainerResult : Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContainerCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MoveOutTargetNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo OutContainerInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalPcsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContainerCode {
+            get {
+                return this.ContainerCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContainerCodeField, value) != true)) {
+                    this.ContainerCodeField = value;
+                    this.RaisePropertyChanged("ContainerCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MoveOutTargetName {
+            get {
+                return this.MoveOutTargetNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MoveOutTargetNameField, value) != true)) {
+                    this.MoveOutTargetNameField = value;
+                    this.RaisePropertyChanged("MoveOutTargetName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo OutContainerInfo {
+            get {
+                return this.OutContainerInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OutContainerInfoField, value) != true)) {
+                    this.OutContainerInfoField = value;
+                    this.RaisePropertyChanged("OutContainerInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalPcs {
+            get {
+                return this.TotalPcsField;
+            }
+            set {
+                if ((this.TotalPcsField.Equals(value) != true)) {
+                    this.TotalPcsField = value;
+                    this.RaisePropertyChanged("TotalPcs");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PickContainerPutIntoOutContainerResult", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class PickContainerPutIntoOutContainerResult : Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsOutContainerErrorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsPickContainerErrorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult UpdateOutContainerResultField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsOutContainerError {
+            get {
+                return this.IsOutContainerErrorField;
+            }
+            set {
+                if ((this.IsOutContainerErrorField.Equals(value) != true)) {
+                    this.IsOutContainerErrorField = value;
+                    this.RaisePropertyChanged("IsOutContainerError");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsPickContainerError {
+            get {
+                return this.IsPickContainerErrorField;
+            }
+            set {
+                if ((this.IsPickContainerErrorField.Equals(value) != true)) {
+                    this.IsPickContainerErrorField = value;
+                    this.RaisePropertyChanged("IsPickContainerError");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult UpdateOutContainerResult {
+            get {
+                return this.UpdateOutContainerResultField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UpdateOutContainerResultField, value) != true)) {
+                    this.UpdateOutContainerResultField = value;
+                    this.RaisePropertyChanged("UpdateOutContainerResult");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BindingPickContainerResult", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class BindingPickContainerResult : Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo BindingPickContainerInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsReleaseContainerField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo BindingPickContainerInfo {
+            get {
+                return this.BindingPickContainerInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BindingPickContainerInfoField, value) != true)) {
+                    this.BindingPickContainerInfoField = value;
+                    this.RaisePropertyChanged("BindingPickContainerInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsReleaseContainer {
+            get {
+                return this.IsReleaseContainerField;
+            }
+            set {
+                if ((this.IsReleaseContainerField.Equals(value) != true)) {
+                    this.IsReleaseContainerField = value;
+                    this.RaisePropertyChanged("IsReleaseContainer");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ScanItemBarcodeResult", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class ScanItemBarcodeResult : Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo BindingPickContainerInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsFinishAllotField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsNormalShipItemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool bindNewCancelContainerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool bindNewNormalContainerField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo BindingPickContainerInfo {
+            get {
+                return this.BindingPickContainerInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BindingPickContainerInfoField, value) != true)) {
+                    this.BindingPickContainerInfoField = value;
+                    this.RaisePropertyChanged("BindingPickContainerInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_CODE {
+            get {
+                return this.ITEM_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_CODEField, value) != true)) {
+                    this.ITEM_CODEField = value;
+                    this.RaisePropertyChanged("ITEM_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_NAME {
+            get {
+                return this.ITEM_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_NAMEField, value) != true)) {
+                    this.ITEM_NAMEField = value;
+                    this.RaisePropertyChanged("ITEM_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsFinishAllot {
+            get {
+                return this.IsFinishAllotField;
+            }
+            set {
+                if ((this.IsFinishAllotField.Equals(value) != true)) {
+                    this.IsFinishAllotField = value;
+                    this.RaisePropertyChanged("IsFinishAllot");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsNormalShipItem {
+            get {
+                return this.IsNormalShipItemField;
+            }
+            set {
+                if ((this.IsNormalShipItemField.Equals(value) != true)) {
+                    this.IsNormalShipItemField = value;
+                    this.RaisePropertyChanged("IsNormalShipItem");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool bindNewCancelContainer {
+            get {
+                return this.bindNewCancelContainerField;
+            }
+            set {
+                if ((this.bindNewCancelContainerField.Equals(value) != true)) {
+                    this.bindNewCancelContainerField = value;
+                    this.RaisePropertyChanged("bindNewCancelContainer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool bindNewNormalContainer {
+            get {
+                return this.bindNewNormalContainerField;
+            }
+            set {
+                if ((this.bindNewNormalContainerField.Equals(value) != true)) {
+                    this.bindNewNormalContainerField = value;
+                    this.RaisePropertyChanged("bindNewNormalContainer");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BoxInfo", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
     [System.SerializableAttribute()]
     public partial class BoxInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -944,6 +1304,858 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PickContainerInfo", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class PickContainerInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CONTAINER_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CROSS_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CUST_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DC_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DEVICE_TYPEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DEVICE_TYPE_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long F0701_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GUP_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MOVE_OUT_TARGETField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PICK_ORD_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TOTALField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CONTAINER_CODE {
+            get {
+                return this.CONTAINER_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CONTAINER_CODEField, value) != true)) {
+                    this.CONTAINER_CODEField = value;
+                    this.RaisePropertyChanged("CONTAINER_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CROSS_NAME {
+            get {
+                return this.CROSS_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CROSS_NAMEField, value) != true)) {
+                    this.CROSS_NAMEField = value;
+                    this.RaisePropertyChanged("CROSS_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CUST_CODE {
+            get {
+                return this.CUST_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CUST_CODEField, value) != true)) {
+                    this.CUST_CODEField = value;
+                    this.RaisePropertyChanged("CUST_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DC_CODE {
+            get {
+                return this.DC_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DC_CODEField, value) != true)) {
+                    this.DC_CODEField = value;
+                    this.RaisePropertyChanged("DC_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DEVICE_TYPE {
+            get {
+                return this.DEVICE_TYPEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DEVICE_TYPEField, value) != true)) {
+                    this.DEVICE_TYPEField = value;
+                    this.RaisePropertyChanged("DEVICE_TYPE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DEVICE_TYPE_NAME {
+            get {
+                return this.DEVICE_TYPE_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DEVICE_TYPE_NAMEField, value) != true)) {
+                    this.DEVICE_TYPE_NAMEField = value;
+                    this.RaisePropertyChanged("DEVICE_TYPE_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long F0701_ID {
+            get {
+                return this.F0701_IDField;
+            }
+            set {
+                if ((this.F0701_IDField.Equals(value) != true)) {
+                    this.F0701_IDField = value;
+                    this.RaisePropertyChanged("F0701_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GUP_CODE {
+            get {
+                return this.GUP_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GUP_CODEField, value) != true)) {
+                    this.GUP_CODEField = value;
+                    this.RaisePropertyChanged("GUP_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MOVE_OUT_TARGET {
+            get {
+                return this.MOVE_OUT_TARGETField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MOVE_OUT_TARGETField, value) != true)) {
+                    this.MOVE_OUT_TARGETField = value;
+                    this.RaisePropertyChanged("MOVE_OUT_TARGET");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PICK_ORD_NO {
+            get {
+                return this.PICK_ORD_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PICK_ORD_NOField, value) != true)) {
+                    this.PICK_ORD_NOField = value;
+                    this.RaisePropertyChanged("PICK_ORD_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TOTAL {
+            get {
+                return this.TOTALField;
+            }
+            set {
+                if ((this.TOTALField.Equals(value) != true)) {
+                    this.TOTALField = value;
+                    this.RaisePropertyChanged("TOTAL");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OutContainerInfo", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class OutContainerInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CROSS_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CRT_DATEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CUST_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DC_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long F0531_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long F0701_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GUP_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MOVE_OUT_TARGETField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OUT_CONTAINER_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SOW_TYPEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string STATUSField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TOTALField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WORK_TYPEField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CROSS_NAME {
+            get {
+                return this.CROSS_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CROSS_NAMEField, value) != true)) {
+                    this.CROSS_NAMEField = value;
+                    this.RaisePropertyChanged("CROSS_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CRT_DATE {
+            get {
+                return this.CRT_DATEField;
+            }
+            set {
+                if ((this.CRT_DATEField.Equals(value) != true)) {
+                    this.CRT_DATEField = value;
+                    this.RaisePropertyChanged("CRT_DATE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CUST_CODE {
+            get {
+                return this.CUST_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CUST_CODEField, value) != true)) {
+                    this.CUST_CODEField = value;
+                    this.RaisePropertyChanged("CUST_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DC_CODE {
+            get {
+                return this.DC_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DC_CODEField, value) != true)) {
+                    this.DC_CODEField = value;
+                    this.RaisePropertyChanged("DC_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long F0531_ID {
+            get {
+                return this.F0531_IDField;
+            }
+            set {
+                if ((this.F0531_IDField.Equals(value) != true)) {
+                    this.F0531_IDField = value;
+                    this.RaisePropertyChanged("F0531_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long F0701_ID {
+            get {
+                return this.F0701_IDField;
+            }
+            set {
+                if ((this.F0701_IDField.Equals(value) != true)) {
+                    this.F0701_IDField = value;
+                    this.RaisePropertyChanged("F0701_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GUP_CODE {
+            get {
+                return this.GUP_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GUP_CODEField, value) != true)) {
+                    this.GUP_CODEField = value;
+                    this.RaisePropertyChanged("GUP_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MOVE_OUT_TARGET {
+            get {
+                return this.MOVE_OUT_TARGETField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MOVE_OUT_TARGETField, value) != true)) {
+                    this.MOVE_OUT_TARGETField = value;
+                    this.RaisePropertyChanged("MOVE_OUT_TARGET");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OUT_CONTAINER_CODE {
+            get {
+                return this.OUT_CONTAINER_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OUT_CONTAINER_CODEField, value) != true)) {
+                    this.OUT_CONTAINER_CODEField = value;
+                    this.RaisePropertyChanged("OUT_CONTAINER_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SOW_TYPE {
+            get {
+                return this.SOW_TYPEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SOW_TYPEField, value) != true)) {
+                    this.SOW_TYPEField = value;
+                    this.RaisePropertyChanged("SOW_TYPE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string STATUS {
+            get {
+                return this.STATUSField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.STATUSField, value) != true)) {
+                    this.STATUSField = value;
+                    this.RaisePropertyChanged("STATUS");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TOTAL {
+            get {
+                return this.TOTALField;
+            }
+            set {
+                if ((this.TOTALField.Equals(value) != true)) {
+                    this.TOTALField = value;
+                    this.RaisePropertyChanged("TOTAL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WORK_TYPE {
+            get {
+                return this.WORK_TYPEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WORK_TYPEField, value) != true)) {
+                    this.WORK_TYPEField = value;
+                    this.RaisePropertyChanged("WORK_TYPE");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BindingPickContainerInfo", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class BindingPickContainerInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ALL_CP_ITEMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CONTAINER_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CROSS_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CUST_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DC_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DEVICE_TYPEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long F0534_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long F0701_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GUP_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HAS_CP_ITEMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerDetail[] ItemListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MOVE_OUT_TARGETField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PICK_ORD_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TOTALField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ALL_CP_ITEM {
+            get {
+                return this.ALL_CP_ITEMField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ALL_CP_ITEMField, value) != true)) {
+                    this.ALL_CP_ITEMField = value;
+                    this.RaisePropertyChanged("ALL_CP_ITEM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CONTAINER_CODE {
+            get {
+                return this.CONTAINER_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CONTAINER_CODEField, value) != true)) {
+                    this.CONTAINER_CODEField = value;
+                    this.RaisePropertyChanged("CONTAINER_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CROSS_NAME {
+            get {
+                return this.CROSS_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CROSS_NAMEField, value) != true)) {
+                    this.CROSS_NAMEField = value;
+                    this.RaisePropertyChanged("CROSS_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CUST_CODE {
+            get {
+                return this.CUST_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CUST_CODEField, value) != true)) {
+                    this.CUST_CODEField = value;
+                    this.RaisePropertyChanged("CUST_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DC_CODE {
+            get {
+                return this.DC_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DC_CODEField, value) != true)) {
+                    this.DC_CODEField = value;
+                    this.RaisePropertyChanged("DC_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DEVICE_TYPE {
+            get {
+                return this.DEVICE_TYPEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DEVICE_TYPEField, value) != true)) {
+                    this.DEVICE_TYPEField = value;
+                    this.RaisePropertyChanged("DEVICE_TYPE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long F0534_ID {
+            get {
+                return this.F0534_IDField;
+            }
+            set {
+                if ((this.F0534_IDField.Equals(value) != true)) {
+                    this.F0534_IDField = value;
+                    this.RaisePropertyChanged("F0534_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long F0701_ID {
+            get {
+                return this.F0701_IDField;
+            }
+            set {
+                if ((this.F0701_IDField.Equals(value) != true)) {
+                    this.F0701_IDField = value;
+                    this.RaisePropertyChanged("F0701_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GUP_CODE {
+            get {
+                return this.GUP_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GUP_CODEField, value) != true)) {
+                    this.GUP_CODEField = value;
+                    this.RaisePropertyChanged("GUP_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HAS_CP_ITEM {
+            get {
+                return this.HAS_CP_ITEMField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HAS_CP_ITEMField, value) != true)) {
+                    this.HAS_CP_ITEMField = value;
+                    this.RaisePropertyChanged("HAS_CP_ITEM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerDetail[] ItemList {
+            get {
+                return this.ItemListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemListField, value) != true)) {
+                    this.ItemListField = value;
+                    this.RaisePropertyChanged("ItemList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MOVE_OUT_TARGET {
+            get {
+                return this.MOVE_OUT_TARGETField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MOVE_OUT_TARGETField, value) != true)) {
+                    this.MOVE_OUT_TARGETField = value;
+                    this.RaisePropertyChanged("MOVE_OUT_TARGET");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PICK_ORD_NO {
+            get {
+                return this.PICK_ORD_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PICK_ORD_NOField, value) != true)) {
+                    this.PICK_ORD_NOField = value;
+                    this.RaisePropertyChanged("PICK_ORD_NO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TOTAL {
+            get {
+                return this.TOTALField;
+            }
+            set {
+                if ((this.TOTALField.Equals(value) != true)) {
+                    this.TOTALField = value;
+                    this.RaisePropertyChanged("TOTAL");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BindingPickContainerDetail", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class BindingPickContainerDetail : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int A_SET_QTYField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BUNDLE_SERIALNOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int B_SET_QTYField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EAN_CODE1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EAN_CODE2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EAN_CODE3Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_NAMEField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int A_SET_QTY {
+            get {
+                return this.A_SET_QTYField;
+            }
+            set {
+                if ((this.A_SET_QTYField.Equals(value) != true)) {
+                    this.A_SET_QTYField = value;
+                    this.RaisePropertyChanged("A_SET_QTY");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BUNDLE_SERIALNO {
+            get {
+                return this.BUNDLE_SERIALNOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BUNDLE_SERIALNOField, value) != true)) {
+                    this.BUNDLE_SERIALNOField = value;
+                    this.RaisePropertyChanged("BUNDLE_SERIALNO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int B_SET_QTY {
+            get {
+                return this.B_SET_QTYField;
+            }
+            set {
+                if ((this.B_SET_QTYField.Equals(value) != true)) {
+                    this.B_SET_QTYField = value;
+                    this.RaisePropertyChanged("B_SET_QTY");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EAN_CODE1 {
+            get {
+                return this.EAN_CODE1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EAN_CODE1Field, value) != true)) {
+                    this.EAN_CODE1Field = value;
+                    this.RaisePropertyChanged("EAN_CODE1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EAN_CODE2 {
+            get {
+                return this.EAN_CODE2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EAN_CODE2Field, value) != true)) {
+                    this.EAN_CODE2Field = value;
+                    this.RaisePropertyChanged("EAN_CODE2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EAN_CODE3 {
+            get {
+                return this.EAN_CODE3Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EAN_CODE3Field, value) != true)) {
+                    this.EAN_CODE3Field = value;
+                    this.RaisePropertyChanged("EAN_CODE3");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_CODE {
+            get {
+                return this.ITEM_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_CODEField, value) != true)) {
+                    this.ITEM_CODEField = value;
+                    this.RaisePropertyChanged("ITEM_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_NAME {
+            get {
+                return this.ITEM_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_NAMEField, value) != true)) {
+                    this.ITEM_NAMEField = value;
+                    this.RaisePropertyChanged("ITEM_NAME");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SerialDataEx", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
     [System.SerializableAttribute()]
     public partial class SerialDataEx : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1092,6 +2304,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         private string CHECK_CODEk__BackingFieldField;
         
+        private string CLOSE_BY_BOXNOk__BackingFieldField;
+        
         private System.Nullable<decimal> COLLECT_AMTk__BackingFieldField;
         
         private System.Nullable<System.DateTime> COMPLETE_TIMEk__BackingFieldField;
@@ -1166,6 +2380,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         private string NO_LOADINGk__BackingFieldField;
         
+        private string NO_SPEC_REPROTSk__BackingFieldField;
+        
         private string NP_FLAGk__BackingFieldField;
         
         private string OPERATORk__BackingFieldField;
@@ -1181,6 +2397,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private string ORD_TYPEk__BackingFieldField;
         
         private string PACKING_TYPEk__BackingFieldField;
+        
+        private System.Nullable<System.DateTime> PACK_CANCEL_TIMEk__BackingFieldField;
+        
+        private System.Nullable<System.DateTime> PACK_FINISH_TIMEk__BackingFieldField;
+        
+        private System.Nullable<System.DateTime> PACK_START_TIMEk__BackingFieldField;
         
         private string PICK_ORD_NOk__BackingFieldField;
         
@@ -1354,6 +2576,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.CHECK_CODEk__BackingFieldField, value) != true)) {
                     this.CHECK_CODEk__BackingFieldField = value;
                     this.RaisePropertyChanged("CHECK_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<CLOSE_BY_BOXNO>k__BackingField", IsRequired=true)]
+        public string CLOSE_BY_BOXNOk__BackingField {
+            get {
+                return this.CLOSE_BY_BOXNOk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CLOSE_BY_BOXNOk__BackingFieldField, value) != true)) {
+                    this.CLOSE_BY_BOXNOk__BackingFieldField = value;
+                    this.RaisePropertyChanged("CLOSE_BY_BOXNOk__BackingField");
                 }
             }
         }
@@ -1839,6 +3074,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<NO_SPEC_REPROTS>k__BackingField", IsRequired=true)]
+        public string NO_SPEC_REPROTSk__BackingField {
+            get {
+                return this.NO_SPEC_REPROTSk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NO_SPEC_REPROTSk__BackingFieldField, value) != true)) {
+                    this.NO_SPEC_REPROTSk__BackingFieldField = value;
+                    this.RaisePropertyChanged("NO_SPEC_REPROTSk__BackingField");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(Name="<NP_FLAG>k__BackingField", IsRequired=true)]
         public string NP_FLAGk__BackingField {
             get {
@@ -1939,6 +3187,45 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.PACKING_TYPEk__BackingFieldField, value) != true)) {
                     this.PACKING_TYPEk__BackingFieldField = value;
                     this.RaisePropertyChanged("PACKING_TYPEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PACK_CANCEL_TIME>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> PACK_CANCEL_TIMEk__BackingField {
+            get {
+                return this.PACK_CANCEL_TIMEk__BackingFieldField;
+            }
+            set {
+                if ((this.PACK_CANCEL_TIMEk__BackingFieldField.Equals(value) != true)) {
+                    this.PACK_CANCEL_TIMEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PACK_CANCEL_TIMEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PACK_FINISH_TIME>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> PACK_FINISH_TIMEk__BackingField {
+            get {
+                return this.PACK_FINISH_TIMEk__BackingFieldField;
+            }
+            set {
+                if ((this.PACK_FINISH_TIMEk__BackingFieldField.Equals(value) != true)) {
+                    this.PACK_FINISH_TIMEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PACK_FINISH_TIMEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PACK_START_TIME>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> PACK_START_TIMEk__BackingField {
+            get {
+                return this.PACK_START_TIMEk__BackingFieldField;
+            }
+            set {
+                if ((this.PACK_START_TIMEk__BackingFieldField.Equals(value) != true)) {
+                    this.PACK_START_TIMEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PACK_START_TIMEk__BackingField");
                 }
             }
         }
@@ -4455,6 +5742,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         private long ORD_SAVE_QTYk__BackingFieldField;
         
+        private string ORI_VNR_CODEk__BackingFieldField;
+        
         private long PICK_ORDk__BackingFieldField;
         
         private int PICK_SAVE_ORDk__BackingFieldField;
@@ -5477,6 +6766,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((this.ORD_SAVE_QTYk__BackingFieldField.Equals(value) != true)) {
                     this.ORD_SAVE_QTYk__BackingFieldField = value;
                     this.RaisePropertyChanged("ORD_SAVE_QTYk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORI_VNR_CODE>k__BackingField", IsRequired=true)]
+        public string ORI_VNR_CODEk__BackingField {
+            get {
+                return this.ORI_VNR_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORI_VNR_CODEk__BackingFieldField, value) != true)) {
+                    this.ORI_VNR_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORI_VNR_CODEk__BackingField");
                 }
             }
         }
@@ -7527,6 +8829,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         private string ALL_IDk__BackingFieldField;
         
+        private string AUDIT_CLIENT_PCk__BackingFieldField;
+        
         private System.Nullable<System.DateTime> AUDIT_DATEk__BackingFieldField;
         
         private string AUDIT_NAMEk__BackingFieldField;
@@ -7536,6 +8840,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private string BOX_DOCk__BackingFieldField;
         
         private string BOX_NUMk__BackingFieldField;
+        
+        private System.Nullable<System.DateTime> CLOSEBOX_TIMEk__BackingFieldField;
+        
+        private string CLOSEBOX_WORKSTATION_CODEk__BackingFieldField;
+        
+        private string CLOSE_BY_BOXNOk__BackingFieldField;
         
         private System.DateTime CRT_DATEk__BackingFieldField;
         
@@ -7555,11 +8865,23 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         private string IS_ORIBOXk__BackingFieldField;
         
+        private string LOGISTIC_CODEk__BackingFieldField;
+        
+        private string NO_SPEC_REPROTSk__BackingFieldField;
+        
+        private string ORG_BOX_NUMk__BackingFieldField;
+        
+        private string ORG_LOGISTIC_CODEk__BackingFieldField;
+        
+        private string ORG_PAST_NOk__BackingFieldField;
+        
         private short PACKAGE_BOX_NOk__BackingFieldField;
         
         private string PACKAGE_NAMEk__BackingFieldField;
         
         private string PACKAGE_STAFFk__BackingFieldField;
+        
+        private string PACK_CLIENT_PCk__BackingFieldField;
         
         private string PAST_NOk__BackingFieldField;
         
@@ -7568,6 +8890,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private System.Nullable<System.DateTime> PRINT_DATEk__BackingFieldField;
         
         private System.Nullable<decimal> PRINT_FLAGk__BackingFieldField;
+        
+        private string SORTER_CODEk__BackingFieldField;
         
         private string STATUSk__BackingFieldField;
         
@@ -7602,6 +8926,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.ALL_IDk__BackingFieldField, value) != true)) {
                     this.ALL_IDk__BackingFieldField = value;
                     this.RaisePropertyChanged("ALL_IDk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<AUDIT_CLIENT_PC>k__BackingField", IsRequired=true)]
+        public string AUDIT_CLIENT_PCk__BackingField {
+            get {
+                return this.AUDIT_CLIENT_PCk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AUDIT_CLIENT_PCk__BackingFieldField, value) != true)) {
+                    this.AUDIT_CLIENT_PCk__BackingFieldField = value;
+                    this.RaisePropertyChanged("AUDIT_CLIENT_PCk__BackingField");
                 }
             }
         }
@@ -7667,6 +9004,45 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.BOX_NUMk__BackingFieldField, value) != true)) {
                     this.BOX_NUMk__BackingFieldField = value;
                     this.RaisePropertyChanged("BOX_NUMk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<CLOSEBOX_TIME>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> CLOSEBOX_TIMEk__BackingField {
+            get {
+                return this.CLOSEBOX_TIMEk__BackingFieldField;
+            }
+            set {
+                if ((this.CLOSEBOX_TIMEk__BackingFieldField.Equals(value) != true)) {
+                    this.CLOSEBOX_TIMEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("CLOSEBOX_TIMEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<CLOSEBOX_WORKSTATION_CODE>k__BackingField", IsRequired=true)]
+        public string CLOSEBOX_WORKSTATION_CODEk__BackingField {
+            get {
+                return this.CLOSEBOX_WORKSTATION_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CLOSEBOX_WORKSTATION_CODEk__BackingFieldField, value) != true)) {
+                    this.CLOSEBOX_WORKSTATION_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("CLOSEBOX_WORKSTATION_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<CLOSE_BY_BOXNO>k__BackingField", IsRequired=true)]
+        public string CLOSE_BY_BOXNOk__BackingField {
+            get {
+                return this.CLOSE_BY_BOXNOk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CLOSE_BY_BOXNOk__BackingFieldField, value) != true)) {
+                    this.CLOSE_BY_BOXNOk__BackingFieldField = value;
+                    this.RaisePropertyChanged("CLOSE_BY_BOXNOk__BackingField");
                 }
             }
         }
@@ -7788,6 +9164,71 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<LOGISTIC_CODE>k__BackingField", IsRequired=true)]
+        public string LOGISTIC_CODEk__BackingField {
+            get {
+                return this.LOGISTIC_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LOGISTIC_CODEk__BackingFieldField, value) != true)) {
+                    this.LOGISTIC_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("LOGISTIC_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<NO_SPEC_REPROTS>k__BackingField", IsRequired=true)]
+        public string NO_SPEC_REPROTSk__BackingField {
+            get {
+                return this.NO_SPEC_REPROTSk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NO_SPEC_REPROTSk__BackingFieldField, value) != true)) {
+                    this.NO_SPEC_REPROTSk__BackingFieldField = value;
+                    this.RaisePropertyChanged("NO_SPEC_REPROTSk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORG_BOX_NUM>k__BackingField", IsRequired=true)]
+        public string ORG_BOX_NUMk__BackingField {
+            get {
+                return this.ORG_BOX_NUMk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORG_BOX_NUMk__BackingFieldField, value) != true)) {
+                    this.ORG_BOX_NUMk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORG_BOX_NUMk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORG_LOGISTIC_CODE>k__BackingField", IsRequired=true)]
+        public string ORG_LOGISTIC_CODEk__BackingField {
+            get {
+                return this.ORG_LOGISTIC_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORG_LOGISTIC_CODEk__BackingFieldField, value) != true)) {
+                    this.ORG_LOGISTIC_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORG_LOGISTIC_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORG_PAST_NO>k__BackingField", IsRequired=true)]
+        public string ORG_PAST_NOk__BackingField {
+            get {
+                return this.ORG_PAST_NOk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORG_PAST_NOk__BackingFieldField, value) != true)) {
+                    this.ORG_PAST_NOk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORG_PAST_NOk__BackingField");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(Name="<PACKAGE_BOX_NO>k__BackingField", IsRequired=true)]
         public short PACKAGE_BOX_NOk__BackingField {
             get {
@@ -7823,6 +9264,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.PACKAGE_STAFFk__BackingFieldField, value) != true)) {
                     this.PACKAGE_STAFFk__BackingFieldField = value;
                     this.RaisePropertyChanged("PACKAGE_STAFFk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PACK_CLIENT_PC>k__BackingField", IsRequired=true)]
+        public string PACK_CLIENT_PCk__BackingField {
+            get {
+                return this.PACK_CLIENT_PCk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PACK_CLIENT_PCk__BackingFieldField, value) != true)) {
+                    this.PACK_CLIENT_PCk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PACK_CLIENT_PCk__BackingField");
                 }
             }
         }
@@ -7875,6 +9329,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((this.PRINT_FLAGk__BackingFieldField.Equals(value) != true)) {
                     this.PRINT_FLAGk__BackingFieldField = value;
                     this.RaisePropertyChanged("PRINT_FLAGk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<SORTER_CODE>k__BackingField", IsRequired=true)]
+        public string SORTER_CODEk__BackingField {
+            get {
+                return this.SORTER_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SORTER_CODEk__BackingFieldField, value) != true)) {
+                    this.SORTER_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("SORTER_CODEk__BackingField");
                 }
             }
         }
@@ -10874,6 +12341,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CloseByBoxnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CustCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -10881,6 +12351,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GupCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoSpecReprotsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShipModeField;
@@ -10898,6 +12371,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CloseByBoxno {
+            get {
+                return this.CloseByBoxnoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CloseByBoxnoField, value) != true)) {
+                    this.CloseByBoxnoField = value;
+                    this.RaisePropertyChanged("CloseByBoxno");
+                }
             }
         }
         
@@ -10936,6 +12422,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.GupCodeField, value) != true)) {
                     this.GupCodeField = value;
                     this.RaisePropertyChanged("GupCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NoSpecReprots {
+            get {
+                return this.NoSpecReprotsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoSpecReprotsField, value) != true)) {
+                    this.NoSpecReprotsField = value;
+                    this.RaisePropertyChanged("NoSpecReprots");
                 }
             }
         }
@@ -11526,6 +13025,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private Wms3pl.WpfClient.ExDataServices.P08WcfService.ItemModel[] ItemListField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoSpecReprotsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string OrdTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -11536,6 +13038,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WmsOrdNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WorkstationIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -11652,6 +13157,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NoSpecReprots {
+            get {
+                return this.NoSpecReprotsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoSpecReprotsField, value) != true)) {
+                    this.NoSpecReprotsField = value;
+                    this.RaisePropertyChanged("NoSpecReprots");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string OrdType {
             get {
                 return this.OrdTypeField;
@@ -11699,6 +13217,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.WmsOrdNoField, value) != true)) {
                     this.WmsOrdNoField = value;
                     this.RaisePropertyChanged("WmsOrdNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WorkstationId {
+            get {
+                return this.WorkstationIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WorkstationIdField, value) != true)) {
+                    this.WorkstationIdField = value;
+                    this.RaisePropertyChanged("WorkstationId");
                 }
             }
         }
@@ -11844,6 +13375,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private bool IsAppendBoxField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsManualCloseBoxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string IsScanBoxField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -11925,6 +13459,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((this.IsAppendBoxField.Equals(value) != true)) {
                     this.IsAppendBoxField = value;
                     this.RaisePropertyChanged("IsAppendBox");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsManualCloseBox {
+            get {
+                return this.IsManualCloseBoxField;
+            }
+            set {
+                if ((this.IsManualCloseBoxField.Equals(value) != true)) {
+                    this.IsManualCloseBoxField = value;
+                    this.RaisePropertyChanged("IsManualCloseBox");
                 }
             }
         }
@@ -12172,6 +13719,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ReportUrlField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WmsOrdNoField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -12299,6 +13849,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WmsOrdNo {
+            get {
+                return this.WmsOrdNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WmsOrdNoField, value) != true)) {
+                    this.WmsOrdNoField = value;
+                    this.RaisePropertyChanged("WmsOrdNo");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -12331,6 +13894,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private string GupCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoSpecReprotsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PickTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12343,7 +13909,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private string WmsOrdNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string WorkStationIdField;
+        private string WorkstationIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -12408,6 +13974,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NoSpecReprots {
+            get {
+                return this.NoSpecReprotsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoSpecReprotsField, value) != true)) {
+                    this.NoSpecReprotsField = value;
+                    this.RaisePropertyChanged("NoSpecReprots");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string PickTime {
             get {
                 return this.PickTimeField;
@@ -12460,14 +14039,14 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WorkStationId {
+        public string WorkstationId {
             get {
-                return this.WorkStationIdField;
+                return this.WorkstationIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.WorkStationIdField, value) != true)) {
-                    this.WorkStationIdField = value;
-                    this.RaisePropertyChanged("WorkStationId");
+                if ((object.ReferenceEquals(this.WorkstationIdField, value) != true)) {
+                    this.WorkstationIdField = value;
+                    this.RaisePropertyChanged("WorkstationId");
                 }
             }
         }
@@ -14901,6 +16480,83 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="F053601_NotAllotData", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class F053601_NotAllotData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_CODEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ITEM_NAMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NOALLOT_QTYField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_CODE {
+            get {
+                return this.ITEM_CODEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_CODEField, value) != true)) {
+                    this.ITEM_CODEField = value;
+                    this.RaisePropertyChanged("ITEM_CODE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ITEM_NAME {
+            get {
+                return this.ITEM_NAMEField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ITEM_NAMEField, value) != true)) {
+                    this.ITEM_NAMEField = value;
+                    this.RaisePropertyChanged("ITEM_NAME");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NOALLOT_QTY {
+            get {
+                return this.NOALLOT_QTYField;
+            }
+            set {
+                if ((this.NOALLOT_QTYField.Equals(value) != true)) {
+                    this.NOALLOT_QTYField = value;
+                    this.RaisePropertyChanged("NOALLOT_QTY");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="P08WcfService.P08WcfService")]
     public interface P08WcfService {
@@ -15002,10 +16658,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> ChangeF16140101IsPassAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.F16140101 f16140101Data, string sourceNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/FinishCurrentBox", ReplyAction="http://tempuri.org/P08WcfService/FinishCurrentBoxResponse")]
-        Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult FinishCurrentBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage);
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult FinishCurrentBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage, bool isManualCloseBox);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/FinishCurrentBox", ReplyAction="http://tempuri.org/P08WcfService/FinishCurrentBoxResponse")]
-        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult> FinishCurrentBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage);
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult> FinishCurrentBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage, bool isManualCloseBox);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CheckF161401RepeatSerialNo", ReplyAction="http://tempuri.org/P08WcfService/CheckF161401RepeatSerialNoResponse")]
         Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CheckF161401RepeatSerialNo(Wms3pl.WpfClient.ExDataServices.P08WcfService.F161201 f161201, string barcode);
@@ -15338,6 +16994,102 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CancelArrivalRecord", ReplyAction="http://tempuri.org/P08WcfService/CancelArrivalRecordResponse")]
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CancelArrivalRecordAsync(string dcCode, string gupCode, string custCode, string wmsNo, string containerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanPickContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanPickContainerCodeResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult ScanPickContainerCode(string dcCode, string gupCode, string custCode, string containerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanPickContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanPickContainerCodeResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult> ScanPickContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanOutContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanOutContainerCodeResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult ScanOutContainerCode(string dcCode, string gupCode, string custCode, string containerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanOutContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanOutContainerCodeResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult> ScanOutContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/PickContainerPutIntoOutContainer", ReplyAction="http://tempuri.org/P08WcfService/PickContainerPutIntoOutContainerResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerPutIntoOutContainerResult PickContainerPutIntoOutContainer(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult pickContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult outContainerResult);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/PickContainerPutIntoOutContainer", ReplyAction="http://tempuri.org/P08WcfService/PickContainerPutIntoOutContainerResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerPutIntoOutContainerResult> PickContainerPutIntoOutContainerAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult pickContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult outContainerResult);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/RePackingBox", ReplyAction="http://tempuri.org/P08WcfService/RePackingBoxResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult RePackingBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/RePackingBox", ReplyAction="http://tempuri.org/P08WcfService/RePackingBoxResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> RePackingBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CloseBox", ReplyAction="http://tempuri.org/P08WcfService/CloseBoxResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CloseBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CloseBox", ReplyAction="http://tempuri.org/P08WcfService/CloseBoxResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CloseBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanBindingPickContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanBindingPickContainerCodeResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerResult ScanBindingPickContainerCode(string dcCode, string gupCode, string custCode, string containerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanBindingPickContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanBindingPickContainerCodeResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerResult> ScanBindingPickContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanNormalContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanNormalContainerCodeResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult ScanNormalContainerCode(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanNormalContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanNormalContainerCodeResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult> ScanNormalContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanCancelContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanCancelContainerCodeResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult ScanCancelContainerCode(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanCancelContainerCode", ReplyAction="http://tempuri.org/P08WcfService/ScanCancelContainerCodeResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult> ScanCancelContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanItemBarcodeFromP080806", ReplyAction="http://tempuri.org/P08WcfService/ScanItemBarcodeFromP080806Response")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeResult ScanItemBarcodeFromP080806(string dcCode, string gupCode, string custCode, string itemBarcode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo normalContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo cancelContainer);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ScanItemBarcodeFromP080806", ReplyAction="http://tempuri.org/P08WcfService/ScanItemBarcodeFromP080806Response")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeResult> ScanItemBarcodeFromP080806Async(string dcCode, string gupCode, string custCode, string itemBarcode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo normalContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo cancelContainer);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/GetNotAllotDataInPickContainer", ReplyAction="http://tempuri.org/P08WcfService/GetNotAllotDataInPickContainerResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.F053601_NotAllotData[] GetNotAllotDataInPickContainer(long f0701_Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/GetNotAllotDataInPickContainer", ReplyAction="http://tempuri.org/P08WcfService/GetNotAllotDataInPickContainerResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.F053601_NotAllotData[]> GetNotAllotDataInPickContainerAsync(long f0701_Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ManualContainerFinish", ReplyAction="http://tempuri.org/P08WcfService/ManualContainerFinishResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult ManualContainerFinish(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/ManualContainerFinish", ReplyAction="http://tempuri.org/P08WcfService/ManualContainerFinishResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> ManualContainerFinishAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CloseNormalContainer", ReplyAction="http://tempuri.org/P08WcfService/CloseNormalContainerResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CloseNormalContainer(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CloseNormalContainer", ReplyAction="http://tempuri.org/P08WcfService/CloseNormalContainerResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CloseNormalContainerAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CloseCancelContainer", ReplyAction="http://tempuri.org/P08WcfService/CloseCancelContainerResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CloseCancelContainer(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/CloseCancelContainer", ReplyAction="http://tempuri.org/P08WcfService/CloseCancelContainerResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CloseCancelContainerAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/RebindNormalContainer", ReplyAction="http://tempuri.org/P08WcfService/RebindNormalContainerResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult RebindNormalContainer(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/RebindNormalContainer", ReplyAction="http://tempuri.org/P08WcfService/RebindNormalContainerResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> RebindNormalContainerAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/RebindCancelContainer", ReplyAction="http://tempuri.org/P08WcfService/RebindCancelContainerResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult RebindCancelContainer(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/RebindCancelContainer", ReplyAction="http://tempuri.org/P08WcfService/RebindCancelContainerResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> RebindCancelContainerAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/StopAllot", ReplyAction="http://tempuri.org/P08WcfService/StopAllotResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult StopAllot(long f0701Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/StopAllot", ReplyAction="http://tempuri.org/P08WcfService/StopAllotResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(long f0701Id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -15495,12 +17247,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
             return base.Channel.ChangeF16140101IsPassAsync(f16140101Data, sourceNo);
         }
         
-        public Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult FinishCurrentBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage) {
-            return base.Channel.FinishCurrentBox(f050801, f055001, isCompletePackage);
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult FinishCurrentBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage, bool isManualCloseBox) {
+            return base.Channel.FinishCurrentBox(f050801, f055001, isCompletePackage, isManualCloseBox);
         }
         
-        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult> FinishCurrentBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage) {
-            return base.Channel.FinishCurrentBoxAsync(f050801, f055001, isCompletePackage);
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.FinishCurrentBoxExecuteResult> FinishCurrentBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.F050801 f050801, Wms3pl.WpfClient.ExDataServices.P08WcfService.F055001 f055001, bool isCompletePackage, bool isManualCloseBox) {
+            return base.Channel.FinishCurrentBoxAsync(f050801, f055001, isCompletePackage, isManualCloseBox);
         }
         
         public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CheckF161401RepeatSerialNo(Wms3pl.WpfClient.ExDataServices.P08WcfService.F161201 f161201, string barcode) {
@@ -15941,6 +17693,134 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CancelArrivalRecordAsync(string dcCode, string gupCode, string custCode, string wmsNo, string containerCode) {
             return base.Channel.CancelArrivalRecordAsync(dcCode, gupCode, custCode, wmsNo, containerCode);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult ScanPickContainerCode(string dcCode, string gupCode, string custCode, string containerCode) {
+            return base.Channel.ScanPickContainerCode(dcCode, gupCode, custCode, containerCode);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult> ScanPickContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode) {
+            return base.Channel.ScanPickContainerCodeAsync(dcCode, gupCode, custCode, containerCode);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult ScanOutContainerCode(string dcCode, string gupCode, string custCode, string containerCode) {
+            return base.Channel.ScanOutContainerCode(dcCode, gupCode, custCode, containerCode);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult> ScanOutContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode) {
+            return base.Channel.ScanOutContainerCodeAsync(dcCode, gupCode, custCode, containerCode);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerPutIntoOutContainerResult PickContainerPutIntoOutContainer(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult pickContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult outContainerResult) {
+            return base.Channel.PickContainerPutIntoOutContainer(dcCode, gupCode, custCode, pickContainer, outContainerResult);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerPutIntoOutContainerResult> PickContainerPutIntoOutContainerAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.PickContainerResult pickContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult outContainerResult) {
+            return base.Channel.PickContainerPutIntoOutContainerAsync(dcCode, gupCode, custCode, pickContainer, outContainerResult);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult RePackingBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo) {
+            return base.Channel.RePackingBox(outContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> RePackingBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo) {
+            return base.Channel.RePackingBoxAsync(outContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CloseBox(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo) {
+            return base.Channel.CloseBox(outContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CloseBoxAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo outContainerInfo) {
+            return base.Channel.CloseBoxAsync(outContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerResult ScanBindingPickContainerCode(string dcCode, string gupCode, string custCode, string containerCode) {
+            return base.Channel.ScanBindingPickContainerCode(dcCode, gupCode, custCode, containerCode);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerResult> ScanBindingPickContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode) {
+            return base.Channel.ScanBindingPickContainerCodeAsync(dcCode, gupCode, custCode, containerCode);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult ScanNormalContainerCode(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.ScanNormalContainerCode(dcCode, gupCode, custCode, containerCode, bindingPickContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult> ScanNormalContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.ScanNormalContainerCodeAsync(dcCode, gupCode, custCode, containerCode, bindingPickContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult ScanCancelContainerCode(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.ScanCancelContainerCode(dcCode, gupCode, custCode, containerCode, bindingPickContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerResult> ScanCancelContainerCodeAsync(string dcCode, string gupCode, string custCode, string containerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.ScanCancelContainerCodeAsync(dcCode, gupCode, custCode, containerCode, bindingPickContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeResult ScanItemBarcodeFromP080806(string dcCode, string gupCode, string custCode, string itemBarcode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo normalContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo cancelContainer) {
+            return base.Channel.ScanItemBarcodeFromP080806(dcCode, gupCode, custCode, itemBarcode, bindingPickContainerInfo, normalContainer, cancelContainer);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ScanItemBarcodeResult> ScanItemBarcodeFromP080806Async(string dcCode, string gupCode, string custCode, string itemBarcode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo normalContainer, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo cancelContainer) {
+            return base.Channel.ScanItemBarcodeFromP080806Async(dcCode, gupCode, custCode, itemBarcode, bindingPickContainerInfo, normalContainer, cancelContainer);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.F053601_NotAllotData[] GetNotAllotDataInPickContainer(long f0701_Id) {
+            return base.Channel.GetNotAllotDataInPickContainer(f0701_Id);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.F053601_NotAllotData[]> GetNotAllotDataInPickContainerAsync(long f0701_Id) {
+            return base.Channel.GetNotAllotDataInPickContainerAsync(f0701_Id);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult ManualContainerFinish(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.ManualContainerFinish(dcCode, gupCode, custCode, bindingPickContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> ManualContainerFinishAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.ManualContainerFinishAsync(dcCode, gupCode, custCode, bindingPickContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CloseNormalContainer(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.CloseNormalContainer(containerInfo, bindingPickContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CloseNormalContainerAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.CloseNormalContainerAsync(containerInfo, bindingPickContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult CloseCancelContainer(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.CloseCancelContainer(containerInfo, bindingPickContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> CloseCancelContainerAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo containerInfo, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.CloseCancelContainerAsync(containerInfo, bindingPickContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult RebindNormalContainer(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.RebindNormalContainer(dcCode, gupCode, custCode, oriContainerInfo, newContainerCode, bindingPickContainerInfo);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> RebindNormalContainerAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.BindingPickContainerInfo bindingPickContainerInfo) {
+            return base.Channel.RebindNormalContainerAsync(dcCode, gupCode, custCode, oriContainerInfo, newContainerCode, bindingPickContainerInfo);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult RebindCancelContainer(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode) {
+            return base.Channel.RebindCancelContainer(dcCode, gupCode, custCode, oriContainerInfo, newContainerCode);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> RebindCancelContainerAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode) {
+            return base.Channel.RebindCancelContainerAsync(dcCode, gupCode, custCode, oriContainerInfo, newContainerCode);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult StopAllot(long f0701Id) {
+            return base.Channel.StopAllot(f0701Id);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(long f0701Id) {
+            return base.Channel.StopAllotAsync(f0701Id);
         }
     }
 }

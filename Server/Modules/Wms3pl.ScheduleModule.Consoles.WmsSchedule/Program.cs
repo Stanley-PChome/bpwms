@@ -1,5 +1,7 @@
 using ConsoleUtility.Helpers;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -41,16 +43,19 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
 			//param.GupCode = "10";
 			//param.CustCode = "010001";
 			_config.SchemaName = "PHWMS_DEV";
-			_config.ScheduleNo = "01";
+			_config.ScheduleNo = "23";
 #endif
             Schemas.CoreSchema = _config.SchemaName;
-      ConsoleHelper.FilePath = string.Format(ConfigurationManager.AppSettings["ExcelFilePath"], GetScheduleName(), DateTime.Today.ToString("yyyyMMdd"));
+			ConsoleHelper.FilePath = string.Format(ConfigurationManager.AppSettings["FilePath"], DateTime.Today.ToString("yyyyMMdd"));
+
+			ConsoleHelper.ExcelFilePath = string.Format(ConfigurationManager.AppSettings["ExcelFilePath"], GetScheduleName(), DateTime.Today.ToString("yyyyMMdd"));
     }
 		
 		private static void Execute()
 		{
+			ConsoleHelper.TypeName = GetScheduleName();
 			var res = new ApiResult();
-			Log($" *** {GetScheduleName()}排程Start ***");
+			ConsoleHelper.Log($" *** {GetScheduleName()}排程Start ***");
 			try
 			{
 				switch (_config.ScheduleNo)
@@ -121,7 +126,7 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
           case "22": //自動配庫
             res = WmsScheduleService.AutoAllotStocks();
             break;
-          case "23": //每日庫存結算
+          case "23": //每日庫存備份
             _param.SettleType = "DailyStockSettle";
             res = WmsScheduleService.DailySettle(_param);
             break;
@@ -149,30 +154,44 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
           case "30":  //使用上次計算儲位容積時間更新儲位容積
             res = WmsScheduleService.ExecUpdateLocVolumnByCalvolumnTime(_param);
             break;
-          default:
+          case "31":  //跨庫調撥出貨分配扣帳排程
+            res = WmsScheduleService.MoveOutShipOrderDebit();
+            break;
+
+					default:
 						break;
 				}
 				if (res.IsSuccessed)
 				{
-					Log($"處理狀況：成功");
-					Log($"處理結果代碼：[{res.MsgCode}]");
-					Log($"處理結果訊息：{res.MsgContent}");
+					ConsoleHelper.Log($"處理狀況：成功");
+					ConsoleHelper.Log($"處理結果代碼：[{res.MsgCode}]");
+					ConsoleHelper.Log($"處理結果訊息：{res.MsgContent}");
 				}
 				else
 				{
-					Log($"處理狀況：失敗");
-					Log($"處理結果代碼：[{res.MsgCode}]");
-					Log($"處理結果訊息：{res.MsgContent}");
+					ConsoleHelper.Log($"處理狀況：失敗");
+					ConsoleHelper.Log($"處理結果代碼：[{res.MsgCode}]");
+					ConsoleHelper.Log($"處理結果訊息：{res.MsgContent}");
+				}
+				var apiDataList = res.Data != null ? JsonConvert.DeserializeObject<List<ApiResponse>>(res.Data.ToString()) : null;
+				if (apiDataList != null && apiDataList.Any())
+				{
+					ConsoleHelper.Log($"處理明細：");
+
+					apiDataList.ForEach(o =>
+					{
+						ConsoleHelper.Log($"處理結果：{o.MsgContent}");
+					});
 				}
 			}
 			catch(Exception ex)
 			{
-				Log($"發生錯誤：{ex.ToString()}");
+				ConsoleHelper.Log($"發生錯誤：{ex.ToString()}");
 			}
 			finally
 			{
-				Log($"*** {GetScheduleName()}排程 End ***");
-				Log(string.Empty, false);
+				ConsoleHelper.Log($"*** {GetScheduleName()}排程 End ***");
+				ConsoleHelper.Log(string.Empty, false);
 			}
 		}
 
@@ -224,8 +243,8 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
           return "GetReplensihStock";
         case "22": //自動配庫
           return "AutoAllotStocks";
-        case "23": //每日庫存結算
-          return "DailyStockSettle";
+        case "23": //每日庫存備份結算
+					return "DailyStockSettle";
         case "24": //每日費用結算
           return "DailyFeeSettle";
         case "25": //每日報表結算
@@ -240,29 +259,12 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
           return "RemoveGoldLoc";
         case "30": //使用上次計算儲位容積時間更新儲位容積
           return "ExecUpdateLocVolumnByCalvolumnTime";
-
-        default:
+        case "31": //跨庫調撥出貨分配扣帳排程
+          return "MoveOutShipOrderDebit";
+				default:
           return "NoSchedule";
       }
     }
 
-
-
-    #region Log
-    /// <summary>
-    /// ����Log��ExportResults.txt
-    /// </summary>
-    /// <param name="message"></param>
-    private static void Log(string message,bool isShowDatetime = true)
-		{
-			if (!Directory.Exists(_config.FilePath))
-				Directory.CreateDirectory(_config.FilePath);
-
-            var fileFullName = Path.Combine(_config.FilePath, $"WcsSchedule_{GetScheduleName()}.txt");
-
-            using (var sw = new StreamWriter(fileFullName, true, Encoding.GetEncoding(950))) //BIG5
-                sw.WriteLine(string.Format("{0} {1}", isShowDatetime ? DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") : string.Empty, message));
-        }
-        #endregion
     }
 }

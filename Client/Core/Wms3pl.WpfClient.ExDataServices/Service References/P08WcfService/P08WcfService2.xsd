@@ -420,9 +420,11 @@
   <xs:element name="CheckShipContainerCodeRes" nillable="true" type="tns:CheckShipContainerCodeRes" />
   <xs:complexType name="SearchAndCheckWmsOrderInfoReq">
     <xs:sequence>
+      <xs:element minOccurs="0" name="CloseByBoxno" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CustCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DcCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GupCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoSpecReprots" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ShipMode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WmsOrdNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WorkStationId" nillable="true" type="xs:string" />
@@ -492,10 +494,12 @@
       <xs:element minOccurs="0" name="DelvDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="GupCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ItemList" nillable="true" type="tns:ArrayOfItemModel" />
+      <xs:element minOccurs="0" name="NoSpecReprots" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OrdType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PickTime" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Qty" type="xs:int" />
       <xs:element minOccurs="0" name="WmsOrdNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkstationId" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ScanItemBarcodeReq" nillable="true" type="tns:ScanItemBarcodeReq" />
@@ -515,6 +519,7 @@
       <xs:element minOccurs="0" name="DcCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GupCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IsAppendBox" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsManualCloseBox" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsScanBox" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OrdType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PackageBoxNo" nillable="true" type="xs:int" />
@@ -552,6 +557,7 @@
       <xs:element minOccurs="0" name="ReportName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReportSeq" type="xs:int" />
       <xs:element minOccurs="0" name="ReportUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WmsOrdNo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ShipPackageReportModel" nillable="true" type="tns:ShipPackageReportModel" />
@@ -561,11 +567,12 @@
       <xs:element minOccurs="0" name="DcCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DelvDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="GupCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoSpecReprots" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PickTime" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ShipMode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SubBoxNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WmsOrdNo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="WorkStationId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkstationId" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UseShipContainerToBoxDetailReq" nillable="true" type="tns:UseShipContainerToBoxDetailReq" />
@@ -873,4 +880,161 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HomeDeliveryOrderNumberData" nillable="true" type="tns:HomeDeliveryOrderNumberData" />
+  <xs:complexType name="PickContainerResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ExecuteResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContainerCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MoveOutTargetName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PickContainerInfos" nillable="true" type="tns:ArrayOfPickContainerInfo" />
+          <xs:element minOccurs="0" name="TotalPcs" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PickContainerResult" nillable="true" type="tns:PickContainerResult" />
+  <xs:complexType name="ArrayOfPickContainerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PickContainerInfo" nillable="true" type="tns:PickContainerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPickContainerInfo" nillable="true" type="tns:ArrayOfPickContainerInfo" />
+  <xs:complexType name="PickContainerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CONTAINER_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CROSS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEVICE_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEVICE_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="F0701_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MOVE_OUT_TARGET" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TOTAL" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PickContainerInfo" nillable="true" type="tns:PickContainerInfo" />
+  <xs:complexType name="OutContainerResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ExecuteResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContainerCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MoveOutTargetName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OutContainerInfo" nillable="true" type="tns:OutContainerInfo" />
+          <xs:element minOccurs="0" name="TotalPcs" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OutContainerResult" nillable="true" type="tns:OutContainerResult" />
+  <xs:complexType name="OutContainerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CROSS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CRT_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="F0531_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="F0701_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MOVE_OUT_TARGET" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OUT_CONTAINER_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SOW_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TOTAL" type="xs:int" />
+      <xs:element minOccurs="0" name="WORK_TYPE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OutContainerInfo" nillable="true" type="tns:OutContainerInfo" />
+  <xs:complexType name="PickContainerPutIntoOutContainerResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ExecuteResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsOutContainerError" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsPickContainerError" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UpdateOutContainerResult" nillable="true" type="tns:OutContainerResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PickContainerPutIntoOutContainerResult" nillable="true" type="tns:PickContainerPutIntoOutContainerResult" />
+  <xs:complexType name="BindingPickContainerResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ExecuteResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BindingPickContainerInfo" nillable="true" type="tns:BindingPickContainerInfo" />
+          <xs:element minOccurs="0" name="IsReleaseContainer" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BindingPickContainerResult" nillable="true" type="tns:BindingPickContainerResult" />
+  <xs:complexType name="BindingPickContainerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALL_CP_ITEM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTAINER_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CROSS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CUST_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DC_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEVICE_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="F0534_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="F0701_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="GUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HAS_CP_ITEM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ItemList" nillable="true" type="tns:ArrayOfBindingPickContainerDetail" />
+      <xs:element minOccurs="0" name="MOVE_OUT_TARGET" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PICK_ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TOTAL" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BindingPickContainerInfo" nillable="true" type="tns:BindingPickContainerInfo" />
+  <xs:complexType name="ArrayOfBindingPickContainerDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BindingPickContainerDetail" nillable="true" type="tns:BindingPickContainerDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBindingPickContainerDetail" nillable="true" type="tns:ArrayOfBindingPickContainerDetail" />
+  <xs:complexType name="BindingPickContainerDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="A_SET_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="BUNDLE_SERIALNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="B_SET_QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="EAN_CODE1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EAN_CODE2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EAN_CODE3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BindingPickContainerDetail" nillable="true" type="tns:BindingPickContainerDetail" />
+  <xs:complexType name="ScanItemBarcodeResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ExecuteResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BindingPickContainerInfo" nillable="true" type="tns:BindingPickContainerInfo" />
+          <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsFinishAllot" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsNormalShipItem" type="xs:boolean" />
+          <xs:element minOccurs="0" name="bindNewCancelContainer" type="xs:boolean" />
+          <xs:element minOccurs="0" name="bindNewNormalContainer" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScanItemBarcodeResult" nillable="true" type="tns:ScanItemBarcodeResult" />
+  <xs:complexType name="ArrayOfF053601_NotAllotData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="F053601_NotAllotData" nillable="true" type="tns:F053601_NotAllotData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfF053601_NotAllotData" nillable="true" type="tns:ArrayOfF053601_NotAllotData" />
+  <xs:complexType name="F053601_NotAllotData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ITEM_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOALLOT_QTY" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="F053601_NotAllotData" nillable="true" type="tns:F053601_NotAllotData" />
 </xs:schema>

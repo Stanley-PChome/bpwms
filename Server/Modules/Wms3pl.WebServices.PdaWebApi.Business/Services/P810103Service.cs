@@ -117,33 +117,44 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
 			if (result.IsSuccessed)
 			{
-                if (getAllocReq.AllocType == "01")// 進倉上架
-                {
-                    result.Data = f151001Repo.GetP810103DataByInbound(
-                            getAllocReq.DcNo,
-                            getAllocReq.CustNo,
-                            gupCode,
-                            getAllocReq.AllocDate,
-                            getAllocReq.WmsNo,
-                            getAllocReq.ItemNo,
-                            getAllocReq.PalletNo,
-                            getAllocReq.SerialNo,
-                            allocationNos);
-                }
-                else // 調撥下架、調撥上架
-                {
-                    result.Data = f151001Repo.GetP810103Data(
-                            getAllocReq.DcNo,
-                            getAllocReq.CustNo,
-                            gupCode,
-                            getAllocReq.AllocType,
-                            getAllocReq.AllocDate,
-                            getAllocReq.WmsNo,
-                            getAllocReq.ItemNo,
-                            getAllocReq.PalletNo,
-                            getAllocReq.SerialNo,
-                            allocationNos);
-                }
+        if (getAllocReq.AllocType == "01")// 進倉上架
+        {
+            result.Data = f151001Repo.GetP810103DataByInbound(
+                    getAllocReq.DcNo,
+                    getAllocReq.CustNo,
+                    gupCode,
+                    getAllocReq.AllocDate,
+                    getAllocReq.WmsNo,
+                    getAllocReq.ItemNo,
+                    getAllocReq.PalletNo,
+                    getAllocReq.SerialNo,
+                    allocationNos);
+        }
+        else // 調撥下架、調撥上架
+        { var tmp   = f151001Repo.GetP810103Data(
+                    getAllocReq.DcNo,
+                    getAllocReq.CustNo,
+                    gupCode,
+                    getAllocReq.AllocType,
+                    getAllocReq.AllocDate,
+                    getAllocReq.WmsNo,
+                    getAllocReq.ItemNo,
+                    getAllocReq.PalletNo,
+                    getAllocReq.SerialNo,
+                    allocationNos);
+
+          if ( getAllocReq.AllocType.Equals("02") && tmp !=null)
+          {     //如果AllocType = 02(下架)且有指定單號(WMS有值)，檢查Data裡的Status 是否為1
+            if(tmp.Where(x=> x.Status == "1").Any())
+            {   // 如果是，回傳的Data清空， 並回傳錯誤訊息[20357,此調撥單已有人員列印並處理中，不可作業]
+              result = new ApiResult { IsSuccessed = false, MsgCode = "20357", MsgContent = string.Format(p81Service.GetMsg("20357")) };
+            }                    
+            else
+              result.Data = tmp;
+          }
+          else
+            result.Data = tmp;
+        }
 			}
 
 			#endregion
@@ -553,23 +564,25 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 			var f1980Repo = new F1980Repository(Schemas.CoreSchema);
 			var f191204Repo = new F191204Repository(Schemas.CoreSchema, _wmsTransation);
 			var sharedService = new SharedService(_wmsTransation);
+      var stockService = new StockService(_wmsTransation);
+      sharedService.StockService = stockService;
 
-			ApiResult result = new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = p81Service.GetMsg("10001") };
+      ApiResult result = new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = p81Service.GetMsg("10001") };
 
-            // 傳入參數轉大寫
-            if (!string.IsNullOrWhiteSpace(postAllocConfirmReq.ActLoc))
-                postAllocConfirmReq.ActLoc = postAllocConfirmReq.ActLoc.ToUpper();
+      // 傳入參數轉大寫
+      if (!string.IsNullOrWhiteSpace(postAllocConfirmReq.ActLoc))
+        postAllocConfirmReq.ActLoc = postAllocConfirmReq.ActLoc.ToUpper();
 
-            #region 資料檢核
+      #region 資料檢核
 
-            // 帳號檢核
-            var accData = p81Service.CheckAcc(postAllocConfirmReq.AccNo);
+      // 帳號檢核
+      var accData = p81Service.CheckAcc(postAllocConfirmReq.AccNo);
 
-			// 檢核人員功能權限
-			var accFunctionCount = p81Service.CheckAccFunction(postAllocConfirmReq.FuncNo, postAllocConfirmReq.AccNo);
+      // 檢核人員功能權限
+      var accFunctionCount = p81Service.CheckAccFunction(postAllocConfirmReq.FuncNo, postAllocConfirmReq.AccNo);
 
-			// 檢核人員貨主權限
-			var accCustCount = p81Service.CheckAccCustCode(postAllocConfirmReq.CustNo, postAllocConfirmReq.AccNo);
+      // 檢核人員貨主權限
+      var accCustCount = p81Service.CheckAccCustCode(postAllocConfirmReq.CustNo, postAllocConfirmReq.AccNo);
 
 			// 檢核人員物流中心權限
 			var accDcCount = p81Service.CheckAccDc(postAllocConfirmReq.DcNo, postAllocConfirmReq.AccNo);
@@ -767,8 +780,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 				};
 
         sharedService.AllocationConfirm(param);
-
-				_wmsTransation.Complete();
+        stockService.SaveChange();
+        _wmsTransation.Complete();
 
 				// 下架
 				if (postAllocConfirmReq.AllocType == "02")

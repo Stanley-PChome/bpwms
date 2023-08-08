@@ -70,33 +70,7 @@ namespace Wms3pl.Datas.F19
 			return enterDate;
 		}
 
-		public F1913 FindDataByKey(string dcCode, string gupCode, string custCode, string itemCode, string locCode, DateTime validDate, DateTime enterDate, string vnrCode, string serialNo, string boxCtrlNo, string palletCtrlNo, string makeNo)
-		{
-
-			var result = _db.F1913s
-								 .Where(x => x.DC_CODE == dcCode
-								 && x.GUP_CODE == gupCode
-								 && x.CUST_CODE == custCode
-								 && x.ITEM_CODE == itemCode
-								 && x.LOC_CODE == locCode
-								 && x.VALID_DATE == validDate
-								 && x.ENTER_DATE == enterDate
-								 && x.SERIAL_NO == serialNo
-								 && x.BOX_CTRL_NO == boxCtrlNo
-								 && x.PALLET_CTRL_NO == palletCtrlNo
-								 && x.MAKE_NO == makeNo
-								 );
-
-
-
-			if (!string.IsNullOrEmpty(vnrCode))
-			{
-				result.Where(x => x.VNR_CODE == vnrCode);
-			}
-
-			return result.FirstOrDefault();
-		}
-
+		
 		public void DeleteDataByBulkDelete(List<F1913> f1913s)
 		{
 			SqlBulkDeleteForAnyCondition(f1913s, "F1913", new List<string> { "DC_CODE",
@@ -427,7 +401,7 @@ namespace Wms3pl.Datas.F19
 			return result;
 		}
 
-		public IQueryable<StockDataByInventory> GetStockQtyByInventory(string dcCode, string gupCode, string custCode, string warehouseId, List<StockDataByInventoryParam> param)
+		public IQueryable<StockDataByInventory> GetStockQtyByInventory0(string dcCode, string gupCode, string custCode, string warehouseId, List<StockDataByInventoryParam> param)
 		{
 			var f1912s = _db.F1912s.AsNoTracking().Where(x => x.DC_CODE == dcCode &&
 										x.GUP_CODE == gupCode &&

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F02;
 using Wms3pl.DBCore;
@@ -16,8 +18,12 @@ namespace Wms3pl.Datas.F01
         /// <returns></returns>
         public IQueryable<F010301> GetOldF010301Datas()
         {
-            var sql = "SELECT * FROM F010301 WHERE CRT_DATE<=dbo.getsysdate()";
-            return SqlQuery<F010301>(sql);
+      var param = new List<SqlParameter>
+            {
+              new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
+            var sql = "SELECT * FROM F010301 WHERE CRT_DATE <= @p0";
+            return SqlQuery<F010301>(sql,param.ToArray());
         }
 
     }

@@ -793,8 +793,8 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="pickOrdNos"></param>
 		public void UpdatePickOrdNoLocVolumn(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
 		{
-			var pickLocCodes = GetPickLocCodes(dcCode, gupCode, custCode, pickOrdNos);
-			UpdateUsedVolumnByLocCodes(dcCode, gupCode, custCode, pickLocCodes);
+			//var pickLocCodes = GetPickLocCodes(dcCode, gupCode, custCode, pickOrdNos);
+			//UpdateUsedVolumnByLocCodes(dcCode, gupCode, custCode, pickLocCodes);
 		}
 
 		private List<KeyValuePair<string, List<string>>> dcCacheLocs;

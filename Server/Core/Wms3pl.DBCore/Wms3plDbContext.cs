@@ -418,6 +418,8 @@ namespace Wms3pl.DBCore
     public DbSet<F020504> F020504s { get; set; }
     public DbSet<F02050401> F02050401s { get; set; }
     public DbSet<F02050402> F02050402s { get; set; }
+    public DbSet<F020601> F020601s { get; set; }
+    public DbSet<F020603> F020603s { get; set; }
 
     #endregion
 
@@ -507,10 +509,24 @@ namespace Wms3pl.DBCore
     public DbSet<F051801> F051801s { get; set; }
     public DbSet<F051802> F051802s { get; set; }
     public DbSet<F051803> F051803s { get; set; }
-    #endregion
 
-    #region F06
-    public DbSet<F060101> F060101s { get; set; }
+	public DbSet<F0530> F0530s { get; set; }
+	public DbSet<F0531> F0531s { get; set; }
+	public DbSet<F0532> F0532s { get; set; }
+	public DbSet<F053201> F053201s { get; set; }
+	public DbSet<F053202> F053202s { get; set; }
+	public DbSet<F053203> F053203s { get; set; }
+	public DbSet<F0533> F0533s { get; set; }
+	public DbSet<F0534> F0534s { get; set; }
+	public DbSet<F0535> F0535s { get; set; }
+		public DbSet<F0536> F0536s { get; set; }
+		public DbSet<F053601> F053601s { get; set; }
+		public DbSet<F053602> F053602s { get; set; }
+		public DbSet<F0537> F0537s { get; set; }
+		#endregion
+
+		#region F06
+		public DbSet<F060101> F060101s { get; set; }
     public DbSet<F060102> F060102s { get; set; }
     public DbSet<F060201> F060201s { get; set; }
     public DbSet<F060202> F060202s { get; set; }
@@ -551,16 +567,21 @@ namespace Wms3pl.DBCore
     public DbSet<F075101> F075101s { get; set; }
     public DbSet<F075102> F075102s { get; set; }
     public DbSet<F075103> F075103s { get; set; }
+    public DbSet<F077101> F077101s { get; set; }
+    public DbSet<F075105> F075105s { get; set; }
+    public DbSet<F075106> F075106s { get; set; }
+    public DbSet<F075107> F075107s { get; set; }
+    public DbSet<F075108> F075108s { get; set; }
+    public DbSet<F075109> F075109s { get; set; }
+		public DbSet<F075110> F075110s { get; set; }
+		public DbSet<F075111> F075111s { get; set; }
+		public DbSet<F076101> F076101s { get; set; }
+    public DbSet<F076102> F076102s { get; set; }
     public DbSet<F076103> F076103s { get; set; }
     public DbSet<F076104> F076104s { get; set; }
-    public DbSet<F077101> F077101s { get; set; }
-		public DbSet<F075105> F075105s { get; set; }
-		public DbSet<F075106> F075106s { get; set; }
-		public DbSet<F075107> F075107s { get; set; }
-		public DbSet<F075108> F075108s { get; set; }
-		public DbSet<F075109> F075109s { get; set; }
-		public DbSet<F076101> F076101s { get; set; }
-		public DbSet<F076102> F076102s { get; set; }
+    public DbSet<F076105> F076105s { get; set; }
+    public DbSet<F076106> F076106s { get; set; }
+    public DbSet<F076107> F076107s { get; set; }
     public DbSet<F077102> F077102s { get; set; }
     #endregion
 
@@ -874,7 +895,9 @@ namespace Wms3pl.DBCore
 
     #region VIEW
     public DbQuery<VW_F000904_LANG> VW_F000904_LANGs { get; set; }
+    public DbQuery<VW_VirtualStock> VW_VirtualStocks { get; set; }
+    public DbQuery<VW_CrossOrderCancelSerail> VW_CrossOrderCancelSerails { get; set; }
     #endregion
     #endregion
-    }
+  }
 }

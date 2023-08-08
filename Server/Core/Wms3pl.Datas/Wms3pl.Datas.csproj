@@ -196,6 +196,8 @@
     <Compile Include="F02\F02020107.cs" />
     <Compile Include="F02\F020301.cs" />
     <Compile Include="F02\F020302.cs" />
+    <Compile Include="F02\F020603.cs" />
+    <Compile Include="F02\F020601.cs" />
     <Compile Include="F02\F020504.cs" />
     <Compile Include="F02\F02050401.cs" />
     <Compile Include="F02\F02050402.cs" />
@@ -268,6 +270,19 @@
     <Compile Include="F05\F05290301.cs" />
     <Compile Include="F05\F052904.cs" />
     <Compile Include="F05\F05290401.cs" />
+    <Compile Include="F05\F0537.cs" />
+    <Compile Include="F05\F053203.cs" />
+    <Compile Include="F05\F053602.cs" />
+    <Compile Include="F05\F053601.cs" />
+    <Compile Include="F05\F0536.cs" />
+    <Compile Include="F05\F0535.cs" />
+    <Compile Include="F05\F0534.cs" />
+    <Compile Include="F05\F0533.cs" />
+    <Compile Include="F05\F053202.cs" />
+    <Compile Include="F05\F053201.cs" />
+    <Compile Include="F05\F0532.cs" />
+    <Compile Include="F05\F0531.cs" />
+    <Compile Include="F05\F0530.cs" />
     <Compile Include="F05\F052905.cs" />
     <Compile Include="F05\F05290501.cs" />
     <Compile Include="F05\F055001.cs" />
@@ -314,10 +329,15 @@
     <Compile Include="F06\F060802.cs" />
     <Compile Include="F06\F060801.cs" />
     <Compile Include="F07\F07010401.cs" />
+    <Compile Include="F07\F075111.cs" />
+    <Compile Include="F07\F075110.cs" />
     <Compile Include="F07\F076102.cs" />
     <Compile Include="F07\F076101.cs" />
     <Compile Include="F07\F075109.cs" />
     <Compile Include="F07\F076103.cs" />
+    <Compile Include="F07\F076107.cs" />
+    <Compile Include="F07\F076106.cs" />
+    <Compile Include="F07\F076105.cs" />
     <Compile Include="F07\F076104.cs" />
     <Compile Include="F07\F077101.cs" />
     <Compile Include="F07\F077102.cs" />
@@ -612,7 +632,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule\PREFERENCE.cs" />
     <Compile Include="Schedule\SCHEDULE_JOB_RESULT.cs" />
+    <Compile Include="View\VW_CrossOrderCancelSerail.cs" />
     <Compile Include="View\VW_F000904_LANG.cs" />
+    <Compile Include="View\VW_VirtualStock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

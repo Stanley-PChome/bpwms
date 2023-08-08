@@ -57,6 +57,18 @@
   <wsdl:message name="P25WcfService_DeleteSerialNo_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteSerialNoResponse" />
   </wsdl:message>
+  <wsdl:message name="P25WcfService_GetP2502QueryDatas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetP2502QueryDatas" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_GetP2502QueryDatas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetP2502QueryDatasResponse" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_GetF2501Data_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetF2501Data" />
+  </wsdl:message>
+  <wsdl:message name="P25WcfService_GetF2501Data_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetF2501DataResponse" />
+  </wsdl:message>
   <wsdl:portType name="P25WcfService">
     <wsdl:operation name="GetTests">
       <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/GetTests" message="tns:P25WcfService_GetTests_InputMessage" />
@@ -89,6 +101,14 @@
     <wsdl:operation name="DeleteSerialNo">
       <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/DeleteSerialNo" message="tns:P25WcfService_DeleteSerialNo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/DeleteSerialNoResponse" message="tns:P25WcfService_DeleteSerialNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetP2502QueryDatas">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/GetP2502QueryDatas" message="tns:P25WcfService_GetP2502QueryDatas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/GetP2502QueryDatasResponse" message="tns:P25WcfService_GetP2502QueryDatas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetF2501Data">
+      <wsdl:input wsaw:Action="http://tempuri.org/P25WcfService/GetF2501Data" message="tns:P25WcfService_GetF2501Data_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P25WcfService/GetF2501DataResponse" message="tns:P25WcfService_GetF2501Data_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_P25WcfService" type="tns:P25WcfService">
@@ -158,6 +178,24 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteSerialNo">
       <soap:operation soapAction="http://tempuri.org/P25WcfService/DeleteSerialNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetP2502QueryDatas">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/GetP2502QueryDatas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetF2501Data">
+      <soap:operation soapAction="http://tempuri.org/P25WcfService/GetF2501Data" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

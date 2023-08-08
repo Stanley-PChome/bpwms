@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ACTIVATED" xml:space="preserve">
-    <value>No. open state</value>
+    <value>Ng Item No.</value>
   </data>
   <data name="BatchNo" xml:space="preserve">
     <value>Stored-value card box number</value>
@@ -328,7 +328,7 @@
     <value>Group, Freight Owner, product code, product name, product specifications</value>
   </data>
   <data name="P2502010000_ViewModel_Title2" xml:space="preserve">
-    <value>, Sequence number status, number, category number</value>
+    <value>, Sequence number status, number</value>
   </data>
   <data name="P2502010000_ViewModel_Title3" xml:space="preserve">
     <value>, limitation period</value>
@@ -337,13 +337,13 @@
     <value>, PO single number, a single system number, purchase date, the job type</value>
   </data>
   <data name="P2502010000_ViewModel_Title5" xml:space="preserve">
-    <value>, The customer number, open state number, work order number</value>
+    <value>, ng item number, work order number</value>
   </data>
   <data name="P2502010000_ViewModel_Title6" xml:space="preserve">
-    <value>, Suppliers, system operators, camera number, computer number, unit</value>
+    <value>, Suppliers, computer number, unit</value>
   </data>
   <data name="P2502010000_ViewModel_Title7" xml:space="preserve">
-    <value>Serial number has been uploaded to the customer, date of creation, the establishment of personnel, transaction date, transaction personnel \ n</value>
+    <value>, date of creation, the establishment of personnel, transaction date, transaction personnel</value>
   </data>
   <data name="P2502020000_ViewModel_SearchCondition_Required" xml:space="preserve">
     <value>Item Code / Serial / Gate / Single Number System / PO Single number / number of stored-value card cassette / box number input at least one search criteria</value>

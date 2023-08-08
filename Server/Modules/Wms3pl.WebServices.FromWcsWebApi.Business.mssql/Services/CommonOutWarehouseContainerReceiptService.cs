@@ -160,14 +160,22 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 			var ordNos = wmsNos.Where(wmsNo => wmsNo.StartsWith("O")).ToList();
 			var pickNos = wmsNos.Where(wmsNo => wmsNo.StartsWith("P")).ToList();
 
-			// 取得調撥單明細資料
-			_f151002List = f151002Repo.GetDatasNoTracking(dcCode, gupCode, custCode, allNos).ToList();
+			_f151002List = new List<F151002>();
+			_f051202ListByO = new List<F051202>();
+			_f051203ListByP = new List<F051203>();
+			if (allNos.Any())
+				// 取得調撥單明細資料
+				_f151002List = f151002Repo.GetDatasNoTracking(dcCode, gupCode, custCode, allNos).ToList();
 
-			// 取得揀貨明細By 出貨單號
-			_f051202ListByO = f051202Repo.GetDatasByOrdNos(dcCode, gupCode, custCode, ordNos).ToList();
-
-			// 取得揀貨明細By 揀貨單號
-			_f051203ListByP = f051203Repo.GetDatasByPickNos(dcCode, gupCode, custCode, pickNos).ToList();
+			if(ordNos.Any())
+			{
+				var pickNoList = _f060201List.Select(x => x.PICK_NO).ToList();
+				// 取得揀貨明細
+				_f051202ListByO = f051202Repo.GetDataByPickNos(dcCode, gupCode, custCode, pickNoList).ToList();
+			}
+			if(pickNos.Any())
+				// 取得揀貨彙總明細
+			  _f051203ListByP = f051203Repo.GetDatasByPickNos(dcCode, gupCode, custCode, pickNos).ToList();
 
 			// 取得參數序號資料
 			var itemSerialNos = containerList.SelectMany(x => x.SkuList).Where(x => x.SerialNumList != null).Select(x => new WcsApiOutWarehouseReceiptItemSerialModel

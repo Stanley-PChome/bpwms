@@ -3,6 +3,10 @@ using Wms3pl.WebServices.DataCommon;
 using Wms3pl.Datas.F19;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Newtonsoft.Json;
+using System.Linq;
+using Wms3pl.Datas.Shared.Entities;
 
 namespace Wms3pl.Datas.Test.F19
 {
@@ -519,24 +523,25 @@ namespace Wms3pl.Datas.Test.F19
         }
 		
         [TestMethod]
-        public void GetDatasByInventoryWareHouseList()
-        {
-            #region Params
-            var dcCode = "12";
-            var gupCode = "10";
-            var custCode = "010001";
-            var inventoryWareHouses = new List<Shared.Entities.InventoryWareHouse> { new Shared.Entities.InventoryWareHouse { WAREHOUSE_ID = "G86", AREA_CODE = "A49" } };
-            var itemCodeList = new List<string> { "AGV001" };
-            var inventoryType = "2";
-            var inventoryDate = DateTime.Now.Date;
-            #endregion
+    public void GetDatasByInventoryWareHouseList()
+    {
+      #region Params
+      var dcCode = "12";
+      var gupCode = "10";
+      var custCode = "010001";
+      var inventoryWareHouses = new List<Shared.Entities.InventoryWareHouse> { new Shared.Entities.InventoryWareHouse { WAREHOUSE_ID = "G86", AREA_CODE = "A49" } };
+      var itemCodeList = new List<string> { "KK001" };
+      var inventoryType = "1";
+      var inventoryDate = DateTime.Now.Date.AddDays(-1);
+      #endregion
 
-            _f1913Repo.GetDatasByInventoryWareHouseList(dcCode, gupCode, custCode,
-            inventoryWareHouses, itemCodeList, inventoryType, inventoryDate);
-        }
-		
-		
-        [TestMethod]
+      var res = _f1913Repo.GetDatasByInventoryWareHouseList(dcCode, gupCode, custCode,
+       inventoryWareHouses, itemCodeList, inventoryDate);
+      Trace.WriteLine(JsonConvert.SerializeObject(res));
+    }
+
+
+    [TestMethod]
         public void GetP710705BackWarehouseInventory()
         {
             #region Params
@@ -1029,5 +1034,50 @@ namespace Wms3pl.Datas.Test.F19
 
             _f1913Repo.GetStockQuerys(gupCode, custCode, dcCodes, locCodes, itemCodes);
         }
+
+    [TestMethod]
+    public void GetStockQtyByInventory()
+    {
+      #region Params
+      var dcCodes = "12";
+      var gupCode = "10";
+      var custCode = "010001";
+      var warehouseid = "G01";
+      var itemCodes = new List<Shared.Entities.StockDataByInventoryParam>()
+      {
+        new Shared.Entities.StockDataByInventoryParam()
+        {
+          ITEM_CODE ="NEO001",
+          LOC_CODE ="A01030502",
+          MAKE_NO ="230118001",
+          ENTER_DATE = new DateTime(2023,01,18),
+          VALID_DATE = new DateTime(9999,12,31),
+          BOX_CTRL_NO = "0",
+          PALLET_CTRL_NO = "0"
+        },
+        new StockDataByInventoryParam()
+        {
+          ITEM_CODE ="NN007",
+          LOC_CODE ="A01010105",
+          MAKE_NO ="220412002",
+          ENTER_DATE = new DateTime(2022,04,12),
+          VALID_DATE = new DateTime(2023,12,15),
+          BOX_CTRL_NO = "0",
+          PALLET_CTRL_NO = "0"
+        }
+      };
+      #endregion
+      var data = new List<StockDataByInventory>();
+      foreach (var item in itemCodes)
+        data.AddRange(_f1913Repo.GetStockQtyByInventory(dcCodes, gupCode, custCode, warehouseid, item).ToList());
+      Trace.WriteLine(JsonConvert.SerializeObject(data));
+
+      var data2 = _f1913Repo.GetStockQtyByInventory0(dcCodes, gupCode, custCode, warehouseid, itemCodes).ToList();
+      Trace.WriteLine(JsonConvert.SerializeObject(data2));
+
+      Assert.AreEqual(JsonConvert.SerializeObject(data), JsonConvert.SerializeObject(data2));
+
     }
+
+  }
 }

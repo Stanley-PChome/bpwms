@@ -356,6 +356,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
       var f0701Repo = new F0701Repository(Schemas.CoreSchema, _wmsTransaction);
       var f070102Repo = new F070102Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f02020109Repo = new F02020109Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f2501Repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
 
       var f020501 = f020501Repo.Find(x => x.ID == f020501Id);
       var f020502s = f020502Repo.GetDatasByF020501Id(f020501Id).ToList();
@@ -461,6 +462,28 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
       //原容器上架
       var ContainerToShelfRes = ContainerToShelf(f020501, f020502s);
+
+      #region 更新序號為不良品序號
+      // No.2091(2255) 序號商品在複驗異常處理設為不良品時，要標註序號為不良品序號(F2501.ACTIVATED = 1)
+      var ngSerialItem = ngItem.Where(o => !string.IsNullOrWhiteSpace(o.SERIAL_NO));
+      if (ngSerialItem.Any())
+      {
+        var tarItems = new List<string>();
+        foreach (var ngSerial in ngSerialItem)
+        {
+          var tarSerialNo = f2501Repo.GetSrialNoToProcess(ngSerial.GUP_CODE, ngSerial.CUST_CODE, ngSerial.SERIAL_NO);
+
+          if (string.IsNullOrWhiteSpace(tarSerialNo))
+          {
+            return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.SerialDataNotFound, tarSerialNo) };
+          }
+
+          tarItems.Add(tarSerialNo);
+        }
+
+        f2501Repo.UpdateSerialActivated(f020501.GUP_CODE, f020501.CUST_CODE, tarItems, "1");
+      }
+      #endregion
 
       #region 新增不良品F020501、F020502 並進行不良品容器上架
       var f020501_ID = f020501Repo.GetF020501NextId();

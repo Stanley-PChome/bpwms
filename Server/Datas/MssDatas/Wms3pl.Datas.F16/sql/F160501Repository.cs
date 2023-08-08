@@ -150,10 +150,11 @@ namespace Wms3pl.Datas.F16
             sqlParamers.Add(new SqlParameter("@p5", f160501.DC_CODE));
             sqlParamers.Add(new SqlParameter("@p6", f160501.GUP_CODE));
             sqlParamers.Add(new SqlParameter("@p7", f160501.CUST_CODE));
+            sqlParamers.Add(new SqlParameter("@p8", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
             string sql = @"
 
 				update F160501 set 	DISTR_CAR =@p1,	MEMO =@p2 
-					, UPD_DATE=dbo.GetSysDate() ,UPD_STAFF =@p3,UPD_NAME=@p4
+					, UPD_DATE=@p8 ,UPD_STAFF =@p3,UPD_NAME=@p4
 				where DESTROY_NO =@p0 
                         AND DC_CODE  = @p5 
                         AND GUP_CODE = @p6
@@ -175,10 +176,11 @@ namespace Wms3pl.Datas.F16
             sqlParamers.Add(new SqlParameter("@p5", dcCode));
             sqlParamers.Add(new SqlParameter("@p6", gupCode));
             sqlParamers.Add(new SqlParameter("@p7", custCode));
+            sqlParamers.Add(new SqlParameter("@p8", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
             string sql = @"
 
 				update F160501 set STATUS =@p1
-						, UPD_DATE=dbo.GetSysDate() ,UPD_STAFF =@p2,UPD_NAME=@p3
+						, UPD_DATE=@p8 ,UPD_STAFF =@p2,UPD_NAME=@p3
 				where DESTROY_NO =@p0 	
                         AND DC_CODE  = @p5 
                         AND GUP_CODE = @p6

@@ -193,24 +193,6 @@ namespace Wms3pl.Datas.F19
             for (int i = 0; i < qResult.Count(); i++) qResult[i].ROWNUM = i + 1;
             return qResult.AsQueryable();
         }
-        public IQueryable<F1912> GetDatasByLocCodes(string dcCode, string gupCode, string custCode, List<string> locCodes)
-        {
-            return _db.F1912s
-                        .Where(x => x.DC_CODE == dcCode)
-                        .Where(x => x.GUP_CODE == gupCode || x.GUP_CODE == "0")
-                        .Where(x => x.CUST_CODE == custCode || x.CUST_CODE == "0")
-                        .Where(x => locCodes.Contains((x.LOC_CODE)))
-                        .Select(x => x);
-        }
-
-        public IQueryable<F1912> GetDatasByLocCodes(string dcCode, List<string> locCodes)
-        {
-            return _db.F1912s
-                .Where(x => x.DC_CODE == dcCode)
-                .Where(x => locCodes.Contains((x.LOC_CODE)))
-                .Select(x => x);
-
-        }
 
         public IQueryable<F1912> GetReturnF055001Datas(string dcCode, string gupCode, string custCode, string warehouseType)
         {

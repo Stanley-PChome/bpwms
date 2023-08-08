@@ -12,6 +12,7 @@ using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
 using Wms3pl.WebServices.Shared.Services;
 
+
 namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 {
     public class CheckWarehouseInService
@@ -63,7 +64,9 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
           () =>
           {
             var lockF075101 = f075101Repo.LockF075101();
-            var f075101 = f075101Repo.Find(o => o.CUST_CODE == custCode && o.CUST_ORD_NO == warehouseIns.CustInNo, isForUpdate: true, isByCache: false);
+            //var f075101 = f075101Repo.Find(o => o.CUST_CODE == custCode && o.CUST_ORD_NO == warehouseIns.CustInNo, isForUpdate: true, isByCache: false);
+            var f075101s = f075101Repo.GetF075101Data(custCode, warehouseIns.CustInNo);
+            var f075101 = (F075101)f075101s;       
             if (f075101 == null)
             {
               f075101 = new F075101 { CUST_CODE = custCode, CUST_ORD_NO = warehouseIns.CustInNo };
@@ -350,7 +353,9 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
         });
 
         // 檢核大量序號、盒號、儲值卡盒號、箱號檢核
-        var checkLargeSnRes = serialNoService.CheckLargeSerialNoFull(dcCode, gupCode, custCode, detail.ItemCode, detail.ContainerDatas.SelectMany(x => x.SnList).Distinct().ToArray(), "A1");
+        //var checkLargeSnRes = serialNoService.CheckLargeSerialNoFull(dcCode, gupCode, custCode, detail.ItemCode, detail.ContainerDatas.SelectMany(x => x.SnList).Distinct().ToArray(), "A1");
+        //CheckItemLargeSerialWithBeforeInWarehouse
+        var checkLargeSnRes = serialNoService.CheckItemLargeSerialWithBeforeInWarehouse( gupCode, custCode, detail.ItemCode, detail.ContainerDatas.SelectMany(x => x.SnList).Distinct().ToList());
         var errorSns = checkLargeSnRes.Where(x => !x.Checked);
         if (errorSns.Any())
         {
@@ -418,7 +423,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
             // 為序號商品才做序號檢查
             if (f1903.BUNDLE_SERIALNO == "1" || (warehouseIns.CustCost == "MoveIn" && warehouseIns.WarehouseInDetails.Any(a => a.ContainerDatas.Any(b => b.SnList?.Any() ?? false))))
             {
-              if (warehouseIns.CustCost == "MoveIn" && (warehouseInDetail.SnList == null || (warehouseInDetail.SnList != null && !warehouseInDetail.SnList.Any())))
+              if (f1903.BUNDLE_SERIALNO == "1" && warehouseIns.CustCost == "MoveIn" && (warehouseInDetail.SnList == null || (warehouseInDetail.SnList != null && !warehouseInDetail.SnList.Any())))
                 res.Add(new ApiResponse { No = warehouseIns.CustInNo, MsgCode = "20111", MsgContent = string.Format(tacService.GetMsg("20111"), warehouseIns.CustInNo, warehouseInDetail.ItemCode) });
 
               // 序號商品SnList不能為空
@@ -433,7 +438,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
                   res.Add(new ApiResponse { No = warehouseIns.CustInNo, MsgCode = "20096", MsgContent = string.Format(tacService.GetMsg("20096"), warehouseIns.CustInNo, warehouseInDetail.ItemCode, string.Join("、", repeatSns)) });
 
                 //大量序號、盒號、儲值卡盒號、箱號檢核
-                var checkLargeSnRes = serialNoService.CheckLargeSerialNoFull(dcCode, gupCode, custCode, warehouseInDetail.ItemCode, warehouseInDetail.SnList.Distinct().ToArray(), "A1");
+                //var checkLargeSnRes = serialNoService.CheckLargeSerialNoFull(dcCode, gupCode, custCode, warehouseInDetail.ItemCode, warehouseInDetail.SnList.Distinct().ToArray(), "A1");
+                var checkLargeSnRes = serialNoService.CheckItemLargeSerialWithBeforeInWarehouse( gupCode, custCode, warehouseInDetail.ItemCode, warehouseInDetail.SnList.Distinct().ToList());
                 var errorSns = checkLargeSnRes.Where(x => !x.Checked);
                 if (errorSns.Any())
                 {

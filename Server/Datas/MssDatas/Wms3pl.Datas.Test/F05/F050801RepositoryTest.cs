@@ -665,5 +665,16 @@ namespace Wms3pl.Datas.Test.F05
 			_f050801Repo.GetHealthInsuranceSalesData(dcCode, gupCode, custCode, startDate, endDate, itemCode);
 		}
 
-	}
+    [TestMethod]
+    public void GetReplensihStockData()
+    {
+      #region Params
+      var dcCode = "12";
+      var gupCode = "10";
+      var custCode = "010001";
+      #endregion
+
+      _f050801Repo.GetReplensihStockData(dcCode, gupCode, custCode);
+    }
+  }
 }

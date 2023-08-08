@@ -31,7 +31,7 @@ namespace Wms3pl.Datas.F05
 		/// <param name="address"></param>
 		/// <returns></returns>
 		public IQueryable<F050101Ex> GetF050101ExDatas(string gupCode, string custCode, string dcCode, DateTime? ordDateFrom, DateTime? ordDateTo, string ordNo, DateTime? arriveDateFrom,
-						DateTime? arriveDateTo, string custOrdNo, string status, string retailCode, string custName, string wmsOrdNo, string pastNo, string address, string channel, string delvType, string allId,string moveOutTarget)
+						DateTime? arriveDateTo, string custOrdNo, string status, string retailCode, string custName, string wmsOrdNo, string pastNo, string address, string channel, string delvType, string allId, string moveOutTarget, string subChannel)
 		{
 
 			var parameterList = new List<SqlParameter>
@@ -269,6 +269,11 @@ namespace Wms3pl.Datas.F05
 				sql += @" AND A.MOVE_OUT_TARGET = @p" + parameterList.Count();
 				parameterList.Add(new SqlParameter("@p" + parameterList.Count(), SqlDbType.NVarChar) { Value = moveOutTarget });
 			}
+			if (!string.IsNullOrWhiteSpace(subChannel))
+			{
+				sql += @" AND A.SUBCHANNEL = @p" + parameterList.Count();
+				parameterList.Add(new SqlParameter("@p" + parameterList.Count(), SqlDbType.VarChar) { Value = subChannel });
+			}
 			//sql += parameterList.CombineNotNullOrEmpty(" AND A.ORD_NO = @p{0} ", ordNo);
 			//sql += parameterList.CombineNotNullOrEmpty(" AND A.CUST_ORD_NO = @p{0} ", custOrdNo);
 			//sql += parameterList.CombineNotNullOrEmpty(" AND A.RETAIL_CODE = @p{0} ", retailCode);
@@ -295,7 +300,7 @@ namespace Wms3pl.Datas.F05
 
 			sql += " ORDER BY A.ORD_NO ";
 
-			var result = SqlQuery<F050101Ex>(sql, parameterList.ToArray());
+			var result = SqlQueryWithSqlParameterSetDbType<F050101Ex>(sql, parameterList.ToArray());
 
 			return result;
 		}
@@ -460,5 +465,5 @@ GROUP BY
             };
             return SqlQuery<F050101>(sql, para.ToArray()).SingleOrDefault();
         }
-    }
+  }
 }

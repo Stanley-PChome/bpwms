@@ -144,17 +144,6 @@ namespace Wms3pl.Datas.F01
 			return result;
 		}
 
-		public F010201 GetEnabledStockData(string dcCode, string gupCode, string custCode, string stockNo)
-		{
-			var result = _db.F010201s.AsNoTracking().Where(x => x.DC_CODE == dcCode &&
-																					 x.GUP_CODE == gupCode &&
-																					 x.CUST_CODE == custCode &&
-																					 (x.STOCK_NO == stockNo || x.CUST_ORD_NO == stockNo || x.CHECK_CODE == stockNo) &&
-																					 x.STATUS != "9").OrderByDescending(x => x.CRT_DATE);
-
-			return result.FirstOrDefault();
-		}
-
 
 
 

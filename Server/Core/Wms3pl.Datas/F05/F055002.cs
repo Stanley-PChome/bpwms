@@ -123,6 +123,9 @@ namespace Wms3pl.Datas.F05
 		/// 訂單序號
 		/// </summary>
 		public string ORD_SEQ { get; set; }
+    /// <summary>
+    /// 工作站編號
+    /// </summary>
+    public string WORKSTATION_CODE { get; set; }
   }
 }
-        

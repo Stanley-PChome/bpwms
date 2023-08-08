@@ -444,6 +444,102 @@
   <wsdl:message name="P08WcfService_CancelArrivalRecord_OutputMessage">
     <wsdl:part name="parameters" element="tns:CancelArrivalRecordResponse" />
   </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanPickContainerCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanPickContainerCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanPickContainerCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanPickContainerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanOutContainerCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanOutContainerCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanOutContainerCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanOutContainerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_PickContainerPutIntoOutContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:PickContainerPutIntoOutContainer" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_PickContainerPutIntoOutContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PickContainerPutIntoOutContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_RePackingBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:RePackingBox" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_RePackingBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RePackingBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseBox" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanBindingPickContainerCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanBindingPickContainerCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanBindingPickContainerCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanBindingPickContainerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanNormalContainerCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanNormalContainerCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanNormalContainerCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanNormalContainerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanCancelContainerCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanCancelContainerCode" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanCancelContainerCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanCancelContainerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanItemBarcodeFromP080806_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanItemBarcodeFromP080806" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ScanItemBarcodeFromP080806_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanItemBarcodeFromP080806Response" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetNotAllotDataInPickContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotAllotDataInPickContainer" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetNotAllotDataInPickContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotAllotDataInPickContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ManualContainerFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:ManualContainerFinish" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_ManualContainerFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ManualContainerFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseNormalContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseNormalContainer" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseNormalContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseNormalContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseCancelContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseCancelContainer" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_CloseCancelContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseCancelContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_RebindNormalContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RebindNormalContainer" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_RebindNormalContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RebindNormalContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_RebindCancelContainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RebindCancelContainer" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_RebindCancelContainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RebindCancelContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_StopAllot_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopAllot" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_StopAllot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopAllotResponse" />
+  </wsdl:message>
   <wsdl:portType name="P08WcfService">
     <wsdl:operation name="GetF1929WithF1909Tests">
       <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetF1929WithF1909Tests" message="tns:P08WcfService_GetF1929WithF1909Tests_InputMessage" />
@@ -732,6 +828,70 @@
     <wsdl:operation name="CancelArrivalRecord">
       <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CancelArrivalRecord" message="tns:P08WcfService_CancelArrivalRecord_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CancelArrivalRecordResponse" message="tns:P08WcfService_CancelArrivalRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanPickContainerCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanPickContainerCode" message="tns:P08WcfService_ScanPickContainerCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanPickContainerCodeResponse" message="tns:P08WcfService_ScanPickContainerCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanOutContainerCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanOutContainerCode" message="tns:P08WcfService_ScanOutContainerCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanOutContainerCodeResponse" message="tns:P08WcfService_ScanOutContainerCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PickContainerPutIntoOutContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/PickContainerPutIntoOutContainer" message="tns:P08WcfService_PickContainerPutIntoOutContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/PickContainerPutIntoOutContainerResponse" message="tns:P08WcfService_PickContainerPutIntoOutContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RePackingBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/RePackingBox" message="tns:P08WcfService_RePackingBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/RePackingBoxResponse" message="tns:P08WcfService_RePackingBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CloseBox" message="tns:P08WcfService_CloseBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CloseBoxResponse" message="tns:P08WcfService_CloseBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanBindingPickContainerCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanBindingPickContainerCode" message="tns:P08WcfService_ScanBindingPickContainerCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanBindingPickContainerCodeResponse" message="tns:P08WcfService_ScanBindingPickContainerCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanNormalContainerCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanNormalContainerCode" message="tns:P08WcfService_ScanNormalContainerCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanNormalContainerCodeResponse" message="tns:P08WcfService_ScanNormalContainerCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanCancelContainerCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanCancelContainerCode" message="tns:P08WcfService_ScanCancelContainerCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanCancelContainerCodeResponse" message="tns:P08WcfService_ScanCancelContainerCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanItemBarcodeFromP080806">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ScanItemBarcodeFromP080806" message="tns:P08WcfService_ScanItemBarcodeFromP080806_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ScanItemBarcodeFromP080806Response" message="tns:P08WcfService_ScanItemBarcodeFromP080806_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotAllotDataInPickContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetNotAllotDataInPickContainer" message="tns:P08WcfService_GetNotAllotDataInPickContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetNotAllotDataInPickContainerResponse" message="tns:P08WcfService_GetNotAllotDataInPickContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ManualContainerFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/ManualContainerFinish" message="tns:P08WcfService_ManualContainerFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/ManualContainerFinishResponse" message="tns:P08WcfService_ManualContainerFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseNormalContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CloseNormalContainer" message="tns:P08WcfService_CloseNormalContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CloseNormalContainerResponse" message="tns:P08WcfService_CloseNormalContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseCancelContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/CloseCancelContainer" message="tns:P08WcfService_CloseCancelContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/CloseCancelContainerResponse" message="tns:P08WcfService_CloseCancelContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RebindNormalContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/RebindNormalContainer" message="tns:P08WcfService_RebindNormalContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/RebindNormalContainerResponse" message="tns:P08WcfService_RebindNormalContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RebindCancelContainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/RebindCancelContainer" message="tns:P08WcfService_RebindCancelContainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/RebindCancelContainerResponse" message="tns:P08WcfService_RebindCancelContainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopAllot">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/StopAllot" message="tns:P08WcfService_StopAllot_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/StopAllotResponse" message="tns:P08WcfService_StopAllot_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_P08WcfService" type="tns:P08WcfService">
@@ -1377,6 +1537,150 @@
     </wsdl:operation>
     <wsdl:operation name="CancelArrivalRecord">
       <soap:operation soapAction="http://tempuri.org/P08WcfService/CancelArrivalRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanPickContainerCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanPickContainerCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanOutContainerCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanOutContainerCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PickContainerPutIntoOutContainer">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/PickContainerPutIntoOutContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RePackingBox">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/RePackingBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseBox">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CloseBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanBindingPickContainerCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanBindingPickContainerCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanNormalContainerCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanNormalContainerCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanCancelContainerCode">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanCancelContainerCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanItemBarcodeFromP080806">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ScanItemBarcodeFromP080806" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotAllotDataInPickContainer">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetNotAllotDataInPickContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ManualContainerFinish">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/ManualContainerFinish" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseNormalContainer">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CloseNormalContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseCancelContainer">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/CloseCancelContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RebindNormalContainer">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/RebindNormalContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RebindCancelContainer">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/RebindCancelContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopAllot">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/StopAllot" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -174,10 +174,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Server\Core\Wms3pl.Datas.Shared\Wms3pl.Datas.Shared.csproj">
-      <Project>{D3DC1679-3BFE-47B1-9302-9A17B90CD9F9}</Project>
-      <Name>Wms3pl.Datas.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\Wms3pl.WpfClient.Common\Wms3pl.WpfClient.Common.csproj">
       <Project>{0c8c673b-4390-4825-8605-6b2a70095b4f}</Project>
       <Name>Wms3pl.WpfClient.Common</Name>

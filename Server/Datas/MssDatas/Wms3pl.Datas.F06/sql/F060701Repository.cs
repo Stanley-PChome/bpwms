@@ -10,10 +10,10 @@ namespace Wms3pl.Datas.F06
 		{
 			var param = new List<SqlParameter>
 						{
-								new SqlParameter("@p0", dcCode),
-								new SqlParameter("@p1", gupCode),
-								new SqlParameter("@p2", custCode)
-						};
+								new SqlParameter("@p0", dcCode) {SqlDbType=System.Data.SqlDbType.VarChar},
+								new SqlParameter("@p1", gupCode) {SqlDbType=System.Data.SqlDbType.VarChar},
+								new SqlParameter("@p2", custCode) {SqlDbType=System.Data.SqlDbType.VarChar}
+            };
 
 			string sql = $@"SELECT * FROM F060701 WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2 AND STATUS = '0'";
 

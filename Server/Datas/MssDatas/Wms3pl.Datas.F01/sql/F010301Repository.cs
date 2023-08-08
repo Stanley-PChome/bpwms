@@ -14,8 +14,14 @@ namespace Wms3pl.Datas.F01
     {
         public IQueryable<F010301> GetOldF010301Datas()
         {
-            var sql = "SELECT DISTINCT a.* FROM F010301 a LEFT JOIN f010302 b ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO WHERE a.RECV_DATE <= CONVERT(VARCHAR, DATEADD(DAY, -1, dbo.getsysdate()), 111) AND b.id IS NOT NULL";
-            return SqlQuery<F010301>(sql);
+            var param = new List<SqlParameter>
+            {
+              new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
+
+            var sql = "SELECT DISTINCT a.* FROM F010301 a LEFT JOIN f010302 b ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO WHERE a.RECV_DATE <= CONVERT(VARCHAR, DATEADD(DAY, -1, @p0), 111) AND b.id IS NOT NULL";
+
+            return SqlQuery<F010301>(sql, param.ToArray());
         }
 
         public IQueryable<VW_F010301> GetALLVMF010301(string DcCode, DateTime? RecvDateS, DateTime? RecvDateE, string AllId, string EmpID, string CheckStatus, string ShipOrdNo)

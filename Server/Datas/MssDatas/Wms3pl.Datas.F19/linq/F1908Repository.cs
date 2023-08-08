@@ -25,15 +25,6 @@ namespace Wms3pl.Datas.F19
                         .FirstOrDefault();
 		}
 
-		public IQueryable<F1908> GetDatas(string gupCode, string custCode, List<string> vnrCodes)
-		{
-            var query = _db.F1908s
-                        .Where(x => x.GUP_CODE == gupCode)
-                        .Where(x => x.CUST_CODE == custCode)
-                        .Where(x => vnrCodes.Contains(x.VNR_CODE));
-            return query.Select(x => x);
-		}
-
 		/// <summary>
 		/// 取得已過濾人員權限的廠商主檔
 		/// </summary>

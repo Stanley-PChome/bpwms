@@ -242,16 +242,22 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 			SharedService sharedService = new SharedService(_wmsTransation);
 			int insertCnt = 0;
 
-      #region 序號、容器轉大寫
+      #region 序號、容器、貨主單號、批號轉大寫
       warehouseInsList.ForEach(
       a =>
       {
+        if (!string.IsNullOrWhiteSpace(a.CustInNo))
+          a.CustInNo = a.CustInNo?.ToUpper();
+
         a.WarehouseInDetails.ForEach(
         b =>
         {
           if (b.SnList != null)
             for (int i = 0; i < b.SnList.Count(); i++)
               b.SnList[i] = b.SnList[i]?.ToUpper();
+
+          if (b.MakeNo != null)
+            b.MakeNo = b.MakeNo?.ToUpper();
 
           if (b.ContainerDatas != null)
           {
@@ -947,7 +953,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 					var f1903 = _f1903List.Where(x => x.ITEM_CODE == currDetail.ItemCode).FirstOrDefault();
           if (f1903 != null && 
             (f1903.BUNDLE_SERIALNO == "1" || 
-            (warehouseIns.CustCost == "MoveIn" && warehouseIns.WarehouseInDetails.Any(a => a.ContainerDatas.Any(b => b.SnList?.Any() ?? false)))))
+            (warehouseIns.CustCost == "MoveIn" && currDetail.ContainerDatas.Any(o => o.SnList?.Count > 0))))
           {
             //如果是跨庫入+有序號+但該品項非序號商品，就不檢查數量與序號是否相符
             var IsCheckSerialQty = !(warehouseIns.CustCost == "MoveIn" && warehouseIns.WarehouseInDetails.Any(a => a.ContainerDatas.Any(b => b.SnList?.Any() ?? false)) && f1903.BUNDLE_SERIALNO != "1");

@@ -207,18 +207,24 @@ namespace Wms3pl.WebServices.Shared.Services
           result.IsSuccessed = false;
         }
       }
-
-      var checkResult = CheckLocFreeze(dcCode, srcLocCode, "1");
-      if (!checkResult.IsSuccessed)
+      var checkResult = new ExecuteResult();
+      if (!string.IsNullOrWhiteSpace(srcLocCode))
       {
-        messages.Add(checkResult.Message);
-        result.IsSuccessed = false;
+        checkResult = CheckLocFreeze(dcCode, srcLocCode, "1");
+        if (!checkResult.IsSuccessed)
+        {
+          messages.Add(checkResult.Message);
+          result.IsSuccessed = false;
+        }
       }
-      checkResult = CheckLocFreeze(dcCode, tarLocCode, "2");
-      if (!checkResult.IsSuccessed)
+      if (!string.IsNullOrWhiteSpace(tarLocCode))
       {
-        messages.Add(checkResult.Message);
-        result.IsSuccessed = false;
+        checkResult = CheckLocFreeze(dcCode, tarLocCode, "2");
+        if (!checkResult.IsSuccessed)
+        {
+          messages.Add(checkResult.Message);
+          result.IsSuccessed = false;
+        }
       }
       result.Message = string.Join("\r\n", messages);
       return result;

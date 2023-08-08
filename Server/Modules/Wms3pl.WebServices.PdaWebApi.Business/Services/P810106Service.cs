@@ -323,11 +323,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
 			#region 資料處理
 
-			_sharedService.StartPick(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, f051201.PICK_ORD_NO, postPickUpdateReq.AccNo);
-			// 新增訂單回檔歷程紀錄表
-			var orderService = new OrderService(_wmsTransation);
-			orderService.AddF050305(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, new List<string> { f051201.PICK_ORD_NO }, "1");
-
+			_sharedService.StartPick(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, postPickUpdateReq.AccNo,new List<string> { f051201.PICK_ORD_NO });
 
 			#endregion
 

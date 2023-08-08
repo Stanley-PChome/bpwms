@@ -779,9 +779,31 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 				Set(() => EnableIsTempControl, ref _enableIsTempControl, value);
 			}
 		}
-		#endregion
-		#region 顯示總保存天數錯誤
-		private string _showSaveDayError = "0";
+    #endregion
+    #region Apple商品
+    private string _isApple;
+    public string IsApple
+    {
+      get { return _isApple; }
+      set
+      {
+        Set(() => IsApple, ref _isApple, value);
+      }
+    }
+
+    private bool _enableIsApple;
+    public bool EnableIsApple
+    {
+      get { return _enableIsApple; }
+      set
+      {
+        Set(() => EnableIsApple, ref _enableIsApple, value);
+      }
+    }
+    #endregion
+
+    #region 顯示總保存天數錯誤
+    private string _showSaveDayError = "0";
 		public string ShowSaveDayError
 		{
 			get { return _showSaveDayError; }
@@ -792,6 +814,35 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 			}
 		}
 		#endregion
+
+
+		#region 是否為序號商品
+		private string _bundleSerial;
+
+		public string BundleSerial
+		{
+			get { return _bundleSerial; }
+			set
+			{
+				Set(() => BundleSerial, ref _bundleSerial, value);
+			}
+		}
+		#endregion
+
+
+		#region 是否可修改是否序號商品
+		private bool _enableBundleSerial;
+
+		public bool EnableBundleSerial
+		{
+			get { return _enableBundleSerial; }
+			set
+			{
+				Set(() => EnableBundleSerial, ref _enableBundleSerial, value);
+			}
+		}
+		#endregion
+
 
 		#endregion
 
@@ -872,7 +923,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 						{
 							var proxyF19 = GetProxy<F19Entities>();
 							var itemCount =
-								proxyF19.F1905s.Where(o => o.GUP_CODE == _gupCode && o.ITEM_CODE == BaseData.ITEM_CODE)
+								proxyF19.F1905s.Where(o => o.GUP_CODE == _gupCode && o.CUST_CODE == _custCode && o.ITEM_CODE == BaseData.ITEM_CODE)
 									.Count();
 							if (itemCount == 0)
 							{
@@ -1025,9 +1076,11 @@ namespace Wms3pl.WpfClient.P02.ViewModel
           _baseDataOriginal.IS_PERISHABLE != IsPerishable ||
           _baseDataOriginal.TMPR_TYPE != SelectedTmprType ||
           _baseDataOriginal.IS_TEMP_CONTROL != IsTempControl ||
-		  volumeItem != null)
+					_baseDataOriginal.BUNDLE_SERIALNO != BundleSerial ||
+					_baseDataOriginal.ISAPPLE != IsApple ||
+			volumeItem != null)
         RunWcfMethod(proxy.InnerChannel, () => proxy.UpdateF1903(this._gupCode, this._custCode, BaseData.ITEM_CODE, NeedExpired, FirstInDate, SaveDay, EanCode1, EanCode2, EanCode3, BaseData.ALL_DLN, BaseData.ALL_SHP, IsPrecious, Fragile,
-          IsEasyLose, Spill, IsMagnetic, IsPerishable, SelectedTmprType, IsTempControl, volumeItem));
+          IsEasyLose, Spill, IsMagnetic, IsPerishable, SelectedTmprType, IsTempControl, BundleSerial, IsApple, volumeItem));
 
 
       if (result.IsSuccessed)

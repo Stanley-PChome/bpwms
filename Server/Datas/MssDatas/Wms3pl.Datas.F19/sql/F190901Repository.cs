@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F19;
@@ -24,11 +26,12 @@ namespace Wms3pl.Datas.F19
                 new SqlParameter("@p4",  monthCode),
                 new SqlParameter("@p5",  invoTitle),
                 new SqlParameter("@p6",  Current.Staff),
-                new SqlParameter("@p7",  Current.StaffName)
+                new SqlParameter("@p7",  Current.StaffName),
+                new SqlParameter("@p8", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
             var sql = @"
 						update F190901 set INVO_NO =@p0 
-										   , UPD_DATE =dbo.GetSysDate()  , UPD_STAFF =@p6  , UPD_NAME =@p7                           
+										   , UPD_DATE =@p8  , UPD_STAFF =@p6  , UPD_NAME =@p7                           
                         where  GUP_CODE =@p1 and CUST_CODE = @p2
 								and INVO_YEAR =@p3 and INVO_MON =@p4 and INVO_TITLE =@p5
 						";

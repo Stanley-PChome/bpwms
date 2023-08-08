@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Wms3pl.Datas.F91
             var sql = @"
                         UPDATE F910507
                         SET    CASE_NO = @p5,
-                               UPD_DATE = dbo.GetSysDate(),
+                               UPD_DATE = @p8,
                                UPD_STAFF = @p6,
                                UPD_NAME = @p7
                         WHERE  DC_CODE = @p0
@@ -40,7 +41,8 @@ namespace Wms3pl.Datas.F91
                 new SqlParameter("@p4", clientIp),
                 new SqlParameter("@p5", caseNo),
                 new SqlParameter("@p6", Current.Staff),
-                new SqlParameter("@p7", Current.StaffName)
+                new SqlParameter("@p7", Current.StaffName),
+                new SqlParameter("@p8", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
             ExecuteSqlCommand(sql, param);
             return new ExecuteResult(true, caseNo);
@@ -51,7 +53,7 @@ namespace Wms3pl.Datas.F91
             var sql = @"
                         UPDATE F910507
                         SET    CASE_NO = '',
-                               UPD_DATE = dbo.GetSysDate(),
+                               UPD_DATE = @p8,
                                UPD_STAFF = @p6,
                                UPD_NAME = @p7
                         WHERE  DC_CODE = @p0
@@ -71,7 +73,8 @@ namespace Wms3pl.Datas.F91
                 new SqlParameter("@p4", clientIp),
                 new SqlParameter("@p5", caseNo),
                 new SqlParameter("@p6", Current.Staff),
-                new SqlParameter("@p7", Current.StaffName)
+                new SqlParameter("@p7", Current.StaffName),
+                new SqlParameter("@p8", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
 
             ExecuteSqlCommand(sql, param);

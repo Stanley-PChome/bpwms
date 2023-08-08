@@ -1187,183 +1187,185 @@ ORDER BY B.CRT_DATE , B.ITEM_CODE";
 			return result;
 		}
 
-        /// <summary>
-		/// 調撥單據查詢
-		/// </summary>
-		/// <param name="dcNo">物流中心編號</param>
-		/// <param name="custNo">貨主編號</param>
-		/// <param name="gupCode">業主編號</param>
-		/// <param name="allocType">單據類別 02:調撥下架   03:調撥上架 </param>
-		/// <param name="allocDate">調撥日期</param>
-		/// <param name="wmsNo">調撥單號/驗收單號</param>
-		/// <param name="itemNo">品號</param>
-		/// <param name="palletNo">板號</param>
-		/// <param name="allocationNos">調撥單號List</param>
-		/// <returns></returns>
-		public IQueryable<GetAllocRes> GetP810103Data(string dcNo, string custNo, string gupCode, string allocType, DateTime? allocDate, string wmsNo, string itemNo, string palletNo, string serialNo, List<string> allocationNos)
-        {
-            var parm = new List<SqlParameter>();
-            parm.Add(new SqlParameter("@p0", dcNo));
-            parm.Add(new SqlParameter("@p1", custNo));
-            parm.Add(new SqlParameter("@p2", gupCode));
-            parm.Add(new SqlParameter("@p3", allocType));
+    /// <summary>
+    /// 調撥單據查詢
+    /// </summary>
+    /// <param name="dcNo">物流中心編號</param>
+    /// <param name="custNo">貨主編號</param>
+    /// <param name="gupCode">業主編號</param>
+    /// <param name="allocType">單據類別 02:調撥下架   03:調撥上架 </param>
+    /// <param name="allocDate">調撥日期</param>
+    /// <param name="wmsNo">調撥單號/驗收單號</param>
+    /// <param name="itemNo">品號</param>
+    /// <param name="palletNo">板號</param>
+    /// <param name="allocationNos">調撥單號List</param>
+    /// <returns></returns>
+    public IQueryable<GetAllocRes> GetP810103Data(string dcNo, string custNo, string gupCode, string allocType, DateTime? allocDate, string wmsNo, string itemNo, string palletNo, string serialNo, List<string> allocationNos)
+    {
+      var parm = new List<SqlParameter>();
+      parm.Add(new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcNo });
+      parm.Add(new SqlParameter("@p1", SqlDbType.VarChar) { Value = custNo });
+      parm.Add(new SqlParameter("@p2", SqlDbType.VarChar) { Value = gupCode });
+      parm.Add(new SqlParameter("@p3", SqlDbType.VarChar) { Value = allocType });
 
-            #region 條件過濾
-            string condition = " AND E.DEVICE_TYPE ='0'"; // 人工倉
-            string condition2 = string.Empty;
-            string condition3 = string.Empty;
-            string condition4 = string.Empty;
-            string condition5 = string.Empty;
+      #region 條件過濾
+      string condition = " AND E.DEVICE_TYPE ='0'"; // 人工倉
+      string condition2 = string.Empty;
+      string condition3 = string.Empty;
+      string condition4 = string.Empty;
+      string condition5 = string.Empty;
 
-            // 若 AllocDate is not null, 增加條件 F151001.allocation_date= AllocDate
-            if (allocDate != null)
-            {
-                condition += " AND A.ALLOCATION_DATE = @p4 ";
-                parm.Add(new SqlParameter("@p4", allocDate));
-            }
+      // 若 AllocDate is not null, 增加條件 F151001.allocation_date= AllocDate
+      if (allocDate != null)
+      {
+          condition += " AND A.ALLOCATION_DATE = @p4 ";
+          parm.Add(new SqlParameter("@p4", SqlDbType.DateTime2) { Value = allocDate });
+      }
 
-            // 若 WmsNo is not null, 增加條件F151001.allocation_no= WmsNo
-            if (allocationNos.Count() > 0)
-            {
-                condition += $" AND A.ALLOCATION_NO in ('{string.Join("','", allocationNos)}') ";
-            }
+      // 若 WmsNo is not null, 增加條件F151001.allocation_no= WmsNo
+      if (allocationNos.Count() > 0)
+      {
+          condition += $" AND A.ALLOCATION_NO in ('{string.Join("','", allocationNos)}') ";
+      }
 
-            // 若AllocType in (03)，增加條件 F151001.status in (3,4) & F151002.status =1 (待上架)
-            // 若AllocType in (02)，增加條件 F151001.status in (0, 2) & F151002.status = 0(待下架)
-            if (allocType.Equals("03"))
-            {
-                condition += @" AND (A.STATUS = '3' OR A.STATUS = '4') 
-                                AND NOT EXISTS (SELECT 1 FROM F151003 E 
-                                WHERE E.DC_CODE = A.DC_CODE
-                                AND E.GUP_CODE = A.GUP_CODE
-                                AND E.CUST_CODE = A.CUST_CODE
-                                AND E.ALLOCATION_NO = A.ALLOCATION_NO 
-                                AND E.STATUS = 0)";
+      // 若AllocType in (03)，增加條件 F151001.status in (3,4) & F151002.status =1 (待上架)
+      // 若AllocType in (02)，增加條件 F151001.status in (0, 2) & F151002.status = 0(待下架)
+      if (allocType.Equals("03"))
+      {
+          condition += @" AND (A.STATUS = '3' OR A.STATUS = '4') 
+                          AND NOT EXISTS (SELECT 1 FROM F151003 E 
+                          WHERE E.DC_CODE = A.DC_CODE
+                          AND E.GUP_CODE = A.GUP_CODE
+                          AND E.CUST_CODE = A.CUST_CODE
+                          AND E.ALLOCATION_NO = A.ALLOCATION_NO 
+                          AND E.STATUS = 0)";
 
-                condition2 += " AND X.STATUS = '1' ";
-                condition4 += " AND A.TAR_WAREHOUSE_ID  = E.WAREHOUSE_ID "; // 進倉上架、調撥上架是JOIN來源倉別
-            }
-            else if (allocType.Equals("02"))
-            {
-                condition += " AND (A.STATUS = '0' OR A.STATUS = '2') ";
-                condition2 += " AND X.STATUS = '0' ";
-                condition4 += " AND A.SRC_WAREHOUSE_ID = E.WAREHOUSE_ID "; //調撥下架是JOIN來源倉別
-            }
-
-            // 若ItemNo is not null, 增加條件F151002.item_code = ItemNo
-            if (!string.IsNullOrWhiteSpace(itemNo))
-            {
-                condition += $@" AND (
-                                 SELECT COUNT(Z.ITEM_CODE)  
-                                 FROM F151002 Z JOIN F1903 X ON Z.GUP_CODE =X.GUP_CODE and Z.CUST_CODE = X.CUST_CODE and Z.ITEM_CODE =X.ITEM_CODE 
-                                 WHERE Z.DC_CODE = A.DC_CODE 
-                                    AND Z.GUP_CODE = A.GUP_CODE 
-                                    AND Z.CUST_CODE = A.CUST_CODE 
-                                    AND Z.ALLOCATION_NO = A.ALLOCATION_NO 
-                                    AND (X.ITEM_CODE = @p6 OR X.EAN_CODE1 = @p6 OR  X.EAN_CODE2 = @p6 OR X.EAN_CODE3 = @p6)
-                                 ) > 0 ";
-
-                parm.Add(new SqlParameter("@p6", itemNo));
-            }
-
-            // 若PalletNo is not null, 增加條件F151002.pallet_ctrl_no=PalletNo
-            if (!string.IsNullOrWhiteSpace(palletNo))
-            {
-                condition += $@" AND (
-                                 SELECT COUNT(Z.PALLET_CTRL_NO)  
-                                 FROM F151002 Z
-                                    WHERE Z.DC_CODE = A.DC_CODE 
-                                    AND Z.GUP_CODE = A.GUP_CODE 
-                                    AND Z.CUST_CODE = A.CUST_CODE 
-                                    AND Z.ALLOCATION_NO = A.ALLOCATION_NO 
-                                    AND Z.PALLET_CTRL_NO = @p7
-                                 ) > 0";
-                parm.Add(new SqlParameter("@p7", palletNo));
-            }
-
-            // 若SerialNo is not null, 增加條件F2501.SERIAL_NO=SerialNo
-            if (!string.IsNullOrWhiteSpace(serialNo))
-            {
-
-                condition += $@"  AND A.ALLOCATION_NO IN  (
-					  SELECT ALLOCATION_NO 
-					  FROM F151002 R
-					  WHERE (ITEM_CODE IN
-					  (SELECT f.ITEM_CODE 
-					     FROM F2501 f 
-					     join F1903 g
-					     on f.GUP_CODE =g.GUP_CODE 
-					     AND f.CUST_CODE =g.CUST_CODE 
-					     AND f.ITEM_CODE =g.ITEM_CODE 
-					     WHERE f.GUP_CODE = R.GUP_CODE 
-					     and f.CUST_CODE = R.CUST_CODE 
-					     and f.SERIAL_NO  = @p8
-					     and f.STATUS = 'A1'
-					     AND g.BUNDLE_SERIALNO = '1'
-					     AND g.BUNDLE_SERIALLOC ='0'
-					   )
-					   OR R.SERIAL_NO = @p8) )";
-                parm.Add(new SqlParameter("@p8", serialNo));
-            }
-            #endregion
-
-            string sql = $@"SELECT 
-                            A.DC_CODE AS DcNo,
-                            A.CUST_CODE AS CustNo,
-                            A.ALLOCATION_DATE AS AllocDate,
-                            A.ALLOCATION_NO AS AllocNo,
-                            @p3 AS AllocType,
-							F.WAREHOUSE_NAME AS SrcWhName,
-							G.WAREHOUSE_NAME AS TarWhName,
-                            COUNT(DISTINCT(B.ITEM_CODE)) AS ItemCnt,
-                            ISNULL(SUM(CASE WHEN @p3='03' THEN B.TAR_QTY 
-                            WHEN @p3='02' THEN B.SRC_QTY END), 0)  AS ItemQty,
-                            ISNULL(COUNT(DISTINCT(B.ITEM_CODE)) - 
-                            (SELECT COUNT(DISTINCT X.ITEM_CODE)  FROM F151002 X
-                            WHERE X.ALLOCATION_NO = A.ALLOCATION_NO 
-                            AND X.DC_CODE = A.DC_CODE 
-                            AND X.GUP_CODE = A.GUP_CODE 
-                            AND X.CUST_CODE = A.CUST_CODE 
-                            {condition2})
-                            , 0) AS ActItemCnt,
-                            A.STATUS AS Status,
-                            C.NAME AS StatusName,
-                            ISNULL(A.UPD_STAFF, '') AS AccNo,
-                            ISNULL(A.UPD_NAME, '') AS UserName,
-                            A.BOX_NO AS BoxNo,
-							A.MEMO AS Memo
-                            FROM F151001 A 
-                            JOIN F151002 B 
-                            ON A.ALLOCATION_NO = B.ALLOCATION_NO 
-                            AND A.DC_CODE = B.DC_CODE 
-                            AND A.GUP_CODE = B.GUP_CODE 
-                            AND A.CUST_CODE = B.CUST_CODE
-                            JOIN VW_F000904_LANG C 
-                            ON  C.VALUE = A.STATUS
-                            AND C.TOPIC = 'F151001' 
-                            AND C.SUBTOPIC = 'STATUS'
-                            AND C.LANG = '{Current.Lang}'
-							LEFT JOIN F1980 F
-							ON F.DC_CODE = A.DC_CODE
-							AND F.WAREHOUSE_ID = A.SRC_WAREHOUSE_ID
-							LEFT JOIN F1980 G
-							ON G.DC_CODE = A.DC_CODE
-							AND G.WAREHOUSE_ID = A.TAR_WAREHOUSE_ID
-							LEFT JOIN F1980 E 
-                            ON A.DC_CODE = E.DC_CODE 
-							{condition4}
-                            WHERE A.DC_CODE = @p0
-                            AND A.GUP_CODE = @p2
-                            AND A.CUST_CODE = @p1
-							AND ISNULL(A.SOURCE_TYPE, '17') <> '18'
-                            AND ISNULL(A.SOURCE_TYPE, '17') <> '04'
-                            {condition}
-                            GROUP BY A.DC_CODE, A.GUP_CODE, A.CUST_CODE, A.ALLOCATION_DATE, A.ALLOCATION_NO, A.SRC_WAREHOUSE_ID, A.TAR_WAREHOUSE_ID, A.STATUS, C.NAME, A.UPD_STAFF, A.UPD_NAME, A.BOX_NO, A.MEMO, F.WAREHOUSE_NAME, G.WAREHOUSE_NAME
-                            ";
-
-            var result = SqlQuery<GetAllocRes>(sql, parm.ToArray());
-            return result;
+          condition2 += " AND X.STATUS = '1' ";
+          condition4 += " AND A.TAR_WAREHOUSE_ID  = E.WAREHOUSE_ID "; // 進倉上架、調撥上架是JOIN來源倉別
+      }
+      else if (allocType.Equals("02"))
+      { 
+        //condition += " AND (A.STATUS = '0' OR A.STATUS = '2') ";
+        if (allocationNos.Count() > 0)
+        {//如果有指定單號，條件撈 F151001.STATUS IN (0,1,2)
+          condition += " AND (A.STATUS = '0' OR A.STATUS = '1' OR A.STATUS = '2' ) ";
         }
+        else
+        {  //如果無指定單號，條件撈 F151001.STATUS IN (0,2)
+          condition += " AND (A.STATUS = '0' OR A.STATUS = '2') ";
+        }       
+        condition2 += " AND X.STATUS = '0' ";
+          condition4 += " AND A.SRC_WAREHOUSE_ID = E.WAREHOUSE_ID "; //調撥下架是JOIN來源倉別
+      }
+
+      // 若ItemNo is not null, 增加條件F151002.item_code = ItemNo
+      if (!string.IsNullOrWhiteSpace(itemNo))
+      {
+        condition += $@" AND (
+                                SELECT COUNT(Z.ITEM_CODE)  
+                                FROM F151002 Z 
+                            JOIN F1903 X ON Z.GUP_CODE =X.GUP_CODE and Z.CUST_CODE = X.CUST_CODE and Z.ITEM_CODE =X.ITEM_CODE 
+                                WHERE Z.DC_CODE = A.DC_CODE           AND Z.GUP_CODE = A.GUP_CODE 
+                                  AND Z.CUST_CODE = A.CUST_CODE       AND Z.ALLOCATION_NO = A.ALLOCATION_NO 
+                                  AND (X.ITEM_CODE = @p6 OR X.EAN_CODE1 = @p6 OR  X.EAN_CODE2 = @p6 OR X.EAN_CODE3 = @p6)
+                                ) > 0 ";
+
+        parm.Add(new SqlParameter("@p6", SqlDbType.VarChar) { Value = itemNo});
+      }
+
+          // 若PalletNo is not null, 增加條件F151002.pallet_ctrl_no=PalletNo
+          if (!string.IsNullOrWhiteSpace(palletNo))
+          {
+              condition += $@" AND (
+                                SELECT COUNT(Z.PALLET_CTRL_NO)  
+                                FROM F151002 Z
+                                  WHERE Z.DC_CODE = A.DC_CODE           AND Z.GUP_CODE = A.GUP_CODE 
+                                  AND Z.CUST_CODE = A.CUST_CODE         AND Z.ALLOCATION_NO = A.ALLOCATION_NO 
+                                  AND Z.PALLET_CTRL_NO = @p7
+                                ) > 0";
+              parm.Add(new SqlParameter("@p7", SqlDbType.VarChar) { Value = palletNo });
+          }
+
+          // 若SerialNo is not null, 增加條件F2501.SERIAL_NO=SerialNo
+          if (!string.IsNullOrWhiteSpace(serialNo))
+          {
+
+              condition += $@"  AND A.ALLOCATION_NO IN  (
+					SELECT ALLOCATION_NO 
+					FROM F151002 R
+					WHERE (ITEM_CODE IN
+					  (SELECT f.ITEM_CODE 
+					    FROM F2501 f 
+					    join F1903 g		on f.GUP_CODE =g.GUP_CODE 		AND f.CUST_CODE =g.CUST_CODE 			AND f.ITEM_CODE =g.ITEM_CODE 
+					    WHERE f.GUP_CODE = R.GUP_CODE 
+					      and f.CUST_CODE = R.CUST_CODE 
+					      and f.SERIAL_NO  = @p8
+					      and f.STATUS = 'A1'
+					      AND g.BUNDLE_SERIALNO = '1'
+					      AND g.BUNDLE_SERIALLOC ='0'
+					  )
+					  OR R.SERIAL_NO = @p8) )";
+              parm.Add(new SqlParameter("@p8", SqlDbType.VarChar) { Value = serialNo });
+          }
+          #endregion
+
+          string sql = $@"SELECT 
+                          A.DC_CODE AS DcNo,
+                          A.CUST_CODE AS CustNo,
+                          A.ALLOCATION_DATE AS AllocDate,
+                          A.ALLOCATION_NO AS AllocNo,
+                          @p3 AS AllocType,
+						              F.WAREHOUSE_NAME AS SrcWhName,
+						              G.WAREHOUSE_NAME AS TarWhName,
+                          COUNT(DISTINCT(B.ITEM_CODE)) AS ItemCnt,
+                          ISNULL(SUM(CASE WHEN @p3='03' THEN B.TAR_QTY 
+                          WHEN @p3='02' THEN B.SRC_QTY END), 0)  AS ItemQty,
+                          ISNULL(COUNT(DISTINCT(B.ITEM_CODE)) - 
+                          (SELECT COUNT(DISTINCT X.ITEM_CODE)  FROM F151002 X
+                          WHERE X.ALLOCATION_NO = A.ALLOCATION_NO 
+                          AND X.DC_CODE = A.DC_CODE 
+                          AND X.GUP_CODE = A.GUP_CODE 
+                          AND X.CUST_CODE = A.CUST_CODE 
+                          {condition2})
+                          , 0) AS ActItemCnt,
+                          A.STATUS AS Status,
+                          C.NAME AS StatusName,
+                          ISNULL(A.UPD_STAFF, '') AS AccNo,
+                          ISNULL(A.UPD_NAME, '') AS UserName,
+                          A.BOX_NO AS BoxNo,
+						A.MEMO AS Memo
+                          FROM F151001 A 
+                          JOIN F151002 B 
+                          ON A.ALLOCATION_NO = B.ALLOCATION_NO 
+                          AND A.DC_CODE = B.DC_CODE 
+                          AND A.GUP_CODE = B.GUP_CODE 
+                          AND A.CUST_CODE = B.CUST_CODE
+                          JOIN VW_F000904_LANG C 
+                          ON  C.VALUE = A.STATUS
+                          AND C.TOPIC = 'F151001' 
+                          AND C.SUBTOPIC = 'STATUS'
+                          AND C.LANG = '{Current.Lang}'
+						LEFT JOIN F1980 F
+						ON F.DC_CODE = A.DC_CODE
+						AND F.WAREHOUSE_ID = A.SRC_WAREHOUSE_ID
+						LEFT JOIN F1980 G
+						ON G.DC_CODE = A.DC_CODE
+						AND G.WAREHOUSE_ID = A.TAR_WAREHOUSE_ID
+						LEFT JOIN F1980 E 
+                          ON A.DC_CODE = E.DC_CODE 
+						{condition4}
+                          WHERE A.DC_CODE = @p0
+                          AND A.GUP_CODE = @p2
+                          AND A.CUST_CODE = @p1
+						AND ISNULL(A.SOURCE_TYPE, '17') <> '18'
+                          AND ISNULL(A.SOURCE_TYPE, '17') <> '04'
+                          {condition}
+                          GROUP BY A.DC_CODE, A.GUP_CODE, A.CUST_CODE, A.ALLOCATION_DATE, A.ALLOCATION_NO, A.SRC_WAREHOUSE_ID, A.TAR_WAREHOUSE_ID, A.STATUS, C.NAME, A.UPD_STAFF, A.UPD_NAME, A.BOX_NO, A.MEMO, F.WAREHOUSE_NAME, G.WAREHOUSE_NAME
+                          ";
+
+          var result = SqlQuery<GetAllocRes>(sql, parm.ToArray());
+          return result;
+      }
 
         /// <summary>
         /// 調撥單據更新
@@ -1390,6 +1392,7 @@ ORDER BY B.CRT_DATE , B.ITEM_CODE";
             parm.Add(new SqlParameter("@p5", lockStatus));
             parm.Add(new SqlParameter("@p6", Current.Staff));
             parm.Add(new SqlParameter("@p7", Current.StaffName));
+            parm.Add(new SqlParameter("@p12", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
             if (!string.IsNullOrWhiteSpace(tarMoveStaff) && !string.IsNullOrWhiteSpace(tarMoveName))
             {
@@ -1410,7 +1413,7 @@ ORDER BY B.CRT_DATE , B.ITEM_CODE";
 					   SET LOCK_STATUS = @p5 ,
                            STATUS = @p4,
                            UPD_STAFF = @p6,
-						   UPD_DATE = dbo.GetSysDate(),
+						   UPD_DATE = @p12,
 						   UPD_NAME = @p7
                         {condition}
 					 WHERE DC_CODE = @p0 AND CUST_CODE = @p1 AND GUP_CODE = @p2 AND ALLOCATION_NO = @p3
@@ -1457,6 +1460,7 @@ ORDER BY B.CRT_DATE , B.ITEM_CODE";
             {
                 status,
                 Current.Staff,
+                DateTime.Now,
                 Current.StaffName,
                 dcCode,
                 gupCode,
@@ -1467,12 +1471,12 @@ ORDER BY B.CRT_DATE , B.ITEM_CODE";
             var sql = @"
 				UPDATE  F151001  SET STATUS= @p0,
                                      UPD_STAFF = @p1,
-						             UPD_DATE = dbo.GetSysDate(),
-						             UPD_NAME = @p2
-				 Where DC_CODE = @p3
-                     And GUP_CODE = @p4
-					 And CUST_CODE = @p5
-					 And ALLOCATION_NO = @p6 ";
+						             UPD_DATE = @p2,
+						             UPD_NAME = @p3
+				 Where DC_CODE = @p4
+                     And GUP_CODE = @p5
+					 And CUST_CODE = @p6
+					 And ALLOCATION_NO = @p7";
 
             ExecuteSqlCommand(sql, parameters.ToArray());
         }

@@ -19,53 +19,6 @@ namespace Wms3pl.Datas.F14
 		{
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="inventoryYear"></param>
-		/// <param name="inventoryMon"></param>
-		/// <param name="cycleTimes"></param>
-		/// <returns></returns>
-		public bool IsExistDatasByTheSameCycleTimes(string dcCode, string gupCode, string custCode, short inventoryYear, short inventoryMon,
-			short cycleTimes)
-		{
-
-			var q = from A in _db.F140101s
-					where A.DC_CODE == dcCode
-					&& A.GUP_CODE == gupCode
-					&& A.CUST_CODE == custCode
-					&& A.INVENTORY_YEAR == inventoryYear
-					&& A.INVENTORY_MON == inventoryMon
-					&& A.CYCLE_TIMES == cycleTimes
-					&& A.STATUS != "9"
-					select A;
-
-			return q.Any();
-
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="inventoryNo"></param>
-		/// <returns></returns>
-		public F140101 GetEnabledData(string dcCode, string gupCode, string custCode, string inventoryNo)
-		{
-			var q = from f in _db.F140101s
-					where f.DC_CODE == dcCode
-					&& f.GUP_CODE == gupCode
-					&& f.CUST_CODE == custCode
-					&& f.INVENTORY_NO == inventoryNo
-					&& f.STATUS != "9"
-					select f;
-			return q.FirstOrDefault();
-		}
 
 		public IQueryable<GetDetailInvResData> GetInventoryDetailList(string dcNo, string custNo, string gupCode, string invNo)
 		{
@@ -351,15 +304,6 @@ namespace Wms3pl.Datas.F14
 
             return result.AsQueryable();
         }
-
-        public IQueryable<F140101> GetDatas(string dcCode, string gupCode, string custCode, List<string> inventoryNos)
-		{
-			return _db.F140101s.Where(x =>
-			x.DC_CODE == dcCode &&
-			x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			inventoryNos.Contains(x.INVENTORY_NO));
-		}
 
 		public IQueryable<F140101> GetDatasByInventoryAdjustConfirm(string dcCode, string gupCode, string custCode, List<string> inventoryNos)
 		{

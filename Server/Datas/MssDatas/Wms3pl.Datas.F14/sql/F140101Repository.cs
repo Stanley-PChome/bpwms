@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -492,21 +493,21 @@ SELECT O.*,
 			if (!string.IsNullOrWhiteSpace(itemCode))
 				condition2 += $" {(string.IsNullOrWhiteSpace(condition2) ? " HAVING " : " AND ")} STRING_AGG(Z.ITEM_CODE,',') LIKE '%{itemCode}%' ";
 
-			var sql = $@"				
+      var sql = $@"				
 				SELECT * FROM (
 					SELECT 
 							RESULT.DC_CODE ,RESULT.GUP_CODE , RESULT.CUST_CODE 
-							,RESULT.INVENTORY_NO ,RESULT.INVENTORY_DATE , RESULT.STATUS , RESULT.STATUS_NAME , RESULT.ITEM_CNT, SUM(ITEMQTY) ITEMQTY, RESULT.QTY, RESULT.MEMO, RESULT.CHECK_TOOL_NAME, RESULT.CHECK_TOOL, CASE WHEN RESULT.CHECK_TOOL <> '0' THEN '1' ELSE '0' END IS_AUTOMATIC, RESULT.INVENTORY_TYPE
+							,RESULT.INVENTORY_NO ,RESULT.INVENTORY_DATE , RESULT.STATUS , RESULT.STATUS_NAME , RESULT.ITEM_CNT, COUNT(Z.INVENTORY_NO) ITEMQTY, RESULT.QTY, RESULT.MEMO, RESULT.CHECK_TOOL_NAME, RESULT.CHECK_TOOL, CASE WHEN RESULT.CHECK_TOOL <> '0' THEN '1' ELSE '0' END IS_AUTOMATIC, RESULT.INVENTORY_TYPE
 					FROM 
 					(
 						select  
 								A.DC_CODE ,A.GUP_CODE,A.CUST_CODE
 								,A.INVENTORY_NO ,A.INVENTORY_DATE , A.STATUS ,C.NAME STATUS_NAME ,MAX(A.ITEM_CNT) ITEM_CNT
-								,CASE WHEN MAX(B.FIRST_DIFF_QTY) <> 0 OR MAX(B.SECOND_DIFF_QTY) <> 0 THEN 1 ELSE 0 END ITEMQTY
 								,MAX(ITEM_QTY) QTY 
 								,A.MEMO, D.NAME CHECK_TOOL_NAME
 								,A.CHECK_TOOL
                 ,A.INVENTORY_TYPE
+                ,B.ITEM_CODE
 						from F140101 A
 						LEFT JOIN F140106 B ON A.INVENTORY_NO = B.INVENTORY_NO AND A.DC_CODE=B.DC_CODE 
 											AND A.GUP_CODE=B.GUP_CODE AND A.CUST_CODE=B.CUST_CODE
@@ -524,6 +525,7 @@ SELECT O.*,
 					AND RESULT.DC_CODE=Z.DC_CODE 
 					AND RESULT.GUP_CODE=Z.GUP_CODE 
 					AND RESULT.CUST_CODE=Z.CUST_CODE 
+          AND RESULT.ITEM_CODE=Z.ITEM_CODE
 					GROUP BY RESULT.DC_CODE ,RESULT.GUP_CODE,RESULT.CUST_CODE , RESULT.INVENTORY_NO ,RESULT.INVENTORY_DATE , RESULT.STATUS ,RESULT.STATUS_NAME , RESULT.ITEM_CNT, RESULT.QTY, RESULT.MEMO, RESULT.CHECK_TOOL_NAME, RESULT.CHECK_TOOL, RESULT.INVENTORY_TYPE
 							--多包一層GROUP 主要為了 ITEM_CODE 重複 , 計算ITEM_CODE 種類數量更精準
 					{condition2}
@@ -532,7 +534,7 @@ SELECT O.*,
 					ORDER BY X.INVENTORY_NO
 					";
 
-			var result = SqlQuery<F140106QueryData>(sql, sqlParamers.ToArray()).AsQueryable();
+      var result = SqlQuery<F140106QueryData>(sql, sqlParamers.ToArray()).AsQueryable();
 			return result;
 		}
 
@@ -657,7 +659,8 @@ WHERE  A.DC_CODE = @p0
               new SqlParameter("@p2", custCode),
               new SqlParameter("@p3", inventoryNo),
               new SqlParameter("@p4", Current.Staff),
-              new SqlParameter("@p5", Current.StaffName)
+              new SqlParameter("@p5", Current.StaffName),
+              new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
           };
             var sql = @"
 						UPDATE F140101
@@ -675,7 +678,7 @@ SET    ITEM_CNT = ISNULL((SELECT Count(DISTINCT ITEM_CODE)
                                  AND INVENTORY_NO = @p3), 0),
        UPD_STAFF = @p4,
        UPD_NAME = @p5,
-       UPD_DATE = dbo.GetSysDate()
+       UPD_DATE = @p6
 WHERE  DC_CODE = @p0
        AND GUP_CODE = @p1
        AND CUST_CODE = @p2
@@ -1063,5 +1066,102 @@ AND       A.STATUS IN('0',
             var result = SqlQuery<GetInvRes>(sql, param.ToArray());
             return result;
         }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="inventoryYear"></param>
+    /// <param name="inventoryMon"></param>
+    /// <param name="cycleTimes"></param>
+    /// <returns></returns>
+    public bool IsExistDatasByTheSameCycleTimes(string dcCode, string gupCode, string custCode, short inventoryYear, short inventoryMon,
+      short cycleTimes)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", inventoryYear) { SqlDbType = SqlDbType.SmallInt },
+        new SqlParameter("@p4", inventoryMon) { SqlDbType = SqlDbType.SmallInt },
+        new SqlParameter("@p5", cycleTimes) { SqlDbType = SqlDbType.SmallInt },
+      };
+      var sql = @"SELECT TOP 1 1 FROM F140101 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND INVENTORY_YEAR=@p3 AND INVENTORY_MON=@p4 AND CYCLE_TIMES=@p5 AND STATUS!='9'";
+      return SqlQuery<int>(sql, para.ToArray()).Any();
+      /*
+      var q = from A in _db.F140101s
+              where A.DC_CODE == dcCode
+              && A.GUP_CODE == gupCode
+              && A.CUST_CODE == custCode
+              && A.INVENTORY_YEAR == inventoryYear
+              && A.INVENTORY_MON == inventoryMon
+              && A.CYCLE_TIMES == cycleTimes
+              && A.STATUS != "9"
+              select A;
+
+      return q.Any();
+      */
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="inventoryNo"></param>
+    /// <returns></returns>
+    public F140101 GetEnabledData(string dcCode, string gupCode, string custCode, string inventoryNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", inventoryNo) { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = @"SELECT TOP 1 * FROM F140101 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND INVENTORY_NO=@p3 AND STATUS!='9'";
+      return SqlQuery<F140101>(sql, para.ToArray()).FirstOrDefault();
+
+      #region 原LINQ語法
+      /*
+      var q = from f in _db.F140101s
+              where f.DC_CODE == dcCode
+              && f.GUP_CODE == gupCode
+              && f.CUST_CODE == custCode
+              && f.INVENTORY_NO == inventoryNo
+              && f.STATUS != "9"
+              select f;
+      return q.FirstOrDefault();
+      */
+      #endregion
+    }
+
+    public IQueryable<F140101> GetDatas(string dcCode, string gupCode, string custCode, List<string> inventoryNos)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = @"SELECT * FROM F140101 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2";
+      sql += para.CombineSqlInParameters(" AND INVENTORY_NO", inventoryNos, SqlDbType.VarChar);
+      return SqlQuery<F140101>(sql, para.ToArray());
+
+      #region 原LINQ語法
+      /*
+      return _db.F140101s.Where(x =>
+      x.DC_CODE == dcCode &&
+      x.GUP_CODE == gupCode &&
+      x.CUST_CODE == custCode &&
+      inventoryNos.Contains(x.INVENTORY_NO));
+      */
+      #endregion
+    }
+
+  }
 }

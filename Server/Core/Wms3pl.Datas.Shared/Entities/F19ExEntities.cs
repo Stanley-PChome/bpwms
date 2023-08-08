@@ -2209,8 +2209,14 @@ namespace Wms3pl.Datas.Shared.Entities
 		public DateTime VALID_DATE { get; set; }
 		[DataMember]
 		public DateTime ENTER_DATE { get; set; }
+		/// <summary>
+		/// 出貨虛擬
+		/// </summary>
 		[DataMember]
 		public Decimal PICK_SUM_QTY { get; set; }
+		/// <summary>
+		/// 調撥虛擬
+		/// </summary>
 		[DataMember]
 		public Decimal ALLOCATION_SUM_QTY { get; set; }
 		[DataMember]
@@ -2241,6 +2247,16 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string MAKE_NO { get; set; }
 		[DataMember]
 		public string VNR_CODE { get; set; }
+		/// <summary>
+		/// 待虛擬庫存回復數量
+		/// </summary>
+		[DataMember]
+		public Decimal VIRTUAL_STOCK_QTY { get; set; }
+		/// <summary>
+		/// A7補貨倉待上架數量
+		/// </summary>
+		[DataMember]
+		public Decimal A7_PRE_TAR_QTY { get; set; }
 	}
 
 
@@ -4088,8 +4104,9 @@ namespace Wms3pl.Datas.Shared.Entities
     public class ReplensihModel
     {
         public string ItemCode { get; set; }
-        public string MakeNo { get; set; }
-        public int ReplensihQty { get; set; }
+		public string MakeNo { get; set; }
+		public string SerialNo { get; set; }
+		public int ReplensihQty { get; set; }
     }
     #endregion
 
@@ -4209,7 +4226,8 @@ namespace Wms3pl.Datas.Shared.Entities
         public string CUST_CODE { get; set; }
         public string ITEM_CODE { get; set; }
         public string MAKE_NO { get; set; }
-        public string ATYPE_CODE { get; set; }
+		public string SERIAL_NO { get; set; }
+		public string ATYPE_CODE { get; set; }
         public long QTY { get; set; }
     }
     #endregion

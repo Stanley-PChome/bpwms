@@ -14,14 +14,14 @@ namespace Wms3pl.Datas.F07
 		public void InsertF0701(long f0701Id, string dcCode, string custCode, string warehouseId, string containerCode, string containerType)
 		{
 			var parm = new List<SqlParameter>();
-			parm.Add(new SqlParameter("@p0", f0701Id));
-			parm.Add(new SqlParameter("@p1", dcCode));
-			parm.Add(new SqlParameter("@p2", custCode));
-			parm.Add(new SqlParameter("@p3", warehouseId));
-			parm.Add(new SqlParameter("@p4", string.IsNullOrWhiteSpace(containerCode) ? (object)DBNull.Value : containerCode));
-			parm.Add(new SqlParameter("@p5", containerType));
-			parm.Add(new SqlParameter("@p6", Current.Staff));
-			parm.Add(new SqlParameter("@p7", Current.StaffName));
+			parm.Add(new SqlParameter("@p0", f0701Id) {SqlDbType= SqlDbType.BigInt});
+			parm.Add(new SqlParameter("@p1", dcCode) { SqlDbType = SqlDbType.VarChar });
+			parm.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+			parm.Add(new SqlParameter("@p3", warehouseId) { SqlDbType = SqlDbType.VarChar });
+			parm.Add(new SqlParameter("@p4", string.IsNullOrWhiteSpace(containerCode) ? (object)DBNull.Value : containerCode) {  SqlDbType = SqlDbType.VarChar});
+			parm.Add(new SqlParameter("@p5", containerType) { SqlDbType = SqlDbType.VarChar});
+			parm.Add(new SqlParameter("@p6", Current.Staff) { SqlDbType = SqlDbType.VarChar });
+			parm.Add(new SqlParameter("@p7", Current.StaffName) { SqlDbType = SqlDbType.NVarChar });
       parm.Add(new SqlParameter("@p8", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
 
       var sql = @"INSERT INTO F0701(
@@ -59,7 +59,7 @@ namespace Wms3pl.Datas.F07
 		{
 			var parm = new List<SqlParameter>
 			{
-				new SqlParameter("@p0", id)
+				new SqlParameter("@p0", id) { SqlDbType = SqlDbType.BigInt }
 			};
 
 			var sql = @"DELETE F0701 WHERE ID = @p0 ";
@@ -244,7 +244,6 @@ namespace Wms3pl.Datas.F07
 				new SqlParameter("@p2",SqlDbType.NVarChar){ Value = Current.StaffName},
 				new SqlParameter("@p3",SqlDbType.BigInt){ Value = id}
 			};
-			var parms = new object[] { DateTime.Now, Current.Staff,Current.StaffName, id};
 			var sql = @" SELECT B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.WMS_NO PICK_ORD_NO,B.CONTAINER_CODE,
                           C.ITEM_CODE,SUM(C.QTY) B_SET_QTY,0 A_SET_QTY,@p0 CRT_DATE, @p1 CRT_STAFF,@p2 CRT_NAME
 										 FROM F0701 A
@@ -254,7 +253,7 @@ namespace Wms3pl.Datas.F07
 										   ON C.F070101_ID = B.ID
 										WHERE A.ID = @p3
 										GROUP BY B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.WMS_NO,B.CONTAINER_CODE, C.ITEM_CODE";
-			return SqlQuery<F05290401>(sql, parms);
+			return SqlQueryWithSqlParameterSetDbType<F05290401>(sql, param.ToArray());
 		}
 
 		public int GetPickContainerCnt(string dcCode,string gupCode,string custCode,string pickOrdNo)
@@ -335,5 +334,250 @@ namespace Wms3pl.Datas.F07
 
             return SqlQuery<long>(sql, parm.ToArray()).Single();
         }
+
+		public IQueryable<PickContainerInfo> GetPickContainerInfo(string dcCode, string containerCode)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", Current.Lang) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", dcCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", containerCode) { SqlDbType = SqlDbType.VarChar });
+
+			var sql = @"
+SELECT
+	F0534.F0701_ID,
+	F0534.DC_CODE,
+	F0534.GUP_CODE,
+	F0534.CUST_CODE,
+	F0534.PICK_ORD_NO, 
+	F0534.CONTAINER_CODE, 
+	F0534.DEVICE_TYPE,
+	VW_F000904_LANG.NAME DEVICE_TYPE_NAME, 
+	F0534.MOVE_OUT_TARGET,
+	F0001.CROSS_NAME, 
+	F0534.TOTAL
+FROM F0701
+JOIN F0534 ON F0534.F0701_ID = F0701.ID
+LEFT JOIN VW_F000904_LANG ON VW_F000904_LANG.TOPIC = 'F1980'
+							AND VW_F000904_LANG.SUBTOPIC = 'DEVICE_TYPE'
+							AND VW_F000904_LANG.VALUE = F0534.DEVICE_TYPE
+							AND VW_F000904_LANG.LANG = @p0
+LEFT JOIN F0001 ON F0001.CROSS_CODE = F0534.MOVE_OUT_TARGET
+WHERE F0701.DC_CODE = @p1
+	AND F0701.CONTAINER_CODE = @p2
+	AND F0701.CONTAINER_TYPE = '0'
+ORDER BY
+	F0534.PICK_ORD_NO ASC
+";
+
+			return SqlQuery<PickContainerInfo>(sql, sqlParameter.ToArray());
+		}
+
+		public void DeleteByF0531Id(long f0531_ID)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", f0531_ID) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @" DELETE F0701
+					  WHERE ID IN (SELECT F0701_ID FROM F053201 WHERE F0531_ID = @p0) ";
+
+			ExecuteSqlCommand(sql, sqlParameter.ToArray());
+		}
+
+		public IQueryable<F0701> GetDatasByF0701Ids(List<long> ids)
+		{
+			var sqlParameter = new List<SqlParameter>();
+
+			var sql = @"SELECT * FROM F0701
+						 WHERE 1 = 1
+						";
+
+			sql += sqlParameter.CombineSqlInParameters(" AND ID ", ids, SqlDbType.BigInt);
+
+			return SqlQuery<F0701>(sql, sqlParameter.ToArray());
+		}
+
+		public BindingPickContainerInfo GetBindingPickContainerInfo(string dcCode, string gupCode, string custCode, string containerCode)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p3", containerCode) { SqlDbType = SqlDbType.VarChar });
+
+			var sql = @"
+SELECT TOP(1)
+	F0534.ID AS F0534_ID,
+	F0534.F0701_ID,
+	F0534.CONTAINER_CODE,
+	F0534.DEVICE_TYPE,
+	F0534.TOTAL,
+	F0534.DC_CODE,
+	F0534.GUP_CODE,
+	F0534.CUST_CODE,
+	F0534.PICK_ORD_NO,
+	F0534.MOVE_OUT_TARGET,
+	F0001.CROSS_NAME,
+	'0' AS HAS_CP_ITEM
+FROM
+	F0701
+JOIN F0534 ON F0534.F0701_ID = F0701.ID
+LEFT JOIN F0001 ON F0001.CROSS_CODE = F0534.MOVE_OUT_TARGET
+WHERE
+	F0534.DC_CODE = @p0
+	AND F0534.GUP_CODE = @p1
+	AND F0534.CUST_CODE = @p2
+	AND F0534.CONTAINER_CODE = @p3
+ORDER BY
+	F0534.PICK_ORD_NO
+";
+
+			return SqlQuery<BindingPickContainerInfo>(sql, sqlParameter.ToArray()).FirstOrDefault();
+		}
+
+		public void DeleteByF0532Id(List<long> f0532_ID)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			var sqlCondition = sqlParameter.CombineSqlInParameters(" AND  ID ", f0532_ID, SqlDbType.BigInt);
+
+			var sql = $@" DELETE F0701
+					  WHERE ID IN (SELECT F0701_ID FROM F0532
+									WHERE  F0701_ID IS NOT NULL 
+                  {sqlCondition}
+								  ) ";
+
+			ExecuteSqlCommand(sql, sqlParameter.ToArray());
+		}
+
+		public F0701 GetDataByTypeAndContainer(string dcCode, string containerType, string containerCode)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", containerCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", containerType) { SqlDbType = SqlDbType.Char });
+
+			var sql = @" SELECT *
+						   FROM F0701
+						  WHERE DC_CODE = @p0
+							AND CONTAINER_CODE = @p1
+							AND CONTAINER_TYPE = @p2 ";
+
+			return SqlQuery<F0701>(sql, sqlParameter.ToArray()).FirstOrDefault();
+		}
+
+		public void DeleteById(long ids)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", ids) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = $"DELETE F0701 WHERE ID = @p0 ";
+
+			ExecuteSqlCommand(sql, sqlParameter.ToArray());
+		}
+
+		public int GetContainerCntExceptId(string dcCode, string gupCode, string custCode, string pickOrdNo, long exceptF0701Id)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p4", exceptF0701Id) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @" SELECT COUNT(*)
+                      FROM F0701 A
+                      JOIN F070101 B
+                        ON B.F0701_ID = A.ID
+                     WHERE B.DC_CODE = @p0
+                       AND B.GUP_CODE = @p1
+                       AND B.CUST_CODE = @p2
+                       AND B.PICK_ORD_NO = @p3
+                       AND B.F0701_ID <> @p4 ";
+			return SqlQuery<int>(sql, sqlParameter.ToArray()).FirstOrDefault();
+		}
+
+		public void UpdateContainerCodeById(long id, string newContainerCode)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", newContainerCode) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
+			sqlParameter.Add(new SqlParameter("@p2", Current.Staff) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p3", Current.StaffName) { SqlDbType = SqlDbType.NVarChar });
+			sqlParameter.Add(new SqlParameter("@p4", id) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = $@" UPDATE F0701
+							SET CONTAINER_CODE = @p0, UPD_DATE = @p1, UPD_STAFF = @p2, UPD_NAME = @p3
+					  WHERE ID = @p4 ";
+
+			ExecuteSqlCommand(sql, sqlParameter.ToArray());
+		}
+
+    public IQueryable<MoveOutPickOrders> GetMoveOutPickOrders(string dcCode, string gupCode, string custCode, DateTime startDate, DateTime endDate, string moveOutTarget, string pickContainerCode)
+    {
+      var param = new List<SqlParameter>();
+
+      param.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+      param.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+      param.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+      param.Add(new SqlParameter("@p3", startDate) { SqlDbType = SqlDbType.DateTime2 });
+      param.Add(new SqlParameter("@p4", endDate.AddDays(1)) { SqlDbType = SqlDbType.DateTime2 });
+
+      var sql = $@"
+                SELECT 
+                  C.DELV_DATE,
+                  C.PICK_TIME,
+                  C.PICK_ORD_NO,
+                  D.CROSS_NAME 'MOVE_OUT_TARGET_NAME',
+                  E.NAME 'PICK_STATUS_NAME',
+                  F.NAME 'PICK_TOOL_NAME',
+                  C.PK_AREA_NAME
+                FROM F0701 A
+                  JOIN F070101 B 
+                    ON A.ID=B.F0701_ID
+                  JOIN F051201 C 
+                    ON B.DC_CODE=C.DC_CODE AND B.GUP_CODE=C.GUP_CODE AND B.CUST_CODE=C.CUST_CODE AND B.PICK_ORD_NO=C.PICK_ORD_NO
+                  JOIN F0001 D 
+                    ON C.MOVE_OUT_TARGET=D.CROSS_CODE
+                  JOIN VW_F000904_LANG E 
+                    ON E.TOPIC='F051201' AND E.SUBTOPIC='PICK_STATUS' AND E.LANG='{Current.Lang}' AND E.VALUE=C.PICK_STATUS
+                  JOIN VW_F000904_LANG F 
+                    ON F.TOPIC='F051201' AND F.SUBTOPIC='PICK_TOOL' AND F.LANG='{Current.Lang}' AND F.VALUE=C.PICK_TOOL
+                WHERE C.DC_CODE = @p0
+                  AND C.GUP_CODE = @p1
+                  AND C.CUST_CODE = @p2
+                  AND C.NEXT_STEP = '6'
+                  AND C.DELV_DATE >= @p3
+                  AND C.DELV_DATE < @p4
+                ";
+
+      var sql2 = "";
+
+      if (!string.IsNullOrWhiteSpace(moveOutTarget))
+      {
+        sql2 += $" AND C.MOVE_OUT_TARGET = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", moveOutTarget) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      if (!string.IsNullOrWhiteSpace(pickContainerCode))
+      {
+        sql2 += $" AND A.CONTAINER_CODE = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", pickContainerCode) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      sql += sql2;
+      sql += " ORDER BY C.DELV_DATE DESC, C.PICK_TIME DESC";
+
+      return SqlQuery<MoveOutPickOrders>(sql, param.ToArray());
     }
+		public F0701 GetData(string containerCode)
+		{
+			var para = new List<SqlParameter>
+			{
+				new SqlParameter("@p0",SqlDbType.VarChar){ Value = containerCode }
+			};
+
+			var sql = @"SELECT TOP 1 * FROM F0701 WHERE CONTAINER_CODE=@p0";
+
+			return SqlQuery<F0701>(sql, para.ToArray()).FirstOrDefault();
+		}
+	}
 }

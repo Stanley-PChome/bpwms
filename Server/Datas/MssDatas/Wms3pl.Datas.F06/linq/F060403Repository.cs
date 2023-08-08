@@ -15,13 +15,6 @@ namespace Wms3pl.Datas.F06
 		{
 		}
 
-		public IQueryable<F060403> GetDatasForExecute(string dcCode, string gupCode, string custCode, List<string> docIds)
-		{
-			return _db.F060403s.AsNoTracking().Where(x => x.DC_CODE == dcCode &&
-			x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			docIds.Contains(x.DOC_ID));
-		}
 
 		public IQueryable<F060403> GetDatasForAdjustExecute(string dcCode, string gupCode, string custCode, IQueryable<F060402> f060402s)
 		{

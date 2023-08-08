@@ -49,5 +49,17 @@ namespace Wms3pl.WpfClient.Services
 		}
 		#endregion
 
+    public static List<NameValuePair<string>> GetMoveOutDcList(string functionCode)
+    {
+      var proxy = ConfigurationHelper.GetProxy<F00Entities>(false, functionCode);
+      var data = proxy.F0001s.Select(o => new NameValuePair<string> {
+        Name = o.CROSS_NAME,
+        Value = o.CROSS_CODE
+      }).ToList();
+
+      data.Insert(0, new NameValuePair<string> { Name = "全部", Value = "" });
+
+      return data;
+    }
 	}
 }

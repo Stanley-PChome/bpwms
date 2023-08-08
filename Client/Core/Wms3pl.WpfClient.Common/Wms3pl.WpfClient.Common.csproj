@@ -132,6 +132,8 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Converters\Int32ToBoolConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Converters\NullToNotBooleanConverter.cs" />
+    <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\RadiobuttonConverter.cs" />
     <Compile Include="Converters\ValidateExceptionHandleConverter.cs" />
     <Compile Include="Converters\ForegroundToRedConverter.cs" />

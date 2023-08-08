@@ -27,6 +27,14 @@ namespace Wms3pl.WebServices.Shared.Helper
 		private string _batchNo { get; set; }
 
 		/// <summary>
+		/// Log 批次號
+		/// </summary>
+		public string BatchNo
+		{
+			get { return _batchNo; }
+			set { _batchNo = value; }
+		}
+		/// <summary>
 		/// 開始記錄
 		/// </summary>
 		/// <param name="wmsLogProcType"></param>
@@ -75,9 +83,10 @@ namespace Wms3pl.WebServices.Shared.Helper
 		/// <summary>
 		/// 結束紀錄
 		/// </summary>
-		public void StopRecord()
+		public void StopRecord(bool isWriteEndLog = true)
 		{
-			AddRecord($"結束_{_procType}");
+			if(isWriteEndLog)
+				AddRecord($"結束_{_procType}");
 			if (_wmsTransaction!=null && addF0092List.Any())
 			{
 				var f0092Repo = new F0092Repository(Schemas.CoreSchema, _wmsTransaction);

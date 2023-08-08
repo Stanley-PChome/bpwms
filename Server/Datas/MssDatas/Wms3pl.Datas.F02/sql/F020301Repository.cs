@@ -16,23 +16,24 @@ namespace Wms3pl.Datas.F02
         {
             string sql = @"			
 
-						SELECT COUNT(A.PURCHASE_NO) SEQCTN
+						SELECT TOP (1) CONVERT(INT,SUBSTRING(A.FILE_NAME,LEN(A.FILE_NAME)-1,2)) SEQCTN
 						FROM F020301 A 
 						WHERE	A.DC_CODE =@p0 
 								AND A.GUP_CODE =@p1 
 								AND A.CUST_CODE =@p2
 								AND (A.PURCHASE_NO =@p3 or A.PURCHASE_NO = @p4) 
+                ORDER BY CRT_DATE DESC
 			";
 
             var param = new List<SqlParameter> {
-                new SqlParameter("@p0", dcCode),
-                new SqlParameter("@p1", gupCode),
-                new SqlParameter("@p2", custCode),
-                new SqlParameter("@p3", purchaseNo),
-                new SqlParameter("@p4", shopNo)
+                new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p3", purchaseNo) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p4", shopNo) { SqlDbType = SqlDbType.VarChar }
             };
 
-            return SqlQuery<int>(sql, param.ToArray()).Single();
+            return SqlQuery<int>(sql, param.ToArray()).FirstOrDefault();
         }
 
         /// <summary>
@@ -79,6 +80,14 @@ namespace Wms3pl.Datas.F02
 
         public IQueryable<F020302> GetF020302s(string dcCode, string gupCode, string custCode, string purchaseNo)
         {
+            var parameter = new List<SqlParameter>()
+            {
+                new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p3", purchaseNo) { SqlDbType = SqlDbType.VarChar },
+            };
+
             var sql = @"SELECT B.*
 						  FROM F020301 A
 							   JOIN F020302 B
@@ -97,8 +106,7 @@ namespace Wms3pl.Datas.F02
 							   AND A.CUST_CODE = @p2
 							   AND C.STOCK_NO = @p3";
 
-            var parameter = new object[] { dcCode, gupCode, custCode, purchaseNo };
-            return SqlQuery<F020302>(sql, parameter);
+            return SqlQuery<F020302>(sql, parameter.ToArray());
         }
 
         public IQueryable<P020205Main> GetJincangNoFileMain(string dcCode, string gupCode, string custCode, DateTime importStartDate, DateTime importEndDate, string poNo)
@@ -141,6 +149,13 @@ namespace Wms3pl.Datas.F02
 
         public void Delete(string dcCode, string gupCode, string custCode, string purchaseNo)
         {
+            var parameter = new List<SqlParameter>
+            {
+                new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p3", purchaseNo) { SqlDbType = SqlDbType.VarChar },
+            };
             var sql = @" DELETE FROM F020301
 										WHERE DC_CODE = @p0
 										AND GUP_CODE = @p1
@@ -153,7 +168,7 @@ namespace Wms3pl.Datas.F02
 										 AND F020301.GUP_CODE = F020302.GUP_CODE
 										 AND F020301.CUST_CODE = F020302.CUST_CODE
 										 AND F020301.FILE_NAME = F020302.FILE_NAME) ";
-            ExecuteSqlCommand(sql, new object[] { dcCode, gupCode, custCode, purchaseNo });
+            ExecuteSqlCommand(sql, parameter.ToArray());
         }
 
         public void CancelNotProcessWarehouseInF020301(string dcCode, string gupCode, string custCode, string stockNo)

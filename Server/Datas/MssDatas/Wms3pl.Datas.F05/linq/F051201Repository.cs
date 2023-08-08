@@ -15,15 +15,6 @@ namespace Wms3pl.Datas.F05
         {
         }
 
-        public F051201 GetF051201(string dcCode, string gupCode, string custCode, string pickOrdNo)
-        {
-            var result = _db.F051201s.Where(x => x.DC_CODE == dcCode &&
-                                                 x.GUP_CODE == gupCode &&
-                                                 x.CUST_CODE == custCode &&
-                                                 x.PICK_ORD_NO == pickOrdNo).FirstOrDefault();
-
-            return result;
-        }
 
        
 
@@ -85,14 +76,6 @@ namespace Wms3pl.Datas.F05
 			x.PICK_TOOL != z.PICK_TOOL));
 		}
 
-        public IQueryable<F051201> GetDatasByF050306s(List<F050306> f050306s)
-        {
-            return _db.F051201s.Where(x =>
-            f050306s.Any(z => 
-            x.DC_CODE == z.DC_CODE &&
-            x.GUP_CODE == z.GUP_CODE &&
-            x.CUST_CODE == z.CUST_CODE &&
-            x.PICK_ORD_NO == z.WMS_NO));
-        }
-    }
+
+  }
 }

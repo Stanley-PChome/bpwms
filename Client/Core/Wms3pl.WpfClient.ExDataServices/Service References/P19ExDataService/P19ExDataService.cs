@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/3/28 下午 03:58:10
+// Generation date: 2023/7/14 下午 01:40:55
 namespace Wms3pl.WpfClient.ExDataServices.P19ExDataService
 {
     
@@ -1336,756 +1336,843 @@ namespace Wms3pl.WpfClient.ExDataServices.P19ExDataService
                 "ed.Entities.ExecuteResult\"><Property Name=\"F020502_ID\" Type=\"Edm.Int64\" Nullable" +
                 "=\"false\" /><Property Name=\"F020501_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Prop" +
                 "erty Name=\"NeedFocuseContanerCode\" Type=\"Edm.Boolean\" Nullable=\"false\" /></Entit" +
-                "yType><EntityType Name=\"PickAllotResult\" BaseType=\"Wms3pl.Datas.Shared.Entities." +
-                "ExecuteResult\"><Property Name=\"PickLocNo\" Type=\"Edm.String\" /><Property Name=\"Pi" +
-                "ckOrdSeq\" Type=\"Edm.String\" /><Property Name=\"ItemCode\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"IsPickSowFinished\" Typ" +
-                "e=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"CancelWmsOrdNos\" Type=\"Collec" +
-                "tion(Edm.String)\" Nullable=\"false\" /></EntityType><EntityType Name=\"ScanContaine" +
-                "rResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"C" +
-                "ontainerCode\" Type=\"Edm.String\" /><Property Name=\"ContainerPickInfo\" Type=\"Wms3p" +
-                "l.Datas.Shared.Entities.ContainerPickInfo\" /><Property Name=\"NormalBox\" Type=\"Wm" +
-                "s3pl.Datas.Shared.Entities.BoxInfo\" /><Property Name=\"CancelBox\" Type=\"Wms3pl.Da" +
-                "tas.Shared.Entities.BoxInfo\" /><Property Name=\"IsPickLastBox\" Type=\"Edm.Boolean\"" +
-                " Nullable=\"false\" /><Property Name=\"IsFisrtAllot\" Type=\"Edm.Boolean\" Nullable=\"f" +
-                "alse\" /></EntityType><ComplexType Name=\"ContainerPickInfo\"><Property Name=\"Id\" T" +
-                "ype=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"PickOrdNo\" Type=\"Edm.String\" " +
-                "/><Property Name=\"DelvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Nam" +
-                "e=\"PickTime\" Type=\"Edm.String\" /><Property Name=\"BatchPickCnt\" Type=\"Edm.Int32\" " +
-                "Nullable=\"false\" /><Property Name=\"BatchPickQty\" Type=\"Edm.Int32\" Nullable=\"fals" +
-                "e\" /><Property Name=\"PickQty\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name" +
-                "=\"MoveOutTarget\" Type=\"Edm.String\" /><Property Name=\"MoveOutTargetName\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"NormalOrderCnt\" Type=\"Edm.Int32\" Nullable=\"false\" />" +
-                "<Property Name=\"CancelOrderCnt\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexTyp" +
-                "e><ComplexType Name=\"BoxInfo\"><Property Name=\"SowType\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"BoxNo\" Type=\"Edm.String\" /><Property Name=\"SowQty\" Type=\"Edm.Int32\" N" +
-                "ullable=\"false\" /></ComplexType><EntityType Name=\"BindBoxResult\" BaseType=\"Wms3p" +
-                "l.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"BoxInfo\" Type=\"Wms3pl.Dat" +
-                "as.Shared.Entities.BoxInfo\" /></EntityType><EntityType Name=\"SowItemResult\" Base" +
-                "Type=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"BoxInfo\" Type=" +
-                "\"Wms3pl.Datas.Shared.Entities.BoxInfo\" /><Property Name=\"ItemCode\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"IsContainer" +
-                "Finished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsBatchFinished\"" +
-                " Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><EntityType Name=\"LackItemRe" +
-                "sult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"Lack" +
-                "ItemDetails\" Type=\"Collection(Wms3pl.Datas.Shared.Entities.LackItem)\" Nullable=\"" +
-                "false\" /></EntityType><ComplexType Name=\"LackItem\"><Property Name=\"ItemCode\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"L" +
-                "ackQty\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexType><EntityType Name=\"Pick" +
-                "OutOfStockResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Propert" +
-                "y Name=\"IsContainerFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Nam" +
-                "e=\"IsBatchFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><EntityTy" +
-                "pe Name=\"CheckLoc\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Proper" +
-                "ty Name=\"DcCode\" Type=\"Edm.String\" /><Property Name=\"WarehouseId\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"LocCode\" Type=\"Edm.String\" /><Property Name=\"LocType\" Type" +
-                "=\"Edm.String\" /></EntityType><EntityType Name=\"CheckLocItem\" BaseType=\"Wms3pl.Da" +
-                "tas.Shared.Entities.CheckLoc\"><Property Name=\"ItemCode\" Type=\"Edm.String\" /></En" +
-                "tityType><EntityType Name=\"ContainerCloseBoxRes\" BaseType=\"Wms3pl.Datas.Shared.E" +
-                "ntities.ExecuteResult\" /><EntityType Name=\"SetPackageStationStatusLogRes\" BaseTy" +
-                "pe=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntityType Name=\"SetPackageLi" +
-                "neStationStatusRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><Ent" +
-                "ityType Name=\"ChangeShipPackCheckRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.Exe" +
-                "cuteResult\" /><EntityType Name=\"GetShipLogisticBoxRes\" BaseType=\"Wms3pl.Datas.Sh" +
-                "ared.Entities.ExecuteResult\"><Property Name=\"Datas\" Type=\"Collection(Wms3pl.Data" +
-                "s.Shared.Entities.GetShipLogisticBoxData)\" Nullable=\"false\" /></EntityType><Comp" +
-                "lexType Name=\"GetShipLogisticBoxData\"><Property Name=\"ContainerCode\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"IsScan\" Type=\"Edm.Boolean\" Nullable=\"false\" /></Complex" +
-                "Type><EntityType Name=\"F1929WithF1909Test\"><Key><PropertyRef Name=\"CUST_CODE\" />" +
-                "<PropertyRef Name=\"GUP_CODE\" /></Key><Property Name=\"GUP_CODE\" Type=\"Edm.String\"" +
-                " Nullable=\"false\" /><Property Name=\"GUP_NAME\" Type=\"Edm.String\" /><Property Name" +
-                "=\"CRT_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" N" +
-                "ullable=\"false\" /><Property Name=\"CUST_NAME\" Type=\"Edm.String\" /></EntityType><E" +
-                "ntityType Name=\"FunctionShowInfo\"><Key><PropertyRef Name=\"FUN_CODE\" /><PropertyR" +
-                "ef Name=\"GRP_ID\" /><PropertyRef Name=\"SHOWINFO\" /></Key><Property Name=\"GRP_ID\" " +
-                "Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"SHOWINFO\" Type=\"Edm.String" +
-                "\" Nullable=\"false\" /><Property Name=\"FUN_CODE\" Type=\"Edm.String\" Nullable=\"false" +
-                "\" /></EntityType><EntityType Name=\"P1905GroupFunctionMapping\"><Key><PropertyRef " +
-                "Name=\"FUN_CODE\" /></Key><Property Name=\"FUN_CODE\" Type=\"Edm.String\" Nullable=\"fa" +
-                "lse\" /><Property Name=\"FUN_NAME\" Type=\"Edm.String\" /><Property Name=\"FUN_TYPE\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"FUN_DESC\" Type=\"Edm.String\" /><Property Name=" +
-                "\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"GRP_ID\" Type=\"Edm.Decimal\" /><Pr" +
-                "operty Name=\"ISENABLED\" Type=\"Edm.Decimal\" /></EntityType><EntityType Name=\"F192" +
-                "4Data\"><Key><PropertyRef Name=\"EMP_ID\" /></Key><Property Name=\"EMP_ID\" Type=\"Edm" +
-                ".String\" Nullable=\"false\" /><Property Name=\"EMP_NAME\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"EMAIL\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String" +
-                "\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Nam" +
-                "e=\"ISDELETED\" Type=\"Edm.String\" /><Property Name=\"PACKAGE_UNLOCK\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"ISCOMMON\" Type=\"Edm.String\" /><Property Name=\"" +
-                "DEP_ID\" Type=\"Edm.String\" /><Property Name=\"WORK_ID\" Type=\"Edm.Decimal\" /></Enti" +
-                "tyType><EntityType Name=\"F190101Data\"><Key><PropertyRef Name=\"CUST_CODE\" /><Prop" +
-                "ertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"GUP_CODE\" /></Key><Property Name=\"DC" +
-                "_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DC_NAME\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Proper" +
-                "ty Name=\"CUST_NAME\" Type=\"Edm.String\" /><Property Name=\"GUP";
+                "yType><EntityType Name=\"PickContainerResult\" BaseType=\"Wms3pl.Datas.Shared.Entit" +
+                "ies.ExecuteResult\"><Property Name=\"ContainerCode\" Type=\"Edm.String\" /><Property " +
+                "Name=\"PickContainerInfos\" Type=\"Collection(Wms3pl.Datas.Shared.Entities.PickCont" +
+                "ainerInfo)\" Nullable=\"false\" /><Property Name=\"MoveOutTargetName\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"TotalPcs\" Type=\"Edm.Int32\" Nullable=\"false\" /></EntityType" +
+                "><ComplexType Name=\"PickContainerInfo\"><Property Name=\"F0701_ID\" Type=\"Edm.Int64" +
+                "\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name" +
+                "=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><" +
+                "Property Name=\"PICK_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"CONTAINER_CODE\" " +
+                "Type=\"Edm.String\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"DEVICE_TYPE_NAME\" Type=\"Edm.String\" /><Property Name=\"MOVE_OUT_TARGET\" Type" +
+                "=\"Edm.String\" /><Property Name=\"CROSS_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
+                "TOTAL\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexType><EntityType Name=\"Bindi" +
+                "ngPickContainerResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Pr" +
+                "operty Name=\"BindingPickContainerInfo\" Type=\"Wms3pl.Datas.Shared.Entities.Bindin" +
+                "gPickContainerInfo\" /><Property Name=\"IsReleaseContainer\" Type=\"Edm.Boolean\" Nul" +
+                "lable=\"false\" /></EntityType><ComplexType Name=\"BindingPickContainerInfo\"><Prope" +
+                "rty Name=\"F0534_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"F0701_ID" +
+                "\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"CONTAINER_CODE\" Type=\"Edm." +
+                "String\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" /><Property Name=\"TOTAL" +
+                "\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\"" +
+                " /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type" +
+                "=\"Edm.String\" /><Property Name=\"PICK_ORD_NO\" Type=\"Edm.String\" /><Property Name=" +
+                "\"MOVE_OUT_TARGET\" Type=\"Edm.String\" /><Property Name=\"CROSS_NAME\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"HAS_CP_ITEM\" Type=\"Edm.String\" /><Property Name=\"ALL_CP_IT" +
+                "EM\" Type=\"Edm.String\" /><Property Name=\"ItemList\" Type=\"Collection(Wms3pl.Datas." +
+                "Shared.Entities.BindingPickContainerDetail)\" Nullable=\"false\" /></ComplexType><C" +
+                "omplexType Name=\"BindingPickContainerDetail\"><Property Name=\"ITEM_CODE\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"EAN_C" +
+                "ODE1\" Type=\"Edm.String\" /><Property Name=\"EAN_CODE2\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"EAN_CODE3\" Type=\"Edm.String\" /><Property Name=\"BUNDLE_SERIALNO\" Type=\"E" +
+                "dm.String\" /><Property Name=\"B_SET_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Pro" +
+                "perty Name=\"A_SET_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexType><Entity" +
+                "Type Name=\"PickAllotResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult" +
+                "\"><Property Name=\"PickLocNo\" Type=\"Edm.String\" /><Property Name=\"PickOrdSeq\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"ItemCode\" Type=\"Edm.String\" /><Property Name=\"I" +
+                "temName\" Type=\"Edm.String\" /><Property Name=\"IsPickSowFinished\" Type=\"Edm.Boolea" +
+                "n\" Nullable=\"false\" /><Property Name=\"CancelWmsOrdNos\" Type=\"Collection(Edm.Stri" +
+                "ng)\" Nullable=\"false\" /></EntityType><EntityType Name=\"ScanContainerResult\" Base" +
+                "Type=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"ContainerCode\"" +
+                " Type=\"Edm.String\" /><Property Name=\"ContainerPickInfo\" Type=\"Wms3pl.Datas.Share" +
+                "d.Entities.ContainerPickInfo\" /><Property Name=\"NormalBox\" Type=\"Wms3pl.Datas.Sh" +
+                "ared.Entities.BoxInfo\" /><Property Name=\"CancelBox\" Type=\"Wms3pl.Datas.Shared.En" +
+                "tities.BoxInfo\" /><Property Name=\"IsPickLastBox\" Type=\"Edm.Boolean\" Nullable=\"fa" +
+                "lse\" /><Property Name=\"IsFisrtAllot\" Type=\"Edm.Boolean\" Nullable=\"false\" /></Ent" +
+                "ityType><ComplexType Name=\"ContainerPickInfo\"><Property Name=\"Id\" Type=\"Edm.Int6" +
+                "4\" Nullable=\"false\" /><Property Name=\"PickOrdNo\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"DelvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"PickTime\" " +
+                "Type=\"Edm.String\" /><Property Name=\"BatchPickCnt\" Type=\"Edm.Int32\" Nullable=\"fal" +
+                "se\" /><Property Name=\"BatchPickQty\" Type=\"Edm.Int32\" Nullable=\"false\" /><Propert" +
+                "y Name=\"PickQty\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"MoveOutTarg" +
+                "et\" Type=\"Edm.String\" /><Property Name=\"MoveOutTargetName\" Type=\"Edm.String\" /><" +
+                "Property Name=\"NormalOrderCnt\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Nam" +
+                "e=\"CancelOrderCnt\" Type=\"Edm.Int32\" Nullable=\"false\" /></ComplexType><ComplexTyp" +
+                "e Name=\"BoxInfo\"><Property Name=\"SowType\" Type=\"Edm.String\" /><Property Name=\"Bo" +
+                "xNo\" Type=\"Edm.String\" /><Property Name=\"SowQty\" Type=\"Edm.Int32\" Nullable=\"fals" +
+                "e\" /></ComplexType><EntityType Name=\"BindBoxResult\" BaseType=\"Wms3pl.Datas.Share" +
+                "d.Entities.ExecuteResult\"><Property Name=\"BoxInfo\" Type=\"Wms3pl.Datas.Shared.Ent" +
+                "ities.BoxInfo\" /></EntityType><EntityType Name=\"SowItemResult\" BaseType=\"Wms3pl." +
+                "Datas.Shared.Entities.ExecuteResult\"><Property Name=\"BoxInfo\" Type=\"Wms3pl.Datas" +
+                ".Shared.Entities.BoxInfo\" /><Property Name=\"ItemCode\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"IsContainerFinished\" Typ" +
+                "e=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsBatchFinished\" Type=\"Edm.Bo" +
+                "olean\" Nullable=\"false\" /></EntityType><EntityType Name=\"LackItemResult\" BaseTyp" +
+                "e=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"LackItemDetails\" " +
+                "Type=\"Collection(Wms3pl.Datas.Shared.Entities.LackItem)\" Nullable=\"false\" /></En" +
+                "tityType><ComplexType Name=\"LackItem\"><Property Name=\"ItemCode\" Type=\"Edm.String" +
+                "\" /><Property Name=\"ItemName\" Type=\"Edm.String\" /><Property Name=\"LackQty\" Type=" +
+                "\"Edm.Int32\" Nullable=\"false\" /></ComplexType><EntityType Name=\"PickOutOfStockRes" +
+                "ult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"IsCon" +
+                "tainerFinished\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsBatchFin" +
+                "ished\" Type=\"Edm.Boolean\" Nullable=\"false\" /></EntityType><EntityType Name=\"OutC" +
+                "ontainerResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property " +
+                "Name=\"ContainerCode\" Type=\"Edm.String\" /><Property Name=\"OutContainerInfo\" Type=" +
+                "\"Wms3pl.Datas.Shared.Entities.OutContainerInfo\" /><Property Name=\"MoveOutTargetN" +
+                "ame\" Type=\"Edm.String\" /><Property Name=\"TotalPcs\" Type=\"Edm.Int32\" Nullable=\"fa" +
+                "lse\" /></EntityType><ComplexType Name=\"OutContainerInfo\"><Property Name=\"F0531_I" +
+                "D\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String" +
+                "\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"OUT_CONTAINER_CODE\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"MOVE_OUT_TARGET\" Type=\"Edm.String\" /><Property Name=\"CROSS_NAME\" Type=\"" +
+                "Edm.String\" /><Property Name=\"TOTAL\" Type=\"Edm.Int32\" Nullable=\"false\" /><Proper" +
+                "ty Name=\"WORK_TYPE\" Type=\"Edm.String\" /><Property Name=\"STA";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart1 = "_CODE\" Type=\"Edm.String\" Nullable=\"false\" /></EntityType><EntityType Name=\"Functi" +
-                "onCodeName\"><Key><PropertyRef Name=\"FUN_CODE\" /></Key><Property Name=\"FUN_NAME\" " +
-                "Type=\"Edm.String\" /><Property Name=\"FUN_CODE\" Type=\"Edm.String\" Nullable=\"false\"" +
-                " /></EntityType><EntityType Name=\"EmpWithFuncionName\"><Key><PropertyRef Name=\"RO" +
-                "W_NUM\" /></Key><Property Name=\"ROW_NUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><P" +
-                "roperty Name=\"EMP_ID\" Type=\"Edm.String\" /><Property Name=\"FUN_CODE\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"FUN_NAME\" Type=\"Edm.String\" /><Property Name=\"BTNAME\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"BTOPT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><" +
-                "/EntityType><EntityType Name=\"GetUserPassword\"><Key><PropertyRef Name=\"EMP_ID\" /" +
-                "></Key><Property Name=\"EMP_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Property Na" +
-                "me=\"PASSWORD\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1905Data\"><Key" +
-                "><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Name=\"ITEM_CODE\" /></Key><Property " +
-                "Name=\"ITEM_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ITEM_NAME\"" +
-                " Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false" +
-                "\" /><Property Name=\"GUP_NAME\" Type=\"Edm.String\" /><Property Name=\"PACK_WEIGHT\" T" +
-                "ype=\"Edm.Double\" /></EntityType><EntityType Name=\"F190301Data\"><Key><PropertyRef" +
-                " Name=\"GUP_CODE\" /><PropertyRef Name=\"ITEM_CODE\" /><PropertyRef Name=\"UNIT_ID\" /" +
-                "></Key><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property" +
-                " Name=\"UNIT_LEVEL\" Type=\"Edm.Int16\" Nullable=\"false\" /><Property Name=\"UNIT_ID\" " +
-                "Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"UNIT_QTY\" Type=\"Edm.Int32\" " +
-                "Nullable=\"false\" /><Property Name=\"LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"" +
-                "WIDTH\" Type=\"Edm.Decimal\" /><Property Name=\"HIGHT\" Type=\"Edm.Decimal\" /><Propert" +
-                "y Name=\"WEIGHT\" Type=\"Edm.Decimal\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\"" +
-                " Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=" +
-                "\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><" +
-                "Property Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"E" +
-                "dm.String\" /><Property Name=\"SYS_UNIT\" Type=\"Edm.String\" /></EntityType><EntityT" +
-                "ype Name=\"F1947WithF194701\"><Key><PropertyRef Name=\"ALL_ID\" /><PropertyRef Name=" +
-                "\"DC_CODE\" /><PropertyRef Name=\"DELV_TIME\" /></Key><Property Name=\"DC_CODE\" Type=" +
-                "\"Edm.String\" Nullable=\"false\" /><Property Name=\"ALL_ID\" Type=\"Edm.String\" Nullab" +
-                "le=\"false\" /><Property Name=\"ALL_COMP\" Type=\"Edm.String\" /><Property Name=\"PIER_" +
-                "CODE\" Type=\"Edm.String\" /><Property Name=\"DELV_TIME\" Type=\"Edm.String\" Nullable=" +
-                "\"false\" /></EntityType><EntityType Name=\"UserWarehouse\"><Key><PropertyRef Name=\"" +
-                "Value\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"Valu" +
-                "e\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"Name\" Type=\"Edm.String\" " +
-                "/><Property Name=\"TMPR_TYPE\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"" +
-                "F1954Ex\"><Key><PropertyRef Name=\"FUN_CODE\" /></Key><Property Name=\"FUN_CODE\" Typ" +
-                "e=\"Edm.String\" Nullable=\"false\" /><Property Name=\"FUN_NAME\" Type=\"Edm.String\" />" +
-                "<Property Name=\"FUN_TYPE\" Type=\"Edm.String\" /><Property Name=\"FUN_DESC\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_D" +
-                "ATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"STATUS\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"UPLOAD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"DISABLE" +
-                "\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"WarningMessage\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"MainProgram\" Type=\"Edm.String\" /></EntityType><EntityType " +
-                "Name=\"F197001Data\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"GUP_C" +
-                "ODE\" /><PropertyRef Name=\"LABEL_SEQ\" /></Key><Property Name=\"IsChecked\" Type=\"Ed" +
-                "m.Boolean\" Nullable=\"false\" /><Property Name=\"LABEL_SEQ\" Type=\"Edm.Int32\" Nullab" +
-                "le=\"false\" /><Property Name=\"LABEL_CODE\" Type=\"Edm.String\" /><Property Name=\"LAB" +
-                "EL_NAME\" Type=\"Edm.String\" /><Property Name=\"VNR_CODE\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"VNR_NAME\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"ITEM_COLO" +
-                "R\" Type=\"Edm.String\" /><Property Name=\"ITEM_SIZE\" Type=\"Edm.String\" /><Property " +
-                "Name=\"ITEM_SPEC\" Type=\"Edm.String\" /><Property Name=\"CUST_ITEM_CODE\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"SUGR\" Type=\"Edm.String\" /><Property Name=\"WARRANTY\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"WARRANTY_S_Y\" Type=\"Edm.Int16\" /><Property Name" +
-                "=\"WARRANTY_S_M\" Type=\"Edm.String\" /><Property Name=\"WARRANTY_Y\" Type=\"Edm.String" +
-                "\" /><Property Name=\"WARRANTY_M\" Type=\"Edm.String\" /><Property Name=\"WARRANTY_D\" " +
-                "Type=\"Edm.Int16\" /><Property Name=\"OUTSOURCE\" Type=\"Edm.String\" /><Property Name" +
-                "=\"CHECK_STAFF\" Type=\"Edm.String\" /><Property Name=\"ITEM_DESC_A\" Type=\"Edm.String" +
-                "\" /><Property Name=\"ITEM_DESC_B\" Type=\"Edm.String\" /><Property Name=\"ITEM_DESC_C" +
-                "\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"fals" +
-                "e\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property N" +
-                "ame=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" " +
-                "Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Na" +
-                "me=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"Qty\" Type=\"Edm.Int32\" Nullable" +
-                "=\"false\" /><Property Name=\"WarrantyDate\" Type=\"Edm.DateTime\" Nullable=\"false\" />" +
-                "</EntityType><EntityType Name=\"DistributionData\"><Key><PropertyRef Name=\"ROWNUM\"" +
-                " /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property" +
-                " Name=\"COUDIV_ID\" Type=\"Edm.String\" /><Property Name=\"COUDIV_NAME\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"ALL_ID\" Type=\"Edm.String\" /><Property Name=\"ALL_COMP\" Typ" +
-                "e=\"Edm.String\" /></EntityType><EntityType Name=\"F1909EX\"><Key><PropertyRef Name=" +
-                "\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><" +
-                "Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_NAME\" Type=\"E" +
-                "dm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"SHORT" +
-                "_NAME\" Type=\"Edm.String\" /><Property Name=\"BOSS\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"CONTACT\" Type=\"Edm.String\" /><Property Name=\"TEL\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"ADDRESS\" Type=\"Edm.String\" /><Property Name=\"UNI_FORM\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"ITEM_CONTACT\" Type=\"Edm.String\" /><Property Name=\"ITEM_TEL" +
-                "\" Type=\"Edm.String\" /><Property Name=\"ITEM_CEL\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"ITEM_MAIL\" Type=\"Edm.String\" /><Property Name=\"BILL_CONTACT\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"BILL_TEL\" Type=\"Edm.String\" /><Property Name=\"BILL_CEL\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"BILL_MAIL\" Type=\"Edm.String\" /><Property Name=\"" +
-                "CURRENCY\" Type=\"Edm.String\" /><Property Name=\"PAY_FACTOR\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"PAY_TYPE\" Type=\"Edm.String\" /><Property Name=\"BANK_CODE\" Type=\"Edm" +
-                ".String\" /><Property Name=\"BANK_NAME\" Type=\"Edm.String\" /><Property Name=\"BANK_A" +
-                "CCOUNT\" Type=\"Edm.String\" /><Property Name=\"ORDER_ADDRESS\" Type=\"Edm.String\" /><" +
-                "Property Name=\"MIX_LOC_BATCH\" Type=\"Edm.String\" /><Property Name=\"MIX_LOC_ITEM\" " +
-                "Type=\"Edm.String\" /><Property Name=\"DC_TRANSFER\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"BOUNDLE_SERIALLOC\" Type=\"Edm.String\" /><Property Name=\"RTN_DC_CODE\" Type=\"E" +
-                "dm.String\" /><Property Name=\"OVERAGE\" Type=\"Edm.String\" /><";
+            private const string ModelPart1 = "TUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"" +
+                "false\" /><Property Name=\"F0701_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property" +
+                " Name=\"SOW_TYPE\" Type=\"Edm.String\" /></ComplexType><EntityType Name=\"PickContain" +
+                "erPutIntoOutContainerResult\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResul" +
+                "t\"><Property Name=\"IsOutContainerError\" Type=\"Edm.Boolean\" Nullable=\"false\" /><P" +
+                "roperty Name=\"IsPickContainerError\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Navig" +
+                "ationProperty Name=\"UpdateOutContainerResult\" Relationship=\"Wms3pl.Datas.Shared." +
+                "Entities.PickContainerPutIntoOutContainerResult_UpdateOutContainerResult\" ToRole" +
+                "=\"UpdateOutContainerResult\" FromRole=\"PickContainerPutIntoOutContainerResult\" />" +
+                "</EntityType><EntityType Name=\"ScanItemBarcodeResult\" BaseType=\"Wms3pl.Datas.Sha" +
+                "red.Entities.ExecuteResult\"><Property Name=\"bindNewNormalContainer\" Type=\"Edm.Bo" +
+                "olean\" Nullable=\"false\" /><Property Name=\"bindNewCancelContainer\" Type=\"Edm.Bool" +
+                "ean\" Nullable=\"false\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property" +
+                " Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"IsNormalShipItem\" Type=\"Ed" +
+                "m.Boolean\" Nullable=\"false\" /><Property Name=\"IsFinishAllot\" Type=\"Edm.Boolean\" " +
+                "Nullable=\"false\" /><Property Name=\"BindingPickContainerInfo\" Type=\"Wms3pl.Datas." +
+                "Shared.Entities.BindingPickContainerInfo\" /></EntityType><EntityType Name=\"Check" +
+                "Loc\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\"><Property Name=\"DcCod" +
+                "e\" Type=\"Edm.String\" /><Property Name=\"WarehouseId\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"LocCode\" Type=\"Edm.String\" /><Property Name=\"LocType\" Type=\"Edm.String\" " +
+                "/></EntityType><EntityType Name=\"CheckLocItem\" BaseType=\"Wms3pl.Datas.Shared.Ent" +
+                "ities.CheckLoc\"><Property Name=\"ItemCode\" Type=\"Edm.String\" /></EntityType><Enti" +
+                "tyType Name=\"ContainerCloseBoxRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.Execut" +
+                "eResult\" /><EntityType Name=\"SetPackageStationStatusLogRes\" BaseType=\"Wms3pl.Dat" +
+                "as.Shared.Entities.ExecuteResult\" /><EntityType Name=\"SetPackageLineStationStatu" +
+                "sRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntityType Name=\"" +
+                "ChangeShipPackCheckRes\" BaseType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" />" +
+                "<EntityType Name=\"GetShipLogisticBoxRes\" BaseType=\"Wms3pl.Datas.Shared.Entities." +
+                "ExecuteResult\"><Property Name=\"Datas\" Type=\"Collection(Wms3pl.Datas.Shared.Entit" +
+                "ies.GetShipLogisticBoxData)\" Nullable=\"false\" /></EntityType><ComplexType Name=\"" +
+                "GetShipLogisticBoxData\"><Property Name=\"ContainerCode\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"IsScan\" Type=\"Edm.Boolean\" Nullable=\"false\" /></ComplexType><EntityTy" +
+                "pe Name=\"F1929WithF1909Test\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef N" +
+                "ame=\"GUP_CODE\" /></Key><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"fal" +
+                "se\" /><Property Name=\"GUP_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Ty" +
+                "pe=\"Edm.DateTime\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false" +
+                "\" /><Property Name=\"CUST_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name" +
+                "=\"FunctionShowInfo\"><Key><PropertyRef Name=\"FUN_CODE\" /><PropertyRef Name=\"GRP_I" +
+                "D\" /><PropertyRef Name=\"SHOWINFO\" /></Key><Property Name=\"GRP_ID\" Type=\"Edm.Deci" +
+                "mal\" Nullable=\"false\" /><Property Name=\"SHOWINFO\" Type=\"Edm.String\" Nullable=\"fa" +
+                "lse\" /><Property Name=\"FUN_CODE\" Type=\"Edm.String\" Nullable=\"false\" /></EntityTy" +
+                "pe><EntityType Name=\"P1905GroupFunctionMapping\"><Key><PropertyRef Name=\"FUN_CODE" +
+                "\" /></Key><Property Name=\"FUN_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Proper" +
+                "ty Name=\"FUN_NAME\" Type=\"Edm.String\" /><Property Name=\"FUN_TYPE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"FUN_DESC\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"GRP_ID\" Type=\"Edm.Decimal\" /><Property Name=\"I" +
+                "SENABLED\" Type=\"Edm.Decimal\" /></EntityType><EntityType Name=\"F1924Data\"><Key><P" +
+                "ropertyRef Name=\"EMP_ID\" /></Key><Property Name=\"EMP_ID\" Type=\"Edm.String\" Nulla" +
+                "ble=\"false\" /><Property Name=\"EMP_NAME\" Type=\"Edm.String\" /><Property Name=\"EMAI" +
+                "L\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property " +
+                "Name=\"CRT_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"ISDELETED\" " +
+                "Type=\"Edm.String\" /><Property Name=\"PACKAGE_UNLOCK\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String" +
+                "\" /><Property Name=\"ISCOMMON\" Type=\"Edm.String\" /><Property Name=\"DEP_ID\" Type=\"" +
+                "Edm.String\" /><Property Name=\"WORK_ID\" Type=\"Edm.Decimal\" /></EntityType><Entity" +
+                "Type Name=\"F190101Data\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"" +
+                "DC_CODE\" /><PropertyRef Name=\"GUP_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"E" +
+                "dm.String\" Nullable=\"false\" /><Property Name=\"DC_NAME\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CUST_" +
+                "NAME\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"" +
+                "false\" /></EntityType><EntityType Name=\"FunctionCodeName\"><Key><PropertyRef Name" +
+                "=\"FUN_CODE\" /></Key><Property Name=\"FUN_NAME\" Type=\"Edm.String\" /><Property Name" +
+                "=\"FUN_CODE\" Type=\"Edm.String\" Nullable=\"false\" /></EntityType><EntityType Name=\"" +
+                "EmpWithFuncionName\"><Key><PropertyRef Name=\"ROW_NUM\" /></Key><Property Name=\"ROW" +
+                "_NUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"EMP_ID\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"FUN_CODE\" Type=\"Edm.String\" /><Property Name=\"FUN_NAME\" " +
+                "Type=\"Edm.String\" /><Property Name=\"BTNAME\" Type=\"Edm.String\" /><Property Name=\"" +
+                "BTOPT\" Type=\"Edm.Decimal\" Nullable=\"false\" /></EntityType><EntityType Name=\"GetU" +
+                "serPassword\"><Key><PropertyRef Name=\"EMP_ID\" /></Key><Property Name=\"EMP_ID\" Typ" +
+                "e=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PASSWORD\" Type=\"Edm.String\" />" +
+                "</EntityType><EntityType Name=\"F1905Data\"><Key><PropertyRef Name=\"GUP_CODE\" /><P" +
+                "ropertyRef Name=\"ITEM_CODE\" /></Key><Property Name=\"ITEM_CODE\" Type=\"Edm.String\"" +
+                " Nullable=\"false\" /><Property Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"GUP_NAME\" Type" +
+                "=\"Edm.String\" /><Property Name=\"PACK_WEIGHT\" Type=\"Edm.Double\" /></EntityType><E" +
+                "ntityType Name=\"F190301Data\"><Key><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Na" +
+                "me=\"ITEM_CODE\" /><PropertyRef Name=\"UNIT_ID\" /></Key><Property Name=\"ITEM_CODE\" " +
+                "Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"UNIT_LEVEL\" Type=\"Edm.Int16" +
+                "\" Nullable=\"false\" /><Property Name=\"UNIT_ID\" Type=\"Edm.String\" Nullable=\"false\"" +
+                " /><Property Name=\"UNIT_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=" +
+                "\"LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"WIDTH\" Type=\"Edm.Decimal\" /><Prope" +
+                "rty Name=\"HIGHT\" Type=\"Edm.Decimal\" /><Property Name=\"WEIGHT\" Type=\"Edm.Decimal\"" +
+                " /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name" +
+                "=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" N" +
+                "ullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
+                "UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><" +
+                "Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"ITEM_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"SYS_U" +
+                "NIT\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1947WithF194701\"><Key><" +
+                "PropertyRef Name=\"ALL_ID\" /><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"DEL" +
+                "V_TIME\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><P" +
+                "roperty Name=\"ALL_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ALL_C" +
+                "OMP\" Type=\"Edm.String\" /><Property Name=\"PIER_CODE\" Type=\"E";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart2 = "Property Name=\"SAM_ITEM\" Type=\"Edm.String\" /><Property Name=\"INSIDER_TRADING\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"INSIDER_TRADING_LIM\" Type=\"Edm.Int32\" /><Proper" +
-                "ty Name=\"SPILT_ORDER\" Type=\"Edm.String\" /><Property Name=\"SPILT_ORDER_LIM\" Type=" +
-                "\"Edm.Int32\" /><Property Name=\"B2C_CAN_LACK\" Type=\"Edm.String\" /><Property Name=\"" +
-                "CAN_FAST\" Type=\"Edm.String\" /><Property Name=\"INSTEAD_INVO\" Type=\"Edm.String\" />" +
-                "<Property Name=\"SPILT_INCHECK\" Type=\"Edm.String\" /><Property Name=\"SPECIAL_IN\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"CHECK_PERCENT\" Type=\"Edm.Decimal\" /><Property" +
-                " Name=\"NEED_SEAL\" Type=\"Edm.String\" /><Property Name=\"DM\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"RIBBON\" Type=\"Edm.String\" /><Property Name=\"RIBBON_BEGIN_DATE\" Typ" +
-                "e=\"Edm.DateTime\" /><Property Name=\"RIBBON_END_DATE\" Type=\"Edm.DateTime\" /><Prope" +
-                "rty Name=\"CUST_BOX\" Type=\"Edm.String\" /><Property Name=\"SP_BOX\" Type=\"Edm.String" +
-                "\" /><Property Name=\"SP_BOX_CODE\" Type=\"Edm.String\" /><Property Name=\"SPBOX_BEGIN" +
-                "_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"SPBOX_END_DATE\" Type=\"Edm.DateTime\"" +
-                " /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"" +
-                "Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><" +
-                "Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_STAFF\" Type=\"" +
-                "Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_" +
-                "NAME\" Type=\"Edm.String\" /><Property Name=\"INVO_ZIP\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"TAX_TYPE\" Type=\"Edm.String\" /><Property Name=\"INVO_ADDRESS\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"DUE_DAY\" Type=\"Edm.Decimal\" /><Property Name=\"INVO_LIM_Q" +
-                "TY\" Type=\"Edm.Int32\" /><Property Name=\"AUTO_GEN_RTN\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"SYS_CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"LOC_CODE\" Type=\"Edm." +
-                "String\" /><Property Name=\"GUPSHARE\" Type=\"Edm.String\" /></EntityType><EntityType" +
-                " Name=\"F199002Data\"><Key><PropertyRef Name=\"ACC_ITEM_KIND_ID\" /><PropertyRef Nam" +
-                "e=\"ACC_KIND\" /><PropertyRef Name=\"ACC_NUM\" /><PropertyRef Name=\"ACC_UNIT\" /><Pro" +
-                "pertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"DELV_ACC_TYPE\" /><PropertyRef Name=" +
-                "\"ORD_TYPE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /" +
-                "><Property Name=\"ACC_ITEM_KIND_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Propert" +
-                "y Name=\"ORD_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_KIND\"" +
-                " Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_UNIT\" Type=\"Edm.String" +
-                "\" Nullable=\"false\" /><Property Name=\"ACC_NUM\" Type=\"Edm.Int16\" Nullable=\"false\" " +
-                "/><Property Name=\"IN_TAX\" Type=\"Edm.String\" /><Property Name=\"FEE\" Type=\"Edm.Dec" +
-                "imal\" Nullable=\"false\" /><Property Name=\"BASIC_FEE\" Type=\"Edm.Decimal\" Nullable=" +
-                "\"false\" /><Property Name=\"OVER_FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Prope" +
-                "rty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Propert" +
-                "y Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"DELV_ACC_TY" +
-                "PE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"STATUS\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"ITEM_TYPE_ID\" Type=\"Edm.String\" /><Property Name=\"ACC_ITEM_" +
-                "NAME\" Type=\"Edm.String\" /><Property Name=\"FEE_DESCRIBE\" Type=\"Edm.String\" /></En" +
-                "tityType><EntityType Name=\"F1912LocData\"><Key><PropertyRef Name=\"AREA_CODE\" /><P" +
-                "ropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"LOC_CODE\" /></Key><Property Name=" +
-                "\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"AREA_CODE\" Type=\"" +
-                "Edm.String\" Nullable=\"false\" /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" Nulla" +
-                "ble=\"false\" /></EntityType><EntityType Name=\"F1934EX\"><Key><PropertyRef Name=\"ZI" +
-                "P_CODE\" /></Key><Property Name=\"ZIP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><" +
-                "Property Name=\"ZIP_NAME\" Type=\"Edm.String\" /><Property Name=\"COUDIV_ID\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"ISCHECKED\" Type=\"Edm.Int32\" Nullable=\"false\" /></Ent" +
-                "ityType><EntityType Name=\"F1947JoinF194701\"><Key><PropertyRef Name=\"DELV_EFFIC\" " +
-                "/><PropertyRef Name=\"DELV_TIME\" /><PropertyRef Name=\"DELV_TMPR\" /></Key><Propert" +
-                "y Name=\"DELV_TIME\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DELV_EFF" +
-                "IC\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DELV_TMPR\" Type=\"Edm.St" +
-                "ring\" Nullable=\"false\" /><Property Name=\"DELV_TMPR_NAME\" Type=\"Edm.String\" /><Pr" +
-                "operty Name=\"DELV_EFFIC_NAME\" Type=\"Edm.String\" /><Property Name=\"Sun\" Type=\"Edm" +
-                ".String\" /><Property Name=\"Mon\" Type=\"Edm.String\" /><Property Name=\"Tue\" Type=\"E" +
-                "dm.String\" /><Property Name=\"Wed\" Type=\"Edm.String\" /><Property Name=\"Thu\" Type=" +
-                "\"Edm.String\" /><Property Name=\"Fri\" Type=\"Edm.String\" /><Property Name=\"Sat\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"PAST_TYPE\" Type=\"Edm.String\" /><Property Name=\"" +
-                "DELV_TIMES\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19470101Datas\"><" +
-                "Key><PropertyRef Name=\"DELV_EFFIC\" /><PropertyRef Name=\"DELV_TIME\" /><PropertyRe" +
-                "f Name=\"DELV_TMPR\" /><PropertyRef Name=\"ZIP_CODE\" /></Key><Property Name=\"ZIP_CO" +
-                "DE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DELV_EFFIC\" Type=\"Edm.S" +
-                "tring\" Nullable=\"false\" /><Property Name=\"DELV_TIME\" Type=\"Edm.String\" Nullable=" +
-                "\"false\" /><Property Name=\"DELV_TMPR\" Type=\"Edm.String\" Nullable=\"false\" /></Enti" +
-                "tyType><EntityType Name=\"F199005Data\"><Key><PropertyRef Name=\"ACC_ITEM_KIND_ID\" " +
-                "/><PropertyRef Name=\"ACC_ITEM_NAME\" /><PropertyRef Name=\"ACC_KIND\" /><PropertyRe" +
-                "f Name=\"ACC_NUM\" /><PropertyRef Name=\"ACC_UNIT\" /><PropertyRef Name=\"DC_CODE\" />" +
-                "<PropertyRef Name=\"DELV_ACC_TYPE\" /><PropertyRef Name=\"DELV_EFFIC\" /><PropertyRe" +
-                "f Name=\"IS_SPECIAL_CAR\" /><PropertyRef Name=\"LOGI_TYPE\" /></Key><Property Name=\"" +
-                "DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_ITEM_KIND_ID\" " +
-                "Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"LOGI_TYPE\" Type=\"Edm.String" +
+            private const string ModelPart2 = "dm.String\" /><Property Name=\"DELV_TIME\" Type=\"Edm.String\" Nullable=\"false\" /></En" +
+                "tityType><EntityType Name=\"UserWarehouse\"><Key><PropertyRef Name=\"Value\" /></Key" +
+                "><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"Value\" Type=\"Edm.S" +
+                "tring\" Nullable=\"false\" /><Property Name=\"Name\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"TMPR_TYPE\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1954Ex\"><Key>" +
+                "<PropertyRef Name=\"FUN_CODE\" /></Key><Property Name=\"FUN_CODE\" Type=\"Edm.String\"" +
+                " Nullable=\"false\" /><Property Name=\"FUN_NAME\" Type=\"Edm.String\" /><Property Name" +
+                "=\"FUN_TYPE\" Type=\"Edm.String\" /><Property Name=\"FUN_DESC\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm" +
+                ".DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_" +
+                "DATE\" Type=\"Edm.DateTime\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"UPLOAD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"DISABLE\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" " +
+                "Type=\"Edm.String\" /><Property Name=\"WarningMessage\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"MainProgram\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F197001D" +
+                "ata\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"GUP_CODE\" /><Proper" +
+                "tyRef Name=\"LABEL_SEQ\" /></Key><Property Name=\"IsChecked\" Type=\"Edm.Boolean\" Nul" +
+                "lable=\"false\" /><Property Name=\"LABEL_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><" +
+                "Property Name=\"LABEL_CODE\" Type=\"Edm.String\" /><Property Name=\"LABEL_NAME\" Type=" +
+                "\"Edm.String\" /><Property Name=\"VNR_CODE\" Type=\"Edm.String\" /><Property Name=\"VNR" +
+                "_NAME\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"ITEM_COLOR\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"ITEM_SIZE\" Type=\"Edm.String\" /><Property Name=\"ITEM_SPE" +
+                "C\" Type=\"Edm.String\" /><Property Name=\"CUST_ITEM_CODE\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"SUGR\" Type=\"Edm.String\" /><Property Name=\"WARRANTY\" Type=\"Edm.String\"" +
+                " /><Property Name=\"WARRANTY_S_Y\" Type=\"Edm.Int16\" /><Property Name=\"WARRANTY_S_M" +
+                "\" Type=\"Edm.String\" /><Property Name=\"WARRANTY_Y\" Type=\"Edm.String\" /><Property " +
+                "Name=\"WARRANTY_M\" Type=\"Edm.String\" /><Property Name=\"WARRANTY_D\" Type=\"Edm.Int1" +
+                "6\" /><Property Name=\"OUTSOURCE\" Type=\"Edm.String\" /><Property Name=\"CHECK_STAFF\"" +
+                " Type=\"Edm.String\" /><Property Name=\"ITEM_DESC_A\" Type=\"Edm.String\" /><Property " +
+                "Name=\"ITEM_DESC_B\" Type=\"Edm.String\" /><Property Name=\"ITEM_DESC_C\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property" +
+                " Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CRT_DATE\"" +
+                " Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_NAME\" " +
+                "Type=\"Edm.String\" /><Property Name=\"Qty\" Type=\"Edm.Int32\" Nullable=\"false\" /><Pr" +
+                "operty Name=\"WarrantyDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /></EntityType><" +
+                "EntityType Name=\"DistributionData\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Prop" +
+                "erty Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"COUDIV_" +
+                "ID\" Type=\"Edm.String\" /><Property Name=\"COUDIV_NAME\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"ALL_ID\" Type=\"Edm.String\" /><Property Name=\"ALL_COMP\" Type=\"Edm.String\"" +
+                " /></EntityType><EntityType Name=\"F1909EX\"><Key><PropertyRef Name=\"ROWNUM\" /></K" +
+                "ey><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=" +
+                "\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_NAME\" Type=\"Edm.String\" /><" +
+                "Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"SHORT_NAME\" Type=\"E" +
+                "dm.String\" /><Property Name=\"BOSS\" Type=\"Edm.String\" /><Property Name=\"CONTACT\" " +
+                "Type=\"Edm.String\" /><Property Name=\"TEL\" Type=\"Edm.String\" /><Property Name=\"ADD" +
+                "RESS\" Type=\"Edm.String\" /><Property Name=\"UNI_FORM\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"ITEM_CONTACT\" Type=\"Edm.String\" /><Property Name=\"ITEM_TEL\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"ITEM_CEL\" Type=\"Edm.String\" /><Property Name=\"ITEM_MAIL\"" +
+                " Type=\"Edm.String\" /><Property Name=\"BILL_CONTACT\" Type=\"Edm.String\" /><Property" +
+                " Name=\"BILL_TEL\" Type=\"Edm.String\" /><Property Name=\"BILL_CEL\" Type=\"Edm.String\"" +
+                " /><Property Name=\"BILL_MAIL\" Type=\"Edm.String\" /><Property Name=\"CURRENCY\" Type" +
+                "=\"Edm.String\" /><Property Name=\"PAY_FACTOR\" Type=\"Edm.String\" /><Property Name=\"" +
+                "PAY_TYPE\" Type=\"Edm.String\" /><Property Name=\"BANK_CODE\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"BANK_NAME\" Type=\"Edm.String\" /><Property Name=\"BANK_ACCOUNT\" Type=\"" +
+                "Edm.String\" /><Property Name=\"ORDER_ADDRESS\" Type=\"Edm.String\" /><Property Name=" +
+                "\"MIX_LOC_BATCH\" Type=\"Edm.String\" /><Property Name=\"MIX_LOC_ITEM\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"DC_TRANSFER\" Type=\"Edm.String\" /><Property Name=\"BOUNDLE_S" +
+                "ERIALLOC\" Type=\"Edm.String\" /><Property Name=\"RTN_DC_CODE\" Type=\"Edm.String\" /><" +
+                "Property Name=\"OVERAGE\" Type=\"Edm.String\" /><Property Name=\"SAM_ITEM\" Type=\"Edm." +
+                "String\" /><Property Name=\"INSIDER_TRADING\" Type=\"Edm.String\" /><Property Name=\"I" +
+                "NSIDER_TRADING_LIM\" Type=\"Edm.Int32\" /><Property Name=\"SPILT_ORDER\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"SPILT_ORDER_LIM\" Type=\"Edm.Int32\" /><Property Name=\"B2C_" +
+                "CAN_LACK\" Type=\"Edm.String\" /><Property Name=\"CAN_FAST\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"INSTEAD_INVO\" Type=\"Edm.String\" /><Property Name=\"SPILT_INCHECK\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"SPECIAL_IN\" Type=\"Edm.String\" /><Property Name=" +
+                "\"CHECK_PERCENT\" Type=\"Edm.Decimal\" /><Property Name=\"NEED_SEAL\" Type=\"Edm.String" +
+                "\" /><Property Name=\"DM\" Type=\"Edm.String\" /><Property Name=\"RIBBON\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"RIBBON_BEGIN_DATE\" Type=\"Edm.DateTime\" /><Property Name=" +
+                "\"RIBBON_END_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CUST_BOX\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"SP_BOX\" Type=\"Edm.String\" /><Property Name=\"SP_BOX_CODE\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"SPBOX_BEGIN_DATE\" Type=\"Edm.DateTime\" /><Prop" +
+                "erty Name=\"SPBOX_END_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"STATUS\" Type=\"E" +
+                "dm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_" +
+                "DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_DATE\" Type=\"Edm" +
+                ".DateTime\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_" +
+                "NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"INVO_ZIP\" Type=\"Edm.String\" /><Property Name=\"TAX_TYPE\" Type=\"Edm.String" +
+                "\" /><Property Name=\"INVO_ADDRESS\" Type=\"Edm.String\" /><Property Name=\"DUE_DAY\" T" +
+                "ype=\"Edm.Decimal\" /><Property Name=\"INVO_LIM_QTY\" Type=\"Edm.Int32\" /><Property N" +
+                "ame=\"AUTO_GEN_RTN\" Type=\"Edm.String\" /><Property Name=\"SYS_CUST_CODE\" Type=\"Edm." +
+                "String\" /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUPSHARE" +
+                "\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F199002Data\"><Key><Property" +
+                "Ref Name=\"ACC_ITEM_KIND_ID\" /><PropertyRef Name=\"ACC_KIND\" /><PropertyRef Name=\"" +
+                "ACC_NUM\" /><PropertyRef Name=\"ACC_UNIT\" /><PropertyRef Name=\"DC_CODE\" /><Propert" +
+                "yRef Name=\"DELV_ACC_TYPE\" /><PropertyRef Name=\"ORD_TYPE\" /></Key><Property Name=" +
+                "\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_ITEM_KIND_ID\"" +
+                " Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ORD_TYPE\" Type=\"Edm.String" +
                 "\" Nullable=\"false\" /><Property Name=\"ACC_KIND\" Type=\"Edm.String\" Nullable=\"false" +
-                "\" /><Property Name=\"IS_SPECIAL_CAR\" Type=\"Edm.String\" Nullable=\"false\" /><Proper" +
-                "ty Name=\"CAR_KIND_ID\" Type=\"Edm.Decimal\" /><Property Name=\"ACC_AREA_ID\" Type=\"Ed" +
-                "m.Decimal\" /><Property Name=\"DELV_TMPR\" Type=\"Edm.String\" /><Property Name=\"DELV" +
-                "_EFFIC\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_UNIT\" Type=\"Edm" +
-                ".String\" Nullable=\"false\" /><Property Name=\"IN_TAX\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"ACC_NUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"MAX_WEIGH" +
-                "T\" Type=\"Edm.Decimal\" /><Property Name=\"FEE\" Type=\"Edm.Decimal\" Nullable=\"false\"" +
-                " /><Property Name=\"OVER_VALUE\" Type=\"Edm.Decimal\" /><Property Name=\"OVER_UNIT_FE" +
-                "E\" Type=\"Edm.Decimal\" /><Property Name=\"DELV_ACC_TYPE\" Type=\"Edm.String\" Nullabl" +
-                "e=\"false\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"ITEM_TYP" +
-                "E_ID\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateT" +
-                "ime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property" +
-                " Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTim" +
-                "e\" /><Property Name=\"ACC_UNIT_TEXT\" Type=\"Edm.String\" /><Property Name=\"ACC_ITEM" +
-                "_NAME\" Type=\"Edm.String\" Nullable=\"false\" /></EntityType><EntityType Name=\"F9100" +
-                "0302Data\"><Key><PropertyRef Name=\"ACC_UNIT\" /></Key><Property Name=\"ACC_UNIT\" Ty" +
-                "pe=\"Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_UNIT_NAME\" Type=\"Edm.Stri" +
-                "ng\" /></EntityType><EntityType Name=\"F194702Data\"><Key><PropertyRef Name=\"CAR_KI" +
-                "ND_ID\" /></Key><Property Name=\"CAR_KIND_ID\" Type=\"Edm.Decimal\" Nullable=\"false\" " +
-                "/><Property Name=\"CAR_KIND_NAME\" Type=\"Edm.String\" /><Prope";
+                "\" /><Property Name=\"ACC_UNIT\" Type=\"Edm.String\" Nullable=\"false\" /><Property Nam" +
+                "e=\"ACC_NUM\" Type=\"Edm.Int16\" Nullable=\"false\" /><Property Name=\"IN_TAX\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property" +
+                " Name=\"BASIC_FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Pr";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart3 = "rty Name=\"CAR_SIZE\" Type=\"Edm.String\" /><Property Name=\"TMPR_TYPE\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"TMPR_TYPE_TEXT\" Type=\"Edm.String\" /></EntityType><EntityTy" +
-                "pe Name=\"F1948Data\"><Key><PropertyRef Name=\"ACC_AREA_ID\" /></Key><Property Name=" +
-                "\"ACC_AREA_ID\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"ACC_AREA\" Ty" +
-                "pe=\"Edm.String\" /></EntityType><EntityType Name=\"F190102JoinF000904\"><Key><Prope" +
-                "rtyRef Name=\"DELV_EFFIC\" /></Key><Property Name=\"DELV_EFFIC\" Type=\"Edm.String\" N" +
-                "ullable=\"false\" /><Property Name=\"DELV_EFFIC_NAME\" Type=\"Edm.String\" /></EntityT" +
-                "ype><EntityType Name=\"F1912LocVolumn\"><Key><PropertyRef Name=\"DC_CODE\" /><Proper" +
-                "tyRef Name=\"LOC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullabl" +
-                "e=\"false\" /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Prop" +
-                "erty Name=\"USED_VOLUMN\" Type=\"Edm.Decimal\" /></EntityType><EntityType Name=\"F000" +
-                "3Ex\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.D" +
-                "ecimal\" Nullable=\"false\" /><Property Name=\"AP_NAME\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"SYS_PATH\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"FILENAME\" Type=\"Edm.String\" /><Property Name=\"FILETYPE\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"DESCRIPT\" Type=\"Edm.String\" /><Property Name=\"G" +
-                "UP_CODE\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property" +
-                " Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"IsPassword\"" +
-                " Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"DisplayText\" Type=\"Edm.St" +
-                "ring\" /></EntityType><EntityType Name=\"P710705BackWarehouseInventory\"><Key><Prop" +
-                "ertyRef Name=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullabl" +
-                "e=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_NA" +
-                "ME\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property" +
-                " Name=\"CUST_NAME\" Type=\"Edm.String\" /><Property Name=\"VNR_CODE\" Type=\"Edm.String" +
-                "\" /><Property Name=\"VNR_NAME\" Type=\"Edm.String\" /><Property Name=\"LOC_CODE\" Type" +
-                "=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"I" +
-                "TEM_NAME\" Type=\"Edm.String\" /><Property Name=\"TOTAL_QTY\" Type=\"Edm.Decimal\" Null" +
-                "able=\"false\" /></EntityType><EntityType Name=\"P710705MergeExecution\"><Key><Prope" +
-                "rtyRef Name=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable" +
-                "=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"DC_NAME\"" +
-                " Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"GUP_NAME\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" />" +
-                "<Property Name=\"CUST_NAME\" Type=\"Edm.String\" /><Property Name=\"LOC_CODE\" Type=\"E" +
-                "dm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM" +
-                "_NAME\" Type=\"Edm.String\" /><Property Name=\"VALID_DATE\" Type=\"Edm.DateTime\" Nulla" +
-                "ble=\"false\" /><Property Name=\"ENTER_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /" +
-                "><Property Name=\"TOTAL_QTY\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name" +
-                "=\"WAREHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"TAR_LOC_CODE\" Type=\"Edm.Stri" +
-                "ng\" /></EntityType><EntityType Name=\"P710705Availability\"><Key><PropertyRef Name" +
-                "=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" />" +
-                "<Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_NAME\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_" +
-                "NAME\" Type=\"Edm.String\" /><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"USED_VOLUMN\" Typ" +
-                "e=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"USEFUL_VOLUMN\" Type=\"Edm.Deci" +
-                "mal\" Nullable=\"false\" /><Property Name=\"RENT_END_DATE\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"F1912_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"F1913_LOC_CODE\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"INVENTORYDATE\" Type=\"Edm.String\" /><Property " +
-                "Name=\"COUNTF1912\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"COUNTF19" +
-                "13\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"COUNTF1913NULL\" Type=\"" +
-                "Edm.Decimal\" Nullable=\"false\" /><Property Name=\"FILLRATE\" Type=\"Edm.Decimal\" Nul" +
-                "lable=\"false\" /></EntityType><EntityType Name=\"P710705ChangeDetail\"><Key><Proper" +
-                "tyRef Name=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=" +
-                "\"false\" /><Property Name=\"UPDATE_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"WAR" +
-                "EHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\"" +
-                " /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"SRC_LOC_CODE\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"TAR_LOC_CODE\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_NAME\" Type=\"Edm.String\"" +
-                " /><Property Name=\"ACTION\" Type=\"Edm.String\" /><Property Name=\"A_TAR_QTY\" Type=\"" +
-                "Edm.Decimal\" Nullable=\"false\" /><Property Name=\"SUM_QTY\" Type=\"Edm.Decimal\" Null" +
-                "able=\"false\" /></EntityType><EntityType Name=\"P710705WarehouseDetail\"><Key><Prop" +
-                "ertyRef Name=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullabl" +
-                "e=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_NA" +
-                "ME\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property" +
-                " Name=\"CUST_NAME\" Type=\"Edm.String\" /><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"LOC_" +
-                "CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"TOTAL_QTY\" Type=\"Edm.Dec" +
-                "imal\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=" +
-                "\"false\" /></EntityType><EntityType Name=\"F91000302SearchData\"><Key><PropertyRef " +
-                "Name=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false" +
-                "\" /><Property Name=\"ITEM_TYPE_ID\" Type=\"Edm.String\" /><Property Name=\"ACC_UNIT\" " +
-                "Type=\"Edm.String\" /><Property Name=\"ACC_UNIT_NAME\" Type=\"Edm.String\" /><Property" +
-                " Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String" +
-                "\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property N" +
-                "ame=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" " +
-                "/><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"ITEM_TYPE\" Typ" +
-                "e=\"Edm.String\" /></EntityType><EntityType Name=\"P192019Item\"><Key><PropertyRef N" +
-                "ame=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\"" +
-                " /><Property Name=\"ACODE\" Type=\"Edm.String\" /><Property Name=\"ANAME\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"BCODE\" Type=\"Edm.String\" /><Property Name=\"BNAME\" Type=" +
-                "\"Edm.String\" /><Property Name=\"CCODE\" Type=\"Edm.String\" /><Property Name=\"CNAME\"" +
-                " Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" " +
-                "Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name" +
-                "=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" />" +
-                "<Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CHECK_PERCENT\" Typ" +
-                "e=\"Edm.String\" /></EntityType><EntityType Name=\"F1952Ex\"><Key><PropertyRef Name=" +
-                "\"EMP_ID\" /></Key><Property Name=\"EMP_ID\" Type=\"Edm.String\" Nullable=\"false\" /><P" +
-                "roperty Name=\"LAST_PASSWORD_CHANGED_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"" +
-                "LAST_ACTIVITY_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"S";
+            private const string ModelPart3 = "operty Name=\"OVER_FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"CRT_" +
+                "STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_ST" +
+                "AFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property" +
+                " Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"DELV_ACC_TYPE\" Type=\"Edm." +
+                "String\" Nullable=\"false\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property" +
+                " Name=\"ITEM_TYPE_ID\" Type=\"Edm.String\" /><Property Name=\"ACC_ITEM_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"FEE_DESCRIBE\" Type=\"Edm.String\" /></EntityType><Enti" +
+                "tyType Name=\"F1912LocData\"><Key><PropertyRef Name=\"AREA_CODE\" /><PropertyRef Nam" +
+                "e=\"DC_CODE\" /><PropertyRef Name=\"LOC_CODE\" /></Key><Property Name=\"DC_CODE\" Type" +
+                "=\"Edm.String\" Nullable=\"false\" /><Property Name=\"AREA_CODE\" Type=\"Edm.String\" Nu" +
+                "llable=\"false\" /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" Nullable=\"false\" />" +
+                "</EntityType><EntityType Name=\"F1934EX\"><Key><PropertyRef Name=\"ZIP_CODE\" /></Ke" +
+                "y><Property Name=\"ZIP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=" +
+                "\"ZIP_NAME\" Type=\"Edm.String\" /><Property Name=\"COUDIV_ID\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"ISCHECKED\" Type=\"Edm.Int32\" Nullable=\"false\" /></EntityType><Entit" +
+                "yType Name=\"F1947JoinF194701\"><Key><PropertyRef Name=\"DELV_EFFIC\" /><PropertyRef" +
+                " Name=\"DELV_TIME\" /><PropertyRef Name=\"DELV_TMPR\" /></Key><Property Name=\"DELV_T" +
+                "IME\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DELV_EFFIC\" Type=\"Edm." +
+                "String\" Nullable=\"false\" /><Property Name=\"DELV_TMPR\" Type=\"Edm.String\" Nullable" +
+                "=\"false\" /><Property Name=\"DELV_TMPR_NAME\" Type=\"Edm.String\" /><Property Name=\"D" +
+                "ELV_EFFIC_NAME\" Type=\"Edm.String\" /><Property Name=\"Sun\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"Mon\" Type=\"Edm.String\" /><Property Name=\"Tue\" Type=\"Edm.String\" /><" +
+                "Property Name=\"Wed\" Type=\"Edm.String\" /><Property Name=\"Thu\" Type=\"Edm.String\" /" +
+                "><Property Name=\"Fri\" Type=\"Edm.String\" /><Property Name=\"Sat\" Type=\"Edm.String\"" +
+                " /><Property Name=\"PAST_TYPE\" Type=\"Edm.String\" /><Property Name=\"DELV_TIMES\" Ty" +
+                "pe=\"Edm.String\" /></EntityType><EntityType Name=\"F19470101Datas\"><Key><PropertyR" +
+                "ef Name=\"DELV_EFFIC\" /><PropertyRef Name=\"DELV_TIME\" /><PropertyRef Name=\"DELV_T" +
+                "MPR\" /><PropertyRef Name=\"ZIP_CODE\" /></Key><Property Name=\"ZIP_CODE\" Type=\"Edm." +
+                "String\" Nullable=\"false\" /><Property Name=\"DELV_EFFIC\" Type=\"Edm.String\" Nullabl" +
+                "e=\"false\" /><Property Name=\"DELV_TIME\" Type=\"Edm.String\" Nullable=\"false\" /><Pro" +
+                "perty Name=\"DELV_TMPR\" Type=\"Edm.String\" Nullable=\"false\" /></EntityType><Entity" +
+                "Type Name=\"F199005Data\"><Key><PropertyRef Name=\"ACC_ITEM_KIND_ID\" /><PropertyRef" +
+                " Name=\"ACC_ITEM_NAME\" /><PropertyRef Name=\"ACC_KIND\" /><PropertyRef Name=\"ACC_NU" +
+                "M\" /><PropertyRef Name=\"ACC_UNIT\" /><PropertyRef Name=\"DC_CODE\" /><PropertyRef N" +
+                "ame=\"DELV_ACC_TYPE\" /><PropertyRef Name=\"DELV_EFFIC\" /><PropertyRef Name=\"IS_SPE" +
+                "CIAL_CAR\" /><PropertyRef Name=\"LOGI_TYPE\" /></Key><Property Name=\"DC_CODE\" Type=" +
+                "\"Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_ITEM_KIND_ID\" Type=\"Edm.Stri" +
+                "ng\" Nullable=\"false\" /><Property Name=\"LOGI_TYPE\" Type=\"Edm.String\" Nullable=\"fa" +
+                "lse\" /><Property Name=\"ACC_KIND\" Type=\"Edm.String\" Nullable=\"false\" /><Property " +
+                "Name=\"IS_SPECIAL_CAR\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CAR_K" +
+                "IND_ID\" Type=\"Edm.Decimal\" /><Property Name=\"ACC_AREA_ID\" Type=\"Edm.Decimal\" /><" +
+                "Property Name=\"DELV_TMPR\" Type=\"Edm.String\" /><Property Name=\"DELV_EFFIC\" Type=\"" +
+                "Edm.String\" Nullable=\"false\" /><Property Name=\"ACC_UNIT\" Type=\"Edm.String\" Nulla" +
+                "ble=\"false\" /><Property Name=\"IN_TAX\" Type=\"Edm.String\" /><Property Name=\"ACC_NU" +
+                "M\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"MAX_WEIGHT\" Type=\"Edm.D" +
+                "ecimal\" /><Property Name=\"FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property N" +
+                "ame=\"OVER_VALUE\" Type=\"Edm.Decimal\" /><Property Name=\"OVER_UNIT_FEE\" Type=\"Edm.D" +
+                "ecimal\" /><Property Name=\"DELV_ACC_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><P" +
+                "roperty Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"ITEM_TYPE_ID\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_N" +
+                "AME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=" +
+                "\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAM" +
+                "E\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property" +
+                " Name=\"ACC_UNIT_TEXT\" Type=\"Edm.String\" /><Property Name=\"ACC_ITEM_NAME\" Type=\"E" +
+                "dm.String\" Nullable=\"false\" /></EntityType><EntityType Name=\"F91000302Data\"><Key" +
+                "><PropertyRef Name=\"ACC_UNIT\" /></Key><Property Name=\"ACC_UNIT\" Type=\"Edm.String" +
+                "\" Nullable=\"false\" /><Property Name=\"ACC_UNIT_NAME\" Type=\"Edm.String\" /></Entity" +
+                "Type><EntityType Name=\"F194702Data\"><Key><PropertyRef Name=\"CAR_KIND_ID\" /></Key" +
+                "><Property Name=\"CAR_KIND_ID\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Na" +
+                "me=\"CAR_KIND_NAME\" Type=\"Edm.String\" /><Property Name=\"CAR_SIZE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"TMPR_TYPE\" Type=\"Edm.String\" /><Property Name=\"TMPR_TYPE_TE" +
+                "XT\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1948Data\"><Key><Property" +
+                "Ref Name=\"ACC_AREA_ID\" /></Key><Property Name=\"ACC_AREA_ID\" Type=\"Edm.Decimal\" N" +
+                "ullable=\"false\" /><Property Name=\"ACC_AREA\" Type=\"Edm.String\" /></EntityType><En" +
+                "tityType Name=\"F190102JoinF000904\"><Key><PropertyRef Name=\"DELV_EFFIC\" /></Key><" +
+                "Property Name=\"DELV_EFFIC\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"" +
+                "DELV_EFFIC_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1912LocVolu" +
+                "mn\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"LOC_CODE\" /></Key><Pro" +
+                "perty Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"LOC_CO" +
+                "DE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"USED_VOLUMN\" Type=\"Edm." +
+                "Decimal\" /></EntityType><EntityType Name=\"F0003Ex\"><Key><PropertyRef Name=\"ROWNU" +
+                "M\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Proper" +
+                "ty Name=\"AP_NAME\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"SYS_PATH\" Type=\"Edm.String\" /><Property Name=\"FILENAME\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"FILETYPE\" Type=\"Edm.String\" /><Property Name=\"D" +
+                "ESCRIPT\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Ty" +
+                "pe=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTim" +
+                "e\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"IsPassword\" Type=\"Edm.Boolean\" Nullable=\"fals" +
+                "e\" /><Property Name=\"DisplayText\" Type=\"Edm.String\" /></EntityType><EntityType N" +
+                "ame=\"P710705BackWarehouseInventory\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Pro" +
+                "perty Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"GUP_CO" +
+                "DE\" Type=\"Edm.String\" /><Property Name=\"GUP_NAME\" Type=\"Edm.String\" /><Property " +
+                "Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_NAME\" Type=\"Edm.String" +
+                "\" /><Property Name=\"VNR_CODE\" Type=\"Edm.String\" /><Property Name=\"VNR_NAME\" Type" +
+                "=\"Edm.String\" /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"IT" +
+                "EM_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"TOTAL_QTY\" Type=\"Edm.Decimal\" Nullable=\"false\" /></EntityType><Entit" +
+                "yType Name=\"P710705MergeExecution\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Prop" +
+                "erty Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"DC_CODE" +
+                "\" Type=\"Edm.String\" /><Property Name=\"DC_NAME\" Type=\"Edm.St";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart4 = "TATUS\" Type=\"Edm.Decimal\" /><Property Name=\"ISCOMMON\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"IsAccountFirstResetPassword\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Pro" +
-                "perty Name=\"IsOverPasswordValidDays\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Prop" +
-                "erty Name=\"Message\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1912Ware" +
-                "HouseData\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"WAREHOUSE_ID\" /" +
-                "></Key><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Prope" +
-                "rty Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"WAREHOUSE_TYPE\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" />" +
-                "<Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"E" +
-                "dm.String\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" /></EntityType><Enti" +
-                "tyType Name=\"WareHouseIdByWareHouseType\"><Key><PropertyRef Name=\"WAREHOUSE_ID\" /" +
-                "></Key><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Prope" +
-                "rty Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"WAREHOUSE_TYPE\" Ty" +
-                "pe=\"Edm.String\" /></EntityType><EntityType Name=\"P192019Data\"><Key><PropertyRef " +
-                "Name=\"ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Int32\" Nullable=\"false\" " +
-                "/><Property Name=\"GupCode\" Type=\"Edm.String\" /><Property Name=\"CustCode\" Type=\"E" +
-                "dm.String\" /><Property Name=\"ClaType\" Type=\"Edm.String\" /><Property Name=\"ACode\"" +
-                " Type=\"Edm.String\" /><Property Name=\"BCode\" Type=\"Edm.String\" /><Property Name=\"" +
-                "CCode\" Type=\"Edm.String\" /><Property Name=\"ClaName\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"CheckPercent\" Type=\"Edm.Decimal\" /></EntityType><EntityType Name=\"F19471" +
-                "601Data\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"DC_CODE\" /><Pro" +
-                "pertyRef Name=\"DELV_NO\" /><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Name=\"RETA" +
-                "IL_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><" +
-                "Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CU" +
-                "ST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DELV_NO\" Type=\"Edm" +
-                ".String\" Nullable=\"false\" /><Property Name=\"RETAIL_CODE\" Type=\"Edm.String\" Nulla" +
-                "ble=\"false\" /><Property Name=\"RETAIL_NAME\" Type=\"Edm.String\" /><Property Name=\"A" +
-                "RRIVAL_TIME_S\" Type=\"Edm.String\" /><Property Name=\"ARRIVAL_TIME_E\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"DELV_WAY\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" " +
-                "Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name" +
-                "=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
-                "UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"REGION_FEE\" Type=\"Edm.Decimal\" N" +
-                "ullable=\"false\" /><Property Name=\"OIL_FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /" +
-                "><Property Name=\"OVERTIME_FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property N" +
-                "ame=\"PACK_FIELD\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F0070LoginDa" +
-                "ta\"><Key><PropertyRef Name=\"CONNECTID\" /></Key><Property Name=\"IsSelected\" Type=" +
-                "\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"CONNECTID\" Type=\"Edm.String\" Nu" +
-                "llable=\"false\" /><Property Name=\"USERNAME\" Type=\"Edm.String\" /><Property Name=\"H" +
-                "OSTNAME\" Type=\"Edm.String\" /><Property Name=\"UNLOCKTIME\" Type=\"Edm.DateTime\" /><" +
-                "Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /></EntityType><En" +
-                "tityType Name=\"F190106Data\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"" +
-                "ID\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"SCHEDULE_TYPE\" Type=\"Edm.String\" /><Property Name=\"START_TI" +
-                "ME\" Type=\"Edm.String\" /><Property Name=\"END_TIME\" Type=\"Edm.String\" /><Property " +
-                "Name=\"PERIOD\" Type=\"Edm.Byte\" Nullable=\"false\" /><Property Name=\"ChangeFlag\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"" +
-                "CRT_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><" +
-                "Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F1" +
-                "945CollectionList\"><Key><PropertyRef Name=\"COLLECTION_CODE\" /><PropertyRef Name=" +
-                "\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" />" +
-                "<Property Name=\"COLLECTION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property " +
-                "Name=\"COLLECTION_NAME\" Type=\"Edm.String\" /><Property Name=\"COLLECTION_TYPE\" Type" +
-                "=\"Edm.String\" /><Property Name=\"COLLECTION_TYPE_NAME\" Type=\"Edm.String\" /></Enti" +
-                "tyType><EntityType Name=\"F1945CellList\"><Key><PropertyRef Name=\"CELL_TYPE\" /><Pr" +
-                "opertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Null" +
-                "able=\"false\" /><Property Name=\"CELL_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><" +
-                "Property Name=\"CELL_NAME\" Type=\"Edm.String\" /><Property Name=\"CELL_START_CODE\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"CELL_NUM\" Type=\"Edm.Int32\" Nullable=\"false\" /" +
-                "><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"E" +
-                "dm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"MODIFY_MODE\" Type=" +
-                "\"Edm.String\" /><Property Name=\"IS_SHOW_DELETE_BUTTON\" Type=\"Edm.Boolean\" Nullabl" +
-                "e=\"false\" /></EntityType></Schema><Schema Namespace=\"Wms3pl.Datas.F19\" xmlns=\"ht" +
-                "tp://schemas.microsoft.com/ado/2009/11/edm\"><EntityType Name=\"F1954\"><Key><Prope" +
-                "rtyRef Name=\"FUN_CODE\" /></Key><Property Name=\"FUN_CODE\" Type=\"Edm.String\" Nulla" +
-                "ble=\"false\" /><Property Name=\"FUN_NAME\" Type=\"Edm.String\" /><Property Name=\"FUN_" +
-                "TYPE\" Type=\"Edm.String\" /><Property Name=\"FUN_DESC\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateT" +
-                "ime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property" +
-                " Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"STATUS\" Type=\"Edm.String\"" +
-                " /><Property Name=\"UPLOAD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"DISABLE\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=" +
-                "\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"MAIN_SHOW\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"SIDE_SHOW\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F192" +
-                "9\"><Key><PropertyRef Name=\"GUP_CODE\" /></Key><Property Name=\"GUP_CODE\" Type=\"Edm" +
-                ".String\" Nullable=\"false\" /><Property Name=\"GUP_NAME\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.Dat" +
-                "eTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_NAME\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"SYS_GUP_COD" +
-                "E\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1912\"><Key><PropertyRef N" +
-                "ame=\"DC_CODE\" /><PropertyRef Name=\"LOC_CODE\" /></Key><Property Name=\"LOC_CODE\" T" +
-                "ype=\"Edm.String\" Nullable=\"false\" /><Property Name=\"FLOOR\" Type=\"Edm.String\" /><" +
-                "Property Name=\"AREA_CODE\" Type=\"Edm.String\" /><Property Name=\"CHANNEL\" Type=\"Edm" +
-                ".String\" /><Property Name=\"PLAIN\" Type=\"Edm.String\" /><Property Name=\"LOC_LEVEL\"" +
-                " Type=\"Edm.String\" /><Property Name=\"LOC_TYPE\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"LOC_TYPE_ID\" Type=\"Edm.String\" /><Property Name=\"NOW_STATUS_ID\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"PRE_STATUS_ID\" Type=\"Edm.String\" /><Property Name=\"WAREHO" +
-                "USE_ID\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=" +
-                "\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DAT" +
-                "E\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_DATE\" Type=\"Edm.Da" +
-                "teTime\" /><Property Name=\"UCC_CODE\" Type=\"Edm.String\" /><Property Name=\"CRT_STAF" +
-                "F\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.";
+            private const string ModelPart4 = "ring\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_NAME\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name" +
+                "=\"CUST_NAME\" Type=\"Edm.String\" /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" /><" +
+                "Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_NAME\" Type=\"E" +
+                "dm.String\" /><Property Name=\"VALID_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" />" +
+                "<Property Name=\"ENTER_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Nam" +
+                "e=\"TOTAL_QTY\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"WAREHOUSE_ID" +
+                "\" Type=\"Edm.String\" /><Property Name=\"TAR_LOC_CODE\" Type=\"Edm.String\" /></Entity" +
+                "Type><EntityType Name=\"P710705Availability\"><Key><PropertyRef Name=\"ROWNUM\" /></" +
+                "Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name" +
+                "=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_NAME\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"WA" +
+                "REHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"USED_VOLUMN\" Type=\"Edm.Decimal" +
+                "\" Nullable=\"false\" /><Property Name=\"USEFUL_VOLUMN\" Type=\"Edm.Decimal\" Nullable=" +
+                "\"false\" /><Property Name=\"RENT_END_DATE\" Type=\"Edm.String\" /><Property Name=\"F19" +
+                "12_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"F1913_LOC_CODE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"INVENTORYDATE\" Type=\"Edm.String\" /><Property Name=\"COUNTF19" +
+                "12\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"COUNTF1913\" Type=\"Edm." +
+                "Decimal\" Nullable=\"false\" /><Property Name=\"COUNTF1913NULL\" Type=\"Edm.Decimal\" N" +
+                "ullable=\"false\" /><Property Name=\"FILLRATE\" Type=\"Edm.Decimal\" Nullable=\"false\" " +
+                "/></EntityType><EntityType Name=\"P710705ChangeDetail\"><Key><PropertyRef Name=\"RO" +
+                "WNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Pro" +
+                "perty Name=\"UPDATE_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"WAREHOUSE_ID\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"SRC_LOC_CODE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"TAR_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE" +
+                "\" Type=\"Edm.String\" /><Property Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"ACTION\" Type=\"Edm.String\" /><Property Name=\"A_TAR_QTY\" Type=\"Edm.Decimal\" N" +
+                "ullable=\"false\" /><Property Name=\"SUM_QTY\" Type=\"Edm.Decimal\" Nullable=\"false\" /" +
+                "></EntityType><EntityType Name=\"P710705WarehouseDetail\"><Key><PropertyRef Name=\"" +
+                "ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><P" +
+                "roperty Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_NAME\" Type=\"Edm." +
+                "String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_NA" +
+                "ME\" Type=\"Edm.String\" /><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"LOC_CODE\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_" +
+                "NAME\" Type=\"Edm.String\" /><Property Name=\"TOTAL_QTY\" Type=\"Edm.Decimal\" Nullable" +
+                "=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /></En" +
+                "tityType><EntityType Name=\"F91000302SearchData\"><Key><PropertyRef Name=\"ROWNUM\" " +
+                "/></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property " +
+                "Name=\"ITEM_TYPE_ID\" Type=\"Edm.String\" /><Property Name=\"ACC_UNIT\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"ACC_UNIT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_STA" +
+                "FF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property " +
+                "Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF" +
+                "\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"ITEM_TYPE\" Type=\"Edm.String\"" +
+                " /></EntityType><EntityType Name=\"P192019Item\"><Key><PropertyRef Name=\"ROWNUM\" /" +
+                "></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property N" +
+                "ame=\"ACODE\" Type=\"Edm.String\" /><Property Name=\"ANAME\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"BCODE\" Type=\"Edm.String\" /><Property Name=\"BNAME\" Type=\"Edm.String\" /" +
+                "><Property Name=\"CCODE\" Type=\"Edm.String\" /><Property Name=\"CNAME\" Type=\"Edm.Str" +
+                "ing\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" " +
+                "Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fals" +
+                "e\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name" +
+                "=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CHECK_PERCENT\" Type=\"Edm.String\"" +
+                " /></EntityType><EntityType Name=\"F1952Ex\"><Key><PropertyRef Name=\"EMP_ID\" /></K" +
+                "ey><Property Name=\"EMP_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"" +
+                "LAST_PASSWORD_CHANGED_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"LAST_ACTIVITY_" +
+                "DATE\" Type=\"Edm.DateTime\" /><Property Name=\"STATUS\" Type=\"Edm.Decimal\" /><Proper" +
+                "ty Name=\"ISCOMMON\" Type=\"Edm.String\" /><Property Name=\"IsAccountFirstResetPasswo" +
+                "rd\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"IsOverPasswordValidDay" +
+                "s\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"Message\" Type=\"Edm.Stri" +
+                "ng\" /></EntityType><EntityType Name=\"F1912WareHouseData\"><Key><PropertyRef Name=" +
+                "\"DC_CODE\" /><PropertyRef Name=\"WAREHOUSE_ID\" /></Key><Property Name=\"WAREHOUSE_I" +
+                "D\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"WAREHOUSE_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"WAREHOUSE_TYPE\" Type=\"Edm.String\" /><Property Name=\"" +
+                "DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"DEVIC" +
+                "E_TYPE\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"WareHouseIdByWareHous" +
+                "eType\"><Key><PropertyRef Name=\"WAREHOUSE_ID\" /></Key><Property Name=\"WAREHOUSE_I" +
+                "D\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"WAREHOUSE_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"WAREHOUSE_TYPE\" Type=\"Edm.String\" /></EntityType><En" +
+                "tityType Name=\"P192019Data\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Property Na" +
+                "me=\"ROWNUM\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"GupCode\" Type=\"E" +
+                "dm.String\" /><Property Name=\"CustCode\" Type=\"Edm.String\" /><Property Name=\"ClaTy" +
+                "pe\" Type=\"Edm.String\" /><Property Name=\"ACode\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"BCode\" Type=\"Edm.String\" /><Property Name=\"CCode\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"ClaName\" Type=\"Edm.String\" /><Property Name=\"CheckPercent\" Type=\"Edm.De" +
+                "cimal\" /></EntityType><EntityType Name=\"F19471601Data\"><Key><PropertyRef Name=\"C" +
+                "UST_CODE\" /><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"DELV_NO\" /><Propert" +
+                "yRef Name=\"GUP_CODE\" /><PropertyRef Name=\"RETAIL_CODE\" /></Key><Property Name=\"D" +
+                "C_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm" +
+                ".String\" Nullable=\"false\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullabl" +
+                "e=\"false\" /><Property Name=\"DELV_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Prope" +
+                "rty Name=\"RETAIL_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"RETA" +
+                "IL_NAME\" Type=\"Edm.String\" /><Property Name=\"ARRIVAL_TIME_S\" Type=\"Edm.String\" /" +
+                "><Property Name=\"ARRIVAL_TIME_E\" Type=\"Edm.String\" /><Property Name=\"DELV_WAY\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name" +
+                "=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nu" +
+                "llable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"" +
+                "UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><P" +
+                "roperty Name=\"REGION_FEE\" Type=\"Edm.Decimal\" Nullable=\"fals";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart5 = "String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"HOR_DIST" +
-                "ANCE\" Type=\"Edm.Decimal\" /><Property Name=\"RENT_BEGIN_DATE\" Type=\"Edm.DateTime\" " +
-                "/><Property Name=\"RENT_END_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_NAME\"" +
-                " Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"USEFUL_VOLUMN\" Type=\"Edm.Decimal\" /><Property Name=\"USED_VOLUMN\" Type=\"Edm.De" +
-                "cimal\" /><Property Name=\"NOW_CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"LAST" +
-                "_CALVOLUMN_TIME\" Type=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F190105\"><" +
-                "Key><PropertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.Strin" +
-                "g\" Nullable=\"false\" /><Property Name=\"OPEN_AUTO_ALLOC_STOCK\" Type=\"Edm.String\" /" +
-                "><Property Name=\"B2B_PDA_PICK_PECENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Pro" +
-                "perty Name=\"B2C_PDA_PICK_PERCENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Propert" +
-                "y Name=\"B2B_AUTO_PICK_PRINT\" Type=\"Edm.String\" /><Property Name=\"B2C_AUTO_PICK_P" +
-                "RINT\" Type=\"Edm.String\" /><Property Name=\"WAIT_SEND_AUTO_PICK\" Type=\"Edm.String\"" +
-                " /><Property Name=\"USE_CONTAINER\" Type=\"Edm.String\" /><Property Name=\"PICKORDER_" +
-                "MAX_RECORD\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_ITEMCN" +
-                "T\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_RECORD\" Type=\"E" +
-                "dm.Int32\" Nullable=\"false\" /><Property Name=\"OPEN_SPECIAL_ORDER\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"SHIP_MODE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Ty" +
-                "pe=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String" +
-                "\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type" +
+            private const string ModelPart5 = "e\" /><Property Name=\"OIL_FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Nam" +
+                "e=\"OVERTIME_FEE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"PACK_FIEL" +
+                "D\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F0070LoginData\"><Key><Prop" +
+                "ertyRef Name=\"CONNECTID\" /></Key><Property Name=\"IsSelected\" Type=\"Edm.Boolean\" " +
+                "Nullable=\"false\" /><Property Name=\"CONNECTID\" Type=\"Edm.String\" Nullable=\"false\"" +
+                " /><Property Name=\"USERNAME\" Type=\"Edm.String\" /><Property Name=\"HOSTNAME\" Type=" +
+                "\"Edm.String\" /><Property Name=\"UNLOCKTIME\" Type=\"Edm.DateTime\" /><Property Name=" +
+                "\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /></EntityType><EntityType Name=" +
+                "\"F190106Data\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm." +
+                "Int32\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property" +
+                " Name=\"SCHEDULE_TYPE\" Type=\"Edm.String\" /><Property Name=\"START_TIME\" Type=\"Edm." +
+                "String\" /><Property Name=\"END_TIME\" Type=\"Edm.String\" /><Property Name=\"PERIOD\" " +
+                "Type=\"Edm.Byte\" Nullable=\"false\" /><Property Name=\"ChangeFlag\" Type=\"Edm.String\"" +
+                " /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type" +
                 "=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=" +
-                "\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"DF_NSHIP_CONTAINER_TYPE\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"DF_CSHIP_CONTANER_TYPE\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"DF_VNRSHIP_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_MOVE_C" +
-                "ONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"CELL_TYPE_METHOD\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"IS_DIRECT_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property" +
-                " Name=\"BASE_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONTAINER_M" +
-                "AX_LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MID_LENGTH\" Type=" +
-                "\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MIN_LENGTH\" Type=\"Edm.Decimal\" />" +
-                "<Property Name=\"BASE_CONTAINER_VOLUMN\" Type=\"Edm.Decimal\" /><Property Name=\"LIMI" +
-                "T_SINGLEPICK_CUST_LIST\" Type=\"Edm.String\" /><Property Name=\"AUTO_ALLOT_CUST_LIST" +
-                "\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F190106\"><Key><PropertyRef " +
-                "Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int32\" Nullable=\"false\" /><Prope" +
-                "rty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"SCHEDULE_TYPE\" Type=\"Edm." +
-                "String\" /><Property Name=\"START_TIME\" Type=\"Edm.String\" /><Property Name=\"END_TI" +
-                "ME\" Type=\"Edm.String\" /><Property Name=\"PERIOD\" Type=\"Edm.Byte\" Nullable=\"false\"" +
-                " /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Na" +
-                "me=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /" +
-                "><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type" +
-                "=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType></Sch" +
-                "ema><Schema Namespace=\"Wms3pl.WebServices.Process.P19.ExDataSources\" xmlns=\"http" +
-                "://schemas.microsoft.com/ado/2009/11/edm\"><EntityContainer Name=\"P19ExDataSource" +
-                "\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"ExecuteResults\" EntityType=" +
-                "\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntitySet Name=\"F1924s\" EntityTy" +
-                "pe=\"Wms3pl.Datas.F19.F1954\" /><EntitySet Name=\"F1929s\" EntityType=\"Wms3pl.Datas." +
-                "F19.F1929\" /><EntitySet Name=\"F1929WithF1909Tests\" EntityType=\"Wms3pl.Datas.Shar" +
-                "ed.Entities.F1929WithF1909Test\" /><EntitySet Name=\"FunctionShowInfos\" EntityType" +
-                "=\"Wms3pl.Datas.Shared.Entities.FunctionShowInfo\" /><EntitySet Name=\"P1905GroupFu" +
-                "nctionMappings\" EntityType=\"Wms3pl.Datas.Shared.Entities.P1905GroupFunctionMappi" +
-                "ng\" /><EntitySet Name=\"F1924Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F192" +
-                "4Data\" /><EntitySet Name=\"F190101Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities" +
-                ".F190101Data\" /><EntitySet Name=\"F1912s\" EntityType=\"Wms3pl.Datas.F19.F1912\" /><" +
-                "EntitySet Name=\"FunctionCodeNames\" EntityType=\"Wms3pl.Datas.Shared.Entities.Func" +
-                "tionCodeName\" /><EntitySet Name=\"EmpWithFuncionNames\" EntityType=\"Wms3pl.Datas.S" +
-                "hared.Entities.EmpWithFuncionName\" /><EntitySet Name=\"GetUserPasswords\" EntityTy" +
-                "pe=\"Wms3pl.Datas.Shared.Entities.GetUserPassword\" /><EntitySet Name=\"F1905Datas\"" +
-                " EntityType=\"Wms3pl.Datas.Shared.Entities.F1905Data\" /><EntitySet Name=\"F190301D" +
-                "atas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F190301Data\" /><EntitySet Name=\"F" +
-                "1947WithF194701s\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1947WithF194701\" /><" +
-                "EntitySet Name=\"UserWarehouses\" EntityType=\"Wms3pl.Datas.Shared.Entities.UserWar" +
-                "ehouse\" /><EntitySet Name=\"F1954Exs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1" +
-                "954Ex\" /><EntitySet Name=\"F197001Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities" +
-                ".F197001Data\" /><EntitySet Name=\"DistributionDatas\" EntityType=\"Wms3pl.Datas.Sha" +
-                "red.Entities.DistributionData\" /><EntitySet Name=\"F1909EXs\" EntityType=\"Wms3pl.D" +
-                "atas.Shared.Entities.F1909EX\" /><EntitySet Name=\"F199002Datas\" EntityType=\"Wms3p" +
-                "l.Datas.Shared.Entities.F199002Data\" /><EntitySet Name=\"F1912LocDatas\" EntityTyp" +
-                "e=\"Wms3pl.Datas.Shared.Entities.F1912LocData\" /><EntitySet Name=\"F1934EXs\" Entit" +
-                "yType=\"Wms3pl.Datas.Shared.Entities.F1934EX\" /><EntitySet Name=\"F1947JoinF194701" +
-                "EXs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1947JoinF194701\" /><EntitySet Nam" +
-                "e=\"F19470101DatasEXs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F19470101Datas\" /" +
-                "><EntitySet Name=\"F199005Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F199005" +
-                "Data\" /><EntitySet Name=\"F91000302Datas\" EntityType=\"Wms3pl.Datas.Shared.Entitie" +
-                "s.F91000302Data\" /><EntitySet Name=\"F194702Datas\" EntityType=\"Wms3pl.Datas.Share" +
-                "d.Entities.F194702Data\" /><EntitySet Name=\"F1948Datas\" EntityType=\"Wms3pl.Datas." +
-                "Shared.Entities.F1948Data\" /><EntitySet Name=\"F190102JoinF000904DatasEXs\" Entity" +
-                "Type=\"Wms3pl.Datas.Shared.Entities.F190102JoinF000904\" /><EntitySet Name=\"F1912L" +
-                "ocVolumns\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1912LocVolumn\" /><EntitySet" +
-                " Name=\"F0003Exs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F0003Ex\" /><EntitySet " +
-                "Name=\"P710705BackWarehouseInventorys\" EntityType=\"Wms3pl.Datas.Shared.Entities.P" +
-                "710705BackWarehouseInventory\" /><EntitySet Name=\"P710705MergeExecutions\" EntityT" +
-                "ype=\"Wms3pl.Datas.Shared.Entities.P710705MergeExecution\" /><EntitySet Name=\"P710" +
-                "705Availabilitys\" EntityType=\"Wms3pl.Datas.Shared.Entities.P710705Availability\" " +
-                "/><EntitySet Name=\"P710705ChangeDetails\" EntityType=\"Wms3pl.Datas.Shared.Entitie" +
-                "s.P710705ChangeDetail\" /><EntitySet Name=\"P710705WarehouseDetails\" EntityType=\"W" +
-                "ms3pl.Datas.Shared.Entities.P710705WarehouseDetail\" /><EntitySet Name=\"F91000302" +
-                "SearchDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F91000302SearchData\" /><En" +
-                "titySet Name=\"P192019Items\" EntityType=\"Wms3pl.Datas.Shared.Entities.P192019Item" +
-                "\" /><EntitySet Name=\"F1952Exs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1952Ex\"" +
-                " /><EntitySet Name=\"F1912WareHouseDatas\" EntityType=\"Wms3pl.Datas.Shared.Entitie" +
-                "s.F1912WareHouseData\" /><EntitySet Name=\"WareHouseIdByWareHouseTypes\" EntityType" +
-                "=\"Wms3pl.Datas.Shared.Entities.WareHouseIdByWareHouseType\" /><EntitySet Name=\"P1" +
-                "92019Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.P192019Data\" /><EntitySet N" +
-                "ame=\"F19471601Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F19471601Data\" /><" +
-                "EntitySet Name=\"F0070AccountStatusDatas\" EntityType=\"Wms3pl";
+                "\"UPD_DATE\" Type=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F1945CollectionL" +
+                "ist\"><Key><PropertyRef Name=\"COLLECTION_CODE\" /><PropertyRef Name=\"DC_CODE\" /></" +
+                "Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name" +
+                "=\"COLLECTION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"COLLECTI" +
+                "ON_NAME\" Type=\"Edm.String\" /><Property Name=\"COLLECTION_TYPE\" Type=\"Edm.String\" " +
+                "/><Property Name=\"COLLECTION_TYPE_NAME\" Type=\"Edm.String\" /></EntityType><Entity" +
+                "Type Name=\"F1945CellList\"><Key><PropertyRef Name=\"CELL_TYPE\" /><PropertyRef Name" +
+                "=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /" +
+                "><Property Name=\"CELL_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=" +
+                "\"CELL_NAME\" Type=\"Edm.String\" /><Property Name=\"CELL_START_CODE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"CELL_NUM\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Nam" +
+                "e=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" N" +
+                "ullable=\"false\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
+                "UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"MODIFY_MODE\" Type=\"Edm.String\" /" +
+                "><Property Name=\"IS_SHOW_DELETE_BUTTON\" Type=\"Edm.Boolean\" Nullable=\"false\" /></" +
+                "EntityType><Association Name=\"PickContainerPutIntoOutContainerResult_UpdateOutCo" +
+                "ntainerResult\"><End Type=\"Wms3pl.Datas.Shared.Entities.PickContainerPutIntoOutCo" +
+                "ntainerResult\" Role=\"PickContainerPutIntoOutContainerResult\" Multiplicity=\"*\" />" +
+                "<End Type=\"Wms3pl.Datas.Shared.Entities.OutContainerResult\" Role=\"UpdateOutConta" +
+                "inerResult\" Multiplicity=\"0..1\" /></Association></Schema><Schema Namespace=\"Wms3" +
+                "pl.Datas.F19\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><EntityType N" +
+                "ame=\"F1954\"><Key><PropertyRef Name=\"FUN_CODE\" /></Key><Property Name=\"FUN_CODE\" " +
+                "Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"FUN_NAME\" Type=\"Edm.String\"" +
+                " /><Property Name=\"FUN_TYPE\" Type=\"Edm.String\" /><Property Name=\"FUN_DESC\" Type=" +
+                "\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CR" +
+                "T_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"" +
+                "Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"ST" +
+                "ATUS\" Type=\"Edm.String\" /><Property Name=\"UPLOAD_DATE\" Type=\"Edm.DateTime\" /><Pr" +
+                "operty Name=\"DISABLE\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"MAIN_SHOW\"" +
+                " Type=\"Edm.String\" /><Property Name=\"SIDE_SHOW\" Type=\"Edm.String\" /></EntityType" +
+                "><EntityType Name=\"F1929\"><Key><PropertyRef Name=\"GUP_CODE\" /></Key><Property Na" +
+                "me=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"GUP_NAME\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"" +
+                "CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type" +
+                "=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"" +
+                "CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"SYS_GUP_CODE\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19" +
+                "12\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"LOC_CODE\" /></Key><Pro" +
+                "perty Name=\"LOC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"FLOOR" +
+                "\" Type=\"Edm.String\" /><Property Name=\"AREA_CODE\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"CHANNEL\" Type=\"Edm.String\" /><Property Name=\"PLAIN\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"LOC_LEVEL\" Type=\"Edm.String\" /><Property Name=\"LOC_TYPE\" Type=\"Edm." +
+                "String\" /><Property Name=\"LOC_TYPE_ID\" Type=\"Edm.String\" /><Property Name=\"NOW_S" +
+                "TATUS_ID\" Type=\"Edm.String\" /><Property Name=\"PRE_STATUS_ID\" Type=\"Edm.String\" /" +
+                "><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" Type" +
+                "=\"Edm.String\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" />" +
+                "<Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=" +
+                "\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UCC_CODE\" Type=\"Edm.String\" /><" +
+                "Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"HOR_D" +
+                "ISTANCE\" Type=\"Edm.Decimal\" /><Property Name=\"RENT_BEGIN_DATE\" Type=\"Edm.DateTim" +
+                "e\" /><Property Name=\"RENT_END_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_NA" +
+                "ME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property " +
+                "Name=\"USEFUL_VOLUMN\" Type=\"Edm.Decimal\" /><Property Name=\"USED_VOLUMN\" Type=\"Edm" +
+                ".Decimal\" /><Property Name=\"NOW_CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"L" +
+                "AST_CALVOLUMN_TIME\" Type=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F190105" +
+                "\"><Key><PropertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.St" +
+                "ring\" Nullable=\"false\" /><Property Name=\"OPEN_AUTO_ALLOC_STOCK\" Type=\"Edm.String" +
+                "\" /><Property Name=\"B2B_PDA_PICK_PECENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><" +
+                "Property Name=\"B2C_PDA_PICK_PERCENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Prop" +
+                "erty Name=\"B2B_AUTO_PICK_PRINT\" Type=\"Edm.String\" /><Property Name=\"B2C_AUTO_PIC" +
+                "K_PRINT\" Type=\"Edm.String\" /><Property Name=\"WAIT_SEND_AUTO_PICK\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"USE_CONTAINER\" Type=\"Edm.String\" /><Property Name=\"PICKORD" +
+                "ER_MAX_RECORD\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_ITE" +
+                "MCNT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_RECORD\" Type" +
+                "=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"OPEN_SPECIAL_ORDER\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"SHIP_MODE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\"" +
+                " Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Str" +
+                "ing\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" T" +
+                "ype=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"DF_NSHIP_CONTAINER_TYPE\" Type=" +
+                "\"Edm.String\" /><Property Name=\"DF_CSHIP_CONTANER_TYPE\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"DF_VNRSHIP_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_MOV" +
+                "E_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"CELL_TYPE_METHOD\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"IS_DIRECT_CONTAINER_TYPE\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"BASE_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONTAINE" +
+                "R_MAX_LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MID_LENGTH\" Ty" +
+                "pe=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MIN_LENGT";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart6 = ".Datas.Shared.Entities.F0070LoginData\" /><EntitySet Name=\"F190105s\" EntityType=\"W" +
-                "ms3pl.Datas.F19.F190105\" /><EntitySet Name=\"F190106s\" EntityType=\"Wms3pl.Datas.F" +
-                "19.F190106\" /><EntitySet Name=\"F190106Datas\" EntityType=\"Wms3pl.Datas.Shared.Ent" +
-                "ities.F190106Data\" /><EntitySet Name=\"F1945CollectionLists\" EntityType=\"Wms3pl.D" +
-                "atas.Shared.Entities.F1945CollectionList\" /><EntitySet Name=\"F1945CellLists\" Ent" +
-                "ityType=\"Wms3pl.Datas.Shared.Entities.F1945CellList\" /><FunctionImport Name=\"Get" +
-                "Datas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1929)\" EntitySet=\"F1929s\" m:Http" +
-                "Method=\"GET\" /><FunctionImport Name=\"GetF1929WithF1909Tests\" ReturnType=\"Collect" +
-                "ion(Wms3pl.Datas.Shared.Entities.F1929WithF1909Test)\" EntitySet=\"F1929WithF1909T" +
-                "ests\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /></Functio" +
-                "nImport><FunctionImport Name=\"UpdateWithTrans1\" ReturnType=\"Collection(Wms3pl.Da" +
-                "tas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET" +
-                "\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport" +
-                " Name=\"UpdateWithTrans2\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.Exe" +
-                "cuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupC" +
-                "ode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"UpdateWithoutTra" +
-                "ns1\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntityS" +
-                "et=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.Strin" +
-                "g\" /></FunctionImport><FunctionImport Name=\"UpdateWithoutTrans2\" ReturnType=\"Col" +
-                "lection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" " +
-                "m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /></FunctionImpor" +
-                "t><FunctionImport Name=\"GetFunctionShowInfos\" ReturnType=\"Collection(Wms3pl.Data" +
-                "s.Shared.Entities.FunctionShowInfo)\" EntitySet=\"FunctionShowInfos\" m:HttpMethod=" +
-                "\"GET\"><Parameter Name=\"account\" Type=\"Edm.String\" /></FunctionImport><FunctionIm" +
-                "port Name=\"DeleteUser\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.Execu" +
-                "teResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"empId\"" +
-                " Type=\"Edm.String\" /><Parameter Name=\"userId\" Type=\"Edm.String\" /></FunctionImpo" +
-                "rt><FunctionImport Name=\"GetF190101MappingTable\" ReturnType=\"Collection(Wms3pl.D" +
-                "atas.Shared.Entities.F190101Data)\" EntitySet=\"F190101Datas\" m:HttpMethod=\"GET\"><" +
-                "Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupId\" Type=\"Edm.St" +
-                "ring\" /></FunctionImport><FunctionImport Name=\"GetUserFunctions\" ReturnType=\"Col" +
-                "lection(Wms3pl.Datas.F19.F1954)\" EntitySet=\"F1924s\" m:HttpMethod=\"GET\"><Paramete" +
-                "r Name=\"account\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetU" +
-                "serFunctionsForPda\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1954)\" EntitySet=\"F" +
-                "1924s\" m:HttpMethod=\"GET\"><Parameter Name=\"account\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String" +
-                "\" /></FunctionImport><FunctionImport Name=\"GetAllFunctions\" ReturnType=\"Collecti" +
-                "on(Wms3pl.Datas.Shared.Entities.FunctionCodeName)\" EntitySet=\"FunctionCodeNames\"" +
-                " m:HttpMethod=\"GET\" /><FunctionImport Name=\"DeleteP190504\" ReturnType=\"Collectio" +
-                "n(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:Http" +
-                "Method=\"GET\"><Parameter Name=\"groupId\" Type=\"Edm.String\" /><Parameter Name=\"user" +
-                "Id\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"F1924WithF192403\"" +
-                " ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1924Data)\" EntitySet=\"F192" +
-                "4Datas\" m:HttpMethod=\"GET\" /><FunctionImport Name=\"UpdateP190505\" ReturnType=\"Co" +
-                "llection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\"" +
-                " m:HttpMethod=\"GET\"><Parameter Name=\"groupId\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"empId\" Type=\"Edm.String\" /><Parameter Name=\"userId\" Type=\"Edm.String\" /></Fun" +
-                "ctionImport><FunctionImport Name=\"GetUserPassword\" ReturnType=\"Collection(Wms3pl" +
-                ".Datas.Shared.Entities.GetUserPassword)\" EntitySet=\"GetUserPasswords\" m:HttpMeth" +
-                "od=\"GET\"><Parameter Name=\"empid\" Type=\"Edm.String\" /></FunctionImport><FunctionI" +
-                "mport Name=\"EmpWithFuncionName\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entit" +
-                "ies.EmpWithFuncionName)\" EntitySet=\"EmpWithFuncionNames\" m:HttpMethod=\"GET\"><Par" +
-                "ameter Name=\"Empid\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"G" +
-                "etAssignedLoc\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1912)\" EntitySet=\"F1912s" +
-                "\" m:HttpMethod=\"GET\"><Parameter Name=\"workgroupId\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetUn" +
-                "AssignedLoc\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1912)\" EntitySet=\"F1912s\" " +
-                "m:HttpMethod=\"GET\"><Parameter Name=\"workgroupId\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"warehouseId\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"floor\" Type=\"Edm.String\" /><Parameter Name=\"startLocCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"endLocCode\" Type=\"Edm.String\" /></FunctionIm" +
-                "port><FunctionImport Name=\"DeleteDC\" ReturnType=\"Collection(Wms3pl.Datas.Shared." +
-                "Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Paramete" +
-                "r Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetPa" +
-                "ckCase\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1905Data)\" EntitySe" +
-                "t=\"F1905Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"" +
-                "Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /></FunctionImport><F" +
-                "unctionImport Name=\"DeleteItem\" ReturnType=\"Wms3pl.Datas.Shared.Entities.Execute" +
-                "Result\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Na" +
-                "me=\"itemCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetWare" +
-                "HouseIdByWareHouseTypeList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities." +
-                "WareHouseIdByWareHouseType)\" EntitySet=\"WareHouseIdByWareHouseTypes\" m:HttpMetho" +
-                "d=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\"" +
-                " Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1947WithF194701D" +
-                "atas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1947WithF194701)\" Ent" +
-                "itySet=\"F1947WithF194701s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCo" +
-                "de\" Type=\"Edm.String\" /><Parameter Name=\"delvTime\" Type=\"Edm.String\" /></Functio" +
-                "nImport><FunctionImport Name=\"GetUserWarehouse\" ReturnType=\"Collection(Wms3pl.Da" +
-                "tas.Shared.Entities.UserWarehouse)\" EntitySet=\"UserWarehouses\" m:HttpMethod=\"GET" +
-                "\"><Parameter Name=\"userId\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><Fu" +
-                "nctionImport Name=\"GetItemPack\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entit" +
-                "ies.F190301Data)\" EntitySet=\"F190301Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"g" +
-                "upCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.S" +
-                "tring\" /></FunctionImport><FunctionImport Name=\"GetF197001Data\" ReturnType=\"Coll" +
-                "ection(Wms3pl.Datas.Shared.Entities.F197001Data)\" EntitySet=\"F197001Datas\" m:Htt" +
-                "pMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cus" +
-                "tCode\" Type=\"Edm.String\" /><Parameter Name=\"labelCode\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"vnrCode\" Type=\"Edm.St" +
-                "ring\" /></FunctionImport><FunctionImport Name=\"GetDistribut";
+            private const string ModelPart6 = "H\" Type=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_VOLUMN\" Type=\"Edm.Decimal\"" +
+                " /><Property Name=\"LIMIT_SINGLEPICK_CUST_LIST\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"AUTO_ALLOT_CUST_LIST\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F190" +
+                "106\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int32\" Nu" +
+                "llable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"SC" +
+                "HEDULE_TYPE\" Type=\"Edm.String\" /><Property Name=\"START_TIME\" Type=\"Edm.String\" /" +
+                "><Property Name=\"END_TIME\" Type=\"Edm.String\" /><Property Name=\"PERIOD\" Type=\"Edm" +
+                ".Byte\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable" +
+                "=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NA" +
+                "ME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Propert" +
+                "y Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.Strin" +
+                "g\" /></EntityType></Schema><Schema Namespace=\"Wms3pl.WebServices.Process.P19.ExD" +
+                "ataSources\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><EntityContaine" +
+                "r Name=\"P19ExDataSource\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"Exec" +
+                "uteResults\" EntityType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntitySet" +
+                " Name=\"F1924s\" EntityType=\"Wms3pl.Datas.F19.F1954\" /><EntitySet Name=\"F1929s\" En" +
+                "tityType=\"Wms3pl.Datas.F19.F1929\" /><EntitySet Name=\"F1929WithF1909Tests\" Entity" +
+                "Type=\"Wms3pl.Datas.Shared.Entities.F1929WithF1909Test\" /><EntitySet Name=\"Functi" +
+                "onShowInfos\" EntityType=\"Wms3pl.Datas.Shared.Entities.FunctionShowInfo\" /><Entit" +
+                "ySet Name=\"P1905GroupFunctionMappings\" EntityType=\"Wms3pl.Datas.Shared.Entities." +
+                "P1905GroupFunctionMapping\" /><EntitySet Name=\"F1924Datas\" EntityType=\"Wms3pl.Dat" +
+                "as.Shared.Entities.F1924Data\" /><EntitySet Name=\"F190101Datas\" EntityType=\"Wms3p" +
+                "l.Datas.Shared.Entities.F190101Data\" /><EntitySet Name=\"F1912s\" EntityType=\"Wms3" +
+                "pl.Datas.F19.F1912\" /><EntitySet Name=\"FunctionCodeNames\" EntityType=\"Wms3pl.Dat" +
+                "as.Shared.Entities.FunctionCodeName\" /><EntitySet Name=\"EmpWithFuncionNames\" Ent" +
+                "ityType=\"Wms3pl.Datas.Shared.Entities.EmpWithFuncionName\" /><EntitySet Name=\"Get" +
+                "UserPasswords\" EntityType=\"Wms3pl.Datas.Shared.Entities.GetUserPassword\" /><Enti" +
+                "tySet Name=\"F1905Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1905Data\" /><E" +
+                "ntitySet Name=\"F190301Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F190301Dat" +
+                "a\" /><EntitySet Name=\"F1947WithF194701s\" EntityType=\"Wms3pl.Datas.Shared.Entitie" +
+                "s.F1947WithF194701\" /><EntitySet Name=\"UserWarehouses\" EntityType=\"Wms3pl.Datas." +
+                "Shared.Entities.UserWarehouse\" /><EntitySet Name=\"F1954Exs\" EntityType=\"Wms3pl.D" +
+                "atas.Shared.Entities.F1954Ex\" /><EntitySet Name=\"F197001Datas\" EntityType=\"Wms3p" +
+                "l.Datas.Shared.Entities.F197001Data\" /><EntitySet Name=\"DistributionDatas\" Entit" +
+                "yType=\"Wms3pl.Datas.Shared.Entities.DistributionData\" /><EntitySet Name=\"F1909EX" +
+                "s\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1909EX\" /><EntitySet Name=\"F199002D" +
+                "atas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F199002Data\" /><EntitySet Name=\"F" +
+                "1912LocDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1912LocData\" /><EntitySe" +
+                "t Name=\"F1934EXs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1934EX\" /><EntitySet" +
+                " Name=\"F1947JoinF194701EXs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1947JoinF1" +
+                "94701\" /><EntitySet Name=\"F19470101DatasEXs\" EntityType=\"Wms3pl.Datas.Shared.Ent" +
+                "ities.F19470101Datas\" /><EntitySet Name=\"F199005Datas\" EntityType=\"Wms3pl.Datas." +
+                "Shared.Entities.F199005Data\" /><EntitySet Name=\"F91000302Datas\" EntityType=\"Wms3" +
+                "pl.Datas.Shared.Entities.F91000302Data\" /><EntitySet Name=\"F194702Datas\" EntityT" +
+                "ype=\"Wms3pl.Datas.Shared.Entities.F194702Data\" /><EntitySet Name=\"F1948Datas\" En" +
+                "tityType=\"Wms3pl.Datas.Shared.Entities.F1948Data\" /><EntitySet Name=\"F190102Join" +
+                "F000904DatasEXs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F190102JoinF000904\" />" +
+                "<EntitySet Name=\"F1912LocVolumns\" EntityType=\"Wms3pl.Datas.Shared.Entities.F1912" +
+                "LocVolumn\" /><EntitySet Name=\"F0003Exs\" EntityType=\"Wms3pl.Datas.Shared.Entities" +
+                ".F0003Ex\" /><EntitySet Name=\"P710705BackWarehouseInventorys\" EntityType=\"Wms3pl." +
+                "Datas.Shared.Entities.P710705BackWarehouseInventory\" /><EntitySet Name=\"P710705M" +
+                "ergeExecutions\" EntityType=\"Wms3pl.Datas.Shared.Entities.P710705MergeExecution\" " +
+                "/><EntitySet Name=\"P710705Availabilitys\" EntityType=\"Wms3pl.Datas.Shared.Entitie" +
+                "s.P710705Availability\" /><EntitySet Name=\"P710705ChangeDetails\" EntityType=\"Wms3" +
+                "pl.Datas.Shared.Entities.P710705ChangeDetail\" /><EntitySet Name=\"P710705Warehous" +
+                "eDetails\" EntityType=\"Wms3pl.Datas.Shared.Entities.P710705WarehouseDetail\" /><En" +
+                "titySet Name=\"F91000302SearchDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F91" +
+                "000302SearchData\" /><EntitySet Name=\"P192019Items\" EntityType=\"Wms3pl.Datas.Shar" +
+                "ed.Entities.P192019Item\" /><EntitySet Name=\"F1952Exs\" EntityType=\"Wms3pl.Datas.S" +
+                "hared.Entities.F1952Ex\" /><EntitySet Name=\"F1912WareHouseDatas\" EntityType=\"Wms3" +
+                "pl.Datas.Shared.Entities.F1912WareHouseData\" /><EntitySet Name=\"WareHouseIdByWar" +
+                "eHouseTypes\" EntityType=\"Wms3pl.Datas.Shared.Entities.WareHouseIdByWareHouseType" +
+                "\" /><EntitySet Name=\"P192019Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.P192" +
+                "019Data\" /><EntitySet Name=\"F19471601Datas\" EntityType=\"Wms3pl.Datas.Shared.Enti" +
+                "ties.F19471601Data\" /><EntitySet Name=\"F0070AccountStatusDatas\" EntityType=\"Wms3" +
+                "pl.Datas.Shared.Entities.F0070LoginData\" /><EntitySet Name=\"F190105s\" EntityType" +
+                "=\"Wms3pl.Datas.F19.F190105\" /><EntitySet Name=\"F190106s\" EntityType=\"Wms3pl.Data" +
+                "s.F19.F190106\" /><EntitySet Name=\"F190106Datas\" EntityType=\"Wms3pl.Datas.Shared." +
+                "Entities.F190106Data\" /><EntitySet Name=\"F1945CollectionLists\" EntityType=\"Wms3p" +
+                "l.Datas.Shared.Entities.F1945CollectionList\" /><EntitySet Name=\"F1945CellLists\" " +
+                "EntityType=\"Wms3pl.Datas.Shared.Entities.F1945CellList\" /><FunctionImport Name=\"" +
+                "GetDatas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1929)\" EntitySet=\"F1929s\" m:H" +
+                "ttpMethod=\"GET\" /><FunctionImport Name=\"GetF1929WithF1909Tests\" ReturnType=\"Coll" +
+                "ection(Wms3pl.Datas.Shared.Entities.F1929WithF1909Test)\" EntitySet=\"F1929WithF19" +
+                "09Tests\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /></Func" +
+                "tionImport><FunctionImport Name=\"UpdateWithTrans1\" ReturnType=\"Collection(Wms3pl" +
+                ".Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"" +
+                "GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImp" +
+                "ort Name=\"UpdateWithTrans2\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities." +
+                "ExecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"g" +
+                "upCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"UpdateWithout" +
+                "Trans1\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" Enti" +
+                "tySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.St" +
+                "ring\" /></FunctionImport><FunctionImport Name=\"UpdateWithoutTrans2\" ReturnType=\"" +
+                "Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResult" +
+                "s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /></FunctionIm" +
+                "port><FunctionImport Name=\"GetFunctionShowInfos\" ReturnType=\"Collection(Wms3pl.D" +
+                "atas.Shared.Entities.FunctionShowInfo)\" EntitySet=\"FunctionShowInfos\" m:HttpMeth" +
+                "od=\"GET\"><Parameter Name=\"account\" Type=\"Edm.String\" /></FunctionImport><Functio" +
+                "nImport Name=\"DeleteUser\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.Ex" +
+                "ecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"emp" +
+                "Id\" Type=\"Edm.String\" /><Parameter Name=\"userId\" Type=\"Edm.String\" /></FunctionI" +
+                "mport><FunctionImport Name=\"GetF190101MappingTable\" ReturnType=\"Collection(Wms3p" +
+                "l.Datas.Shared.Entities.F190101Data)\" EntitySet=\"F190101Dat";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart7 = "ionData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.DistributionData)\" E" +
-                "ntitySet=\"DistributionDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cust" +
-                "Code\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"CheckItemLocSta" +
-                "tus\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntityS" +
-                "et=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"tarDcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Ty" +
-                "pe=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"srcLocCode\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"tarLocCode\" Type=\"Edm.String\" /><Parameter Name=\"validDate\" Ty" +
-                "pe=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetP1909EXDatas\" Return" +
-                "Type=\"Collection(Wms3pl.Datas.Shared.Entities.F1909EX)\" EntitySet=\"F1909EXs\" m:H" +
-                "ttpMethod=\"GET\" /><FunctionImport Name=\"GetFloors\" ReturnType=\"Edm.String\" m:Htt" +
-                "pMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"ware" +
-                "houseId\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetChanels\" " +
-                "ReturnType=\"Edm.String\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"warehouseId\" Type=\"Edm.String\" /><Parameter Name=\"floor" +
-                "\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetNonAllowedF1912L" +
-                "ocDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1912LocData)\" Enti" +
-                "tySet=\"F1912LocDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"warehouseId\" Type=\"Edm.String\" /><Parameter Name=\"floor\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"beginLocCode\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"endLocCode\" Type=\"Edm.String\" /><Parameter Name=\"workId\" Type=\"Edm.Strin" +
-                "g\" /></FunctionImport><FunctionImport Name=\"GetAllowedF1912LocDatas\" ReturnType=" +
-                "\"Collection(Wms3pl.Datas.Shared.Entities.F1912LocData)\" EntitySet=\"F1912LocDatas" +
-                "\" m:HttpMethod=\"GET\"><Parameter Name=\"workId\" Type=\"Edm.String\" /></FunctionImpo" +
-                "rt><FunctionImport Name=\"GetJobValuation\" ReturnType=\"Collection(Wms3pl.Datas.Sh" +
-                "ared.Entities.F199002Data)\" EntitySet=\"F199002Datas\" m:HttpMethod=\"GET\"><Paramet" +
-                "er Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"accItemKindId\" Type=\"Edm.S" +
-                "tring\" /><Parameter Name=\"OrdType\" Type=\"Edm.String\" /><Parameter Name=\"accKind\"" +
-                " Type=\"Edm.String\" /><Parameter Name=\"accUnit\" Type=\"Edm.String\" /><Parameter Na" +
-                "me=\"status\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1934E" +
-                "XDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1934EX)\" EntitySet=" +
-                "\"F1934EXs\" m:HttpMethod=\"GET\" /><FunctionImport Name=\"GetF1947Join194701Datas\" R" +
-                "eturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1947JoinF194701)\" EntitySet=" +
-                "\"F1947JoinF194701EXs\" m:HttpMethod=\"GET\"><Parameter Name=\"ALL_ID\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"DC_CODE\" Type=\"Edm.String\" /></FunctionImport><FunctionIm" +
-                "port Name=\"GetF19470101Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entitie" +
-                "s.F19470101Datas)\" EntitySet=\"F19470101DatasEXs\" m:HttpMethod=\"GET\"><Parameter N" +
-                "ame=\"ALL_ID\" Type=\"Edm.String\" /><Parameter Name=\"DC_CODE\" Type=\"Edm.String\" /><" +
-                "/FunctionImport><FunctionImport Name=\"GetF199005\" ReturnType=\"Collection(Wms3pl." +
-                "Datas.Shared.Entities.F199005Data)\" EntitySet=\"F199005Datas\" m:HttpMethod=\"GET\">" +
-                "<Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"accItemKindId\" Typ" +
-                "e=\"Edm.String\" /><Parameter Name=\"logiType\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"taxType\" Type=\"Edm.String\" /><Parameter Name=\"accKind\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"isSpecialCar\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type=\"Ed" +
-                "m.String\" /></FunctionImport><FunctionImport Name=\"GetAccUnitList\" ReturnType=\"C" +
-                "ollection(Wms3pl.Datas.Shared.Entities.F91000302Data)\" EntitySet=\"F91000302Datas" +
-                "\" m:HttpMethod=\"GET\"><Parameter Name=\"itemTypeId\" Type=\"Edm.String\" /></Function" +
-                "Import><FunctionImport Name=\"GetF194702\" ReturnType=\"Collection(Wms3pl.Datas.Sha" +
-                "red.Entities.F194702Data)\" EntitySet=\"F194702Datas\" m:HttpMethod=\"GET\" /><Functi" +
-                "onImport Name=\"GetF1948\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F19" +
-                "48Data)\" EntitySet=\"F1948Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type" +
-                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF190102JoinF000904Data" +
-                "s\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F190102JoinF000904)\" Enti" +
-                "tySet=\"F190102JoinF000904DatasEXs\" m:HttpMethod=\"GET\"><Parameter Name=\"DC_CODE\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"TOPIC\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"Subtopic\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"DeleteP190" +
-                "109\" ReturnType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" EntitySet=\"ExecuteR" +
-                "esults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parame" +
-                "ter Name=\"vnrCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Ge" +
-                "tF0003\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F0003Ex)\" EntitySet=" +
-                "\"F0003Exs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.St" +
-                "ring\" /></FunctionImport><FunctionImport Name=\"GetF91000302Data\" ReturnType=\"Col" +
-                "lection(Wms3pl.Datas.Shared.Entities.F91000302SearchData)\" EntitySet=\"F91000302S" +
-                "earchDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"itemTypeId\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"accUnit\" Type=\"Edm.String\" /><Parameter Name=\"accUnitName\" Type" +
-                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetP192019SearchData\" Ret" +
-                "urnType=\"Collection(Wms3pl.Datas.Shared.Entities.P192019Item)\" EntitySet=\"P19201" +
-                "9Items\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parame" +
-                "ter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"clsCode\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"clsName\" Type=\"Edm.String\" /><Parameter Name=\"clsType\" Ty" +
-                "pe=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"ActivityGetF1952Ex\" Ret" +
-                "urnType=\"Wms3pl.Datas.Shared.Entities.F1952Ex\" EntitySet=\"F1952Exs\" m:HttpMethod" +
-                "=\"GET\"><Parameter Name=\"empId\" Type=\"Edm.String\" /></FunctionImport><FunctionImp" +
-                "ort Name=\"InsertF0050\" ReturnType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" E" +
-                "ntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"message\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"funId\" Type=\"Edm.String\" /><Parameter Name=\"function" +
-                "Name\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetCustWarehous" +
-                "eDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1912WareHouseData)\"" +
-                " EntitySet=\"F1912WareHouseDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Typ" +
-                "e=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
-                "custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1947160" +
-                "1Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F19471601Data)\" Enti" +
-                "tySet=\"F19471601Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"delvNo\" Type=\"Edm.String\" /></FunctionImpor" +
-                "t><FunctionImport Name=\"DeleteP190116\" ReturnType=\"Collection(Wms3pl.Datas.Share" +
-                "d.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parame" +
-                "ter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"delvNo\" Type" +
-                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetLoninData\" ReturnType=" +
-                "\"Collection(Wms3pl.Datas.Shared.Entities.F0070LoginData)\" E";
+            private const string ModelPart7 = "as\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Na" +
+                "me=\"gupId\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetUserFun" +
+                "ctions\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1954)\" EntitySet=\"F1924s\" m:Htt" +
+                "pMethod=\"GET\"><Parameter Name=\"account\" Type=\"Edm.String\" /></FunctionImport><Fu" +
+                "nctionImport Name=\"GetUserFunctionsForPda\" ReturnType=\"Collection(Wms3pl.Datas.F" +
+                "19.F1954)\" EntitySet=\"F1924s\" m:HttpMethod=\"GET\"><Parameter Name=\"account\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"d" +
+                "cCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAllFunction" +
+                "s\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.FunctionCodeName)\" Entity" +
+                "Set=\"FunctionCodeNames\" m:HttpMethod=\"GET\" /><FunctionImport Name=\"DeleteP190504" +
+                "\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=" +
+                "\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"groupId\" Type=\"Edm.String\" " +
+                "/><Parameter Name=\"userId\" Type=\"Edm.String\" /></FunctionImport><FunctionImport " +
+                "Name=\"F1924WithF192403\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F192" +
+                "4Data)\" EntitySet=\"F1924Datas\" m:HttpMethod=\"GET\" /><FunctionImport Name=\"Update" +
+                "P190505\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" Ent" +
+                "itySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"groupId\" Type=\"Edm.S" +
+                "tring\" /><Parameter Name=\"empId\" Type=\"Edm.String\" /><Parameter Name=\"userId\" Ty" +
+                "pe=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetUserPassword\" Return" +
+                "Type=\"Collection(Wms3pl.Datas.Shared.Entities.GetUserPassword)\" EntitySet=\"GetUs" +
+                "erPasswords\" m:HttpMethod=\"GET\"><Parameter Name=\"empid\" Type=\"Edm.String\" /></Fu" +
+                "nctionImport><FunctionImport Name=\"EmpWithFuncionName\" ReturnType=\"Collection(Wm" +
+                "s3pl.Datas.Shared.Entities.EmpWithFuncionName)\" EntitySet=\"EmpWithFuncionNames\" " +
+                "m:HttpMethod=\"GET\"><Parameter Name=\"Empid\" Type=\"Edm.String\" /></FunctionImport>" +
+                "<FunctionImport Name=\"GetAssignedLoc\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1" +
+                "912)\" EntitySet=\"F1912s\" m:HttpMethod=\"GET\"><Parameter Name=\"workgroupId\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><Fun" +
+                "ctionImport Name=\"GetUnAssignedLoc\" ReturnType=\"Collection(Wms3pl.Datas.F19.F191" +
+                "2)\" EntitySet=\"F1912s\" m:HttpMethod=\"GET\"><Parameter Name=\"workgroupId\" Type=\"Ed" +
+                "m.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"wareho" +
+                "useId\" Type=\"Edm.String\" /><Parameter Name=\"floor\" Type=\"Edm.String\" /><Paramete" +
+                "r Name=\"startLocCode\" Type=\"Edm.String\" /><Parameter Name=\"endLocCode\" Type=\"Edm" +
+                ".String\" /></FunctionImport><FunctionImport Name=\"DeleteDC\" ReturnType=\"Collecti" +
+                "on(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:Htt" +
+                "pMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><Fun" +
+                "ctionImport Name=\"GetPackCase\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.F1905Data)\" EntitySet=\"F1905Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCod" +
+                "e\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String" +
+                "\" /></FunctionImport><FunctionImport Name=\"DeleteItem\" ReturnType=\"Wms3pl.Datas." +
+                "Shared.Entities.ExecuteResult\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Pa" +
+                "rameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm." +
+                "String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /></FunctionImport><Funct" +
+                "ionImport Name=\"GetWareHouseIdByWareHouseTypeList\" ReturnType=\"Collection(Wms3pl" +
+                ".Datas.Shared.Entities.WareHouseIdByWareHouseType)\" EntitySet=\"WareHouseIdByWare" +
+                "HouseTypes\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Nam" +
+                "e=\"GetF1947WithF194701Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities" +
+                ".F1947WithF194701)\" EntitySet=\"F1947WithF194701s\" m:HttpMethod=\"GET\"><Parameter " +
+                "Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvTime\" Type=\"" +
+                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetUserWarehouse\" ReturnTyp" +
+                "e=\"Collection(Wms3pl.Datas.Shared.Entities.UserWarehouse)\" EntitySet=\"UserWareho" +
+                "uses\" m:HttpMethod=\"GET\"><Parameter Name=\"userId\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\"" +
+                " /></FunctionImport><FunctionImport Name=\"GetItemPack\" ReturnType=\"Collection(Wm" +
+                "s3pl.Datas.Shared.Entities.F190301Data)\" EntitySet=\"F190301Datas\" m:HttpMethod=\"" +
+                "GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name" +
+                "=\"itemName\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF19700" +
+                "1Data\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F197001Data)\" EntityS" +
+                "et=\"F197001Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\"" +
+                " /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"labelCode\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name" +
+                "=\"vnrCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetDistrib" +
+                "utionData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.DistributionData)" +
+                "\" EntitySet=\"DistributionDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"c" +
+                "ustCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"CheckItemLoc" +
+                "Status\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" Enti" +
+                "tySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"tarDcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\"" +
+                " Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter N" +
+                "ame=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"srcLocCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"tarLocCode\" Type=\"Edm.String\" /><Parameter Name=\"validDate\"" +
+                " Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetP1909EXDatas\" Ret" +
+                "urnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1909EX)\" EntitySet=\"F1909EXs\" " +
+                "m:HttpMethod=\"GET\" /><FunctionImport Name=\"GetFloors\" ReturnType=\"Edm.String\" m:" +
+                "HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"w" +
+                "arehouseId\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetChanel" +
+                "s\" ReturnType=\"Edm.String\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"warehouseId\" Type=\"Edm.String\" /><Parameter Name=\"fl" +
+                "oor\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetNonAllowedF19" +
+                "12LocDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1912LocData)\" E" +
+                "ntitySet=\"F1912LocDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.S" +
+                "tring\" /><Parameter Name=\"warehouseId\" Type=\"Edm.String\" /><Parameter Name=\"floo" +
+                "r\" Type=\"Edm.String\" /><Parameter Name=\"beginLocCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"endLocCode\" Type=\"Edm.String\" /><Parameter Name=\"workId\" Type=\"Edm.St" +
+                "ring\" /></FunctionImport><FunctionImport Name=\"GetAllowedF1912LocDatas\" ReturnTy" +
+                "pe=\"Collection(Wms3pl.Datas.Shared.Entities.F1912LocData)\" EntitySet=\"F1912LocDa" +
+                "tas\" m:HttpMethod=\"GET\"><Parameter Name=\"workId\" Type=\"Edm.String\" /></FunctionI" +
+                "mport><FunctionImport Name=\"GetJobValuation\" ReturnType=\"Collection(Wms3pl.Datas" +
+                ".Shared.Entities.F199002Data)\" EntitySet=\"F199002Datas\" m:HttpMethod=\"GET\"><Para" +
+                "meter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"ac";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart8 = @"ntitySet=""F0070AccountStatusDatas"" m:HttpMethod=""GET"" /><FunctionImport Name=""GetF190105"" ReturnType=""Collection(Wms3pl.Datas.F19.F190105)"" EntitySet=""F190105s"" m:HttpMethod=""GET""><Parameter Name=""dcCode"" Type=""Edm.String"" /></FunctionImport><FunctionImport Name=""GetF1945CollectionList"" ReturnType=""Collection(Wms3pl.Datas.Shared.Entities.F1945CollectionList)"" EntitySet=""F1945CollectionLists"" m:HttpMethod=""GET""><Parameter Name=""dcCode"" Type=""Edm.String"" /><Parameter Name=""CollectionCode"" Type=""Edm.String"" /><Parameter Name=""CollectionType"" Type=""Edm.String"" /></FunctionImport><FunctionImport Name=""GetF1945CellList"" ReturnType=""Collection(Wms3pl.Datas.Shared.Entities.F1945CellList)"" EntitySet=""F1945CellLists"" m:HttpMethod=""GET""><Parameter Name=""dcCode"" Type=""Edm.String"" /><Parameter Name=""CollectionCode"" Type=""Edm.String"" /></FunctionImport><FunctionImport Name=""DeleteF1945Collection"" ReturnType=""Wms3pl.Datas.Shared.Entities.ExecuteResult"" EntitySet=""ExecuteResults"" m:HttpMethod=""GET""><Parameter Name=""dcCode"" Type=""Edm.String"" /><Parameter Name=""CollectionCode"" Type=""Edm.String"" /></FunctionImport><FunctionImport Name=""GetF1924DataByAccount"" ReturnType=""Collection(Wms3pl.Datas.Shared.Entities.F1924Data)"" EntitySet=""F1924Datas"" m:HttpMethod=""GET""><Parameter Name=""account"" Type=""Edm.String"" /><Parameter Name=""password"" Type=""Edm.String"" /></FunctionImport></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
+            private const string ModelPart8 = "cItemKindId\" Type=\"Edm.String\" /><Parameter Name=\"OrdType\" Type=\"Edm.String\" /><P" +
+                "arameter Name=\"accKind\" Type=\"Edm.String\" /><Parameter Name=\"accUnit\" Type=\"Edm." +
+                "String\" /><Parameter Name=\"status\" Type=\"Edm.String\" /></FunctionImport><Functio" +
+                "nImport Name=\"GetF1934EXDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.F1934EX)\" EntitySet=\"F1934EXs\" m:HttpMethod=\"GET\" /><FunctionImport Name=\"Get" +
+                "F1947Join194701Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1947J" +
+                "oinF194701)\" EntitySet=\"F1947JoinF194701EXs\" m:HttpMethod=\"GET\"><Parameter Name=" +
+                "\"ALL_ID\" Type=\"Edm.String\" /><Parameter Name=\"DC_CODE\" Type=\"Edm.String\" /></Fun" +
+                "ctionImport><FunctionImport Name=\"GetF19470101Datas\" ReturnType=\"Collection(Wms3" +
+                "pl.Datas.Shared.Entities.F19470101Datas)\" EntitySet=\"F19470101DatasEXs\" m:HttpMe" +
+                "thod=\"GET\"><Parameter Name=\"ALL_ID\" Type=\"Edm.String\" /><Parameter Name=\"DC_CODE" +
+                "\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF199005\" ReturnT" +
+                "ype=\"Collection(Wms3pl.Datas.Shared.Entities.F199005Data)\" EntitySet=\"F199005Dat" +
+                "as\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter N" +
+                "ame=\"accItemKindId\" Type=\"Edm.String\" /><Parameter Name=\"logiType\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"taxType\" Type=\"Edm.String\" /><Parameter Name=\"accKind\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"isSpecialCar\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"status\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAcc" +
+                "UnitList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F91000302Data)\" En" +
+                "titySet=\"F91000302Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"itemTypeId\" Type=\"E" +
+                "dm.String\" /></FunctionImport><FunctionImport Name=\"GetF194702\" ReturnType=\"Coll" +
+                "ection(Wms3pl.Datas.Shared.Entities.F194702Data)\" EntitySet=\"F194702Datas\" m:Htt" +
+                "pMethod=\"GET\" /><FunctionImport Name=\"GetF1948\" ReturnType=\"Collection(Wms3pl.Da" +
+                "tas.Shared.Entities.F1948Data)\" EntitySet=\"F1948Datas\" m:HttpMethod=\"GET\"><Param" +
+                "eter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Ge" +
+                "tF190102JoinF000904Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1" +
+                "90102JoinF000904)\" EntitySet=\"F190102JoinF000904DatasEXs\" m:HttpMethod=\"GET\"><Pa" +
+                "rameter Name=\"DC_CODE\" Type=\"Edm.String\" /><Parameter Name=\"TOPIC\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"Subtopic\" Type=\"Edm.String\" /></FunctionImport><Function" +
+                "Import Name=\"DeleteP190109\" ReturnType=\"Wms3pl.Datas.Shared.Entities.ExecuteResu" +
+                "lt\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"vnrCode\" Type=\"Edm.String\" /></FunctionImport><" +
+                "FunctionImport Name=\"GetF0003\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.F0003Ex)\" EntitySet=\"F0003Exs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF910003" +
+                "02Data\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F91000302SearchData)" +
+                "\" EntitySet=\"F91000302SearchDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"itemTypeI" +
+                "d\" Type=\"Edm.String\" /><Parameter Name=\"accUnit\" Type=\"Edm.String\" /><Parameter " +
+                "Name=\"accUnitName\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Ge" +
+                "tP192019SearchData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P192019I" +
+                "tem)\" EntitySet=\"P192019Items\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "clsCode\" Type=\"Edm.String\" /><Parameter Name=\"clsName\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"clsType\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"" +
+                "ActivityGetF1952Ex\" ReturnType=\"Wms3pl.Datas.Shared.Entities.F1952Ex\" EntitySet=" +
+                "\"F1952Exs\" m:HttpMethod=\"GET\"><Parameter Name=\"empId\" Type=\"Edm.String\" /></Func" +
+                "tionImport><FunctionImport Name=\"InsertF0050\" ReturnType=\"Wms3pl.Datas.Shared.En" +
+                "tities.ExecuteResult\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter N" +
+                "ame=\"message\" Type=\"Edm.String\" /><Parameter Name=\"funId\" Type=\"Edm.String\" /><P" +
+                "arameter Name=\"functionName\" Type=\"Edm.String\" /></FunctionImport><FunctionImpor" +
+                "t Name=\"GetCustWarehouseDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.F1912WareHouseData)\" EntitySet=\"F1912WareHouseDatas\" m:HttpMethod=\"GET\"><Para" +
+                "meter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionI" +
+                "mport Name=\"GetF19471601Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.F19471601Data)\" EntitySet=\"F19471601Datas\" m:HttpMethod=\"GET\"><Parameter Name" +
+                "=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><P" +
+                "arameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"delvNo\" Type=\"Edm.St" +
+                "ring\" /></FunctionImport><FunctionImport Name=\"DeleteP190116\" ReturnType=\"Collec" +
+                "tion(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:H" +
+                "ttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"c" +
+                "ustCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"delvNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Ge" +
+                "tLoninData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F0070LoginData)\"" +
+                " EntitySet=\"F0070AccountStatusDatas\" m:HttpMethod=\"GET\" /><FunctionImport Name=\"" +
+                "GetF190105\" ReturnType=\"Collection(Wms3pl.Datas.F19.F190105)\" EntitySet=\"F190105" +
+                "s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImp" +
+                "ort><FunctionImport Name=\"GetF1945CollectionList\" ReturnType=\"Collection(Wms3pl." +
+                "Datas.Shared.Entities.F1945CollectionList)\" EntitySet=\"F1945CollectionLists\" m:H" +
+                "ttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"Co" +
+                "llectionCode\" Type=\"Edm.String\" /><Parameter Name=\"CollectionType\" Type=\"Edm.Str" +
+                "ing\" /></FunctionImport><FunctionImport Name=\"GetF1945CellList\" ReturnType=\"Coll" +
+                "ection(Wms3pl.Datas.Shared.Entities.F1945CellList)\" EntitySet=\"F1945CellLists\" m" +
+                ":HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "CollectionCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Delet" +
+                "eF1945Collection\" ReturnType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" Entity" +
+                "Set=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"CollectionCode\" Type=\"Edm.String\" /></FunctionImport><Func" +
+                "tionImport Name=\"GetF1924DataByAccount\" ReturnType=\"Collection(Wms3pl.Datas.Shar" +
+                "ed.Entities.F1924Data)\" EntitySet=\"F1924Datas\" m:HttpMethod=\"GET\"><Parameter Nam" +
+                "e=\"account\" Type=\"Edm.String\" /><Parameter Name=\"password\" Type=\"Edm.String\" /><" +
+                "/FunctionImport><AssociationSet Name=\"PickContainerPutIntoOutContainerResult_Upd" +
+                "ateOutContainerResult\" Association=\"Wms3pl.Datas.Shared.Entities.PickContainerPu" +
+                "tIntoOutContainerResult_UpdateOutContainerResult\"><End Role=\"PickContainerPutInt" +
+                "oOutContainerResult\" EntitySet=\"ExecuteResults\" /><End Role=\"UpdateOutContainerR" +
+                "esult\" EntitySet=\"ExecuteResults\" /></AssociationSet></EntityContainer></Schema>" +
+                "</edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -2307,6 +2394,1020 @@ namespace Wms3pl.WpfClient.ExDataServices.P19ExDataService
         private bool _NeedFocuseContanerCode;
         partial void OnNeedFocuseContanerCodeChanging(bool value);
         partial void OnNeedFocuseContanerCodeChanged();
+    }
+    /// <summary>
+    /// There are no comments for ComplexType Wms3pl.Datas.Shared.Entities.PickContainerInfo in the schema.
+    /// </summary>
+    public partial class PickContainerInfo : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new PickContainerInfo object.
+        /// </summary>
+        /// <param name="f0701_ID">Initial value of F0701_ID.</param>
+        /// <param name="tOTAL">Initial value of TOTAL.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static PickContainerInfo CreatePickContainerInfo(long f0701_ID, int tOTAL)
+        {
+            PickContainerInfo pickContainerInfo = new PickContainerInfo();
+            pickContainerInfo.F0701_ID = f0701_ID;
+            pickContainerInfo.TOTAL = tOTAL;
+            return pickContainerInfo;
+        }
+        /// <summary>
+        /// There are no comments for Property F0701_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long F0701_ID
+        {
+            get
+            {
+                return this._F0701_ID;
+            }
+            set
+            {
+                this.OnF0701_IDChanging(value);
+                this._F0701_ID = value;
+                this.OnF0701_IDChanged();
+                this.OnPropertyChanged("F0701_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _F0701_ID;
+        partial void OnF0701_IDChanging(long value);
+        partial void OnF0701_IDChanged();
+        /// <summary>
+        /// There are no comments for Property DC_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DC_CODE
+        {
+            get
+            {
+                return this._DC_CODE;
+            }
+            set
+            {
+                this.OnDC_CODEChanging(value);
+                this._DC_CODE = value;
+                this.OnDC_CODEChanged();
+                this.OnPropertyChanged("DC_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DC_CODE;
+        partial void OnDC_CODEChanging(string value);
+        partial void OnDC_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property GUP_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string GUP_CODE
+        {
+            get
+            {
+                return this._GUP_CODE;
+            }
+            set
+            {
+                this.OnGUP_CODEChanging(value);
+                this._GUP_CODE = value;
+                this.OnGUP_CODEChanged();
+                this.OnPropertyChanged("GUP_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _GUP_CODE;
+        partial void OnGUP_CODEChanging(string value);
+        partial void OnGUP_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_CODE
+        {
+            get
+            {
+                return this._CUST_CODE;
+            }
+            set
+            {
+                this.OnCUST_CODEChanging(value);
+                this._CUST_CODE = value;
+                this.OnCUST_CODEChanged();
+                this.OnPropertyChanged("CUST_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_CODE;
+        partial void OnCUST_CODEChanging(string value);
+        partial void OnCUST_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property PICK_ORD_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PICK_ORD_NO
+        {
+            get
+            {
+                return this._PICK_ORD_NO;
+            }
+            set
+            {
+                this.OnPICK_ORD_NOChanging(value);
+                this._PICK_ORD_NO = value;
+                this.OnPICK_ORD_NOChanged();
+                this.OnPropertyChanged("PICK_ORD_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PICK_ORD_NO;
+        partial void OnPICK_ORD_NOChanging(string value);
+        partial void OnPICK_ORD_NOChanged();
+        /// <summary>
+        /// There are no comments for Property CONTAINER_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CONTAINER_CODE
+        {
+            get
+            {
+                return this._CONTAINER_CODE;
+            }
+            set
+            {
+                this.OnCONTAINER_CODEChanging(value);
+                this._CONTAINER_CODE = value;
+                this.OnCONTAINER_CODEChanged();
+                this.OnPropertyChanged("CONTAINER_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CONTAINER_CODE;
+        partial void OnCONTAINER_CODEChanging(string value);
+        partial void OnCONTAINER_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property DEVICE_TYPE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DEVICE_TYPE
+        {
+            get
+            {
+                return this._DEVICE_TYPE;
+            }
+            set
+            {
+                this.OnDEVICE_TYPEChanging(value);
+                this._DEVICE_TYPE = value;
+                this.OnDEVICE_TYPEChanged();
+                this.OnPropertyChanged("DEVICE_TYPE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DEVICE_TYPE;
+        partial void OnDEVICE_TYPEChanging(string value);
+        partial void OnDEVICE_TYPEChanged();
+        /// <summary>
+        /// There are no comments for Property DEVICE_TYPE_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DEVICE_TYPE_NAME
+        {
+            get
+            {
+                return this._DEVICE_TYPE_NAME;
+            }
+            set
+            {
+                this.OnDEVICE_TYPE_NAMEChanging(value);
+                this._DEVICE_TYPE_NAME = value;
+                this.OnDEVICE_TYPE_NAMEChanged();
+                this.OnPropertyChanged("DEVICE_TYPE_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DEVICE_TYPE_NAME;
+        partial void OnDEVICE_TYPE_NAMEChanging(string value);
+        partial void OnDEVICE_TYPE_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property MOVE_OUT_TARGET in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MOVE_OUT_TARGET
+        {
+            get
+            {
+                return this._MOVE_OUT_TARGET;
+            }
+            set
+            {
+                this.OnMOVE_OUT_TARGETChanging(value);
+                this._MOVE_OUT_TARGET = value;
+                this.OnMOVE_OUT_TARGETChanged();
+                this.OnPropertyChanged("MOVE_OUT_TARGET");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MOVE_OUT_TARGET;
+        partial void OnMOVE_OUT_TARGETChanging(string value);
+        partial void OnMOVE_OUT_TARGETChanged();
+        /// <summary>
+        /// There are no comments for Property CROSS_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CROSS_NAME
+        {
+            get
+            {
+                return this._CROSS_NAME;
+            }
+            set
+            {
+                this.OnCROSS_NAMEChanging(value);
+                this._CROSS_NAME = value;
+                this.OnCROSS_NAMEChanged();
+                this.OnPropertyChanged("CROSS_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CROSS_NAME;
+        partial void OnCROSS_NAMEChanging(string value);
+        partial void OnCROSS_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property TOTAL in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TOTAL
+        {
+            get
+            {
+                return this._TOTAL;
+            }
+            set
+            {
+                this.OnTOTALChanging(value);
+                this._TOTAL = value;
+                this.OnTOTALChanged();
+                this.OnPropertyChanged("TOTAL");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TOTAL;
+        partial void OnTOTALChanging(int value);
+        partial void OnTOTALChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.Shared.Entities.PickContainerResult in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IsSuccessed
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("IsSuccessed")]
+    public partial class PickContainerResult : ExecuteResult
+    {
+        /// <summary>
+        /// Create a new PickContainerResult object.
+        /// </summary>
+        /// <param name="isSuccessed">Initial value of IsSuccessed.</param>
+        /// <param name="pickContainerInfos">Initial value of PickContainerInfos.</param>
+        /// <param name="totalPcs">Initial value of TotalPcs.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static PickContainerResult CreatePickContainerResult(bool isSuccessed, global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> pickContainerInfos, int totalPcs)
+        {
+            PickContainerResult pickContainerResult = new PickContainerResult();
+            pickContainerResult.IsSuccessed = isSuccessed;
+            if ((pickContainerInfos == null))
+            {
+                throw new global::System.ArgumentNullException("pickContainerInfos");
+            }
+            pickContainerResult.PickContainerInfos = pickContainerInfos;
+            pickContainerResult.TotalPcs = totalPcs;
+            return pickContainerResult;
+        }
+        /// <summary>
+        /// There are no comments for Property ContainerCode in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ContainerCode
+        {
+            get
+            {
+                return this._ContainerCode;
+            }
+            set
+            {
+                this.OnContainerCodeChanging(value);
+                this._ContainerCode = value;
+                this.OnContainerCodeChanged();
+                this.OnPropertyChanged("ContainerCode");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ContainerCode;
+        partial void OnContainerCodeChanging(string value);
+        partial void OnContainerCodeChanged();
+        /// <summary>
+        /// There are no comments for Property PickContainerInfos in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> PickContainerInfos
+        {
+            get
+            {
+                return this._PickContainerInfos;
+            }
+            set
+            {
+                this.OnPickContainerInfosChanging(value);
+                this._PickContainerInfos = value;
+                this.OnPickContainerInfosChanged();
+                this.OnPropertyChanged("PickContainerInfos");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> _PickContainerInfos = new global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo>();
+        partial void OnPickContainerInfosChanging(global::System.Collections.ObjectModel.ObservableCollection<PickContainerInfo> value);
+        partial void OnPickContainerInfosChanged();
+        /// <summary>
+        /// There are no comments for Property MoveOutTargetName in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MoveOutTargetName
+        {
+            get
+            {
+                return this._MoveOutTargetName;
+            }
+            set
+            {
+                this.OnMoveOutTargetNameChanging(value);
+                this._MoveOutTargetName = value;
+                this.OnMoveOutTargetNameChanged();
+                this.OnPropertyChanged("MoveOutTargetName");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MoveOutTargetName;
+        partial void OnMoveOutTargetNameChanging(string value);
+        partial void OnMoveOutTargetNameChanged();
+        /// <summary>
+        /// There are no comments for Property TotalPcs in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TotalPcs
+        {
+            get
+            {
+                return this._TotalPcs;
+            }
+            set
+            {
+                this.OnTotalPcsChanging(value);
+                this._TotalPcs = value;
+                this.OnTotalPcsChanged();
+                this.OnPropertyChanged("TotalPcs");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TotalPcs;
+        partial void OnTotalPcsChanging(int value);
+        partial void OnTotalPcsChanged();
+    }
+    /// <summary>
+    /// There are no comments for ComplexType Wms3pl.Datas.Shared.Entities.BindingPickContainerInfo in the schema.
+    /// </summary>
+    public partial class BindingPickContainerInfo : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new BindingPickContainerInfo object.
+        /// </summary>
+        /// <param name="f0534_ID">Initial value of F0534_ID.</param>
+        /// <param name="f0701_ID">Initial value of F0701_ID.</param>
+        /// <param name="tOTAL">Initial value of TOTAL.</param>
+        /// <param name="itemList">Initial value of ItemList.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static BindingPickContainerInfo CreateBindingPickContainerInfo(long f0534_ID, long f0701_ID, int tOTAL, global::System.Collections.ObjectModel.ObservableCollection<BindingPickContainerDetail> itemList)
+        {
+            BindingPickContainerInfo bindingPickContainerInfo = new BindingPickContainerInfo();
+            bindingPickContainerInfo.F0534_ID = f0534_ID;
+            bindingPickContainerInfo.F0701_ID = f0701_ID;
+            bindingPickContainerInfo.TOTAL = tOTAL;
+            if ((itemList == null))
+            {
+                throw new global::System.ArgumentNullException("itemList");
+            }
+            bindingPickContainerInfo.ItemList = itemList;
+            return bindingPickContainerInfo;
+        }
+        /// <summary>
+        /// There are no comments for Property F0534_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long F0534_ID
+        {
+            get
+            {
+                return this._F0534_ID;
+            }
+            set
+            {
+                this.OnF0534_IDChanging(value);
+                this._F0534_ID = value;
+                this.OnF0534_IDChanged();
+                this.OnPropertyChanged("F0534_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _F0534_ID;
+        partial void OnF0534_IDChanging(long value);
+        partial void OnF0534_IDChanged();
+        /// <summary>
+        /// There are no comments for Property F0701_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long F0701_ID
+        {
+            get
+            {
+                return this._F0701_ID;
+            }
+            set
+            {
+                this.OnF0701_IDChanging(value);
+                this._F0701_ID = value;
+                this.OnF0701_IDChanged();
+                this.OnPropertyChanged("F0701_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _F0701_ID;
+        partial void OnF0701_IDChanging(long value);
+        partial void OnF0701_IDChanged();
+        /// <summary>
+        /// There are no comments for Property CONTAINER_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CONTAINER_CODE
+        {
+            get
+            {
+                return this._CONTAINER_CODE;
+            }
+            set
+            {
+                this.OnCONTAINER_CODEChanging(value);
+                this._CONTAINER_CODE = value;
+                this.OnCONTAINER_CODEChanged();
+                this.OnPropertyChanged("CONTAINER_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CONTAINER_CODE;
+        partial void OnCONTAINER_CODEChanging(string value);
+        partial void OnCONTAINER_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property DEVICE_TYPE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DEVICE_TYPE
+        {
+            get
+            {
+                return this._DEVICE_TYPE;
+            }
+            set
+            {
+                this.OnDEVICE_TYPEChanging(value);
+                this._DEVICE_TYPE = value;
+                this.OnDEVICE_TYPEChanged();
+                this.OnPropertyChanged("DEVICE_TYPE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DEVICE_TYPE;
+        partial void OnDEVICE_TYPEChanging(string value);
+        partial void OnDEVICE_TYPEChanged();
+        /// <summary>
+        /// There are no comments for Property TOTAL in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TOTAL
+        {
+            get
+            {
+                return this._TOTAL;
+            }
+            set
+            {
+                this.OnTOTALChanging(value);
+                this._TOTAL = value;
+                this.OnTOTALChanged();
+                this.OnPropertyChanged("TOTAL");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TOTAL;
+        partial void OnTOTALChanging(int value);
+        partial void OnTOTALChanged();
+        /// <summary>
+        /// There are no comments for Property DC_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DC_CODE
+        {
+            get
+            {
+                return this._DC_CODE;
+            }
+            set
+            {
+                this.OnDC_CODEChanging(value);
+                this._DC_CODE = value;
+                this.OnDC_CODEChanged();
+                this.OnPropertyChanged("DC_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DC_CODE;
+        partial void OnDC_CODEChanging(string value);
+        partial void OnDC_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property GUP_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string GUP_CODE
+        {
+            get
+            {
+                return this._GUP_CODE;
+            }
+            set
+            {
+                this.OnGUP_CODEChanging(value);
+                this._GUP_CODE = value;
+                this.OnGUP_CODEChanged();
+                this.OnPropertyChanged("GUP_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _GUP_CODE;
+        partial void OnGUP_CODEChanging(string value);
+        partial void OnGUP_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_CODE
+        {
+            get
+            {
+                return this._CUST_CODE;
+            }
+            set
+            {
+                this.OnCUST_CODEChanging(value);
+                this._CUST_CODE = value;
+                this.OnCUST_CODEChanged();
+                this.OnPropertyChanged("CUST_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_CODE;
+        partial void OnCUST_CODEChanging(string value);
+        partial void OnCUST_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property PICK_ORD_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PICK_ORD_NO
+        {
+            get
+            {
+                return this._PICK_ORD_NO;
+            }
+            set
+            {
+                this.OnPICK_ORD_NOChanging(value);
+                this._PICK_ORD_NO = value;
+                this.OnPICK_ORD_NOChanged();
+                this.OnPropertyChanged("PICK_ORD_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PICK_ORD_NO;
+        partial void OnPICK_ORD_NOChanging(string value);
+        partial void OnPICK_ORD_NOChanged();
+        /// <summary>
+        /// There are no comments for Property MOVE_OUT_TARGET in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MOVE_OUT_TARGET
+        {
+            get
+            {
+                return this._MOVE_OUT_TARGET;
+            }
+            set
+            {
+                this.OnMOVE_OUT_TARGETChanging(value);
+                this._MOVE_OUT_TARGET = value;
+                this.OnMOVE_OUT_TARGETChanged();
+                this.OnPropertyChanged("MOVE_OUT_TARGET");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MOVE_OUT_TARGET;
+        partial void OnMOVE_OUT_TARGETChanging(string value);
+        partial void OnMOVE_OUT_TARGETChanged();
+        /// <summary>
+        /// There are no comments for Property CROSS_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CROSS_NAME
+        {
+            get
+            {
+                return this._CROSS_NAME;
+            }
+            set
+            {
+                this.OnCROSS_NAMEChanging(value);
+                this._CROSS_NAME = value;
+                this.OnCROSS_NAMEChanged();
+                this.OnPropertyChanged("CROSS_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CROSS_NAME;
+        partial void OnCROSS_NAMEChanging(string value);
+        partial void OnCROSS_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property HAS_CP_ITEM in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string HAS_CP_ITEM
+        {
+            get
+            {
+                return this._HAS_CP_ITEM;
+            }
+            set
+            {
+                this.OnHAS_CP_ITEMChanging(value);
+                this._HAS_CP_ITEM = value;
+                this.OnHAS_CP_ITEMChanged();
+                this.OnPropertyChanged("HAS_CP_ITEM");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _HAS_CP_ITEM;
+        partial void OnHAS_CP_ITEMChanging(string value);
+        partial void OnHAS_CP_ITEMChanged();
+        /// <summary>
+        /// There are no comments for Property ALL_CP_ITEM in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ALL_CP_ITEM
+        {
+            get
+            {
+                return this._ALL_CP_ITEM;
+            }
+            set
+            {
+                this.OnALL_CP_ITEMChanging(value);
+                this._ALL_CP_ITEM = value;
+                this.OnALL_CP_ITEMChanged();
+                this.OnPropertyChanged("ALL_CP_ITEM");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ALL_CP_ITEM;
+        partial void OnALL_CP_ITEMChanging(string value);
+        partial void OnALL_CP_ITEMChanged();
+        /// <summary>
+        /// There are no comments for Property ItemList in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Collections.ObjectModel.ObservableCollection<BindingPickContainerDetail> ItemList
+        {
+            get
+            {
+                return this._ItemList;
+            }
+            set
+            {
+                this.OnItemListChanging(value);
+                this._ItemList = value;
+                this.OnItemListChanged();
+                this.OnPropertyChanged("ItemList");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Collections.ObjectModel.ObservableCollection<BindingPickContainerDetail> _ItemList = new global::System.Collections.ObjectModel.ObservableCollection<BindingPickContainerDetail>();
+        partial void OnItemListChanging(global::System.Collections.ObjectModel.ObservableCollection<BindingPickContainerDetail> value);
+        partial void OnItemListChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for ComplexType Wms3pl.Datas.Shared.Entities.BindingPickContainerDetail in the schema.
+    /// </summary>
+    public partial class BindingPickContainerDetail : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new BindingPickContainerDetail object.
+        /// </summary>
+        /// <param name="b_SET_QTY">Initial value of B_SET_QTY.</param>
+        /// <param name="a_SET_QTY">Initial value of A_SET_QTY.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static BindingPickContainerDetail CreateBindingPickContainerDetail(int b_SET_QTY, int a_SET_QTY)
+        {
+            BindingPickContainerDetail bindingPickContainerDetail = new BindingPickContainerDetail();
+            bindingPickContainerDetail.B_SET_QTY = b_SET_QTY;
+            bindingPickContainerDetail.A_SET_QTY = a_SET_QTY;
+            return bindingPickContainerDetail;
+        }
+        /// <summary>
+        /// There are no comments for Property ITEM_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ITEM_CODE
+        {
+            get
+            {
+                return this._ITEM_CODE;
+            }
+            set
+            {
+                this.OnITEM_CODEChanging(value);
+                this._ITEM_CODE = value;
+                this.OnITEM_CODEChanged();
+                this.OnPropertyChanged("ITEM_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ITEM_CODE;
+        partial void OnITEM_CODEChanging(string value);
+        partial void OnITEM_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property ITEM_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ITEM_NAME
+        {
+            get
+            {
+                return this._ITEM_NAME;
+            }
+            set
+            {
+                this.OnITEM_NAMEChanging(value);
+                this._ITEM_NAME = value;
+                this.OnITEM_NAMEChanged();
+                this.OnPropertyChanged("ITEM_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ITEM_NAME;
+        partial void OnITEM_NAMEChanging(string value);
+        partial void OnITEM_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property EAN_CODE1 in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string EAN_CODE1
+        {
+            get
+            {
+                return this._EAN_CODE1;
+            }
+            set
+            {
+                this.OnEAN_CODE1Changing(value);
+                this._EAN_CODE1 = value;
+                this.OnEAN_CODE1Changed();
+                this.OnPropertyChanged("EAN_CODE1");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _EAN_CODE1;
+        partial void OnEAN_CODE1Changing(string value);
+        partial void OnEAN_CODE1Changed();
+        /// <summary>
+        /// There are no comments for Property EAN_CODE2 in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string EAN_CODE2
+        {
+            get
+            {
+                return this._EAN_CODE2;
+            }
+            set
+            {
+                this.OnEAN_CODE2Changing(value);
+                this._EAN_CODE2 = value;
+                this.OnEAN_CODE2Changed();
+                this.OnPropertyChanged("EAN_CODE2");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _EAN_CODE2;
+        partial void OnEAN_CODE2Changing(string value);
+        partial void OnEAN_CODE2Changed();
+        /// <summary>
+        /// There are no comments for Property EAN_CODE3 in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string EAN_CODE3
+        {
+            get
+            {
+                return this._EAN_CODE3;
+            }
+            set
+            {
+                this.OnEAN_CODE3Changing(value);
+                this._EAN_CODE3 = value;
+                this.OnEAN_CODE3Changed();
+                this.OnPropertyChanged("EAN_CODE3");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _EAN_CODE3;
+        partial void OnEAN_CODE3Changing(string value);
+        partial void OnEAN_CODE3Changed();
+        /// <summary>
+        /// There are no comments for Property BUNDLE_SERIALNO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string BUNDLE_SERIALNO
+        {
+            get
+            {
+                return this._BUNDLE_SERIALNO;
+            }
+            set
+            {
+                this.OnBUNDLE_SERIALNOChanging(value);
+                this._BUNDLE_SERIALNO = value;
+                this.OnBUNDLE_SERIALNOChanged();
+                this.OnPropertyChanged("BUNDLE_SERIALNO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _BUNDLE_SERIALNO;
+        partial void OnBUNDLE_SERIALNOChanging(string value);
+        partial void OnBUNDLE_SERIALNOChanged();
+        /// <summary>
+        /// There are no comments for Property B_SET_QTY in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int B_SET_QTY
+        {
+            get
+            {
+                return this._B_SET_QTY;
+            }
+            set
+            {
+                this.OnB_SET_QTYChanging(value);
+                this._B_SET_QTY = value;
+                this.OnB_SET_QTYChanged();
+                this.OnPropertyChanged("B_SET_QTY");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _B_SET_QTY;
+        partial void OnB_SET_QTYChanging(int value);
+        partial void OnB_SET_QTYChanged();
+        /// <summary>
+        /// There are no comments for Property A_SET_QTY in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int A_SET_QTY
+        {
+            get
+            {
+                return this._A_SET_QTY;
+            }
+            set
+            {
+                this.OnA_SET_QTYChanging(value);
+                this._A_SET_QTY = value;
+                this.OnA_SET_QTYChanged();
+                this.OnPropertyChanged("A_SET_QTY");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _A_SET_QTY;
+        partial void OnA_SET_QTYChanging(int value);
+        partial void OnA_SET_QTYChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.Shared.Entities.BindingPickContainerResult in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IsSuccessed
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("IsSuccessed")]
+    public partial class BindingPickContainerResult : ExecuteResult
+    {
+        /// <summary>
+        /// Create a new BindingPickContainerResult object.
+        /// </summary>
+        /// <param name="isSuccessed">Initial value of IsSuccessed.</param>
+        /// <param name="isReleaseContainer">Initial value of IsReleaseContainer.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static BindingPickContainerResult CreateBindingPickContainerResult(bool isSuccessed, bool isReleaseContainer)
+        {
+            BindingPickContainerResult bindingPickContainerResult = new BindingPickContainerResult();
+            bindingPickContainerResult.IsSuccessed = isSuccessed;
+            bindingPickContainerResult.IsReleaseContainer = isReleaseContainer;
+            return bindingPickContainerResult;
+        }
+        /// <summary>
+        /// There are no comments for Property BindingPickContainerInfo in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public BindingPickContainerInfo BindingPickContainerInfo
+        {
+            get
+            {
+                if (((this._BindingPickContainerInfo == null) 
+                            && (this._BindingPickContainerInfoInitialized != true)))
+                {
+                    this._BindingPickContainerInfo = new BindingPickContainerInfo();
+                    this._BindingPickContainerInfoInitialized = true;
+                }
+                return this._BindingPickContainerInfo;
+            }
+            set
+            {
+                this.OnBindingPickContainerInfoChanging(value);
+                this._BindingPickContainerInfo = value;
+                this._BindingPickContainerInfoInitialized = true;
+                this.OnBindingPickContainerInfoChanged();
+                this.OnPropertyChanged("BindingPickContainerInfo");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private BindingPickContainerInfo _BindingPickContainerInfo;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _BindingPickContainerInfoInitialized;
+        partial void OnBindingPickContainerInfoChanging(BindingPickContainerInfo value);
+        partial void OnBindingPickContainerInfoChanged();
+        /// <summary>
+        /// There are no comments for Property IsReleaseContainer in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool IsReleaseContainer
+        {
+            get
+            {
+                return this._IsReleaseContainer;
+            }
+            set
+            {
+                this.OnIsReleaseContainerChanging(value);
+                this._IsReleaseContainer = value;
+                this.OnIsReleaseContainerChanged();
+                this.OnPropertyChanged("IsReleaseContainer");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _IsReleaseContainer;
+        partial void OnIsReleaseContainerChanging(bool value);
+        partial void OnIsReleaseContainerChanged();
     }
     /// <summary>
     /// There are no comments for Wms3pl.Datas.Shared.Entities.PickAllotResult in the schema.
@@ -3433,6 +4534,724 @@ namespace Wms3pl.WpfClient.ExDataServices.P19ExDataService
         private bool _IsBatchFinished;
         partial void OnIsBatchFinishedChanging(bool value);
         partial void OnIsBatchFinishedChanged();
+    }
+    /// <summary>
+    /// There are no comments for ComplexType Wms3pl.Datas.Shared.Entities.OutContainerInfo in the schema.
+    /// </summary>
+    public partial class OutContainerInfo : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new OutContainerInfo object.
+        /// </summary>
+        /// <param name="f0531_ID">Initial value of F0531_ID.</param>
+        /// <param name="tOTAL">Initial value of TOTAL.</param>
+        /// <param name="cRT_DATE">Initial value of CRT_DATE.</param>
+        /// <param name="f0701_ID">Initial value of F0701_ID.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static OutContainerInfo CreateOutContainerInfo(long f0531_ID, int tOTAL, global::System.DateTime cRT_DATE, long f0701_ID)
+        {
+            OutContainerInfo outContainerInfo = new OutContainerInfo();
+            outContainerInfo.F0531_ID = f0531_ID;
+            outContainerInfo.TOTAL = tOTAL;
+            outContainerInfo.CRT_DATE = cRT_DATE;
+            outContainerInfo.F0701_ID = f0701_ID;
+            return outContainerInfo;
+        }
+        /// <summary>
+        /// There are no comments for Property F0531_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long F0531_ID
+        {
+            get
+            {
+                return this._F0531_ID;
+            }
+            set
+            {
+                this.OnF0531_IDChanging(value);
+                this._F0531_ID = value;
+                this.OnF0531_IDChanged();
+                this.OnPropertyChanged("F0531_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _F0531_ID;
+        partial void OnF0531_IDChanging(long value);
+        partial void OnF0531_IDChanged();
+        /// <summary>
+        /// There are no comments for Property DC_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DC_CODE
+        {
+            get
+            {
+                return this._DC_CODE;
+            }
+            set
+            {
+                this.OnDC_CODEChanging(value);
+                this._DC_CODE = value;
+                this.OnDC_CODEChanged();
+                this.OnPropertyChanged("DC_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DC_CODE;
+        partial void OnDC_CODEChanging(string value);
+        partial void OnDC_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property GUP_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string GUP_CODE
+        {
+            get
+            {
+                return this._GUP_CODE;
+            }
+            set
+            {
+                this.OnGUP_CODEChanging(value);
+                this._GUP_CODE = value;
+                this.OnGUP_CODEChanged();
+                this.OnPropertyChanged("GUP_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _GUP_CODE;
+        partial void OnGUP_CODEChanging(string value);
+        partial void OnGUP_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_CODE
+        {
+            get
+            {
+                return this._CUST_CODE;
+            }
+            set
+            {
+                this.OnCUST_CODEChanging(value);
+                this._CUST_CODE = value;
+                this.OnCUST_CODEChanged();
+                this.OnPropertyChanged("CUST_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_CODE;
+        partial void OnCUST_CODEChanging(string value);
+        partial void OnCUST_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property OUT_CONTAINER_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string OUT_CONTAINER_CODE
+        {
+            get
+            {
+                return this._OUT_CONTAINER_CODE;
+            }
+            set
+            {
+                this.OnOUT_CONTAINER_CODEChanging(value);
+                this._OUT_CONTAINER_CODE = value;
+                this.OnOUT_CONTAINER_CODEChanged();
+                this.OnPropertyChanged("OUT_CONTAINER_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _OUT_CONTAINER_CODE;
+        partial void OnOUT_CONTAINER_CODEChanging(string value);
+        partial void OnOUT_CONTAINER_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property MOVE_OUT_TARGET in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MOVE_OUT_TARGET
+        {
+            get
+            {
+                return this._MOVE_OUT_TARGET;
+            }
+            set
+            {
+                this.OnMOVE_OUT_TARGETChanging(value);
+                this._MOVE_OUT_TARGET = value;
+                this.OnMOVE_OUT_TARGETChanged();
+                this.OnPropertyChanged("MOVE_OUT_TARGET");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MOVE_OUT_TARGET;
+        partial void OnMOVE_OUT_TARGETChanging(string value);
+        partial void OnMOVE_OUT_TARGETChanged();
+        /// <summary>
+        /// There are no comments for Property CROSS_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CROSS_NAME
+        {
+            get
+            {
+                return this._CROSS_NAME;
+            }
+            set
+            {
+                this.OnCROSS_NAMEChanging(value);
+                this._CROSS_NAME = value;
+                this.OnCROSS_NAMEChanged();
+                this.OnPropertyChanged("CROSS_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CROSS_NAME;
+        partial void OnCROSS_NAMEChanging(string value);
+        partial void OnCROSS_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property TOTAL in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TOTAL
+        {
+            get
+            {
+                return this._TOTAL;
+            }
+            set
+            {
+                this.OnTOTALChanging(value);
+                this._TOTAL = value;
+                this.OnTOTALChanged();
+                this.OnPropertyChanged("TOTAL");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TOTAL;
+        partial void OnTOTALChanging(int value);
+        partial void OnTOTALChanged();
+        /// <summary>
+        /// There are no comments for Property WORK_TYPE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string WORK_TYPE
+        {
+            get
+            {
+                return this._WORK_TYPE;
+            }
+            set
+            {
+                this.OnWORK_TYPEChanging(value);
+                this._WORK_TYPE = value;
+                this.OnWORK_TYPEChanged();
+                this.OnPropertyChanged("WORK_TYPE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _WORK_TYPE;
+        partial void OnWORK_TYPEChanging(string value);
+        partial void OnWORK_TYPEChanged();
+        /// <summary>
+        /// There are no comments for Property STATUS in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string STATUS
+        {
+            get
+            {
+                return this._STATUS;
+            }
+            set
+            {
+                this.OnSTATUSChanging(value);
+                this._STATUS = value;
+                this.OnSTATUSChanged();
+                this.OnPropertyChanged("STATUS");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _STATUS;
+        partial void OnSTATUSChanging(string value);
+        partial void OnSTATUSChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_DATE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.DateTime CRT_DATE
+        {
+            get
+            {
+                return this._CRT_DATE;
+            }
+            set
+            {
+                this.OnCRT_DATEChanging(value);
+                this._CRT_DATE = value;
+                this.OnCRT_DATEChanged();
+                this.OnPropertyChanged("CRT_DATE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.DateTime _CRT_DATE;
+        partial void OnCRT_DATEChanging(global::System.DateTime value);
+        partial void OnCRT_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property F0701_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long F0701_ID
+        {
+            get
+            {
+                return this._F0701_ID;
+            }
+            set
+            {
+                this.OnF0701_IDChanging(value);
+                this._F0701_ID = value;
+                this.OnF0701_IDChanged();
+                this.OnPropertyChanged("F0701_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _F0701_ID;
+        partial void OnF0701_IDChanging(long value);
+        partial void OnF0701_IDChanged();
+        /// <summary>
+        /// There are no comments for Property SOW_TYPE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string SOW_TYPE
+        {
+            get
+            {
+                return this._SOW_TYPE;
+            }
+            set
+            {
+                this.OnSOW_TYPEChanging(value);
+                this._SOW_TYPE = value;
+                this.OnSOW_TYPEChanged();
+                this.OnPropertyChanged("SOW_TYPE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _SOW_TYPE;
+        partial void OnSOW_TYPEChanging(string value);
+        partial void OnSOW_TYPEChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.Shared.Entities.OutContainerResult in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IsSuccessed
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("IsSuccessed")]
+    public partial class OutContainerResult : ExecuteResult
+    {
+        /// <summary>
+        /// Create a new OutContainerResult object.
+        /// </summary>
+        /// <param name="isSuccessed">Initial value of IsSuccessed.</param>
+        /// <param name="totalPcs">Initial value of TotalPcs.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static OutContainerResult CreateOutContainerResult(bool isSuccessed, int totalPcs)
+        {
+            OutContainerResult outContainerResult = new OutContainerResult();
+            outContainerResult.IsSuccessed = isSuccessed;
+            outContainerResult.TotalPcs = totalPcs;
+            return outContainerResult;
+        }
+        /// <summary>
+        /// There are no comments for Property ContainerCode in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ContainerCode
+        {
+            get
+            {
+                return this._ContainerCode;
+            }
+            set
+            {
+                this.OnContainerCodeChanging(value);
+                this._ContainerCode = value;
+                this.OnContainerCodeChanged();
+                this.OnPropertyChanged("ContainerCode");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ContainerCode;
+        partial void OnContainerCodeChanging(string value);
+        partial void OnContainerCodeChanged();
+        /// <summary>
+        /// There are no comments for Property OutContainerInfo in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public OutContainerInfo OutContainerInfo
+        {
+            get
+            {
+                if (((this._OutContainerInfo == null) 
+                            && (this._OutContainerInfoInitialized != true)))
+                {
+                    this._OutContainerInfo = new OutContainerInfo();
+                    this._OutContainerInfoInitialized = true;
+                }
+                return this._OutContainerInfo;
+            }
+            set
+            {
+                this.OnOutContainerInfoChanging(value);
+                this._OutContainerInfo = value;
+                this._OutContainerInfoInitialized = true;
+                this.OnOutContainerInfoChanged();
+                this.OnPropertyChanged("OutContainerInfo");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private OutContainerInfo _OutContainerInfo;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _OutContainerInfoInitialized;
+        partial void OnOutContainerInfoChanging(OutContainerInfo value);
+        partial void OnOutContainerInfoChanged();
+        /// <summary>
+        /// There are no comments for Property MoveOutTargetName in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MoveOutTargetName
+        {
+            get
+            {
+                return this._MoveOutTargetName;
+            }
+            set
+            {
+                this.OnMoveOutTargetNameChanging(value);
+                this._MoveOutTargetName = value;
+                this.OnMoveOutTargetNameChanged();
+                this.OnPropertyChanged("MoveOutTargetName");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MoveOutTargetName;
+        partial void OnMoveOutTargetNameChanging(string value);
+        partial void OnMoveOutTargetNameChanged();
+        /// <summary>
+        /// There are no comments for Property TotalPcs in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TotalPcs
+        {
+            get
+            {
+                return this._TotalPcs;
+            }
+            set
+            {
+                this.OnTotalPcsChanging(value);
+                this._TotalPcs = value;
+                this.OnTotalPcsChanged();
+                this.OnPropertyChanged("TotalPcs");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TotalPcs;
+        partial void OnTotalPcsChanging(int value);
+        partial void OnTotalPcsChanged();
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.Shared.Entities.PickContainerPutIntoOutContainerResult in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IsSuccessed
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("IsSuccessed")]
+    public partial class PickContainerPutIntoOutContainerResult : ExecuteResult
+    {
+        /// <summary>
+        /// Create a new PickContainerPutIntoOutContainerResult object.
+        /// </summary>
+        /// <param name="isSuccessed">Initial value of IsSuccessed.</param>
+        /// <param name="isOutContainerError">Initial value of IsOutContainerError.</param>
+        /// <param name="isPickContainerError">Initial value of IsPickContainerError.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static PickContainerPutIntoOutContainerResult CreatePickContainerPutIntoOutContainerResult(bool isSuccessed, bool isOutContainerError, bool isPickContainerError)
+        {
+            PickContainerPutIntoOutContainerResult pickContainerPutIntoOutContainerResult = new PickContainerPutIntoOutContainerResult();
+            pickContainerPutIntoOutContainerResult.IsSuccessed = isSuccessed;
+            pickContainerPutIntoOutContainerResult.IsOutContainerError = isOutContainerError;
+            pickContainerPutIntoOutContainerResult.IsPickContainerError = isPickContainerError;
+            return pickContainerPutIntoOutContainerResult;
+        }
+        /// <summary>
+        /// There are no comments for Property IsOutContainerError in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool IsOutContainerError
+        {
+            get
+            {
+                return this._IsOutContainerError;
+            }
+            set
+            {
+                this.OnIsOutContainerErrorChanging(value);
+                this._IsOutContainerError = value;
+                this.OnIsOutContainerErrorChanged();
+                this.OnPropertyChanged("IsOutContainerError");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _IsOutContainerError;
+        partial void OnIsOutContainerErrorChanging(bool value);
+        partial void OnIsOutContainerErrorChanged();
+        /// <summary>
+        /// There are no comments for Property IsPickContainerError in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool IsPickContainerError
+        {
+            get
+            {
+                return this._IsPickContainerError;
+            }
+            set
+            {
+                this.OnIsPickContainerErrorChanging(value);
+                this._IsPickContainerError = value;
+                this.OnIsPickContainerErrorChanged();
+                this.OnPropertyChanged("IsPickContainerError");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _IsPickContainerError;
+        partial void OnIsPickContainerErrorChanging(bool value);
+        partial void OnIsPickContainerErrorChanged();
+        /// <summary>
+        /// There are no comments for UpdateOutContainerResult in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public OutContainerResult UpdateOutContainerResult
+        {
+            get
+            {
+                return this._UpdateOutContainerResult;
+            }
+            set
+            {
+                this._UpdateOutContainerResult = value;
+                this.OnPropertyChanged("UpdateOutContainerResult");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private OutContainerResult _UpdateOutContainerResult;
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.Shared.Entities.ScanItemBarcodeResult in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// IsSuccessed
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("IsSuccessed")]
+    public partial class ScanItemBarcodeResult : ExecuteResult
+    {
+        /// <summary>
+        /// Create a new ScanItemBarcodeResult object.
+        /// </summary>
+        /// <param name="isSuccessed">Initial value of IsSuccessed.</param>
+        /// <param name="bindNewNormalContainer">Initial value of bindNewNormalContainer.</param>
+        /// <param name="bindNewCancelContainer">Initial value of bindNewCancelContainer.</param>
+        /// <param name="isNormalShipItem">Initial value of IsNormalShipItem.</param>
+        /// <param name="isFinishAllot">Initial value of IsFinishAllot.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static ScanItemBarcodeResult CreateScanItemBarcodeResult(bool isSuccessed, bool bindNewNormalContainer, bool bindNewCancelContainer, bool isNormalShipItem, bool isFinishAllot)
+        {
+            ScanItemBarcodeResult scanItemBarcodeResult = new ScanItemBarcodeResult();
+            scanItemBarcodeResult.IsSuccessed = isSuccessed;
+            scanItemBarcodeResult.bindNewNormalContainer = bindNewNormalContainer;
+            scanItemBarcodeResult.bindNewCancelContainer = bindNewCancelContainer;
+            scanItemBarcodeResult.IsNormalShipItem = isNormalShipItem;
+            scanItemBarcodeResult.IsFinishAllot = isFinishAllot;
+            return scanItemBarcodeResult;
+        }
+        /// <summary>
+        /// There are no comments for Property bindNewNormalContainer in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool bindNewNormalContainer
+        {
+            get
+            {
+                return this._bindNewNormalContainer;
+            }
+            set
+            {
+                this.OnbindNewNormalContainerChanging(value);
+                this._bindNewNormalContainer = value;
+                this.OnbindNewNormalContainerChanged();
+                this.OnPropertyChanged("bindNewNormalContainer");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _bindNewNormalContainer;
+        partial void OnbindNewNormalContainerChanging(bool value);
+        partial void OnbindNewNormalContainerChanged();
+        /// <summary>
+        /// There are no comments for Property bindNewCancelContainer in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool bindNewCancelContainer
+        {
+            get
+            {
+                return this._bindNewCancelContainer;
+            }
+            set
+            {
+                this.OnbindNewCancelContainerChanging(value);
+                this._bindNewCancelContainer = value;
+                this.OnbindNewCancelContainerChanged();
+                this.OnPropertyChanged("bindNewCancelContainer");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _bindNewCancelContainer;
+        partial void OnbindNewCancelContainerChanging(bool value);
+        partial void OnbindNewCancelContainerChanged();
+        /// <summary>
+        /// There are no comments for Property ITEM_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ITEM_CODE
+        {
+            get
+            {
+                return this._ITEM_CODE;
+            }
+            set
+            {
+                this.OnITEM_CODEChanging(value);
+                this._ITEM_CODE = value;
+                this.OnITEM_CODEChanged();
+                this.OnPropertyChanged("ITEM_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ITEM_CODE;
+        partial void OnITEM_CODEChanging(string value);
+        partial void OnITEM_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property ITEM_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ITEM_NAME
+        {
+            get
+            {
+                return this._ITEM_NAME;
+            }
+            set
+            {
+                this.OnITEM_NAMEChanging(value);
+                this._ITEM_NAME = value;
+                this.OnITEM_NAMEChanged();
+                this.OnPropertyChanged("ITEM_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ITEM_NAME;
+        partial void OnITEM_NAMEChanging(string value);
+        partial void OnITEM_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property IsNormalShipItem in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool IsNormalShipItem
+        {
+            get
+            {
+                return this._IsNormalShipItem;
+            }
+            set
+            {
+                this.OnIsNormalShipItemChanging(value);
+                this._IsNormalShipItem = value;
+                this.OnIsNormalShipItemChanged();
+                this.OnPropertyChanged("IsNormalShipItem");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _IsNormalShipItem;
+        partial void OnIsNormalShipItemChanging(bool value);
+        partial void OnIsNormalShipItemChanged();
+        /// <summary>
+        /// There are no comments for Property IsFinishAllot in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool IsFinishAllot
+        {
+            get
+            {
+                return this._IsFinishAllot;
+            }
+            set
+            {
+                this.OnIsFinishAllotChanging(value);
+                this._IsFinishAllot = value;
+                this.OnIsFinishAllotChanged();
+                this.OnPropertyChanged("IsFinishAllot");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _IsFinishAllot;
+        partial void OnIsFinishAllotChanging(bool value);
+        partial void OnIsFinishAllotChanged();
+        /// <summary>
+        /// There are no comments for Property BindingPickContainerInfo in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public BindingPickContainerInfo BindingPickContainerInfo
+        {
+            get
+            {
+                if (((this._BindingPickContainerInfo == null) 
+                            && (this._BindingPickContainerInfoInitialized != true)))
+                {
+                    this._BindingPickContainerInfo = new BindingPickContainerInfo();
+                    this._BindingPickContainerInfoInitialized = true;
+                }
+                return this._BindingPickContainerInfo;
+            }
+            set
+            {
+                this.OnBindingPickContainerInfoChanging(value);
+                this._BindingPickContainerInfo = value;
+                this._BindingPickContainerInfoInitialized = true;
+                this.OnBindingPickContainerInfoChanged();
+                this.OnPropertyChanged("BindingPickContainerInfo");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private BindingPickContainerInfo _BindingPickContainerInfo;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _BindingPickContainerInfoInitialized;
+        partial void OnBindingPickContainerInfoChanging(BindingPickContainerInfo value);
+        partial void OnBindingPickContainerInfoChanged();
     }
     /// <summary>
     /// There are no comments for Wms3pl.Datas.Shared.Entities.CheckLoc in the schema.
@@ -15802,7 +17621,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P19ExDataService
     }
 }
 // Original file name:
-// Generation date: 2023/3/28 下午 03:58:10
+// Generation date: 2023/7/14 下午 01:40:55
 namespace Wms3pl.Datas.F19
 {
     

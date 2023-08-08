@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.WebServices.DataCommon;
 using Wms3pl.DBCore;
+using System.Data;
 
 namespace Wms3pl.Datas.Schedule
 {
@@ -20,12 +21,14 @@ namespace Wms3pl.Datas.Schedule
             parm.Add(new SqlParameter("@p3", scheduleName));
             parm.Add(new SqlParameter("@p4", isSuccess));
             parm.Add(new SqlParameter("@p5", message));
+            parm.Add(new SqlParameter("@p6", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
+
             var sql = @" 
                     BEGIN
                     declare @new_id bigint;
                     INSERT INTO SCHEDULE_JOB_RESULT(DC_CODE,GUP_CODE,CUST_CODE,NAME,IS_SUCCESSFUL,PARENT_ID,EXEDATE,MESSAGE,SELECT_DATE)
-		                    VALUES(@p0,@p1,@p2,@p3,@p4,null,dbo.GetSysDate(),@p5,null);
-		                    --ALUES(1,1,1,1,1,null,dbo.GetSysDate(),1,null);
+		                    VALUES(@p0,@p1,@p2,@p3,@p4,null,@p6,@p5,null);
+		                    --ALUES(1,1,1,1,1,null,@p6,1,null);
                     SELECT @new_id = CAST(current_value as bigint) 
                     FROM sys.sequences WHERE name = 'SEQ_SCHEDULE_JOB_RESULT_ID'  
                     select @new_id ID;

@@ -146,7 +146,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
 
         //產生驗收明細
-        addF020201List.Add(CreateF020201(tmp, "1"));
+        addF020201List.Add(CreateF020201(tmp, "1", f010201));
 
         // 更新不良品暫存檔 
         updF02020109List.AddRange(CreateF02020109(tmp, f02020109s));
@@ -459,7 +459,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
     }
 
-    public ExecuteResult SetContainerComplete(String dcCode, String gupCode, String custCode, String RTNo, String RTSeq)
+    public ExecuteResult SetContainerComplete(String dcCode, String gupCode, String custCode, String rtNo, String rtSeq)
     {
       var wmsTransaction = new WmsTransaction();
       var f0205Repo = new F0205Repository(Schemas.CoreSchema, wmsTransaction);
@@ -472,24 +472,24 @@ namespace Wms3pl.WebServices.Process.P02.Services
       List<F020501> Lockf020501s = new List<F020501>();
       String containerErrorMsg = "";
       //(1)檢查是否各區都完成分播
-      var CheckIsDone = f0205Repo.CheckAllContainerIsDone(dcCode, gupCode, custCode, RTNo, RTSeq);
+      var CheckIsDone = f0205Repo.CheckAllContainerIsDone(dcCode, gupCode, custCode, rtNo, rtSeq);
       if (!CheckIsDone)
         return new ExecuteResult(false, "必須先完成此驗收單容器綁定後再進行綁定完成");
       try
       {
         //(2) F0205.STATUS=0(待分播)才更新F0205.STATUS=1 (分播完成)
-        f0205Repo.UpdateFields(new { STATUS = "1" }, x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == RTNo && x.RT_SEQ == RTSeq && x.STATUS == "0");
+        f0205Repo.UpdateFields(new { STATUS = "1" }, x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == rtNo && x.RT_SEQ == rtSeq && x.STATUS == "0");
 
         // (3) 更新F020201.STATUS=2(已上傳)
-        f020201Repo.UpdateFields(new { STATUS = "2" }, x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == RTNo && x.RT_SEQ == RTSeq);
+        f020201Repo.UpdateFields(new { STATUS = "2" }, x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == rtNo && x.RT_SEQ == rtSeq);
 
         // (4) 若該驗收單有不良品容器[F0205.TYPE_CODE=R]，且未關箱[F020501.STATUS=0(開箱)]，呼叫[6.容器關箱共用服務]
         #region 不良品容器上架
-        var f0205RData = f0205Repo.Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == RTNo && x.RT_SEQ == RTSeq && x.TYPE_CODE == "R");
+        var f0205RData = f0205Repo.Find(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == rtNo && x.RT_SEQ == rtSeq && x.TYPE_CODE == "R");
         if (f0205RData != null)
         {
           //要從f0205找到f020501要透過f020502，但f020502沒有TYPE_CODE
-          var f020502s = f020502Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == RTNo && x.RT_SEQ == RTSeq)
+          var f020502s = f020502Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == rtNo && x.RT_SEQ == rtSeq)
             .ToList();
           var f020502Datas = f020502s.GroupBy(g => new { g.F020501_ID, g.RT_NO, g.RT_SEQ }).Select(x => x.Key);
           foreach (var f020502Data in f020502Datas)
@@ -499,7 +499,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
             if (f020501Data != null && f020501Data.STATUS == "0")
             {
               Lockf020501s.Add(f020501Data);
-              var lockRes = service.LockContainerProcess(f020501Data);
+              var lockRes = service.LockContainerProcess(f020501Data.CONTAINER_CODE);
               if (!lockRes.IsSuccessed)
                 return new ExecuteResult { IsSuccessed = false, Message = string.Format(Properties.Resources.ContainerIsProcessingTryLater, f020501Data.CONTAINER_CODE) };
 
@@ -537,16 +537,40 @@ namespace Wms3pl.WebServices.Process.P02.Services
               return res;
           }
         }
-        #endregion 不良品容器上架
+				#endregion 不良品容器上架
 
-        wmsTransaction.Complete();
+				var f0205Datas = f0205Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == rtNo).ToList();
+				// 驗收單已無其他商品需要綁定容器
+				if (!f0205Datas.Any(x=> x.RT_SEQ != rtSeq && x.STATUS == "0"))
+				{
+					// 驗收單解鎖
+					var warehouseInRecvBindBoxService = new WarehouseInRecvBindBoxService(wmsTransaction);
+					warehouseInRecvBindBoxService.UnLockBindContainerAcceptenceOrder(new UnLockBindContainerAcceptenceOrderReq
+					{
+						DcCode = dcCode,
+						GupCode = gupCode,
+						CustCode = custCode,
+						RtNo = rtNo,
+					});
+					// 進倉單解鎖
+					var warehouseInRecvService = new WarehouseInRecvService(wmsTransaction);
+					warehouseInRecvService.UnLockAcceptenceOrder(new UnLockAcceptenceOrderReq
+					{
+						DcCode = dcCode,
+						GupCode = gupCode,
+						CustCode = custCode,
+						StockNo = f0205Datas.First().STOCK_NO,
+					});
+				}
+				
+
+				wmsTransaction.Complete();
         //檢查調撥單是否有異常，有的話要回傳給前端
         if (containerResults != null && containerResults.All(x => !string.IsNullOrWhiteSpace(x.No)))
           containerErrorMsg = f151001Repo.GetUnnormalAllocDatas(dcCode, gupCode, custCode, containerResults.Select(x => x.No).ToList()).FirstOrDefault();
 
-        var f0205Data = f0205Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.RT_NO == RTNo);
 
-        if (f0205Data.Any(x => x.NEED_DOUBLE_CHECK == 1))
+        if (f0205Datas.Where(x=> x.RT_SEQ == rtSeq).Any(x => x.NEED_DOUBLE_CHECK == 1))
           return new ExecuteResult(true, "驗收單已分播完成，請送至複驗區" + containerErrorMsg);
         else
           return new ExecuteResult(true, "驗收單已分播完成" + containerErrorMsg);
@@ -854,5 +878,21 @@ namespace Wms3pl.WebServices.Process.P02.Services
       var f02020109Repo = new F02020109Repository(Schemas.CoreSchema);
       return f02020109Repo.GetDefectDetail(dcCode, gupCode, custCode, rtNo);
     }
-  }
+
+		public ExecuteResult CheckCanBindContainer(string dcCode, string gupCode, string custCode, string rtNo)
+		{
+			// 驗收單鎖定
+			var warehouseInRecvBindBoxService = new WarehouseInRecvBindBoxService();
+			var res = warehouseInRecvBindBoxService.CheckIsOtherUserProc(new LockBindContainerAcceptenceOrderReq
+			{
+				DcCode = dcCode,
+				GupCode = gupCode,
+				CustCode = custCode,
+				RtNo = rtNo,
+				DeviceTool = "0"
+			});
+			return new ExecuteResult(res.IsSuccessed, res.MsgContent);
+		}
+
+	}
 }

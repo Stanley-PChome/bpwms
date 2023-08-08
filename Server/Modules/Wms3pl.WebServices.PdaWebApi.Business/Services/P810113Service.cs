@@ -257,7 +257,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
               f020502.STATUS = "1";
               f020502Repo.Update(f020502);
 
-              var lockRes = warehouseInService.LockContainerProcess(f020501);
+              var lockRes = warehouseInService.LockContainerProcess(f020501.CONTAINER_CODE);
               if (!lockRes.IsSuccessed)
                 return new ApiResult { IsSuccessed = false, MsgCode = "21329", MsgContent = string.Format(_p81Service.GetMsg("21329"), f020501.CONTAINER_CODE) };
 
@@ -265,7 +265,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
               var chkF020501Status = warehouseInService.CheckF020501Status(f020501);
               if (!chkF020501Status.IsSuccessed)
                 return chkF020501Status;
-              #endregion F020501容器頭檔狀態檢查
+                #endregion F020501容器頭檔狀態檢查
 
               // 呼叫[容器上架共用函數]
               warehouseInService.ContainerTarget(f020501, f020502, null);
@@ -582,7 +582,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       try
       {
         #region 上架容器鎖定
-        var lockRes = warehouseInService.LockContainerProcess(f020501);
+        var lockRes = warehouseInService.LockContainerProcess(f020501.CONTAINER_CODE);
         if (!lockRes.IsSuccessed)
           return new ApiResult { IsSuccessed = false, MsgCode = "21329", MsgContent = string.Format(_p81Service.GetMsg("21329"), f020501.CONTAINER_CODE) };
         #endregion
@@ -590,7 +590,12 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         #region F020501容器頭檔狀態檢查
         var chkF020501Status = warehouseInService.CheckF020501Status(f020501);
         if (!chkF020501Status.IsSuccessed)
+        {
+          //如果回傳false，會導致PDA就卡在當前畫面造成User操作上的疑惑，要手動回到查詢頁面，因此改為回傳成功
+          chkF020501Status.IsSuccessed = true;
+          chkF020501Status.Data = chkF020501Status.MsgContent;
           return chkF020501Status;
+        }
         #endregion
 
         #region 更新F020502&F1903 RCV_MEMO驗貨輔助註記欄位
@@ -804,7 +809,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
           //檢查容器否有其他人正在處理上架中
           lockF020501s.Add(oriF020501);
-          var lockRes = warehouseInService.LockContainerProcess(oriF020501);
+          var lockRes = warehouseInService.LockContainerProcess(oriF020501.CONTAINER_CODE);
           if (!lockRes.IsSuccessed)
           {
             result = new ApiResult { IsSuccessed = false, MsgCode = "21329", MsgContent = string.Format(_p81Service.GetMsg("21329"), oriF020501.CONTAINER_CODE) };
@@ -814,7 +819,12 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           #region F020501容器頭檔狀態檢查
           var chkF020501Status = warehouseInService.CheckF020501Status(oriF020501);
           if (!chkF020501Status.IsSuccessed)
+          {
+            //如果回傳false，會導致PDA就卡在當前畫面造成User操作上的疑惑，要手動回到查詢頁面，因此改為回傳成功
+            chkF020501Status.IsSuccessed = true;
+            chkF020501Status.Data = chkF020501Status.MsgContent;
             return chkF020501Status;
+          }
           #endregion
 
           #region 針對已存在的容器，從舊容器移到新容器中
@@ -859,7 +869,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           f020501Repo.Add(addF020501);
 
           lockF020501s.Add(addF020501);
-          var lockRes2 = warehouseInService.LockContainerProcess(addF020501);
+          var lockRes2 = warehouseInService.LockContainerProcess(addF020501.CONTAINER_CODE);
           if (!lockRes.IsSuccessed)
           {
             result = new ApiResult { IsSuccessed = false, MsgCode = "21329", MsgContent = string.Format(_p81Service.GetMsg("21329"), addF020501.CONTAINER_CODE) };

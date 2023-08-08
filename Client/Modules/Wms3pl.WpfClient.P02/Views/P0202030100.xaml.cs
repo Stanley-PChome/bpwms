@@ -62,7 +62,8 @@ namespace Wms3pl.WpfClient.P02.Views
 			Vm.Spill = baseData.SPILL;
 			Vm.SelectedTmprType = baseData.TMPR_TYPE;
 			Vm.IsTempControl = baseData.IS_TEMP_CONTROL;
-
+			Vm.IsApple = baseData.ISAPPLE;
+			Vm.BundleSerial = baseData.BUNDLE_SERIALNO;
 			// 是否為首次驗收
 			if (Vm.FirstInDate != null)
 			{
@@ -82,6 +83,7 @@ namespace Wms3pl.WpfClient.P02.Views
 				Vm.EnableItemHight = true;
 				Vm.EnableItemWeight = true;
 				Vm.EnableNeedExpired = true;
+				Vm.EnableBundleSerial = true;
 				Vm.EnabledSaveDay = baseData.NEED_EXPIRED == "1";
 			}
 
@@ -92,8 +94,8 @@ namespace Wms3pl.WpfClient.P02.Views
 			Vm.EnableIsMagnetic = true;
 			Vm.EnableIsPerishable = true;
 			Vm.EnableIsTempControl = true;
-
-			Vm.MakeNo = baseData.MAKE_NO;
+      Vm.EnableIsApple = true;
+      Vm.MakeNo = baseData.MAKE_NO;
 
 			if (goReadSerialNo)
 			{

@@ -48,11 +48,21 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 				QueryData = new F2501();
 				//初始化執行時所需的值及資料
 				//DcList = GetDcList();								//設定DC					
-				StatusList = GetBaseTableService.GetF000904List(FunctionCode, "F2501", "STATUS", true);		//設定序號狀態			
-				TypeList = GetBaseTableService.GetF000904List(FunctionCode, "F1903", "TYPE", true);			//設定序號狀態
+				StatusList = GetBaseTableService.GetF000904List(FunctionCode, "F2501", "STATUS", true);   //設定序號狀態			
+                                                                                                  //TypeList = GetBaseTableService.GetF000904List(FunctionCode, "F1903", "TYPE", true);     //設定序號狀態
+        var proxy00 = GetProxy<F00Entities>();
+        var ordPropList = proxy00.F000903s.Where(
+        o => o.ORD_PROP.Equals("A1") || o.ORD_PROP.Equals("A2") || o.ORD_PROP.Equals("J1")
+          || o.ORD_PROP.Equals("O3") || o.ORD_PROP.Equals("T1") )
+           .Select(x => new NameValuePair<string>(x.ORD_PROP_NAME, x.ORD_PROP))
+        .ToList();
+        ordPropList.Insert(0, new NameValuePair<string> { Name = "全部", Value = "" });
+        OpTypeList = ordPropList;
 
 
-				QueryData.DC_CODE = "";								//預設下拉全部
+        //OpTypeList = GetF000904List(FunctionCode, "F1903", "TYPE", true);			//設定序號狀態
+        OpItemType = OpTypeList.Select(x => x.Value).FirstOrDefault();
+        QueryData.DC_CODE = "";								//預設下拉全部
 				QueryData.STATUS = "";								//預設下拉全部				
 				ItemTypeQ = "";										//預設下拉全部	
 				IsShowExport = "False";								//預設匯出按鈕 IsEnable=False
@@ -83,24 +93,52 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 				RaisePropertyChanged("StatusList");
 			}
 		}
-		#endregion
+    #endregion
 
-		#region 序號類號參數
-		private List<NameValuePair<string>> _typeList;
-		public List<NameValuePair<string>> TypeList
-		{
-			get { return _typeList; }
-			set
-			{
-				_typeList = value;
-				RaisePropertyChanged("TypeList");
-			}
-		}
-		#endregion
+    #region 作業類別參數
+    private List<NameValuePair<string>> _optypeList;
+    /// <summary>
+    /// 作業類別
+    /// </summary>
+		public List<NameValuePair<string>> OpTypeList
+    {
+      get { return _optypeList; }
+      set
+      {
+        _optypeList = value;
+        RaisePropertyChanged("OpTypeList");
+      }
+    }
+    #endregion 作業類別參數
 
-		#region 日期查詢 -建立/新增 參數
+    private string _opitemType = string.Empty;
+    /// <summary>
+    /// 作業類別
+    /// </summary>
+    public string OpItemType
+    {
+      get { return _opitemType; }
+      set
+      {
+        Set(() => OpItemType, ref _opitemType, value);
+      }
+    }
+    #region 序號類號參數
+    //  private List<NameValuePair<string>> _typeList;
+    //public List<NameValuePair<string>> TypeList
+    //{
+    //	get { return _typeList; }
+    //	set
+    //	{
+    //		_typeList = value;
+    //		RaisePropertyChanged("TypeList");
+    //	}
+    //}
+    #endregion
 
-		private string _crtSDate;
+    #region 日期查詢 -建立/新增 參數
+
+    private string _crtSDate;
 		public string CrtSDate
 		{
 			get { return _crtSDate; }
@@ -312,13 +350,13 @@ namespace Wms3pl.WpfClient.P25.ViewModel
 						var converUpdDate = elem.UPD_DATE == null ? "" : ((DateTime)elem.UPD_DATE).ToString("yyyy/MM/dd HH:mm");
 
 						data += elem.GUP_NAME + "," + elem.CUST_NAME + "," + elem.ITEM_CODE + "," + elem.ITEM_NAME + "," + elem.ITEM_SPEC;
-						data += "," + elem.STATUS_NAME + "," + elem.SERIAL_NO + "," + elem.ITEM_TYPE;
+						data += "," + elem.STATUS_NAME + "," + elem.SERIAL_NO;
 						data += "," + converVALID_DATE;
 
 						data += "," + elem.PO_NO + "," + elem.WMS_NO + "," + converInDate + "," + elem.ORD_PROP_NAME;
-						data += "," + elem.RETAIL_CODE + "," + elem.ACTIVATED + "," + elem.PROCESS_NO;
-						data += "," + elem.VNR_NAME + "," + elem.SYS_NAME + "," + elem.CAMERA_NO + "," + elem.CLIENT_IP + "," + elem.ITEM_UNIT;
-						data += "," + elem.SEND_CUST + "," + converCrtDate + "," + elem.CRT_NAME + "," + converUpdDate + "," + elem.UPD_NAME;
+						data += "," + elem.ACTIVATED + "," + elem.PROCESS_NO;
+						data += "," + elem.VNR_NAME + "," + elem.CLIENT_IP + "," + elem.ITEM_UNIT;
+						data += "," + converCrtDate + "," + elem.CRT_NAME + "," + converUpdDate + "," + elem.UPD_NAME;
 
 						data += "\n";
                     }
@@ -373,7 +411,7 @@ namespace Wms3pl.WpfClient.P25.ViewModel
           , string.Format("{0}", QueryData.PO_NO)
           , string.Format("{0}", StringHelper.JoinSplitDistinct(QueryData.WMS_NO, ","))
           , string.Format("{0}", QueryData.STATUS)
-          , string.Format("{0}", ItemTypeQ)
+          , string.Format("{0}", string.IsNullOrEmpty(OpItemType) ? null : OpItemType)
           , string.Format("{0}", QueryData.RETAIL_CODE)
           , short.Parse(_combinNo.ToString())
           , string.Format("{0}", QueryData.CRT_NAME)

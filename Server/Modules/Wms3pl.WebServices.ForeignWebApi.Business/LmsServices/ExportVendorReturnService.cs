@@ -37,15 +37,16 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 			var outputJsonInLog = commonService.GetSysGlobalValue("OutputJsonInLog");
 			bool isSaveWmsData = string.IsNullOrWhiteSpace(outputJsonInLog) ? false : outputJsonInLog == "1";
 
-			#region 取得 商品進倉未回檔資料
+      #region 取得 商品進倉未回檔資料
 
-			var f050305s = f050305Repo.AsForUpdate().GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode
-																																						&& o.GUP_CODE == gupCode
-																																						&& o.CUST_CODE == custCode
-																																						&& o.PROC_FLAG == "0"
-																																						&& o.SOURCE_TYPE == "13").OrderBy(x => x.ID).ToList();
+      //var f050305s = f050305Repo.AsForUpdate().GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode
+      //                                                                      && o.GUP_CODE == gupCode
+      //                                                                      && o.CUST_CODE == custCode
+      //                                                                      && o.PROC_FLAG == "0"
+      //                                                                      && o.SOURCE_TYPE == "13").OrderBy(x => x.ID).ToList();
+      var f050305s = f050305Repo.GetDatasFor_SourceType13(dcCode, gupCode, custCode).ToList();
 
-			var f160204s = f160204Repo.GetDatasByExportVendorReturn(dcCode, gupCode, custCode, f050305s.Select(x => x.SOURCE_NO).Distinct().ToList());
+      var f160204s = f160204Repo.GetDatasByExportVendorReturn(dcCode, gupCode, custCode, f050305s.Select(x => x.SOURCE_NO).Distinct().ToList());
 
 			var ordNos = f050305s.Select(x => x.ORD_NO).ToList();
 

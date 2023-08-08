@@ -35,15 +35,15 @@ namespace Wms3pl.Datas.Test.F25
             DateTime? updSDate = null;
             DateTime? updEDate = null;
             string boxSerial = "";
-            string itemType = "";
+            string OpItemType = "";
             Console.WriteLine($@"{JsonSerializer.Serialize(new { gupCode, custCode,
                 itemCode, serialNo, batchNo, cellNum, poNo, wmsNo
             , status, retailCode, combinNo, crtName, updSDate
-            , updEDate, boxSerial, itemType })}");
+            , updEDate, boxSerial, OpItemType })}");
             var result = _f250101Repository.GetP2502QueryDatas(gupCode, custCode,
               itemCode.ToArray(), serialNo.ToArray(), batchNo, cellNum, poNo, wmsNo.ToArray()
              , status, retailCode, combinNo, crtName, updSDate
-             , updEDate, boxSerial, itemType);
+             , updEDate, boxSerial, OpItemType);
             Console.WriteLine(JsonSerializer.Serialize(result));
         }
     }

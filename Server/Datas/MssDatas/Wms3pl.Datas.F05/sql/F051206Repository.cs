@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -230,10 +231,16 @@ namespace Wms3pl.Datas.F05
 
 		public IQueryable<F051206LackList> GetF051206LackLists(string dcCode, string gupCode, string custCode, string pickOrdNo, string wmsOrdNo, string editType)
 		{
-			var parameters = new List<object>
-						{
-								dcCode,gupCode,custCode,pickOrdNo,wmsOrdNo
+      var parameters = new List<SqlParameter>
+            {
+              new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("@p4", wmsOrdNo) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("@p5", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 }
 						};
+
 			var sql = string.Empty;
 			//strCmd.AppendLine("	SELECT ROWNUM,0 AS IsUpdate, I.ITEM_NAME, L.*	 ");
 			if (editType == "ADD")
@@ -242,7 +249,7 @@ namespace Wms3pl.Datas.F05
 									FROM(
 									SELECT 0 AS LACK_SEQ,A.WMS_ORD_NO,B.PICK_ORD_NO,B.PICK_ORD_SEQ,B.ITEM_CODE,B.B_PICK_QTY,0 AS LACK_QTY,'999' AS REASON,
 												 '' AS MEMO,'0' AS STATUS,'' AS RETURN_FLAG,A.CUST_CODE,A.GUP_CODE,A.DC_CODE,
-												 '' AS CRT_STAFF,'' AS CRT_NAME,dbo.GetSysDate() AS CRT_DATE,'' AS UPD_STAFF,dbo.GetSysDate() AS UPD_DATE,'' AS UPD_NAME,'0' AS ISDELETED,C.CUST_ORD_NO ,C.ORD_NO,B.PICK_LOC LOC_CODE
+												 '' AS CRT_STAFF,'' AS CRT_NAME,@p5 AS CRT_DATE,'' AS UPD_STAFF,@p5 AS UPD_DATE,'' AS UPD_NAME,'0' AS ISDELETED,C.CUST_ORD_NO ,C.ORD_NO,B.PICK_LOC LOC_CODE
 									FROM F050801 A
 									JOIN F051202 B
 									ON B.DC_CODE = A.DC_CODE
@@ -517,13 +524,16 @@ namespace Wms3pl.Datas.F05
 		{
 			if (LackSeqs.Any())
 			{
-				var parms = new List<object> { allocationNo, allocationSeq, Current.Staff, Current.StaffName, Current.Staff, Current.StaffName };
+				var parms = new List<object> { allocationNo, allocationSeq, DateTime.Now, Current.Staff, Current.StaffName, DateTime.Now, Current.Staff, Current.StaffName };
+
 				var sql = @" UPDATE F051206 
-                      SET ALLOCATION_NO = @p0, ALLOCATION_SEQ = @p1,UPD_DATE = dbo.GetSysDate(),UPD_STAFF = @p2,UPD_NAME =@p3,
-													TRANS_FLAG ='1',TRANS_DATE = dbo.GetSysDate(),TRANS_STAFF = @p4,TRANS_NAME = @p5,
+                      SET ALLOCATION_NO = @p0, ALLOCATION_SEQ = @p1,UPD_DATE = @p2,UPD_STAFF = @p3,UPD_NAME =@p4,
+													TRANS_FLAG ='1',TRANS_DATE = @p5,TRANS_STAFF = @p6,TRANS_NAME = @p7,
                           RETURN_FLAG ='4',STATUS ='2' 
                    WHERE 1 = 1 ";
+
 				sql += parms.CombineSqlInParameters(" AND LACK_SEQ ", LackSeqs);
+
 				ExecuteSqlCommand(sql, parms.ToArray());
 			}
 		}

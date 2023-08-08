@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -316,14 +317,21 @@ namespace Wms3pl.Datas.F16
 												 AND D.GUP_CODE = C.GUP_CODE
 												 AND D.CUST_CODE = C.CUST_CODE
 												 AND D.ALLOCATION_NO = C.ALLOCATION_NO
-												 AND ISNULL(D.SRC_DATE,dbo.GetSysDate()) = ISNULL(C.SRC_DATE,dbo.GetSysDate())
-											 WHERE A.DC_CODE = @p0
-												 AND A.RTN_APPLY_DATE = @p1
+												 AND ISNULL(D.SRC_DATE,@p0) = ISNULL(C.SRC_DATE,@p0)
+											 WHERE A.DC_CODE = @p1
+												 AND A.RTN_APPLY_DATE = @p2
 												 AND A.STATUS <>'9' 
 												 AND B.STATUS <>'5'
-												 AND DATEDIFF(MINUTE,ISNULL(C.SRC_DATE,dbo.GetSysDate()),dbo.GetSysDate()) >30
+												 AND DATEDIFF(MINUTE,ISNULL(C.SRC_DATE,@p0),@p0) >30
 												)A  ";
-			var param = new object[] {dcCode, rtnApplyDate};
+
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p1", dcCode) {SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2", rtnApplyDate) {SqlDbType = SqlDbType.DateTime2}
+      };
+
 			return SqlQuery<DcWmsNoStatusItem>(sql, param);
 
 		}

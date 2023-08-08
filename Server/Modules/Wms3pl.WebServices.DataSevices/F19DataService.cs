@@ -222,11 +222,11 @@ namespace Wms3pl.WebServices.DataSevices
         }
 
         [WebGet]
-        public IQueryable<F1903> GetF1903(string gupCode, string custCode, string itemCodes, string itemName, string itemSpec, string lType)
+        public IQueryable<F1903> GetF1903(string gupCode, string custCode, string itemCodes, string itemName, string itemSpec, string lType, string oriVnrCode)
         {
             var repo = new F1903Repository(Schemas.CoreSchema);
-            return repo.GetF1903(gupCode, custCode, itemCodes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(), itemName, itemSpec, lType);
-        }
+      return repo.GetF1903(gupCode, custCode, itemCodes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(), itemName, itemSpec, lType, oriVnrCode);
+    }
 
         [WebGet]
         public IQueryable<F1903> GetF1903sBySerialNo(string gupCode, string custCode, string serialNo)

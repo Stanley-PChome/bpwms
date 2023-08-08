@@ -45,7 +45,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			var f05290401Repo = new F05290401Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f052905Repo = new F052905Repository(Schemas.CoreSchema);
 			var f0701Repo = new F0701Repository(Schemas.CoreSchema);
-
+      var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
 
 
 			// 取得未完成分貨的容器資訊
@@ -158,11 +158,12 @@ namespace Wms3pl.WebServices.Process.P08.Services
 
 				var f051202Repo = new F051202Repository(Schemas.CoreSchema);
 				// 正常出貨訂單要寫入回檔紀錄(包裝開始)
-				var canShipWmsNos = f051202Repo.GetCanShipWmsNosByPick(dcCode, gupCode, custCode, containerPickInfo.PickOrdNo).ToList();
+        var canShipWmsNos = f051202Repo.GetCanShipWmsNosByPick(dcCode, gupCode, custCode, containerPickInfo.PickOrdNo).ToList();
 				if(canShipWmsNos.Any())
 				{
 					var orderService = new OrderService(_wmsTransaction);
-					orderService.AddF050305(dcCode, gupCode, custCode, canShipWmsNos, "2");
+          f050801Repo.UpdatePackFinishTime(dcCode, gupCode, custCode, canShipWmsNos,DateTime.Now);
+          orderService.AddF050305(dcCode, gupCode, custCode, canShipWmsNos, "2");
 				}
 
 			}
@@ -542,14 +543,14 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			return result;
 		}
 
-		/// <summary>
-		/// 出貨扣帳
-		/// </summary>
-		/// <param name="f051202s"></param>
-		/// <returns></returns>
-		private ExecuteResult ShipDebit(string dcCode,string gupCode,string custCode,DateTime delvDate,string pickTime,List<string> wmsOrdNos,string excludePickOrdNo,WmsShipBoxDetail addOrUpdateWmsShipBoxDetail)
-		{
-			var f051202Repo = new F051202Repository(Schemas.CoreSchema);
+    /// <summary>
+    /// 出貨扣帳
+    /// </summary>
+    /// <param name="f051202s"></param>
+    /// <returns></returns>
+    private ExecuteResult ShipDebit(string dcCode, string gupCode, string custCode, DateTime delvDate, string pickTime, List<string> wmsOrdNos, string excludePickOrdNo, WmsShipBoxDetail addOrUpdateWmsShipBoxDetail)
+    {
+      var f051202Repo = new F051202Repository(Schemas.CoreSchema);
 			var f051202s = f051202Repo.GetDatasByWmsOrdNos(dcCode, gupCode, custCode, wmsOrdNos).ToList();
 			var pickFinishedWmsNos = new List<string>();
 			foreach (var wmsOrdNo in wmsOrdNos)
@@ -570,8 +571,6 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				{
 					// 正常出貨訂單要寫入回檔紀錄(包裝完成)
 					var orderService = new OrderService(_wmsTransaction);
-					orderService.AddF050305(dcCode, gupCode, custCode, pickFinishedWmsNos, "2");
-					orderService.AddF050305(dcCode, gupCode, custCode, pickFinishedWmsNos, "3");
 					var addF055001List = new List<F055001>();
 					var addF055002List = new List<F055002>();
 					// 產生箱明細F055001,F055002
@@ -651,12 +650,13 @@ namespace Wms3pl.WebServices.Process.P08.Services
 							WMS_ORD_NO = groupWmsOrder.Key.WMS_ORD_NO,
 							PACKAGE_STAFF = groupWmsOrder.Key.PACKAGE_STAFF,
 							PACKAGE_NAME = groupWmsOrder.Key.PACKAGE_NAME,
-							STATUS = "0",
-						};
+              STATUS = "0",
+              ORG_BOX_NUM = groupWmsOrder.Key.BOX_NUM,
+              PACK_CLIENT_PC = Current.DeviceIp
+            };
 						addF055001List.Add(f055001);
 						foreach(var detail in groupWmsOrder)
 						{
-							
 							var f055002 = new F055002
 							{
 								DC_CODE = detail.DC_CODE,
@@ -705,12 +705,20 @@ namespace Wms3pl.WebServices.Process.P08.Services
 						f05030202.A_DELV_QTY += 1;
 					}
 
+          var completeTime = DateTime.Now;
+          orderService.AddF050305(dcCode, gupCode, custCode, pickFinishedWmsNos, "3", completeTime);
+
           if (updF050801s.Any())
           {
-            updF050801s.ForEach(x => x.SHIP_MODE = "4");
+            updF050801s.ForEach(x =>
+            {
+              x.SHIP_MODE = "4";
+              x.PACK_FINISH_TIME = completeTime;
+            });
             f050801Repo.BulkUpdate(updF050801s);
           }
-					if (updF050802s.Any())
+
+          if (updF050802s.Any())
 						f050802Repo.BulkUpdate(updF050802s);
 
 					if (updF0513s.Any())

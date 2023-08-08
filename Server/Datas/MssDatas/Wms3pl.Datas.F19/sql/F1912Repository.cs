@@ -717,49 +717,108 @@ namespace Wms3pl.Datas.F19
 			int paramStartIndex = parameters.Count;
       var inSql = parameters.CombineSqlInParameters("AND A.LOC_CODE", locCodes, ref paramStartIndex, SqlDbType.VarChar);
 
-      var sql = $@"SELECT A.DC_CODE,A.LOC_CODE,SUM(ISNULL(B.VOLUMN,0)) VOLUMN
-        				            FROM F1912 A
-        				            LEFT JOIN (
-        				            SELECT A.DC_CODE,A.LOC_CODE,(B.PACK_LENGTH * B.PACK_WIDTH * B.PACK_HIGHT * SUM(A.QTY)) VOLUMN
-        				            FROM (
-        				            select DC_CODE,GUP_CODE,CUST_CODE,LOC_CODE,ITEM_CODE,SUM(QTY) QTY
-        				            from F1913
-        				            GROUP BY DC_CODE,GUP_CODE,CUST_CODE,LOC_CODE,ITEM_CODE
-        				            UNION ALL
-        				            SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.PICK_LOC LOC_CODE,A.ITEM_CODE,SUM(A.B_PICK_QTY-A.A_PICK_QTY) QTY
-        				            FROM F051202 A 
-        				            JOIN F1511 B
-        				            ON B.DC_CODE = A.DC_CODE
-        				            AND B.GUP_CODE = A.GUP_CODE
-        				            AND B.CUST_CODE = A.CUST_CODE
-        				            AND B.ORDER_NO = A.PICK_ORD_NO
-        				            AND B.ORDER_SEQ = A.PICK_ORD_SEQ
-        				            JOIN F050801 C
-        				            ON C.DC_CODE = A.DC_CODE
-        				            AND C.GUP_CODE = A.GUP_CODE
-        				            AND C.CUST_CODE = A.CUST_CODE
-        				            AND C.WMS_ORD_NO = A.WMS_ORD_NO
-        				            WHERE (C.STATUS='0' OR B.STATUS='0') 
-        				            AND A.PICK_STATUS='0' --出貨單還在準備揀貨的狀態，且尚未取消訂單或者尚未揀貨
-        				            GROUP BY A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.PICK_LOC,A.ITEM_CODE
-        				            UNION ALL
-        				            SELECT B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.SRC_LOC_CODE LOC_CODE,B.ITEM_CODE,SUM(B.SRC_QTY-B.A_SRC_QTY) QTY
-        				            FROM F151001 A
-        				            JOIN F151002 B
-        				            ON B.DC_CODE = A.DC_CODE
-        				            AND B.GUP_CODE = A.GUP_CODE
-        				            AND B.CUST_CODE = A.CUST_CODE
-        				            AND B.ALLOCATION_NO = A.ALLOCATION_NO
-        				            WHERE A.STATUS IN('0','1') -- 剛建立調撥單或列印，還沒實際下架
-									GROUP BY B.DC_CODE,B.GUP_CODE,B.CUST_CODE,B.SRC_LOC_CODE ,B.ITEM_CODE) A
-        				            JOIN F1905 B
-        				            ON B.GUP_CODE = A.GUP_CODE
-        				            AND B.ITEM_CODE = A.ITEM_CODE
-                                    AND B.CUST_CODE = A.CUST_CODE
-        				            GROUP BY A.DC_CODE,A.LOC_CODE,B.PACK_LENGTH,B.PACK_WIDTH,B.PACK_HIGHT) B
-        				            ON B.DC_CODE = A.DC_CODE
-        				            AND B.LOC_CODE = A.LOC_CODE 
-        				            WHERE A.DC_CODE = @p0
+      var sql = $@"
+SELECT 
+  A.DC_CODE, 
+  A.LOC_CODE, 
+  SUM(
+    CASE WHEN B.VOLUMN IS NULL THEN 0 ELSE B.VOLUMN END
+  ) VOLUMN 
+FROM 
+  F1912 A 
+  LEFT JOIN (
+    SELECT 
+      A.DC_CODE, 
+      A.LOC_CODE, 
+      (
+        B.PACK_LENGTH * B.PACK_WIDTH * B.PACK_HIGHT * SUM(A.QTY)
+      ) VOLUMN 
+    FROM 
+      (
+        select 
+          DC_CODE, 
+          GUP_CODE, 
+          CUST_CODE, 
+          LOC_CODE, 
+          ITEM_CODE, 
+          SUM(QTY) QTY 
+        from 
+          F1913 
+        GROUP BY 
+          DC_CODE, 
+          GUP_CODE, 
+          CUST_CODE, 
+          LOC_CODE, 
+          ITEM_CODE 
+        UNION ALL 
+        SELECT 
+          A.DC_CODE, 
+          A.GUP_CODE, 
+          A.CUST_CODE, 
+          A.PICK_LOC LOC_CODE, 
+          A.ITEM_CODE, 
+          SUM(A.B_PICK_QTY - A.A_PICK_QTY) QTY 
+        FROM 
+          F051202 A 
+          JOIN VW_VirtualStock B ON B.DC_CODE = A.DC_CODE 
+          AND B.GUP_CODE = A.GUP_CODE 
+          AND B.CUST_CODE = A.CUST_CODE 
+          AND B.ORDER_NO = A.PICK_ORD_NO 
+          AND B.ORDER_SEQ = A.PICK_ORD_SEQ 
+          AND B.STATUS = '0' 
+          JOIN F050801 C ON C.DC_CODE = A.DC_CODE 
+          AND C.GUP_CODE = A.GUP_CODE 
+          AND C.CUST_CODE = A.CUST_CODE 
+          AND C.WMS_ORD_NO = A.WMS_ORD_NO 
+        WHERE 
+          (
+            C.STATUS = '0' 
+            OR B.STATUS = '0'
+          ) 
+          AND A.PICK_STATUS = '0' --出貨單還在準備揀貨的狀態，且尚未取消訂單或者尚未揀貨
+        GROUP BY 
+          A.DC_CODE, 
+          A.GUP_CODE, 
+          A.CUST_CODE, 
+          A.PICK_LOC, 
+          A.ITEM_CODE 
+        UNION ALL 
+        SELECT 
+          B.DC_CODE, 
+          B.GUP_CODE, 
+          B.CUST_CODE, 
+          B.SRC_LOC_CODE LOC_CODE, 
+          B.ITEM_CODE, 
+          SUM(B.SRC_QTY - B.A_SRC_QTY) QTY 
+        FROM 
+          F151001 A 
+          JOIN F151002 B ON B.DC_CODE = A.DC_CODE 
+          AND B.GUP_CODE = A.GUP_CODE 
+          AND B.CUST_CODE = A.CUST_CODE 
+          AND B.ALLOCATION_NO = A.ALLOCATION_NO 
+        WHERE 
+          A.STATUS IN('0', '1') -- 剛建立調撥單或列印，還沒實際下架
+        GROUP BY 
+          B.DC_CODE, 
+          B.GUP_CODE, 
+          B.CUST_CODE, 
+          B.SRC_LOC_CODE, 
+          B.ITEM_CODE
+      ) A 
+      JOIN F1905 B ON B.GUP_CODE = A.GUP_CODE 
+      AND B.ITEM_CODE = A.ITEM_CODE 
+      AND B.CUST_CODE = A.CUST_CODE 
+    GROUP BY 
+      A.DC_CODE, 
+      A.LOC_CODE, 
+      B.PACK_LENGTH, 
+      B.PACK_WIDTH, 
+      B.PACK_HIGHT
+  ) B ON B.DC_CODE = A.DC_CODE 
+  AND B.LOC_CODE = A.LOC_CODE 
+WHERE 
+  A.DC_CODE = @p0
+
                         {inSql}
                     GROUP BY A.DC_CODE,A.LOC_CODE ";
 			return SqlQuery<LocVolumnData>(sql, parameters.ToArray());
@@ -781,7 +840,7 @@ INNER JOIN F198001 C
   ON SUBSTRING(A.WAREHOUSE_ID,1,1) = C.TYPE_ID AND C.CALVOLUMN ='1'
 WHERE 
   A.DC_CODE = @p0
-  AND B.LAST_TIME > A.LAST_CALVOLUMN_TIME
+  AND B.LAST_TIME > CASE WHEN A.LAST_CALVOLUMN_TIME IS NULL THEN '0001-01-01' ELSE A.LAST_CALVOLUMN_TIME END
 GROUP BY
 	A.LOC_CODE,A.LAST_CALVOLUMN_TIME
 ORDER BY A.LAST_CALVOLUMN_TIME";
@@ -804,13 +863,14 @@ ORDER BY A.LAST_CALVOLUMN_TIME";
         new SqlParameter("@p2", UsedVolumn) { SqlDbType = SqlDbType.Decimal},
         new SqlParameter("@p3", Current.Staff) {SqlDbType = SqlDbType.VarChar},
         new SqlParameter("@p4", Current.StaffName) {SqlDbType = SqlDbType.NVarChar},
-		new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2},
-	  };
+        new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+      };
       var sqlUsedVolumn = "";
       if (UsedVolumn == 0)
         sqlUsedVolumn = ",NOW_CUST_CODE = '0'";
 
       var sql = $"UPDATE F1912 SET USED_VOLUMN = @p2, LAST_CALVOLUMN_TIME = @p5, UPD_DATE = @p5, UPD_STAFF = @p3, UPD_NAME = @p4 {sqlUsedVolumn} WHERE DC_CODE = @p0 AND LOC_CODE = @p1";
+
       ExecuteSqlCommand(sql, para.ToArray());
     }
 
@@ -1124,17 +1184,19 @@ ORDER BY A.LAST_CALVOLUMN_TIME";
 		{
 			var sql = @"UPDATE F1912
         					SET USEFUL_VOLUMN = @p0
-        						,UPD_DATE =dbo.GetSysDate()  
-        						,UPD_STAFF = @p1  
-        						,UPD_NAME = @p2     
-                               WHERE LOC_TYPE_ID = @p3";
+        						,UPD_DATE = @p1  
+        						,UPD_STAFF = @p2  
+        						,UPD_NAME = @p3     
+                               WHERE LOC_TYPE_ID = @p4";
 			var parameters = new object[]
 			{
 										usefulVolumn,
-										Current.Staff,
+                    DateTime.Now,
+                    Current.Staff,
 										Current.StaffName,
 										locTypeId
 			};
+
 			ExecuteSqlCommand(sql, parameters);
 		}
 		/// <summary>
@@ -1760,6 +1822,52 @@ ORDER BY SUBSTRING([LOC_CODE],1,5);";
 			return SqlQuery<F1912>(sql, parms.ToArray()).FirstOrDefault();
 		}
 
-	}
+    public IQueryable<F1912> GetDatasByLocCodes(string dcCode, string gupCode, string custCode, List<string> locCodes)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar},
+      };
+      var sql = @"SELECT * FROM F1912 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2";
+      sql += para.CombineSqlInParameters(" AND LOC_CODE", locCodes, SqlDbType.VarChar);
+      return SqlQuery<F1912>(sql, para.ToArray());
+
+      #region 原始Linq語法
+      /*
+      return _db.F1912s
+                  .Where(x => x.DC_CODE == dcCode)
+                  .Where(x => x.GUP_CODE == gupCode || x.GUP_CODE == "0")
+                  .Where(x => x.CUST_CODE == custCode || x.CUST_CODE == "0")
+                  .Where(x => locCodes.Contains((x.LOC_CODE)))
+                  .Select(x => x);
+      */
+      #endregion
+    }
+
+    public IQueryable<F1912> GetDatasByLocCodes(string dcCode, List<string> locCodes)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar},
+      };
+
+      var sql = @"SELECT * FROM F1912 WHERE DC_CODE=@p0";
+      sql += para.CombineSqlInParameters(" AND LOC_CODE", locCodes, SqlDbType.VarChar);
+      return SqlQuery<F1912>(sql, para.ToArray());
+
+      #region 原LINQ語法
+      /*
+      return _db.F1912s
+          .Where(x => x.DC_CODE == dcCode)
+          .Where(x => locCodes.Contains((x.LOC_CODE)))
+          .Select(x => x);
+      */
+      #endregion
+
+    }
+
+  }
 
 }

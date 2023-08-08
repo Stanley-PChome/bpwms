@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/3/6 上午 09:24:04
+// Generation date: 2023/07/04 下午 05:56:37
 namespace Wms3pl.WpfClient.DataServices.F02DataService
 {
     
@@ -469,6 +469,40 @@ namespace Wms3pl.WpfClient.DataServices.F02DataService
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private global::System.Data.Services.Client.DataServiceQuery<F02050402> _F02050402s;
         /// <summary>
+        /// There are no comments for F020601s in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceQuery<F020601> F020601s
+        {
+            get
+            {
+                if ((this._F020601s == null))
+                {
+                    this._F020601s = base.CreateQuery<F020601>("F020601s");
+                }
+                return this._F020601s;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceQuery<F020601> _F020601s;
+        /// <summary>
+        /// There are no comments for F020603s in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceQuery<F020603> F020603s
+        {
+            get
+            {
+                if ((this._F020603s == null))
+                {
+                    this._F020603s = base.CreateQuery<F020603>("F020603s");
+                }
+                return this._F020603s;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceQuery<F020603> _F020603s;
+        /// <summary>
         /// There are no comments for F020103s in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -659,6 +693,22 @@ namespace Wms3pl.WpfClient.DataServices.F02DataService
         public void AddToF02050402s(F02050402 f02050402)
         {
             base.AddObject("F02050402s", f02050402);
+        }
+        /// <summary>
+        /// There are no comments for F020601s in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public void AddToF020601s(F020601 f020601)
+        {
+            base.AddObject("F020601s", f020601);
+        }
+        /// <summary>
+        /// There are no comments for F020603s in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public void AddToF020603s(F020603 f020603)
+        {
+            base.AddObject("F020603s", f020603);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private abstract class GeneratedEdmModel
@@ -859,184 +909,217 @@ namespace Wms3pl.WpfClient.DataServices.F02DataService
             private const string ModelPart2 = "CODE\" Type=\"Edm.String\" /><Property Name=\"RT_NO\" Type=\"Edm.String\" /><Property Na" +
                 "me=\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"IN_DATE\" Type=\"Edm.DateTime\" /><" +
                 "Property Name=\"TARWAREHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"QUICK_CHECK\"" +
-                " Type=\"Edm.String\" /><Property Name=\"MAKE_NO\" Type=\"Edm.String\" /></EntityType><" +
-                "EntityType Name=\"F020201\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name" +
-                "=\"DC_CODE\" /><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Name=\"RT_NO\" /><Propert" +
-                "yRef Name=\"RT_SEQ\" /></Key><Property Name=\"RT_NO\" Type=\"Edm.String\" Nullable=\"fa" +
-                "lse\" /><Property Name=\"RT_SEQ\" Type=\"Edm.String\" Nullable=\"false\" /><Property Na" +
-                "me=\"PURCHASE_NO\" Type=\"Edm.String\" /><Property Name=\"PURCHASE_SEQ\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"VNR_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" " +
-                "Type=\"Edm.String\" /><Property Name=\"RECE_DATE\" Type=\"Edm.DateTime\" /><Property N" +
-                "ame=\"VALI_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"MADE_DATE\" Type=\"Edm.DateT" +
-                "ime\" /><Property Name=\"ORDER_QTY\" Type=\"Edm.Int32\" /><Property Name=\"RECV_QTY\" T" +
-                "ype=\"Edm.Int32\" /><Property Name=\"CHECK_QTY\" Type=\"Edm.Int32\" /><Property Name=\"" +
-                "STATUS\" Type=\"Edm.String\" /><Property Name=\"CHECK_ITEM\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"CHECK_SERIAL\" Type=\"Edm.String\" /><Property Name=\"ISPRINT\" Type=\"Edm" +
-                ".String\" /><Property Name=\"ISUPLOAD\" Type=\"Edm.String\" /><Property Name=\"DC_CODE" +
-                "\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.Strin" +
-                "g\" Nullable=\"false\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"fal" +
-                "se\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" T" +
-                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_NAME\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=" +
-                "\"SPECIAL_DESC\" Type=\"Edm.String\" /><Property Name=\"SPECIAL_CODE\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"ISSPECIAL\" Type=\"Edm.String\" /><Property Name=\"IN_DATE\" Typ" +
-                "e=\"Edm.DateTime\" /><Property Name=\"TARWAREHOUSE_ID\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"QUICK_CHECK\" Type=\"Edm.String\" /><Property Name=\"MAKE_NO\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"RT_MODE\" Type=\"Edm.String\" /></EntityType><EntityType Name" +
-                "=\"F020202\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int" +
-                "64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /" +
-                "><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Property Name=\"STOCK_SEQ\" Type=\"" +
-                "Edm.Int32\" Nullable=\"false\" /><Property Name=\"RT_NO\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_NO\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"ALLOCATION_SEQ\" Type=\"Edm.Int16\" Nullable=\"false\" /><Pro" +
-                "perty Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"LOC_CODE\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"VALID" +
-                "_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"ENTER_DATE\" Type=\"" +
-                "Edm.DateTime\" Nullable=\"false\" /><Property Name=\"MAKE_NO\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"VNR_CODE\" Type=\"Edm.String\" /><Property Name=\"SERIAL_NO\" Type=\"Edm" +
-                ".String\" /><Property Name=\"BOX_CTRL_NO\" Type=\"Edm.String\" /><Property Name=\"PALL" +
-                "ET_CTRL_NO\" Type=\"Edm.String\" /><Property Name=\"TAR_QTY\" Type=\"Edm.Int64\" Nullab" +
-                "le=\"false\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DAT" +
-                "E\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\"" +
-                " Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property " +
-                "Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F020203\"><Key" +
-                "><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name" +
-                "=\"GUP_CODE\" /><PropertyRef Name=\"ITEM_CODE\" /><PropertyRef Name=\"RT_DATE\" /></Ke" +
-                "y><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"" +
-                "GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CUST_CODE\" Type=\"" +
-                "Edm.String\" Nullable=\"false\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" Null" +
-                "able=\"false\" /><Property Name=\"RT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><" +
-                "Property Name=\"RT_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CRT_D" +
-                "ATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm" +
-                ".String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DAT" +
-                "E\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F0205\"><Key" +
-                "><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"f" +
-                "alse\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name" +
-                "=\"STOCK_NO\" Type=\"Edm.String\" /><Property Name=\"STOCK_SEQ\" Type=\"Edm.String\" /><" +
-                "Property Name=\"RT_NO\" Type=\"Edm.String\" /><Property Name=\"RT_SEQ\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"PICK_WARE_ID\" Type=\"Edm.String\" /><Property Name=\"TYPE_COD" +
-                "E\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property " +
-                "Name=\"NEED_DOUBLE_CHECK\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"B_Q" +
-                "TY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"A_QTY\" Type=\"Edm.Int32\" " +
-                "/><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Ed" +
-                "m.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm." +
-                "DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_N" +
-                "AME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F020501\"><Key><PropertyR" +
-                "ef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Pr" +
-                "operty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CONTAINER" +
-                "_CODE\" Type=\"Edm.String\" /><Property Name=\"F0701_ID\" Type=\"Edm.Int64\" Nullable=\"" +
-                "false\" /><Property Name=\"PICK_WARE_ID\" Type=\"Edm.String\" /><Property Name=\"TYPE_" +
-                "CODE\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property " +
-                "Name=\"ALLOCATION_NO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.Dat" +
-                "eTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateT" +
-                "ime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" " +
-                "Type=\"Edm.String\" /></EntityType><EntityType Name=\"F020502\"><Key><PropertyRef Na" +
-                "me=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Propert" +
-                "y Name=\"F020501_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\"" +
-                " Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" />" +
-                "<Property Name=\"STOCK_SEQ\" Type=\"Edm.String\" /><Property Name=\"RT_NO\" Type=\"Edm." +
-                "String\" /><Property Name=\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\"" +
-                " Type=\"Edm.String\" /><Property Name=\"QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><P" +
-                "roperty Name=\"CONTAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"BIN_CODE\" Type" +
-                "=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"RECH" +
-                "ECK_CAUSE\" Type=\"Edm.String\" /><Property Name=\"RECHECK_MEMO\" Type=\"Edm.String\" /" +
-                "><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fa";
+                " Type=\"Edm.String\" /><Property Name=\"MAKE_NO\" Type=\"Edm.String\" /><Property Name" +
+                "=\"DEVICE_MODE\" Type=\"Edm.String\" /><Property Name=\"PALLET_LOCATION\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"IS_PRINT_ITEM_ID\" Type=\"Edm.String\" /><Property Name=\"CH" +
+                "ECK_DETAIL\" Type=\"Edm.String\" /><Property Name=\"DEFECT_QTY\" Type=\"Edm.Int32\" /><" +
+                "/EntityType><EntityType Name=\"F020201\"><Key><PropertyRef Name=\"CUST_CODE\" /><Pro" +
+                "pertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Name=\"RT_N" +
+                "O\" /><PropertyRef Name=\"RT_SEQ\" /></Key><Property Name=\"RT_NO\" Type=\"Edm.String\"" +
+                " Nullable=\"false\" /><Property Name=\"RT_SEQ\" Type=\"Edm.String\" Nullable=\"false\" /" +
+                "><Property Name=\"PURCHASE_NO\" Type=\"Edm.String\" /><Property Name=\"PURCHASE_SEQ\" " +
+                "Type=\"Edm.String\" /><Property Name=\"VNR_CODE\" Type=\"Edm.String\" /><Property Name" +
+                "=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"RECE_DATE\" Type=\"Edm.DateTime\" " +
+                "/><Property Name=\"VALI_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"MADE_DATE\" Ty" +
+                "pe=\"Edm.DateTime\" /><Property Name=\"ORDER_QTY\" Type=\"Edm.Int32\" /><Property Name" +
+                "=\"RECV_QTY\" Type=\"Edm.Int32\" /><Property Name=\"CHECK_QTY\" Type=\"Edm.Int32\" /><Pr" +
+                "operty Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CHECK_ITEM\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"CHECK_SERIAL\" Type=\"Edm.String\" /><Property Name=\"ISPRI" +
+                "NT\" Type=\"Edm.String\" /><Property Name=\"ISUPLOAD\" Type=\"Edm.String\" /><Property " +
+                "Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Ty" +
+                "pe=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" " +
+                "Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name" +
+                "=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name" +
+                "=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"SPECIAL_DESC\" Type=\"Edm.String\" /><Property Name=\"SPECIAL_CODE\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"ISSPECIAL\" Type=\"Edm.String\" /><Property Name=" +
+                "\"IN_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"TARWAREHOUSE_ID\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"QUICK_CHECK\" Type=\"Edm.String\" /><Property Name=\"MAKE_NO\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"RT_MODE\" Type=\"Edm.String\" /><Property Name=\"" +
+                "DEVICE_MODE\" Type=\"Edm.String\" /><Property Name=\"PALLET_LOCATION\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"IS_PRINT_ITEM_ID\" Type=\"Edm.String\" /><Property Name=\"IS_P" +
+                "RINT_RECVNOTE\" Type=\"Edm.String\" /><Property Name=\"PRINT_MODE\" Type=\"Edm.String\"" +
+                " /><Property Name=\"PRINT_TIME\" Type=\"Edm.DateTime\" /><Property Name=\"PRINT_STAFF" +
+                "\" Type=\"Edm.String\" /><Property Name=\"PRINT_NAME\" Type=\"Edm.String\" /><Property " +
+                "Name=\"CUST_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"DEFECT_QTY\" Type=\"Edm.Int" +
+                "32\" /></EntityType><EntityType Name=\"F020202\"><Key><PropertyRef Name=\"ID\" /></Ke" +
+                "y><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_COD" +
+                "E\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" " +
+                "/><Property Name=\"STOCK_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=" +
+                "\"RT_NO\" Type=\"Edm.String\" /><Property Name=\"RT_SEQ\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"ALLOCATION_NO\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_SEQ\" Type=" +
+                "\"Edm.Int16\" Nullable=\"false\" /><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" /" +
+                "><Property Name=\"LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"" +
+                "Edm.String\" /><Property Name=\"VALID_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /" +
+                "><Property Name=\"ENTER_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Na" +
+                "me=\"MAKE_NO\" Type=\"Edm.String\" /><Property Name=\"VNR_CODE\" Type=\"Edm.String\" /><" +
+                "Property Name=\"SERIAL_NO\" Type=\"Edm.String\" /><Property Name=\"BOX_CTRL_NO\" Type=" +
+                "\"Edm.String\" /><Property Name=\"PALLET_CTRL_NO\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"TAR_QTY\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"STATUS\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Pr" +
+                "operty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm." +
+                "String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_ST" +
+                "AFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityT" +
+                "ype><EntityType Name=\"F020203\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef" +
+                " Name=\"DC_CODE\" /><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Name=\"ITEM_CODE\" /" +
+                "><PropertyRef Name=\"RT_DATE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" " +
+                "Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" " +
+                "/><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name" +
+                "=\"ITEM_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"RT_DATE\" Type=" +
+                "\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"RT_SEQ\" Type=\"Edm.Int32\" Nulla" +
+                "ble=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><" +
+                "Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_" +
+                "STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></Entit" +
+                "yType><EntityType Name=\"F0205\"><Key><PropertyRef Name=\"ID\" /></Key><Property Nam" +
+                "e=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\"" +
+                " Type=\"Edm.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"STOCK_SEQ\" Type=\"Edm.String\" /><Property Name=\"RT_NO\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"PICK_WARE_ID\" Type=\"Edm" +
+                ".String\" /><Property Name=\"TYPE_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_C" +
+                "ODE\" Type=\"Edm.String\" /><Property Name=\"NEED_DOUBLE_CHECK\" Type=\"Edm.Int32\" Nul" +
+                "lable=\"false\" /><Property Name=\"B_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Prop" +
+                "erty Name=\"A_QTY\" Type=\"Edm.Int32\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /" +
+                "><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name" +
+                "=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><" +
+                "Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"" +
+                "Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><Entity" +
+                "Type Name=\"F020501\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type" +
+                "=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm." +
+                "String\" /><Property Name=\"CONTAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"F0" +
+                "701_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"PICK_WARE_ID\" Type=\"" +
+                "Edm.String\" /><Property Name=\"TYPE_CODE\" Type=\"Edm.String\" /><Property Name=\"STA" +
+                "TUS\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_NO\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT" +
+                "_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType " +
+                "Name=\"F020502\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm" +
+                ".Int64\" Nullable=\"false\" /><Property Name=\"F020501_ID\" Type";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart3 = "lse\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" T" +
+            private const string ModelPart3 = "=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Property Name=\"STOCK_SEQ" +
+                "\" Type=\"Edm.String\" /><Property Name=\"RT_NO\" Type=\"Edm.String\" /><Property Name=" +
+                "\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CONTAINER_C" +
+                "ODE\" Type=\"Edm.String\" /><Property Name=\"BIN_CODE\" Type=\"Edm.String\" /><Property" +
+                " Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"RECHECK_CAUSE\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"RECHECK_MEMO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE" +
+                "\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" " +
+                "Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"RCV_MEMO\" Type=\"Edm.String\" /" +
+                "></EntityType><EntityType Name=\"F020503\"><Key><PropertyRef Name=\"ID\" /></Key><Pr" +
+                "operty Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"F020501_ID\"" +
+                " Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"PICK_WARE_ID\" Type=\"Edm.Str" +
+                "ing\" /><Property Name=\"CONTAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"EMP_I" +
+                "D\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=" +
+                "\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" />" +
+                "<Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F02" +
+                "0504\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" N" +
+                "ullable=\"false\" /><Property Name=\"PROC_DATE\" Type=\"Edm.DateTime\" Nullable=\"false" +
+                "\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=" +
+                "\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ST" +
+                "OCK_NO\" Type=\"Edm.String\" /><Property Name=\"STOCK_SEQ\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"RT_NO\" Type=\"Edm.String\" /><Property Name=\"RT_SEQ\" Type=\"Edm.String\" " +
+                "/><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"QTY\" Type=\"Edm." +
+                "Int32\" Nullable=\"false\" /><Property Name=\"CONTAINER_CODE\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"BIN_CODE\" Type=\"Edm.String\" /><Property Name=\"PROC_CODE\" Type=\"Edm" +
+                ".String\" /><Property Name=\"MEMO\" Type=\"Edm.String\" /><Property Name=\"REMOVE_RECV" +
+                "_QTY\" Type=\"Edm.Int32\" /><Property Name=\"NOTGOOD_QTY\" Type=\"Edm.Int32\" /><Proper" +
+                "ty Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"F020502_ID\" Type=\"Edm.Int64" +
+                "\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fal" +
+                "se\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" T" +
                 "ype=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Nam" +
                 "e=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" />" +
-                "<Property Name=\"RCV_MEMO\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F02" +
-                "0503\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" N" +
-                "ullable=\"false\" /><Property Name=\"F020501_ID\" Type=\"Edm.Int64\" Nullable=\"false\" " +
-                "/><Property Name=\"PICK_WARE_ID\" Type=\"Edm.String\" /><Property Name=\"CONTAINER_CO" +
-                "DE\" Type=\"Edm.String\" /><Property Name=\"EMP_ID\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nu" +
-                "llable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"" +
-                "CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><P" +
-                "roperty Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm" +
-                ".String\" /></EntityType><EntityType Name=\"F020504\"><Key><PropertyRef Name=\"ID\" /" +
-                "></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"P" +
-                "ROC_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"" +
-                "Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST" +
-                "_CODE\" Type=\"Edm.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"STOCK_SEQ\" Type=\"Edm.String\" /><Property Name=\"RT_NO\" Type=\"Edm.String\"" +
-                " /><Property Name=\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"" +
-                "Edm.String\" /><Property Name=\"QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property" +
-                " Name=\"CONTAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"BIN_CODE\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"PROC_CODE\" Type=\"Edm.String\" /><Property Name=\"MEMO\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"REMOVE_RECV_QTY\" Type=\"Edm.Int32\" /><Property " +
-                "Name=\"NOTGOOD_QTY\" Type=\"Edm.Int32\" /><Property Name=\"STATUS\" Type=\"Edm.String\" " +
-                "/><Property Name=\"F020502_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name" +
-                "=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
-                "UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><" +
-                "Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F020" +
-                "50401\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" " +
-                "Nullable=\"false\" /><Property Name=\"F020504_ID\" Type=\"Edm.Int64\" Nullable=\"false\"" +
-                " /><Property Name=\"PROC_DESC\" Type=\"Edm.String\" /><Property Name=\"RECHECK_CAUSE\"" +
-                " Type=\"Edm.String\" /><Property Name=\"MEMO\" Type=\"Edm.String\" /><Property Name=\"P" +
-                "ROC_STAFF\" Type=\"Edm.String\" /><Property Name=\"PROC_NAME\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"PROC_TIME\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"" +
-                "CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type" +
-                "=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UP" +
-                "D_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Pr" +
-                "operty Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F02050" +
-                "402\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nu" +
-                "llable=\"false\" /><Property Name=\"F020504_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /" +
-                "><Property Name=\"F020501_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=" +
-                "\"F020502_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"" +
-                "Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST" +
-                "_CODE\" Type=\"Edm.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"RT_NO\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\"" +
-                " /><Property Name=\"SERIAL_NO\" Type=\"Edm.String\" /><Property Name=\"PROC_TYPE\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"PRO" +
-                "C_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"MESSAGE\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"RESENT_CNT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CRT_D" +
-                "ATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm" +
-                ".String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DAT" +
-                "E\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType></Schema><Schema Namespace=\"W" +
-                "ms3pl.DBCore\" xmlns=\"http://schemas.microsoft.com/ado/2006/04/edm\"><EntityContai" +
-                "ner Name=\"Wms3plDbContext\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"F0" +
-                "20103s\" EntityType=\"Wms3pl.Datas.F02.F020103\" /><EntitySet Name=\"F020104s\" Entit" +
-                "yType=\"Wms3pl.Datas.F02.F020104\" /><EntitySet Name=\"F0202s\" EntityType=\"Wms3pl.D" +
-                "atas.F02.F0202\" /><EntitySet Name=\"F02020105s\" EntityType=\"Wms3pl.Datas.F02.F020" +
-                "20105\" /><EntitySet Name=\"F02020103s\" EntityType=\"Wms3pl.Datas.F02.F02020103\" />" +
-                "<EntitySet Name=\"F02020106s\" EntityType=\"Wms3pl.Datas.F02.F02020106\" /><EntitySe" +
-                "t Name=\"F02020107s\" EntityType=\"Wms3pl.Datas.F02.F02020107\" /><EntitySet Name=\"F" +
-                "02020108s\" EntityType=\"Wms3pl.Datas.F02.F02020108\" /><EntitySet Name=\"F02020109s" +
-                "\" EntityType=\"Wms3pl.Datas.F02.F02020109\" /><EntitySet Name=\"F02020102s\" EntityT" +
-                "ype=\"Wms3pl.Datas.F02.F02020102\" /><EntitySet Name=\"F020302s\" EntityType=\"Wms3pl" +
-                ".Datas.F02.F020302\" /><EntitySet Name=\"F02020104s\" EntityType=\"Wms3pl.Datas.F02." +
-                "F02020104\" /><EntitySet Name=\"F020301s\" EntityType=\"Wms3pl.Datas.F02.F020301\" />" +
-                "<EntitySet Name=\"F02020101s\" EntityType=\"Wms3pl.Datas.F02.F02020101\" /><EntitySe" +
-                "t Name=\"F020201s\" EntityType=\"Wms3pl.Datas.F02.F020201\" /><EntitySet Name=\"F0202" +
-                "02s\" EntityType=\"Wms3pl.Datas.F02.F020202\" /><EntitySet Name=\"F020203s\" EntityTy" +
-                "pe=\"Wms3pl.Datas.F02.F020203\" /><EntitySet Name=\"F0205s\" EntityType=\"Wms3pl.Data" +
-                "s.F02.F0205\" /><EntitySet Name=\"F020501s\" EntityType=\"Wms3pl.Datas.F02.F020501\" " +
-                "/><EntitySet Name=\"F020502s\" EntityType=\"Wms3pl.Datas.F02.F020502\" /><EntitySet " +
-                "Name=\"F020503s\" EntityType=\"Wms3pl.Datas.F02.F020503\" /><EntitySet Name=\"F020504" +
-                "s\" EntityType=\"Wms3pl.Datas.F02.F020504\" /><EntitySet Name=\"F02050401s\" EntityTy" +
-                "pe=\"Wms3pl.Datas.F02.F02050401\" /><EntitySet Name=\"F02050402s\" EntityType=\"Wms3p" +
-                "l.Datas.F02.F02050402\" /><FunctionImport Name=\"GetAllocationData\" ReturnType=\"Co" +
-                "llection(Wms3pl.Datas.F02.F020201)\" EntitySet=\"F020201s\" m:HttpMethod=\"GET\"><Par" +
-                "ameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"allocatio" +
-                "nNo\" Type=\"Edm.String\" /></FunctionImport></EntityContainer></Schema></edmx:Data" +
-                "Services></edmx:Edmx>";
+                "</EntityType><EntityType Name=\"F02050401\"><Key><PropertyRef Name=\"ID\" /></Key><P" +
+                "roperty Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"F020504_ID" +
+                "\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"PROC_DESC\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"RECHECK_CAUSE\" Type=\"Edm.String\" /><Property Name=\"MEMO\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"PROC_STAFF\" Type=\"Edm.String\" /><Property Name" +
+                "=\"PROC_NAME\" Type=\"Edm.String\" /><Property Name=\"PROC_TIME\" Type=\"Edm.DateTime\" " +
+                "Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false" +
+                "\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=" +
+                "\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></" +
+                "EntityType><EntityType Name=\"F02050402\"><Key><PropertyRef Name=\"ID\" /></Key><Pro" +
+                "perty Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"F020504_ID\" " +
+                "Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"F020501_ID\" Type=\"Edm.Int64\"" +
+                " Nullable=\"false\" /><Property Name=\"F020502_ID\" Type=\"Edm.Int64\" Nullable=\"false" +
+                "\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=" +
+                "\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ST" +
+                "OCK_NO\" Type=\"Edm.String\" /><Property Name=\"RT_NO\" Type=\"Edm.String\" /><Property" +
+                " Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"SERIAL_NO\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"PROC_TYPE\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type" +
+                "=\"Edm.String\" /><Property Name=\"PROC_DATE\" Type=\"Edm.DateTime\" /><Property Name=" +
+                "\"MESSAGE\" Type=\"Edm.String\" /><Property Name=\"RESENT_CNT\" Type=\"Edm.Int32\" Nulla" +
+                "ble=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><" +
+                "Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_" +
+                "STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></Entit" +
+                "yType><EntityType Name=\"F020601\"><Key><PropertyRef Name=\"ID\" /></Key><Property N" +
+                "ame=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"RT_NO\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=" +
+                "\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_ORD_NO\" Type=\"Edm.String\" /" +
+                "><Property Name=\"PROC_TYPE\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"TRANS_TO_LMS\" Type=\"Edm.String\" /><Property Name=\"ME" +
+                "SSAGE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullabl" +
+                "e=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_N" +
+                "AME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Proper" +
+                "ty Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.Stri" +
+                "ng\" /></EntityType><EntityType Name=\"F020603\"><Key><PropertyRef Name=\"ID\" /></Ke" +
+                "y><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"F02050" +
+                "1_ID\" Type=\"Edm.Int64\" /><Property Name=\"F0701_ID\" Type=\"Edm.Int64\" /><Property " +
+                "Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /" +
+                "><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"PROC_TYPE\" Type=" +
+                "\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"MESSA" +
+                "GE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"" +
+                "false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME" +
+                "\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property " +
+                "Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\"" +
+                " /></EntityType></Schema><Schema Namespace=\"Wms3pl.DBCore\" xmlns=\"http://schemas" +
+                ".microsoft.com/ado/2006/04/edm\"><EntityContainer Name=\"Wms3plDbContext\" m:IsDefa" +
+                "ultEntityContainer=\"true\"><EntitySet Name=\"F020103s\" EntityType=\"Wms3pl.Datas.F0" +
+                "2.F020103\" /><EntitySet Name=\"F020104s\" EntityType=\"Wms3pl.Datas.F02.F020104\" />" +
+                "<EntitySet Name=\"F0202s\" EntityType=\"Wms3pl.Datas.F02.F0202\" /><EntitySet Name=\"" +
+                "F02020105s\" EntityType=\"Wms3pl.Datas.F02.F02020105\" /><EntitySet Name=\"F02020103" +
+                "s\" EntityType=\"Wms3pl.Datas.F02.F02020103\" /><EntitySet Name=\"F02020106s\" Entity" +
+                "Type=\"Wms3pl.Datas.F02.F02020106\" /><EntitySet Name=\"F02020107s\" EntityType=\"Wms" +
+                "3pl.Datas.F02.F02020107\" /><EntitySet Name=\"F02020108s\" EntityType=\"Wms3pl.Datas" +
+                ".F02.F02020108\" /><EntitySet Name=\"F02020109s\" EntityType=\"";
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+            private const string ModelPart4 = "Wms3pl.Datas.F02.F02020109\" /><EntitySet Name=\"F02020102s\" EntityType=\"Wms3pl.Dat" +
+                "as.F02.F02020102\" /><EntitySet Name=\"F020302s\" EntityType=\"Wms3pl.Datas.F02.F020" +
+                "302\" /><EntitySet Name=\"F02020104s\" EntityType=\"Wms3pl.Datas.F02.F02020104\" /><E" +
+                "ntitySet Name=\"F020301s\" EntityType=\"Wms3pl.Datas.F02.F020301\" /><EntitySet Name" +
+                "=\"F02020101s\" EntityType=\"Wms3pl.Datas.F02.F02020101\" /><EntitySet Name=\"F020201" +
+                "s\" EntityType=\"Wms3pl.Datas.F02.F020201\" /><EntitySet Name=\"F020202s\" EntityType" +
+                "=\"Wms3pl.Datas.F02.F020202\" /><EntitySet Name=\"F020203s\" EntityType=\"Wms3pl.Data" +
+                "s.F02.F020203\" /><EntitySet Name=\"F0205s\" EntityType=\"Wms3pl.Datas.F02.F0205\" />" +
+                "<EntitySet Name=\"F020501s\" EntityType=\"Wms3pl.Datas.F02.F020501\" /><EntitySet Na" +
+                "me=\"F020502s\" EntityType=\"Wms3pl.Datas.F02.F020502\" /><EntitySet Name=\"F020503s\"" +
+                " EntityType=\"Wms3pl.Datas.F02.F020503\" /><EntitySet Name=\"F020504s\" EntityType=\"" +
+                "Wms3pl.Datas.F02.F020504\" /><EntitySet Name=\"F02050401s\" EntityType=\"Wms3pl.Data" +
+                "s.F02.F02050401\" /><EntitySet Name=\"F02050402s\" EntityType=\"Wms3pl.Datas.F02.F02" +
+                "050402\" /><EntitySet Name=\"F020601s\" EntityType=\"Wms3pl.Datas.F02.F020601\" /><En" +
+                "titySet Name=\"F020603s\" EntityType=\"Wms3pl.Datas.F02.F020603\" /><FunctionImport " +
+                "Name=\"GetAllocationData\" ReturnType=\"Collection(Wms3pl.Datas.F02.F020201)\" Entit" +
+                "ySet=\"F020201s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"E" +
+                "dm.String\" /><Parameter Name=\"allocationNo\" Type=\"Edm.String\" /></FunctionImport" +
+                "></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
-                return string.Concat(ModelPart0, ModelPart1, ModelPart2, ModelPart3);
+                return string.Concat(ModelPart0, ModelPart1, ModelPart2, ModelPart3, ModelPart4);
             }
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             public static global::Microsoft.Data.Edm.IEdmModel GetInstance()
@@ -6836,6 +6919,116 @@ namespace Wms3pl.WpfClient.DataServices.F02DataService
         private string _MAKE_NO;
         partial void OnMAKE_NOChanging(string value);
         partial void OnMAKE_NOChanged();
+        /// <summary>
+        /// There are no comments for Property DEVICE_MODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DEVICE_MODE
+        {
+            get
+            {
+                return this._DEVICE_MODE;
+            }
+            set
+            {
+                this.OnDEVICE_MODEChanging(value);
+                this._DEVICE_MODE = value;
+                this.OnDEVICE_MODEChanged();
+                this.OnPropertyChanged("DEVICE_MODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DEVICE_MODE;
+        partial void OnDEVICE_MODEChanging(string value);
+        partial void OnDEVICE_MODEChanged();
+        /// <summary>
+        /// There are no comments for Property PALLET_LOCATION in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PALLET_LOCATION
+        {
+            get
+            {
+                return this._PALLET_LOCATION;
+            }
+            set
+            {
+                this.OnPALLET_LOCATIONChanging(value);
+                this._PALLET_LOCATION = value;
+                this.OnPALLET_LOCATIONChanged();
+                this.OnPropertyChanged("PALLET_LOCATION");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PALLET_LOCATION;
+        partial void OnPALLET_LOCATIONChanging(string value);
+        partial void OnPALLET_LOCATIONChanged();
+        /// <summary>
+        /// There are no comments for Property IS_PRINT_ITEM_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string IS_PRINT_ITEM_ID
+        {
+            get
+            {
+                return this._IS_PRINT_ITEM_ID;
+            }
+            set
+            {
+                this.OnIS_PRINT_ITEM_IDChanging(value);
+                this._IS_PRINT_ITEM_ID = value;
+                this.OnIS_PRINT_ITEM_IDChanged();
+                this.OnPropertyChanged("IS_PRINT_ITEM_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _IS_PRINT_ITEM_ID;
+        partial void OnIS_PRINT_ITEM_IDChanging(string value);
+        partial void OnIS_PRINT_ITEM_IDChanged();
+        /// <summary>
+        /// There are no comments for Property CHECK_DETAIL in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CHECK_DETAIL
+        {
+            get
+            {
+                return this._CHECK_DETAIL;
+            }
+            set
+            {
+                this.OnCHECK_DETAILChanging(value);
+                this._CHECK_DETAIL = value;
+                this.OnCHECK_DETAILChanged();
+                this.OnPropertyChanged("CHECK_DETAIL");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CHECK_DETAIL;
+        partial void OnCHECK_DETAILChanging(string value);
+        partial void OnCHECK_DETAILChanged();
+        /// <summary>
+        /// There are no comments for Property DEFECT_QTY in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<int> DEFECT_QTY
+        {
+            get
+            {
+                return this._DEFECT_QTY;
+            }
+            set
+            {
+                this.OnDEFECT_QTYChanging(value);
+                this._DEFECT_QTY = value;
+                this.OnDEFECT_QTYChanged();
+                this.OnPropertyChanged("DEFECT_QTY");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<int> _DEFECT_QTY;
+        partial void OnDEFECT_QTYChanging(global::System.Nullable<int> value);
+        partial void OnDEFECT_QTYChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -7630,6 +7823,226 @@ namespace Wms3pl.WpfClient.DataServices.F02DataService
         private string _RT_MODE;
         partial void OnRT_MODEChanging(string value);
         partial void OnRT_MODEChanged();
+        /// <summary>
+        /// There are no comments for Property DEVICE_MODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DEVICE_MODE
+        {
+            get
+            {
+                return this._DEVICE_MODE;
+            }
+            set
+            {
+                this.OnDEVICE_MODEChanging(value);
+                this._DEVICE_MODE = value;
+                this.OnDEVICE_MODEChanged();
+                this.OnPropertyChanged("DEVICE_MODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DEVICE_MODE;
+        partial void OnDEVICE_MODEChanging(string value);
+        partial void OnDEVICE_MODEChanged();
+        /// <summary>
+        /// There are no comments for Property PALLET_LOCATION in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PALLET_LOCATION
+        {
+            get
+            {
+                return this._PALLET_LOCATION;
+            }
+            set
+            {
+                this.OnPALLET_LOCATIONChanging(value);
+                this._PALLET_LOCATION = value;
+                this.OnPALLET_LOCATIONChanged();
+                this.OnPropertyChanged("PALLET_LOCATION");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PALLET_LOCATION;
+        partial void OnPALLET_LOCATIONChanging(string value);
+        partial void OnPALLET_LOCATIONChanged();
+        /// <summary>
+        /// There are no comments for Property IS_PRINT_ITEM_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string IS_PRINT_ITEM_ID
+        {
+            get
+            {
+                return this._IS_PRINT_ITEM_ID;
+            }
+            set
+            {
+                this.OnIS_PRINT_ITEM_IDChanging(value);
+                this._IS_PRINT_ITEM_ID = value;
+                this.OnIS_PRINT_ITEM_IDChanged();
+                this.OnPropertyChanged("IS_PRINT_ITEM_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _IS_PRINT_ITEM_ID;
+        partial void OnIS_PRINT_ITEM_IDChanging(string value);
+        partial void OnIS_PRINT_ITEM_IDChanged();
+        /// <summary>
+        /// There are no comments for Property IS_PRINT_RECVNOTE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string IS_PRINT_RECVNOTE
+        {
+            get
+            {
+                return this._IS_PRINT_RECVNOTE;
+            }
+            set
+            {
+                this.OnIS_PRINT_RECVNOTEChanging(value);
+                this._IS_PRINT_RECVNOTE = value;
+                this.OnIS_PRINT_RECVNOTEChanged();
+                this.OnPropertyChanged("IS_PRINT_RECVNOTE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _IS_PRINT_RECVNOTE;
+        partial void OnIS_PRINT_RECVNOTEChanging(string value);
+        partial void OnIS_PRINT_RECVNOTEChanged();
+        /// <summary>
+        /// There are no comments for Property PRINT_MODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PRINT_MODE
+        {
+            get
+            {
+                return this._PRINT_MODE;
+            }
+            set
+            {
+                this.OnPRINT_MODEChanging(value);
+                this._PRINT_MODE = value;
+                this.OnPRINT_MODEChanged();
+                this.OnPropertyChanged("PRINT_MODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PRINT_MODE;
+        partial void OnPRINT_MODEChanging(string value);
+        partial void OnPRINT_MODEChanged();
+        /// <summary>
+        /// There are no comments for Property PRINT_TIME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> PRINT_TIME
+        {
+            get
+            {
+                return this._PRINT_TIME;
+            }
+            set
+            {
+                this.OnPRINT_TIMEChanging(value);
+                this._PRINT_TIME = value;
+                this.OnPRINT_TIMEChanged();
+                this.OnPropertyChanged("PRINT_TIME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _PRINT_TIME;
+        partial void OnPRINT_TIMEChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnPRINT_TIMEChanged();
+        /// <summary>
+        /// There are no comments for Property PRINT_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PRINT_STAFF
+        {
+            get
+            {
+                return this._PRINT_STAFF;
+            }
+            set
+            {
+                this.OnPRINT_STAFFChanging(value);
+                this._PRINT_STAFF = value;
+                this.OnPRINT_STAFFChanged();
+                this.OnPropertyChanged("PRINT_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PRINT_STAFF;
+        partial void OnPRINT_STAFFChanging(string value);
+        partial void OnPRINT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property PRINT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PRINT_NAME
+        {
+            get
+            {
+                return this._PRINT_NAME;
+            }
+            set
+            {
+                this.OnPRINT_NAMEChanging(value);
+                this._PRINT_NAME = value;
+                this.OnPRINT_NAMEChanged();
+                this.OnPropertyChanged("PRINT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PRINT_NAME;
+        partial void OnPRINT_NAMEChanging(string value);
+        partial void OnPRINT_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_ORD_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_ORD_NO
+        {
+            get
+            {
+                return this._CUST_ORD_NO;
+            }
+            set
+            {
+                this.OnCUST_ORD_NOChanging(value);
+                this._CUST_ORD_NO = value;
+                this.OnCUST_ORD_NOChanged();
+                this.OnPropertyChanged("CUST_ORD_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_ORD_NO;
+        partial void OnCUST_ORD_NOChanging(string value);
+        partial void OnCUST_ORD_NOChanged();
+        /// <summary>
+        /// There are no comments for Property DEFECT_QTY in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<int> DEFECT_QTY
+        {
+            get
+            {
+                return this._DEFECT_QTY;
+            }
+            set
+            {
+                this.OnDEFECT_QTYChanging(value);
+                this._DEFECT_QTY = value;
+                this.OnDEFECT_QTYChanged();
+                this.OnPropertyChanged("DEFECT_QTY");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<int> _DEFECT_QTY;
+        partial void OnDEFECT_QTYChanging(global::System.Nullable<int> value);
+        partial void OnDEFECT_QTYChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -11664,6 +12077,778 @@ namespace Wms3pl.WpfClient.DataServices.F02DataService
         private int _RESENT_CNT;
         partial void OnRESENT_CNTChanging(int value);
         partial void OnRESENT_CNTChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_DATE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.DateTime CRT_DATE
+        {
+            get
+            {
+                return this._CRT_DATE;
+            }
+            set
+            {
+                this.OnCRT_DATEChanging(value);
+                this._CRT_DATE = value;
+                this.OnCRT_DATEChanged();
+                this.OnPropertyChanged("CRT_DATE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.DateTime _CRT_DATE;
+        partial void OnCRT_DATEChanging(global::System.DateTime value);
+        partial void OnCRT_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_STAFF
+        {
+            get
+            {
+                return this._CRT_STAFF;
+            }
+            set
+            {
+                this.OnCRT_STAFFChanging(value);
+                this._CRT_STAFF = value;
+                this.OnCRT_STAFFChanged();
+                this.OnPropertyChanged("CRT_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_STAFF;
+        partial void OnCRT_STAFFChanging(string value);
+        partial void OnCRT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_NAME
+        {
+            get
+            {
+                return this._CRT_NAME;
+            }
+            set
+            {
+                this.OnCRT_NAMEChanging(value);
+                this._CRT_NAME = value;
+                this.OnCRT_NAMEChanged();
+                this.OnPropertyChanged("CRT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_NAME;
+        partial void OnCRT_NAMEChanging(string value);
+        partial void OnCRT_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_DATE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> UPD_DATE
+        {
+            get
+            {
+                return this._UPD_DATE;
+            }
+            set
+            {
+                this.OnUPD_DATEChanging(value);
+                this._UPD_DATE = value;
+                this.OnUPD_DATEChanged();
+                this.OnPropertyChanged("UPD_DATE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
+        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnUPD_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_STAFF
+        {
+            get
+            {
+                return this._UPD_STAFF;
+            }
+            set
+            {
+                this.OnUPD_STAFFChanging(value);
+                this._UPD_STAFF = value;
+                this.OnUPD_STAFFChanged();
+                this.OnPropertyChanged("UPD_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_STAFF;
+        partial void OnUPD_STAFFChanging(string value);
+        partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.F02.F020601 in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.EntitySetAttribute("F020601s")]
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("ID")]
+    public partial class F020601 : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new F020601 object.
+        /// </summary>
+        /// <param name="ID">Initial value of ID.</param>
+        /// <param name="cRT_DATE">Initial value of CRT_DATE.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static F020601 CreateF020601(long ID, global::System.DateTime cRT_DATE)
+        {
+            F020601 f020601 = new F020601();
+            f020601.ID = ID;
+            f020601.CRT_DATE = cRT_DATE;
+            return f020601;
+        }
+        /// <summary>
+        /// There are no comments for Property ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this._ID = value;
+                this.OnIDChanged();
+                this.OnPropertyChanged("ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _ID;
+        partial void OnIDChanging(long value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for Property RT_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string RT_NO
+        {
+            get
+            {
+                return this._RT_NO;
+            }
+            set
+            {
+                this.OnRT_NOChanging(value);
+                this._RT_NO = value;
+                this.OnRT_NOChanged();
+                this.OnPropertyChanged("RT_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _RT_NO;
+        partial void OnRT_NOChanging(string value);
+        partial void OnRT_NOChanged();
+        /// <summary>
+        /// There are no comments for Property STOCK_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string STOCK_NO
+        {
+            get
+            {
+                return this._STOCK_NO;
+            }
+            set
+            {
+                this.OnSTOCK_NOChanging(value);
+                this._STOCK_NO = value;
+                this.OnSTOCK_NOChanged();
+                this.OnPropertyChanged("STOCK_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _STOCK_NO;
+        partial void OnSTOCK_NOChanging(string value);
+        partial void OnSTOCK_NOChanged();
+        /// <summary>
+        /// There are no comments for Property DC_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DC_CODE
+        {
+            get
+            {
+                return this._DC_CODE;
+            }
+            set
+            {
+                this.OnDC_CODEChanging(value);
+                this._DC_CODE = value;
+                this.OnDC_CODEChanged();
+                this.OnPropertyChanged("DC_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DC_CODE;
+        partial void OnDC_CODEChanging(string value);
+        partial void OnDC_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property GUP_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string GUP_CODE
+        {
+            get
+            {
+                return this._GUP_CODE;
+            }
+            set
+            {
+                this.OnGUP_CODEChanging(value);
+                this._GUP_CODE = value;
+                this.OnGUP_CODEChanged();
+                this.OnPropertyChanged("GUP_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _GUP_CODE;
+        partial void OnGUP_CODEChanging(string value);
+        partial void OnGUP_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_CODE
+        {
+            get
+            {
+                return this._CUST_CODE;
+            }
+            set
+            {
+                this.OnCUST_CODEChanging(value);
+                this._CUST_CODE = value;
+                this.OnCUST_CODEChanged();
+                this.OnPropertyChanged("CUST_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_CODE;
+        partial void OnCUST_CODEChanging(string value);
+        partial void OnCUST_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_ORD_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_ORD_NO
+        {
+            get
+            {
+                return this._CUST_ORD_NO;
+            }
+            set
+            {
+                this.OnCUST_ORD_NOChanging(value);
+                this._CUST_ORD_NO = value;
+                this.OnCUST_ORD_NOChanged();
+                this.OnPropertyChanged("CUST_ORD_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_ORD_NO;
+        partial void OnCUST_ORD_NOChanging(string value);
+        partial void OnCUST_ORD_NOChanged();
+        /// <summary>
+        /// There are no comments for Property PROC_TYPE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PROC_TYPE
+        {
+            get
+            {
+                return this._PROC_TYPE;
+            }
+            set
+            {
+                this.OnPROC_TYPEChanging(value);
+                this._PROC_TYPE = value;
+                this.OnPROC_TYPEChanged();
+                this.OnPropertyChanged("PROC_TYPE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PROC_TYPE;
+        partial void OnPROC_TYPEChanging(string value);
+        partial void OnPROC_TYPEChanged();
+        /// <summary>
+        /// There are no comments for Property STATUS in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string STATUS
+        {
+            get
+            {
+                return this._STATUS;
+            }
+            set
+            {
+                this.OnSTATUSChanging(value);
+                this._STATUS = value;
+                this.OnSTATUSChanged();
+                this.OnPropertyChanged("STATUS");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _STATUS;
+        partial void OnSTATUSChanging(string value);
+        partial void OnSTATUSChanged();
+        /// <summary>
+        /// There are no comments for Property TRANS_TO_LMS in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string TRANS_TO_LMS
+        {
+            get
+            {
+                return this._TRANS_TO_LMS;
+            }
+            set
+            {
+                this.OnTRANS_TO_LMSChanging(value);
+                this._TRANS_TO_LMS = value;
+                this.OnTRANS_TO_LMSChanged();
+                this.OnPropertyChanged("TRANS_TO_LMS");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _TRANS_TO_LMS;
+        partial void OnTRANS_TO_LMSChanging(string value);
+        partial void OnTRANS_TO_LMSChanged();
+        /// <summary>
+        /// There are no comments for Property MESSAGE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MESSAGE
+        {
+            get
+            {
+                return this._MESSAGE;
+            }
+            set
+            {
+                this.OnMESSAGEChanging(value);
+                this._MESSAGE = value;
+                this.OnMESSAGEChanged();
+                this.OnPropertyChanged("MESSAGE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MESSAGE;
+        partial void OnMESSAGEChanging(string value);
+        partial void OnMESSAGEChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_DATE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.DateTime CRT_DATE
+        {
+            get
+            {
+                return this._CRT_DATE;
+            }
+            set
+            {
+                this.OnCRT_DATEChanging(value);
+                this._CRT_DATE = value;
+                this.OnCRT_DATEChanged();
+                this.OnPropertyChanged("CRT_DATE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.DateTime _CRT_DATE;
+        partial void OnCRT_DATEChanging(global::System.DateTime value);
+        partial void OnCRT_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_STAFF
+        {
+            get
+            {
+                return this._CRT_STAFF;
+            }
+            set
+            {
+                this.OnCRT_STAFFChanging(value);
+                this._CRT_STAFF = value;
+                this.OnCRT_STAFFChanged();
+                this.OnPropertyChanged("CRT_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_STAFF;
+        partial void OnCRT_STAFFChanging(string value);
+        partial void OnCRT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_NAME
+        {
+            get
+            {
+                return this._CRT_NAME;
+            }
+            set
+            {
+                this.OnCRT_NAMEChanging(value);
+                this._CRT_NAME = value;
+                this.OnCRT_NAMEChanged();
+                this.OnPropertyChanged("CRT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_NAME;
+        partial void OnCRT_NAMEChanging(string value);
+        partial void OnCRT_NAMEChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_DATE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> UPD_DATE
+        {
+            get
+            {
+                return this._UPD_DATE;
+            }
+            set
+            {
+                this.OnUPD_DATEChanging(value);
+                this._UPD_DATE = value;
+                this.OnUPD_DATEChanged();
+                this.OnPropertyChanged("UPD_DATE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
+        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnUPD_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_STAFF
+        {
+            get
+            {
+                return this._UPD_STAFF;
+            }
+            set
+            {
+                this.OnUPD_STAFFChanging(value);
+                this._UPD_STAFF = value;
+                this.OnUPD_STAFFChanged();
+                this.OnPropertyChanged("UPD_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_STAFF;
+        partial void OnUPD_STAFFChanging(string value);
+        partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for Wms3pl.Datas.F02.F020603 in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.EntitySetAttribute("F020603s")]
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("ID")]
+    public partial class F020603 : global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new F020603 object.
+        /// </summary>
+        /// <param name="ID">Initial value of ID.</param>
+        /// <param name="cRT_DATE">Initial value of CRT_DATE.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static F020603 CreateF020603(long ID, global::System.DateTime cRT_DATE)
+        {
+            F020603 f020603 = new F020603();
+            f020603.ID = ID;
+            f020603.CRT_DATE = cRT_DATE;
+            return f020603;
+        }
+        /// <summary>
+        /// There are no comments for Property ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public long ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this._ID = value;
+                this.OnIDChanged();
+                this.OnPropertyChanged("ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private long _ID;
+        partial void OnIDChanging(long value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for Property F020501_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<long> F020501_ID
+        {
+            get
+            {
+                return this._F020501_ID;
+            }
+            set
+            {
+                this.OnF020501_IDChanging(value);
+                this._F020501_ID = value;
+                this.OnF020501_IDChanged();
+                this.OnPropertyChanged("F020501_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<long> _F020501_ID;
+        partial void OnF020501_IDChanging(global::System.Nullable<long> value);
+        partial void OnF020501_IDChanged();
+        /// <summary>
+        /// There are no comments for Property F0701_ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<long> F0701_ID
+        {
+            get
+            {
+                return this._F0701_ID;
+            }
+            set
+            {
+                this.OnF0701_IDChanging(value);
+                this._F0701_ID = value;
+                this.OnF0701_IDChanged();
+                this.OnPropertyChanged("F0701_ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<long> _F0701_ID;
+        partial void OnF0701_IDChanging(global::System.Nullable<long> value);
+        partial void OnF0701_IDChanged();
+        /// <summary>
+        /// There are no comments for Property DC_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string DC_CODE
+        {
+            get
+            {
+                return this._DC_CODE;
+            }
+            set
+            {
+                this.OnDC_CODEChanging(value);
+                this._DC_CODE = value;
+                this.OnDC_CODEChanged();
+                this.OnPropertyChanged("DC_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _DC_CODE;
+        partial void OnDC_CODEChanging(string value);
+        partial void OnDC_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property GUP_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string GUP_CODE
+        {
+            get
+            {
+                return this._GUP_CODE;
+            }
+            set
+            {
+                this.OnGUP_CODEChanging(value);
+                this._GUP_CODE = value;
+                this.OnGUP_CODEChanged();
+                this.OnPropertyChanged("GUP_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _GUP_CODE;
+        partial void OnGUP_CODEChanging(string value);
+        partial void OnGUP_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property CUST_CODE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CUST_CODE
+        {
+            get
+            {
+                return this._CUST_CODE;
+            }
+            set
+            {
+                this.OnCUST_CODEChanging(value);
+                this._CUST_CODE = value;
+                this.OnCUST_CODEChanged();
+                this.OnPropertyChanged("CUST_CODE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CUST_CODE;
+        partial void OnCUST_CODEChanging(string value);
+        partial void OnCUST_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property PROC_TYPE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string PROC_TYPE
+        {
+            get
+            {
+                return this._PROC_TYPE;
+            }
+            set
+            {
+                this.OnPROC_TYPEChanging(value);
+                this._PROC_TYPE = value;
+                this.OnPROC_TYPEChanged();
+                this.OnPropertyChanged("PROC_TYPE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _PROC_TYPE;
+        partial void OnPROC_TYPEChanging(string value);
+        partial void OnPROC_TYPEChanged();
+        /// <summary>
+        /// There are no comments for Property STATUS in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string STATUS
+        {
+            get
+            {
+                return this._STATUS;
+            }
+            set
+            {
+                this.OnSTATUSChanging(value);
+                this._STATUS = value;
+                this.OnSTATUSChanged();
+                this.OnPropertyChanged("STATUS");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _STATUS;
+        partial void OnSTATUSChanging(string value);
+        partial void OnSTATUSChanged();
+        /// <summary>
+        /// There are no comments for Property MESSAGE in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string MESSAGE
+        {
+            get
+            {
+                return this._MESSAGE;
+            }
+            set
+            {
+                this.OnMESSAGEChanging(value);
+                this._MESSAGE = value;
+                this.OnMESSAGEChanged();
+                this.OnPropertyChanged("MESSAGE");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _MESSAGE;
+        partial void OnMESSAGEChanging(string value);
+        partial void OnMESSAGEChanged();
         /// <summary>
         /// There are no comments for Property CRT_DATE in the schema.
         /// </summary>

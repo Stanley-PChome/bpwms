@@ -2215,6 +2215,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P05WcfService {
         
         private string CHECK_CODEk__BackingFieldField;
         
+        private string CLOSE_BY_BOXNOk__BackingFieldField;
+        
         private System.Nullable<decimal> COLLECT_AMTk__BackingFieldField;
         
         private System.Nullable<System.DateTime> COMPLETE_TIMEk__BackingFieldField;
@@ -2289,6 +2291,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P05WcfService {
         
         private string NO_LOADINGk__BackingFieldField;
         
+        private string NO_SPEC_REPROTSk__BackingFieldField;
+        
         private string NP_FLAGk__BackingFieldField;
         
         private string OPERATORk__BackingFieldField;
@@ -2304,6 +2308,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P05WcfService {
         private string ORD_TYPEk__BackingFieldField;
         
         private string PACKING_TYPEk__BackingFieldField;
+        
+        private System.Nullable<System.DateTime> PACK_CANCEL_TIMEk__BackingFieldField;
+        
+        private System.Nullable<System.DateTime> PACK_FINISH_TIMEk__BackingFieldField;
+        
+        private System.Nullable<System.DateTime> PACK_START_TIMEk__BackingFieldField;
         
         private string PICK_ORD_NOk__BackingFieldField;
         
@@ -2477,6 +2487,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P05WcfService {
                 if ((object.ReferenceEquals(this.CHECK_CODEk__BackingFieldField, value) != true)) {
                     this.CHECK_CODEk__BackingFieldField = value;
                     this.RaisePropertyChanged("CHECK_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<CLOSE_BY_BOXNO>k__BackingField", IsRequired=true)]
+        public string CLOSE_BY_BOXNOk__BackingField {
+            get {
+                return this.CLOSE_BY_BOXNOk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CLOSE_BY_BOXNOk__BackingFieldField, value) != true)) {
+                    this.CLOSE_BY_BOXNOk__BackingFieldField = value;
+                    this.RaisePropertyChanged("CLOSE_BY_BOXNOk__BackingField");
                 }
             }
         }
@@ -2962,6 +2985,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P05WcfService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<NO_SPEC_REPROTS>k__BackingField", IsRequired=true)]
+        public string NO_SPEC_REPROTSk__BackingField {
+            get {
+                return this.NO_SPEC_REPROTSk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NO_SPEC_REPROTSk__BackingFieldField, value) != true)) {
+                    this.NO_SPEC_REPROTSk__BackingFieldField = value;
+                    this.RaisePropertyChanged("NO_SPEC_REPROTSk__BackingField");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(Name="<NP_FLAG>k__BackingField", IsRequired=true)]
         public string NP_FLAGk__BackingField {
             get {
@@ -3062,6 +3098,45 @@ namespace Wms3pl.WpfClient.ExDataServices.P05WcfService {
                 if ((object.ReferenceEquals(this.PACKING_TYPEk__BackingFieldField, value) != true)) {
                     this.PACKING_TYPEk__BackingFieldField = value;
                     this.RaisePropertyChanged("PACKING_TYPEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PACK_CANCEL_TIME>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> PACK_CANCEL_TIMEk__BackingField {
+            get {
+                return this.PACK_CANCEL_TIMEk__BackingFieldField;
+            }
+            set {
+                if ((this.PACK_CANCEL_TIMEk__BackingFieldField.Equals(value) != true)) {
+                    this.PACK_CANCEL_TIMEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PACK_CANCEL_TIMEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PACK_FINISH_TIME>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> PACK_FINISH_TIMEk__BackingField {
+            get {
+                return this.PACK_FINISH_TIMEk__BackingFieldField;
+            }
+            set {
+                if ((this.PACK_FINISH_TIMEk__BackingFieldField.Equals(value) != true)) {
+                    this.PACK_FINISH_TIMEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PACK_FINISH_TIMEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<PACK_START_TIME>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> PACK_START_TIMEk__BackingField {
+            get {
+                return this.PACK_START_TIMEk__BackingFieldField;
+            }
+            set {
+                if ((this.PACK_START_TIMEk__BackingFieldField.Equals(value) != true)) {
+                    this.PACK_START_TIMEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("PACK_START_TIMEk__BackingField");
                 }
             }
         }

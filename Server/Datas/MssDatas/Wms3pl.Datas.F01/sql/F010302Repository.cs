@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,8 +17,12 @@ namespace Wms3pl.Datas.F01
         /// <returns></returns>
         public IQueryable<F010302> GetOldF010302Datas()
         {
-            var sql = "SELECT DISTINCT b.* FROM f010302 b LEFT JOIN F010301 a ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO WHERE a.RECV_DATE <= CONVERT(VARCHAR, DATEADD(DAY, -1, dbo.getsysdate()), 111) AND a.id IS NOT NULL";
-            return SqlQuery<F010302>(sql);
+            var param = new List<SqlParameter>
+            {
+              new SqlParameter("@p0", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
+            var sql = "SELECT DISTINCT b.* FROM f010302 b LEFT JOIN F010301 a ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO WHERE a.RECV_DATE <= CONVERT(VARCHAR, DATEADD(DAY, -1, @p0), 111) AND a.id IS NOT NULL";
+            return SqlQuery<F010302>(sql, param.ToArray());
         }
 
         public ScanReceiptData GetNewF010302Data()

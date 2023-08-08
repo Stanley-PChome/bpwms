@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -263,10 +264,10 @@ namespace Wms3pl.Datas.F14
                                A.PALLET_CTRL_NO, 
                                @p4, 
                                @p5, 
-                               dbo.GetSysDate(), 
+                               @p6, 
                                @p4, 
                                @p5, 
-                               dbo.GetSysDate(), 
+                               @p6, 
                                A.MAKE_NO ,
 															 A.DEVICE_STOCK_QTY,
                                A.UNMOVE_STOCK_QTY
@@ -289,7 +290,8 @@ namespace Wms3pl.Datas.F14
                 new SqlParameter("@p2", custCode),
                 new SqlParameter("@p3", inventorNo),
                 new SqlParameter("@p4", userId),
-                new SqlParameter("@p5", userName)
+                new SqlParameter("@p5", userName),
+                new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
             ExecuteSqlCommand(sql, param);
         }
@@ -365,10 +367,10 @@ namespace Wms3pl.Datas.F14
                                A.PALLET_CTRL_NO, 
                                @p4, 
                                @p5, 
-                               dbo.GetSysDate(), 
+                               @p6, 
                                @p4, 
                                @p5, 
-                               dbo.GetSysDate(), 
+                               @p6, 
                                A.MAKE_NO ,
 							   0,
                                A.UNMOVE_STOCK_QTY
@@ -409,8 +411,9 @@ namespace Wms3pl.Datas.F14
 								new SqlParameter("@p2", custCode),
 								new SqlParameter("@p3", inventorNo),
 								new SqlParameter("@p4", userId),
-								new SqlParameter("@p5", userName)
-						};
+								new SqlParameter("@p5", userName),
+                new SqlParameter("@p6", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+            };
 			ExecuteSqlCommand(sql, param);
 		}
 
@@ -541,5 +544,113 @@ namespace Wms3pl.Datas.F14
 
             ExecuteSqlCommand(sql, param.ToArray());
         }
+
+    /// <summary>
+    /// 計算查詢回來的盤點詳細的數量
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="inventoryNo"></param>
+    /// <param name="wareHouseId"></param>
+    /// <param name="begLocCode"></param>
+    /// <param name="endLocCode"></param>
+    /// <param name="itemCode"></param>
+    /// <returns></returns>
+    public int CountInventoryDetailItems(string dcCode, string gupCode, string custCode,
+      string inventoryNo, string wareHouseId, string begLocCode, string endLocCode, string itemCode)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)     { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)    { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", inventoryNo){ SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", begLocCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p5", endLocCode) { SqlDbType = SqlDbType.VarChar },
+      };
+
+      var sql = @"
+SELECT
+	COUNT(*)
+FROM
+	F140105 A
+INNER JOIN F1903 B ON
+	A.GUP_CODE = B.GUP_CODE
+	AND A.CUST_CODE = B.CUST_CODE
+	AND A.ITEM_CODE = B.ITEM_CODE
+INNER JOIN F1980 C ON
+	A.DC_CODE = C.DC_CODE 
+	AND A.WAREHOUSE_ID = C.WAREHOUSE_ID 
+WHERE 
+	A.DC_CODE = @p0
+	AND A.GUP_CODE = @p1
+	AND A.CUST_CODE = @p2
+	AND A.INVENTORY_NO = @p3
+	AND A.LOC_CODE BETWEEN @p4 AND @p5";
+
+      if (!string.IsNullOrEmpty(itemCode))
+      {
+        sql += $" AND A.ITEM_CODE = @p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", itemCode) { SqlDbType = SqlDbType.VarChar });
+      }
+      if (!string.IsNullOrEmpty(wareHouseId))
+      {
+        sql += $" AND A.WAREHOUSE_ID = @p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", wareHouseId) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      return SqlQuery<int>(sql, para.ToArray()).FirstOrDefault();
+      #region 原LINQ語法
+      /*
+      var q = from A in _db.F140105s
+              join B in _db.F1903s on new { A.GUP_CODE, A.ITEM_CODE, A.CUST_CODE } equals new { B.GUP_CODE, B.ITEM_CODE, B.CUST_CODE }
+              join C in _db.F1980s on new { A.DC_CODE, A.WAREHOUSE_ID } equals new { C.DC_CODE, C.WAREHOUSE_ID }
+              where A.DC_CODE == dcCode
+              && A.GUP_CODE == gupCode
+              && A.CUST_CODE == custCode
+              && A.INVENTORY_NO == inventoryNo
+              && string.Compare(A.LOC_CODE, begLocCode) >= 0
+              && string.Compare(A.LOC_CODE, endLocCode) <= 0
+              select A;
+
+      if (!string.IsNullOrEmpty(itemCode))
+      {
+        q = q.Where(a => a.ITEM_CODE == itemCode);
+
+      }
+      if (!string.IsNullOrEmpty(wareHouseId))
+      {
+        q = q.Where(a => a.WAREHOUSE_ID == wareHouseId);
+
+      }
+      return q.Count();
+      */
+      #endregion
     }
+
+    public IQueryable<F140105> GetDatasByWcsInventoryNos(string dcCode, string gupCode, string custCode, List<string> inventoryNos)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+      };
+      var sql = @"SELECT * FROM F140105 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2";
+      sql += para.CombineSqlInParameters(" AND INVENTORY_NO", inventoryNos, SqlDbType.VarChar);
+      return SqlQuery<F140105>(sql, para.ToArray());
+
+      #region 原LINQ語法
+      /*
+      return _db.F140105s.AsNoTracking().Where(x =>
+      x.DC_CODE == dcCode &&
+      x.GUP_CODE == gupCode &&
+      x.CUST_CODE == custCode &&
+      inventoryNos.Contains(x.INVENTORY_NO));
+      */
+      #endregion
+    }
+
+  }
 }

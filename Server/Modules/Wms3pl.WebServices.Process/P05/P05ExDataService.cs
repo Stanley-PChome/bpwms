@@ -190,11 +190,11 @@ namespace Wms3pl.WebServices.Process.P05
 		#region 訂單主檔
 		[WebGet]
 		public IQueryable<F050101Ex> GetF050101ExDatas(string gupCode, string custCode, string dcCode, string ordDateFrom, string ordDateTo, string ordNo, string arriveDateFrom,
-			string arriveDateTo, string custOrdNo, string status, string retailCode, string custName, string wmsOrdNo, string pastNo, string address, string channel, string delvType, string allId,string moveOutTarget)
+			string arriveDateTo, string custOrdNo, string status, string retailCode, string custName, string wmsOrdNo, string pastNo, string address, string channel, string delvType, string allId, string moveOutTarget, string subChannel)
 		{
 			var srv = new P050302Service();
 			return srv.GetF050101ExDatas(gupCode, custCode, dcCode, ordDateFrom, ordDateTo, ordNo, arriveDateFrom,
-			arriveDateTo, custOrdNo, status, retailCode, custName, wmsOrdNo, pastNo, address, channel, delvType, allId,moveOutTarget);
+			arriveDateTo, custOrdNo, status, retailCode, custName, wmsOrdNo, pastNo, address, channel, delvType, allId,moveOutTarget, subChannel);
 		}
 		#endregion
 

@@ -14,15 +14,7 @@ namespace Wms3pl.Datas.F01
         {
         }
 
-        public IQueryable<F010204> GetDatasForF010202s(string dcCode, string gupCode, string custCode, List<F010202> f010202s)
-        {
-            return _db.F010204s.Where(x => x.DC_CODE == dcCode &&
-                                           x.GUP_CODE == gupCode &&
-                                           x.CUST_CODE == custCode &&
-                                           f010202s.Any(z => x.STOCK_NO == z.STOCK_NO &&
-                                           x.STOCK_SEQ == z.STOCK_SEQ &&
-                                           x.ITEM_CODE == z.ITEM_CODE));
-        }
+        
 
         public IQueryable<F010204> GetDatasForF020201s(string dcCode, string gupCode, string custCode, List<F020201> f020201s)
         {
@@ -34,14 +26,6 @@ namespace Wms3pl.Datas.F01
                                                              x.ITEM_CODE == z.ITEM_CODE));
         }
 
-        public IQueryable<F010204> GetDatasForSeqs(string dcCode, string gupCode, string custCode, string stockNo, List<int> seqs)
-        {
-            return _db.F010204s.Where(x => x.DC_CODE == dcCode &&
-                                           x.GUP_CODE == gupCode &&
-                                           x.CUST_CODE == custCode &&
-                                           x.STOCK_NO == stockNo &&
-                                           seqs.Contains(x.STOCK_SEQ));
-        }
 
         public IQueryable<F010204> GetDatasForF020202s(string dcCode, string gupCode, string custCode, List<F020202> f020202s)
         {

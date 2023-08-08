@@ -44,7 +44,7 @@ namespace Wms3pl.WebServices.DataCommon
 				return string.Empty;
 			}
 			return Combine<SqlParameter>(parameterList, partialSql,
-										 new List<SqlParameter> { new SqlParameter( PreDbParamSymbol+"p" + parameterList.Count, param) });
+										 new List<SqlParameter> { new SqlParameter(PreDbParamSymbol + "p" + parameterList.Count, param) { SqlDbType = SqlDbType.VarChar } });
 		}
 
 		/// <summary>
@@ -70,6 +70,11 @@ namespace Wms3pl.WebServices.DataCommon
 		public static string Combine<TParam>(this List<SqlParameter> parameterList, string partialSql, params TParam[] @params)
 		{
 			var count = parameterList.Count;
+			if(typeof(TParam).Equals(typeof(string)))
+				return Combine<SqlParameter>(parameterList,
+										 partialSql,
+										 @params.Select((item, index) => new SqlParameter($"{PreDbParamSymbol}p" + (count + index), item) {SqlDbType = SqlDbType.VarChar}));
+			else
 			return Combine<SqlParameter>(parameterList,
 									 partialSql,
 									 @params.Select((item, index) => new SqlParameter($"{PreDbParamSymbol}p" + (count + index), item)));
@@ -407,7 +412,7 @@ namespace Wms3pl.WebServices.DataCommon
       // 前面的條件 SQL 敘述
       sb.Append(" ").Append(beginSql);
 
-      if (inParameters == null || !inParameters.Any())
+      if (inParameters == null || !inParameters.Any() || !inParameters.Any(o => o != null))
       {
         sb.Append((isIn) ? " 1=0 " : " 1=1 ");
         return sb.ToString();
@@ -438,7 +443,11 @@ namespace Wms3pl.WebServices.DataCommon
         // 並將參數的內容帶入，並計數下一個開始的參數索引
         foreach (var inParam in inParamQuery.Take(InClauseMaximum))
         {
-          parameters.Add(new SqlParameter($"@p{startIndex}", inParam) { SqlDbType = sqlDbType } );
+          if (inParam == null)
+            parameters.Add(new SqlParameter($"@p{startIndex}", DBNull.Value));
+          else
+            parameters.Add(new SqlParameter($"@p{startIndex}", inParam) { SqlDbType = sqlDbType } );
+
           startIndex++;
         }
 

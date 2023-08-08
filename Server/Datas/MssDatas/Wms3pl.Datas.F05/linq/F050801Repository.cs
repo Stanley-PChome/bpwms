@@ -366,14 +366,6 @@ namespace Wms3pl.Datas.F05
             return result;
         }
 
-        public IQueryable<F050801> GetDatasForWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
-        {
-            return _db.F050801s.Where(x => x.DC_CODE == dcCode &&
-                                           x.GUP_CODE == gupCode &&
-                                           x.CUST_CODE == custCode &&
-                                           wmsOrdNos.Contains(x.WMS_ORD_NO));
-        }
-
 		// 從廠退出貨單號找到出貨單
 		public F050801 GetWmsOrdNoForRtnWmsNo(string dcCode, string gupCode, string custCode, string rtnWmsNo)
 		{

@@ -118,5 +118,25 @@ namespace Wms3pl.Datas.F05
                            AND A.WMS_ORD_NO = @p3 ";
 			    return SqlQuery<ShipPackageNoAllotOrder>(sql,parms.ToArray());
 				}
-    }
+
+
+
+		public IQueryable<F05030202> GetByWmsOrdNo(string dcCode, string gupCode, string custCode, string wmsOrdNo)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p3", wmsOrdNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+			};
+			var sql = @"SELECT *
+                          FROM F05030202
+                         WHERE DC_CODE = @p0
+                           AND GUP_CODE = @p1
+                           AND CUST_CODE = @p2
+                           AND WMS_ORD_NO = @p3 ";
+			return SqlQuery<F05030202>(sql, parms.ToArray());
+		}
+	}
 }

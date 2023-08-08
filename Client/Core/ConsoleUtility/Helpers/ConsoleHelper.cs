@@ -16,6 +16,7 @@ namespace ConsoleUtility.Helpers
 		public static char MailWrap { get { return (char)10; } }
 		public static string TypeName { get; set; }
 		public static string FilePath { get; set; }
+		public static string ExcelFilePath { get; set; }
 
 		public static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/3/29 下午 02:14:00
+// Generation date: 2023/4/26 下午 03:02:34
 namespace Wms3pl.WpfClient.ExDataServices.P18ExDataService
 {
     
@@ -308,140 +308,141 @@ namespace Wms3pl.WpfClient.ExDataServices.P18ExDataService
                 "dm.String\" /><Property Name=\"ITEM_UNIT\" Type=\"Edm.String\" /><Property Name=\"TOTA" +
                 "L_VOLUME\" Type=\"Edm.Decimal\" /><Property Name=\"UNIT\" Type=\"Edm.Decimal\" /><Prope" +
                 "rty Name=\"MAKE_NO\" Type=\"Edm.String\" /><Property Name=\"VNR_CODE\" Type=\"Edm.Strin" +
-                "g\" /></EntityType><EntityType Name=\"StockQueryData3\"><Key><PropertyRef Name=\"ROW" +
-                "NUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nul";
+                "g\" /><Property Name=\"VIRTUAL_STOCK_QTY\" Type=\"Edm.Decimal\" Nullable=\"false\" /><P" +
+                "roperty Name=\"A7_PRE_TAR_QTY\" Type=\"Edm.Decimal\" Nullable=\"";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart1 = "lable=\"false\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CU" +
-                "ST_NAME\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"LTYPE\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"LTYPE_NAME\" Type=\"Edm.String\" /><Property Name=\"MTYPE\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"MTYPE_NAME\" Type=\"Edm.String\" /><Property Name=" +
-                "\"STYPE\" Type=\"Edm.String\" /><Property Name=\"STYPE_NAME\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"ITEM_SIZE\" Type=\"Edm.String\" /><Property Name=\"ITEM_SPEC\" Type=\"Edm." +
-                "String\" /><Property Name=\"ITEM_COLOR\" Type=\"Edm.String\" /><Property Name=\"QTY\" T" +
-                "ype=\"Edm.Decimal\" /><Property Name=\"DELV_QTY\" Type=\"Edm.Decimal\" /><Property Nam" +
-                "e=\"END_QTY\" Type=\"Edm.Decimal\" /><Property Name=\"RETURN_RATE\" Type=\"Edm.Decimal\"" +
-                " /><Property Name=\"RETURN_DAY\" Type=\"Edm.Decimal\" /></EntityType><EntityType Nam" +
-                "e=\"F1912WareHouseData\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"WAR" +
-                "EHOUSE_ID\" /></Key><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" Nullable=\"fal" +
-                "se\" /><Property Name=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"WAREHO" +
-                "USE_TYPE\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullabl" +
-                "e=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_C" +
-                "ODE\" Type=\"Edm.String\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" /></Enti" +
-                "tyType><EntityType Name=\"P180301ImportData\"><Key><PropertyRef Name=\"ROWNUM\" /></" +
-                "Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name" +
-                "=\"IsError\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"ItemCode\" Type=" +
-                "\"Edm.String\" /><Property Name=\"LocCode\" Type=\"Edm.String\" /><Property Name=\"Vali" +
-                "dDate\" Type=\"Edm.DateTime\" /><Property Name=\"EnterDate\" Type=\"Edm.DateTime\" /><P" +
-                "roperty Name=\"Qty\" Type=\"Edm.String\" /><Property Name=\"ItemVerification\" Type=\"E" +
-                "dm.String\" /><Property Name=\"LocVerification\" Type=\"Edm.String\" /><Property Name" +
-                "=\"LocMixItem\" Type=\"Edm.String\" /><Property Name=\"MixBatchno\" Type=\"Edm.String\" " +
-                "/><Property Name=\"WarehouseName\" Type=\"Edm.String\" /><Property Name=\"WarehouseId" +
-                "\" Type=\"Edm.String\" /><Property Name=\"MakeNo\" Type=\"Edm.String\" /></EntityType><" +
-                "EntityType Name=\"StockAbnormalData\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Pro" +
-                "perty Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"IsSele" +
-                "cted\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Property Name=\"ID\" Type=\"Edm.Int64\"" +
-                " Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=" +
-                "\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"SRC_WMS_NO\" Type=\"Edm.String\" /><Property Name=\"SRC_TYPE\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"SRC_TYPE_NAME\" Type=\"Edm.String\" /><Property Name=\"A" +
-                "LLOCATION_NO\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_SEQ\" Type=\"Edm.Int3" +
-                "2\" Nullable=\"false\" /><Property Name=\"SRC_WAREHOUSE_ID\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"SRC_WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"SRC_LOC_CODE" +
-                "\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"ITEM_NAME\" Type=\"Edm.String\" /><Property Name=\"VALID_DATE\" Type=\"Edm.DateTi" +
-                "me\" Nullable=\"false\" /><Property Name=\"MAKE_NO\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PROC_FLAG\" Type=\"Ed" +
-                "m.String\" /><Property Name=\"PROC_FLAG_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
-                "MEMO\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_NAM" +
-                "E\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property" +
-                " Name=\"PROC_WMS_NO\" Type=\"Edm.String\" /><Property Name=\"SERIAL_NO\" Type=\"Edm.Str" +
-                "ing\" /></EntityType></Schema><Schema Namespace=\"Wms3pl.WebServices.Process.P18.E" +
-                "xDataSources\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><EntityContai" +
-                "ner Name=\"P18ExDataSource\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"Ex" +
-                "ecuteResults\" EntityType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntityS" +
-                "et Name=\"StockQueryData1s\" EntityType=\"Wms3pl.Datas.Shared.Entities.StockQueryDa" +
-                "ta1\" /><EntitySet Name=\"StockQueryData3s\" EntityType=\"Wms3pl.Datas.Shared.Entiti" +
-                "es.StockQueryData3\" /><EntitySet Name=\"F1912WareHouseDatas\" EntityType=\"Wms3pl.D" +
-                "atas.Shared.Entities.F1912WareHouseData\" /><EntitySet Name=\"P180301ImportDatas\" " +
-                "EntityType=\"Wms3pl.Datas.Shared.Entities.P180301ImportData\" /><EntitySet Name=\"P" +
-                "180201StockAbnormalDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.StockAbnormal" +
-                "Data\" /><FunctionImport Name=\"GetStockQueryData1\" ReturnType=\"Collection(Wms3pl." +
-                "Datas.Shared.Entities.StockQueryData1)\" EntitySet=\"StockQueryData1s\" m:HttpMetho" +
-                "d=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\"" +
-                " Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"typeBegin\" Type=\"Edm.String\" /><Parameter Name=\"typeEnd\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"lTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"lTypeEnd\" Type" +
-                "=\"Edm.String\" /><Parameter Name=\"mTypeBegin\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"mTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"sTypeBegin\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"sTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"enterDateBegin\"" +
-                " Type=\"Edm.DateTime\" /><Parameter Name=\"enterDateEnd\" Type=\"Edm.DateTime\" /><Par" +
-                "ameter Name=\"validDateBegin\" Type=\"Edm.DateTime\" /><Parameter Name=\"validDateEnd" +
-                "\" Type=\"Edm.DateTime\" /><Parameter Name=\"locCodeBegin\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"locCodeEnd\" Type=\"Edm.String\" /><Parameter Name=\"itemCodes\" Type=\"Ed" +
+            private const string ModelPart1 = "false\" /></EntityType><EntityType Name=\"StockQueryData3\"><Key><PropertyRef Name=\"" +
+                "ROWNUM\" /></Key><Property Name=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><P" +
+                "roperty Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_NAME\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_" +
+                "NAME\" Type=\"Edm.String\" /><Property Name=\"LTYPE\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"LTYPE_NAME\" Type=\"Edm.String\" /><Property Name=\"MTYPE\" Type=\"Edm.String\" />" +
+                "<Property Name=\"MTYPE_NAME\" Type=\"Edm.String\" /><Property Name=\"STYPE\" Type=\"Edm" +
+                ".String\" /><Property Name=\"STYPE_NAME\" Type=\"Edm.String\" /><Property Name=\"ITEM_" +
+                "SIZE\" Type=\"Edm.String\" /><Property Name=\"ITEM_SPEC\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"ITEM_COLOR\" Type=\"Edm.String\" /><Property Name=\"QTY\" Type=\"Edm.Decimal\"" +
+                " /><Property Name=\"DELV_QTY\" Type=\"Edm.Decimal\" /><Property Name=\"END_QTY\" Type=" +
+                "\"Edm.Decimal\" /><Property Name=\"RETURN_RATE\" Type=\"Edm.Decimal\" /><Property Name" +
+                "=\"RETURN_DAY\" Type=\"Edm.Decimal\" /></EntityType><EntityType Name=\"F1912WareHouse" +
+                "Data\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"WAREHOUSE_ID\" /></Ke" +
+                "y><Property Name=\"WAREHOUSE_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Property N" +
+                "ame=\"WAREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"WAREHOUSE_TYPE\" Type=\"E" +
+                "dm.String\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Prop" +
+                "erty Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" /></EntityType><EntityTyp" +
+                "e Name=\"P180301ImportData\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Property Nam" +
+                "e=\"ROWNUM\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"IsError\" Type=\"" +
+                "Edm.Boolean\" Nullable=\"false\" /><Property Name=\"ItemCode\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"LocCode\" Type=\"Edm.String\" /><Property Name=\"ValidDate\" Type=\"Edm." +
+                "DateTime\" /><Property Name=\"EnterDate\" Type=\"Edm.DateTime\" /><Property Name=\"Qty" +
+                "\" Type=\"Edm.String\" /><Property Name=\"ItemVerification\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"LocVerification\" Type=\"Edm.String\" /><Property Name=\"LocMixItem\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"MixBatchno\" Type=\"Edm.String\" /><Property Name=" +
+                "\"WarehouseName\" Type=\"Edm.String\" /><Property Name=\"WarehouseId\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"MakeNo\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"" +
+                "StockAbnormalData\"><Key><PropertyRef Name=\"ROWNUM\" /></Key><Property Name=\"ROWNU" +
+                "M\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"IsSelected\" Type=\"Edm.B" +
+                "oolean\" Nullable=\"false\" /><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\"" +
+                " /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"" +
+                "Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"SRC" +
+                "_WMS_NO\" Type=\"Edm.String\" /><Property Name=\"SRC_TYPE\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"SRC_TYPE_NAME\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_NO\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"ALLOCATION_SEQ\" Type=\"Edm.Int32\" Nullable=\"fals" +
+                "e\" /><Property Name=\"SRC_WAREHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"SRC_W" +
+                "AREHOUSE_NAME\" Type=\"Edm.String\" /><Property Name=\"SRC_LOC_CODE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_NAME\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"VALID_DATE\" Type=\"Edm.DateTime\" Nullable=\"fal" +
+                "se\" /><Property Name=\"MAKE_NO\" Type=\"Edm.String\" /><Property Name=\"QTY\" Type=\"Ed" +
+                "m.Int32\" Nullable=\"false\" /><Property Name=\"PROC_FLAG\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"PROC_FLAG_NAME\" Type=\"Edm.String\" /><Property Name=\"MEMO\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\"" +
+                " Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_NAME\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"PROC_WMS_N" +
+                "O\" Type=\"Edm.String\" /><Property Name=\"SERIAL_NO\" Type=\"Edm.String\" /></EntityTy" +
+                "pe></Schema><Schema Namespace=\"Wms3pl.WebServices.Process.P18.ExDataSources\" xml" +
+                "ns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><EntityContainer Name=\"P18ExDa" +
+                "taSource\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"ExecuteResults\" Ent" +
+                "ityType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntitySet Name=\"StockQue" +
+                "ryData1s\" EntityType=\"Wms3pl.Datas.Shared.Entities.StockQueryData1\" /><EntitySet" +
+                " Name=\"StockQueryData3s\" EntityType=\"Wms3pl.Datas.Shared.Entities.StockQueryData" +
+                "3\" /><EntitySet Name=\"F1912WareHouseDatas\" EntityType=\"Wms3pl.Datas.Shared.Entit" +
+                "ies.F1912WareHouseData\" /><EntitySet Name=\"P180301ImportDatas\" EntityType=\"Wms3p" +
+                "l.Datas.Shared.Entities.P180301ImportData\" /><EntitySet Name=\"P180201StockAbnorm" +
+                "alDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.StockAbnormalData\" /><Function" +
+                "Import Name=\"GetStockQueryData1\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Enti" +
+                "ties.StockQueryData1)\" EntitySet=\"StockQueryData1s\" m:HttpMethod=\"GET\"><Paramete" +
+                "r Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"typeBegin\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"typeEnd\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "lTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"lTypeEnd\" Type=\"Edm.String\" /><" +
+                "Parameter Name=\"mTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"mTypeEnd\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"sTypeBegin\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"sTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"enterDateBegin\" Type=\"Edm.DateTi" +
+                "me\" /><Parameter Name=\"enterDateEnd\" Type=\"Edm.DateTime\" /><Parameter Name=\"vali" +
+                "dDateBegin\" Type=\"Edm.DateTime\" /><Parameter Name=\"validDateEnd\" Type=\"Edm.DateT" +
+                "ime\" /><Parameter Name=\"locCodeBegin\" Type=\"Edm.String\" /><Parameter Name=\"locCo" +
+                "deEnd\" Type=\"Edm.String\" /><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"wareHouseIds\" Type=\"Edm.String\" /><Parameter Name=\"boundleSerialNo\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"boundleSerialLoc\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"multiFlag\" Type=\"Edm.String\" /><Parameter Name=\"packWareW\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"virtualType\" Type=\"Edm.String\" /><Parameter Name=\"ex" +
+                "pend\" Type=\"Edm.String\" /><Parameter Name=\"boxCtrlNoBegin\" Type=\"Edm.String\" /><" +
+                "Parameter Name=\"boxCtrlNoEnd\" Type=\"Edm.String\" /><Parameter Name=\"palletCtrlNoB" +
+                "egin\" Type=\"Edm.String\" /><Parameter Name=\"palletCtrlNoEnd\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"makeNo\" Type=\"Edm.String\" /><Parameter Name=\"vnrCode\" Type=\"Edm" +
+                ".String\" /></FunctionImport><FunctionImport Name=\"GetStockQueryData2\" ReturnType" +
+                "=\"Collection(Wms3pl.Datas.Shared.Entities.StockQueryData1)\" EntitySet=\"StockQuer" +
+                "yData1s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"typeBegin\" Type=\"Edm.String\" /><Parameter Name=\"typeEnd\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"lTypeBegin\" Type=\"Edm.String\" /><Parameter " +
+                "Name=\"lTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"mTypeBegin\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"mTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"sTypeBegin\"" +
+                " Type=\"Edm.String\" /><Parameter Name=\"sTypeEnd\" Type=\"Edm.String\" /><Parameter N" +
+                "ame=\"enterDateBegin\" Type=\"Edm.DateTime\" /><Parameter Name=\"enterDateEnd\" Type=\"" +
+                "Edm.DateTime\" /><Parameter Name=\"validDateBegin\" Type=\"Edm.DateTime\" /><Paramete" +
+                "r Name=\"validDateEnd\" Type=\"Edm.DateTime\" /><Parameter Name=\"itemCodes\" Type=\"Ed" +
                 "m.String\" /><Parameter Name=\"wareHouseIds\" Type=\"Edm.String\" /><Parameter Name=\"" +
                 "boundleSerialNo\" Type=\"Edm.String\" /><Parameter Name=\"boundleSerialLoc\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"multiFlag\" Type=\"Edm.String\" /><Parameter Name=\"pac" +
-                "kWareW\" Type=\"Edm.String\" /><Parameter Name=\"virtualType\" Type=\"Edm.String\" /><P" +
-                "arameter Name=\"expend\" Type=\"Edm.String\" /><Parameter Name=\"boxCtrlNoBegin\" Type" +
-                "=\"Edm.String\" /><Parameter Name=\"boxCtrlNoEnd\" Type=\"Edm.String\" /><Parameter Na" +
-                "me=\"palletCtrlNoBegin\" Type=\"Edm.String\" /><Parameter Name=\"palletCtrlNoEnd\" Typ" +
-                "e=\"Edm.String\" /><Parameter Name=\"makeNo\" Type=\"Edm.String\" /><Parameter Name=\"v" +
-                "nrCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetStockQuery" +
-                "Data2\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.StockQueryData1)\" Ent" +
-                "itySet=\"StockQueryData1s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCod" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"typeBegin\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"typeEnd\" Type=\"Edm.String\" /><Parameter Name=\"lTypeBegin\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"lTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"mTypeBegin" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"mTypeEnd\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"sTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"sTypeEnd\" Type=\"Edm.Strin" +
-                "g\" /><Parameter Name=\"enterDateBegin\" Type=\"Edm.DateTime\" /><Parameter Name=\"ent" +
-                "erDateEnd\" Type=\"Edm.DateTime\" /><Parameter Name=\"validDateBegin\" Type=\"Edm.Date" +
-                "Time\" /><Parameter Name=\"validDateEnd\" Type=\"Edm.DateTime\" /><Parameter Name=\"it" +
-                "emCodes\" Type=\"Edm.String\" /><Parameter Name=\"wareHouseIds\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"boundleSerialNo\" Type=\"Edm.String\" /><Parameter Name=\"boundleSe" +
-                "rialLoc\" Type=\"Edm.String\" /><Parameter Name=\"multiFlag\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"packWareW\" Type=\"Edm.String\" /><Parameter Name=\"virtualType\" Type=" +
-                "\"Edm.String\" /><Parameter Name=\"boxCtrlNoBegin\" Type=\"Edm.S";
+                "m.String\" /><Parameter Name=\"multiFlag\" Type=\"Edm.String\" /";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart2 = "tring\" /><Parameter Name=\"boxCtrlNoEnd\" Type=\"Edm.String\" /><Parameter Name=\"pall" +
-                "etCtrlNoBegin\" Type=\"Edm.String\" /><Parameter Name=\"palletCtrlNoEnd\" Type=\"Edm.S" +
-                "tring\" /><Parameter Name=\"vnrCode\" Type=\"Edm.String\" /></FunctionImport><Functio" +
-                "nImport Name=\"GetStockQueryData3\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Ent" +
-                "ities.StockQueryData3)\" EntitySet=\"StockQueryData3s\" m:HttpMethod=\"GET\"><Paramet" +
-                "er Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Strin" +
-                "g\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"typeBegin\" Ty" +
-                "pe=\"Edm.String\" /><Parameter Name=\"typeEnd\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"lTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"lTypeEnd\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"mTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"mTypeEnd\" Type" +
-                "=\"Edm.String\" /><Parameter Name=\"sTypeBegin\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"sTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"enterDateBegin\" Type=\"Edm.Strin" +
-                "g\" /><Parameter Name=\"enterDateEnd\" Type=\"Edm.String\" /><Parameter Name=\"validDa" +
-                "teBegin\" Type=\"Edm.String\" /><Parameter Name=\"validDateEnd\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"closeDateBegin\" Type=\"Edm.String\" /><Parameter Name=\"closeDateE" +
-                "nd\" Type=\"Edm.String\" /><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"boundleSerialNo\" Type=\"Edm.String\" /><Parameter Name=\"boundleSerialLoc\"" +
-                " Type=\"Edm.String\" /><Parameter Name=\"multiFlag\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"packWareW\" Type=\"Edm.String\" /><Parameter Name=\"virtualType\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"boxCtrlNoBegin\" Type=\"Edm.String\" /><Parameter Name=\"box" +
-                "CtrlNoEnd\" Type=\"Edm.String\" /><Parameter Name=\"palletCtrlNoBegin\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"palletCtrlNoEnd\" Type=\"Edm.String\" /></FunctionImport><F" +
-                "unctionImport Name=\"GetWarehouseDatas\" ReturnType=\"Collection(Wms3pl.Datas.Share" +
-                "d.Entities.F1912WareHouseData)\" EntitySet=\"F1912WareHouseDatas\" m:HttpMethod=\"GE" +
-                "T\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"" +
-                "Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><F" +
-                "unctionImport Name=\"GetStockAbnormalData\" ReturnType=\"Collection(Wms3pl.Datas.Sh" +
-                "ared.Entities.StockAbnormalData)\" EntitySet=\"P180201StockAbnormalDatas\" m:HttpMe" +
-                "thod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"begCrtDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"endCrtDate\" Type=\"Edm.D" +
-                "ateTime\" /><Parameter Name=\"srcType\" Type=\"Edm.String\" /><Parameter Name=\"srcWms" +
-                "No\" Type=\"Edm.String\" /><Parameter Name=\"procFlag\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"allocationNo\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.S" +
-                "tring\" /></FunctionImport></EntityContainer></Schema></edmx:DataServices></edmx:" +
-                "Edmx>";
+            private const string ModelPart2 = "><Parameter Name=\"packWareW\" Type=\"Edm.String\" /><Parameter Name=\"virtualType\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"boxCtrlNoBegin\" Type=\"Edm.String\" /><Paramete" +
+                "r Name=\"boxCtrlNoEnd\" Type=\"Edm.String\" /><Parameter Name=\"palletCtrlNoBegin\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"palletCtrlNoEnd\" Type=\"Edm.String\" /><Paramet" +
+                "er Name=\"vnrCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Get" +
+                "StockQueryData3\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.StockQueryD" +
+                "ata3)\" EntitySet=\"StockQueryData3s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\"" +
+                " Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter N" +
+                "ame=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"typeBegin\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"typeEnd\" Type=\"Edm.String\" /><Parameter Name=\"lTypeBegin\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"lTypeEnd\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "mTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"mTypeEnd\" Type=\"Edm.String\" /><" +
+                "Parameter Name=\"sTypeBegin\" Type=\"Edm.String\" /><Parameter Name=\"sTypeEnd\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"enterDateBegin\" Type=\"Edm.String\" /><Parameter N" +
+                "ame=\"enterDateEnd\" Type=\"Edm.String\" /><Parameter Name=\"validDateBegin\" Type=\"Ed" +
+                "m.String\" /><Parameter Name=\"validDateEnd\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "closeDateBegin\" Type=\"Edm.String\" /><Parameter Name=\"closeDateEnd\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /><Parameter Name=\"boundleS" +
+                "erialNo\" Type=\"Edm.String\" /><Parameter Name=\"boundleSerialLoc\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"multiFlag\" Type=\"Edm.String\" /><Parameter Name=\"packWareW\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"virtualType\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"boxCtrlNoBegin\" Type=\"Edm.String\" /><Parameter Name=\"boxCtrlNoEnd\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"palletCtrlNoBegin\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"palletCtrlNoEnd\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Nam" +
+                "e=\"GetWarehouseDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F1912W" +
+                "areHouseData)\" EntitySet=\"F1912WareHouseDatas\" m:HttpMethod=\"GET\"><Parameter Nam" +
+                "e=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Nam" +
+                "e=\"GetStockAbnormalData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.Sto" +
+                "ckAbnormalData)\" EntitySet=\"P180201StockAbnormalDatas\" m:HttpMethod=\"GET\"><Param" +
+                "eter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"begCrtDate\"" +
+                " Type=\"Edm.DateTime\" /><Parameter Name=\"endCrtDate\" Type=\"Edm.DateTime\" /><Param" +
+                "eter Name=\"srcType\" Type=\"Edm.String\" /><Parameter Name=\"srcWmsNo\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"procFlag\" Type=\"Edm.String\" /><Parameter Name=\"allocatio" +
+                "nNo\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /></Functi" +
+                "onImport></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -2168,8 +2169,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P18ExDataService
         /// <param name="aLLOCATION_SUM_QTY">Initial value of ALLOCATION_SUM_QTY.</param>
         /// <param name="pROCESS_PICK_SUM_QTY">Initial value of PROCESS_PICK_SUM_QTY.</param>
         /// <param name="rESERVATION_QTY">Initial value of RESERVATION_QTY.</param>
+        /// <param name="vIRTUAL_STOCK_QTY">Initial value of VIRTUAL_STOCK_QTY.</param>
+        /// <param name="a7_PRE_TAR_QTY">Initial value of A7_PRE_TAR_QTY.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static StockQueryData1 CreateStockQueryData1(decimal rOWNUM, long qTY, decimal leftDay, global::System.DateTime vALID_DATE, global::System.DateTime eNTER_DATE, decimal pICK_SUM_QTY, decimal aLLOCATION_SUM_QTY, decimal pROCESS_PICK_SUM_QTY, decimal rESERVATION_QTY)
+        public static StockQueryData1 CreateStockQueryData1(decimal rOWNUM, long qTY, decimal leftDay, global::System.DateTime vALID_DATE, global::System.DateTime eNTER_DATE, decimal pICK_SUM_QTY, decimal aLLOCATION_SUM_QTY, decimal pROCESS_PICK_SUM_QTY, decimal rESERVATION_QTY, decimal vIRTUAL_STOCK_QTY, decimal a7_PRE_TAR_QTY)
         {
             StockQueryData1 stockQueryData1 = new StockQueryData1();
             stockQueryData1.ROWNUM = rOWNUM;
@@ -2181,6 +2184,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P18ExDataService
             stockQueryData1.ALLOCATION_SUM_QTY = aLLOCATION_SUM_QTY;
             stockQueryData1.PROCESS_PICK_SUM_QTY = pROCESS_PICK_SUM_QTY;
             stockQueryData1.RESERVATION_QTY = rESERVATION_QTY;
+            stockQueryData1.VIRTUAL_STOCK_QTY = vIRTUAL_STOCK_QTY;
+            stockQueryData1.A7_PRE_TAR_QTY = a7_PRE_TAR_QTY;
             return stockQueryData1;
         }
         /// <summary>
@@ -3063,6 +3068,50 @@ namespace Wms3pl.WpfClient.ExDataServices.P18ExDataService
         private string _VNR_CODE;
         partial void OnVNR_CODEChanging(string value);
         partial void OnVNR_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property VIRTUAL_STOCK_QTY in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public decimal VIRTUAL_STOCK_QTY
+        {
+            get
+            {
+                return this._VIRTUAL_STOCK_QTY;
+            }
+            set
+            {
+                this.OnVIRTUAL_STOCK_QTYChanging(value);
+                this._VIRTUAL_STOCK_QTY = value;
+                this.OnVIRTUAL_STOCK_QTYChanged();
+                this.OnPropertyChanged("VIRTUAL_STOCK_QTY");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private decimal _VIRTUAL_STOCK_QTY;
+        partial void OnVIRTUAL_STOCK_QTYChanging(decimal value);
+        partial void OnVIRTUAL_STOCK_QTYChanged();
+        /// <summary>
+        /// There are no comments for Property A7_PRE_TAR_QTY in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public decimal A7_PRE_TAR_QTY
+        {
+            get
+            {
+                return this._A7_PRE_TAR_QTY;
+            }
+            set
+            {
+                this.OnA7_PRE_TAR_QTYChanging(value);
+                this._A7_PRE_TAR_QTY = value;
+                this.OnA7_PRE_TAR_QTYChanged();
+                this.OnPropertyChanged("A7_PRE_TAR_QTY");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private decimal _A7_PRE_TAR_QTY;
+        partial void OnA7_PRE_TAR_QTYChanging(decimal value);
+        partial void OnA7_PRE_TAR_QTYChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -89,12 +90,13 @@ namespace Wms3pl.Datas.F19
                     new SqlParameter("@p0", subName),
                     new SqlParameter("@p1", gupCode),
                     new SqlParameter("@p2", Current.Staff),
-                    new SqlParameter("@p3", Current.StaffName)
+                    new SqlParameter("@p3", Current.StaffName),
+                    new SqlParameter("@p4", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
                 };
             var sql =
                 @"Update F1929
 						 Set GUP_NAME=Concat(GUP_NAME,@p0)
-								, UPD_DATE =dbo.GetSysDate()  
+								, UPD_DATE = @p4 
 								, UPD_STAFF = @p2  
 								, UPD_NAME = @p3 
 					Where GUP_CODE=@p1";

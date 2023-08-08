@@ -89,7 +89,8 @@ namespace Wms3pl.Datas.F15
 								      WHERE A.SRC_QTY >0  --//下架數>0 
 								        AND B.SRC_DC_CODE  = @p0 
 								        AND A.GUP_CODE = @p1 
-								        AND A.CUST_CODE = @p2 " +
+								        AND A.CUST_CODE = @p2 
+												AND D.DEVICE_TYPE  = '0'" +
                                 allocationSql +
                                 @"        AND NOT EXISTS (   -- //必須為使用者可用儲位權限
 								            SELECT 1  
@@ -356,26 +357,27 @@ namespace Wms3pl.Datas.F15
                 new SqlParameter("@p9",status),
                 new SqlParameter("@p10",userId),
                 new SqlParameter("@p11",userName),
-                new SqlParameter("@p12",stickerPalletNo)
+                new SqlParameter("@p12",stickerPalletNo),
+                new SqlParameter("@p13", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
             };
             var addsql = "";
             if (isSrc)
-                addsql = aSrcQty == 0 ? " ,SRC_STAFF = null ,SRC_NAME = null,SRC_DATE = null " : " ,SRC_STAFF = @p10,SRC_NAME=@p11,SRC_DATE= dbo.GetSysDate(),STICKER_PALLET_NO=@p12 ";
+                addsql = aSrcQty == 0 ? " ,SRC_STAFF = null ,SRC_NAME = null,SRC_DATE = null " : " ,SRC_STAFF = @p10,SRC_NAME=@p11,SRC_DATE= @p13,STICKER_PALLET_NO=@p12 ";
             else
-                addsql = aTarQty == 0 ? " ,TAR_STAFF = null ,TAR_NAME = null,TAR_DATE = null " : " ,TAR_STAFF = @p10,TAR_NAME=@p11,TAR_DATE=  dbo.GetSysDate(),STICKER_PALLET_NO=@p12 ";
+                addsql = aTarQty == 0 ? " ,TAR_STAFF = null ,TAR_NAME = null,TAR_DATE = null " : " ,TAR_STAFF = @p10,TAR_NAME=@p11,TAR_DATE= @p13,STICKER_PALLET_NO=@p12 ";
 
             var sql =
                 " UPDATE F151002 SET SRC_QTY = @p5, " +
                 "									 A_SRC_QTY= @p6, " +
-                "									 TAR_QTY=@p7, " +
-                "									 A_TAR_QTY =@p8, " +
-                "									 STATUS =@p9, " +
+                "									 TAR_QTY = @p7, " +
+                "									 A_TAR_QTY = @p8, " +
+                "									 STATUS = @p9, " +
                 "									 UPD_STAFF = @p10 , " +
-                "									 UPD_NAME=@p11 ," +
-                "									 UPD_DATE = dbo.GetSysDate() " +
+                "									 UPD_NAME = @p11 ," +
+                "									 UPD_DATE = @p13 " +
                 addsql +
-                "  WHERE DC_CODE =@p0 " +
-                "    AND GUP_CODE =@p1 " +
+                "  WHERE DC_CODE = @p0 " +
+                "    AND GUP_CODE = @p1 " +
                 "    AND CUST_CODE = @p2 " +
                 "    AND ALLOCATION_NO = @p3 " +
                 "    AND ALLOCATION_SEQ = @p4 ";
@@ -664,6 +666,7 @@ namespace Wms3pl.Datas.F15
             string sql = $@"SELECT B.ALLOCATION_NO AllocNo, 
                             	   B.ITEM_CODE ItemCode, 
                             	   B.MAKE_NO MakeNo, 
+                            	   B.SERIAL_NO SerialNo, 
                             	   CASE WHEN A.ALLOCATION_TYPE = '5' AND B.STATUS = '0' THEN B.SRC_QTY - B.A_SRC_QTY ELSE B.TAR_QTY END TarQty
                             	   FROM F151002 B 
                             	   JOIN F151001 A

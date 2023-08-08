@@ -435,6 +435,30 @@ namespace Wms3pl.WebServices.Process.P08.ExDataSources
         {
             get { return new List<SearchWmsOrderScanLogRes>().AsQueryable(); }
         }
-        #endregion
+    #endregion
+
+    #region 跨庫訂單整箱出庫-箱內明細
+    public IQueryable<F0532Ex> F0532EXs
+    {
+      get { return new List<F0532Ex>().AsQueryable(); }
     }
+    public IQueryable<F053202Ex> F053202EXs
+    {
+      get { return new List<F053202Ex>().AsQueryable(); }
+    }
+    public IQueryable<P0808050000_PrintData> P0808050000_PrintDatas
+    {
+      get { return new List<P0808050000_PrintData>().AsQueryable(); }
+    }
+    public IQueryable<P0808050000_CancelPrintData> P0808050000_CancelPrintDatas
+		{
+      get { return new List<P0808050000_CancelPrintData>().AsQueryable(); }
+    }
+    #endregion
+
+    public IQueryable<MoveOutPickOrders> MoveOutPickOrders
+    {
+      get { return new List<MoveOutPickOrders>().AsQueryable(); }
+    }
+  }
 }
