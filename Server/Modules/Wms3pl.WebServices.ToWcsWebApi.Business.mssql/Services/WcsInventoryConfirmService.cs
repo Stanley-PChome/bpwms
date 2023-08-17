@@ -25,9 +25,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 		{
 			ApiResult res = new ApiResult { IsSuccessed = true };
 			List<ApiResponse> data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
-			// 新增API Log
-			res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportInventoryResults", req, () =>
+      // 新增API Log
+      res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportInventoryResults", req, () =>
 			{
 				// 取得物流中心服務貨主檔
 				CommonService commonService = new CommonService();
@@ -151,9 +152,11 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 
             ApiResult result = new ApiResult { IsSuccessed = true };
 
-						#region 盤點任務
-						// 盤點任務Url
-						string url = $"v1/{f060401.DC_CODE}/{f060401.WAREHOUSE_ID}/StockCheck";
+            #region 盤點任務
+            WcsSetting.DcCode = dcCode;
+
+            // 盤點任務Url
+            string url = $"v1/{f060401.DC_CODE}/{f060401.WAREHOUSE_ID}/StockCheck";
 						ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsStockCheckResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null, F060401 = f060401 }, () =>
 						{
 							f060401.PROC_DATE = DateTime.Now;
@@ -224,9 +227,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 		{
 			ApiResult res = new ApiResult { IsSuccessed = true };
 			List<ApiResponse> data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
-			// 新增API Log
-			res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportInventoryAdjustResults", req, () =>
+      // 新增API Log
+      res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportInventoryAdjustResults", req, () =>
 			{
 				// 取得物流中心服務貨主檔
 				CommonService commonService = new CommonService();
@@ -346,9 +350,11 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 
             ApiResult result = new ApiResult { IsSuccessed = true };
 
-						#region 盤點調整任務
-						// 盤點調整任務Url
-						string url = $"v1/{f060404.DC_CODE}/{f060404.WAREHOUSE_ID}/StockCheck/Adjustment";
+            #region 盤點調整任務
+            WcsSetting.DcCode = dcCode;
+
+            // 盤點調整任務Url
+            string url = $"v1/{f060404.DC_CODE}/{f060404.WAREHOUSE_ID}/StockCheck/Adjustment";
 						ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsStockCheckAdjustmentResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null, F060404 = f060404 }, () =>
 						{
 							f060404.PROC_DATE = DateTime.Now;

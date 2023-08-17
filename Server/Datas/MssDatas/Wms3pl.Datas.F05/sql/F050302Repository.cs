@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -82,5 +83,24 @@ AND B.WMS_ORD_NO = @p3";
       return SqlQuery<F050302>(sql, para.ToArray());
     }
 
-  }
+		public IQueryable<OrderWithMakeNo> GetMakeNosByOrdNo(string dcCode, string gupCode, string custCode, string ordNo)
+		{
+			var para = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p3", ordNo) { SqlDbType = SqlDbType.VarChar },
+			};
+
+			var sql = @" SELECT ORD_NO, ORD_SEQ, MAKE_NO
+                           FROM F050302
+                          WHERE DC_CODE = @p0
+                            AND GUP_CODE = @p1
+                            AND CUST_CODE = @p2
+                            AND ORD_NO = @p3 ";
+
+			return SqlQuery<OrderWithMakeNo>(sql, para.ToArray());
+		}
+	}
 }

@@ -41,6 +41,140 @@ namespace Wms3pl.WebServices.Process.P25.Services
 			return string.IsNullOrWhiteSpace(text) || Regex.IsMatch(text, @"^\d+$");
 		}
 
+		/// <summary>
+		/// 檢核中文
+		/// </summary>
+		/// <param name="text"></param>
+		/// <returns></returns>
+		public bool IsChinese(string text)
+		{
+			return !string.IsNullOrWhiteSpace(text) && Regex.IsMatch(text, @"[\u4E00-\u9FFF]+");
+		}
+
+		/// <summary>
+		/// 檢查序號匯入清單
+		/// </summary>
+		/// <param name="importDatas"></param>
+		/// <param name="index"></param>
+		/// <param name="bulkUpdateF2501Result"></param>
+		/// <returns></returns>
+		public List<F250103Verification> InsertOrUpdate_New(List<F2501WcfData> importDatas)
+		{
+			List<F250103Verification> f250103Verifications = new List<F250103Verification>();
+			List<F2501WcfData> curnImportDatas = importDatas;
+			var addF250103s = new List<F250103>();
+			var addF2501s = new List<F2501>();
+			var updF2501s = new List<F2501>();
+			var delSnList = new List<string>();
+
+			var f2501Repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
+			var f1908Repo = new F1908Repository(Schemas.CoreSchema, _wmsTransaction);
+			var f250103Repo = new F250103Repository(Schemas.CoreSchema, _wmsTransaction);
+			var commonService = new CommonService();
+			var serialNoService = new SerialNoService(_wmsTransaction);
+			serialNoService.CommonService = commonService;
+
+			#region 找出必填欄位為空白或NULL資料 (GUP_CODE,CUST_CODE,ITEM_CODE,SERAIL_NO,STATUS,VNR_CODE)
+			var ngDatas = curnImportDatas.Where(x => string.IsNullOrWhiteSpace(x.GUP_CODE) || string.IsNullOrWhiteSpace(x.CUST_CODE)
+												|| string.IsNullOrWhiteSpace(x.ITEM_CODE) || string.IsNullOrWhiteSpace(x.SERIAL_NO)
+												|| string.IsNullOrWhiteSpace(x.STATUS) || string.IsNullOrWhiteSpace(x.VNR_CODE));
+			//針對每一筆紀錄
+			foreach (var ngData in ngDatas)
+			{
+				f250103Verifications.Add(SerialNoLog(ngData, false, $"必填欄位有缺", ref addF250103s));
+			}
+			//排除異常資料
+			curnImportDatas = curnImportDatas.Except(ngDatas).ToList();
+			#endregion
+
+			#region 找出SERIAL_NO,ITEM_CODE,WMS_NO欄位是否有中文
+			ngDatas = curnImportDatas.Where(x => IsChinese(x.SERIAL_NO) || IsChinese(x.ITEM_CODE.Replace("-", "")) || IsChinese(x.WMS_NO));
+			//針對每一筆紀錄
+			foreach (var ngData in ngDatas)
+			{
+				f250103Verifications.Add(SerialNoLog(ngData, false, $"欄位請勿輸入中文", ref addF250103s));
+			}
+			//排除異常資料
+			curnImportDatas = curnImportDatas.Except(ngDatas).ToList();
+			#endregion
+
+			#region 檢查供應商編號是否存在
+			foreach (var data in curnImportDatas.GroupBy(x => new { x.GUP_CODE, x.CUST_CODE, x.VNR_CODE }))
+			{
+				var vnrExisted = f1908Repo.IsVnrExisted(data.Key.GUP_CODE, data.Key.CUST_CODE, data.Key.VNR_CODE);
+				if (!vnrExisted)
+				{
+					ngDatas = data;
+					//針對每一筆紀錄
+					foreach (var ngData in ngDatas)
+					{
+						f250103Verifications.Add(SerialNoLog(ngData, false, $"供應商編號{ data.Key.VNR_CODE }不存在", ref addF250103s));
+					}
+					//排除異常資料
+					curnImportDatas = curnImportDatas.Except(ngDatas).ToList();
+				}
+			}
+			#endregion
+
+			#region 檢查序號綁儲位商品
+			foreach (var data in curnImportDatas.GroupBy(x => new { x.GUP_CODE, x.CUST_CODE }))
+			{
+				var f1903s = commonService.GetProductList(data.Key.GUP_CODE, data.Key.CUST_CODE, data.Select(s => s.ITEM_CODE).Distinct().ToList());
+				f1903s = f1903s.Where(x => x.BUNDLE_SERIALLOC == "1").ToList();
+				ngDatas = data.Where(x => x.GUP_CODE == data.Key.GUP_CODE && x.CUST_CODE == data.Key.CUST_CODE && f1903s.Select(s => s.ITEM_CODE).Contains(x.ITEM_CODE));
+				//針對每一筆紀錄
+				foreach (var ngData in ngDatas)
+				{
+					f250103Verifications.Add(SerialNoLog(ngData, false, $"序號綁儲位商品，請用異動調整作業處理序號資料", ref addF250103s));
+				}
+				//排除異常資料
+				curnImportDatas = curnImportDatas.Except(ngDatas).ToList();
+			}
+			#endregion
+
+			#region 檢查商品序號
+			foreach (var data in curnImportDatas.GroupBy(x => new { x.GUP_CODE, x.CUST_CODE, x.ITEM_CODE }))
+			{
+				var serialResults = serialNoService.CheckItemLargeSerialWithBeforeInWarehouse(data.Key.GUP_CODE, data.Key.CUST_CODE
+																																			, data.Key.ITEM_CODE, data.Select(s => s.SERIAL_NO).Distinct().ToList());
+
+				//針對每一筆紀錄
+				foreach (var serialResult in serialResults.Where(w => !w.Checked))
+				{
+					var ngData = data.FirstOrDefault(x => x.GUP_CODE == data.Key.GUP_CODE && x.CUST_CODE == data.Key.CUST_CODE
+																				&& x.ITEM_CODE == data.Key.ITEM_CODE && x.SERIAL_NO == serialResult.SerialNo);
+					if (ngData != null)
+						f250103Verifications.Add(SerialNoLog(ngData, false, serialResult.Message, ref addF250103s));
+				}
+
+				foreach (var serialResult in serialResults.Where(w => w.Checked))
+				{
+					var curnData = data.FirstOrDefault(x => x.GUP_CODE == data.Key.GUP_CODE && x.CUST_CODE == data.Key.CUST_CODE
+																				&& x.ITEM_CODE == data.Key.ITEM_CODE && x.SERIAL_NO == serialResult.SerialNo);
+
+					serialNoService.UpdateSerialNoFull(ref addF2501s, ref updF2501s, ref delSnList, null, data.Key.GUP_CODE, data.Key.CUST_CODE, curnData.STATUS, serialResult,
+														curnData.WMS_NO, curnData.PO_NO, curnData.VALID_DATE, ordProp: "J1");
+					f250103Verifications.Add(SerialNoLog(curnData, true, "", ref addF250103s));
+
+
+					if (delSnList.Any())
+					{
+						f2501Repo.DeleteBySnList(data.Key.GUP_CODE, data.Key.CUST_CODE, delSnList);
+						delSnList = new List<string>();
+					}
+				}
+			}
+			#endregion
+
+			if (addF2501s.Any())
+				f2501Repo.BulkInsert(addF2501s);
+			if (updF2501s.Any())
+				f2501Repo.BulkUpdate(updF2501s);
+			if (addF250103s.Any())
+				f250103Repo.BulkInsert(addF250103s);
+
+			return f250103Verifications;
+		}
 
     public F250103Verification InsertOrUpdate(F2501WcfData d, int index, out BulkUpdateF2501Result bulkUpdateF2501Result)
     {
@@ -303,22 +437,32 @@ namespace Wms3pl.WebServices.Process.P25.Services
 		/// <summary>
 		/// 匯入序號成功與否，皆會記錄
 		/// </summary>
-		public void SerialNoLog(F2501WcfData d, bool isPass, string message)
+		public F250103Verification SerialNoLog(F2501WcfData d, bool isPass, string message, ref List<F250103> f250103s)
 		{
-      if (string.IsNullOrWhiteSpace(d.GUP_CODE) || string.IsNullOrWhiteSpace(d.CUST_CODE))
-        return;
+			var result = new F250103Verification
+			{
+				ROWNUM = d.ROWNUM,
+				SerialNo = d.SERIAL_NO,
+				Verification = Properties.Resources.P2501Service_NotPass,
+				Status = d.STATUS
+			};
+			if (string.IsNullOrWhiteSpace(d.GUP_CODE) || string.IsNullOrWhiteSpace(d.CUST_CODE))
+				return result;
 
-      var f250103Repo = new F250103Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f250103 = new F250103
 			{
-				SERIAL_NO = d.SERIAL_NO,
+				SERIAL_NO = d.SERIAL_NO.Substring(0, d.SERIAL_NO.Length > 50 ? 50 : d.SERIAL_NO.Length),
 				STATUS = d.STATUS,
 				ISPASS = isPass ? "1" : "0",
 				MESSAGE = message,
 				GUP_CODE = d.GUP_CODE,
 				CUST_CODE = d.CUST_CODE
 			};
-			f250103Repo.Add(f250103);
+			f250103s.Add(f250103);
+
+			result.Verification = isPass ? Properties.Resources.P2501Service_Pass : Properties.Resources.P2501Service_Fail;
+			result.Message = message;
+			return result;
 		}
 
 		private IQueryable<F1903> CreateF1903Query(string itemCode, string gupCode, string custCode)

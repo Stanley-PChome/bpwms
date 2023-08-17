@@ -237,6 +237,19 @@ namespace Wms3pl.Datas.Test.F05
             #endregion
 
             _f050901Repo.GetKTJShipReturns(hctShipReturnParam);
-        }
-    }
+		}
+
+		[TestMethod]
+		public void GetDatasByWmsOrdNos()
+		{
+			#region Params
+			var dcCode = "001";
+			var gupCode = "01";
+			var custCode = "010001";
+			var wmsOrdNos = new List<string> { "O2017022000001", "O2017022000002" };
+			#endregion
+
+			_f050901Repo.GetDatasByWmsOrdNos(dcCode, gupCode, custCode, wmsOrdNos);
+		}
+	}
 }

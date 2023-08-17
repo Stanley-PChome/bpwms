@@ -155,6 +155,19 @@ namespace Wms3pl.WebServices.Process.P01.Services
 			return srv.GetInboundCnt(dcCode, gupCode, custCode, stockNos);
 		}
 
-		
+
+		[OperationContract]
+		public UserCloseExecuteResult UserCloseStock(UserCloseStockParam param)
+		{
+			var wmsTransaction = new WmsTransaction();
+			var srv = new P010201Service(wmsTransaction);
+			var result = srv.UserCloseStock(param);
+
+			if (result.IsSuccessed)
+				wmsTransaction.Complete();
+
+			return result;
+		}
+
 	}
 }

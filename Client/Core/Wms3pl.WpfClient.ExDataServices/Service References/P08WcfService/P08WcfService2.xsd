@@ -1037,4 +1037,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="F053601_NotAllotData" nillable="true" type="tns:F053601_NotAllotData" />
+  <xs:complexType name="StopAllotParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CANCEL_F0531_ID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="NORMAL_F0531_ID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PICK_F0701_ID" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StopAllotParam" nillable="true" type="tns:StopAllotParam" />
 </xs:schema>

@@ -30,6 +30,13 @@ namespace Wms3pl.Datas.F19
       var result = SqlQuery<F1909>(sql, sqlParameters.ToArray()).FirstOrDefault();
       return result;
     }
+
+		public IQueryable<F1909EX> GetCustList()
+		{
+			var sql = @" SELECT ROW_NUMBER() OVER(ORDER BY CUST_CODE) AS ROWNUM, GUP_CODE,CUST_CODE,CUST_NAME, '' LOC_CODE
+                     FROM F1909  ";
+			return SqlQuery<F1909EX>(sql);
+		}
   }
 
 }

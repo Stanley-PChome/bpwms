@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using Wms3pl.Datas.F05;
@@ -488,7 +490,37 @@ namespace Wms3pl.WebServices.Shared.Services
 		public void UpdateAllotStockStatusToNotAllot(string allotBatchNo)
 		{
 			var f0501Repo = new F0501Repository(Schemas.CoreSchema);
-			f0501Repo.UnLockByAllotBatchNo(allotBatchNo);
+			bool isDeadLock = false;
+			int deadLockRetryTimes = 0;
+			do
+			{
+				try
+				{
+					f0501Repo.UnLockByAllotBatchNo(allotBatchNo);
+				}
+				catch (Exception ex)
+				{
+					if (ex.InnerException != null && ex.InnerException.GetType() == typeof(SqlException))
+					{
+						var sqlEx = ex.InnerException as SqlException;
+						if (sqlEx.Number == 1205 && deadLockRetryTimes < 3)
+						{
+							isDeadLock = true;
+							deadLockRetryTimes++;
+							SpinWait.SpinUntil(() => false, 1000);
+						}
+						else
+						{
+							throw ex;
+						}
+					}
+					else
+					{
+						throw ex;
+					}
+				}
+			}
+			while (isDeadLock && deadLockRetryTimes <= 3);
 		}
 
 		#endregion

@@ -27,11 +27,11 @@ namespace Wms3pl.WebServices.Process.P01
 
 		[WebGet]
 		public IQueryable<F010201Data> GetF010201Datas(string dcCode, string gupCode, string custCode, string begStockDate,
-			string endStockDate, string stockNo, string vnrCode, string vnrName, string custOrdNo, string sourceNo, string status)
+			string endStockDate, string stockNo, string vnrCode, string vnrName, string custOrdNo, string sourceNo, string status, string userClosed)
 		{
 			var p010201Service = new P010201Service();
 			return p010201Service.GetF010201Datas(dcCode, gupCode, custCode, begStockDate, endStockDate, stockNo, vnrCode,
-				vnrName, custOrdNo, sourceNo, status);
+				vnrName, custOrdNo, sourceNo, status, userClosed);
 		}
 
 		[WebGet]

@@ -121,6 +121,7 @@
       <xs:element name="_x003C_NEED_EXPIRED_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_NO_PRICE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ORD_SAVE_QTY_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_ORI_VNR_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_PICK_ORD_x003E_k__BackingField" type="xs:long" />
       <xs:element name="_x003C_PICK_SAVE_ORD_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_PICK_SAVE_QTY_x003E_k__BackingField" type="xs:long" />
@@ -329,6 +330,8 @@
       <xs:element name="_x003C_ALLOW_EDIT_BOX_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ALLOW_NOPRINTPICKORDER_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ALLOW_NOSHIPPACKAGE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_ORDER_NO_DELV_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_WAREHOUSEIN_CLOSED_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_AUTO_GEN_RTN_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_B2C_CAN_LACK_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_BANK_ACCOUNT_x003E_k__BackingField" nillable="true" type="xs:string" />
@@ -391,6 +394,7 @@
       <xs:element name="_x003C_ISPRINT_SELFTAKE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ISSHIFTITEM_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ISUPLOADFILE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_EXECIMMEDIATEITEM_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_IS_ORDDATE_TODAY_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_IS_PRINT_INSTOCKPALLETSTICKER_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_IS_QUICK_CHECK_x003E_k__BackingField" nillable="true" type="xs:string" />

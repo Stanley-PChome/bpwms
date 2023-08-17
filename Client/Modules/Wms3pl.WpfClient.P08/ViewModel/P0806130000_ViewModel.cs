@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
 using Wms3pl.WpfClient.Common;
-using Wms3pl.WpfClient.DataServices.F00DataService;
-using Wms3pl.WpfClient.DataServices.F05DataService;
 using Wms3pl.WpfClient.DataServices.F19DataService;
 using Wms3pl.WpfClient.ExDataServices;
 using Wms3pl.WpfClient.ExDataServices.P08ExDataService;
@@ -651,8 +644,9 @@ namespace Wms3pl.WpfClient.P08.ViewModel
         else
         {
           ShowWarningMessage(result.Message);
+
           #region 把已經取消的揀貨單從清單中移除
-          var IsCancelOrder = result.No.Split(',');
+          var IsCancelOrder = string.IsNullOrWhiteSpace(result.No) ? Array.Empty<string>() : result.No.Split(',');
           EmpOrderList = EmpOrderList.Where(x => !IsCancelOrder.Contains(x.ORDER_NO)).ToObservableCollection();
           #endregion 把已經取消的揀貨單從清單中移除
         }
@@ -707,16 +701,24 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 			}
 
 			var x = btn.DataContext;
-			// 檢驗單號、工號
-			var proxy = GetWcfProxy<wcf.P08WcfServiceClient>();
-			var result = proxy.RunWcfMethod(w => w.DeleteEmpPickBind(((F0011BindData)x).ID.Value));
-			if (result.IsSuccessed)
-				//刪除成功
-				ShowInfoMessage(Properties.Resources.P0806130000_DeleteSucess);
-			else
-				ShowWarningMessage(result.Message);
 
-			EmpOrdBindSerachCommand.Execute(null);
+      if (ModelSet.Type == ModelType.BindMode)
+      {
+        EmpOrderList.Remove(EmpOrderList.Where(o => o.ORDER_NO == ((F0011BindData)x).ORDER_NO).FirstOrDefault());
+      }
+      else
+      {
+			  // 檢驗單號、工號
+			  var proxy = GetWcfProxy<wcf.P08WcfServiceClient>();
+			  var result = proxy.RunWcfMethod(w => w.DeleteEmpPickBind(((F0011BindData)x).ID.Value));
+			  if (result.IsSuccessed)
+				  //刪除成功
+				  ShowInfoMessage(Properties.Resources.P0806130000_DeleteSucess);
+			  else
+				  ShowWarningMessage(result.Message);
+
+			  EmpOrdBindSerachCommand.Execute(null);
+      }
 		}
 
 		#endregion Delete
@@ -743,12 +745,12 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 		{
 			if (EmpOrderList.Any())
 			{
-				var proxyP08Ex = GetExProxy<P08ExDataSource>();
+        var proxyP08Ex = GetExProxy<P08ExDataSource>();
 				var proxy = new wcf.P08WcfServiceClient();
 				var result = RunWcfMethod<wcf.ExecuteResult>(proxy.InnerChannel,
 								() => proxy.UpdateP0806130000Data(SelectedDcCode, _gupCode, _custCode, ExDataMapper.MapCollection<F0011BindData, wcf.F0011BindData>(EmpOrderList).ToArray()));
 
-				if (result.IsSuccessed)
+        if (result.IsSuccessed)
 				{
           if (!string.IsNullOrWhiteSpace(result.Message))
             ShowInfoMessage(result.Message);

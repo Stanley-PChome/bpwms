@@ -109,5 +109,19 @@ namespace Wms3pl.Datas.F05
 
 			ExecuteSqlCommand(sql, sqlParameter.ToArray());
 		}
+
+		public IQueryable<F053601> GetDatasByF0701Id(long f0701_Id)
+		{
+			var sqlParameters = new List<SqlParameter>();
+			sqlParameters.Add(new SqlParameter("@p0", f0701_Id) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @"
+                        SELECT *
+                          FROM F053601 
+                         WHERE F0701_ID = @p0
+                       ";
+
+			return SqlQuery<F053601>(sql, sqlParameters.ToArray());
+		}
 	}
 }

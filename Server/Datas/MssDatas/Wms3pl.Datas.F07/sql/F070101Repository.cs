@@ -102,14 +102,19 @@ namespace Wms3pl.Datas.F07
 
 		public IQueryable<F070101> GetDatasByContainerCodes(string dcCode, string gupCode, string custCode, List<string> containerCodes,List<string> wmsOrdNos)
 		{
-			var parms = new List<object> { dcCode, gupCode, custCode };
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+			};
 			var sql = @" SELECT * 
                      FROM F070101 
                     WHERE DC_CODE =  @p0 
                       AND GUP_CODE = @p1
                       AND CUST_CODE = @p2 ";
-			sql += parms.CombineNotNullOrEmptySqlInParameters(" AND CONTAINER_CODE ", containerCodes);
-			sql += parms.CombineNotNullOrEmptySqlInParameters(" AND WMS_NO ", wmsOrdNos);
+			sql += parms.CombineSqlInParameters(" AND CONTAINER_CODE ", containerCodes, SqlDbType.VarChar);
+			sql += parms.CombineSqlInParameters(" AND WMS_NO ", wmsOrdNos, SqlDbType.VarChar);
 			return SqlQuery<F070101>(sql, parms.ToArray());
 		}
 
@@ -280,5 +285,36 @@ WHERE
 
 			return SqlQuery<BindingPickContainerDetail>(sql, sqlParameter.ToArray());
 		}
-	}
+
+    public String GetContainerInCollection(string dcCode, string gupCode, string custCode, string wmsOrdNo, string pickOrdNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1",SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2",SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3",SqlDbType.VarChar) { Value = wmsOrdNo },
+        new SqlParameter("@p4",SqlDbType.VarChar) { Value = pickOrdNo },
+      };
+      var sql = @"
+SELECT
+	TOP 1 A.CONTAINER_CODE
+FROM
+	F070101 A
+INNER JOIN F051402 B ON
+	A.DC_CODE = B.DC_CODE 
+	AND A.GUP_CODE = B.GUP_CODE 
+	AND A.CUST_CODE = B.CUST_CODE 
+	AND A.WMS_NO = B.WMS_ORD_NO 
+	AND A.CONTAINER_CODE = B.CONTAINER_CODE 
+WHERE 
+	B.DC_CODE = @p0
+	AND B.GUP_CODE = @p1
+	AND B.CUST_CODE = @p2
+	AND B.WMS_ORD_NO = @p3
+  AND A.PICK_ORD_NO = @p4";
+      return SqlQuery<string>(sql, para.ToArray()).FirstOrDefault();
+    }
+
+  }
 }

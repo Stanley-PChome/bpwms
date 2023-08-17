@@ -168,7 +168,7 @@ namespace Wms3pl.WpfClient.P08.Views
         return;
       }
 
-      var win = new P0814010100(Vm.SelectedDc, Vm.ShipMode, Vm.DetailData != null && Vm.DetailData.Any(x => x.DiffQty > 0) && Vm.WmsOrdData?.Result.IsSuccessed == true);
+      var win = new P0814010100(Vm.SelectedDc, Vm.ShipMode, Vm.DetailData != null && Vm.DetailData.Any(x => x.DiffQty > 0) && (Vm.WmsOrdData?.Result.IsSuccessed == true || Vm.WmsOrdData?.IsCancelOrder == true));
       win.ShowDialog();
       Vm.SelectedF910501.CLOSE_BY_BOXNO = win.Vm.CloseByBoxno;
       Vm.SelectedF910501.NO_SPEC_REPROTS = win.Vm.NoSpecReports;

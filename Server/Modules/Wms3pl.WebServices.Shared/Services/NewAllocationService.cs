@@ -7,6 +7,7 @@ using Wms3pl.Datas.F01;
 using Wms3pl.Datas.F02;
 using Wms3pl.Datas.F05;
 using Wms3pl.Datas.F06;
+using Wms3pl.Datas.F07;
 using Wms3pl.Datas.F15;
 using Wms3pl.Datas.F19;
 using Wms3pl.Datas.F25;
@@ -1452,80 +1453,80 @@ namespace Wms3pl.WebServices.Shared.Services
 
 
 
-        #endregion
+    #endregion
 
-        #region 建立調撥主檔F151001
-        /// <summary>
-        /// 建立調撥主檔
-        /// </summary>
-        /// <param name="item">產生調撥單參數</param>
-        /// <param name="srcWarehouseId">來源倉別</param>
-        /// <param name="tarWarehouseId">目的倉別</param>
-        /// <param name="moveTool">作業工具</param>
-        /// <param name="PRE_TAR_WAREHOUSE_ID">補貨預定上架倉別</param>
-        /// <param name="AllocationType">調撥類型</param>
-        /// <param name="AllocationTypeCode">調撥單號</param>
-        /// <param name="orginalAllocation">原調撥資料</param>
-        /// <returns></returns>
-        private F151001 CreateAllocationMaster(NewAllocationItemParam item, string srcWarehouseId, string tarWarehouseId, string moveTool,
-        string PRE_TAR_WAREHOUSE_ID, AllocationType AllocationType, string AllocationTypeCode, F151001 orginalAllocation = null)
-        {
-            var newAllocationNo = string.Empty;
-            if (_orginalAllocationNos != null && _orginalAllocationNos.Any())
-            {
-                newAllocationNo = _orginalAllocationNos.First();
-                _orginalAllocationNos.Remove(newAllocationNo);
-            }
-            else
-            {
-                //var num = new Random().Next(99999);
-                //newAllocationNo = string.Format("T{0}{1}", DateTime.Today.ToString("yyyyMMdd"), num.ToString().PadLeft(5, '0'));
-                newAllocationNo = GetNewOrdCode("T");
-            }
+    #region 建立調撥主檔F151001
+    /// <summary>
+    /// 建立調撥主檔
+    /// </summary>
+    /// <param name="item">產生調撥單參數</param>
+    /// <param name="srcWarehouseId">來源倉別</param>
+    /// <param name="tarWarehouseId">目的倉別</param>
+    /// <param name="moveTool">作業工具</param>
+    /// <param name="PRE_TAR_WAREHOUSE_ID">補貨預定上架倉別</param>
+    /// <param name="AllocationType">調撥類型</param>
+    /// <param name="AllocationTypeCode">調撥單號</param>
+    /// <param name="orginalAllocation">原調撥資料</param>
+    /// <returns></returns>
+    private F151001 CreateAllocationMaster(NewAllocationItemParam item, string srcWarehouseId, string tarWarehouseId, string moveTool,
+    string PRE_TAR_WAREHOUSE_ID, AllocationType AllocationType, string AllocationTypeCode, F151001 orginalAllocation = null)
+    {
+      var newAllocationNo = string.Empty;
+      if (_orginalAllocationNos != null && _orginalAllocationNos.Any())
+      {
+        newAllocationNo = _orginalAllocationNos.First();
+        _orginalAllocationNos.Remove(newAllocationNo);
+      }
+      else
+      {
+        //var num = new Random().Next(99999);
+        //newAllocationNo = string.Format("T{0}{1}", DateTime.Today.ToString("yyyyMMdd"), num.ToString().PadLeft(5, '0'));
+        newAllocationNo = GetNewOrdCode("T");
+      }
 
-            var defaultAllocationDate = DateTime.Today;
-            var status = orginalAllocation?.STATUS;
-            if (string.IsNullOrWhiteSpace(status) || status == "8" || status == "1")
-                status = "0"; //待處理
-            if (item.AllocationType == AllocationType.NoSource && status == "0")
-                status = "3";  //純上架要預設狀態為已下架處理
-            if (orginalAllocation != null && item.SourceType == "04") //如果是重建調撥單 來源單據類別=進倉 預設已下架處理
-                status = "3";
+      var defaultAllocationDate = DateTime.Today;
+      var status = orginalAllocation?.STATUS;
+      if (string.IsNullOrWhiteSpace(status) || status == "8" || status == "1")
+        status = "0"; //待處理
+      if (item.AllocationType == AllocationType.NoSource && status == "0")
+        status = "3";  //純上架要預設狀態為已下架處理
+      if (orginalAllocation != null && item.SourceType == "04") //如果是重建調撥單 來源單據類別=進倉 預設已下架處理
+        status = "3";
 
-            //是否派車
-            var sendCar = item.SendCar.HasValue ? (item.SendCar == true ? "1" : "0") : orginalAllocation?.SEND_CAR ?? "0";
-            //是否展開效期和入庫日
-            var isExpendDate = item.IsExpendDate.HasValue ? (item.IsExpendDate == true ? "1" : "0") : orginalAllocation?.ISEXPENDDATE ?? "0";
-            var master = new F151001
-            {
-                DC_CODE = (AllocationType == AllocationType.NoSource) ? item.TarDcCode : item.SrcDcCode,
-                GUP_CODE = item.GupCode,
-                CUST_CODE = item.CustCode,
-                ALLOCATION_NO = newAllocationNo,
-                ALLOCATION_DATE = item.AllocationDate ?? orginalAllocation?.ALLOCATION_DATE ?? defaultAllocationDate,
-                CRT_ALLOCATION_DATE = defaultAllocationDate,
-                POSTING_DATE = item.PostingDate,
-                STATUS = status,
-                TAR_DC_CODE = (item.AllocationType == AllocationType.NoTarget) ? item.SrcDcCode : item.TarDcCode,
-                TAR_WAREHOUSE_ID = tarWarehouseId,
-                SRC_WAREHOUSE_ID = srcWarehouseId,
-                SRC_DC_CODE = (item.AllocationType == AllocationType.NoSource) ? item.TarDcCode : item.SrcDcCode,
-                SOURCE_TYPE = item.SourceType ?? orginalAllocation?.SOURCE_TYPE,
-                SOURCE_NO = item.SourceNo ?? orginalAllocation?.SOURCE_NO,
-                BOX_NO = orginalAllocation?.BOX_NO,
-                MEMO = item.Memo ?? orginalAllocation?.MEMO,
-                LOCK_STATUS = (status == "3") ? "2" : "0",
-                SEND_CAR = sendCar,
-                ISEXPENDDATE = isExpendDate,
-                MOVE_TOOL = moveTool,
-                ISMOVE_ORDER = item.IsMoveOrder ? "1" : "0",
-                ALLOCATION_TYPE = AllocationTypeCode,
-                CONTAINER_CODE = item.ContainerCode,
-                F0701_ID = item.F0701_ID,
-                PRE_TAR_WAREHOUSE_ID = PRE_TAR_WAREHOUSE_ID
-            };
-            return master;
-        }
+      //是否派車
+      var sendCar = item.SendCar.HasValue ? (item.SendCar == true ? "1" : "0") : orginalAllocation?.SEND_CAR ?? "0";
+      //是否展開效期和入庫日
+      var isExpendDate = item.IsExpendDate.HasValue ? (item.IsExpendDate == true ? "1" : "0") : orginalAllocation?.ISEXPENDDATE ?? "0";
+      var master = new F151001
+      {
+        DC_CODE = (AllocationType == AllocationType.NoSource) ? item.TarDcCode : item.SrcDcCode,
+        GUP_CODE = item.GupCode,
+        CUST_CODE = item.CustCode,
+        ALLOCATION_NO = newAllocationNo,
+        ALLOCATION_DATE = item.AllocationDate ?? orginalAllocation?.ALLOCATION_DATE ?? defaultAllocationDate,
+        CRT_ALLOCATION_DATE = defaultAllocationDate,
+        POSTING_DATE = item.PostingDate,
+        STATUS = status,
+        TAR_DC_CODE = (item.AllocationType == AllocationType.NoTarget) ? item.SrcDcCode : item.TarDcCode,
+        TAR_WAREHOUSE_ID = tarWarehouseId,
+        SRC_WAREHOUSE_ID = srcWarehouseId,
+        SRC_DC_CODE = (item.AllocationType == AllocationType.NoSource) ? item.TarDcCode : item.SrcDcCode,
+        SOURCE_TYPE = item.SourceType ?? orginalAllocation?.SOURCE_TYPE,
+        SOURCE_NO = item.SourceNo ?? orginalAllocation?.SOURCE_NO,
+        BOX_NO = orginalAllocation?.BOX_NO,
+        MEMO = item.Memo ?? orginalAllocation?.MEMO,
+        LOCK_STATUS = (status == "3") ? "2" : "0",
+        SEND_CAR = sendCar,
+        ISEXPENDDATE = isExpendDate,
+        MOVE_TOOL = moveTool,
+        ISMOVE_ORDER = item.IsMoveOrder ? "1" : "0",
+        ALLOCATION_TYPE = orginalAllocation != null ? orginalAllocation.ALLOCATION_TYPE : AllocationTypeCode,
+        CONTAINER_CODE = item.ContainerCode,
+        F0701_ID = item.F0701_ID,
+        PRE_TAR_WAREHOUSE_ID = PRE_TAR_WAREHOUSE_ID
+      };
+      return master;
+    }
 
         #endregion
 
@@ -2143,65 +2144,61 @@ namespace Wms3pl.WebServices.Shared.Services
                 CreateCancelF060101(dcCode, gupCode, custCode, wmsNo, warehouseId, expectedInsertCnt);
         }
 
-        /// <summary>
-        /// 新增AGV入庫任務取消
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="wmsNo"></param>
-        /// <param name="warehouseId"></param>
-        public void CreateCancelF060101(string dcCode, string gupCode, string custCode, string wmsNo, string warehouseId, int expectedInsertCnt)
+    /// <summary>
+    /// 新增AGV入庫任務取消
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="wmsNo"></param>
+    /// <param name="warehouseId"></param>
+    public void CreateCancelF060101(string dcCode, string gupCode, string custCode, string wmsNo, string warehouseId, int expectedInsertCnt)
+    {
+      var f060101Repo = new F060101Repository(Schemas.CoreSchema, _wmsTransaction);
+
+      var f060101s = f060101Repo.GetDatasByTrueAndCondition(o =>
+      o.DC_CODE == dcCode &&
+      o.GUP_CODE == gupCode &&
+      o.CUST_CODE == custCode &&
+      o.WMS_NO == wmsNo);
+
+      var statusList = new List<string> { "0", "T", "F" };
+
+      // 尚未發送的要取消
+      var notSendF060101 = f060101s.Where(x => x.CMD_TYPE == "1" && statusList.Contains(x.STATUS)).FirstOrDefault();
+      if (notSendF060101 != null)
+      {
+        notSendF060101.STATUS = "9";
+        notSendF060101.MESSAGE = "尚未執行先行取消";
+        f060101Repo.Update(notSendF060101);
+      }
+      else
+      {
+        //取得原任務單號
+        var sendF060101 = f060101s.Where(x => x.CMD_TYPE == "1" && x.WAREHOUSE_ID == warehouseId && new[] { "1", "2" }.Contains(x.STATUS)).OrderByDescending(x => x.CRT_DATE).FirstOrDefault();
+        if (sendF060101 != null)
         {
-            var f060101Repo = new F060101Repository(Schemas.CoreSchema, _wmsTransaction);
+          //檢查是否已有該取消任務
+          var f060101 = f060101s.Where(x => x.CMD_TYPE == "2" && x.DOC_ID == sendF060101.DOC_ID).FirstOrDefault();
 
-            var f060101s = f060101Repo.GetDatasByTrueAndCondition(o =>
-            o.DC_CODE == dcCode &&
-            o.GUP_CODE == gupCode &&
-            o.CUST_CODE == custCode &&
-            o.WMS_NO == wmsNo);
-
-            var statusList = new List<string> { "0", "T", "F" };
-
-            // 尚未發送的要取消
-            var notSendF060101 = f060101s.Where(x => x.CMD_TYPE == "1" && statusList.Contains(x.STATUS)).FirstOrDefault();
-            if (notSendF060101 != null)
+          if (f060101 == null)
+          {
+            f060101Repo.Add(new F060101
             {
-                notSendF060101.STATUS = "9";
-                notSendF060101.MESSAGE = "尚未執行先行取消";
-                f060101Repo.Update(notSendF060101);
-            }
-            else
-            {
-                var f060101 = f060101s.Where(x => x.CMD_TYPE == "2" && x.WAREHOUSE_ID == warehouseId && statusList.Contains(x.STATUS)).FirstOrDefault();
-
-                if (f060101 == null)
-                {
-                    var docId = string.Empty;
-
-                    if (!f060101s.Any())
-                        //ii.若筆數為0任務單號 = < 參數4 >
-                        docId = wmsNo;
-                    else
-                        //iii.若筆數 > 0任務單號 = < 參數4 > +2碼流水號
-                        //流水號 = 筆數(不足2位則補0)  例: 筆數 = 1 則流水號為01
-                        docId = $"{wmsNo}{Convert.ToString(f060101s.Count() + expectedInsertCnt).PadLeft(2, '0')}";
-
-                    f060101Repo.Add(new F060101
-                    {
-                        DOC_ID = docId,
-                        DC_CODE = dcCode,
-                        GUP_CODE = gupCode,
-                        CUST_CODE = custCode,
-                        WMS_NO = wmsNo,
-                        WAREHOUSE_ID = warehouseId,
-                        CMD_TYPE = "2",
-                        STATUS = "0"
-                    });
-                }
-            }
+              DOC_ID = sendF060101.DOC_ID,
+              DC_CODE = dcCode,
+              GUP_CODE = gupCode,
+              CUST_CODE = custCode,
+              WMS_NO = wmsNo,
+              WAREHOUSE_ID = warehouseId,
+              CMD_TYPE = "2",
+              STATUS = "0"
+            });
+          }
         }
-        #endregion
+      }
+    }
+    #endregion
 
         /// <summary>
         /// 任務觸發 下架
@@ -2313,6 +2310,8 @@ namespace Wms3pl.WebServices.Shared.Services
     public void AllocationConfirm(AllocationConfirmParam param, bool isPosting = false)
     {
       #region 變數
+      F0701Repository f0701Repo = null;
+      F060302Repository f060302Repo = null;
       var shardService = new SharedService(_wmsTransaction);
       var f151001Repo = new F151001Repository(Schemas.CoreSchema, _wmsTransaction);
       var f151002Repo = new F151002Repository(Schemas.CoreSchema, _wmsTransaction);
@@ -2716,19 +2715,19 @@ namespace Wms3pl.WebServices.Shared.Services
 
         }
 
-        if (!isDown) // 上架
-        {
-          var finishStatus = new List<string> { "2", "9" };
-          if (f151002s.All(x => finishStatus.Contains(x.STATUS)) && addF151002Datas.All(x => finishStatus.Contains(x.STATUS)))
-          {
-            f151001.STATUS = "5";
-            f151001.LOCK_STATUS = "4";
-            f151001.POSTING_DATE = now;
-            if (f151001.TAR_START_DATE == null)
-              f151001.TAR_START_DATE = startDate ?? f151001.UPD_DATE;
-          }
-          // 新增進倉驗收結果上架表
-          var f020202s = warehouseInService.CreateF020202sForTar(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, updF151002Datas, addList: addF151002Datas);
+                if (!isDown) // 上架
+                {
+                    var finishStatus = new List<string> { "2", "9" };
+                    if (f151002s.All(x => finishStatus.Contains(x.STATUS)) && addF151002Datas.All(x => finishStatus.Contains(x.STATUS)))
+                    {
+                        f151001.STATUS = "5";
+                        f151001.LOCK_STATUS = "4";
+                        f151001.POSTING_DATE = now;
+                        if (f151001.TAR_START_DATE == null)
+                            f151001.TAR_START_DATE = startDate ?? f151001.UPD_DATE;
+                    }
+                    // 新增進倉驗收結果上架表
+                    var f020202s = warehouseInService.CreateF020202sForTar(f151001.DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, updF151002Datas, addList: addF151002Datas);
 
           // 更新進倉驗收歷史表
           warehouseInService.UpdateF010204s(f151001.TAR_DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, f151001.ALLOCATION_NO, f020202s);
@@ -2754,6 +2753,28 @@ namespace Wms3pl.WebServices.Shared.Services
 
           #region 容器釋放
           containerService.DelContainer(param.DcCode, param.GupCode, param.CustCode, param.AllocNo);
+
+          //如果是全缺的狀態，上方的容器釋放會無效，就改用傳入的容器共用函數內容去刪除容器
+          if (param.ContainerResults != null && param.ContainerResults.Any()
+            && param.Details.All(x => x.Qty == 0))
+          {
+            if (f0701Repo == null)
+              f0701Repo = new F0701Repository(Schemas.CoreSchema, _wmsTransaction);
+            if (f060302Repo == null)
+              f060302Repo = new F060302Repository(Schemas.CoreSchema, _wmsTransaction);
+            foreach (var containerResults in param.ContainerResults)
+            {
+              f0701Repo.DeleteF0701(containerResults.f0701_ID);
+              f060302Repo.Add(new F060302
+              {
+                DC_CODE = param.DcCode,
+                CUST_CODE = param.CustCode,
+                WAREHOUSE_ID = containerResults.WAREHOUSE_ID,
+                CONTAINER_CODE = containerResults.ContainerCode,
+                STATUS = "0"
+              });
+            }
+          }
           #endregion
 
           #region 新增F010205進倉回檔歷程紀錄表
@@ -2825,33 +2846,37 @@ namespace Wms3pl.WebServices.Shared.Services
       }
     }
 
-        private void UpdateF2501ByAlloc(ref List<F2501> updF2501Datas, bool isDown, List<F2501> f2501s, F151001 f151001Data, F151002 f151002Data, DateTime now)
+    private void UpdateF2501ByAlloc(ref List<F2501> updF2501Datas, bool isDown, List<F2501> f2501s, F151001 f151001Data, F151002 f151002Data, DateTime now)
+    {
+      if (f151001Data.SRC_DC_CODE != f151001Data.TAR_DC_CODE && !string.IsNullOrWhiteSpace(f151002Data.SERIAL_NO))
+      {
+        var status = isDown ? "C1" : "A1";
+
+        // 取得序號資料
+        var f2501 = f2501s.Where(o => o.SERIAL_NO == f151002Data.SERIAL_NO).FirstOrDefault();
+        if (f2501 != null)
         {
-            if (f151001Data.SRC_DC_CODE != f151001Data.TAR_DC_CODE && !string.IsNullOrWhiteSpace(f151002Data.SERIAL_NO))
+          f2501.STATUS = status;
+          if (!isDown)
+            f2501.IS_ASYNC = "N";
+          updF2501Datas.Add(f2501);
+
+          if (f2501.COMBIN_NO != null)
+          {
+            // 取得相同組合商品的序號
+            var combinF2501Datas = f2501s.Where(x => x.COMBIN_NO == f2501.COMBIN_NO).ToList();
+
+            foreach (var obj in combinF2501Datas)
             {
-                var status = isDown ? "C1" : "A1";
-
-                // 取得序號資料
-                var f2501 = f2501s.Where(o => o.SERIAL_NO == f151002Data.SERIAL_NO).FirstOrDefault();
-                if (f2501 != null)
-                {
-                    f2501.STATUS = status;
-                    updF2501Datas.Add(f2501);
-
-                    if (f2501.COMBIN_NO != null)
-                    {
-                        // 取得相同組合商品的序號
-                        var combinF2501Datas = f2501s.Where(x => x.COMBIN_NO == f2501.COMBIN_NO).ToList();
-
-                        foreach (var obj in combinF2501Datas)
-                        {
-                            obj.STATUS = status;
-                            updF2501Datas.Add(obj);
-                        }
-                    }
-                }
+              obj.STATUS = status;
+              if (!isDown)
+                f2501.IS_ASYNC = "N";
+              updF2501Datas.Add(obj);
             }
+          }
         }
+      }
+    }
 
         public void StockRecovery(ref List<F1913> addF1913Datas, ref List<F1913> updF1913Datas, int qty, string dcCode, string gupCode, string custCode, string itemCode, string locCode, DateTime validDate, DateTime enterDate, string vnrCode, string serialNo, string boxCtrlNo, string palletCtrlNo, string makeNo, StockRecoveryType stockRecoveryType = StockRecoveryType.Add)
         {

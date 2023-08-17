@@ -171,9 +171,9 @@
 														</DataGridTextColumn.Binding>
 													</DataGridTextColumn>
 													<!--<DataGridTextColumn Header="{x:Static Properties:Resources.SEND_CUST}" Binding="{Binding SEND_CUST}" IsReadOnly="True"/>-->
-													<DataGridTextColumn Header="{x:Static res:Resources.CRT_DATE}" Binding="{Binding CRT_DATE,StringFormat={}{0:yyyy/MM/dd hh:mm}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static res:Resources.CRT_DATE}" Binding="{Binding CRT_DATE,StringFormat={}{0:yyyy/MM/dd HH:mm}}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static res:Resources.CRT_STAFF}" Binding="{Binding CRT_NAME}" IsReadOnly="True"/>
-													<DataGridTextColumn Header="{x:Static res:Resources.UPD_DATE}" Binding="{Binding UPD_DATE,StringFormat={}{0:yyyy/MM/dd hh:mm}}" IsReadOnly="True"/>
+													<DataGridTextColumn Header="{x:Static res:Resources.UPD_DATE}" Binding="{Binding UPD_DATE,StringFormat={}{0:yyyy/MM/dd HH:mm}}" IsReadOnly="True"/>
 													<DataGridTextColumn Header="{x:Static res:Resources.UPD_STAFF}" Binding="{Binding UPD_NAME}" IsReadOnly="True"/>													
 												</DataGrid.Columns>
 											</DataGrid>

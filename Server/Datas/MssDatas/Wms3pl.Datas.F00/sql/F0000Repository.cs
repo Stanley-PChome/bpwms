@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Transactions;
+using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -88,5 +89,16 @@ namespace Wms3pl.Datas.F00
       var sql = string.Format(" SELECT NEXT VALUE FOR [dbo].[{0}]", tableSeqId);
       return SqlQuery<decimal>(sql);
     }
+
+    //放在F0000Repository
+    public IQueryable<testClass> GettestClasses(string TABLE_NAME)
+    {
+      var sql = $@"SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE, NUMERIC_PRECISION, NUMERIC_SCALE
+                FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_NAME = '{TABLE_NAME}'";
+      return SqlQuery<testClass>(sql);
+    }
+
+
   }
 }

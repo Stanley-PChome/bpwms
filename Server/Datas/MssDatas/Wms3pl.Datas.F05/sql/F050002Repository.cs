@@ -201,7 +201,7 @@ namespace Wms3pl.Datas.F05
 			{
 				new SqlParameter("@p0",allotBatchNo){SqlDbType = SqlDbType.VarChar},
 			};
-			var sql = @" SELECT *
+			var sql = @" SELECT A.*
                      FROM F050002 A
                      JOIN F050001 B
                        ON B.DC_CODE = A.DC_CODE

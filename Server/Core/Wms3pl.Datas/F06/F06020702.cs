@@ -19,62 +19,73 @@
         /// </summary>
         [Key]
         [Required]
-        public long ID { get; set; }
+    [Column(TypeName = "bigint")]
+    public long ID { get; set; }
 
 		/// <summary>
 		/// F060207流水號
 		/// </summary>
 		[Required]
-		public long F060207_ID { get; set; }
+    [Column(TypeName = "bigint")]
+    public long F060207_ID { get; set; }
 
-		/// <summary>
-		/// 貨架編號
-		/// </summary>
-		public string SHELF_CODE { get; set; }
+    /// <summary>
+    /// 貨架編號
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string SHELF_CODE { get; set; }
 
-		/// <summary>
-		/// 儲位編號
-		/// </summary>
-		public string BIN_CODE { get; set; }
+    /// <summary>
+    /// 儲位編號
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string BIN_CODE { get; set; }
 
 		/// <summary>
 		/// 揀出數量
 		/// </summary>
 		[Required]
-		public int SKUQTY { get; set; }
+    [Column(TypeName = "int")]
+    public int SKUQTY { get; set; }
 
 		/// <summary>
 		/// 建立日期
 		/// </summary>
 		[Required]
-		public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
 		/// <summary>
 		/// 建立人員編號
 		/// </summary>
 		[Required]
-        public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 		/// <summary>
 		/// 建立人員名稱
 		/// </summary>
 		[Required]
-        public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
 
-		/// <summary>
-		/// 異動日期
-		/// </summary>
-		public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
-		/// <summary>
-		/// 異動人員編號
-		/// </summary>
-		public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員編號
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-		/// <summary>
-		/// 異動人員名稱
-		/// </summary>
-		public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人員名稱
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
     }
 }

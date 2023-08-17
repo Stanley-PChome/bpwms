@@ -20,11 +20,13 @@ namespace Wms3pl.Datas.F05
     /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(20)")]
     public string PICK_ORD_NO { get; set; }
 
     /// <summary>
     /// 批次日期
     /// </summary>
+    [Column(TypeName = "datetime2(0)")]
     public DateTime? DELV_DATE { get; set; }
 
     /// <summary>
@@ -32,21 +34,25 @@ namespace Wms3pl.Datas.F05
     /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(12)")]
     public string CUST_CODE { get; set; }
 
     /// <summary>
     /// 訂單類別(0:B2B 1:B2C)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string ORD_TYPE { get; set; }
 
     /// <summary>
     /// 批次時段
     /// </summary>
+    [Column(TypeName = "varchar(8)")]
     public string PICK_TIME { get; set; }
 
     /// <summary>
     /// 揀貨狀態(0待揀貨、1揀貨中、2揀貨完成、9取消)
     /// </summary>
+    [Column(TypeName = "smallint")]
     public Int16? PICK_STATUS { get; set; }
 
     /// <summary>
@@ -54,6 +60,7 @@ namespace Wms3pl.Datas.F05
     /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(2)")]
     public string GUP_CODE { get; set; }
 
     /// <summary>
@@ -61,86 +68,102 @@ namespace Wms3pl.Datas.F05
     /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(3)")]
     public string DC_CODE { get; set; }
 
     /// <summary>
     /// 建立人員
     /// </summary>
     [Required]
+    [Column(TypeName = "varchar(20)")]
     public string CRT_STAFF { get; set; }
 
     /// <summary>
     /// 建立日期
     /// </summary>
     [Required]
+    [Column(TypeName = "datetime2(0)")]
     public DateTime CRT_DATE { get; set; }
 
     /// <summary>
     /// 異動人員
     /// </summary>
+    [Column(TypeName = "varchar(20)")]
     public string UPD_STAFF { get; set; }
 
     /// <summary>
     /// 異動日期
     /// </summary>
+    [Column(TypeName = "datetime2(0)")]
     public DateTime? UPD_DATE { get; set; }
 
     /// <summary>
     /// 建立人名
     /// </summary>
     [Required]
+    [Column(TypeName = "nvarchar(16)")]
     public string CRT_NAME { get; set; }
 
     /// <summary>
     /// 異動人名
     /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
     public string UPD_NAME { get; set; }
 
     /// <summary>
     /// 是否為台車揀貨
     /// </summary>
     [Required]
+    [Column(TypeName = "char(1)")]
     public string ISDEVICE { get; set; }
 
     /// <summary>
     /// 揀貨人員
     /// </summary>
+    [Column(TypeName = "varchar(20)")]
     public string PICK_STAFF { get; set; }
 
     /// <summary>
     /// 揀貨人名
     /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
     public string PICK_NAME { get; set; }
 
     /// <summary>
     /// 是否已列印(0:否;1:是)
     /// </summary>
     [Required]
+    [Column(TypeName = "char(1)")]
     public string ISPRINTED { get; set; }
 
     /// <summary>
     /// 台車是否已列印(0:否;1:是)
     /// </summary>
     [Required]
+    [Column(TypeName = "char(1)")]
     public string DEVICE_PRINT { get; set; }
 
     /// <summary>
     /// 揀貨完成時間
     /// </summary>
+    [Column(TypeName = "datetime2(0)")]
     public DateTime? PICK_FINISH_DATE { get; set; }
 
     /// <summary>
     /// 拆單方式(01:倉庫;02:PK區;03:不拆單)
     /// </summary>
+    [Column(TypeName = "varchar(2)")]
     public string SPLIT_TYPE { get; set; }
 
     /// <summary>
     /// 拆單代碼(依SPLIT_TYPE寫入對應的代碼)
     /// </summary>
+    [Column(TypeName = "varchar(20)")]
     public string SPLIT_CODE { get; set; }
     /// <summary>
     /// 派發系統(0: WMS、1: 中介系統)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string DISP_SYSTEM { get; set; }
 
     /// <summary>
@@ -175,114 +198,139 @@ namespace Wms3pl.Datas.F05
     ///		(1) 1P 1O 2品 1PCS
     ///		(2) 預設下一個動作到包裝站
     /// </summary>
+    [Column(TypeName = "varchar(2)")]
     public string PICK_TYPE { get; set; }
     /// <summary>
     /// 下一個作業(0: 待確認、1: 分貨站、2: 集貨場、3: 包裝站、4:異常區、5:廠退出貨碼頭 、6: 跨庫調撥出貨碼頭)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string NEXT_STEP { get; set; }
     /// <summary>
     /// 人工倉揀貨工具(0: 待確認、1: 紙本、2: PDA)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string PICK_TOOL { get; set; }
     /// <summary>
     /// 揀貨開始時間
     /// </summary>
+    [Column(TypeName = "datetime2(0)")]
     public DateTime? PICK_START_TIME { get; set; }
     /// <summary>
     /// 跨庫調撥的目的地名稱
     /// </summary>
+    [Column(TypeName = "varchar(10)")]
     public string MOVE_OUT_TARGET { get; set; }
 
     /// <summary>
     /// 建議出貨包裝線類型(空白=不指定 PA1=小線 PA2=大線)
     /// </summary>
+    [Column(TypeName = "varchar(3)")]
     public string PACKING_TYPE { get; set; }
 
     /// <summary>
     /// 指定容器(00=不限, 01=M-周轉箱, 02=2L周轉箱)
     /// </summary>
+    [Column(TypeName = "varchar(2)")]
     public string CONTAINER_TYPE { get; set; }
 
     /// <summary>
     /// PK區編號/倉庫編號
     /// </summary>
+    [Column(TypeName = "varchar(5)")]
     public string PK_AREA { get; set; }
 
     /// <summary>
     /// PK區名稱/倉庫名稱
     /// </summary>
+    [Column(TypeName = "nvarchar(20)")]
     public string PK_AREA_NAME { get; set; }
 
     /// <summary>
     /// 集貨/分貨單號
     /// </summary>
+    [Column(TypeName = "varchar(20)")]
     public string MERGE_NO { get; set; }
 
     /// <summary>
     /// 廠商編號
     /// </summary>
+    [Column(TypeName = "nvarchar(20)")]
     public string RTN_VNR_CODE { get; set; }
 
     /// <summary>
     /// 預計指定容器數量
     /// </summary>
-		public int? CONTAINER_B_CNT { get; set; }
-    
+    [Column(TypeName = "int")]
+    public int? CONTAINER_B_CNT { get; set; }
+
     /// <summary>
     /// 訂單建立日期 (只存日期不存時間)
     /// </summary>
+    [Column(TypeName = "datetime2(0)")]
     public DateTime? ORDER_CRT_DATE { get; set; }
 
     /// <summary>
     /// 商品處理類別(0:一般 1:含安裝型商品)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string ORDER_PROC_TYPE { get; set; }
 
     /// <summary>
     /// 收貨郵遞區號
     /// </summary>
+    [Column(TypeName = "varchar(5)")]
     public string ORDER_ZIP_CODE { get; set; }
 
     /// <summary>
     /// 是否北北基訂單(0:否 1:是)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string IS_NORTH_ORDER { get; set; }
     /// <summary>
     /// WMS優先權代碼(F1956.PRIORITY_CODE)
     /// </summary>
+    [Column(TypeName = "varchar(10)")]
     public string PRIORITY_CODE { get; set; }
     /// <summary>
     /// 設備優先權值
     /// </summary>
+    [Column(TypeName = "int")]
     public int? PRIORITY_VALUE { get; set; }
     /// <summary>
     /// 是否為人員指定WMS優先權(0:否 1:是)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string IS_USER_DIRECT_PRIORITY { get; set; }
     /// <summary>
     /// 裝置類型
     /// </summary>
+    [Column(TypeName = "varchar(20)")]
     public string DEVICE_TYPE { get; set; }
     /// <summary>
     /// 揀貨單列印人員
     /// </summary>
+    [Column(TypeName = "varchar(20)")]
     public string PRINT_STAFF { get; set; }
     /// <summary>
     /// 揀貨單列印人名
     /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
     public string PRINT_NAME { get; set; }
     /// <summary>
     /// 揀貨單列印時間
     /// </summary>
+    [Column(TypeName = "datetime2(0)")]
     public DateTime? PRINT_TIME { get; set; }
     /// <summary>
     /// 建議物流商編號
     /// </summary>
+    [Column(TypeName = "varchar(10)")]
     public string SUG_LOGISTIC_CODE { get; set; }
 
     /// <summary>
     /// 特別處理標記 (0: 無、1: Apple廠商的商品)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string NP_FLAG { get; set; }
   }
 }

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2022/5/26 上午 10:23:45
+// Generation date: 2023/7/31 下午 06:35:04
 namespace Wms3pl.WpfClient.DataServices.F01DataService
 {
     
@@ -395,132 +395,134 @@ namespace Wms3pl.WpfClient.DataServices.F01DataService
                 "ame=\"FOREIGN_CUSTCODE\" Type=\"Edm.String\" /><Property Name=\"BATCH_NO\" Type=\"Edm.S" +
                 "tring\" /><Property Name=\"IMPORT_FLAG\" Type=\"Edm.String\" /><Property Name=\"FAST_P" +
                 "ASS_TYPE\" Type=\"Edm.String\" /><Property Name=\"BOOKING_IN_PERIOD\" Type=\"Edm.Strin" +
-                "g\" /></EntityType><EntityType Name=\"F010203\"><Key><PropertyRef Name=\"CUST_CODE\" " +
-                "/><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Name" +
-                "=\"STICKER_NO\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false" +
-                "\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Nam" +
-                "e=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"STICKER_NO\" T" +
-                "ype=\"Edm.String\" Nullable=\"false\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" " +
-                "/><Property Name=\"PALLET_NO\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type" +
-                "=\"Edm.String\" /><Property Name=\"ENA_CODE1\" Type=\"Edm.String\" /><Property Name=\"E" +
-                "NA_CODE3\" Type=\"Edm.String\" /><Property Name=\"ITEM_CASE_QTY\" Type=\"Edm.Int32\" />" +
-                "<Property Name=\"ITEM_PACKAGE_QTY\" Type=\"Edm.Int32\" /><Property Name=\"PALLET_LEVE" +
-                "L_CASEQTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PALLET_LEVEL_CNT\"" +
-                " Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_CASE_QTY\" Type=\"Edm.I" +
-                "nt32\" Nullable=\"false\" /><Property Name=\"ORDER_OTHER_QTY\" Type=\"Edm.Int32\" Nulla" +
-                "ble=\"false\" /><Property Name=\"ENTER_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"" +
-                "VALID_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"RT_NO\" Type=\"Edm.String\" /><Pr" +
-                "operty Name=\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.Dat" +
-                "eTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateT" +
-                "ime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" " +
-                "Type=\"Edm.String\" /><Property Name=\"STICKER_TYPE\" Type=\"Edm.String\" /><Property " +
-                "Name=\"LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_NO\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"RECV_QTY\" Type=\"Edm.Int32\" /><Property Name=\"STICKER_REF\"" +
-                " Type=\"Edm.String\" /><Property Name=\"RECV_QTY_DESC\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"TAR_QTY_DESC\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F010202" +
-                "\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"DC_CODE\" /><PropertyRe" +
-                "f Name=\"GUP_CODE\" /><PropertyRef Name=\"STOCK_NO\" /><PropertyRef Name=\"STOCK_SEQ\"" +
-                " /></Key><Property Name=\"STOCK_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Propert" +
-                "y Name=\"STOCK_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ITEM_CODE" +
-                "\" Type=\"Edm.String\" /><Property Name=\"STOCK_QTY\" Type=\"Edm.Int32\" Nullable=\"fals" +
-                "e\" /><Property Name=\"RECV_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Nam" +
-                "e=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullab" +
-                "le=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Pro" +
-                "perty Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"UPD_" +
-                "STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Prop" +
-                "erty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.Da" +
-                "teTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"VALI_DATE\" Type=\"Edm.Date" +
-                "Time\" /><Property Name=\"ORDER_QTY\" Type=\"Edm.Int32\" /><Property Name=\"MAKE_NO\" T" +
-                "ype=\"Edm.String\" /></EntityType><EntityType Name=\"F010204\"><Key><PropertyRef Nam" +
-                "e=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullabl";
+                "g\" /><Property Name=\"USER_CLOSED\" Type=\"Edm.String\" /><Property Name=\"USER_CLOSE" +
+                "D_MEMO\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F010203\"><Key><Proper" +
+                "tyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"GUP_CO" +
+                "DE\" /><PropertyRef Name=\"STICKER_NO\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm." +
+                "String\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" Nullable=" +
+                "\"false\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Prope" +
+                "rty Name=\"STICKER_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"STOCK" +
+                "_NO\" Type=\"Edm.String\" /><Property Name=\"PALLET_NO\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"ENA_CODE1\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"ENA_CODE3\" Type=\"Edm.String\" /><Property Name=\"ITEM_CASE_Q" +
+                "TY\" Type=\"Edm.Int32\" /><Property Name=\"ITEM_PACKAGE_QTY\" Type=\"Edm.Int32\" /><Pro" +
+                "perty Name=\"PALLET_LEVEL_CASEQTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property " +
+                "Name=\"PALLET_LEVEL_CNT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDE" +
+                "R_CASE_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_OTHER_QTY\"" +
+                " Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ENTER_DATE\" Type=\"Edm.DateT" +
+                "ime\" /><Property Name=\"VALID_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"RT_NO\" " +
+                "Type=\"Edm.String\" /><Property Name=\"RT_SEQ\" Type=\"Edm.String\" /><Property Name=\"" +
+                "CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type" +
+                "=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UP" +
+                "D_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"STICKER_TYPE\" Type=\"E" +
+                "dm.String\" /><Property Name=\"LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"ALLOC" +
+                "ATION_NO\" Type=\"Edm.String\" /><Property Name=\"RECV_QTY\" Type=\"Edm.Int32\" /><Prop" +
+                "erty Name=\"STICKER_REF\" Type=\"Edm.String\" /><Property Name=\"RECV_QTY_DESC\" Type=" +
+                "\"Edm.String\" /><Property Name=\"TAR_QTY_DESC\" Type=\"Edm.String\" /></EntityType><E" +
+                "ntityType Name=\"F010202\"><Key><PropertyRef Name=\"CUST_CODE\" /><PropertyRef Name=" +
+                "\"DC_CODE\" /><PropertyRef Name=\"GUP_CODE\" /><PropertyRef Name=\"STOCK_NO\" /><Prope" +
+                "rtyRef Name=\"STOCK_SEQ\" /></Key><Property Name=\"STOCK_NO\" Type=\"Edm.String\" Null" +
+                "able=\"false\" /><Property Name=\"STOCK_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><P" +
+                "roperty Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"STOCK_QTY\" Type=\"Ed" +
+                "m.Int32\" Nullable=\"false\" /><Property Name=\"RECV_QTY\" Type=\"Edm.Int32\" Nullable=" +
+                "\"false\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" T" +
+                "ype=\"Edm.String\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" " +
+                "Nullable=\"false\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" Nullable=\"false\"" +
+                " /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type" +
+                "=\"Edm.DateTime\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=" +
+                "\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type" +
+                "=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"VA" +
+                "LI_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"ORDER_QTY\" Type=\"Edm.Int32\" /><Pr" +
+                "operty Name=\"MAKE_NO\" Type=\"Edm.String\" /></EntityType><Ent";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart1 = "e=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE" +
-                "\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"STOCK_NO\" Type=\"Edm.String\" /><Property Name=\"STOCK_SEQ\" Type=\"Edm.Int32\" N" +
-                "ullable=\"false\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=" +
-                "\"STOCK_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"TOTAL_REC_QTY\" T" +
-                "ype=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"TOTAL_DEFECT_RECV_QTY\" Type=\"" +
-                "Edm.Int32\" Nullable=\"false\" /><Property Name=\"TOTAL_TAR_QTY\" Type=\"Edm.Int64\" Nu" +
-                "llable=\"false\" /><Property Name=\"TOTAL_DEFECT_TAR_QTY\" Type=\"Edm.Int64\" Nullable" +
-                "=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Pro" +
-                "perty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STA" +
-                "FF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityTy" +
-                "pe><EntityType Name=\"F010205\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name" +
-                "=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" " +
-                "Type=\"Edm.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Property Name" +
-                "=\"RT_NO\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_NO\" Type=\"Edm.String\" />" +
-                "<Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"PROC_FLAG\" Type=\"Edm" +
-                ".String\" /><Property Name=\"TRANS_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT" +
-                "_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"E" +
-                "dm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_D" +
-                "ATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F010301\">" +
-                "<Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullabl" +
-                "e=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"ALL_ID\"" +
-                " Type=\"Edm.String\" /><Property Name=\"RECV_DATE\" Type=\"Edm.DateTime\" /><Property " +
-                "Name=\"RECV_TIME\" Type=\"Edm.String\" /><Property Name=\"RECV_USER\" Type=\"Edm.String" +
-                "\" /><Property Name=\"RECV_NAME\" Type=\"Edm.String\" /><Property Name=\"SHIP_ORD_NO\" " +
-                "Type=\"Edm.String\" /><Property Name=\"BOX_CNT\" Type=\"Edm.Int16\" Nullable=\"false\" /" +
-                "><Property Name=\"CHECK_STATUS\" Type=\"Edm.String\" /><Property Name=\"MEMO\" Type=\"E" +
-                "dm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><P" +
-                "roperty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm" +
-                ".String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_S" +
-                "TAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></Entity" +
-                "Type><EntityType Name=\"F010301_HISTORY\"><Key><PropertyRef Name=\"ID\" /></Key><Pro" +
-                "perty Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"ALL_ID\" Type=\"Edm.String\" /><Property Name=\"REC" +
-                "V_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"RECV_TIME\" Type=\"Edm.String\" /><Pr" +
-                "operty Name=\"RECV_USER\" Type=\"Edm.String\" /><Property Name=\"RECV_NAME\" Type=\"Edm" +
-                ".String\" /><Property Name=\"SHIP_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"BOX_" +
-                "CNT\" Type=\"Edm.Int16\" Nullable=\"false\" /><Property Name=\"CHECK_STATUS\" Type=\"Edm" +
-                ".String\" /><Property Name=\"MEMO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" T" +
-                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Typ" +
-                "e=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name" +
-                "=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F010302\"><Key><Pr" +
-                "opertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false" +
-                "\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"ALL_ID\" Type=\"E" +
-                "dm.String\" /><Property Name=\"CHECK_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"C" +
-                "HECK_TIME\" Type=\"Edm.String\" /><Property Name=\"CHECK_USER\" Type=\"Edm.String\" /><" +
-                "Property Name=\"CHECK_NAME\" Type=\"Edm.String\" /><Property Name=\"SHIP_ORD_NO\" Type" +
-                "=\"Edm.String\" /><Property Name=\"CHECK_BOX_CNT\" Type=\"Edm.Int16\" Nullable=\"false\"" +
-                " /><Property Name=\"SHIP_BOX_CNT\" Type=\"Edm.Int16\" Nullable=\"false\" /><Property N" +
-                "ame=\"CHECK_STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateT" +
-                "ime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property" +
-                " Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTim" +
-                "e\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Ty" +
-                "pe=\"Edm.String\" /></EntityType><EntityType Name=\"F010302_HISTORY\"><Key><Property" +
-                "Ref Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><P" +
-                "roperty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"ALL_ID\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"CHECK_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CHECK_T" +
-                "IME\" Type=\"Edm.String\" /><Property Name=\"CHECK_USER\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"CHECK_NAME\" Type=\"Edm.String\" /><Property Name=\"SHIP_ORD_NO\" Type=\"Edm." +
-                "String\" /><Property Name=\"CHECK_BOX_CNT\" Type=\"Edm.Int16\" Nullable=\"false\" /><Pr" +
-                "operty Name=\"SHIP_BOX_CNT\" Type=\"Edm.Int16\" Nullable=\"false\" /><Property Name=\"C" +
-                "HECK_STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" N" +
-                "ullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=" +
-                "\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><" +
-                "Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Ed" +
-                "m.String\" /></EntityType></Schema><Schema Namespace=\"Wms3pl.DBCore\" xmlns=\"http:" +
-                "//schemas.microsoft.com/ado/2006/04/edm\"><EntityContainer Name=\"Wms3plDbContext\"" +
-                " m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"F010101s\" EntityType=\"Wms3pl" +
-                ".Datas.F01.F010101\" /><EntitySet Name=\"F010102s\" EntityType=\"Wms3pl.Datas.F01.F0" +
-                "10102\" /><EntitySet Name=\"F010201s\" EntityType=\"Wms3pl.Datas.F01.F010201\" /><Ent" +
-                "itySet Name=\"F010203s\" EntityType=\"Wms3pl.Datas.F01.F010203\" /><EntitySet Name=\"" +
-                "F010202s\" EntityType=\"Wms3pl.Datas.F01.F010202\" /><EntitySet Name=\"F010204s\" Ent" +
-                "ityType=\"Wms3pl.Datas.F01.F010204\" /><EntitySet Name=\"F010205s\" EntityType=\"Wms3" +
-                "pl.Datas.F01.F010205\" /><EntitySet Name=\"F010301s\" EntityType=\"Wms3pl.Datas.F01." +
-                "F010301\" /><EntitySet Name=\"F010301_HISTORYs\" EntityType=\"Wms3pl.Datas.F01.F0103" +
-                "01_HISTORY\" /><EntitySet Name=\"F010302s\" EntityType=\"Wms3pl.Datas.F01.F010302\" /" +
-                "><EntitySet Name=\"F010302_HISTORYs\" EntityType=\"Wms3pl.Datas.F01.F010302_HISTORY" +
-                "\" /><FunctionImport Name=\"GetDatasByDc\" ReturnType=\"Collection(Wms3pl.Datas.F01." +
-                "F010202)\" EntitySet=\"F010202s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=" +
-                "\"Edm.String\" /><Parameter Name=\"stockDate\" Type=\"Edm.String\" /></FunctionImport>" +
-                "</EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
+            private const string ModelPart1 = "ityType Name=\"F010204\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Ty" +
+                "pe=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><" +
+                "Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.String\" /><Property Name=\"STOCK_" +
+                "SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"STOCK_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property" +
+                " Name=\"TOTAL_REC_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"TOTAL_" +
+                "DEFECT_RECV_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"TOTAL_TAR_Q" +
+                "TY\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"TOTAL_DEFECT_TAR_QTY\" Ty" +
+                "pe=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" " +
+                "Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name" +
+                "=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" />" +
+                "<Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"E" +
+                "dm.String\" /></EntityType><EntityType Name=\"F010205\"><Key><PropertyRef Name=\"ID\"" +
+                " /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=" +
+                "\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"STOCK_NO\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"RT_NO\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_N" +
+                "O\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"PROC_FLAG\" Type=\"Edm.String\" /><Property Name=\"TRANS_DATE\" Type=\"Edm.DateTime" +
+                "\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property N" +
+                "ame=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" " +
+                "/><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><Ent" +
+                "ityType Name=\"F010301\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" T" +
+                "ype=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" />" +
+                "<Property Name=\"ALL_ID\" Type=\"Edm.String\" /><Property Name=\"RECV_DATE\" Type=\"Edm" +
+                ".DateTime\" /><Property Name=\"RECV_TIME\" Type=\"Edm.String\" /><Property Name=\"RECV" +
+                "_USER\" Type=\"Edm.String\" /><Property Name=\"RECV_NAME\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"SHIP_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"BOX_CNT\" Type=\"Edm.In" +
+                "t16\" Nullable=\"false\" /><Property Name=\"CHECK_STATUS\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"MEMO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime" +
+                "\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" " +
+                "/><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=" +
+                "\"Edm.String\" /></EntityType><EntityType Name=\"F010301_HISTORY\"><Key><PropertyRef" +
+                " Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Prop" +
+                "erty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"ALL_ID\" Type=\"Edm.String" +
+                "\" /><Property Name=\"RECV_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"RECV_TIME\" " +
+                "Type=\"Edm.String\" /><Property Name=\"RECV_USER\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"RECV_NAME\" Type=\"Edm.String\" /><Property Name=\"SHIP_ORD_NO\" Type=\"Edm.String\"" +
+                " /><Property Name=\"BOX_CNT\" Type=\"Edm.Int16\" Nullable=\"false\" /><Property Name=\"" +
+                "CHECK_STATUS\" Type=\"Edm.String\" /><Property Name=\"MEMO\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT" +
+                "_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType " +
+                "Name=\"F010302\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm" +
+                ".Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"ALL_ID\" Type=\"Edm.String\" /><Property Name=\"CHECK_DATE\" Type=\"Edm.DateTi" +
+                "me\" /><Property Name=\"CHECK_TIME\" Type=\"Edm.String\" /><Property Name=\"CHECK_USER" +
+                "\" Type=\"Edm.String\" /><Property Name=\"CHECK_NAME\" Type=\"Edm.String\" /><Property " +
+                "Name=\"SHIP_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"CHECK_BOX_CNT\" Type=\"Edm." +
+                "Int16\" Nullable=\"false\" /><Property Name=\"SHIP_BOX_CNT\" Type=\"Edm.Int16\" Nullabl" +
+                "e=\"false\" /><Property Name=\"CHECK_STATUS\" Type=\"Edm.String\" /><Property Name=\"CR" +
+                "T_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"" +
+                "Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_" +
+                "DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F010302_" +
+                "HISTORY\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64" +
+                "\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name" +
+                "=\"ALL_ID\" Type=\"Edm.String\" /><Property Name=\"CHECK_DATE\" Type=\"Edm.DateTime\" />" +
+                "<Property Name=\"CHECK_TIME\" Type=\"Edm.String\" /><Property Name=\"CHECK_USER\" Type" +
+                "=\"Edm.String\" /><Property Name=\"CHECK_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
+                "SHIP_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"CHECK_BOX_CNT\" Type=\"Edm.Int16\"" +
+                " Nullable=\"false\" /><Property Name=\"SHIP_BOX_CNT\" Type=\"Edm.Int16\" Nullable=\"fal" +
+                "se\" /><Property Name=\"CHECK_STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE" +
+                "\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" " +
+                "Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType></Schema><Schema Namespace=\"Wms3" +
+                "pl.DBCore\" xmlns=\"http://schemas.microsoft.com/ado/2006/04/edm\"><EntityContainer" +
+                " Name=\"Wms3plDbContext\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"F0101" +
+                "01s\" EntityType=\"Wms3pl.Datas.F01.F010101\" /><EntitySet Name=\"F010102s\" EntityTy" +
+                "pe=\"Wms3pl.Datas.F01.F010102\" /><EntitySet Name=\"F010201s\" EntityType=\"Wms3pl.Da" +
+                "tas.F01.F010201\" /><EntitySet Name=\"F010203s\" EntityType=\"Wms3pl.Datas.F01.F0102" +
+                "03\" /><EntitySet Name=\"F010202s\" EntityType=\"Wms3pl.Datas.F01.F010202\" /><Entity" +
+                "Set Name=\"F010204s\" EntityType=\"Wms3pl.Datas.F01.F010204\" /><EntitySet Name=\"F01" +
+                "0205s\" EntityType=\"Wms3pl.Datas.F01.F010205\" /><EntitySet Name=\"F010301s\" Entity" +
+                "Type=\"Wms3pl.Datas.F01.F010301\" /><EntitySet Name=\"F010301_HISTORYs\" EntityType=" +
+                "\"Wms3pl.Datas.F01.F010301_HISTORY\" /><EntitySet Name=\"F010302s\" EntityType=\"Wms3" +
+                "pl.Datas.F01.F010302\" /><EntitySet Name=\"F010302_HISTORYs\" EntityType=\"Wms3pl.Da" +
+                "tas.F01.F010302_HISTORY\" /><FunctionImport Name=\"GetDatasByDc\" ReturnType=\"Colle" +
+                "ction(Wms3pl.Datas.F01.F010202)\" EntitySet=\"F010202s\" m:HttpMethod=\"GET\"><Parame" +
+                "ter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"stockDate\" Type=\"Edm.Stri" +
+                "ng\" /></FunctionImport></EntityContainer></Schema></edmx:DataServices></edmx:Edm" +
+                "x>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -2115,6 +2117,50 @@ namespace Wms3pl.WpfClient.DataServices.F01DataService
         private string _BOOKING_IN_PERIOD;
         partial void OnBOOKING_IN_PERIODChanging(string value);
         partial void OnBOOKING_IN_PERIODChanged();
+        /// <summary>
+        /// There are no comments for Property USER_CLOSED in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string USER_CLOSED
+        {
+            get
+            {
+                return this._USER_CLOSED;
+            }
+            set
+            {
+                this.OnUSER_CLOSEDChanging(value);
+                this._USER_CLOSED = value;
+                this.OnUSER_CLOSEDChanged();
+                this.OnPropertyChanged("USER_CLOSED");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _USER_CLOSED;
+        partial void OnUSER_CLOSEDChanging(string value);
+        partial void OnUSER_CLOSEDChanged();
+        /// <summary>
+        /// There are no comments for Property USER_CLOSED_MEMO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string USER_CLOSED_MEMO
+        {
+            get
+            {
+                return this._USER_CLOSED_MEMO;
+            }
+            set
+            {
+                this.OnUSER_CLOSED_MEMOChanging(value);
+                this._USER_CLOSED_MEMO = value;
+                this.OnUSER_CLOSED_MEMOChanged();
+                this.OnPropertyChanged("USER_CLOSED_MEMO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _USER_CLOSED_MEMO;
+        partial void OnUSER_CLOSED_MEMOChanging(string value);
+        partial void OnUSER_CLOSED_MEMOChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]

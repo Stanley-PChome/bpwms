@@ -2649,6 +2649,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
         
         private long ORD_SAVE_QTYk__BackingFieldField;
         
+        private string ORI_VNR_CODEk__BackingFieldField;
+        
         private long PICK_ORDk__BackingFieldField;
         
         private int PICK_SAVE_ORDk__BackingFieldField;
@@ -3671,6 +3673,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
                 if ((this.ORD_SAVE_QTYk__BackingFieldField.Equals(value) != true)) {
                     this.ORD_SAVE_QTYk__BackingFieldField = value;
                     this.RaisePropertyChanged("ORD_SAVE_QTYk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORI_VNR_CODE>k__BackingField", IsRequired=true)]
+        public string ORI_VNR_CODEk__BackingField {
+            get {
+                return this.ORI_VNR_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORI_VNR_CODEk__BackingFieldField, value) != true)) {
+                    this.ORI_VNR_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORI_VNR_CODEk__BackingField");
                 }
             }
         }
@@ -6355,6 +6370,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
         
         private string ALLOW_NOSHIPPACKAGEk__BackingFieldField;
         
+        private string ALLOW_ORDER_NO_DELVk__BackingFieldField;
+        
+        private string ALLOW_WAREHOUSEIN_CLOSEDk__BackingFieldField;
+        
         private string AUTO_GEN_RTNk__BackingFieldField;
         
         private string B2C_CAN_LACKk__BackingFieldField;
@@ -6478,6 +6497,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
         private string ISSHIFTITEMk__BackingFieldField;
         
         private string ISUPLOADFILEk__BackingFieldField;
+        
+        private string IS_EXECIMMEDIATEITEMk__BackingFieldField;
         
         private string IS_ORDDATE_TODAYk__BackingFieldField;
         
@@ -6796,6 +6817,32 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
                 if ((object.ReferenceEquals(this.ALLOW_NOSHIPPACKAGEk__BackingFieldField, value) != true)) {
                     this.ALLOW_NOSHIPPACKAGEk__BackingFieldField = value;
                     this.RaisePropertyChanged("ALLOW_NOSHIPPACKAGEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ALLOW_ORDER_NO_DELV>k__BackingField", IsRequired=true)]
+        public string ALLOW_ORDER_NO_DELVk__BackingField {
+            get {
+                return this.ALLOW_ORDER_NO_DELVk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ALLOW_ORDER_NO_DELVk__BackingFieldField, value) != true)) {
+                    this.ALLOW_ORDER_NO_DELVk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ALLOW_ORDER_NO_DELVk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ALLOW_WAREHOUSEIN_CLOSED>k__BackingField", IsRequired=true)]
+        public string ALLOW_WAREHOUSEIN_CLOSEDk__BackingField {
+            get {
+                return this.ALLOW_WAREHOUSEIN_CLOSEDk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ALLOW_WAREHOUSEIN_CLOSEDk__BackingFieldField, value) != true)) {
+                    this.ALLOW_WAREHOUSEIN_CLOSEDk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ALLOW_WAREHOUSEIN_CLOSEDk__BackingField");
                 }
             }
         }
@@ -7602,6 +7649,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
                 if ((object.ReferenceEquals(this.ISUPLOADFILEk__BackingFieldField, value) != true)) {
                     this.ISUPLOADFILEk__BackingFieldField = value;
                     this.RaisePropertyChanged("ISUPLOADFILEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<IS_EXECIMMEDIATEITEM>k__BackingField", IsRequired=true)]
+        public string IS_EXECIMMEDIATEITEMk__BackingField {
+            get {
+                return this.IS_EXECIMMEDIATEITEMk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IS_EXECIMMEDIATEITEMk__BackingFieldField, value) != true)) {
+                    this.IS_EXECIMMEDIATEITEMk__BackingFieldField = value;
+                    this.RaisePropertyChanged("IS_EXECIMMEDIATEITEMk__BackingField");
                 }
             }
         }

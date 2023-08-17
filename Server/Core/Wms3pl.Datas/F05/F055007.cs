@@ -19,93 +19,113 @@ namespace Wms3pl.Datas.F05
 		/// </summary>
 		[Key]
 		[Required]
-		public Int64 ID { get; set; }
+    [Column(TypeName = "bigint")]
+    public Int64 ID { get; set; }
 		/// <summary>
 		/// 物流中心編號
 		/// </summary>
 		[Required]
-		public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
         /// <summary>
         /// 業主編號
         /// </summary>
         [Required]
-        public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string GUP_CODE { get; set; }
         /// <summary>
         /// 貨主編號
         /// </summary>
         [Required]
-		public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
         /// <summary>
         /// 出貨單號
         /// </summary>
         [Required]
-        public string WMS_ORD_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string WMS_ORD_NO { get; set; }
         /// <summary>
         /// 出貨箱序
         /// </summary>
         [Required]
-		public Int16 PACKAGE_BOX_NO { get; set; }
-        /// <summary>
-        /// 貨主單號
-        /// </summary>
-        public string CUST_ORD_NO { get; set; }
+    [Column(TypeName = "smallint")]
+    public Int16 PACKAGE_BOX_NO { get; set; }
+    /// <summary>
+    /// 貨主單號
+    /// </summary>
+    [Column(TypeName = "varchar(50)")]
+    public string CUST_ORD_NO { get; set; }
         /// <summary>
         /// 報表編號(01=箱明細, 02=一般出貨小白標 ,03=廠退出貨小白標, 04=LMS 檔案)
         /// </summary>
         [Required]
-        public string REPORT_CODE { get; set; }
-        /// <summary>
-        /// 報表名稱
-        /// </summary>
-        public string LMS_NAME { get; set; }
-        /// <summary>
-        /// LMS提供的URL
-        /// </summary>
-        public string LMS_URL { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string REPORT_CODE { get; set; }
+    /// <summary>
+    /// 報表名稱
+    /// </summary>
+    [Column(TypeName = "nvarchar(20)")]
+    public string LMS_NAME { get; set; }
+    /// <summary>
+    /// LMS提供的URL
+    /// </summary>
+    [Column(TypeName = "varchar(300)")]
+    public string LMS_URL { get; set; }
         /// <summary>
         /// 印表機編號(1=印表機1;2=印表機2;3=快速標籤機
         /// </summary>
         [Required]
-        public string PRINTER_NO { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string PRINTER_NO { get; set; }
         /// <summary>
         /// 檔案項次
         /// </summary>
         [Required]
-        public int REPORT_SEQ { get; set; }
+    [Column(TypeName = "int")]
+    public int REPORT_SEQ { get; set; }
         /// <summary>
         /// 建立日期
         /// </summary>
         [Required]
-		public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 		/// <summary>
 		/// 建立人員編號
 		/// </summary>
 		[Required]
-		public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 		/// <summary>
 		/// 建立人員名稱
 		/// </summary>
 		[Required]
-		public string CRT_NAME { get; set; }
-		/// <summary>
-		/// 異動日期
-		/// </summary>
-		public DateTime? UPD_DATE { get; set; }
-		/// <summary>
-		/// 異動人員編號
-		/// </summary>
-		public string UPD_STAFF { get; set; }
-		/// <summary>
-		/// 異動人員名稱
-		/// </summary>
-		public string UPD_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動人員編號
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員名稱
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
     /// <summary>
     /// 是否列印(0:否 1:是)
     /// </summary>
+    [Column(TypeName = "char(1)")]
     public string ISPRINTED { get; set; }
     /// <summary>
     /// 列印時間
     /// </summary>
+    [Column(TypeName = "datetime2(0)")]
     public DateTime? PRINT_TIME { get; set; }
 
   }

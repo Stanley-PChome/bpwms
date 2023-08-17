@@ -406,5 +406,21 @@ namespace Wms3pl.Datas.F05
                       AND PACKAGE_BOX_NO = @p8 ";
 			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
+
+		public IQueryable<F055001> GetDatas(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+
+			var sql = $@" SELECT * FROM F055001
+							WHERE DC_CODE = @p0
+							AND GUP_CODE = @p1
+							AND CUST_CODE = @p2 ";
+			sql += sqlParameter.CombineSqlInParameters(" AND WMS_ORD_NO", wmsOrdNos, System.Data.SqlDbType.VarChar);
+
+			return SqlQuery<F055001>(sql, sqlParameter.ToArray());
+		}
 	}
 }

@@ -336,8 +336,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public List<F1903> GetProductList(string gupCode, string custCode, List<string> itemCodeList)
 		{
-			var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-
 			var list = new List<F1903>();
 
 			if (_f1903CacheList == null)
@@ -364,6 +362,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				if (noExistsItemCode.Any())
 				{
+					var f1903Repo = new F1903Repository(Schemas.CoreSchema);
 					var currData = f1903Repo.GetDatasByItems(gupCode, custCode, noExistsItemCode).ToList();
 
 					_f1903CacheList.AddRange(currData);

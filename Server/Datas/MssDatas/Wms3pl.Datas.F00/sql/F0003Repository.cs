@@ -92,6 +92,20 @@ namespace Wms3pl.Datas.F00
       return value != "0";
     }
 
+    public IQueryable<F0003> GetImmediateItemScheduleDatas(List<string> custCodes)
+    {
+      if (custCodes == null || !custCodes.Any())
+        return null;
+
+      var para = new List<SqlParameter>();
+
+      var sql = @"SELECT * FROM F0003 WHERE AP_NAME IN('ImmediateItemWhId','PickLossWHId','InventoryLossWHId')";
+
+      sql += para.CombineSqlInParameters("AND CUST_CODE", custCodes, SqlDbType.VarChar);
+
+      return SqlQuery<F0003>(sql, para.ToArray());
+    }
+
   }
 }
 

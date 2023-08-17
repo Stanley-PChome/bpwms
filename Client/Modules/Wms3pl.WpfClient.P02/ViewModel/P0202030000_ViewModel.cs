@@ -1217,29 +1217,34 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 				return CreateBusyAsyncCommand(
 					o =>
 					{
-						if (ShowConfirmMessage(Properties.Resources.P0202030000_IsCancelCheck) == DialogResponse.Yes)
-						{
-							var proxy = new wcf.P02WcfServiceClient();
-							var tmp = RunWcfMethod<wcf.ExecuteResult>(proxy.InnerChannel, () => proxy.CancelAcceptance(SelectedDc, _gupCode, _custCode, SelectedPurchaseNo, RtNo));
-							if (!tmp.IsSuccessed)
-							{
-								ShowWarningMessage(string.Format("{0}{1}{2}", Properties.Resources.P0202030000_CancelCheckFail, Environment.NewLine, tmp.Message));
-								isCancelSuccessed = false;
-							}
-							else
-								ShowMessage(Messages.Success);
-						}
-					},
-					//驗收確認點選條件：列表中商品已檢驗 且 狀態非"已驗收" 且已有商品進行過商品檢驗
-					() => UserOperateMode == OperateMode.Query && DgList != null && DgList.Any(x => x.CHECK_ITEM == "1" && x.STATUS == "0"),
-					o =>
-					{
-						// 只在驗收單產生成功才顯示報表
-						if (isCancelSuccessed)
-							Init();
-							//SearchCommand.Execute(null);
-					}
-				);
+            if (ShowConfirmMessage(Properties.Resources.P0202030000_IsCancelCheck) == DialogResponse.Yes)
+            {
+              var proxy = new wcf.P02WcfServiceClient();
+              var tmp = RunWcfMethod<wcf.ExecuteResult>(proxy.InnerChannel, () => proxy.CancelAcceptance(SelectedDc, _gupCode, _custCode, SelectedPurchaseNo, RtNo));
+              if (!tmp.IsSuccessed)
+              {
+                ShowWarningMessage(string.Format("{0}{1}{2}", Properties.Resources.P0202030000_CancelCheckFail, Environment.NewLine, tmp.Message));
+                isCancelSuccessed = false;
+              }
+              else
+              {
+                ShowMessage(Messages.Success);
+                isCancelSuccessed = true;
+              }
+            }
+            else
+              isCancelSuccessed = false;
+          },
+          //驗收確認點選條件：列表中商品已檢驗 且 狀態非"已驗收" 且已有商品進行過商品檢驗
+          () => UserOperateMode == OperateMode.Query && DgList != null && DgList.Any(x => x.CHECK_ITEM == "1" && x.STATUS == "0"),
+          o =>
+          {
+            // 只在驗收單產生成功才顯示報表
+            if (isCancelSuccessed)
+              Init();
+            //SearchCommand.Execute(null);
+          }
+        );
 			}
 		}
 

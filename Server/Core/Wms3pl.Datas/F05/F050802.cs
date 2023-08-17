@@ -20,93 +20,109 @@ namespace Wms3pl.Datas.F05
 	  /// </summary>
     [Key]
     [Required]
-	  public string WMS_ORD_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string WMS_ORD_NO { get; set; }
 
 	  /// <summary>
 	  /// 出貨單序號
 	  /// </summary>
     [Key]
     [Required]
-	  public string WMS_ORD_SEQ { get; set; }
+    [Column(TypeName = "varchar(4)")]
+    public string WMS_ORD_SEQ { get; set; }
 
 	  /// <summary>
 	  /// 業主編號
 	  /// </summary>
     [Key]
     [Required]
-	  public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(4)")]
+    public string GUP_CODE { get; set; }
 
-	  /// <summary>
-	  /// 商品編號
-	  /// </summary>
-	  public string ITEM_CODE { get; set; }
+    /// <summary>
+    /// 商品編號
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string ITEM_CODE { get; set; }
 
-	  /// <summary>
-	  /// 訂貨數量
-	  /// </summary>
-	  public Int32? ORD_QTY { get; set; }
+    /// <summary>
+    /// 訂貨數量
+    /// </summary>
+    [Column(TypeName = "int")]
+    public Int32? ORD_QTY { get; set; }
 
-	  /// <summary>
-	  /// 預計出貨數量
-	  /// </summary>
-	  public Int32? B_DELV_QTY { get; set; }
+    /// <summary>
+    /// 預計出貨數量
+    /// </summary>
+    [Column(TypeName = "int")]
+    public Int32? B_DELV_QTY { get; set; }
 
-	  /// <summary>
-	  /// 實際出貨數量
-	  /// </summary>
-	  public Int32? A_DELV_QTY { get; set; }
+    /// <summary>
+    /// 實際出貨數量
+    /// </summary>
+    [Column(TypeName = "int")]
+    public Int32? A_DELV_QTY { get; set; }
 
 	  /// <summary>
 	  /// 貨主編號
 	  /// </summary>
     [Key]
     [Required]
-	  public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
 
 	  /// <summary>
 	  /// 物流中心
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
 	  /// <summary>
 	  /// 建立人名
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
 
-	  /// <summary>
-	  /// 商品序號
-	  /// </summary>
-	  public string SERIAL_NO { get; set; }
+    /// <summary>
+    /// 商品序號
+    /// </summary>
+    [Column(TypeName = "varchar(50)")]
+    public string SERIAL_NO { get; set; }
   }
 }
         

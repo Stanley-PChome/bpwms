@@ -35,6 +35,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
     {
       var res = new ApiResult { IsSuccessed = true };
       var data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
       // 新增API Log
       res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportInboundResults", req, () =>
@@ -191,9 +192,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 				#region 執行入庫任務派發API
 
 				var result = new ApiResult { IsSuccessed = false };
+        WcsSetting.DcCode = dcCode;
 
-				// 入庫任務Url
-				string url = $"v1/{f060101.DC_CODE}/{f060101.WAREHOUSE_ID}/Inbound";
+        // 入庫任務Url
+        string url = $"v1/{f060101.DC_CODE}/{f060101.WAREHOUSE_ID}/Inbound";
 				ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsInboundResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null, F060101 = f060101 }, () =>
 				{
 					if (req != null)
@@ -286,6 +288,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
     {
       ApiResult res = new ApiResult { IsSuccessed = true };
       List<ApiResponse> data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
       // 新增API Log
       res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportInboundCancelResults", req, () =>
@@ -428,10 +431,12 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 					OwnerCode = custCode,
 					ReceiptCode = f060101.DOC_ID
 				};
-				#endregion
+        #endregion
 
-				// 入庫任務取消Url
-				string url = $"v1/{f060101.DC_CODE}/{f060101.WAREHOUSE_ID}/Inbound/Cancel";
+        WcsSetting.DcCode = dcCode;
+
+        // 入庫任務取消Url
+        string url = $"v1/{f060101.DC_CODE}/{f060101.WAREHOUSE_ID}/Inbound/Cancel";
 				ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsInboundCancelResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null, F060101 = f060101 }, () =>
 				{
 					if (req != null)

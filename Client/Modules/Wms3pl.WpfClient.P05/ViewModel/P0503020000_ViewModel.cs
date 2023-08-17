@@ -81,6 +81,9 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 			CanEditDelvData = true;
 			LOCK_NOW = "0";
 			CopyEditType = new SendTypeData();
+
+			var proxy = GetProxy<F19Entities>();
+			IsCustCanOrderNoDelv = (proxy.F1909s.Where(x => x.GUP_CODE == _gupCode && x.CUST_CODE == _custCode).Select(x => x.ALLOW_ORDER_NO_DELV).FirstOrDefault() ?? "0") == "1";
 		}
 
 		#region 檔案上傳 file
@@ -270,6 +273,21 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 				Set(() => HasRetailForEdit, ref _hasRetailForEdit, value);
 			}
 		}
+
+
+		#region 是否貨主允許訂單明細可以設定不出貨
+		private bool _isCustCanOrderNoDelv;
+
+		public bool IsCustCanOrderNoDelv
+		{
+			get { return _isCustCanOrderNoDelv; }
+			set
+			{
+				Set(() => IsCustCanOrderNoDelv, ref _isCustCanOrderNoDelv, value);
+			}
+		}
+		#endregion
+
 
 		#region
 		private string _dcaddress;
@@ -1459,6 +1477,7 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 				});
 				return;
 			}
+
 			var f050301 = proxy.F050301s.Where(x => x.DC_CODE == EDIT_ITEM.DC_CODE && x.GUP_CODE == EDIT_ITEM.GUP_CODE && x.CUST_CODE == EDIT_ITEM.CUST_CODE && x.ORD_NO == EDIT_ITEM.ORD_NO).FirstOrDefault();
 			if (f050301 != null)
 			{
@@ -1695,6 +1714,7 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 
 		private void DoAddItem()
 		{
+			MAKE_NO = MAKE_NO?.ToUpper();
 			if (dgOrdDetailList_Display == null)
 				dgOrdDetailList_Display = new ObservableCollection<F050102Ex>();
 
@@ -2927,18 +2947,25 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 				{
 					message.Add(Properties.Resources.P0503020000_MakeNoError);
 				}
-				// 判斷是否重複項目
-				bool repeatItemCode = dgOrdDetailList_Display.GroupBy(x => x.ITEM_CODE).Where(g => g.Count() > 1).Count() > 0;
-				if (item.CUST_COST != "MoveOut" && repeatItemCode)
-				{
-					message.Add(Properties.Resources.P0503020000_DetailItmeCodeIsRepect);
-				}
+				//// 判斷是否重複項目
+				//bool repeatItemCode = dgOrdDetailList_Display.GroupBy(x => x.ITEM_CODE).Where(g => g.Count() > 1).Count() > 0;
+				//if (item.CUST_COST != "MoveOut" && repeatItemCode)
+				//{
+				//	message.Add(Properties.Resources.P0503020000_DetailItmeCodeIsRepect);
+				//}
 
 				// 判斷指定出貨批號
-				bool repeatMakeNo = dgOrdDetailList_Display.GroupBy(x => new { x.ITEM_CODE,x.MAKE_NO }).Where(g => g.Count() > 1).Count() > 0;
+				bool repeatMakeNo = dgOrdDetailList_Display.Where(a => a.NO_DELV == "0" && !string.IsNullOrWhiteSpace(a.MAKE_NO)).GroupBy(x => new { x.ITEM_CODE,x.MAKE_NO }).Where(g => g.Count() > 1).Any();
 				if (repeatMakeNo)
 				{
 					message.Add(Properties.Resources.P0503020000_DetailMakeNoIsRepect);
+				}
+
+				// 判斷指定出貨序號
+				bool repeatSn = dgOrdDetailList_Display.Where(a => a.NO_DELV == "0" && !string.IsNullOrWhiteSpace(a.SERIAL_NO)).GroupBy(x => new { x.ITEM_CODE, x.SERIAL_NO }).Where(g => g.Count() > 1).Any();
+				if (repeatMakeNo)
+				{
+					message.Add("指定出貨序號不可重複");
 				}
 			}
 			if (message.Any())
@@ -3532,6 +3559,7 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		{
 			if (_selected_orderdetail != null)
 			{
+				MAKE_NO = MAKE_NO?.ToUpper();
 				if (CheckDetail(false))
 				{
 					_selected_orderdetail.ITEM_CODE = ITEM_CODE;
@@ -3552,23 +3580,32 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		{
 			var detail = dgOrdDetailList_Display;
 			var excludeItemCode = (isAdd) ? "" : _selected_orderdetail.ITEM_CODE;
-
-			var custCost = (UserOperateMode == OperateMode.Add) ? NEW_ITEM.CUST_COST : EDIT_ITEM.CUST_COST;
-			if (custCost != "MoveOut")
-			{
-				//檢查商品編號重覆
-				if (dgOrdDetailList_Display.Any(x => x.ITEM_CODE != excludeItemCode && x.ITEM_CODE.Equals(ITEM_CODE)))
-				{
-					DialogService.ShowMessage(Properties.Resources.P0503020000_ItemRepeat);
-					return false;
-				}
-			}
+			var excludeMakeNo = (isAdd) ? "" : _selected_orderdetail.MAKE_NO;
+			var excludeSn = (isAdd) ? "" : _selected_orderdetail.SERIAL_NO;
+			//var custCost = (UserOperateMode == OperateMode.Add) ? NEW_ITEM.CUST_COST : EDIT_ITEM.CUST_COST;
+			//if (custCost != "MoveOut")
+			//{
+			//	//檢查商品編號重覆
+			//	if (dgOrdDetailList_Display.Any(x => x.ITEM_CODE != excludeItemCode && x.ITEM_CODE.Equals(ITEM_CODE)))
+			//	{
+			//		DialogService.ShowMessage(Properties.Resources.P0503020000_ItemRepeat);
+			//		return false;
+			//	}
+			//}
 
 			// 檢查批號是重複
-			var isRepeatMakeNo = dgOrdDetailList_Display.Any(x => x.MAKE_NO == MAKE_NO && x.ITEM_CODE == ITEM_CODE);
+			var isRepeatMakeNo = dgOrdDetailList_Display.Where(x=> !string.IsNullOrWhiteSpace(x.MAKE_NO) && x.MAKE_NO!= excludeMakeNo).Any(x => x.MAKE_NO == MAKE_NO && x.ITEM_CODE == ITEM_CODE);
 			if (!string.IsNullOrWhiteSpace(MAKE_NO) && isRepeatMakeNo)
 			{
 				DialogService.ShowMessage(Properties.Resources.P0503020000_DetailMakeNoIsRepect);
+				return false;
+			}
+
+			// 檢查序號是重複
+			var isRepeatSn = dgOrdDetailList_Display.Where(x =>  !string.IsNullOrWhiteSpace(x.SERIAL_NO) && x.SERIAL_NO != excludeSn).Any(x => x.SERIAL_NO == SERIAL_NO && x.ITEM_CODE == ITEM_CODE);
+			if (!string.IsNullOrWhiteSpace(SERIAL_NO) && isRepeatSn)
+			{
+				DialogService.ShowMessage("指定出貨序號不可重複");
 				return false;
 			}
 

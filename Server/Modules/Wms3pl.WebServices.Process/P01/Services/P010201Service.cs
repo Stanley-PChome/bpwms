@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.F00;
 using Wms3pl.Datas.F01;
+using Wms3pl.Datas.F02;
 using Wms3pl.Datas.F07;
 using Wms3pl.Datas.F19;
 using Wms3pl.Datas.F70;
@@ -18,6 +19,12 @@ namespace Wms3pl.WebServices.Process.P01.Services
 {
 	public partial class P010201Service
 	{
+		private CommonService _commonService;
+		public CommonService CommonService
+		{
+			get { return _commonService == null ? _commonService = new CommonService() : _commonService; }
+			set { _commonService = value; }
+		}
 		private WmsTransaction _wmsTransaction;
 		public P010201Service(WmsTransaction wmsTransaction = null)
 		{
@@ -31,11 +38,11 @@ namespace Wms3pl.WebServices.Process.P01.Services
 		}
 
 		public IQueryable<F010201Data> GetF010201Datas(string dcCode, string gupCode, string custCode, string begStockDate,
-			string endStockDate, string stockNo, string vnrCode, string vnrName, string custOrdNo, string sourceNo, string status)
+			string endStockDate, string stockNo, string vnrCode, string vnrName, string custOrdNo, string sourceNo, string status, string userClosed)
 		{
 			var f010201Repo = new F010201Repository(Schemas.CoreSchema);
 			return f010201Repo.GetF010201Datas(dcCode, gupCode, custCode, begStockDate, endStockDate, stockNo, vnrCode, vnrName,
-				custOrdNo, sourceNo, status);
+				custOrdNo, sourceNo, status, userClosed);
 		}
 
 		public IQueryable<F010202Data> GetF010202Datas(string dcCode, string gupCode, string custCode, string stockNo)
@@ -576,6 +583,69 @@ namespace Wms3pl.WebServices.Process.P01.Services
 					var data = f010202Repo.GetF010202DatasMargeValidateChange(dcCode, gupCode, custCode, stockNo).ToList();
 					return data.AsQueryable();
 				}
+		#endregion
+
+		#region 進倉單強制結案
+		public UserCloseExecuteResult UserCloseStock(UserCloseStockParam param)
+		{
+			var f010201Repo = new F010201Repository(Schemas.CoreSchema, _wmsTransaction);
+			var f020201Repo = new F020201Repository(Schemas.CoreSchema, _wmsTransaction);
+			var f02020101Repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
+			var f020302Repo = new F020302Repository(Schemas.CoreSchema, _wmsTransaction);
+			var f010201 = f010201Repo.GetDatasByStockNo(param.DC_CODE, param.GUP_CODE, param.CUST_CODE, param.STOCK_NO);
+			if (f010201 == null)
+				return new UserCloseExecuteResult { IsSuccessed = false, Message = "該進倉單不存在" };
+			if (f010201.STATUS != "1")
+			{
+				var f000904 = CommonService.GetF000904("F010201", "STATUS", f010201.STATUS);
+				return new UserCloseExecuteResult { IsSuccessed = false, Message = $"此進倉單狀態為{ f000904.NAME }，不可強制結案，請重新查詢" };
+			}
+			if (f010201.CUST_COST != "In")
+				return new UserCloseExecuteResult { IsSuccessed = false, Message = $"此進倉單貨主自定分類為{ f010201.CUST_COST }，不可強制結案，請重新查詢" };
+
+			var f020201s = f020201Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == param.DC_CODE && x.GUP_CODE == param.GUP_CODE && x.CUST_CODE == param.CUST_CODE
+																	&& x.PURCHASE_NO == param.STOCK_NO).ToList();
+			if (f020201s.Any(x => x.RT_MODE == "1"))
+				return new UserCloseExecuteResult { IsSuccessed = false, Message = "此進倉單已使用商品檢驗與容器綁定功能驗收過，不可進行強制結案" };
+
+			var f02020101s = f02020101Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == param.DC_CODE && x.GUP_CODE == param.GUP_CODE && x.CUST_CODE == param.CUST_CODE
+																	&& x.PURCHASE_NO == param.STOCK_NO).ToList();
+			if (param.IS_USER_CLOSED == "0" && (f020201s.Any() || f02020101s.Any(x => x.CHECK_ITEM == "1" || x.CHECK_SERIAL == "1")))
+				return new UserCloseExecuteResult { IsSuccessed = false, Message = "該進倉單人員曾做過部分的驗收步驟，是否要強制結案?", NeedConfirm = true };
+
+			f010201Repo.UpdateFields(
+				new
+				{
+					STATUS = "2",
+					USER_CLOSED = "1",
+					USER_CLOSED_MEMO = param.USER_CLOSED_MEMO,
+				},
+				x => x.DC_CODE == param.DC_CODE
+					&& x.GUP_CODE == param.GUP_CODE
+					&& x.CUST_CODE == param.CUST_CODE
+					&& x.STOCK_NO == param.STOCK_NO
+			);
+
+			var warehouseInRecvService = new WarehouseInRecvService(_wmsTransaction);
+			var rtNos = f02020101s.Select(x => x.RT_NO).ToList();
+			foreach (var rtNo in rtNos)
+			{
+				var deleteResult = warehouseInRecvService.DeleteAcceptanceData(new DeleteAcceptanceDataParam
+				{
+					DcCode = param.DC_CODE,
+					GupCode = param.GUP_CODE,
+					CustCode = param.CUST_CODE,
+					PurchaseNo = param.STOCK_NO,
+					RTNo = rtNo,
+				});
+				if (!deleteResult.IsSuccessed)
+					return new UserCloseExecuteResult { IsSuccessed = false, Message = deleteResult.MsgContent };
+			}
+
+			f020302Repo.UpdateStatusForUserCloseStock(f010201.DC_CODE, f010201.GUP_CODE, f010201.CUST_CODE, f010201.SHOP_NO);
+
+			return new UserCloseExecuteResult { IsSuccessed = true };
+		}
 		#endregion
 	}
 }

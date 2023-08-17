@@ -497,9 +497,9 @@ namespace Wms3pl.WpfClient.P25.ViewModel
       var excelTable = DataTableHelper.ReadExcelDataTable(fullFilePath, ref errorMeg);
       if (excelTable != null)
       {
-        if (excelTable.Rows.Count > 100)
+        if (excelTable.Rows.Count > 500)
         {
-          ShowWarningMessage("Excel匯入檔每次最多只能100筆資料");
+          ShowWarningMessage("Excel匯入檔每次最多只能500筆資料");
           F250103VerificationData = null;   //#2149-1 
           return;
         }

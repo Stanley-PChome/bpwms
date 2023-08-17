@@ -23,6 +23,7 @@ namespace Wms3pl.WebServices.Shared.WcsServices
       var data = new List<ApiResponse>();
       var f055006Repo = new F055006Repository(Schemas.CoreSchema);
 
+      WcsSetting.DcCode = dcCode;
       string url = $"v1/{dcCode}/ALL/Workstation/Status";
       var apiResult = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSAPI_F009004, dcCode, "0", req.OwnerCode, "WcsStationResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null }, () =>
        {

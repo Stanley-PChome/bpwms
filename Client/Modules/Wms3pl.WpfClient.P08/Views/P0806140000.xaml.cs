@@ -92,14 +92,25 @@ namespace Wms3pl.WpfClient.P08.Views
 		public void TxtContainerCode_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
-				Vm.BindContainerCommand.Execute(null);
+				Vm.DoBindContainer(); //Vm.BindContainerCommand.Execute(null);
 
 		}
+
+		private void BindContainer_Click(object sender, RoutedEventArgs e)
+		{
+			Vm.DoBindContainer();
+		}
+
 		private void TxtItemBarCode_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
-				Vm.ScanItemBarCodeCommand.Execute(null);
+				Vm.DoScanItemBarCode(); //Vm.ScanItemBarCodeCommand.Execute(null);
+			
+		}
 
+		private void TxtItemBarCode_Click(object sender, RoutedEventArgs e)
+		{
+			Vm.DoScanItemBarCode();
 		}
 	}
 }

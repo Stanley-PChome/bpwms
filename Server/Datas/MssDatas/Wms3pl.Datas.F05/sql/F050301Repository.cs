@@ -674,5 +674,24 @@ namespace Wms3pl.Datas.F05
 
       return SqlQuery<F050301>(sql);
     }
+
+		public bool IsMoveOut(string dcCode, string gupCode, string custCode, string ordNo)
+		{
+			var sqlParameter = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode)  { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode)  { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p3", ordNo)  { SqlDbType = SqlDbType.VarChar },
+			};
+			var sql = @"SELECT TOP(1) 1 FROM F050301
+                         WHERE DC_CODE = @p0
+						   AND GUP_CODE = @p1
+						   AND CUST_CODE = @p2
+						   AND ORD_NO = @p3
+						   AND CUST_COST = 'MoveOut' ";
+
+			return SqlQuery<int>(sql, sqlParameter.ToArray()).Any();
+		}
   }
 }

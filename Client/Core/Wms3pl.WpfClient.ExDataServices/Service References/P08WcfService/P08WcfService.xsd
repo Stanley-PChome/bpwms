@@ -1442,14 +1442,14 @@
   <xs:element name="StopAllot">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="f0701Id" type="xs:long" />
+        <xs:element xmlns:q144="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="param" nillable="true" type="q144:StopAllotParam" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StopAllotResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q144="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="StopAllotResult" nillable="true" type="q144:ExecuteResult" />
+        <xs:element xmlns:q145="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="StopAllotResult" nillable="true" type="q145:ExecuteResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

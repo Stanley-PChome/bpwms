@@ -73,7 +73,7 @@ namespace Wms3pl.WebServices.Shared.ServiceEntites
     public bool? IsExpendDate { get; set; } = true;
 
     /// <summary>
-    /// 調撥單類型 (0: 一般調撥單、1: 虛擬庫存回復單、2: 每日補貨單、3:配庫補貨單、4:驗收上架單、5:補貨純下架單、6:補貨純上架單)
+    /// 調撥單類型 (0: 一般調撥單、1: 虛擬庫存回復單、2: 每日補貨單、3:配庫補貨單、4:驗收上架單、5:補貨純下架單、6:補貨純上架單、8:即期品調撥單)
     /// </summary>
     public string AllocationTypeCode { get; set; } = "0";
 
@@ -718,9 +718,14 @@ namespace Wms3pl.WebServices.Shared.ServiceEntites
 		/// 調撥明細清單
 		/// </summary>
 		public List<AllocationConfirmDetail> Details { get; set; }
-	}
+    /// <summary>
+    /// 建立容器資料的回傳結果
+    /// </summary>
+    public List<ContainerExecuteResult> ContainerResults { get; set; }
 
-	public class AllocationConfirmDetail
+  }
+
+  public class AllocationConfirmDetail
 	{
 		/// <summary>
 		/// 調撥項次編號

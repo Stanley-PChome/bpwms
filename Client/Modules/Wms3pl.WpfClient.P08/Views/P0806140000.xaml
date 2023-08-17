@@ -83,7 +83,7 @@
 														<Label FontSize="20" Content="{x:Static Properties:Resources.P0806140000_ContainerWatemark}" />
 													</controls:WatermarkService.Watermark>
 												</TextBox>
-												<Button Style="{StaticResource BtnStyle}" Margin="0,10,0,0" FontSize="30"  Content="{x:Static Properties:Resources.P0806140000_Ok}" Command="{Binding BindContainerCommand}"/>
+												<Button Style="{StaticResource BtnStyle}" Margin="0,10,0,0" FontSize="30"  Content="{x:Static Properties:Resources.P0806140000_Ok}" Click="BindContainer_Click" IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}"/>
 										</WrapPanel>
 										<!-- 刷讀商品 -->
 											<WrapPanel  Orientation="Vertical" HorizontalAlignment="Left"  Margin="10,0,0,0" Visibility="{Binding CurrentPickAllotMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged ,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static viewModel:PickAllotMode.Sowing}}">
@@ -93,7 +93,7 @@
 														<Label FontSize="20"  Content="{x:Static Properties:Resources.P0806140000_ItemWatemark}" />
 													</controls:WatermarkService.Watermark>
 												</TextBox>
-												<Button Style="{StaticResource BtnStyle}" Margin="0,10,0,0" FontSize="30"  Content="{x:Static Properties:Resources.P0806140000_Ok}" Command="{Binding ScanItemBarCodeCommand}"/>
+												<Button Style="{StaticResource BtnStyle}" Margin="0,10,0,0" FontSize="30"  Content="{x:Static Properties:Resources.P0806140000_Ok}" Click="TxtItemBarCode_Click" IsEnabled="{Binding UserOperateMode,Converter={StaticResource EnumBooleanConverter},ConverterParameter={x:Static uiLib:OperateMode.Query}}"/>
 												<Label FontSize="20" Style="{StaticResource LbStyle}" Content="{x:Static Properties:Resources.P0806140000_ItemName}"/>
 												<Label Style="{StaticResource LbStyle}"  MaxWidth="250">
 													<TextBlock  TextWrapping="Wrap" Text="{Binding ItemName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />

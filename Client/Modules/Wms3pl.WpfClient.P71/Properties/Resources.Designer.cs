@@ -385,6 +385,15 @@ namespace Wms3pl.WpfClient.P71.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 是否允許訂單設定不出貨 的當地語系化字串。
+        /// </summary>
+        public static string ALLOW_ORDER_NO_DELV {
+            get {
+                return ResourceManager.GetString("ALLOW_ORDER_NO_DELV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 允許訂單明細超過 的當地語系化字串。
         /// </summary>
         public static string ALLOW_SPILT_ORDER_LIM {

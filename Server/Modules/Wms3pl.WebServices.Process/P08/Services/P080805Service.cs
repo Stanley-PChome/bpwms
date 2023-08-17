@@ -20,9 +20,9 @@ namespace Wms3pl.WebServices.Process.P08.Services
 	public class P080805Service
 	{
 		private WmsTransaction _wmsTransaction;
-		private static bool isLockPickContainer = false;
-		private static bool isLockOutContainer = false;
-		private static bool isLockCancelContainer = false;
+		private bool isLockPickContainer = false;
+		private bool isLockOutContainer = false;
+		private bool isLockCancelContainer = false;
 
 		public WmsTransaction wmsTransaction
 		{
@@ -60,7 +60,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// </summary>
 		/// <param name="containerCode"></param>
 		/// <returns></returns>
-		public static ExecuteResult LockPickContainer(string containerCode)
+		public ExecuteResult LockPickContainer(string containerCode)
 		{
 			//要注意呼叫這個fun＆ContainerTargetProcess是同一個物件不然會導致不會解鎖
 			var _f076105Repo = new F076105Repository(Schemas.CoreSchema);
@@ -90,7 +90,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// </summary>
 		/// <param name="containerCode"></param>
 		/// <returns></returns>
-		public static ExecuteResult UnlockContainerProcess(List<string> containerCodeList)
+		public ExecuteResult UnlockContainerProcess(List<string> containerCodeList)
 		{
 			var _f076105Repo = new F076105Repository(Schemas.CoreSchema);
 			if (isLockPickContainer)
@@ -106,7 +106,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// </summary>
 		/// <param name="containerCode"></param>
 		/// <returns></returns>
-		public static ExecuteResult LockOutContainer(string containerCode)
+		public ExecuteResult LockOutContainer(string containerCode)
 		{
 			//要注意呼叫這個fun＆ContainerTargetProcess是同一個物件不然會導致不會解鎖
 			var _f076106Repo = new F076106Repository(Schemas.CoreSchema);
@@ -136,7 +136,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// </summary>
 		/// <param name="containerCode"></param>
 		/// <returns></returns>
-		public static ExecuteResult UnlockOutContainerProcess(List<string> containerCodeList)
+		public ExecuteResult UnlockOutContainerProcess(List<string> containerCodeList)
 		{
 			var _f076106Repo = new F076106Repository(Schemas.CoreSchema);
 			if (isLockOutContainer)
@@ -152,7 +152,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// </summary>
 		/// <param name="containerCode"></param>
 		/// <returns></returns>
-		public static ExecuteResult LockCancelContainer(string containerCode)
+		public ExecuteResult LockCancelContainer(string containerCode)
 		{
 			//要注意呼叫這個fun＆ContainerTargetProcess是同一個物件不然會導致不會解鎖
 			var _f076107Repo = new F076107Repository(Schemas.CoreSchema);
@@ -182,7 +182,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// </summary>
 		/// <param name="containerCode"></param>
 		/// <returns></returns>
-		public static ExecuteResult UnlockCancelContainerProcess(List<string> containerCodeList)
+		public ExecuteResult UnlockCancelContainerProcess(List<string> containerCodeList)
 		{
 			var _f076107Repo = new F076107Repository(Schemas.CoreSchema);
 			if (isLockCancelContainer)

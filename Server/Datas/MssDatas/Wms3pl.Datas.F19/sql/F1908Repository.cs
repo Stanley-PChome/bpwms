@@ -39,5 +39,19 @@ namespace Wms3pl.Datas.F19
       #endregion
     }
 
-  }
+
+		public bool IsVnrExisted(string gupCode, string custCode, string vnrCode)
+		{
+			var para = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("@p1", SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("@p2", SqlDbType.VarChar) { Value = vnrCode },
+			};
+
+			var sql = @"SELECT TOP(1) 1 FROM F1908 WHERE GUP_CODE = @p0 AND CUST_CODE = @p1 AND VNR_CODE = @p2 ";
+
+			return SqlQuery<int>(sql, para.ToArray()).Any();
+		}
+	}
 }

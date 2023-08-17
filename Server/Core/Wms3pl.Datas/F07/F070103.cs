@@ -19,61 +19,72 @@
 		/// </summary>
 		[Key]
 		[Required]
-		public long ID { get; set; }
+    [Column(TypeName = "bigint")]
+    public long ID { get; set; }
 
 		/// <summary>
 		/// F0701的流水ID
 		/// </summary>
 		[Required]
-		public long F0701_ID { get; set; }
+    [Column(TypeName = "bigint")]
+    public long F0701_ID { get; set; }
 
 		/// <summary>
 		/// 物流中心號
 		/// </summary>
 		[Required]
-		public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
-		/// <summary>
-		/// 容器編碼
-		/// </summary>
-		public string CONTAINER_CODE { get; set; }
+    /// <summary>
+    /// 容器編碼
+    /// </summary>
+    [Column(TypeName = "varchar(32)")]
+    public string CONTAINER_CODE { get; set; }
 
-		/// <summary>
-		/// 子容器編碼
-		/// </summary>
-		public string SUB_CONTAINER_CODE { get; set; }
-		
-		/// <summary>
-		/// 建立人員
-		/// </summary>
-		[Required]
-		public string CRT_STAFF { get; set; }
+    /// <summary>
+    /// 子容器編碼
+    /// </summary>
+    [Column(TypeName = "varchar(32)")]
+    public string SUB_CONTAINER_CODE { get; set; }
 
-		/// <summary>
-		/// 建立日期
-		/// </summary>
-		[Required]
-		public DateTime CRT_DATE { get; set; }
+    /// <summary>
+    /// 建立人員
+    /// </summary>
+    [Required]
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
-		/// <summary>
-		/// 建立人名
-		/// </summary>
-		[Required]
-		public string CRT_NAME { get; set; }
+    /// <summary>
+    /// 建立日期
+    /// </summary>
+    [Required]
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
-		/// <summary>
-		/// 異動人員
-		/// </summary>
-		public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 建立人名
+    /// </summary>
+    [Required]
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-		/// <summary>
-		/// 異動日期
-		/// </summary>
-		public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-		/// <summary>
-		/// 異動人名
-		/// </summary>
-		public string UPD_NAME { get; set; }
-	}
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
+
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
+  }
 }

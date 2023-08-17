@@ -979,7 +979,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 
 				if (string.IsNullOrEmpty(serialNo))
 				{
-					var findF055002 = f055002s.FirstOrDefault(x => x.ORD_NO == item.ORD_NO && x.ORD_SEQ == item.ORD_SEQ);
+					var findF055002 = f055002s.FirstOrDefault(x => x.ORD_NO == item.ORD_NO && x.ORD_SEQ == item.ORD_SEQ && string.IsNullOrWhiteSpace(x.SERIAL_NO));
 					if (findF055002 != null)
 					{
 						findF055002.PACKAGE_QTY += allotQty;

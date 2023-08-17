@@ -563,7 +563,8 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// </summary>
 		private bool IsNumber(string text)
 		{
-			return text.ToCharArray().All(char.IsNumber);
+			return System.Text.RegularExpressions.Regex.IsMatch(text, @"^\d+$");
+			//return text.ToCharArray().All(char.IsNumber);
 		}
 
 		/// <summary>
@@ -1424,44 +1425,47 @@ namespace Wms3pl.WebServices.Shared.Services
         check = CheckSeralNoBase(gupCode, custCode,itemCode, serialNo, itemName);
 				if (!check.Checked)
 					serialNoResList.Add(check);
-				F2501 f2501 = f2501s.Where(x => x.SERIAL_NO == serialNo).FirstOrDefault();
-        if (f2501 == null)
-        {
-					serialNoResList.Add( new SerialNoResult
-          {
-            Checked = true,
-            ItemCode = itemCode,
-            ItemName = itemName,
-            SerialNo = serialNo,
-          });
-        }
-        else
-        {
-          check= SerialNoStatusCheckImpl(f2501, serialNo, "A1", null, itemName);
-          if (!check.Checked)
-						serialNoResList.Add(check);
-					else
-          {
-						if(f2501.ITEM_CODE != itemCode)
+				else
+				{
+					F2501 f2501 = f2501s.Where(x => x.SERIAL_NO == serialNo).FirstOrDefault();
+					if (f2501 == null)
+					{
+						serialNoResList.Add(new SerialNoResult
 						{
+							Checked = true,
+							ItemCode = itemCode,
+							ItemName = itemName,
+							SerialNo = serialNo,
+						});
+					}
+					else
+					{
+						check = SerialNoStatusCheckImpl(f2501, serialNo, "A1", null, itemName);
+						if (!check.Checked)
+							serialNoResList.Add(check);
+						else
+						{
+							if (f2501.ITEM_CODE != itemCode)
+							{
+								serialNoResList.Add(new SerialNoResult
+								{
+									Checked = false,
+									ItemCode = itemCode,
+									ItemName = itemName,
+									SerialNo = serialNo,
+									Message = string.Format("此商品序號原品號為{0}，與新品號{1}不同，不允許更換品號", f2501.ITEM_CODE, itemCode)
+								});
+							}
 							serialNoResList.Add(new SerialNoResult
 							{
-								Checked = false,
+								Checked = true,
 								ItemCode = itemCode,
 								ItemName = itemName,
 								SerialNo = serialNo,
-								Message = string.Format("此商品序號原品號為{0}，與新品號{1}不同，不允許更換品號", f2501.ITEM_CODE, itemCode)
 							});
 						}
-						serialNoResList.Add(new SerialNoResult
-            {
-              Checked = true,
-              ItemCode = itemCode,
-              ItemName = itemName,
-              SerialNo = serialNo,
-            });
-          }
-        }
+					}
+				}
       }
 			return serialNoResList;
     }

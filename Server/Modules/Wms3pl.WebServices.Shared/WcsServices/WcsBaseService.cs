@@ -15,7 +15,6 @@ namespace Wms3pl.WebServices.Shared.WcsService
 	{
 		protected TransApiBaseService _tacService = new TransApiBaseService();
 		protected WebApiConnect conn = new WebApiConnect();
-		protected List<KeyValuePair<string, string>> httpHeaderList = new List<KeyValuePair<string, string>>();
 		protected CommonService commonService;
 		/// <summary>
 		/// 將功能/API/排程產生的Json資料記錄於log中(0:否, 1:是)
@@ -32,7 +31,6 @@ namespace Wms3pl.WebServices.Shared.WcsService
 #endif
 			conn.MillisecondsTimeout = 500;             // 最小間隔(毫秒)
 			conn.Timeout = TimeSpan.FromSeconds(30);    // Time out超時設定 30秒
-			httpHeaderList.Add(new KeyValuePair<string, string>("Authorization", WcsSetting.ApiAuthToken));
 
 			// 將功能/API/排程產生的Json資料記錄於log中(0:否, 1:是)
 			var f0003Repo = new F0003Repository(Schemas.CoreSchema);
@@ -42,7 +40,10 @@ namespace Wms3pl.WebServices.Shared.WcsService
 
 		protected ApiResult WcsApiFunc<T>(T req, string url)
 		{
-			var res = new ApiResult { IsSuccessed = true };
+      List<KeyValuePair<string, string>> httpHeaderList = new List<KeyValuePair<string, string>>();
+      httpHeaderList.Add(new KeyValuePair<string, string>("Authorization", WcsSetting.ApiAuthToken));
+
+      var res = new ApiResult { IsSuccessed = true };
 			var result = conn.PostAsync<T, WcsResult>(string.Format("{0}{1}", WcsSetting.ApiUrl, url), req, httpHeaderList).GetAwaiter().GetResult();
 
 			if (result == null)
@@ -380,21 +381,41 @@ namespace Wms3pl.WebServices.Shared.WcsService
           }
           else
           {
-            res.IsSuccessed = false;
-            res.MsgCode = "400-002";
-            res.MsgContent = "Dispatch Error";
-            res.Data = new List<WcsOutboundCancelResData>
+            if (rnByCancel.Next(0, 2) == 0)
             {
-              new WcsOutboundCancelResData
+              res.IsSuccessed = false;
+              res.MsgCode = "400-002";
+              res.MsgContent = "Dispatch Error";
+              res.Data = new List<WcsOutboundCancelResData>
               {
-                //OrderCode = " O20210503000001",
-                OrderCode = (req as WcsOutboundCancelReq).OrderCode,
-                Status = "1",
-                //CompleteTime = Convert.ToDateTime("2021/05/03 09:21:02"),
-                 CompleteTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"),
-                ErrorMsg = "訂單已完成"
-              }
-            };
+                new WcsOutboundCancelResData
+                {
+                  //OrderCode = " O20210503000001",
+                  OrderCode = (req as WcsOutboundCancelReq).OrderCode,
+                  Status = "1",
+                  //CompleteTime = Convert.ToDateTime("2021/05/03 09:21:02"),
+                  CompleteTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"),
+                  ErrorMsg = "訂單已完成"
+                }
+              };
+            }
+            else
+            {
+              //#2241項目案例
+              res.IsSuccessed = false;
+              res.MsgCode = "400-002";
+              res.MsgContent = "Dispatch Error";
+              res.Data = new List<WcsOutboundCancelResData>
+              {
+                new WcsOutboundCancelResData
+                {
+                  OrderCode = (req as WcsOutboundCancelReq).OrderCode,
+                  Status = "1",
+                  CompleteTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"),
+                  ErrorMsg = "揀貨單號不存在"
+                }
+              };
+            }
           }
 
           //res.Data = new List<WcsOutboundCancelResData>

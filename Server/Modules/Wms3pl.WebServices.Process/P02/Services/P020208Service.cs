@@ -673,9 +673,9 @@ namespace Wms3pl.WebServices.Process.P02.Services
       });
 
 			var list = new List<F02050401>();
-      var f077101s = f077101Repo.GetDatasByTrueAndCondition(x => x.WORK_TYPE == "1" && x.REF_ID == f020502.ID ).ToList();
-			var startF077101 = f077101s.FirstOrDefault(x => x.STATUS == "0");
-			var finishF077101 = f077101s.FirstOrDefault(x => x.STATUS == "1");
+      var f077101s = f077101Repo.GetDatasByTrueAndCondition(x => x.WORK_TYPE == "1" && x.REF_ID == f020502.ID ).OrderByDescending(x => x.CRT_DATE).ToList();
+      var startF077101 = f077101s.FirstOrDefault(x => x.STATUS == "0");
+      var finishF077101 = f077101s.FirstOrDefault(x => x.STATUS == "1");
       if (startF077101 == null)
         return new ExecuteResult(false, "查無進倉人員作業[開始複驗]紀錄");
 

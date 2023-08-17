@@ -453,4 +453,15 @@ namespace Wms3pl.Datas.Shared.Entities
 		public DateTime? UPD_DATE { get; set; }
 		public string TABLE_NAME { get; set; }
 	}
+  public class testClass
+  {
+    public string COLUMN_NAME { get; set; }
+    public string DATA_TYPE { get; set; }
+    public int? CHARACTER_MAXIMUM_LENGTH { get; set; }
+    public string IS_NULLABLE { get; set; }
+    public int? NUMERIC_PRECISION { get; set; }
+    public int? NUMERIC_SCALE { get; set; }
+  }
+
+
 }

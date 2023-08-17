@@ -116,5 +116,23 @@ namespace Wms3pl.Datas.F05
 
 			return SqlQuery<F0531>(sql, sqlParameter.ToArray()).FirstOrDefault();
 		}
+
+		public bool IsAllotContainerClose(string dcCode, string gupCode, string custCode, string pickOrdNo)
+		{
+			var parms = new List<SqlParameter>();
+			parms.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
+			parms.Add(new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar });
+
+			var sql = @" SELECT TOP(1) 1 FROM F0531
+                         WHERE ID IN ( SELECT F0531_ID FROM F053201
+                                        WHERE DC_CODE = @p0
+                                          AND GUP_CODE = @p1
+                                          AND CUST_CODE = @p2
+                                          AND PICK_ORD_NO = @p3 ) ";
+
+			return !SqlQuery<int>(sql, parms.ToArray()).Any();
+		}
 	}
 }

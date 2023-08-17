@@ -273,5 +273,26 @@ namespace Wms3pl.Datas.F16
 
 			return SqlQuery<string>(sql, parameters.ToArray());
 		}
+
+		public IQueryable<F160204> GetDatasByExportVendorReturn(string dcCode, string gupCode, string custCode, List<string> sourceNos)
+		{
+			var parameters = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+			};
+
+			var sql = @"
+SELECT *
+  FROM F160204
+ WHERE DC_CODE = @p0
+   AND GUP_CODE = @p1
+   AND CUST_CODE = @p2
+					 ";
+			sql += parameters.CombineSqlInParameters(" AND RTN_WMS_NO", sourceNos, SqlDbType.VarChar);
+
+			return SqlQuery<F160204>(sql, parameters.ToArray());
+		}
 	}
 }

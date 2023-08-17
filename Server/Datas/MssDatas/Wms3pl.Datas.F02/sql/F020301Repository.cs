@@ -12,40 +12,38 @@ namespace Wms3pl.Datas.F02
 {
     public partial class F020301Repository : RepositoryBase<F020301, Wms3plDbContext, F020301Repository>
     {
-        public int GetF020301FileSeq(string dcCode, string gupCode, string custCode, string purchaseNo, string shopNo)
-        {
-            string sql = @"			
 
-						SELECT TOP (1) CONVERT(INT,SUBSTRING(A.FILE_NAME,LEN(A.FILE_NAME)-1,2)) SEQCTN
+    public String GetF020301FileName(string dcCode, string gupCode, string custCode, string rtNo)
+    {
+      string sql = @"			
+						SELECT TOP (1) FILE_NAME
 						FROM F020301 A 
-						WHERE	A.DC_CODE =@p0 
-								AND A.GUP_CODE =@p1 
-								AND A.CUST_CODE =@p2
-								AND (A.PURCHASE_NO =@p3 or A.PURCHASE_NO = @p4) 
-                ORDER BY CRT_DATE DESC
-			";
+						WHERE	A.DC_CODE = @p0 
+								AND A.GUP_CODE = @p1 
+								AND A.CUST_CODE = @p2
+								AND FILE_NAME = @p3";
 
-            var param = new List<SqlParameter> {
+      var param = new List<SqlParameter> {
                 new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
                 new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
                 new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
-                new SqlParameter("@p3", purchaseNo) { SqlDbType = SqlDbType.VarChar },
-                new SqlParameter("@p4", shopNo) { SqlDbType = SqlDbType.VarChar }
+                new SqlParameter("@p3", $"USERCHK99_{rtNo}") { SqlDbType = SqlDbType.VarChar },
             };
 
-            return SqlQuery<int>(sql, param.ToArray()).FirstOrDefault();
-        }
+      return SqlQuery<string>(sql, param.ToArray()).FirstOrDefault();
+    }
 
-        /// <summary>
-        /// 取得待匯入的進倉驗收明細檔，其中品號為可選擇性過濾條件
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <param name="gupCode"></param>
-        /// <param name="custCode"></param>
-        /// <param name="purchaseNo"></param>
-        /// <param name="itemCode">有填才過濾</param>
-        /// <returns></returns>
-        public IQueryable<F020302Data> GetF020302Data(string dcCode, string gupCode, string custCode, string purchaseNo, string itemCode = "")
+
+    /// <summary>
+    /// 取得待匯入的進倉驗收明細檔，其中品號為可選擇性過濾條件
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="purchaseNo"></param>
+    /// <param name="itemCode">有填才過濾</param>
+    /// <returns></returns>
+    public IQueryable<F020302Data> GetF020302Data(string dcCode, string gupCode, string custCode, string purchaseNo, string itemCode = "")
         {
             List<SqlParameter> prms = new List<SqlParameter>();
             prms.Add(new SqlParameter("@p0",dcCode));

@@ -38,12 +38,11 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
             var outputJsonInLog = commonService.GetSysGlobalValue("OutputJsonInLog");
             bool isSaveWmsData = string.IsNullOrWhiteSpace(outputJsonInLog) ? false : outputJsonInLog == "1";
 
-      #region 取得 訂單出貨未回檔資料
-      //var f050305s = f050305Repo.GetDatasForExport(dcCode, gupCode, custCode).ToList();
-      var f050305s = f050305Repo.GetDatasForExport_Sql(dcCode, gupCode, custCode).ToList();
-      #endregion
+			#region 取得 訂單出貨未回檔資料
+			var f050305s = f050305Repo.GetDatasForExport_Sql(dcCode, gupCode, custCode).ToList();
+			#endregion
 
-      f050305s.ForEach(f050305 =>
+			f050305s.ForEach(f050305 =>
             {
                 SaleOrderReplyReq req = new SaleOrderReplyReq { DcCode = dcCode, CustCode = custCode };
 
@@ -185,7 +184,7 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
             o.ORD_NO == f050305.ORD_NO).ToList();
 
             var f055004List = f055004s.Any() ? f055004s : exportService.CreateF055004(f050305);
-            return CreatePackageDatas(f050305, f055004List);
+			return CreatePackageDatas(f050305, f055004List);
         }
 
         private List<SaleOrderReplyPackage> CreatePackageDatas(F050305 f050305, List<F055004> f055004List)
@@ -203,57 +202,53 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 
             var f055001s = f055001Repo.GetDatas(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos);
 
-            var f055002s = f055002Repo.GetPackageBoxSeqsByWmsOrdNos(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos);
+            var f055002s = f055002Repo.GetDatasByWmsOrdNos(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos);
 
-            var f050901s = f050901Repo.GetDatasByWmsOrdNos(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos);
+			var f055004s = f055004List.GroupBy(x => new { x.ITEM_CODE, x.ORD_SEQ, x.MAKE_NO, x.BOX_NO, x.VALID_DATE }).Select(x => new
+			{
+				x.Key.ITEM_CODE,
+				ORD_SEQ = x.Key.ORD_SEQ.ToString(),
+				x.Key.MAKE_NO,
+				x.Key.BOX_NO,
+				QTY = x.Sum(z => z.QTY),
+				x.Key.VALID_DATE,
+				SERIAL_NO_LIST = x.Select(s => s.SERIAL_NO).ToList()
+			});
 
-            var f055004s = f055004List.GroupBy(x => new { x.ITEM_CODE, x.ORD_SEQ, x.MAKE_NO, x.BOX_NO, x.VALID_DATE }).Select(x => new
-            {
-                x.Key.ITEM_CODE,
-                ORD_SEQ = x.Key.ORD_SEQ.ToString(),
-                x.Key.MAKE_NO,
-                x.Key.BOX_NO,
-                QTY = x.Sum(z => z.QTY),
-                x.Key.VALID_DATE
-            });
-
-            var datas = from A in f055001s
+			var datas = from A in f055001s
                         join B in f055002s
                         on new { A.WMS_ORD_NO, A.PACKAGE_BOX_NO } equals new { B.WMS_ORD_NO, B.PACKAGE_BOX_NO }
-                        join C in f050901s
-                        on new { CONSIGN_NO = A.PAST_NO } equals new { C.CONSIGN_NO } into g
-                        from C in g.DefaultIfEmpty()
-                        select new { F055001 = A, F055002 = B, F050901 = C };
+                        select new { F055001 = A, F055002 = B };
 
 
-            var res = datas.GroupBy(x => new { x.F055001, x.F050901 })
-                                         .Select(package => new SaleOrderReplyPackage // Package層
-                                         {
-                                             WmsNo = package.Key.F055001.WMS_ORD_NO,
-                                             BoxNo = package.Key.F055001.PACKAGE_BOX_NO,
-                                             BoxNum = package.Key.F055001.BOX_NUM,
-                                             TransportCode = package.Key.F055001.PAST_NO,
-                                             TransportProvider = package.Key.F050901 != null ? package.Key.F050901.DELIVID_SEQ_NAME : string.Empty,
-                                             ShipmentTime = package.Key.F055001.AUDIT_DATE == null ? null : Convert.ToDateTime(package.Key.F055001.AUDIT_DATE).ToString("yyyy/MM/dd HH:mm:ss"),
-                                             Details = package.GroupBy(z => new { z.F055002.ORD_SEQ, z.F055002.ITEM_CODE, z.F055002.PACKAGE_BOX_NO })
-                                                                     .OrderBy(z => z.Key.ORD_SEQ).Select(detail => new SaleOrderReplyPackageDetail // Detail層
-                                                                     {
-                                                                         ItemSeq = detail.Key.ORD_SEQ,
-                                                                         ItemCode = detail.Key.ITEM_CODE,
-                                                                         OutQty = Convert.ToInt32(detail.Sum(y => y.F055002.PACKAGE_QTY)),
-                                                                         MakeNoDetails = f055004s.Where(z => z.ITEM_CODE == detail.Key.ITEM_CODE && z.ORD_SEQ == detail.Key.ORD_SEQ && z.BOX_NO == detail.Key.PACKAGE_BOX_NO.ToString()).Select(makeNoDetail => new SaleOrderReplyPackageMakeNoDetail
-                                                                         {
-                                                                             ValidDate = makeNoDetail.VALID_DATE.HasValue 
-                                                                                 ? makeNoDetail.VALID_DATE.Value.ToString("yyyy/MM/dd") 
-                                                                                 : "",
-                                                                             MakeNo = makeNoDetail.MAKE_NO,
-                                                                             MakeNoQty = makeNoDetail.QTY,
-                                                                             SnList = detail.Where(x => !string.IsNullOrWhiteSpace(x.F055002.SERIAL_NO)).Select(x => x.F055002.SERIAL_NO).ToList()
-                                                                         }).ToList()
-                                                                     }).ToList()
-                                         }).ToList();
+			var res = datas.GroupBy(x => new { x.F055001 })
+										 .Select(package => new SaleOrderReplyPackage // Package層
+										 {
+											 WmsNo = package.Key.F055001.WMS_ORD_NO,
+											 BoxNo = package.Key.F055001.PACKAGE_BOX_NO,
+											 BoxNum = package.Key.F055001.BOX_NUM,
+											 TransportCode = package.Key.F055001.PAST_NO,
+											 TransportProvider = package.Key.F055001.LOGISTIC_CODE,
+											 ShipmentTime = package.Key.F055001.AUDIT_DATE == null ? null : Convert.ToDateTime(package.Key.F055001.AUDIT_DATE).ToString("yyyy/MM/dd HH:mm:ss"),
+											 Details = package.GroupBy(z => new { z.F055002.ORD_SEQ, z.F055002.ITEM_CODE, z.F055002.PACKAGE_BOX_NO })
+																	 .OrderBy(z => z.Key.ORD_SEQ).Select(detail => new SaleOrderReplyPackageDetail // Detail層
+																	 {
+																		 ItemSeq = detail.Key.ORD_SEQ,
+																		 ItemCode = detail.Key.ITEM_CODE,
+																		 OutQty = Convert.ToInt32(detail.Sum(y => y.F055002.PACKAGE_QTY)),
+																		 MakeNoDetails = f055004s.Where(z => z.ITEM_CODE == detail.Key.ITEM_CODE && z.ORD_SEQ == detail.Key.ORD_SEQ && z.BOX_NO == detail.Key.PACKAGE_BOX_NO.ToString()).Select(makeNoDetail => new SaleOrderReplyPackageMakeNoDetail
+																		 {
+																			 ValidDate = makeNoDetail.VALID_DATE.HasValue
+																				 ? makeNoDetail.VALID_DATE.Value.ToString("yyyy/MM/dd")
+																				 : "",
+																			 MakeNo = makeNoDetail.MAKE_NO,
+																			 MakeNoQty = makeNoDetail.QTY,
+																			 SnList = makeNoDetail.SERIAL_NO_LIST
+																		 }).ToList()
+																	 }).ToList()
+										 }).ToList();
 
-            return res;
+			return res;
         }
     }
 }

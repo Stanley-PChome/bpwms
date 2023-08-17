@@ -140,6 +140,8 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string FAST_PASS_TYPE { get; set; }
 		[DataMember]
 		public string BOOKING_IN_PERIOD { get; set; }
+		[DataMember]
+		public string USER_CLOSED_MEMO { get; set; }
 	}
 
     [Serializable]
@@ -776,4 +778,43 @@ namespace Wms3pl.Datas.Shared.Entities
         public string LOGISTIC_NAME { get; set; }
     }
 
+	[Serializable]
+	[DataServiceKey("DC_CODE", "GUP_CODE", "CUST_CODE", "STOCK_NO")]
+	public class UserCloseStockParam
+	{
+		/// <summary>
+		/// 物流中心編號
+		/// </summary>
+		public string DC_CODE { get; set; }
+
+		/// <summary>
+		/// 業主編號
+		/// </summary>
+		public string GUP_CODE { get; set; }
+
+		/// <summary>
+		/// 貨主編號
+		/// </summary>
+		public string CUST_CODE { get; set; }
+
+		/// <summary>
+		/// 進倉單號
+		/// </summary>
+		public string STOCK_NO { get; set; }
+
+		/// <summary>
+		///  備註原因
+		/// </summary>
+		public string USER_CLOSED_MEMO { get; set; }
+
+		/// <summary>
+		/// 是否人員確認要強制結案(0:否 1:是)
+		/// </summary>
+		public string IS_USER_CLOSED { get; set; }
+	}
+
+	public class UserCloseExecuteResult : ExecuteResult
+	{
+		public Boolean NeedConfirm { get; set; }
+	}
 }

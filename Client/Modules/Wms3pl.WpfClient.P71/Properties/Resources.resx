@@ -2763,4 +2763,7 @@
   <data name="ProductSearch" xml:space="preserve">
     <value>商品搜尋</value>
   </data>
+  <data name="ALLOW_ORDER_NO_DELV" xml:space="preserve">
+    <value>是否允許訂單設定不出貨</value>
+  </data>
 </root>

@@ -738,8 +738,9 @@ namespace Wms3pl.WebServices.Process.P08.Services
 						STATUS = f2501Status,
 						WMS_NO = f161201.RETURN_NO,
 						ORD_PROP = f161201.ORD_PROP,
-						SEND_CUST = "0"
-					},
+						SEND_CUST = "0",
+            IS_ASYNC = "N"
+          },
 																											 WHERE: x => x.GUP_CODE == gupCode
 																																&& x.CUST_CODE == custCode,
 																											 InFieldName: x => x.SERIAL_NO,

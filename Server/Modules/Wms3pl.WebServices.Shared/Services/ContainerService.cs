@@ -73,7 +73,8 @@ namespace Wms3pl.WebServices.Shared.Services
             f0701_ID = f0701Id,
             WMS_NO = f070101.WMS_NO,
             ContainerCode = data.CONTAINER_CODE,
-            Qty = f070101.F070102s.Sum(o => o.QTY)
+            Qty = f070101.F070102s.Sum(o => o.QTY),
+            WAREHOUSE_ID = data.WAREHOUSE_ID
           });
 
           f070101.F070102s.ForEach(f070102 =>

@@ -688,6 +688,7 @@ namespace Wms3pl.WebServices.PdaWebApiLib.Controllers
       if (f02020101 == null)
         return new ApiResult { IsSuccessed = false, MsgCode = "21937", MsgContent = _p81Service.GetMsg("21937") };
 
+
       // 3. 取得已收集未驗收序號清單
       var collectSerialList = warehouseInRecvService.GetCollectSerialList(req.DcNo, gupCode, req.CustNo, req.WmsNo, req.PoNo, req.ItemCode);
       var collectSerialCnt = collectSerialList.Count;
@@ -710,6 +711,17 @@ namespace Wms3pl.WebServices.PdaWebApiLib.Controllers
         ValidDate = f02020101.VALI_DATE.HasValue ? f02020101.VALI_DATE.Value.ToString("yyyy/MM/dd") : "",
         ItemSerialList = checkMode == "0" ? new List<string>() : collectSerialList
       };
+
+      // 如果是序號收集模式才去判斷要不要新增F020301
+      if (checkMode == "1")
+      {
+        var crtF020301Res = warehouseInRecvService.CheckAndInserF020301(req.DcNo, gupCode, req.CustNo, req.WmsNo, req.RtNo);
+        if (!crtF020301Res.IsSuccessed)
+          return crtF020301Res;
+      }
+
+      //F020301寫入
+      _wmsTransaction.Complete();
       #endregion
       return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = _p81Service.GetMsg("10001"), Data = data };
     }
@@ -1484,6 +1496,8 @@ namespace Wms3pl.WebServices.PdaWebApiLib.Controllers
       var f010201 = F010201Repo.GetDatasByStockNo(req.DcNo, gupCode, req.CustNo, req.WmsNo);
       if (f010201 == null)
         return new ApiResult { IsSuccessed = false, MsgCode = "21902", MsgContent = _p81Service.GetMsg("21902"), Data = new RecvItemCompletedRes { IsGoQueryPage = true } };
+      if (f010201.USER_CLOSED == "1")
+        return new ApiResult { IsSuccessed = false, MsgCode = "21963", MsgContent = _p81Service.GetMsg("21963"), Data = new RecvItemCompletedRes { IsGoQueryPage = true } };
       //3.	再次檢查進倉單狀態，確認是否可以驗收
       if (!new[] { "1", "3" }.Contains(f010201.STATUS))
       {

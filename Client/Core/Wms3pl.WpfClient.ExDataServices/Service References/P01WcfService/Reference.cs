@@ -615,6 +615,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P01WcfService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ExecuteResult", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseExecuteResult))]
     public partial class ExecuteResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -684,6 +685,29 @@ namespace Wms3pl.WpfClient.ExDataServices.P01WcfService {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserCloseExecuteResult", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class UserCloseExecuteResult : Wms3pl.WpfClient.ExDataServices.P01WcfService.ExecuteResult {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool NeedConfirmField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool NeedConfirm {
+            get {
+                return this.NeedConfirmField;
+            }
+            set {
+                if ((this.NeedConfirmField.Equals(value) != true)) {
+                    this.NeedConfirmField = value;
+                    this.RaisePropertyChanged("NeedConfirm");
+                }
             }
         }
     }
@@ -777,6 +801,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P01WcfService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UPD_STAFFField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USER_CLOSED_MEMOField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VNR_ADDRESSField;
@@ -1144,6 +1171,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P01WcfService {
                 if ((object.ReferenceEquals(this.UPD_STAFFField, value) != true)) {
                     this.UPD_STAFFField = value;
                     this.RaisePropertyChanged("UPD_STAFF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string USER_CLOSED_MEMO {
+            get {
+                return this.USER_CLOSED_MEMOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USER_CLOSED_MEMOField, value) != true)) {
+                    this.USER_CLOSED_MEMOField = value;
+                    this.RaisePropertyChanged("USER_CLOSED_MEMO");
                 }
             }
         }
@@ -2113,6 +2153,125 @@ namespace Wms3pl.WpfClient.ExDataServices.P01WcfService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserCloseStockParam", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class UserCloseStockParam : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string CUST_CODEk__BackingFieldField;
+        
+        private string DC_CODEk__BackingFieldField;
+        
+        private string GUP_CODEk__BackingFieldField;
+        
+        private string IS_USER_CLOSEDk__BackingFieldField;
+        
+        private string STOCK_NOk__BackingFieldField;
+        
+        private string USER_CLOSED_MEMOk__BackingFieldField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<CUST_CODE>k__BackingField", IsRequired=true)]
+        public string CUST_CODEk__BackingField {
+            get {
+                return this.CUST_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CUST_CODEk__BackingFieldField, value) != true)) {
+                    this.CUST_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("CUST_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<DC_CODE>k__BackingField", IsRequired=true)]
+        public string DC_CODEk__BackingField {
+            get {
+                return this.DC_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DC_CODEk__BackingFieldField, value) != true)) {
+                    this.DC_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("DC_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<GUP_CODE>k__BackingField", IsRequired=true)]
+        public string GUP_CODEk__BackingField {
+            get {
+                return this.GUP_CODEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GUP_CODEk__BackingFieldField, value) != true)) {
+                    this.GUP_CODEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("GUP_CODEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<IS_USER_CLOSED>k__BackingField", IsRequired=true)]
+        public string IS_USER_CLOSEDk__BackingField {
+            get {
+                return this.IS_USER_CLOSEDk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IS_USER_CLOSEDk__BackingFieldField, value) != true)) {
+                    this.IS_USER_CLOSEDk__BackingFieldField = value;
+                    this.RaisePropertyChanged("IS_USER_CLOSEDk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<STOCK_NO>k__BackingField", IsRequired=true)]
+        public string STOCK_NOk__BackingField {
+            get {
+                return this.STOCK_NOk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.STOCK_NOk__BackingFieldField, value) != true)) {
+                    this.STOCK_NOk__BackingFieldField = value;
+                    this.RaisePropertyChanged("STOCK_NOk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<USER_CLOSED_MEMO>k__BackingField", IsRequired=true)]
+        public string USER_CLOSED_MEMOk__BackingField {
+            get {
+                return this.USER_CLOSED_MEMOk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USER_CLOSED_MEMOk__BackingFieldField, value) != true)) {
+                    this.USER_CLOSED_MEMOk__BackingFieldField = value;
+                    this.RaisePropertyChanged("USER_CLOSED_MEMOk__BackingField");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="P01WcfService.P01WcfService")]
     public interface P01WcfService {
@@ -2176,6 +2335,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P01WcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P01WcfService/GetInboundCnt", ReplyAction="http://tempuri.org/P01WcfService/GetInboundCntResponse")]
         System.Threading.Tasks.Task<int> GetInboundCntAsync(string dcCode, string gupCode, string custCode, string[] stockNos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P01WcfService/UserCloseStock", ReplyAction="http://tempuri.org/P01WcfService/UserCloseStockResponse")]
+        Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseExecuteResult UserCloseStock(Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseStockParam param);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P01WcfService/UserCloseStock", ReplyAction="http://tempuri.org/P01WcfService/UserCloseStockResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseExecuteResult> UserCloseStockAsync(Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseStockParam param);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2283,6 +2448,14 @@ namespace Wms3pl.WpfClient.ExDataServices.P01WcfService {
         
         public System.Threading.Tasks.Task<int> GetInboundCntAsync(string dcCode, string gupCode, string custCode, string[] stockNos) {
             return base.Channel.GetInboundCntAsync(dcCode, gupCode, custCode, stockNos);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseExecuteResult UserCloseStock(Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseStockParam param) {
+            return base.Channel.UserCloseStock(param);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseExecuteResult> UserCloseStockAsync(Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseStockParam param) {
+            return base.Channel.UserCloseStockAsync(param);
         }
     }
 }

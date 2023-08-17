@@ -81,7 +81,8 @@ namespace Wms3pl.WebServices.Shared.WcsServices
 						OrderCode = finishData.DOC_ID
 					};
 
-					result = ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsOutboundCancelResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null }, () =>
+          WcsSetting.DcCode = dcCode;
+          result = ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsOutboundCancelResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null }, () =>
 					{
 						return OutboundCancel(url, req);
 					}, false);

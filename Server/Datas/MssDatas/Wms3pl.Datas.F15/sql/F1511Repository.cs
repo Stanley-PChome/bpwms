@@ -347,7 +347,7 @@ WHERE DC_CODE = @p0
 		public IQueryable<F1511> GetDatasByWmsOrdNos(string dcCode,string gupCode,string custCode,List<string> wmsOrdNos)
 		{
 			var parms = new List<object> { dcCode, gupCode, custCode };
-			var sql = @" SELECT *
+			var sql = @" SELECT A.*
                      FROM F1511 A
                      JOIN F051202 B
                        ON B.DC_CODE = A.DC_CODE

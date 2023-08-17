@@ -2300,133 +2300,8 @@ namespace Wms3pl.Datas.Shared.Entities
 		[DataMember]
 		public string GUP_CODE { get; set; }
 		[DataMember]
-		public string SHORT_NAME { get; set; }
-		[DataMember]
-		public string BOSS { get; set; }
-		[DataMember]
-		public string CONTACT { get; set; }
-		[DataMember]
-		public string TEL { get; set; }
-		[DataMember]
-		public string ADDRESS { get; set; }
-		[DataMember]
-		public string UNI_FORM { get; set; }
-		[DataMember]
-		public string ITEM_CONTACT { get; set; }
-		[DataMember]
-		public string ITEM_TEL { get; set; }
-		[DataMember]
-		public string ITEM_CEL { get; set; }
-		[DataMember]
-		public string ITEM_MAIL { get; set; }
-		[DataMember]
-		public string BILL_CONTACT { get; set; }
-		[DataMember]
-		public string BILL_TEL { get; set; }
-		[DataMember]
-		public string BILL_CEL { get; set; }
-		[DataMember]
-		public string BILL_MAIL { get; set; }
-		[DataMember]
-		public string CURRENCY { get; set; }
-		[DataMember]
-		public string PAY_FACTOR { get; set; }
-		[DataMember]
-		public string PAY_TYPE { get; set; }
-		[DataMember]
-		public string BANK_CODE { get; set; }
-		[DataMember]
-		public string BANK_NAME { get; set; }
-		[DataMember]
-		public string BANK_ACCOUNT { get; set; }
-		[DataMember]
-		public string ORDER_ADDRESS { get; set; }
-		[DataMember]
-		public string MIX_LOC_BATCH { get; set; }
-		[DataMember]
-		public string MIX_LOC_ITEM { get; set; }
-		[DataMember]
-		public string DC_TRANSFER { get; set; }
-		[DataMember]
-		public string BOUNDLE_SERIALLOC { get; set; }
-		[DataMember]
-		public string RTN_DC_CODE { get; set; }
-		[DataMember]
-		public string OVERAGE { get; set; }
-		[DataMember]
-		public string SAM_ITEM { get; set; }
-		[DataMember]
-		public string INSIDER_TRADING { get; set; }
-		[DataMember]
-		public Int32? INSIDER_TRADING_LIM { get; set; }
-		[DataMember]
-		public string SPILT_ORDER { get; set; }
-		[DataMember]
-		public Int32? SPILT_ORDER_LIM { get; set; }
-		[DataMember]
-		public string B2C_CAN_LACK { get; set; }
-		[DataMember]
-		public string CAN_FAST { get; set; }
-		[DataMember]
-		public string INSTEAD_INVO { get; set; }
-		[DataMember]
-		public string SPILT_INCHECK { get; set; }
-		[DataMember]
-		public string SPECIAL_IN { get; set; }
-		[DataMember]
-		public Decimal? CHECK_PERCENT { get; set; }
-		[DataMember]
-		public string NEED_SEAL { get; set; }
-		[DataMember]
-		public string DM { get; set; }
-		[DataMember]
-		public string RIBBON { get; set; }
-		[DataMember]
-		public DateTime? RIBBON_BEGIN_DATE { get; set; }
-		[DataMember]
-		public DateTime? RIBBON_END_DATE { get; set; }
-		[DataMember]
-		public string CUST_BOX { get; set; }
-		[DataMember]
-		public string SP_BOX { get; set; }
-		[DataMember]
-		public string SP_BOX_CODE { get; set; }
-		[DataMember]
-		public DateTime? SPBOX_BEGIN_DATE { get; set; }
-		[DataMember]
-		public DateTime? SPBOX_END_DATE { get; set; }
-		[DataMember]
-		public string STATUS { get; set; }
-		[DataMember]
-		public string UPD_STAFF { get; set; }
-		[DataMember]
-		public DateTime CRT_DATE { get; set; }
-		[DataMember]
-		public DateTime? UPD_DATE { get; set; }
-		[DataMember]
-		public string CRT_STAFF { get; set; }
-		[DataMember]
-		public string CRT_NAME { get; set; }
-		[DataMember]
-		public string UPD_NAME { get; set; }
-		[DataMember]
-		public string INVO_ZIP { get; set; }
-		[DataMember]
-		public string TAX_TYPE { get; set; }
-		[DataMember]
-		public string INVO_ADDRESS { get; set; }
-		[DataMember]
-		public Decimal? DUE_DAY { get; set; }
-		[DataMember]
-		public Int32? INVO_LIM_QTY { get; set; }
-		[DataMember]
-		public string AUTO_GEN_RTN { get; set; }
-		[DataMember]
-		public string SYS_CUST_CODE { get; set; }
-		[DataMember]
 		public string LOC_CODE { get; set; }
-		[DataMember]
-		public string GUPSHARE { get; set; }
+	
 	}
 	#endregion
 
@@ -4230,5 +4105,20 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string ATYPE_CODE { get; set; }
         public long QTY { get; set; }
     }
-    #endregion
+  #endregion
+
+  /// <summary>
+  /// 即期品調撥排程用
+  /// </summary>
+  public class ProcImmediateItem
+  {
+    public string DC_CODE { get; set; }
+    public string GUP_CODE { get; set; }
+    public string CUST_CODE { get; set; }
+    public string WAREHOUSE_ID { get; set; }
+    public string ITEM_CODE { get; set; }
+    public DateTime VALID_DATE { get; set; }
+    public string LOC_CODE { get; set; }
+    public int QTY { get; set; }
+  }
 }

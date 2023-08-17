@@ -30,6 +30,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
     {
       ApiResult res = new ApiResult { IsSuccessed = true };
       List<ApiResponse> data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
       // 新增API Log
       res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportOutboundResults", req, () =>
@@ -298,8 +299,9 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 				
 				var result = new ApiResult { IsSuccessed = false };
 
-				// 出庫任務Url
-				string url = $"v1/{f060201.DC_CODE}/{f060201.WAREHOUSE_ID}/Outbound";
+        // 出庫任務Url
+        WcsSetting.DcCode = dcCode;
+        string url = $"v1/{f060201.DC_CODE}/{f060201.WAREHOUSE_ID}/Outbound";
 				ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsOutboundResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null, F060201 = f060201 }, () =>
 				{
 					if (req != null)
@@ -413,6 +415,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
     {
       ApiResult res = new ApiResult { IsSuccessed = true };
       List<ApiResponse> data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
       // 新增API Log
       res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportOutboundCancelResults", req, () =>
@@ -598,10 +601,11 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 					OwnerCode = custCode,
 					OrderCode = f060201.DOC_ID
 				};
-				#endregion
+        #endregion
 
-				// 出庫任務取消Url
-				string url = $"v1/{f060201.DC_CODE}/{f060201.WAREHOUSE_ID}/Outbound/Cancel";
+        // 出庫任務取消Url
+        WcsSetting.DcCode = dcCode;
+        string url = $"v1/{f060201.DC_CODE}/{f060201.WAREHOUSE_ID}/Outbound/Cancel";
 				ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsOutboundCancelResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null, F060201 = f060201 }, () =>
 				{
 					if (req != null)
@@ -634,64 +638,78 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 				}, false,
 					(fResult) =>
 					{
-						// 回傳代碼是失敗，但第二層內容有回傳取消成功或取消失敗處理
-						if (!fResult.IsSuccessed)
-						{
-							if (f060201.RESENT_CNT >= maxResendCnt)
-								f060201.STATUS = "F"; //超過重派次數，狀態改為F
-							else
-								f060201.STATUS = "T";
+            // 回傳代碼是失敗，但第二層內容有回傳取消成功或取消失敗處理
+            if (!fResult.IsSuccessed)
+            {
+              //如果執行失敗 + MsgCode=="99999" 則更新F060201.STATUS=T，不進行Data內容的的判斷
+              if (f060201.RESENT_CNT >= maxResendCnt)
+                f060201.STATUS = "F"; //超過重派次數，狀態改為F
+              else
+                f060201.STATUS = "T";
 
-							var strSerializeJson = string.Empty;
-							var errMesg = string.Empty;	
+              if (fResult.MsgCode != "99999")
+              {
+                var strSerializeJson = string.Empty;
+                var errMesg = string.Empty;
+                var dataErrorMsg = string.Empty;
 
-							if (result.Data == null)
-								errMesg = $"Msg:{result.MsgContent} Status:null ErrorMsg:Wcs Api 回傳的Data is null";
+                if (result.Data == null)
+                  errMesg = $"Msg:{result.MsgContent} Status:null ErrorMsg:Wcs Api 回傳的Data is null";
 
-							if (string.IsNullOrWhiteSpace(errMesg))
-							{
-								strSerializeJson = JsonConvert.SerializeObject(result.Data);
-								if (string.IsNullOrEmpty(strSerializeJson) || strSerializeJson?.ToUpper() == "NULL")
-									errMesg = $"Msg:{result.MsgContent} Status:null ErrorMsg:Wcs Api 回傳的Data 為空物件";
-							}
+                if (string.IsNullOrWhiteSpace(errMesg))
+                {
+                  strSerializeJson = JsonConvert.SerializeObject(result.Data);
+                  if (string.IsNullOrEmpty(strSerializeJson) || strSerializeJson?.ToUpper() == "NULL")
+                    errMesg = $"Msg:{result.MsgContent} Status:null ErrorMsg:Wcs Api 回傳的Data 為空物件";
+                }
 
-							if (string.IsNullOrWhiteSpace(errMesg))
-							{
-								var rtnData = JsonConvert.DeserializeObject<List<WcsOutboundCancelResData>>(strSerializeJson).FirstOrDefault();
-								if (rtnData == null)
-									errMesg = $"Msg:{result.MsgContent} Status:null ErrorMsg:Wcs Api 回傳的Data 資料異常，無法轉換";
+                if (string.IsNullOrWhiteSpace(errMesg))
+                {
+                  var rtnData = JsonConvert.DeserializeObject<List<WcsOutboundCancelResData>>(strSerializeJson).FirstOrDefault();
+                  if (rtnData == null)
+                    errMesg = $"Msg:{result.MsgContent} Status:null ErrorMsg:Wcs Api 回傳的Data 資料異常，無法轉換";
 
-								if (string.IsNullOrWhiteSpace(errMesg) && string.IsNullOrEmpty(rtnData.Status))
-									errMesg = $"Msg:{result.MsgContent} Status:{rtnData.Status} ErrorMsg:Wcs Api 回傳的Data Status為空白，無法識別";
+                  if (string.IsNullOrWhiteSpace(errMesg) && string.IsNullOrEmpty(rtnData.Status))
+                    errMesg = $"Msg:{result.MsgContent} Status:{rtnData.Status} ErrorMsg:Wcs Api 回傳的Data Status為空白，無法識別";
 
-								if (string.IsNullOrWhiteSpace(errMesg) && !new[] { "0", "1" }.Contains(rtnData.Status))
-									errMesg = $"Msg:{result.MsgContent} Status:{rtnData.Status} ErrorMsg:Wcs Api 回傳的Data Status為{rtnData.Status}，無法識別";
+                  if (string.IsNullOrWhiteSpace(errMesg) && !new[] { "0", "1" }.Contains(rtnData.Status))
+                    errMesg = $"Msg:{result.MsgContent} Status:{rtnData.Status} ErrorMsg:Wcs Api 回傳的Data Status為{rtnData.Status}，無法識別";
 
-								if (string.IsNullOrWhiteSpace(errMesg) && rtnData.Status == "1") // 回傳取消失敗
-									errMesg = $"Msg:{result.MsgContent} Status:{rtnData.Status} ErrorMsg:{rtnData.ErrorMsg}";
-								if (string.IsNullOrWhiteSpace(errMesg) && rtnData.Status == "0") // 回傳取消成功
-									errMesg = string.Empty;
+                  if (string.IsNullOrWhiteSpace(errMesg) && rtnData.Status == "1") // 回傳取消失敗
+                    errMesg = $"Msg:{result.MsgContent} Status:{rtnData.Status} ErrorMsg:{rtnData.ErrorMsg}";
+                  if (string.IsNullOrWhiteSpace(errMesg) && rtnData.Status == "0") // 回傳取消成功
+                    errMesg = string.Empty;
 
-							}
+                  //看到中介回傳特定的訊息內容也要判定成功
+                  if (!string.IsNullOrWhiteSpace(rtnData.ErrorMsg) && rtnData.ErrorMsg.IndexOf("揀貨單號不存在") > -1)
+                  {
+                    errMesg = string.Empty;
+                    dataErrorMsg = "，因自動倉任務已取消，系統自動回庫";
+                  }
 
-							if (!string.IsNullOrWhiteSpace(errMesg))
-							{
-								f060201.STATUS = "F";
-								f060201.MESSAGE = errMesg.Length > 4000 ? errMesg.Substring(0, 4000) : errMesg;
-							}
-							else
-							{
-								f060201.STATUS = "2";
-								successCnt++;
+                }
 
-								#region 虛擬儲位回復
-								OutboundCancelVirtualRestore(dcCode, gupCode, custCode, f060201.PICK_NO);
-								#endregion
-							}
-						}
+                if (!string.IsNullOrWhiteSpace(errMesg))
+                {
+                  f060201.STATUS = "F";
+                  f060201.MESSAGE = errMesg.Length > 4000 ? errMesg.Substring(0, 4000) : errMesg;
+                }
+                else
+                {
+                  f060201.MESSAGE += string.IsNullOrWhiteSpace(dataErrorMsg) ? "" : dataErrorMsg;
 
-						#region 更新 F060201 完成、錯誤、逾時狀態
-						f060201Repo = new F060201Repository(Schemas.CoreSchema);
+                  f060201.STATUS = "2";
+                  successCnt++;
+
+                  #region 虛擬儲位回復
+                  OutboundCancelVirtualRestore(dcCode, gupCode, custCode, f060201.PICK_NO);
+                  #endregion
+                }
+              }
+            }
+
+            #region 更新 F060201 完成、錯誤、逾時狀態
+            f060201Repo = new F060201Repository(Schemas.CoreSchema);
 						f060201Repo.UpdateExecResult(f060201.CMD_TYPE,f060201.DOC_ID,f060201.STATUS,f060201.MESSAGE,f060201.PROC_DATE.Value,f060201.RESENT_CNT);
 						#endregion
 

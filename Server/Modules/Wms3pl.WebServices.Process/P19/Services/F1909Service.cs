@@ -22,7 +22,7 @@ namespace Wms3pl.WebServices.Process.P19.Services
         public IQueryable<F1909EX> GetF1909EXDatas()
         {
             var F1909Rep = new F1909Repository(Schemas.CoreSchema, _wmsTransaction);
-            return F1909Rep.GetF1909Datas();           
+            return F1909Rep.GetCustList();           
         }
 
     }

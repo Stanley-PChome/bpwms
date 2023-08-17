@@ -448,8 +448,8 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			var f1909Item = f1909Repo.Find(o => o.GUP_CODE == gupCode && o.CUST_CODE == custCode);
 			var f1980s = f1980Repo.GetWareHouseTmprTypeByLocCode(tarDcCode, tarLocCodes).ToList();
 
-      var srcF1912s = f1912Repo.GetDatasByLocCodes(f151001.DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE, srcLocCodes);
-      var tarF1912s = f1912Repo.GetDatasByLocCodes(tarDcCode, gupCode, custCode, tarLocCodes);
+      var srcF1912s = f1912Repo.GetDatasByLocCodes(f151001.DC_CODE, srcLocCodes);
+      var tarF1912s = f1912Repo.GetDatasByLocCodes(tarDcCode, tarLocCodes);
       var allocationType = AllocationType.Both;
       if (string.IsNullOrEmpty(f151001.TAR_WAREHOUSE_ID))
         allocationType = AllocationType.NoTarget;
@@ -499,7 +499,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
           #region 檢查商品儲位溫層
           var f1903Item = f1903s.First(o => o.ITEM_CODE == f151002.ITEM_CODE);
-          var f1980Item = f1980s.First(o => o.LOC_CODE == f151002.TAR_LOC_CODE && o.DC_CODE == f151002.DC_CODE);
+          var f1980Item = f1980s.First(o => o.LOC_CODE == f151002.TAR_LOC_CODE && o.DC_CODE == tarDcCode);
           //  商品溫度              倉別溫層
           //  02(恆溫),03(冷藏) =>  02(低溫)
           //  01(常溫)          =>  01(常溫)

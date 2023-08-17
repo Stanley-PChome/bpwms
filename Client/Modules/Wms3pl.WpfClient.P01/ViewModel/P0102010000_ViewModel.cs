@@ -48,9 +48,12 @@ namespace Wms3pl.WpfClient.P01.ViewModel
 				SetOrdpropList();
 				SetFastPassType();
 				SetBoolkingInPeriod();
+				SetUserClosedList();
 
 				var proxy = GetProxy<F19Entities>();
-				ShowUnitTrans = proxy.F1909s.Where(o => o.GUP_CODE == GupCode && o.CUST_CODE == CustCode).FirstOrDefault().SHOW_UNIT_TRANS;
+				var f1909 = proxy.F1909s.Where(o => o.GUP_CODE == GupCode && o.CUST_CODE == CustCode).FirstOrDefault();
+				ShowUnitTrans = f1909.SHOW_UNIT_TRANS;
+				AllowWarehouseinClosed = f1909.ALLOW_WAREHOUSEIN_CLOSED == "1";
 			}
 		}
 
@@ -607,6 +610,43 @@ namespace Wms3pl.WpfClient.P01.ViewModel
 		}
 		#endregion
 
+		#region 強制結案下拉選單
+
+		private List<NameValuePair<string>> _userClosedList;
+		public List<NameValuePair<string>> UserClosedList
+		{
+			get { return _userClosedList; }
+			set
+			{
+				_userClosedList = value;
+				RaisePropertyChanged("UserClosedList");
+			}
+		}
+
+		private string _selectedUserClosed;
+
+		public string SelectedUserClosed
+		{
+			get { return _selectedUserClosed; }
+			set
+			{
+				_selectedUserClosed = value;
+				RaisePropertyChanged("SelectedUserClosed");
+			}
+		}
+
+		#endregion
+
+		public bool _allowWarehouseinClosed;
+		public bool AllowWarehouseinClosed
+		{
+			get { return _allowWarehouseinClosed; }
+			set
+			{
+				_allowWarehouseinClosed = value;
+				RaisePropertyChanged("AllowWarehouseinClosed");
+			}
+		}
 
 		#endregion
 
@@ -652,6 +692,12 @@ namespace Wms3pl.WpfClient.P01.ViewModel
 			BookingInPeriodList = GetBaseTableService.GetF000904List(FunctionCode, "F010201", "BOOKING_IN_PERIOD");
 		}
 
+		private void SetUserClosedList()
+		{
+			UserClosedList = GetBaseTableService.GetF000904List(FunctionCode, "F010201", "USER_CLOSED", true);
+			SelectedUserClosed = UserClosedList.First().Value;
+		}
+
 		#endregion
 
 		void SetOperateMode(OperateMode operateMode)
@@ -687,7 +733,8 @@ namespace Wms3pl.WpfClient.P01.ViewModel
 				.AddQueryExOption("vnrName", VnrName)
 				.AddQueryExOption("custOrdNo", CustOrdNo)
 				.AddQueryExOption("sourceNo", SourceNo)
-				.AddQueryExOption("status", SelectedStatus).ToList();
+				.AddQueryExOption("status", SelectedStatus)
+				.AddQueryExOption("userClosed", SelectedUserClosed).ToList();
 
       TotalCount = F010201Datas.Count();
 			//總品項數計算
@@ -1523,5 +1570,69 @@ namespace Wms3pl.WpfClient.P01.ViewModel
 		}
 		#endregion PrintPallet
 
+		#region UserClose 進倉單強制結案
+		/// <summary>
+		/// 列印棧板標籤
+		/// </summary>
+		public ICommand UserCloseCommand
+		{
+			get
+			{
+				var isOK = false;
+				return CreateBusyAsyncCommand(
+						o => isOK = DoUserClose(),
+						() => SelectedF010201Data != null && SelectedF010201Data.CUST_COST == "In" && SelectedF010201Data.STATUS == "1",
+						o => { if (isOK) DoUserCloseComplete(); }
+					);
+			}
+		}
+
+		public bool DoUserClose()
+		{
+			if (string.IsNullOrWhiteSpace(SelectedF010201Data.USER_CLOSED_MEMO))
+			{
+				ShowWarningMessage("強制結案需要填寫備註原因才可執行");
+				return false;
+			}
+			var proxyWcf = new wcf.P01WcfServiceClient();
+
+			var param = new UserCloseStockParam()
+			{
+				DC_CODE = SelectedF010201Data.DC_CODE,
+				GUP_CODE = SelectedF010201Data.GUP_CODE,
+				CUST_CODE = SelectedF010201Data.CUST_CODE,
+				STOCK_NO = SelectedF010201Data.STOCK_NO,
+				IS_USER_CLOSED = "0",
+				USER_CLOSED_MEMO = SelectedF010201Data.USER_CLOSED_MEMO,
+			};
+			var result = RunWcfMethod<wcf.UserCloseExecuteResult>(proxyWcf.InnerChannel,
+				() => proxyWcf.UserCloseStock(ExDataMapper.Map<UserCloseStockParam, wcf.UserCloseStockParam>(param)));
+
+			if (!result.IsSuccessed && result.NeedConfirm)
+			{
+				if (ShowConfirmMessage(result.Message) == DialogResponse.Yes)
+				{
+					param.IS_USER_CLOSED = "1";
+					result = RunWcfMethod<wcf.UserCloseExecuteResult>(proxyWcf.InnerChannel,
+						() => proxyWcf.UserCloseStock(ExDataMapper.Map<UserCloseStockParam, wcf.UserCloseStockParam>(param)));
+				}
+				else
+				{
+					return false;
+				}
+			}
+			if (!result.IsSuccessed)
+			{
+				ShowWarningMessage(result.Message);
+				return false;
+			}
+			return true;
+		}
+
+		public void DoUserCloseComplete()
+		{
+			SearchCommand.Execute(null);
+		}
+		#endregion PrintPallet
 	}
 }

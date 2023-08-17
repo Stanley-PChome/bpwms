@@ -1494,9 +1494,9 @@ namespace Wms3pl.WpfClient.P08.ViewModel
       //  B.	需刷讀紙箱關箱[CloseByBoxno]=1 或人員決定要刷讀紙箱關箱
       //  C.	還有商品未完成刷讀[任一筆明細DetailData.DiffQty>0]
       //  D.	符合以上條件，回傳訊息[尚有商品未完成刷讀，請先按下[加箱]按鈕後，在刷讀紙箱條碼]
-      if (ShipMode == "2" && isCarton 
-        && !IsUserAppendBox 
-        && (CloseByBoxno == "1" || msgRes == UILib.Services.DialogResponse.Yes) 
+      if (ShipMode == "2" && isCarton
+        && !IsUserAppendBox
+        && (CloseByBoxno == "1" || msgRes == UILib.Services.DialogResponse.Yes)
         && DetailData.Any(x => x.DiffQty > 0))
       {
         Message = "尚有商品未完成刷讀，請先按下[加箱]按鈕後，再刷讀紙箱條碼";
@@ -1548,26 +1548,26 @@ namespace Wms3pl.WpfClient.P08.ViewModel
         }
       }
 
-						LogHelper.Log(FunctionCode, "刷讀商品條碼 開始");
-            //6.[F] = 呼叫[1.1.5 刷讀商品條碼]([A],[B],[C],[D].WmsOrdNo,[D].DelvDate,[D].PickTime,
-            //[E],1,[D].OrderType,[D].ItemList,[D].CartonItemList)
-            var scanRes = _shipPackageService.ScanItemBarcode(new wcf.ScanItemBarcodeReq
-            {
-                DcCode = SelectedDc,
-                GupCode = _gupCode,
-                CustCode = _custCode,
-                WmsOrdNo = WmsOrdData.WmsOrdNo,
-                DelvDate = WmsOrdData.DelvDate,
-                PickTime = WmsOrdData.PickTime,
-                BarCode = Serial,
-                Qty = packQty,
-                OrdType = WmsOrdData.OrderType,
-                ItemList = WmsOrdData.ItemList,
-                BoxItemList = WmsOrdData.CartonItemList,
-                Action = action,
-                NoSpecReprots = NoSpecReport,
-                WorkstationId = WorkStationCode
-            });
+      LogHelper.Log(FunctionCode, "刷讀商品條碼 開始");
+      //6.[F] = 呼叫[1.1.5 刷讀商品條碼]([A],[B],[C],[D].WmsOrdNo,[D].DelvDate,[D].PickTime,
+      //[E],1,[D].OrderType,[D].ItemList,[D].CartonItemList)
+      var scanRes = _shipPackageService.ScanItemBarcode(new wcf.ScanItemBarcodeReq
+      {
+        DcCode = SelectedDc,
+        GupCode = _gupCode,
+        CustCode = _custCode,
+        WmsOrdNo = WmsOrdData.WmsOrdNo,
+        DelvDate = WmsOrdData.DelvDate,
+        PickTime = WmsOrdData.PickTime,
+        BarCode = Serial,
+        Qty = packQty,
+        OrdType = WmsOrdData.OrderType,
+        ItemList = WmsOrdData.ItemList,
+        BoxItemList = WmsOrdData.CartonItemList,
+        Action = action,
+        NoSpecReprots = NoSpecReport,
+        WorkstationId = WorkStationCode
+      });
 
       //7.如果[F].IsSuccessed = false
       if (!scanRes.IsSuccessed)
@@ -1805,7 +1805,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
       }
       else//3.如果[SS].IsPackCheck = 是(商品須過刷)
       {
-        
+
         if (ShipMode == "2" && DetailData.Any(x => x.PackageQty > 0))
           IsUserAppendBox = true;
 

@@ -79,5 +79,36 @@ namespace Wms3pl.Datas.F05
 
 			return SqlQuery<F053201>(sql, sqlParameter.ToArray());
 		}
+
+		/// <summary>
+		/// 刪除揀貨容器與跨庫/取消訂單容器的綁定
+		/// </summary>
+		/// <param name="ids"></param>
+		/// <param name="status"></param>
+		public void DeleteBindingContainer(long f0531_ID, long f0701_ID)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", f0531_ID) { SqlDbType = SqlDbType.BigInt });
+			sqlParameter.Add(new SqlParameter("@p1", f0701_ID) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @"DELETE F053201
+						 WHERE F0531_ID = @p0
+						   AND F0701_ID = @p1
+						";
+
+			ExecuteSqlCommand(sql, sqlParameter.ToArray());
+		}
+
+		public IQueryable<long> GeF0531IdsByF0701Id(long f0701_ID)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", f0701_ID) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @"SELECT F0531_ID FROM F053201
+						 WHERE F0701_ID = @p0
+						";
+
+			return SqlQuery<long>(sql, sqlParameter.ToArray());
+		}
 	}
 }

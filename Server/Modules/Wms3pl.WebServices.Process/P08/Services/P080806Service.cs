@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Transactions;
 using Wms3pl.Datas.F00;
@@ -21,7 +22,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		{
 		}
 
-		
+
 
 		/// <summary>
 		/// 刷讀容器條碼
@@ -123,7 +124,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 						bindingPickContainerInfo.HAS_CP_ITEM = GetHasCpItem(f0537s, itemCodes);
 						bindingPickContainerInfo.ALL_CP_ITEM = GetAllCpItem(f0537s, itemCodes, bindingPickContainerDetails);
 					}
-					
+
 					//D.	新增F053602 (Log)
 					f053602 = new F053602
 					{
@@ -780,6 +781,26 @@ namespace Wms3pl.WebServices.Process.P08.Services
 							f053602_Msg = $"取消訂單容器綁定完成";
 							if (bindingPickContainerInfo != null)
 							{
+								//此取消訂單容器條碼是否有綁過揀貨容器
+								var f053201 = f053201Repo.GetDataByF0531AndF0701Id(f0531.ID, bindingPickContainerInfo.F0701_ID);
+								//F053201不存在
+								if (f053201 == null)
+								{
+									//新增F053201
+									f053201 = new F053201
+									{
+										F0531_ID = f0531.ID,
+										F0701_ID = bindingPickContainerInfo.F0701_ID,
+										DC_CODE = dcCode,
+										GUP_CODE = gupCode,
+										CUST_CODE = custCode,
+										PICK_ORD_NO = bindingPickContainerInfo.PICK_ORD_NO,
+										CONTAINER_CODE = bindingPickContainerInfo.CONTAINER_CODE,
+										STATUS = "0",
+									};
+									f053201Repo.Add(f053201);
+								}
+
 								f053602 = new F053602
 								{
 									F0701_ID = bindingPickContainerInfo.F0701_ID,
@@ -1063,25 +1084,30 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			var f0536Repo = new F0536Repository(Schemas.CoreSchema, wmsTransaction);
 			var f0701Repo = new F0701Repository(Schemas.CoreSchema, wmsTransaction);
 			var f0530Repo = new F0530Repository(Schemas.CoreSchema, wmsTransaction);
+			var f0534Repo = new F0534Repository(Schemas.CoreSchema, wmsTransaction);
 			F053602 f053602;
 
-			//(2)	[A] = 檢查正常出貨稽核箱號是否已關箱或出貨
-			var normalF0532 = f0532Repo.GetCloseOrShipDataByF0531Id(normalContainer.F0531_ID);
-			//(3)	如果[A]有資料
-			if (normalF0532 != null)
+			//揀貨容器所有商品全取消時不會刷讀正常稽核箱(normalContainer=null)
+			if (normalContainer != null)
 			{
-				//A.	回傳失敗訊息[稽核箱已關箱或出貨，請重新綁定新的稽核箱號]
-				f053602 = new F053602
+				//(2)	[A] = 檢查正常出貨稽核箱號是否已關箱或出貨
+				var normalF0532 = f0532Repo.GetCloseOrShipDataByF0531Id(normalContainer.F0531_ID);
+				//(3)	如果[A]有資料
+				if (normalF0532 != null)
 				{
-					F0701_ID = bindingPickContainerInfo.F0701_ID,
-					SCAN_CODE = itemBarcode,
-					GUP_CODE = gupCode,
-					CUST_CODE = custCode,
-					IS_PASS = "0",
-					MESSAGE = $"稽核箱已關箱或出貨，請重新綁定新的稽核箱號",
-				};
-				AddFaliureLog(f053602);
-				return new ScanItemBarcodeResult { IsSuccessed = false, Message = f053602.MESSAGE, bindNewNormalContainer = true };
+					//A.	回傳失敗訊息[稽核箱已關箱或出貨，請重新綁定新的稽核箱號]
+					f053602 = new F053602
+					{
+						F0701_ID = bindingPickContainerInfo.F0701_ID,
+						SCAN_CODE = itemBarcode,
+						GUP_CODE = gupCode,
+						CUST_CODE = custCode,
+						IS_PASS = "0",
+						MESSAGE = $"稽核箱已關箱或出貨，請重新綁定新的稽核箱號",
+					};
+					AddFaliureLog(f053602);
+					return new ScanItemBarcodeResult { IsSuccessed = false, Message = f053602.MESSAGE, bindNewNormalContainer = true };
+				}
 			}
 			//(4)	如果[A]無資料，往下執行
 			//(5)	如果<參數7> = true
@@ -1390,8 +1416,14 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				//J.	[K]=true
 				isNormalShipItem = true;
 			}
+			//取得此揀貨容器所有分貨資料
+			var allF053601 = f053601Repo.GetDatasByF0701Id(bindingPickContainerInfo.F0701_ID).ToList();
+			//同步更新此次刷讀的資料
+			allF053601.Find(x => x.ID == f053601.ID).A_SET_QTY = f053601.A_SET_QTY;
 			//(16)	[S]=檢查揀貨容器是分貨完成
-			var allPickAllotFinish = bindingPickContainerInfo.ItemList.All(a => a.B_SET_QTY - a.A_SET_QTY == 0);
+			//前端用Command執行刷讀時，bindingPickContainerInfo會有舊資料問題，導致無法分貨完成，前端改直接呼叫Function並將此段判斷改成依F053601資料判斷分貨結果
+			var allPickAllotFinish = allF053601.All(a => a.B_SET_QTY - a.A_SET_QTY == 0); //bindingPickContainerInfo.ItemList.All(a => a.B_SET_QTY - a.A_SET_QTY == 0);
+
 			//(17)	如果[S]=true(所有揀貨容器商品都分貨完成)
 			if (allPickAllotFinish)
 			{
@@ -1415,6 +1447,9 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					MESSAGE = $"揀貨容器分貨完成",
 				};
 				f053602Repo.Add(f053602);
+
+				//更新F0534.STATUS=1(已放入並關閉稽核箱待分配)
+				f0534Repo.UpdatePartialCloseByF0701Id(bindingPickContainerInfo.F0701_ID);
 			}
 			//(18)	回傳結果
 			return new ScanItemBarcodeResult
@@ -1427,7 +1462,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				BindingPickContainerInfo = bindingPickContainerInfo,
 			};
 		}
-		
+
 
 		/// <summary>
 		/// 取得揀貨容器商品是否有含有取消訂單商品
@@ -1435,7 +1470,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// <param name="f0537s"></param>
 		/// <param name="itemCodes"></param>
 		/// <returns></returns>
-		public string GetHasCpItem(List<F0537> f0537s,List<string> itemCodes)
+		public string GetHasCpItem(List<F0537> f0537s, List<string> itemCodes)
 		{
 			//B.	如果[G]存在，且[G]有任何一筆STATUS=0且[G].ITEM_CODE存在於[A].ItemList清單中
 			//a.	設定[A]. 是否含有訂單取消商品 = 1(是)
@@ -1455,17 +1490,17 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		/// <param name="f0537s"></param>
 		/// <param name="itemCodes"></param>
 		/// <returns></returns>
-		public string GetAllCpItem(List<F0537> f0537s, List<string> itemCodes,List<BindingPickContainerDetail> pickContainerDetails)
+		public string GetAllCpItem(List<F0537> f0537s, List<string> itemCodes, List<BindingPickContainerDetail> pickContainerDetails)
 		{
-		  if(f0537s.Any())
+			if (f0537s.Any())
 			{
 				var cpItemCodes = f0537s.Where(x => x.STATUS == "0").Select(x => x.ITEM_CODE).Distinct().ToList();
-				if(itemCodes.All(x => cpItemCodes.Contains(x)))
+				if (itemCodes.All(x => cpItemCodes.Contains(x)))
 				{
-					foreach(var pickContainerDetail in pickContainerDetails)
+					foreach (var pickContainerDetail in pickContainerDetails)
 					{
 						var pickContainerNowSowQty = pickContainerDetail.B_SET_QTY - pickContainerDetail.A_SET_QTY;
-						var cancelNoSowQty = f0537s.Where(x => x.ITEM_CODE == pickContainerDetail.ITEM_CODE).Sum(x=> x.B_SET_QTY-x.A_SET_QTY);
+						var cancelNoSowQty = f0537s.Where(x => x.ITEM_CODE == pickContainerDetail.ITEM_CODE).Sum(x => x.B_SET_QTY - x.A_SET_QTY);
 						if (pickContainerNowSowQty > cancelNoSowQty)
 						{
 							return "0";
@@ -1473,10 +1508,10 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					}
 					return "1";
 				}
-				return  "0";
+				return "0";
 			}
 			return "0";
-			
+
 		}
 
 		/// <summary>
@@ -1541,6 +1576,9 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				var f0701Repo = new F0701Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0537Repo = new F0537Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0530Repo = new F0530Repository(Schemas.CoreSchema, wmsTransaction);
+				var f0534Repo = new F0534Repository(Schemas.CoreSchema, wmsTransaction);
+				var f053201Repo = new F053201Repository(Schemas.CoreSchema, wmsTransaction);
+				var f053202Repo = new F053202Repository(Schemas.CoreSchema, wmsTransaction);
 
 				//(1)	揀貨容器鎖定
 				var lockResult = LockPickContainer(bindingPickContainerInfo.CONTAINER_CODE);
@@ -1571,6 +1609,9 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				// 釋放進行中揀貨容器
 				f0530Repo.DeleteByF0701Id(bindingPickContainerInfo.F0701_ID);
 
+				//更新F0534.STATUS=1(已放入並關閉稽核箱待分配)
+				f0534Repo.UpdatePartialCloseByF0701Id(bindingPickContainerInfo.F0701_ID);
+
 				//(6)	檢查是否為揀貨單最後一箱
 				//A.	[D] = 取得揀貨單還有綁定的容器筆數不含目前作業這箱
 				var containerCnt = f0701Repo.GetContainerCntExceptId(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO, bindingPickContainerInfo.F0701_ID);
@@ -1581,6 +1622,19 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					f0537Repo.UpdateStatusByPickOrdNo(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO, "2");
 				}
 				//C.	如果[D]筆數>0，不處理往下執行
+
+				//取得揀貨容器綁定的跨庫箱/取消容器F0531_ID
+				var f0531_IDs = f053201Repo.GeF0531IdsByF0701Id(bindingPickContainerInfo.F0701_ID);
+				foreach (var f0531_ID in f0531_IDs)
+				{
+					//判斷是否容器中存在揀貨容器的商品
+					var existedItem = f053202Repo.IsExistPickItem(f0531_ID, bindingPickContainerInfo.F0701_ID);
+					//容器內不存在揀貨容器商品，則刪除F053201綁定關係
+					if (!existedItem)
+					{
+						f053201Repo.DeleteBindingContainer(f0531_ID, bindingPickContainerInfo.F0701_ID);
+					}
+				}
 
 				return new ExecuteResult { IsSuccessed = true };
 			}
@@ -1607,7 +1661,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				var f0531Repo = new F0531Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0532Repo = new F0532Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0533Repo = new F0533Repository(Schemas.CoreSchema, wmsTransaction);
-				var f0534Repo = new F0534Repository(Schemas.CoreSchema, wmsTransaction);
+				//var f0534Repo = new F0534Repository(Schemas.CoreSchema, wmsTransaction);
 
 				//(1)	跨庫箱號鎖定
 				var lockResult = LockOutContainer(containerInfo.OUT_CONTAINER_CODE);
@@ -1637,12 +1691,12 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					TOTAL_QTY = f0531.TOTAL,
 				};
 				f0533Repo.Add(f0533);
-				//C.	更新F0534.STATUS=1(已放入並關閉稽核箱待分配)
-				f0534Repo.UpdatePartialCloseByF0531Id(containerInfo.F0531_ID);
+				////C.	更新F0534.STATUS=1(已放入並關閉稽核箱待分配)
+				//f0534Repo.UpdatePartialCloseByF0531Id(containerInfo.F0531_ID);
 				//D.	刪除F0531 WHERE ID=<參數1>
 				f0531Repo.Delete(x => x.ID == containerInfo.F0531_ID);
 
-				if(bindingPickContainerInfo != null)
+				if (bindingPickContainerInfo != null)
 				{
 					var f053602Repo = new F053602Repository(Schemas.CoreSchema, wmsTransaction);
 					var f053602 = new F053602
@@ -1680,7 +1734,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				var f0531Repo = new F0531Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0532Repo = new F0532Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0533Repo = new F0533Repository(Schemas.CoreSchema, wmsTransaction);
-				var f0534Repo = new F0534Repository(Schemas.CoreSchema, wmsTransaction);
+				//var f0534Repo = new F0534Repository(Schemas.CoreSchema, wmsTransaction);
 
 				//(1)	取消訂單容器條碼鎖定
 				var lockResult = LockCancelContainer(containerInfo.OUT_CONTAINER_CODE);
@@ -1710,12 +1764,12 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					TOTAL_QTY = f0531.TOTAL,
 				};
 				f0533Repo.Add(f0533);
-				//C.	更新F0534.STATUS=1(已放入並關閉稽核箱待分配)
-				f0534Repo.UpdatePartialCloseByF0531Id(containerInfo.F0531_ID);
+				////C.	更新F0534.STATUS=1(已放入並關閉稽核箱待分配)
+				//f0534Repo.UpdatePartialCloseByF0531Id(containerInfo.F0531_ID);
 				//D.	刪除F0531 WHERE ID=<參數1>
 				f0531Repo.Delete(x => x.ID == containerInfo.F0531_ID);
 
-				if(bindingPickContainerInfo !=null)
+				if (bindingPickContainerInfo != null)
 				{
 					var f053602Repo = new F053602Repository(Schemas.CoreSchema, wmsTransaction);
 					var f053602 = new F053602
@@ -1738,10 +1792,10 @@ namespace Wms3pl.WebServices.Process.P08.Services
 						return new ExecuteResult { IsSuccessed = true, No = no };
 					}
 				}
-				
-				return new ExecuteResult { IsSuccessed = true , No ="0" }; //不判斷取消訂單商品
 
-				
+				return new ExecuteResult { IsSuccessed = true, No = "0" }; //不判斷取消訂單商品
+
+
 			}
 			catch (Exception ex)
 			{
@@ -1804,7 +1858,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				//如果[B]存在
 				if (newContainerInfo != null)
 				{
-					
+
 					//(6)	如果[B]存在，[B].SOW_TYPE=1 (取消訂單)
 					if (newContainerInfo.SOW_TYPE == "1")
 					{
@@ -2147,17 +2201,43 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			return f0701Repo.GetMoveOutPickOrders(dcCode, gupCode, custCode, startDate, endDate, moveOutTarget, pickContainerCode);
 		}
 
-		public ExecuteResult StopAllot(long f0701Id)
+		public ExecuteResult StopAllot(StopAllotParam param)
 		{
 			var f053602Repo = new F053602Repository(Schemas.CoreSchema, wmsTransaction);
+			var f053202Repo = new F053202Repository(Schemas.CoreSchema, wmsTransaction);
+			var f053201Repo = new F053201Repository(Schemas.CoreSchema, wmsTransaction);
+
+			//當存在跨庫容器時，判斷是否該跨庫箱中存在揀貨容器的商品
+			if (param.NORMAL_F0531_ID.HasValue)
+			{
+				var existedInNormal = f053202Repo.IsExistPickItem(param.NORMAL_F0531_ID.Value, param.PICK_F0701_ID);
+				//跨庫箱內不存在揀貨容器商品，則刪除F053201綁定關係
+				if (!existedInNormal)
+				{
+					f053201Repo.DeleteBindingContainer(param.NORMAL_F0531_ID.Value, param.PICK_F0701_ID);
+				}
+			}
+
+			//當存在取消訂單容器時，判斷是否該取消訂單容器中存在揀貨容器的商品
+			if (param.CANCEL_F0531_ID.HasValue)
+			{
+				var existedInCancel = f053202Repo.IsExistPickItem(param.CANCEL_F0531_ID.Value, param.PICK_F0701_ID);
+				//取消訂單容器內不存在揀貨容器商品，則刪除F053201綁定關係
+				if (!existedInCancel)
+				{
+					f053201Repo.DeleteBindingContainer(param.CANCEL_F0531_ID.Value, param.PICK_F0701_ID);
+				}
+			}
+
 			var f053602 = new F053602
 			{
-				F0701_ID = f0701Id,
+				F0701_ID = param.PICK_F0701_ID,
 				SCAN_CODE = "UserStopAllot",
 				IS_PASS = "1",
 				MESSAGE = "暫停分貨",
 			};
 			f053602Repo.Add(f053602);
+
 			return new ExecuteResult(true);
 		}
 

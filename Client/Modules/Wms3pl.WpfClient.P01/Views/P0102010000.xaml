@@ -27,16 +27,17 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Wms3pl.WpfClient.UILib;component/Generic.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <common:NotConverter x:Key="NotConverter" />
-            <converters:NameValuePairMultiConverter x:Key="NameValuePairMultiConverter" />
-            <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
-            <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
-            <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter" />
-            <converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter" />
-            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
-            <converters:StringToVisiablityConverter x:Key="StringToVisiablityConverter" />
-            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}" />
+			</ResourceDictionary.MergedDictionaries>
+			<common:NotConverter x:Key="NotConverter" />
+			<converters:NameValuePairMultiConverter x:Key="NameValuePairMultiConverter" />
+			<converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+			<converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+			<converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter" />
+			<converters:EnumToNotVisibilityConverter x:Key="EnumToNotVisibilityConverter" />
+			<converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+			<converters:StringToVisiablityConverter x:Key="StringToVisiablityConverter" />
+			<converters:BoolToVisiablityConverter x:Key="BoolToVisiablityConverter" />
+			<FrameworkElement x:Key="ProxyElement" DataContext="{Binding}" />
         </ResourceDictionary>
     </uiLib:Wms3plUserControl.Resources>
     <telerik:RadBusyIndicator x:Name="GridBusyIndicator" BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
@@ -72,8 +73,9 @@
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="Auto" />
                                                             <RowDefinition Height="Auto" />
-                                                            <RowDefinition Height="Auto" />
-                                                        </Grid.RowDefinitions>
+															<RowDefinition Height="Auto" />
+															<RowDefinition Height="Auto" />
+														</Grid.RowDefinitions>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="Auto" />
                                                             <ColumnDefinition Width="Auto" />
@@ -100,7 +102,12 @@
                                                         <TextBox Grid.Row="2" Grid.Column="3" MaxLength="20" MinWidth="180" Text="{Binding SourceNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtStyle}" />
                                                         <Label Grid.Row="2" Grid.Column="4" Content="{x:Static Properties:Resources.SelectedStatus}" Style="{StaticResource LbTitleStyle}" />
                                                         <ComboBox Grid.Row="2" Grid.Column="5"  MinWidth="180" Style="{StaticResource ComboStyle}" ItemsSource="{Binding StatusList}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-                                                    </Grid>
+
+														<Label Grid.Row="3" Grid.Column="0" Content="強制結案" Style="{StaticResource LbTitleStyle}" Visibility="{Binding AllowWarehouseinClosed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisiablityConverter}}" />
+														<ComboBox Grid.Row="3" Grid.Column="1" MinWidth="180" Style="{StaticResource ComboStyle}" ItemsSource="{Binding UserClosedList}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedUserClosed,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+																  Visibility="{Binding AllowWarehouseinClosed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisiablityConverter}}"></ComboBox>
+
+													</Grid>
                                                 </WrapPanel>
                                             </Expander>
                                         </DockPanel>
@@ -154,8 +161,9 @@
                                                         <RowDefinition />
                                                         <RowDefinition />
                                                         <RowDefinition />
-                                                        <RowDefinition />
-                                                    </Grid.RowDefinitions>
+														<RowDefinition />
+														<RowDefinition />
+													</Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
                                                         <ColumnDefinition Width="Auto" />
@@ -231,8 +239,28 @@
                                                     <Label Grid.Row="8" Grid.Column="0" Content="{x:Static Properties:Resources.UpdStaff}" Style="{StaticResource LbTitleStyle}" />
                                                     <Label Grid.Row="8" Grid.Column="1" Content="{Binding SelectedF010201Data.UPD_NAME}" Style="{StaticResource LbBorderStyle}" MinWidth="180" />
                                                     <Label Grid.Row="8" Grid.Column="2" Content="{x:Static Properties:Resources.updDate}" Style="{StaticResource LbTitleStyle}" />
-                                                    <Label Grid.Row="8" Grid.Column="3" Content="{Binding SelectedF010201Data.UPD_DATE,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd HH:mm'}" Style="{StaticResource LbBorderStyle}" MinWidth="180" />
-                                                    <WrapPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
+													<Label Grid.Row="8" Grid.Column="3" Content="{Binding SelectedF010201Data.UPD_DATE,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd HH:mm'}" Style="{StaticResource LbBorderStyle}" MinWidth="180" />
+													<WrapPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="6" Visibility="{Binding AllowWarehouseinClosed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisiablityConverter}}">
+														<Button Content="強制結案" Width="120" Height="30" HorizontalAlignment="Left" Margin="5,0,0,0" Command="{Binding UserCloseCommand}" controls:PermissionService.FunctionId="BP0102010011" controls:PermissionService.FunctionName="強制結案"/>
+														<Label Content="備註原因" Style="{StaticResource LbTitleStyle}" />
+														<TextBox MaxLength="200" MinWidth="640" Text="{Binding SelectedF010201Data.USER_CLOSED_MEMO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" controls:PermissionService.FunctionId="BP0102010011" controls:PermissionService.FunctionName="強制結案">
+															<TextBox.Style>
+																<Style TargetType="TextBox" BasedOn="{StaticResource TxtStyle}">
+																	<Setter Property="IsHitTestVisible" Value="False"/>
+																	<Style.Triggers>
+																		<MultiDataTrigger>
+																			<MultiDataTrigger.Conditions>
+																				<Condition Binding="{Binding SelectedF010201Data.CUST_COST}" Value="In" />
+																				<Condition Binding="{Binding SelectedF010201Data.STATUS}" Value="1" />
+																			</MultiDataTrigger.Conditions>
+																			<Setter Property="IsHitTestVisible" Value="True"/>
+																		</MultiDataTrigger>
+																	</Style.Triggers>
+																</Style>
+															</TextBox.Style>
+														</TextBox>
+													</WrapPanel>
+													<WrapPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2">
                                                         <Label Content="{x:Static Properties:Resources.TotalDetailCount}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
                                                         <Label Content="{Binding TotalDetailCount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
                                                     </WrapPanel>
@@ -287,8 +315,8 @@
                                                     <RowDefinition />
                                                     <RowDefinition />
                                                     <RowDefinition />
-                                                    <RowDefinition />
-                                                </Grid.RowDefinitions>
+													<RowDefinition />
+												</Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="Auto" />
@@ -343,8 +371,8 @@
                                                 <Label Grid.Row="9" Grid.Column="0" Content="{x:Static Properties:Resources.UpdStaff}" Style="{StaticResource LbTitleStyle}" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" />
                                                 <Label Grid.Row="9" Grid.Column="1" Content="{Binding AddOrModifyF010201Data.UPD_NAME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LbBorderStyle}" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" MinWidth="180" />
                                                 <Label Grid.Row="9" Grid.Column="2" Content="{x:Static Properties:Resources.updDate}" Style="{StaticResource LbTitleStyle}" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" />
-                                                <Label Grid.Row="9" Grid.Column="3" Content="{Binding AddOrModifyF010201Data.UPD_DATE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd HH:mm'}" Style="{StaticResource LbBorderStyle}" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" MinWidth="180" />
-                                                <WrapPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2">
+												<Label Grid.Row="9" Grid.Column="3" Content="{Binding AddOrModifyF010201Data.UPD_DATE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd HH:mm'}" Style="{StaticResource LbBorderStyle}" Visibility="{Binding UserOperateMode,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static uiLib:OperateMode.Edit}}" MinWidth="180" />
+												<WrapPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2">
                                                     <Label Content="{x:Static Properties:Resources.TotalDetailCount}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
                                                     <Label Content="{Binding AddOrModifyTotalDetailCount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Foreground="Blue" Style="{StaticResource LbStyle}" />
                                                 </WrapPanel>

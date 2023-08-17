@@ -51,5 +51,19 @@ namespace Wms3pl.Datas.F05
 
 			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
+
+		public IQueryable<string> GetNeedUnlockBatchNos()
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", DateTime.Now.AddMinutes(-5)) { SqlDbType = SqlDbType.DateTime2 },
+			};
+			var sql = @"  SELECT DISTINCT ALLOT_BATCH_NO FROM F0501
+                    WHERE IS_LOCK = '1'
+                    AND (CASE WHEN UPD_DATE IS NULL THEN CRT_DATE
+                    ELSE UPD_DATE END) <= @p0 ";
+
+			return SqlQuery<string>(sql, parms.ToArray());
+		}
 	}
 }

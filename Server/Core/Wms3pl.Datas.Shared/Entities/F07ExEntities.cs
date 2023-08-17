@@ -218,5 +218,14 @@ namespace Wms3pl.Datas.Shared.Entities
     public string PK_AREA_NAME { get; set; }
   }
 
+	public class StopAllotParam
+	{
+		public long PICK_F0701_ID { get; set; }
+
+		public long? NORMAL_F0531_ID { get; set; }
+
+		public long? CANCEL_F0531_ID { get; set; }
+	}
+
   #endregion
 }

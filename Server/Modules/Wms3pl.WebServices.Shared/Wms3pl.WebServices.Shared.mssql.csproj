@@ -52,6 +52,10 @@
     <OutputPath>bin\Ph_A7\</OutputPath>
     <DefineConstants>Ph_A7</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest|AnyCPU'">
+    <OutputPath>bin\PhTest\</OutputPath>
+    <DefineConstants>PhTest</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

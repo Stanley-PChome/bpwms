@@ -23,9 +23,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 		{
 			var res = new ApiResult { IsSuccessed = true };
 			var data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
-			// 新增API Log
-			res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportSnCancelResults", req, () =>
+      // 新增API Log
+      res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportSnCancelResults", req, () =>
 			{
 				// 取得物流中心服務貨主檔
 				CommonService commonService = new CommonService();

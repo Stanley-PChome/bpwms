@@ -620,5 +620,21 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<F050901WithF055001>(sql, param);
 		}
 
+		public IQueryable<F050901> GetDatasByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+
+			var sql = $@" SELECT * FROM F050901
+							WHERE DC_CODE = @p0
+							AND GUP_CODE = @p1
+							AND CUST_CODE = @p2 ";
+			sql += sqlParameter.CombineSqlInParameters(" AND WMS_NO", wmsOrdNos, System.Data.SqlDbType.VarChar);
+
+			return SqlQuery<F050901>(sql, sqlParameter.ToArray());
+		}
+
 	}
 }

@@ -109,7 +109,21 @@ namespace Wms3pl.Datas.Test.F05
             #endregion
 
             _f055002Repo.GetF055002WithGridLog(dcCode, gupCode, custCode, wmsOrdNo);
-        }
- 
-    }
+		}
+
+		[TestMethod]
+		public void GetDatasByOrdSeqs()
+		{
+			#region Params
+			var dcCode = "001";
+			var gupCode = "01";
+			var custCode = "010001";
+			var ordNo = "S20230101000001";
+			var ordSeqs = new List<string> { "1", "2" };
+			#endregion
+
+			_f055002Repo.GetDatasByOrdSeqs(dcCode, gupCode, custCode, ordNo, ordSeqs);
+		}
+
+	}
 }

@@ -20,13 +20,15 @@ namespace Wms3pl.Datas.F05
 	  /// </summary>
     [Key]
     [Required]
-	  public string WORK_CODE { get; set; }
+    [Column(TypeName = "varchar(1)")]
+    public string WORK_CODE { get; set; }
 
 	  /// <summary>
 	  /// 執行狀態 (0待執行 1執行中)
 	  /// </summary>
     [Required]
-	  public string STATUS { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string STATUS { get; set; }
   }
 }
         

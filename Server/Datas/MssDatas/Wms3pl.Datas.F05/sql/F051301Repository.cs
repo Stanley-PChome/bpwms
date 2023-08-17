@@ -90,16 +90,23 @@ namespace Wms3pl.Datas.F05
 
 		public IQueryable<F051301> GetDatasByWmsOrdNos(string dcCode,string gupCode,string custCode,List<string> wmsOrdNos)
 		{
-			var parms = new List<object> { dcCode, gupCode, custCode};
-			var sql = @" SELECT *
+			//var parms = new List<object> { dcCode, gupCode, custCode};
+      var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode }
+      };
+
+      var sql = @" SELECT *
                      FROM F051301
                     WHERE DC_CODE = @p0
                       AND GUP_CODE = @p1
                       AND CUST_CODE = @p2 ";
 			if (wmsOrdNos.Any())
-				sql += parms.CombineNotNullOrEmptySqlInParameters("AND WMS_NO", wmsOrdNos);
+        sql += parms.CombineSqlInParameters("AND WMS_NO", wmsOrdNos, SqlDbType.VarChar);
 
-			return SqlQuery<F051301>(sql, parms.ToArray());
+      return SqlQuery<F051301>(sql, parms.ToArray());
 		}
 
 		public NextStepModel GetCollectionNameByWmsNo(string dcCode, string gupCode, string custCode, string wmsNo)

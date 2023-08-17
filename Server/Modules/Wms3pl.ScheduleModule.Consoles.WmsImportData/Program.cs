@@ -49,7 +49,7 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsImportData
 				ConsoleHelper.ArgumentsTransform(args, _appConfig);
 			}
 #if (DEBUG)
-			_appConfig.SchemaName = "PHWMS_DEV";
+			_appConfig.SchemaName = "PHWMS_PDT";
 			//param.DcCode = "12";
 			//param.GupCode = "10";
 			//param.CustCode = "010001";

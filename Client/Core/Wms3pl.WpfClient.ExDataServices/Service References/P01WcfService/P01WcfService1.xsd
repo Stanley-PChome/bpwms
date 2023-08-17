@@ -90,6 +90,7 @@
       <xs:element minOccurs="0" name="UPD_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UPD_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UPD_STAFF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER_CLOSED_MEMO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VNR_ADDRESS" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VNR_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VNR_NAME" nillable="true" type="xs:string" />
@@ -178,4 +179,25 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="F010201ImportData" nillable="true" type="tns:F010201ImportData" />
+  <xs:complexType name="UserCloseStockParam">
+    <xs:sequence>
+      <xs:element name="_x003C_CUST_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DC_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GUP_CODE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IS_USER_CLOSED_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_STOCK_NO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_USER_CLOSED_MEMO_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserCloseStockParam" nillable="true" type="tns:UserCloseStockParam" />
+  <xs:complexType name="UserCloseExecuteResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ExecuteResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NeedConfirm" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserCloseExecuteResult" nillable="true" type="tns:UserCloseExecuteResult" />
 </xs:schema>

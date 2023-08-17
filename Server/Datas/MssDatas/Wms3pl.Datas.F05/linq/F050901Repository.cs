@@ -44,15 +44,5 @@ namespace Wms3pl.Datas.F05
 
             return result;
 		}
-
-		public IQueryable<F050901> GetDatasByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
-		{
-			var result = _db.F050901s.Where(x => x.DC_CODE == dcCode &&
-																					 x.GUP_CODE == gupCode &&
-																					 x.CUST_CODE == custCode &&
-																					 wmsOrdNos.Contains(x.WMS_NO));
-
-			return result;
-		}
 	}
 }

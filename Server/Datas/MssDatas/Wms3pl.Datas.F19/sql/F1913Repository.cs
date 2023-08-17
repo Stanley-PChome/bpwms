@@ -3712,12 +3712,12 @@ UPDATE F1913
         {
             var parms = new List<SqlParameter>
             {
-                new SqlParameter("@p0", dcCode),
-                new SqlParameter("@p1", gupCode),
-                new SqlParameter("@p2", custCode),
-                new SqlParameter("@p3", itemCode),
-                new SqlParameter("@p5", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
-            };
+                new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p3", itemCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p4", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 },
+			};
 
             var inSql = string.Empty;
 			if (!string.IsNullOrWhiteSpace(serialNo))
@@ -3742,8 +3742,8 @@ UPDATE F1913
 									JOIN F1912 B ON A.LOC_CODE =B.LOC_CODE AND A.DC_CODE =B.DC_CODE
 									JOIN F1919 C ON C.AREA_CODE =B.AREA_CODE AND C.WAREHOUSE_ID = B.WAREHOUSE_ID AND C.DC_CODE =A.DC_CODE AND C.ATYPE_CODE IN ('C')        
 									JOIN F1980 E ON E.DC_CODE= A.DC_CODE AND E.WAREHOUSE_ID = B.WAREHOUSE_ID AND E.WAREHOUSE_TYPE ='G'
-									WHERE @p5 >= A.ENTER_DATE 
-									AND @p5 <= A.VALID_DATE 
+									WHERE @p4 >= A.ENTER_DATE 
+									AND @p4 <= A.VALID_DATE 
 									AND B.NOW_STATUS_ID IN ('01', '02')
 									AND A.DC_CODE = @p0
 									AND A.GUP_CODE = @p1
@@ -4026,7 +4026,7 @@ WHERE
                         AND A.VALID_DATE > @p3
                         AND B.NOW_STATUS_ID NOT IN ('03','04')
 						            AND B.WAREHOUSE_ID LIKE 'G%'
-                        GROUP BY A.DC_CODE, A.GUP_CODE, A.CUST_CODE, A.ITEM_CODE, A.MAKE_NO, C.ATYPE_CODE";
+                        GROUP BY A.DC_CODE, A.GUP_CODE, A.CUST_CODE, A.ITEM_CODE, A.MAKE_NO, A.SERIAL_NO, C.ATYPE_CODE";
 
             var splitItemList = SplitList(itemList, 500);
 
@@ -4396,5 +4396,59 @@ GROUP BY
 			ExecuteSqlCommand(sql, parameters.ToArray());
 		}
 
-	}
+    /// <summary>
+    /// 取得3PL貨主良品倉或管理倉即期品商品庫存資料
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="withoutWhId">不要取得庫存的倉別編號</param>
+    /// <returns></returns>
+    public IQueryable<ProcImmediateItem> GetProcImmediateItem(string dcCode, string gupCode, string custCode, List<string> withoutWhId)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.DateTime2) { Value = DateTime.Today },
+
+      };
+
+      var sql = $@"SELECT
+	A.DC_CODE,
+	A.GUP_CODE,
+	A.CUST_CODE,
+	B.WAREHOUSE_ID,
+	A.ITEM_CODE,
+	A.VALID_DATE,
+	A.LOC_CODE,
+	SUM(A.QTY) QTY
+FROM
+	F1913 A
+INNER JOIN F1912 B WITH(NOLOCK) 
+	ON A.DC_CODE = B.DC_CODE
+	AND A.LOC_CODE = B.LOC_CODE
+INNER JOIN F1980 C WITH(NOLOCK)
+	ON B.DC_CODE = C.DC_CODE
+	AND B.WAREHOUSE_ID = C.WAREHOUSE_ID
+INNER JOIN F1903 D WITH(NOLOCK)
+		ON A.GUP_CODE = D.GUP_CODE 
+	AND A.CUST_CODE = D.CUST_CODE 
+	AND A.ITEM_CODE = D.ITEM_CODE 
+WHERE 
+	A.DC_CODE = @p0
+	AND A.GUP_CODE = @p1
+	AND A.CUST_CODE = @p2
+	AND D.ALL_SHP IS NOT NULL 
+	AND D.ALL_SHP >0
+	AND DATEDIFF(DAY,@p3,A.VALID_DATE) <= (D.ALL_SHP + 1)
+	AND C.WAREHOUSE_TYPE IN('G','M')
+	AND A.QTY > 0
+  {para.CombineSqlNotInParameters("AND B.WAREHOUSE_ID", withoutWhId, SqlDbType.VarChar)}
+GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE ,B.WAREHOUSE_ID ,A.ITEM_CODE ,A.VALID_DATE ,A.LOC_CODE";
+      return SqlQuery<ProcImmediateItem>(sql, para.ToArray());
+    }
+
+  }
 }

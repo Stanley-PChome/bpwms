@@ -9,16 +9,24 @@ namespace Wms3pl.WebServices.Shared.Wcs.WcsApiConnectSetting
 		{
 			get
 			{
-				return ConfigurationManager.AppSettings["WcsApiUrl"];
-			}
-		}
+#if (PhTest)
+        return ConfigurationManager.AppSettings["WcsApiUrl_" + DcCode];
+#else
+        return ConfigurationManager.AppSettings["WcsApiUrl"];
+#endif
+      }
+    }
 		public static string ApiAuthToken
 		{
 			get
 			{
-				return ConfigurationManager.AppSettings["WcsApiAuthToken"];
-			}
-		}
+#if (PhTest)
+        return ConfigurationManager.AppSettings["WcsApiAuthToken_" + DcCode];
+#else
+        return ConfigurationManager.AppSettings["WcsApiAuthToken"];
+#endif
+      }
+    }
 		public static int ItemMaxCnt
 		{
 			get
@@ -26,5 +34,7 @@ namespace Wms3pl.WebServices.Shared.Wcs.WcsApiConnectSetting
 				return Convert.ToInt32(ConfigurationManager.AppSettings["ItemMaxCnt"]);
 			}
 		}
-	}
+
+    public static string DcCode { get; set; }
+  }
 }

@@ -137,6 +137,7 @@
     <Compile Include="WmsSchedule\AllocateReplenishmentService.cs" />
     <Compile Include="WmsSchedule\DockReceivingService.cs" />
     <Compile Include="WmsSchedule\ExcelExportService.cs" />
+    <Compile Include="WmsSchedule\ImmediateItemScheduleService.cs" />
     <Compile Include="WmsSchedule\RefineService.cs" />
     <Compile Include="WmsSchedule\RemoveHistroyLogService.cs" />
     <Compile Include="WmsSchedule\AutomaticUnlockService.cs" />

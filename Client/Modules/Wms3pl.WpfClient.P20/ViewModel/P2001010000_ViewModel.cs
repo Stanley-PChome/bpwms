@@ -52,7 +52,9 @@ namespace Wms3pl.WpfClient.P20.ViewModel
 
         }
 
-        #region Property
+		#region Property
+
+		private bool AddInitial = false;
 
         private readonly string _userId;
         private readonly string _userName;
@@ -443,7 +445,7 @@ namespace Wms3pl.WpfClient.P20.ViewModel
                 RaisePropertyChanged("SelectedAddDcCode");
                 F050301Datas = null;
                 SelectedF050301Data = null;
-                SetPickTime();
+                if (!AddInitial) SetPickTime();
             }
         }
 
@@ -460,8 +462,8 @@ namespace Wms3pl.WpfClient.P20.ViewModel
             {
                 _addDelvDate = value;
                 RaisePropertyChanged("AddDelvDate");
-                SetPickTime();
-            }
+				if (!AddInitial) SetPickTime();
+			}
         }
 
         #endregion
@@ -1207,11 +1209,7 @@ namespace Wms3pl.WpfClient.P20.ViewModel
             if (DcList.Any())
                 SelectedDcCode = DcList.First().Value;
             AddDcList = data;
-            if (AddDcList.Any())
-                SelectedAddDcCode = AddDcList.First().Value;
             AddNewDcList = data;
-            if (AddNewDcList.Any())
-                SelectedAddNewDcCode = AddNewDcList.First().Value;
             EditNewDcList = data;
             if (EditNewDcList.Any())
                 SelectedEditNewDcCode = EditNewDcList.First().Value;
@@ -1269,14 +1267,10 @@ namespace Wms3pl.WpfClient.P20.ViewModel
 
         private void SetPickTime()
         {
-            var procFlagList = new List<string> { "0", "1", "2" };
             var proxy = GetProxy<F05Entities>();
-            var data =
-                proxy.F0513s.Where(
-                    o =>
-                        o.DC_CODE == SelectedAddDcCode && o.GUP_CODE == GupCode && o.CUST_CODE == CustCode
-                        ).ToList();
-            data = data.Where(o => procFlagList.Contains(o.PROC_FLAG) && o.DELV_DATE == AddDelvDate).ToList();
+            var data = proxy.F0513s.Where(o => o.DC_CODE == SelectedAddDcCode && o.GUP_CODE == GupCode && o.CUST_CODE == CustCode
+                                            && o.DELV_DATE == AddDelvDate && (o.PROC_FLAG == "0" || o.PROC_FLAG == "1" || o.PROC_FLAG == "2")
+                                         ).ToList();
 
             var list = (from o in data
                         orderby o.PICK_TIME
@@ -1528,6 +1522,23 @@ namespace Wms3pl.WpfClient.P20.ViewModel
         #endregion Search
 
         #region Add
+		private void DoAddIniital()
+		{
+			AddInitial = true;
+			AddPickTimeList = null;
+			SelectedAddPickTime = "";
+			if (AddDcList.Any())
+				SelectedAddDcCode = AddDcList.First().Value;
+			AddDelvDate = DateTime.Now.Date;
+			AddCustOrdNo = "";
+			AddOrdNo = "";
+			AddItemCode = "";
+			AddItemName = "";
+			AddConsignee = "";
+			SetPickTime();
+			AddInitial = false;
+		}
+		
         public ICommand AddCommand
         {
             get
@@ -1545,14 +1556,8 @@ namespace Wms3pl.WpfClient.P20.ViewModel
                 SelectedAddAdjustType = AddAdjustTypeList.First().Value;
             if (AddWorkTypeList.Any())
                 SelectedAddWorkType = AddWorkTypeList.First().Value;
-            if (AddDcList.Any())
-                SelectedAddDcCode = AddDcList.First().Value;
-            AddDelvDate = DateTime.Now.Date;
-            AddCustOrdNo = "";
-            AddItemCode = "";
-            AddItemName = "";
-            AddConsignee = "";
-            F050301Datas = null;
+			DoAddIniital();
+			F050301Datas = null;
             SelectedF050301Data = null;
             AddAllIdList = null;
             SelectedAddAllId = null;
@@ -2135,19 +2140,10 @@ namespace Wms3pl.WpfClient.P20.ViewModel
                 SelectedF050301Data = F050301Datas.First();
             else
             {
-                AddPickTimeList = null;
-                SelectedAddPickTime = "";
-                // 查無資料清除條件
-                if (AddDcList.Any())
-                    SelectedAddDcCode = AddDcList.First().Value;
-                AddDelvDate = DateTime.Now.Date;
-                AddCustOrdNo = "";
-                AddOrdNo = "";
-                AddItemCode = "";
-                AddItemName = "";
-                AddConsignee = "";
+				// 查無資料清除條件
+				DoAddIniital();
 
-                ShowMessage(Messages.InfoNoData);
+				ShowMessage(Messages.InfoNoData);
             }
                 
             IsCheckAll = false;

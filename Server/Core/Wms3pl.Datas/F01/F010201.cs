@@ -186,5 +186,17 @@ namespace Wms3pl.Datas.F01
 		/// 預定進倉時段
 		/// </summary>
 		public string BOOKING_IN_PERIOD { get; set; }
+
+		/// <summary>
+		/// 是否使用者強制結案 (0: 否、1: 是)
+		/// </summary>
+		[Column(TypeName = "char(1)")]
+		public string USER_CLOSED { get; set; }
+
+		/// <summary>
+		/// 使用者強制結案備註原因
+		/// </summary>
+		[Column(TypeName = "nvarchar(200)")]
+		public string USER_CLOSED_MEMO { get; set; }
 	}
 }

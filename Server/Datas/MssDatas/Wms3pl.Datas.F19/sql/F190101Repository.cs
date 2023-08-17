@@ -74,5 +74,21 @@ namespace Wms3pl.Datas.F19
 
       return SqlQuery<F190101>(sql, param.ToArray());
     }
+
+    public IQueryable<F190101> GetImmediateItemSchedule()
+    {
+      var sql = @"SELECT
+	A.*
+FROM
+	F190101 A
+	INNER JOIN F1909 B 
+	ON A.GUP_CODE = B.GUP_CODE 
+	AND A.CUST_CODE = B.CUST_CODE 
+	AND B.IS_EXECIMMEDIATEITEM = '1'";
+
+
+      return SqlQuery<F190101>(sql);
+    }
+
   }
 }

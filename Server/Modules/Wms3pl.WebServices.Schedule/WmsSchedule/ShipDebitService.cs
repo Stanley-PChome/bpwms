@@ -157,11 +157,19 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
 				var f0537Repo = new F0537Repository(Schemas.CoreSchema, wmsTransaction);
 				var f191302Repo = new F191302Repository(Schemas.CoreSchema, wmsTransaction);
 				var pickService = new SharedService(wmsTransaction);
+				var f0531Repo = new F0531Repository(Schemas.CoreSchema, wmsTransaction);
 				var returnStocks = new List<F1913>();
 				var returnAllotList = new List<ReturnNewAllocation>();
 				var updF051202List = new List<F051202>();
 				var updF1511List = new List<F1511>();
 				var addF191302List = new List<F191302>();
+
+				var IsAllotContainerClose = f0531Repo.IsAllotContainerClose(dcCode, gupCode, custCode, pickOrdNo);
+				if (!IsAllotContainerClose)
+				{
+					_msgList.Add(string.Format("跨庫揀貨單:{0} 分配失敗，原因:{1}", pickOrdNo, "尚有跨庫容器或取消訂單容器未關箱"));
+					return;
+				}
 
 				//(1)	[B] = 取得揀貨單明細
 				var f051202s = f051202Repo.GetNotCacnelDataByPickNo(dcCode, gupCode, custCode, pickOrdNo).ToList();
@@ -371,6 +379,8 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
 					var cancelOrderItemHasAllotQty = f0537_LackDatas.Where(x => x.ITEM_CODE == f053601.ITEM_CODE).Sum(x => x.B_LACK_QTY - x.A_LACK_QTY);
 					//a.	[G] = K1.B_SET_QTY-K1.A_SET_QTY
 					var lastSetQty = f053601.B_SET_QTY - f053601.A_SET_QTY - cancelOrderItemHasAllotQty;
+					//分配播缺時，因為訂單取消已經分配了，所以扣除後播缺=0，需要跳過
+					if (lastSetQty == 0) continue;
 					//b.	開始分配播缺數Do…While([G]>0)
 					do
 					{
@@ -410,6 +420,8 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
 				{
 					//A.	[G] = F1.QTY
 					var currentMoveOutQty = moveOutDtl.QTY;
+					//如果可分配數=0則跳過此筆商品分配
+					if (currentMoveOutQty == 0) continue;
 					//B.	[C1]=取得[C]資料 
 					var currentPickDtls = pickDtls.Where(w => w.PICK_STATUS == "0" &&
 														w.ITEM_CODE == moveOutDtl.ITEM_CODE);

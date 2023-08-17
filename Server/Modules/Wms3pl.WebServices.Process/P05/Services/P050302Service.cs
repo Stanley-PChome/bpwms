@@ -18,6 +18,7 @@ using Wms3pl.WebServices.Process.P01.Services;
 using Wms3pl.Datas.F00;
 using System.Reflection;
 using Wms3pl.Datas.F07;
+using System.Transactions;
 
 namespace Wms3pl.WebServices.Process.P05.Services
 {
@@ -495,6 +496,20 @@ namespace Wms3pl.WebServices.Process.P05.Services
 		public ExecuteResult ApproveF050101(F050101 f050101, ObservableCollection<F050102Ex> f050102Exs)
 		{
 			var result = new ExecuteResult { IsSuccessed = true };
+
+			var f050001LockRepo = new F050001Repository(Schemas.CoreSchema);
+			var f5 = f050001LockRepo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
+					new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted }), () =>
+					{
+						f050001LockRepo.LockF050001();
+						return f050001LockRepo.GetOrdersByOrdNos(new List<string> { f050101.ORD_NO }).FirstOrDefault();
+					});
+			if (f5 == null)
+				return new ExecuteResult(false, "此訂單已產生新的批次，不可修改，請重新查詢");
+			else if (f5.PROC_FLAG == "1")
+				return new ExecuteResult(false, "此訂單正在配庫處理中，不可修改，請重新查詢");
+			
+
 			var sharedService = new SharedService(_wmsTransaction);
 			#region 更新訂單主檔
 			var isDcAddress = false;

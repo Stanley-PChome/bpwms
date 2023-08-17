@@ -73,5 +73,11 @@ namespace Wms3pl.WebServices.Process.P01.ExDataSources
 			get { return new List<P010201PalletData>().AsQueryable(); }
 		}
         #endregion
-    }
+
+		public IQueryable<UserCloseStockParam> UserCloseStockParams
+		{
+			get { return new List<UserCloseStockParam>().AsQueryable(); }
+		}
+
+	}
 }

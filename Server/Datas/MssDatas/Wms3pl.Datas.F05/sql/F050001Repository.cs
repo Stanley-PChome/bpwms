@@ -481,7 +481,7 @@ namespace Wms3pl.Datas.F05
                         AND A.GUP_CODE = @p1 
                         AND A.CUST_CODE = @p2 
                         AND A.CUST_COST = 'MoveOut'
-                        GROUP BY A.DC_CODE, A.GUP_CODE, A.CUST_CODE, B.ITEM_CODE, ISNULL(B.MAKE_NO,'')
+                        GROUP BY A.DC_CODE, A.GUP_CODE, A.CUST_CODE, B.ITEM_CODE, ISNULL(B.MAKE_NO,''), ISNULL(B.SERIAL_NO,'')
                         ORDER BY B.ITEM_CODE, ISNULL(B.MAKE_NO,'') DESC";
 
             return SqlQuery<MoveoutOrdItemQty>(sql, param.ToArray());

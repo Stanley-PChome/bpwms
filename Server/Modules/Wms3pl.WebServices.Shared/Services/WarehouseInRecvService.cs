@@ -500,7 +500,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					STOCK_NO = f010201.STOCK_NO,
 					RT_NO = f02020101s.Any() ? f02020101s.First().RT_NO : rtNo,
 					STATUS = "5",
-					PROC_FLAG = "0",
+					PROC_FLAG = "1",
 					TRANS_DATE = nowTime,
 				});
 			}
@@ -560,47 +560,64 @@ namespace Wms3pl.WebServices.Shared.Services
 			return repeatSerialNoList;
 		}
 
-		/// <summary>
-		/// 序號收集
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="purchaseNo"></param>
-		/// <param name="purchaseSeq"></param>
-		/// <param name="poNo"></param>
-		/// <param name="rtNo"></param>
-		/// <param name="itemCode"></param>
-		/// <param name="largeSerialList"></param>
-		/// <returns></returns>
-		public ApiResult AddCollectSerialAndScanLog(string dcCode, string gupCode, string custCode, string purchaseNo, string purchaseSeq, string poNo, string rtNo, string itemCode, List<string> largeSerialList)
-		{
-			var checkExistPassScanLogRepeatSerialNoList = CheckSerialPassInScanLog(dcCode, gupCode, custCode, purchaseNo, purchaseSeq, rtNo, largeSerialList);
-			if(checkExistPassScanLogRepeatSerialNoList.Any())
-				return new ApiResult { IsSuccessed = false, MsgCode = "21948", MsgContent = "已存在相同序號，不可重複刷讀",Data = checkExistPassScanLogRepeatSerialNoList.Select(x=> new SerialNoResult { Checked =false,SerialNo = x,Message="序號重複" }).ToList() };
-			var checkExistCollectRepeatSerialNoList = CheckSerialInCollectRepeat(dcCode, gupCode, custCode, purchaseNo, poNo, itemCode, largeSerialList);
-			if (checkExistCollectRepeatSerialNoList.Any())
-				return new ApiResult { IsSuccessed = false, MsgCode = "21948", MsgContent = "已存在相同序號，不可重複刷讀", Data = checkExistPassScanLogRepeatSerialNoList.Select(x => new SerialNoResult { Checked = false, SerialNo = x, Message = "序號重複" }).ToList() };
+    /// <summary>
+    /// 檢查該進倉單是否有F020301沒有就新增
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="purchaseNo"></param>
+    /// <returns></returns>
+    public ApiResult CheckAndInserF020301(string dcCode, string gupCode, string custCode, string purchaseNo, string rtNo)
+    {
+      var fileName = F020301Repo.GetF020301FileName(dcCode, gupCode, custCode, rtNo);
+      if(string.IsNullOrWhiteSpace(fileName))
+      {
+        F020301Repo.Add(new F020301
+        {
+          DC_CODE = dcCode,
+          GUP_CODE = gupCode,
+          CUST_CODE = custCode,
+          PURCHASE_NO = purchaseNo,
+          FILE_NAME = $"USERCHK99_{rtNo}"
+        });
+      }
+      return new ApiResult { IsSuccessed = true, Data = $"USERCHK99_{rtNo}" };
+    }
 
-			var checkSerialRes = SerialNoService.CheckItemLargeSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, largeSerialList.ToList()).ToList();
-			if (checkSerialRes.Any(x => !x.Checked))
-				return new ApiResult { IsSuccessed = false, MsgCode = "21904", MsgContent = "序號檢核失敗", Data = checkSerialRes.Where(x => !x.Checked).ToList() };
+    /// <summary>
+    /// 序號收集
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="purchaseNo"></param>
+    /// <param name="purchaseSeq"></param>
+    /// <param name="poNo"></param>
+    /// <param name="rtNo"></param>
+    /// <param name="itemCode"></param>
+    /// <param name="largeSerialList"></param>
+    /// <returns></returns>
+    public ApiResult AddCollectSerialAndScanLog(string dcCode, string gupCode, string custCode, string purchaseNo, string purchaseSeq, string poNo, string rtNo, string itemCode, List<string> largeSerialList)
+    {
+      var checkExistPassScanLogRepeatSerialNoList = CheckSerialPassInScanLog(dcCode, gupCode, custCode, purchaseNo, purchaseSeq, rtNo, largeSerialList);
+      if (checkExistPassScanLogRepeatSerialNoList.Any())
+        return new ApiResult { IsSuccessed = false, MsgCode = "21948", MsgContent = "已存在相同序號，不可重複刷讀", Data = checkExistPassScanLogRepeatSerialNoList.Select(x => new SerialNoResult { Checked = false, SerialNo = x, Message = "序號重複" }).ToList() };
+      var checkExistCollectRepeatSerialNoList = CheckSerialInCollectRepeat(dcCode, gupCode, custCode, purchaseNo, poNo, itemCode, largeSerialList);
+      if (checkExistCollectRepeatSerialNoList.Any())
+        return new ApiResult { IsSuccessed = false, MsgCode = "21948", MsgContent = "已存在相同序號，不可重複刷讀", Data = checkExistPassScanLogRepeatSerialNoList.Select(x => new SerialNoResult { Checked = false, SerialNo = x, Message = "序號重複" }).ToList() };
 
-			var addF02020104List = new List<F02020104>();
-			var addF020302List = new List<F020302>();
-			var MaxLogSeq = F02020104Repo.GetMaxSeq(dcCode, gupCode, custCode, purchaseNo, purchaseSeq, rtNo) + 1;
-			var fileSeq = F020301Repo.GetF020301FileSeq(dcCode, gupCode, custCode, purchaseNo, poNo) + 1;
-			var fileName = string.Format("USERCHK99_{0}{1}", purchaseNo, fileSeq.ToString("D2"));
-			var f020301 = new F020301
-			{
-				DC_CODE = dcCode,
-				GUP_CODE = gupCode,
-				CUST_CODE = custCode,
-				PURCHASE_NO = purchaseNo,
-				FILE_NAME = fileName
-			};
-			foreach (var item in checkSerialRes)
-			{
+      var checkSerialRes = SerialNoService.CheckItemLargeSerialWithBeforeInWarehouse(gupCode, custCode, itemCode, largeSerialList.ToList()).ToList();
+      if (checkSerialRes.Any(x => !x.Checked))
+        return new ApiResult { IsSuccessed = false, MsgCode = "21904", MsgContent = "序號檢核失敗", Data = checkSerialRes.Where(x => !x.Checked).ToList() };
+
+      var addF02020104List = new List<F02020104>();
+      var addF020302List = new List<F020302>();
+       
+      var MaxLogSeq = F02020104Repo.GetMaxSeq(dcCode, gupCode, custCode, purchaseNo, purchaseSeq, rtNo) + 1;
+      var fileName = $"USERCHK99_{rtNo}";
+      foreach (var item in checkSerialRes)
+      {
 				addF02020104List.Add(CreateF02020104(dcCode, gupCode, custCode, purchaseNo, purchaseSeq, itemCode, item.SerialNo.ToUpper(), item.CurrentlyStatus, "1", "", MaxLogSeq, rtNo, null));
 				addF020302List.Add(new F020302
 				{
@@ -617,8 +634,8 @@ namespace Wms3pl.WebServices.Shared.Services
 					BATCH_NO = null
 				});
 			}
+
 			F02020104Repo.BulkInsert(addF02020104List);
-			F020301Repo.Add(f020301);
 			F020302Repo.BulkInsert(addF020302List);
 			return new ApiResult { IsSuccessed = true, MsgCode = "10005", MsgContent = "執行成功" };
 
@@ -1990,7 +2007,16 @@ namespace Wms3pl.WebServices.Shared.Services
         F020302Repo.DeleteWithCancelAcceptance(dap.DcCode, dap.GupCode, dap.CustCode, dap.PurchaseNo, dap.RTNo);
         F020301Repo.Delete(dap.DcCode, dap.GupCode, dap.CustCode, dap.PurchaseNo);
         F02020104Repo.Delete(dap.DcCode, dap.GupCode, dap.CustCode, dap.PurchaseNo, dap.RTNo);
+        UnLockAcceptenceOrder(new UnLockAcceptenceOrderReq
+        {
+          DcCode = dap.DcCode,
+          GupCode = dap.GupCode,
+          CustCode = dap.CustCode,
+          StockNo = dap.PurchaseNo
+        });
       }
+
+
       return new ApiResult { IsSuccessed = true, MsgCode = "10005",MsgContent = "執行成功" };
     }
     #endregion
@@ -2127,14 +2153,23 @@ namespace Wms3pl.WebServices.Shared.Services
 				var defectQty = f02020101.DEFECT_QTY;
         if (f02020101.CHECK_ITEM == "1" && f02020101.RECV_QTY > sip.RecvQty)
         {
-          ////先刪除F020302 再刪F020301 最後才刪F02020104 有順序性 
-          F020302Repo.DeleteWithCancelAcceptance(sip.DcCode, sip.GupCode, sip.CustCode, sip.PurchaseNo, sip.PurchaseSeq, sip.RtNo);
-          F020301Repo.Delete(sip.DcCode, sip.GupCode, sip.CustCode, sip.PurchaseNo);
-          F02020104Repo.DeleteF02020104(sip.DcCode, sip.GupCode, sip.CustCode, sip.PurchaseNo, sip.PurchaseSeq, sip.RtNo);
-
           // 清除不良品設定
           F02020109Repo.Delete(sip.DcCode, sip.GupCode, sip.CustCode, sip.PurchaseNo, sip.PurchaseSeq);
-					checkSerial = "0";
+
+          var updRecvQtyRes = UpdateRecvQty(new UpdateRecvQtyReq
+          {
+            DcCode = sip.DcCode,
+            GupCode = sip.GupCode,
+            CustCode = sip.CustCode,
+            PurchaseNo = sip.PurchaseNo,
+            PurchaseSeq = sip.PurchaseSeq,
+            RtNo = sip.RtNo
+          });
+
+          if (!updRecvQtyRes.IsSuccessed)
+            return new ApiResult { IsSuccessed = false, MsgContent = updRecvQtyRes.Message };
+
+          checkSerial = "0";
 					defectQty = 0;
 				}
 				// 因為不良品會先設定和刷讀序號才改驗收數量，所以要再檢查一次序號數是否滿足，若滿足更新序號狀態
@@ -2214,5 +2249,20 @@ namespace Wms3pl.WebServices.Shared.Services
       return new ApiResult { IsSuccessed = true, MsgCode = "10005" };
     }
     #endregion
+
+    /// <summary>
+    /// 驗收數量更改，清除已收集的序號內容以及刷讀記錄
+    /// </summary>
+    /// <returns></returns>
+    public ExecuteResult UpdateRecvQty(UpdateRecvQtyReq req)
+    {
+      ////先刪除F020302 再刪F020301 最後才刪F02020104 有順序性 
+      F020302Repo.DeleteWithCancelAcceptance(req.DcCode, req.GupCode, req.CustCode, req.PurchaseNo, req.PurchaseSeq, req.RtNo);
+      F020301Repo.Delete(req.DcCode, req.GupCode, req.CustCode, req.PurchaseNo);
+      F02020104Repo.DeleteF02020104(req.DcCode, req.GupCode, req.CustCode, req.PurchaseNo, req.PurchaseSeq, req.RtNo);
+
+      return new ExecuteResult(true);
+    }
+
   }
 }

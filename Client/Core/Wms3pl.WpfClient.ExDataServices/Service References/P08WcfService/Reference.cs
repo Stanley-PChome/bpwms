@@ -16557,6 +16557,83 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StopAllotParam", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class StopAllotParam : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<long> CANCEL_F0531_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<long> NORMAL_F0531_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long PICK_F0701_IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> CANCEL_F0531_ID {
+            get {
+                return this.CANCEL_F0531_IDField;
+            }
+            set {
+                if ((this.CANCEL_F0531_IDField.Equals(value) != true)) {
+                    this.CANCEL_F0531_IDField = value;
+                    this.RaisePropertyChanged("CANCEL_F0531_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> NORMAL_F0531_ID {
+            get {
+                return this.NORMAL_F0531_IDField;
+            }
+            set {
+                if ((this.NORMAL_F0531_IDField.Equals(value) != true)) {
+                    this.NORMAL_F0531_IDField = value;
+                    this.RaisePropertyChanged("NORMAL_F0531_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long PICK_F0701_ID {
+            get {
+                return this.PICK_F0701_IDField;
+            }
+            set {
+                if ((this.PICK_F0701_IDField.Equals(value) != true)) {
+                    this.PICK_F0701_IDField = value;
+                    this.RaisePropertyChanged("PICK_F0701_ID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="P08WcfService.P08WcfService")]
     public interface P08WcfService {
@@ -17086,10 +17163,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> RebindCancelContainerAsync(string dcCode, string gupCode, string custCode, Wms3pl.WpfClient.ExDataServices.P08WcfService.OutContainerInfo oriContainerInfo, string newContainerCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/StopAllot", ReplyAction="http://tempuri.org/P08WcfService/StopAllotResponse")]
-        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult StopAllot(long f0701Id);
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult StopAllot(Wms3pl.WpfClient.ExDataServices.P08WcfService.StopAllotParam param);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/StopAllot", ReplyAction="http://tempuri.org/P08WcfService/StopAllotResponse")]
-        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(long f0701Id);
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.StopAllotParam param);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -17815,12 +17892,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
             return base.Channel.RebindCancelContainerAsync(dcCode, gupCode, custCode, oriContainerInfo, newContainerCode);
         }
         
-        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult StopAllot(long f0701Id) {
-            return base.Channel.StopAllot(f0701Id);
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult StopAllot(Wms3pl.WpfClient.ExDataServices.P08WcfService.StopAllotParam param) {
+            return base.Channel.StopAllot(param);
         }
         
-        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(long f0701Id) {
-            return base.Channel.StopAllotAsync(f0701Id);
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.StopAllotParam param) {
+            return base.Channel.StopAllotAsync(param);
         }
     }
 }

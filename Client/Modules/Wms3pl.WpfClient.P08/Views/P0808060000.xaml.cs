@@ -138,8 +138,8 @@ namespace Wms3pl.WpfClient.P08.Views
 		{
 			if (e.Key != Key.Enter)
 				return;
-
-			Vm.ScanItemBarCodeCommand.Execute(null);
+			Vm.DoScanItemBarCode();
+			//Vm.ScanItemBarCodeCommand.Execute(null);
 		}
 		#endregion
 

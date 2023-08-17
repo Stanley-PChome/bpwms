@@ -330,6 +330,9 @@
     <None Include="Service References\P01WcfService\P01WcfService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\P01WcfService\P01WcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\P01WcfService\P01WcfService4.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -340,6 +343,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P01WcfService\Wms3pl.WpfClient.ExDataServices.P01WcfService.SerialNoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\P01WcfService\Wms3pl.WpfClient.ExDataServices.P01WcfService.UserCloseExecuteResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\P02ExDataService\ConnectedService.json" />

@@ -20,7 +20,15 @@ namespace Wms3pl.Datas.F05
         /// <returns></returns>
         public IQueryable<DeliveryData> GetDeliveryData(string dcCode, string gupCode, string custCode, string wmsOrdNo, short packageBoxNo = 0, string itemCode = "")
         {
-            var parameters = new object[] { packageBoxNo, wmsOrdNo, dcCode, gupCode, custCode, itemCode };
+            var parm = new List<SqlParameter>()
+            {
+                new SqlParameter("@p0",dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p1",gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p2",custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p3",wmsOrdNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p4",packageBoxNo) { SqlDbType = System.Data.SqlDbType.SmallInt },
+                new SqlParameter("@p5",itemCode) { SqlDbType = System.Data.SqlDbType.VarChar }
+            };
 
             var sql = @"SELECT F.*, F.OrderQty - F.TotalPackQty AS DiffQty                      -- 差異數
 						  FROM (  SELECT TOP 100 PERCENT D.ITEM_CODE ItemCode,
@@ -41,7 +49,7 @@ namespace Wms3pl.Datas.F05
 													  AND C.GUP_CODE = D.GUP_CODE
 													  AND C.CUST_CODE = D.CUST_CODE
 													  AND C.ITEM_CODE = D.ITEM_CODE
-													  AND C.PACKAGE_BOX_NO = @p0           -- 目前正在刷的箱子
+													  AND C.PACKAGE_BOX_NO = @p4           -- 目前正在刷的箱子
 											 GROUP BY C.ITEM_CODE),
 											0)
 											PackQty,                                 -- 該出貨單某個箱子的某商品總數
@@ -63,10 +71,10 @@ namespace Wms3pl.Datas.F05
 												   A.CUST_CODE,
 												   SUM (A.A_PICK_QTY) OrderQty             -- 某商品數出貨總量
 											  FROM F051202 A
-											 WHERE     A.WMS_ORD_NO = @p1
-												   AND A.DC_CODE = @p2
-												   AND A.GUP_CODE = @p3
-												   AND A.CUST_CODE = @p4
+											 WHERE     A.WMS_ORD_NO = @p3
+												   AND A.DC_CODE = @p0
+												   AND A.GUP_CODE = @p1
+												   AND A.CUST_CODE = @p2
                                                    AND A.ITEM_CODE = CASE WHEN @p5 is null or @p5 = '' THEN A.ITEM_CODE ELSE @p5 END 
 										  GROUP BY A.ITEM_CODE,
 												   A.WMS_ORD_NO,
@@ -102,7 +110,7 @@ namespace Wms3pl.Datas.F05
 											   AND D.WMS_ORD_NO = J.WMS_ORD_NO
 								ORDER BY D.ITEM_CODE) F";
 
-            var result = SqlQuery<DeliveryData>(sql, parameters);
+            var result = SqlQuery<DeliveryData>(sql, parm.ToArray());
 
             return result;
         }
@@ -117,6 +125,16 @@ namespace Wms3pl.Datas.F05
         /// <returns></returns>
         public IQueryable<DeliveryData> GetQuantityOfDeliveryInfo(string dcCode, string gupCode, string custCode, string wmsOrdNo, string itemCode, short packageBoxNo = 0)
         {
+            var parm = new List<SqlParameter>()
+            {
+                new SqlParameter("@p0",dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p1",gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p2",custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p3",wmsOrdNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p4",itemCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p5",packageBoxNo) { SqlDbType = System.Data.SqlDbType.SmallInt }
+            };
+
             var sql = $@"SELECT F.*, F.OrderQty - F.TotalPackQty AS DiffQty                      -- 差異數
 						  FROM (SELECT D.ITEM_CODE ItemCode,
                         D.ITEM_NAME ItemName,
@@ -138,7 +156,7 @@ namespace Wms3pl.Datas.F05
 													AND C.GUP_CODE = D.GUP_CODE
 													AND C.CUST_CODE = D.CUST_CODE
 													AND C.ITEM_CODE = D.ITEM_CODE
-													AND C.PACKAGE_BOX_NO = @p0             -- 目前正在刷的箱子
+													AND C.PACKAGE_BOX_NO = @p5             -- 目前正在刷的箱子
 										   GROUP BY C.ITEM_CODE),
 										  0)
 										  PackQty,                                   -- 該出貨單某個箱子的某商品總數
@@ -185,11 +203,11 @@ namespace Wms3pl.Datas.F05
                                                AND B.ITEM_CODE = A.ITEM_CODE
 					                     LEFT JOIN VW_F000904_LANG C
 					                            ON C.VALUE = B.TMPR_TYPE
-										   WHERE     A.DC_CODE = @p1
-												 AND A.GUP_CODE = @p2
-												 AND A.CUST_CODE = @p3
-												 AND A.WMS_ORD_NO = @p4
-												 AND A.ITEM_CODE = ISNULL ( @p5, A.ITEM_CODE)   
+										   WHERE     A.DC_CODE = @p0
+												 AND A.GUP_CODE = @p1
+												 AND A.CUST_CODE = @p2
+												 AND A.WMS_ORD_NO = @p3
+												 AND A.ITEM_CODE = ISNULL ( @p4, A.ITEM_CODE)   
                                                  AND C.TOPIC = 'F1903'
 												 AND C.SUBTOPIC = 'TMPR_TYPE'
                                                  AND C.LANG = '{Current.Lang}'
@@ -209,13 +227,22 @@ namespace Wms3pl.Datas.F05
 												 A.GUP_CODE,
 												 A.CUST_CODE) D) F  WHERE F.OrderQty <>0";
 
-            var result = SqlQuery<DeliveryData>(sql, new object[] { packageBoxNo, dcCode, gupCode, custCode, wmsOrdNo, itemCode });
+            var result = SqlQuery<DeliveryData>(sql, parm.ToArray());
 
             return result;
         }
 
         public IQueryable<DeliveryReport> GetDeliveryReport(string dcCode, string gupCode, string custCode, string wmsOrdNo, short? packageBoxNo = null)
         {
+            var parm = new List<SqlParameter>()
+            {
+                new SqlParameter("@p0",dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p1",gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p2",custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p3",wmsOrdNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p4",packageBoxNo) { SqlDbType = System.Data.SqlDbType.SmallInt }
+            };
+        
             var sql = @"
  SELECT J.ord_no        AS OrdNo,
        D.package_box_no AS PackageBoxNo,
@@ -340,13 +367,21 @@ FROM   (SELECT K.dc_code,
               AND D.PAST_NO = M.CONSIGN_NO
        ";
 
-            var result = SqlQuery<DeliveryReport>(sql, new object[] { dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo });
+            var result = SqlQuery<DeliveryReport>(sql, parm.ToArray());
 
             return result;
         }
 
         public IQueryable<F055002WithF2501> GetF055002WithF2501s(string dcCode, string gupCode, string custCode, string wmsOrdNo)
         {
+            var parm = new List<SqlParameter>()
+            {
+                new SqlParameter("@p0",dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p1",gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p2",custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p3",wmsOrdNo) { SqlDbType = System.Data.SqlDbType.VarChar }
+            };
+
             var sql = @"SELECT B.GUP_CODE,
 						   B.CUST_CODE,
 						   B.SERIAL_NO,
@@ -368,7 +403,7 @@ FROM   (SELECT K.dc_code,
 						   AND B.CUST_CODE = @p2
 						   AND B.WMS_ORD_NO = @p3";
 
-            var result = SqlQuery<F055002WithF2501>(sql, new object[] { dcCode, gupCode, custCode, wmsOrdNo });
+            var result = SqlQuery<F055002WithF2501>(sql, parm.ToArray());
 
             return result;
         }
@@ -377,10 +412,10 @@ FROM   (SELECT K.dc_code,
         {
             var parm = new List<SqlParameter>()
             {
-                new SqlParameter("@p0",dcCode),
-                new SqlParameter("@p1",gupCode),
-                new SqlParameter("@p2",custCode),
-                new SqlParameter("@p3",wmsOrdNo)
+                new SqlParameter("@p0",dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p1",gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p2",custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p3",wmsOrdNo) { SqlDbType = System.Data.SqlDbType.VarChar }
             };
 
             var sql = $@"
@@ -444,9 +479,43 @@ FROM   (SELECT K.dc_code,
 
                         ";
 
-            var result = SqlQuery<SearchWmsOrderPackingDetailRes>(sql, new object[] { dcCode, gupCode, custCode, wmsOrdNo });
+            var result = SqlQuery<SearchWmsOrderPackingDetailRes>(sql, parm.ToArray());
 
             return result;
-        }
-    }
+		}
+
+		public IQueryable<F055002> GetDatasByOrdSeqs(string dcCode, string gupCode, string custCode, string ordNo, List<string> ordSeqs)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p3", ordNo) { SqlDbType = System.Data.SqlDbType.VarChar });
+
+			var sql = $@" SELECT * FROM F055002
+							WHERE DC_CODE = @p0
+							AND GUP_CODE = @p1
+							AND CUST_CODE = @p2
+							AND ORD_NO = @p3 ";
+			sql += sqlParameter.CombineSqlInParameters(" AND ORD_SEQ", ordSeqs, System.Data.SqlDbType.VarChar);
+
+			return SqlQuery<F055002>(sql, sqlParameter.ToArray());
+		}
+
+		public IQueryable<F055002> GetDatasByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+
+			var sql = $@" SELECT * FROM F055002
+							WHERE DC_CODE = @p0
+							AND GUP_CODE = @p1
+							AND CUST_CODE = @p2 ";
+			sql += sqlParameter.CombineSqlInParameters(" AND WMS_ORD_NO", wmsOrdNos, System.Data.SqlDbType.VarChar);
+
+			return SqlQuery<F055002>(sql, sqlParameter.ToArray());
+		}
+	}
 }

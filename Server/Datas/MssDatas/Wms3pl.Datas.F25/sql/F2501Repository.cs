@@ -591,12 +591,13 @@ FROM   (
         new SqlParameter("@p1",custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
         new SqlParameter("@p2", Current.Staff ){ SqlDbType = System.Data.SqlDbType.VarChar },
         new SqlParameter("@p3", Current.StaffName){ SqlDbType = System.Data.SqlDbType.VarChar },
-      };
+		new SqlParameter("@p4", DateTime.Now){ SqlDbType = System.Data.SqlDbType.DateTime2 },
+	  };
       var sql = @" Update  F2501
                   set ORD_PROP = 'UD',
                       UPD_STAFF = @p2,
                       UPD_NAME = @p3,
-                      UPD_DATE = dbo.GetSysDate()
+                      UPD_DATE = @p4
                    WHERE GUP_CODE = @p0
                      AND CUST_CODE = @p1 ";
       if (!SnList.Any())

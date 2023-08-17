@@ -22,373 +22,373 @@ using Wms3pl.WpfClient.Services;
 
 namespace Wms3pl.WpfClient.P71.ViewModel
 {
-    public partial class P7109030000_ViewModel : InputViewModelBase
-    {
-        #region 共用變數/資料連結/頁面參數
-        private string _userId;
-        private string _userName;
-        public Action ToFirstTab = delegate { };
-        public Action OnSaved = delegate { };
-        public Action OnUpdateTab = () => { };
-        public Action OnDataGridScrollIntoView = () => { };
-        private string _gupShare;
+	public partial class P7109030000_ViewModel : InputViewModelBase
+	{
+		#region 共用變數/資料連結/頁面參數
+		private string _userId;
+		private string _userName;
+		public Action ToFirstTab = delegate { };
+		public Action OnSaved = delegate { };
+		public Action OnUpdateTab = () => { };
+		public Action OnDataGridScrollIntoView = () => { };
+		private string _gupShare;
 
-        #region 外部參數
-        public string NewUniForm { get; set; }
-        public void CheckLoad()
-        {
-            if (UserOperateMode != OperateMode.Query)
-                return;
+		#region 外部參數
+		public string NewUniForm { get; set; }
+		public void CheckLoad()
+		{
+			if (UserOperateMode != OperateMode.Query)
+				return;
 
-            if (!string.IsNullOrWhiteSpace(NewUniForm))
-            {
-                DoAdd();
-                SelectedData.GUP_CODE = Wms3plSession.Get<GlobalInfo>().GupCode;
-                SelectedData.UNI_FORM = NewUniForm;
-            }
-        }
-        #endregion
+			if (!string.IsNullOrWhiteSpace(NewUniForm))
+			{
+				DoAdd();
+				SelectedData.GUP_CODE = Wms3plSession.Get<GlobalInfo>().GupCode;
+				SelectedData.UNI_FORM = NewUniForm;
+			}
+		}
+		#endregion
 
-        #region 查詢
-        #region Form - 業主
-        private List<NameValuePair<string>> _gupCodes;
+		#region 查詢
+		#region Form - 業主
+		private List<NameValuePair<string>> _gupCodes;
 
-        public List<NameValuePair<string>> GupCodes
-        {
-            get { return _gupCodes; }
-            set
-            {
-                _gupCodes = value;
-                RaisePropertyChanged("GupCodes");
-            }
-        }
+		public List<NameValuePair<string>> GupCodes
+		{
+			get { return _gupCodes; }
+			set
+			{
+				_gupCodes = value;
+				RaisePropertyChanged("GupCodes");
+			}
+		}
 
-        private string _selectedGupCode;
-        public string SelectedGupCode
-        {
-            get { return _selectedGupCode; }
-            set
-            {
-                _selectedGupCode = value;
-                RaisePropertyChanged("SelectedGupCode");
-            }
-        }
-        #endregion
-        #region Form - 貨主
-        private string _searchCustName;
-        public string SearchCustName
-        {
-            get { return _searchCustName; }
-            set
-            {
-                _searchCustName = value;
-                RaisePropertyChanged("SearchCustName");
-            }
-        }
-        #endregion
-        #region Data - 資料List
-        private List<F1909> _dgList;
-        public List<F1909> DgList
-        {
-            get { return _dgList; }
-            set
-            {
-                _dgList = value;
-                RaisePropertyChanged("DgList");
-            }
-        }
+		private string _selectedGupCode;
+		public string SelectedGupCode
+		{
+			get { return _selectedGupCode; }
+			set
+			{
+				_selectedGupCode = value;
+				RaisePropertyChanged("SelectedGupCode");
+			}
+		}
+		#endregion
+		#region Form - 貨主
+		private string _searchCustName;
+		public string SearchCustName
+		{
+			get { return _searchCustName; }
+			set
+			{
+				_searchCustName = value;
+				RaisePropertyChanged("SearchCustName");
+			}
+		}
+		#endregion
+		#region Data - 資料List
+		private List<F1909> _dgList;
+		public List<F1909> DgList
+		{
+			get { return _dgList; }
+			set
+			{
+				_dgList = value;
+				RaisePropertyChanged("DgList");
+			}
+		}
 
 
 
-        private F1909 _selectedDataByView;
+		private F1909 _selectedDataByView;
 
-        public F1909 SelectedDataByView
-        {
-            get { return _selectedDataByView; }
-            set
-            {
-                if (_selectedDataByView == value)
-                    return;
-                Set(() => SelectedDataByView, ref _selectedDataByView, value);
-            }
-        }
+		public F1909 SelectedDataByView
+		{
+			get { return _selectedDataByView; }
+			set
+			{
+				if (_selectedDataByView == value)
+					return;
+				Set(() => SelectedDataByView, ref _selectedDataByView, value);
+			}
+		}
 
-        private F1909 _selectedData;
+		private F1909 _selectedData;
 
-        public F1909 SelectedData
-        {
-            get { return _selectedData; }
-            set
-            {
-                _selectedData = value;
-                RaisePropertyChanged("SelectedData");
-                if (value == null)
-                    SelectedDataByView = null;
+		public F1909 SelectedData
+		{
+			get { return _selectedData; }
+			set
+			{
+				_selectedData = value;
+				RaisePropertyChanged("SelectedData");
+				if (value == null)
+					SelectedDataByView = null;
 				else
 				{
 					SelectedDataByView = SelectedData;
-					SpBox = GetSP_BOXList().Where(x=>x.Value == SelectedDataByView.SP_BOX_CODE).FirstOrDefault()?.Name;
-					
+					SpBox = GetSP_BOXList().Where(x => x.Value == SelectedDataByView.SP_BOX_CODE).FirstOrDefault()?.Name;
+
 					var proxy = GetProxy<F19Entities>();
 					DgItemList = proxy.F190902s.Where(x => x.GUP_CODE.Equals(SelectedData.GUP_CODE)
 																							&& x.CUST_CODE.Equals(SelectedData.CUST_CODE))
 																		 .OrderBy(x => x.DM_SEQ)
 																		 .ToObservableCollection();
 				}
-					
-            }
-        }
-        #endregion
-        #endregion
 
-        #region 新增/編輯
-        #region Form - 業主
-        private List<NameValuePair<string>> _gupList;
+			}
+		}
+		#endregion
+		#endregion
 
-        public List<NameValuePair<string>> GupList
-        {
-            get { return _gupList; }
-            set
-            {
-                _gupList = value;
-                RaisePropertyChanged("GupList");
-            }
-        }
-        #endregion
-        #region Form - 幣別
-        private List<NameValuePair<string>> _currencyList;
+		#region 新增/編輯
+		#region Form - 業主
+		private List<NameValuePair<string>> _gupList;
 
-        public List<NameValuePair<string>> CurrencyList
-        {
-            get { return _currencyList; }
-            set
-            {
-                _currencyList = value;
-                RaisePropertyChanged("CurrencyList");
-            }
-        }
-        #endregion
+		public List<NameValuePair<string>> GupList
+		{
+			get { return _gupList; }
+			set
+			{
+				_gupList = value;
+				RaisePropertyChanged("GupList");
+			}
+		}
+		#endregion
+		#region Form - 幣別
+		private List<NameValuePair<string>> _currencyList;
 
-        #region Form - 解鎖功能
-        private List<NameValuePair<string>> _lockData;
+		public List<NameValuePair<string>> CurrencyList
+		{
+			get { return _currencyList; }
+			set
+			{
+				_currencyList = value;
+				RaisePropertyChanged("CurrencyList");
+			}
+		}
+		#endregion
 
-        public List<NameValuePair<string>> LockData
-        {
-            get { return _lockData; }
-            set
-            {
-                _lockData = value;
-                RaisePropertyChanged("LockData");
-            }
-        }
-        #endregion
-        #region Form - 付款條件
-        private List<NameValuePair<string>> _pAY_FACTORList;
+		#region Form - 解鎖功能
+		private List<NameValuePair<string>> _lockData;
 
-        public List<NameValuePair<string>> PAY_FACTORList
-        {
-            get { return _pAY_FACTORList; }
-            set
-            {
-                _pAY_FACTORList = value;
-                RaisePropertyChanged("PAY_FACTORList");
-            }
-        }
-        #endregion
-        #region Form - 付款方式
-        private List<NameValuePair<string>> _pAY_TYPEList;
+		public List<NameValuePair<string>> LockData
+		{
+			get { return _lockData; }
+			set
+			{
+				_lockData = value;
+				RaisePropertyChanged("LockData");
+			}
+		}
+		#endregion
+		#region Form - 付款條件
+		private List<NameValuePair<string>> _pAY_FACTORList;
 
-        public List<NameValuePair<string>> PAY_TYPEList
-        {
-            get { return _pAY_TYPEList; }
-            set
-            {
-                _pAY_TYPEList = value;
-                RaisePropertyChanged("PAY_TYPEList");
-            }
-        }
-        #endregion
-        #region Form - 指定退貨物流中心
-        private List<NameValuePair<string>> _dcCodes;
+		public List<NameValuePair<string>> PAY_FACTORList
+		{
+			get { return _pAY_FACTORList; }
+			set
+			{
+				_pAY_FACTORList = value;
+				RaisePropertyChanged("PAY_FACTORList");
+			}
+		}
+		#endregion
+		#region Form - 付款方式
+		private List<NameValuePair<string>> _pAY_TYPEList;
 
-        public List<NameValuePair<string>> DcCodes
-        {
-            get { return _dcCodes; }
-            set
-            {
-                _dcCodes = value;
-                RaisePropertyChanged("DcCodes");
-            }
-        }
-        #endregion
+		public List<NameValuePair<string>> PAY_TYPEList
+		{
+			get { return _pAY_TYPEList; }
+			set
+			{
+				_pAY_TYPEList = value;
+				RaisePropertyChanged("PAY_TYPEList");
+			}
+		}
+		#endregion
+		#region Form - 指定退貨物流中心
+		private List<NameValuePair<string>> _dcCodes;
 
-        #region Form - 進貨箱入數與商品主檔不吻合
-        private List<NameValuePair<string>> _special_InList;
+		public List<NameValuePair<string>> DcCodes
+		{
+			get { return _dcCodes; }
+			set
+			{
+				_dcCodes = value;
+				RaisePropertyChanged("DcCodes");
+			}
+		}
+		#endregion
 
-        public List<NameValuePair<string>> Special_InList
-        {
-            get { return _special_InList; }
-            set
-            {
-                _special_InList = value;
-                RaisePropertyChanged("Special_InList");
-            }
-        }
-        #endregion
+		#region Form - 進貨箱入數與商品主檔不吻合
+		private List<NameValuePair<string>> _special_InList;
 
-        #region Form - 是否列印進倉棧板標籤
+		public List<NameValuePair<string>> Special_InList
+		{
+			get { return _special_InList; }
+			set
+			{
+				_special_InList = value;
+				RaisePropertyChanged("Special_InList");
+			}
+		}
+		#endregion
 
-        private List<NameValuePair<string>> _isPrintInstockpallersticker_List;
+		#region Form - 是否列印進倉棧板標籤
 
-        public List<NameValuePair<string>> IsPrintInstockpallersticker_List
-        {
-            get { return _isPrintInstockpallersticker_List; }
-            set
-            {
-                _isPrintInstockpallersticker_List = value;
-                RaisePropertyChanged("IsPrintInstockpallersticker_List");
-            }
-        }
-        #endregion
+		private List<NameValuePair<string>> _isPrintInstockpallersticker_List;
 
-        #region Form - 特殊紙箱
-        private List<NameValuePair<string>> _sP_BOXList;
+		public List<NameValuePair<string>> IsPrintInstockpallersticker_List
+		{
+			get { return _isPrintInstockpallersticker_List; }
+			set
+			{
+				_isPrintInstockpallersticker_List = value;
+				RaisePropertyChanged("IsPrintInstockpallersticker_List");
+			}
+		}
+		#endregion
 
-        public List<NameValuePair<string>> SP_BOXList
-        {
-            get { return _sP_BOXList; }
-            set
-            {
-                _sP_BOXList = value;
-                RaisePropertyChanged("SP_BOXList");
-            }
-        }
-        #endregion
-        #region Form - DM名稱
-        private string _dmName;
+		#region Form - 特殊紙箱
+		private List<NameValuePair<string>> _sP_BOXList;
 
-        public string DmName
-        {
-            get { return _dmName; }
-            set
-            {
-                _dmName = value;
-                RaisePropertyChanged("DmName");
-            }
-        }
-        #endregion
-        #region Form - DM起迄
-        private DateTime _dmBegin;
+		public List<NameValuePair<string>> SP_BOXList
+		{
+			get { return _sP_BOXList; }
+			set
+			{
+				_sP_BOXList = value;
+				RaisePropertyChanged("SP_BOXList");
+			}
+		}
+		#endregion
+		#region Form - DM名稱
+		private string _dmName;
 
-        public DateTime DmBegin
-        {
-            get { return _dmBegin; }
-            set
-            {
-                _dmBegin = value;
-                RaisePropertyChanged("DmBegin");
-            }
-        }
-        private DateTime _dmEnd;
+		public string DmName
+		{
+			get { return _dmName; }
+			set
+			{
+				_dmName = value;
+				RaisePropertyChanged("DmName");
+			}
+		}
+		#endregion
+		#region Form - DM起迄
+		private DateTime _dmBegin;
 
-        public DateTime DmEnd
-        {
-            get { return _dmEnd; }
-            set
-            {
-                _dmEnd = value;
-                RaisePropertyChanged("DmEnd");
-            }
-        }
-        #endregion
-        #region Form - 列印工具
-        private List<NameValuePair<string>> _pRINT_TYPEList;
+		public DateTime DmBegin
+		{
+			get { return _dmBegin; }
+			set
+			{
+				_dmBegin = value;
+				RaisePropertyChanged("DmBegin");
+			}
+		}
+		private DateTime _dmEnd;
 
-        public List<NameValuePair<string>> PRINT_TYPEList
-        {
-            get { return _pRINT_TYPEList; }
-            set
-            {
-                _pRINT_TYPEList = value;
-                RaisePropertyChanged("PRINT_TYPEList");
-            }
-        }
-        #endregion
-        #region Form - 部分出貨方式
-        private List<NameValuePair<string>> _sPILT_OUTCHECKWAYList;
+		public DateTime DmEnd
+		{
+			get { return _dmEnd; }
+			set
+			{
+				_dmEnd = value;
+				RaisePropertyChanged("DmEnd");
+			}
+		}
+		#endregion
+		#region Form - 列印工具
+		private List<NameValuePair<string>> _pRINT_TYPEList;
 
-        public List<NameValuePair<string>> SPILT_OUTCHECKWAYList
-        {
-            get { return _sPILT_OUTCHECKWAYList; }
-            set
-            {
-                _sPILT_OUTCHECKWAYList = value;
-                RaisePropertyChanged("SPILT_OUTCHECKWAYList");
-            }
-        }
-        #endregion
-        #region Form - 預設郵遞區號
-        private List<NameValuePair<string>> _zIP_CODEList;
+		public List<NameValuePair<string>> PRINT_TYPEList
+		{
+			get { return _pRINT_TYPEList; }
+			set
+			{
+				_pRINT_TYPEList = value;
+				RaisePropertyChanged("PRINT_TYPEList");
+			}
+		}
+		#endregion
+		#region Form - 部分出貨方式
+		private List<NameValuePair<string>> _sPILT_OUTCHECKWAYList;
 
-        public List<NameValuePair<string>> ZIP_CODEList
-        {
-            get { return _zIP_CODEList; }
-            set
-            {
-                _zIP_CODEList = value;
-                RaisePropertyChanged("ZIP_CODEList");
-            }
-        }
-        #endregion
-        #region Data - DM資料List
-        private ObservableCollection<F190902> _dgItemList;
-        public ObservableCollection<F190902> DgItemList
-        {
-            get { return _dgItemList; }
-            set
-            {
-                _dgItemList = value;
-                RaisePropertyChanged("DgItemList");
-            }
-        }
+		public List<NameValuePair<string>> SPILT_OUTCHECKWAYList
+		{
+			get { return _sPILT_OUTCHECKWAYList; }
+			set
+			{
+				_sPILT_OUTCHECKWAYList = value;
+				RaisePropertyChanged("SPILT_OUTCHECKWAYList");
+			}
+		}
+		#endregion
+		#region Form - 預設郵遞區號
+		private List<NameValuePair<string>> _zIP_CODEList;
 
-        private F190902 _selectedDMData;
+		public List<NameValuePair<string>> ZIP_CODEList
+		{
+			get { return _zIP_CODEList; }
+			set
+			{
+				_zIP_CODEList = value;
+				RaisePropertyChanged("ZIP_CODEList");
+			}
+		}
+		#endregion
+		#region Data - DM資料List
+		private ObservableCollection<F190902> _dgItemList;
+		public ObservableCollection<F190902> DgItemList
+		{
+			get { return _dgItemList; }
+			set
+			{
+				_dgItemList = value;
+				RaisePropertyChanged("DgItemList");
+			}
+		}
 
-        public F190902 SelectedDMData
-        {
-            get { return _selectedDMData; }
-            set
-            {
-                _selectedDMData = value;
-                RaisePropertyChanged("SelectedDMData");
-            }
-        }
-        #endregion
-        #region Form - 廠退方式
-        private List<NameValuePair<string>> _vnrRtnType;
+		private F190902 _selectedDMData;
 
-        public List<NameValuePair<string>> VnrRtnType
-        {
-            get { return _vnrRtnType; }
-            set
-            {
-                _vnrRtnType = value;
-                RaisePropertyChanged("VnrRtnType");
-            }
-        }
-        #endregion
-        #region Form - 報廢銷毀方式
-        private List<NameValuePair<string>> _destroyType;
+		public F190902 SelectedDMData
+		{
+			get { return _selectedDMData; }
+			set
+			{
+				_selectedDMData = value;
+				RaisePropertyChanged("SelectedDMData");
+			}
+		}
+		#endregion
+		#region Form - 廠退方式
+		private List<NameValuePair<string>> _vnrRtnType;
 
-        public List<NameValuePair<string>> DestroyType
-        {
-            get { return _destroyType; }
-            set
-            {
-                _destroyType = value;
-                RaisePropertyChanged("DestroyType");
-            }
-        }
+		public List<NameValuePair<string>> VnrRtnType
+		{
+			get { return _vnrRtnType; }
+			set
+			{
+				_vnrRtnType = value;
+				RaisePropertyChanged("VnrRtnType");
+			}
+		}
+		#endregion
+		#region Form - 報廢銷毀方式
+		private List<NameValuePair<string>> _destroyType;
+
+		public List<NameValuePair<string>> DestroyType
+		{
+			get { return _destroyType; }
+			set
+			{
+				_destroyType = value;
+				RaisePropertyChanged("DestroyType");
+			}
+		}
 		#endregion
 		#region 
 		private string _spBox;
@@ -410,142 +410,142 @@ namespace Wms3pl.WpfClient.P71.ViewModel
 
 		#region 函式
 		public P7109030000_ViewModel()
-        {
-            if (!IsInDesignMode)
-            {
-                //初始化執行時所需的值及資料
-                InitControls();
-            }
-        }
+		{
+			if (!IsInDesignMode)
+			{
+				//初始化執行時所需的值及資料
+				InitControls();
+			}
+		}
 
-        private void InitControls()
-        {
-            _userId = Wms3plSession.Get<UserInfo>().Account;
-            _userName = Wms3plSession.Get<UserInfo>().AccountName;
-            //Wms3plSession.Get<GlobalInfo>().GetGupDataList("");
-            GupCodes = GetGupList(true);
-            if (GupCodes.Any())
-                SelectedGupCode = GupCodes.FirstOrDefault().Value;
-            #region Add/Edit
-            GupList = GetGupList();
-            CurrencyList = GetCurrencyList();
-            PAY_FACTORList = GetPAY_FACTORList();
-            PAY_TYPEList = GetPAY_TYPEList();
-            DcCodes = GetDcCodeList();
-            Special_InList = GetSpecial_InList();
-            LockData = GetLockList();
-            PRINT_TYPEList = GetPRINT_TYPEList();
-            SPILT_OUTCHECKWAYList = GetSPILT_OUTCHECKWAYList();
-            ZIP_CODEList = GetZIP_CODEList();
-            IsPrintInstockpallersticker_List = GetIsPrintInstockpallersticker_List();
-            VnrRtnType = GetVnrRtnType();
-            DestroyType = GetDestroyType();
-            #endregion
-        }
+		private void InitControls()
+		{
+			_userId = Wms3plSession.Get<UserInfo>().Account;
+			_userName = Wms3plSession.Get<UserInfo>().AccountName;
+			//Wms3plSession.Get<GlobalInfo>().GetGupDataList("");
+			GupCodes = GetGupList(true);
+			if (GupCodes.Any())
+				SelectedGupCode = GupCodes.FirstOrDefault().Value;
+			#region Add/Edit
+			GupList = GetGupList();
+			CurrencyList = GetCurrencyList();
+			PAY_FACTORList = GetPAY_FACTORList();
+			PAY_TYPEList = GetPAY_TYPEList();
+			DcCodes = GetDcCodeList();
+			Special_InList = GetSpecial_InList();
+			LockData = GetLockList();
+			PRINT_TYPEList = GetPRINT_TYPEList();
+			SPILT_OUTCHECKWAYList = GetSPILT_OUTCHECKWAYList();
+			ZIP_CODEList = GetZIP_CODEList();
+			IsPrintInstockpallersticker_List = GetIsPrintInstockpallersticker_List();
+			VnrRtnType = GetVnrRtnType();
+			DestroyType = GetDestroyType();
+			#endregion
+		}
 
-        public List<NameValuePair<string>> GetGupList(bool canAll = false)
-        {
-            var proxy = GetProxy<F19Entities>();
-            var query = from item in proxy.F1929s
-                        select new NameValuePair<string>()
-                        {
-                            Value = item.GUP_CODE,
-                            Name = item.GUP_NAME
-                        };
+		public List<NameValuePair<string>> GetGupList(bool canAll = false)
+		{
+			var proxy = GetProxy<F19Entities>();
+			var query = from item in proxy.F1929s
+									select new NameValuePair<string>()
+									{
+										Value = item.GUP_CODE,
+										Name = item.GUP_NAME
+									};
 
-            var list = query.ToList();
+			var list = query.ToList();
 
-            if (canAll)
-            {
-                list.Insert(0, new NameValuePair<string>() { Value = "", Name = Resources.Resources.All });
-            }
-            return list;
-        }
+			if (canAll)
+			{
+				list.Insert(0, new NameValuePair<string>() { Value = "", Name = Resources.Resources.All });
+			}
+			return list;
+		}
 
-        /// <summary>
-        /// 取得 F000904 的列舉值
-        /// </summary>
-        /// <param name="topic"></param>
-        /// <param name="subTopic"></param>
-        /// <returns></returns>
-        public List<NameValuePair<string>> GetF000904NameValueList(string topic, string subTopic)
-        {
-            return GetBaseTableService.GetF000904List(FunctionCode, topic, subTopic);
-        }
+		/// <summary>
+		/// 取得 F000904 的列舉值
+		/// </summary>
+		/// <param name="topic"></param>
+		/// <param name="subTopic"></param>
+		/// <returns></returns>
+		public List<NameValuePair<string>> GetF000904NameValueList(string topic, string subTopic)
+		{
+			return GetBaseTableService.GetF000904List(FunctionCode, topic, subTopic);
+		}
 
-        public List<NameValuePair<string>> GetCurrencyList()
-        {
-            return GetF000904NameValueList("F1909", "CURRENCY");
-        }
+		public List<NameValuePair<string>> GetCurrencyList()
+		{
+			return GetF000904NameValueList("F1909", "CURRENCY");
+		}
 
-        public List<NameValuePair<string>> GetPAY_FACTORList()
-        {
-            return GetF000904NameValueList("F1909", "PAY_FACTOR");
-        }
+		public List<NameValuePair<string>> GetPAY_FACTORList()
+		{
+			return GetF000904NameValueList("F1909", "PAY_FACTOR");
+		}
 
-        public List<NameValuePair<string>> GetPAY_TYPEList()
-        {
-            return GetF000904NameValueList("F1909", "PAY_TYPE");
-        }
+		public List<NameValuePair<string>> GetPAY_TYPEList()
+		{
+			return GetF000904NameValueList("F1909", "PAY_TYPE");
+		}
 
-        private List<NameValuePair<string>> GetDcCodeList()
-        {
-            return Wms3plSession.Get<GlobalInfo>().DcCodeList;
-        }
+		private List<NameValuePair<string>> GetDcCodeList()
+		{
+			return Wms3plSession.Get<GlobalInfo>().DcCodeList;
+		}
 
-        public List<NameValuePair<string>> GetSpecial_InList()
-        {
-            return GetF000904NameValueList("F1909", "SPECIAL_IN");
-        }
+		public List<NameValuePair<string>> GetSpecial_InList()
+		{
+			return GetF000904NameValueList("F1909", "SPECIAL_IN");
+		}
 
-        public List<NameValuePair<string>> GetIsPrintInstockpallersticker_List()
-        {
-            return GetF000904NameValueList("F1909", "IS_PRINT_INSTOCKPALLETSTICKER");
-        }
+		public List<NameValuePair<string>> GetIsPrintInstockpallersticker_List()
+		{
+			return GetF000904NameValueList("F1909", "IS_PRINT_INSTOCKPALLETSTICKER");
+		}
 
-        public List<NameValuePair<string>> GetLockList()
-        {
-            return GetF000904NameValueList("F1909", "MANAGER_LOCK");
-        }
-        public List<NameValuePair<string>> GetSP_BOXList()
-        {
-            if (SelectedData == null)
-                return new List<NameValuePair<string>>();
+		public List<NameValuePair<string>> GetLockList()
+		{
+			return GetF000904NameValueList("F1909", "MANAGER_LOCK");
+		}
+		public List<NameValuePair<string>> GetSP_BOXList()
+		{
+			if (SelectedData == null)
+				return new List<NameValuePair<string>>();
 
-            var proxy = GetProxy<F19Entities>();
-            var query = proxy.CreateQuery<F1903>("GetF1903sByCarton")
-                                                    .AddQueryExOption("gupCode", SelectedData.GUP_CODE)
-                                                    .AddQueryExOption("custCode", SelectedData.CUST_CODE)
-                                                    .AddQueryExOption("isCarton", "1")
-                                                    .Select(o => new NameValuePair<string>(o.ITEM_NAME, o.ITEM_CODE));
+			var proxy = GetProxy<F19Entities>();
+			var query = proxy.CreateQuery<F1903>("GetF1903sByCarton")
+																							.AddQueryExOption("gupCode", SelectedData.GUP_CODE)
+																							.AddQueryExOption("custCode", SelectedData.CUST_CODE)
+																							.AddQueryExOption("isCarton", "1")
+																							.Select(o => new NameValuePair<string>(o.ITEM_NAME, o.ITEM_CODE));
 
-            return query.ToList();
-        }
-        public List<NameValuePair<string>> GetPRINT_TYPEList()
-        {
-            return GetF000904NameValueList("F1909", "PRINT_TYPE");
-        }
-        public List<NameValuePair<string>> GetSPILT_OUTCHECKWAYList()
-        {
-            return GetF000904NameValueList("F1909", "SPILT_OUTCHECKWAY");
-        }
-        public List<NameValuePair<string>> GetZIP_CODEList()
-        {
-            return GetF000904NameValueList("F1909", "ZIP_CODE");
-        }
-        public List<NameValuePair<string>> GetVnrRtnType()
-        {
-            return GetF000904NameValueList("F1909", "VNR_RTN_TYPE");
-        }
-        public List<NameValuePair<string>> GetDestroyType()
-        {
-            return GetF000904NameValueList("F1909", "DESTROY_TYPE");
-        }
-        #endregion
+			return query.ToList();
+		}
+		public List<NameValuePair<string>> GetPRINT_TYPEList()
+		{
+			return GetF000904NameValueList("F1909", "PRINT_TYPE");
+		}
+		public List<NameValuePair<string>> GetSPILT_OUTCHECKWAYList()
+		{
+			return GetF000904NameValueList("F1909", "SPILT_OUTCHECKWAY");
+		}
+		public List<NameValuePair<string>> GetZIP_CODEList()
+		{
+			return GetF000904NameValueList("F1909", "ZIP_CODE");
+		}
+		public List<NameValuePair<string>> GetVnrRtnType()
+		{
+			return GetF000904NameValueList("F1909", "VNR_RTN_TYPE");
+		}
+		public List<NameValuePair<string>> GetDestroyType()
+		{
+			return GetF000904NameValueList("F1909", "DESTROY_TYPE");
+		}
+		#endregion
 
-        #region Command
-        #region Search
-        public ICommand SearchCommand
+		#region Command
+		#region Search
+		public ICommand SearchCommand
 		{
 			get
 			{
@@ -622,45 +622,45 @@ namespace Wms3pl.WpfClient.P71.ViewModel
 				ISDELV_NOLOADING = "0",
 				MANAGER_LOCK = "1",
 				ISPICKSHOWCUSTNAME = "0",
-				ISBACK_DISTR= "0",
-                CAL_CUFT="0",
-                CUFT_FACTOR= 2700,
-                CUFT_BLUK = 2,
-                PRINT_TYPE = "0",
-                SHOW_UNIT_TRANS = "1",
-                ISLATEST_VALID_DATE = "0",
-                ISB2B_ALONE_OUT = "0",
-                ISALLOW_DELV_DAY = "0",
-                ZIP_CODE = "",
-                SPILT_OUTCHECK = "0",
-                SPILT_OUTCHECKWAY = "0",
-                ISDELV_LOADING_CHECKCODE = "0",
-                IS_SINGLEBOXCHECK = "0",
-                ISSHIFTITEM = "0",
-                NEED_ITEMSPEC = "0",
-                IS_QUICK_CHECK = "0",
-                INSTOCKAUTOCLOSED = 0,
-                ALLOWOUTSHIPDETLOG = "0",
-                SPILT_VENDER_ORD = "0",
-                CHG_VENDER_ORD = "0",
-                ALLOW_ADVANCEDSTOCK = "0",
-                PRINT2PDF = "0",
-                VNR_RTN_TYPE = "0",
-                DESTROY_TYPE = "0",
-                ALLOW_EDIT_BOX_QTY = "0",
-                SHOW_QTY = "0",
-                SHOW_MESSAGE = "0",
+				ISBACK_DISTR = "0",
+				CAL_CUFT = "0",
+				CUFT_FACTOR = 2700,
+				CUFT_BLUK = 2,
+				PRINT_TYPE = "0",
+				SHOW_UNIT_TRANS = "1",
+				ISLATEST_VALID_DATE = "0",
+				ISB2B_ALONE_OUT = "0",
+				ISALLOW_DELV_DAY = "0",
+				ZIP_CODE = "",
+				SPILT_OUTCHECK = "0",
+				SPILT_OUTCHECKWAY = "0",
+				ISDELV_LOADING_CHECKCODE = "0",
+				IS_SINGLEBOXCHECK = "0",
+				ISSHIFTITEM = "0",
+				NEED_ITEMSPEC = "0",
+				IS_QUICK_CHECK = "0",
+				INSTOCKAUTOCLOSED = 0,
+				ALLOWOUTSHIPDETLOG = "0",
+				SPILT_VENDER_ORD = "0",
+				CHG_VENDER_ORD = "0",
+				ALLOW_ADVANCEDSTOCK = "0",
+				PRINT2PDF = "0",
+				VNR_RTN_TYPE = "0",
+				DESTROY_TYPE = "0",
+				ALLOW_EDIT_BOX_QTY = "0",
+				SHOW_QTY = "0",
+				SHOW_MESSAGE = "0",
 				SELFTAKE_CHECKCODE = "0",
 				MIX_SERIAL_NO = "0",
 				ISPRINT_SELFTAKE = "0",
 				ALLOWREPEAT_ITEMBARCODE = "0",
 				IS_ORDDATE_TODAY = "1",
-				ALLOWGUP_ITEMCATEGORYSHARE="0",
+				ALLOWGUP_ITEMCATEGORYSHARE = "0",
 				ALLOWGUP_VNRSHARE = "0",
 				ALLOWGUP_RETAILSHARE = "0",
 				ALLOWRT_SPECIALBUY = "0",
 				ALLOW_NOPRINTPICKORDER = "0",
-				ALLOW_NOSHIPPACKAGE="0",
+				ALLOW_NOSHIPPACKAGE = "0",
 				ALLOW_ADDBOXNOCHECK = "0",
 				ISPICKSHOWVALIDDATE = "0",
 				ISALLOCATIONSHOWVALIDDATE = "0",
@@ -669,7 +669,8 @@ namespace Wms3pl.WpfClient.P71.ViewModel
 				SUGGEST_LOC_TYPE = "0",
 				ALLOW_CANCEL_LACKORD = "0",
 				ALLOCATIONCHANGVALIDATE = "1",
-				ALLOCATIONCHANGMAKENO = "1"
+				ALLOCATIONCHANGMAKENO = "1",
+				ALLOW_ORDER_NO_DELV = "0"
 
 			};
 
@@ -806,7 +807,7 @@ namespace Wms3pl.WpfClient.P71.ViewModel
 
 			SelectedData = AutoMapper.Mapper.DynamicMap<F1909>(SelectedData);
 
-			
+
 
 		}
 		#endregion Edit

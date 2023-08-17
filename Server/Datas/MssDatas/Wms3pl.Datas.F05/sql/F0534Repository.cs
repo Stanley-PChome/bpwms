@@ -31,7 +31,7 @@ namespace Wms3pl.Datas.F05
 			var sql = @" SELECT TOP(500) DC_CODE, GUP_CODE, CUST_CODE, PICK_ORD_NO
 						   FROM F0534
 						  GROUP BY DC_CODE, GUP_CODE, CUST_CODE, PICK_ORD_NO
-						 HAVING MIN(STATUS) = '1'
+						 HAVING MIN(STATUS) IN ('1', '9')
 						";
 			return SqlQuery<F0534_NotAllotPick>(sql);
 		}
@@ -70,6 +70,7 @@ namespace Wms3pl.Datas.F05
 
 			ExecuteSqlCommand(sql, sqlParameter.ToArray());
 		}
+
 		public void UpdatePartialCloseByF0531Id(long f0531_ID)
 		{
 			var sqlParameter = new List<SqlParameter>();
@@ -83,6 +84,22 @@ namespace Wms3pl.Datas.F05
 					  WHERE F0701_ID IN (SELECT F0701_ID FROM F053201 WHERE F0531_ID = @p3) 
 						AND F0701_ID NOT IN (SELECT F0701_ID FROM F0530) 
 						AND STATUS = '0' ";
+
+			ExecuteSqlCommand(sql, sqlParameter.ToArray());
+		}
+
+		public void UpdatePartialCloseByF0701Id(long f0701_ID)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
+			sqlParameter.Add(new SqlParameter("@p1", Current.Staff) { SqlDbType = SqlDbType.VarChar });
+			sqlParameter.Add(new SqlParameter("@p2", Current.StaffName) { SqlDbType = SqlDbType.NVarChar });
+			sqlParameter.Add(new SqlParameter("@p3", f0701_ID) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @" UPDATE F0534
+							SET STATUS = '1', UPD_DATE = @p0, UPD_STAFF = @p1, UPD_NAME = @p2
+					  WHERE F0701_ID = @p3
+							AND STATUS = '0' ";
 
 			ExecuteSqlCommand(sql, sqlParameter.ToArray());
 		}

@@ -81,9 +81,10 @@ namespace Wms3pl.WebServices.Shared.WcsServices
           ReceiptCode = f060101s.First().DOC_ID
         };
 
+        WcsSetting.DcCode = dcCode;
         result = ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsInboundCancelResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null }, () =>
         {
-          return new WcsInboundCancelService().InboundCancel(url, req);
+          return InboundCancel(url, req);
         }, false);
 
       }

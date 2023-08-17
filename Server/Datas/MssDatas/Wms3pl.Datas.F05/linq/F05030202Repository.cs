@@ -21,14 +21,5 @@ namespace Wms3pl.Datas.F05
 
             return result;
 		}
-
-		public IQueryable<F05030202> GetDatasByOrdNos(string dcCode, string gupCode, string custCode, List<string> ordNos)
-		{
-			return _db.F05030202s.AsNoTracking().Where(x => x.DC_CODE == dcCode &&
-			x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			x.CUST_CODE == custCode &&
-			ordNos.Contains(x.ORD_NO));
-		}
 	}
 }

@@ -391,7 +391,12 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 		private void DoStopAllot()
 		{
 			var proxy = GetWcfProxy<wcf.P08WcfServiceClient>();
-			var result = proxy.RunWcfMethod(w => w.StopAllot(CurrentContainerPickInfo.F0701_ID));
+			var result = proxy.RunWcfMethod(w => w.StopAllot(new wcf.StopAllotParam()
+			{
+				PICK_F0701_ID = currentContainerPickInfo.F0701_ID,
+				NORMAL_F0531_ID = NormalShipBox.Info?.F0531_ID,
+				CANCEL_F0531_ID = CancelOrderBox.Info?.F0531_ID,
+			}));
 			if (!result.IsSuccessed)
 				ShowWarningMessage(result.Message);
 			else
@@ -526,6 +531,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 					return;
 				}
 				if (isLockItemBarcode) return;
+				IsBusy = true;
 				isLockItemBarcode = true;
 
 				ScanBarCode = ScanBarCode.Trim().ToUpper();
@@ -577,6 +583,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 			finally
 			{
 				isLockItemBarcode = false;
+				IsBusy = false;
 			}
 		}
 		#endregion ScanItemBarCode

@@ -280,6 +280,30 @@ namespace Wms3pl.Datas.F02
 										 AND F02020104.RT_NO = @p5
 										 AND F02020104.ISPASS = '1')";
       ExecuteSqlCommand(sql, parameter.ToArray());
-    }
-  }
+		}
+
+		public void UpdateStatusForUserCloseStock(string dcCode, string gupCode, string custCode, string poNo)
+		{
+			var sqlParams = new SqlParameter[]
+			{
+				new SqlParameter("@p0", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 },
+				new SqlParameter("@p1", Current.Staff) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", Current.StaffName) { SqlDbType=SqlDbType.NVarChar },
+				new SqlParameter("@p3", dcCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p4", gupCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p5", custCode) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p6", poNo) { SqlDbType = SqlDbType.VarChar },
+			};
+			string sql = @" UPDATE F020302 SET STATUS = '9', UPD_DATE = @p0, UPD_STAFF = @p1, UPD_NAME = @p2
+												WHERE FILE_NAME NOT LIKE 'USERCHK99_%'
+													AND STATUS = '0'
+													AND DC_CODE = @p3
+													AND GUP_CODE = @p4
+													AND CUST_CODE = @p5
+													AND PO_NO = @p6
+									";
+
+			ExecuteSqlCommand(sql, sqlParams);
+		}
+	}
 }

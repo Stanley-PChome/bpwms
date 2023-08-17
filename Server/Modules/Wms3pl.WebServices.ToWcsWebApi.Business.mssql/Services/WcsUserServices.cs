@@ -23,9 +23,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 		{
 			var res = new ApiResult { IsSuccessed = true };
 			var data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
-			// 新增API Log
-			res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportUserResults", req, () =>
+      // 新增API Log
+      res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportUserResults", req, () =>
 			{
 				// 取得物流中心服務貨主檔
 				CommonService commonService = new CommonService();
@@ -106,8 +107,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 						UserList = obj.Reqs
 					};
 
-					// 呼叫WcsApi-人員資訊
-					ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsUserResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? currReq : null, F060301s = obj.F060301s }, () =>
+          WcsSetting.DcCode = dcCode;
+
+          // 呼叫WcsApi-人員資訊
+          ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsUserResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? currReq : null, F060301s = obj.F060301s }, () =>
           {
 #if (DEBUG)
             result = WcsApiFuncTest(currReq, "User");

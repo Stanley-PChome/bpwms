@@ -168,9 +168,10 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
                     Details = currF060203.GroupBy(x => x.ROWNUM).Select(x => new AllocationConfirmDetail
                     {
                       Seq = Convert.ToInt16(x.Key),
-                      Qty = x.Sum(x1=>x1.SKUQTY),
+                      Qty = x.Sum(x1 => x1.SKUQTY),
                       ContainerCode = containerCode
-                    }).Distinct().ToList()
+                    }).Distinct().ToList(),
+                    ContainerResults = createResult
                   });
 
                   //上面的流程是下架處理，下面這功能應該是沒有作用

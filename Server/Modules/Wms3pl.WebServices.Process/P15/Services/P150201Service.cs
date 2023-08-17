@@ -368,7 +368,7 @@ namespace Wms3pl.WebServices.Process.P15.Services
 				AllocNo = f151001.ALLOCATION_NO,
 				StartTime = (f151001.UPD_DATE ?? f151001.CRT_DATE).ToString("yyyy/MM/dd HH:mm:ss"),
 				CompleteTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"),
-				Operator = Current.StaffName,
+				Operator = Current.Staff,
 				Details = details.Select(x => new AllocationConfirmDetail
 				{
 					Seq = x.ALLOCATION_SEQ,

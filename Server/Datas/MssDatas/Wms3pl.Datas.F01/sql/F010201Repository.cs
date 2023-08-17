@@ -14,7 +14,7 @@ namespace Wms3pl.Datas.F01
   {
 
     public IQueryable<F010201Data> GetF010201Datas(string dcCode, string gupCode, string custCode, string begStockDate,
-    string endStockDate, string stockNo, string vnrCode, string vnrName, string custOrdNo, string sourceNo, string status)
+    string endStockDate, string stockNo, string vnrCode, string vnrName, string custOrdNo, string sourceNo, string status, string userClosed)
     {
       var param = new List<SqlParameter>
                         {
@@ -26,7 +26,7 @@ namespace Wms3pl.Datas.F01
 								            A.DELIVER_DATE,A.SOURCE_TYPE, ISNULL(B.SOURCE_NAME,'') SOURCE_NAME,A.SOURCE_NO,A.VNR_CODE,C.VNR_NAME, 
 					                  C.ADDRESS AS VNR_ADDRESS,A.CUST_ORD_NO,A.CUST_COST,A.STATUS,D.NAME AS STATUSNAME,A.MEMO, 
 					                  A.CRT_STAFF,A.CRT_DATE,A.CRT_NAME,A.UPD_STAFF,A.UPD_DATE,A.UPD_NAME, A.ORD_PROP, A.SHOP_NO, A.EDI_FLAG,
-								A.FAST_PASS_TYPE ,A.BOOKING_IN_PERIOD
+								A.FAST_PASS_TYPE ,A.BOOKING_IN_PERIOD, A.USER_CLOSED_MEMO
 					             FROM F010201 A 
 					             LEFT JOIN F000902 B ON B.SOURCE_TYPE = A.SOURCE_TYPE 					  
 					            INNER JOIN VW_F000904_LANG D ON D.TOPIC ='F010201' AND D.SUBTOPIC='STATUS' AND D.VALUE = A.STATUS AND D.LANG = '{Current.Lang}'
@@ -85,7 +85,11 @@ namespace Wms3pl.Datas.F01
       }
       else
         sql += " AND A.STATUS !='9' ";
-
+      if (!string.IsNullOrEmpty(userClosed))
+      {
+        sql += "     AND ISNULL(A.USER_CLOSED, '0') = @p" + param.Count;
+        param.Add(new SqlParameter("@p" + param.Count, userClosed));
+      }
       sql += " ORDER BY A.STOCK_NO";
 
       var result = SqlQuery<F010201Data>(sql, param.ToArray());

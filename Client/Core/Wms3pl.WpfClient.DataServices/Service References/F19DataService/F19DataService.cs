@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/05/19 上午 11:36:37
+// Generation date: 2023/8/1 下午 02:32:17
 namespace Wms3pl.WpfClient.DataServices.F19DataService
 {
     
@@ -5051,400 +5051,402 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
                 " Type=\"Edm.String\" /><Property Name=\"DESTROY_TYPE\" Type=\"Edm.String\" /><Property" +
                 " Name=\"ALLOW_EDIT_BOX_QTY\" Type=\"Edm.String\" /><Property Name=\"SHOW_MESSAGE\" Typ" +
                 "e=\"Edm.String\" /><Property Name=\"SHOW_QTY\" Type=\"Edm.String\" /><Property Name=\"I" +
-                "S_UP_SHELF_CANCEL\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F194901\"><" +
-                "Key><PropertyRef Name=\"CARRIAGE_ID\" /></Key><Property Name=\"CARRIAGE_ID\" Type=\"E" +
-                "dm.String\" Nullable=\"false\" /><Property Name=\"CARRIAGE_NAME\" Type=\"Edm.String\" /" +
-                "><Property Name=\"USAGE\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm" +
-                ".String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DAT" +
-                "E\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\"" +
-                " Type=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F190105\"><Key><PropertyRef" +
-                " Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"fal" +
-                "se\" /><Property Name=\"OPEN_AUTO_ALLOC_STOCK\" Type=\"Edm.String\" /><Property Name=" +
-                "\"B2B_PDA_PICK_PECENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"B2C_" +
-                "PDA_PICK_PERCENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"B2B_AUTO" +
-                "_PICK_PRINT\" Type=\"Edm.String\" /><Property Name=\"B2C_AUTO_PICK_PRINT\" Type=\"Edm." +
-                "String\" /><Property Name=\"WAIT_SEND_AUTO_PICK\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"USE_CONTAINER\" Type=\"Edm.String\" /><Property Name=\"PICKORDER_MAX_RECORD\" Type" +
-                "=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_ITEMCNT\" Type=\"Edm.Int" +
-                "32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_RECORD\" Type=\"Edm.Int32\" Nullab" +
-                "le=\"false\" /><Property Name=\"OPEN_SPECIAL_ORDER\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"SHIP_MODE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime" +
-                "\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" " +
-                "/><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=" +
-                "\"Edm.String\" /><Property Name=\"DF_NSHIP_CONTAINER_TYPE\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"DF_CSHIP_CONTANER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_VNRSH" +
-                "IP_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_MOVE_CONTAINER_TYPE\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"CELL_TYPE_METHOD\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"IS_DIRECT_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONT" +
-                "AINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONTAINER_MAX_LENGTH\" Type=" +
-                "\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MID_LENGTH\" Type=\"Edm.Decimal\" />" +
-                "<Property Name=\"BASE_CONTAINER_MIN_LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"" +
-                "BASE_CONTAINER_VOLUMN\" Type=\"Edm.Decimal\" /><Property Name=\"LIMIT_SINGLEPICK_CUS" +
-                "T_LIST\" Type=\"Edm.String\" /><Property Name=\"AUTO_ALLOT_CUST_LIST\" Type=\"Edm.Stri" +
-                "ng\" /></EntityType><EntityType Name=\"F190106\"><Key><PropertyRef Name=\"ID\" /></Ke" +
-                "y><Property Name=\"ID\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"DC_COD" +
-                "E\" Type=\"Edm.String\" /><Property Name=\"SCHEDULE_TYPE\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"START_TIME\" Type=\"Edm.String\" /><Property Name=\"END_TIME\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"PERIOD\" Type=\"Edm.Byte\" Nullable=\"false\" /><Property Nam" +
-                "e=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=" +
-                "\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" />" +
-                "<Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19" +
-                "45\"><Key><PropertyRef Name=\"COLLECTION_CODE\" /><PropertyRef Name=\"DC_CODE\" /></K" +
-                "ey><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=" +
-                "\"COLLECTION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"COLLECTIO" +
-                "N_NAME\" Type=\"Edm.String\" /><Property Name=\"COLLECTION_TYPE\" Type=\"Edm.String\" /" +
-                "><Property Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property Name=\"CELL_TYPE\"" +
-                " Type=\"Edm.String\" /><Property Name=\"CELL_NUM\" Type=\"Edm.Int32\" Nullable=\"false\"" +
-                " /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Na" +
-                "me=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /" +
-                "><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type" +
-                "=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><Enti" +
-                "tyType Name=\"F194501\"><Key><PropertyRef Name=\"CELL_TYPE\" /><PropertyRef Name=\"DC" +
-                "_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Pr" +
-                "operty Name=\"CELL_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CEL" +
-                "L_NAME\" Type=\"Edm.String\" /><Property Name=\"LENGTH\" Type=\"Edm.Int32\" Nullable=\"f" +
-                "alse\" /><Property Name=\"DEPTH\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Nam" +
-                "e=\"HEIGHT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"VOLUME_RATE\" Type" +
-                "=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"MAX_VOLUME\" Type=\"Edm.Int64\" N" +
-                "ullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\"" +
-                " /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type" +
-                "=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"" +
-                "UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></E" +
-                "ntityType><EntityType Name=\"F191206\"><Key><PropertyRef Name";
+                "S_UP_SHELF_CANCEL\" Type=\"Edm.String\" /><Property Name=\"ALLOW_ORDER_NO_DELV\" Type" +
+                "=\"Edm.String\" /><Property Name=\"ALLOW_WAREHOUSEIN_CLOSED\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"IS_EXECIMMEDIATEITEM\" Type=\"Edm.String\" /></EntityType><EntityType" +
+                " Name=\"F194901\"><Key><PropertyRef Name=\"CARRIAGE_ID\" /></Key><Property Name=\"CAR" +
+                "RIAGE_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CARRIAGE_NAME\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"USAGE\" Type=\"Edm.String\" /><Property Name=\"CRT" +
+                "_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_S" +
+                "TAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F190105\">" +
+                "<Key><PropertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.Stri" +
+                "ng\" Nullable=\"false\" /><Property Name=\"OPEN_AUTO_ALLOC_STOCK\" Type=\"Edm.String\" " +
+                "/><Property Name=\"B2B_PDA_PICK_PECENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Pr" +
+                "operty Name=\"B2C_PDA_PICK_PERCENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Proper" +
+                "ty Name=\"B2B_AUTO_PICK_PRINT\" Type=\"Edm.String\" /><Property Name=\"B2C_AUTO_PICK_" +
+                "PRINT\" Type=\"Edm.String\" /><Property Name=\"WAIT_SEND_AUTO_PICK\" Type=\"Edm.String" +
+                "\" /><Property Name=\"USE_CONTAINER\" Type=\"Edm.String\" /><Property Name=\"PICKORDER" +
+                "_MAX_RECORD\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_ITEMC" +
+                "NT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_RECORD\" Type=\"" +
+                "Edm.Int32\" Nullable=\"false\" /><Property Name=\"OPEN_SPECIAL_ORDER\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"SHIP_MODE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" T" +
+                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Typ" +
+                "e=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name" +
+                "=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"DF_NSHIP_CONTAINER_TYPE\" Type=\"E" +
+                "dm.String\" /><Property Name=\"DF_CSHIP_CONTANER_TYPE\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"DF_VNRSHIP_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_MOVE_" +
+                "CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"CELL_TYPE_METHOD\" Type=\"Edm." +
+                "String\" /><Property Name=\"IS_DIRECT_CONTAINER_TYPE\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"BASE_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONTAINER_" +
+                "MAX_LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MID_LENGTH\" Type" +
+                "=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MIN_LENGTH\" Type=\"Edm.Decimal\" /" +
+                "><Property Name=\"BASE_CONTAINER_VOLUMN\" Type=\"Edm.Decimal\" /><Property Name=\"LIM" +
+                "IT_SINGLEPICK_CUST_LIST\" Type=\"Edm.String\" /><Property Name=\"AUTO_ALLOT_CUST_LIS" +
+                "T\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F190106\"><Key><PropertyRef" +
+                " Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int32\" Nullable=\"false\" /><Prop" +
+                "erty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"SCHEDULE_TYPE\" Type=\"Edm" +
+                ".String\" /><Property Name=\"START_TIME\" Type=\"Edm.String\" /><Property Name=\"END_T" +
+                "IME\" Type=\"Edm.String\" /><Property Name=\"PERIOD\" Type=\"Edm.Byte\" Nullable=\"false" +
+                "\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property N" +
+                "ame=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" " +
+                "/><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><Ent" +
+                "ityType Name=\"F1945\"><Key><PropertyRef Name=\"COLLECTION_CODE\" /><PropertyRef Nam" +
+                "e=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" " +
+                "/><Property Name=\"COLLECTION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Propert" +
+                "y Name=\"COLLECTION_NAME\" Type=\"Edm.String\" /><Property Name=\"COLLECTION_TYPE\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property" +
+                " Name=\"CELL_TYPE\" Type=\"Edm.String\" /><Property Name=\"CELL_NUM\" Type=\"Edm.Int32\"" +
+                " Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fals" +
+                "e\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name" +
+                "=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><" +
+                "/EntityType><EntityType Name=\"F194501\"><Key><PropertyRef Name=\"CELL_TYPE\" /><Pro" +
+                "pertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nulla" +
+                "ble=\"false\" /><Property Name=\"CELL_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><P" +
+                "roperty Name=\"CELL_NAME\" Type=\"Edm.String\" /><Property Name=\"LENGTH\" Type=\"Edm.I" +
+                "nt32\" Nullable=\"false\" /><Property Name=\"DEPTH\" Type=\"Edm.Int32\" Nullable=\"false" +
+                "\" /><Property Name=\"HEIGHT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"" +
+                "VOLUME_RATE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"MAX_VOLUME\" T" +
+                "ype=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\"" +
+                " Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" ";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart17 = "=\"DC_CODE\" /><PropertyRef Name=\"PK_AREA\" /></Key><Property Name=\"DC_CODE\" Type=\"E" +
-                "dm.String\" Nullable=\"false\" /><Property Name=\"PICK_FLOOR\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"PICK_TYPE\" Type=\"Edm.String\" /><Property Name=\"PK_AREA\" Type=\"Edm." +
-                "String\" Nullable=\"false\" /><Property Name=\"PK_NAME\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ISENABL" +
-                "ED\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"" +
-                "false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF" +
-                "\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property " +
-                "Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\"" +
-                " /></EntityType><EntityType Name=\"F19120601\"><Key><PropertyRef Name=\"DC_CODE\" />" +
-                "<PropertyRef Name=\"LINE_SEQ\" /><PropertyRef Name=\"PK_AREA\" /></Key><Property Nam" +
-                "e=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PK_AREA\" Type=\"" +
-                "Edm.String\" Nullable=\"false\" /><Property Name=\"LINE_SEQ\" Type=\"Edm.Int32\" Nullab" +
-                "le=\"false\" /><Property Name=\"BEGIN_LOC_CODE\" Type=\"Edm.String\" /><Property Name=" +
-                "\"END_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"MOVING_HORIZON\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"MOVING_VERTICAL\" Type=\"Edm.String\" /><Property Name=\"PROC" +
-                "_FLAG\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullabl" +
-                "e=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_ST" +
-                "AFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Proper" +
-                "ty Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.Stri" +
-                "ng\" /></EntityType><EntityType Name=\"F19120602\"><Key><PropertyRef Name=\"ID\" /></" +
-                "Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_C" +
-                "ODE\" Type=\"Edm.String\" /><Property Name=\"PK_AREA\" Type=\"Edm.String\" /><Property " +
-                "Name=\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PICK_FLOO" +
-                "R\" Type=\"Edm.String\" /><Property Name=\"PICK_TYPE\" Type=\"Edm.String\" /><Property " +
-                "Name=\"CHK_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"LINE_SEQ\" Type=\"Edm.Int3" +
-                "2\" Nullable=\"false\" /><Property Name=\"PLAIN_SEQ\" Type=\"Edm.Int32\" Nullable=\"fals" +
-                "e\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property " +
-                "Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\"" +
-                " /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_NAME\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /></EntityType><En" +
-                "tityType Name=\"F1946\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"WORK" +
-                "STATION_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false" +
-                "\" /><Property Name=\"WORKSTATION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Prop" +
-                "erty Name=\"WORKSTATION_TYPE\" Type=\"Edm.String\" /><Property Name=\"WORKSTATION_GRO" +
-                "UP\" Type=\"Edm.String\" /><Property Name=\"PACKING_LINE_NO\" Type=\"Edm.String\" /><Pr" +
-                "operty Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.Dat" +
-                "eTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateT" +
-                "ime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" " +
-                "Type=\"Edm.String\" /></EntityType><EntityType Name=\"F191305\"><Key><PropertyRef Na" +
-                "me=\"DC_CODE\" /><PropertyRef Name=\"TRANSACTION_NO\" /></Key><Property Name=\"DC_COD" +
-                "E\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"TRANSACTION_NO\" Type=\"Ed" +
-                "m.String\" Nullable=\"false\" /><Property Name=\"SEND_DATA\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.Date" +
-                "Time\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\"" +
-                " Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fal" +
-                "se\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" T" +
-                "ype=\"Edm.String\" /></EntityType><EntityType Name=\"F1955\"><Key><PropertyRef Name=" +
-                "\"CONVENIENT_CODE\" /><PropertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\"" +
-                " Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CONVENIENT_CODE\" Type=\"Edm" +
-                ".String\" Nullable=\"false\" /><Property Name=\"CONVENIENT_NAME\" Type=\"Edm.String\" /" +
-                "><Property Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property Name=\"CELL_NUM\" " +
-                "Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime" +
-                "\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" " +
-                "/><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=" +
-                "\"Edm.String\" /></EntityType><EntityType Name=\"F1956\"><Key><PropertyRef Name=\"PRI" +
-                "ORITY_CODE\" /></Key><Property Name=\"PRIORITY_CODE\" Type=\"Edm.String\" Nullable=\"f" +
-                "alse\" /><Property Name=\"PRIORITY_NAME\" Type=\"Edm.String\" /><Property Name=\"IS_SH" +
-                "OW\" Type=\"Edm.String\" /><Property Name=\"IS_SYSTEM\" Type=\"Edm.String\" /><Property" +
-                " Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAF" +
-                "F\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String" +
-                "\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=" +
-                "\"F195601\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"DEVICE_TYPE\" /><" +
-                "PropertyRef Name=\"PRIORITY_CODE\" /></Key><Property Name=\"PRIORITY_CODE\" Type=\"Ed" +
-                "m.String\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable" +
-                "=\"false\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><Pr" +
-                "operty Name=\"PRIORITY_VALUE\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=" +
-                "\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"U" +
-                "PD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1913" +
-                "0501\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" N" +
-                "ullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"" +
-                "CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"SERIAL_NO\" Type=\"Edm.String\" /><Property Name=\"ACTION_TYPE\" Type=\"" +
-                "Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"BATCH_" +
-                "NO\" Type=\"Edm.String\" /><Property Name=\"MESSAGE\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime" +
-                "\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" " +
-                "/><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F" +
-                "1903_ASYNC\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.In" +
-                "t64\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property " +
-                "Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String" +
-                "\" /><Property Name=\"IS_ASYNC\" Type=\"Edm.String\" /><Property Name=\"BATCH_NO\" Type" +
-                "=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /" +
-                "><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"" +
-                "Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UP" +
-                "D_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></Ent" +
-                "ityType></Schema><Schema Namespace=\"Wms3pl.Datas.Schedule\" xmlns=\"http://schemas" +
-                ".microsoft.com/ado/2007/05/edm\"><EntityType Name=\"PREFERENC";
+            private const string ModelPart17 = "Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F191206\"><Key><" +
+                "PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"PK_AREA\" /></Key><Property Name=" +
+                "\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PICK_FLOOR\" Type=" +
+                "\"Edm.String\" /><Property Name=\"PICK_TYPE\" Type=\"Edm.String\" /><Property Name=\"PK" +
+                "_AREA\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PK_NAME\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Prope" +
+                "rty Name=\"ISENABLED\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.Dat" +
+                "eTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateT" +
+                "ime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" " +
+                "Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19120601\"><Key><PropertyRef " +
+                "Name=\"DC_CODE\" /><PropertyRef Name=\"LINE_SEQ\" /><PropertyRef Name=\"PK_AREA\" /></" +
+                "Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name" +
+                "=\"PK_AREA\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"LINE_SEQ\" Type=\"" +
+                "Edm.Int32\" Nullable=\"false\" /><Property Name=\"BEGIN_LOC_CODE\" Type=\"Edm.String\" " +
+                "/><Property Name=\"END_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"MOVING_HORIZ" +
+                "ON\" Type=\"Edm.String\" /><Property Name=\"MOVING_VERTICAL\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"PROC_FLAG\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm." +
+                "DateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.Da" +
+                "teTime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAF" +
+                "F\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19120602\"><Key><PropertyR" +
+                "ef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Pr" +
+                "operty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"PK_AREA\" Type=\"Edm.Str" +
+                "ing\" /><Property Name=\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Propert" +
+                "y Name=\"PICK_FLOOR\" Type=\"Edm.String\" /><Property Name=\"PICK_TYPE\" Type=\"Edm.Str" +
+                "ing\" /><Property Name=\"CHK_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"LINE_SE" +
+                "Q\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PLAIN_SEQ\" Type=\"Edm.Int3" +
+                "2\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fa" +
+                "lse\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" " +
+                "Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Na" +
+                "me=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /" +
+                "></EntityType><EntityType Name=\"F1946\"><Key><PropertyRef Name=\"DC_CODE\" /><Prope" +
+                "rtyRef Name=\"WORKSTATION_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String" +
+                "\" Nullable=\"false\" /><Property Name=\"WORKSTATION_CODE\" Type=\"Edm.String\" Nullabl" +
+                "e=\"false\" /><Property Name=\"WORKSTATION_TYPE\" Type=\"Edm.String\" /><Property Name" +
+                "=\"WORKSTATION_GROUP\" Type=\"Edm.String\" /><Property Name=\"PACKING_LINE_NO\" Type=\"" +
+                "Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DA" +
+                "TE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm." +
+                "String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE" +
+                "\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property" +
+                " Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F191305\"><Ke" +
+                "y><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"TRANSACTION_NO\" /></Key><Prop" +
+                "erty Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"TRANSAC" +
+                "TION_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"SEND_DATA\" Type=\"E" +
+                "dm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"UPD_DAT" +
+                "E\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property" +
+                " Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTi" +
+                "me\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"CRT_STAFF\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1955\"><Key><" +
+                "PropertyRef Name=\"CONVENIENT_CODE\" /><PropertyRef Name=\"DC_CODE\" /></Key><Proper" +
+                "ty Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CONVENIEN" +
+                "T_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CONVENIENT_NAME\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property" +
+                " Name=\"CELL_NUM\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" T" +
+                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Typ" +
+                "e=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name" +
+                "=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1956\"><Key><Prop" +
+                "ertyRef Name=\"PRIORITY_CODE\" /></Key><Property Name=\"PRIORITY_CODE\" Type=\"Edm.St" +
+                "ring\" Nullable=\"false\" /><Property Name=\"PRIORITY_NAME\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"IS_SHOW\" Type=\"Edm.String\" /><Property Name=\"IS_SYSTEM\" Type=\"Edm.St" +
+                "ring\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Proper" +
+                "ty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\"" +
+                " Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType>" +
+                "<EntityType Name=\"F195601\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=" +
+                "\"DEVICE_TYPE\" /><PropertyRef Name=\"PRIORITY_CODE\" /></Key><Property Name=\"PRIORI" +
+                "TY_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm" +
+                ".String\" Nullable=\"false\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" Nulla" +
+                "ble=\"false\" /><Property Name=\"PRIORITY_VALUE\" Type=\"Edm.Int32\" Nullable=\"false\" " +
+                "/><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Nam" +
+                "e=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" />" +
+                "<Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=" +
+                "\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><Entit" +
+                "yType Name=\"F19130501\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" T" +
+                "ype=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /" +
+                "><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=" +
+                "\"Edm.String\" /><Property Name=\"SERIAL_NO\" Type=\"Edm.String\" /><Property Name=\"AC" +
+                "TION_TYPE\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"BATCH_NO\" Type=\"Edm.String\" /><Property Name=\"MESSAGE\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" T" +
+                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_NAME\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><E" +
+                "ntityType Name=\"F1903_ASYNC\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=" +
+                "\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.Str" +
+                "ing\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\"" +
+                " Type=\"Edm.String\" /><Property Name=\"IS_ASYNC\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"BATCH_NO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" N" +
+                "ullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=" +
+                "\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><" +
+                "Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Nam";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart18 = "E\"><Key><PropertyRef Name=\"EMP_ID\" /></Key><Property Name=\"EMP_ID\" Type=\"Edm.Stri" +
-                "ng\" Nullable=\"false\" /><Property Name=\"DATA\" Type=\"Edm.Binary\" /><Property Name=" +
-                "\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"CUST_CODE\" Type=\"Edm.String\" /></EntityType></Schema><Schema Namespa" +
-                "ce=\"Wms3pl.DBCore\" xmlns=\"http://schemas.microsoft.com/ado/2007/05/edm\"><EntityC" +
-                "ontainer Name=\"Wms3plDbContext\" m:IsDefaultEntityContainer=\"true\"><EntitySet Nam" +
-                "e=\"F190101s\" EntityType=\"Wms3pl.Datas.F19.F190101\" /><EntitySet Name=\"F191901s\" " +
-                "EntityType=\"Wms3pl.Datas.F19.F191901\" /><EntitySet Name=\"F192401s\" EntityType=\"W" +
-                "ms3pl.Datas.F19.F192401\" /><EntitySet Name=\"F192401_IMPORTLOGs\" EntityType=\"Wms3" +
-                "pl.Datas.F19.F192401_IMPORTLOG\" /><EntitySet Name=\"F192402s\" EntityType=\"Wms3pl." +
-                "Datas.F19.F192402\" /><EntitySet Name=\"F192403s\" EntityType=\"Wms3pl.Datas.F19.F19" +
-                "2403\" /><EntitySet Name=\"F1943s\" EntityType=\"Wms3pl.Datas.F19.F1943\" /><EntitySe" +
-                "t Name=\"F1952s\" EntityType=\"Wms3pl.Datas.F19.F1952\" /><EntitySet Name=\"F1953s\" E" +
-                "ntityType=\"Wms3pl.Datas.F19.F1953\" /><EntitySet Name=\"F195301s\" EntityType=\"Wms3" +
-                "pl.Datas.F19.F195301\" /><EntitySet Name=\"F195301_IMPORTLOGs\" EntityType=\"Wms3pl." +
-                "Datas.F19.F195301_IMPORTLOG\" /><EntitySet Name=\"F1963s\" EntityType=\"Wms3pl.Datas" +
-                ".F19.F1963\" /><EntitySet Name=\"F196301s\" EntityType=\"Wms3pl.Datas.F19.F196301\" /" +
-                "><EntitySet Name=\"F1981s\" EntityType=\"Wms3pl.Datas.F19.F1981\" /><EntitySet Name=" +
-                "\"F1983s\" EntityType=\"Wms3pl.Datas.F19.F1983\" /><EntitySet Name=\"F1919s\" EntityTy" +
-                "pe=\"Wms3pl.Datas.F19.F1919\" /><EntitySet Name=\"F191202s\" EntityType=\"Wms3pl.Data" +
-                "s.F19.F191202\" /><EntitySet Name=\"F1980s\" EntityType=\"Wms3pl.Datas.F19.F1980\" />" +
-                "<EntitySet Name=\"F1954s\" EntityType=\"Wms3pl.Datas.F19.F1954\" /><EntitySet Name=\"" +
-                "F1954_I18N\" EntityType=\"Wms3pl.Datas.F19.F1954_I18N\" /><EntitySet Name=\"F1925s\" " +
-                "EntityType=\"Wms3pl.Datas.F19.F1925\" /><EntitySet Name=\"F19000101s\" EntityType=\"W" +
-                "ms3pl.Datas.F19.F19000101\" /><EntitySet Name=\"F19000102s\" EntityType=\"Wms3pl.Dat" +
-                "as.F19.F19000102\" /><EntitySet Name=\"F19000103s\" EntityType=\"Wms3pl.Datas.F19.F1" +
-                "9000103\" /><EntitySet Name=\"F1928s\" EntityType=\"Wms3pl.Datas.F19.F1928\" /><Entit" +
-                "ySet Name=\"F190902s\" EntityType=\"Wms3pl.Datas.F19.F190902\" /><EntitySet Name=\"F1" +
-                "90901s\" EntityType=\"Wms3pl.Datas.F19.F190901\" /><EntitySet Name=\"F190003s\" Entit" +
-                "yType=\"Wms3pl.Datas.F19.F190003\" /><EntitySet Name=\"F190001s\" EntityType=\"Wms3pl" +
-                ".Datas.F19.F190001\" /><EntitySet Name=\"F1970s\" EntityType=\"Wms3pl.Datas.F19.F197" +
-                "0\" /><EntitySet Name=\"F197001s\" EntityType=\"Wms3pl.Datas.F19.F197001\" /><EntityS" +
-                "et Name=\"F192404s\" EntityType=\"Wms3pl.Datas.F19.F192404\" /><EntitySet Name=\"F192" +
-                "9s\" EntityType=\"Wms3pl.Datas.F19.F1929\" /><EntitySet Name=\"F190002s\" EntityType=" +
-                "\"Wms3pl.Datas.F19.F190002\" /><EntitySet Name=\"F1933s\" EntityType=\"Wms3pl.Datas.F" +
-                "19.F1933\" /><EntitySet Name=\"F1934s\" EntityType=\"Wms3pl.Datas.F19.F1934\" /><Enti" +
-                "tySet Name=\"F190904s\" EntityType=\"Wms3pl.Datas.F19.F190904\" /><EntitySet Name=\"F" +
-                "1950s\" EntityType=\"Wms3pl.Datas.F19.F1950\" /><EntitySet Name=\"F1942s\" EntityType" +
-                "=\"Wms3pl.Datas.F19.F1942\" /><EntitySet Name=\"F190207s\" EntityType=\"Wms3pl.Datas." +
-                "F19.F190207\" /><EntitySet Name=\"F1951s\" EntityType=\"Wms3pl.Datas.F19.F1951\" /><E" +
-                "ntitySet Name=\"F194702s\" EntityType=\"Wms3pl.Datas.F19.F194702\" /><EntitySet Name" +
-                "=\"F190206s\" EntityType=\"Wms3pl.Datas.F19.F190206\" /><EntitySet Name=\"F19000104s\"" +
-                " EntityType=\"Wms3pl.Datas.F19.F19000104\" /><EntitySet Name=\"F194705s\" EntityType" +
-                "=\"Wms3pl.Datas.F19.F194705\" /><EntitySet Name=\"F190102s\" EntityType=\"Wms3pl.Data" +
-                "s.F19.F190102\" /><EntitySet Name=\"F194708s\" EntityType=\"Wms3pl.Datas.F19.F194708" +
-                "\" /><EntitySet Name=\"F19470801s\" EntityType=\"Wms3pl.Datas.F19.F19470801\" /><Enti" +
-                "tySet Name=\"F194709s\" EntityType=\"Wms3pl.Datas.F19.F194709\" /><EntitySet Name=\"F" +
-                "194707s\" EntityType=\"Wms3pl.Datas.F19.F194707\" /><EntitySet Name=\"F1912s\" Entity" +
-                "Type=\"Wms3pl.Datas.F19.F1912\" /><EntitySet Name=\"F1948s\" EntityType=\"Wms3pl.Data" +
-                "s.F19.F1948\" /><EntitySet Name=\"F194801s\" EntityType=\"Wms3pl.Datas.F19.F194801\" " +
-                "/><EntitySet Name=\"F199007s\" EntityType=\"Wms3pl.Datas.F19.F199007\" /><EntitySet " +
-                "Name=\"F190004s\" EntityType=\"Wms3pl.Datas.F19.F190004\" /><EntitySet Name=\"F190303" +
-                "s\" EntityType=\"Wms3pl.Datas.F19.F190303\" /><EntitySet Name=\"F194703s\" EntityType" +
-                "=\"Wms3pl.Datas.F19.F194703\" /><EntitySet Name=\"F190701s\" EntityType=\"Wms3pl.Data" +
-                "s.F19.F190701\" /><EntitySet Name=\"F190702s\" EntityType=\"Wms3pl.Datas.F19.F190702" +
-                "\" /><EntitySet Name=\"F190703s\" EntityType=\"Wms3pl.Datas.F19.F190703\" /><EntitySe" +
-                "t Name=\"F190704s\" EntityType=\"Wms3pl.Datas.F19.F190704\" /><EntitySet Name=\"F1902" +
-                "05s\" EntityType=\"Wms3pl.Datas.F19.F190205\" /><EntitySet Name=\"F1905s\" EntityType" +
-                "=\"Wms3pl.Datas.F19.F1905\" /><EntitySet Name=\"F190301s\" EntityType=\"Wms3pl.Datas." +
-                "F19.F190301\" /><EntitySet Name=\"F194701s\" EntityType=\"Wms3pl.Datas.F19.F194701\" " +
-                "/><EntitySet Name=\"F19470101s\" EntityType=\"Wms3pl.Datas.F19.F19470101\" /><Entity" +
-                "Set Name=\"F192405s\" EntityType=\"Wms3pl.Datas.F19.F192405\" /><EntitySet Name=\"F19" +
-                "5302s\" EntityType=\"Wms3pl.Datas.F19.F195302\" /><EntitySet Name=\"F19471001s\" Enti" +
-                "tyType=\"Wms3pl.Datas.F19.F19471001\" /><EntitySet Name=\"F1952_HISTORYs\" EntityTyp" +
-                "e=\"Wms3pl.Datas.F19.F1952_HISTORY\" /><EntitySet Name=\"F199001s\" EntityType=\"Wms3" +
-                "pl.Datas.F19.F199001\" /><EntitySet Name=\"F199002s\" EntityType=\"Wms3pl.Datas.F19." +
-                "F199002\" /><EntitySet Name=\"F199006s\" EntityType=\"Wms3pl.Datas.F19.F199006\" /><E" +
-                "ntitySet Name=\"F199003s\" EntityType=\"Wms3pl.Datas.F19.F199003\" /><EntitySet Name" +
-                "=\"F199005s\" EntityType=\"Wms3pl.Datas.F19.F199005\" /><EntitySet Name=\"F194711s\" E" +
-                "ntityType=\"Wms3pl.Datas.F19.F194711\" /><EntitySet Name=\"F1901s\" EntityType=\"Wms3" +
-                "pl.Datas.F19.F1901\" /><EntitySet Name=\"F197002s\" EntityType=\"Wms3pl.Datas.F19.F1" +
-                "97002\" /><EntitySet Name=\"F19700201s\" EntityType=\"Wms3pl.Datas.F19.F19700201\" />" +
-                "<EntitySet Name=\"F194713s\" EntityType=\"Wms3pl.Datas.F19.F194713\" /><EntitySet Na" +
-                "me=\"F190906s\" EntityType=\"Wms3pl.Datas.F19.F190906\" /><EntitySet Name=\"F198001s\"" +
-                " EntityType=\"Wms3pl.Datas.F19.F198001\" /><EntitySet Name=\"F194714s\" EntityType=\"" +
-                "Wms3pl.Datas.F19.F194714\" /><EntitySet Name=\"F1915s\" EntityType=\"Wms3pl.Datas.F1" +
-                "9.F1915\" /><EntitySet Name=\"F1916s\" EntityType=\"Wms3pl.Datas.F19.F1916\" /><Entit" +
-                "ySet Name=\"F1917s\" EntityType=\"Wms3pl.Datas.F19.F1917\" /><EntitySet Name=\"F1924s" +
-                "\" EntityType=\"Wms3pl.Datas.F19.F1924\" /><EntitySet Name=\"F19540201s\" EntityType=" +
-                "\"Wms3pl.Datas.F19.F19540201\" /><EntitySet Name=\"F19540202s\" EntityType=\"Wms3pl.D" +
-                "atas.F19.F19540202\" /><EntitySet Name=\"F191201s\" EntityType=\"Wms3pl.Datas.F19.F1" +
-                "91201\" /><EntitySet Name=\"F1908s\" EntityType=\"Wms3pl.Datas.F19.F1908\" /><EntityS" +
-                "et Name=\"F191001s\" EntityType=\"Wms3pl.Datas.F19.F191001\" /><EntitySet Name=\"F191" +
-                "002s\" EntityType=\"Wms3pl.Datas.F19.F191002\" /><EntitySet Name=\"F1910s\" EntityTyp" +
-                "e=\"Wms3pl.Datas.F19.F1910\" /><EntitySet Name=\"F190010s\" EntityType=\"Wms3pl.Datas" +
-                ".F19.F190010\" /><EntitySet Name=\"F19471601s\" EntityType=\"Wms3pl.Datas.F19.F19471" +
-                "601\" /><EntitySet Name=\"F194716s\" EntityType=\"Wms3pl.Datas.F19.F194716\" /><Entit" +
-                "ySet Name=\"F190905s\" EntityType=\"Wms3pl.Datas.F19.F190905\" /><EntitySet Name=\"F1" +
-                "90908s\" EntityType=\"Wms3pl.Datas.F19.F190908\" /><EntitySet Name=\"F194706s\" Entit" +
-                "yType=\"Wms3pl.Datas.F19.F194706\" /><EntitySet Name=\"F194712s\" EntityType=\"Wms3pl" +
-                ".Datas.F19.F194712\" /><EntitySet Name=\"F19471201s\" EntityType=\"Wms3pl.Datas.F19." +
-                "F19471201\" /><EntitySet Name=\"F1944s\" EntityType=\"Wms3pl.Datas.F19.F1944\" /><Ent" +
-                "itySet Name=\"F191902s\" EntityType=\"Wms3pl.Datas.F19.F191902\" /><EntitySet Name=\"" +
-                "F190305s\" EntityType=\"Wms3pl.Datas.F19.F190305\" /><EntitySe";
+            private const string ModelPart18 = "e=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType></Schema><Schema Namespace=\"Wms3pl." +
+                "Datas.Schedule\" xmlns=\"http://schemas.microsoft.com/ado/2007/05/edm\"><EntityType" +
+                " Name=\"PREFERENCE\"><Key><PropertyRef Name=\"EMP_ID\" /></Key><Property Name=\"EMP_I" +
+                "D\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DATA\" Type=\"Edm.Binary\" " +
+                "/><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"E" +
+                "dm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /></EntityType></Schem" +
+                "a><Schema Namespace=\"Wms3pl.DBCore\" xmlns=\"http://schemas.microsoft.com/ado/2007" +
+                "/05/edm\"><EntityContainer Name=\"Wms3plDbContext\" m:IsDefaultEntityContainer=\"tru" +
+                "e\"><EntitySet Name=\"F190101s\" EntityType=\"Wms3pl.Datas.F19.F190101\" /><EntitySet" +
+                " Name=\"F191901s\" EntityType=\"Wms3pl.Datas.F19.F191901\" /><EntitySet Name=\"F19240" +
+                "1s\" EntityType=\"Wms3pl.Datas.F19.F192401\" /><EntitySet Name=\"F192401_IMPORTLOGs\"" +
+                " EntityType=\"Wms3pl.Datas.F19.F192401_IMPORTLOG\" /><EntitySet Name=\"F192402s\" En" +
+                "tityType=\"Wms3pl.Datas.F19.F192402\" /><EntitySet Name=\"F192403s\" EntityType=\"Wms" +
+                "3pl.Datas.F19.F192403\" /><EntitySet Name=\"F1943s\" EntityType=\"Wms3pl.Datas.F19.F" +
+                "1943\" /><EntitySet Name=\"F1952s\" EntityType=\"Wms3pl.Datas.F19.F1952\" /><EntitySe" +
+                "t Name=\"F1953s\" EntityType=\"Wms3pl.Datas.F19.F1953\" /><EntitySet Name=\"F195301s\"" +
+                " EntityType=\"Wms3pl.Datas.F19.F195301\" /><EntitySet Name=\"F195301_IMPORTLOGs\" En" +
+                "tityType=\"Wms3pl.Datas.F19.F195301_IMPORTLOG\" /><EntitySet Name=\"F1963s\" EntityT" +
+                "ype=\"Wms3pl.Datas.F19.F1963\" /><EntitySet Name=\"F196301s\" EntityType=\"Wms3pl.Dat" +
+                "as.F19.F196301\" /><EntitySet Name=\"F1981s\" EntityType=\"Wms3pl.Datas.F19.F1981\" /" +
+                "><EntitySet Name=\"F1983s\" EntityType=\"Wms3pl.Datas.F19.F1983\" /><EntitySet Name=" +
+                "\"F1919s\" EntityType=\"Wms3pl.Datas.F19.F1919\" /><EntitySet Name=\"F191202s\" Entity" +
+                "Type=\"Wms3pl.Datas.F19.F191202\" /><EntitySet Name=\"F1980s\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F1980\" /><EntitySet Name=\"F1954s\" EntityType=\"Wms3pl.Datas.F19.F1954\" />" +
+                "<EntitySet Name=\"F1954_I18N\" EntityType=\"Wms3pl.Datas.F19.F1954_I18N\" /><EntityS" +
+                "et Name=\"F1925s\" EntityType=\"Wms3pl.Datas.F19.F1925\" /><EntitySet Name=\"F1900010" +
+                "1s\" EntityType=\"Wms3pl.Datas.F19.F19000101\" /><EntitySet Name=\"F19000102s\" Entit" +
+                "yType=\"Wms3pl.Datas.F19.F19000102\" /><EntitySet Name=\"F19000103s\" EntityType=\"Wm" +
+                "s3pl.Datas.F19.F19000103\" /><EntitySet Name=\"F1928s\" EntityType=\"Wms3pl.Datas.F1" +
+                "9.F1928\" /><EntitySet Name=\"F190902s\" EntityType=\"Wms3pl.Datas.F19.F190902\" /><E" +
+                "ntitySet Name=\"F190901s\" EntityType=\"Wms3pl.Datas.F19.F190901\" /><EntitySet Name" +
+                "=\"F190003s\" EntityType=\"Wms3pl.Datas.F19.F190003\" /><EntitySet Name=\"F190001s\" E" +
+                "ntityType=\"Wms3pl.Datas.F19.F190001\" /><EntitySet Name=\"F1970s\" EntityType=\"Wms3" +
+                "pl.Datas.F19.F1970\" /><EntitySet Name=\"F197001s\" EntityType=\"Wms3pl.Datas.F19.F1" +
+                "97001\" /><EntitySet Name=\"F192404s\" EntityType=\"Wms3pl.Datas.F19.F192404\" /><Ent" +
+                "itySet Name=\"F1929s\" EntityType=\"Wms3pl.Datas.F19.F1929\" /><EntitySet Name=\"F190" +
+                "002s\" EntityType=\"Wms3pl.Datas.F19.F190002\" /><EntitySet Name=\"F1933s\" EntityTyp" +
+                "e=\"Wms3pl.Datas.F19.F1933\" /><EntitySet Name=\"F1934s\" EntityType=\"Wms3pl.Datas.F" +
+                "19.F1934\" /><EntitySet Name=\"F190904s\" EntityType=\"Wms3pl.Datas.F19.F190904\" /><" +
+                "EntitySet Name=\"F1950s\" EntityType=\"Wms3pl.Datas.F19.F1950\" /><EntitySet Name=\"F" +
+                "1942s\" EntityType=\"Wms3pl.Datas.F19.F1942\" /><EntitySet Name=\"F190207s\" EntityTy" +
+                "pe=\"Wms3pl.Datas.F19.F190207\" /><EntitySet Name=\"F1951s\" EntityType=\"Wms3pl.Data" +
+                "s.F19.F1951\" /><EntitySet Name=\"F194702s\" EntityType=\"Wms3pl.Datas.F19.F194702\" " +
+                "/><EntitySet Name=\"F190206s\" EntityType=\"Wms3pl.Datas.F19.F190206\" /><EntitySet " +
+                "Name=\"F19000104s\" EntityType=\"Wms3pl.Datas.F19.F19000104\" /><EntitySet Name=\"F19" +
+                "4705s\" EntityType=\"Wms3pl.Datas.F19.F194705\" /><EntitySet Name=\"F190102s\" Entity" +
+                "Type=\"Wms3pl.Datas.F19.F190102\" /><EntitySet Name=\"F194708s\" EntityType=\"Wms3pl." +
+                "Datas.F19.F194708\" /><EntitySet Name=\"F19470801s\" EntityType=\"Wms3pl.Datas.F19.F" +
+                "19470801\" /><EntitySet Name=\"F194709s\" EntityType=\"Wms3pl.Datas.F19.F194709\" /><" +
+                "EntitySet Name=\"F194707s\" EntityType=\"Wms3pl.Datas.F19.F194707\" /><EntitySet Nam" +
+                "e=\"F1912s\" EntityType=\"Wms3pl.Datas.F19.F1912\" /><EntitySet Name=\"F1948s\" Entity" +
+                "Type=\"Wms3pl.Datas.F19.F1948\" /><EntitySet Name=\"F194801s\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F194801\" /><EntitySet Name=\"F199007s\" EntityType=\"Wms3pl.Datas.F19.F1990" +
+                "07\" /><EntitySet Name=\"F190004s\" EntityType=\"Wms3pl.Datas.F19.F190004\" /><Entity" +
+                "Set Name=\"F190303s\" EntityType=\"Wms3pl.Datas.F19.F190303\" /><EntitySet Name=\"F19" +
+                "4703s\" EntityType=\"Wms3pl.Datas.F19.F194703\" /><EntitySet Name=\"F190701s\" Entity" +
+                "Type=\"Wms3pl.Datas.F19.F190701\" /><EntitySet Name=\"F190702s\" EntityType=\"Wms3pl." +
+                "Datas.F19.F190702\" /><EntitySet Name=\"F190703s\" EntityType=\"Wms3pl.Datas.F19.F19" +
+                "0703\" /><EntitySet Name=\"F190704s\" EntityType=\"Wms3pl.Datas.F19.F190704\" /><Enti" +
+                "tySet Name=\"F190205s\" EntityType=\"Wms3pl.Datas.F19.F190205\" /><EntitySet Name=\"F" +
+                "1905s\" EntityType=\"Wms3pl.Datas.F19.F1905\" /><EntitySet Name=\"F190301s\" EntityTy" +
+                "pe=\"Wms3pl.Datas.F19.F190301\" /><EntitySet Name=\"F194701s\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F194701\" /><EntitySet Name=\"F19470101s\" EntityType=\"Wms3pl.Datas.F19.F19" +
+                "470101\" /><EntitySet Name=\"F192405s\" EntityType=\"Wms3pl.Datas.F19.F192405\" /><En" +
+                "titySet Name=\"F195302s\" EntityType=\"Wms3pl.Datas.F19.F195302\" /><EntitySet Name=" +
+                "\"F19471001s\" EntityType=\"Wms3pl.Datas.F19.F19471001\" /><EntitySet Name=\"F1952_HI" +
+                "STORYs\" EntityType=\"Wms3pl.Datas.F19.F1952_HISTORY\" /><EntitySet Name=\"F199001s\"" +
+                " EntityType=\"Wms3pl.Datas.F19.F199001\" /><EntitySet Name=\"F199002s\" EntityType=\"" +
+                "Wms3pl.Datas.F19.F199002\" /><EntitySet Name=\"F199006s\" EntityType=\"Wms3pl.Datas." +
+                "F19.F199006\" /><EntitySet Name=\"F199003s\" EntityType=\"Wms3pl.Datas.F19.F199003\" " +
+                "/><EntitySet Name=\"F199005s\" EntityType=\"Wms3pl.Datas.F19.F199005\" /><EntitySet " +
+                "Name=\"F194711s\" EntityType=\"Wms3pl.Datas.F19.F194711\" /><EntitySet Name=\"F1901s\"" +
+                " EntityType=\"Wms3pl.Datas.F19.F1901\" /><EntitySet Name=\"F197002s\" EntityType=\"Wm" +
+                "s3pl.Datas.F19.F197002\" /><EntitySet Name=\"F19700201s\" EntityType=\"Wms3pl.Datas." +
+                "F19.F19700201\" /><EntitySet Name=\"F194713s\" EntityType=\"Wms3pl.Datas.F19.F194713" +
+                "\" /><EntitySet Name=\"F190906s\" EntityType=\"Wms3pl.Datas.F19.F190906\" /><EntitySe" +
+                "t Name=\"F198001s\" EntityType=\"Wms3pl.Datas.F19.F198001\" /><EntitySet Name=\"F1947" +
+                "14s\" EntityType=\"Wms3pl.Datas.F19.F194714\" /><EntitySet Name=\"F1915s\" EntityType" +
+                "=\"Wms3pl.Datas.F19.F1915\" /><EntitySet Name=\"F1916s\" EntityType=\"Wms3pl.Datas.F1" +
+                "9.F1916\" /><EntitySet Name=\"F1917s\" EntityType=\"Wms3pl.Datas.F19.F1917\" /><Entit" +
+                "ySet Name=\"F1924s\" EntityType=\"Wms3pl.Datas.F19.F1924\" /><EntitySet Name=\"F19540" +
+                "201s\" EntityType=\"Wms3pl.Datas.F19.F19540201\" /><EntitySet Name=\"F19540202s\" Ent" +
+                "ityType=\"Wms3pl.Datas.F19.F19540202\" /><EntitySet Name=\"F191201s\" EntityType=\"Wm" +
+                "s3pl.Datas.F19.F191201\" /><EntitySet Name=\"F1908s\" EntityType=\"Wms3pl.Datas.F19." +
+                "F1908\" /><EntitySet Name=\"F191001s\" EntityType=\"Wms3pl.Datas.F19.F191001\" /><Ent" +
+                "itySet Name=\"F191002s\" EntityType=\"Wms3pl.Datas.F19.F191002\" /><EntitySet Name=\"" +
+                "F1910s\" EntityType=\"Wms3pl.Datas.F19.F1910\" /><EntitySet Name=\"F190010s\" EntityT" +
+                "ype=\"Wms3pl.Datas.F19.F190010\" /><EntitySet Name=\"F19471601s\" EntityType=\"Wms3pl" +
+                ".Datas.F19.F19471601\" /><EntitySet Name=\"F194716s\" EntityType=\"Wms3pl.Datas.F19." +
+                "F194716\" /><EntitySet Name=\"F190905s\" EntityType=\"Wms3pl.Datas.F19.F190905\" /><E" +
+                "ntitySet Name=\"F190908s\" EntityType=\"Wms3pl.Datas.F19.F190908\" /><EntitySet Name" +
+                "=\"F194706s\" EntityType=\"Wms3pl.Datas.F19.F194706\" /><EntitySet Name=\"F194712s\" E" +
+                "ntityType=\"Wms3pl.Datas.F19.F194712\" /><EntitySet Name=\"F19471201s\" EntityType=\"" +
+                "Wms3pl.Datas.F19.F19471201\" /><EntitySet Name=\"F1944s\" Enti";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart19 = "t Name=\"F190909s\" EntityType=\"Wms3pl.Datas.F19.F190909\" /><EntitySet Name=\"F19471" +
-                "0s\" EntityType=\"Wms3pl.Datas.F19.F194710\" /><EntitySet Name=\"F195402s\" EntityTyp" +
-                "e=\"Wms3pl.Datas.F19.F195402\" /><EntitySet Name=\"F1903s\" EntityType=\"Wms3pl.Datas" +
-                ".F19.F1903\" /><EntitySet Name=\"F1903_HISTORYs\" EntityType=\"Wms3pl.Datas.F19.F190" +
-                "3_HISTORY\" /><EntitySet Name=\"F191204s\" EntityType=\"Wms3pl.Datas.F19.F191204\" />" +
-                "<EntitySet Name=\"F194715s\" EntityType=\"Wms3pl.Datas.F19.F194715\" /><EntitySet Na" +
-                "me=\"F1913s\" EntityType=\"Wms3pl.Datas.F19.F1913\" /><EntitySet Name=\"F191301s\" Ent" +
-                "ityType=\"Wms3pl.Datas.F19.F191301\" /><EntitySet Name=\"F191302s\" EntityType=\"Wms3" +
-                "pl.Datas.F19.F191302\" /><EntitySet Name=\"F191303s\" EntityType=\"Wms3pl.Datas.F19." +
-                "F191303\" /><EntitySet Name=\"F191304s\" EntityType=\"Wms3pl.Datas.F19.F191304\" /><E" +
-                "ntitySet Name=\"F194704s\" EntityType=\"Wms3pl.Datas.F19.F194704\" /><EntitySet Name" +
-                "=\"F190907s\" EntityType=\"Wms3pl.Datas.F19.F190907\" /><EntitySet Name=\"F1947s\" Ent" +
-                "ityType=\"Wms3pl.Datas.F19.F1947\" /><EntitySet Name=\"F1909s\" EntityType=\"Wms3pl.D" +
-                "atas.F19.F1909\" /><EntitySet Name=\"F194901s\" EntityType=\"Wms3pl.Datas.F19.F19490" +
-                "1\" /><EntitySet Name=\"F190105s\" EntityType=\"Wms3pl.Datas.F19.F190105\" /><EntityS" +
-                "et Name=\"F190106s\" EntityType=\"Wms3pl.Datas.F19.F190106\" /><EntitySet Name=\"F194" +
-                "5s\" EntityType=\"Wms3pl.Datas.F19.F1945\" /><EntitySet Name=\"F194501s\" EntityType=" +
-                "\"Wms3pl.Datas.F19.F194501\" /><EntitySet Name=\"F191206s\" EntityType=\"Wms3pl.Datas" +
-                ".F19.F191206\" /><EntitySet Name=\"F19120601s\" EntityType=\"Wms3pl.Datas.F19.F19120" +
-                "601\" /><EntitySet Name=\"F19120602s\" EntityType=\"Wms3pl.Datas.F19.F19120602\" /><E" +
-                "ntitySet Name=\"F1946s\" EntityType=\"Wms3pl.Datas.F19.F1946\" /><EntitySet Name=\"F1" +
-                "91305s\" EntityType=\"Wms3pl.Datas.F19.F191305\" /><EntitySet Name=\"F1955s\" EntityT" +
-                "ype=\"Wms3pl.Datas.F19.F1955\" /><EntitySet Name=\"F1956s\" EntityType=\"Wms3pl.Datas" +
-                ".F19.F1956\" /><EntitySet Name=\"F195601s\" EntityType=\"Wms3pl.Datas.F19.F195601\" /" +
-                "><EntitySet Name=\"F19130501s\" EntityType=\"Wms3pl.Datas.F19.F19130501\" /><EntityS" +
-                "et Name=\"F1903_ASYNCs\" EntityType=\"Wms3pl.Datas.F19.F1903_ASYNC\" /><EntitySet Na" +
-                "me=\"PREFERENCEs\" EntityType=\"Wms3pl.Datas.Schedule.PREFERENCE\" /><FunctionImport" +
-                " Name=\"GetF1912s1\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1" +
-                "903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"itemCodes\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter Name=\"itemSpec\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"lType\" Type=\"Edm.String\" /></FunctionImport" +
-                "><FunctionImport Name=\"GetAllowedF1947s\" ReturnType=\"Collection(Wms3pl.Datas.F19" +
-                ".F1947)\" EntitySet=\"F1947s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custC" +
-                "ode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1903sByCarto" +
-                "n\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMeth" +
-                "od=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"isCarton\" Type=\"Edm.String\" /></FunctionI" +
-                "mport><FunctionImport Name=\"GetF1925sByDEPIDANDDEPNAME\" ReturnType=\"Collection(W" +
-                "ms3pl.Datas.F19.F1925)\" EntitySet=\"F1925s\" m:HttpMethod=\"GET\"><Parameter Name=\"D" +
-                "EP_ID\" Type=\"Edm.String\" /><Parameter Name=\"DEP_NAME\" Type=\"Edm.String\" /></Func" +
-                "tionImport><FunctionImport Name=\"GetF192404sByDCCODE\" ReturnType=\"Collection(Wms" +
-                "3pl.Datas.F19.F192404)\" EntitySet=\"F192404s\" m:HttpMethod=\"GET\"><Parameter Name=" +
-                "\"DC_CODE\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1933sBy" +
-                "COUDIVID\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1933)\" EntitySet=\"F1933s\" m:H" +
-                "ttpMethod=\"GET\"><Parameter Name=\"COUDIVID\" Type=\"Edm.String\" /></FunctionImport>" +
-                "<FunctionImport Name=\"GetF1934sByCOUDIVID\" ReturnType=\"Collection(Wms3pl.Datas.F" +
-                "19.F1934)\" EntitySet=\"F1934s\" m:HttpMethod=\"GET\"><Parameter Name=\"COUDIVID\" Type" +
-                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAllIdByWmsOrdNo\" Retur" +
-                "nType=\"Wms3pl.Datas.F19.F1947\" EntitySet=\"F1947s\" m:HttpMethod=\"GET\"><Parameter " +
-                "Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"" +
-                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetCartonSize\" ReturnType=\"" +
-                "Collection(Wms3pl.Datas.F19.F1905)\" EntitySet=\"F1905s\" m:HttpMethod=\"GET\"><Param" +
-                "eter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"searchCode\" Type=\"Edm.String\" /></FunctionImport><Functi" +
-                "onImport Name=\"GetCartonItem\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" En" +
-                "titySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"searchCode\" Ty" +
-                "pe=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAllowedF1908s\" Retur" +
-                "nType=\"Collection(Wms3pl.Datas.F19.F1908)\" EntitySet=\"F1908s\" m:HttpMethod=\"GET\"" +
-                "><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"vnrCode\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"vnrName\" Type=\"Edm.String\" /><Parameter Name=\"cust" +
-                "Code\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAllowedF1910" +
-                "s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1910)\" EntitySet=\"F1910s\" m:HttpMeth" +
-                "od=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"retailCode\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"retailName\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"G" +
-                "etF199006s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F199006)\" EntitySet=\"F199006" +
-                "s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Na" +
-                "me=\"accItemName\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type=\"Edm.String\" " +
-                "/></FunctionImport><FunctionImport Name=\"GetF1912s\" ReturnType=\"Collection(Wms3p" +
-                "l.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCo" +
-                "de\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.Strin" +
-                "g\" /></FunctionImport><FunctionImport Name=\"GetF1909ByDc\" ReturnType=\"Collection" +
-                "(Wms3pl.Datas.F19.F1909)\" EntitySet=\"F1909s\" m:HttpMethod=\"GET\"><Parameter Name=" +
-                "\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1903sByI" +
-                "temName\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:Ht" +
-                "tpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cu" +
-                "stCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"itemSearchMaximum\" Type=\"Edm.Int32\" /></FunctionImport><FunctionImpo" +
-                "rt Name=\"GetF1903sByItemCode\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" En" +
-                "titySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type" +
-                "=\"Edm.String\" /><Parameter Name=\"account\" Type=\"Edm.String\" /></FunctionImport><" +
-                "FunctionImport Name=\"GetF1909Datas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F190" +
-                "9)\" EntitySet=\"F1909s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"custName\" Type=\"Edm.String\" /><Parameter Name=\"account\"" +
-                " Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetQueryListByGroupI" +
-                "d\" ReturnType=\"Collection(Wms3pl.Datas.F19.F190701)\" EntitySet=\"F190701s\" m:Http" +
-                "Method=\"GET\"><Parameter Name=\"gid\" Type=\"Edm.String\" /></FunctionImport><Functio" +
-                "nImport Name=\"GetQueryListByEmpId\" ReturnType=\"Collection(W";
+            private const string ModelPart19 = "tyType=\"Wms3pl.Datas.F19.F1944\" /><EntitySet Name=\"F191902s\" EntityType=\"Wms3pl.D" +
+                "atas.F19.F191902\" /><EntitySet Name=\"F190305s\" EntityType=\"Wms3pl.Datas.F19.F190" +
+                "305\" /><EntitySet Name=\"F190909s\" EntityType=\"Wms3pl.Datas.F19.F190909\" /><Entit" +
+                "ySet Name=\"F194710s\" EntityType=\"Wms3pl.Datas.F19.F194710\" /><EntitySet Name=\"F1" +
+                "95402s\" EntityType=\"Wms3pl.Datas.F19.F195402\" /><EntitySet Name=\"F1903s\" EntityT" +
+                "ype=\"Wms3pl.Datas.F19.F1903\" /><EntitySet Name=\"F1903_HISTORYs\" EntityType=\"Wms3" +
+                "pl.Datas.F19.F1903_HISTORY\" /><EntitySet Name=\"F191204s\" EntityType=\"Wms3pl.Data" +
+                "s.F19.F191204\" /><EntitySet Name=\"F194715s\" EntityType=\"Wms3pl.Datas.F19.F194715" +
+                "\" /><EntitySet Name=\"F1913s\" EntityType=\"Wms3pl.Datas.F19.F1913\" /><EntitySet Na" +
+                "me=\"F191301s\" EntityType=\"Wms3pl.Datas.F19.F191301\" /><EntitySet Name=\"F191302s\"" +
+                " EntityType=\"Wms3pl.Datas.F19.F191302\" /><EntitySet Name=\"F191303s\" EntityType=\"" +
+                "Wms3pl.Datas.F19.F191303\" /><EntitySet Name=\"F191304s\" EntityType=\"Wms3pl.Datas." +
+                "F19.F191304\" /><EntitySet Name=\"F194704s\" EntityType=\"Wms3pl.Datas.F19.F194704\" " +
+                "/><EntitySet Name=\"F190907s\" EntityType=\"Wms3pl.Datas.F19.F190907\" /><EntitySet " +
+                "Name=\"F1947s\" EntityType=\"Wms3pl.Datas.F19.F1947\" /><EntitySet Name=\"F1909s\" Ent" +
+                "ityType=\"Wms3pl.Datas.F19.F1909\" /><EntitySet Name=\"F194901s\" EntityType=\"Wms3pl" +
+                ".Datas.F19.F194901\" /><EntitySet Name=\"F190105s\" EntityType=\"Wms3pl.Datas.F19.F1" +
+                "90105\" /><EntitySet Name=\"F190106s\" EntityType=\"Wms3pl.Datas.F19.F190106\" /><Ent" +
+                "itySet Name=\"F1945s\" EntityType=\"Wms3pl.Datas.F19.F1945\" /><EntitySet Name=\"F194" +
+                "501s\" EntityType=\"Wms3pl.Datas.F19.F194501\" /><EntitySet Name=\"F191206s\" EntityT" +
+                "ype=\"Wms3pl.Datas.F19.F191206\" /><EntitySet Name=\"F19120601s\" EntityType=\"Wms3pl" +
+                ".Datas.F19.F19120601\" /><EntitySet Name=\"F19120602s\" EntityType=\"Wms3pl.Datas.F1" +
+                "9.F19120602\" /><EntitySet Name=\"F1946s\" EntityType=\"Wms3pl.Datas.F19.F1946\" /><E" +
+                "ntitySet Name=\"F191305s\" EntityType=\"Wms3pl.Datas.F19.F191305\" /><EntitySet Name" +
+                "=\"F1955s\" EntityType=\"Wms3pl.Datas.F19.F1955\" /><EntitySet Name=\"F1956s\" EntityT" +
+                "ype=\"Wms3pl.Datas.F19.F1956\" /><EntitySet Name=\"F195601s\" EntityType=\"Wms3pl.Dat" +
+                "as.F19.F195601\" /><EntitySet Name=\"F19130501s\" EntityType=\"Wms3pl.Datas.F19.F191" +
+                "30501\" /><EntitySet Name=\"F1903_ASYNCs\" EntityType=\"Wms3pl.Datas.F19.F1903_ASYNC" +
+                "\" /><EntitySet Name=\"PREFERENCEs\" EntityType=\"Wms3pl.Datas.Schedule.PREFERENCE\" " +
+                "/><FunctionImport Name=\"GetF1912s1\" ReturnType=\"Collection(Wms3pl.Datas.F19.F190" +
+                "3)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.St" +
+                "ring\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"itemCode" +
+                "s\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"itemSpec\" Type=\"Edm.String\" /><Parameter Name=\"lType\" Type=\"Edm.String\" /" +
+                "></FunctionImport><FunctionImport Name=\"GetAllowedF1947s\" ReturnType=\"Collection" +
+                "(Wms3pl.Datas.F19.F1947)\" EntitySet=\"F1947s\" m:HttpMethod=\"GET\"><Parameter Name=" +
+                "\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
+                "\"GetF1903sByCarton\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F" +
+                "1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Paramet" +
+                "er Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"isCarton\" Type=\"Edm.Stri" +
+                "ng\" /></FunctionImport><FunctionImport Name=\"GetF1925sByDEPIDANDDEPNAME\" ReturnT" +
+                "ype=\"Collection(Wms3pl.Datas.F19.F1925)\" EntitySet=\"F1925s\" m:HttpMethod=\"GET\"><" +
+                "Parameter Name=\"DEP_ID\" Type=\"Edm.String\" /><Parameter Name=\"DEP_NAME\" Type=\"Edm" +
+                ".String\" /></FunctionImport><FunctionImport Name=\"GetF192404sByDCCODE\" ReturnTyp" +
+                "e=\"Collection(Wms3pl.Datas.F19.F192404)\" EntitySet=\"F192404s\" m:HttpMethod=\"GET\"" +
+                "><Parameter Name=\"DC_CODE\" Type=\"Edm.String\" /></FunctionImport><FunctionImport " +
+                "Name=\"GetF1933sByCOUDIVID\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1933)\" Entit" +
+                "ySet=\"F1933s\" m:HttpMethod=\"GET\"><Parameter Name=\"COUDIVID\" Type=\"Edm.String\" />" +
+                "</FunctionImport><FunctionImport Name=\"GetF1934sByCOUDIVID\" ReturnType=\"Collecti" +
+                "on(Wms3pl.Datas.F19.F1934)\" EntitySet=\"F1934s\" m:HttpMethod=\"GET\"><Parameter Nam" +
+                "e=\"COUDIVID\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAllId" +
+                "ByWmsOrdNo\" ReturnType=\"Wms3pl.Datas.F19.F1947\" EntitySet=\"F1947s\" m:HttpMethod=" +
+                "\"GET\"><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetCartonS" +
+                "ize\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1905)\" EntitySet=\"F1905s\" m:HttpMe" +
+                "thod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCo" +
+                "de\" Type=\"Edm.String\" /><Parameter Name=\"searchCode\" Type=\"Edm.String\" /></Funct" +
+                "ionImport><FunctionImport Name=\"GetCartonItem\" ReturnType=\"Collection(Wms3pl.Dat" +
+                "as.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"searchCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAll" +
+                "owedF1908s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1908)\" EntitySet=\"F1908s\" m" +
+                ":HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"vnrCode\" Type=\"Edm.String\" /><Parameter Name=\"vnrName\" Type=\"Edm.String\" /><Par" +
+                "ameter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name" +
+                "=\"GetAllowedF1910s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1910)\" EntitySet=\"F" +
+                "1910s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Paramet" +
+                "er Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"retailCode\" Type=\"Edm.St" +
+                "ring\" /><Parameter Name=\"retailName\" Type=\"Edm.String\" /></FunctionImport><Funct" +
+                "ionImport Name=\"GetF199006s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F199006)\" E" +
+                "ntitySet=\"F199006s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"accItemName\" Type=\"Edm.String\" /><Parameter Name=\"status\" T" +
+                "ype=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1912s\" ReturnType=" +
+                "\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Para" +
+                "meter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.St" +
+                "ring\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName" +
+                "\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1909ByDc\" Retur" +
+                "nType=\"Collection(Wms3pl.Datas.F19.F1909)\" EntitySet=\"F1909s\" m:HttpMethod=\"GET\"" +
+                "><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport N" +
+                "ame=\"GetF1903sByItemName\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" Entity" +
+                "Set=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><P" +
+                "arameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Ed" +
+                "m.String\" /><Parameter Name=\"itemSearchMaximum\" Type=\"Edm.Int32\" /></FunctionImp" +
+                "ort><FunctionImport Name=\"GetF1903sByItemCode\" ReturnType=\"Collection(Wms3pl.Dat" +
+                "as.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"account\" Type=\"Edm.String\" /><" +
+                "/FunctionImport><FunctionImport Name=\"GetF1909Datas\" ReturnType=\"Collection(Wms3" +
+                "pl.Datas.F19.F1909)\" EntitySet=\"F1909s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupC" +
+                "ode\" Type=\"Edm.String\" /><Parameter Name=\"custName\" Type=\"Edm.String\" /><Paramet" +
+                "er Name=\"account\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Get" +
+                "QueryListByGroupId\" ReturnType=\"Collection(Wms3pl.Datas.F19";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart20 = "ms3pl.Datas.F19.F190701)\" EntitySet=\"F190701s\" m:HttpMethod=\"GET\"><Parameter Name" +
-                "=\"empId\" Type=\"Edm.String\" /><Parameter Name=\"qGroup\" Type=\"Edm.String\" /></Func" +
-                "tionImport><FunctionImport Name=\"GetF1903sByItemCodes\" ReturnType=\"Collection(Wm" +
-                "s3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gu" +
-                "pCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Param" +
-                "eter Name=\"itemCodes\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
-                "\"GetF194716Datas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F194716)\" EntitySet=\"F" +
-                "194716s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Param" +
-                "eter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"carPeriod\" Type=\"Edm.String\" /><Parameter Name=\"delvNo\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"carGup\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"retailCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetDatas" +
-                "ByCanToShip\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1919)\" EntitySet=\"F1919s\" " +
-                "m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /></F" +
-                "unctionImport><FunctionImport Name=\"GetF1903\" ReturnType=\"Collection(Wms3pl.Data" +
-                "s.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Ty" +
-                "pe=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"itemCodes\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"itemSpec\" Type=\"Edm.String\" /><Parameter Name=\"lType\" Type=\"Edm" +
-                ".String\" /></FunctionImport><FunctionImport Name=\"GetF1903sBySerialNo\" ReturnTyp" +
-                "e=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Pa" +
-                "rameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm." +
-                "String\" /><Parameter Name=\"serialNo\" Type=\"Edm.String\" /></FunctionImport><Funct" +
-                "ionImport Name=\"GetAutoWarehourse\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1980" +
-                ")\" EntitySet=\"F1980s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Stri" +
-                "ng\" /></FunctionImport><FunctionImport Name=\"GetF191206sResult\" ReturnType=\"Coll" +
-                "ection(Wms3pl.Datas.F19.F191206)\" EntitySet=\"F191206s\" m:HttpMethod=\"GET\"><Param" +
-                "eter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"pickFloor\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><FunctionIm" +
-                "port Name=\"GetF19120601sSelectItem\" ReturnType=\"Collection(Wms3pl.Datas.F19.F191" +
-                "20601)\" EntitySet=\"F19120601s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=" +
-                "\"Edm.String\" /><Parameter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><Fu" +
-                "nctionImport Name=\"GetF19120602s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F19120" +
-                "602)\" EntitySet=\"F19120602s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><Func" +
-                "tionImport Name=\"GetWorkstationList\" ReturnType=\"Collection(Wms3pl.Datas.F19.F19" +
-                "46)\" EntitySet=\"F1946s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"workstationGroup\" Type=\"Edm.String\" /><Parameter Name=\"" +
-                "workstationType\" Type=\"Edm.String\" /><Parameter Name=\"workstationCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"status\" Type=\"Edm.String\" /></FunctionImport><Functi" +
-                "onImport Name=\"GetF194501ByDcCode\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1945" +
-                "01)\" EntitySet=\"F194501s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm." +
-                "String\" /></FunctionImport></EntityContainer></Schema></edmx:DataServices></edmx" +
-                ":Edmx>";
+            private const string ModelPart20 = ".F190701)\" EntitySet=\"F190701s\" m:HttpMethod=\"GET\"><Parameter Name=\"gid\" Type=\"Ed" +
+                "m.String\" /></FunctionImport><FunctionImport Name=\"GetQueryListByEmpId\" ReturnTy" +
+                "pe=\"Collection(Wms3pl.Datas.F19.F190701)\" EntitySet=\"F190701s\" m:HttpMethod=\"GET" +
+                "\"><Parameter Name=\"empId\" Type=\"Edm.String\" /><Parameter Name=\"qGroup\" Type=\"Edm" +
+                ".String\" /></FunctionImport><FunctionImport Name=\"GetF1903sByItemCodes\" ReturnTy" +
+                "pe=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><P" +
+                "arameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /></FunctionImport><Fun" +
+                "ctionImport Name=\"GetF194716Datas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1947" +
+                "16)\" EntitySet=\"F194716s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCod" +
+                "e\" Type=\"Edm.String\" /><Parameter Name=\"carPeriod\" Type=\"Edm.String\" /><Paramete" +
+                "r Name=\"delvNo\" Type=\"Edm.String\" /><Parameter Name=\"carGup\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"retailCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImpo" +
+                "rt Name=\"GetDatasByCanToShip\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1919)\" En" +
+                "titySet=\"F1919s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"" +
+                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1903\" ReturnType=\"Colle" +
+                "ction(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter " +
+                "Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" " +
+                "/><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"itemSpec\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"lType\" Type=\"Edm.String\" /><Parameter Name=\"oriVnrCode\" Type=\"Edm.String\" /></F" +
+                "unctionImport><FunctionImport Name=\"GetF1903sBySerialNo\" ReturnType=\"Collection(" +
+                "Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"" +
+                "gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Par" +
+                "ameter Name=\"serialNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name" +
+                "=\"GetAutoWarehourse\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1980)\" EntitySet=\"" +
+                "F1980s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></Functi" +
+                "onImport><FunctionImport Name=\"GetF191206sResult\" ReturnType=\"Collection(Wms3pl." +
+                "Datas.F19.F191206)\" EntitySet=\"F191206s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcC" +
+                "ode\" Type=\"Edm.String\" /><Parameter Name=\"pickFloor\" Type=\"Edm.String\" /><Parame" +
+                "ter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Get" +
+                "F19120601sSelectItem\" ReturnType=\"Collection(Wms3pl.Datas.F19.F19120601)\" Entity" +
+                "Set=\"F19120601s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><FunctionImport N" +
+                "ame=\"GetF19120602s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F19120602)\" EntitySe" +
+                "t=\"F19120602s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><" +
+                "Parameter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Nam" +
+                "e=\"GetWorkstationList\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1946)\" EntitySet" +
+                "=\"F1946s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"workstationGroup\" Type=\"Edm.String\" /><Parameter Name=\"workstationTyp" +
+                "e\" Type=\"Edm.String\" /><Parameter Name=\"workstationCode\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"status\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
+                "\"GetF194501ByDcCode\" ReturnType=\"Collection(Wms3pl.Datas.F19.F194501)\" EntitySet" +
+                "=\"F194501s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></Fu" +
+                "nctionImport></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -55297,6 +55299,72 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _IS_UP_SHELF_CANCEL;
         partial void OnIS_UP_SHELF_CANCELChanging(string value);
         partial void OnIS_UP_SHELF_CANCELChanged();
+        /// <summary>
+        /// There are no comments for Property ALLOW_ORDER_NO_DELV in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ALLOW_ORDER_NO_DELV
+        {
+            get
+            {
+                return this._ALLOW_ORDER_NO_DELV;
+            }
+            set
+            {
+                this.OnALLOW_ORDER_NO_DELVChanging(value);
+                this._ALLOW_ORDER_NO_DELV = value;
+                this.OnALLOW_ORDER_NO_DELVChanged();
+                this.OnPropertyChanged("ALLOW_ORDER_NO_DELV");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ALLOW_ORDER_NO_DELV;
+        partial void OnALLOW_ORDER_NO_DELVChanging(string value);
+        partial void OnALLOW_ORDER_NO_DELVChanged();
+        /// <summary>
+        /// There are no comments for Property ALLOW_WAREHOUSEIN_CLOSED in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ALLOW_WAREHOUSEIN_CLOSED
+        {
+            get
+            {
+                return this._ALLOW_WAREHOUSEIN_CLOSED;
+            }
+            set
+            {
+                this.OnALLOW_WAREHOUSEIN_CLOSEDChanging(value);
+                this._ALLOW_WAREHOUSEIN_CLOSED = value;
+                this.OnALLOW_WAREHOUSEIN_CLOSEDChanged();
+                this.OnPropertyChanged("ALLOW_WAREHOUSEIN_CLOSED");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ALLOW_WAREHOUSEIN_CLOSED;
+        partial void OnALLOW_WAREHOUSEIN_CLOSEDChanging(string value);
+        partial void OnALLOW_WAREHOUSEIN_CLOSEDChanged();
+        /// <summary>
+        /// There are no comments for Property IS_EXECIMMEDIATEITEM in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string IS_EXECIMMEDIATEITEM
+        {
+            get
+            {
+                return this._IS_EXECIMMEDIATEITEM;
+            }
+            set
+            {
+                this.OnIS_EXECIMMEDIATEITEMChanging(value);
+                this._IS_EXECIMMEDIATEITEM = value;
+                this.OnIS_EXECIMMEDIATEITEMChanged();
+                this.OnPropertyChanged("IS_EXECIMMEDIATEITEM");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _IS_EXECIMMEDIATEITEM;
+        partial void OnIS_EXECIMMEDIATEITEMChanging(string value);
+        partial void OnIS_EXECIMMEDIATEITEMChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -60330,7 +60398,7 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
     }
 }
 // Original file name:
-// Generation date: 2023/05/19 上午 11:36:37
+// Generation date: 2023/8/1 下午 02:32:17
 namespace Wms3pl.Datas.Schedule
 {
     

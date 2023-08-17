@@ -27,7 +27,7 @@ namespace Wms3pl.Datas.Test.F05
       string outContainerCode = "";
       #endregion
 
-      Trace.WriteLine(JsonConvert.SerializeObject(_f0532Repo.GetF0532Ex(dcCode, startDate, endDate, status, outContainerCode)));
+      Trace.WriteLine(JsonConvert.SerializeObject(_f0532Repo.GetF0532Ex(dcCode, null, null, startDate, endDate, status, null, outContainerCode, null)));
     }
 
   }

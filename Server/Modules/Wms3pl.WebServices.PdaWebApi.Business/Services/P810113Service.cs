@@ -482,10 +482,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       #endregion
 
       #region 資料處理
-      var f077101 = f077101Repo.Find(o => o.DC_CODE == req.DcNo &&
-      o.WORK_TYPE == "1" &&
-      o.REF_ID == f020502Id &&
-      o.STATUS == "0");
+      var f077101 = f077101Repo.GetData(req.DcNo, "1", f020502Id, "0");
 
       if (f077101 == null)
       {

@@ -24,6 +24,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
       var res = new ApiResult { IsSuccessed = true };
       var data = new List<ApiResponse>();
 
+      WcsSetting.DcCode = req.DcCode;
       // 新增API Log
       res = ApiLogHelper.CreateApiLogInfo(req.DcCode, req.GupCode, req.CustCode, "ExportContainerResults", req, () =>
       {
@@ -105,6 +106,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
             ContainerList = obj.F060302s.Select(x => new WcsContainerModel { ContainerCode = x.CONTAINER_CODE }).ToList()
           };
 
+          WcsSetting.DcCode = dcCode;
           // 呼叫WcsApi-容器資訊
           ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsContainerResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? currReq : null, F060302s = obj.F060302s }, () =>
           {

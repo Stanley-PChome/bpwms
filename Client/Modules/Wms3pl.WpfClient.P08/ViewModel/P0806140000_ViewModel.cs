@@ -783,6 +783,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 			var isScan = false;
 			try
 			{
+				IsBusy = true;
 				if (!LockContainerCode)
 				{
 					LockContainerCode = true;
@@ -879,6 +880,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 				{
 					LockContainerCode = false;
 				}
+				IsBusy = false;
 			}
 
 
@@ -926,66 +928,78 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 
 		public void DoScanItemBarCode()
 		{
-			if (string.IsNullOrWhiteSpace(ScanItemBarCode))
+			try
 			{
-				ShowWarningMessage(Properties.Resources.P0806140000_PleaseScanItem);
-
-				DispatcherAction(() =>
+				IsBusy = true;
+				if (string.IsNullOrWhiteSpace(ScanItemBarCode))
 				{
-					TxtItemBarCodeFocus();
-				});
-				return;
-			}
+					ShowWarningMessage(Properties.Resources.P0806140000_PleaseScanItem);
 
-			ScanItemBarCode = ScanItemBarCode.ToUpper();
-
-			var proxy = GetWcfProxy<wcf.P08WcfServiceClient>();
-			// 執行分貨處理
-			var result = proxy.RunWcfMethod(w => w.SowItem(SelectedDc, GupCode, CustCode, ScanWmsNoBarCode, ScanItemBarCode));
-			if (!result.IsSuccessed)
-			{
-
-				ShowWarningMessage(result.Message);
-				DispatcherAction(() =>
-				{
-					ItemName = result.ItemName;
-					TxtItemBarCodeFocus();
-				});
-				return;
-			}
-
-			DispatcherAction(() =>
-			{
-				if (_prePickAllotLoc != null)
-					_prePickAllotLoc.BoxColor = PickAllotLoc.bindBoxColor;
-
-				var layer = PickAllotLayers.First(x => x.PickAllotLocs.Any(y => y.LocNo == result.PickLocNo));
-				var box = layer.PickAllotLocs.First(x => x.LocNo == result.PickLocNo);
-				var detail = box.Details.First(x => x.PickOrdSeq == result.PickOrdSeq);
-				detail.ASetQty += 1;
-				box.SowQty += 1;
-				box.BoxColor = PickAllotLoc.selectedColor;
-
-				_prePickAllotLoc = box;
-				ItemName = result.ItemName;
-
-				if (result.IsPickSowFinished)
-				{
-					if (ShowInfoMessage(Properties.Resources.P0806140000_SowFinishMsg) == DialogResponse.OK)
+					DispatcherAction(() =>
 					{
-						AllBoxToFinished(result.CancelWmsOrdNos.ToList());
-						IsAllotCompleted = true;
-						ScanItemBarCode = null;
-						ItemName = null;
-						CurrentPickAllotMode = PickAllotMode.ScanWmsNoBarCode;
-						TxtWmsNoBarCodeFocus();
-					}
+						TxtItemBarCodeFocus();
+					});
+					return;
 				}
-				else
+
+				ScanItemBarCode = ScanItemBarCode.ToUpper();
+
+				var proxy = GetWcfProxy<wcf.P08WcfServiceClient>();
+				// 執行分貨處理
+				var result = proxy.RunWcfMethod(w => w.SowItem(SelectedDc, GupCode, CustCode, ScanWmsNoBarCode, ScanItemBarCode));
+				if (!result.IsSuccessed)
 				{
-					TxtItemBarCodeFocus();
+
+					ShowWarningMessage(result.Message);
+					DispatcherAction(() =>
+					{
+						ItemName = result.ItemName;
+						TxtItemBarCodeFocus();
+					});
+					return;
 				}
-			});
+
+				DispatcherAction(() =>
+				{
+					if (_prePickAllotLoc != null)
+						_prePickAllotLoc.BoxColor = PickAllotLoc.bindBoxColor;
+
+					var layer = PickAllotLayers.First(x => x.PickAllotLocs.Any(y => y.LocNo == result.PickLocNo));
+					var box = layer.PickAllotLocs.First(x => x.LocNo == result.PickLocNo);
+					var detail = box.Details.First(x => x.PickOrdSeq == result.PickOrdSeq);
+					detail.ASetQty += 1;
+					box.SowQty += 1;
+					box.BoxColor = PickAllotLoc.selectedColor;
+
+					_prePickAllotLoc = box;
+					ItemName = result.ItemName;
+
+					if (result.IsPickSowFinished)
+					{
+						if (ShowInfoMessage(Properties.Resources.P0806140000_SowFinishMsg) == DialogResponse.OK)
+						{
+							AllBoxToFinished(result.CancelWmsOrdNos.ToList());
+							IsAllotCompleted = true;
+							ScanItemBarCode = null;
+							ItemName = null;
+							CurrentPickAllotMode = PickAllotMode.ScanWmsNoBarCode;
+							TxtWmsNoBarCodeFocus();
+						}
+					}
+					else
+					{
+						TxtItemBarCodeFocus();
+					}
+				});
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+			finally
+			{
+				IsBusy = false;
+			}
 		}
 		#endregion
 

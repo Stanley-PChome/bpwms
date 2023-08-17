@@ -127,13 +127,5 @@ namespace Wms3pl.Datas.F16
 
 			return result;
 		}
-
-		public IQueryable<F160204> GetDatasByExportVendorReturn(string dcCode, string gupCode, string custCode, List<string> sourceNos)
-		{
-			return _db.F160204s.AsNoTracking().Where(x => x.DC_CODE == dcCode &&
-			x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			sourceNos.Contains(x.RTN_WMS_NO));
-		}
 	}
 }

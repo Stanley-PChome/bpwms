@@ -316,5 +316,15 @@ namespace Wms3pl.WebServices.Schedule
 			var service = new ShipDebitService();
 			return service.ExecMoveOutShipOrderDebit();
 		}
-	}
+
+    /// <summary>
+    /// 跨庫調撥出貨分配扣帳排程
+    /// </summary>
+    /// <returns></returns>
+    public static ApiResult ImmediateItemSchedule()
+    {
+      var service = new ImmediateItemScheduleService();
+      return service.ExecImmediateItemSchedule();
+    }
+  }
 }

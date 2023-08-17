@@ -99,8 +99,10 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 						{
 							Message = "您可以按下[離開]，關閉包裝站";
 							MessageForeground = Brushes.Blue;
-						}
-					}
+              //把取消到站記錄按鈕鎖起來
+              _workStationShipData = null;
+            }
+          }
 					else// 如果[H].LastPackageBoxNo有值
 					{
 						// 呼叫[1.2.12 手動關箱 / 系統自動關箱]([H].LastPackageBoxNo)
@@ -186,11 +188,11 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 							InitialData();
 							ChangeInitMode();
 
-							// 按下確定後，啟動排程(工作站狀態 = 開站、暫停] ，若工作站狀態 = 關站中，不啟動排程，並顯示您可以離開此包裝站
-							if (_f1946.STATUS == "1" || _f1946.STATUS == "2")
-								return "02";
-							else if (_f1946.STATUS == "3")
-								ShowInfoMessage("您可以離開此包裝站");
+              // 按下確定後，啟動排程(工作站狀態 = 開站、暫停] ，若工作站狀態 = 關站中，不啟動排程，並顯示您可以離開此包裝站
+              if (_f1946.STATUS == "1" || _f1946.STATUS == "2")
+                return "02";
+              else if (_f1946.STATUS == "3")
+                ShowInfoMessage("您可以離開此包裝站");
 						}
 						else
 						{
@@ -419,17 +421,6 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 				//c.呼叫[1.2.11 刷讀容器條碼]
 				//SearchContainerCommand.Execute(true);
 				DoSearchContainer();
-				if (WmsOrdData != null && WmsOrdData.IsCancelOrder)
-				{
-					ShowWarningMessage(WmsOrdData.Result.Message);
-					InitialData();
-					ChangeInitMode();
-
-					if (_f1946.STATUS == "0")
-						ShowWarningMessage("您可以離開包裝站");
-					else
-						OnStartDispatcher();
-				}
 				DoSearchContainerComplete();
 			}
 		}
@@ -483,7 +474,9 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 						
 					else if (_f1946.STATUS == "3")
 					{
-						LogHelper.Log(FunctionCode, "目前工作站狀態為關站中時，不啟動排程");
+            //把取消到站記錄按鈕鎖起來
+            _workStationShipData = null;
+            LogHelper.Log(FunctionCode, "目前工作站狀態為關站中時，不啟動排程");
 						ShowInfoMessage("您可以離開此包裝站");
 					}
 				}

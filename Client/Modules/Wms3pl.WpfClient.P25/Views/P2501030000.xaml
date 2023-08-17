@@ -149,7 +149,7 @@
 
                                     <StackPanel Grid.Row="1" Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right">
                                         <TextBlock TextWrapping="Wrap" Foreground="Blue">
-                                            <Bold>※注意：Excel匯入檔每次最多只能100筆資料</Bold>
+                                            <Bold>※注意：Excel匯入檔每次最多只能500筆資料</Bold>
                                         </TextBlock>
                                     </StackPanel>
 

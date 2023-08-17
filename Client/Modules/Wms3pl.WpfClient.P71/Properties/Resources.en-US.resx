@@ -2766,4 +2766,7 @@
   <data name="ProductSearch" xml:space="preserve">
     <value>product search</value>
   </data>
+  <data name="ALLOW_ORDER_NO_DELV" xml:space="preserve">
+    <value>AllowSetOrderNoDelv</value>
+  </data>
 </root>

@@ -69,6 +69,12 @@
   <wsdl:message name="P01WcfService_GetInboundCnt_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetInboundCntResponse" />
   </wsdl:message>
+  <wsdl:message name="P01WcfService_UserCloseStock_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserCloseStock" />
+  </wsdl:message>
+  <wsdl:message name="P01WcfService_UserCloseStock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserCloseStockResponse" />
+  </wsdl:message>
   <wsdl:portType name="P01WcfService">
     <wsdl:operation name="InsertP010101">
       <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/InsertP010101" message="tns:P01WcfService_InsertP010101_InputMessage" />
@@ -109,6 +115,10 @@
     <wsdl:operation name="GetInboundCnt">
       <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/GetInboundCnt" message="tns:P01WcfService_GetInboundCnt_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/GetInboundCntResponse" message="tns:P01WcfService_GetInboundCnt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserCloseStock">
+      <wsdl:input wsaw:Action="http://tempuri.org/P01WcfService/UserCloseStock" message="tns:P01WcfService_UserCloseStock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P01WcfService/UserCloseStockResponse" message="tns:P01WcfService_UserCloseStock_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_P01WcfService" type="tns:P01WcfService">
@@ -196,6 +206,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetInboundCnt">
       <soap:operation soapAction="http://tempuri.org/P01WcfService/GetInboundCnt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserCloseStock">
+      <soap:operation soapAction="http://tempuri.org/P01WcfService/UserCloseStock" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

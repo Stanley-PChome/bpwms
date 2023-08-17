@@ -25,6 +25,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
             var res = new ApiResult { IsSuccessed = true };
             var data = new List<ApiResponse>();
 
+            WcsSetting.DcCode = req.DcCode;
             // 新增API Log
             res = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSSH_F009005, req.DcCode, req.GupCode, req.CustCode, "ExportCollectionStatus", req, () =>
             {
@@ -64,6 +65,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
           Status = f060702.STATUS
         };
 
+        WcsSetting.DcCode = dcCode;
         ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSAPI_F009003, dcCode, gupCode, custCode, "WcsCollectionStatus", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? req : null }, () =>
           {
 #if (DEBUG)

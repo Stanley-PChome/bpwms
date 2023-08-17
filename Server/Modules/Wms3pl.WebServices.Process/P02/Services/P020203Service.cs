@@ -304,6 +304,7 @@ namespace Wms3pl.WebServices.Process.P02.Services
 		public ExecuteResult UpdateRecvQty(string dcCode, string gupCode, string custCode
 	, string purchaseNo, string purchaseSeq, int recvQty, string userId, string rtNo)
 		{
+      var warehouseInRecvService = new WarehouseInRecvService(_wmsTransaction);
 			var repo = new F02020101Repository(Schemas.CoreSchema, _wmsTransaction);
 			var result = repo.Find(x => x.DC_CODE.Equals(EntityFunctions.AsNonUnicode(dcCode))
 				&& x.GUP_CODE.Equals(EntityFunctions.AsNonUnicode(gupCode))
@@ -334,30 +335,22 @@ namespace Wms3pl.WebServices.Process.P02.Services
 				f02020102.ISPASS = "0";
 				f02020102Repo.Update(f02020102);
 			}
+      // 4. 重設不良品暫存檔
+      var f02020109Repo = new F02020109Repository(Schemas.CoreSchema, _wmsTransaction);
 
-			// 3. 重設進倉商品序號刷讀紀錄項目
-			var f02020104Repo = new F02020104Repository(Schemas.CoreSchema, _wmsTransaction);
-			//var f02020104s = f02020104Repo.Filter(x => x.GUP_CODE.Equals(EntityFunctions.AsNonUnicode(gupCode))
-			//										&& x.CUST_CODE.Equals(EntityFunctions.AsNonUnicode(custCode))
-			//										&& x.PURCHASE_NO.Equals(EntityFunctions.AsNonUnicode(purchaseNo))
-			//										&& x.PURCHASE_SEQ.Equals(EntityFunctions.AsNonUnicode(purchaseSeq))
-			//										&& x.ISPASS.Equals(EntityFunctions.AsNonUnicode("1")))
-			//								.ToList();
-			//foreach (var f02020104 in f02020104s)
-			//{
-			//	f02020104.ISPASS = "0";
-			//	f02020104Repo.Update(f02020104);
-			//}
+      f02020109Repo.Delete(dcCode, gupCode, custCode, purchaseNo, purchaseSeq);
 
-			//刪除進倉商品序號刷讀紀錄項目
-			f02020104Repo.DeleteF02020104(dcCode, gupCode, custCode, purchaseNo, purchaseSeq, rtNo);
+      warehouseInRecvService.UpdateRecvQty(new UpdateRecvQtyReq
+      {
+        DcCode = dcCode,
+        GupCode = gupCode,
+        CustCode = custCode,
+        PurchaseNo = purchaseNo,
+        PurchaseSeq = purchaseSeq,
+        RtNo = rtNo
+      });
 
-			// 4. 重設不良品暫存檔
-			var f02020109Repo = new F02020109Repository(Schemas.CoreSchema, _wmsTransaction);
-
-			f02020109Repo.Delete(dcCode, gupCode, custCode, purchaseNo, purchaseSeq);
-
-			return new ExecuteResult() { IsSuccessed = true };
+      return new ExecuteResult() { IsSuccessed = true };
 		}
 
 		#endregion
@@ -915,7 +908,8 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			, string itemCode, List<SerialNoResult> serialNoResults, bool isScanSerial, string rtNo, List<F020302Data> f020302List)
 		{
 			var sharedService = new SharedService(_wmsTransaction);
-			var f010201Repo = new F010201Repository(Schemas.CoreSchema, _wmsTransaction);
+      var warehouseInRecvService = new WarehouseInRecvService(_wmsTransaction);
+      var f010201Repo = new F010201Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f02020104Repo = new F02020104Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f020301Repo = new F020301Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f020302Repo = new F020302Repository(Schemas.CoreSchema, _wmsTransaction);
@@ -942,8 +936,6 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			var f020301FileName = "";
 			if (f020302List != null)
 			{
-				var fileseq = f020301Repo.GetF020301FileSeq(dcCode, gupCode, custCode, purchaseNo, f010201Item.SHOP_NO) + 1;
-
 				// 刪除進倉序號檔，並將刷讀通過的序號改為不通過
 				var delSerialNos = searialList.Where(s => !f020302List.Any(x => x.SERIAL_NO == s));
 
@@ -975,20 +967,14 @@ namespace Wms3pl.WebServices.Process.P02.Services
 				var query = f020302List.Where(x => !searialList.Any(s => s == x.SERIAL_NO));
 				if (query.Any())
 				{
-					f020301FileName = string.Format("USERCHK99_{0}{1}", purchaseNo, fileseq.ToString("D2"));
+          var crtF020301Res = warehouseInRecvService.CheckAndInserF020301(dcCode, gupCode, custCode, purchaseNo, rtNo);
+          if (!crtF020301Res.IsSuccessed)
+            return new ExecuteResult(false, crtF020301Res.MsgContent);
 
-					F020301 f020301 = new F020301
-					{
-						DC_CODE = dcCode,
-						GUP_CODE = gupCode,
-						CUST_CODE = custCode,
-						PURCHASE_NO = purchaseNo,
-						FILE_NAME = f020301FileName,
+          f020301FileName = crtF020301Res.Data.ToString();
 
-					};
-					f020301Repo.Add(f020301);
 
-					if (query.Any())
+          if (query.Any())
 					{
 						var f020302s = new List<F020302>();
 						foreach (var addItem in query)
@@ -1373,6 +1359,8 @@ namespace Wms3pl.WebServices.Process.P02.Services
 			var f010201 = f010201Repo.GetEnabledStockData(dcCode, gupCode, custCode, purchaseNo);
 			if (f010201 == null)
 				return new ExecuteResult(false, Properties.Resources.PurchaseNoError);
+			else if (f010201.USER_CLOSED == "1")
+				return new ExecuteResult(false, "該進倉單已強制結案完成，此次無法進行驗收確認。");
 			else if (f010201.STATUS == "8")
 				return new ExecuteResult(false, Properties.Resources.PurchaseStatusError);
 			else if (f010201.CUST_COST == "MoveIn")

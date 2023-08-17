@@ -38,74 +38,9 @@ namespace Wms3pl.WebServices.Process.P25.Services
     public List<F250103Verification> InsertUpdateF2501Data(List<F2501WcfData> datas)
     {
       var wmsTransaction = new WmsTransaction();
-      var f2501Repo = new F2501Repository(Schemas.CoreSchema, wmsTransaction);
-      var f250103Repo = new F250103Repository(Schemas.CoreSchema, wmsTransaction);
       var p25Service = new P250103Service(wmsTransaction);
-      var addF250103s = new List<F250103>();
-      var addF2501s = new List<F2501>();
-      var updF2501s = new List<F2501>();
-      var delF2501s = new List<F2501>();
-      // 設定每序號品是否為序號綁儲位
-      var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-      foreach (var g in datas.GroupBy(x => new { x.ITEM_CODE, x.GUP_CODE, x.CUST_CODE }))
-      {
-        var f1903 = f1903Repo.Find(x => x.ITEM_CODE == g.Key.ITEM_CODE && x.GUP_CODE == g.Key.GUP_CODE && x.CUST_CODE == g.Key.CUST_CODE);
-        if (f1903 == null)
-          continue;
-
-        foreach (var item in g)
-        {
-          item.BUNDLE_SERIALLOC = f1903.BUNDLE_SERIALLOC;
-        }
-      }
-
-      var index = 1;
-      var result = new List<F250103Verification>();
-      foreach (var data in datas)
-      {
-        BulkUpdateF2501Result bulkUpdateF2501Result;
-
-        var r = p25Service.InsertOrUpdate(data, index, out bulkUpdateF2501Result);
-
-        if (bulkUpdateF2501Result.IsSuccessed)
-        {
-          switch (bulkUpdateF2501Result.ModifyMode)
-          {
-            case Datas.Shared.Enums.ModifyMode.Add:
-              addF2501s.Add(bulkUpdateF2501Result.f2501);
-              break;
-            case Datas.Shared.Enums.ModifyMode.Edit:
-              updF2501s.Add(bulkUpdateF2501Result.f2501);
-              break;
-            case Datas.Shared.Enums.ModifyMode.Delete:
-              delF2501s.Add(bulkUpdateF2501Result.f2501);
-              break;
-          }
-        }
-
-        addF250103s.Add(new F250103
-        {
-          SERIAL_NO = data.SERIAL_NO.Length > 50 ? data.SERIAL_NO.Substring(0, 50) : data.SERIAL_NO,
-          STATUS = data.STATUS,
-          ISPASS = string.IsNullOrWhiteSpace(r.Message) ? "1" : "0",
-          MESSAGE = r.Message,
-          GUP_CODE = data.GUP_CODE,
-          CUST_CODE = data.CUST_CODE
-        });
-
-        result.Add(r);
-        index++;
-      }
-
-      if (addF2501s.Any())
-        f2501Repo.BulkInsert(addF2501s);
-      if (updF2501s.Any())
-        f2501Repo.BulkUpdate(updF2501s);
-      if (delF2501s.Any())
-        f2501Repo.SqlBulkDeleteForAnyCondition(delF2501s, "F2501", new List<string> { "GUP_CODE", "CUST_CODE", "SERIAL_NO" });
-      if (addF250103s.Any())
-        f250103Repo.BulkInsert(addF250103s);
-      wmsTransaction.Complete();
+			var result = p25Service.InsertOrUpdate_New(datas);
+			wmsTransaction.Complete();
       return result;
     }
     #endregion

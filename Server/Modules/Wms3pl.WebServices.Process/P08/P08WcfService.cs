@@ -1132,11 +1132,11 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			return result;
 		}
 		[OperationContract]
-		public ExecuteResult StopAllot(long f0701Id)
+		public ExecuteResult StopAllot(StopAllotParam param)
 		{
 			var wmsTransaction = new WmsTransaction();
 			var service = new P080806Service(wmsTransaction);
-			var result = service.StopAllot(f0701Id);
+			var result = service.StopAllot(param);
 			if (result.IsSuccessed)
 				wmsTransaction.Complete();
 			return result;

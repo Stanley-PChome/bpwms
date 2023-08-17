@@ -64,5 +64,24 @@ namespace Wms3pl.Datas.F05
 
 			return SqlQuery<MoveOutContainerDtl>(sql, parms.ToArray());
 		}
+		/// <summary>
+		/// 跨庫/取消容器是否存在揀貨容器的商品
+		/// </summary>
+		/// <param name="f0531_ID"></param>
+		/// <param name="f0701_ID"></param>
+		/// <returns></returns>
+		public bool IsExistPickItem(long f0531_ID, long f0701_ID)
+		{
+			var sqlParameter = new List<SqlParameter>();
+			sqlParameter.Add(new SqlParameter("@p0", f0531_ID) { SqlDbType = SqlDbType.BigInt });
+			sqlParameter.Add(new SqlParameter("@p1", f0701_ID) { SqlDbType = SqlDbType.BigInt });
+
+			var sql = @"SELECT TOP(1) 1 FROM F053202
+						 WHERE F0531_ID = @p0
+						   AND F0701_ID = @p1
+						";
+
+			return SqlQuery<int>(sql, sqlParameter.ToArray()).Any();
+		}
 	}
 }

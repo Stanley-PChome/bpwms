@@ -1298,6 +1298,8 @@ namespace Wms3pl.Datas.Shared.Entities
     public long f0701_ID { get; set; }
 
     public int Qty { get; set; }
+
+    public string WAREHOUSE_ID { get; set; }
   }
 
 
@@ -1730,12 +1732,27 @@ namespace Wms3pl.Datas.Shared.Entities
   }
   #endregion
 
-	#endregion
+  #region ClearSerilaNoData
+  /// <summary>
+  /// 驗收數量更改，清除已收集的序號內容以及刷讀記錄參數
+  /// </summary>
+  public class UpdateRecvQtyReq
+  {
+    public string DcCode { get; set; }
+    public string GupCode { get; set; }
+    public string CustCode { get; set; }
+    public string PurchaseNo { get; set; }
+    public string PurchaseSeq { get; set; }
+    public string RtNo { get; set; }
+  }
+  #endregion
 
-	#region 商品檢驗綁容器共用服務(WarehouseInRecvBindBoxService)用Entity
+  #endregion
 
-	#region LockBindContainerAcceptenceOrder用請求參數
-	public class LockBindContainerAcceptenceOrderReq
+  #region 商品檢驗綁容器共用服務(WarehouseInRecvBindBoxService)用Entity
+
+  #region LockBindContainerAcceptenceOrder用請求參數
+  public class LockBindContainerAcceptenceOrderReq
   {
     //dcCode,gupCode,custCode,rtNo,IsChangeUser
     public string DcCode { get; set; }

@@ -57,7 +57,7 @@ namespace Wms3pl.Datas.F05
                   new SqlParameter("@custCode",   custCode) {SqlDbType=System.Data.SqlDbType.VarChar}
               };
       string sql = $@"Select * FROM F050305 WHERE  DC_CODE=@dcCode  and  GUP_CODE = @gupCode  and CUST_CODE = @custCode
-                      AND PROC_FLAG = N'0' AND (SOURCE_TYPE is null or SOURCE_TYPE = '') ORDER BY CRT_DATE";
+                      AND PROC_FLAG = '0' AND (SOURCE_TYPE is null or SOURCE_TYPE = '') ORDER BY CRT_DATE";
 
       var result = SqlQuery<F050305>(sql, param.ToArray());
       return result;
@@ -73,7 +73,7 @@ namespace Wms3pl.Datas.F05
                   new SqlParameter("@custCode",   custCode) {SqlDbType=System.Data.SqlDbType.VarChar}
               };
       string sql = $@"Select * FROM F050305 WHERE  DC_CODE=@dcCode  and  GUP_CODE = @gupCode  and CUST_CODE = @custCode
-                      AND PROC_FLAG = N'0' AND  SOURCE_TYPE = '13' ORDER BY CRT_DATE";
+                      AND PROC_FLAG = '0' AND  SOURCE_TYPE = '13' ORDER BY CRT_DATE";
 
       var result = SqlQuery<F050305>(sql, param.ToArray());
       return result;

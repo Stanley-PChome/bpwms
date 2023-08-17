@@ -34,9 +34,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 		{
 			ApiResult res = new ApiResult { IsSuccessed = true };
 			List<ApiResponse> data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
-			// 新增API Log
-			res = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSSCH_ITEM, req.DcCode, req.GupCode, req.CustCode, "WcsItemSchedule", req, () =>
+      // 新增API Log
+      res = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSSCH_ITEM, req.DcCode, req.GupCode, req.CustCode, "WcsItemSchedule", req, () =>
 			{
 				// 取得物流中心服務貨主檔
 				var gupCustList = commonService.GetDcCustList(req.DcCode, req.GupCode, req.CustCode)
@@ -182,8 +183,9 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 				{
 					var list = new List<ApiResult>();
 					var url = $"v1/{dcCode}/ALL/Item";
+          WcsSetting.DcCode = dcCode;
 
-					list.Add(ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSAPI_ITEM, dcCode, gupCode, custCode, "WcsItemResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, BatchNo = batchNo, WcsData = isSaveWcsData ? currReq : null }, () =>
+          list.Add(ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSAPI_ITEM, dcCode, gupCode, custCode, "WcsItemResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, BatchNo = batchNo, WcsData = isSaveWcsData ? currReq : null }, () =>
 					{
 						ApiResult result = new ApiResult { IsSuccessed = false };
 
@@ -297,9 +299,10 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
 		{
 			ApiResult res = new ApiResult { IsSuccessed = true };
 			List<ApiResponse> data = new List<ApiResponse>();
+      WcsSetting.DcCode = req.DcCode;
 
-			// 新增API Log
-			res = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSSCH_ITEMSN, req.DcCode, req.GupCode, req.CustCode, "WcsItemSnSchedule", req, () =>
+      // 新增API Log
+      res = ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSSCH_ITEMSN, req.DcCode, req.GupCode, req.CustCode, "WcsItemSnSchedule", req, () =>
 			{
 				// 取得物流中心服務貨主檔
 				var gupCustList = commonService.GetDcCustList(req.DcCode, req.GupCode, req.CustCode)
@@ -493,6 +496,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
           {
             var list = new List<ApiResult>();
             string url = $"v1/{dcCode}/ALL/Item/Sn";
+            WcsSetting.DcCode = dcCode;
 
             list.Add(ApiLogHelper.CreateApiLogInfo(ApiLogType.WCSAPI_ITEMSN, dcCode, gupCode, custCode, "WcsItemSnResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, WcsData = isSaveWcsData ? currReq : null }, () =>
             {
@@ -618,8 +622,8 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
         for (int i = 0; i < index; i++)
         {
           var currDatas = itemSnList.Skip(i * WcsSetting.ItemMaxCnt).Take(WcsSetting.ItemMaxCnt).ToList();
-
           var currReq = new WcsSnReq { OwnerCode = custCode, Action = 2, SkuTotal = currDatas.Count, SkuList = currDatas };
+          WcsSetting.DcCode = dcCode;
 
           ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "WcsItemSnCancelResult", new { WcsApiUrl = $"{WcsSetting.ApiUrl}{url}", WcsToken = WcsSetting.ApiAuthToken, F060501 = f060501, WcsData = isSaveWcsData ? currReq : null }, () =>
           {

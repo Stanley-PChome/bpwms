@@ -7043,4 +7043,11 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string PICK_ORD_NO { get; set; }
 		public string WMS_ORD_NO { get; set; }
 	}
+
+	public class OrderWithMakeNo
+	{
+		public string ORD_NO { get; set; }
+		public string ORD_SEQ { get; set; }
+		public string MAKE_NO { get; set; }
+	}
 }

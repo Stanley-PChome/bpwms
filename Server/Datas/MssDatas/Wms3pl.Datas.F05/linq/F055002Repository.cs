@@ -36,16 +36,6 @@ namespace Wms3pl.Datas.F05
 			return result == null ? 0 : result.PACKAGE_BOX_SEQ;
 		}
 
-		public IQueryable<F055002> GetPackageBoxSeqsByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
-		{
-			var result = _db.F055002s.Where(x => x.DC_CODE == dcCode &&
-																					 x.GUP_CODE == gupCode &&
-																					 x.CUST_CODE == custCode &&
-																					 wmsOrdNos.Contains(x.WMS_ORD_NO));
-
-			return result;
-		}
-
 		public IQueryable<F055002WithGridLog> GetF055002WithGridLog(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
 			var result = _db.F055002s.AsNoTracking().Where(x => x.DC_CODE == dcCode &&
@@ -74,16 +64,6 @@ namespace Wms3pl.Datas.F05
 			x.CUST_CODE == custCode &&
 			x.WMS_ORD_NO == wmsOrdNo &&
 			!string.IsNullOrWhiteSpace(x.SERIAL_NO));
-		}
-
-		public IQueryable<F055002> GetDatasByOrdSeqs(string dcCode, string gupCode, string custCode, string ordNo, List<string> ordSeqs)
-		{
-			return _db.F055002s.AsNoTracking().Where(x =>
-			x.DC_CODE == dcCode &&
-			x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			x.ORD_NO == ordNo &&
-			ordSeqs.Contains(x.ORD_SEQ));
 		}
 	}
 }

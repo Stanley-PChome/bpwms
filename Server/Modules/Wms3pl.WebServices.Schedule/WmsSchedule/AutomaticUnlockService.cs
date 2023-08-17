@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.F00;
+using Wms3pl.Datas.F05;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
@@ -27,7 +28,8 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
 		public ApiResult ExecAutomaticUnlock()
 		{
 			return ApiLogHelper.CreateApiLogInfo("0", "0", "0", "AutomaticUnlock", new object { }, () => {
-        var f0000Repo = new F0000Repository(Schemas.CoreSchema, _wmsTransaction);
+				UnlockF0501();
+				var f0000Repo = new F0000Repository(Schemas.CoreSchema, _wmsTransaction);
         var f0000s = f0000Repo.GetLockDatas().ToList();
         var hasData = false;
         if (f0000s.Any())
@@ -44,6 +46,20 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
         }
         return new ApiResult { IsSuccessed = true, MsgContent = "無排程被鎖定" };
 			});
+		}
+
+		public void UnlockF0501()
+		{
+			var f0501Repo = new F0501Repository(Schemas.CoreSchema);
+			var needUnlockBatchNos = f0501Repo.GetNeedUnlockBatchNos().ToList();
+			foreach (var unlockBatchNo in needUnlockBatchNos)
+			{
+				try
+				{
+					f0501Repo.UnLockByAllotBatchNo(unlockBatchNo);
+				}
+				catch (Exception ex) { }
+			}
 		}
 	}
 }

@@ -88,7 +88,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			// 檢查容器條碼是否存在[F0701]
 			var f0701 = f0701Repo.GetDatasByTrueAndCondition(o => o.CONTAINER_CODE == req.ContainerCode && o.CONTAINER_TYPE == "0").FirstOrDefault();
 			if (f0701 == null)
-				return new CheckShipContainerCodeRes { Result = new ExecuteResult { IsSuccessed = false, Message = "容器不存在" } };
+				return new CheckShipContainerCodeRes { Result = new ExecuteResult { IsSuccessed = false, Message = $"容器{req.ContainerCode}不存在" } };
 
 			// 取得容器綁定的單號[F070101]
 			var f070101 = f070101Repo.GetDatasByTrueAndCondition(o => o.F0701_ID == f0701.ID).FirstOrDefault();
@@ -219,11 +219,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			var f050101 = f050101Repo.GetDataByWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, f050801.WMS_ORD_NO);
 			if (f050101 != null && f050101.STATUS == "9")
 				if (req.ShipMode == "2")
-				{
-					var f060208RepoNoTrans = new F060208Repository(Schemas.CoreSchema);
-					f060208RepoNoTrans.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 3, new List<int> { 9 });
-					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此訂單已取消，請將容器移至異常區" }, true);
-				}
+					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此訂單已取消，請將容器移至異常區，請手動按下取消到站紀錄" }, true);
 				else
 					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此訂單已取消" });
 			// 檢查出貨單據狀態
@@ -232,7 +228,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				{
 					var f060208RepoNoTrans = new F060208Repository(Schemas.CoreSchema);
 					f060208RepoNoTrans.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 3, new List<int> { 9 });
-					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此出貨單已取消，請將容器移至異常區" }, true);
+					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此出貨單已取消，請將容器移至異常區，請手動按下取消到站紀錄" }, true);
 				}
 				else
 					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此出貨單已取消" });
@@ -1250,8 +1246,6 @@ namespace Wms3pl.WebServices.Shared.Services
 				return new CancelShipOrderRes { IsSuccessed = false, Message = "此出貨單已出貨，不可取消包裝" };
 			else if (f050801.STATUS == 6)  //6	單據狀態	已扣帳
 				return new CancelShipOrderRes { IsSuccessed = false, Message = "此出貨單已扣帳，不可取消包裝" };
-			else if (f050801.STATUS == 9)  //9	單據狀態	已取消
-				return new CancelShipOrderRes { IsSuccessed = false, Message = "此出貨單已取消，不可取消包裝" };
 
 			#region 呼叫LmsApi取消宅配單
 			// [YY]=取得已關箱包裝頭檔 資料表:F055001 條件: DC_CODE= <參數1> GUP_CODE=<參數2> CUST_CDOE=<參數3> WMS_ORD_NO=<參數4> AND IS_CLOSED = 1
@@ -1456,7 +1450,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				if (string.IsNullOrWhiteSpace(serialNo))
 				{
-					var findF055002 = f055002s.FirstOrDefault(x => x.ORD_NO == item.ORD_NO && x.ORD_SEQ == item.ORD_SEQ);
+					var findF055002 = f055002s.FirstOrDefault(x => x.ORD_NO == item.ORD_NO && x.ORD_SEQ == item.ORD_SEQ && string.IsNullOrWhiteSpace(x.SERIAL_NO));
 					if (findF055002 != null)
 					{
 						findF055002.PACKAGE_QTY += allotQty;

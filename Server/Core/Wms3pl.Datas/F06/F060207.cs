@@ -19,101 +19,119 @@
         /// </summary>
         [Key]
         [Required]
-        public long ID { get; set; }
+    [Column(TypeName = "bigint")]
+    public long ID { get; set; }
 
 		/// <summary>
 		///物流中心編號(DCCODE)
 		/// </summary>
 		[Required]
-        public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 		/// <summary>
 		/// 業主編號
 		/// </summary>
 		[Required]
-		public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string GUP_CODE { get; set; }
 		/// <summary>
 		/// 貨主編號(OWNERCODE)
 		/// </summary>
 		[Required]
-		public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CUST_CODE { get; set; }
 
 		/// <summary>
 		/// 倉別編號(ZONECODE)
 		/// </summary>
 		[Required]
-		public string WAREHOUSE_ID { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string WAREHOUSE_ID { get; set; }
 
 		/// <summary>
 		/// 容器編號(周轉箱號)
 		/// </summary
 		[Required]
-		public string CONTAINERCODE { get; set; }
+    [Column(TypeName = "varchar(32)")]
+    public string CONTAINERCODE { get; set; }
 
 		/// <summary>
 		/// 工作站人員(工號)
 		/// </summary>
 		[Required]
-		public string OPERATOR { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string OPERATOR { get; set; }
 
-		/// <summary>
-		/// 工作站編號
-		/// </summary>
-		public string WORKSTATION_NO { get; set; }
+    /// <summary>
+    /// 工作站編號
+    /// </summary>
+    [Column(TypeName = "varchar(32)")]
+    public string WORKSTATION_NO { get; set; }
 
-		/// <summary>
-		/// 播種格口編號
-		/// </summary>
-		public string SEED_BINCODE { get; set; }
+    /// <summary>
+    /// 播種格口編號
+    /// </summary>
+    [Column(TypeName = "varchar(32)")]
+    public string SEED_BINCODE { get; set; }
 
 		/// <summary>
 		/// 明細筆數
 		/// </summary>
 		[Required]
-		public int SKUTOTAL { get; set; }
+    [Column(TypeName = "int")]
+    public int SKUTOTAL { get; set; }
 
 		/// <summary>
 		/// 處理狀態(0:待處理;1:成功;2:失敗;3:不處理)
 		/// </summary>
 		[Required]
-		public string STATUS { get; set; }
+    [Column(TypeName = "varchar(1)")]
+    public string STATUS { get; set; }
 
-		/// <summary>
-		/// 錯誤訊息
-		/// </summary>
-		public string MSG_CONTENT { get; set; }
+    /// <summary>
+    /// 錯誤訊息
+    /// </summary>
+    [Column(TypeName = "nvarchar(255)")]
+    public string MSG_CONTENT { get; set; }
 		/// <summary>
 		/// 建立日期
 		/// </summary>
 		[Required]
-		public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
 		/// <summary>
 		/// 建立人員編號
 		/// </summary>
 		[Required]
-        public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 		/// <summary>
 		/// 建立人員名稱
 		/// </summary>
 		[Required]
-        public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
 
-		/// <summary>
-		/// 異動日期
-		/// </summary>
-		public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
-		/// <summary>
-		/// 異動人員編號
-		/// </summary>
-		public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員編號
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-		/// <summary>
-		/// 異動人員名稱
-		/// </summary>
-		public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人員名稱
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
     }
 }

@@ -42,8 +42,8 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
 			//param.DcCode = "12";
 			//param.GupCode = "10";
 			//param.CustCode = "010001";
-			_config.SchemaName = "PHWMS_DEV";
-			_config.ScheduleNo = "23";
+			_config.SchemaName = "PHWMS_PDT";
+			_config.ScheduleNo = "32";
 #endif
             Schemas.CoreSchema = _config.SchemaName;
 			ConsoleHelper.FilePath = string.Format(ConfigurationManager.AppSettings["FilePath"], DateTime.Today.ToString("yyyyMMdd"));
@@ -157,8 +157,11 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
           case "31":  //跨庫調撥出貨分配扣帳排程
             res = WmsScheduleService.MoveOutShipOrderDebit();
             break;
+          case "32":  //即期品調撥排程
+            res = WmsScheduleService.ImmediateItemSchedule();
+            break;
 
-					default:
+          default:
 						break;
 				}
 				if (res.IsSuccessed)
@@ -261,7 +264,9 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
           return "ExecUpdateLocVolumnByCalvolumnTime";
         case "31": //跨庫調撥出貨分配扣帳排程
           return "MoveOutShipOrderDebit";
-				default:
+        case "32": //即期品調撥排程
+          return "ImmediateItemSchedule";
+        default:
           return "NoSchedule";
       }
     }
