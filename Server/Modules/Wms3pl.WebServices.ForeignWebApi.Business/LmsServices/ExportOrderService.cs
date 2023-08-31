@@ -274,45 +274,50 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 		{
 			var res = new List<LackDetail>();
 
-			var wmsOrdNos = ExportService.GetWmsOrdNos(f050305);
-			//取得出貨單缺貨紀錄
-			f051206LackDatas = F051206Repo.GetF051206LackDatas(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos).ToList();
-
-			var f05030202s = ExportService.GetF05030202s(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, new List<string> { f050305.ORD_NO });
-
-			f051206LackDatas.ForEach(data =>
+			//取得貨主設定是否允許訂單缺品出貨
+			var AllowOrderLackShip = CommonService.GetCust(f050305.GUP_CODE, f050305.CUST_CODE)?.ALLOW_ORDER_LACKSHIP == "1";
+			if (AllowOrderLackShip)
 			{
-				//該出貨項次剩餘缺貨數
-				var lastLackQty = data.LACK_QTY;
-				var curnF05030202LackExs = f05030202s.Where(x => x.WMS_ORD_NO == data.WMS_ORD_NO && x.WMS_ORD_SEQ == data.WMS_ORD_SEQ);
+				var wmsOrdNos = ExportService.GetWmsOrdNos(f050305);
+				//取得出貨單缺貨紀錄
+				f051206LackDatas = F051206Repo.GetF051206LackDatas(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos).ToList();
 
-				foreach (var f05030202LackEx in curnF05030202LackExs)
+				var f05030202s = ExportService.GetF05030202s(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, new List<string> { f050305.ORD_NO });
+
+				f051206LackDatas.ForEach(data =>
 				{
-					//當前訂單項次缺貨數
-					var curnLackQty = f05030202LackEx.B_DELV_QTY - f05030202LackEx.A_DELV_QTY;
+					//該出貨項次剩餘缺貨數
+					var lastLackQty = data.LACK_QTY;
+					var curnF05030202LackExs = f05030202s.Where(x => x.WMS_ORD_NO == data.WMS_ORD_NO && x.WMS_ORD_SEQ == data.WMS_ORD_SEQ);
 
-					if (lastLackQty == 0 || curnLackQty == 0) continue;
-					if (lastLackQty >= curnLackQty)
+					foreach (var f05030202LackEx in curnF05030202LackExs)
 					{
-						lastLackQty -= curnLackQty;
-					}
-					else
-					{
-						curnLackQty = lastLackQty;
-						f05030202LackEx.A_DELV_QTY += lastLackQty;
-						lastLackQty = 0;
-					}
+						//當前訂單項次缺貨數
+						var curnLackQty = f05030202LackEx.B_DELV_QTY - f05030202LackEx.A_DELV_QTY;
 
-					res.Add(new LackDetail
-					{
-						ItemSeq = f05030202LackEx.ORD_SEQ,
-						ItemCode = data.ITEM_CODE,
-						LackQty = curnLackQty.Value,
-						LackCause = data.REASON,
-						LackCauseMemo = data.MEMO,
-					});
-				}
-			});
+						if (lastLackQty == 0 || curnLackQty == 0) continue;
+						if (lastLackQty >= curnLackQty)
+						{
+							lastLackQty -= curnLackQty;
+						}
+						else
+						{
+							curnLackQty = lastLackQty;
+							f05030202LackEx.A_DELV_QTY += lastLackQty;
+							lastLackQty = 0;
+						}
+
+						res.Add(new LackDetail
+						{
+							ItemSeq = f05030202LackEx.ORD_SEQ,
+							ItemCode = data.ITEM_CODE,
+							LackQty = curnLackQty.Value,
+							LackCause = data.REASON,
+							LackCauseMemo = data.MEMO,
+						});
+					}
+				});
+			}
 
 			return res.OrderBy(x => x.ItemSeq).ToList();
 		}
