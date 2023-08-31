@@ -23,13 +23,15 @@ namespace Wms3pl.WpfClient.P08.ViewModel
   {
     #region Private Variable
     private Regex rgx = new Regex(@"^[0-9-]+$");
-    #endregion
 
-    #region Public Variable
-    /// <summary>
-    /// Focus並全選容器條碼委派事件
-    /// </summary>
-    public Action FocusSelectAllContainer = delegate { };
+		private PrintBoxSettingParam printBoxSettingParam;
+		#endregion
+
+		#region Public Variable
+		/// <summary>
+		/// Focus並全選容器條碼委派事件
+		/// </summary>
+		public Action FocusSelectAllContainer = delegate { };
     /// <summary>
     /// Focus並全選商品條碼委派事件
     /// </summary>
@@ -83,6 +85,11 @@ namespace Wms3pl.WpfClient.P08.ViewModel
         _workStationStatusList = GetBaseTableService.GetF000904List(FunctionCode, "F1946", "STATUS", false);
       }
     }
+
+		public void GetPrintBoxSetting()
+		{
+			printBoxSettingParam = _shipPackageService.GetPrintBoxSetting(SelectedDc, _gupCode, _custCode, ShipMode);
+		}
     #endregion
 
     #region Property
@@ -1207,7 +1214,8 @@ namespace Wms3pl.WpfClient.P08.ViewModel
         ShipMode = ShipMode,
         WorkStationId = SelectedF910501.WORKSTATION_CODE,
         IsAppendBox = Convert.ToBoolean(isIsAppendBox),
-        IsManualCloseBox = isManualCloseBox
+        IsManualCloseBox = isManualCloseBox,
+				PrintBoxSettingParam = printBoxSettingParam
       });
       LogHelper.Log(FunctionCode, "關箱 結束 出貨單號" + WmsOrdData.WmsOrdNo + "箱序" + (packageBoxNo.HasValue ? packageBoxNo.Value.ToString() : "無指定箱序關箱"));
 

@@ -33,6 +33,13 @@ namespace Wms3pl.WebServices.Shared.Services
 {
 	public partial class SharedService
 	{
+		private F0009Repository _f0009Rep;
+		public F0009Repository F0009Rep
+		{
+			get { return _f0009Rep == null ? _f0009Rep = new F0009Repository(Schemas.CoreSchema) : _f0009Rep; }
+			set { _f0009Rep = value; }
+		}
+
 		private WmsTransaction _wmsTransaction;
 		public SharedService(WmsTransaction wmsTransaction = null)
 		{
@@ -106,42 +113,19 @@ namespace Wms3pl.WebServices.Shared.Services
 
 		public F0009 GetNewF0009(string ordType, int count)
 		{
-			var f0009Rep = new F0009Repository(Schemas.CoreSchema);
-			var f9 = f0009Rep.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
-				new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
-			() =>
-			{
-				var lockF0009 = f0009Rep.LockF0009();
-				var f0009 = f0009Rep.Find(item => item.ORD_TYPE == ordType, isForUpdate: true, isByCache: false);
-				if (f0009 == null)
-				{
-					f0009 = new F0009()
-					{
-						ORD_TYPE = ordType,
-						ORD_DATE = DateTime.Today,
-						ORD_SEQ = count
-					};
+      var outSeq = 0;
 
-					f0009Rep.Add(f0009);
-				}
-				else
-				{
-					if (f0009.ORD_DATE.Date != DateTime.Today)
-					{
-						f0009.ORD_DATE = DateTime.Today;
-						f0009.ORD_SEQ = count;
-					}
-					else
-					{
-						f0009.ORD_SEQ += count;
-					}
+			F0009Rep.GetSequence(ordType, count, out outSeq);
 
-					f0009Rep.Update(f0009);
-				}
-				return f0009;
-			});
-			return f9;
-		}
+      var f0009 = new F0009()
+      {
+        ORD_TYPE = ordType,
+        ORD_DATE = DateTime.Today,
+        ORD_SEQ = outSeq
+      };
+
+      return f0009;
+    }
 
 
 		/// <summary>
@@ -670,7 +654,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				case "9":   // 配庫
 					if (targetType == "0")//發送對象為物流中心的才要寫到行事曆
 					{
-						messageId = GetTableSeqId("SEQ_MESSAGE_ID");
+						messageId = GetTableSeqId2("SEQ_MESSAGE_ID");
 						AddLoMessageToF700501Schedule(wmsTransaction, dcCode, gupCode, custCode, msgNo, messageContent, targetCode,
 							messageId);
 					}
@@ -1119,6 +1103,20 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			return result;
 		}
+
+		private F0000Repository _f0000Repo;
+		public F0000Repository F0000Repo
+		{
+			get { return _f0000Repo == null ? _f0000Repo = new F0000Repository(Schemas.CoreSchema) : _f0000Repo; }
+			set { _f0000Repo = value; }
+		}
+		#region 取Tabel 自動編號 Seq
+		public decimal GetTableSeqId2(string tableSeqId)
+		{
+			var returnId = F0000Repo.GetTableSeqId(tableSeqId).FirstOrDefault();
+			return returnId;
+		}
+		#endregion
 	}
 }
 

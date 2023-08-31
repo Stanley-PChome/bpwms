@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Wms3pl.Datas.F00;
@@ -38,12 +39,6 @@ namespace Wms3pl.WebServices.Shared.Services
     private Stack<string> _newWmsOrdNosStack;
     private Stack<string> _newPickOrdNosStack;
 
-    private F051201Repository _f051201Repo;
-    private F051202Repository _f051202Repo;
-		private F051203Repository _f051203Repo;
-		private F1511Repository _f1511Repo;
-		private F0011Repository _f0011Repo;
-		private F050801Repository _f050801Repo;
     private List<F051201> _f051201List;
 		private List<F051202> _f051202List;
 		private List<F051203> _f051203List;
@@ -68,7 +63,9 @@ namespace Wms3pl.WebServices.Shared.Services
     /// </summary>
     private const int OrderMaxTurnoverContainerCnt = 5;
 
-		private CommonService _commonService;
+    #region Property
+
+    private CommonService _commonService;
 		public CommonService CommonService
 		{
 			get
@@ -113,25 +110,235 @@ namespace Wms3pl.WebServices.Shared.Services
 			}
 		}
 
-		#region 揀貨單快取
+    private F051201Repository _f051201Repo;
+    public F051201Repository f051201Repo
+    {
+      get
+      {
+        if (_f051201Repo == null)
+          _f051201Repo = new F051201Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f051201Repo;
+      }
+      set
+      {
+        _f051201Repo = value;
+      }
+    }
 
-		/// <summary>
-		/// 取得揀貨單
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="pickOrdNo"></param>
-		/// <returns></returns>
-		public F051201 GetF051201(string dcCode, string gupCode, string custCode, string pickOrdNo)
+    private F051202Repository _f051202Repo;
+    public F051202Repository f051202Repo
+    {
+      get
+      {
+        if (_f051202Repo == null)
+          _f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f051202Repo;
+      }
+      set
+      {
+        _f051202Repo = value;
+      }
+    }
+
+    private F051203Repository _f051203Repo;
+    public F051203Repository f051203Repo
+    {
+      get
+      {
+        if (_f051203Repo == null)
+          _f051203Repo = new F051203Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f051203Repo;
+      }
+      set
+      {
+        _f051203Repo = value;
+      }
+    }
+
+    private F1511Repository _f1511Repo;
+    public F1511Repository f1511Repo
+    {
+      get
+      {
+        if (_f1511Repo == null)
+          _f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f1511Repo;
+      }
+      set
+      {
+        _f1511Repo = value;
+      }
+    }
+
+    private F050101Repository _f050101Repo;
+    public F050101Repository f050101Repo
+    {
+      get
+      {
+        if (_f050101Repo == null)
+          _f050101Repo = new F050101Repository(Schemas.CoreSchema);
+        return _f050101Repo;
+      }
+      set
+      {
+        _f050101Repo = value;
+      }
+    }
+
+    private F050801Repository _f050801Repo;
+    public F050801Repository f050801Repo
+    {
+      get
+      {
+        if (_f050801Repo == null)
+          _f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f050801Repo;
+      }
+      set
+      {
+        _f050801Repo = value;
+      }
+    }
+
+    private F0534Repository _f0534Repo;
+    public F0534Repository f0534Repo
+    {
+      get
+      {
+        if (_f0534Repo == null)
+          _f0534Repo = new F0534Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f0534Repo;
+      }
+      set
+      {
+        _f0534Repo = value;
+      }
+    }
+
+    private F05120601Repository _f05120601Repo;
+    public F05120601Repository f05120601Repo
+    {
+      get
+      {
+        if (_f05120601Repo == null)
+          _f05120601Repo = new F05120601Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f05120601Repo;
+      }
+      set
+      {
+        _f05120601Repo = value;
+      }
+    }
+
+    private F0513Repository _f0513Repo;
+    public F0513Repository f0513Repo
+    {
+      get
+      {
+        if (_f0513Repo == null)
+          _f0513Repo = new F0513Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f0513Repo;
+      }
+      set
+      {
+        _f0513Repo = value;
+      }
+    }
+
+    private F051301Repository _f051301Repo;
+    public F051301Repository f051301Repo
+    {
+      get
+      {
+        if (_f051301Repo == null)
+          _f051301Repo = new F051301Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f051301Repo;
+      }
+      set
+      {
+        _f051301Repo = value;
+      }
+    }
+
+    private F060702Repository _f060702Repo;
+    public F060702Repository f060702Repo
+    {
+      get
+      {
+        if (_f060702Repo == null)
+          _f060702Repo = new F060702Repository(Schemas.CoreSchema, _wmsTransaction);
+        return _f060702Repo;
+      }
+      set
+      {
+        _f060702Repo = value;
+      }
+    }
+
+    private F060201Repository _f060201Repo;
+    public F060201Repository f060201Repo
+    {
+      get
+      {
+        if (_f060201Repo == null)
+          _f060201Repo = new F060201Repository(Schemas.CoreSchema);
+        return _f060201Repo;
+      }
+      set
+      {
+        _f060201Repo = value;
+      }
+    }
+
+    private F0011Repository _f0011Repo;
+    public F0011Repository f0011Repo
+    {
+      get
+      {
+        if (_f0011Repo == null)
+          _f0011Repo = new F0011Repository(Schemas.CoreSchema);
+        return _f0011Repo;
+      }
+      set
+      {
+        _f0011Repo = value;
+      }
+    }
+
+    private F195601Repository _f195601Repo;
+    public F195601Repository f195601Repo
+    {
+      get
+      {
+        if (_f195601Repo == null)
+          _f195601Repo = new F195601Repository(Schemas.CoreSchema);
+        return _f195601Repo;
+      }
+      set
+      {
+        _f195601Repo = value;
+      }
+    }
+
+    #endregion Property
+
+    #region 揀貨單快取
+
+    /// <summary>
+    /// 取得揀貨單
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="pickOrdNo"></param>
+    /// <returns></returns>
+    public F051201 GetF051201(string dcCode, string gupCode, string custCode, string pickOrdNo)
 		{
 			return GetF051201s(dcCode, gupCode, custCode, new List<string> { pickOrdNo }).FirstOrDefault();
 		}
 
 		public List<F051201> GetF051201s(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
 		{
-			if (_f051201Repo == null)
-				_f051201Repo = new F051201Repository(Schemas.CoreSchema, _wmsTransaction);
 			if (_f051201List == null)
 				_f051201List = new List<F051201>();
 
@@ -144,7 +351,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				for (int i = 0; i < index; i++)
 				{
 					var currPickNos = noExistPickNos.Skip(i * range).Take(range).ToList();
-					var datas = _f051201Repo.AsForUpdate().GetF051201s(dcCode, gupCode, custCode, currPickNos).ToList();
+					var datas = f051201Repo.AsForUpdate().GetF051201s(dcCode, gupCode, custCode, currPickNos).ToList();
 					_f051201List.AddRange(datas);
 					f051201s.AddRange(datas);
 				}
@@ -155,15 +362,13 @@ namespace Wms3pl.WebServices.Shared.Services
 
 		public List<F051202> GetF051202s(string dcCode, string gupCode, string custCode, string pickOrdNo)
 		{
-			if (_f051202Repo == null)
-				_f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransaction);
 			if (_f051202List == null)
 				_f051202List = new List<F051202>();
 
 			var f051202s = _f051202List.Where(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PICK_ORD_NO == pickOrdNo).ToList();
 			if (!f051202s.Any())
 			{
-				var datas = _f051202Repo.AsForUpdate().GetDataByPickNo(dcCode, gupCode, custCode, pickOrdNo).ToList();
+				var datas = f051202Repo.AsForUpdate().GetDataByPickNo(dcCode, gupCode, custCode, pickOrdNo).ToList();
 				_f051202List.AddRange(datas);
 				f051202s.AddRange(datas);
 			}
@@ -172,15 +377,13 @@ namespace Wms3pl.WebServices.Shared.Services
 
 		public List<F051203> GetF051203s(string dcCode, string gupCode, string custCode, string pickOrdNo)
 		{
-			if (_f051203Repo == null)
-				_f051203Repo = new F051203Repository(Schemas.CoreSchema, _wmsTransaction);
 			if (_f051203List == null)
 				_f051203List = new List<F051203>();
 
 			var f051203s = _f051203List.Where(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.PICK_ORD_NO == pickOrdNo).ToList();
 			if (!f051203s.Any())
 			{
-				var datas = _f051203Repo.AsForUpdate().GetDataByPickNo(dcCode, gupCode, custCode, pickOrdNo).ToList();
+				var datas = f051203Repo.AsForUpdate().GetDataByPickNo(dcCode, gupCode, custCode, pickOrdNo).ToList();
 				_f051203List.AddRange(datas);
 				f051203s.AddRange(datas);
 			}
@@ -189,15 +392,13 @@ namespace Wms3pl.WebServices.Shared.Services
 
 		public List<F1511> GetF1511s(string dcCode, string gupCode, string custCode, string orderNo)
 		{
-			if (_f1511Repo == null)
-				_f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
 			if (_f1511List == null)
 				_f1511List = new List<F1511>();
 
 			var f1511List = _f1511List.Where(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.ORDER_NO == orderNo).ToList();
 			if (!f1511List.Any())
 			{
-				var datas = _f1511Repo.AsForUpdate().GetDatas(dcCode, gupCode, custCode, orderNo).ToList();
+				var datas = f1511Repo.AsForUpdate().GetDatas(dcCode, gupCode, custCode, orderNo).ToList();
 				_f1511List.AddRange(datas);
 				f1511List.AddRange(datas);
 			}
@@ -214,15 +415,13 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public F050801 GetF050801(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
-			if (_f050801Repo == null)
-				_f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
 			if (_f050801List == null)
 				_f050801List = new List<F050801>();
 
 			var f050801 = _f050801List.FirstOrDefault(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.WMS_ORD_NO == wmsOrdNo);
 			if (f050801 == null)
 			{
-				f050801 = _f050801Repo.AsForUpdate().GetF050801ByWmsOrdNo(dcCode,gupCode,custCode,wmsOrdNo);
+				f050801 = f050801Repo.AsForUpdate().GetF050801ByWmsOrdNo(dcCode,gupCode,custCode,wmsOrdNo);
 				_f050801List.Add(f050801);
 			}
 			return f050801;
@@ -236,7 +435,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			if(_f195601List == null)
 			{
-				var f195601Repo = new F195601Repository(Schemas.CoreSchema);
 				_f195601List = f195601Repo.GetAll().ToList();
 			}
 			return _f195601List;
@@ -249,8 +447,6 @@ namespace Wms3pl.WebServices.Shared.Services
 
 		public List<F0011> GetDatasForNotClosed(string dcCode, string gupCode, string custCode, List<string> orderNos)
 		{
-			if (_f0011Repo == null)
-				_f0011Repo = new F0011Repository(Schemas.CoreSchema, _wmsTransaction);
 			if (_f0011List == null)
 				_f0011List = new List<F0011>();
 
@@ -264,7 +460,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				for (int i = 0; i < index; i++)
 				{
 					var currOrderNos = noExistOrderNos.Skip(i * range).Take(range).ToList();
-					var datas = _f0011Repo.AsForUpdate().GetDatasForNotClosed(dcCode, gupCode, custCode, currOrderNos).ToList();
+					var datas = f0011Repo.AsForUpdate().GetDatasForNotClosed(dcCode, gupCode, custCode, currOrderNos).ToList();
 					_f0011List.AddRange(datas);
 					f0011List.AddRange(datas);
 				}
@@ -275,7 +471,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		#endregion
 
 		#region  人員揀貨紀錄共用
-		
 
 		/// <summary>
 		/// 更新人員揀貨完成紀錄 F0011
@@ -292,13 +487,12 @@ namespace Wms3pl.WebServices.Shared.Services
 				// 更新揀貨完成時間為系統時間,STATUS=1
 				f0011.CLOSE_DATE = finishTime;
 				f0011.STATUS = "1";
-				_f0011Repo.Update(f0011);
+				f0011Repo.Update(f0011);
 			}
 		}
 
 		private void CreateAutoPickLog(string dcCode, string gupCode, string custCode, string pickOrdNo, string empId, DateTime startTime, DateTime finishTime)
 		{
-			var f0011Repo = new F0011Repository(Schemas.CoreSchema, _wmsTransaction);
 			f0011Repo.Add(new F0011
 			{
 				DC_CODE = dcCode,
@@ -319,42 +513,34 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			var empName = CommonService.GetEmpName(empId);
 			var f051201s = GetF051201s(dcCode, gupCode, custCode, pickOrdNos);
-			var f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
 			var pickWmsOrdNoList = f051202Repo.GetWmsOrdNoListByPickOrdNos(dcCode, gupCode, custCode, pickOrdNos).ToList();
 			var f0011List = GetDatasForNotClosed(dcCode, gupCode, custCode, pickOrdNos);
-			foreach (var f051201 in f051201s)
+      var pickStartTime = DateTime.Now;
+      var updateF050801List = new List<string>();
+      var updateF051201List = new List<string>();
+
+      foreach (var f051201 in f051201s)
 			{
 				if (string.IsNullOrEmpty(f051201.PICK_STAFF) || f051201.PICK_STAFF.ToUpper() != empId.ToUpper())
 				{
-
-					// 更新此出貨單的揀貨單狀態為1(揀貨中),揀貨人員=登入者帳號,揀貨人名=登入者名稱
-					if (f051201.PICK_STATUS == 0)
-						f051201.PICK_STATUS = 1;
-
-					f051201.PICK_STAFF = empId;
-					f051201.PICK_NAME = empName;
-
-					var pickStartTime = DateTime.Now;
 					if (!f051201.PICK_START_TIME.HasValue)
-					{
 						f051201.PICK_START_TIME = pickStartTime;
 
-						#region 更新出貨單開始揀貨時間
-						var wmsOrdNos = pickWmsOrdNoList.Where(x => x.PICK_ORD_NO == f051201.PICK_ORD_NO).Select(x => x.WMS_ORD_NO).ToList();
-						f050801Repo.UpdateStartTime(f051201.GUP_CODE, f051201.CUST_CODE, f051201.DC_CODE, wmsOrdNos, f051201.PICK_START_TIME.Value, empId, empName);
-						#endregion
-					}
-					// 建立人員揀貨記錄
-					var f0011 = f0011List.FirstOrDefault(x=> x.DC_CODE == f051201.DC_CODE && x.GUP_CODE == f051201.GUP_CODE && x.CUST_CODE == f051201.CUST_CODE && x.ORDER_NO == f051201.PICK_ORD_NO);
-					if (f0011 != null && f0011.EMP_ID.ToUpper() != empId.ToUpper())
+          var wmsOrdNos = pickWmsOrdNoList.Where(x => x.PICK_ORD_NO == f051201.PICK_ORD_NO).Select(x => x.WMS_ORD_NO).ToList();
+          updateF050801List.AddRange(wmsOrdNos);
+
+          // 建立人員揀貨記錄
+          var f0011 = f0011List.FirstOrDefault(x=> x.DC_CODE == f051201.DC_CODE && x.GUP_CODE == f051201.GUP_CODE && x.CUST_CODE == f051201.CUST_CODE && x.ORDER_NO == f051201.PICK_ORD_NO);
+
+          if (f0011 != null && f0011.EMP_ID.ToUpper() != empId.ToUpper())
 					{
 						// 更新揀貨完成時間為系統時間,STATUS=1
 						f0011.CLOSE_DATE = pickStartTime;
 						f0011.STATUS = "1";
-						_f0011Repo.Update(f0011);
+						f0011Repo.Update(f0011);
 					}
-					_f0011Repo.Add(new F0011
+
+					f0011Repo.Add(new F0011
 					{
 						DC_CODE = dcCode,
 						CUST_CODE = custCode,
@@ -365,11 +551,13 @@ namespace Wms3pl.WebServices.Shared.Services
 						START_DATE = pickStartTime
 					});
 
-					_f051201Repo.Update(f051201);
-				}
-
+          updateF051201List.Add(f051201.PICK_ORD_NO);
+        }
 			}
-			OrderService.AddF050305(dcCode, gupCode, custCode, pickOrdNos, "1");
+
+      f050801Repo.UpdateStartTime(dcCode, gupCode, custCode, updateF050801List, pickStartTime, empId, empName);
+      f051201Repo.UpdateOrderToStartPick(dcCode, gupCode, custCode, updateF051201List, pickStartTime, 1, empId, empName);
+      OrderService.AddF050305(dcCode, gupCode, custCode, pickOrdNos, "1");
 		}
 
 		#endregion
@@ -381,12 +569,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="param"></param>
 		public void PickConfirm(PickConfirmParam param)
 		{
-			var f05120601Repo = new F05120601Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f0513Repo = new F0513Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f051301Repo = new F051301Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f060702Repo = new F060702Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f060201Repo = new F060201Repository(Schemas.CoreSchema);
 			var containerService = new ContainerService(_wmsTransaction);
 			var empName = CommonService.GetEmpName(param.EmpId);
 			var startTime = !string.IsNullOrEmpty(param.StartTime) ? DateTime.Parse(param.StartTime) : DateTime.Now;
@@ -406,13 +588,11 @@ namespace Wms3pl.WebServices.Shared.Services
 			// 取得揀貨批次
 			var f0513 = f0513Repo.GetF0513(f051201.DC_CODE,f051201.GUP_CODE,f051201.CUST_CODE,f051201.DELV_DATE,f051201.PICK_TIME);
 
-			var updF051202List = new List<F051202>();
-			var updF051203List = new List<F051203>();
-			var updF1511List = new List<F1511>();
 			var addF05120601List = new List<F05120601>();
 			var updF051301List = new List<F051301>();
 
 			var isLackPick = false;
+
 			// 更新揀貨明細資料
 			foreach (var detail in param.Details)
 			{
@@ -424,13 +604,11 @@ namespace Wms3pl.WebServices.Shared.Services
 					f051203 = f051203s.First(x => x.TTL_PICK_SEQ == detail.Seq);
 					f051203.A_PICK_QTY = detail.Qty;
 					f051203.PICK_STATUS = "1";
-					f051203.UPD_DATE = completeTime;
-					f051203.UPD_STAFF = param.EmpId;
-					f051203.UPD_NAME = empName;
-					updF051203List.Add(f051203);
 
-					#endregion
-				}
+          f051203Repo.UpdatePickComplete(f051203.DC_CODE, f051203.GUP_CODE, f051203.CUST_CODE, f051203.PICK_ORD_NO, f051203.TTL_PICK_SEQ,
+                                          detail.Qty, completeTime, param.EmpId, empName);
+          #endregion
+        }
 				// 如果為自動倉非跨庫出貨 或 人工倉單一揀貨
 				if ((f051201.DISP_SYSTEM == "1" && f051201.NEXT_STEP != ((int)NextStep.CrossAllotPier).ToString()) || (f051201.DISP_SYSTEM == "0" && f051201.SPLIT_TYPE == "03"))
 				{
@@ -454,28 +632,24 @@ namespace Wms3pl.WebServices.Shared.Services
 						#region 更新F051202
 						var f051202 = f051202s.First(x => x.PICK_ORD_SEQ == seq);
 						var diffQty = (detail.Qty > f051202.B_PICK_QTY) ? f051202.B_PICK_QTY : detail.Qty;
-						detail.Qty = diffQty;
+
 						f051202.A_PICK_QTY = diffQty;
 						f051202.PICK_STATUS = "1";
-						f051202.UPD_DATE = completeTime;
-						f051202.UPD_STAFF = param.EmpId;
-						f051202.UPD_NAME = empName;
-						updF051202List.Add(f051202);
-						#endregion
 
-						#region 更新F1511
-						var f1511 = f1511s.First(x => x.ORDER_SEQ == seq);
-						f1511.A_PICK_QTY = diffQty;
-						f1511.STATUS = "1";
-						f1511.UPD_DATE = completeTime;
-						f1511.UPD_STAFF = param.EmpId;
-						f1511.UPD_NAME = empName;
-						updF1511List.Add(f1511);
-						#endregion
+            f051202Repo.UpdatePickComplete(f051202.DC_CODE, f051202.GUP_CODE, f051202.CUST_CODE, f051202.PICK_ORD_NO, f051202.PICK_ORD_SEQ,
+                                          diffQty, completeTime, param.EmpId, empName);
+            #endregion
 
-						#region 當明細揀貨完成(F051202.PICK_STATUS=1)且實際揀貨數<預計揀貨數 新增揀缺等待扣庫作業F05120601
+            #region 更新F1511
+            var f1511 = f1511s.First(x => x.ORDER_SEQ == seq);
 
-						if (f051202.PICK_STATUS == "1" && f051202.A_PICK_QTY < f051202.B_PICK_QTY)
+            f1511Repo.UpdateVirtualMoved(f1511.DC_CODE, f1511.GUP_CODE, f1511.CUST_CODE, f1511.ORDER_NO, f1511.ORDER_SEQ,
+                                          diffQty, completeTime, param.EmpId, empName);
+            #endregion
+
+            #region 當明細揀貨完成(F051202.PICK_STATUS=1)且實際揀貨數<預計揀貨數 新增揀缺等待扣庫作業F05120601
+
+            if (f051202.PICK_STATUS == "1" && diffQty < f051202.B_PICK_QTY)
 						{
 							var f05120601 = new F05120601
 							{
@@ -491,7 +665,7 @@ namespace Wms3pl.WebServices.Shared.Services
 								VALID_DATE = f051202.VALID_DATE,
 								MAKE_NO = f051202.MAKE_NO,
 								SERIAL_NO = f051202.SERIAL_NO,
-								LACK_QTY = f051202.B_PICK_QTY - f051202.A_PICK_QTY,
+								LACK_QTY = f051202.B_PICK_QTY - diffQty,
 								STATUS = "0",
 								CRT_DATE = completeTime,
 								CRT_STAFF = param.EmpId,
@@ -509,10 +683,8 @@ namespace Wms3pl.WebServices.Shared.Services
 						#endregion
 					}
 				}
-
 			}
 
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
 			var wmsOrdNos = f051202s.Select(x => x.WMS_ORD_NO).Distinct().ToList();
 
 			// 完成揀貨明細狀態
@@ -581,7 +753,6 @@ namespace Wms3pl.WebServices.Shared.Services
 						if (f051201.NEXT_STEP != ((int)NextStep.CrossAllotPier).ToString() & (updF051301List?.Any() ?? false))
 							updF051301List.ForEach(x => x.NEXT_STEP = "2");
 					}
-
         }
         else
 				{
@@ -589,9 +760,9 @@ namespace Wms3pl.WebServices.Shared.Services
 					// 人工倉單一揀貨/人工倉補揀單
 					if ((f051201.DISP_SYSTEM == "0" && f051201.SPLIT_TYPE == "03"))
 					{
-						// 無缺貨 
-						if (!isLackPick)
-							// 更新出貨單揀貨完成時間
+            // 無缺貨 
+            if (!isLackPick)
+              // 更新出貨單揀貨完成時間
 							f050801Repo.UpdateCompleteTime(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, wmsOrdNos, f051201.PICK_FINISH_DATE.Value, param.EmpId, empName);
 					}
 				}
@@ -646,7 +817,6 @@ namespace Wms3pl.WebServices.Shared.Services
               }).ToList());
         }
 
-
         // 若為跨庫出貨人工倉揀貨單，則寫入容器資料
         if (f051201.DISP_SYSTEM == "0" && f051201.NEXT_STEP == ((int)NextStep.CrossAllotPier).ToString())
 				{
@@ -674,8 +844,6 @@ namespace Wms3pl.WebServices.Shared.Services
         // No.2193 如果揀貨單為跨庫調撥，將揀貨容器增加寫入F0534資料表(STATUS=0)
         if (f051201.NEXT_STEP == ((int)NextStep.CrossAllotPier).ToString())
         {
-          var f0534Repo = new F0534Repository(Schemas.CoreSchema, _wmsTransaction);
-
           param.ContainerResults.ForEach(o =>
             f0534Repo.Add(new F0534
             {
@@ -697,8 +865,8 @@ namespace Wms3pl.WebServices.Shared.Services
 
         UpdatePickOrdNoLocVolumn(param.DcCode, param.GupCode, param.CustCode, new List<string> { f051201.PICK_ORD_NO });
 
-				#endregion
-			}
+        #endregion
+      }
 
       #region 集貨等待通知處理
       if (f051201.DISP_SYSTEM == "1" &&
@@ -714,68 +882,52 @@ namespace Wms3pl.WebServices.Shared.Services
 					isFindUpdF051301 = true;
 
 
-				int f060702Status = 9999;
+        int f060702Status = 9999;
         //檢查訂單是否取消
-        var f050101Repo = new F050101Repository(Schemas.CoreSchema);
         var f050101s = f050101Repo.GetOrdNoByWmsOrdNo(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, param.WmsNo);
-				
-				// 此單據為訂單取消，
-				// 集貨等待通知 =2(異常處理)
-				if (f050101s.Any(x => x.STATUS == "9"))
-					f060702Status = 2;
-				else
-				{
-					// 如果不存在F051301 或是 此單據不需集貨
-					// 則集貨等待通知 =0(到齊就出) 
-					if (f051301 == null || f051301.STATUS == "1")
-						f060702Status = 0;
-					// 此單據為需集貨、集貨中、集貨完成 
-					// 集貨場位置 = 人工集貨場，集貨等待通知=2(異常處理)
-					// 集貨場位置 = 自動倉集貨場，集貨等待通知=0(到齊就出)
-					else
-						f060702Status = f051301.COLLECTION_POSITION == "0" ? 2 : 0;
-				}
-        f060702Repo.Add(new F060702()
-				{
-					DC_CODE = f051201.DC_CODE,
-					CUST_CODE = f051201.CUST_CODE,
-					GUP_CODE = f051201.GUP_CODE,
-					ORDER_CODE = param.DocID,
-					ORI_ORDER_CODE = f051202s.FirstOrDefault()?.WMS_ORD_NO,
-					STATUS = f060702Status,
-          PROC_FLAG = "0",
-					PROC_DATE = DateTime.Now,
-					MESSAGE = "",
-					RESENT_CNT = 0,
-				});
-				// 如果集貨等待通知=2(異常處理) 且原集貨場位置=自動倉集貨場 則變更為人工集貨場
-        if (f051301!=null && f060702Status == 2 && f051301.COLLECTION_POSITION == "1")
+
+        // 此單據為訂單取消，
+        // 集貨等待通知 =2(異常處理)
+        if (f050101s.Any(x => x.STATUS == "9") || (f051301 != null && f051301.COLLECTION_POSITION == "0"))
+          f060702Status = 2;
+
+        if (f060702Status != 9999)
+          f060702Repo.Add(new F060702()
+          {
+            DC_CODE = f051201.DC_CODE,
+            CUST_CODE = f051201.CUST_CODE,
+            GUP_CODE = f051201.GUP_CODE,
+            ORDER_CODE = param.DocID,
+            ORI_ORDER_CODE = f051202s.FirstOrDefault()?.WMS_ORD_NO,
+            STATUS = f060702Status,
+            PROC_FLAG = "0",
+            PROC_DATE = DateTime.Now,
+            MESSAGE = "",
+            RESENT_CNT = 0,
+          });
+
+        // 如果集貨等待通知=2(異常處理) 且原集貨場位置=自動倉集貨場 則變更為人工集貨場
+        if (f051301 != null && f060702Status == 2 && f051301.COLLECTION_POSITION == "1")
         {
-					f051301.COLLECTION_POSITION = "0";
-					f051301.UPD_DATE = DateTime.Now;
-					f051301.UPD_NAME = empName;
-					f051301.UPD_STAFF = param.EmpId;
-					if (!isFindUpdF051301)
-						updF051301List.Add(f051301);
+          f051301.COLLECTION_POSITION = "0";
+          f051301.UPD_DATE = DateTime.Now;
+          f051301.UPD_NAME = empName;
+          f051301.UPD_STAFF = param.EmpId;
+          if (!isFindUpdF051301)
+            updF051301List.Add(f051301);
         }
-       }
-      
+      }
+
       #endregion 集貨等待通知處理
 
-			if(updF051301List.Any())
+      if (updF051301List.Any())
 				f051301Repo.BulkUpdate(updF051301List, true);
-			if(updF051202List.Any())
-				_f051202Repo.BulkUpdate(updF051202List, true);
-			if(updF051203List.Any())
-				_f051203Repo.BulkUpdate(updF051203List, true);
-			if(updF1511List.Any())
-				f1511Repo.BulkUpdate(updF1511List, true);
+
 			if(addF05120601List.Any())
 				f05120601Repo.BulkInsert(addF05120601List, true, "ID");
 
-			_f051201Repo.Update(f051201, true);
+			f051201Repo.Update(f051201, true);
     }
-		
 
     #endregion
 
@@ -794,7 +946,7 @@ namespace Wms3pl.WebServices.Shared.Services
       var apiresult = ApiLogHelper.CreateApiLogInfo("0", "0", "0", AutoCreatePickSource.Contains(source) ? "AutoCreatePick" : "AutoCreateLackPick", new { Source = source }, () =>
 			 {
 				 _f050306Repo = new F050306Repository(Schemas.CoreSchema, _wmsTransaction);
-
+				 var result = new ExecuteResult(false);
 				 if (AutoCreatePickSource.Contains(source))
 				 {
 					 _wmsLogHelper.StartRecord(WmsLogProcType.AutoCreatePick);
@@ -802,21 +954,44 @@ namespace Wms3pl.WebServices.Shared.Services
 					 if (limitDcList.Any())
 					 {
 							 f050306s = _f050306Repo.GetDatasBySource(source, limitDcList).ToList();
+						   result = CreatePick(source, f050306s, true);
 					 }
 					 else
 					 {
 						 _wmsLogHelper.AddRecord("沒有任何符合自動產揀貨單時間的物流中心");
 						 _wmsLogHelper.StopRecord();
-						 return new ApiResult { IsSuccessed = false, MsgCode = "", MsgContent = "沒有任何符合自動產揀貨單時間的物流中心" };
+						 result.Message = "沒有任何符合自動產揀貨單時間的物流中心";
 					 }
 				 }
 				 else if (source == "02")
 				 {
 					 _wmsLogHelper.StartRecord(WmsLogProcType.AutoCreateLackPick);
 					 f050306s = _f050306Repo.GetDatasBySource(source, new List<string>()).ToList();
+					 result = CreatePick(source, f050306s, true);
 				 }
 
-				 var result = CreatePick(source, f050306s, true);
+				 if(AutoCreatePickSource.Contains(source))
+				 {
+					 List<F050301> CanceledOrders;
+					 // 因為產揀貨單排程會BY 批次進行Commit後會重設WmsTransaction，這樣WmsTransaction記憶體就會不一樣，所以必須重新new新的記憶體和揀貨單服務，才能夠在第一次產完揀貨單後可以將取消訂單正常取消成功
+					 _wmsTransaction = new WmsTransaction();
+					 var checkResult = AfterCreatePickCheckOrder(out CanceledOrders);
+					 if (!checkResult.IsSuccessed)
+					 {
+						 result.IsSuccessed = false;
+						 result.Message += "," + checkResult.Message;
+					 }
+					 else
+						 _wmsTransaction.Complete();
+
+					 if (CanceledOrders.Count > 0)
+					 {
+						 if (!string.IsNullOrEmpty(result.Message))
+							 result.Message += Environment.NewLine + $"訂單被LMS取消{CanceledOrders.Count}筆，取消訂單編號:"+ string.Join("、",CanceledOrders.Select(x=> x.ORD_NO).ToArray());
+						 else
+							 result.Message = $"訂單被LMS取消{CanceledOrders.Count}筆，取消訂單編號:" + string.Join("、", CanceledOrders.Select(x => x.ORD_NO).ToArray());
+					 }
+				 }
 
          return new ApiResult
 				 {
@@ -2809,8 +2984,8 @@ namespace Wms3pl.WebServices.Shared.Services
 							foreach (var group in groupItems)
 							{
 								var currentNotRepeatWmsOrdNos = group.Select(x => x.WMS_ORD_NO).Distinct().Except(wmsOrdNos).ToList();
-								// 累積出貨單數+本次出貨不重複出貨單數 <= 揀貨單最大出貨單數(分貨作業最大格數) 且加總後資料筆數 <= 揀貨單上限筆數 
-								if (wmsOrdNos.Count + currentNotRepeatWmsOrdNos.Count <= maxOrderCntByPick && recordCnt <= pickOrderMaxRecord)
+								//  累積 加總後資料筆數 < 揀貨單上限筆數 且 出貨單數+本次出貨不重複出貨單數 <= 揀貨單最大出貨單數(分貨作業最大格數)
+								if (recordCnt < pickOrderMaxRecord && currentNotRepeatWmsOrdNos.Count + wmsOrdNos.Count <= maxOrderCntByPick)
 								{
 									pickDetails.AddRange(group.ToList());
 									recordCnt++;
@@ -2818,17 +2993,24 @@ namespace Wms3pl.WebServices.Shared.Services
 								}
 								else
 								{
-									if (recordCnt > pickOrderMaxRecord)
+									// 如果加總後資料筆數 >= 揀貨單上限筆數 或 出貨單數+本次出貨不重複出貨單數 > 揀貨單最大出貨單數(分貨作業最大格數) 要切新揀貨單
+									if ((recordCnt >= pickOrderMaxRecord) || (currentNotRepeatWmsOrdNos.Count + wmsOrdNos.Count > maxOrderCntByPick))
 									{
 										pickPages.Add(page, pickDetails);
 										page++;
 										wmsOrdNos = new List<string>();
 										pickDetails = new List<F050306>();
-										recordCnt = 1;
+										recordCnt = 0;
 									}
-									pickDetails.AddRange(group.Where(x => wmsOrdNos.Contains(x.WMS_ORD_NO)).ToList());
+									var isCreateNewPage = false;
+									// 此頁含有本次新增內容的出貨單，將含有此出貨單明細加入到此頁
+									var sameWmsNoDatas = group.Where(x => wmsOrdNos.Contains(x.WMS_ORD_NO)).ToList();
+									if(sameWmsNoDatas.Any())
+										pickDetails.AddRange(sameWmsNoDatas);
+
+									// 非此頁含有的出貨單，以一張一張出貨單嘗試放入此頁，但不可超過揀貨單最大出貨單數(分貨作業最大格數)，若放不下則切新揀貨單
 									var gWmsOrders = group.Where(x => !wmsOrdNos.Contains(x.WMS_ORD_NO)).GroupBy(x => x.WMS_ORD_NO);
-									foreach (var gWmsOrder in gWmsOrders)
+									foreach(var gWmsOrder in gWmsOrders)
 									{
 										if (wmsOrdNos.Count + 1 <= maxOrderCntByPick)
 										{
@@ -2841,9 +3023,13 @@ namespace Wms3pl.WebServices.Shared.Services
 											page++;
 											wmsOrdNos = new List<string> { gWmsOrder.Key };
 											pickDetails = gWmsOrder.ToList();
+											isCreateNewPage = true;
 											recordCnt = 1;
 										}
 									}
+									// 如果沒有產生新的揀貨單，揀貨單筆數+1
+									if (!isCreateNewPage)
+										recordCnt += 1;
 								}
 							}
 							if (pickDetails.Any())
@@ -3570,6 +3756,7 @@ namespace Wms3pl.WebServices.Shared.Services
         //  C.	呼叫[揀貨容器共用函數]. 計算揀貨單周轉箱類型(F190105,[A],[B])
         else if (!isMoveOutOrder)
         {
+          #region 一般揀貨單類型
           var normalF051202s = (from a in _createPick.F051201s.Where(x => !sPickTypes.Contains(x.PICK_TYPE))
                                 join b in _createPick.F051202s on new { a.DC_CODE, a.GUP_CODE, a.CUST_CODE, a.PICK_ORD_NO } equals new { b.DC_CODE, b.GUP_CODE, b.CUST_CODE, b.PICK_ORD_NO }
                                 select b)
@@ -3586,10 +3773,14 @@ namespace Wms3pl.WebServices.Shared.Services
             if (!res.IsSuccessed)//如果F190105設定有少就會跳這邊
               return res;
           }
+          #endregion
+
+          #region 特殊揀貨單類型
+
 
           var specialF051202s = (from a in _createPick.F051201s.Where(x => sPickTypes.Contains(x.PICK_TYPE))
                                  join b in _createPick.F051202s on new { a.DC_CODE, a.GUP_CODE, a.CUST_CODE, a.PICK_ORD_NO } equals new { b.DC_CODE, b.GUP_CODE, b.CUST_CODE, b.PICK_ORD_NO }
-                                 select new { MERGE_NO = a.MERGE_NO, b })
+                                 select new { a.MERGE_NO, b })
                                .GroupBy(x => x.MERGE_NO);
           foreach (var f051202s in specialF051202s)
           {
@@ -3598,6 +3789,8 @@ namespace Wms3pl.WebServices.Shared.Services
             if (!res.IsSuccessed)//如果F190105設定有少就會跳這邊
               return res;
           }
+          #endregion
+
         }
       }
       #endregion 計算周轉箱
@@ -3640,7 +3833,8 @@ namespace Wms3pl.WebServices.Shared.Services
           STATUS = notCollectWmsOrdNos.Contains(wmsNo) ? "1" : "0",
           NEXT_STEP = ((int)nextStep).ToString(),
           WMS_NO = wmsNo,
-          COLLECTION_POSITION = collectionPosition
+          COLLECTION_POSITION = collectionPosition,
+          NOTIFY_MODE = collectionPosition == "1" ? "0" : null
         };
         _createPick.F051301s.Add(f051301);
 
@@ -3961,8 +4155,10 @@ namespace Wms3pl.WebServices.Shared.Services
 									VALID_DATE = x.VALID_DATE,
 									A_PICK_QTY = 0,
 									PICK_STATUS = "0",
-									ROUTE_SEQ = routeSeq
-								}).ToList();
+									ROUTE_SEQ = routeSeq,
+                  PK_AREA = x.PK_AREA,
+                  PK_AREA_NAME = x.PK_AREA_NAME
+                }).ToList();
 								f051202Repo2.BulkInsert(addF051202List);
 								// 產生虛擬庫存資料
 								var addF1511List = addF051202List.Select(x => new F1511
@@ -4104,7 +4300,12 @@ namespace Wms3pl.WebServices.Shared.Services
 				f060201Repo.BulkInsert(_createPick.F060201s);
 			if (updF0513List.Any())
 				f0513Repo.BulkUpdate(updF0513List);
-			BatchDeleteF050306(f050306s.Select(x => x.ID).ToList());
+      if (_createPick.F050306_HISTORYs != null && _createPick.F050306_HISTORYs.Any())
+      {
+        var f050306HistoryRepo = new F050306_HISTORYRepository(Schemas.CoreSchema, _wmsTransaction);
+        f050306HistoryRepo.BulkInsert(_createPick.F050306_HISTORYs, "ID");
+      }
+      BatchDeleteF050306(f050306s.Select(x => x.ID).ToList());
 			BatchDeletF05120601(f050306s.Select(x => x.LACK_ID.Value).ToList());
 			_wmsTransaction.Complete();
 			_wmsLogHelper.AddRecord("整批異動資料庫 結束");
@@ -4438,7 +4639,7 @@ namespace Wms3pl.WebServices.Shared.Services
               delF05120601List.Add(f05120601);
 							break;
 					}
-          PickLackCollectionStatusProcess(ref addF060702List, f060702Status, f05120601);
+          PickLackCollectionStatusProcess(f060702Repo, ref addF060702List, f060702Status, f05120601);
 
           _wmsLogHelper.AddRecord("分配揀區庫存 結束");
 				}
@@ -4709,7 +4910,7 @@ namespace Wms3pl.WebServices.Shared.Services
     /// <param name="addF060702List"></param>
     /// <param name="f060702Status"></param>
     /// <param name="f05120601"></param>
-    private void PickLackCollectionStatusProcess(ref List<F060702> addF060702List, int? f060702Status, F05120601 f05120601)
+    private void PickLackCollectionStatusProcess(F060702Repository f060702Repo, ref List<F060702> addF060702List, int? f060702Status, F05120601 f05120601)
     {
       var f050101Repo = new F050101Repository(Schemas.CoreSchema);
       var f060202Repo = new F060202Repository(Schemas.CoreSchema);
@@ -4726,6 +4927,14 @@ namespace Wms3pl.WebServices.Shared.Services
           _wmsLogHelper.AddRecord("未被評估的集貨等待通知狀態");
         else
         {
+          //如果前面的判斷已經是要發異常處理，就不檢查是否有發過等待補揀的狀態
+          if (f060702Status != 2)
+          {
+            //已經有等待補檢的狀態，不重複發
+            var isExistStatus1Data = f060702Repo.IsExistStatus1Data(f05120601.DC_CODE, f05120601.GUP_CODE, f05120601.CUST_CODE, f05120601.WMS_ORD_NO);
+            if (isExistStatus1Data)
+              return;
+          }
 
           var f060202Data = f060202Repo.GetDatasByTrueAndCondition(x =>
              x.DC_CODE == f05120601.DC_CODE &&
@@ -4734,6 +4943,7 @@ namespace Wms3pl.WebServices.Shared.Services
              x.PICK_NO == f05120601.PICK_ORD_NO &&
              x.M_STATUS == "3").FirstOrDefault();
 
+          //檢查新增清單內是否已有相同資料
           var curF060702 = addF060702List.FirstOrDefault(x => x.DC_CODE == f05120601.DC_CODE && x.GUP_CODE == f05120601.GUP_CODE && x.CUST_CODE == f05120601.CUST_CODE && x.ORDER_CODE == f060202Data.DOC_ID);
           if (curF060702 == null)
           {
@@ -4823,39 +5033,39 @@ namespace Wms3pl.WebServices.Shared.Services
 			var f051201 = GetF051201(f05120601.DC_CODE, f05120601.GUP_CODE, f05120601.CUST_CODE, f05120601.PICK_ORD_NO);
 			var f050801 = GetF050801(f05120601.DC_CODE, f05120601.GUP_CODE, f05120601.CUST_CODE, f05120601.WMS_ORD_NO);
 
-			return new F050306
-			{
-				DC_CODE = itemStock.DC_CODE,
-				GUP_CODE = itemStock.GUP_CODE,
-				CUST_CODE = itemStock.CUST_CODE,
-				ORD_TYPE = f05120601.ORD_TYPE,
-				SOURCE = "02",
-				SOURCE_TYPE = f05120601.SOURCE_TYPE,
-				FAST_DEAL_TYPE = f05120601.FAST_DEAL_TYPE,
-				CUST_COST = f05120601.CUST_COST,
-				WMS_NO = f05120601.PICK_ORD_NO,
-				WMS_SEQ = f05120601.PICK_ORD_SEQ,
-				WAREHOUSE_ID = itemStock.WAREHOUSE_ID,
-				WH_TMPR_TYPE = itemStock.TMPR_TYPE,
-				PICK_LOC = itemStock.LOC_CODE,
-				PK_AREA = itemStock.PK_AREA,
-				PICK_FLOOR = itemStock.PICK_FLOOR,
-				DEVICE_TYPE = itemStock.DEVICE_TYPE,
-				ITEM_CODE = itemStock.ITEM_CODE,
-				B_PICK_QTY = needQty,
-				ENTER_DATE = itemStock.ENTER_DATE,
-				VALID_DATE = itemStock.VALID_DATE,
-				MAKE_NO = itemStock.MAKE_NO,
-				BOX_CTRL_NO = itemStock.BOX_CTRL_NO,
-				PALLET_CTRL_NO = itemStock.PALLET_CTRL_NO,
-				VNR_CODE = itemStock.VNR_CODE,
-				SERIAL_NO = itemStock.SERIAL_NO,
-				WMS_ORD_NO = f05120601.WMS_ORD_NO,
-				WMS_ORD_SEQ = f05120601.WMS_ORD_SEQ,
-				LACK_ID = f05120601.ID,
-				PACKING_TYPE = f051201.PACKING_TYPE,
-				CONTAINER_TYPE = f051201.CONTAINER_TYPE,
-        PK_AREA_NAME = itemStock.PK_NAME,
+      return new F050306
+      {
+        DC_CODE = itemStock.DC_CODE,
+        GUP_CODE = itemStock.GUP_CODE,
+        CUST_CODE = itemStock.CUST_CODE,
+        ORD_TYPE = f05120601.ORD_TYPE,
+        SOURCE = "02",
+        SOURCE_TYPE = f05120601.SOURCE_TYPE,
+        FAST_DEAL_TYPE = f05120601.FAST_DEAL_TYPE,
+        CUST_COST = f05120601.CUST_COST,
+        WMS_NO = f05120601.PICK_ORD_NO,
+        WMS_SEQ = f05120601.PICK_ORD_SEQ,
+        WAREHOUSE_ID = itemStock.WAREHOUSE_ID,
+        WH_TMPR_TYPE = itemStock.TMPR_TYPE,
+        PICK_LOC = itemStock.LOC_CODE,
+        PICK_FLOOR = itemStock.PICK_FLOOR,
+        DEVICE_TYPE = itemStock.DEVICE_TYPE,
+        ITEM_CODE = itemStock.ITEM_CODE,
+        B_PICK_QTY = needQty,
+        ENTER_DATE = itemStock.ENTER_DATE,
+        VALID_DATE = itemStock.VALID_DATE,
+        MAKE_NO = itemStock.MAKE_NO,
+        BOX_CTRL_NO = itemStock.BOX_CTRL_NO,
+        PALLET_CTRL_NO = itemStock.PALLET_CTRL_NO,
+        VNR_CODE = itemStock.VNR_CODE,
+        SERIAL_NO = itemStock.SERIAL_NO,
+        WMS_ORD_NO = f05120601.WMS_ORD_NO,
+        WMS_ORD_SEQ = f05120601.WMS_ORD_SEQ,
+        LACK_ID = f05120601.ID,
+        PACKING_TYPE = f051201.PACKING_TYPE,
+        CONTAINER_TYPE = f051201.CONTAINER_TYPE,
+        PK_AREA = string.IsNullOrWhiteSpace(itemStock.PK_AREA) ? itemStock.WAREHOUSE_ID : itemStock.PK_AREA,
+        PK_AREA_NAME = string.IsNullOrWhiteSpace(itemStock.PK_NAME) ? itemStock.WAREHOUSE_NAME : itemStock.PK_AREA,
         RTN_VNR_CODE = f051201.RTN_VNR_CODE,
         MOVE_OUT_TARGET = f051201.MOVE_OUT_TARGET,
         ORDER_CRT_DATE= f051201.ORDER_CRT_DATE,
@@ -4892,7 +5102,8 @@ namespace Wms3pl.WebServices.Shared.Services
 				ISDELETED = "0",
 				STATUS = "1",
 				TRANS_FLAG = "0",
-				CRT_DATE = f05120601.CRT_DATE,
+        SERIAL_NO = f05120601.SERIAL_NO,
+        CRT_DATE = f05120601.CRT_DATE,
 				CRT_STAFF = f05120601.CRT_STAFF,
 				CRT_NAME = f05120601.CRT_NAME
 			};
@@ -5241,6 +5452,17 @@ namespace Wms3pl.WebServices.Shared.Services
 
       var BaseContainerCnt = 0; //[S]
       var ContainerType = f190105.BASE_CONTAINER_TYPE;   //[X]
+
+      //如果揀貨單有人工＋自動，就要指定揀貨容器為DF_NSHIP_CONTAINER_TYPE(2L)
+      if (f051201s.Any(x => x.DISP_SYSTEM == "1") && f051201s.Any(x => x.DISP_SYSTEM == "0"))
+      {
+        ContainerType = f190105.DF_NSHIP_CONTAINER_TYPE;
+
+        SetF051201ContainerType(ContainerType, ref BaseContainerCnt, f051201s.Where(x => x.DISP_SYSTEM != "0").ToList());
+        SetF050801ContainerType(ContainerType, BaseContainerCnt, f050801);
+        return new ExecuteResult(true);
+      }
+
       //[A] = 取得出貨單明細[F050802]
 
       //[B] = 取得商品材積資料[F1905] 請用CommonService做cache
@@ -5356,17 +5578,26 @@ namespace Wms3pl.WebServices.Shared.Services
       //(3)	[S]= <參數4>.Count
       else
       {
-        foreach (var f051201 in f051201s.Where(x => x.DISP_SYSTEM != "0"))
-        {
-          f051201.CONTAINER_TYPE = ContainerType;
-          f051201.CONTAINER_B_CNT = 1;
-        }
-        BaseContainerCnt = f051201s.Count;
+        SetF051201ContainerType(ContainerType, ref BaseContainerCnt, f051201s.Where(x => x.DISP_SYSTEM != "0").ToList());
       }
-
-      f050801.CONTAINER_TYPE = ContainerType;
-      f050801.CONTAINER_B_CNT = BaseContainerCnt;
+      SetF050801ContainerType(ContainerType, BaseContainerCnt, f050801);
       return new ExecuteResult(true);
+    }
+
+    public void SetF051201ContainerType(string containerType, ref int baseContainerCnt, List<F051201> f051201s)
+    {
+      foreach (var f051201 in f051201s.Where(x => x.DISP_SYSTEM != "0"))
+      {
+        f051201.CONTAINER_TYPE = containerType;
+        f051201.CONTAINER_B_CNT = 1;
+      }
+      baseContainerCnt = f051201s.Count;
+    }
+
+    public void SetF050801ContainerType(string containerType, int baseContainerCnt,F050801 f050801)
+    {
+      f050801.CONTAINER_TYPE = containerType;
+      f050801.CONTAINER_B_CNT = baseContainerCnt;
     }
 
     /// <summary>

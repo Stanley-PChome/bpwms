@@ -407,7 +407,7 @@ namespace Wms3pl.Datas.F05
 			ExecuteSqlCommandWithSqlParameterSetDbType(sql, parms.ToArray());
 		}
 
-		public IQueryable<F055001> GetDatas(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
+		public IQueryable<F055001> GetDatasByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
 		{
 			var sqlParameter = new List<SqlParameter>();
 			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar });

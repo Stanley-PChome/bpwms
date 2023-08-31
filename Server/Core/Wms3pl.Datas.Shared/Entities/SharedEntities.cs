@@ -1859,4 +1859,264 @@ namespace Wms3pl.Datas.Shared.Entities
 	}
 
 	#endregion
+
+
+	/// <summary>
+	/// 貨主商品主檔
+	/// </summary>
+	[Serializable]
+	public class CommonProduct
+	{
+
+		/// <summary>
+		/// 商品編號
+		/// </summary>
+		public string ITEM_CODE { get; set; }
+
+		/// <summary>
+		/// 業主編號
+		/// </summary>
+		public string GUP_CODE { get; set; }
+
+		/// <summary>
+		/// 貨主編號
+		/// </summary>
+		public string CUST_CODE { get; set; }
+
+		
+
+		/// <summary>
+		/// 允收天數
+		/// </summary>
+		public Int16? ALL_DLN { get; set; }
+
+	
+
+		/// <summary>
+		/// 客戶品號
+		/// </summary>
+		public string CUST_ITEM_CODE { get; set; }
+
+		
+		/// <summary>
+		/// 是否可原箱出貨(0:否1是)
+		/// </summary>
+		public string ALLOWORDITEM { get; set; }
+
+		/// <summary>
+		/// 序號綁儲位(只要有儲位異動就需刷序號)
+		/// </summary>
+		public string BUNDLE_SERIALLOC { get; set; }
+
+		/// <summary>
+		/// 序號商品(商品進出或跨倉(上架,揀貨(ex.良品倉移動至加工倉),包裝)需刷序號)
+		/// </summary>
+		public string BUNDLE_SERIALNO { get; set; }
+
+		
+
+		/// <summary>
+		/// 是否可儲位混商品(0:否1是)
+		/// </summary>
+		public string LOC_MIX_ITEM { get; set; }
+
+	
+
+		/// <summary>
+		/// 序號碼數
+		/// </summary>
+		public Int16? SERIALNO_DIGIT { get; set; }
+
+		/// <summary>
+		/// 序號開頭
+		/// </summary>
+		public string SERIAL_BEGIN { get; set; }
+
+		/// <summary>
+		/// 序號檢查規則F000904 : 0純數/1非純數
+		/// </summary>
+		public string SERIAL_RULE { get; set; }
+
+		
+
+		/// <summary>
+		/// 保存天數
+		/// </summary>
+		public Int32? SAVE_DAY { get; set; }
+
+	
+
+		/// <summary>
+		/// 補貨安全庫存量
+		/// </summary>
+		public Int64 PICK_SAVE_QTY { get; set; }
+
+		/// <summary>
+		/// 是否為紙箱(0否1是)
+		/// </summary>
+		[Required]
+		public string ISCARTON { get; set; }
+
+		/// <summary>
+		/// 是否為蘋果商品(0否1是)
+		/// </summary>
+		public string ISAPPLE { get; set; }
+
+
+		/// <summary>
+		/// 商品名稱
+		/// </summary>
+		public string ITEM_NAME { get; set; }
+
+		/// <summary>
+		/// 商品條碼一
+		/// </summary>
+		public string EAN_CODE1 { get; set; }
+
+		/// <summary>
+		/// 商品條碼二
+		/// </summary>
+		public string EAN_CODE2 { get; set; }
+
+		/// <summary>
+		/// 商品條碼三
+		/// </summary>
+		public string EAN_CODE3 { get; set; }
+
+		/// <summary>
+		/// EAN/ISBN
+		/// </summary>
+		public string EAN_CODE4 { get; set; }
+
+		/// <summary>
+		/// 商品類別(F000904)
+		/// </summary>
+		public string TYPE { get; set; }
+
+		/// <summary>
+		/// 商品規格
+		/// </summary>
+		public string ITEM_SPEC { get; set; }
+
+		/// <summary>
+		/// 溫層(F000904：01:常溫26-30、02:恆溫8-18、03冷藏-2~10、04:冷凍-18~-25) 
+		/// </summary>
+		public string TMPR_TYPE { get; set; }
+
+		/// <summary>
+		/// 易碎品包裝(0否1是)
+		/// </summary>
+		public string FRAGILE { get; set; }
+
+		/// <summary>
+		/// 防溢漏包裝(0否1是)
+		/// </summary>
+		public string SPILL { get; set; }
+
+		/// <summary>
+		/// 出貨是否附上保證書(0:否1是)
+		/// </summary>
+		public string LG { get; set; }
+
+
+		/// <summary>
+		/// 虛擬商品類別
+		/// </summary>
+		public string VIRTUAL_TYPE { get; set; }
+
+		/// <summary>
+		/// 大分類 F1915
+		/// </summary>
+		public string LTYPE { get; set; }
+
+		/// <summary>
+		/// 商品顏色
+		/// </summary>
+		public string ITEM_COLOR { get; set; }
+
+		/// <summary>
+		/// 商品尺寸
+		/// </summary>
+		public string ITEM_SIZE { get; set; }
+
+		/// <summary>
+		/// 停售日期
+		/// </summary>
+		public DateTime? STOP_DATE { get; set; }
+	
+		/// <summary>
+		/// 是否為效期商品(null: 未選擇、0: 否、1: 是)
+		/// </summary>
+		public string NEED_EXPIRED { get; set; }
+		/// <summary>
+		/// 警示天數(原本的允售天數)
+		/// </summary>
+		public Int32? ALL_SHP { get; set; }
+		
+		/// <summary>
+		/// 首次進貨日
+		/// </summary>
+		public DateTime? FIRST_IN_DATE { get; set; }
+		/// <summary>
+		/// 廠商代碼
+		/// </summary>
+		public string VNR_CODE { get; set; }
+		/// <summary>
+		/// 是否易遺失(0: 否, 1: 是)
+		/// </summary>
+		public string IS_EASY_LOSE { get; set; }
+		/// <summary>
+		/// 貴重品標示(0: 否, 1: 是)
+		/// </summary>
+		public string IS_PRECIOUS { get; set; }
+		/// <summary>
+		/// 強磁標示(0: 否, 1: 是)
+		/// </summary>
+		public string IS_MAGNETIC { get; set; }
+	
+		/// <summary>
+		/// 易變質標示(0: 否, 1: 是)
+		/// </summary>
+		public string IS_PERISHABLE { get; set; }
+		/// <summary>
+		/// 需溫控標示(0: 否, 1: 是)
+		/// </summary>
+		public string IS_TEMP_CONTROL { get; set; }
+		/// <summary>
+		/// 廠商料號 (料號)
+		/// </summary>
+		public string VNR_ITEM_CODE { get; set; }
+		/// <summary>
+		/// 驗收註記
+		/// </summary>
+		public string RCV_MEMO { get; set; }
+		/// <summary>
+		/// 原廠商編號
+		/// </summary>
+		public string ORI_VNR_CODE { get; set; }
+		/// <summary>
+		/// 是否可混批(效期)擺放於儲位
+		/// </summary>
+		public string MIX_BATCHNO { get; set; }
+
+		/// <summary>
+		/// 越庫商品註記
+		/// </summary>
+		public string C_D_FLAG { get; set; }
+
+		/// <summary>
+		/// 批號管控商品(0:否 1:是)
+		/// </summary>
+		public string MAKENO_REQU { get; set; }
+
+		/// <summary>
+		/// 建檔日期
+		/// </summary>
+		public DateTime CRT_DATE { get; set; }
+
+		/// <summary>
+		/// 異動日期
+		/// </summary>
+		public DateTime? UPD_DATE { get; set; }
+	}
 }

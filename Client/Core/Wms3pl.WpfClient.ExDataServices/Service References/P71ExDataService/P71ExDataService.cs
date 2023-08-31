@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/8/1 下午 02:32:53
+// Generation date: 2023/08/25 下午 04:55:12
 namespace Wms3pl.WpfClient.ExDataServices.P71ExDataService
 {
     

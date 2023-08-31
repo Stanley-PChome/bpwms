@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/8/1 下午 02:32:17
+// Generation date: 2023/08/25 下午 04:54:20
 namespace Wms3pl.WpfClient.DataServices.F19DataService
 {
     
@@ -4894,10 +4894,10 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
                 "rty Name=\"TAR_WAREHOUSE_ID\" Type=\"Edm.String\" /><Property Name=\"TAR_LOC_CODE\" Ty" +
                 "pe=\"Edm.String\" /><Property Name=\"PROC_FLAG\" Type=\"Edm.String\" /><Property Name=" +
                 "\"MEMO\" Type=\"Edm.String\" /><Property Name=\"PROC_WMS_NO\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_NAME\" Type=\"Edm." +
-                "String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DAT" +
-                "E\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /></EntityType><EntityType " +
+                "perty Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT" +
+                "_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prope" +
+                "rty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType " +
                 "Name=\"F191303\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm" +
                 ".Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Propert" +
                 "y Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.Strin" +
@@ -4910,16 +4910,16 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
                 "ty Name=\"SHIFT_TIME\" Type=\"Edm.DateTime\" /><Property Name=\"SHIFT_QTY\" Type=\"Edm." +
                 "Int64\" Nullable=\"false\" /><Property Name=\"PROC_FLAG\" Type=\"Edm.String\" /><Proper" +
                 "ty Name=\"TRANS_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_DATE\" Type=\"Edm.D" +
-                "ateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.Dat" +
-                "eTime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF" +
+                "ateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.Dat" +
+                "eTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME" +
                 "\" Type=\"Edm.String\" /><Property Name=\"MAKE_NO\" Type=\"Edm.String\" /></EntityType>" +
                 "<EntityType Name=\"F191304\"><Key><PropertyRef Name=\"DC_CODE\" /></Key><Property Na" +
                 "me=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"TRANSACTION_NO" +
-                "\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property " +
-                "Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\"" +
-                " /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Na" +
-                "me=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /" +
+                "\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fa" +
+                "lse\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" " +
+                "Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Na" +
+                "me=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /" +
                 "></EntityType><EntityType Name=\"F194704\"><Key><PropertyRef Name=\"ALL_ID\" /><Prop" +
                 "ertyRef Name=\"CUST_CODE\" /><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"GUP_" +
                 "CODE\" /></Key><Property Name=\"ALL_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Prop" +
@@ -5053,400 +5053,401 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
                 "e=\"Edm.String\" /><Property Name=\"SHOW_QTY\" Type=\"Edm.String\" /><Property Name=\"I" +
                 "S_UP_SHELF_CANCEL\" Type=\"Edm.String\" /><Property Name=\"ALLOW_ORDER_NO_DELV\" Type" +
                 "=\"Edm.String\" /><Property Name=\"ALLOW_WAREHOUSEIN_CLOSED\" Type=\"Edm.String\" /><P" +
-                "roperty Name=\"IS_EXECIMMEDIATEITEM\" Type=\"Edm.String\" /></EntityType><EntityType" +
-                " Name=\"F194901\"><Key><PropertyRef Name=\"CARRIAGE_ID\" /></Key><Property Name=\"CAR" +
-                "RIAGE_ID\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CARRIAGE_NAME\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"USAGE\" Type=\"Edm.String\" /><Property Name=\"CRT" +
-                "_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_S" +
-                "TAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F190105\">" +
-                "<Key><PropertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.Stri" +
-                "ng\" Nullable=\"false\" /><Property Name=\"OPEN_AUTO_ALLOC_STOCK\" Type=\"Edm.String\" " +
-                "/><Property Name=\"B2B_PDA_PICK_PECENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Pr" +
-                "operty Name=\"B2C_PDA_PICK_PERCENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Proper" +
-                "ty Name=\"B2B_AUTO_PICK_PRINT\" Type=\"Edm.String\" /><Property Name=\"B2C_AUTO_PICK_" +
-                "PRINT\" Type=\"Edm.String\" /><Property Name=\"WAIT_SEND_AUTO_PICK\" Type=\"Edm.String" +
-                "\" /><Property Name=\"USE_CONTAINER\" Type=\"Edm.String\" /><Property Name=\"PICKORDER" +
-                "_MAX_RECORD\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_ITEMC" +
-                "NT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_RECORD\" Type=\"" +
-                "Edm.Int32\" Nullable=\"false\" /><Property Name=\"OPEN_SPECIAL_ORDER\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"SHIP_MODE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" T" +
-                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Typ" +
-                "e=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name" +
-                "=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"DF_NSHIP_CONTAINER_TYPE\" Type=\"E" +
-                "dm.String\" /><Property Name=\"DF_CSHIP_CONTANER_TYPE\" Type=\"Edm.String\" /><Proper" +
-                "ty Name=\"DF_VNRSHIP_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_MOVE_" +
-                "CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"CELL_TYPE_METHOD\" Type=\"Edm." +
-                "String\" /><Property Name=\"IS_DIRECT_CONTAINER_TYPE\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"BASE_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONTAINER_" +
-                "MAX_LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MID_LENGTH\" Type" +
-                "=\"Edm.Decimal\" /><Property Name=\"BASE_CONTAINER_MIN_LENGTH\" Type=\"Edm.Decimal\" /" +
-                "><Property Name=\"BASE_CONTAINER_VOLUMN\" Type=\"Edm.Decimal\" /><Property Name=\"LIM" +
-                "IT_SINGLEPICK_CUST_LIST\" Type=\"Edm.String\" /><Property Name=\"AUTO_ALLOT_CUST_LIS" +
-                "T\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F190106\"><Key><PropertyRef" +
-                " Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int32\" Nullable=\"false\" /><Prop" +
-                "erty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"SCHEDULE_TYPE\" Type=\"Edm" +
-                ".String\" /><Property Name=\"START_TIME\" Type=\"Edm.String\" /><Property Name=\"END_T" +
-                "IME\" Type=\"Edm.String\" /><Property Name=\"PERIOD\" Type=\"Edm.Byte\" Nullable=\"false" +
-                "\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property N" +
-                "ame=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" " +
-                "/><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><Ent" +
-                "ityType Name=\"F1945\"><Key><PropertyRef Name=\"COLLECTION_CODE\" /><PropertyRef Nam" +
-                "e=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" " +
-                "/><Property Name=\"COLLECTION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Propert" +
-                "y Name=\"COLLECTION_NAME\" Type=\"Edm.String\" /><Property Name=\"COLLECTION_TYPE\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property" +
-                " Name=\"CELL_TYPE\" Type=\"Edm.String\" /><Property Name=\"CELL_NUM\" Type=\"Edm.Int32\"" +
-                " Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fals" +
-                "e\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name" +
-                "=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><" +
-                "/EntityType><EntityType Name=\"F194501\"><Key><PropertyRef Name=\"CELL_TYPE\" /><Pro" +
-                "pertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nulla" +
-                "ble=\"false\" /><Property Name=\"CELL_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><P" +
-                "roperty Name=\"CELL_NAME\" Type=\"Edm.String\" /><Property Name=\"LENGTH\" Type=\"Edm.I" +
-                "nt32\" Nullable=\"false\" /><Property Name=\"DEPTH\" Type=\"Edm.Int32\" Nullable=\"false" +
-                "\" /><Property Name=\"HEIGHT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"" +
-                "VOLUME_RATE\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"MAX_VOLUME\" T" +
-                "ype=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\"" +
-                " Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" ";
+                "roperty Name=\"IS_EXECIMMEDIATEITEM\" Type=\"Edm.String\" /><Property Name=\"ALLOW_OR" +
+                "DER_LACKSHIP\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F194901\"><Key><" +
+                "PropertyRef Name=\"CARRIAGE_ID\" /></Key><Property Name=\"CARRIAGE_ID\" Type=\"Edm.St" +
+                "ring\" Nullable=\"false\" /><Property Name=\"CARRIAGE_NAME\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"USAGE\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Stri" +
+                "ng\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Ty" +
+                "pe=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String" +
+                "\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type" +
+                "=\"Edm.DateTime\" /></EntityType><EntityType Name=\"F190105\"><Key><PropertyRef Name" +
+                "=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /" +
+                "><Property Name=\"OPEN_AUTO_ALLOC_STOCK\" Type=\"Edm.String\" /><Property Name=\"B2B_" +
+                "PDA_PICK_PECENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"B2C_PDA_P" +
+                "ICK_PERCENT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"B2B_AUTO_PICK" +
+                "_PRINT\" Type=\"Edm.String\" /><Property Name=\"B2C_AUTO_PICK_PRINT\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"WAIT_SEND_AUTO_PICK\" Type=\"Edm.String\" /><Property Name=\"US" +
+                "E_CONTAINER\" Type=\"Edm.String\" /><Property Name=\"PICKORDER_MAX_RECORD\" Type=\"Edm" +
+                ".Int32\" Nullable=\"false\" /><Property Name=\"ORDER_MAX_ITEMCNT\" Type=\"Edm.Int32\" N" +
+                "ullable=\"false\" /><Property Name=\"ORDER_MAX_RECORD\" Type=\"Edm.Int32\" Nullable=\"f" +
+                "alse\" /><Property Name=\"OPEN_SPECIAL_ORDER\" Type=\"Edm.String\" /><Property Name=\"" +
+                "SHIP_MODE\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nul" +
+                "lable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"C" +
+                "RT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Pr" +
+                "operty Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm." +
+                "String\" /><Property Name=\"DF_NSHIP_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property" +
+                " Name=\"DF_CSHIP_CONTANER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_VNRSHIP_CO" +
+                "NTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"DF_MOVE_CONTAINER_TYPE\" Type=\"" +
+                "Edm.String\" /><Property Name=\"CELL_TYPE_METHOD\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"IS_DIRECT_CONTAINER_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONTAINER" +
+                "_TYPE\" Type=\"Edm.String\" /><Property Name=\"BASE_CONTAINER_MAX_LENGTH\" Type=\"Edm." +
+                "Decimal\" /><Property Name=\"BASE_CONTAINER_MID_LENGTH\" Type=\"Edm.Decimal\" /><Prop" +
+                "erty Name=\"BASE_CONTAINER_MIN_LENGTH\" Type=\"Edm.Decimal\" /><Property Name=\"BASE_" +
+                "CONTAINER_VOLUMN\" Type=\"Edm.Decimal\" /><Property Name=\"LIMIT_SINGLEPICK_CUST_LIS" +
+                "T\" Type=\"Edm.String\" /><Property Name=\"AUTO_ALLOT_CUST_LIST\" Type=\"Edm.String\" /" +
+                "></EntityType><EntityType Name=\"F190106\"><Key><PropertyRef Name=\"ID\" /></Key><Pr" +
+                "operty Name=\"ID\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"SCHEDULE_TYPE\" Type=\"Edm.String\" /><Property N" +
+                "ame=\"START_TIME\" Type=\"Edm.String\" /><Property Name=\"END_TIME\" Type=\"Edm.String\"" +
+                " /><Property Name=\"PERIOD\" Type=\"Edm.Byte\" Nullable=\"false\" /><Property Name=\"CR" +
+                "T_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"" +
+                "Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_" +
+                "DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Prop" +
+                "erty Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1945\"><" +
+                "Key><PropertyRef Name=\"COLLECTION_CODE\" /><PropertyRef Name=\"DC_CODE\" /></Key><P" +
+                "roperty Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"COLL" +
+                "ECTION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"COLLECTION_NAM" +
+                "E\" Type=\"Edm.String\" /><Property Name=\"COLLECTION_TYPE\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property Name=\"CELL_TYPE\" Type" +
+                "=\"Edm.String\" /><Property Name=\"CELL_NUM\" Type=\"Edm.Int32\" Nullable=\"false\" /><P" +
+                "roperty Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"C" +
+                "RT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm" +
+                ".String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityTyp" +
+                "e Name=\"F194501\"><Key><PropertyRef Name=\"CELL_TYPE\" /><PropertyRef Name=\"DC_CODE" +
+                "\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Propert" +
+                "y Name=\"CELL_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CELL_NAM" +
+                "E\" Type=\"Edm.String\" /><Property Name=\"LENGTH\" Type=\"Edm.Int32\" Nullable=\"false\"" +
+                " /><Property Name=\"DEPTH\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"HE" +
+                "IGHT\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"VOLUME_RATE\" Type=\"Edm" +
+                ".Decimal\" Nullable=\"false\" /><Property Name=\"MAX_VOLUME\" Type=\"Edm.Int64\" Nullab" +
+                "le=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><P" +
+                "roperty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart17 = "Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F191206\"><Key><" +
-                "PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"PK_AREA\" /></Key><Property Name=" +
-                "\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PICK_FLOOR\" Type=" +
-                "\"Edm.String\" /><Property Name=\"PICK_TYPE\" Type=\"Edm.String\" /><Property Name=\"PK" +
-                "_AREA\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PK_NAME\" Type=\"Edm.S" +
-                "tring\" /><Property Name=\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Prope" +
-                "rty Name=\"ISENABLED\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.Dat" +
-                "eTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Propert" +
-                "y Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateT" +
-                "ime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" " +
-                "Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19120601\"><Key><PropertyRef " +
-                "Name=\"DC_CODE\" /><PropertyRef Name=\"LINE_SEQ\" /><PropertyRef Name=\"PK_AREA\" /></" +
-                "Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name" +
-                "=\"PK_AREA\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"LINE_SEQ\" Type=\"" +
-                "Edm.Int32\" Nullable=\"false\" /><Property Name=\"BEGIN_LOC_CODE\" Type=\"Edm.String\" " +
-                "/><Property Name=\"END_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"MOVING_HORIZ" +
-                "ON\" Type=\"Edm.String\" /><Property Name=\"MOVING_VERTICAL\" Type=\"Edm.String\" /><Pr" +
-                "operty Name=\"PROC_FLAG\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm." +
-                "DateTime\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.Da" +
-                "teTime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAF" +
-                "F\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19120602\"><Key><PropertyR" +
-                "ef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Pr" +
-                "operty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"PK_AREA\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Propert" +
-                "y Name=\"PICK_FLOOR\" Type=\"Edm.String\" /><Property Name=\"PICK_TYPE\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"CHK_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"LINE_SE" +
-                "Q\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PLAIN_SEQ\" Type=\"Edm.Int3" +
-                "2\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fa" +
-                "lse\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_STAFF\" " +
+            private const string ModelPart17 = "=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><" +
+                "Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Ed" +
+                "m.String\" /></EntityType><EntityType Name=\"F191206\"><Key><PropertyRef Name=\"DC_C" +
+                "ODE\" /><PropertyRef Name=\"PK_AREA\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.St" +
+                "ring\" Nullable=\"false\" /><Property Name=\"PICK_FLOOR\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"PICK_TYPE\" Type=\"Edm.String\" /><Property Name=\"PK_AREA\" Type=\"Edm.Strin" +
+                "g\" Nullable=\"false\" /><Property Name=\"PK_NAME\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ISENABLED\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false" +
+                "\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Typ" +
+                "e=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=" +
+                "\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></" +
+                "EntityType><EntityType Name=\"F19120601\"><Key><PropertyRef Name=\"DC_CODE\" /><Prop" +
+                "ertyRef Name=\"LINE_SEQ\" /><PropertyRef Name=\"PK_AREA\" /></Key><Property Name=\"DC" +
+                "_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PK_AREA\" Type=\"Edm.S" +
+                "tring\" Nullable=\"false\" /><Property Name=\"LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"f" +
+                "alse\" /><Property Name=\"BEGIN_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"END_" +
+                "LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"MOVING_HORIZON\" Type=\"Edm.String\" " +
+                "/><Property Name=\"MOVING_VERTICAL\" Type=\"Edm.String\" /><Property Name=\"PROC_FLAG" +
+                "\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fa" +
+                "lse\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" " +
                 "Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Na" +
-                "me=\"UPD_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /" +
-                "></EntityType><EntityType Name=\"F1946\"><Key><PropertyRef Name=\"DC_CODE\" /><Prope" +
-                "rtyRef Name=\"WORKSTATION_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String" +
-                "\" Nullable=\"false\" /><Property Name=\"WORKSTATION_CODE\" Type=\"Edm.String\" Nullabl" +
-                "e=\"false\" /><Property Name=\"WORKSTATION_TYPE\" Type=\"Edm.String\" /><Property Name" +
-                "=\"WORKSTATION_GROUP\" Type=\"Edm.String\" /><Property Name=\"PACKING_LINE_NO\" Type=\"" +
-                "Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DA" +
-                "TE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm." +
-                "String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE" +
-                "\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property" +
-                " Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F191305\"><Ke" +
-                "y><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"TRANSACTION_NO\" /></Key><Prop" +
-                "erty Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"TRANSAC" +
-                "TION_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"SEND_DATA\" Type=\"E" +
-                "dm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"UPD_DAT" +
-                "E\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property" +
-                " Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTi" +
-                "me\" Nullable=\"false\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property N" +
-                "ame=\"CRT_STAFF\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1955\"><Key><" +
-                "PropertyRef Name=\"CONVENIENT_CODE\" /><PropertyRef Name=\"DC_CODE\" /></Key><Proper" +
-                "ty Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CONVENIEN" +
-                "T_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CONVENIENT_NAME\" Ty" +
-                "pe=\"Edm.String\" /><Property Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property" +
-                " Name=\"CELL_NUM\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" T" +
-                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Typ" +
-                "e=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name" +
-                "=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1956\"><Key><Prop" +
-                "ertyRef Name=\"PRIORITY_CODE\" /></Key><Property Name=\"PRIORITY_CODE\" Type=\"Edm.St" +
-                "ring\" Nullable=\"false\" /><Property Name=\"PRIORITY_NAME\" Type=\"Edm.String\" /><Pro" +
-                "perty Name=\"IS_SHOW\" Type=\"Edm.String\" /><Property Name=\"IS_SYSTEM\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Proper" +
-                "ty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\"" +
-                " Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType>" +
-                "<EntityType Name=\"F195601\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=" +
-                "\"DEVICE_TYPE\" /><PropertyRef Name=\"PRIORITY_CODE\" /></Key><Property Name=\"PRIORI" +
-                "TY_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm" +
-                ".String\" Nullable=\"false\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" Nulla" +
-                "ble=\"false\" /><Property Name=\"PRIORITY_VALUE\" Type=\"Edm.Int32\" Nullable=\"false\" " +
-                "/><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Nam" +
-                "e=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" />" +
-                "<Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=" +
-                "\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><Entit" +
-                "yType Name=\"F19130501\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" T" +
-                "ype=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /" +
-                "><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=" +
-                "\"Edm.String\" /><Property Name=\"SERIAL_NO\" Type=\"Edm.String\" /><Property Name=\"AC" +
-                "TION_TYPE\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Prop" +
-                "erty Name=\"BATCH_NO\" Type=\"Edm.String\" /><Property Name=\"MESSAGE\" Type=\"Edm.Stri" +
-                "ng\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" T" +
-                "ype=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.Strin" +
-                "g\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"CRT_NAME\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><E" +
-                "ntityType Name=\"F1903_ASYNC\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=" +
-                "\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\"" +
-                " Type=\"Edm.String\" /><Property Name=\"IS_ASYNC\" Type=\"Edm.String\" /><Property Nam" +
-                "e=\"BATCH_NO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" N" +
-                "ullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=" +
-                "\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><" +
-                "Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Nam";
+                "me=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /" +
+                "></EntityType><EntityType Name=\"F19120602\"><Key><PropertyRef Name=\"ID\" /></Key><" +
+                "Property Name=\"ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" " +
+                "Type=\"Edm.String\" /><Property Name=\"PK_AREA\" Type=\"Edm.String\" /><Property Name=" +
+                "\"PK_LINE_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PICK_FLOOR\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"PICK_TYPE\" Type=\"Edm.String\" /><Property Name=" +
+                "\"CHK_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"LINE_SEQ\" Type=\"Edm.Int32\" Nu" +
+                "llable=\"false\" /><Property Name=\"PLAIN_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" />" +
+                "<Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=" +
+                "\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"E" +
+                "dm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityT" +
+                "ype Name=\"F1946\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"WORKSTATI" +
+                "ON_CODE\" /></Key><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><" +
+                "Property Name=\"WORKSTATION_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property " +
+                "Name=\"WORKSTATION_TYPE\" Type=\"Edm.String\" /><Property Name=\"WORKSTATION_GROUP\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"PACKING_LINE_NO\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime" +
+                "\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" " +
+                "/><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=" +
+                "\"Edm.String\" /></EntityType><EntityType Name=\"F191305\"><Key><PropertyRef Name=\"D" +
+                "C_CODE\" /><PropertyRef Name=\"TRANSACTION_NO\" /></Key><Property Name=\"DC_CODE\" Ty" +
+                "pe=\"Edm.String\" Nullable=\"false\" /><Property Name=\"TRANSACTION_NO\" Type=\"Edm.Str" +
+                "ing\" Nullable=\"false\" /><Property Name=\"SEND_DATA\" Type=\"Edm.String\" /><Property" +
+                " Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\"" +
+                " Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Nam" +
+                "e=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /" +
+                "><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"" +
+                "Edm.String\" /></EntityType><EntityType Name=\"F1955\"><Key><PropertyRef Name=\"CONV" +
+                "ENIENT_CODE\" /><PropertyRef Name=\"DC_CODE\" /></Key><Property Name=\"DC_CODE\" Type" +
+                "=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CONVENIENT_CODE\" Type=\"Edm.Stri" +
+                "ng\" Nullable=\"false\" /><Property Name=\"CONVENIENT_NAME\" Type=\"Edm.String\" /><Pro" +
+                "perty Name=\"CELL_START_CODE\" Type=\"Edm.String\" /><Property Name=\"CELL_NUM\" Type=" +
+                "\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nul" +
+                "lable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"C" +
+                "RT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Pr" +
+                "operty Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm." +
+                "String\" /></EntityType><EntityType Name=\"F1956\"><Key><PropertyRef Name=\"PRIORITY" +
+                "_CODE\" /></Key><Property Name=\"PRIORITY_CODE\" Type=\"Edm.String\" Nullable=\"false\"" +
+                " /><Property Name=\"PRIORITY_NAME\" Type=\"Edm.String\" /><Property Name=\"IS_SHOW\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"IS_SYSTEM\" Type=\"Edm.String\" /><Property Name" +
+                "=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"" +
+                "UPD_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><" +
+                "Property Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F195" +
+                "601\"><Key><PropertyRef Name=\"DC_CODE\" /><PropertyRef Name=\"DEVICE_TYPE\" /><Prope" +
+                "rtyRef Name=\"PRIORITY_CODE\" /></Key><Property Name=\"PRIORITY_CODE\" Type=\"Edm.Str" +
+                "ing\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"Edm.String\" Nullable=\"fal" +
+                "se\" /><Property Name=\"DEVICE_TYPE\" Type=\"Edm.String\" Nullable=\"false\" /><Propert" +
+                "y Name=\"PRIORITY_VALUE\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CRT_" +
+                "DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Ed" +
+                "m.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DA" +
+                "TE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F19130501\"" +
+                "><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" Nullab" +
+                "le=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_" +
+                "CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Proper" +
+                "ty Name=\"SERIAL_NO\" Type=\"Edm.String\" /><Property Name=\"ACTION_TYPE\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"BATCH_NO\" T" +
+                "ype=\"Edm.String\" /><Property Name=\"MESSAGE\" Type=\"Edm.String\" /><Property Name=\"" +
+                "CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type" +
+                "=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UP" +
+                "D_DATE\" Type=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Pr" +
+                "operty Name=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"F1903_" +
+                "ASYNC\"><Key><PropertyRef Name=\"ID\" /></Key><Property Name=\"ID\" Type=\"Edm.Int64\" " +
+                "Nullable=\"false\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=" +
+                "\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><" +
+                "Property Name=\"IS_ASYNC\" Type=\"Edm.String\" /><Property Name=\"BATCH_NO\" Type=\"Edm" +
+                ".String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Pro" +
+                "perty Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.S" +
+                "tring\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><P";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart18 = "e=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType></Schema><Schema Namespace=\"Wms3pl." +
-                "Datas.Schedule\" xmlns=\"http://schemas.microsoft.com/ado/2007/05/edm\"><EntityType" +
-                " Name=\"PREFERENCE\"><Key><PropertyRef Name=\"EMP_ID\" /></Key><Property Name=\"EMP_I" +
-                "D\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"DATA\" Type=\"Edm.Binary\" " +
-                "/><Property Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"E" +
-                "dm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /></EntityType></Schem" +
-                "a><Schema Namespace=\"Wms3pl.DBCore\" xmlns=\"http://schemas.microsoft.com/ado/2007" +
-                "/05/edm\"><EntityContainer Name=\"Wms3plDbContext\" m:IsDefaultEntityContainer=\"tru" +
-                "e\"><EntitySet Name=\"F190101s\" EntityType=\"Wms3pl.Datas.F19.F190101\" /><EntitySet" +
-                " Name=\"F191901s\" EntityType=\"Wms3pl.Datas.F19.F191901\" /><EntitySet Name=\"F19240" +
-                "1s\" EntityType=\"Wms3pl.Datas.F19.F192401\" /><EntitySet Name=\"F192401_IMPORTLOGs\"" +
-                " EntityType=\"Wms3pl.Datas.F19.F192401_IMPORTLOG\" /><EntitySet Name=\"F192402s\" En" +
-                "tityType=\"Wms3pl.Datas.F19.F192402\" /><EntitySet Name=\"F192403s\" EntityType=\"Wms" +
-                "3pl.Datas.F19.F192403\" /><EntitySet Name=\"F1943s\" EntityType=\"Wms3pl.Datas.F19.F" +
-                "1943\" /><EntitySet Name=\"F1952s\" EntityType=\"Wms3pl.Datas.F19.F1952\" /><EntitySe" +
-                "t Name=\"F1953s\" EntityType=\"Wms3pl.Datas.F19.F1953\" /><EntitySet Name=\"F195301s\"" +
-                " EntityType=\"Wms3pl.Datas.F19.F195301\" /><EntitySet Name=\"F195301_IMPORTLOGs\" En" +
-                "tityType=\"Wms3pl.Datas.F19.F195301_IMPORTLOG\" /><EntitySet Name=\"F1963s\" EntityT" +
-                "ype=\"Wms3pl.Datas.F19.F1963\" /><EntitySet Name=\"F196301s\" EntityType=\"Wms3pl.Dat" +
-                "as.F19.F196301\" /><EntitySet Name=\"F1981s\" EntityType=\"Wms3pl.Datas.F19.F1981\" /" +
-                "><EntitySet Name=\"F1983s\" EntityType=\"Wms3pl.Datas.F19.F1983\" /><EntitySet Name=" +
-                "\"F1919s\" EntityType=\"Wms3pl.Datas.F19.F1919\" /><EntitySet Name=\"F191202s\" Entity" +
-                "Type=\"Wms3pl.Datas.F19.F191202\" /><EntitySet Name=\"F1980s\" EntityType=\"Wms3pl.Da" +
-                "tas.F19.F1980\" /><EntitySet Name=\"F1954s\" EntityType=\"Wms3pl.Datas.F19.F1954\" />" +
-                "<EntitySet Name=\"F1954_I18N\" EntityType=\"Wms3pl.Datas.F19.F1954_I18N\" /><EntityS" +
-                "et Name=\"F1925s\" EntityType=\"Wms3pl.Datas.F19.F1925\" /><EntitySet Name=\"F1900010" +
-                "1s\" EntityType=\"Wms3pl.Datas.F19.F19000101\" /><EntitySet Name=\"F19000102s\" Entit" +
-                "yType=\"Wms3pl.Datas.F19.F19000102\" /><EntitySet Name=\"F19000103s\" EntityType=\"Wm" +
-                "s3pl.Datas.F19.F19000103\" /><EntitySet Name=\"F1928s\" EntityType=\"Wms3pl.Datas.F1" +
-                "9.F1928\" /><EntitySet Name=\"F190902s\" EntityType=\"Wms3pl.Datas.F19.F190902\" /><E" +
-                "ntitySet Name=\"F190901s\" EntityType=\"Wms3pl.Datas.F19.F190901\" /><EntitySet Name" +
-                "=\"F190003s\" EntityType=\"Wms3pl.Datas.F19.F190003\" /><EntitySet Name=\"F190001s\" E" +
-                "ntityType=\"Wms3pl.Datas.F19.F190001\" /><EntitySet Name=\"F1970s\" EntityType=\"Wms3" +
-                "pl.Datas.F19.F1970\" /><EntitySet Name=\"F197001s\" EntityType=\"Wms3pl.Datas.F19.F1" +
-                "97001\" /><EntitySet Name=\"F192404s\" EntityType=\"Wms3pl.Datas.F19.F192404\" /><Ent" +
-                "itySet Name=\"F1929s\" EntityType=\"Wms3pl.Datas.F19.F1929\" /><EntitySet Name=\"F190" +
-                "002s\" EntityType=\"Wms3pl.Datas.F19.F190002\" /><EntitySet Name=\"F1933s\" EntityTyp" +
-                "e=\"Wms3pl.Datas.F19.F1933\" /><EntitySet Name=\"F1934s\" EntityType=\"Wms3pl.Datas.F" +
-                "19.F1934\" /><EntitySet Name=\"F190904s\" EntityType=\"Wms3pl.Datas.F19.F190904\" /><" +
-                "EntitySet Name=\"F1950s\" EntityType=\"Wms3pl.Datas.F19.F1950\" /><EntitySet Name=\"F" +
-                "1942s\" EntityType=\"Wms3pl.Datas.F19.F1942\" /><EntitySet Name=\"F190207s\" EntityTy" +
-                "pe=\"Wms3pl.Datas.F19.F190207\" /><EntitySet Name=\"F1951s\" EntityType=\"Wms3pl.Data" +
-                "s.F19.F1951\" /><EntitySet Name=\"F194702s\" EntityType=\"Wms3pl.Datas.F19.F194702\" " +
-                "/><EntitySet Name=\"F190206s\" EntityType=\"Wms3pl.Datas.F19.F190206\" /><EntitySet " +
-                "Name=\"F19000104s\" EntityType=\"Wms3pl.Datas.F19.F19000104\" /><EntitySet Name=\"F19" +
-                "4705s\" EntityType=\"Wms3pl.Datas.F19.F194705\" /><EntitySet Name=\"F190102s\" Entity" +
-                "Type=\"Wms3pl.Datas.F19.F190102\" /><EntitySet Name=\"F194708s\" EntityType=\"Wms3pl." +
-                "Datas.F19.F194708\" /><EntitySet Name=\"F19470801s\" EntityType=\"Wms3pl.Datas.F19.F" +
-                "19470801\" /><EntitySet Name=\"F194709s\" EntityType=\"Wms3pl.Datas.F19.F194709\" /><" +
-                "EntitySet Name=\"F194707s\" EntityType=\"Wms3pl.Datas.F19.F194707\" /><EntitySet Nam" +
-                "e=\"F1912s\" EntityType=\"Wms3pl.Datas.F19.F1912\" /><EntitySet Name=\"F1948s\" Entity" +
-                "Type=\"Wms3pl.Datas.F19.F1948\" /><EntitySet Name=\"F194801s\" EntityType=\"Wms3pl.Da" +
-                "tas.F19.F194801\" /><EntitySet Name=\"F199007s\" EntityType=\"Wms3pl.Datas.F19.F1990" +
-                "07\" /><EntitySet Name=\"F190004s\" EntityType=\"Wms3pl.Datas.F19.F190004\" /><Entity" +
-                "Set Name=\"F190303s\" EntityType=\"Wms3pl.Datas.F19.F190303\" /><EntitySet Name=\"F19" +
-                "4703s\" EntityType=\"Wms3pl.Datas.F19.F194703\" /><EntitySet Name=\"F190701s\" Entity" +
-                "Type=\"Wms3pl.Datas.F19.F190701\" /><EntitySet Name=\"F190702s\" EntityType=\"Wms3pl." +
-                "Datas.F19.F190702\" /><EntitySet Name=\"F190703s\" EntityType=\"Wms3pl.Datas.F19.F19" +
-                "0703\" /><EntitySet Name=\"F190704s\" EntityType=\"Wms3pl.Datas.F19.F190704\" /><Enti" +
-                "tySet Name=\"F190205s\" EntityType=\"Wms3pl.Datas.F19.F190205\" /><EntitySet Name=\"F" +
-                "1905s\" EntityType=\"Wms3pl.Datas.F19.F1905\" /><EntitySet Name=\"F190301s\" EntityTy" +
-                "pe=\"Wms3pl.Datas.F19.F190301\" /><EntitySet Name=\"F194701s\" EntityType=\"Wms3pl.Da" +
-                "tas.F19.F194701\" /><EntitySet Name=\"F19470101s\" EntityType=\"Wms3pl.Datas.F19.F19" +
-                "470101\" /><EntitySet Name=\"F192405s\" EntityType=\"Wms3pl.Datas.F19.F192405\" /><En" +
-                "titySet Name=\"F195302s\" EntityType=\"Wms3pl.Datas.F19.F195302\" /><EntitySet Name=" +
-                "\"F19471001s\" EntityType=\"Wms3pl.Datas.F19.F19471001\" /><EntitySet Name=\"F1952_HI" +
-                "STORYs\" EntityType=\"Wms3pl.Datas.F19.F1952_HISTORY\" /><EntitySet Name=\"F199001s\"" +
-                " EntityType=\"Wms3pl.Datas.F19.F199001\" /><EntitySet Name=\"F199002s\" EntityType=\"" +
-                "Wms3pl.Datas.F19.F199002\" /><EntitySet Name=\"F199006s\" EntityType=\"Wms3pl.Datas." +
-                "F19.F199006\" /><EntitySet Name=\"F199003s\" EntityType=\"Wms3pl.Datas.F19.F199003\" " +
-                "/><EntitySet Name=\"F199005s\" EntityType=\"Wms3pl.Datas.F19.F199005\" /><EntitySet " +
-                "Name=\"F194711s\" EntityType=\"Wms3pl.Datas.F19.F194711\" /><EntitySet Name=\"F1901s\"" +
-                " EntityType=\"Wms3pl.Datas.F19.F1901\" /><EntitySet Name=\"F197002s\" EntityType=\"Wm" +
-                "s3pl.Datas.F19.F197002\" /><EntitySet Name=\"F19700201s\" EntityType=\"Wms3pl.Datas." +
-                "F19.F19700201\" /><EntitySet Name=\"F194713s\" EntityType=\"Wms3pl.Datas.F19.F194713" +
-                "\" /><EntitySet Name=\"F190906s\" EntityType=\"Wms3pl.Datas.F19.F190906\" /><EntitySe" +
-                "t Name=\"F198001s\" EntityType=\"Wms3pl.Datas.F19.F198001\" /><EntitySet Name=\"F1947" +
-                "14s\" EntityType=\"Wms3pl.Datas.F19.F194714\" /><EntitySet Name=\"F1915s\" EntityType" +
-                "=\"Wms3pl.Datas.F19.F1915\" /><EntitySet Name=\"F1916s\" EntityType=\"Wms3pl.Datas.F1" +
-                "9.F1916\" /><EntitySet Name=\"F1917s\" EntityType=\"Wms3pl.Datas.F19.F1917\" /><Entit" +
-                "ySet Name=\"F1924s\" EntityType=\"Wms3pl.Datas.F19.F1924\" /><EntitySet Name=\"F19540" +
-                "201s\" EntityType=\"Wms3pl.Datas.F19.F19540201\" /><EntitySet Name=\"F19540202s\" Ent" +
-                "ityType=\"Wms3pl.Datas.F19.F19540202\" /><EntitySet Name=\"F191201s\" EntityType=\"Wm" +
-                "s3pl.Datas.F19.F191201\" /><EntitySet Name=\"F1908s\" EntityType=\"Wms3pl.Datas.F19." +
-                "F1908\" /><EntitySet Name=\"F191001s\" EntityType=\"Wms3pl.Datas.F19.F191001\" /><Ent" +
-                "itySet Name=\"F191002s\" EntityType=\"Wms3pl.Datas.F19.F191002\" /><EntitySet Name=\"" +
-                "F1910s\" EntityType=\"Wms3pl.Datas.F19.F1910\" /><EntitySet Name=\"F190010s\" EntityT" +
-                "ype=\"Wms3pl.Datas.F19.F190010\" /><EntitySet Name=\"F19471601s\" EntityType=\"Wms3pl" +
-                ".Datas.F19.F19471601\" /><EntitySet Name=\"F194716s\" EntityType=\"Wms3pl.Datas.F19." +
-                "F194716\" /><EntitySet Name=\"F190905s\" EntityType=\"Wms3pl.Datas.F19.F190905\" /><E" +
-                "ntitySet Name=\"F190908s\" EntityType=\"Wms3pl.Datas.F19.F190908\" /><EntitySet Name" +
-                "=\"F194706s\" EntityType=\"Wms3pl.Datas.F19.F194706\" /><EntitySet Name=\"F194712s\" E" +
-                "ntityType=\"Wms3pl.Datas.F19.F194712\" /><EntitySet Name=\"F19471201s\" EntityType=\"" +
-                "Wms3pl.Datas.F19.F19471201\" /><EntitySet Name=\"F1944s\" Enti";
+            private const string ModelPart18 = "roperty Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm." +
+                "String\" /></EntityType></Schema><Schema Namespace=\"Wms3pl.Datas.Schedule\" xmlns=" +
+                "\"http://schemas.microsoft.com/ado/2007/05/edm\"><EntityType Name=\"PREFERENCE\"><Ke" +
+                "y><PropertyRef Name=\"EMP_ID\" /></Key><Property Name=\"EMP_ID\" Type=\"Edm.String\" N" +
+                "ullable=\"false\" /><Property Name=\"DATA\" Type=\"Edm.Binary\" /><Property Name=\"DC_C" +
+                "ODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property" +
+                " Name=\"CUST_CODE\" Type=\"Edm.String\" /></EntityType></Schema><Schema Namespace=\"W" +
+                "ms3pl.DBCore\" xmlns=\"http://schemas.microsoft.com/ado/2007/05/edm\"><EntityContai" +
+                "ner Name=\"Wms3plDbContext\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"F1" +
+                "90101s\" EntityType=\"Wms3pl.Datas.F19.F190101\" /><EntitySet Name=\"F191901s\" Entit" +
+                "yType=\"Wms3pl.Datas.F19.F191901\" /><EntitySet Name=\"F192401s\" EntityType=\"Wms3pl" +
+                ".Datas.F19.F192401\" /><EntitySet Name=\"F192401_IMPORTLOGs\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F192401_IMPORTLOG\" /><EntitySet Name=\"F192402s\" EntityType=\"Wms3pl.Datas" +
+                ".F19.F192402\" /><EntitySet Name=\"F192403s\" EntityType=\"Wms3pl.Datas.F19.F192403\"" +
+                " /><EntitySet Name=\"F1943s\" EntityType=\"Wms3pl.Datas.F19.F1943\" /><EntitySet Nam" +
+                "e=\"F1952s\" EntityType=\"Wms3pl.Datas.F19.F1952\" /><EntitySet Name=\"F1953s\" Entity" +
+                "Type=\"Wms3pl.Datas.F19.F1953\" /><EntitySet Name=\"F195301s\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F195301\" /><EntitySet Name=\"F195301_IMPORTLOGs\" EntityType=\"Wms3pl.Datas" +
+                ".F19.F195301_IMPORTLOG\" /><EntitySet Name=\"F1963s\" EntityType=\"Wms3pl.Datas.F19." +
+                "F1963\" /><EntitySet Name=\"F196301s\" EntityType=\"Wms3pl.Datas.F19.F196301\" /><Ent" +
+                "itySet Name=\"F1981s\" EntityType=\"Wms3pl.Datas.F19.F1981\" /><EntitySet Name=\"F198" +
+                "3s\" EntityType=\"Wms3pl.Datas.F19.F1983\" /><EntitySet Name=\"F1919s\" EntityType=\"W" +
+                "ms3pl.Datas.F19.F1919\" /><EntitySet Name=\"F191202s\" EntityType=\"Wms3pl.Datas.F19" +
+                ".F191202\" /><EntitySet Name=\"F1980s\" EntityType=\"Wms3pl.Datas.F19.F1980\" /><Enti" +
+                "tySet Name=\"F1954s\" EntityType=\"Wms3pl.Datas.F19.F1954\" /><EntitySet Name=\"F1954" +
+                "_I18N\" EntityType=\"Wms3pl.Datas.F19.F1954_I18N\" /><EntitySet Name=\"F1925s\" Entit" +
+                "yType=\"Wms3pl.Datas.F19.F1925\" /><EntitySet Name=\"F19000101s\" EntityType=\"Wms3pl" +
+                ".Datas.F19.F19000101\" /><EntitySet Name=\"F19000102s\" EntityType=\"Wms3pl.Datas.F1" +
+                "9.F19000102\" /><EntitySet Name=\"F19000103s\" EntityType=\"Wms3pl.Datas.F19.F190001" +
+                "03\" /><EntitySet Name=\"F1928s\" EntityType=\"Wms3pl.Datas.F19.F1928\" /><EntitySet " +
+                "Name=\"F190902s\" EntityType=\"Wms3pl.Datas.F19.F190902\" /><EntitySet Name=\"F190901" +
+                "s\" EntityType=\"Wms3pl.Datas.F19.F190901\" /><EntitySet Name=\"F190003s\" EntityType" +
+                "=\"Wms3pl.Datas.F19.F190003\" /><EntitySet Name=\"F190001s\" EntityType=\"Wms3pl.Data" +
+                "s.F19.F190001\" /><EntitySet Name=\"F1970s\" EntityType=\"Wms3pl.Datas.F19.F1970\" />" +
+                "<EntitySet Name=\"F197001s\" EntityType=\"Wms3pl.Datas.F19.F197001\" /><EntitySet Na" +
+                "me=\"F192404s\" EntityType=\"Wms3pl.Datas.F19.F192404\" /><EntitySet Name=\"F1929s\" E" +
+                "ntityType=\"Wms3pl.Datas.F19.F1929\" /><EntitySet Name=\"F190002s\" EntityType=\"Wms3" +
+                "pl.Datas.F19.F190002\" /><EntitySet Name=\"F1933s\" EntityType=\"Wms3pl.Datas.F19.F1" +
+                "933\" /><EntitySet Name=\"F1934s\" EntityType=\"Wms3pl.Datas.F19.F1934\" /><EntitySet" +
+                " Name=\"F190904s\" EntityType=\"Wms3pl.Datas.F19.F190904\" /><EntitySet Name=\"F1950s" +
+                "\" EntityType=\"Wms3pl.Datas.F19.F1950\" /><EntitySet Name=\"F1942s\" EntityType=\"Wms" +
+                "3pl.Datas.F19.F1942\" /><EntitySet Name=\"F190207s\" EntityType=\"Wms3pl.Datas.F19.F" +
+                "190207\" /><EntitySet Name=\"F1951s\" EntityType=\"Wms3pl.Datas.F19.F1951\" /><Entity" +
+                "Set Name=\"F194702s\" EntityType=\"Wms3pl.Datas.F19.F194702\" /><EntitySet Name=\"F19" +
+                "0206s\" EntityType=\"Wms3pl.Datas.F19.F190206\" /><EntitySet Name=\"F19000104s\" Enti" +
+                "tyType=\"Wms3pl.Datas.F19.F19000104\" /><EntitySet Name=\"F194705s\" EntityType=\"Wms" +
+                "3pl.Datas.F19.F194705\" /><EntitySet Name=\"F190102s\" EntityType=\"Wms3pl.Datas.F19" +
+                ".F190102\" /><EntitySet Name=\"F194708s\" EntityType=\"Wms3pl.Datas.F19.F194708\" /><" +
+                "EntitySet Name=\"F19470801s\" EntityType=\"Wms3pl.Datas.F19.F19470801\" /><EntitySet" +
+                " Name=\"F194709s\" EntityType=\"Wms3pl.Datas.F19.F194709\" /><EntitySet Name=\"F19470" +
+                "7s\" EntityType=\"Wms3pl.Datas.F19.F194707\" /><EntitySet Name=\"F1912s\" EntityType=" +
+                "\"Wms3pl.Datas.F19.F1912\" /><EntitySet Name=\"F1948s\" EntityType=\"Wms3pl.Datas.F19" +
+                ".F1948\" /><EntitySet Name=\"F194801s\" EntityType=\"Wms3pl.Datas.F19.F194801\" /><En" +
+                "titySet Name=\"F199007s\" EntityType=\"Wms3pl.Datas.F19.F199007\" /><EntitySet Name=" +
+                "\"F190004s\" EntityType=\"Wms3pl.Datas.F19.F190004\" /><EntitySet Name=\"F190303s\" En" +
+                "tityType=\"Wms3pl.Datas.F19.F190303\" /><EntitySet Name=\"F194703s\" EntityType=\"Wms" +
+                "3pl.Datas.F19.F194703\" /><EntitySet Name=\"F190701s\" EntityType=\"Wms3pl.Datas.F19" +
+                ".F190701\" /><EntitySet Name=\"F190702s\" EntityType=\"Wms3pl.Datas.F19.F190702\" /><" +
+                "EntitySet Name=\"F190703s\" EntityType=\"Wms3pl.Datas.F19.F190703\" /><EntitySet Nam" +
+                "e=\"F190704s\" EntityType=\"Wms3pl.Datas.F19.F190704\" /><EntitySet Name=\"F190205s\" " +
+                "EntityType=\"Wms3pl.Datas.F19.F190205\" /><EntitySet Name=\"F1905s\" EntityType=\"Wms" +
+                "3pl.Datas.F19.F1905\" /><EntitySet Name=\"F190301s\" EntityType=\"Wms3pl.Datas.F19.F" +
+                "190301\" /><EntitySet Name=\"F194701s\" EntityType=\"Wms3pl.Datas.F19.F194701\" /><En" +
+                "titySet Name=\"F19470101s\" EntityType=\"Wms3pl.Datas.F19.F19470101\" /><EntitySet N" +
+                "ame=\"F192405s\" EntityType=\"Wms3pl.Datas.F19.F192405\" /><EntitySet Name=\"F195302s" +
+                "\" EntityType=\"Wms3pl.Datas.F19.F195302\" /><EntitySet Name=\"F19471001s\" EntityTyp" +
+                "e=\"Wms3pl.Datas.F19.F19471001\" /><EntitySet Name=\"F1952_HISTORYs\" EntityType=\"Wm" +
+                "s3pl.Datas.F19.F1952_HISTORY\" /><EntitySet Name=\"F199001s\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F199001\" /><EntitySet Name=\"F199002s\" EntityType=\"Wms3pl.Datas.F19.F1990" +
+                "02\" /><EntitySet Name=\"F199006s\" EntityType=\"Wms3pl.Datas.F19.F199006\" /><Entity" +
+                "Set Name=\"F199003s\" EntityType=\"Wms3pl.Datas.F19.F199003\" /><EntitySet Name=\"F19" +
+                "9005s\" EntityType=\"Wms3pl.Datas.F19.F199005\" /><EntitySet Name=\"F194711s\" Entity" +
+                "Type=\"Wms3pl.Datas.F19.F194711\" /><EntitySet Name=\"F1901s\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F1901\" /><EntitySet Name=\"F197002s\" EntityType=\"Wms3pl.Datas.F19.F197002" +
+                "\" /><EntitySet Name=\"F19700201s\" EntityType=\"Wms3pl.Datas.F19.F19700201\" /><Enti" +
+                "tySet Name=\"F194713s\" EntityType=\"Wms3pl.Datas.F19.F194713\" /><EntitySet Name=\"F" +
+                "190906s\" EntityType=\"Wms3pl.Datas.F19.F190906\" /><EntitySet Name=\"F198001s\" Enti" +
+                "tyType=\"Wms3pl.Datas.F19.F198001\" /><EntitySet Name=\"F194714s\" EntityType=\"Wms3p" +
+                "l.Datas.F19.F194714\" /><EntitySet Name=\"F1915s\" EntityType=\"Wms3pl.Datas.F19.F19" +
+                "15\" /><EntitySet Name=\"F1916s\" EntityType=\"Wms3pl.Datas.F19.F1916\" /><EntitySet " +
+                "Name=\"F1917s\" EntityType=\"Wms3pl.Datas.F19.F1917\" /><EntitySet Name=\"F1924s\" Ent" +
+                "ityType=\"Wms3pl.Datas.F19.F1924\" /><EntitySet Name=\"F19540201s\" EntityType=\"Wms3" +
+                "pl.Datas.F19.F19540201\" /><EntitySet Name=\"F19540202s\" EntityType=\"Wms3pl.Datas." +
+                "F19.F19540202\" /><EntitySet Name=\"F191201s\" EntityType=\"Wms3pl.Datas.F19.F191201" +
+                "\" /><EntitySet Name=\"F1908s\" EntityType=\"Wms3pl.Datas.F19.F1908\" /><EntitySet Na" +
+                "me=\"F191001s\" EntityType=\"Wms3pl.Datas.F19.F191001\" /><EntitySet Name=\"F191002s\"" +
+                " EntityType=\"Wms3pl.Datas.F19.F191002\" /><EntitySet Name=\"F1910s\" EntityType=\"Wm" +
+                "s3pl.Datas.F19.F1910\" /><EntitySet Name=\"F190010s\" EntityType=\"Wms3pl.Datas.F19." +
+                "F190010\" /><EntitySet Name=\"F19471601s\" EntityType=\"Wms3pl.Datas.F19.F19471601\" " +
+                "/><EntitySet Name=\"F194716s\" EntityType=\"Wms3pl.Datas.F19.F194716\" /><EntitySet " +
+                "Name=\"F190905s\" EntityType=\"Wms3pl.Datas.F19.F190905\" /><EntitySet Name=\"F190908" +
+                "s\" EntityType=\"Wms3pl.Datas.F19.F190908\" /><EntitySet Name=\"F194706s\" EntityType" +
+                "=\"Wms3pl.Datas.F19.F194706\" /><EntitySet Name=\"F194712s\" EntityType=\"Wms3pl.Data" +
+                "s.F19.F194712\" /><EntitySet Name=\"F19471201s\" EntityType=\"W";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart19 = "tyType=\"Wms3pl.Datas.F19.F1944\" /><EntitySet Name=\"F191902s\" EntityType=\"Wms3pl.D" +
-                "atas.F19.F191902\" /><EntitySet Name=\"F190305s\" EntityType=\"Wms3pl.Datas.F19.F190" +
-                "305\" /><EntitySet Name=\"F190909s\" EntityType=\"Wms3pl.Datas.F19.F190909\" /><Entit" +
-                "ySet Name=\"F194710s\" EntityType=\"Wms3pl.Datas.F19.F194710\" /><EntitySet Name=\"F1" +
-                "95402s\" EntityType=\"Wms3pl.Datas.F19.F195402\" /><EntitySet Name=\"F1903s\" EntityT" +
-                "ype=\"Wms3pl.Datas.F19.F1903\" /><EntitySet Name=\"F1903_HISTORYs\" EntityType=\"Wms3" +
-                "pl.Datas.F19.F1903_HISTORY\" /><EntitySet Name=\"F191204s\" EntityType=\"Wms3pl.Data" +
-                "s.F19.F191204\" /><EntitySet Name=\"F194715s\" EntityType=\"Wms3pl.Datas.F19.F194715" +
-                "\" /><EntitySet Name=\"F1913s\" EntityType=\"Wms3pl.Datas.F19.F1913\" /><EntitySet Na" +
-                "me=\"F191301s\" EntityType=\"Wms3pl.Datas.F19.F191301\" /><EntitySet Name=\"F191302s\"" +
-                " EntityType=\"Wms3pl.Datas.F19.F191302\" /><EntitySet Name=\"F191303s\" EntityType=\"" +
-                "Wms3pl.Datas.F19.F191303\" /><EntitySet Name=\"F191304s\" EntityType=\"Wms3pl.Datas." +
-                "F19.F191304\" /><EntitySet Name=\"F194704s\" EntityType=\"Wms3pl.Datas.F19.F194704\" " +
-                "/><EntitySet Name=\"F190907s\" EntityType=\"Wms3pl.Datas.F19.F190907\" /><EntitySet " +
-                "Name=\"F1947s\" EntityType=\"Wms3pl.Datas.F19.F1947\" /><EntitySet Name=\"F1909s\" Ent" +
-                "ityType=\"Wms3pl.Datas.F19.F1909\" /><EntitySet Name=\"F194901s\" EntityType=\"Wms3pl" +
-                ".Datas.F19.F194901\" /><EntitySet Name=\"F190105s\" EntityType=\"Wms3pl.Datas.F19.F1" +
-                "90105\" /><EntitySet Name=\"F190106s\" EntityType=\"Wms3pl.Datas.F19.F190106\" /><Ent" +
-                "itySet Name=\"F1945s\" EntityType=\"Wms3pl.Datas.F19.F1945\" /><EntitySet Name=\"F194" +
-                "501s\" EntityType=\"Wms3pl.Datas.F19.F194501\" /><EntitySet Name=\"F191206s\" EntityT" +
-                "ype=\"Wms3pl.Datas.F19.F191206\" /><EntitySet Name=\"F19120601s\" EntityType=\"Wms3pl" +
-                ".Datas.F19.F19120601\" /><EntitySet Name=\"F19120602s\" EntityType=\"Wms3pl.Datas.F1" +
-                "9.F19120602\" /><EntitySet Name=\"F1946s\" EntityType=\"Wms3pl.Datas.F19.F1946\" /><E" +
-                "ntitySet Name=\"F191305s\" EntityType=\"Wms3pl.Datas.F19.F191305\" /><EntitySet Name" +
-                "=\"F1955s\" EntityType=\"Wms3pl.Datas.F19.F1955\" /><EntitySet Name=\"F1956s\" EntityT" +
-                "ype=\"Wms3pl.Datas.F19.F1956\" /><EntitySet Name=\"F195601s\" EntityType=\"Wms3pl.Dat" +
-                "as.F19.F195601\" /><EntitySet Name=\"F19130501s\" EntityType=\"Wms3pl.Datas.F19.F191" +
-                "30501\" /><EntitySet Name=\"F1903_ASYNCs\" EntityType=\"Wms3pl.Datas.F19.F1903_ASYNC" +
-                "\" /><EntitySet Name=\"PREFERENCEs\" EntityType=\"Wms3pl.Datas.Schedule.PREFERENCE\" " +
-                "/><FunctionImport Name=\"GetF1912s1\" ReturnType=\"Collection(Wms3pl.Datas.F19.F190" +
-                "3)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"itemCode" +
-                "s\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter" +
-                " Name=\"itemSpec\" Type=\"Edm.String\" /><Parameter Name=\"lType\" Type=\"Edm.String\" /" +
-                "></FunctionImport><FunctionImport Name=\"GetAllowedF1947s\" ReturnType=\"Collection" +
-                "(Wms3pl.Datas.F19.F1947)\" EntitySet=\"F1947s\" m:HttpMethod=\"GET\"><Parameter Name=" +
-                "\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
-                "\"GetF1903sByCarton\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F" +
-                "1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"isCarton\" Type=\"Edm.Stri" +
-                "ng\" /></FunctionImport><FunctionImport Name=\"GetF1925sByDEPIDANDDEPNAME\" ReturnT" +
-                "ype=\"Collection(Wms3pl.Datas.F19.F1925)\" EntitySet=\"F1925s\" m:HttpMethod=\"GET\"><" +
-                "Parameter Name=\"DEP_ID\" Type=\"Edm.String\" /><Parameter Name=\"DEP_NAME\" Type=\"Edm" +
-                ".String\" /></FunctionImport><FunctionImport Name=\"GetF192404sByDCCODE\" ReturnTyp" +
-                "e=\"Collection(Wms3pl.Datas.F19.F192404)\" EntitySet=\"F192404s\" m:HttpMethod=\"GET\"" +
-                "><Parameter Name=\"DC_CODE\" Type=\"Edm.String\" /></FunctionImport><FunctionImport " +
-                "Name=\"GetF1933sByCOUDIVID\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1933)\" Entit" +
-                "ySet=\"F1933s\" m:HttpMethod=\"GET\"><Parameter Name=\"COUDIVID\" Type=\"Edm.String\" />" +
-                "</FunctionImport><FunctionImport Name=\"GetF1934sByCOUDIVID\" ReturnType=\"Collecti" +
-                "on(Wms3pl.Datas.F19.F1934)\" EntitySet=\"F1934s\" m:HttpMethod=\"GET\"><Parameter Nam" +
-                "e=\"COUDIVID\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAllId" +
-                "ByWmsOrdNo\" ReturnType=\"Wms3pl.Datas.F19.F1947\" EntitySet=\"F1947s\" m:HttpMethod=" +
-                "\"GET\"><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetCartonS" +
-                "ize\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1905)\" EntitySet=\"F1905s\" m:HttpMe" +
-                "thod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCo" +
-                "de\" Type=\"Edm.String\" /><Parameter Name=\"searchCode\" Type=\"Edm.String\" /></Funct" +
-                "ionImport><FunctionImport Name=\"GetCartonItem\" ReturnType=\"Collection(Wms3pl.Dat" +
-                "as.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"searchCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAll" +
-                "owedF1908s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1908)\" EntitySet=\"F1908s\" m" +
-                ":HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"vnrCode\" Type=\"Edm.String\" /><Parameter Name=\"vnrName\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"custCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name" +
-                "=\"GetAllowedF1910s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1910)\" EntitySet=\"F" +
-                "1910s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"retailCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"retailName\" Type=\"Edm.String\" /></FunctionImport><Funct" +
-                "ionImport Name=\"GetF199006s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F199006)\" E" +
-                "ntitySet=\"F199006s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"accItemName\" Type=\"Edm.String\" /><Parameter Name=\"status\" T" +
-                "ype=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1912s\" ReturnType=" +
-                "\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Para" +
-                "meter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName" +
-                "\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1909ByDc\" Retur" +
-                "nType=\"Collection(Wms3pl.Datas.F19.F1909)\" EntitySet=\"F1909s\" m:HttpMethod=\"GET\"" +
-                "><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport N" +
-                "ame=\"GetF1903sByItemName\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" Entity" +
-                "Set=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><P" +
-                "arameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"itemSearchMaximum\" Type=\"Edm.Int32\" /></FunctionImp" +
-                "ort><FunctionImport Name=\"GetF1903sByItemCode\" ReturnType=\"Collection(Wms3pl.Dat" +
-                "as.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"account\" Type=\"Edm.String\" /><" +
-                "/FunctionImport><FunctionImport Name=\"GetF1909Datas\" ReturnType=\"Collection(Wms3" +
-                "pl.Datas.F19.F1909)\" EntitySet=\"F1909s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupC" +
-                "ode\" Type=\"Edm.String\" /><Parameter Name=\"custName\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"account\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Get" +
-                "QueryListByGroupId\" ReturnType=\"Collection(Wms3pl.Datas.F19";
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart20 = ".F190701)\" EntitySet=\"F190701s\" m:HttpMethod=\"GET\"><Parameter Name=\"gid\" Type=\"Ed" +
-                "m.String\" /></FunctionImport><FunctionImport Name=\"GetQueryListByEmpId\" ReturnTy" +
-                "pe=\"Collection(Wms3pl.Datas.F19.F190701)\" EntitySet=\"F190701s\" m:HttpMethod=\"GET" +
-                "\"><Parameter Name=\"empId\" Type=\"Edm.String\" /><Parameter Name=\"qGroup\" Type=\"Edm" +
-                ".String\" /></FunctionImport><FunctionImport Name=\"GetF1903sByItemCodes\" ReturnTy" +
-                "pe=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><P" +
-                "arameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /></FunctionImport><Fun" +
-                "ctionImport Name=\"GetF194716Datas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1947" +
-                "16)\" EntitySet=\"F194716s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCod" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"carPeriod\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"delvNo\" Type=\"Edm.String\" /><Parameter Name=\"carGup\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"retailCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImpo" +
-                "rt Name=\"GetDatasByCanToShip\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1919)\" En" +
-                "titySet=\"F1919s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"" +
-                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1903\" ReturnType=\"Colle" +
-                "ction(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter " +
+            private const string ModelPart19 = "ms3pl.Datas.F19.F19471201\" /><EntitySet Name=\"F1944s\" EntityType=\"Wms3pl.Datas.F1" +
+                "9.F1944\" /><EntitySet Name=\"F191902s\" EntityType=\"Wms3pl.Datas.F19.F191902\" /><E" +
+                "ntitySet Name=\"F190305s\" EntityType=\"Wms3pl.Datas.F19.F190305\" /><EntitySet Name" +
+                "=\"F190909s\" EntityType=\"Wms3pl.Datas.F19.F190909\" /><EntitySet Name=\"F194710s\" E" +
+                "ntityType=\"Wms3pl.Datas.F19.F194710\" /><EntitySet Name=\"F195402s\" EntityType=\"Wm" +
+                "s3pl.Datas.F19.F195402\" /><EntitySet Name=\"F1903s\" EntityType=\"Wms3pl.Datas.F19." +
+                "F1903\" /><EntitySet Name=\"F1903_HISTORYs\" EntityType=\"Wms3pl.Datas.F19.F1903_HIS" +
+                "TORY\" /><EntitySet Name=\"F191204s\" EntityType=\"Wms3pl.Datas.F19.F191204\" /><Enti" +
+                "tySet Name=\"F194715s\" EntityType=\"Wms3pl.Datas.F19.F194715\" /><EntitySet Name=\"F" +
+                "1913s\" EntityType=\"Wms3pl.Datas.F19.F1913\" /><EntitySet Name=\"F191301s\" EntityTy" +
+                "pe=\"Wms3pl.Datas.F19.F191301\" /><EntitySet Name=\"F191302s\" EntityType=\"Wms3pl.Da" +
+                "tas.F19.F191302\" /><EntitySet Name=\"F191303s\" EntityType=\"Wms3pl.Datas.F19.F1913" +
+                "03\" /><EntitySet Name=\"F191304s\" EntityType=\"Wms3pl.Datas.F19.F191304\" /><Entity" +
+                "Set Name=\"F194704s\" EntityType=\"Wms3pl.Datas.F19.F194704\" /><EntitySet Name=\"F19" +
+                "0907s\" EntityType=\"Wms3pl.Datas.F19.F190907\" /><EntitySet Name=\"F1947s\" EntityTy" +
+                "pe=\"Wms3pl.Datas.F19.F1947\" /><EntitySet Name=\"F1909s\" EntityType=\"Wms3pl.Datas." +
+                "F19.F1909\" /><EntitySet Name=\"F194901s\" EntityType=\"Wms3pl.Datas.F19.F194901\" />" +
+                "<EntitySet Name=\"F190105s\" EntityType=\"Wms3pl.Datas.F19.F190105\" /><EntitySet Na" +
+                "me=\"F190106s\" EntityType=\"Wms3pl.Datas.F19.F190106\" /><EntitySet Name=\"F1945s\" E" +
+                "ntityType=\"Wms3pl.Datas.F19.F1945\" /><EntitySet Name=\"F194501s\" EntityType=\"Wms3" +
+                "pl.Datas.F19.F194501\" /><EntitySet Name=\"F191206s\" EntityType=\"Wms3pl.Datas.F19." +
+                "F191206\" /><EntitySet Name=\"F19120601s\" EntityType=\"Wms3pl.Datas.F19.F19120601\" " +
+                "/><EntitySet Name=\"F19120602s\" EntityType=\"Wms3pl.Datas.F19.F19120602\" /><Entity" +
+                "Set Name=\"F1946s\" EntityType=\"Wms3pl.Datas.F19.F1946\" /><EntitySet Name=\"F191305" +
+                "s\" EntityType=\"Wms3pl.Datas.F19.F191305\" /><EntitySet Name=\"F1955s\" EntityType=\"" +
+                "Wms3pl.Datas.F19.F1955\" /><EntitySet Name=\"F1956s\" EntityType=\"Wms3pl.Datas.F19." +
+                "F1956\" /><EntitySet Name=\"F195601s\" EntityType=\"Wms3pl.Datas.F19.F195601\" /><Ent" +
+                "itySet Name=\"F19130501s\" EntityType=\"Wms3pl.Datas.F19.F19130501\" /><EntitySet Na" +
+                "me=\"F1903_ASYNCs\" EntityType=\"Wms3pl.Datas.F19.F1903_ASYNC\" /><EntitySet Name=\"P" +
+                "REFERENCEs\" EntityType=\"Wms3pl.Datas.Schedule.PREFERENCE\" /><FunctionImport Name" +
+                "=\"GetF1912s1\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\"" +
+                " m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter Name=\"itemSpec\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"lType\" Type=\"Edm.String\" /></FunctionImport><Fun" +
+                "ctionImport Name=\"GetAllowedF1947s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F194" +
+                "7)\" EntitySet=\"F1947s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" " +
+                "Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1903sByCarton\" Re" +
+                "turnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"G" +
+                "ET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"isCarton\" Type=\"Edm.String\" /></FunctionImport" +
+                "><FunctionImport Name=\"GetF1925sByDEPIDANDDEPNAME\" ReturnType=\"Collection(Wms3pl" +
+                ".Datas.F19.F1925)\" EntitySet=\"F1925s\" m:HttpMethod=\"GET\"><Parameter Name=\"DEP_ID" +
+                "\" Type=\"Edm.String\" /><Parameter Name=\"DEP_NAME\" Type=\"Edm.String\" /></FunctionI" +
+                "mport><FunctionImport Name=\"GetF192404sByDCCODE\" ReturnType=\"Collection(Wms3pl.D" +
+                "atas.F19.F192404)\" EntitySet=\"F192404s\" m:HttpMethod=\"GET\"><Parameter Name=\"DC_C" +
+                "ODE\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1933sByCOUDI" +
+                "VID\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1933)\" EntitySet=\"F1933s\" m:HttpMe" +
+                "thod=\"GET\"><Parameter Name=\"COUDIVID\" Type=\"Edm.String\" /></FunctionImport><Func" +
+                "tionImport Name=\"GetF1934sByCOUDIVID\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1" +
+                "934)\" EntitySet=\"F1934s\" m:HttpMethod=\"GET\"><Parameter Name=\"COUDIVID\" Type=\"Edm" +
+                ".String\" /></FunctionImport><FunctionImport Name=\"GetAllIdByWmsOrdNo\" ReturnType" +
+                "=\"Wms3pl.Datas.F19.F1947\" EntitySet=\"F1947s\" m:HttpMethod=\"GET\"><Parameter Name=" +
+                "\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.S" +
+                "tring\" /></FunctionImport><FunctionImport Name=\"GetCartonSize\" ReturnType=\"Colle" +
+                "ction(Wms3pl.Datas.F19.F1905)\" EntitySet=\"F1905s\" m:HttpMethod=\"GET\"><Parameter " +
                 "Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"itemCodes\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Typ" +
-                "e=\"Edm.String\" /><Parameter Name=\"itemSpec\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"lType\" Type=\"Edm.String\" /><Parameter Name=\"oriVnrCode\" Type=\"Edm.String\" /></F" +
-                "unctionImport><FunctionImport Name=\"GetF1903sBySerialNo\" ReturnType=\"Collection(" +
-                "Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"" +
-                "gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"serialNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name" +
-                "=\"GetAutoWarehourse\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1980)\" EntitySet=\"" +
-                "F1980s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></Functi" +
-                "onImport><FunctionImport Name=\"GetF191206sResult\" ReturnType=\"Collection(Wms3pl." +
-                "Datas.F19.F191206)\" EntitySet=\"F191206s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcC" +
-                "ode\" Type=\"Edm.String\" /><Parameter Name=\"pickFloor\" Type=\"Edm.String\" /><Parame" +
-                "ter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Get" +
-                "F19120601sSelectItem\" ReturnType=\"Collection(Wms3pl.Datas.F19.F19120601)\" Entity" +
-                "Set=\"F19120601s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><FunctionImport N" +
-                "ame=\"GetF19120602s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F19120602)\" EntitySe" +
-                "t=\"F19120602s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"pkArea\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Nam" +
-                "e=\"GetWorkstationList\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1946)\" EntitySet" +
-                "=\"F1946s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Param" +
-                "eter Name=\"workstationGroup\" Type=\"Edm.String\" /><Parameter Name=\"workstationTyp" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"workstationCode\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"status\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
-                "\"GetF194501ByDcCode\" ReturnType=\"Collection(Wms3pl.Datas.F19.F194501)\" EntitySet" +
-                "=\"F194501s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></Fu" +
-                "nctionImport></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
+                "/><Parameter Name=\"searchCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImp" +
+                "ort Name=\"GetCartonItem\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntityS" +
+                "et=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"searchCode\" Type=\"E" +
+                "dm.String\" /></FunctionImport><FunctionImport Name=\"GetAllowedF1908s\" ReturnType" +
+                "=\"Collection(Wms3pl.Datas.F19.F1908)\" EntitySet=\"F1908s\" m:HttpMethod=\"GET\"><Par" +
+                "ameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"vnrCode\" Type=\"Edm.St" +
+                "ring\" /><Parameter Name=\"vnrName\" Type=\"Edm.String\" /><Parameter Name=\"custCode\"" +
+                " Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAllowedF1910s\" Re" +
+                "turnType=\"Collection(Wms3pl.Datas.F19.F1910)\" EntitySet=\"F1910s\" m:HttpMethod=\"G" +
+                "ET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"retailCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"retailName\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF19" +
+                "9006s\" ReturnType=\"Collection(Wms3pl.Datas.F19.F199006)\" EntitySet=\"F199006s\" m:" +
+                "HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"a" +
+                "ccItemName\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type=\"Edm.String\" /></F" +
+                "unctionImport><FunctionImport Name=\"GetF1912s\" ReturnType=\"Collection(Wms3pl.Dat" +
+                "as.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" />" +
+                "</FunctionImport><FunctionImport Name=\"GetF1909ByDc\" ReturnType=\"Collection(Wms3" +
+                "pl.Datas.F19.F1909)\" EntitySet=\"F1909s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCo" +
+                "de\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF1903sByItemNa" +
+                "me\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMet" +
+                "hod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCod" +
+                "e\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"itemSearchMaximum\" Type=\"Edm.Int32\" /></FunctionImport><FunctionImport Na" +
+                "me=\"GetF1903sByItemCode\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903)\" EntityS" +
+                "et=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"account\" Type=\"Edm.String\" /></FunctionImport><Funct" +
+                "ionImport Name=\"GetF1909Datas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1909)\" E" +
+                "ntitySet=\"F1909s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\"" +
+                " /><Parameter Name=\"custName\" Type=\"Edm.String\" /><Parameter Name=\"account\" Type" +
+                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetQ";
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+            private const string ModelPart20 = "ueryListByGroupId\" ReturnType=\"Collection(Wms3pl.Datas.F19.F190701)\" EntitySet=\"F" +
+                "190701s\" m:HttpMethod=\"GET\"><Parameter Name=\"gid\" Type=\"Edm.String\" /></Function" +
+                "Import><FunctionImport Name=\"GetQueryListByEmpId\" ReturnType=\"Collection(Wms3pl." +
+                "Datas.F19.F190701)\" EntitySet=\"F190701s\" m:HttpMethod=\"GET\"><Parameter Name=\"emp" +
+                "Id\" Type=\"Edm.String\" /><Parameter Name=\"qGroup\" Type=\"Edm.String\" /></FunctionI" +
+                "mport><FunctionImport Name=\"GetF1903sByItemCodes\" ReturnType=\"Collection(Wms3pl." +
+                "Datas.F19.F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode" +
+                "\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter " +
+                "Name=\"itemCodes\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF" +
+                "194716Datas\" ReturnType=\"Collection(Wms3pl.Datas.F19.F194716)\" EntitySet=\"F19471" +
+                "6s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter " +
+                "Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"carPeriod\" Type=\"Edm.String\" /><Parameter Name=\"delvNo\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"carGup\" Type=\"Edm.String\" /><Parameter Name=\"reta" +
+                "ilCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetDatasByCan" +
+                "ToShip\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1919)\" EntitySet=\"F1919s\" m:Htt" +
+                "pMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupC" +
+                "ode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /></Functi" +
+                "onImport><FunctionImport Name=\"GetF1903\" ReturnType=\"Collection(Wms3pl.Datas.F19" +
+                ".F1903)\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"E" +
+                "dm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ite" +
+                "mCodes\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"itemSpec\" Type=\"Edm.String\" /><Parameter Name=\"lType\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"oriVnrCode\" Type=\"Edm.String\" /></FunctionImport><Functio" +
+                "nImport Name=\"GetF1903sBySerialNo\" ReturnType=\"Collection(Wms3pl.Datas.F19.F1903" +
+                ")\" EntitySet=\"F1903s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"serialNo\"" +
+                " Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetAutoWarehourse\" R" +
+                "eturnType=\"Collection(Wms3pl.Datas.F19.F1980)\" EntitySet=\"F1980s\" m:HttpMethod=\"" +
+                "GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImpo" +
+                "rt Name=\"GetF191206sResult\" ReturnType=\"Collection(Wms3pl.Datas.F19.F191206)\" En" +
+                "titySet=\"F191206s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\"" +
+                " /><Parameter Name=\"pickFloor\" Type=\"Edm.String\" /><Parameter Name=\"pkArea\" Type" +
+                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF19120601sSelectItem\" " +
+                "ReturnType=\"Collection(Wms3pl.Datas.F19.F19120601)\" EntitySet=\"F19120601s\" m:Htt" +
+                "pMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"pkAr" +
+                "ea\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF19120602s\" Re" +
+                "turnType=\"Collection(Wms3pl.Datas.F19.F19120602)\" EntitySet=\"F19120602s\" m:HttpM" +
+                "ethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"pkArea" +
+                "\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetWorkstationList\"" +
+                " ReturnType=\"Collection(Wms3pl.Datas.F19.F1946)\" EntitySet=\"F1946s\" m:HttpMethod" +
+                "=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"workstation" +
+                "Group\" Type=\"Edm.String\" /><Parameter Name=\"workstationType\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"workstationCode\" Type=\"Edm.String\" /><Parameter Name=\"status\" " +
+                "Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF194501ByDcCode\" R" +
+                "eturnType=\"Collection(Wms3pl.Datas.F19.F194501)\" EntitySet=\"F194501s\" m:HttpMeth" +
+                "od=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /></FunctionImport></EntityC" +
+                "ontainer></Schema></edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -50035,72 +50036,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnPROC_WMS_NOChanging(string value);
         partial void OnPROC_WMS_NOChanged();
         /// <summary>
-        /// There are no comments for Property UPD_DATE in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Nullable<global::System.DateTime> UPD_DATE
-        {
-            get
-            {
-                return this._UPD_DATE;
-            }
-            set
-            {
-                this.OnUPD_DATEChanging(value);
-                this._UPD_DATE = value;
-                this.OnUPD_DATEChanged();
-                this.OnPropertyChanged("UPD_DATE");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
-        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnUPD_DATEChanged();
-        /// <summary>
-        /// There are no comments for Property UPD_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_NAME
-        {
-            get
-            {
-                return this._UPD_NAME;
-            }
-            set
-            {
-                this.OnUPD_NAMEChanging(value);
-                this._UPD_NAME = value;
-                this.OnUPD_NAMEChanged();
-                this.OnPropertyChanged("UPD_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_NAME;
-        partial void OnUPD_NAMEChanging(string value);
-        partial void OnUPD_NAMEChanged();
-        /// <summary>
-        /// There are no comments for Property UPD_STAFF in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_STAFF
-        {
-            get
-            {
-                return this._UPD_STAFF;
-            }
-            set
-            {
-                this.OnUPD_STAFFChanging(value);
-                this._UPD_STAFF = value;
-                this.OnUPD_STAFFChanged();
-                this.OnPropertyChanged("UPD_STAFF");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_STAFF;
-        partial void OnUPD_STAFFChanging(string value);
-        partial void OnUPD_STAFFChanged();
-        /// <summary>
         /// There are no comments for Property CRT_DATE in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -50122,6 +50057,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private global::System.DateTime _CRT_DATE;
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_STAFF
+        {
+            get
+            {
+                return this._CRT_STAFF;
+            }
+            set
+            {
+                this.OnCRT_STAFFChanging(value);
+                this._CRT_STAFF = value;
+                this.OnCRT_STAFFChanged();
+                this.OnPropertyChanged("CRT_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_STAFF;
+        partial void OnCRT_STAFFChanging(string value);
+        partial void OnCRT_STAFFChanged();
         /// <summary>
         /// There are no comments for Property CRT_NAME in the schema.
         /// </summary>
@@ -50145,27 +50102,71 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_NAMEChanging(string value);
         partial void OnCRT_NAMEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_STAFF in the schema.
+        /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_STAFF
+        public global::System.Nullable<global::System.DateTime> UPD_DATE
         {
             get
             {
-                return this._CRT_STAFF;
+                return this._UPD_DATE;
             }
             set
             {
-                this.OnCRT_STAFFChanging(value);
-                this._CRT_STAFF = value;
-                this.OnCRT_STAFFChanged();
-                this.OnPropertyChanged("CRT_STAFF");
+                this.OnUPD_DATEChanging(value);
+                this._UPD_DATE = value;
+                this.OnUPD_DATEChanged();
+                this.OnPropertyChanged("UPD_DATE");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_STAFF;
-        partial void OnCRT_STAFFChanging(string value);
-        partial void OnCRT_STAFFChanged();
+        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
+        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnUPD_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_STAFF
+        {
+            get
+            {
+                return this._UPD_STAFF;
+            }
+            set
+            {
+                this.OnUPD_STAFFChanging(value);
+                this._UPD_STAFF = value;
+                this.OnUPD_STAFFChanged();
+                this.OnPropertyChanged("UPD_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_STAFF;
+        partial void OnUPD_STAFFChanging(string value);
+        partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -50599,28 +50600,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_NAME
-        {
-            get
-            {
-                return this._CRT_NAME;
-            }
-            set
-            {
-                this.OnCRT_NAMEChanging(value);
-                this._CRT_NAME = value;
-                this.OnCRT_NAMEChanged();
-                this.OnPropertyChanged("CRT_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_NAME;
-        partial void OnCRT_NAMEChanging(string value);
-        partial void OnCRT_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property CRT_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -50642,6 +50621,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _CRT_STAFF;
         partial void OnCRT_STAFFChanging(string value);
         partial void OnCRT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_NAME
+        {
+            get
+            {
+                return this._CRT_NAME;
+            }
+            set
+            {
+                this.OnCRT_NAMEChanging(value);
+                this._CRT_NAME = value;
+                this.OnCRT_NAMEChanged();
+                this.OnPropertyChanged("CRT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_NAME;
+        partial void OnCRT_NAMEChanging(string value);
+        partial void OnCRT_NAMEChanged();
         /// <summary>
         /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
@@ -50665,28 +50666,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnUPD_DATEChanged();
         /// <summary>
-        /// There are no comments for Property UPD_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_NAME
-        {
-            get
-            {
-                return this._UPD_NAME;
-            }
-            set
-            {
-                this.OnUPD_NAMEChanging(value);
-                this._UPD_NAME = value;
-                this.OnUPD_NAMEChanged();
-                this.OnPropertyChanged("UPD_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_NAME;
-        partial void OnUPD_NAMEChanging(string value);
-        partial void OnUPD_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property UPD_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -50708,6 +50687,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _UPD_STAFF;
         partial void OnUPD_STAFFChanging(string value);
         partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
         /// <summary>
         /// There are no comments for Property MAKE_NO in the schema.
         /// </summary>
@@ -50809,72 +50810,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnTRANSACTION_NOChanging(string value);
         partial void OnTRANSACTION_NOChanged();
         /// <summary>
-        /// There are no comments for Property UPD_DATE in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Nullable<global::System.DateTime> UPD_DATE
-        {
-            get
-            {
-                return this._UPD_DATE;
-            }
-            set
-            {
-                this.OnUPD_DATEChanging(value);
-                this._UPD_DATE = value;
-                this.OnUPD_DATEChanged();
-                this.OnPropertyChanged("UPD_DATE");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
-        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnUPD_DATEChanged();
-        /// <summary>
-        /// There are no comments for Property UPD_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_NAME
-        {
-            get
-            {
-                return this._UPD_NAME;
-            }
-            set
-            {
-                this.OnUPD_NAMEChanging(value);
-                this._UPD_NAME = value;
-                this.OnUPD_NAMEChanged();
-                this.OnPropertyChanged("UPD_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_NAME;
-        partial void OnUPD_NAMEChanging(string value);
-        partial void OnUPD_NAMEChanged();
-        /// <summary>
-        /// There are no comments for Property UPD_STAFF in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_STAFF
-        {
-            get
-            {
-                return this._UPD_STAFF;
-            }
-            set
-            {
-                this.OnUPD_STAFFChanging(value);
-                this._UPD_STAFF = value;
-                this.OnUPD_STAFFChanged();
-                this.OnPropertyChanged("UPD_STAFF");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_STAFF;
-        partial void OnUPD_STAFFChanging(string value);
-        partial void OnUPD_STAFFChanged();
-        /// <summary>
         /// There are no comments for Property CRT_DATE in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -50896,6 +50831,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private global::System.DateTime _CRT_DATE;
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_STAFF
+        {
+            get
+            {
+                return this._CRT_STAFF;
+            }
+            set
+            {
+                this.OnCRT_STAFFChanging(value);
+                this._CRT_STAFF = value;
+                this.OnCRT_STAFFChanged();
+                this.OnPropertyChanged("CRT_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_STAFF;
+        partial void OnCRT_STAFFChanging(string value);
+        partial void OnCRT_STAFFChanged();
         /// <summary>
         /// There are no comments for Property CRT_NAME in the schema.
         /// </summary>
@@ -50919,27 +50876,71 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_NAMEChanging(string value);
         partial void OnCRT_NAMEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_STAFF in the schema.
+        /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_STAFF
+        public global::System.Nullable<global::System.DateTime> UPD_DATE
         {
             get
             {
-                return this._CRT_STAFF;
+                return this._UPD_DATE;
             }
             set
             {
-                this.OnCRT_STAFFChanging(value);
-                this._CRT_STAFF = value;
-                this.OnCRT_STAFFChanged();
-                this.OnPropertyChanged("CRT_STAFF");
+                this.OnUPD_DATEChanging(value);
+                this._UPD_DATE = value;
+                this.OnUPD_DATEChanged();
+                this.OnPropertyChanged("UPD_DATE");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_STAFF;
-        partial void OnCRT_STAFFChanging(string value);
-        partial void OnCRT_STAFFChanged();
+        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
+        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnUPD_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_STAFF
+        {
+            get
+            {
+                return this._UPD_STAFF;
+            }
+            set
+            {
+                this.OnUPD_STAFFChanging(value);
+                this._UPD_STAFF = value;
+                this.OnUPD_STAFFChanged();
+                this.OnPropertyChanged("UPD_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_STAFF;
+        partial void OnUPD_STAFFChanging(string value);
+        partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -55365,6 +55366,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _IS_EXECIMMEDIATEITEM;
         partial void OnIS_EXECIMMEDIATEITEMChanging(string value);
         partial void OnIS_EXECIMMEDIATEITEMChanged();
+        /// <summary>
+        /// There are no comments for Property ALLOW_ORDER_LACKSHIP in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ALLOW_ORDER_LACKSHIP
+        {
+            get
+            {
+                return this._ALLOW_ORDER_LACKSHIP;
+            }
+            set
+            {
+                this.OnALLOW_ORDER_LACKSHIPChanging(value);
+                this._ALLOW_ORDER_LACKSHIP = value;
+                this.OnALLOW_ORDER_LACKSHIPChanged();
+                this.OnPropertyChanged("ALLOW_ORDER_LACKSHIP");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ALLOW_ORDER_LACKSHIP;
+        partial void OnALLOW_ORDER_LACKSHIPChanging(string value);
+        partial void OnALLOW_ORDER_LACKSHIPChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -57541,28 +57564,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_NAME
-        {
-            get
-            {
-                return this._CRT_NAME;
-            }
-            set
-            {
-                this.OnCRT_NAMEChanging(value);
-                this._CRT_NAME = value;
-                this.OnCRT_NAMEChanged();
-                this.OnPropertyChanged("CRT_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_NAME;
-        partial void OnCRT_NAMEChanging(string value);
-        partial void OnCRT_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property CRT_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -57584,6 +57585,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _CRT_STAFF;
         partial void OnCRT_STAFFChanging(string value);
         partial void OnCRT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_NAME
+        {
+            get
+            {
+                return this._CRT_NAME;
+            }
+            set
+            {
+                this.OnCRT_NAMEChanging(value);
+                this._CRT_NAME = value;
+                this.OnCRT_NAMEChanged();
+                this.OnPropertyChanged("CRT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_NAME;
+        partial void OnCRT_NAMEChanging(string value);
+        partial void OnCRT_NAMEChanged();
         /// <summary>
         /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
@@ -57607,28 +57630,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnUPD_DATEChanged();
         /// <summary>
-        /// There are no comments for Property UPD_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_NAME
-        {
-            get
-            {
-                return this._UPD_NAME;
-            }
-            set
-            {
-                this.OnUPD_NAMEChanging(value);
-                this._UPD_NAME = value;
-                this.OnUPD_NAMEChanged();
-                this.OnPropertyChanged("UPD_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_NAME;
-        partial void OnUPD_NAMEChanging(string value);
-        partial void OnUPD_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property UPD_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -57650,6 +57651,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _UPD_STAFF;
         partial void OnUPD_STAFFChanging(string value);
         partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -57889,28 +57912,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_NAME
-        {
-            get
-            {
-                return this._CRT_NAME;
-            }
-            set
-            {
-                this.OnCRT_NAMEChanging(value);
-                this._CRT_NAME = value;
-                this.OnCRT_NAMEChanged();
-                this.OnPropertyChanged("CRT_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_NAME;
-        partial void OnCRT_NAMEChanging(string value);
-        partial void OnCRT_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property CRT_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -57932,6 +57933,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _CRT_STAFF;
         partial void OnCRT_STAFFChanging(string value);
         partial void OnCRT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_NAME
+        {
+            get
+            {
+                return this._CRT_NAME;
+            }
+            set
+            {
+                this.OnCRT_NAMEChanging(value);
+                this._CRT_NAME = value;
+                this.OnCRT_NAMEChanged();
+                this.OnPropertyChanged("CRT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_NAME;
+        partial void OnCRT_NAMEChanging(string value);
+        partial void OnCRT_NAMEChanged();
         /// <summary>
         /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
@@ -57955,28 +57978,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnUPD_DATEChanged();
         /// <summary>
-        /// There are no comments for Property UPD_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_NAME
-        {
-            get
-            {
-                return this._UPD_NAME;
-            }
-            set
-            {
-                this.OnUPD_NAMEChanging(value);
-                this._UPD_NAME = value;
-                this.OnUPD_NAMEChanged();
-                this.OnPropertyChanged("UPD_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_NAME;
-        partial void OnUPD_NAMEChanging(string value);
-        partial void OnUPD_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property UPD_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -57998,6 +57999,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _UPD_STAFF;
         partial void OnUPD_STAFFChanging(string value);
         partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -58259,28 +58282,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_NAME
-        {
-            get
-            {
-                return this._CRT_NAME;
-            }
-            set
-            {
-                this.OnCRT_NAMEChanging(value);
-                this._CRT_NAME = value;
-                this.OnCRT_NAMEChanged();
-                this.OnPropertyChanged("CRT_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_NAME;
-        partial void OnCRT_NAMEChanging(string value);
-        partial void OnCRT_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property CRT_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -58302,6 +58303,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _CRT_STAFF;
         partial void OnCRT_STAFFChanging(string value);
         partial void OnCRT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_NAME
+        {
+            get
+            {
+                return this._CRT_NAME;
+            }
+            set
+            {
+                this.OnCRT_NAMEChanging(value);
+                this._CRT_NAME = value;
+                this.OnCRT_NAMEChanged();
+                this.OnPropertyChanged("CRT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_NAME;
+        partial void OnCRT_NAMEChanging(string value);
+        partial void OnCRT_NAMEChanged();
         /// <summary>
         /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
@@ -58325,28 +58348,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnUPD_DATEChanged();
         /// <summary>
-        /// There are no comments for Property UPD_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_NAME
-        {
-            get
-            {
-                return this._UPD_NAME;
-            }
-            set
-            {
-                this.OnUPD_NAMEChanging(value);
-                this._UPD_NAME = value;
-                this.OnUPD_NAMEChanged();
-                this.OnPropertyChanged("UPD_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_NAME;
-        partial void OnUPD_NAMEChanging(string value);
-        partial void OnUPD_NAMEChanged();
-        /// <summary>
         /// There are no comments for Property UPD_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -58368,6 +58369,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private string _UPD_STAFF;
         partial void OnUPD_STAFFChanging(string value);
         partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -58795,72 +58818,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnSTATUSChanging(string value);
         partial void OnSTATUSChanged();
         /// <summary>
-        /// There are no comments for Property UPD_DATE in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Nullable<global::System.DateTime> UPD_DATE
-        {
-            get
-            {
-                return this._UPD_DATE;
-            }
-            set
-            {
-                this.OnUPD_DATEChanging(value);
-                this._UPD_DATE = value;
-                this.OnUPD_DATEChanged();
-                this.OnPropertyChanged("UPD_DATE");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
-        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnUPD_DATEChanged();
-        /// <summary>
-        /// There are no comments for Property UPD_NAME in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_NAME
-        {
-            get
-            {
-                return this._UPD_NAME;
-            }
-            set
-            {
-                this.OnUPD_NAMEChanging(value);
-                this._UPD_NAME = value;
-                this.OnUPD_NAMEChanged();
-                this.OnPropertyChanged("UPD_NAME");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_NAME;
-        partial void OnUPD_NAMEChanging(string value);
-        partial void OnUPD_NAMEChanged();
-        /// <summary>
-        /// There are no comments for Property UPD_STAFF in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_STAFF
-        {
-            get
-            {
-                return this._UPD_STAFF;
-            }
-            set
-            {
-                this.OnUPD_STAFFChanging(value);
-                this._UPD_STAFF = value;
-                this.OnUPD_STAFFChanged();
-                this.OnPropertyChanged("UPD_STAFF");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_STAFF;
-        partial void OnUPD_STAFFChanging(string value);
-        partial void OnUPD_STAFFChanged();
-        /// <summary>
         /// There are no comments for Property CRT_DATE in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -58882,6 +58839,28 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         private global::System.DateTime _CRT_DATE;
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_STAFF
+        {
+            get
+            {
+                return this._CRT_STAFF;
+            }
+            set
+            {
+                this.OnCRT_STAFFChanging(value);
+                this._CRT_STAFF = value;
+                this.OnCRT_STAFFChanged();
+                this.OnPropertyChanged("CRT_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_STAFF;
+        partial void OnCRT_STAFFChanging(string value);
+        partial void OnCRT_STAFFChanged();
         /// <summary>
         /// There are no comments for Property CRT_NAME in the schema.
         /// </summary>
@@ -58905,27 +58884,71 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_NAMEChanging(string value);
         partial void OnCRT_NAMEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_STAFF in the schema.
+        /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_STAFF
+        public global::System.Nullable<global::System.DateTime> UPD_DATE
         {
             get
             {
-                return this._CRT_STAFF;
+                return this._UPD_DATE;
             }
             set
             {
-                this.OnCRT_STAFFChanging(value);
-                this._CRT_STAFF = value;
-                this.OnCRT_STAFFChanged();
-                this.OnPropertyChanged("CRT_STAFF");
+                this.OnUPD_DATEChanging(value);
+                this._UPD_DATE = value;
+                this.OnUPD_DATEChanged();
+                this.OnPropertyChanged("UPD_DATE");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_STAFF;
-        partial void OnCRT_STAFFChanging(string value);
-        partial void OnCRT_STAFFChanged();
+        private global::System.Nullable<global::System.DateTime> _UPD_DATE;
+        partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnUPD_DATEChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_STAFF in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_STAFF
+        {
+            get
+            {
+                return this._UPD_STAFF;
+            }
+            set
+            {
+                this.OnUPD_STAFFChanging(value);
+                this._UPD_STAFF = value;
+                this.OnUPD_STAFFChanged();
+                this.OnPropertyChanged("UPD_STAFF");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_STAFF;
+        partial void OnUPD_STAFFChanging(string value);
+        partial void OnUPD_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property UPD_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string UPD_NAME
+        {
+            get
+            {
+                return this._UPD_NAME;
+            }
+            set
+            {
+                this.OnUPD_NAMEChanging(value);
+                this._UPD_NAME = value;
+                this.OnUPD_NAMEChanged();
+                this.OnPropertyChanged("UPD_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _UPD_NAME;
+        partial void OnUPD_NAMEChanging(string value);
+        partial void OnUPD_NAMEChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -59956,28 +59979,6 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnMESSAGEChanging(string value);
         partial void OnMESSAGEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_STAFF in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_STAFF
-        {
-            get
-            {
-                return this._CRT_STAFF;
-            }
-            set
-            {
-                this.OnCRT_STAFFChanging(value);
-                this._CRT_STAFF = value;
-                this.OnCRT_STAFFChanged();
-                this.OnPropertyChanged("CRT_STAFF");
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_STAFF;
-        partial void OnCRT_STAFFChanging(string value);
-        partial void OnCRT_STAFFChanged();
-        /// <summary>
         /// There are no comments for Property CRT_DATE in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -60000,27 +60001,49 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnCRT_DATEChanging(global::System.DateTime value);
         partial void OnCRT_DATEChanged();
         /// <summary>
-        /// There are no comments for Property UPD_STAFF in the schema.
+        /// There are no comments for Property CRT_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UPD_STAFF
+        public string CRT_STAFF
         {
             get
             {
-                return this._UPD_STAFF;
+                return this._CRT_STAFF;
             }
             set
             {
-                this.OnUPD_STAFFChanging(value);
-                this._UPD_STAFF = value;
-                this.OnUPD_STAFFChanged();
-                this.OnPropertyChanged("UPD_STAFF");
+                this.OnCRT_STAFFChanging(value);
+                this._CRT_STAFF = value;
+                this.OnCRT_STAFFChanged();
+                this.OnPropertyChanged("CRT_STAFF");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UPD_STAFF;
-        partial void OnUPD_STAFFChanging(string value);
-        partial void OnUPD_STAFFChanged();
+        private string _CRT_STAFF;
+        partial void OnCRT_STAFFChanging(string value);
+        partial void OnCRT_STAFFChanged();
+        /// <summary>
+        /// There are no comments for Property CRT_NAME in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string CRT_NAME
+        {
+            get
+            {
+                return this._CRT_NAME;
+            }
+            set
+            {
+                this.OnCRT_NAMEChanging(value);
+                this._CRT_NAME = value;
+                this.OnCRT_NAMEChanged();
+                this.OnPropertyChanged("CRT_NAME");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _CRT_NAME;
+        partial void OnCRT_NAMEChanging(string value);
+        partial void OnCRT_NAMEChanged();
         /// <summary>
         /// There are no comments for Property UPD_DATE in the schema.
         /// </summary>
@@ -60044,27 +60067,27 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
         partial void OnUPD_DATEChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnUPD_DATEChanged();
         /// <summary>
-        /// There are no comments for Property CRT_NAME in the schema.
+        /// There are no comments for Property UPD_STAFF in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string CRT_NAME
+        public string UPD_STAFF
         {
             get
             {
-                return this._CRT_NAME;
+                return this._UPD_STAFF;
             }
             set
             {
-                this.OnCRT_NAMEChanging(value);
-                this._CRT_NAME = value;
-                this.OnCRT_NAMEChanged();
-                this.OnPropertyChanged("CRT_NAME");
+                this.OnUPD_STAFFChanging(value);
+                this._UPD_STAFF = value;
+                this.OnUPD_STAFFChanged();
+                this.OnPropertyChanged("UPD_STAFF");
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _CRT_NAME;
-        partial void OnCRT_NAMEChanging(string value);
-        partial void OnCRT_NAMEChanged();
+        private string _UPD_STAFF;
+        partial void OnUPD_STAFFChanging(string value);
+        partial void OnUPD_STAFFChanged();
         /// <summary>
         /// There are no comments for Property UPD_NAME in the schema.
         /// </summary>
@@ -60398,7 +60421,7 @@ namespace Wms3pl.WpfClient.DataServices.F19DataService
     }
 }
 // Original file name:
-// Generation date: 2023/8/1 下午 02:32:17
+// Generation date: 2023/08/25 下午 04:54:21
 namespace Wms3pl.Datas.Schedule
 {
     

@@ -81,8 +81,8 @@ namespace Wms3pl.Datas.F05
 									select new
 									{
 										F050301 = B,
-										F050801 = D
-									}).GroupBy(x => x.F050301).Select(x => new { F050301 = x.Key, F050801StatusList = x.Select(z => z.F050801.STATUS).ToList() });
+										Status = D.STATUS
+									}).GroupBy(x => x.F050301).Select(x => new { F050301 = x.Key, F050801StatusList = x.Select(z => z.Status).ToList() });
 
 
 			var result = from A in f050101Data

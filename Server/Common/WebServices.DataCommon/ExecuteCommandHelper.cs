@@ -302,7 +302,7 @@ namespace Wms3pl.WebServices.DataCommon
         /// <param name="sqlcommand"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        private static object[] ParameterByNameToByPositionImpl(DbContext context, string sqlcommand, object[] parameters, bool retrunDbParameter = false)
+        public static object[] ParameterByNameToByPositionImpl(DbContext context, string sqlcommand, object[] parameters, bool retrunDbParameter = false)
         {
             var parameterByPosition = new List<object>();
 
@@ -545,14 +545,56 @@ namespace Wms3pl.WebServices.DataCommon
             return value;
         }
 
+        public static void ExecuteSqlCommandWithOutputParameter(DbContext context, string sqlcommand, out int seq, params DbParameter[] parameters)
+        {
+          var returnParameterNames = new List<string>();
+          var conn = context.Database.GetDbConnection();
+          var isHadOpened = false;
+          if (conn.State != ConnectionState.Open)
+            context.Database.OpenConnection();
+          else
+            isHadOpened = true;
+
+          using (var cmd = conn.CreateCommand())
+          {
+            cmd.CommandText = sqlcommand;
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            if (parameters != null)
+            {
+              foreach (var p in parameters)
+              {
+                if (p.Direction == ParameterDirection.Output)
+                  returnParameterNames.Add(p.ParameterName);
+                cmd.Parameters.Add(p);
+              }
+            }
+
+            try
+            {
+              cmd.ExecuteNonQuery();
+              if (returnParameterNames.Any())
+              {
+                int.TryParse(cmd.Parameters[returnParameterNames[0]].Value.ToString(), out seq);
+              }
+              else
+              {
+                seq = 0;
+              }
+
+            }
+            finally
+            {
+              if (conn.State == ConnectionState.Open && !isHadOpened)
+                context.Database.CloseConnection();
+            }
+          }
+        }
+
+    #region SimplyMSSQLBulkOperations Bulk Process
 
 
-
-
-		#region SimplyMSSQLBulkOperations Bulk Process
-
-
-		public static void BulkInsertSimplyMSSQLBulkOperations<TEntity>(DbContext context,string tableName, IList<TEntity> entities, SqlBulkCopyOptions sqlBulkCopyOptions = SqlBulkCopyOptions.FireTriggers, int? batchSize = null, List<string> propertiesToExclude = null, bool isDefaultColumnModify = false) where TEntity : class
+    public static void BulkInsertSimplyMSSQLBulkOperations<TEntity>(DbContext context,string tableName, IList<TEntity> entities, SqlBulkCopyOptions sqlBulkCopyOptions = SqlBulkCopyOptions.FireTriggers, int? batchSize = null, List<string> propertiesToExclude = null, bool isDefaultColumnModify = false) where TEntity : class
 		{
 			foreach (var entity in entities)
 			{

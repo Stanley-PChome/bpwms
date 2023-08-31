@@ -465,5 +465,56 @@ GROUP BY
             };
             return SqlQuery<F050101>(sql, para.ToArray()).SingleOrDefault();
         }
-  }
+
+		public IQueryable<CustWms_F050101_Detail> GetCustWmsDetails(string dcCode, string gupCode, string custCode, List<string> custOrdNos)
+		{
+			var para = new List<SqlParameter>()
+			{
+				new SqlParameter("p0", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("p1", SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("p2", SqlDbType.VarChar) { Value = custCode },
+			};
+			var sql = @"
+SELECT 
+	A.ORD_NO,
+	A.CUST_ORD_NO,
+	CASE WHEN B.PROC_FLAG IS NULL THEN '-1' ELSE B.PROC_FLAG END AS PROC_FLAG,
+	B.DC_CODE,
+	B.GUP_CODE,
+	B.CUST_CODE,
+	B.ORD_NO AS F050301_ORD_NO,
+	D.STATUS AS F050801_STATUS
+FROM F050101 A
+LEFT JOIN F050301 B ON A.DC_CODE = B.DC_CODE AND A.GUP_CODE = B.GUP_CODE AND A.CUST_CODE = B.CUST_CODE AND A.ORD_NO = B.ORD_NO
+LEFT JOIN F05030101 C ON C.DC_CODE = B.DC_CODE AND C.GUP_CODE = B.GUP_CODE AND C.CUST_CODE = B.CUST_CODE AND C.ORD_NO = B.ORD_NO
+LEFT JOIN F050801 D ON C.DC_CODE = D.DC_CODE AND C.GUP_CODE = D.GUP_CODE AND C.CUST_CODE = D.CUST_CODE AND C.WMS_ORD_NO = D.WMS_ORD_NO
+WHERE A.STATUS <> '9'
+AND A.DC_CODE = @p0
+AND A.GUP_CODE = @p1
+AND A.CUST_CODE = @p2
+";
+			sql += para.CombineSqlInParameters(" AND A.CUST_ORD_NO", custOrdNos, SqlDbType.VarChar);
+			return SqlQuery<CustWms_F050101_Detail>(sql, para.ToArray());
+		}
+
+		public IQueryable<F050101WarehouseOutEx> GetWarehouseOutExByOrdNo(string dcCode, string gupCode, string custCode, string OrdNo)
+		{
+			var para = new List<SqlParameter>()
+			{
+				new SqlParameter("p0", SqlDbType.VarChar) { Value = dcCode },
+				new SqlParameter("p1",SqlDbType.VarChar) { Value = gupCode },
+				new SqlParameter("p2",SqlDbType.VarChar) { Value = custCode },
+				new SqlParameter("p3",SqlDbType.VarChar) { Value = OrdNo },
+			};
+
+			var sql = @"SELECT CUST_ORD_NO, CUST_COST
+                          FROM F050101
+                         WHERE DC_CODE = @p0
+                           AND GUP_CODE = @p1
+                           AND CUST_CODE = @p2
+                           AND ORD_NO = @p3";
+
+			return SqlQuery<F050101WarehouseOutEx>(sql, para.ToArray());
+		}
+	}
 }

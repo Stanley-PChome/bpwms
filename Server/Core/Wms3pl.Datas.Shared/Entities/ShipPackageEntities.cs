@@ -418,6 +418,8 @@ namespace Wms3pl.Datas.Shared.Entities
         /// 是否為手動關箱
         /// </summary>
         public bool IsManualCloseBox { get; set; }
+
+		public PrintBoxSettingParam PrintBoxSettingParam { get; set; }
     }
 
   public class CloseShipBoxRes
@@ -476,6 +478,15 @@ namespace Wms3pl.Datas.Shared.Entities
     public int ReportSeq { get; set; }
 
     public string ISPRINTED { get; set; }
+
+		/// <summary>
+		/// 開始列印時間
+		/// </summary>
+		public DateTime? START_PRINT_TIME { get; set; }
+
+		/// <summary>
+		/// 列印結束時間
+		/// </summary>
     public DateTime? PRINT_TIME { get; set; }
   }
 
@@ -936,4 +947,27 @@ namespace Wms3pl.Datas.Shared.Entities
   public class CheckPackageModeResult : ApiResult
   { public F050801 f050801 { get; set; } }
   #endregion
+
+	public class PrintBoxSettingParam
+	{
+		/// <summary>
+		/// 是否列印箱明細
+		/// </summary>
+		public string isPrintBoxDetail { get; set; }
+
+		/// <summary>
+		/// 是否列印出貨小白標
+		/// </summary>
+		public string isPrintShipLittleLabel { get; set; }
+
+		/// <summary>
+		/// 是否列印廠退出貨小白標
+		/// </summary>
+		public string isPrintRtnShipLittleLabel { get; set; }
+
+		/// <summary>
+		/// 是否取得宅配單
+		/// </summary>
+		public bool isGetShipOrder { get; set; }
+	}
 }

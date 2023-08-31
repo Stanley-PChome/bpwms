@@ -166,6 +166,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P06WcfService {
         private decimal ROWNUMField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SERIAL_NOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string STATUSField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -472,6 +475,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P06WcfService {
                 if ((this.ROWNUMField.Equals(value) != true)) {
                     this.ROWNUMField = value;
                     this.RaisePropertyChanged("ROWNUM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SERIAL_NO {
+            get {
+                return this.SERIAL_NOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SERIAL_NOField, value) != true)) {
+                    this.SERIAL_NOField = value;
+                    this.RaisePropertyChanged("SERIAL_NO");
                 }
             }
         }
@@ -1103,6 +1119,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P06WcfService {
         
         private string MOVE_OUT_TARGETk__BackingFieldField;
         
+        private System.Nullable<System.DateTime> ORDER_CRT_DATEk__BackingFieldField;
+        
+        private string ORDER_PROC_TYPEk__BackingFieldField;
+        
         private string ORD_TYPEk__BackingFieldField;
         
         private decimal PDA_PICK_PERCENTk__BackingFieldField;
@@ -1470,6 +1490,32 @@ namespace Wms3pl.WpfClient.ExDataServices.P06WcfService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORDER_CRT_DATE>k__BackingField", IsRequired=true)]
+        public System.Nullable<System.DateTime> ORDER_CRT_DATEk__BackingField {
+            get {
+                return this.ORDER_CRT_DATEk__BackingFieldField;
+            }
+            set {
+                if ((this.ORDER_CRT_DATEk__BackingFieldField.Equals(value) != true)) {
+                    this.ORDER_CRT_DATEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORDER_CRT_DATEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ORDER_PROC_TYPE>k__BackingField", IsRequired=true)]
+        public string ORDER_PROC_TYPEk__BackingField {
+            get {
+                return this.ORDER_PROC_TYPEk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ORDER_PROC_TYPEk__BackingFieldField, value) != true)) {
+                    this.ORDER_PROC_TYPEk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ORDER_PROC_TYPEk__BackingField");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(Name="<ORD_TYPE>k__BackingField", IsRequired=true)]
         public string ORD_TYPEk__BackingField {
             get {
@@ -1745,6 +1791,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P06WcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P06WcfService/GetContainerBarcode", ReplyAction="http://tempuri.org/P06WcfService/GetContainerBarcodeResponse")]
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P06WcfService.ExecuteResult> GetContainerBarcodeAsync(string dcCode, string gupCode, string custCode, string[] ordNos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P06WcfService/ConfirmLackToShip", ReplyAction="http://tempuri.org/P06WcfService/ConfirmLackToShipResponse")]
+        Wms3pl.WpfClient.ExDataServices.P06WcfService.ExecuteResult ConfirmLackToShip(Wms3pl.WpfClient.ExDataServices.P06WcfService.F051206LackList[] F051206LackList);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P06WcfService/ConfirmLackToShip", ReplyAction="http://tempuri.org/P06WcfService/ConfirmLackToShipResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P06WcfService.ExecuteResult> ConfirmLackToShipAsync(Wms3pl.WpfClient.ExDataServices.P06WcfService.F051206LackList[] F051206LackList);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1844,6 +1896,14 @@ namespace Wms3pl.WpfClient.ExDataServices.P06WcfService {
         
         public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P06WcfService.ExecuteResult> GetContainerBarcodeAsync(string dcCode, string gupCode, string custCode, string[] ordNos) {
             return base.Channel.GetContainerBarcodeAsync(dcCode, gupCode, custCode, ordNos);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P06WcfService.ExecuteResult ConfirmLackToShip(Wms3pl.WpfClient.ExDataServices.P06WcfService.F051206LackList[] F051206LackList) {
+            return base.Channel.ConfirmLackToShip(F051206LackList);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P06WcfService.ExecuteResult> ConfirmLackToShipAsync(Wms3pl.WpfClient.ExDataServices.P06WcfService.F051206LackList[] F051206LackList) {
+            return base.Channel.ConfirmLackToShipAsync(F051206LackList);
         }
     }
 }

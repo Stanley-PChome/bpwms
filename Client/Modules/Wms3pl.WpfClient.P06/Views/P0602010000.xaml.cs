@@ -165,5 +165,14 @@ namespace Wms3pl.WpfClient.P06.Views
 				Vm.SetLackList();
 			}
 		}
-	}
+
+    private void SetLackToShip_Click(object sender, RoutedEventArgs e)
+    {
+      Vm.SetLackList();
+      var win = new P0602010200(Vm.REASONList, Vm.PickSelected, Vm.LackList);
+      win.ShowDialog();
+      if (win.DialogResult == true)
+        Vm.SearchCommand.Execute(null);
+    }
+  }
 }

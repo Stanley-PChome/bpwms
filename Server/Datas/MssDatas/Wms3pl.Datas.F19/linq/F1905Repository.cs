@@ -67,9 +67,5 @@ namespace Wms3pl.Datas.F19
         //	return SqlQuery<F1905>(sql, parameters.ToArray());
         //}
 
-        public IQueryable<F1905> GetF1905ByItems(string gupCode, string custCode,List<string> itemCodes)
-				{
-					return _db.F1905s.Where(x => x.GUP_CODE == gupCode && x.CUST_CODE == custCode && itemCodes.Contains(x.ITEM_CODE));
-				}
 	}
 }

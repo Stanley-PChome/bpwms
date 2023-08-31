@@ -19,43 +19,52 @@
 		/// </summary>
 		[Key]
 		[Required]
+    [Column(TypeName = "varchar(5)")]
 		public string CROSS_CODE { get; set; }
 		/// <summary>
 		/// 跨庫物流中心名稱
 		/// </summary>
 		[Required]
-		public string CROSS_NAME { get; set; }
+    [Column(TypeName = "nvarchar(20)")]
+    public string CROSS_NAME { get; set; }
 		/// <summary>
 		/// 出貨類別(01:跨庫調撥出 02:訂單出)
 		/// </summary>
 		[Required]
-		public string CROSS_TYPE { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string CROSS_TYPE { get; set; }
 		/// <summary>
 		/// 建立日期
 		/// </summary>
 		[Required]
-		public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 		/// <summary>
 		/// 建立人員編號
 		/// </summary>
 		[Required]
-		public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 		/// <summary>
 		/// 建立人員名稱
 		/// </summary>
 		[Required]
-		public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 		/// <summary>
 		/// 異動日期
 		/// </summary>
-		public DateTime? UPD_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 		/// <summary>
 		/// 異動人員編號
 		/// </summary>
-		public string UPD_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 		/// <summary>
 		/// 異動人員名稱
 		/// </summary>
-		public string UPD_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
 	}
 }

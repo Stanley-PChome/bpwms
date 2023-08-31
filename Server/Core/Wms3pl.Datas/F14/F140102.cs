@@ -20,105 +20,123 @@ namespace Wms3pl.Datas.F14
 	  /// </summary>
     [Key]
     [Required]
-	  public string INVENTORY_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string INVENTORY_NO { get; set; }
 
 	  /// <summary>
 	  /// 倉別編號(F1980)
 	  /// </summary>
     [Key]
     [Required]
-	  public string WAREHOUSE_ID { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string WAREHOUSE_ID { get; set; }
 
-	  /// <summary>
-	  /// 通道起
-	  /// </summary>
-	  public string CHANNEL_BEGIN { get; set; }
+    /// <summary>
+    /// 通道起
+    /// </summary>
+    [Column(TypeName = "varchar(3)")]
+    public string CHANNEL_BEGIN { get; set; }
 
-	  /// <summary>
-	  /// 通道迄
-	  /// </summary>
-	  public string CHANNEL_END { get; set; }
+    /// <summary>
+    /// 通道迄
+    /// </summary>
+    [Column(TypeName = "varchar(3)")]
+    public string CHANNEL_END { get; set; }
 
 	  /// <summary>
 	  /// 物流中心
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 業主
 	  /// </summary>
     [Key]
     [Required]
-	  public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(4)")]
+    public string GUP_CODE { get; set; }
 
 	  /// <summary>
 	  /// 貨主
 	  /// </summary>
     [Key]
     [Required]
-	  public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立人名
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
-	  /// <summary>
-	  /// 樓層起
-	  /// </summary>
-	  public string FLOOR_BEGIN { get; set; }
+    /// <summary>
+    /// 樓層起
+    /// </summary>
+    [Column(TypeName = "char(1)")]
+    public string FLOOR_BEGIN { get; set; }
 
-	  /// <summary>
-	  /// 樓層迄
-	  /// </summary>
-	  public string FLOOR_END { get; set; }
+    /// <summary>
+    /// 樓層迄
+    /// </summary>
+    [Column(TypeName = "char(1)")]
+    public string FLOOR_END { get; set; }
 
-	  /// <summary>
-	  /// 座起
-	  /// </summary>
-	  public string PLAIN_BEGIN { get; set; }
+    /// <summary>
+    /// 座起
+    /// </summary>
+    [Column(TypeName = "char(2)")]
+    public string PLAIN_BEGIN { get; set; }
 
-	  /// <summary>
-	  /// 座迄
-	  /// </summary>
-	  public string PLAIN_END { get; set; }
+    /// <summary>
+    /// 座迄
+    /// </summary>
+    [Column(TypeName = "char(2)")]
+    public string PLAIN_END { get; set; }
 
 	  /// <summary>
 	  /// 儲區
 	  /// </summary>
     [Key]
     [Required]
-	  public string AREA_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string AREA_CODE { get; set; }
   }
 }
         

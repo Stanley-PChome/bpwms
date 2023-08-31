@@ -20,77 +20,90 @@ namespace Wms3pl.Datas.F16
 	  /// </summary>
     [Key]
     [Required]
-	  public string RTN_CHECK_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string RTN_CHECK_NO { get; set; }
 
 	  /// <summary>
 	  /// 收件人
 	  /// </summary>
     [Required]
-	  public string CONSIGNEE { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CONSIGNEE { get; set; }
 
 	  /// <summary>
 	  /// 收貨日期(年月日+時分)
 	  /// </summary>
     [Required]
-	  public DateTime RECEIPT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime RECEIPT_DATE { get; set; }
 
 	  /// <summary>
 	  /// 運輸公司
 	  /// </summary>
     [Required]
-	  public string TRANSPORT { get; set; }
+    [Column(TypeName = "nvarchar(50)")]
+    public string TRANSPORT { get; set; }
 
 	  /// <summary>
 	  /// 車號
 	  /// </summary>
     [Required]
-	  public string CAR_NO { get; set; }
+    [Column(TypeName = "varchar(10)")]
+    public string CAR_NO { get; set; }
 
 	  /// <summary>
 	  /// 點收狀態
 	  /// </summary>
     [Required]
-	  public string STATUS { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string STATUS { get; set; }
 
 	  /// <summary>
 	  /// 物流中心
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
 	  /// <summary>
 	  /// 建立人名
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
   }
 }
         

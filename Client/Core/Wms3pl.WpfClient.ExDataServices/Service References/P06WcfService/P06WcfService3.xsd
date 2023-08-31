@@ -38,6 +38,7 @@
       <xs:element minOccurs="0" name="REASON" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RETURN_FLAG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ROWNUM" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SERIAL_NO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UPD_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UPD_NAME" nillable="true" type="xs:string" />

@@ -20,6 +20,7 @@ namespace Wms3pl.Datas.F00
 	  /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(20)")]
 	  public string TOPIC { get; set; }
 
 	  /// <summary>
@@ -27,6 +28,7 @@ namespace Wms3pl.Datas.F00
 	  /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(30)")]
 	  public string SUBTOPIC { get; set; }
 
 	  /// <summary>
@@ -34,25 +36,29 @@ namespace Wms3pl.Datas.F00
 	  /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(20)")]
 	  public string VALUE { get; set; }
 
 	  /// <summary>
 	  /// 參數名稱
 	  /// </summary>
     [Required]
+    [Column(TypeName = "nvarchar(300)")]
 	  public string NAME { get; set; }
 
-	  /// <summary>
-	  /// 選單名稱
-	  /// </summary>
+    /// <summary>
+    /// 選單名稱
+    /// </summary>
     [Required]
+    [Column(TypeName = "nvarchar(300)")]
 	  public string SUB_NAME { get; set; }
 
-	  /// <summary>
-	  /// 語系
-	  /// </summary>
+    /// <summary>
+    /// 語系
+    /// </summary>
     [Key]
     [Required]
+    [Column(TypeName = "varchar(20)")]
 	  public string LANG { get; set; }
   }
 }

@@ -56,6 +56,8 @@ namespace Wms3pl.WpfClient.P08.Views
 			// 組印表機資訊、工作站編號
 			if (Vm.SelectedF910501 != null)
 				Vm.DcChangeSetValue();
+
+			Vm.GetPrintBoxSetting();
 		}
 
 		/// <summary>
@@ -65,8 +67,8 @@ namespace Wms3pl.WpfClient.P08.Views
 		/// <param name="e"></param>
 		private void txtContainer_KeyDown(object sender, KeyEventArgs e)
 		{
-      Boolean deviceCheckOk = true;
-      if (e.Key == Key.Enter && !string.IsNullOrWhiteSpace(txtContainer.Text))
+			Boolean deviceCheckOk = true;
+      if (e.Key == Key.Enter && e.KeyStates != KeyStates.None && !string.IsNullOrWhiteSpace(txtContainer.Text))
 			{
 				var isScan = false;
 				try
@@ -91,12 +93,17 @@ namespace Wms3pl.WpfClient.P08.Views
 						if (Vm.SoundOn) PlaySoundHelper.Scan();
 					}
 				}
+				catch (Exception ex)
+				{
+					Vm.IsBusy = false;
+					FormException = ex;
+				}
 				finally
 				{
-          if (!deviceCheckOk)
-          {
-            Vm.IsBusy = false;
-            this.Close();
+					if (!deviceCheckOk)
+					{
+						Vm.IsBusy = false;
+						this.Close();
           }
 
           if (_isContainerLock && isScan)

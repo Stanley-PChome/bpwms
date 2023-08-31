@@ -66,7 +66,7 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 			// 取得資料
 			var executeDatas = f060701Repo.GetDatasByStatus(dcCode, gupCode, custCode).ToList();
 			var totalCount = executeDatas.Count();
-			var messageList = new List<string>();
+			var messageList = new List<ApiResponse>();
 			executeDatas.ForEach(f060701=> {
 				try
 				{
@@ -128,11 +128,11 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 							}
 						}
 					}
-					messageList.Add(f060701.MSG_CONTENT);
-				}
-				catch(Exception ex)
-				{
-					messageList.Add(ex.Message);
+          messageList.Add(new ApiResponse { MsgContent = f060701.MSG_CONTENT });
+        }
+        catch (Exception ex)
+        {
+          messageList.Add(new ApiResponse { MsgContent = ex.Message });
 					f060701.STATUS = "2";
 					f060701.MSG_CONTENT = ex.Message?.Length > 255 ? ex.Message.Substring(0, 255) : ex.Message;
 				}
@@ -145,8 +145,8 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 			int failCnt = executeDatas.Count - successCnt;
 			res.MsgCode = "10005";
 			res.MsgContent = string.Format(_tacService.GetMsg("10005"), "分揀出貨資訊回報", successCnt, failCnt, executeDatas.Count);
-			res.Data = messageList;
-			res.TotalCnt = executeDatas.Count;
+      res.Data = JsonConvert.SerializeObject(messageList);
+      res.TotalCnt = executeDatas.Count;
 			res.SuccessCnt = successCnt;
 			res.FailureCnt = failCnt;
 

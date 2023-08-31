@@ -13,6 +13,52 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 {
 	public class ConsignService : LmsBaseService
 	{
+		#region Repository
+
+		private F050301Repository _f050301Repo;
+		public F050301Repository F050301Repo
+		{
+			get { return _f050301Repo == null ? _f050301Repo = new F050301Repository(Schemas.CoreSchema, _wmsTransaction) : _f050301Repo; }
+			set { _f050301Repo = value; }
+		}
+
+		private F055001Repository _f055001Repo;
+		public F055001Repository F055001Repo
+		{
+			get { return _f055001Repo == null ? _f055001Repo = new F055001Repository(Schemas.CoreSchema) : _f055001Repo; }
+			set { _f055001Repo = value; }
+		}
+
+		private F055002Repository _f055002Repo;
+		public F055002Repository F055002Repo
+		{
+			get { return _f055002Repo == null ? _f055002Repo = new F055002Repository(Schemas.CoreSchema, _wmsTransaction) : _f055002Repo; }
+			set { _f055002Repo = value; }
+		}
+
+		private F05030101Repository _f05030101Repo;
+		public F05030101Repository F05030101Repo
+		{
+			get { return _f05030101Repo == null ? _f05030101Repo = new F05030101Repository(Schemas.CoreSchema, _wmsTransaction) : _f05030101Repo; }
+			set { _f05030101Repo = value; }
+		}
+
+		private F050101Repository _f050101Repo;
+		public F050101Repository F050101Repo
+		{
+			get { return _f050101Repo == null ? _f050101Repo = new F050101Repository(Schemas.CoreSchema, _wmsTransaction) : _f050101Repo; }
+			set { _f050101Repo = value; }
+		}
+
+		private F050901Repository _f050901Repo;
+		public F050901Repository F050901Repo
+		{
+			get { return _f050901Repo == null ? _f050901Repo = new F050901Repository(Schemas.CoreSchema, _wmsTransaction) : _f050901Repo; }
+			set { _f050901Repo = value; }
+		}
+
+		#endregion Repository
+
 		private WmsTransaction _wmsTransaction;
 
 		public ConsignService(WmsTransaction wmsTransation = null)
@@ -138,16 +184,12 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 		{
 			var res = new ShipOrderInsertReq { DcCode = dcCode, CustCode = custCode };
 
-			var f050301Repo = new F050301Repository(Schemas.CoreSchema);
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema);
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema);
-
-			var f050301 = f050301Repo.GetDataByWmsOrdNo(dcCode,gupCode,custCode,wmsOrdNo);
+			var f050301 = F050301Repo.GetDataByWmsOrdNo(dcCode,gupCode,custCode,wmsOrdNo);
 
 			F055001 f055001;
 			if (Currf055001 == null)
 			{
-				f055001 = f055001Repo.Find(o => o.DC_CODE == dcCode &&
+				f055001 = F055001Repo.Find(o => o.DC_CODE == dcCode &&
 							o.GUP_CODE == gupCode &&
 							o.CUST_CODE == custCode &&
 							o.WMS_ORD_NO == wmsOrdNo &&
@@ -156,7 +198,7 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 			else
 				f055001 = Currf055001;
 
-			var f055002s = f055002Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode &&
+			var f055002s = F055002Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode &&
 			o.GUP_CODE == gupCode &&
 			o.CUST_CODE == custCode &&
 			o.WMS_ORD_NO == wmsOrdNo &&
@@ -222,13 +264,11 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 		/// <param name="apiResData"></param>
 		private void ProcessData(string dcCode, string gupCode, string custCode, string wmsOrdNo, short packageBoxNo, LmsDataResult apiResData, string isScanBox, string SugBoxNo, F055001 f055001 = null)
 		{
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050901Repo = new F050901Repository(Schemas.CoreSchema, _wmsTransaction);
 			string transportCode = Convert.ToString(DataCheckHelper.GetRequireColumnValue(apiResData, "TransportCode"));
 
 			#region 更新 F055001
 			if (f055001 == null)
-				f055001 = f055001Repo.AsForUpdate().Find(o => o.DC_CODE == dcCode &&
+				f055001 = F055001Repo.AsForUpdate().Find(o => o.DC_CODE == dcCode &&
 			o.GUP_CODE == gupCode &&
 					o.CUST_CODE == custCode &&
 					o.WMS_ORD_NO == wmsOrdNo &&
@@ -248,12 +288,12 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
         f055001.ORG_BOX_NUM = f055001.BOX_NUM;
         f055001.LOGISTIC_CODE = apiResData.TransportProvider;
         f055001.ORG_LOGISTIC_CODE= apiResData.TransportProvider;
-        f055001Repo.Update(f055001);
+				F055001Repo.Update(f055001);
 			}
 			#endregion
 
 			#region 新增 F050901
-			f050901Repo.Add(new F050901
+			F050901Repo.Add(new F050901
 			{
 				CONSIGN_NO = transportCode,
 				WMS_NO = wmsOrdNo,
@@ -283,15 +323,13 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 		private ShipOrderInsertReq GetCancelRequestData(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
 			var res = new ShipOrderInsertReq { DcCode = dcCode, CustCode = custCode };
-			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema);
-			var f050101Repo = new F050101Repository(Schemas.CoreSchema);
 
-			var ordNo = f05030101Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode &&
+			var ordNo = F05030101Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode &&
 			o.GUP_CODE == gupCode &&
 			o.CUST_CODE == custCode &&
 			o.WMS_ORD_NO == wmsOrdNo).Select(x => x.ORD_NO).FirstOrDefault();
 
-			var f050101 = f050101Repo.Find(o => o.DC_CODE == dcCode &&
+			var f050101 = F050101Repo.Find(o => o.DC_CODE == dcCode &&
 			o.GUP_CODE == gupCode &&
 			o.CUST_CODE == custCode &&
 			o.ORD_NO == ordNo);

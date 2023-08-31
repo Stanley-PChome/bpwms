@@ -990,30 +990,32 @@ ORDER BY A.LAST_CALVOLUMN_TIME";
 			return SqlQuery<F1912>(sql, parameters.ToArray());
 		}
 
-		/// <summary>
-		/// 取得混品儲位
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="itemCode"></param>
-		/// <param name="warehouseType"></param>
-		/// <param name="aTypeCode"></param>
-		/// <param name="excludeNotMixItem"></param>
-		/// <param name="targetWarehouseId"></param>
-		/// <param name="volume"></param>
-		/// <param name="wareHouseTmpr"></param>
-		/// <param name="isForIn"></param>
-		/// <param name="topRecord"></param>
-		/// <returns></returns>
-		public IQueryable<MixLocPriorityInfo> GetNewMixItemLoc(string dcCode,  string custCode, string itemCode, string warehouseType, string aTypeCode, bool excludeNotMixItem, string targetWarehouseId = "", decimal? volume = null, string wareHouseTmpr = null,List<string> excludeLocCodes = null, bool isForIn = true,long? topRecord = null)
-		{
-			var parameters = new List<object> {
+    /// <summary>
+    /// 取得混品儲位
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="itemCode"></param>
+    /// <param name="warehouseType"></param>
+    /// <param name="aTypeCode"></param>
+    /// <param name="excludeNotMixItem"></param>
+    /// <param name="targetWarehouseId"></param>
+    /// <param name="volume"></param>
+    /// <param name="wareHouseTmpr"></param>
+    /// <param name="isForIn"></param>
+    /// <param name="topRecord"></param>
+    /// <returns></returns>
+    public IQueryable<MixLocPriorityInfo> GetNewMixItemLoc(string dcCode,string gupCode, string custCode, string itemCode, string warehouseType, string aTypeCode, bool excludeNotMixItem, string targetWarehouseId = "", decimal? volume = null, string wareHouseTmpr = null, List<string> excludeLocCodes = null, bool isForIn = true, long? topRecord = null)
+    {
+      var parameters = new List<object> {
 										dcCode,
 										aTypeCode,
 										itemCode,
+										custCode,
+                    gupCode,
 										custCode
-								};
+                };
 
 			var sqlFilter = string.Empty;
 
@@ -1094,7 +1096,9 @@ ORDER BY A.LAST_CALVOLUMN_TIME";
             			                            Where E.DC_CODE=A.DC_CODE
             			                              And E.LOC_CODE=A.LOC_CODE
             			                              And E.ITEM_CODE=@p2)
-                              AND (E.LOC_MUSTSAME_NOWCUSTCODE = '0' OR A.NOW_CUST_CODE ='0' OR A.NOW_CUST_CODE = @p3) {sqlFilter}
+                              AND (E.LOC_MUSTSAME_NOWCUSTCODE = '0' OR A.NOW_CUST_CODE ='0' OR A.NOW_CUST_CODE = @p3)
+                              AND A.GUP_CODE IN(@p4,'0')
+                              AND A.CUST_CODE IN(@p5,'0') {sqlFilter}
                               Order By (ISNULL(A.USEFUL_VOLUMN,0) - ISNULL(A.USED_VOLUMN,0)) Desc, A.HOR_DISTANCE
             			 ";
 
@@ -1830,7 +1834,7 @@ ORDER BY SUBSTRING([LOC_CODE],1,5);";
         new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar},
         new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar},
       };
-      var sql = @"SELECT * FROM F1912 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2";
+      var sql = @"SELECT * FROM F1912 WHERE DC_CODE=@p0 AND GUP_CODE IN(@p1,'0') AND CUST_CODE IN(@p2,'0')";
       sql += para.CombineSqlInParameters(" AND LOC_CODE", locCodes, SqlDbType.VarChar);
       return SqlQuery<F1912>(sql, para.ToArray());
 

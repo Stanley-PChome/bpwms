@@ -8,6 +8,17 @@ namespace Wms3pl.WebServices.Shared.TransApiServices
 {
     public class TransApiBaseService
     {
+        #region Service
+
+        private CommonService _commonService;
+        public CommonService CommonService
+        {
+            get { return _commonService == null ? _commonService = new CommonService() : _commonService; }
+            set { _commonService = value; }
+        }
+
+        #endregion Service
+
         /// <summary>
         /// 檢核資料筆數
         /// </summary>
@@ -55,8 +66,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices
         /// <returns></returns>
         public string GetMsg(string msgNo)
         {
-            CommonService commonService = new CommonService();
-            return commonService.GetMsg($"API{msgNo}");
+            return CommonService.GetMsg($"API{msgNo}");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F19;
@@ -49,5 +50,25 @@ namespace Wms3pl.Datas.F19
 
 			return SqlQuery<F190301>(sql, sqlParameter.ToArray());
 		}
-	}
+
+    public IQueryable<F190301> GetDatas(string gupCode, string custCode, List<string> itemCodes, List<string> unitIds)
+    {
+      var parameters = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+        new SqlParameter("@p1", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+      };
+      var sql = @"SELECT * FROM F190301 WHERE GUP_CODE = @p0 AND CUST_CODE = @p1";
+      sql += parameters.CombineSqlInParameters(" AND ITEM_CODE", itemCodes, SqlDbType.VarChar);
+      sql += parameters.CombineSqlInParameters(" AND UNIT_ID", unitIds, SqlDbType.VarChar);
+      return SqlQuery<F190301>(sql, parameters.ToArray());
+      #region 原LINQ
+      //return _db.F190301s.Where(x => x.GUP_CODE == gupCode
+      //                             && x.CUST_CODE == custCode
+      //                             &&
+      //                               itemCodes.Contains(x.ITEM_CODE) &&
+      //                               unitIds.Contains(x.UNIT_ID));
+      #endregion
+    }
+  }
 }

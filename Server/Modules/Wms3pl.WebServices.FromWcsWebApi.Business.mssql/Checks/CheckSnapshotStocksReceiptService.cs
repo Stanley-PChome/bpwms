@@ -76,7 +76,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		/// <param name="index"></param>
 		public void CheckZoneCode(List<ApiResponse> res, string dcCode, SnapshotStocksReceiptSkuModel sku, int index)
 		{
-			if (!commonService.CheckZoneCodeExist(dcCode, sku.ZoneCode))
+			if (commonService.GetWarehouse(dcCode, sku.ZoneCode) == null)
 				res.Add(new ApiResponse { No = Convert.ToString(index + 1), ErrorColumn = "ZoneCode", MsgCode = "20092", MsgContent = $"[第{index + 1}筆明細]{tacService.GetMsg("20092")}" });
 		}
 

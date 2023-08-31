@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Transactions;
 using Wms3pl.Datas.F00;
 using Wms3pl.Datas.F00.Interfaces;
@@ -238,22 +240,21 @@ namespace Wms3pl.WebServices.Shared.ApiService
           {
             // 資料長度超過4000，只取前4000的內容寫入db,
             retrunData = retrunData?.Length >= 4000 ? retrunData.Substring(0, 4000) : retrunData;
-          
-              logRepo.InsertLog(dcCode ?? "0", gupCode ?? "0", custCode ?? "0", name, jsonSendData, retrunData, errMsg, status, now);
+            logRepo.InsertLog(dcCode ?? "0", gupCode ?? "0", custCode ?? "0", name, jsonSendData, retrunData, errMsg, status, now);
+
           }
         }
 
         //有要lock table才有需要做還原動作
         if (checkActivated)
-					f0000Repo.UnlockTable(tableName,name);
-
-				finallyFunc?.Invoke(res);
+          f0000Repo.UnlockTable(tableName, name);
+        finallyFunc?.Invoke(res);
 			}
 
       return res;
     }
 
-    private static void LogApiMsgToTxt(string apiLogTxtFolder, object sendData, string retrunData, string OriReturnData,DateTime startTime,string httpCode,string httpContent, string fullExceptionMsg)
+    private static async Task LogApiMsgToTxt(string apiLogTxtFolder, object sendData, string retrunData, string OriReturnData, DateTime startTime, string httpCode, string httpContent, string fullExceptionMsg)
     {
       if (!Directory.Exists(apiLogTxtFolder))
       {
@@ -266,7 +267,7 @@ namespace Wms3pl.WebServices.Shared.ApiService
       {
         using (var sw = new StreamWriter(fullFileName, true))
         {
-          WriteFileContent(sendData, retrunData, OriReturnData,startTime,httpCode,httpContent, fullExceptionMsg, sw);
+          await WriteFileContentAsync(sendData, retrunData, OriReturnData, startTime, httpCode, httpContent, fullExceptionMsg, sw);
         }
       }
       catch (Exception)
@@ -275,25 +276,25 @@ namespace Wms3pl.WebServices.Shared.ApiService
         fullFileName = Path.Combine(apiLogTxtFolder, fileName);
         using (var sw = new StreamWriter(fullFileName, true))
         {
-          WriteFileContent(sendData, retrunData, OriReturnData, startTime, httpCode, httpContent, fullExceptionMsg, sw);
+          await WriteFileContentAsync(sendData, retrunData, OriReturnData, startTime, httpCode, httpContent, fullExceptionMsg, sw);
         }
       }
 
     }
 
-    private static void WriteFileContent(object sendData, string retrunData, string OriReturnData, DateTime startTime,string httpCode,string httpContent, string fullExceptionMsg, StreamWriter sw)
+    private static async Task WriteFileContentAsync(object sendData, string retrunData, string OriReturnData, DateTime startTime, string httpCode, string httpContent, string fullExceptionMsg, StreamWriter sw)
     {
-			sw.WriteLine($"執行開始時間：{ startTime.ToString("yyyy-MM-dd HH:mm:ss")}");
-			sw.WriteLine($"執行結束時間：{ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
-			sw.WriteLine($"Http Code：{ httpCode }");
-			sw.WriteLine($"Http Content：{ httpContent }");
-			sw.WriteLine($"傳入資料：{ JsonConvert.SerializeObject(sendData)}");
-      sw.WriteLine($"傳出資料：{ retrunData }");
-      sw.WriteLine($"原始資料：{ OriReturnData }");
-      sw.WriteLine($"錯誤內容：{ fullExceptionMsg }");
-      sw.WriteLine($"================================================================================================================================");
-      sw.WriteLine();
-      sw.WriteLine();
+      await sw.WriteLineAsync($"執行開始時間：{ startTime.ToString("yyyy-MM-dd HH:mm:ss")}");
+      await sw.WriteLineAsync($"執行結束時間：{ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
+      await sw.WriteLineAsync($"Http Code：{ httpCode }");
+      await sw.WriteLineAsync($"Http Content：{ httpContent }");
+      await sw.WriteLineAsync($"傳入資料：{ JsonConvert.SerializeObject(sendData)}");
+      await sw.WriteLineAsync($"傳出資料：{ retrunData }");
+      await sw.WriteLineAsync($"原始資料：{ OriReturnData }");
+      await sw.WriteLineAsync($"錯誤內容：{ fullExceptionMsg }");
+      await sw.WriteLineAsync($"================================================================================================================================");
+      await sw.WriteLineAsync();
+      await sw.WriteLineAsync();
     }
 
     /// <summary>

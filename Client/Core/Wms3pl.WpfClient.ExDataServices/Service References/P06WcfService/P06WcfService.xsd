@@ -142,4 +142,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ConfirmLackToShip">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="F051206LackList" nillable="true" type="q20:ArrayOfF051206LackList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmLackToShipResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="ConfirmLackToShipResult" nillable="true" type="q21:ExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -7,13 +7,26 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 {
 	public class CheckTransApiService
 	{
-		private TransApiBaseService _tacService;
+		#region Service
+
 		private CommonService _commonService;
+		public CommonService CommonService
+		{
+			get { return _commonService == null ? _commonService = new CommonService() : _commonService; }
+			set { _commonService = value; }
+		}
+
+		private TransApiBaseService _tacService;
+		public TransApiBaseService TacService
+		{
+			get { return _tacService == null ? _tacService = new TransApiBaseService() : _tacService; }
+			set { _tacService = value; }
+		}
+
+		#endregion Service
 
 		public CheckTransApiService()
 		{
-			_tacService = new TransApiBaseService();
-			_commonService = new CommonService();
 		}
 
 		/// <summary>
@@ -26,7 +39,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			// 檢核必填欄位 DcCode
 			if (res.IsSuccessed && !DataCheckHelper.CheckRequireColumn(req, "DcCode"))
 			{
-				res = new ApiResult { IsSuccessed = false, MsgCode = "20051", MsgContent = _tacService.GetMsg("20051") };
+				res = new ApiResult { IsSuccessed = false, MsgCode = "20051", MsgContent = TacService.GetMsg("20051") };
 			}
 
 			// 檢核物流中心是否存在 DcCode
@@ -34,9 +47,9 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			{
 				string dcCode = Convert.ToString(DataCheckHelper.GetRequireColumnValue(req, "DcCode"));
 
-				if (!_commonService.CheckDcExist(dcCode))
+				if (!CommonService.CheckDcExist(dcCode))
 				{
-					res = new ApiResult { IsSuccessed = false, MsgCode = "20051", MsgContent = _tacService.GetMsg("20051") };
+					res = new ApiResult { IsSuccessed = false, MsgCode = "20051", MsgContent = TacService.GetMsg("20051") };
 				}
 			}
 		}
@@ -51,7 +64,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			// 檢核必填欄位 CustCode
 			if (res.IsSuccessed && !DataCheckHelper.CheckRequireColumn(req, "CustCode"))
 			{
-				res = new ApiResult { IsSuccessed = false, MsgCode = "20052", MsgContent = _tacService.GetMsg("20052") };
+				res = new ApiResult { IsSuccessed = false, MsgCode = "20052", MsgContent = TacService.GetMsg("20052") };
 			}
 
 			// 檢核貨主編號是否存在 CustCode
@@ -59,9 +72,9 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			{
 				string custCode = Convert.ToString(DataCheckHelper.GetRequireColumnValue(req, "CustCode"));
 
-				if (!_commonService.CheckCustExist(custCode))
+				if (!CommonService.CheckCustExist(custCode))
 				{
-					res = new ApiResult { IsSuccessed = false, MsgCode = "20052", MsgContent = _tacService.GetMsg("20052") };
+					res = new ApiResult { IsSuccessed = false, MsgCode = "20052", MsgContent = TacService.GetMsg("20052") };
 				}
 			}
 		}
@@ -76,7 +89,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			// 檢核必填欄位 CustCode
 			if (res.IsSuccessed && !DataCheckHelper.CheckRequireColumn(req, "Result"))
 			{
-				res = new ApiResult { IsSuccessed = false, MsgCode = "20056", MsgContent = _tacService.GetMsg("20056") };
+				res = new ApiResult { IsSuccessed = false, MsgCode = "20056", MsgContent = TacService.GetMsg("20056") };
 			}
 		}
 
@@ -89,7 +102,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		{
 			// 檢核必填欄位 CustCode
 			if (res.IsSuccessed && !DataCheckHelper.CheckRequireColumn(req, "LocCode"))
-				res = new ApiResult { IsSuccessed = false, MsgCode = "20116", MsgContent = _tacService.GetMsg("20116") };
+				res = new ApiResult { IsSuccessed = false, MsgCode = "20116", MsgContent = TacService.GetMsg("20116") };
 
 			// 檢核貨主編號是否存在 CustCode
 			if (res.IsSuccessed)
@@ -97,8 +110,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 				string dcCode = Convert.ToString(DataCheckHelper.GetRequireColumnValue(req, "DcCode"));
 				string locCode = Convert.ToString(DataCheckHelper.GetRequireColumnValue(req, "LocCode"));
 
-				if (!_commonService.CheckLocExist(dcCode, locCode))
-					res = new ApiResult { IsSuccessed = false, MsgCode = "20116", MsgContent = _tacService.GetMsg("20116") };
+				if (!CommonService.CheckLocExist(dcCode, locCode))
+					res = new ApiResult { IsSuccessed = false, MsgCode = "20116", MsgContent = TacService.GetMsg("20116") };
 			}
 		}
 
@@ -110,7 +123,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		public void CheckTransactionNo(ref ApiResult res, object req)
 		{
 			if (res.IsSuccessed && !DataCheckHelper.CheckRequireColumn(req, "TransactionNo"))
-				res = new ApiResult { IsSuccessed = false, MsgCode = "20116", MsgContent = _tacService.GetMsg("20116") };
+				res = new ApiResult { IsSuccessed = false, MsgCode = "20116", MsgContent = TacService.GetMsg("20116") };
 		}
 
 		/// <summary>
@@ -120,12 +133,10 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		/// <param name="req"></param>
 		public void CheckItemCode(ref ApiResult res, object req)
 		{
-			CommonService commonService = new CommonService();
-
 			// 檢核必填欄位 ItemCode
 			if (res.IsSuccessed && !DataCheckHelper.CheckRequireColumn(req, "ItemCode"))
 			{
-				res = new ApiResult { IsSuccessed = false, MsgCode = "20090", MsgContent = _tacService.GetMsg("20090") };
+				res = new ApiResult { IsSuccessed = false, MsgCode = "20090", MsgContent = TacService.GetMsg("20090") };
 			}
 
 			// 檢核品號是否存在 ItemCode
@@ -133,11 +144,11 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			{
 				string itemCode = Convert.ToString(DataCheckHelper.GetRequireColumnValue(req, "ItemCode"));
 				string custCode = Convert.ToString(DataCheckHelper.GetRequireColumnValue(req, "CustCode"));
-				string gupCode = commonService.GetGupCode(custCode);
+				string gupCode = CommonService.GetGupCode(custCode);
 
-				if (!_commonService.CheckItemCodeExist(gupCode, custCode, itemCode))
+				if (!CommonService.CheckItemCodeExist(gupCode, custCode, itemCode))
 				{
-					res = new ApiResult { IsSuccessed = false, MsgCode = "20090", MsgContent = _tacService.GetMsg("20090") };
+					res = new ApiResult { IsSuccessed = false, MsgCode = "20090", MsgContent = TacService.GetMsg("20090") };
 				}
 			}
 		}

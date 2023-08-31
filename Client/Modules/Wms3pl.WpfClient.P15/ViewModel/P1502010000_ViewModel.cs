@@ -1449,16 +1449,17 @@ namespace Wms3pl.WpfClient.P15.ViewModel
 					CanEditTar = false;
 					ReadOnlyTarLocCode = true;
 				}
-				// 純上架單且不是異常 不可更改來源倉庫、來源儲位與來源數量、上架倉庫 但可以改上架儲位
-				if (string.IsNullOrEmpty(AddOrUpdateF151001.SRC_WAREHOUSE_ID) && AddOrUpdateF151001.STATUS != "8")
+				// 純上架單 不可更改來源倉庫、來源儲位與來源數量、上架倉庫 但可以改上架倉別&儲位
+				if (string.IsNullOrEmpty(AddOrUpdateF151001.SRC_WAREHOUSE_ID))
 				{
 					CanEditSrc = false;
 					ReadOnlySrcLocCode = true;
 					ReadOnlySrcQty = true;
-					CanEditTar = AddOrUpdateF151001.ALLOCATION_TYPE == "1" ? true : false;
+					CanEditTar = new[] { "1", "6" }.Contains(AddOrUpdateF151001.ALLOCATION_TYPE) ? true : false;
 				}
-				// 調撥單狀態為 已下架處理或上架處裡中
-				if(AddOrUpdateF151001.STATUS == "3" || AddOrUpdateF151001.STATUS == "4")
+
+        // 調撥單狀態為 已下架處理或上架處裡中
+        if (AddOrUpdateF151001.STATUS == "3" || AddOrUpdateF151001.STATUS == "4")
 				{
 					CanEditSrc = false;
 					ReadOnlySrcLocCode = true;
@@ -1725,8 +1726,8 @@ namespace Wms3pl.WpfClient.P15.ViewModel
 		{
 			_isSaveOk = false;
 			AddOrUpdateF151001.DC_CODE = AddOrUpdateF151001.SRC_DC_CODE;
-			AddOrUpdateF151001.TAR_WAREHOUSE_ID = AddOrUpdateF151001.TAR_WAREHOUSE_ID.ToUpper();
-			AddOrUpdateF151001.SRC_WAREHOUSE_ID = AddOrUpdateF151001.SRC_WAREHOUSE_ID.ToUpper();
+			AddOrUpdateF151001.TAR_WAREHOUSE_ID = AddOrUpdateF151001.TAR_WAREHOUSE_ID?.ToUpper();
+			AddOrUpdateF151001.SRC_WAREHOUSE_ID = AddOrUpdateF151001.SRC_WAREHOUSE_ID?.ToUpper();
 			if (UserOperateMode == OperateMode.Edit)
 			{
 				var proxyF15 = GetProxy<F15Entities>();

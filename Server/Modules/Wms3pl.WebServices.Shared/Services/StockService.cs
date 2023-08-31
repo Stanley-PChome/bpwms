@@ -369,7 +369,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
       if (_stockChangeList == null)
 				return;
-			;
 
 			//var addF1913List = new List<F1913>();
 			//_wmsLogHelper.AddRecord(string.Format("[執行時間:{0}]庫存異動 開始", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));

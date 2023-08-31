@@ -20,184 +20,216 @@ namespace Wms3pl.Datas.F91
 	  /// </summary>
     [Key]
     [Required]
-	  public string PROCESS_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string PROCESS_NO { get; set; }
 
 	  /// <summary>
 	  /// 加工來源(0貨主1物流中心)
 	  /// </summary>
     [Required]
-	  public string PROCESS_SOURCE { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string PROCESS_SOURCE { get; set; }
 
 	  /// <summary>
 	  /// 委外商F1928
 	  /// </summary>
     [Required]
-	  public string OUTSOURCE_ID { get; set; }
+    [Column(TypeName = "varchar(10)")]
+    public string OUTSOURCE_ID { get; set; }
 
 	  /// <summary>
 	  /// 完工日期
 	  /// </summary>
     [Required]
-	  public DateTime FINISH_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime FINISH_DATE { get; set; }
 
-	  /// <summary>
-	  /// 一般、同質性商品加工單-成品編號;快速加工單-原料編號(F1903)
-	  /// </summary>
-	  public string ITEM_CODE { get; set; }
+    /// <summary>
+    /// 一般、同質性商品加工單-成品編號;快速加工單-原料編號(F1903)
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string ITEM_CODE { get; set; }
 
-	  /// <summary>
-	  /// 組合編號F910101.BOM_NO
-	  /// </summary>
-	  public string ITEM_CODE_BOM { get; set; }
+    /// <summary>
+    /// 組合編號F910101.BOM_NO
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string ITEM_CODE_BOM { get; set; }
 
 	  /// <summary>
 	  /// 加工數
 	  /// </summary>
     [Required]
-	  public Int32 PROCESS_QTY { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 PROCESS_QTY { get; set; }
 
 	  /// <summary>
 	  /// 實際加工數
 	  /// </summary>
     [Required]
-	  public Int32 A_PROCESS_QTY { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 A_PROCESS_QTY { get; set; }
 
 	  /// <summary>
 	  /// 損壞數
 	  /// </summary>
     [Required]
-	  public Int32 BREAK_QTY { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 BREAK_QTY { get; set; }
 
 	  /// <summary>
 	  /// 最小盒裝數
 	  /// </summary>
     [Required]
-	  public Int32 BOX_QTY { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 BOX_QTY { get; set; }
 
 	  /// <summary>
 	  /// 最小箱裝數
 	  /// </summary>
     [Required]
-	  public Int32 CASE_QTY { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 CASE_QTY { get; set; }
 
-	  /// <summary>
-	  /// 進倉單號F020201
-	  /// </summary>
-	  public string ORDER_NO { get; set; }
+    /// <summary>
+    /// 進倉單號F020201
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string ORDER_NO { get; set; }
 
 	  /// <summary>
 	  /// 單據狀態(0待處理 1加工中 2加工完成 3結案 9取消)
 	  /// </summary>
     [Required]
-	  public string STATUS { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string STATUS { get; set; }
 
 	  /// <summary>
 	  /// 作業狀態(0建立加工單 1開立揀料單 2預選標籤 3選擇生產線 4啟動加工 5加工完成)
 	  /// </summary>
     [Required]
-	  public string PROC_STATUS { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string PROC_STATUS { get; set; }
 
-	  /// <summary>
-	  /// 備註
-	  /// </summary>
-	  public string MEMO { get; set; }
+    /// <summary>
+    /// 備註
+    /// </summary>
+    [Column(TypeName = "nvarchar(300)")]
+    public string MEMO { get; set; }
 
 	  /// <summary>
 	  /// 物流中心
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 業主
 	  /// </summary>
     [Key]
     [Required]
-	  public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string GUP_CODE { get; set; }
 
 	  /// <summary>
 	  /// 貨主編號
 	  /// </summary>
     [Key]
     [Required]
-	  public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
 	  /// <summary>
 	  /// 建立人名
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
 
 	  /// <summary>
 	  /// 報價單編號(項目編號)F910401
 	  /// </summary>
     [Required]
-	  public string QUOTE_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string QUOTE_NO { get; set; }
 
 	  /// <summary>
 	  /// 完工時間
 	  /// </summary>
     [Required]
-	  public string FINISH_TIME { get; set; }
+    [Column(TypeName = "varchar(5)")]
+    public string FINISH_TIME { get; set; }
 
 	  /// <summary>
 	  /// 加工單類別，0:一般加工單，1:同質性商品加工單，2:快速加工單
 	  /// </summary>
     [Required]
-	  public string PROC_TYPE { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string PROC_TYPE { get; set; }
 
-	  /// <summary>
-	  /// 快速加工單-加工項目 F000904 TOPIC=F910201 SUBTOPIC=PROCESS_ITEM
-	  /// </summary>
-	  public string PROCESS_ITEM { get; set; }
+    /// <summary>
+    /// 快速加工單-加工項目 F000904 TOPIC=F910201 SUBTOPIC=PROCESS_ITEM
+    /// </summary>
+    [Column(TypeName = "varchar(2)")]
+    public string PROCESS_ITEM { get; set; }
 
-	  /// <summary>
-	  /// 快速加工單-成品編號F1903
-	  /// </summary>
-	  public string GOOD_CODE { get; set; }
+    /// <summary>
+    /// 快速加工單-成品編號F1903
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string GOOD_CODE { get; set; }
 
-	  /// <summary>
-	  /// 快速加工單-分裝數量
-	  /// </summary>
-	  public Int32? PACK_QTY { get; set; }
+    /// <summary>
+    /// 快速加工單-分裝數量
+    /// </summary>
+    [Column(TypeName = "int")]
+    public Int32? PACK_QTY { get; set; }
 
-	  /// <summary>
-	  /// 快速加工單-加工開始時間
-	  /// </summary>
-	  public DateTime? PROC_BEGIN_DATE { get; set; }
+    /// <summary>
+    /// 快速加工單-加工開始時間
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? PROC_BEGIN_DATE { get; set; }
 
-	  /// <summary>
-	  /// 快速加工單-加工完成時間
-	  /// </summary>
-	  public DateTime? PROC_END_DATE { get; set; }
+    /// <summary>
+    /// 快速加工單-加工完成時間
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? PROC_END_DATE { get; set; }
   }
 }
         

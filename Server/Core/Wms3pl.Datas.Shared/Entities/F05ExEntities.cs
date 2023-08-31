@@ -307,10 +307,14 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string PICK_LOC { get; set; }
 		[DataMember]
 		public string CRT_STAFF { get; set; }
+    [DataMember]
+    public string CRT_NAME { get; set; }
 		[DataMember]
 		public DateTime CRT_DATE { get; set; }
 		[DataMember]
 		public string UPD_STAFF { get; set; }
+    [DataMember]
+    public string UPD_NAME { get; set; }
 		[DataMember]
 		public DateTime? UPD_DATE { get; set; }
 	}
@@ -395,7 +399,10 @@ namespace Wms3pl.Datas.Shared.Entities
 		public bool ISSELECTED { get; set; }
 		[DataMember]
 		public string LOC_CODE { get; set; }
-	}
+    [DataMember]
+    public string SERIAL_NO { get; set; }
+
+  }
 
 	[DataContract]
 	[Serializable]
@@ -7044,10 +7051,97 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string WMS_ORD_NO { get; set; }
 	}
 
+  /// <summary>
+  /// 跨庫調撥出貨分配扣帳排程用
+  /// </summary>
+  public class ShipFinishConfirmNotifyData
+  {
+    public string DC_CODE { get; set; }
+    public string GUP_CODE { get; set; }
+    public string CUST_CODE{ get; set; }
+    public string WMS_NO { get; set; }
+  }
+
 	public class OrderWithMakeNo
 	{
 		public string ORD_NO { get; set; }
 		public string ORD_SEQ { get; set; }
 		public string MAKE_NO { get; set; }
+	}
+
+	public class F051206LackData : F051206
+	{
+		/// <summary>
+		/// 出貨項次
+		/// </summary>
+		public string WMS_ORD_SEQ { get; set; }
+	}
+
+	public class F050101WarehouseOutEx
+	{
+		/// <summary>
+		/// 貨主單號
+		/// </summary>
+		public string CUST_ORD_NO { get; set; }
+
+		/// <summary>
+		/// 貨主成本中心/貨主自定分類
+		/// </summary>
+		public string CUST_COST { get; set; }
+	}
+
+	public class F05030202LackData
+	{
+		/// <summary>
+		/// 訂單序號
+		/// </summary>
+		[Required]
+		public string ORD_SEQ { get; set; }
+
+		/// <summary>
+		/// 出貨單號
+		/// </summary>
+		[Required]
+		public string WMS_ORD_NO { get; set; }
+
+		/// <summary>
+		/// 出貨序號
+		/// </summary>
+		[Required]
+		public string WMS_ORD_SEQ { get; set; }
+
+		/// <summary>
+		/// 預計出貨數量
+		/// </summary>
+		public Int32 B_DELV_QTY { get; set; }
+
+		/// <summary>
+		/// 實際出貨數量
+		/// </summary>
+		public Int32? A_DELV_QTY { get; set; }
+	}
+
+
+	public class CustWms_F050101_Detail
+	{
+		public string ORD_NO { get; set; }
+		public string CUST_ORD_NO { get; set; }
+		public string PROC_FLAG { get; set; }
+		public string DC_CODE { get; set; }
+		public string GUP_CODE { get; set; }
+		public string CUST_CODE { get; set; }
+		public string F050301_ORD_NO { get; set; }
+		public decimal F050801_STATUS { get; set; }
+	}
+	public class CustWms_F050101
+	{
+		public string ORD_NO { get; set; }
+		public string CUST_ORD_NO { get; set; }
+		public string PROC_FLAG { get; set; }
+		public string DC_CODE { get; set; }
+		public string GUP_CODE { get; set; }
+		public string CUST_CODE { get; set; }
+		public string F050301_ORD_NO { get; set; }
+		public List<decimal> F050801_STATUS_List { get; set; }
 	}
 }

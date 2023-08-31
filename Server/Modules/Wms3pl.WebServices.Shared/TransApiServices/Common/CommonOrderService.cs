@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Transactions;
@@ -11,7 +12,6 @@ using Wms3pl.Datas.F19;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
-using Wms3pl.WebServices.Shared.ApiService;
 using Wms3pl.WebServices.Shared.Services;
 using Wms3pl.WebServices.Shared.TransApiServices.Check;
 
@@ -22,6 +22,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 	/// </summary>
 	public class CommonOrderService
 	{
+
 		#region Private Property
 		private WmsTransaction _wmsTransation;
 		/// <summary>
@@ -32,7 +33,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// 配送商資料清單
 		/// </summary>
 		private List<F1947> _f1947List;
-    private List<F0002> _f0002List;
+		private List<F0002> _f0002List;
 		/// <summary>
 		/// 超取服務商清單
 		/// </summary>
@@ -48,7 +49,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// <summary>
 		/// 貨主單號已產生WMS訂單
 		/// </summary>
-		private List<P8202050000_F050101> _custWmsList;
+		private List<CustWms_F050101> _custWmsList;
 		/// <summary>
 		/// 貨主資料
 		/// </summary>
@@ -98,18 +99,134 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// 紀錄有新增過F075102的CUST_ORD_NO，用以若檢核失敗 找出是否有新增，用以刪除
 		/// </summary>
 		private List<string> _IsAddF075102CustOrdNoList = new List<string>();
-    /// <summary>
+		/// <summary>
 		/// 因序號重複需要排除的訂單
 		/// </summary>
-    private bool _designateSerialCheck = false;
-    #endregion
+		private bool _designateSerialCheck = false;
+		/// <summary>
+		/// 蘋果廠商編號清單
+		/// </summary>
+		private List<string> _f0003AppleVendorList;
+		/// <summary>
+		/// API回傳結果
+		/// </summary>
+		private List<ApiResponse> apiRespData = new List<ApiResponse>();
+		private string DcCode;
+		private string GupCode;
+		private string CustCode;
+		#endregion
 
-    private CommonService _commonService;
-    public CommonService CommonService
-    {
-      get { return _commonService == null ? _commonService = new CommonService() : _commonService; }
-      set { _commonService = value; }
-    }
+		#region Service
+
+		private CommonService _commonService;
+		public CommonService CommonService
+		{
+			get { return _commonService == null ? _commonService = new CommonService() : _commonService; }
+			set { _commonService = value; }
+		}
+
+		private TransApiBaseService _tacService;
+		public TransApiBaseService TacService
+		{
+			get { return _tacService == null ? _tacService = new TransApiBaseService() : _tacService; }
+			set { _tacService = value; }
+		}
+
+		#endregion Service
+
+		#region Repository
+
+		private F075102Repository _f075102Repo;
+		public F075102Repository F075102Repo
+		{
+			get { return _f075102Repo == null ? _f075102Repo = new F075102Repository(Schemas.CoreSchema) : _f075102Repo; }
+			set { _f075102Repo = value; }
+		}
+
+		private F076103Repository _f076103Repo;
+		public F076103Repository F076103Repo
+		{
+			get { return _f076103Repo == null ? _f076103Repo = new F076103Repository(Schemas.CoreSchema) : _f076103Repo; }
+			set { _f076103Repo = value; }
+		}
+
+		private F0002Repository _f0002Repo;
+		public F0002Repository F0002Repo
+		{
+			get { return _f0002Repo == null ? _f0002Repo = new F0002Repository(Schemas.CoreSchema) : _f0002Repo; }
+			set { _f0002Repo = value; }
+		}
+
+		private F050101Repository _f050101Repo;
+		public F050101Repository F050101Repo
+		{
+			get { return _f050101Repo == null ? _f050101Repo = new F050101Repository(Schemas.CoreSchema, _wmsTransation) : _f050101Repo; }
+			set { _f050101Repo = value; }
+		}
+
+		private F050102Repository _f050102Repo;
+		public F050102Repository F050102Repo
+		{
+			get { return _f050102Repo == null ? _f050102Repo = new F050102Repository(Schemas.CoreSchema, _wmsTransation) : _f050102Repo; }
+			set { _f050102Repo = value; }
+		}
+
+		private F050103Repository _f050103Repo;
+		public F050103Repository F050103Repo
+		{
+			get { return _f050103Repo == null ? _f050103Repo = new F050103Repository(Schemas.CoreSchema, _wmsTransation) : _f050103Repo; }
+			set { _f050103Repo = value; }
+		}
+
+		private F050104Repository _f050104Repo;
+		public F050104Repository F050104Repo
+		{
+			get { return _f050104Repo == null ? _f050104Repo = new F050104Repository(Schemas.CoreSchema, _wmsTransation) : _f050104Repo; }
+			set { _f050104Repo = value; }
+		}
+
+		private F050304Repository _f050304Repo;
+		public F050304Repository F050304Repo
+		{
+			get { return _f050304Repo == null ? _f050304Repo = new F050304Repository(Schemas.CoreSchema, _wmsTransation) : _f050304Repo; }
+			set { _f050304Repo = value; }
+		}
+
+		private F05010301Repository _f05010301Repo;
+		public F05010301Repository F05010301Repo
+		{
+			get { return _f05010301Repo == null ? _f05010301Repo = new F05010301Repository(Schemas.CoreSchema, _wmsTransation) : _f05010301Repo; }
+			set { _f05010301Repo = value; }
+		}
+
+		private F050001Repository _f050001Repo;
+		public F050001Repository F050001Repo
+		{
+			get { return _f050001Repo == null ? _f050001Repo = new F050001Repository(Schemas.CoreSchema, _wmsTransation) : _f050001Repo; }
+			set { _f050001Repo = value; }
+		}
+
+		private F050002Repository _f050002Repo;
+		public F050002Repository F050002Repo
+		{
+			get { return _f050002Repo == null ? _f050002Repo = new F050002Repository(Schemas.CoreSchema, _wmsTransation) : _f050002Repo; }
+			set { _f050002Repo = value; }
+		}
+
+		private F051202Repository _f051202Repo;
+		public F051202Repository F051202Repo
+		{
+			get { return _f051202Repo == null ? _f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransation) : _f051202Repo; }
+			set { _f051202Repo = value; }
+		}
+
+		private F0003Repository _f0003Repo;
+		public F0003Repository F0003Repo
+		{
+			get { return _f0003Repo == null ? _f0003Repo = new F0003Repository(Schemas.CoreSchema, _wmsTransation) : _f0003Repo; }
+			set { _f0003Repo = value; }
+		}
+		#endregion Repository
 
 		public CommonOrderService(WmsTransaction wmsTransation)
 		{
@@ -124,9 +241,12 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// <returns></returns>
 		public ApiResult RecevieApiDatas(PostCreateOrdersReq req)
 		{
+			TacService.CommonService = CommonService;
 			CheckTransApiService ctaService = new CheckTransApiService();
-			TransApiBaseService tacService = new TransApiBaseService();
-			ApiResult res = new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = tacService.GetMsg("10001") };
+			ctaService.CommonService = CommonService;
+			ctaService.TacService = TacService;
+
+			ApiResult res = new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = TacService.GetMsg("10001") };
 
 			#region 資料檢核
 
@@ -147,27 +267,256 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 
 			// 檢核資料筆數
 			int dataCnt = req.Result.Orders != null ? req.Result.Orders.Count : 0;
-			if (req.Result.Orders == null || (req.Result.Orders != null && !tacService.CheckDataCount(req.Result.Total, dataCnt)))
-				return new ApiResult { IsSuccessed = false, MsgCode = "20054", MsgContent = string.Format(tacService.GetMsg("20054"), req.Result.Total, dataCnt) };
+			if (req.Result.Orders == null || (req.Result.Orders != null && !TacService.CheckDataCount(req.Result.Total, dataCnt)))
+				return new ApiResult { IsSuccessed = false, MsgCode = "20054", MsgContent = string.Format(TacService.GetMsg("20054"), req.Result.Total, dataCnt) };
 
 			// 檢核總明細筆數是否超過[訂單明細最大筆數]筆,若超過回傳 & 取得訊息內容[20055, 總明細筆數,[訂單明細最大筆數]]
 			int odMaxCnt = Convert.ToInt32(CommonService.GetSysGlobalValue("ODMaxCnt"));
 			int itemTotalCnt = req.Result.Orders.Where(x => x.Details != null).Sum(x => x.Details.Count);
 			if (itemTotalCnt > odMaxCnt)
-				return new ApiResult { IsSuccessed = false, MsgCode = "20055", MsgContent = string.Format(tacService.GetMsg("20055"), itemTotalCnt) };
-      #endregion
+				return new ApiResult { IsSuccessed = false, MsgCode = "20055", MsgContent = string.Format(TacService.GetMsg("20055"), itemTotalCnt) };
+			#endregion
 
-      #region 資料處理
-      // 取得業主編號
-      string gupCode = CommonService.GetGupCode(req.CustCode);
-      res = CustProcessApiDatas_Order(req.DcCode, gupCode, req.CustCode, req.Result.Orders);
-      #endregion
+			#region 資料處理
+			// 取得業主編號
+			string gupCode = CommonService.GetGupCode(req.CustCode);
+			res = CustProcessApiDatas_Order(req.DcCode, gupCode, req.CustCode, req.Result.Orders);
+			#endregion
 
-      return res;
+			return res;
 		}
 		#endregion
 
+		#region 取消Wms訂單
+
+		public void CancelOrder(List<PostCreateOrdersModel> cancelOrders)
+		{
+			var cancelCustOrdNoList = cancelOrders.Where(x => !string.IsNullOrWhiteSpace(x.CustOrdNo)).Select(x => x.CustOrdNo).Distinct().ToList();
+			//[貨主單號已產生WMS訂單]
+			var wmsList = GetDatasWithF050301(DcCode, GupCode, CustCode, cancelCustOrdNoList).ToList(); //F050101Repo.GetDatasWithF050301
+			_custWmsList.AddRange(wmsList);
+
+			cancelOrders.ForEach(item =>
+			{
+				var resl = CheckOrder(DcCode, GupCode, CustCode, item);
+
+				if (!resl.IsSuccessed)
+				{
+					apiRespData.AddRange((List<ApiResponse>)resl.Data);
+
+					// 驗證失敗，將不取消訂單，所以剃除
+					_custWmsList = _custWmsList.Where(x => x.CUST_ORD_NO != item.CustOrdNo).ToList();
+				}
+			});
+
+			#region 已存在訂單(by 每一筆訂單commit)
+
+			//var cancelF050101List = 暫存新增的訂單清單篩選含[貨主單號已產生WMS單]
+			var cancelF050101List = _f050101List.Where(x => x.DC_CODE == DcCode &&
+																											x.GUP_CODE == GupCode &&
+																											x.CUST_CODE == CustCode &&
+																											_custWmsList.Select(z => z.CUST_ORD_NO).Contains(x.CUST_ORD_NO)).ToList();
+
+			// Foreach[找到的WMS單] in [貨主單號已產生WMS訂單]
+			foreach (var item in _custWmsList)
+			{
+				var isLock = false;
+
+				try
+				{
+					WmsTransaction wmsTransaction2 = new WmsTransaction();
+
+					SharedService sharedService = new SharedService(wmsTransaction2);
+					OrderService orderService = new OrderService(wmsTransaction2);
+
+					// Var isOk = [找到的WMS單].STATUS == -1
+					var isOk = item.PROC_FLAG == "-1";
+
+					var order = cancelOrders.Where(x => x.CustOrdNo == item.CUST_ORD_NO).LastOrDefault();
+
+					// var cancelF050101 = CancelF050101List.Where(x => CUST_ORD_NO =[找到的WMS單].CUST_ORD_NO)
+					var cancelF050101 = cancelF050101List.Where(x => x.CUST_ORD_NO == item.CUST_ORD_NO);
+
+					var cancelOrdNos = cancelF050101.Select(x => x.ORD_NO).ToList();
+
+					//var cancelF050102 = 暫存新增的訂單明細清單.Contain(cancelF050101.ORD_NO)
+					var cancelF050102 = _f050102List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
+
+					//var cancelF050103 = 暫存新增的訂單延伸檔清單.Contain(cancelF050101.ORD_NO)
+					var cancelF050103 = _f050103List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
+
+					//var cancelF05010301 = 暫存新增的訂單延伸明細檔清單.Contain(cancelF050101.ORD_NO)
+					var cancelF05010301 = _f05010301List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
+
+					//var cancelF050104 = 暫存新增的訂單明細服務型商品資料清單.Contain(cancelF050101.ORD_NO)
+					var cancelF050104 = _f050104List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
+
+					//var cancelF050304 = 暫存新增的訂單配送資訊檔清單.Contain(cancelF050101.ORD_NO)
+					var cancelF050304 = _f050304List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
+
+					//var cancelF050001 = 暫存新增的訂單池主檔清單.Contain(cancelF050101.ORD_NO)
+					var cancelF050001 = _f050001List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
+
+					//var cancelF050002 = 暫存新增的訂單池明細檔清單.Contain(cancelF050101.ORD_NO)
+					var cancelF050002 = _f050002List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
+
+					if (isOk)
+					{
+						// (1)	&取消未配庫訂單[<參數1>,<參數2>,<參數3>,[找到的WMS單].ORD_NO]
+						orderService.CancelNotAllocStockOrder(DcCode, GupCode, CustCode, item.ORD_NO, order.ProcFlag);
+
+						if (cancelF050101.SingleOrDefault() == null)
+							// &寫入行事曆訊息池[< 參數1 >.DcCode,[業主編號],<參數1>.CustCode, 20767,&取得訊息內容[20767, [找到的WMS單].ORD_NO],SCH]
+							sharedService.AddMessagePool("9", DcCode, GupCode, CustCode, "API20767", string.Format(TacService.GetMsg("20767"), item.ORD_NO), "", "0", "SCH");
+					}
+					else
+					{
+						if (!string.IsNullOrWhiteSpace(item.F050301_ORD_NO))
+						{
+							var hasAudit = F051202Repo.AnyWmsOrdIntAudit(item.DC_CODE, item.GUP_CODE, item.CUST_CODE, item.F050301_ORD_NO);
+
+							//檢查訂單是否鎖定
+							try
+							{
+								F076103Repo.Add(new F076103()
+								{
+									DC_CODE = DcCode,
+									CUST_ORD_NO = item.CUST_ORD_NO
+								});
+								isLock = true;
+							}
+							catch (SqlException sqlEx)
+							{
+								if (sqlEx.Number == 2627)
+								{
+									apiRespData.Add(new ApiResponse { MsgCode = "23066", MsgContent = string.Format(TacService.GetMsg("23066"), item.ORD_NO), No = item.CUST_ORD_NO });
+									_failBatchNos.Add(item.F050301_ORD_NO);
+									continue;
+								}
+								else
+								{
+									throw sqlEx;
+								}
+							}
+							//var f076103Trans = F076103Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
+							//	new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
+							//	() =>
+							//	{
+							//		var lockF076103 = F076103Repo.LockF076103();
+							//		var f076103 = F076103Repo.Find(o => o.DC_CODE == DcCode && o.CUST_ORD_NO == item.CUST_ORD_NO, isForUpdate: true, isByCache: false);
+
+							//		if (f076103 == null)
+							//		{
+							//			F076103Repo.Add(new F076103()
+							//			{
+							//				DC_CODE = DcCode,
+							//				CUST_ORD_NO = item.CUST_ORD_NO
+							//			});
+
+							//			isLock = true;
+							//		}
+
+							//		return f076103;
+							//	});
+
+							//if (f076103Trans != null)
+							//{
+							//	apiRespData.Add(new ApiResponse { MsgCode = "23066", MsgContent = string.Format(TacService.GetMsg("23066"), item.ORD_NO), No = item.CUST_ORD_NO });
+							//	_failBatchNos.Add(item.F050301_ORD_NO);
+							//	continue;
+							//}
+
+							var cancelRes = new ExecuteResult { IsSuccessed = false };
+							if (!hasAudit)
+							{
+								// 新的共用訂單取消
+								cancelRes = orderService.CancelAllocStockOrder(DcCode, GupCode, CustCode, new List<string> { item.F050301_ORD_NO }, "0", string.Empty, string.Empty, string.Empty, string.Empty, "999", "訂單取消");
+							}
+
+							if (cancelRes.IsSuccessed)
+							{
+								// &寫入行事曆訊息池[< 參數1 >.DcCode,[業主編號],<參數1>.CustCode, 20767,&取得訊息內容[20767, [找到的WMS單].ORD_NO],SCH]
+								sharedService.AddMessagePool("9", DcCode, GupCode, CustCode, "API20767", string.Format(TacService.GetMsg("20767"), item.ORD_NO), "", "0", "SCH");
+							}
+							else
+							{
+								apiRespData.Add(new ApiResponse { MsgCode = "20788", MsgContent = string.Format(TacService.GetMsg("20788"), item.ORD_NO), No = item.CUST_ORD_NO });
+								//取消訂單就直接下一筆，避免把取消失敗的訂單取消掉
+
+								_failBatchNos.Add(item.F050301_ORD_NO);
+								continue;
+							}
+						}
+						else
+						{
+							// res.Data.add(則回傳&訊息內容[20769, [找到的WMS單].CUST_ORD_NO])
+							apiRespData.Add(new ApiResponse { MsgCode = "20769", MsgContent = TacService.GetMsg("20769"), No = item.CUST_ORD_NO });
+
+							var cancelF050101Data = cancelF050101.SingleOrDefault();
+
+							if (cancelF050101Data != null)
+							{
+								_failBatchNos.Add(cancelF050101Data.BATCH_NO);
+
+								// 暫存新增的訂單清單.Remove(cancelF050101)
+								_f050101List = _f050101List.Except(cancelF050101).ToList();
+
+								// 暫存新增的訂單明細清單.Except(cancelF050102)
+								_f050102List = _f050102List.Except(cancelF050102).ToList();
+
+								// 暫存新增的訂單延伸清單.Remove(cancelF050103)
+								_f050103List = _f050103List.Except(cancelF050103).ToList();
+
+								// 暫存新增的訂單明細延伸清單.Except(cancelF05010301)
+								_f05010301List = _f05010301List.Except(cancelF05010301).ToList();
+
+								// 暫存新增的訂單明細服務型商品資料清單.Remove(cancelF050104)
+								_f050104List = _f050104List.Except(cancelF050104).ToList();
+
+								// 暫存新增的訂單配送資訊清單.Remove(cancelF050304)
+								_f050304List = _f050304List.Except(cancelF050304).ToList();
+
+								// 暫存新增的訂單池主檔清單.Remove(cancelF050001)
+								_f050001List = _f050001List.Except(cancelF050001).ToList();
+
+								// 暫存新增的訂單池明細清單.Except(cancelF050102)
+								_f050002List = _f050002List.Except(cancelF050002).ToList();
+							}
+						}
+					}
+
+					wmsTransaction2.Complete();
+				}
+				finally
+				{
+					if (isLock)
+					{
+						F076103Repo.Unlock(DcCode, item.CUST_ORD_NO);
+					}
+				}
+			}
+
+			#endregion
+
+		}
+
+		#endregion 取消Wms訂單
+
 		#region 建立Wms訂單
+
+		/// <summary>
+		/// 檢查ProcFlag
+		/// </summary>
+		/// <param name="res"></param>
+		/// <param name="warehouseIns"></param>
+		/// <returns></returns>
+		public ApiResponse CheckProcFlag(PostCreateOrdersModel order)
+		{
+			List<string> procFlags = new List<string> { "0", "D" };
+			if (!procFlags.Contains(order.ProcFlag))
+				return new ApiResponse { No = order.CustOrdNo, MsgCode = "20961", MsgContent = string.Format(TacService.GetMsg("20961"), order.CustOrdNo) };
+			return null;
+		}
 
 		/// <summary>
 		/// 資料處理2
@@ -178,424 +527,102 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// <returns></returns>
 		public ApiResult CustProcessApiDatas_Order(string dcCode, string gupCode, string custCode, List<PostCreateOrdersModel> orders)
 		{
+			var res = new ApiResult();
+			_custWmsList = new List<CustWms_F050101>();
+
 			#region 變數
-			_failBatchNos = new List<string>();
-
-			TransApiBaseService tacService = new TransApiBaseService();
-			SharedService sharedService = new SharedService(_wmsTransation);
-			OrderService orderService = new OrderService(_wmsTransation);
-      F0002Repository f0002Repo = new F0002Repository(Schemas.CoreSchema);
-      F075102Repository f075102Repo = new F075102Repository(Schemas.CoreSchema);
-			F050101Repository f050101Repo = new F050101Repository(Schemas.CoreSchema, _wmsTransation);
-			F050102Repository f050102Repo = new F050102Repository(Schemas.CoreSchema, _wmsTransation);
-			F050103Repository f050103Repo = new F050103Repository(Schemas.CoreSchema, _wmsTransation);
-			F050104Repository f050104Repo = new F050104Repository(Schemas.CoreSchema, _wmsTransation);
-			F050304Repository f050304Repo = new F050304Repository(Schemas.CoreSchema, _wmsTransation);
-			F05010301Repository f05010301Repo = new F05010301Repository(Schemas.CoreSchema, _wmsTransation);
-			F050001Repository f050001Repo = new F050001Repository(Schemas.CoreSchema, _wmsTransation);
-			F050002Repository f050002Repo = new F050002Repository(Schemas.CoreSchema, _wmsTransation);
-			F051202Repository f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransation);
-      F076103Repository f076103Repo = new F076103Repository(Schemas.CoreSchema);
-      string msgContent20769 = tacService.GetMsg("20769");
-			List<F050101> addF050101 = new List<F050101>();
-			int insertCnt = 0;
-			F0003Repository f0003Repo = new F0003Repository(Schemas.CoreSchema, _wmsTransation);
-			#endregion
-
-			#region Private Property
+			DcCode = dcCode;
+			GupCode = gupCode;
+			CustCode = custCode;
 			_orderList = orders;
 
-			// [配送商資料清單]=&取得配送商資料[< 參數1 >]
-			_f1947List = CommonService.GetLogisticProviderList(dcCode);
-
-      _f0002List = f0002Repo.getLogisticList(dcCode).ToList();
-
-      // [超取服務商清單]= &取得超取服務商資料[DC_CODE, GUP_CODE, CUST_CODE, DISTINCT[貨主通路訂單資料物件清單].LogisticProvider, DISTINCT[貨主通路訂單資料物件清單].EServiceNo]
-      _eServiceList = CommonService.GetEServiceList(dcCode, gupCode, custCode,
-					_orderList.Where(x => !string.IsNullOrWhiteSpace(x.LogisticsProvider)).Select(x => x.LogisticsProvider).Distinct().ToList(),
-					_orderList.Where(x => !string.IsNullOrWhiteSpace(x.EServiceNo)).Select(x => x.EServiceNo).Distinct().ToList());
-
-			// [門市清單]= &取得門市資料[GUP_CODE, CUST_CODE, DISTINCT[貨主通路訂單資料物件清單].SalesBaseNo]
-			_retailList = CommonService.GetRetailList(gupCode, custCode, _orderList.Where(x => !string.IsNullOrWhiteSpace(x.SalesBaseNo)).Select(x => x.SalesBaseNo).Distinct().ToList());
-
-			// [出貨倉別資料]=&取得出貨倉別資料[DC_CODE, DISTINCT[貨主通路訂單資料物件清單].WarehouseId]
-			_warhouseList = CommonService.GetWarhouseList(dcCode, _orderList.Where(x => !string.IsNullOrWhiteSpace(x.WarehouseId)).Select(x => x.WarehouseId).Distinct().ToList());
-
-			// [貨主單號已產生WMS訂單]=
-			//SELECT ORD_NO, CUST_ORD_NO, ISNULL(b.PROC_FLAG, "-1") PROC_FLAG FROM F050101 a left join F050301 b on b.DC_CODE = A.DC_CODE AND b.GUP_CODE = A.GUP_CODE AND b.CUST_CODE = A.CUST_CODE AND b.ORD_NO = a.ORD_NO WHERE A.DC_CODE = DC_CODE AND A.GUP_CODE= GUP_CODE AND A.CUST_CODE = CUST_CODE AND A.STATUS<> 9 AND A.WMS_ORD_NO IN(Distinct[貨主通路訂單資料物件清單].CustOrdNo)
-			_custWmsList = f050101Repo.GetDatasWithF050301(dcCode, gupCode, custCode, _orderList.Where(x => !string.IsNullOrWhiteSpace(x.CustOrdNo)).Select(x => x.CustOrdNo).Distinct().ToList()).ToList();
-
-			// [貨主資料] = &取得貨主資料[< 參數2 >,< 參數3 >]
-			_custData = CommonService.GetCust(gupCode, custCode);
-
-			// [物流中心資料] = &取得物流中心資料[< 參數1 >]
-			_dcData = CommonService.GetDc(dcCode);
-
-			// [蘋果廠商編號清單] = &取得F0003設定檔[DC_CODE, GUP_CODE, CUST_CODE]
-			var _f0003AppleVendorList = f0003Repo.GetAppleVendor(dcCode, gupCode, custCode);
+			_failBatchNos = new List<string>();
+			int insertCnt = 0;
 			#endregion
 
-			#region 檢核 & 建立訂單資料
-			var res = new ApiResult();
+			#region 先檢查ProcFlag
 
-			List<ApiResponse> data = new List<ApiResponse>();
-
-			// 避免若同一批參數有重複單號會把之前成功寫入的F075102的刪除，所以取得重複數
-			var paramCustOrdNos = orders.Select(x => x.CustOrdNo).GroupBy(x => x).Select(x => new { CustOrdNo = x.Key, Cnt = x.Count() }).ToList();
-
-        _orderList.ForEach(item =>
+			orders.ForEach(order =>
 			{
-				// #資料處理3[<參數1>,<參數2>,<參數3>,貨主通路訂單資料物件]  
-				var resl = CheckOrder(dcCode, gupCode, custCode, item);
-
-				if (!resl.IsSuccessed)
-				{
-					data.AddRange((List<ApiResponse>)resl.Data);
-
-					var currCustOrdNo = paramCustOrdNos.Where(x => x.CustOrdNo == item.CustOrdNo).FirstOrDefault();
-
-					// 驗證失敗，將不取消訂單，所以剃除
-					_custWmsList = _custWmsList.Where(x => x.CUST_ORD_NO != item.CustOrdNo).ToList();
-
-					// 若驗證失敗 刪除新增的F075101
-					if (_IsAddF075102CustOrdNoList.Contains(item.CustOrdNo) && currCustOrdNo != null && currCustOrdNo.Cnt == 1)
-					{
-						f075102Repo.DelF075102ByKey(custCode, item.CustOrdNo);
-						_IsAddF075102CustOrdNoList = _IsAddF075102CustOrdNoList.Where(x => x != item.CustOrdNo).ToList();
-					}
-				}
+				var resp = CheckProcFlag(order);
+				if (resp != null)
+					apiRespData.Add(resp);
 			});
 
-			#endregion
+			#endregion 先檢查ProcFlag
 
-			#region 處理純新增訂單
+			#region 處理取消Wms訂單
 
-			// var addF050101List = 暫存新增的訂單清單排除[貨主單號已產生WMS訂單]
-			var addF050101List = _f050101List.Where(x => x.DC_CODE == dcCode &&
-																									 x.GUP_CODE == gupCode &&
-																									 x.CUST_CODE == custCode &&
-																									 !_custWmsList.Select(z => z.CUST_ORD_NO).Contains(x.CUST_ORD_NO)).ToList();
+			var cancelOrderList = _orderList.Where(w => w.ProcFlag == "D").ToList();
+			if (cancelOrderList.Any())
+				CancelOrder(cancelOrderList);
 
-      if (addF050101List.Any())
+			#endregion 處理取消Wms訂單
+
+			var createOrderList = _orderList.Except(cancelOrderList).ToList();
+			if (createOrderList.Any())
 			{
-				insertCnt = addF050101List.Count;
-				// F050101.ORD_NO
-				var ordNos = addF050101List.Select(z => z.ORD_NO);
+				#region Private Property
+				var createCustOrdNoList = createOrderList.Where(x => !string.IsNullOrWhiteSpace(x.CustOrdNo)).Select(x => x.CustOrdNo).Distinct().ToList();
 
-				// var addF050102List = 暫存新增的訂單明細清單.Contain(addF050101List.ORD_NO)
-				var addF050102List = _f050102List.Where(x => ordNos.Contains(x.ORD_NO));
+				// [貨主單號已產生WMS訂單]=
+				//SELECT ORD_NO, CUST_ORD_NO, ISNULL(b.PROC_FLAG, "-1") PROC_FLAG FROM F050101 a left join F050301 b on b.DC_CODE = A.DC_CODE AND b.GUP_CODE = A.GUP_CODE AND b.CUST_CODE = A.CUST_CODE AND b.ORD_NO = a.ORD_NO WHERE A.DC_CODE = DC_CODE AND A.GUP_CODE= GUP_CODE AND A.CUST_CODE = CUST_CODE AND A.STATUS<> 9 AND A.WMS_ORD_NO IN(Distinct[貨主通路訂單資料物件清單].CustOrdNo)
+				var wmsList = GetDatasWithF050301(dcCode, gupCode, custCode, createCustOrdNoList).ToList(); //F050101Repo.GetDatasWithF050301
+				_custWmsList.AddRange(wmsList);
 
-				// var addF050103List = 暫存新增的訂單延伸身檔.Contain(addF050101List.ORD_NO)
-				var addF050103List = _f050103List.Where(x => ordNos.Contains(x.ORD_NO));
+				// [配送商資料清單]=&取得配送商資料[< 參數1 >]
+				_f1947List = CommonService.GetLogisticProviderList(dcCode);
 
-				// var addF05010301List = 暫存新增的訂單明細延伸身檔.Contain(addF050101List.ORD_NO)
-				var addF05010301List = _f05010301List.Where(x => ordNos.Contains(x.ORD_NO));
+				_f0002List = F0002Repo.getLogisticList(dcCode).ToList();
 
-				// var addF050104List = 暫存新增的訂單明細服務型商品資料清單.Contain(addF050101List.ORD_NO)
-				var addF050104List = _f050104List.Where(x => ordNos.Contains(x.ORD_NO));
+				// [超取服務商清單]= &取得超取服務商資料[DC_CODE, GUP_CODE, CUST_CODE, DISTINCT[貨主通路訂單資料物件清單].LogisticProvider, DISTINCT[貨主通路訂單資料物件清單].EServiceNo]
+				_eServiceList = CommonService.GetEServiceList(dcCode, gupCode, custCode,
+						orders.Where(x => !string.IsNullOrWhiteSpace(x.LogisticsProvider)).Select(x => x.LogisticsProvider).Distinct().ToList(),
+						orders.Where(x => !string.IsNullOrWhiteSpace(x.EServiceNo)).Select(x => x.EServiceNo).Distinct().ToList());
 
-				// var addF050304List = 暫存新增的訂單配送資訊檔.Contain(addF050101List.ORD_NO)
-				var addF050304List = _f050304List.Where(x => ordNos.Contains(x.ORD_NO));
+				// [門市清單]= &取得門市資料[GUP_CODE, CUST_CODE, DISTINCT[貨主通路訂單資料物件清單].SalesBaseNo]
+				_retailList = CommonService.GetRetailList(gupCode, custCode, orders.Where(x => !string.IsNullOrWhiteSpace(x.SalesBaseNo)).Select(x => x.SalesBaseNo).Distinct().ToList());
 
-				// var addF050001List = 暫存新增的訂單池主檔.Contain(addF050101List.ORD_NO)
-				var addF050001List = _f050001List.Where(x => ordNos.Contains(x.ORD_NO));
+				// [出貨倉別資料]=&取得出貨倉別資料[DC_CODE, DISTINCT[貨主通路訂單資料物件清單].WarehouseId]
+				_warhouseList = CommonService.GetWarhouseList(dcCode, orders.Where(x => !string.IsNullOrWhiteSpace(x.WarehouseId)).Select(x => x.WarehouseId).Distinct().ToList());
 
-				// var addF050002List = 暫存新增的訂單池明細檔.Contain(addF050101List.ORD_NO)
-				var addF050002List = _f050002List.Where(x => ordNos.Contains(x.ORD_NO));
+				// [貨主資料] = &取得貨主資料[< 參數2 >,< 參數3 >]
+				_custData = CommonService.GetCust(gupCode, custCode);
 
-				// Foreach addF050101 in addF050101List
-				addF050101List.ForEach(item =>
-				{
-					var addF050101Data = item;
+				// [物流中心資料] = &取得物流中心資料[< 參數1 >]
+				_dcData = CommonService.GetDc(dcCode);
 
-					// [取得訂單單號]= sharedService.GetNewOrdCode("S")
-					var ordNo = sharedService.GetNewOrdCode("S");
+				// [蘋果廠商編號清單] = &取得F0003設定檔[DC_CODE, GUP_CODE, CUST_CODE]
+				_f0003AppleVendorList = F0003Repo.GetAppleVendor(dcCode, gupCode, custCode);
+				#endregion
 
+				#region 檢核 & 建立訂單資料
+				CheckOrderAndCreateF050101();
+				#endregion
 
-					// var guid = addF050101.ORD_NO;
-					var guid = item.ORD_NO;
-
-					/* Step1. [取得訂單明細]= addF050102List.WHERE(x=>ORD_NO=guid)
-					 * Step2. Foreach[訂單明細] =  [取得訂單明細]
-					 * Strp3. [訂單明細].ORD_NO = [取得訂單單號] */
-					var addF050102Data = addF050102List.Where(x => x.ORD_NO == guid).ToList();
-					addF050102Data.ForEach(f050102 => { f050102.ORD_NO = ordNo; });
-
-					/* Step1. [取得訂單延伸檔]= addF050103List.WHERE(x=>ORD_NO=guid)
-					 * Step2. [訂單延伸檔].ORD_NO = [取得訂單單號] */
-					var addF050103Data = addF050103List.Where(x => x.ORD_NO == guid).SingleOrDefault();
-					addF050103Data.ORD_NO = ordNo;
-
-					/* Step1. [取得訂單延伸明細檔]=addF05010301List.WHERE(x=>ORD_NO=guid)
-					 * Step2. Foreach[訂單延伸明細檔] =  [取得訂單延伸明細檔]
-					 * Step3. [訂單延伸明細檔].ORD_NO = [取得訂單單號] */
-					var addF05010301Data = addF05010301List.Where(x => x.ORD_NO == guid).ToList();
-					addF05010301Data.ForEach(f05010301 => { f05010301.ORD_NO = ordNo; });
-
-					/* Step1. [取得訂單明細]= addF050104List.WHERE(x=>ORD_NO=guid)
-					 * Step2. Foreach[訂單明細服務型商品] =  [取得訂單明細服務型商品]
-					 * Strp3. [訂單明細服務型商品].ORD_NO = [取得訂單單號] */
-					var addF050104Data = addF050104List.Where(x => x.ORD_NO == guid).ToList();
-					addF050104Data.ForEach(f050104 => { f050104.ORD_NO = ordNo; });
-
-					/* Step1. [訂單配送資訊檔] = addF050304List.WHERE(x=>ORD_NO=guid)
-					 * Step2. [訂單配送資訊檔].ORD_NO = [取得訂單單號]*/
-					F050304 addF050304Data = null;
-					if (addF050304List.Where(x => x.ORD_NO == guid).Any())
-					{
-						addF050304Data = addF050304List.Where(x => x.ORD_NO == guid).SingleOrDefault();
-						addF050304Data.ORD_NO = ordNo;
-					}
-
-					/* Step1. [訂單池主檔] = addF050001List.WHERE(x=>ORD_NO=guid)
-					 * Step2. [訂單池主檔].ORD_NO = [取得訂單單號] */
-					F050001 addF050001Data = null;
-					if (addF050001List.Where(x => x.ORD_NO == guid).Any())
-					{
-						addF050001Data = addF050001List.Where(x => x.ORD_NO == guid).SingleOrDefault();
-						addF050001Data.ORD_NO = ordNo;
-					}
-
-					/* Step1. [取得訂單池明細檔]=addF050002List.WHERE(x=>ORD_NO=guid)
-					 * Step2. Foreach[訂單明細檔] =  [取得訂單池明細檔]
-					 * Step3. [訂單明細檔].ORD_NO = [取得訂單單號] */
-					List<F050002> addF050002Data = addF050002List.Where(x => x.ORD_NO == guid).ToList();
-					addF050002Data.ForEach(f050002 => { f050002.ORD_NO = ordNo; });
-
-					// 寫入行事曆訊息池
-					AddMessagePool(_wmsTransation, guid, ordNo);
-
-					// addF050101.ORD_NO =[取得訂單單號]
-					addF050101Data.ORD_NO = ordNo;
-
-					//檢查 本訂單中所有的商品 的廠商編號(F1903.VNR_CODE)，其中有一個商品廠商編號在蘋果廠商編號清單設定檔
-					var productList = CommonService.GetProductList(gupCode, custCode, addF050102Data.Select(x => x.ITEM_CODE).Distinct().ToList());
-          if (productList.Any(x => _f0003AppleVendorList.Contains(x.ORI_VNR_CODE) || x.ISAPPLE == "1"))
-          {
-            addF050101Data.NP_FLAG = "1";
-            if (addF050001Data != null)
-              addF050001Data.NP_FLAG = "1";
-          }
-
-          addF050101.Add(addF050101Data);
-					f050101Repo.Add(addF050101Data);
-					f050102Repo.BulkInsert(addF050102Data);
-					f050103Repo.Add(addF050103Data);
-					f050104Repo.BulkInsert(addF050104Data);
-					f05010301Repo.BulkInsert(addF05010301Data);
-					if (addF050304Data != null)
-						f050304Repo.Add(addF050304Data);
-					if (addF050001Data != null)
-						f050001Repo.Add(addF050001Data);
-					if (addF050002Data.Any())
-						f050002Repo.BulkInsert(addF050002Data);
-				});
+				#region 處理純新增訂單
+				// var addF050101List = 暫存新增的訂單清單排除[貨主單號已產生WMS訂單]
+				var addF050101List = _f050101List.Where(x => x.DC_CODE == DcCode &&
+																										 x.GUP_CODE == GupCode &&
+																										 x.CUST_CODE == CustCode &&
+																										 !_custWmsList.Select(z => z.CUST_ORD_NO).Contains(x.CUST_ORD_NO)).ToList();
+				insertCnt = InsertOrderData(addF050101List);
+				#endregion
 			}
 
-			_wmsTransation.Complete();
-
-			#endregion
-
-			#region 已存在訂單(by 每一筆訂單commit)
-			//var CancelF050101List = 暫存新增的訂單清單篩選含[貨主單號已產生WMS單]
-			var cancelF050101List = _f050101List.Where(x => x.DC_CODE == dcCode &&
-																											x.GUP_CODE == gupCode &&
-																											x.CUST_CODE == custCode &&
-																											_custWmsList.Select(z => z.CUST_ORD_NO).Contains(x.CUST_ORD_NO)).ToList();
-
-      // Foreach[找到的WMS單] in [貨主單號已產生WMS訂單]
-      foreach (var item in _custWmsList)
-      {
-        var isLock = false;
-
-        try
-        {
-          var wmsTransation2 = new WmsTransaction();
-
-          sharedService = new SharedService(wmsTransation2);
-          orderService = new OrderService(wmsTransation2);
-
-          // Var isOk = [找到的WMS單].STATUS == -1
-          var isOk = item.PROC_FLAG == "-1";
-
-          var order = orders.Where(x => x.CustOrdNo == item.CUST_ORD_NO).LastOrDefault();
-
-          // var cancelF050101 = CancelF050101List.Where(x => CUST_ORD_NO =[找到的WMS單].CUST_ORD_NO)
-          var cancelF050101 = cancelF050101List.Where(x => x.CUST_ORD_NO == item.CUST_ORD_NO);
-
-          var cancelOrdNos = cancelF050101.Select(x => x.ORD_NO).ToList();
-
-          //var cancelF050102 = 暫存新增的訂單明細清單.Contain(cancelF050101.ORD_NO)
-          var cancelF050102 = _f050102List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
-
-          //var cancelF050103 = 暫存新增的訂單延伸檔清單.Contain(cancelF050101.ORD_NO)
-          var cancelF050103 = _f050103List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
-
-          //var cancelF05010301 = 暫存新增的訂單延伸明細檔清單.Contain(cancelF050101.ORD_NO)
-          var cancelF05010301 = _f05010301List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
-
-          //var cancelF050104 = 暫存新增的訂單明細服務型商品資料清單.Contain(cancelF050101.ORD_NO)
-          var cancelF050104 = _f050104List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
-
-          //var cancelF050304 = 暫存新增的訂單配送資訊檔清單.Contain(cancelF050101.ORD_NO)
-          var cancelF050304 = _f050304List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
-
-          //var cancelF050001 = 暫存新增的訂單池主檔清單.Contain(cancelF050101.ORD_NO)
-          var cancelF050001 = _f050001List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
-
-          //var cancelF050002 = 暫存新增的訂單池明細檔清單.Contain(cancelF050101.ORD_NO)
-          var cancelF050002 = _f050002List.Where(x => cancelOrdNos.Contains(x.ORD_NO));
-
-          if (isOk)
-          {
-            // (1)	&取消未配庫訂單[<參數1>,<參數2>,<參數3>,[找到的WMS單].ORD_NO]
-            orderService.CancelNotAllocStockOrder(dcCode, gupCode, custCode, item.ORD_NO, order.ProcFlag);
-
-            if (cancelF050101.SingleOrDefault() == null)
-              // &寫入行事曆訊息池[< 參數1 >.DcCode,[業主編號],<參數1>.CustCode, 20767,&取得訊息內容[20767, [找到的WMS單].ORD_NO],SCH]
-              sharedService.AddMessagePool("9", dcCode, gupCode, custCode, "API20767", string.Format(tacService.GetMsg("20767"), item.ORD_NO), "", "0", "SCH");
-          }
-          else
-          {
-            if (item.F050301 != null)
-            {
-              var hasAudit = f051202Repo.AnyWmsOrdIntAudit(item.F050301.DC_CODE, item.F050301.GUP_CODE, item.F050301.CUST_CODE, item.F050301.ORD_NO);
-
-              //檢查訂單是否鎖定
-                var f076103Trans = f076103Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
-                  new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
-                  () =>
-                  {
-                    var lockF076103 = f076103Repo.LockF076103();
-                    var f076103 = f076103Repo.Find(o => o.DC_CODE == dcCode && o.CUST_ORD_NO == item.CUST_ORD_NO, isForUpdate: true, isByCache: false);
-
-                    if (f076103 == null)
-                    {
-                      f076103Repo.Add(new F076103()
-                      {
-                        DC_CODE = dcCode,
-                        CUST_ORD_NO = item.CUST_ORD_NO
-                      });
-
-                      isLock = true;
-                    }
-
-                    return f076103;
-                  });
-
-                if (f076103Trans != null)
-                {
-                  data.Add(new ApiResponse { MsgCode = "23066", MsgContent = string.Format(tacService.GetMsg("23066"), item.ORD_NO), No = item.CUST_ORD_NO });
-                  _failBatchNos.Add(item.F050301.ORD_NO);
-                  continue;
-                }
-
-                var cancelRes = new ExecuteResult { IsSuccessed = false };
-                if (!hasAudit)
-                {
-                  // 新的共用訂單取消
-                  cancelRes = orderService.CancelAllocStockOrder(dcCode, gupCode, custCode, new List<string> { item.F050301.ORD_NO }, "0", string.Empty, string.Empty, string.Empty, string.Empty, "999", "訂單取消");
-                }
-
-                if (cancelRes.IsSuccessed)
-                {
-                  // &寫入行事曆訊息池[< 參數1 >.DcCode,[業主編號],<參數1>.CustCode, 20767,&取得訊息內容[20767, [找到的WMS單].ORD_NO],SCH]
-                  sharedService.AddMessagePool("9", dcCode, gupCode, custCode, "API20767", string.Format(tacService.GetMsg("20767"), item.ORD_NO), "", "0", "SCH");
-                }
-                else
-                {
-                  data.Add(new ApiResponse { MsgCode = "20788", MsgContent = string.Format(tacService.GetMsg("20788"), item.ORD_NO), No = item.CUST_ORD_NO });
-                  //取消訂單就直接下一筆，避免把取消失敗的訂單取消掉
-
-                  _failBatchNos.Add(item.F050301.ORD_NO);
-                  continue;
-                }
-            }
-            else
-            {
-              // res.Data.add(則回傳&訊息內容[20769, [找到的WMS單].CUST_ORD_NO])
-              data.Add(new ApiResponse { MsgCode = "20769", MsgContent = tacService.GetMsg("20769"), No = item.CUST_ORD_NO });
-
-              var cancelF050101Data = cancelF050101.SingleOrDefault();
-
-              if (cancelF050101Data != null)
-              {
-                _failBatchNos.Add(cancelF050101Data.BATCH_NO);
-
-                // 暫存新增的訂單清單.Remove(cancelF050101)
-                _f050101List = _f050101List.Except(cancelF050101).ToList();
-
-                // 暫存新增的訂單明細清單.Except(cancelF050102)
-                _f050102List = _f050102List.Except(cancelF050102).ToList();
-
-                // 暫存新增的訂單延伸清單.Remove(cancelF050103)
-                _f050103List = _f050103List.Except(cancelF050103).ToList();
-
-                // 暫存新增的訂單明細延伸清單.Except(cancelF05010301)
-                _f05010301List = _f05010301List.Except(cancelF05010301).ToList();
-
-                // 暫存新增的訂單明細服務型商品資料清單.Remove(cancelF050104)
-                _f050104List = _f050104List.Except(cancelF050104).ToList();
-
-                // 暫存新增的訂單配送資訊清單.Remove(cancelF050304)
-                _f050304List = _f050304List.Except(cancelF050304).ToList();
-
-                // 暫存新增的訂單池主檔清單.Remove(cancelF050001)
-                _f050001List = _f050001List.Except(cancelF050001).ToList();
-
-                // 暫存新增的訂單池明細清單.Except(cancelF050102)
-                _f050002List = _f050002List.Except(cancelF050002).ToList();
-              }
-            }
-          }
-
-          wmsTransation2.Complete();
-        }
-        finally
-        {
-          if (isLock)
-          {
-            f076103Repo.Unlock(dcCode, item.CUST_ORD_NO);
-          }
-        }
-      }
-
-      #endregion
-
-      #region 寫入行事曆訊息池
-      var wmsTransation3 = new WmsTransaction();
-			sharedService = new SharedService(wmsTransation3);
-			// Foreach addF050101List  GROUP BY BatchNo 
-			_orderList.GroupBy(x => x.BatchNo).ToList()
-			.ForEach(item =>
-			{
-				int total = item.Count();
-				int fail = _failBatchNos.Where(x => x == item.Key).Count();
-				int successed = total - fail;
-
-				// 取得訊息內容[20766, BatchNo, 成功訂單單數, 異常訂單筆數, 失敗訂單單數, 合計單數]
-				var msgContent = string.Format(tacService.GetMsg("20766"),
-						item.Key,
-						successed,
-						fail,
-						total);
-
-				// 寫入行事曆訊息池[< 參數1 >,< 參數2 >,< 參數3 >, 20766, &取得訊息內容[20766,[通路資料, < 參數4 >].NAME, BatchNo, 成功訂單單數, 異常訂單筆數, 失敗訂單單數, 合計單數], SCH]
-				sharedService.AddMessagePool("9", dcCode, gupCode, custCode, "API20766", msgContent, "", "0", "SCH");
-			});
-
-			wmsTransation3.Complete();
+			#region 寫入行事曆訊息池
+			AddOrderMessagePool();
 			#endregion
 
 			#region 回傳資訊
-			res.IsSuccessed = !data.Any();
-			res.Data = data;
+			res.IsSuccessed = !apiRespData.Any();
+			res.Data = apiRespData;
 
 			int totalCnt = _orderList.Count;
 			int successedCnt = totalCnt - _failBatchNos.Count;
 
 			res.MsgCode = "20770";
-			res.MsgContent = string.Format(tacService.GetMsg("20770"), successedCnt, _failBatchNos.Count, totalCnt);
+			res.MsgContent = string.Format(TacService.GetMsg("20770"), successedCnt, _failBatchNos.Count, totalCnt);
 			res.TotalCnt = totalCnt;
 			res.InsertCnt = insertCnt;
 			res.UpdateCnt = successedCnt - insertCnt;
@@ -611,16 +638,46 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// </summary>
 		/// <param name="guid"></param>
 		/// <param name="ordNo"></param>
-		private void AddMessagePool(WmsTransaction wmsTransaction, string guid, string ordNo)
+		private void AddMessagePool(SharedService sharedService, string guid, string ordNo)
 		{
-			SharedService sharedService = new SharedService(wmsTransaction);
-
 			// 寫入行事曆訊息池
 			var addMessageList = _addMessageTempList.Where(x => x.Guid == guid).ToList();
 			addMessageList.ForEach(o =>
 			{
 				o.MessageContent = o.MessageContent.Replace(guid, ordNo);
 				sharedService.AddMessagePool(o.TicketType, o.DcCode, o.GupCode, o.CustCode, o.MsgNo, o.MessageContent, o.NotifyOrdNo, o.TargetType, o.TargetCode);
+			});
+		}
+
+		#endregion
+
+		#region 檢核 & 建立訂單資料
+		public void CheckOrderAndCreateF050101()
+		{
+			// 避免若同一批參數有重複單號會把之前成功寫入的F075102的刪除，所以取得重複數
+			var paramCustOrdNos = _orderList.Select(x => x.CustOrdNo).GroupBy(x => x).Select(x => new { CustOrdNo = x.Key, Cnt = x.Count() }).ToList();
+
+			_orderList.ForEach(item =>
+			{
+				// #資料處理3[<參數1>,<參數2>,<參數3>,貨主通路訂單資料物件]
+				var resl = CheckOrder(DcCode, GupCode, CustCode, item);
+
+				if (!resl.IsSuccessed)
+				{
+					apiRespData.AddRange((List<ApiResponse>)resl.Data);
+
+					var currCustOrdNo = paramCustOrdNos.Where(x => x.CustOrdNo == item.CustOrdNo).FirstOrDefault();
+
+					// 驗證失敗，將不取消訂單，所以剃除
+					_custWmsList = _custWmsList.Where(x => x.CUST_ORD_NO != item.CustOrdNo).ToList();
+
+					// 若驗證失敗 刪除新增的F075102
+					if (_IsAddF075102CustOrdNoList.Contains(item.CustOrdNo) && currCustOrdNo != null && currCustOrdNo.Cnt == 1)
+					{
+						F075102Repo.DelF075102ByKey(CustCode, item.CustOrdNo);
+						_IsAddF075102CustOrdNoList = _IsAddF075102CustOrdNoList.Where(x => x != item.CustOrdNo).ToList();
+					}
+				}
 			});
 		}
 
@@ -678,6 +735,546 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 
 		}
 
+		#region Protected 檢核
+		/// <summary>
+		/// 預設值設定
+		/// </summary>
+		/// <param name="dcCode">物流中心編號</param>
+		/// <param name="gupCode">業主編號</param>
+		/// <param name="custCode">貨主編號</param>
+		/// <param name="order">貨主通路訂單資料物件</param>
+		/// <returns></returns>
+		protected ApiResult CheckDefaultSetting(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
+		{
+			// 請預留方法
+			ApiResult res = new ApiResult { IsSuccessed = true };
+			res.Data = new List<ApiResponse>();
+
+			if (string.IsNullOrWhiteSpace(order.ShopperName))
+				order.ShopperName = "NA";
+
+			if (string.IsNullOrWhiteSpace(order.ReceiverPhone))
+				order.ReceiverPhone = "NA";
+
+			if (string.IsNullOrWhiteSpace(order.ReceiverAddress))
+				order.ReceiverAddress = "NA";
+
+			if (string.IsNullOrWhiteSpace(order.ReceiverName))
+				order.ReceiverName = "NA";
+
+			if (string.IsNullOrWhiteSpace(order.ReceiverMobile))
+				order.ReceiverMobile = "NA";
+
+			if (!order.IsCOD.HasValue)
+				order.IsCOD = false;
+
+			if (string.IsNullOrWhiteSpace(order.ReceiverZip))
+				order.ReceiverZip = null;
+
+			if (string.IsNullOrWhiteSpace(order.ItemOpType))
+				order.ItemOpType = "0";
+
+			return res;
+		}
+
+		/// <summary>
+		/// 共用欄位格式檢核
+		/// </summary>
+		/// <param name="dcCode">物流中心編號</param>
+		/// <param name="gupCode">業主編號</param>
+		/// <param name="custCode">貨主編號</param>
+		/// <param name="order">貨主通路訂單資料物件</param>
+		/// <returns></returns>
+		protected ApiResult CheckColumnNotNullAndMaxLength(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
+		{
+			ApiResult res = new ApiResult();
+			List<ApiResponse> data = new List<ApiResponse>();
+
+			#region 定義需檢核欄位、必填、型態、長度
+
+			List<string> shipwayIsOneNotNullColumnList = new List<string> { "StoreId", "StoreName", "ShipDate", "ReturnDate", "EServiceNo" };
+
+			List<string> b2bColumnIsNullColumnList = new List<string> { "SalesBaseNo" };
+
+			// 訂單資料物件
+			List<ApiCkeckColumnModel> orderCheckColumnList = new List<ApiCkeckColumnModel>();
+
+			// 訂單資料明細資料
+			List<ApiCkeckColumnModel> orderItemsCheckColumnList = new List<ApiCkeckColumnModel>();
+
+			// 訂單資料明細服務資料
+			List<ApiCkeckColumnModel> orderServiceItemsCheckColumnList = new List<ApiCkeckColumnModel>();
+
+			List<ApiCkeckColumnModel> receiverOptCheckColumnList = new List<ApiCkeckColumnModel>();
+
+			if (order.ProcFlag == "D")
+			{
+				orderCheckColumnList = new List<ApiCkeckColumnModel>
+				{
+					new ApiCkeckColumnModel{  Name = "CustOrdNo",             Type = typeof(string),   MaxLength = 50, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ProcFlag",              Type = typeof(string),   MaxLength = 1, Nullable = false }
+				};
+			}
+			else if (order.ProcFlag == "0")
+			{
+				orderCheckColumnList = new List<ApiCkeckColumnModel>
+				{
+					new ApiCkeckColumnModel{  Name = "CustOrdNo",             Type = typeof(string),   MaxLength = 50, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "OrderDate",             Type = typeof(string),   MaxLength = 10, Nullable = false, IsDate = true },
+					new ApiCkeckColumnModel{  Name = "OrderType",             Type = typeof(string),   MaxLength = 1, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "BatchNo",               Type = typeof(string),   MaxLength = 50 },
+					new ApiCkeckColumnModel{  Name = "ShipWay",               Type = typeof(string),   MaxLength = 10, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "TranCode",              Type = typeof(string),   MaxLength = 10 },
+					new ApiCkeckColumnModel{  Name = "ChannelCode",           Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "SubChannelCode",        Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "LogisticsProvider",     Type = typeof(string),   MaxLength = 10, Nullable = order.ShipWay == "3" },
+					new ApiCkeckColumnModel{  Name = "ExpDeliveryDate",       Type = typeof(string),   MaxLength = 10, Nullable = false, IsDate = true },
+					new ApiCkeckColumnModel{  Name = "DeliveryPeriod",        Type = typeof(int),      MaxLength = 1, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "IsCOD",                 Type = typeof(bool),     Nullable = false },
+					new ApiCkeckColumnModel{  Name = "CODAmount",             Type = typeof(decimal),  MaxLength = 11, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "SalesBaseNo",           Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "ShopperName",           Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ShopperPhone",          Type = typeof(string),   MaxLength = 10 },
+					new ApiCkeckColumnModel{  Name = "ReceiverName",          Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ReceiverPhone",         Type = typeof(string),   MaxLength = 10, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ReceiverMobile",        Type = typeof(string),   MaxLength = 10, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ReceiverZip",           Type = typeof(string),   MaxLength = 5 },
+					new ApiCkeckColumnModel{  Name = "ReceiverAddress",       Type = typeof(string),   MaxLength = 150, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "Memo",                  Type = typeof(string),   MaxLength = 200 },
+					new ApiCkeckColumnModel{  Name = "WarehouseId",           Type = typeof(string),   MaxLength = 1, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "EServiceNo",            Type = typeof(string),   MaxLength = 10 },
+					new ApiCkeckColumnModel{  Name = "ConsignNo",             Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "ShipDate",              Type = typeof(string),   MaxLength = 10, IsDate = true },
+					new ApiCkeckColumnModel{  Name = "StoreId",               Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "StoreName",             Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "ReturnDate",            Type = typeof(string),   MaxLength = 10, IsDate = true },
+					new ApiCkeckColumnModel{  Name = "InvoiceNo",             Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "InvoiceDate",           Type = typeof(string),   MaxLength = 10, IsDate = true },
+					new ApiCkeckColumnModel{  Name = "ProcFlag",              Type = typeof(string),   MaxLength = 1,  Nullable = false },
+					new ApiCkeckColumnModel{  Name = "PrintCustOrdNo",        Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "PrintMemo",             Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "CustCost",              Type = typeof(string),   MaxLength = 10 },
+					new ApiCkeckColumnModel{  Name = "SuggestBoxNo",          Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "MoveOutTarget",         Type = typeof(string),   MaxLength = 10, Nullable = order.CustCost != "MoveOut" },
+					new ApiCkeckColumnModel{  Name = "FastDealType",          Type = typeof(string),   MaxLength = 1 , Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ItemOpType",            Type = typeof(string),   MaxLength = 1,  Nullable = false },
+					new ApiCkeckColumnModel{  Name = "SuggestLogisticCode",   Type = typeof(string),   MaxLength = 10,  },
+				};
+
+				// 訂單資料明細資料
+				orderItemsCheckColumnList = new List<ApiCkeckColumnModel>
+				{
+					new ApiCkeckColumnModel{  Name = "ItemSeq",               Type = typeof(string),   MaxLength = 6 },
+					new ApiCkeckColumnModel{  Name = "ItemCode",              Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ChannelItemCode",       Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "VnrCode",               Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "ItemDesc",              Type = typeof(string),   MaxLength = 20 },
+					new ApiCkeckColumnModel{  Name = "Qty",                   Type = typeof(int),      MaxLength = 6, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "MakeNo",                Type = typeof(string),   MaxLength = 40 },
+					new ApiCkeckColumnModel{  Name = "SerialNo",              Type = typeof(string),   MaxLength = 50 }
+				};
+
+				// 訂單資料明細服務資料
+				orderServiceItemsCheckColumnList = new List<ApiCkeckColumnModel>
+				{
+					new ApiCkeckColumnModel{  Name = "ServiceItemCode",       Type = typeof(string),   MaxLength = 20, Nullable = false },
+					new ApiCkeckColumnModel{  Name = "ServiceItemName",       Type = typeof(string),   MaxLength = 50 },
+				};
+
+				receiverOptCheckColumnList = new List<ApiCkeckColumnModel>
+				{
+					new ApiCkeckColumnModel{  Name = "IsTPEKEL",              Type = typeof(string),   MaxLength = 1},
+				};
+
+			}
+			#endregion
+
+			#region 檢查訂單欄位必填、最大長度
+			List<string> orderIsNullList = new List<string>();
+			List<ApiCkeckColumnModel> orderIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
+			List<string> shipwayIsOneAndColumnIsNullList = new List<string>();
+			List<string> b2bColumnIsNull = new List<string>();
+			List<string> notDateColumn = new List<string>();
+
+			// 找出欄位不符合需必填、超過最大長度的欄位後，寫入各List
+			orderCheckColumnList.ForEach(column =>
+			{
+				// 必填
+				if (!column.Nullable)
+				{
+					if (!DataCheckHelper.CheckRequireColumn(order, column.Name))
+						orderIsNullList.Add(column.Name);
+				}
+
+				if (order.ProcFlag != "D")
+				{
+					// 判斷是否為日期格式(yyyy/MM/dd)字串
+					var value = Convert.ToString(DataCheckHelper.GetRequireColumnValue(order, column.Name));
+					if (column.IsDate && !string.IsNullOrWhiteSpace(value))
+						if (!DataCheckHelper.CheckDataIsDate(order, column.Name))
+							notDateColumn.Add(column.Name);
+
+					// 最大長度
+					if (column.MaxLength > 0)
+					{
+						if (column.Name == "CODAmount")
+						{
+							// 檢核是否符合decimal(11,2)
+							if (!DataCheckHelper.CheckDataIsDecimal(order, column.Name, 9, 2))
+								orderIsExceedMaxLenthList.Add(column);
+						}
+						else
+						{
+							if (!DataCheckHelper.CheckDataMaxLength(order, column.Name, column.MaxLength))
+								orderIsExceedMaxLenthList.Add(column);
+						}
+					}
+
+					// 如果是超取，下列應該檢核必填
+					if (order.ShipWay == "1" && shipwayIsOneNotNullColumnList.Contains(column.Name))
+					{
+						if (!DataCheckHelper.CheckRequireColumn(order, column.Name))
+							shipwayIsOneAndColumnIsNullList.Add(column.Name);
+					}
+
+					// 如果是B2B，下列應該檢核必填
+					if (order.OrderType == "0" && b2bColumnIsNullColumnList.Contains(column.Name))
+					{
+						if (!DataCheckHelper.CheckRequireColumn(order, column.Name))
+							b2bColumnIsNull.Add(column.Name);
+					}
+				}
+			});
+
+			// 必填訊息
+			if (orderIsNullList.Any())
+				// 回傳訊息內容[20058, < 參數4 >.CustInNo, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
+				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(TacService.GetMsg("20058"), order.CustOrdNo, string.Join("、", orderIsNullList)) });
+
+			// 日期格式判斷
+			if (notDateColumn.Any())
+				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20075", MsgContent = string.Format(TacService.GetMsg("20075"), order.CustOrdNo, string.Join("、", notDateColumn)) });
+
+			// 最大長度訊息
+			if (orderIsExceedMaxLenthList.Any())
+			{
+				List<string> errorMsgList = orderIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
+
+				string errorMsg = string.Join("、", errorMsgList);
+
+				// 檢查進倉單欄位格式(參考2.8.2),如果檢核失敗，回傳 & 訊息內容[20059, < 參數4 >.CustInNo, 欄位格式錯誤清單(格式:[欄位名稱1]格式錯誤必須為X1、[欄位名稱2]格式錯誤必須為X2)]
+				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(TacService.GetMsg("20059"), order.CustOrdNo, errorMsg) });
+			}
+
+			// 超取必填訊息
+			if (shipwayIsOneAndColumnIsNullList.Any())
+				// 回傳訊息內容[20762, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
+				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20762", MsgContent = string.Format(TacService.GetMsg("20762"), order.CustOrdNo, string.Join("、", shipwayIsOneAndColumnIsNullList)) });
+
+			// B2B必填訊息
+			if (b2bColumnIsNull.Any())
+				// 回傳訊息內容[20763,必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]』
+				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20763", MsgContent = string.Format(TacService.GetMsg("20763"), order.CustOrdNo, string.Join("、", b2bColumnIsNull)) });
+
+			#endregion
+
+			#region 檢查收貨/店取額外資訊
+			if (order.ProcFlag != "D")
+			{
+				var i = 0;
+				List<string> orderItemsIsNullList = new List<string>();
+				List<ApiCkeckColumnModel> orderItemsIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
+				if (order.ReceiverOpt != null)
+				{
+					receiverOptCheckColumnList.ForEach(o =>
+					{
+						// 必填
+						if (!o.Nullable)
+							if (!DataCheckHelper.CheckRequireColumn(order.ReceiverOpt, o.Name))
+								orderItemsIsNullList.Add(o.Name);
+
+						// 最大長度
+						if (o.MaxLength > 0)
+							if (!DataCheckHelper.CheckDataMaxLength(order.ReceiverOpt, o.Name, o.MaxLength))
+								orderItemsIsExceedMaxLenthList.Add(o);
+					});
+
+					// 必填訊息
+					if (orderItemsIsNullList.Any())
+						// 檢查進倉單明細必填欄位(參考2.8.2) ,如果檢核失敗，回傳 & 訊息內容[20058, < 參數4 >.CustInNo, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
+						data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(TacService.GetMsg("20058"), $"{order.CustOrdNo}第{i + 1}筆明細", string.Join("、", orderItemsIsNullList)) });
+
+					// 最大長度訊息
+					if (orderItemsIsExceedMaxLenthList.Any())
+					{
+						List<string> errorMsgList = orderItemsIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
+						string errorMsg = string.Join("、", errorMsgList);
+						// 檢查進倉單明細必填欄位(參考2.8.2) , 如果檢核失敗，回傳 & 訊息內容[20059, < 參數4 >.CustInNo, 欄位格式錯誤清單(格式:[欄位名稱1]格式錯誤必須為X1、[欄位名稱2]格式錯誤必須為X2)]
+						data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(TacService.GetMsg("20059"), $"{order.CustOrdNo}第{i + 1}筆明細", errorMsg) });
+					}
+
+					i++;
+
+				}
+			}
+			#endregion 檢查收貨/店取額外資訊
+
+			#region 檢查訂單明細欄位必填、最大長度
+			if (order.ProcFlag != "D")
+			{
+				List<string> orderItemsIsNullList;
+				List<ApiCkeckColumnModel> orderItemsIsExceedMaxLenthList;
+				List<string> orderServiceItemsIsNullList;
+				List<ApiCkeckColumnModel> orderServiceItemsIsExceedMaxLenthList;
+
+				// No.2073 檢核是否重複指定出貨序號
+				var designateSerials = order.Details.Select(o => o.SerialNo).Where(o => !string.IsNullOrWhiteSpace(o)).ToList();
+
+				// 訂單指定2個以上序號，當前訂單自己檢核
+				if (designateSerials.Count() > 1)
+				{
+					var duplicateSerialNo = designateSerials.GroupBy(o => o).Where(x => x.Count() > 1).Select(x => x.Key);
+
+					if (duplicateSerialNo.Any())
+					{
+						data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20879", MsgContent = string.Format(TacService.GetMsg("20879"), string.Join("、", duplicateSerialNo)) });
+					}
+				}
+
+				var designateSerialOrders = _orderList.Where(o => o.Details.Any(x => !string.IsNullOrWhiteSpace(x.SerialNo)) && o.CustOrdNo != order.CustOrdNo);
+
+				// 同批次有2個以上訂單有指定序號，訂單之間相互檢核
+				if (designateSerialOrders.Any())
+				{
+					var duplicateSerialNo = new List<string>();
+
+					foreach (var designateSerial in designateSerials)
+					{
+						foreach (var designateSerialOrder in designateSerialOrders)
+						{
+							if (designateSerialOrder.Details.Any(o => o.SerialNo == designateSerial) && !duplicateSerialNo.Contains(designateSerial))
+							{
+								duplicateSerialNo.Add(designateSerial);
+							}
+						}
+					}
+
+					if (duplicateSerialNo.Any())
+						data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20880", MsgContent = string.Format(TacService.GetMsg("20880"), string.Join("、", duplicateSerialNo)) });
+				}
+
+				if (order.Details != null && order.Details.Any())
+				{
+					for (int i = 0; i < order.Details.Count; i++)
+					{
+						var currDetail = order.Details[i];
+
+						orderItemsIsNullList = new List<string>();
+						orderItemsIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
+
+						orderItemsCheckColumnList.ForEach(o =>
+						{
+							// 必填
+							if (!o.Nullable)
+								if (!DataCheckHelper.CheckRequireColumn(currDetail, o.Name))
+									orderItemsIsNullList.Add(o.Name);
+
+							// 最大長度
+							if (o.MaxLength > 0)
+								if (!DataCheckHelper.CheckDataMaxLength(currDetail, o.Name, o.MaxLength))
+									orderItemsIsExceedMaxLenthList.Add(o);
+						});
+
+						// 必填訊息
+						if (orderItemsIsNullList.Any())
+							// 檢查進倉單明細必填欄位(參考2.8.2) ,如果檢核失敗，回傳 & 訊息內容[20058, < 參數4 >.CustInNo, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
+							data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(TacService.GetMsg("20058"), $"{order.CustOrdNo}第{i + 1}筆明細", string.Join("、", orderItemsIsNullList)) });
+
+						// 最大長度訊息
+						if (orderItemsIsExceedMaxLenthList.Any())
+						{
+							List<string> errorMsgList = orderItemsIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
+							string errorMsg = string.Join("、", errorMsgList);
+							// 檢查進倉單明細必填欄位(參考2.8.2) , 如果檢核失敗，回傳 & 訊息內容[20059, < 參數4 >.CustInNo, 欄位格式錯誤清單(格式:[欄位名稱1]格式錯誤必須為X1、[欄位名稱2]格式錯誤必須為X2)]
+							data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(TacService.GetMsg("20059"), $"{order.CustOrdNo}第{i + 1}筆明細", errorMsg) });
+						}
+
+						#region 檢核服務型品號資料
+						if (currDetail.ServiceItemDetails.Any())
+						{
+							for (int j = 0; j < currDetail.ServiceItemDetails.Count; j++)
+							{
+								var currService = currDetail.ServiceItemDetails[j];
+
+								orderServiceItemsCheckColumnList.ForEach(obj =>
+								{
+									orderServiceItemsIsNullList = new List<string>();
+									orderServiceItemsIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
+									// 必填
+									if (!obj.Nullable)
+										if (!DataCheckHelper.CheckRequireColumn(currService, obj.Name))
+											orderServiceItemsIsNullList.Add(obj.Name);
+									// 最大長度
+									if (obj.MaxLength > 0)
+										if (!DataCheckHelper.CheckDataMaxLength(currService, obj.Name, obj.MaxLength))
+											orderServiceItemsIsExceedMaxLenthList.Add(obj);
+									// 必填訊息
+									if (orderServiceItemsIsNullList.Any())
+										data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(TacService.GetMsg("20058"), $"{order.CustOrdNo}第{i + 1}筆明細第{j + 1}筆服務", string.Join("、", orderServiceItemsIsNullList)) });
+
+									// 最大長度訊息
+									if (orderServiceItemsIsExceedMaxLenthList.Any())
+									{
+										List<string> errorMsgList = orderServiceItemsIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
+										string errorMsg = string.Join("、", errorMsgList);
+										data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(TacService.GetMsg("20059"), $"{order.CustOrdNo}第{i + 1}筆明細第{j + 1}筆服務", errorMsg) });
+									}
+								});
+							}
+						}
+						#endregion
+					}
+				}
+			}
+
+			#endregion
+
+			res.Data = data;
+
+			return res;
+		}
+
+		/// <summary>
+		/// 貨主自訂欄位格式檢核
+		/// </summary>
+		/// <param name="dcCode">物流中心編號</param>
+		/// <param name="gupCode">業主編號</param>
+		/// <param name="custCode">貨主編號</param>
+		/// <param name="warehouseIns">進倉單資料物件</param>
+		/// <returns></returns>
+		protected ApiResult CheckCustomColumnType(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
+		{
+			// 請預留方法
+			ApiResult res = new ApiResult();
+			res.Data = new List<ApiResponse>();
+			return res;
+		}
+
+		/// <summary>
+		/// 共用欄位資料檢核
+		/// </summary>
+		/// <param name="dcCode">物流中心編號</param>
+		/// <param name="gupCode">業主編號</param>
+		/// <param name="custCode">貨主編號</param>
+		/// <param name="warehouseIns">進倉單資料物件</param>
+		/// <returns></returns>
+		protected ApiResult CheckCommonColumnData(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
+		{
+			CheckOrderService coService = new CheckOrderService();
+			coService.CommonService = CommonService;
+			coService.TacService = TacService;
+			coService.F075102Repo = F075102Repo;
+			ApiResult res = new ApiResult();
+			List<ApiResponse> data = new List<ApiResponse>();
+
+			#region 主檔欄位資料檢核
+			// 檢查ProcFlag
+			coService.CheckProcFlag(data, order);
+
+			// 檢查貨主單號是否存在
+			var isAdd = coService.CheckCustExistForThirdPart(data, _custWmsList, order, custCode);
+			if (isAdd)
+				_IsAddF075102CustOrdNoList.Add(order.CustOrdNo);
+
+			// 檢查廠商編號
+			coService.CheckOrderType(data, order);
+
+			// 檢查配送方式
+			coService.CheckShipWay(data, order);
+
+			// 檢查方便到貨時段
+			coService.CheckDeliveryPeriod(data, order);
+
+			// 檢核出貨倉別
+			coService.CheckWarehouseId(data, order, _warhouseList);
+
+			// 檢查物流商是否存在
+			coService.CheckLogisticsProvider(data, order, _f1947List);
+
+			// 檢查超取配送商
+			coService.CheckEService(data, order, _eServiceList);
+
+			// 檢查門市編號
+			coService.CheckRetail(data, order, _retailList);
+
+			// 檢查貨主自訂義分類
+			coService.CheckCustCost(data, order);
+
+			// 檢查優先處理旗標
+			coService.CheckFastDealType(data, order);
+
+			// 檢查商品處理類型
+			coService.CheckItemOpType(data, order);
+
+			// 檢查收貨/店取額外資訊(是否為北北基欄位)
+			coService.CheckReceiverOpt(data, order);
+
+			// 檢查ChannelCode通路編號是否存在於資料庫中
+			coService.CheckChannelCode(data, order);
+
+			// 檢查SubChannelCode子通路編號是否存在於資料庫中
+			coService.CheckSubChannelCode(data, order);
+
+			// 檢查建議物流商編號
+			coService.CheckSuggestLogisticCod(data, order, _f0002List);
+			#endregion
+
+			#region 明細欄位資料檢核
+			// 檢查明細筆數
+			coService.CheckDetailCnt(data, order);
+
+			// 檢核項次必須大於0，且同一張單據內的序號不可重複
+			coService.CheckDetailSeq(data, order);
+
+			// 檢查明細進倉數量
+			coService.CheckDetailQty(data, order);
+			#endregion
+
+			#region 明細服務資料檢核
+			coService.CheckServiceItemCode(data, order);
+			#endregion
+
+			#region 檢查資料是否完整
+			// 檢查資料是否完整
+			coService.CheckOrderData(data, gupCode, custCode, order);
+			#endregion
+
+			// 檢查貨主單號是否存在
+			coService.CheckCustOrdNo(order, ref _f050101List, ref _f050102List, ref _f05010301List, ref _f050103List, ref _f050104List,
+					ref _f050304List, ref _f050001List, ref _f050002List);
+
+			res.Data = data;
+
+			return res;
+		}
+
+		/// <summary>
+		/// 貨主自訂欄位資料檢核
+		/// </summary>
+		/// <param name="dcCode">物流中心編號</param>
+		/// <param name="gupCode">業主編號</param>
+		/// <param name="custCode">貨主編號</param>
+		/// <param name="warehouseIns">進倉單資料物件</param>
+		/// <returns></returns>
+		protected ApiResult CheckCustomColumnValue(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
+		{
+			// 請預留方法
+			ApiResult res = new ApiResult();
+			res.Data = new List<ApiResponse>();
+			return res;
+		}
+		#endregion
+
 		/// <summary>
 		/// 產生WMS資料
 		/// </summary>
@@ -716,47 +1313,6 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 				_f050103List.Add(f050103);
 			}
 		}
-
-		/// <summary>
-		/// 轉入訂單池
-		/// </summary>
-		/// <param name="f050101"></param>
-		/// <param name="f050102List"></param>
-		/// <param name="order">貨主通路訂單資料物件</param>
-		public void CopyF050101ToF050001(F050101 f050101, List<F050102> f050102List, PostCreateOrdersModel order)
-		{
-			SharedService sharedService = new SharedService();
-
-			#region COPY F050101 TO F050001
-			F050001 f050001 = new F050001();
-			f050101.CloneProperties(f050001);
-
-			// 調整F050001內容
-			f050001.PROC_FLAG = "0";
-			f050001.TICKET_ID = sharedService.GetTicketID(f050101.DC_CODE, f050101.GUP_CODE, f050101.CUST_CODE, f050101.ORD_TYPE == "0" ? "O1" : "O2");
-			f050001.ZIP_CODE = order.ReceiverZip;
-			f050001.INVO_PRINTED = "0";
-			f050001.INVO_TAX_TYPE = "1";
-			f050001.ORD_DATE = f050101.ORD_DATE == null ? DateTime.Today : Convert.ToDateTime(f050101.ORD_DATE);
-			f050001.ARRIVAL_DATE = f050101.ARRIVAL_DATE;
-
-			_f050001List.Add(f050001);
-
-			#endregion
-
-			#region COPY List<F050102> TO LIST<F050002>
-
-			var f050002List = f050102List.Select(a => AutoMapper.Mapper.DynamicMap<F050002>(a)).ToList();
-
-			// 調整F050002內容
-			f050002List.ForEach(o => { o.WELCOME_LETTER = "0"; });
-
-			_f050002List.AddRange(f050002List);
-
-			#endregion
-		}
-
-		#endregion
 
 		#region Protected Method
 		/// <summary>
@@ -814,7 +1370,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 			}
 			else
 			{
-					address = $"{order.ReceiverAddress ?? "NA"}";
+				address = $"{order.ReceiverAddress ?? "NA"}";
 			}
 
 			// 指定到貨日期
@@ -863,8 +1419,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 				DC_CODE = dcCode,
 				GUP_CODE = gupCode,
 				CUST_CODE = custCode,
-        CHANNEL = string.IsNullOrWhiteSpace(order.ChannelCode) ? "00" : order.ChannelCode,
-        ORD_NO = Guid.NewGuid().ToString(),
+				CHANNEL = string.IsNullOrWhiteSpace(order.ChannelCode) ? "00" : order.ChannelCode,
+				ORD_NO = Guid.NewGuid().ToString(),
 				CUST_ORD_NO = order.CustOrdNo,
 				ORD_TYPE = order.OrderType,
 				RETAIL_CODE = order.SalesBaseNo,
@@ -902,8 +1458,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 				SA_CHECK_QTY = 0,
 				DELV_PERIOD = order.DeliveryPeriod == null || order.DeliveryPeriod == 0 ? "4" : order.DeliveryPeriod.ToString(),
 				CVS_TAKE = order.ShipWay == "1" ? "1" : "0",
-        SUBCHANNEL = string.IsNullOrWhiteSpace(order.SubChannelCode) ? "00" : order.SubChannelCode,
-        FOREIGN_WMSNO = null,
+				SUBCHANNEL = string.IsNullOrWhiteSpace(order.SubChannelCode) ? "00" : order.SubChannelCode,
+				FOREIGN_WMSNO = null,
 				FOREIGN_CUSTCODE = null,
 				SP_DELV = "00",
 				ROUND_PIECE = "0",
@@ -916,17 +1472,17 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 				BUSINESS_NO = null,
 				DISTR_CAR_NO = null,
 				CHECK_CODE = null,
-        IMPORT_FLAG = "0",
-        SUG_BOX_NO = order.SuggestBoxNo,
-        MOVE_OUT_TARGET = order.MoveOutTarget,
-        FAST_DEAL_TYPE = order.FastDealType,
-        PACKING_TYPE = order.PackingType,
-        ISPACKCHECK = order.IsPackCheck,
-        ORDER_PROC_TYPE = order.ItemOpType.ToString(),
-        ORDER_ZIP_CODE = order.ReceiverZip,
-        IS_NORTH_ORDER = order.ReceiverOpt?.IsTPEKEL?.ToString() ?? null,
-        SUG_LOGISTIC_CODE = string.IsNullOrWhiteSpace(order.SuggestLogisticCode) ? null : order.SuggestLogisticCode
-      };
+				IMPORT_FLAG = "0",
+				SUG_BOX_NO = order.SuggestBoxNo,
+				MOVE_OUT_TARGET = order.MoveOutTarget,
+				FAST_DEAL_TYPE = order.FastDealType,
+				PACKING_TYPE = order.PackingType,
+				ISPACKCHECK = order.IsPackCheck,
+				ORDER_PROC_TYPE = order.ItemOpType.ToString(),
+				ORDER_ZIP_CODE = order.ReceiverZip,
+				IS_NORTH_ORDER = order.ReceiverOpt?.IsTPEKEL?.ToString() ?? null,
+				SUG_LOGISTIC_CODE = string.IsNullOrWhiteSpace(order.SuggestLogisticCode) ? null : order.SuggestLogisticCode
+			};
 		}
 
 		/// <summary>
@@ -952,8 +1508,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 																	 Qty = x.Sum(z => z.Qty),
 																	 VnrCode = x.Key.VnrCode,
 																	 MakeNo = x.Key.MakeNo,
-                                   serialNo = x.Key.SerialNo,
-                                   ServiceItemDetails = x.Key.ServiceItemDetails
+																	 serialNo = x.Key.SerialNo,
+																	 ServiceItemDetails = x.Key.ServiceItemDetails
 																 }).ToList();
 
 			// 如果ItemSeq有空或null將重新排序
@@ -977,8 +1533,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 					ITEM_CODE = currData.ItemCode,
 					ORD_QTY = currData.Qty,
 					NO_DELV = "0",
-          SERIAL_NO = string.IsNullOrWhiteSpace(currData.serialNo) ? "" : currData.serialNo,
-          VNR_CODE = currData.VnrCode,
+					SERIAL_NO = string.IsNullOrWhiteSpace(currData.serialNo) ? "" : currData.serialNo,
+					VNR_CODE = currData.VnrCode,
 					MAKE_NO = currData.MakeNo,
 				});
 
@@ -1084,544 +1640,232 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 				ESERVICE = eService
 			};
 		}
+
+		/// <summary>
+		/// 轉入訂單池
+		/// </summary>
+		/// <param name="f050101"></param>
+		/// <param name="f050102List"></param>
+		/// <param name="order">貨主通路訂單資料物件</param>
+		public void CopyF050101ToF050001(F050101 f050101, List<F050102> f050102List, PostCreateOrdersModel order)
+		{
+			SharedService sharedService = new SharedService();
+
+			#region COPY F050101 TO F050001
+			F050001 f050001 = new F050001();
+			f050101.CloneProperties(f050001);
+
+			// 調整F050001內容
+			f050001.PROC_FLAG = "0";
+			f050001.TICKET_ID = sharedService.GetTicketID(f050101.DC_CODE, f050101.GUP_CODE, f050101.CUST_CODE, f050101.ORD_TYPE == "0" ? "O1" : "O2");
+			f050001.ZIP_CODE = order.ReceiverZip;
+			f050001.INVO_PRINTED = "0";
+			f050001.INVO_TAX_TYPE = "1";
+			f050001.ORD_DATE = f050101.ORD_DATE == null ? DateTime.Today : Convert.ToDateTime(f050101.ORD_DATE);
+			f050001.ARRIVAL_DATE = f050101.ARRIVAL_DATE;
+
+			_f050001List.Add(f050001);
+
+			#endregion
+
+			#region COPY List<F050102> TO LIST<F050002>
+
+			var f050002List = f050102List.Select(a => AutoMapper.Mapper.DynamicMap<F050002>(a)).ToList();
+
+			// 調整F050002內容
+			f050002List.ForEach(o => { o.WELCOME_LETTER = "0"; });
+
+			_f050002List.AddRange(f050002List);
+
+			#endregion
+		}
 		#endregion
 
-		#region Protected 檢核
-		/// <summary>
-		/// 預設值設定
-		/// </summary>
-		/// <param name="dcCode">物流中心編號</param>
-		/// <param name="gupCode">業主編號</param>
-		/// <param name="custCode">貨主編號</param>
-		/// <param name="order">貨主通路訂單資料物件</param>
-		/// <returns></returns>
-		protected ApiResult CheckDefaultSetting(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
+		#endregion 檢核 & 建立訂單資料
+
+		#region 處理純新增訂單
+
+		public int InsertOrderData(List<F050101> addF050101List)
 		{
-			// 請預留方法
-			ApiResult res = new ApiResult { IsSuccessed = true };
-			res.Data = new List<ApiResponse>();
+			SharedService sharedService = new SharedService(_wmsTransation);
+			int insertCnt = 0;
 
-			if (string.IsNullOrWhiteSpace(order.ShopperName))
-				order.ShopperName = "NA";
+			//// var addF050101List = 暫存新增的訂單清單排除[貨主單號已產生WMS訂單]
+			//var addF050101List = _f050101List.Where(x => x.DC_CODE == DcCode &&
+			//																						 x.GUP_CODE == GupCode &&
+			//																						 x.CUST_CODE == CustCode &&
+			//																						 !_custWmsList.Select(z => z.CUST_ORD_NO).Contains(x.CUST_ORD_NO)).ToList();
 
-			if (string.IsNullOrWhiteSpace(order.ReceiverPhone))
-				order.ReceiverPhone = "NA";
+			if (addF050101List.Any())
+			{
+				insertCnt = addF050101List.Count;
+				// F050101.ORD_NO
+				var ordNos = addF050101List.Select(z => z.ORD_NO);
 
-			if (string.IsNullOrWhiteSpace(order.ReceiverAddress))
-				order.ReceiverAddress = "NA";
+				// var addF050102List = 暫存新增的訂單明細清單.Contain(addF050101List.ORD_NO)
+				var addF050102List = _f050102List.Where(x => ordNos.Contains(x.ORD_NO));
 
-			if (string.IsNullOrWhiteSpace(order.ReceiverName))
-				order.ReceiverName = "NA";
+				// var addF050103List = 暫存新增的訂單延伸身檔.Contain(addF050101List.ORD_NO)
+				var addF050103List = _f050103List.Where(x => ordNos.Contains(x.ORD_NO));
 
-			if (string.IsNullOrWhiteSpace(order.ReceiverMobile))
-				order.ReceiverMobile = "NA";
+				// var addF05010301List = 暫存新增的訂單明細延伸身檔.Contain(addF050101List.ORD_NO)
+				var addF05010301List = _f05010301List.Where(x => ordNos.Contains(x.ORD_NO));
 
-			if (!order.IsCOD.HasValue)
-				order.IsCOD = false;
+				// var addF050104List = 暫存新增的訂單明細服務型商品資料清單.Contain(addF050101List.ORD_NO)
+				var addF050104List = _f050104List.Where(x => ordNos.Contains(x.ORD_NO));
 
-      if (string.IsNullOrWhiteSpace(order.ReceiverZip))
-        order.ReceiverZip = null;
+				// var addF050304List = 暫存新增的訂單配送資訊檔.Contain(addF050101List.ORD_NO)
+				var addF050304List = _f050304List.Where(x => ordNos.Contains(x.ORD_NO));
 
-			if (string.IsNullOrWhiteSpace(order.ItemOpType))
-				order.ItemOpType = "0";
+				// var addF050001List = 暫存新增的訂單池主檔.Contain(addF050101List.ORD_NO)
+				var addF050001List = _f050001List.Where(x => ordNos.Contains(x.ORD_NO));
 
-      return res;
+				// var addF050002List = 暫存新增的訂單池明細檔.Contain(addF050101List.ORD_NO)
+				var addF050002List = _f050002List.Where(x => ordNos.Contains(x.ORD_NO));
+
+
+				var newOrdNos = sharedService.GetNewOrdStackCodes("S", addF050101List.Count);
+				// Foreach addF050101 in addF050101List
+				addF050101List.ForEach(item =>
+				{
+					var addF050101Data = item;
+
+					//// [取得訂單單號]= sharedService.GetNewOrdCode("S")
+					//var ordNo = sharedService.GetNewOrdCode("S");
+					var ordNo = newOrdNos.Pop();
+
+					// var guid = addF050101.ORD_NO;
+					var guid = item.ORD_NO;
+
+					/* Step1. [取得訂單明細]= addF050102List.WHERE(x=>ORD_NO=guid)
+					 * Step2. Foreach[訂單明細] =  [取得訂單明細]
+					 * Strp3. [訂單明細].ORD_NO = [取得訂單單號] */
+					var addF050102Data = addF050102List.Where(x => x.ORD_NO == guid).ToList();
+					addF050102Data.ForEach(f050102 => { f050102.ORD_NO = ordNo; });
+
+					/* Step1. [取得訂單延伸檔]= addF050103List.WHERE(x=>ORD_NO=guid)
+					 * Step2. [訂單延伸檔].ORD_NO = [取得訂單單號] */
+					var addF050103Data = addF050103List.Where(x => x.ORD_NO == guid).SingleOrDefault();
+					addF050103Data.ORD_NO = ordNo;
+
+					/* Step1. [取得訂單延伸明細檔]=addF05010301List.WHERE(x=>ORD_NO=guid)
+					 * Step2. Foreach[訂單延伸明細檔] =  [取得訂單延伸明細檔]
+					 * Step3. [訂單延伸明細檔].ORD_NO = [取得訂單單號] */
+					var addF05010301Data = addF05010301List.Where(x => x.ORD_NO == guid).ToList();
+					addF05010301Data.ForEach(f05010301 => { f05010301.ORD_NO = ordNo; });
+
+					/* Step1. [取得訂單明細]= addF050104List.WHERE(x=>ORD_NO=guid)
+					 * Step2. Foreach[訂單明細服務型商品] =  [取得訂單明細服務型商品]
+					 * Strp3. [訂單明細服務型商品].ORD_NO = [取得訂單單號] */
+					var addF050104Data = addF050104List.Where(x => x.ORD_NO == guid).ToList();
+					addF050104Data.ForEach(f050104 => { f050104.ORD_NO = ordNo; });
+
+					/* Step1. [訂單配送資訊檔] = addF050304List.WHERE(x=>ORD_NO=guid)
+					 * Step2. [訂單配送資訊檔].ORD_NO = [取得訂單單號]*/
+					F050304 addF050304Data = null;
+					if (addF050304List.Where(x => x.ORD_NO == guid).Any())
+					{
+						addF050304Data = addF050304List.Where(x => x.ORD_NO == guid).SingleOrDefault();
+						addF050304Data.ORD_NO = ordNo;
+					}
+
+					/* Step1. [訂單池主檔] = addF050001List.WHERE(x=>ORD_NO=guid)
+					 * Step2. [訂單池主檔].ORD_NO = [取得訂單單號] */
+					F050001 addF050001Data = null;
+					if (addF050001List.Where(x => x.ORD_NO == guid).Any())
+					{
+						addF050001Data = addF050001List.Where(x => x.ORD_NO == guid).SingleOrDefault();
+						addF050001Data.ORD_NO = ordNo;
+					}
+
+					/* Step1. [取得訂單池明細檔]=addF050002List.WHERE(x=>ORD_NO=guid)
+					 * Step2. Foreach[訂單明細檔] =  [取得訂單池明細檔]
+					 * Step3. [訂單明細檔].ORD_NO = [取得訂單單號] */
+					List<F050002> addF050002Data = addF050002List.Where(x => x.ORD_NO == guid).ToList();
+					addF050002Data.ForEach(f050002 => { f050002.ORD_NO = ordNo; });
+
+					//// 寫入行事曆訊息池
+					//AddMessagePool(sharedService, guid, ordNo);
+
+					// addF050101.ORD_NO =[取得訂單單號]
+					addF050101Data.ORD_NO = ordNo;
+
+					//檢查 本訂單中所有的商品 的廠商編號(F1903.VNR_CODE)，其中有一個商品廠商編號在蘋果廠商編號清單設定檔
+					var productList = CommonService.GetProductList(GupCode, CustCode, addF050102Data.Select(x => x.ITEM_CODE).Distinct().ToList());
+					if (productList.Any(x => _f0003AppleVendorList.Contains(x.ORI_VNR_CODE) || x.ISAPPLE == "1"))
+					{
+						addF050101Data.NP_FLAG = "1";
+						if (addF050001Data != null)
+							addF050001Data.NP_FLAG = "1";
+					}
+
+					//addF050101.Add(addF050101Data);
+					F050101Repo.Add(addF050101Data);
+					F050102Repo.BulkInsert(addF050102Data);
+					F050103Repo.Add(addF050103Data);
+					F050104Repo.BulkInsert(addF050104Data);
+					F05010301Repo.BulkInsert(addF05010301Data);
+					if (addF050304Data != null)
+						F050304Repo.Add(addF050304Data);
+					if (addF050001Data != null)
+						F050001Repo.Add(addF050001Data);
+					if (addF050002Data.Any())
+						F050002Repo.BulkInsert(addF050002Data);
+				});
+			}
+
+			_wmsTransation.Complete();
+
+			return insertCnt;
 		}
 
-		/// <summary>
-		/// 共用欄位格式檢核
-		/// </summary>
-		/// <param name="dcCode">物流中心編號</param>
-		/// <param name="gupCode">業主編號</param>
-		/// <param name="custCode">貨主編號</param>
-		/// <param name="order">貨主通路訂單資料物件</param>
-		/// <returns></returns>
-		protected ApiResult CheckColumnNotNullAndMaxLength(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
+		#endregion 處理純新增訂單
+
+		#region 寫入行事曆訊息池
+		public void AddOrderMessagePool()
 		{
-			TransApiBaseService tacService = new TransApiBaseService();
-			ApiResult res = new ApiResult();
-			List<ApiResponse> data = new List<ApiResponse>();
-
-			#region 定義需檢核欄位、必填、型態、長度
-
-			List<string> shipwayIsOneNotNullColumnList = new List<string> { "StoreId", "StoreName", "ShipDate", "ReturnDate", "EServiceNo" };
-
-			List<string> b2bColumnIsNullColumnList = new List<string> { "SalesBaseNo" };
-
-			// 訂單資料物件
-			List<ApiCkeckColumnModel> orderCheckColumnList = new List<ApiCkeckColumnModel>();
-
-			// 訂單資料明細資料
-			List<ApiCkeckColumnModel> orderItemsCheckColumnList = new List<ApiCkeckColumnModel>();
-
-			// 訂單資料明細服務資料
-			List<ApiCkeckColumnModel> orderServiceItemsCheckColumnList = new List<ApiCkeckColumnModel>();
-
-      List<ApiCkeckColumnModel> receiverOptCheckColumnList = new List<ApiCkeckColumnModel>();
-
-      if (order.ProcFlag == "D")
+			var wmsTransation3 = new WmsTransaction();
+			var sharedService = new SharedService(wmsTransation3);
+			// Foreach addF050101List  GROUP BY BatchNo 
+			_orderList.GroupBy(x => x.BatchNo).ToList()
+			.ForEach(item =>
 			{
-				orderCheckColumnList = new List<ApiCkeckColumnModel>
-				{
-					new ApiCkeckColumnModel{  Name = "CustOrdNo",             Type = typeof(string),   MaxLength = 50, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "ProcFlag",              Type = typeof(string),   MaxLength = 1, Nullable = false }
-				};
-			}
-			else if (order.ProcFlag == "0")
-			{
-				orderCheckColumnList = new List<ApiCkeckColumnModel>
-				{
-					new ApiCkeckColumnModel{  Name = "CustOrdNo",             Type = typeof(string),   MaxLength = 50, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "OrderDate",             Type = typeof(string),   MaxLength = 10, Nullable = false, IsDate = true },
-					new ApiCkeckColumnModel{  Name = "OrderType",             Type = typeof(string),   MaxLength = 1, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "BatchNo",               Type = typeof(string),   MaxLength = 50 },
-					new ApiCkeckColumnModel{  Name = "ShipWay",               Type = typeof(string),   MaxLength = 10, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "TranCode",              Type = typeof(string),   MaxLength = 10 },
-					new ApiCkeckColumnModel{  Name = "ChannelCode",           Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "SubChannelCode",        Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "LogisticsProvider",     Type = typeof(string),   MaxLength = 10, Nullable = order.ShipWay == "3" },
-					new ApiCkeckColumnModel{  Name = "ExpDeliveryDate",       Type = typeof(string),   MaxLength = 10, Nullable = false, IsDate = true },
-					new ApiCkeckColumnModel{  Name = "DeliveryPeriod",        Type = typeof(int),      MaxLength = 1, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "IsCOD",                 Type = typeof(bool),     Nullable = false },
-					new ApiCkeckColumnModel{  Name = "CODAmount",             Type = typeof(decimal),  MaxLength = 11, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "SalesBaseNo",           Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "ShopperName",           Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "ShopperPhone",          Type = typeof(string),   MaxLength = 10 },
-					new ApiCkeckColumnModel{  Name = "ReceiverName",          Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "ReceiverPhone",         Type = typeof(string),   MaxLength = 10, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "ReceiverMobile",        Type = typeof(string),   MaxLength = 10, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "ReceiverZip",           Type = typeof(string),   MaxLength = 5 },
-					new ApiCkeckColumnModel{  Name = "ReceiverAddress",       Type = typeof(string),   MaxLength = 150, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "Memo",                  Type = typeof(string),   MaxLength = 200 },
-					new ApiCkeckColumnModel{  Name = "WarehouseId",           Type = typeof(string),   MaxLength = 1, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "EServiceNo",            Type = typeof(string),   MaxLength = 10 },
-					new ApiCkeckColumnModel{  Name = "ConsignNo",             Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "ShipDate",              Type = typeof(string),   MaxLength = 10, IsDate = true },
-					new ApiCkeckColumnModel{  Name = "StoreId",               Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "StoreName",             Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "ReturnDate",            Type = typeof(string),   MaxLength = 10, IsDate = true },
-					new ApiCkeckColumnModel{  Name = "InvoiceNo",             Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "InvoiceDate",           Type = typeof(string),   MaxLength = 10, IsDate = true },
-					new ApiCkeckColumnModel{  Name = "ProcFlag",              Type = typeof(string),   MaxLength = 1,  Nullable = false },
-					new ApiCkeckColumnModel{  Name = "PrintCustOrdNo",        Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "PrintMemo",             Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "CustCost",              Type = typeof(string),   MaxLength = 10 },
-					new ApiCkeckColumnModel{  Name = "SuggestBoxNo",          Type = typeof(string),   MaxLength = 20 },
-          new ApiCkeckColumnModel{  Name = "MoveOutTarget",         Type = typeof(string),   MaxLength = 10, Nullable = order.CustCost != "MoveOut" },
-          new ApiCkeckColumnModel{  Name = "FastDealType",          Type = typeof(string),   MaxLength = 1 , Nullable = false },
-          new ApiCkeckColumnModel{  Name = "ItemOpType",            Type = typeof(string),   MaxLength = 1,  Nullable = false },
-          new ApiCkeckColumnModel{  Name = "SuggestLogisticCode",   Type = typeof(string),   MaxLength = 10,  },
-        };
+				int total = item.Count();
+				int fail = _failBatchNos.Where(x => x == item.Key).Count();
+				int successed = total - fail;
 
-				// 訂單資料明細資料
-				orderItemsCheckColumnList = new List<ApiCkeckColumnModel>
-				{
-					new ApiCkeckColumnModel{  Name = "ItemSeq",               Type = typeof(string),   MaxLength = 6 },
-					new ApiCkeckColumnModel{  Name = "ItemCode",              Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "ChannelItemCode",       Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "VnrCode",               Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "ItemDesc",              Type = typeof(string),   MaxLength = 20 },
-					new ApiCkeckColumnModel{  Name = "Qty",                   Type = typeof(int),      MaxLength = 6, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "MakeNo",                Type = typeof(string),   MaxLength = 40 },
-					new ApiCkeckColumnModel{  Name = "SerialNo",              Type = typeof(string),   MaxLength = 50 }
-        };
-
-				// 訂單資料明細服務資料
-				orderServiceItemsCheckColumnList = new List<ApiCkeckColumnModel>
-				{
-					new ApiCkeckColumnModel{  Name = "ServiceItemCode",       Type = typeof(string),   MaxLength = 20, Nullable = false },
-					new ApiCkeckColumnModel{  Name = "ServiceItemName",       Type = typeof(string),   MaxLength = 50 },
-				};
-
-        receiverOptCheckColumnList = new List<ApiCkeckColumnModel>
-        {
-          new ApiCkeckColumnModel{  Name = "IsTPEKEL",              Type = typeof(string),   MaxLength = 1},
-        };
-
-      }
-      #endregion
-
-      #region 檢查訂單欄位必填、最大長度
-      List<string> orderIsNullList = new List<string>();
-			List<ApiCkeckColumnModel> orderIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
-			List<string> shipwayIsOneAndColumnIsNullList = new List<string>();
-			List<string> b2bColumnIsNull = new List<string>();
-			List<string> notDateColumn = new List<string>();
-
-			// 找出欄位不符合需必填、超過最大長度的欄位後，寫入各List
-			orderCheckColumnList.ForEach(column =>
-			{
-				// 必填
-				if (!column.Nullable)
-				{
-					if (!DataCheckHelper.CheckRequireColumn(order, column.Name))
-						orderIsNullList.Add(column.Name);
-				}
-
-				if (order.ProcFlag != "D")
-				{
-					// 判斷是否為日期格式(yyyy/MM/dd)字串
-					var value = Convert.ToString(DataCheckHelper.GetRequireColumnValue(order, column.Name));
-					if (column.IsDate && !string.IsNullOrWhiteSpace(value))
-						if (!DataCheckHelper.CheckDataIsDate(order, column.Name))
-							notDateColumn.Add(column.Name);
-
-					// 最大長度
-					if (column.MaxLength > 0)
-					{
-						if (column.Name == "CODAmount")
-						{
-							// 檢核是否符合decimal(11,2)
-							if (!DataCheckHelper.CheckDataIsDecimal(order, column.Name, 9, 2))
-								orderIsExceedMaxLenthList.Add(column);
-						}
-						else
-						{
-							if (!DataCheckHelper.CheckDataMaxLength(order, column.Name, column.MaxLength))
-								orderIsExceedMaxLenthList.Add(column);
-						}
-					}
-
-					// 如果是超取，下列應該檢核必填
-					if (order.ShipWay == "1" && shipwayIsOneNotNullColumnList.Contains(column.Name))
-					{
-						if (!DataCheckHelper.CheckRequireColumn(order, column.Name))
-							shipwayIsOneAndColumnIsNullList.Add(column.Name);
-					}
-
-					// 如果是B2B，下列應該檢核必填
-					if (order.OrderType == "0" && b2bColumnIsNullColumnList.Contains(column.Name))
-					{
-						if (!DataCheckHelper.CheckRequireColumn(order, column.Name))
-							b2bColumnIsNull.Add(column.Name);
-					}
-				}
+				// 取得訊息內容[20766, BatchNo, 成功訂單單數, 異常訂單筆數, 失敗訂單單數, 合計單數]
+				var msgContent = string.Format(TacService.GetMsg("20766"),
+						item.Key,
+						successed,
+						fail,
+						total);
+				// 寫入行事曆訊息池[< 參數1 >,< 參數2 >,< 參數3 >, 20766, &取得訊息內容[20766,[通路資料, < 參數4 >].NAME, BatchNo, 成功訂單單數, 異常訂單筆數, 失敗訂單單數, 合計單數], SCH]
+				sharedService.AddMessagePool("9", DcCode, GupCode, CustCode, "API20766", msgContent, "", "0", "SCH");
 			});
 
-			// 必填訊息
-			if (orderIsNullList.Any())
-				// 回傳訊息內容[20058, < 參數4 >.CustInNo, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
-				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(tacService.GetMsg("20058"), order.CustOrdNo, string.Join("、", orderIsNullList)) });
+			wmsTransation3.Complete();
+		}
+		#endregion 寫入行事曆訊息池
 
-			// 日期格式判斷
-			if (notDateColumn.Any())
-				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20075", MsgContent = string.Format(tacService.GetMsg("20075"), order.CustOrdNo, string.Join("、", notDateColumn)) });
+		public List<CustWms_F050101> GetDatasWithF050301(string dcCode, string gupCode, string custCode, List<string> custOrdNos)
+		{
+			var details = F050101Repo.GetCustWmsDetails(dcCode, gupCode, custCode, custOrdNos);
 
-			// 最大長度訊息
-			if (orderIsExceedMaxLenthList.Any())
-			{
-				List<string> errorMsgList = orderIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
-
-				string errorMsg = string.Join("、", errorMsgList);
-
-				// 檢查進倉單欄位格式(參考2.8.2),如果檢核失敗，回傳 & 訊息內容[20059, < 參數4 >.CustInNo, 欄位格式錯誤清單(格式:[欄位名稱1]格式錯誤必須為X1、[欄位名稱2]格式錯誤必須為X2)]
-				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(tacService.GetMsg("20059"), order.CustOrdNo, errorMsg) });
-			}
-
-			// 超取必填訊息
-			if (shipwayIsOneAndColumnIsNullList.Any())
-				// 回傳訊息內容[20762, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
-				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20762", MsgContent = string.Format(tacService.GetMsg("20762"), order.CustOrdNo, string.Join("、", shipwayIsOneAndColumnIsNullList)) });
-
-			// B2B必填訊息
-			if (b2bColumnIsNull.Any())
-				// 回傳訊息內容[20763,必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]』
-				data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20763", MsgContent = string.Format(tacService.GetMsg("20763"), order.CustOrdNo, string.Join("、", b2bColumnIsNull)) });
-
-      #endregion
-
-      #region 檢查收貨/店取額外資訊
-      if (order.ProcFlag != "D")
-      {
-        var i = 0;
-        List<string> orderItemsIsNullList = new List<string>();
-        List<ApiCkeckColumnModel> orderItemsIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
-        if (order.ReceiverOpt != null)
-        {
-          receiverOptCheckColumnList.ForEach(o =>
-          {
-            // 必填
-            if (!o.Nullable)
-              if (!DataCheckHelper.CheckRequireColumn(order.ReceiverOpt, o.Name))
-                orderItemsIsNullList.Add(o.Name);
-
-            // 最大長度
-            if (o.MaxLength > 0)
-              if (!DataCheckHelper.CheckDataMaxLength(order.ReceiverOpt, o.Name, o.MaxLength))
-                orderItemsIsExceedMaxLenthList.Add(o);
-          });
-
-          // 必填訊息
-          if (orderItemsIsNullList.Any())
-            // 檢查進倉單明細必填欄位(參考2.8.2) ,如果檢核失敗，回傳 & 訊息內容[20058, < 參數4 >.CustInNo, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
-            data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(tacService.GetMsg("20058"), $"{order.CustOrdNo}第{i + 1}筆明細", string.Join("、", orderItemsIsNullList)) });
-
-          // 最大長度訊息
-          if (orderItemsIsExceedMaxLenthList.Any())
-          {
-            List<string> errorMsgList = orderItemsIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
-            string errorMsg = string.Join("、", errorMsgList);
-            // 檢查進倉單明細必填欄位(參考2.8.2) , 如果檢核失敗，回傳 & 訊息內容[20059, < 參數4 >.CustInNo, 欄位格式錯誤清單(格式:[欄位名稱1]格式錯誤必須為X1、[欄位名稱2]格式錯誤必須為X2)]
-            data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(tacService.GetMsg("20059"), $"{order.CustOrdNo}第{i + 1}筆明細", errorMsg) });
-          }
-
-          i++;
-
-        }
-      }
-      #endregion 檢查收貨/店取額外資訊
-
-      #region 檢查訂單明細欄位必填、最大長度
-      if (order.ProcFlag != "D")
-			{
-				List<string> orderItemsIsNullList;
-				List<ApiCkeckColumnModel> orderItemsIsExceedMaxLenthList;
-				List<string> orderServiceItemsIsNullList;
-				List<ApiCkeckColumnModel> orderServiceItemsIsExceedMaxLenthList;
-
-        // No.2073 檢核是否重複指定出貨序號
-        var designateSerials = order.Details.Select(o => o.SerialNo).Where(o => !string.IsNullOrWhiteSpace(o)).ToList();
-
-        // 訂單指定2個以上序號，當前訂單自己檢核
-        if (designateSerials.Count() > 1)
-        {
-          var duplicateSerialNo = designateSerials.GroupBy(o => o).Where(x => x.Count() > 1).Select(x => x.Key);
-
-          if (duplicateSerialNo.Any())
-          {
-            data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20879", MsgContent = string.Format(tacService.GetMsg("20879"), string.Join("、", duplicateSerialNo)) });
-          }
-        }
-
-        var designateSerialOrders = _orderList.Where(o => o.Details.Any(x => !string.IsNullOrWhiteSpace(x.SerialNo)) && o.CustOrdNo != order.CustOrdNo);
-
-        // 同批次有2個以上訂單有指定序號，訂單之間相互檢核
-        if (designateSerialOrders.Any())
-        {
-          var duplicateSerialNo = new List<string>();
-
-          foreach (var designateSerial in designateSerials)
-          {
-            foreach (var designateSerialOrder in designateSerialOrders)
-            {
-              if (designateSerialOrder.Details.Any(o => o.SerialNo == designateSerial) && !duplicateSerialNo.Contains(designateSerial))
-              {
-                duplicateSerialNo.Add(designateSerial);
-              }
-            }
-          }
-
-          if (duplicateSerialNo.Any())
-            data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20880", MsgContent = string.Format(tacService.GetMsg("20880"), string.Join("、", duplicateSerialNo)) });
-        }
-          
-        if (order.Details != null && order.Details.Any())
+			var result = details.GroupBy(x => new { x.ORD_NO, x.CUST_ORD_NO, x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.PROC_FLAG, x.F050301_ORD_NO })
+				.Select(x => new CustWms_F050101
 				{
-					for (int i = 0; i < order.Details.Count; i++)
-					{
-						var currDetail = order.Details[i];
+					ORD_NO = x.Key.ORD_NO,
+					CUST_ORD_NO = x.Key.CUST_ORD_NO,
+					DC_CODE = x.Key.DC_CODE,
+					GUP_CODE = x.Key.GUP_CODE,
+					CUST_CODE = x.Key.CUST_CODE,
+					PROC_FLAG = x.Key.PROC_FLAG,
+					F050301_ORD_NO = x.Key.F050301_ORD_NO,
+					F050801_STATUS_List = x.Select(s => s.F050801_STATUS).ToList()
+				}).ToList();
 
-						orderItemsIsNullList = new List<string>();
-						orderItemsIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
-            
-						orderItemsCheckColumnList.ForEach(o =>
-						{
-							// 必填
-							if (!o.Nullable)
-								if (!DataCheckHelper.CheckRequireColumn(currDetail, o.Name))
-									orderItemsIsNullList.Add(o.Name);
-
-							// 最大長度
-							if (o.MaxLength > 0)
-								if (!DataCheckHelper.CheckDataMaxLength(currDetail, o.Name, o.MaxLength))
-									orderItemsIsExceedMaxLenthList.Add(o);
-						});
-
-						// 必填訊息
-						if (orderItemsIsNullList.Any())
-							// 檢查進倉單明細必填欄位(參考2.8.2) ,如果檢核失敗，回傳 & 訊息內容[20058, < 參數4 >.CustInNo, 必填欄位未填寫的欄位清單(格式:[欄位名稱1]、[欄位名稱2])]
-							data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(tacService.GetMsg("20058"), $"{order.CustOrdNo}第{i + 1}筆明細", string.Join("、", orderItemsIsNullList)) });
-
-						// 最大長度訊息
-						if (orderItemsIsExceedMaxLenthList.Any())
-						{
-							List<string> errorMsgList = orderItemsIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
-							string errorMsg = string.Join("、", errorMsgList);
-							// 檢查進倉單明細必填欄位(參考2.8.2) , 如果檢核失敗，回傳 & 訊息內容[20059, < 參數4 >.CustInNo, 欄位格式錯誤清單(格式:[欄位名稱1]格式錯誤必須為X1、[欄位名稱2]格式錯誤必須為X2)]
-							data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(tacService.GetMsg("20059"), $"{order.CustOrdNo}第{i + 1}筆明細", errorMsg) });
-						}
-
-						#region 檢核服務型品號資料
-						if (currDetail.ServiceItemDetails.Any())
-						{
-							for (int j = 0; j < currDetail.ServiceItemDetails.Count; j++)
-							{
-								var currService = currDetail.ServiceItemDetails[j];
-
-								orderServiceItemsCheckColumnList.ForEach(obj =>
-								{
-									orderServiceItemsIsNullList = new List<string>();
-									orderServiceItemsIsExceedMaxLenthList = new List<ApiCkeckColumnModel>();
-									// 必填
-									if (!obj.Nullable)
-										if (!DataCheckHelper.CheckRequireColumn(currService, obj.Name))
-											orderServiceItemsIsNullList.Add(obj.Name);
-									// 最大長度
-									if (obj.MaxLength > 0)
-										if (!DataCheckHelper.CheckDataMaxLength(currService, obj.Name, obj.MaxLength))
-											orderServiceItemsIsExceedMaxLenthList.Add(obj);
-									// 必填訊息
-									if (orderServiceItemsIsNullList.Any())
-										data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20058", MsgContent = string.Format(tacService.GetMsg("20058"), $"{order.CustOrdNo}第{i + 1}筆明細第{j + 1}筆服務", string.Join("、", orderServiceItemsIsNullList)) });
-
-									// 最大長度訊息
-									if (orderServiceItemsIsExceedMaxLenthList.Any())
-									{
-										List<string> errorMsgList = orderServiceItemsIsExceedMaxLenthList.Select(x => $"{x.Name}格式錯誤必須為{x.Type.Name}{ (x.MaxLength > 0 ? $"({x.MaxLength})" : string.Empty)}").ToList();
-										string errorMsg = string.Join("、", errorMsgList);
-										data.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20059", MsgContent = string.Format(tacService.GetMsg("20059"), $"{order.CustOrdNo}第{i + 1}筆明細第{j + 1}筆服務", errorMsg) });
-									}
-								});
-							}
-						}
-            #endregion
-          }
-        }
-			}
-
-			#endregion
-
-			res.Data = data;
-
-			return res;
+			return result;
 		}
-
-		/// <summary>
-		/// 貨主自訂欄位格式檢核
-		/// </summary>
-		/// <param name="dcCode">物流中心編號</param>
-		/// <param name="gupCode">業主編號</param>
-		/// <param name="custCode">貨主編號</param>
-		/// <param name="warehouseIns">進倉單資料物件</param>
-		/// <returns></returns>
-		protected ApiResult CheckCustomColumnType(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
-		{
-			// 請預留方法
-			ApiResult res = new ApiResult();
-			res.Data = new List<ApiResponse>();
-			return res;
-		}
-
-		/// <summary>
-		/// 共用欄位資料檢核
-		/// </summary>
-		/// <param name="dcCode">物流中心編號</param>
-		/// <param name="gupCode">業主編號</param>
-		/// <param name="custCode">貨主編號</param>
-		/// <param name="warehouseIns">進倉單資料物件</param>
-		/// <returns></returns>
-		protected ApiResult CheckCommonColumnData(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
-		{
-			CheckOrderService coService = new CheckOrderService(CommonService);
-			ApiResult res = new ApiResult();
-			List<ApiResponse> data = new List<ApiResponse>();
-
-			#region 主檔欄位資料檢核
-			// 檢查ProcFlag
-			coService.CheckProcFlag(data, order);
-
-			// 檢查貨主單號是否存在
-			var isAdd = coService.CheckCustExistForThirdPart(data, _custWmsList, order, custCode);
-			if (isAdd)
-				_IsAddF075102CustOrdNoList.Add(order.CustOrdNo);
-
-			// 檢查廠商編號
-			coService.CheckOrderType(data, order);
-
-			// 檢查配送方式
-			coService.CheckShipWay(data, order);
-
-			// 檢查方便到貨時段
-			coService.CheckDeliveryPeriod(data, order);
-
-			// 檢核出貨倉別
-			coService.CheckWarehouseId(data, order, _warhouseList);
-
-			// 檢查物流商是否存在
-			coService.CheckLogisticsProvider(data, order, _f1947List);
-
-			// 檢查超取配送商
-			coService.CheckEService(data, order, _eServiceList);
-
-			// 檢查門市編號
-			coService.CheckRetail(data, order, _retailList);
-
-			// 檢查貨主自訂義分類
-			coService.CheckCustCost(data, order);
-
-			// 檢查優先處理旗標
-			coService.CheckFastDealType(data, order);
-
-      // 檢查商品處理類型
-      coService.CheckItemOpType(data, order);
-
-      // 檢查收貨/店取額外資訊(是否為北北基欄位)
-      coService.CheckReceiverOpt(data, order);
-
-      // 檢查ChannelCode通路編號是否存在於資料庫中
-      coService.CheckChannelCode(data, order);
-
-      // 檢查SubChannelCode子通路編號是否存在於資料庫中
-      coService.CheckSubChannelCode(data, order);
-
-      // 檢查建議物流商編號
-      coService.CheckSuggestLogisticCod(data, order, _f0002List);
-      #endregion
-
-      #region 明細欄位資料檢核
-      // 檢查明細筆數
-      coService.CheckDetailCnt(data, order);
-
-			// 檢核項次必須大於0，且同一張單據內的序號不可重複
-			coService.CheckDetailSeq(data, order);
-
-			// 檢查明細進倉數量
-			coService.CheckDetailQty(data, order);
-			#endregion
-
-			#region 明細服務資料檢核
-			coService.CheckServiceItemCode(data, order);
-			#endregion
-
-			#region 檢查資料是否完整
-			// 檢查資料是否完整
-			coService.CheckOrderData(data, gupCode, custCode, order);
-			#endregion
-
-			// 檢查貨主單號是否存在
-			coService.CheckCustOrdNo(order, ref _f050101List, ref _f050102List, ref _f05010301List, ref _f050103List, ref _f050104List,
-					ref _f050304List, ref _f050001List, ref _f050002List);
-
-			res.Data = data;
-
-			return res;
-		}
-
-		/// <summary>
-		/// 貨主自訂欄位資料檢核
-		/// </summary>
-		/// <param name="dcCode">物流中心編號</param>
-		/// <param name="gupCode">業主編號</param>
-		/// <param name="custCode">貨主編號</param>
-		/// <param name="warehouseIns">進倉單資料物件</param>
-		/// <returns></returns>
-		protected ApiResult CheckCustomColumnValue(string dcCode, string gupCode, string custCode, PostCreateOrdersModel order)
-		{
-			// 請預留方法
-			ApiResult res = new ApiResult();
-			res.Data = new List<ApiResponse>();
-			return res;
-		}
-		#endregion
 	}
 }

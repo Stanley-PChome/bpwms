@@ -243,5 +243,23 @@ namespace Wms3pl.Datas.F00
 
             return SqlQuery<string>(sql,sqlParameter.ToArray()).FirstOrDefault();
         }
+
+        public IQueryable<F000904> GetDatas(string topic, string subtopic = null)
+        {
+          var param = new List<SqlParameter>
+          {
+            new SqlParameter("@p0", topic) { SqlDbType = System.Data.SqlDbType.VarChar }
+          };
+
+          var sql = @"SELECT * FROM F000904 WHERE TOPIC = @p0";
+
+          if (!string.IsNullOrWhiteSpace(subtopic))
+          {
+            sql += $" AND SUBTOPIC = @p{param.Count}";
+            param.Add(new SqlParameter($"@p{param.Count}", subtopic) { SqlDbType = System.Data.SqlDbType.VarChar });
+          }
+
+          return SqlQuery<F000904>(sql, param.ToArray());
+        }
     }
 }

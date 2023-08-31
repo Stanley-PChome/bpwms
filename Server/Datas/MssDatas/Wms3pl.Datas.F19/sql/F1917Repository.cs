@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -99,5 +100,29 @@ SELECT ROW_NUMBER ()OVER(ORDER BY A.GUP_CODE,A.CUST_CODE,A.ACODE,A.BCODE,A.CCODE
             sql += parms.CombineSqlInParameters(" AND CUST_CODE ", custCodes);
             ExecuteSqlCommand(sql, parms.ToArray());
         }
+
+    public IQueryable<string> GetDatasByCCodeReturnCCODE(string gupCode, string custCode, List<string> cCodes)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = custCode },
+      };
+
+      if (cCodes == null || !cCodes.Any())
+        return null;
+
+      var sql = $@"SELECT CCODE FROM F1917 WHERE GUP_CODE=@p0 AND CUST_CODE=@p1 {para.CombineSqlInParameters("AND CCODE", cCodes, SqlDbType.VarChar)}";
+      return SqlQueryWithSqlParameterSetDbType<string>(sql, para.ToArray());
+
+      #region 原LINQ
+      /*
+      return _db.F1917s.Where(x => x.GUP_CODE == gupCode
+                                  && x.CUST_CODE == custCode
+                                  && cCodes.Contains(x.CCODE));
+      */
+      #endregion
     }
+
+  }
 }

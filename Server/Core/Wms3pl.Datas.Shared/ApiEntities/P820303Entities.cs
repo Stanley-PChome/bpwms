@@ -77,7 +77,7 @@ namespace Wms3pl.Datas.Shared.ApiEntities
 
 		public class VnrReturnDetailTemp
 		{
-			public int Seq { get; set; }
+			public string Seq { get; set; }
 			public string ItemSeq { get; set; }
 			public string ItemCode { get; set; }
 			public int ActQty { get; set; }
@@ -87,7 +87,7 @@ namespace Wms3pl.Datas.Shared.ApiEntities
 		{
 			public string WmsOrdNo { get; set; }
 			public string WmsOrdSeq { get; set; }
-			public int Seq { get; set; }
+			public string Seq { get; set; }
 			public string ItemSeq { get; set; }
 			public string ItemCode { get; set; }
 			public int A_ActQty { get; set; }

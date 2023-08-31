@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
@@ -81,6 +82,36 @@ namespace Wms3pl.Datas.F05
                                AND {inSql}";
 
             ExecuteSqlCommand(sql, param.ToArray());
+        }
+        //訂單明細
+        public IQueryable<SaleOrderReplyWarehouseOutDetail> GetWarehouseOutDetails(string dcCode, string gupCode, string custCode, string ordNo)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+                new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+								new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+								new SqlParameter("@p3", ordNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+						};
+
+            var sql = @"
+SELECT A.ORD_SEQ AS ItemSeq, A.ITEM_CODE AS ItemCode, ISNULL( SUM(B.A_DELV_QTY), 0) AS ActQty
+  FROM F050102 A
+  LEFT JOIN F05030202 B ON A.DC_CODE = B.DC_CODE
+                       AND A.GUP_CODE = B.GUP_CODE
+                       AND A.CUST_CODE = B.CUST_CODE
+                       AND A.ORD_NO = B.ORD_NO
+                       AND A.ORD_SEQ = B.ORD_SEQ
+ WHERE A.DC_CODE = @p0
+   AND A.GUP_CODE = @p1
+   AND A.CUST_CODE = @p2
+   AND A.ORD_NO = @p3
+ GROUP BY A.ORD_NO, A.ORD_SEQ, A.ITEM_CODE
+";
+
+            var result = SqlQuery<SaleOrderReplyWarehouseOutDetail>(sql, parameters.ToArray());
+
+            return result;
         }
     }
 }

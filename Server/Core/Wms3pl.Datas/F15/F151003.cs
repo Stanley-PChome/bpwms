@@ -20,109 +20,128 @@ namespace Wms3pl.Datas.F15
 	  /// </summary>
     [Key]
     [Required]
-	  public Int32 LACK_SEQ { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 LACK_SEQ { get; set; }
 
 	  /// <summary>
 	  /// 調撥單號
 	  /// </summary>
     [Required]
-	  public string ALLOCATION_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string ALLOCATION_NO { get; set; }
 
 	  /// <summary>
 	  /// 商品編號
 	  /// </summary>
     [Required]
-	  public string ITEM_CODE { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string ITEM_CODE { get; set; }
 
 	  /// <summary>
 	  /// 調撥數量
 	  /// </summary>
     [Required]
-	  public Int32 MOVE_QTY { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 MOVE_QTY { get; set; }
 
 	  /// <summary>
 	  /// 缺貨數量
 	  /// </summary>
     [Required]
-	  public Int32 LACK_QTY { get; set; }
+    [Column(TypeName = "int")]
+    public Int32 LACK_QTY { get; set; }
 
 	  /// <summary>
 	  /// 缺貨原因(F1951 WHERE UCT_ID = ‘MV’)
 	  /// </summary>
     [Required]
-	  public string REASON { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string REASON { get; set; }
 
-	  /// <summary>
-	  /// 缺貨原因備註
-	  /// </summary>
-	  public string MEMO { get; set; }
+    /// <summary>
+    /// 缺貨原因備註
+    /// </summary>
+    [Column(TypeName = "nvarchar(200)")]
+    public string MEMO { get; set; }
 
 	  /// <summary>
 	  /// 缺貨處理狀態(0缺貨待確認 2結案 9刪除)
 	  /// </summary>
     [Required]
-	  public string STATUS { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string STATUS { get; set; }
 
 	  /// <summary>
 	  /// 貨主編號
 	  /// </summary>
     [Required]
-	  public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
 
 	  /// <summary>
 	  /// 業主編號
 	  /// </summary>
     [Required]
-	  public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(4)")]
+    public string GUP_CODE { get; set; }
 
 	  /// <summary>
 	  /// 物流中心
 	  /// </summary>
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
-	  /// <summary>
-	  /// 建立人名
-	  /// </summary>
-	  public string CRT_NAME { get; set; }
+    /// <summary>
+    /// 建立人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
 
 	  /// <summary>
 	  /// 調撥單序號
 	  /// </summary>
     [Required]
-	  public Int16 ALLOCATION_SEQ { get; set; }
+    [Column(TypeName = "smallint")]
+    public Int16 ALLOCATION_SEQ { get; set; }
 
-	  /// <summary>
-	  /// 缺貨類型 (0:調撥下架、1:調撥上架)
-	  /// </summary>
-	  public string LACK_TYPE { get; set; }
+    /// <summary>
+    /// 缺貨類型 (0:調撥下架、1:調撥上架)
+    /// </summary>
+    [Column(TypeName = "char(1)")]
+    public string LACK_TYPE { get; set; }
   }
 }
         

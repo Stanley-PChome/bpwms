@@ -20,114 +20,133 @@ namespace Wms3pl.Datas.F91
 	  /// </summary>
     [Key]
     [Required]
-	  public string QUOTE_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string QUOTE_NO { get; set; }
 
 	  /// <summary>
 	  /// 報價項目名稱
 	  /// </summary>
     [Required]
-	  public string QUOTE_NAME { get; set; }
+    [Column(TypeName = "nvarchar(100)")]
+    public string QUOTE_NAME { get; set; }
 
 	  /// <summary>
 	  /// 生效日期
 	  /// </summary>
     [Required]
-	  public DateTime ENABLE_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime ENABLE_DATE { get; set; }
 
 	  /// <summary>
 	  /// 失效日期
 	  /// </summary>
     [Required]
-	  public DateTime DISABLE_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime DISABLE_DATE { get; set; }
 
 	  /// <summary>
 	  /// 毛利率
 	  /// </summary>
     [Required]
-	  public Single NET_RATE { get; set; }
+    [Column(TypeName = "real")]
+    public Single NET_RATE { get; set; }
 
 	  /// <summary>
 	  /// 成本價(%)
 	  /// </summary>
     [Required]
-	  public decimal COST_PRICE { get; set; }
+    [Column(TypeName = "decimal(11, 2)")]
+    public decimal COST_PRICE { get; set; }
 
 	  /// <summary>
 	  /// 貨主加工申請價
 	  /// </summary>
     [Required]
-	  public decimal APPLY_PRICE { get; set; }
+    [Column(TypeName = "decimal(11, 2)")]
+    public decimal APPLY_PRICE { get; set; }
 
-	  /// <summary>
-	  /// 貨主加工核定價
-	  /// </summary>
-	  public decimal? APPROVED_PRICE { get; set; }
+    /// <summary>
+    /// 貨主加工核定價
+    /// </summary>
+    [Column(TypeName = "decimal(11, 2)")]
+    public decimal? APPROVED_PRICE { get; set; }
 
 	  /// <summary>
 	  /// 委外商 F1928
 	  /// </summary>
     [Required]
-	  public string OUTSOURCE_ID { get; set; }
+    [Column(TypeName = "varchar(10)")]
+    public string OUTSOURCE_ID { get; set; }
 
 	  /// <summary>
 	  /// 單據狀態(0:待處理  1:已核准 2:結案 9:取消)F000904
 	  /// </summary>
     [Required]
-	  public string STATUS { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string STATUS { get; set; }
 
 	  /// <summary>
 	  /// 物流中心(000:不指定)
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 業主
 	  /// </summary>
     [Key]
     [Required]
-	  public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string GUP_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
 	  /// <summary>
 	  /// 建立人名
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
 
 	  /// <summary>
 	  /// 貨主編號
 	  /// </summary>
     [Key]
     [Required]
-	  public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
   }
 }
         

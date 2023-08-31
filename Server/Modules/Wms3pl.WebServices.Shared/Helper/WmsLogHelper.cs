@@ -91,6 +91,7 @@ namespace Wms3pl.WebServices.Shared.Helper
 			{
 				var f0092Repo = new F0092Repository(Schemas.CoreSchema, _wmsTransaction);
 				f0092Repo.BulkInsert(addF0092List,true,"ID");
+				addF0092List = new List<F0092>();
 			}
 			
 		}

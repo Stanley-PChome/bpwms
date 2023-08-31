@@ -542,6 +542,9 @@
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PickOutOfStockResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.PrintBoxSettingParam.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\P08WcfService\Wms3pl.WpfClient.ExDataServices.P08WcfService.RetailDeliverReportDetail.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -523,16 +523,35 @@ namespace Wms3pl.WebServices.Shared.Services
 			return wareHouseTmpr;
 		}
 
-		#endregion
+    public string GetWarehouseTmprName(string tmprCode)
+    {
+      var tmprName = "";
+      switch (tmprCode)
+      {
+        case "01":
+          tmprName = "常溫";
+          break;
+        case "02":
+          tmprName = "低溫";
+          break;
+        case "03":
+          tmprName = "冷凍";
+          break;
+      }
 
-		/// <summary>
-		/// 檢查儲位是否為其他貨主使用
-		/// </summary>
-		/// <param name="dcCode">物流中心</param>
-		/// <param name="locCode">儲位編號</param>
-		/// <param name="nowCustCode">貨主編號</param>
-		/// <returns></returns>
-		public ExecuteResult CheckNowCustCodeLoc(string dcCode,string locCode,string nowCustCode)
+      return tmprName;
+    }
+
+    #endregion
+
+    /// <summary>
+    /// 檢查儲位是否為其他貨主使用
+    /// </summary>
+    /// <param name="dcCode">物流中心</param>
+    /// <param name="locCode">儲位編號</param>
+    /// <param name="nowCustCode">貨主編號</param>
+    /// <returns></returns>
+    public ExecuteResult CheckNowCustCodeLoc(string dcCode,string locCode,string nowCustCode)
 		{
 			ExecuteResult result = new ExecuteResult { IsSuccessed = true };
 			var f1912Repo = new F1912Repository(Schemas.CoreSchema,_wmsTransaction);

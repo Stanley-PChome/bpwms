@@ -20,67 +20,78 @@ namespace Wms3pl.Datas.F91
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 業主
 	  /// </summary>
     [Key]
     [Required]
-	  public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string GUP_CODE { get; set; }
 
 	  /// <summary>
 	  /// 貨主
 	  /// </summary>
     [Key]
     [Required]
-	  public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
 
 	  /// <summary>
 	  /// 加工項目編號 F000904 TOPIC=F910201 SUBTOPIC=PROCESS_ITEM
 	  /// </summary>
     [Key]
     [Required]
-	  public string PROCESS_ITEM { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string PROCESS_ITEM { get; set; }
 
 	  /// <summary>
 	  /// 報價單號
 	  /// </summary>
     [Required]
-	  public string QUOTE_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string QUOTE_NO { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立人員名稱
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 修改日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 修改日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
-	  /// <summary>
-	  /// 修改人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 修改人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 修改人員名稱
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 修改人員名稱
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
   }
 }
         

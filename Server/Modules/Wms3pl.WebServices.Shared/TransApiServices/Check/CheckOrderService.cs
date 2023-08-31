@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Transactions;
 using Wms3pl.Datas.F00;
@@ -14,9 +15,34 @@ using Wms3pl.WebServices.Shared.Services;
 namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 {
   public class CheckOrderService
-  {
-    private TransApiBaseService _tacService;
-    private CommonService _commonService;
+	{
+		#region Repository
+
+		private F075102Repository _f075102Repo;
+		public F075102Repository F075102Repo
+		{
+			get { return _f075102Repo == null ? _f075102Repo = new F075102Repository(Schemas.CoreSchema) : _f075102Repo; }
+			set { _f075102Repo = value; }
+		}
+
+		private F000904Repository _f000904Repo;
+		public F000904Repository F000904Repo
+		{
+			get { return _f000904Repo == null ? _f000904Repo = new F000904Repository(Schemas.CoreSchema) : _f000904Repo; }
+			set { _f000904Repo = value; }
+		}
+
+		#endregion Repository
+
+		private TransApiBaseService _tacService;
+		public TransApiBaseService TacService
+		{
+			get { return _tacService == null ? _tacService = new TransApiBaseService() : _tacService; }
+			set { _tacService = value; }
+		}
+
+
+		private CommonService _commonService;
     public CommonService CommonService
     {
       get { return _commonService == null ? _commonService = new CommonService() : _commonService; }
@@ -27,7 +53,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 
     public CheckOrderService(CommonService _commService = null)
 		{
-			_tacService = new TransApiBaseService();
+			//_tacService = new TransApiBaseService();
 			CommonService = _commService;
 		}
 
@@ -43,7 +69,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		{
 			List<string> procFlags = new List<string> { "0", "D" };
 			if (!procFlags.Contains(order.ProcFlag))
-				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20961", MsgContent = string.Format(_tacService.GetMsg("20961"), order.CustOrdNo) });
+				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20961", MsgContent = string.Format(TacService.GetMsg("20961"), order.CustOrdNo) });
 		}
 
 		/// <summary>
@@ -53,53 +79,64 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		/// <param name="thirdPartOrdersList"></param>
 		/// <param name="warehouseIns"></param>
 		/// <returns></returns>
-		public bool CheckCustExistForThirdPart(List<ApiResponse> res, List<P8202050000_F050101> custWmsList, PostCreateOrdersModel order, string custCode)
+		public bool CheckCustExistForThirdPart(List<ApiResponse> res, List<CustWms_F050101> custWmsList, PostCreateOrdersModel order, string custCode)
 		{
 			var notCancelStatus = new List<decimal> { 2, 5, 6 };// 2(已包裝)或5(已裝車)或6(已扣帳)
 			var isAddF075102 = false;
-			var f075102Repo = new F075102Repository(Schemas.CoreSchema);
-			var f000904Repo = new F000904Repository(Schemas.CoreSchema);
 			var currCustData = custWmsList.Where(x => x.CUST_ORD_NO == order.CustOrdNo).FirstOrDefault();
 			if (order.ProcFlag == "D")
 			{
 				if (currCustData == null)
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20962", MsgContent = string.Format(_tacService.GetMsg("20962"), order.CustOrdNo) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20962", MsgContent = string.Format(TacService.GetMsg("20962"), order.CustOrdNo) });
 				else
 				{
 					// 檢核是否有一筆出貨單狀態為[F050801.STATUS] = 2(已包裝)或5(已裝車)或6(已扣帳)則不允許訂單取消
 					if (currCustData.F050801_STATUS_List.Any() && currCustData.F050801_STATUS_List.Where(x => notCancelStatus.Contains(x)).Any())
-						res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20965", MsgContent = string.Format(_tacService.GetMsg("20965"), order.CustOrdNo) });
+						res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20965", MsgContent = string.Format(TacService.GetMsg("20965"), order.CustOrdNo) });
 					else
-						f075102Repo.DelF075102ByKey(custCode, order.CustOrdNo);// 刪除F075102
+						F075102Repo.DelF075102ByKey(custCode, order.CustOrdNo);// 刪除F075102
 				}
 			}
 			else if (order.ProcFlag == "0")
 			{
 				if (currCustData != null)
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20964", MsgContent = string.Format(_tacService.GetMsg("20964"), order.CustOrdNo) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20964", MsgContent = string.Format(TacService.GetMsg("20964"), order.CustOrdNo) });
 				else
 				{
 					#region 新增出貨單匯入控管紀錄表
-					var f075102Res = f075102Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
-						new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
-					() =>
+					try
 					{
-						var lockF075102 = f075102Repo.LockF075102();
-						var f075102 = f075102Repo.Find(o => o.CUST_CODE == custCode && o.CUST_ORD_NO == order.CustOrdNo, isForUpdate: true, isByCache: false);
-						if (f075102 == null)
-						{
-							f075102 = new F075102 { CUST_CODE = custCode, CUST_ORD_NO = order.CustOrdNo };
-							f075102Repo.Add(f075102);
-							isAddF075102 = true;
-						}
+						var f075102 = new F075102 { CUST_CODE = custCode, CUST_ORD_NO = order.CustOrdNo };
+						F075102Repo.Add(f075102);
+						isAddF075102 = true;
+					}
+					catch (SqlException sqlEx)
+					{
+						if (sqlEx.Number == 2627)
+							res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20964", MsgContent = string.Format(TacService.GetMsg("20964"), order.CustOrdNo) });
 						else
-						{
-							f075102 = null; // 代表F075102已存在資料
-						}
-						return f075102;
-					});
-					if (f075102Res == null)// 代表F075102已存在資料
-						res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20964", MsgContent = string.Format(_tacService.GetMsg("20964"), order.CustOrdNo) });
+							throw sqlEx;
+					}
+					//var f075102Res = F075102Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
+					//	new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
+					//() =>
+					//{
+					//	var lockF075102 = F075102Repo.LockF075102();
+					//	var f075102 = F075102Repo.Find(o => o.CUST_CODE == custCode && o.CUST_ORD_NO == order.CustOrdNo, isForUpdate: true, isByCache: false);
+					//	if (f075102 == null)
+					//	{
+					//		f075102 = new F075102 { CUST_CODE = custCode, CUST_ORD_NO = order.CustOrdNo };
+					//		F075102Repo.Add(f075102);
+					//		isAddF075102 = true;
+					//	}
+					//	else
+					//	{
+					//		f075102 = null; // 代表F075102已存在資料
+					//	}
+					//	return f075102;
+					//});
+					//if (f075102Res == null)// 代表F075102已存在資料
+					//	res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20964", MsgContent = string.Format(TacService.GetMsg("20964"), order.CustOrdNo) });
 					#endregion
 				}
 			}
@@ -119,7 +156,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 				List<string> orderTypes = new List<string> { "0", "1" };
 
 				if (!orderTypes.Contains(order.OrderType))
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20751", MsgContent = string.Format(_tacService.GetMsg("20751"), order.CustOrdNo) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20751", MsgContent = string.Format(TacService.GetMsg("20751"), order.CustOrdNo) });
 			}
 		}
 
@@ -135,7 +172,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 				List<string> shipWays = new List<string> { "1", "2", "3", "4" };
 
 				if (!shipWays.Contains(order.ShipWay))
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20752", MsgContent = string.Format(_tacService.GetMsg("20752"), order.CustOrdNo) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20752", MsgContent = string.Format(TacService.GetMsg("20752"), order.CustOrdNo) });
 			}
 		}
 
@@ -151,7 +188,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 				List<byte> deliveryPeriods = new List<byte> { 1, 2, 3, 4 };
 
 				if (order.DeliveryPeriod == null || order.DeliveryPeriod == 0 || !deliveryPeriods.Contains(Convert.ToByte(order.DeliveryPeriod)))
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20754", MsgContent = string.Format(_tacService.GetMsg("20754"), order.CustOrdNo) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20754", MsgContent = string.Format(TacService.GetMsg("20754"), order.CustOrdNo) });
 			}
 		}
 
@@ -166,7 +203,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			if (order.ProcFlag == "0")
 			{
 				if (!warhouseList.Where(x => x.WAREHOUSE_TYPE == order.WarehouseId).Any())
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20759", MsgContent = string.Format(_tacService.GetMsg("20759"), order.CustOrdNo, order.WarehouseId) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20759", MsgContent = string.Format(TacService.GetMsg("20759"), order.CustOrdNo, order.WarehouseId) });
 			}
 		}
 
@@ -179,7 +216,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		public void CheckLogisticsProvider(List<ApiResponse> res, PostCreateOrdersModel order, List<F1947> f1947List)
 		{
 			if (order.ProcFlag == "0" && order.ShipWay != "3" && !f1947List.Where(x => x.ALL_ID == order.LogisticsProvider).Any())
-				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20761", MsgContent = string.Format(_tacService.GetMsg("20761"), order.CustOrdNo, order.LogisticsProvider) });
+				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20761", MsgContent = string.Format(TacService.GetMsg("20761"), order.CustOrdNo, order.LogisticsProvider) });
 		}
 
 		/// <summary>
@@ -191,7 +228,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		public void CheckEService(List<ApiResponse> res, PostCreateOrdersModel order, List<F194713> eServiceList)
 		{
 			if (order.ProcFlag == "0" && order.ShipWay == "1" && !eServiceList.Where(x => x.ALL_ID == order.LogisticsProvider && x.ESERVICE == order.EServiceNo).Any())
-				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20757", MsgContent = string.Format(_tacService.GetMsg("20757"), order.CustOrdNo, order.EServiceNo) });
+				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20757", MsgContent = string.Format(TacService.GetMsg("20757"), order.CustOrdNo, order.EServiceNo) });
 		}
 
 		/// <summary>
@@ -203,7 +240,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		public void CheckRetail(List<ApiResponse> res, PostCreateOrdersModel order, List<F1910> retailList)
 		{
 			if (order.ProcFlag == "0" && order.OrderType == "0" && !retailList.Where(x => x.RETAIL_CODE == order.SalesBaseNo).Any())
-				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20758", MsgContent = string.Format(_tacService.GetMsg("20758"), order.CustOrdNo, order.SalesBaseNo) });
+				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20758", MsgContent = string.Format(TacService.GetMsg("20758"), order.CustOrdNo, order.SalesBaseNo) });
 		}
 
 		/// <summary>
@@ -216,8 +253,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
       if (_f000904Datas == null)
       {
         _f000904Datas = new List<F000904Data>();
-        var f000904Repo = new F000904Repository(Schemas.CoreSchema);
-        _f000904Datas = f000904Repo.GetF000904Data("F050101", "CUST_COST").ToList();
+        _f000904Datas = F000904Repo.GetF000904Data("F050101", "CUST_COST").ToList();
       }
 
       List<string> custCost = _f000904Datas.Select(x => x.VALUE).Distinct().ToList();
@@ -226,7 +262,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 				res.Add(new ApiResponse {
           No = order.CustOrdNo,
           MsgCode = "20023",
-          MsgContent = string.Format(_tacService.GetMsg("20023"), order.CustOrdNo, string.Join(", ", _f000904Datas.Select(x => $"{x.VALUE}:{x.NAME}")))
+          MsgContent = string.Format(TacService.GetMsg("20023"), order.CustOrdNo, string.Join(", ", _f000904Datas.Select(x => $"{x.VALUE}:{x.NAME}")))
         });
 		}
 
@@ -240,7 +276,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			List<string> fastDealType = new List<string> { "1", "2", "3" };
 
 			if (order.ProcFlag == "0" && (!string.IsNullOrWhiteSpace(order.FastDealType) && !fastDealType.Contains(order.FastDealType)))
-				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20113", MsgContent = string.Format(_tacService.GetMsg("20113"), order.CustOrdNo) });
+				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20113", MsgContent = string.Format(TacService.GetMsg("20113"), order.CustOrdNo) });
 		}
 
     /// <summary>
@@ -253,7 +289,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
       List<string> ItemOpType = new List<string> { "0", "1" };
 
       if (order.ProcFlag == "0" && (!string.IsNullOrWhiteSpace(order.ItemOpType) && !ItemOpType.Contains(order.ItemOpType)))
-        res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20129", MsgContent = string.Format(_tacService.GetMsg("20129"), order.CustOrdNo) });
+        res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20129", MsgContent = string.Format(TacService.GetMsg("20129"), order.CustOrdNo) });
     }
 
     /// <summary>
@@ -271,7 +307,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 
       //檢查是否為北北基欄位資料是否正確
       if (order.ProcFlag == "0" && !string.IsNullOrWhiteSpace(order.ReceiverOpt.IsTPEKEL) && !IsTPEKEL.Contains(order.ReceiverOpt.IsTPEKEL))
-        res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20130", MsgContent = string.Format(_tacService.GetMsg("20130"), order.CustOrdNo) });
+        res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20130", MsgContent = string.Format(TacService.GetMsg("20130"), order.CustOrdNo) });
     }
 
     /// <summary>
@@ -376,7 +412,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			// 如果<參數4>.ProcFlag<> D且檢查明細是否為null或明細筆數是否為0，若是則回傳&訊息內容[20071, <參數4>.CustInNo]
 			if (order.ProcFlag == "0" && (order.Details == null || (order.Details != null && order.Details.Count == 0)))
 			{
-				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20071", MsgContent = string.Format(_tacService.GetMsg("20071"), order.CustOrdNo) });
+				res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20071", MsgContent = string.Format(TacService.GetMsg("20071"), order.CustOrdNo) });
 			}
 		}
 
@@ -391,7 +427,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 			{
 				if (order.Details.Count > order.Details.Select(x => x.ItemSeq).Distinct().Count())
 				{
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20070", MsgContent = _tacService.GetMsg("20070") });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20070", MsgContent = TacService.GetMsg("20070") });
 				}
 			}
 		}
@@ -410,7 +446,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 
 				if (itemSeqList.Count > 0)
 				{
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20060", MsgContent = string.Format(_tacService.GetMsg("20060"), order.CustOrdNo, string.Join("、", itemSeqList)) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20060", MsgContent = string.Format(TacService.GetMsg("20060"), order.CustOrdNo, string.Join("、", itemSeqList)) });
 				}
 			}
 		}
@@ -436,7 +472,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 								.Where(x => !x.IsPass).Select(x => x.ServiceItemCode).ToList();
 
 						if (repeatServiceCode.Any())
-							res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20963", MsgContent = string.Format(_tacService.GetMsg("20963"), $"{order.CustOrdNo}第{i + 1}筆明細", string.Join("、", repeatServiceCode)) });
+							res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20963", MsgContent = string.Format(TacService.GetMsg("20963"), $"{order.CustOrdNo}第{i + 1}筆明細", string.Join("、", repeatServiceCode)) });
 					}
 				}
 			}
@@ -468,7 +504,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 				//  IF[差異品號清單].Any() then
 				if (differentData.Any())
 				{
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20086", MsgContent = string.Format(_tacService.GetMsg("20086"), order.CustOrdNo, string.Join("、", differentData)) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20086", MsgContent = string.Format(TacService.GetMsg("20086"), order.CustOrdNo, string.Join("、", differentData)) });
 				}
 
         #region 指定序號出貨檢查
@@ -479,7 +515,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
           {
             //如果有給序號，數量不可為1以外的值
             if (chkSerialNoColumn.Any(x => x.Qty != 1))
-              res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20756", MsgContent = _tacService.GetMsg("20756") });
+              res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20756", MsgContent = TacService.GetMsg("20756") });
 
             //如果有給序號，只能序號綁儲位商品
             var chkBundleLoc = productList.Where(x => chkSerialNoColumn.Any(y => y.ItemCode == x.ITEM_CODE) && x.BUNDLE_SERIALLOC != "1");
@@ -490,7 +526,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
                 {
                   No = order.CustOrdNo,
                   MsgCode = "20790",
-                  MsgContent = string.Format(_tacService.GetMsg("20790"), string.Join("、", chkBundleLoc.Select(x => x.ITEM_CODE)))
+                  MsgContent = string.Format(TacService.GetMsg("20790"), string.Join("、", chkBundleLoc.Select(x => x.ITEM_CODE)))
                 });
             }
           }
@@ -504,7 +540,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 				// IF[停售品號清單].Any() then
 				if (cessationOfSaleList.Any())
 				{
-					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20087", MsgContent = string.Format(_tacService.GetMsg("20087"), order.CustOrdNo, string.Join("、", differentData)) });
+					res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20087", MsgContent = string.Format(TacService.GetMsg("20087"), order.CustOrdNo, string.Join("、", differentData)) });
 				}
 			}
 		}
@@ -521,7 +557,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
         var channels = _commonService.GetF000904s("F050101", "CHANNEL");
 
         if (!channels.Any(x => x.VALUE == order.ChannelCode))
-          res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20053", MsgContent = _tacService.GetMsg("20053"), ErrorColumn = "ChannelCode" });
+          res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20053", MsgContent = TacService.GetMsg("20053"), ErrorColumn = "ChannelCode" });
       }
     }
 
@@ -537,7 +573,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
         var subChannels = _commonService.GetF000904s("F050101", "SUBCHANNEL");
 
         if (!subChannels.Any(x => x.VALUE == order.SubChannelCode))
-          res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20131", MsgContent = _tacService.GetMsg("20131"), ErrorColumn = "SubChannelCode" });
+          res.Add(new ApiResponse { No = order.CustOrdNo, MsgCode = "20131", MsgContent = TacService.GetMsg("20131"), ErrorColumn = "SubChannelCode" });
       }
     }
 
@@ -559,7 +595,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
             {
               No = order.CustOrdNo,
               MsgCode = "20761",
-              MsgContent = string.Format(_tacService.GetMsg("20761"), order.CustOrdNo, order.SuggestLogisticCode),
+              MsgContent = string.Format(TacService.GetMsg("20761"), order.CustOrdNo, order.SuggestLogisticCode),
               ErrorColumn = "SuggestLogisticCode"
             });
           }

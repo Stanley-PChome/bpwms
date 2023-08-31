@@ -657,134 +657,138 @@ namespace Wms3pl.WebServices.Shared.Services
             return result;
         }
 
-        #region 庫存檢查
-        /// <summary>
-        /// 庫存檢查
-        /// </summary>
-        /// <param name="srcDcCode">來源營業單位</param>
-        /// <param name="gupCode">業主</param>
-        /// <param name="custCode">貨主</param>
-        /// <param name="srcWarehouseId">指定來源倉庫代號</param>
-        /// <param name="srcWarehouseType">指定來源倉別型態代號</param>
-        /// <param name="aTypeCode">指定來源儲區型態代號</param>
-        /// <param name="stockFilterList">庫存資料篩選</param>
-        /// <param name="returnedStocks">歸還後庫存清單</param>
-        /// <param name="stockDetailList">回傳調撥明細庫存</param>
-        /// <returns></returns>
-        public ExecuteResult CheckStocks(string srcDcCode, string gupCode, string custCode, string srcWarehouseType, string srcWarehouseId, string aTypeCode,
-            List<StockFilter> stockFilterList, List<F1913> returnedStocks, ref List<StockDetail> stockDetailList)
+    #region 庫存檢查
+    /// <summary>
+    /// 庫存檢查
+    /// </summary>
+    /// <param name="srcDcCode">來源營業單位</param>
+    /// <param name="gupCode">業主</param>
+    /// <param name="custCode">貨主</param>
+    /// <param name="srcWarehouseId">指定來源倉庫代號</param>
+    /// <param name="srcWarehouseType">指定來源倉別型態代號</param>
+    /// <param name="aTypeCode">指定來源儲區型態代號</param>
+    /// <param name="stockFilterList">庫存資料篩選</param>
+    /// <param name="returnedStocks">歸還後庫存清單</param>
+    /// <param name="stockDetailList">回傳調撥明細庫存</param>
+    /// <returns></returns>
+    public ExecuteResult CheckStocks(string srcDcCode, string gupCode, string custCode, string srcWarehouseType, string srcWarehouseId, string aTypeCode,
+        List<StockFilter> stockFilterList, List<F1913> returnedStocks, ref List<StockDetail> stockDetailList)
+    {
+      if (_f1913Repo == null)
+        _f1913Repo = new F1913Repository(Schemas.CoreSchema);
+      if (_f1912Repo == null)
+        _f1912Repo = new F1912Repository(Schemas.CoreSchema);
+
+      var serialNoService = new SerialNoService();
+      var errMessages = new List<string>();
+
+      var f190301Repo = new F190301Repository(Schemas.CoreSchema);
+      var itemCodes = stockFilterList.Select(x => x.ItemCode).Distinct().ToList();
+      //取得貨主商品主檔(F1903)
+      var f1903List = GetF1903s(gupCode, custCode, itemCodes);
+      //取得商品材積階層檔
+      var f190301List = GetF190301WithF91000302s(gupCode, itemCodes, new List<string> { "箱", "盒" });
+      var tempStockInfos = new Dictionary<StockFilter, List<StockInfo>>();
+
+      foreach (var item in stockFilterList)
+      {
+        //貨主商品主檔
+        var f1903 = f1903List.FirstOrDefault(x => x.GUP_CODE == gupCode && x.CUST_CODE == custCode &&
+            x.ITEM_CODE == item.ItemCode);
+
+        if (f1903 == null)
         {
-            if (_f1913Repo == null)
-                _f1913Repo = new F1913Repository(Schemas.CoreSchema);
-            if (_f1912Repo == null)
-                _f1912Repo = new F1912Repository(Schemas.CoreSchema);
-
-            var serialNoService = new SerialNoService();
-            var errMessages = new List<string>();
-
-            var f190301Repo = new F190301Repository(Schemas.CoreSchema);
-            var itemCodes = stockFilterList.Select(x => x.ItemCode).Distinct().ToList();
-            //取得貨主商品主檔(F1903)
-            var f1903List = GetF1903s(gupCode, custCode, itemCodes);
-            //取得商品材積階層檔
-            var f190301List = GetF190301WithF91000302s(gupCode, itemCodes, new List<string> { "箱", "盒" });
-            var tempStockInfos = new Dictionary<StockFilter, List<StockInfo>>();
-
-            foreach (var item in stockFilterList)
-            {
-                //貨主商品主檔
-                var f1903 = f1903List.FirstOrDefault(x => x.GUP_CODE == gupCode && x.CUST_CODE == custCode &&
-                    x.ITEM_CODE == item.ItemCode);
-
-                if (f1903 == null)
-                {
-                    errMessages.Add(string.Format("「{0}」不存在商品主檔中", item.ItemCode));
-                    continue;
-                }
-                var f190301s = f190301List.Where(x => x.GUP_CODE == gupCode && x.ITEM_CODE == item.ItemCode).ToList();
-
-                //取得商品儲位庫存數
-                var findStockInfo = tempStockInfos.FirstOrDefault(x => x.Key.ItemCode == item.ItemCode &&
-                                                                                                                             x.Key.LocCode == item.LocCode &&
-                                                                                                                             ((x.Key.SerialNos == null && item.SerialNos == null) || x.Key.SerialNos.SequenceEqual(item.SerialNos)) &&
-                                                                                                                             ((x.Key.ValidDates == null && item.ValidDates == null) || x.Key.ValidDates.SequenceEqual(item.ValidDates)) &&
-                                                                                                                             ((x.Key.EnterDates == null && item.EnterDates == null) || x.Key.EnterDates.SequenceEqual(item.EnterDates)) &&
-                                                                                                                             ((x.Key.VnrCodes == null && item.VnrCodes == null) || x.Key.VnrCodes.SequenceEqual(item.VnrCodes)) &&
-                                                                                                                             ((x.Key.BoxCtrlNos == null && item.BoxCtrlNos == null) || x.Key.BoxCtrlNos.SequenceEqual(item.BoxCtrlNos)) &&
-                                                                                                                             ((x.Key.PalletCtrlNos == null && item.PalletCtrlNos == null) || x.Key.PalletCtrlNos.SequenceEqual(item.PalletCtrlNos)) &&
-                                                                                                                             ((x.Key.MakeNos == null && item.MakeNos == null) || x.Key.MakeNos.SequenceEqual(item.MakeNos)) &&
-                                                                                                                             x.Key.isAllowExpiredItem == item.isAllowExpiredItem
-                                                                                                                             );
-                List<StockInfo> stockInfos;
-                if (!findStockInfo.Equals(default(KeyValuePair<StockFilter, List<StockInfo>>)))
-                {
-                    stockInfos = findStockInfo.Value;
-                }
-                else
-                {
-                    stockInfos = _f1913Repo.GetStockInfies(srcDcCode, gupCode, custCode, item.ItemCode, item.LocCode,
-                    srcWarehouseType, item.SrcWarehouseId ?? srcWarehouseId, aTypeCode, false, item.SerialNos, item.ValidDates, item.EnterDates, item.VnrCodes,
-                    item.BoxCtrlNos, item.PalletCtrlNos, item.MakeNos, item.isAllowExpiredItem).ToList();
-                }
-
-
-                if (returnedStocks != null && returnedStocks.Any())
-                {
-                    //取得商品儲位已歸還後庫存數
-                    var returnedStocksByItemLoc = returnedStocks.Where(x => x.DC_CODE == srcDcCode && x.GUP_CODE == gupCode &&
-                        x.CUST_CODE == custCode && x.ITEM_CODE == item.ItemCode && x.LOC_CODE == item.LocCode).ToList();
-
-                    if (item.EnterDates != null && item.EnterDates.Any())
-                        returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.EnterDates.Any(y => y == x.ENTER_DATE)).ToList();
-
-                    if (item.ValidDates != null && item.ValidDates.Any())
-                        returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.ValidDates.Any(y => y == x.VALID_DATE)).ToList();
-
-                    if (item.VnrCodes != null && item.VnrCodes.Any())
-                        returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.VnrCodes.Any(y => y == x.VNR_CODE)).ToList();
-
-                    if (item.SerialNos != null && item.SerialNos.Any())
-                        returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.SerialNos.Any(y => y == x.SERIAL_NO)).ToList();
-
-
-                    if (item.BoxCtrlNos != null && item.BoxCtrlNos.Any())
-                        returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.BoxCtrlNos.Any(y => y == x.BOX_CTRL_NO)).ToList();
-
-                    if (item.PalletCtrlNos != null && item.PalletCtrlNos.Any())
-                        returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.PalletCtrlNos.Any(y => y == x.PALLET_CTRL_NO)).ToList();
-                    if (item.MakeNos != null && item.MakeNos.Any())
-                        returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.MakeNos.Any(y => y == x.MAKE_NO)).ToList();
-
-                    //取代或建立商品儲位庫存數
-                    ReplaceOrAddstockInfosByItemLoc(returnedStocksByItemLoc, ref stockInfos);
-                }
-
-                var isBatchItem = serialNoService.IsBatchNoItem(gupCode, custCode, item.ItemCode);
-                var tempQty = item.Qty;
-
-                //產生調撥庫存明細清單
-                var rtnStockDetailList = GenerateSrcItemLocQtys(srcDcCode, stockInfos, f1903, f190301s, isBatchItem, item.DataId,
-                    ref tempQty);
-
-                if (tempQty > 0)
-                {
-                    var validate = item.ValidDates == null ? "" : item.ValidDates.FirstOrDefault().ToString("yyyy-MM-dd");
-                    var makeNo = item.MakeNos == null ? "" : item.MakeNos.FirstOrDefault();
-                    errMessages.Add(string.Format("商品「{0}」、效期：{1}、批號：{2}，數量不足{3}", f1903.ITEM_CODE, validate, makeNo, tempQty));
-                }
-                else
-                {
-                    stockDetailList.AddRange(rtnStockDetailList);
-                }
-
-                tempStockInfos.Add(item, stockInfos);
-            }
-
-            if (errMessages.Any())
-                return new ExecuteResult { IsSuccessed = false, Message = string.Join("\n", errMessages) };
-
-            return new ExecuteResult(true);
+          errMessages.Add(string.Format("「{0}」不存在商品主檔中", item.ItemCode));
+          continue;
         }
+        var f190301s = f190301List.Where(x => x.GUP_CODE == gupCode && x.ITEM_CODE == item.ItemCode).ToList();
+
+        //取得商品儲位庫存數
+        var findStockInfo = tempStockInfos.FirstOrDefault(x => x.Key.ItemCode == item.ItemCode &&
+                            (string.IsNullOrWhiteSpace(item.LocCode) ? true : x.Key.LocCode == item.LocCode) &&
+                            ((x.Key.SerialNos == null && item.SerialNos == null) || x.Key.SerialNos.SequenceEqual(item.SerialNos)) &&
+                            ((x.Key.ValidDates == null && item.ValidDates == null) || x.Key.ValidDates.SequenceEqual(item.ValidDates)) &&
+                            ((x.Key.EnterDates == null && item.EnterDates == null) || x.Key.EnterDates.SequenceEqual(item.EnterDates)) &&
+                            ((x.Key.VnrCodes == null && item.VnrCodes == null) || x.Key.VnrCodes.SequenceEqual(item.VnrCodes)) &&
+                            ((x.Key.BoxCtrlNos == null && item.BoxCtrlNos == null) || x.Key.BoxCtrlNos.SequenceEqual(item.BoxCtrlNos)) &&
+                            ((x.Key.PalletCtrlNos == null && item.PalletCtrlNos == null) || x.Key.PalletCtrlNos.SequenceEqual(item.PalletCtrlNos)) &&
+                            ((x.Key.MakeNos == null && item.MakeNos == null) || x.Key.MakeNos.SequenceEqual(item.MakeNos)) &&
+                            x.Key.isAllowExpiredItem == item.isAllowExpiredItem
+                            );
+
+        List<StockInfo> stockInfos;
+        if (!findStockInfo.Equals(default(KeyValuePair<StockFilter, List<StockInfo>>)))
+        {
+          stockInfos = findStockInfo.Value;
+        }
+        else
+        {
+          stockInfos = _f1913Repo.GetStockInfies(srcDcCode, gupCode, custCode, item.ItemCode, item.LocCode,
+          srcWarehouseType, item.SrcWarehouseId ?? srcWarehouseId, aTypeCode, false, item.SerialNos, item.ValidDates, item.EnterDates, item.VnrCodes,
+          item.BoxCtrlNos, item.PalletCtrlNos, item.MakeNos, item.isAllowExpiredItem).ToList();
+        }
+
+
+        if (returnedStocks != null && returnedStocks.Any())
+        {
+          //取得商品儲位已歸還後庫存數
+          var returnedStocksByItemLoc = returnedStocks.Where(x => x.DC_CODE == srcDcCode && x.GUP_CODE == gupCode &&
+              x.CUST_CODE == custCode && x.ITEM_CODE == item.ItemCode).ToList();
+
+          if (!string.IsNullOrWhiteSpace(item.LocCode))
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => x.LOC_CODE == item.LocCode).ToList();
+
+          if (item.EnterDates != null && item.EnterDates.Any())
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.EnterDates.Any(y => y == x.ENTER_DATE)).ToList();
+
+          if (item.ValidDates != null && item.ValidDates.Any())
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.ValidDates.Any(y => y == x.VALID_DATE)).ToList();
+
+          if (item.VnrCodes != null && item.VnrCodes.Any())
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.VnrCodes.Any(y => y == x.VNR_CODE)).ToList();
+
+          if (item.SerialNos != null && item.SerialNos.Any())
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.SerialNos.Any(y => y == x.SERIAL_NO)).ToList();
+
+
+          if (item.BoxCtrlNos != null && item.BoxCtrlNos.Any())
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.BoxCtrlNos.Any(y => y == x.BOX_CTRL_NO)).ToList();
+
+          if (item.PalletCtrlNos != null && item.PalletCtrlNos.Any())
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.PalletCtrlNos.Any(y => y == x.PALLET_CTRL_NO)).ToList();
+          if (item.MakeNos != null && item.MakeNos.Any())
+            returnedStocksByItemLoc = returnedStocksByItemLoc.Where(x => item.MakeNos.Any(y => y == x.MAKE_NO)).ToList();
+
+          //取代或建立商品儲位庫存數
+          ReplaceOrAddstockInfosByItemLoc(returnedStocksByItemLoc, ref stockInfos);
+        }
+
+        var isBatchItem = serialNoService.IsBatchNoItem(gupCode, custCode, item.ItemCode);
+        var tempQty = item.Qty;
+
+        //產生調撥庫存明細清單
+        var rtnStockDetailList = GenerateSrcItemLocQtys(srcDcCode, stockInfos, f1903, f190301s, isBatchItem, item.DataId,
+            ref tempQty);
+
+        if (tempQty > 0)
+        {
+          var validate = item.ValidDates == null ? "" : item.ValidDates.FirstOrDefault().ToString("yyyy-MM-dd");
+          var makeNo = item.MakeNos == null ? "" : item.MakeNos.FirstOrDefault();
+          errMessages.Add(string.Format("商品「{0}」、效期：{1}、批號：{2}，數量不足{3}", f1903.ITEM_CODE, validate, makeNo, tempQty));
+        }
+        else
+        {
+          stockDetailList.AddRange(rtnStockDetailList);
+        }
+
+        tempStockInfos.Add(item, stockInfos);
+      }
+
+      if (errMessages.Any())
+        return new ExecuteResult { IsSuccessed = false, Message = string.Join("\n", errMessages) };
+
+      return new ExecuteResult(true);
+    }
 
         /// <summary>
         /// 取代或建立商品儲位庫存數
@@ -2317,7 +2321,6 @@ namespace Wms3pl.WebServices.Shared.Services
       var f151002Repo = new F151002Repository(Schemas.CoreSchema, _wmsTransaction);
       var f151003Repo = new F151003Repository(Schemas.CoreSchema, _wmsTransaction);
       var f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
-      var f1913Repo = new F1913Repository(Schemas.CoreSchema, _wmsTransaction);
       var f191302Repo = new F191302Repository(Schemas.CoreSchema, _wmsTransaction);
       var f1924Repo = new F1924Repository(Schemas.CoreSchema);
       var f191204Repo = new F191204Repository(Schemas.CoreSchema, _wmsTransaction);
@@ -2332,8 +2335,6 @@ namespace Wms3pl.WebServices.Shared.Services
       var returnStocks = new List<F1913>();
       var addF151002Datas = new List<F151002>();
       var updF151002Datas = new List<F151002>();
-      var addF1913Datas = new List<F1913>();
-      var updF1913Datas = new List<F1913>();
       var addF191302List = new List<F191302>();
       var updF2501Datas = new List<F2501>();
       var delF191204Datas = new List<F191204>();
@@ -2625,21 +2626,26 @@ namespace Wms3pl.WebServices.Shared.Services
               #endregion
 
               #region 更新or新增 F1913庫存數
-              StockRecovery(ref addF1913Datas,
-                  ref updF1913Datas,
-                  currDetail.Qty,
-                  f151002.DC_CODE,
-                  f151002.GUP_CODE,
-                  f151002.CUST_CODE,
-                  f151002.ITEM_CODE,
-                  string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
-                  f151002.VALID_DATE,
-                  f151002.ENTER_DATE,
-                  f151002.VNR_CODE,
-                  f151002.SERIAL_NO,
-                  f151002.BOX_CTRL_NO,
-                  f151002.PALLET_CTRL_NO,
-                  f151002.MAKE_NO);
+              StockService.AddStock(new List<OrderStockChange>
+              {
+                new OrderStockChange
+                {
+                  DcCode = f151002.DC_CODE,
+                  GupCode = f151002.GUP_CODE,
+                  CustCode = f151002.CUST_CODE,
+                  LocCode = string.IsNullOrWhiteSpace(currDetail.TarLocCode) ? f151002.TAR_LOC_CODE : currDetail.TarLocCode,
+                  ItemCode = f151002.ITEM_CODE,
+                  MakeNo = f151002.MAKE_NO,
+                  EnterDate = f151002.ENTER_DATE,
+                  VnrCode = f151002.VNR_CODE,
+                  VaildDate = f151002.VALID_DATE,
+                  SerialNo = f151002.SERIAL_NO,
+                  BoxCtrlNo = f151002.BOX_CTRL_NO,
+                  PalletCtrlNo = f151002.PALLET_CTRL_NO,
+                  Qty = currDetail.Qty,
+                  WmsNo = f151002.ALLOCATION_NO,
+                }
+              });
               #endregion
             }
 
@@ -2663,10 +2669,6 @@ namespace Wms3pl.WebServices.Shared.Services
           f1511Repo.BulkInsert(addF1511Datas);
         if (updF1511Datas.Any())
           f1511Repo.BulkUpdate(updF1511Datas);
-        if (addF1913Datas.Any())
-          f1913Repo.BulkInsert(addF1913Datas);
-        if (updF1913Datas.Any())
-          f1913Repo.BulkUpdate(updF1913Datas);
         if (updF2501Datas.Any())
           f2501Repo.BulkUpdate(updF2501Datas);
         if (delF191204Datas.Any())
@@ -3080,7 +3082,6 @@ namespace Wms3pl.WebServices.Shared.Services
             var result = new AllocationStockLackkResult { IsSuccessed = true, AddF191302List = new List<F191302>(), ReturnNewAllocations = new List<ReturnNewAllocation>() };
             if (_commonService == null)
                 _commonService = new CommonService();
-            var shardService = new SharedService(_wmsTransaction);
 
             var srcWareHouseId = _commonService.GetLoc(stockLack.F151002.DC_CODE, stockLack.F151002.SRC_LOC_CODE).WAREHOUSE_ID;
             // 產生純上架到疑似遺失倉調撥單
@@ -3120,7 +3121,7 @@ namespace Wms3pl.WebServices.Shared.Services
                                 }
                             }
             };
-            var returnAllocationResult = shardService.CreateOrUpdateAllocation(newAllocationParam);
+            var returnAllocationResult = CreateOrUpdateAllocation(newAllocationParam);
             if (!returnAllocationResult.Result.IsSuccessed)
                 return new AllocationStockLackkResult { IsSuccessed = returnAllocationResult.Result.IsSuccessed, Message = returnAllocationResult.Result.Message };
             else

@@ -30,12 +30,6 @@ namespace Wms3pl.Datas.F19
 
         }
 
-        public IQueryable<F1917> GetDatasByCCode(string gupCode, string custCode, List<string> cCodes)
-        {
-            return _db.F1917s.Where(x => x.GUP_CODE == gupCode
-                                        && x.CUST_CODE == custCode
-                                        && cCodes.Contains(x.CCODE));
-        }
 
         public IQueryable<F1917> GetDatasBySCategory(string gupCode, string custCode, List<PostItemCategorySCategorysModel> sCategorys)
         {

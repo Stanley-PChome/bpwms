@@ -127,10 +127,13 @@ namespace Wms3pl.WebServices.Shared.Services
 
                 var existData = f1913Repo.GetReplensihData(dcCode, gupCode, custCode, itemCode, null, null).ToList();
 
-                if(currStock.Any())
-                    existData = existData.Where(x => !currStock.Select(z => z.MakeNo).Contains(x.MakeNo)).ToList();
-
-                if (existData.Any())
+        if (currStock.Any())
+        {
+          //existData = existData.Except(currStock).ToList();
+          existData = existData.Where(x => !currStock.Where(y => string.IsNullOrWhiteSpace(y.SerialNo)).Select(z => z.MakeNo).Contains(x.MakeNo)).ToList();
+          existData = existData.Where(x => !currStock.Where(y => !string.IsNullOrWhiteSpace(y.SerialNo)).Select(z => z.SerialNo).Contains(x.SerialNo)).ToList();
+        }
+        if (existData.Any())
                 {
                     returnList.AddRange(existData);
                     _replenishStockList.AddRange(existData);
@@ -164,6 +167,9 @@ namespace Wms3pl.WebServices.Shared.Services
 						// 取得90天每日商品出貨平均數
 			      var replensihStockData = f050801Rep.GetReplensihStockData(dcCode, gupCode, custCode, 90).ToList();
 			      replensihStockData = replensihStockData.Where(x=> needReplenishItemCodes.Contains(x.ITEM_CODE)).ToList();
+
+            if (!replensihStockData.Any())
+              return new ApiResult { IsSuccessed = true, Data = new List<ApiResponse> { new ApiResponse { MsgContent = "無符合補貨條件的商品" } } };
 
 						var isPass = false;
             var proRes = new ReplenishProcessRes();
@@ -206,91 +212,92 @@ namespace Wms3pl.WebServices.Shared.Services
             return res;
         }
 
-        /// <summary>
-        /// 手動補貨
-        /// </summary>
-        /// <param name="dcCode">物流中心編號</param>
-        /// <param name="gupCode">業主編號</param>
-        /// <param name="custCode">貨主編號</param>
-        /// <param name="ids">F050805.ID清單</param>
-        /// <returns></returns>
-        public ExecuteResult ManualReplenish(string dcCode, string gupCode, string custCode, List<decimal> ids)
+    /// <summary>
+    /// 手動補貨
+    /// </summary>
+    /// <param name="dcCode">物流中心編號</param>
+    /// <param name="gupCode">業主編號</param>
+    /// <param name="custCode">貨主編號</param>
+    /// <param name="ids">F050805.ID清單</param>
+    /// <returns></returns>
+    public ExecuteResult ManualReplenish(string dcCode, string gupCode, string custCode, List<decimal> ids)
+    {
+      var res = new ExecuteResult(true);
+      var f050801Rep = new F050801Repository(Schemas.CoreSchema);
+      var stockService = new StockService();
+
+      // 取得需要手動補貨商品資料By F050805.ID
+      var replensihStockData = f050801Rep.GetReplensihStockData(dcCode, gupCode, custCode, ids: ids).ToList();
+
+      var isPass = false;
+      var proRes = new ReplenishProcessRes();
+      string allotBatchNo = string.Empty;
+      try
+      {
+        var itemCodes = replensihStockData.Select(x => new ItemKey { DcCode = x.DC_CODE, GupCode = x.GUP_CODE, CustCode = x.CUST_CODE, ItemCode = x.ITEM_CODE }).Distinct().ToList();
+        allotBatchNo = "BR" + DateTime.Now.ToString("yyyyMMddHHmmss");
+
+        isPass = stockService.CheckAllotStockStatus(true, allotBatchNo, itemCodes);
+
+        // 如果[A]為false 回傳訊息”系統正在配庫中，請稍後在試”，如果[A]為true往下執行
+        if (!isPass)
+          res = new ExecuteResult { IsSuccessed = false, Message = "仍有程序正在配庫補貨單所配庫商品，請稍待再配庫" };
+        else
         {
-            var res = new ExecuteResult(true);
-            var f050801Rep = new F050801Repository(Schemas.CoreSchema);
-            var stockService = new StockService();
-
-            // 取得需要手動補貨商品資料By F050805.ID
-            var replensihStockData = f050801Rep.GetReplensihStockData(dcCode, gupCode, custCode, ids: ids).ToList();
-
-            var isPass = false;
-            var proRes = new ReplenishProcessRes();
-						string allotBatchNo=string.Empty;
-            try
+          // [B] = 呼叫ReplenishProcess
+          proRes = ReplenishProcess(ReplenishType.Manual, dcCode, gupCode, custCode,
+            replensihStockData.GroupBy(x => new { x.ITEM_CODE, x.MAKE_NO, x.SERIAL_NO }).Select(x => new ItemNeedQtyModel
             {
-								var itemCodes = replensihStockData.Select(x => new ItemKey { DcCode = x.DC_CODE, GupCode = x.GUP_CODE, CustCode = x.CUST_CODE, ItemCode = x.ITEM_CODE }).Distinct().ToList();
-				        allotBatchNo = "BR" + DateTime.Now.ToString("yyyyMMddHHmmss");
-
-								isPass = stockService.CheckAllotStockStatus(true, allotBatchNo,itemCodes);
-
-                // 如果[A]為false 回傳訊息”系統正在配庫中，請稍後在試”，如果[A]為true往下執行
-                if (!isPass)
-                    res = new ExecuteResult { IsSuccessed = false, Message = "仍有程序正在配庫補貨單所配庫商品，請稍待再配庫" };
-                else
-                {
-                    // [B] = 呼叫ReplenishProcess
-                    proRes = ReplenishProcess(ReplenishType.Manual, dcCode, gupCode, custCode, replensihStockData.Select(x => new ItemNeedQtyModel
-                    {
-                        ItemCode = x.ITEM_CODE,
-                        NeedQty = x.RESULT_QTY,
-                        MakeNo = x.MAKE_NO,
-						SerialNo = x.SERIAL_NO
-                    }).ToList(), "3");
-                }
-            }
-            finally
-            {
-                if (isPass)
-                    stockService.UpdateAllotStockStatusToNotAllot(allotBatchNo);
-            }
-
-            if (proRes.ReturnAllocationList != null && proRes.ReturnAllocationList.Any())
-                res = new ExecuteResult
-                {
-                    IsSuccessed = true,
-                    Message = string.Join("\n", 
-                    proRes.ReturnAllocationList.GroupBy(x => x.Message).Select(x => $"{x.Key}\n{string.Join((x.Key == "該商品庫存不足" ? "、" : "；"), x.Select(z => z.No)) }").ToList())
-                };
-
-            return res;
+              ItemCode = x.Key.ITEM_CODE,
+              NeedQty = x.Sum(x1 => x1.RESULT_QTY),
+              MakeNo = x.Key.MAKE_NO,
+              SerialNo = x.Key.SERIAL_NO
+            }).ToList(), "3");
         }
+      }
+      finally
+      {
+        if (isPass)
+          stockService.UpdateAllotStockStatusToNotAllot(allotBatchNo);
+      }
 
-        /// <summary>
-        /// 補貨處理
-        /// </summary>
-        /// <param name="replenishType">進入方式</param>
-        /// <param name="dcCode">物流中心編號</param>
-        /// <param name="gupCode">業主編號</param>
-        /// <param name="custCode">貨主編號</param>
-        /// <param name="itemNeedQtyList">商品需求量清單</param>
-        /// <param name="allocationTypeCode">調撥單類型</param>
-        public ReplenishProcessRes ReplenishProcess(ReplenishType replenishType, string dcCode, string gupCode, string custCode, List<ItemNeedQtyModel> itemNeedQtyList, string allocationTypeCode)
+      if (proRes.ReturnAllocationList != null && proRes.ReturnAllocationList.Any())
+        res = new ExecuteResult
         {
-            var result = new ReplenishProcessRes();
-            result.ItemSuggetReplenishList = GetItemSuggetReplenishQty(dcCode, gupCode, custCode, itemNeedQtyList);
-            result.ReturnAllocationList = CreateReplenishAllocation(replenishType, dcCode, gupCode, custCode, result.ItemSuggetReplenishList, allocationTypeCode);
-            return result;
-        }
+          IsSuccessed = true,
+          Message = string.Join("\n",
+            proRes.ReturnAllocationList.GroupBy(x => x.Message).Select(x => $"{x.Key}\n{string.Join((x.Key == "該商品庫存不足" ? "、" : "；"), x.Select(z => z.No)) }").ToList())
+        };
 
-        /// <summary>
-        /// 取得商品補貨建議量
-        /// </summary>
-        /// <param name="dcCode">物流中心編號</param>
-        /// <param name="gupCode">業主編號</param>
-        /// <param name="custCode">貨主編號</param>
-        /// <param name="itemNeedQtyList">商品需求量清單</param>
-        /// <returns></returns>
-        public List<ItemNeedQtyModel> GetItemSuggetReplenishQty(string dcCode, string gupCode, string custCode, List<ItemNeedQtyModel> itemNeedQtyList)
+      return res;
+    }
+
+    /// <summary>
+    /// 補貨處理
+    /// </summary>
+    /// <param name="replenishType">進入方式</param>
+    /// <param name="dcCode">物流中心編號</param>
+    /// <param name="gupCode">業主編號</param>
+    /// <param name="custCode">貨主編號</param>
+    /// <param name="itemNeedQtyList">商品需求量清單</param>
+    /// <param name="allocationTypeCode">調撥單類型</param>
+    public ReplenishProcessRes ReplenishProcess(ReplenishType replenishType, string dcCode, string gupCode, string custCode, List<ItemNeedQtyModel> itemNeedQtyList, string allocationTypeCode)
+    {
+      var result = new ReplenishProcessRes();
+      result.ItemSuggetReplenishList = GetItemSuggetReplenishQty(dcCode, gupCode, custCode, itemNeedQtyList);
+      result.ReturnAllocationList = CreateReplenishAllocation(replenishType, dcCode, gupCode, custCode, result.ItemSuggetReplenishList, allocationTypeCode);
+      return result;
+    }
+
+    /// <summary>
+    /// 取得商品補貨建議量
+    /// </summary>
+    /// <param name="dcCode">物流中心編號</param>
+    /// <param name="gupCode">業主編號</param>
+    /// <param name="custCode">貨主編號</param>
+    /// <param name="itemNeedQtyList">商品需求量清單</param>
+    /// <returns></returns>
+    public List<ItemNeedQtyModel> GetItemSuggetReplenishQty(string dcCode, string gupCode, string custCode, List<ItemNeedQtyModel> itemNeedQtyList)
         {
             var commonService = new CommonService();
             var itemService = new ItemService();
@@ -412,96 +419,105 @@ namespace Wms3pl.WebServices.Shared.Services
             return itemNeedQtyList;
         }
 
-        /// <summary>
-        /// 建立補貨調撥單
-        /// </summary>
-        /// <param name="replenishType">進入方式</param>
-        /// <param name="dcCode">物流中心編號</param>
-        /// <param name="gupCode">業主編號</param>
-        /// <param name="custCode">貨主編號</param>
-        /// <param name="itemSuggetReplenishList">計算後商品需求量清單</param>
-        /// <param name="allocationTypeCode">調撥單類型</param>
-        /// <returns></returns>
-        public List<ExecuteResult> CreateReplenishAllocation(ReplenishType replenishType, string dcCode, string gupCode, string custCode, List<ItemNeedQtyModel> itemSuggetReplenishList, string allocationTypeCode)
+    /// <summary>
+    /// 建立補貨調撥單
+    /// </summary>
+    /// <param name="replenishType">進入方式</param>
+    /// <param name="dcCode">物流中心編號</param>
+    /// <param name="gupCode">業主編號</param>
+    /// <param name="custCode">貨主編號</param>
+    /// <param name="itemSuggetReplenishList">計算後商品需求量清單</param>
+    /// <param name="allocationTypeCode">調撥單類型</param>
+    /// <returns></returns>
+    public List<ExecuteResult> CreateReplenishAllocation(ReplenishType replenishType, string dcCode, string gupCode, string custCode, List<ItemNeedQtyModel> itemSuggetReplenishList, string allocationTypeCode)
+    {
+      var sharedSrv = new SharedService(_wmsTransaction);
+      var stowShelfAreaService = new StowShelfAreaService(_wmsTransaction);
+      var res = new List<ExecuteResult>();
+      var returnStocks = new List<F1913>();
+      var returnNewAllocationList = new List<ReturnNewAllocation>();
+      // 補貨調撥單調整為一品一張調撥單，若有指定批號，則為一品一批號一張調撥單。
+      foreach (var item in itemSuggetReplenishList)
+      {
+        var inStr = string.IsNullOrWhiteSpace(item.SerialNo) ? (string.IsNullOrEmpty(item.MakeNo) ? string.Empty : $",批號:{item.MakeNo}") : $",序號:{item.SerialNo}";
+
+        if (item.SuggestReplenishQty > 0)
         {
-            var sharedSrv = new SharedService(_wmsTransaction);
-            var stowShelfAreaService = new StowShelfAreaService(_wmsTransaction);
-            var res = new List<ExecuteResult>();
+          string tarWarehouseId = null;
 
-            // 補貨調撥單調整為一品一張調撥單，若有指定批號，則為一品一批號一張調撥單。
-            foreach (var item in itemSuggetReplenishList)
-			{
-				var inStr = string.IsNullOrWhiteSpace(item.SerialNo) ? (string.IsNullOrEmpty(item.MakeNo) ? string.Empty : $",批號:{item.MakeNo}") : $",序號:{item.SerialNo}";
+          // 呼叫LmsApi上架倉別指示
+          var lmsRes = stowShelfAreaService.StowShelfAreaGuide(dcCode, gupCode, custCode, "2", null, new List<string> { item.ItemCode });
 
-				if (item.SuggestReplenishQty > 0)
-                {
-                    string tarWarehouseId = null;
+          if (lmsRes.IsSuccessed)
+          {
+            var lmsResData = JsonConvert.DeserializeObject<List<StowShelfAreaGuideData>>(JsonConvert.SerializeObject(lmsRes.Data));
+            if (lmsResData != null && lmsResData.Any())
+              tarWarehouseId = lmsResData.First().ShelfAreaCode;
+          }
+          else
+          {
+            res.Add(new ExecuteResult { IsSuccessed = true, Message = "無法產生調撥單，因取不到上架指示倉別", No = $"[品號:{item.ItemCode}{inStr}]" });
+            continue;
+          }
 
-                    // 呼叫LmsApi上架倉別指示
-                    var lmsRes = stowShelfAreaService.StowShelfAreaGuide(dcCode, gupCode, custCode, "2", null, new List<string> { item.ItemCode });
+          var allocationParam = new NewAllocationItemParam
+          {
+            IsCheckExecStatus = false,
+            AllocationType = AllocationType.Both,
+            GupCode = gupCode,
+            CustCode = custCode,
+            SrcDcCode = dcCode,
+            IsExpendDate = true,
+            isIncludeResupply = false,
+            ReturnStocks = returnStocks,
+            SrcStockFilterDetails = new List<StockFilter>
+            {
+              new StockFilter
+              {
+                ItemCode = item.ItemCode,
+                Qty = item.SuggestReplenishQty,
+                MakeNos = string.IsNullOrWhiteSpace(item.MakeNo) ? new List<string>() : new List<string>{ item.MakeNo },
+                SerialNos = string.IsNullOrWhiteSpace(item.SerialNo) ? new List<string>() : new List<string>{ item.SerialNo }
+              }
+            },
+            SrcWarehouseType = "G",
+            TarDcCode = dcCode,
+            TarWarehouseId = tarWarehouseId,
+            ATypeCode = "C", //補貨區,
+            Memo = replenishType == ReplenishType.Daily ? "每日補貨區調撥" : "配庫補貨區調撥",
+            AllocationTypeCode = allocationTypeCode
+          };
 
-                    if (lmsRes.IsSuccessed)
-                    {
-                        var lmsResData = JsonConvert.DeserializeObject<List<StowShelfAreaGuideData>>(JsonConvert.SerializeObject(lmsRes.Data));
-                        if (lmsResData != null && lmsResData.Any())
-                            tarWarehouseId = lmsResData.First().ShelfAreaCode;
-                    }
-                    else
-                    {
-                        res.Add(new ExecuteResult { IsSuccessed = true, Message = "無法產生調撥單，因取不到上架指示倉別", No = $"[品號:{item.ItemCode}{inStr}]" });
-                        continue;
-                    }
-
-                    var allocationParam = new NewAllocationItemParam
-                    {
-                        IsCheckExecStatus = false,
-                        AllocationType = AllocationType.Both,
-                        GupCode = gupCode,
-                        CustCode = custCode,
-                        SrcDcCode = dcCode,
-                        IsExpendDate = true,
-                        isIncludeResupply = false,
-                        ReturnStocks = new List<F1913>(),
-                        SrcStockFilterDetails = new List<StockFilter>
-                        {
-                            new StockFilter
-                            {
-                                ItemCode = item.ItemCode,
-                                Qty = item.SuggestReplenishQty,
-                                MakeNos = string.IsNullOrWhiteSpace(item.MakeNo) ? new List<string>() : new List<string>{ item.MakeNo },
-								SerialNos = string.IsNullOrWhiteSpace(item.SerialNo) ? new List<string>() : new List<string>{ item.SerialNo }
-							}
-                        },
-                        SrcWarehouseType = "G",
-                        TarDcCode = dcCode,
-                        TarWarehouseId = tarWarehouseId,
-                        ATypeCode = "C", //補貨區,
-                        Memo = replenishType == ReplenishType.Daily ? "每日補貨區調撥" : "配庫補貨區調撥",
-                        AllocationTypeCode = allocationTypeCode
-                    };
-
-                    var result = sharedSrv.CreateOrUpdateAllocation(allocationParam);
-                    if (result.Result.IsSuccessed)
-                    {
-                        var result1 = sharedSrv.BulkInsertAllocation(result.AllocationList, result.StockList);
-                        res.Add(new ExecuteResult { IsSuccessed = true, Message = "產生補貨調撥單號", No = $"[品號:{item.ItemCode}{inStr}] 調撥單號:{string.Join(",", result.AllocationList.Select(x => x.Master.ALLOCATION_NO).ToList())}" });
-                    }
-                    else
-                    {
-                        res.Add(result.Result);
-                    }
-                }
-                else
-                {
-                    if (item.AllocationNos.Any())
-                        res.Add(new ExecuteResult { IsSuccessed = false, Message = "尚有該商品補貨調撥單未完成上架", No = $"[品號:{item.ItemCode}{inStr}] 調撥單號:{string.Join(",", item.AllocationNos.Distinct().ToList())}" });
-                    else
-                        res.Add(new ExecuteResult { IsSuccessed = false, Message = "該商品庫存不足", No = $"[品號:{item.ItemCode}{inStr}]" });
-                }
-            }
-
-            return res;
+          var result = sharedSrv.CreateOrUpdateAllocation(allocationParam);
+          if (result.Result.IsSuccessed)
+          {
+            returnStocks = result.StockList;
+            returnNewAllocationList.AddRange(result.AllocationList);
+            res.Add(new ExecuteResult
+            {
+              IsSuccessed = true,
+              Message = "產生補貨調撥單號",
+              No = $"[品號:{item.ItemCode}{inStr}] 調撥單號:{string.Join(",", result.AllocationList.Select(x => x.Master.ALLOCATION_NO).ToList())}"
+            });
+          }
+          else
+          {
+            res.Add(result.Result);
+          }
         }
+        else
+        {
+          if (item.AllocationNos.Any())
+            res.Add(new ExecuteResult { IsSuccessed = false, Message = "尚有該商品補貨調撥單未完成上架", No = $"[品號:{item.ItemCode}{inStr}] 調撥單號:{string.Join(",", item.AllocationNos.Distinct().ToList())}" });
+          else
+            res.Add(new ExecuteResult { IsSuccessed = false, Message = "該商品庫存不足", No = $"[品號:{item.ItemCode}{inStr}]" });
+        }
+      }
+
+      var result1 = sharedSrv.BulkInsertAllocation(returnNewAllocationList, returnStocks);
+
+      return res;
+    }
         #endregion
     }
 }

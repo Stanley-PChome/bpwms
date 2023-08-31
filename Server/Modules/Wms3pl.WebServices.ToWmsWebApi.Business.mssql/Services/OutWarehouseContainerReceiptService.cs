@@ -24,6 +24,16 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 		private F151003Repository _f151003Repo;
 		private SharedService _sharedService;
 		private ContainerService _containerService;
+
+    #region F191302Repository
+    private F191302Repository _F191302Repo;
+
+    public F191302Repository F191302Repo
+    {
+      get { return _F191302Repo == null ? _F191302Repo = new F191302Repository(Schemas.CoreSchema, _wmsTransaction) : _F191302Repo; }
+      set { _F191302Repo = value; }
+    }
+    #endregion
 		/// <summary>
 		/// 出庫結果回傳更新(按箱) 入口點
 		/// </summary>
@@ -248,8 +258,10 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 				var updF151002s = new List<F151002>();
 				var updF1511s = new List<F1511>();
 				var addF151003s = new List<F151003>();
-				// 取得調撥頭檔
-				var f151001 = containerF151001s.First(x => x.DC_CODE == allocation.Key.DC_CODE && x.GUP_CODE == allocation.Key.GUP_CODE && x.CUST_CODE == allocation.Key.CUST_CODE && x.ALLOCATION_NO == allocation.Key.ALLOCATION_NO);
+        var returnAllotList = new List<ReturnNewAllocation>();
+        var addF191302List = new List<F191302>();
+        // 取得調撥頭檔
+        var f151001 = containerF151001s.First(x => x.DC_CODE == allocation.Key.DC_CODE && x.GUP_CODE == allocation.Key.GUP_CODE && x.CUST_CODE == allocation.Key.CUST_CODE && x.ALLOCATION_NO == allocation.Key.ALLOCATION_NO);
 				// 取得調撥身擋
 				var f151002s = containerF151002s.Where(x => x.DC_CODE == allocation.Key.DC_CODE && x.GUP_CODE == allocation.Key.GUP_CODE && x.CUST_CODE == allocation.Key.CUST_CODE && x.ALLOCATION_NO == allocation.Key.ALLOCATION_NO).ToList();
 				var f1511s = containerF1511s.Where(x => x.DC_CODE == allocation.Key.DC_CODE && x.GUP_CODE == allocation.Key.GUP_CODE && x.CUST_CODE == allocation.Key.CUST_CODE && x.ORDER_NO == allocation.Key.ALLOCATION_NO).ToList();
@@ -274,7 +286,8 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 				if (isLastBox) //此單據最後一箱，進行單據結案並產生調撥下架缺貨紀錄
 				{
 					var notFinishDetails = f151002s.Where(x => x.STATUS == "0").ToList();
-					foreach (var detail in notFinishDetails)
+          var returnStocks = new List<F1913>();
+          foreach (var detail in notFinishDetails)
 					{
 						var lackQty = detail.SRC_QTY - detail.A_SRC_QTY;
 						addF151003s.Add(new F151003
@@ -294,8 +307,31 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 						detail.STATUS = "2";
 						var f1511 = f1511s.First(x => x.ORDER_SEQ == detail.ALLOCATION_SEQ.ToString());
 						f1511.STATUS = "2";
-					}
-					f151001.STATUS = "5";
+
+            var lackWarehouseId = _sharedService.GetPickLossWarehouseId(f151001.DC_CODE, f151001.GUP_CODE, f151001.CUST_CODE);
+            var lackLocCode = _sharedService.GetPickLossLoc(f151001.DC_CODE, lackWarehouseId);
+
+            var allotResult = _sharedService.CreateAllocationLackProcess(new AllocationStockLack()
+            {
+              DcCode = f151001.DC_CODE,
+              GupCode = f151001.GUP_CODE,
+              CustCode = f151001.CUST_CODE,
+              LackQty = (int)lackQty,
+              LackWarehouseId = lackWarehouseId,
+              LackLocCode = lackLocCode,
+              F151002 = detail,
+              F1511 = f1511,
+              ReturnStocks = returnStocks
+            });
+
+            if (!allotResult.IsSuccessed)
+              throw new Exception(allotResult.Message);
+            returnStocks = allotResult.ReturnStocks;
+            returnAllotList.AddRange(allotResult.ReturnNewAllocations);
+            addF191302List.AddRange(allotResult.AddF191302List);
+          }
+
+          f151001.STATUS = "5";
 					f151001.LOCK_STATUS = "4";
 					f151001.POSTING_DATE = DateTime.Now;
 					_f151001Repo.Update(f151001);
@@ -307,8 +343,14 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 					// 更新儲位容積
 					_sharedService.UpdateAllocationLocVolumn(f151001, f151002s);
 
-				}
-				else
+          //撿缺調撥單整批上架
+          var AllotUpResult = _sharedService.BulkAllocationToAllUp(returnAllotList, returnStocks, false);
+          //撿缺調撥單整批寫入
+          var AllotExeResult = _sharedService.BulkInsertAllocation(returnAllotList, returnStocks, true);
+          if (addF191302List.Any())
+            F191302Repo.BulkInsert(addF191302List);
+        }
+        else
 				{
 					if (!f151001.SRC_START_DATE.HasValue)
 					{
@@ -387,7 +429,7 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 					DC_CODE = x.DC_CODE,
 					GUP_CODE = x.GUP_CODE,
 					CUST_CODE = x.CUST_CODE,
-					WAREHOUSE_ID = x.PRE_TAR_WAREHOUSE_ID,
+          WAREHOUSE_ID = f060207.WAREHOUSE_ID,
 					CONTAINER_CODE = f060207.CONTAINERCODE.ToUpper(),
 					CONTAINER_TYPE = "0",
 					WMS_NO = allocationNo,
@@ -397,7 +439,7 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 					MAKE_NO = x.F151002.MAKE_NO,
 					QTY = x.QTY,
 					BIN_CODE = x.BIN_CODE,
-          SERIAL_NO_LIST = x.SERIALNUMLIST.Split(',').ToList(),
+          SERIAL_NO_LIST = x.SERIALNUMLIST == null ? null : x.SERIALNUMLIST.Split(',').ToList(),
         }).ToList();
 			var containerExecuteResult = _containerService.CreateContainer(containerParams);
 			return containerExecuteResult.First();

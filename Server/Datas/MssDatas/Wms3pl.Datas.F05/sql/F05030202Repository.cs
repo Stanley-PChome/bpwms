@@ -157,6 +157,25 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<string>(sql, parms.ToArray());
 		}
 
+		public IQueryable<F05030202> GetDatasByOrdNo(string dcCode, string gupCode, string custCode, string ordNo)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p3", ordNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+			};
+			var sql = @"SELECT *
+                          FROM F05030202
+                         WHERE DC_CODE = @p0
+                           AND GUP_CODE = @p1
+                           AND CUST_CODE = @p2
+                           AND ORD_NO = @p3 ";
+
+			return SqlQuery<F05030202>(sql, parms.ToArray());
+		}
+
 		public IQueryable<F05030202> GetDatasByOrdNos(string dcCode, string gupCode, string custCode, List<string> ordNos)
 		{
 			var parms = new List<SqlParameter>
@@ -171,6 +190,28 @@ namespace Wms3pl.Datas.F05
                            AND GUP_CODE = @p1
                            AND CUST_CODE = @p2 ";
 			sql += parms.CombineSqlInParameters(" AND ORD_NO", ordNos, System.Data.SqlDbType.VarChar);
+
+			return SqlQuery<F05030202>(sql, parms.ToArray());
+		}
+
+		public IQueryable<F05030202> GetDatasByWmsOrdSeq(string dcCode, string gupCode, string custCode, string wmsOrdNo, string wmsOrdSeq)
+		{
+			var parms = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p3", wmsOrdNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p4", wmsOrdSeq) { SqlDbType = System.Data.SqlDbType.VarChar },
+			};
+			var sql = @"SELECT *
+                          FROM F05030202
+                         WHERE DC_CODE = @p0
+                           AND GUP_CODE = @p1
+                           AND CUST_CODE = @p2
+                           AND WMS_ORD_NO = @p3
+                           AND WMS_ORD_SEQ = @p4
+                           AND B_DELV_QTY > A_DELV_QTY ";
 
 			return SqlQuery<F05030202>(sql, parms.ToArray());
 		}

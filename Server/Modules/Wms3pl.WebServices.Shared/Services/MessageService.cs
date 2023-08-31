@@ -31,11 +31,15 @@ namespace Wms3pl.WebServices.Shared.Services
 			f0080Repo.Update(f0080);
 			return new ExecuteResult(true, "設定訊息池狀態");
 		}
-
+		private F0080Repository _f0080Repo;
+		public F0080Repository F0080Repo
+		{
+			get { return _f0080Repo == null ? _f0080Repo = new F0080Repository(Schemas.CoreSchema) : _f0080Repo; }
+			set { _f0080Repo = value; }
+		}
 		public ExecuteResult AddWmsMessage(string dcCode,string gupCode,string custCode,string msgNo, string messageContent,
 		string targrtType, string targetCode, DateTime? sendTime, DateTime? expectReplyTime, decimal messageId)
 		{
-			var f0080Repo = new F0080Repository(Schemas.CoreSchema);
 			var f0080 = new F0080
 			{
 				DC_CODE = dcCode,
@@ -50,7 +54,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				EXPECT_REPLY_TIME = expectReplyTime,
 				STATUS ="00"
 			};
-			f0080Repo.Add(f0080);
+			F0080Repo.Add(f0080);
 			return new ExecuteResult(true, "新增訊息池成功");
 		}
 

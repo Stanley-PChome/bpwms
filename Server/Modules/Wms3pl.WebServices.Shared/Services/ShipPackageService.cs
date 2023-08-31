@@ -24,7 +24,151 @@ namespace Wms3pl.WebServices.Shared.Services
 {
 	public class ShipPackageService
 	{
+		#region Repository
+
 		private F055007Repository _f055007Repo;
+		public F055007Repository F055007Repo
+		{
+			get { return _f055007Repo == null ? _f055007Repo = new F055007Repository(Schemas.CoreSchema, _wmsTransaction) : _f055007Repo; }
+			set { _f055007Repo = value; }
+		}
+
+		private F05500101Repository _f05500101RepoNoTrans;
+		public F05500101Repository F05500101RepoNoTrans
+		{
+			get { return _f05500101RepoNoTrans == null ? _f05500101RepoNoTrans = new F05500101Repository(Schemas.CoreSchema) : _f05500101RepoNoTrans; }
+			set { _f05500101RepoNoTrans = value; }
+		}
+
+		private F05500101Repository _f05500101Repo;
+		public F05500101Repository F05500101Repo
+		{
+			get { return _f05500101Repo == null ? _f05500101Repo = new F05500101Repository(Schemas.CoreSchema, _wmsTransaction) : _f05500101Repo; }
+			set { _f05500101Repo = value; }
+		}
+
+		private F050801Repository _f050801Repo;
+		public F050801Repository F050801Repo
+		{
+			get { return _f050801Repo == null ? _f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction) : _f050801Repo; }
+			set { _f050801Repo = value; }
+		}
+
+		private F050801Repository _f050801RepoNoTrans;
+		public F050801Repository F050801RepoNoTrans
+		{
+			get { return _f050801RepoNoTrans == null ? _f050801RepoNoTrans = new F050801Repository(Schemas.CoreSchema) : _f050801RepoNoTrans; }
+			set { _f050801RepoNoTrans = value; }
+		}
+
+		private F055001Repository _f055001Repo;
+		public F055001Repository F055001Repo
+		{
+			get { return _f055001Repo == null ? _f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction) : _f055001Repo; }
+			set { _f055001Repo = value; }
+		}
+
+		private F055001Repository _f055001RepoNoTrans;
+		public F055001Repository F055001RepoNoTrans
+		{
+			get { return _f055001RepoNoTrans == null ? _f055001RepoNoTrans = new F055001Repository(Schemas.CoreSchema) : _f055001RepoNoTrans; }
+			set { _f055001RepoNoTrans = value; }
+		}
+
+		private F050301Repository _f050301Repo;
+		public F050301Repository F050301Repo
+		{
+			get { return _f050301Repo == null ? _f050301Repo = new F050301Repository(Schemas.CoreSchema, _wmsTransaction) : _f050301Repo; }
+			set { _f050301Repo = value; }
+		}
+
+		private F051301Repository _f051301Repo;
+		public F051301Repository F051301Repo
+		{
+			get { return _f051301Repo == null ? _f051301Repo = new F051301Repository(Schemas.CoreSchema, _wmsTransaction) : _f051301Repo; }
+			set { _f051301Repo = value; }
+		}
+
+		private F060208Repository _f060208Repo;
+		public F060208Repository F060208Repo
+		{
+			get { return _f060208Repo == null ? _f060208Repo = new F060208Repository(Schemas.CoreSchema, _wmsTransaction) : _f060208Repo; }
+			set { _f060208Repo = value; }
+		}
+
+		private F060208Repository _f060208RepoNoTrans;
+		public F060208Repository F060208RepoNoTrans
+		{
+			get { return _f060208RepoNoTrans == null ? _f060208RepoNoTrans = new F060208Repository(Schemas.CoreSchema) : _f060208RepoNoTrans; }
+			set { _f060208RepoNoTrans = value; }
+		}
+
+		private F160204Repository _f160204Repo;
+		public F160204Repository F160204Repo
+		{
+			get { return _f160204Repo == null ? _f160204Repo = new F160204Repository(Schemas.CoreSchema, _wmsTransaction) : _f160204Repo; }
+			set { _f160204Repo = value; }
+		}
+
+		private F056001Repository _f056001Repo;
+		public F056001Repository F056001Repo
+		{
+			get { return _f056001Repo == null ? _f056001Repo = new F056001Repository(Schemas.CoreSchema, _wmsTransaction) : _f056001Repo; }
+			set { _f056001Repo = value; }
+		}
+
+		private F05030101Repository _f05030101RepoNoTrans;
+		public F05030101Repository F05030101RepoNoTrans
+		{
+			get { return _f05030101RepoNoTrans == null ? _f05030101RepoNoTrans = new F05030101Repository(Schemas.CoreSchema) : _f05030101RepoNoTrans; }
+			set { _f05030101RepoNoTrans = value; }
+		}
+
+		private F055002Repository _f055002Repo;
+		public F055002Repository F055002Repo
+		{
+			get { return _f055002Repo == null ? _f055002Repo = new F055002Repository(Schemas.CoreSchema, _wmsTransaction) : _f055002Repo; }
+			set { _f055002Repo = value; }
+		}
+
+		private F050104Repository _f050104RepoNoTrans;
+		public F050104Repository F050104RepoNoTrans
+		{
+			get { return _f050104RepoNoTrans == null ? _f050104RepoNoTrans = new F050104Repository(Schemas.CoreSchema) : _f050104RepoNoTrans; }
+			set { _f050104RepoNoTrans = value; }
+		}
+
+		private F05030201Repository _f05030201RepoNoTrans;
+		public F05030201Repository F05030201RepoNoTrans
+		{
+			get { return _f05030201RepoNoTrans == null ? _f05030201RepoNoTrans = new F05030201Repository(Schemas.CoreSchema) : _f05030201RepoNoTrans; }
+			set { _f05030201RepoNoTrans = value; }
+		}
+
+		private F160202Repository _f160202RepoNoTrans;
+		public F160202Repository F160202RepoNoTrans
+		{
+			get { return _f160202RepoNoTrans == null ? _f160202RepoNoTrans = new F160202Repository(Schemas.CoreSchema) : _f160202RepoNoTrans; }
+			set { _f160202RepoNoTrans = value; }
+		}
+
+		private F1951Repository _f1951RepoNoTrans;
+		public F1951Repository F1951RepoNoTrans
+		{
+			get { return _f1951RepoNoTrans == null ? _f1951RepoNoTrans = new F1951Repository(Schemas.CoreSchema) : _f1951RepoNoTrans; }
+			set { _f1951RepoNoTrans = value; }
+		}
+
+		private F1908Repository _f1908RepoNoTrans;
+		public F1908Repository F1908RepoNoTrans
+		{
+			get { return _f1908RepoNoTrans == null ? _f1908RepoNoTrans = new F1908Repository(Schemas.CoreSchema) : _f1908RepoNoTrans; }
+			set { _f1908RepoNoTrans = value; }
+		}
+
+		#endregion Repository
+
+
 		private WmsTransaction _wmsTransaction;
 		private CommonService _commonService;
 		public CommonService CommonService
@@ -49,12 +193,9 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			var logService = new LogService("ShipPackage_" + DateTime.Now.ToString("yyyyMMdd"));
 			logService.Log("出貨容器條碼檢核 開始");
-			var f051301Repo = new F051301Repository(Schemas.CoreSchema);
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema);
 			var f0701Repo = new F0701Repository(Schemas.CoreSchema);
 			var f070101Repo = new F070101Repository(Schemas.CoreSchema);
 			var f051201Repo = new F051201Repository(Schemas.CoreSchema);
-			var f060208Repo = new F060208Repository(Schemas.CoreSchema);
 
 			F050801 f050801 = null;
 
@@ -68,7 +209,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			// 如果[CC]第一碼是O，取得出貨單資料
 			if (req.ContainerCode.Substring(0, 1) == "O")
 			{
-				f050801 = f050801Repo.Find(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.ContainerCode);
+				f050801 = F050801Repo.Find(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.ContainerCode);
 				if (f050801 != null)
 				{
 					return new CheckShipContainerCodeRes
@@ -113,7 +254,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				logService.Log("檢查是否完成集貨");
 
 				// [E]=檢查是否完成集貨 資料表: F051301 條件:DC_CODE = [B].DC_CODE GUP_CODE = [B].GUP_CODE CUST_CODE = [B].CUST_CODE WMS_NO = [B].WMS_NO STATUS NOT IN(1)
-				var f051301s = f051301Repo.GetDataByChkShip(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, f070101.WMS_NO);
+				var f051301s = F051301Repo.GetDataByChkShip(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, f070101.WMS_NO);
 
 				// 如果[E]有資料，回傳訊息[false,您刷讀的容器條碼尚未完成集貨，不可出貨]
 				if (f051301s.Any())
@@ -125,7 +266,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			{
 				logService.Log("取得包裝線容器是否已抵達 開始");
 
-				var isExist = f060208Repo.CheckIsArrival(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, req.ContainerCode, f070101.WMS_NO);
+				var isExist = F060208Repo.CheckIsArrival(f070101.DC_CODE, f070101.GUP_CODE, f070101.CUST_CODE, req.ContainerCode, f070101.WMS_NO);
 				// [D] =0，則回傳訊息[false,您刷讀的容器未回報抵達工作站]
 				if (!isExist)
 					return new CheckShipContainerCodeRes { Result = new ExecuteResult { IsSuccessed = false, Message = "您刷讀的容器未回報抵達工作站" } };
@@ -156,17 +297,13 @@ namespace Wms3pl.WebServices.Shared.Services
 			logService.Log("查詢與檢核出貨單資訊 開始");
 
 			var distibuteService = new DistibuteService();
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f050802Repo = new F050802Repository(Schemas.CoreSchema);
 			var f051202Repo = new F051202Repository(Schemas.CoreSchema);
 			var f051206Repo = new F051206Repository(Schemas.CoreSchema);
 			var f05120601Repo = new F05120601Repository(Schemas.CoreSchema);
-			var f051301Repo = new F051301Repository(Schemas.CoreSchema);
 			var f052903Repo = new F052903Repository(Schemas.CoreSchema);
-			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema);
 			var f050101Repo = new F050101Repository(Schemas.CoreSchema);
 			var f070101Repo = new F070101Repository(Schemas.CoreSchema);
-			var f060208Repo = new F060208Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f1903Repo = new F1903Repository(Schemas.CoreSchema);
 
 			if (_commonService == null)
@@ -175,8 +312,8 @@ namespace Wms3pl.WebServices.Shared.Services
 			}
 			logService.Log("取得出貨單資料 開始");
 			#region 取得出貨單資料
-			var f050801 = f050801Repo.GetF050801(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
-			//var f050801 = f050801Repo.AsForUpdate().Find(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo);
+			var f050801 = F050801Repo.GetF050801(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
+			//var f050801 = F050801Repo.AsForUpdate().Find(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo);
 			if (f050801 == null)
 				return new SearchAndCheckWmsOrderInfoRes { Result = new ExecuteResult { IsSuccessed = false, Message = "出貨單不存在" } };
 
@@ -189,7 +326,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				boxCnt = f070101Repo.GetData(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo).Count();
 			else if (req.ShipMode == "2")// 包裝線包裝站
 										 // 取得箱數[TOP 1 F060208.BOX_TOTAL 資料表: F060208 條件: DC_CODE = < 參數1 > AND GUP_CODE =< 參數2 > AND CUST_CODE =< 參數3 > AND ORI_ORDER_CODE = < 參數4 > AND STATUS <> 9 AND POSITION_CODE = TARGET_POS_CODE 排序: ORDER BY CRT_DATE DESC
-				boxCnt = f060208Repo.GetTop1BoxTotal(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, new List<int> { 9 });
+				boxCnt = F060208Repo.GetTop1BoxTotal(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, new List<int> { 9 });
 			var result = new SearchAndCheckWmsOrderInfoRes
 			{
 				DcCode = f050801.DC_CODE,
@@ -226,8 +363,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			if (f050801.STATUS == 9)// 如果[A].STATUS =9 回傳訊息[false,此出貨單已取消]
 				if (req.ShipMode == "2")
 				{
-					var f060208RepoNoTrans = new F060208Repository(Schemas.CoreSchema);
-					f060208RepoNoTrans.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 3, new List<int> { 9 });
+					F060208RepoNoTrans.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 3, new List<int> { 9 });
 					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此出貨單已取消，請將容器移至異常區，請手動按下取消到站紀錄" }, true);
 				}
 				else
@@ -278,11 +414,16 @@ namespace Wms3pl.WebServices.Shared.Services
 
 
 			// [SS]=檢查是否為未完成集貨出貨單
-			var f051301 = f051301Repo.Find(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_NO == req.WmsOrdNo);
+			var f051301 = F051301Repo.Find(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_NO == req.WmsOrdNo);
 
-			// 如果[SS]存在，但[SS].STATUS !=1，則顯示訊息[false,該出貨單尚未完成集貨，不可出貨]
-			if (f051301 != null && f051301.STATUS != "1" && f051301.COLLECTION_POSITION == "0")
-				return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "該出貨單尚未完成集貨，不可出貨" });
+      // 如果[SS]存在，但[SS].STATUS !=1，則顯示訊息[false,該出貨單尚未完成集貨，不可出貨]
+      if (f051301 != null && f051301.STATUS != "1")
+      {
+        if (req.ShipMode == "1") //單人包裝站
+          return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "該出貨單尚未完成集貨，不可出貨" });
+        else if (req.ShipMode == "2" && f051301.COLLECTION_POSITION == "0") //包裝線包裝站
+          return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "該出貨單尚未完成集貨，不可出貨" });
+      }
 
 			// 更新出貨單出貨模式為2
 			var checkPackageModeResult = CheckPackageMode(f050801, "2");
@@ -318,20 +459,16 @@ namespace Wms3pl.WebServices.Shared.Services
 			#region 資料處理
 			// ShipMode= 2(包裝線包裝站)，更新容器位置回報將狀態等於等待中更新為已完成 (1) 更新F060208.PROC_FLAG = 2條件 DC_CODE = < 參數1 > AND GUP_CODE =< 參數2 > AND CUST_CODE =< 參數3 > AND ORI_ORDER_CODE = < 參數4 > AND STATUS = 0
 			if (req.ShipMode == "2")
-				f060208Repo.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 2);
+				F060208Repo.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 2);
 
 
 			if (f050801.STATUS == 0)
 				LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "開始包裝", 0, null);
 
-			if (!f050801.PACK_START_TIME.HasValue)
-				f050801.PACK_START_TIME = DateTime.Now;
-			f050801.NO_SPEC_REPROTS = req.NoSpecReprots;
-			f050801.CLOSE_BY_BOXNO = req.CloseByBoxno;
-			f050801Repo.Update(f050801);
+      F050801Repo.UpdatePackStart(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, f050801.PACK_START_TIME, req.NoSpecReprots, req.CloseByBoxno);
 
-			// 新增訂單回檔紀錄[F050305.STATUS=2]，如果已存在就不新增
-			InsertF050305Data(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "2", "0", req.WorkStationId);
+      // 新增訂單回檔紀錄[F050305.STATUS=2]，如果已存在就不新增
+      InsertF050305Data(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "2", "0", req.WorkStationId);
 			logService.Log("資料處理 結束");
 			logService.Log("DB Commit 開始");
 			_wmsTransaction.Complete();
@@ -352,8 +489,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="req"></param>
 		public List<SearchWmsOrderPackingDetailRes> SearchWmsOrderPackingDetail(SearchWmsOrderPackingDetailReq req)
 		{
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema);
-			return f055002Repo.SearchWmsOrderPackingDetail(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo).ToList();
+			return F055002Repo.SearchWmsOrderPackingDetail(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo).ToList();
 		}
 
 		/// <summary>
@@ -362,10 +498,8 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="req"></param>
 		public IQueryable<SearchWmsOrderScanLogRes> SearchWmsOrderScanLog(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
-			var f05500101Repo = new F05500101Repository(Schemas.CoreSchema);
-
 			#region 資料處理
-			return f05500101Repo.GetSearchWmsOrderScanLog(dcCode, gupCode, custCode, wmsOrdNo);
+			return F05500101Repo.GetSearchWmsOrderScanLog(dcCode, gupCode, custCode, wmsOrdNo);
 			#endregion
 		}
 
@@ -379,11 +513,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			logService.Log("刷讀商品條碼 開始");
 
 			var itemService = new ItemService();
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f05500101Repo = new F05500101Repository(Schemas.CoreSchema);
 			var f2501Repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema);
 			var f050802Repo = new F050802Repository(Schemas.CoreSchema);
 
 			logService.Log("檢核 開始");
@@ -400,7 +530,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			req.BarCode = req.BarCode.ToUpper();
 
 			// 檢查是否有原箱商品未關箱 資料表: F055001 條件: DC_CODE = < 參數1 > and GUP_CODE =< 參數2 > and CUST_CODE =< 參數3 > and WMS_ORD_NO =< 參數4 > andIS_CLOSED = 0 and IS_ORIBOX = 1
-			var f055001sByNotClosed = f055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0" && o.IS_ORIBOX == "1");
+			var f055001sByNotClosed = F055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0" && o.IS_ORIBOX == "1");
 
 			// 如果[B]有資料，回傳訊息(false,尚有原箱商品未正常關箱，請手動執行關箱後再繼續作業。,null,null,false)
 			if (f055001sByNotClosed.Any())
@@ -416,7 +546,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					return LogF05500101AndReturn(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, req.BarCode, null, null, "0", "廠退出貨不可刷入紙箱條碼", 0, req.BarCode);
 
 				// [D1]= 檢查是否有非原箱未關箱包裝頭檔 資料表: F055001 條件: DC_CODE = < 參數1 > GUP_CODE =< 參數2 > CUST_CODE =< 參數3 > WMS_ORD_NO =< 參數4 > IS_CLOSED = 0  IS_ORIBOX = 0
-				var f055001 = f055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0" && o.IS_ORIBOX == "0").FirstOrDefault();
+				var f055001 = F055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0" && o.IS_ORIBOX == "0").FirstOrDefault();
 
 				if (f055001 == null)
 				{
@@ -433,7 +563,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					// (3)回傳訊息[true,[D2].Message, null, [D1].PACKAGE_BOX_NO, true]
 					f055001.BOX_NUM = req.BarCode;
 					f055001.ORG_BOX_NUM = req.BarCode;
-					f055001Repo.Update(f055001);
+					F055001Repo.Update(f055001);
 					_wmsTransaction.Complete();
 					return LogF05500101AndReturn(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, req.BarCode, null, null, "1", "找到紙箱", 0, req.BarCode, new ScanItemBarcodeRes { IsCloseBox = true });
 				}
@@ -556,7 +686,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 
 			// No.2091 若為不良品序號(F2501.ACTIVATED=1) & 為客戶訂單(F050801.SOURCE_TYPE is NULL 或空白)，不可出貨
-			var f050801 = f050801Repo.GetData(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
+			var f050801 = F050801Repo.GetData(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
 			if (f2501 != null && f2501.ACTIVATED == "1" && string.IsNullOrWhiteSpace(f050801.SOURCE_TYPE))
 				return LogF05500101AndReturn(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, item.ItemCode, serialNo, status, "0", "此為不良品序號，不可以出貨", 0, req.BarCode, new ScanItemBarcodeRes { ItemCode = item.ItemCode });
 
@@ -572,7 +702,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			var insertRes = true;
 
 			// [G]=取得未關箱的包裝頭檔F055001
-			var f055001ByNotClosed = f055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0" && o.IS_ORIBOX == "0").FirstOrDefault();
+			var f055001ByNotClosed = F055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0" && o.IS_ORIBOX == "0").FirstOrDefault();
 
 			short packageBoxNo = 0;
 
@@ -584,7 +714,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			{
 				if (f055001ByNotClosed == null)
 				{
-					packageBoxNo = f055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
+					packageBoxNo = F055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
 
 					// 如果[G]不存在，新增F055001、新增F055002
 					var f055001 = new F055001
@@ -610,7 +740,7 @@ namespace Wms3pl.WebServices.Shared.Services
 						IS_CLOSED = "0",
 						IS_ORIBOX = "0"
 					};
-					f055001Repo.Add(f055001);
+					F055001Repo.Add(f055001);
 
 					// 新增 or 修改 F055002
 					insertRes = InsertOrUpdateF055002(f055001, item.ItemCode, req.Qty, serialNo, ref addF055002List, ref updF055002List, req.WorkstationId);
@@ -627,8 +757,8 @@ namespace Wms3pl.WebServices.Shared.Services
 						return new ScanItemBarcodeRes { IsSuccessed = false, Message = "容器商品數量超過出貨數" };
 				}
 
-				addF055002List.ForEach(f055002 => { f055002Repo.Add(f055002); });
-				updF055002List.ForEach(f055002 => { f055002Repo.Update(f055002); });
+				addF055002List.ForEach(f055002 => { F055002Repo.Add(f055002); });
+				updF055002List.ForEach(f055002 => { F055002Repo.Update(f055002); });
 				_wmsTransaction.Complete();
 
 				// 新增F05500101 ITEM_CODE =[F3],SERIAL_NO =[F4],ISPASS = 1,MESSAGE = 空白
@@ -647,7 +777,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				// 如果[G]不存在，新增F055001、新增F055002
 				if (f055001ByNotClosed == null)
 				{
-					packageBoxNo = f055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
+					packageBoxNo = F055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
 
 					// 如果[G]不存在，新增F055001、新增F055002
 					var f055001 = new F055001
@@ -673,7 +803,7 @@ namespace Wms3pl.WebServices.Shared.Services
 						IS_CLOSED = "0",
 						IS_ORIBOX = "0"
 					};
-					f055001Repo.Add(f055001);
+					F055001Repo.Add(f055001);
 
 					// 新增 or 修改 F055002
 					insertRes = InsertOrUpdateF055002(f055001, item.ItemCode, req.Qty, serialNo, ref addF055002List, ref updF055002List, req.WorkstationId);
@@ -690,8 +820,8 @@ namespace Wms3pl.WebServices.Shared.Services
 						return new ScanItemBarcodeRes { IsSuccessed = false, Message = "容器商品數量超過出貨數" };
 				}
 
-				addF055002List.ForEach(f055002 => { f055002Repo.Add(f055002); });
-				updF055002List.ForEach(f055002 => { f055002Repo.Update(f055002); });
+				addF055002List.ForEach(f055002 => { F055002Repo.Add(f055002); });
+				updF055002List.ForEach(f055002 => { F055002Repo.Update(f055002); });
 				logService.Log("資料處理 結束");
 
 				logService.Log("db commit 開始");
@@ -713,7 +843,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					f2501Repo.Update(f2501);
 				}
 
-				packageBoxNo = f055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
+				packageBoxNo = F055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
 
 				// 新增F055001
 				var f055001 = new F055001
@@ -739,14 +869,14 @@ namespace Wms3pl.WebServices.Shared.Services
 					IS_CLOSED = "0",
 					IS_ORIBOX = "1"
 				};
-				f055001Repo.Add(f055001);
+				F055001Repo.Add(f055001);
 
 				// 新增 or 修改 F055002
 				insertRes = InsertOrUpdateF055002(f055001, item.ItemCode, req.Qty, serialNo, ref addF055002List, ref updF055002List, req.WorkstationId);
 				if (!insertRes)
 					return new ScanItemBarcodeRes { IsSuccessed = false, Message = "容器商品數量超過出貨數" };
-				addF055002List.ForEach(f055002 => { f055002Repo.Add(f055002); });
-				updF055002List.ForEach(f055002 => { f055002Repo.Update(f055002); });
+				addF055002List.ForEach(f055002 => { F055002Repo.Add(f055002); });
+				updF055002List.ForEach(f055002 => { F055002Repo.Update(f055002); });
 				logService.Log("資料處理 結束");
 
 				logService.Log("db commit 開始");
@@ -772,72 +902,21 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			var logService = new LogService("ShipPackage_" + DateTime.Now.ToString("yyyyMMdd"));
 			logService.Log("關箱處理開始" + req.WmsOrdNo);
-			if (_f055007Repo == null)
-				_f055007Repo = new F055007Repository(Schemas.CoreSchema, _wmsTransaction);
 			var distibuteService = new DistibuteService();
 			var containerService = new ContainerService(_wmsTransaction);
 			var printService = new PrintService();
 			var consignService = new Lms.Services.ConsignService(_wmsTransaction);
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050305Repo = new F050305Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema);
-			var f050901Repo = new F050901Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050301Repo = new F050301Repository(Schemas.CoreSchema);
-			var f051301Repo = new F051301Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f060208Repo = new F060208Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f160204Repo = new F160204Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f056001Repo = new F056001Repository(Schemas.CoreSchema);
 			var f055007List = new List<F055007>();
 
-			if (_commonService == null)
-			{
-				_commonService = new CommonService();
-			}
 			#region 資料處理
-			var isPrintBoxDetail = "0";
-			var isPrintShipLittleLabel = "0";
-			var isPrintRtnShipLittleLabel = "0";
-			var isGetShipOrder = false;
-			if (req.OrdType == "01")
-			{
-				if (req.ShipMode == "1")
-				{
-					// [LL] = 單人包裝站取得是否列印箱明細
-					var f0003ByLL = _commonService.GetSysGlobalValue(req.DcCode, req.GupCode, req.CustCode, "IsPrintBoxDetail_SinglePack");
-					isPrintBoxDetail = f0003ByLL != null && f0003ByLL == "0" ? "0" : "1";
-					// [PP] = 單人包裝站是否列印出貨小白標
-					var f0003ByPP = _commonService.GetSysGlobalValue(req.DcCode, req.GupCode, req.CustCode, "IsPrintShipLittleLabel_SinglePack");
-					isPrintShipLittleLabel = f0003ByPP != null && f0003ByPP == "0" ? "0" : "1";
-				}
-				else if (req.ShipMode == "2")
-				{
-					// [LL] = 包裝線包裝站取得是否列印箱明細
-					var f0003ByLL = _commonService.GetSysGlobalValue(req.DcCode, req.GupCode, req.CustCode, "IsPrintBoxDetail_PackLine");
-					isPrintBoxDetail = f0003ByLL != null && f0003ByLL == "0" ? "0" : "1";
-					// [PQ] = 包裝線包裝站是否列印出貨小白標
-					var f0003ByPQ = _commonService.GetSysGlobalValue(req.DcCode, req.GupCode, req.CustCode, "IsPrintShipLittleLabel_PackLine");
-					isPrintShipLittleLabel = f0003ByPQ != null && f0003ByPQ == "0" ? "0" : "1";
-				}
-				// 取得是否取得宅配單
-				var f0003BySO = _commonService.GetSysGlobalValue(req.DcCode, req.GupCode, req.CustCode, "GetShipOrder");
-				isGetShipOrder = f0003BySO != null && f0003BySO == "0" ? false : true;
-			}
-			else
-			{
-				// [RR] = 取得是否列印廠退出貨小白標
-				var f0003ByRR = _commonService.GetSysGlobalValue(req.DcCode, req.GupCode, req.CustCode, "IsPrintRtnShipLittleLabel");
-				isPrintRtnShipLittleLabel = f0003ByRR != null && f0003ByRR == "0" ? "0" : "1";
-			}
 
 			logService.Log("取得出貨單未關箱資料開始");
-
 
 			F055001 f055001 = null;
 			if (req.PackageBoxNo == null)// <參數5>=null
 			{
 				// (1)[BB] = 取得出貨單未關箱資料(原箱優先關箱) 資料表: F055001 條件: DC_CODE = < 參數1 > AND GUP_CODE = < 參數2 > CUST_CODE = < 參數3 > AND WMS_ORD_NO =< 參數4 > IS_CLOSED = 0 ORDER BY IS_ORIBOX DESC
-				f055001 = f055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0").OrderByDescending(x => x.IS_ORIBOX).FirstOrDefault();
+				f055001 = F055001Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo && o.IS_CLOSED == "0").OrderByDescending(x => x.IS_ORIBOX).FirstOrDefault();
 
 				if (f055001 == null)
 					return new CloseShipBoxRes { IsSuccessed = false, Message = "無任何需關箱的紙箱" };
@@ -848,7 +927,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			else// <參數5>!=null
 			{
 				// [BB] = 取得出貨單箱資料 資料表:F055001 條件: DC_CODE = <參數1> AND GUP_CODE = < 參數2 > CUST_CODE = < 參數3 > AND WMS_ORD_NO=<參數4> AND PACKAGE_BOX_NO =< 參數5 >
-				f055001 = f055001Repo.GetData(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, Convert.ToInt16(req.PackageBoxNo));
+				f055001 = F055001Repo.GetData(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, Convert.ToInt16(req.PackageBoxNo));
 
 				if (f055001 == null)
 					return new CloseShipBoxRes { IsSuccessed = false, Message = $"指定箱序{req.PackageBoxNo}找不到可關箱的紙箱" };
@@ -863,7 +942,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			f055001.CLOSEBOX_TIME = DateTime.Now;
 			logService.Log("取得貨主單號開始");
 			// [CC]=取得貨主單號[F050301.CUST_ORD_NO] 取第一筆 資料表: F050301 + F05030101 條件: F05030101.DC_CODE = < 參數1 > F05030101.GUP_CODE = < 參數2 > F05030101.CUST_CODE = < 參數3 > F05030101.WMS_ORD_NO = < 參數4 >
-			var custOrdNo = f050301Repo.GetFstCustOrdNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
+			var custOrdNo = F050301Repo.GetFstCustOrdNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
 
 			// 如果 < 參數7 >= 01(一般出貨) AND < 參數9 >= 1(需刷讀紙箱) and F055001.BOX_NUM是空白或NULL(沒有紙箱編號) 回傳訊息[false, 請刷讀紙箱條碼進行關箱]
 			if (req.OrdType == "01" && req.IsScanBox == "1" && string.IsNullOrWhiteSpace(f055001.BOX_NUM))
@@ -873,7 +952,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			if (req.OrdType == "01" && req.IsScanBox == "0" && string.IsNullOrWhiteSpace(f055001.BOX_NUM) && string.IsNullOrWhiteSpace(req.SugBoxNo))
 			{
 				logService.Log("無建議箱號，依系統邏輯取得建議箱號");
-				var getMinBoxs = f056001Repo.GetCloseShipSysBox(req.DcCode, req.GupCode, req.CustCode, req.WorkStationId).ToList();
+				var getMinBoxs = F056001Repo.GetCloseShipSysBox(req.DcCode, req.GupCode, req.CustCode, req.WorkStationId).ToList();
 				//資料不存在時，預設為 24H-01
 				if (!getMinBoxs.Any())
 					f055001.BOX_NUM = "24H-01";
@@ -885,7 +964,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			// <參數7>=01(一般出貨) AND [BB].PAST_NO = NULL OR 空白
 			if (req.OrdType == "01" && string.IsNullOrWhiteSpace(f055001.PAST_NO))
 			{
-				if (isGetShipOrder)
+				if (req.PrintBoxSettingParam.isGetShipOrder)
 				{
 					logService.Log("呼叫商品出貨申請宅配單號開始");
 					// [A]=呼叫LMS API 商品出貨申請宅配單號
@@ -898,7 +977,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					logService.Log("呼叫商品出貨申請宅配單號結束");
 					if (req.PackageMode == "01")
 					{
-						var f0003ByVCIP = _commonService.GetSysGlobalValue(req.DcCode, "VideoCombinInPack");
+						var f0003ByVCIP = CommonService.GetSysGlobalValue(req.DcCode, "VideoCombinInPack");
 						var videoCombinInPack = f0003ByVCIP != null && f0003ByVCIP == "0" ? "0" : "1";
 						if (videoCombinInPack == "1")
 						{
@@ -925,7 +1004,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					f055001.IS_CLOSED = "1";
 					if (string.IsNullOrWhiteSpace(f055001.BOX_NUM))
 						f055001.BOX_NUM = req.SugBoxNo;
-					f055001Repo.Update(f055001);
+					F055001Repo.Update(f055001);
 				}
 				logService.Log("扣除紙箱庫存開始");
 				// 扣除紙箱庫存  參考P050801Service.UpdateBoxStock
@@ -935,14 +1014,14 @@ namespace Wms3pl.WebServices.Shared.Services
 			}
 
 			// 刪除出貨包裝箱列印報表[F055007]
-			_f055007Repo.DeleteByPackageBoxNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, Convert.ToInt16(req.PackageBoxNo));
+			F055007Repo.DeleteByPackageBoxNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, Convert.ToInt16(req.PackageBoxNo));
 
 			var reportSeq = 1;
 
 			if (req.OrdType == "01")// <參數7> = 01(一般出貨)
 			{
 				// [LL]=1則新增報表清單[F055007] ([BB],[CC],[DD],01,箱明細,NULL,1)
-				if (isPrintBoxDetail == "1")
+				if (req.PrintBoxSettingParam.isPrintBoxDetail == "1")
 				{
 					logService.Log("報表清單新增箱明細");
 					f055007List.Add(InsertF055007(f055001, custOrdNo, "01", "箱明細", null, "1", ref reportSeq));
@@ -950,7 +1029,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				}
 
 				// [PP]=1，則新增報表清單[F055007] ([BB],[CC],[DD],02,一般出貨小白標,NULL)
-				if (isPrintShipLittleLabel == "1")
+				if (req.PrintBoxSettingParam.isPrintShipLittleLabel == "1")
 				{
 					logService.Log("報表清單新增一般出貨小白標");
 					f055007List.Add(InsertF055007(f055001, custOrdNo, "02", "一般出貨小白標", null, "3", ref reportSeq));
@@ -964,10 +1043,10 @@ namespace Wms3pl.WebServices.Shared.Services
 				f055001.PRINT_FLAG = 1;
 				f055001.PRINT_DATE = DateTime.Now;
 				f055001.IS_CLOSED = "1";
-				f055001Repo.Update(f055001);
+				F055001Repo.Update(f055001);
 
 				// a.[RR] = 1則新增報表清單 => 廠退出貨小白標[F055007]([BB],[CC],[DD],03, 廠退出貨小白標,NULL)
-				if (isPrintRtnShipLittleLabel == "1")
+				if (req.PrintBoxSettingParam.isPrintRtnShipLittleLabel == "1")
 				{
 					logService.Log("報表清單新增廠退出貨小白標");
 					f055007List.Add(InsertF055007(f055001, custOrdNo, "03", "廠退出貨小白標", null, "1", ref reportSeq));
@@ -1024,13 +1103,13 @@ namespace Wms3pl.WebServices.Shared.Services
 			logService.Log("呼叫查詢出貨商品包裝明細 結束");
 
 			string msg = string.Empty;
-
+			bool packingFinish = false;
 			// 如果[FF]所有出貨明細都無差異[DiffQty ==0]，則
 			if (detail.All(x => x.DiffQty == 0))
 			{
 
 				// [KK]=檢查是否還有紙箱未關箱且非原箱且非本次關箱箱序 資料表: F055001 條件: DC_CODE = < 參數1 > AND GUP_CODE = < 參數2 > CUST_CODE = < 參數3 > AND WMS_ORD_NO =< 參數4 > IS_CLOSED = 0 AND IS_ORIBOX = false AND PACKAGE_BOX_NO!= < 參數5 >
-				var f055001ExcludePackageBoxNo = f055001Repo.GetDataExdulePackageBoxNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "0", "0", Convert.ToInt16(req.PackageBoxNo));
+				var f055001ExcludePackageBoxNo = F055001Repo.GetDataExdulePackageBoxNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "0", "0", Convert.ToInt16(req.PackageBoxNo));
 
 				if (f055001ExcludePackageBoxNo != null)
 				{
@@ -1039,7 +1118,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				else
 				{
 					// a.更新出貨單狀態為已稽核[F050801.STATUS = 2]，出貨單列印註記 = 1[F050801.PRINT_FLAG = 1]
-					f050801Repo.Update(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 2, "1");
+					F050801Repo.Update(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 2, "1");
 					logService.Log("更新出貨單狀態為已稽核 結束");
 					// b.釋放容器 呼叫containerService.DelContainer 
 					containerService.DelContainer(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
@@ -1048,7 +1127,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					// 資料表: F160204 + F050301 + F05030101 條件: F05030101.DC_CODE =< 參數1 > F05030101.GUP_CODE =< 參數2 > F05030101.CUST_CODE =< 參數3 > F05030101.WMS_ORD_NO =< 參數4 >F050301.SOURCE_NO = F060204.RTN_WMS_NO
 					if (req.OrdType == "02")
 					{
-						f160204Repo.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "2");
+						F160204Repo.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "2");
 						logService.Log("更新廠退Flag 結束");
 					}
 					// b.[SS] = 包裝完成
@@ -1056,15 +1135,14 @@ namespace Wms3pl.WebServices.Shared.Services
 
 					if (req.ShipMode == "2")
 					{  // 更新F060208.PROC_FLAG = 3 條件 DC_CODE = < 參數1 > AND GUP_CODE =< 參數2 > AND CUST_CODE =< 參數3 > AND ORI_ORDER_CODE = < 參數4 > AND STATUS not in (9)
-						f060208Repo.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 3, new List<int> { 9 });
+						F060208Repo.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 3, new List<int> { 9 });
 						logService.Log("更新包裝線到站紀錄PROC_FLAG =3 結束");
 					}
 					// 刪除F051301
-					f051301Repo.DeleteWmsNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
+					F051301Repo.DeleteWmsNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
 					logService.Log("刪除F051301 結束");
-					LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "包裝完成", 0, null);
-					logService.Log("寫入包裝完成紀錄 結束");
 
+					packingFinish = true;
 				}
 			}
 			else // 如果[FF]出貨明細有任何一筆有差異，[SS] = 加箱完成
@@ -1075,9 +1153,14 @@ namespace Wms3pl.WebServices.Shared.Services
 				if (req.IsManualCloseBox)
 					LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "人員按下手動關箱", 0, null);
 			}
-
 			_wmsTransaction.Complete();
 			logService.Log("DB Commit 結束");
+
+			if (packingFinish)
+			{
+				LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "包裝完成", 0, null);
+				logService.Log("寫入包裝完成紀錄 結束");
+			}
 			#endregion
 
 			#region 回傳結果
@@ -1098,26 +1181,26 @@ namespace Wms3pl.WebServices.Shared.Services
 			if (req.OrdType == "01") // 一般出貨
 			{
 				// <參數7> = 01(一般出貨) AND [LL]=1 AND [PQ]=1
-				if (isPrintBoxDetail == "1" && isPrintShipLittleLabel == "1")
+				if (req.PrintBoxSettingParam.isPrintBoxDetail == "1" && req.PrintBoxSettingParam.isPrintShipLittleLabel == "1")
 					return new CloseShipBoxRes { IsSuccessed = true, Message = $"{msg}{(string.IsNullOrWhiteSpace(msg) ? string.Empty : "，")}請將箱明細放入箱中，並將小白標貼於箱外。", LastPackageBoxNo = packageBoxNo, ReportList = reportList };
 				// <參數7> = 01(一般出貨) AND [LL]=1 AND [PQ]=0
-				if (isPrintBoxDetail == "1" && isPrintShipLittleLabel == "0")
+				if (req.PrintBoxSettingParam.isPrintBoxDetail == "1" && req.PrintBoxSettingParam.isPrintShipLittleLabel == "0")
 					return new CloseShipBoxRes { IsSuccessed = true, Message = $"{msg}{(string.IsNullOrWhiteSpace(msg) ? string.Empty : "，")}請將箱明細放入箱中。", LastPackageBoxNo = packageBoxNo, ReportList = reportList };
 
 				// <參數7> = 01(一般出貨) AND [LL]=0 AND [PQ]=1
-				if (isPrintBoxDetail == "0" && isPrintShipLittleLabel == "1")
+				if (req.PrintBoxSettingParam.isPrintBoxDetail == "0" && req.PrintBoxSettingParam.isPrintShipLittleLabel == "1")
 					return new CloseShipBoxRes { IsSuccessed = true, Message = $"{msg}{(string.IsNullOrWhiteSpace(msg) ? string.Empty : "，")}請將小白標貼於箱外。", LastPackageBoxNo = packageBoxNo, ReportList = reportList };
 				// <參數7> = 01(一般出貨) AND [LL]=0 AND [PQ]=0 
-				if (isPrintBoxDetail == "0" && isPrintShipLittleLabel == "0")
+				if (req.PrintBoxSettingParam.isPrintBoxDetail == "0" && req.PrintBoxSettingParam.isPrintShipLittleLabel == "0")
 					return new CloseShipBoxRes { IsSuccessed = true, Message = $"{msg}。", LastPackageBoxNo = packageBoxNo, ReportList = reportList };
 			}
 			else // 廠退出貨
 			{
 				// <參數7> = 02(廠退出貨) AND [RR]=1
-				if (isPrintRtnShipLittleLabel == "1")
+				if (req.PrintBoxSettingParam.isPrintRtnShipLittleLabel == "1")
 					return new CloseShipBoxRes { IsSuccessed = true, Message = $"{msg}{(string.IsNullOrWhiteSpace(msg) ? string.Empty : "，")}請將小白標貼於箱外。", LastPackageBoxNo = packageBoxNo, ReportList = reportList };
 				// <參數7> = 02(廠退出貨) AND [RR]=1
-				if (isPrintRtnShipLittleLabel == "0")
+				if (req.PrintBoxSettingParam.isPrintRtnShipLittleLabel == "0")
 					return new CloseShipBoxRes { IsSuccessed = true, Message = $"{msg}。", LastPackageBoxNo = packageBoxNo, ReportList = reportList };
 			}
 
@@ -1131,10 +1214,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="req"></param>
 		public UseShipContainerToBoxDetailRes UseShipContainerToBoxDetail(UseShipContainerToBoxDetailReq req)
 		{
-			var f060208Repo = new F060208Repository(Schemas.CoreSchema);
 			var f070102Repo = new F070102Repository(Schemas.CoreSchema);
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema, _wmsTransaction);
 
 			LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "人員按下包裝完成", 0, null);
 
@@ -1142,10 +1222,10 @@ namespace Wms3pl.WebServices.Shared.Services
 			if (req.ShipMode == "2")
 			{
 				//(1)[T] = 取得總箱數[TOP 1 F060208.BOX_TOTAL 資料表: F060208 條件: DC_CODE = < 參數1 > AND GUP_CODE =< 參數2 > AND CUST_CODE =< 參數3 > AND ORI_ORDER_CODE = < 參數4 > AND PROC_FLAG not in (3, 9) AND POSITION_CODE = TARGET_POS_CODE 排序: ORDER BY CRT_DATE DESC
-				var boxTotal = f060208Repo.GetTop1BoxTotal(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, new List<int> { 3, 9 });
+				var boxTotal = F060208Repo.GetTop1BoxTotal(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, new List<int> { 3, 9 });
 
 				//(2) [B] = 取得已抵達箱數[Count(*)] 資料表: F060208 條件: DC_CODE = < 參數1 > AND GUP_CODE =< 參數2 > AND CUST_CODE =< 參數3 > AND ORI_ORDER_CODE = < 參數4 > AND PROC_FLAG not in (3, 9) AND POSITION_CODE = TARGET_POS_CODE
-				var boxCnt = f060208Repo.GetDataCnt(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, new List<int> { 3, 9 });
+				var boxCnt = F060208Repo.GetDataCnt(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, new List<int> { 3, 9 });
 
 				//(3) 如果[T] !=[B]，回傳訊息[false, 尚有周轉箱未抵達工作站，不可包裝完成]
 				//(4) 如果[T] =[B]，往下執行
@@ -1154,7 +1234,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			}
 
 			// [SS] = 檢查出貨單是否有一筆箱頭檔 資料表: F055001 條件:DC_CODE =< 參數1 > AND GUP_CODE = < 參數2 > AND CUST_CODE = < 參數3 > AND WMS_ORD_NO =< 參數4 >
-			var f055001s = f055001Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == req.DcCode && x.GUP_CODE == req.GupCode && x.CUST_CODE == req.CustCode && x.WMS_ORD_NO == req.WmsOrdNo);
+			var f055001s = F055001Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == req.DcCode && x.GUP_CODE == req.GupCode && x.CUST_CODE == req.CustCode && x.WMS_ORD_NO == req.WmsOrdNo);
 
 			// 如果[SS]有資料:
 			if (f055001s.Any())
@@ -1169,7 +1249,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			#region Insert F055001
 			// 取得該出貨單最大PACKAGE_BOX_NO +1
-			var packageBoxNo = f055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
+			var packageBoxNo = F055001Repo.GetNewPackageBoxNo(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
 
 			var f055001 = new F055001
 			{
@@ -1194,7 +1274,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				IS_CLOSED = "0",
 				IS_ORIBOX = "0"
 			};
-			f055001Repo.Add(f055001);
+			F055001Repo.Add(f055001);
 			#endregion
 
 			#region Insert Or Update F055002
@@ -1210,8 +1290,8 @@ namespace Wms3pl.WebServices.Shared.Services
 			}
 			if (!insertRes)
 				return new UseShipContainerToBoxDetailRes { IsSuccessed = false, Message = "容器商品數量超過出貨數" };
-			addF055002List.ForEach(f055002 => { f055002Repo.Add(f055002); });
-			updF055002List.ForEach(f055002 => { f055002Repo.Update(f055002); });
+			addF055002List.ForEach(f055002 => { F055002Repo.Add(f055002); });
+			updF055002List.ForEach(f055002 => { F055002Repo.Update(f055002); });
 			#endregion
 
 			_wmsTransaction.Complete();
@@ -1227,20 +1307,15 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			var consignService = new Lms.Services.ConsignService();
 			var sharedService = new SharedService(_wmsTransaction);
-			var f05500101Repo = new F05500101Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f050901Repo = new F050901Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f055007Repo = new F055007Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050301Repo = new F050301Repository(Schemas.CoreSchema);
 			var f2501Repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f19471201Repo = new F19471201Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f194712Repo = new F194712Repository(Schemas.CoreSchema);
 			var f194704Repo = new F194704Repository(Schemas.CoreSchema);
 
 			// [SS]=檢查出貨單狀態是否已出貨 資料表:F050801 條件: DC_CODE = < 參數1 > GUP_CODE =< 參數2 > CUST_CDOE =< 參數3 >WMS_ORD_NO =< 參數4 >
-			var f050801 = f050801Repo.GetData(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
+			var f050801 = F050801Repo.GetData(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
 			// 如果[SS].STATUS = 5 回傳訊息[false, 此出貨單已出貨，部可取消包裝]
 			if (f050801.STATUS == 5)
 				return new CancelShipOrderRes { IsSuccessed = false, Message = "此出貨單已出貨，不可取消包裝" };
@@ -1249,7 +1324,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			#region 呼叫LmsApi取消宅配單
 			// [YY]=取得已關箱包裝頭檔 資料表:F055001 條件: DC_CODE= <參數1> GUP_CODE=<參數2> CUST_CDOE=<參數3> WMS_ORD_NO=<參數4> AND IS_CLOSED = 1
-			var f055001Data = f055001Repo.GetDatas(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
+			var f055001Data = F055001Repo.GetDatas(req.WmsOrdNo, req.GupCode, req.CustCode, req.DcCode);
 
 			if (f055001Data.Any(x => x.IS_CLOSED == "1" && !string.IsNullOrWhiteSpace(x.PAST_NO)))
 			{
@@ -1263,7 +1338,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			#endregion
 
 			#region 刪除F055002
-			f055002Repo.Delete(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo);
+			F055002Repo.Delete(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo);
 			#endregion
 
 			#region 回復包材庫存
@@ -1283,7 +1358,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			#endregion
 
 			#region 刪除 F055001
-			f055001Repo.Delete(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo);
+			F055001Repo.Delete(o => o.DC_CODE == req.DcCode && o.GUP_CODE == req.GupCode && o.CUST_CODE == req.CustCode && o.WMS_ORD_NO == req.WmsOrdNo);
 			#endregion
 
 			#region 修改 F2501
@@ -1301,6 +1376,8 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			#region 修改 F050801
 			// 若出貨單狀態為已取消則不可更新為待處理(0)
+      int? isPackCheck = null;
+
 			if (f050801 != null && f050801.STATUS != 9)
 			{
 				var CheckPackageModeResult = CheckPackageMode(f050801, "0");
@@ -1309,34 +1386,27 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				f050801 = CheckPackageModeResult.f050801;
 
-				if (f050801.STATUS == 2)
-					f050801.ISPACKCHECK = 1;
+        if (f050801.STATUS == 2)
+          isPackCheck = 1;
 				else if (f050801.ISPACKCHECK == 2)
-					f050801.ISPACKCHECK = 0;
-
-				f050801.STATUS = 0;
-				f050801.PRINT_FLAG = "0";
-				f050801.PACK_CANCEL_TIME = DateTime.Now;
-				f050801.PACK_START_TIME = null;
-				f050801.PACK_FINISH_TIME = null;
+          isPackCheck = 0;
 			}
 
-			f050801Repo.Update(f050801);
+			F050801Repo.UpdateOrderUnpacked(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, isPackCheck);
 			#endregion
 
 			#region 出貨包裝_取消廠退單
-			var f160204Repo = new F160204Repository(Schemas.CoreSchema, _wmsTransaction);
 			if (f050801.SOURCE_TYPE == "13")
 			{
-				var f050301s = f050301Repo.GetF050301ForWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
+				var f050301s = F050301Repo.GetF050301ForWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
 				// 取得廠退單出貨單資料
-				var f160204s = f160204Repo.GetDatasByTrueAndCondition(x => x.RTN_WMS_NO == f050301s.First().SOURCE_NO).OrderBy(x => x.RTN_WMS_NO);
+				var f160204s = F160204Repo.GetDatasByTrueAndCondition(x => x.RTN_WMS_NO == f050301s.First().SOURCE_NO).OrderBy(x => x.RTN_WMS_NO);
 				// 更新f160204.PROC_FLAG
 				foreach (var item in f160204s)
 				{
 					item.PROC_FLAG = "1";
 				}
-				f160204Repo.BulkUpdate(f160204s);
+				F160204Repo.BulkUpdate(f160204s);
 			}
 			#endregion
 
@@ -1360,9 +1430,8 @@ namespace Wms3pl.WebServices.Shared.Services
 		public void UpdateF2501(string dcCode, string gupCode, string custCode, string wmsOrdCode)
 		{
 			var f2501repo = new F2501Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f05500101repo = new F05500101Repository(Schemas.CoreSchema, _wmsTransaction);
 			var upF2501Data = new List<F2501>();
-			var statusDatas = f05500101repo.GetAllDataByShipPackageService(dcCode, gupCode, custCode, wmsOrdCode).ToList();
+			var statusDatas = F05500101Repo.GetAllDataByShipPackageService(dcCode, gupCode, custCode, wmsOrdCode).ToList();
 			var serialNos = (from a in statusDatas select a.SERIAL_NO).ToList();
 			var f2501Data = CommonService.GetItemSerialList(gupCode, custCode, serialNos);
 			foreach (var s in statusDatas)
@@ -1414,14 +1483,13 @@ namespace Wms3pl.WebServices.Shared.Services
 		  string WorkstationCode)
 		{
 			var f05030202Repo = new F05030202Repository(Schemas.CoreSchema);
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema);
 
 			var itemShipPackageNoAllotOrders = f05030202Repo.GetItemShipPackageNoAllotOrder(f055001.DC_CODE, f055001.GUP_CODE, f055001.CUST_CODE, f055001.WMS_ORD_NO, itemCode).ToList();
 
 			if (!string.IsNullOrEmpty(serialNo) && itemShipPackageNoAllotOrders.Any(x => x.SERIAL_NO == serialNo))
 				itemShipPackageNoAllotOrders = itemShipPackageNoAllotOrders.Where(x => x.SERIAL_NO == serialNo).ToList();
 
-			var f055002s = f055002Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == f055001.DC_CODE && x.GUP_CODE == f055001.GUP_CODE && x.CUST_CODE == f055001.CUST_CODE && x.WMS_ORD_NO == f055001.WMS_ORD_NO && x.PACKAGE_BOX_NO == f055001.PACKAGE_BOX_NO && x.ITEM_CODE == itemCode).ToList();
+			var f055002s = F055002Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == f055001.DC_CODE && x.GUP_CODE == f055001.GUP_CODE && x.CUST_CODE == f055001.CUST_CODE && x.WMS_ORD_NO == f055001.WMS_ORD_NO && x.PACKAGE_BOX_NO == f055001.PACKAGE_BOX_NO && x.ITEM_CODE == itemCode).ToList();
 
 			do
 			{
@@ -1488,10 +1556,9 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		private int GetF055002NextSeq(F055001 f055001)
 		{
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema);
 			if (f055002MaxSeq == null)
 			{
-				var maxSeq = f055002Repo.Filter(x => x.WMS_ORD_NO == EntityFunctions.AsNonUnicode(f055001.WMS_ORD_NO)
+				var maxSeq = F055002Repo.Filter(x => x.WMS_ORD_NO == EntityFunctions.AsNonUnicode(f055001.WMS_ORD_NO)
 													 && x.PACKAGE_BOX_NO == f055001.PACKAGE_BOX_NO
 													 && x.DC_CODE == EntityFunctions.AsNonUnicode(f055001.DC_CODE)
 													 && x.GUP_CODE == EntityFunctions.AsNonUnicode(f055001.GUP_CODE)
@@ -1547,13 +1614,11 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="logSeq"></param>
 		public void LogF05500101(string dcCode, string gupCode, string custCode, string wmsOrdNo, string itemCode, string serialNo, string status, string isPass, string message, short packageBoxNo, string scanCode, int? logSeq = null, string flag = "0", string OrgSerialWmsNo = null)
 		{
-			var f05500101Repo = new F05500101Repository(Schemas.CoreSchema);
-
 			// 若沒有指定 Seq 則自動找下一個序號
 			if (!logSeq.HasValue)
-				logSeq = f05500101Repo.GetNextLogSeq(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo);
+				logSeq = F05500101RepoNoTrans.GetNextLogSeq(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo);
 
-			f05500101Repo.Add(new F05500101
+			F05500101RepoNoTrans.Add(new F05500101
 			{
 				DC_CODE = dcCode,
 				GUP_CODE = gupCode,
@@ -1662,7 +1727,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				REPORT_SEQ = reportSeq
 			};
 
-			_f055007Repo.Add(f055007);
+			F055007Repo.Add(f055007);
 			reportSeq++;
 
 			return f055007;
@@ -1678,23 +1743,15 @@ namespace Wms3pl.WebServices.Shared.Services
 			var wmsTransaction = new WmsTransaction();
 			var result = new GetBoxDetailReportRes();
 			var BoxHeader = new BoxHeaderData();
-			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema);
-			var f050301Repo = new F050301Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050103Repo = new F050103Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f050101Repo = new F050101Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f160201Repo = new F160201Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema);
-			var f050104Repo = new F050104Repository(Schemas.CoreSchema);
-			var f05030201Repo = new F05030201Repository(Schemas.CoreSchema);
 
 			// 箱明細頭檔
-			result.BoxHeader = f05030101Repo.GetBoxHeaderData(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
+			result.BoxHeader = F05030101RepoNoTrans.GetBoxHeaderData(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
 
 			// 箱明細身檔
-			var boxDetail = f055002Repo.GetDeliveryReport(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, req.PackageBoxNo).ToList();
+			var boxDetail = F055002Repo.GetDeliveryReport(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, req.PackageBoxNo).ToList();
 
 			// 取得服務型商品
-			var f050104s = f050104Repo.GetDatas(req.DcCode, req.GupCode, req.CustCode, boxDetail.Select(x => x.OrdNo).ToList())
+			var f050104s = F050104RepoNoTrans.GetDatas(req.DcCode, req.GupCode, req.CustCode, boxDetail.Select(x => x.OrdNo).ToList())
 			  .GroupBy(x => x.ITEM_CODE)
 			  .Select(x => new { ItemCode = x.Key, Services = x.Select(z => new { Code = z.SERVICE_ITEM_CODE, Name = z.SERVICE_ITEM_NAME }).ToList() });
 			if (!f050104s.Any())
@@ -1732,10 +1789,10 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			// 2023/02/13 Scott 目前客戶無非加工組合商品，先暫時註解，等客戶有需要再來解開註解
 			//以下為將明細商品轉換成非加工組合商品
-			//var BomOrderDetail = f05030201Repo.GetDeliveryReportByBomItem(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, req.PackageBoxNo).ToList();
+			//var BomOrderDetail = F05030201RepoNoTrans.GetDeliveryReportByBomItem(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, req.PackageBoxNo).ToList();
 			//if (BomOrderDetail.Any())
 			//{
-			//  var detail = f05030201Repo.GetDatasByWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, new List<string> { req.WmsOrdNo }).ToList();
+			//  var detail = F05030201RepoNoTrans.GetDatasByWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, new List<string> { req.WmsOrdNo }).ToList();
 			//  foreach (var item in BomOrderDetail)
 			//  {
 			//    var bomItemDetail = detail.Where(o => o.BOM_ITEM_CODE == item.ItemCode).ToList();
@@ -1786,9 +1843,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		public GetShipLittleLabelReportRes GetShipLittleLabelReport(GetShipLittleLabelReportReq req)
 		{
 			var boxLittleLabelDetail = new List<Box>();
-			var f050301Repo = new F050301Repository(Schemas.CoreSchema);
-			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema);
-			var f050301 = f050301Repo.GetDataByWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
+			var f050301 = F050301Repo.GetDataByWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo);
 
 			boxLittleLabelDetail.Add(new Box
 			{
@@ -1809,36 +1864,29 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public GetRtnShipLittleLabelReportRes GetRtnShipLittleLabelReport(GetRtnShipLittleLabelReportReq req)
 		{
-			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema);
-			var f050301Repo = new F050301Repository(Schemas.CoreSchema);
-			var f160204Repo = new F160204Repository(Schemas.CoreSchema);
-			var f160202Repo = new F160202Repository(Schemas.CoreSchema);
-			var f1951Repo = new F1951Repository(Schemas.CoreSchema);
-			var f1908Repo = new F1908Repository(Schemas.CoreSchema);
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema);
 			// 取得訂單編號
-			var ordNo = f05030101Repo.GetDatasByTrueAndCondition(x => x.WMS_ORD_NO == req.WmsOrdNo).FirstOrDefault()?.ORD_NO;
+			var ordNo = F05030101RepoNoTrans.GetDatasByTrueAndCondition(x => x.WMS_ORD_NO == req.WmsOrdNo).FirstOrDefault()?.ORD_NO;
 			// 取得貨主單據頭檔
-			var f050301 = f050301Repo.GetDatasByTrueAndCondition(x => x.ORD_NO == ordNo).FirstOrDefault();
+			var f050301 = F050301Repo.GetDatasByTrueAndCondition(x => x.ORD_NO == ordNo).FirstOrDefault();
 			// 取得廠退單出貨單資料
-			var f160204s = f160204Repo.GetDatasByTrueAndCondition(x => x.RTN_WMS_NO == f050301.SOURCE_NO).OrderBy(x => x.RTN_WMS_NO);
+			var f160204s = F160204Repo.GetDatasByTrueAndCondition(x => x.RTN_WMS_NO == f050301.SOURCE_NO).OrderBy(x => x.RTN_WMS_NO);
 			// 取得廠退原因
-			var rtnVnrCause = f160202Repo.GetDatasByTrueAndCondition(x => x.RTN_VNR_NO == f160204s.First().RTN_VNR_NO).FirstOrDefault()?.RTN_VNR_CAUSE;
-			var cause = f1951Repo.GetDatasByTrueAndCondition(x => x.UCC_CODE == rtnVnrCause && x.UCT_ID == "RV").FirstOrDefault().CAUSE;
+			var rtnVnrCause = F160202RepoNoTrans.GetDatasByTrueAndCondition(x => x.RTN_VNR_NO == f160204s.First().RTN_VNR_NO).FirstOrDefault()?.RTN_VNR_CAUSE;
+			var cause = F1951RepoNoTrans.GetDatasByTrueAndCondition(x => x.UCC_CODE == rtnVnrCause && x.UCT_ID == "RV").FirstOrDefault().CAUSE;
 			var getRtnShipLittleLabelReportRes = new BoxRtnLittleLabel
 			{
 				VNR_CODE = f160204s.FirstOrDefault().VNR_CODE,
-				VNR_NAME = f1908Repo.GetDatasByTrueAndCondition(x => x.VNR_CODE == f160204s.FirstOrDefault().VNR_CODE).FirstOrDefault()?.VNR_NAME,
+				VNR_NAME = F1908RepoNoTrans.GetDatasByTrueAndCondition(x => x.VNR_CODE == f160204s.FirstOrDefault().VNR_CODE).FirstOrDefault()?.VNR_NAME,
 				SOURCE_NO = f050301.SOURCE_NO,
 				CAUSE = cause
 			};
 
 			// 更新f055001.BOX_DOC
-			var f055001 = f055001Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == req.DcCode && x.GUP_CODE == req.GupCode
+			var f055001 = F055001RepoNoTrans.GetDatasByTrueAndCondition(x => x.DC_CODE == req.DcCode && x.GUP_CODE == req.GupCode
 			&& x.CUST_CODE == req.CustCode && x.WMS_ORD_NO == req.WmsOrdNo).OrderByDescending(x => x.PACKAGE_BOX_NO).FirstOrDefault();
 			f055001.BOX_DOC = f050301.SOURCE_NO;
 
-			f055001Repo.Update(f055001);
+			F055001RepoNoTrans.Update(f055001);
 			var result = new GetRtnShipLittleLabelReportRes();
 			result.BoxRtnLittleLabelDetail = new List<BoxRtnLittleLabel> { getRtnShipLittleLabelReportRes };
 			return result;
@@ -1961,8 +2009,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		public ChangeShipPackCheckRes ChangeShipPackCheck(ChangeShipPackCheckReq req)
 		{
 			var result = new ChangeShipPackCheckRes();
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema);
-			f050801Repo.UpdateIsPackCheck(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "2");
+			F050801RepoNoTrans.UpdateIsPackCheck(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, "2");
 			return new ChangeShipPackCheckRes { IsSuccessed = true };
 		}
 
@@ -1974,8 +2021,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		public GetWorkStataionShipDataRes GetWorkStataionShipData(GetWorkStataionShipDataReq req)
 		{
 			var procFlagList = new List<int> { 0, 1 };
-			var f060208Repo = new F060208Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f060208s = f060208Repo.GetWorkStataionShipData(req.DcCode, req.workstationCode).ToList();
+			var f060208s = F060208Repo.GetWorkStataionShipData(req.DcCode, req.workstationCode).ToList();
 
 			var waiting = f060208s.Where(x => x.PROC_FLAG == 0).ToList();
 			var arrived = f060208s.Except(waiting).ToList();
@@ -2033,12 +2079,10 @@ namespace Wms3pl.WebServices.Shared.Services
 			if (!shipPackageReportModels.Any())
 				return;
 
-			var wmsTransaction = new WmsTransaction();
-			var f05500101Repo = new F05500101Repository(Schemas.CoreSchema, wmsTransaction);
-			var logSeq = f05500101Repo.GetNextLogSeq(dcCode, gupCode, custCode, wmsOrdNo, shipPackageReportModels.First().PackageBoxNo);
+			var logSeq = F05500101RepoNoTrans.GetNextLogSeq(dcCode, gupCode, custCode, wmsOrdNo, shipPackageReportModels.First().PackageBoxNo);
 			foreach (var item in shipPackageReportModels)
 			{
-				f05500101Repo.Add(new F05500101
+				F05500101RepoNoTrans.Add(new F05500101
 				{
 					DC_CODE = dcCode,
 					GUP_CODE = gupCode,
@@ -2050,7 +2094,34 @@ namespace Wms3pl.WebServices.Shared.Services
 					SERIAL_NO = null,
 					STATUS = null,
 					ISPASS = "1",
-					MESSAGE = "人員列印" + item.ReportName,
+					MESSAGE = "人員開始列印" + item.ReportName,
+					PACKAGE_BOX_NO = item.PackageBoxNo,
+					LOG_SEQ = logSeq,
+					SCAN_CODE = null,
+					FLAG = "0",
+					ORG_SERIAL_WMS_NO = null,
+					CRT_DATE = item.START_PRINT_TIME.Value,
+					CRT_STAFF = Current.Staff,
+					CRT_NAME = Current.StaffName,
+					UPD_DATE = DateTime.Now,
+					UPD_STAFF = Current.Staff,
+					UPD_NAME = Current.StaffName
+				}, true);
+				logSeq++;
+
+				F05500101RepoNoTrans.Add(new F05500101
+				{
+					DC_CODE = dcCode,
+					GUP_CODE = gupCode,
+					CUST_CODE = custCode,
+					WMS_ORD_NO = wmsOrdNo,
+					PACKAGE_STAFF = Current.Staff,
+					PACKAGE_NAME = Current.StaffName,
+					ITEM_CODE = null,
+					SERIAL_NO = null,
+					STATUS = null,
+					ISPASS = "1",
+					MESSAGE = "人員結束列印" + item.ReportName,
 					PACKAGE_BOX_NO = item.PackageBoxNo,
 					LOG_SEQ = logSeq,
 					SCAN_CODE = null,
@@ -2065,8 +2136,6 @@ namespace Wms3pl.WebServices.Shared.Services
 				}, true);
 				logSeq++;
 			}
-
-			wmsTransaction.Complete();
 		}
 
 		/// <summary>
@@ -2079,7 +2148,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			TransApiBaseService tacService = new TransApiBaseService();
 			CheckPackageModeResult result = new CheckPackageModeResult() { IsSuccessed = true };
-			var f050801Repo = new F050801Repository(Schemas.CoreSchema);
 			//若SHIP_MODE IS NULL OR 0 OR 傳入參數=0，更新F050801.SHIP_MODE=傳入參數，COMMIT,可出貨
 
 			//若SHIP_MODE=1 AND SHIP_MODE<>傳入參數，回傳[人員已在出貨包裝處理，不可在此出貨]
@@ -2095,16 +2163,17 @@ namespace Wms3pl.WebServices.Shared.Services
 			else if (f050801.SHIP_MODE == "4" && f050801.SHIP_MODE != shipMode && shipMode != "0")
 				return new CheckPackageModeResult() { IsSuccessed = false, MsgCode = "20875", MsgContent = tacService.GetMsg("20875") };
 			else
-				f050801 = f050801Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
+				f050801 = F050801RepoNoTrans.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
 					new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
 					 () =>
 					 {
-						 var lockF050801 = f050801Repo.LockF050801();
-						 var dbF050801 = f050801Repo.Find(x => x.DC_CODE == f050801.DC_CODE && x.GUP_CODE == f050801.GUP_CODE && x.CUST_CODE == f050801.CUST_CODE && x.WMS_ORD_NO == f050801.WMS_ORD_NO);
+						 var lockF050801 = F050801RepoNoTrans.LockF050801();
+						 var dbF050801 = F050801RepoNoTrans.Find(x => x.DC_CODE == f050801.DC_CODE && x.GUP_CODE == f050801.GUP_CODE && x.CUST_CODE == f050801.CUST_CODE && x.WMS_ORD_NO == f050801.WMS_ORD_NO, isByCache: false);
 						 //若SHIP_MODE IS NULL OR 0 OR 傳入參數=0，更新F050801.SHIP_MODE=傳入參數，COMMIT,可出貨
 						 if (string.IsNullOrWhiteSpace(dbF050801.SHIP_MODE) || dbF050801.SHIP_MODE == "0" || shipMode == "0")
 						 {
-							 f050801Repo.UpdateShipMode(dbF050801.DC_CODE, dbF050801.GUP_CODE, dbF050801.CUST_CODE, dbF050801.WMS_ORD_NO, shipMode);
+							 F050801RepoNoTrans.UpdateShipMode(dbF050801.DC_CODE, dbF050801.GUP_CODE, dbF050801.CUST_CODE, dbF050801.WMS_ORD_NO, shipMode);
+							 dbF050801.SHIP_MODE = shipMode;
 						 }
 						 return dbF050801;
 					 });
@@ -2127,8 +2196,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public ExecuteResult UpdateF05500101Flag(string dcCode, string gupCode, string custCode, string WmsOrdNo, string Flag)
 		{
-			var f05500101Repo = new F05500101Repository(Schemas.CoreSchema, _wmsTransaction);
-			f05500101Repo.UpdateFields(new { FLAG = Flag }, x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.WMS_ORD_NO == WmsOrdNo);
+			F05500101Repo.UpdateFields(new { FLAG = Flag }, x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.WMS_ORD_NO == WmsOrdNo);
 			return new ExecuteResult(true);
 		}
 
@@ -2144,9 +2212,8 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="WorkStationId"></param>
 		public void InsertF050305Data(string dcCode, string gupCode, string custCode, string wmsOrdNo, string status, string procFlag, string WorkStationId)
 		{
-			var f05030101Repo = new F05030101Repository(Schemas.CoreSchema);
 			var f050305Repo = new F050305Repository(Schemas.CoreSchema, _wmsTransaction);
-			var insertF050305 = f05030101Repo.GetOrderRtnInsertDatas(dcCode, gupCode, custCode, status, new List<string> { wmsOrdNo }).ToList().FirstOrDefault();
+			var insertF050305 = F05030101RepoNoTrans.GetOrderRtnInsertDatas(dcCode, gupCode, custCode, status, new List<string> { wmsOrdNo }).ToList().FirstOrDefault();
 			if (insertF050305 != null)
 			{
 				insertF050305.WORKSTATION_CODE = WorkStationId;
@@ -2166,11 +2233,10 @@ namespace Wms3pl.WebServices.Shared.Services
 		public ExecuteResult CancelArrivalRecord(string dcCode, string gupCode, string custCode, string wmsNo, string containerCode = null)
 		{
 			var result = new ExecuteResult(true);
-			var f060208Repo = new F060208Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f060208s = f060208Repo.GetDatasByWmsNoAndContainerCode(dcCode, gupCode, custCode, wmsNo, containerCode).ToList();
+			var f060208s = F060208Repo.GetDatasByWmsNoAndContainerCode(dcCode, gupCode, custCode, wmsNo, containerCode).ToList();
 			if (f060208s.Any())
 			{
-				f060208Repo.UpdateProcFlag(dcCode, gupCode, custCode, wmsNo, containerCode);
+				F060208Repo.UpdateProcFlag(dcCode, gupCode, custCode, wmsNo, containerCode);
 			}
 			return result;
 		}
@@ -2185,6 +2251,46 @@ namespace Wms3pl.WebServices.Shared.Services
 		{
 			//前端傳回工作站設定的配箱站與封箱站分開的值=1，則配箱工作站編號第一碼變更為S存入此欄，否則為配箱工作站編號
 			return IsNoSpecReprots ? WorkstationCode.Remove(0, 1).Insert(0, "S") : WorkstationCode;
+		}
+
+		public PrintBoxSettingParam GetPrintBoxSetting(string dcCode, string gupCode, string custCode, string ShipMode)
+		{
+			var param = new PrintBoxSettingParam
+			{
+				isPrintBoxDetail = "0",
+				isPrintShipLittleLabel = "0",
+				isPrintRtnShipLittleLabel = "0",
+				isGetShipOrder = false,
+			};
+
+			if (ShipMode == "1")
+			{
+				// [LL] = 單人包裝站取得是否列印箱明細
+				var f0003ByLL = CommonService.GetSysGlobalValue(dcCode, gupCode, custCode, "IsPrintBoxDetail_SinglePack");
+				param.isPrintBoxDetail = f0003ByLL != null && f0003ByLL == "0" ? "0" : "1";
+				// [PP] = 單人包裝站是否列印出貨小白標
+				var f0003ByPP = CommonService.GetSysGlobalValue(dcCode, gupCode, custCode, "IsPrintShipLittleLabel_SinglePack");
+				param.isPrintShipLittleLabel = f0003ByPP != null && f0003ByPP == "0" ? "0" : "1";
+			}
+			else if (ShipMode == "2")
+			{
+				// [LL] = 包裝線包裝站取得是否列印箱明細
+				var f0003ByLL = CommonService.GetSysGlobalValue(dcCode, gupCode, custCode, "IsPrintBoxDetail_PackLine");
+				param.isPrintBoxDetail = f0003ByLL != null && f0003ByLL == "0" ? "0" : "1";
+				// [PQ] = 包裝線包裝站是否列印出貨小白標
+				var f0003ByPQ = CommonService.GetSysGlobalValue(dcCode, gupCode, custCode, "IsPrintShipLittleLabel_PackLine");
+				param.isPrintShipLittleLabel = f0003ByPQ != null && f0003ByPQ == "0" ? "0" : "1";
+			}
+
+			// 取得是否取得宅配單
+			var f0003BySO = CommonService.GetSysGlobalValue(dcCode, gupCode, custCode, "GetShipOrder");
+			param.isGetShipOrder = f0003BySO != null && f0003BySO == "0" ? false : true;
+
+			// [RR] = 取得是否列印廠退出貨小白標
+			var f0003ByRR = CommonService.GetSysGlobalValue(dcCode, gupCode, custCode, "IsPrintRtnShipLittleLabel");
+			param.isPrintRtnShipLittleLabel = f0003ByRR != null && f0003ByRR == "0" ? "0" : "1";
+
+			return param;
 		}
 
 	}

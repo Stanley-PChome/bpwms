@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Diagnostics;
+using System.Web.Http;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
@@ -31,17 +32,17 @@ namespace Wms3pl.WebServices.WebApiLib.Controllers
 		[HttpPost]
 		[Route("api/WmsItem/PostItemLevel")]
 		public ApiResult PostItemLevel(PostItemLevelReq req)
-		{
-			var comService = new TransCommonService(new WmsTransaction());
-			return comService.PostItemLevel(req);
-		}
+    {
+      var comService = new TransCommonService(new WmsTransaction());
+      return comService.PostItemLevel(req);
+    }
 
-		/// <summary>
-		/// 批次新增供應商主檔
-		/// </summary>
-		/// <param name="req"></param>
-		/// <returns></returns>
-		[Authorize]
+    /// <summary>
+    /// 批次新增供應商主檔
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
+    [Authorize]
 		[HttpPost]
 		[Route("api/WmsItem/PostVendorData")]
 		public ApiResult PostVendorData(PostVendorDataReq req)
@@ -50,26 +51,26 @@ namespace Wms3pl.WebServices.WebApiLib.Controllers
 			return comService.PostVendorData(req);
 		}
 
-		/// <summary>
-		/// 批次新增商品主檔
-		/// </summary>
-		/// <param name="req"></param>
-		/// <returns></returns>
-		[Authorize]
-		[HttpPost]
-		[Route("api/WmsItem/PostItemData")]
-		public ApiResult PostItemData(PostItemDataReq req)
-		{
-			var comService = new TransCommonService(new WmsTransaction());
-			return comService.PostItemData(req);
-		}
+    /// <summary>
+    /// 批次新增商品主檔
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
+    [Authorize]
+    [HttpPost]
+    [Route("api/WmsItem/PostItemData")]
+    public ApiResult PostItemData(PostItemDataReq req)
+    {
+      var comService = new TransCommonService(new WmsTransaction());
+      return comService.PostItemData(req);
+    }
 
-		/// <summary>
-		/// 批次新增商品分類主檔
-		/// </summary>
-		/// <param name="req"></param>
-		/// <returns></returns>
-		[Authorize]
+    /// <summary>
+    /// 批次新增商品分類主檔
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
+    [Authorize]
 		[HttpPost]
 		[Route("api/WmsItem/PostItemCategory")]
 		public ApiResult PostItemCategory(PostItemCategoryReq req)

@@ -63,6 +63,12 @@
   <wsdl:message name="P06WcfService_GetContainerBarcode_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetContainerBarcodeResponse" />
   </wsdl:message>
+  <wsdl:message name="P06WcfService_ConfirmLackToShip_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmLackToShip" />
+  </wsdl:message>
+  <wsdl:message name="P06WcfService_ConfirmLackToShip_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmLackToShipResponse" />
+  </wsdl:message>
   <wsdl:portType name="P06WcfService">
     <wsdl:operation name="ConfirmP060103">
       <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/ConfirmP060103" message="tns:P06WcfService_ConfirmP060103_InputMessage" />
@@ -99,6 +105,10 @@
     <wsdl:operation name="GetContainerBarcode">
       <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/GetContainerBarcode" message="tns:P06WcfService_GetContainerBarcode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/GetContainerBarcodeResponse" message="tns:P06WcfService_GetContainerBarcode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmLackToShip">
+      <wsdl:input wsaw:Action="http://tempuri.org/P06WcfService/ConfirmLackToShip" message="tns:P06WcfService_ConfirmLackToShip_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P06WcfService/ConfirmLackToShipResponse" message="tns:P06WcfService_ConfirmLackToShip_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_P06WcfService" type="tns:P06WcfService">
@@ -177,6 +187,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetContainerBarcode">
       <soap:operation soapAction="http://tempuri.org/P06WcfService/GetContainerBarcode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmLackToShip">
+      <soap:operation soapAction="http://tempuri.org/P06WcfService/ConfirmLackToShip" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

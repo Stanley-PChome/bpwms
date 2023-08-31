@@ -510,12 +510,6 @@ namespace Wms3pl.Datas.F19
 			return datas.AsQueryable();
 		}
 
-		public IQueryable<WcsSkuCodeModel> GetDatasByWcsSnapshotStocks(List<SnapshotStocksReceiptSkuModel> skuList)
-		{
-			return _db.F1903s.AsNoTracking().Where(x => skuList.Any(z => z.OwnerCode == x.CUST_CODE && z.SkuCode == x.ITEM_CODE))
-				.Select(x => new WcsSkuCodeModel { SkuCode = x.ITEM_CODE, OwnerCode = x.CUST_CODE, GupCode = x.GUP_CODE });
-		}
-
 		public IQueryable<ExpStockAlert> GetDatasByExpStockAlert(string dcCode, string gupCode, string custCode)
 		{
 			var f1913s = _db.F1913s.Where(x => x.DC_CODE == dcCode

@@ -49,13 +49,13 @@ namespace Wms3pl.WebServices.Process.P02.Services
       return f020201Repo.GetF020209RecvRecord(dcCode, gupCode, custCode, RecvDateBegin, RecvDateEnd, PurchaseNo, CustOrdNo, PrintMode, PalletLocation, ItemCode, RecvStaff);
     }
 
-    public IQueryable<ItemLabelData> GetF020209ItemLabelData(string dcCode, string gupCode, string custCode, string rtNos)
+    public IQueryable<ItemLabelData> GetP020209ItemLabelData(string dcCode, string gupCode, string custCode, string rtNos)
     {
       var f020201Repo = new F020201Repository(Schemas.CoreSchema);
 
       List<string> rtNoList = rtNos.Split(',').ToList();
 
-      return f020201Repo.GetF020209ItemLabelData(dcCode, gupCode, custCode, rtNoList);
+      return f020201Repo.GetP020209ItemLabelData(dcCode, gupCode, custCode, rtNoList);
     }
   }
 }

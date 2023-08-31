@@ -977,10 +977,10 @@ namespace Wms3pl.WebServices.Process.P02
     /// <param name="rtNo"></param>
     /// <returns></returns>
     [WebGet]
-    public IQueryable<ItemLabelData> GetF020209ItemLabelData(string dcCode, string gupCode, string custCode, string rtNos)
+    public IQueryable<ItemLabelData> GetP020209ItemLabelData(string dcCode, string gupCode, string custCode, string rtNos)
     {
       var srv = new P020209Service();
-      return srv.GetF020209ItemLabelData(dcCode, gupCode, custCode, rtNos);
+      return srv.GetP020209ItemLabelData(dcCode, gupCode, custCode, rtNos);
     }
   }
 }

@@ -33,6 +33,8 @@
       <xs:element name="_x003C_ISPRINTED_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ISSEAL_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_MOVE_OUT_TARGET_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ORDER_CRT_DATE_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_ORDER_PROC_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ORD_TYPE_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_PDA_PICK_PERCENT_x003E_k__BackingField" type="xs:decimal" />
       <xs:element name="_x003C_PICK_CNT_x003E_k__BackingField" nillable="true" type="xs:int" />

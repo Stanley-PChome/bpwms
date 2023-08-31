@@ -289,4 +289,72 @@ namespace Wms3pl.Datas.Shared.ApiEntities
 		/// </summary>
 		public int Count { get; set; }
 	}
+
+  /// <summary>
+  /// 批次商品新增API(PostItemData)新增用結構 (簡化的F1913)
+  /// </summary>
+  public class PostItemData
+  {
+    //ORD_SAVE_QTY = 0,
+    //BORROW_DAY = 7,
+    //CAN_SELL = "0",
+    //CAN_SPILT_IN = "0",
+    public string GUP_CODE { get; set; }
+    public string CUST_CODE { get; set; }
+    public string ITEM_CODE { get; set; }
+    public string VEN_ORD { get; set; }
+    public string RET_ORD { get; set; }
+    public Int16? ALL_DLN { get; set; }
+    public string PICK_WARE { get; set; }
+    public string C_D_FLAG { get; set; }
+    public string MULTI_FLAG { get; set; }
+    public string MIX_BATCHNO { get; set; }
+    public string ALLOWORDITEM { get; set; }
+    public string BUNDLE_SERIALLOC { get; set; }
+    public string BUNDLE_SERIALNO { get; set; }
+    public Int64 PICK_SAVE_QTY { get; set; }
+    public string ITEM_RETURN { get; set; }
+    public string LOC_MIX_ITEM { get; set; }
+    public Int16? SERIALNO_DIGIT { get; set; }
+    public string SERIAL_BEGIN { get; set; }
+    public string SERIAL_RULE { get; set; }
+    public Int32? SAVE_DAY { get; set; }
+    public string ITEM_STAFF { get; set; }
+    public decimal? CHECK_PERCENT { get; set; }
+    public Int32 PICK_SAVE_ORD { get; set; }
+    public string ISCARTON { get; set; }
+    public string LTYPE { get; set; }
+    public string MTYPE { get; set; }
+    public string STYPE { get; set; }
+    public string ITEM_NAME { get; set; }
+    public string EAN_CODE1 { get; set; }
+    public string EAN_CODE2 { get; set; }
+    public string EAN_CODE3 { get; set; }
+    public string ITEM_ENGNAME { get; set; }
+    public string ITEM_COLOR { get; set; }
+    public string ITEM_SIZE { get; set; }
+    public Int16? ITEM_HUMIDITY { get; set; }
+    public string ITEM_SPEC { get; set; }
+    public string TMPR_TYPE { get; set; }
+    public string FRAGILE { get; set; }
+    public string SPILL { get; set; }
+    public string ITEM_UNIT { get; set; }
+    public string MEMO { get; set; }
+    public string PICK_WARE_ID { get; set; }
+    public string CUST_ITEM_NAME { get; set; }
+    public string MAKENO_REQU { get; set; }
+    public string TYPE { get; set; }
+    public string NEED_EXPIRED { get; set; }
+    public Int32? ALL_SHP { get; set; }
+    public string EAN_CODE4 { get; set; }
+    public DateTime? FIRST_IN_DATE { get; set; }
+    public string VNR_CODE { get; set; }
+    public string CUST_ITEM_CODE { get; set; }
+    public string IS_PRECIOUS { get; set; }
+    public string IS_MAGNETIC { get; set; }
+    public string IS_PERISHABLE { get; set; }
+    public string IS_TEMP_CONTROL { get; set; }
+    public string VNR_ITEM_CODE { get; set; }
+    public string ORI_VNR_CODE { get; set; }
+  }
 }

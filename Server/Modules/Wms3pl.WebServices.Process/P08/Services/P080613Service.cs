@@ -37,10 +37,12 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				var orderNos = f0011BD.Select(x => x.ORDER_NO).ToList();
 				// 一次取回，建立快取讓後面不用重複取
 				var f051201List = _sharedService.GetF051201s(dcCode, gupCode, custCode, orderNos);
+
 				var now = DateTime.Now;
 				foreach (var f0011 in f0011BD)
 				{
 					var f051201 = _sharedService.GetF051201(f0011.DC_CODE,f0011.GUP_CODE,f0011.CUST_CODE,f0011.ORDER_NO);
+
           if (f051201.PICK_STATUS == 0)
           {
             errMsgs.Add(f051201.PICK_ORD_NO + "尚未開始揀貨");
@@ -76,7 +78,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 								Qty = x.B_PICK_QTY
 							}).ToList()
 						});
-					}
+          }
 					// 批量揀貨
 					else
 					{
@@ -96,7 +98,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 								Qty = x.B_PICK_QTY
 							}).ToList()
 						});
-					}
+          }
 				}
         return new ExecuteResult(true, string.Join("\r\n", errMsgs));
       }
@@ -149,7 +151,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
       return new ExecuteResult(true);
     }
 
-		public ExecuteResult CheckIfAllOrdersCanceledByPickNo(string dcCode, string gupCode, string custCode, string orderNo)
+    public ExecuteResult CheckIfAllOrdersCanceledByPickNo(string dcCode, string gupCode, string custCode, string orderNo)
 		{
 			var cancelOrders = _sharedService.CheckIfAllOrdersCanceledByPickNoList(dcCode, gupCode, custCode, new List<string> { orderNo });
 			if (cancelOrders.Any())
@@ -163,41 +165,44 @@ namespace Wms3pl.WebServices.Process.P08.Services
     {
 			var isNoCacelOrderPickList = new List<F0011BindData>();
 			var checkEmpDatas = f0011BindDatas.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.EMP_ID }).ToList();
+
 			foreach(var c in checkEmpDatas)
 			{
 				var checkEmp = CheckUserPermission(c.Key.DC_CODE, c.Key.GUP_CODE, c.Key.CUST_CODE, c.Key.EMP_ID);
 				if (!checkEmp.IsSuccessed)
 					return checkEmp;
 			}
+
 			if (!f0011BindDatas.Any())
 				return new ExecuteResult(false, "您未綁定任何單據，不可以進行綁定完成");
 
-			var orderNos = f0011BindDatas.Select(x => x.ORDER_NO).ToList();
 			// 一次取回，建立快取讓後面不用重複取
+			var orderNos = f0011BindDatas.Select(x => x.ORDER_NO).ToList();
 			var f051201List = _sharedService.GetF051201s(dcCode, gupCode, custCode, orderNos);
 			var f0011List = _sharedService.GetDatasForNotClosed(dcCode, gupCode, custCode, orderNos);
 
-			foreach (var item in f0011BindDatas)
-			{
-				var check = CheckOrderNo(item.DC_CODE, item.GUP_CODE, item.CUST_CODE, item.ORDER_NO, item.EMP_ID);
-				if (!check.IsSuccessed)
-					return new ExecuteResult(false, string.Format("[{0}]{1}", item.ORDER_NO, check.Message));
-				else
-					isNoCacelOrderPickList.Add(item);
-			}
-			#region 檢查是否有取消的揀貨單
-			var cancelOrders = _sharedService.CheckIfAllOrdersCanceledByPickNoList(dcCode, gupCode, custCode, isNoCacelOrderPickList.Select(x=> x.ORDER_NO).Distinct().ToList());
-			isNoCacelOrderPickList = isNoCacelOrderPickList.Where(x => !cancelOrders.Any(y => x.ORDER_NO == y)).ToList();
-			#endregion 檢查是否有取消的揀貨單
+      foreach (var item in f0011BindDatas)
+      {
+        var check = CheckOrderNo(item.DC_CODE, item.GUP_CODE, item.CUST_CODE, item.ORDER_NO, item.EMP_ID);
+        if (!check.IsSuccessed)
+          return new ExecuteResult(false, string.Format("[{0}]{1}", item.ORDER_NO, check.Message));
+        else
+          isNoCacelOrderPickList.Add(item);
+      }
 
-			var groupEmpList = isNoCacelOrderPickList.GroupBy(x => new { x.DC_CODE,x.GUP_CODE,x.CUST_CODE, x.EMP_ID }).ToList();
+      #region 檢查是否有取消的揀貨單
+      var cancelOrders = _sharedService.CheckIfAllOrdersCanceledByPickNoList(dcCode, gupCode, custCode, isNoCacelOrderPickList.Select(x=> x.ORDER_NO).Distinct().ToList());
+			isNoCacelOrderPickList = isNoCacelOrderPickList.Where(x => !cancelOrders.Any(y => x.ORDER_NO == y)).ToList();
+      #endregion 檢查是否有取消的揀貨單
+
+      var groupEmpList = isNoCacelOrderPickList.GroupBy(x => new { x.DC_CODE,x.GUP_CODE,x.CUST_CODE, x.EMP_ID }).ToList();
 			foreach (var groupEmp in groupEmpList)
 				_sharedService.StartPick(groupEmp.Key.DC_CODE, groupEmp.Key.GUP_CODE, groupEmp.Key.CUST_CODE, groupEmp.Key.EMP_ID,groupEmp.Select(x=> x.ORDER_NO).Distinct().ToList());
 
-			if (cancelOrders.Any())
+      if (cancelOrders.Any())
 				return new ExecuteResult(false, $"揀貨單{Environment.NewLine}{string.Join(Environment.NewLine, cancelOrders)}{Environment.NewLine}已取消，請將揀貨單抽出勿揀貨", string.Join(",", cancelOrders));
 			else
-			return new ExecuteResult(true);
+			  return new ExecuteResult(true);
     }
 
     public ExecuteResult Delete(int id)

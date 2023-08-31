@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2022/7/28 下午 02:17:40
+// Generation date: 2023/5/30 下午 02:15:26
 namespace Wms3pl.WpfClient.DataServices.F70DataService
 {
     

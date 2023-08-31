@@ -16,7 +16,12 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 {
 	public class CheckOutWarehouseReceiptService
 	{
-		private TransApiBaseService tacService = new TransApiBaseService();
+    private TransApiBaseService _TacService;
+    public TransApiBaseService TacService
+    {
+      get { return _TacService == null ? _TacService = new TransApiBaseService() : _TacService; }
+      set { _TacService = value; }
+    }
 
 		#region 出庫單檢核
 		/// <summary>
@@ -49,7 +54,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 						else if (f151001.STATUS == "5")
 							isClose = true;
 						else if (!f151001Status.Contains(f151001.STATUS)) // 調撥單還需再檢核是否為下架單
-							res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "20048", MsgContent = string.Format(tacService.GetMsg("20048"), receipt.OrderCode) });
+							res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "20048", MsgContent = string.Format(TacService.GetMsg("20048"), receipt.OrderCode) });
 					}
 				}
 			}
@@ -82,15 +87,15 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 
 			// 單據不存在
 			if (!isExist)
-				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "20962", MsgContent = string.Format(tacService.GetMsg("20962"), receipt.OrderCode) });
+				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "20962", MsgContent = string.Format(TacService.GetMsg("20962"), receipt.OrderCode) });
 
 			// 單據已刪除
 			if (isCancel)
-				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "23052", MsgContent = string.Format(tacService.GetMsg("23052"), receipt.OrderCode) });
+				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "23052", MsgContent = string.Format(TacService.GetMsg("23052"), receipt.OrderCode) });
 
 			// 單據已結案
 			if (isClose)
-				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "23053", MsgContent = string.Format(tacService.GetMsg("23053"), receipt.OrderCode) });
+				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "23053", MsgContent = string.Format(TacService.GetMsg("23053"), receipt.OrderCode) });
 		}
 
 		/// <summary>
@@ -102,7 +107,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		{
 			List<int> status = new List<int> { 0, 3, 9 };
 			if (!status.Contains(Convert.ToInt32(receipt.Status)))
-				res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "Status", MsgCode = "23051", MsgContent = string.Format(tacService.GetMsg("23051"), receipt.OrderCode, "出庫單狀態") });
+				res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "Status", MsgCode = "23051", MsgContent = string.Format(TacService.GetMsg("23051"), receipt.OrderCode, "出庫單狀態") });
 		}
 
 		/// <summary>
@@ -114,7 +119,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		{
 			List<int> isExceptions = new List<int> { 0, 1, 2 };
 			if (!isExceptions.Contains(Convert.ToInt32(receipt.IsException)))
-				res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "IsException", MsgCode = "23051", MsgContent = string.Format(tacService.GetMsg("23051"), receipt.OrderCode, "是否異常") });
+				res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "IsException", MsgCode = "23051", MsgContent = string.Format(TacService.GetMsg("23051"), receipt.OrderCode, "是否異常") });
 		}
 
 		/// <summary>
@@ -125,7 +130,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		public void CheckSkuTotalEqualDetailCnt(List<ApiResponse> res, OutWarehouseReceiptModel receipt)
 		{
 			if (receipt.SkuTotal != receipt.SkuList.Count)
-				res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "SkuTotal", MsgCode = "23058", MsgContent = string.Format(tacService.GetMsg("23058"), receipt.OrderCode, receipt.SkuTotal, receipt.SkuList.Count) });
+				res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "SkuTotal", MsgCode = "23058", MsgContent = string.Format(TacService.GetMsg("23058"), receipt.OrderCode, receipt.SkuTotal, receipt.SkuList.Count) });
 		}
 
 		/// <summary>
@@ -170,7 +175,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 				}
 
 				if (!isPass)
-					res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "SkuList", MsgCode = "20039", MsgContent = string.Format(tacService.GetMsg("20039"), receipt.OrderCode) });
+					res.Add(new ApiResponse { No = receipt.OrderCode, ErrorColumn = "SkuList", MsgCode = "20039", MsgContent = string.Format(TacService.GetMsg("20039"), receipt.OrderCode) });
 			}
 		}
 		#endregion
@@ -198,7 +203,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 				rowNumIsExist = false;
 
 			if (!rowNumIsExist)
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "RowNum", MsgCode = "23057", MsgContent = string.Format(tacService.GetMsg("23057"), $"{receiptCode}第{index + 1}筆明細") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "RowNum", MsgCode = "23057", MsgContent = string.Format(TacService.GetMsg("23057"), $"{receiptCode}第{index + 1}筆明細") });
 		}
 
 		/// <summary>
@@ -223,7 +228,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 				skuCodeIsExist = false;
 
 			if (!skuCodeIsExist)
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuCode", MsgCode = "23059", MsgContent = string.Format(tacService.GetMsg("23059"), $"{receiptCode}第{index + 1}筆明細") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuCode", MsgCode = "23059", MsgContent = string.Format(TacService.GetMsg("23059"), $"{receiptCode}第{index + 1}筆明細") });
 		}
 
 		/// <summary>
@@ -237,7 +242,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		{
 			List<int> skuLeves = new List<int> { 0, 1 };
 			if (!skuLeves.Contains(Convert.ToInt32(sku.SkuLevel)))
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuLevel", MsgCode = "23051", MsgContent = string.Format(tacService.GetMsg("23051"), $"{receiptCode}第{index + 1}筆明細", "商品等級") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuLevel", MsgCode = "23051", MsgContent = string.Format(TacService.GetMsg("23051"), $"{receiptCode}第{index + 1}筆明細", "商品等級") });
 		}
 
 		/// <summary>
@@ -250,7 +255,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		public void CheckSkuQty(List<ApiResponse> res, OutWarehouseReceiptSkuModel sku, string receiptCode, int index)
 		{
 			if (sku.SkuQty < 0)
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "23056", MsgContent = string.Format(tacService.GetMsg("23056"), $"{receiptCode}第{index + 1}筆明細") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "23056", MsgContent = string.Format(TacService.GetMsg("23056"), $"{receiptCode}第{index + 1}筆明細") });
 		}
 
 		/// <summary>
@@ -264,8 +269,8 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		{
 			if (sku.SkuQty > sku.SkuPlanQty)
 			{
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("23055"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量", "預計揀貨數量") });
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("23055"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量", "預計揀貨數量") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("23055"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量", "預計揀貨數量") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("23055"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量", "預計揀貨數量") });
 			}
 		}
 
@@ -285,23 +290,23 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 			if (f151002 != null)
 			{
 				if (sku.SkuQty > f151002.SRC_QTY)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量") });
 				if (sku.SkuPlanQty > f151002.SRC_QTY)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "預計揀貨數量") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "預計揀貨數量") });
 			}
 			else if (f051202ByO != null)
 			{
 				if (sku.SkuQty > f051202ByO.B_PICK_QTY)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量") });
 				if (sku.SkuPlanQty > f051202ByO.B_PICK_QTY)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "預計揀貨數量") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "預計揀貨數量") });
 			}
 			else if (f051203ByP != null)
 			{
 				if (sku.SkuQty > f051203ByP.B_PICK_QTY)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "實際揀貨數量") });
 				if (sku.SkuPlanQty > f051203ByP.B_PICK_QTY)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(tacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "預計揀貨數量") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SkuPlanQty", MsgCode = "20047", MsgContent = string.Format(TacService.GetMsg("20047"), $"{receiptCode}第{index + 1}筆明細", "預計揀貨數量") });
 			}
 		}
 
@@ -327,7 +332,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 				isFinish = true;
 
 			if (isFinish)
-				res.Add(new ApiResponse { No = receiptCode, MsgCode = "20046", MsgContent = string.Format(tacService.GetMsg("20046"), $"{receiptCode}第{index + 1}筆明細", "此單據明細") });
+				res.Add(new ApiResponse { No = receiptCode, MsgCode = "20046", MsgContent = string.Format(TacService.GetMsg("20046"), $"{receiptCode}第{index + 1}筆明細", "此單據明細") });
 		}
 
 		/// <summary>
@@ -352,7 +357,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 				expiryDateIsEquel = true;
 
 			if (!expiryDateIsEquel && (f151002 != null || f051202ByO != null || f051202ByP != null))
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "ExpiryDate", MsgCode = "20045", MsgContent = string.Format(tacService.GetMsg("20045"), $"{receiptCode}第{index + 1}筆明細", "效期") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "ExpiryDate", MsgCode = "20045", MsgContent = string.Format(TacService.GetMsg("20045"), $"{receiptCode}第{index + 1}筆明細", "效期") });
 		}
 
 		/// <summary>
@@ -377,7 +382,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 				outBatchCodeIsEquel = true;
 
 			if (!outBatchCodeIsEquel && (f151002 != null || f051202ByO != null || f051202ByP != null))
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "OutBatchCode", MsgCode = "20045", MsgContent = string.Format(tacService.GetMsg("20045"), $"{receiptCode}第{index + 1}筆明細", "批號") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "OutBatchCode", MsgCode = "20045", MsgContent = string.Format(TacService.GetMsg("20045"), $"{receiptCode}第{index + 1}筆明細", "批號") });
 		}
 
 		/// <summary>
@@ -393,7 +398,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 			{
 				bool serialNumIsExceed = string.Join(",", sku.SerialNumList).Length > 8000;
 				if (serialNumIsExceed)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20044", MsgContent = string.Format(tacService.GetMsg("20044"), $"{receiptCode}第{index + 1}筆明細") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20044", MsgContent = string.Format(TacService.GetMsg("20044"), $"{receiptCode}第{index + 1}筆明細") });
 			}
 		}
 
@@ -407,7 +412,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		public void CheckSkuSerialNumEquelSkuQty(List<ApiResponse> res, OutWarehouseReceiptSkuModel sku, string receiptCode, int index)
 		{
 			if (sku.SerialNumList != null && sku.SerialNumList.Any() && sku.SkuQty != sku.SerialNumList.Count)
-				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20043", MsgContent = string.Format(tacService.GetMsg("20043"), $"{receiptCode}第{index + 1}筆明細") });
+				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20043", MsgContent = string.Format(TacService.GetMsg("20043"), $"{receiptCode}第{index + 1}筆明細") });
 		}
 
 		/// <summary>
@@ -424,7 +429,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 			{
         var data = serialNoList.Where(serialNo => sku.SerialNumList.Contains(serialNo.SERIAL_NO));
         if (data.Count() != sku.SerialNumList.Count)
-					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20042", MsgContent = string.Format(tacService.GetMsg("20042"), $"{receiptCode}第{index + 1}筆明細") });
+					res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20042", MsgContent = string.Format(TacService.GetMsg("20042"), $"{receiptCode}第{index + 1}筆明細") });
 			}
 		}
 		#endregion
@@ -454,7 +459,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 				return f075106;
 			});
 			if (f075106Res == null)// 代表F075106已存在資料
-				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "20964", MsgContent = string.Format(tacService.GetMsg("20964"), receipt.OrderCode) });
+				res.Add(new ApiResponse { No = receipt.OrderCode, MsgCode = "20964", MsgContent = string.Format(TacService.GetMsg("20964"), receipt.OrderCode) });
 			#endregion
 
 			return isAddF075106;
@@ -480,7 +485,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
             MsgCode = "20006",
             //20006, 容器{0}明細中商品{1}序號總數{2}與裝箱數量{3}不一致
             MsgContent =
-              string.Format(tacService.GetMsg("20006"),
+              string.Format(TacService.GetMsg("20006"),
                 container.ContainerCode,
                 containerSku.SkuCode,
                 SerialNumList.Count(),
@@ -513,7 +518,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
         MsgCode = "20005",
         //20005, 容器明細中商品{0}總數量{1}與回傳揀貨明細商品實際揀貨數{2}不一致
         MsgContent =
-                string.Format(tacService.GetMsg("20005"),
+                string.Format(TacService.GetMsg("20005"),
                   x.skuCode,
                   x.containerQty,
                   x.skuQty)
@@ -546,7 +551,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
           MsgCode = "20007",
           //20007, 容器{0}明細中，商品序號{1}不存在
           MsgContent =
-          string.Format(tacService.GetMsg("20007"),
+          string.Format(TacService.GetMsg("20007"),
             containers.ContainerCode,
             string.Join(",", containerSerialNoList))
         });

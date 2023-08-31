@@ -652,7 +652,7 @@ namespace Wms3pl.Datas.F05
     /// </summary>
     public IQueryable<F050301> GetCancelNotCompleteOrd()
     {
-      var sql = @"SELECT * FROM F050301 A 
+      var sql = @"SELECT A.* FROM F050301 A 
                   JOIN F050101 B 
                       ON A.DC_CODE = B.DC_CODE 
                       AND A.GUP_CODE = B.GUP_CODE 
@@ -661,7 +661,7 @@ namespace Wms3pl.Datas.F05
 				          JOIN F05030101 C
 				              ON B.DC_CODE=C.DC_CODE
 					            AND B.GUP_CODE=C.GUP_CODE
-					            AND C.CUST_CODE=C.CUST_CODE
+					            AND B.CUST_CODE=C.CUST_CODE
 					            AND B.ORD_NO=C.ORD_NO
 				          JOIN F050801 D
 				              ON D.DC_CODE=C.DC_CODE

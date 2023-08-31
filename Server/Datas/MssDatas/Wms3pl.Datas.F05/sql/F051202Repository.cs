@@ -689,5 +689,61 @@ WHERE
       #endregion
     }
 
+    /// <summary>
+    /// 檢查出貨單是否所有揀貨單還有明細未完成揀貨
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="wmsNo"></param>
+    /// <returns></returns>
+    public Boolean IsPickOrdNotDone(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = wmsNo },
+      };
+
+      var sql = @"SELECT TOP 1 1 FROM F051202 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND WMS_ORD_NO=@p3 AND PICK_STATUS ='0'";
+      return SqlQuery<int>(sql, para.ToArray()).Any();
+    }
+
+    public void UpdatePickComplete(string dcCode, string gupCode, string custCode, string pickOrdNo, string pickSeq, int pickQty, DateTime? updDate, string updStaff, string updName)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", pickOrdNo) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", pickSeq) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p5", pickQty) { SqlDbType = SqlDbType.Int },
+        new SqlParameter("@p6", updDate) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p7", updStaff) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p8", updName) { SqlDbType = SqlDbType.NVarChar }
+      };
+
+      var sql = @"
+                UPDATE 
+                  F051202 
+                SET 
+                  A_PICK_QTY = @p5, 
+                  PICK_STATUS = '1',
+                  UPD_DATE = @p6, 
+                  UPD_STAFF = @p7, 
+                  UPD_NAME = @p8
+                WHERE
+                  DC_CODE = @p0
+                  AND GUP_CODE = @p1
+                  AND CUST_CODE = @p2
+                  AND PICK_ORD_NO = @p3
+                  AND PICK_ORD_SEQ = @p4
+                ";
+
+      ExecuteSqlCommand(sql, param.ToArray());
+    }
   }
 }

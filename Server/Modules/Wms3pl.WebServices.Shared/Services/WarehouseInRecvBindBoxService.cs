@@ -402,7 +402,14 @@ namespace Wms3pl.WebServices.Shared.Services
 						if (f020502s.Any(x => !string.IsNullOrWhiteSpace(x.BIN_CODE)))
 							//此容器為有分格容器，已有綁定商品資料，必須刷入分格條碼
 							return new ApiResult { IsSuccessed = false, MsgCode = "22013", MsgContent = "此容器為有分格容器，已有綁定商品資料，必須刷入分格條碼" };
-					}
+
+
+            //檢查沒有分格，但重複輸入容器
+            if (string.IsNullOrWhiteSpace(chkContainer.BinCode) && 
+              f020502s.Any(x => string.IsNullOrWhiteSpace(x.BIN_CODE) && x.CONTAINER_CODE == chkContainer.ContainerCode))
+              return new ApiResult { IsSuccessed = false, MsgCode = "22013", MsgContent = "此容器已存在清單中" };
+
+          }
 				}
 			}
 

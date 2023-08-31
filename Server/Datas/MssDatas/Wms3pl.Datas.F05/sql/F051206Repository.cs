@@ -41,7 +41,9 @@ namespace Wms3pl.Datas.F05
 										 A.CRT_STAFF,
 										 A.CRT_DATE,
 										 A.UPD_STAFF,
-										 A.UPD_DATE
+										 A.UPD_DATE,
+										 A.CRT_NAME,
+										 A.UPD_NAME
 									FROM F051206 A
 								   WHERE     A.ISDELETED = '0'
 										 AND A.DC_CODE = @p0
@@ -56,7 +58,9 @@ namespace Wms3pl.Datas.F05
 										 A.CRT_STAFF,
 										 A.CRT_DATE,
 										 A.UPD_STAFF,
-										 A.UPD_DATE) A1
+										 A.UPD_DATE,
+                     A.CRT_NAME,
+                     A.UPD_NAME) A1
 							   JOIN F050801 B
 								  ON   A1.WMS_ORD_NO = B.WMS_ORD_NO
 									 AND A1.DC_CODE = B.DC_CODE
@@ -249,7 +253,7 @@ namespace Wms3pl.Datas.F05
 									FROM(
 									SELECT 0 AS LACK_SEQ,A.WMS_ORD_NO,B.PICK_ORD_NO,B.PICK_ORD_SEQ,B.ITEM_CODE,B.B_PICK_QTY,0 AS LACK_QTY,'999' AS REASON,
 												 '' AS MEMO,'0' AS STATUS,'' AS RETURN_FLAG,A.CUST_CODE,A.GUP_CODE,A.DC_CODE,
-												 '' AS CRT_STAFF,'' AS CRT_NAME,@p5 AS CRT_DATE,'' AS UPD_STAFF,@p5 AS UPD_DATE,'' AS UPD_NAME,'0' AS ISDELETED,C.CUST_ORD_NO ,C.ORD_NO,B.PICK_LOC LOC_CODE
+												 '' AS CRT_STAFF,'' AS CRT_NAME,@p5 AS CRT_DATE,'' AS UPD_STAFF,@p5 AS UPD_DATE,'' AS UPD_NAME,'0' AS ISDELETED,C.CUST_ORD_NO ,C.ORD_NO,B.PICK_LOC LOC_CODE,B.SERIAL_NO
 									FROM F050801 A
 									JOIN F051202 B
 									ON B.DC_CODE = A.DC_CODE
@@ -292,7 +296,7 @@ namespace Wms3pl.Datas.F05
 									FROM(
 									SELECT A.LACK_SEQ,A.WMS_ORD_NO,B.PICK_ORD_NO,B.PICK_ORD_SEQ,A.ITEM_CODE,B.B_PICK_QTY,A.LACK_QTY,A.REASON,
 												 A.MEMO,A.STATUS,A.RETURN_FLAG,A.CUST_CODE,A.GUP_CODE,A.DC_CODE,
-												 A.CRT_STAFF,A.CRT_NAME,A.CRT_DATE,A.UPD_STAFF,A.UPD_DATE,A.UPD_NAME,A.ISDELETED,C.CUST_ORD_NO ,C.ORD_NO,A.LOC_CODE
+												 A.CRT_STAFF,A.CRT_NAME,A.CRT_DATE,A.UPD_STAFF,A.UPD_DATE,A.UPD_NAME,A.ISDELETED,C.CUST_ORD_NO ,C.ORD_NO,A.LOC_CODE,A.SERIAL_NO
 									FROM F051206 A
 									JOIN F051202 B
 									ON B.DC_CODE = A.DC_CODE
@@ -636,5 +640,44 @@ namespace Wms3pl.Datas.F05
       return result;
     }
 
-  }
+    public IQueryable<F051206> GetDatasByLackSeq( List<int> LackSeqs)
+    {
+      var param = new List<SqlParameter>();
+
+      if (LackSeqs == null || !LackSeqs.Any())
+        return null;
+
+      var sql = $@"SELECT * FROM F051206 WHERE {param.CombineSqlInParameters("LACK_SEQ", LackSeqs, SqlDbType.Int)}";
+      var result = SqlQuery<F051206>(sql, param.ToArray());
+      return result;
+		}
+
+		public IQueryable<F051206LackData> GetF051206LackDatas(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
+		{
+			var param = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode)   { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode)  { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+			};
+			var sql = @" SELECT A.*, B.WMS_ORD_SEQ
+										FROM F051206 A
+										JOIN F051202 B
+										ON B.DC_CODE = A.DC_CODE
+										AND B.GUP_CODE = A.GUP_CODE
+										AND B.CUST_CODE = A.CUST_CODE
+										AND B.PICK_ORD_NO = A.PICK_ORD_NO
+										AND B.PICK_ORD_SEQ = A.PICK_ORD_SEQ
+										WHERE A.DC_CODE = @p0
+										AND A.GUP_CODE = @p1
+										AND A.CUST_CODE = @p2
+                    AND A.STATUS = '2'
+                    AND A.RETURN_FLAG = '1' ";
+			sql += param.CombineSqlInParameters("AND A.WMS_ORD_NO", wmsOrdNos, SqlDbType.VarChar);
+
+			var result = SqlQuery<F051206LackData>(sql, param.ToArray());
+
+			return result;
+		}
+	}
 }

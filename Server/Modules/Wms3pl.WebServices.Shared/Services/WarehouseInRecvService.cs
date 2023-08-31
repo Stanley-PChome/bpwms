@@ -308,6 +308,15 @@ namespace Wms3pl.WebServices.Shared.Services
     }
     #endregion
 
+    #region F1980Repository
+    private F1980Repository _F1980Repo;
+    public F1980Repository F1980Repo
+    {
+      get { return _F1980Repo == null ? _F1980Repo = new F1980Repository(Schemas.CoreSchema, _wmsTransaction) : _F1980Repo; }
+      set { _F1980Repo = value; }
+    }
+    #endregion
+
     #endregion Repository
 
     #endregion
@@ -1003,6 +1012,7 @@ namespace Wms3pl.WebServices.Shared.Services
                                             }).ToList());
 
         var f1903 = CommonService.GetProduct(tmp.GUP_CODE, tmp.CUST_CODE, tmp.ITEM_CODE);
+
         #region 虛擬商品儲位檢核
         //是否為虛擬商品
         bool isVirtualItem = !string.IsNullOrEmpty(f1903.VIRTUAL_TYPE);
@@ -1148,8 +1158,26 @@ namespace Wms3pl.WebServices.Shared.Services
       }
       #endregion
 
-      if (rtMode == "0")
+       if (rtMode == "0")
       {
+        //檢查商品與上架倉別溫層
+        foreach (var record in tmpList)
+        {
+          var procWarehouse = record.DEFECT_QTY > 0 ? 
+            f02020109s.Where(o => o.STOCK_NO == record.PURCHASE_NO).OrderByDescending(o => o.CRT_DATE).FirstOrDefault().WAREHOUSE_ID :
+            record.TARWAREHOUSE_ID;
+
+          var warehouseTmpr = F1980Repo.GetWarehouseTmprType(record.DC_CODE, procWarehouse);
+          var f1903 = CommonService.GetProduct(record.GUP_CODE, record.CUST_CODE, record.ITEM_CODE);
+          var itemWarehouseTmpr = SharedService.GetWareHouseTmprByItemTmpr(f1903.TMPR_TYPE);
+
+          if (itemWarehouseTmpr != warehouseTmpr)
+          {
+            return new ExecuteResult { IsSuccessed = false,
+              Message = string.Format("[商品溫層為{0}，不符合上架倉庫可放入的溫層，倉庫{1}(溫層{2})]", SharedService.GetWarehouseTmprName(itemWarehouseTmpr), procWarehouse, SharedService.GetWarehouseTmprName(warehouseTmpr))};
+          }
+        }
+
         #region 整批寫入調撥單
         if (allocationResult != null)
         {
@@ -1245,6 +1273,25 @@ namespace Wms3pl.WebServices.Shared.Services
           }
           #endregion
 
+          //檢查商品與上架倉別溫層
+          var f1903 = CommonService.GetProduct(item.GUP_CODE, item.CUST_CODE, item.ITEM_CODE);
+          var itemWarehouseTmpr = SharedService.GetWareHouseTmprByItemTmpr(f1903.TMPR_TYPE);
+          var resultData = JsonConvert.DeserializeObject<List<StowShelfAreaAssignData>>(JsonConvert.SerializeObject(stowShelfAreaResult.Data));
+
+          foreach (var resData in resultData)
+          {
+            var warehouseTmpr = F1980Repo.GetWarehouseTmprType(item.DC_CODE, resData.ShelfAreaCode);
+
+            if (itemWarehouseTmpr != warehouseTmpr)
+            {
+              return new ExecuteResult
+              {
+                IsSuccessed = false,
+                Message = string.Format("[商品溫層為{0}，不符合上架倉庫可放入的溫層，倉庫{1}(溫層{2})]", SharedService.GetWarehouseTmprName(itemWarehouseTmpr), resData.ShelfAreaCode, SharedService.GetWarehouseTmprName(warehouseTmpr))
+              };
+            }
+          }
+
           //(4)	呼叫LMS複驗比例確認
           #region 呼叫複驗比例確認API
           var doubleCheckConfirmReq = new DoubleCheckConfirmReq()
@@ -1298,6 +1345,20 @@ namespace Wms3pl.WebServices.Shared.Services
         {
           foreach (var item in CheckOKItems.Where(x => x.NG_QTY > 0))
           {
+            //檢查商品與上架倉別溫層
+            var warehouseTmpr = F1980Repo.GetWarehouseTmprType(item.DC_CODE, item.RetrunWarehouseID);
+
+            var f1903 = CommonService.GetProduct(item.GUP_CODE, item.CUST_CODE, item.ITEM_CODE);
+            var itemWarehouseTmpr = SharedService.GetWareHouseTmprByItemTmpr(f1903.TMPR_TYPE);
+
+            if (itemWarehouseTmpr != warehouseTmpr)
+            {
+              return new ExecuteResult
+              {
+                IsSuccessed = false,
+                Message = string.Format("[商品溫層為{0}，不符合上架倉庫可放入的溫層，倉庫{1}(溫層{2})]", SharedService.GetWarehouseTmprName(itemWarehouseTmpr), item.RetrunWarehouseID, SharedService.GetWarehouseTmprName(warehouseTmpr))
+              };
+            }
 
             addF0205List.Add(new F0205()
             {

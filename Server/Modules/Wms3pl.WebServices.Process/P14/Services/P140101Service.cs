@@ -818,7 +818,7 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
     public CheckInventoryItemRes CheckInventoryItemExist(string gupCode, string custCode, List<string> inventoryItemList, string mode)
     {
       var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-      List<F1903> f1903s;
+      List<CommonProduct> f1903s;
 
       if (CommonService == null)
         CommonService = new CommonService();
@@ -840,7 +840,7 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
       }
       else if (mode == "1") //檢查客戶編號模式
       {
-        f1903s = f1903Repo.GetDatasByCustItemCode(gupCode, custCode, inventoryItemList).ToList();
+        f1903s = f1903Repo.GetCommonProductsByCustItemCodes(gupCode, custCode, inventoryItemList).ToList();
         var notExistsItem = inventoryItemList.Except(f1903s.Select(x => x.CUST_ITEM_CODE.ToUpper()));
         if (notExistsItem.Any())
           return new CheckInventoryItemRes
@@ -1011,7 +1011,7 @@ string inventoryCycle, string inventoryYear, string inventoryMonth, string statu
 		/// <param name="isSecond">是否複盤</param>
 		/// <param name="detailItem">匯入盤點結果明細</param>
 		/// <returns></returns>
-		private bool CheckData(List<F1903> items, List<F1912> locs, List<F1980> warehouses, bool isSecond, ImportInventoryDetailItem detailItem,string checkTool, ref string failMessage)
+		private bool CheckData(List<CommonProduct> items, List<F1912> locs, List<F1980> warehouses, bool isSecond, ImportInventoryDetailItem detailItem,string checkTool, ref string failMessage)
 		{
 			bool checkResult = true;
 

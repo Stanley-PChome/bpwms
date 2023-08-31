@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.F00;
 using Wms3pl.Datas.Shared.Entities;
@@ -32,30 +33,6 @@ namespace Wms3pl.Datas.F00
                                                     .AsEnumerable();
         }
 
-        public IQueryable<F000904> GetDatas(string topic, string subtopic = null)
-        {
-            var query =
-                _db.F000904s.Join(_db.F000904_I18N, a => new { a.TOPIC, a.SUBTOPIC, a.VALUE }, b => new { b.TOPIC, b.SUBTOPIC, b.VALUE }, (a, b) => new { a, b })
-                .Where(ab => ab.a.TOPIC == topic);
-            if (!string.IsNullOrWhiteSpace(subtopic))
-                query = query.Where(x => x.a.SUBTOPIC == subtopic);
-            query = query.Where(x => x.b.LANG == Current.Lang && x.a.ISUSAGE == "1");
-            return query.Select(x => new F000904()
-            {
-                TOPIC = x.a.TOPIC,
-                SUBTOPIC = x.a.SUBTOPIC,
-                VALUE = x.a.VALUE,
-                SUB_NAME = x.b.SUB_NAME,
-                NAME = x.b.NAME,
-                ISUSAGE = x.a.ISUSAGE,
-                CRT_NAME = x.a.CRT_NAME,
-                CRT_DATE = x.a.CRT_DATE,
-                CRT_STAFF = x.a.CRT_STAFF,
-                UPD_STAFF = x.a.UPD_STAFF,
-                UPD_DATE = x.a.UPD_DATE,
-                UPD_NAME = x.a.UPD_NAME
-            });
-        }
         public IQueryable<P710601LangData> GetLangDatas(string topic, string subtopic, string lang)
         {
             var query =

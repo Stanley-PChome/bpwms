@@ -16,6 +16,43 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 {
     public class ExportVendorReturnService : LmsBaseService
 	{
+		#region Repository
+		private F050305Repository _f050305Repo;
+		public F050305Repository F050305Repo
+		{
+			get { return _f050305Repo == null ? _f050305Repo = new F050305Repository(Schemas.CoreSchema) : _f050305Repo; }
+			set { _f050305Repo = value; }
+		}
+
+		private F160204Repository _f160204Repo;
+		public F160204Repository F160204Repo
+		{
+			get { return _f160204Repo == null ? _f160204Repo = new F160204Repository(Schemas.CoreSchema) : _f160204Repo; }
+			set { _f160204Repo = value; }
+		}
+
+		private F050802Repository _f050802Repo;
+		public F050802Repository F050802Repo
+		{
+			get { return _f050802Repo == null ? _f050802Repo = new F050802Repository(Schemas.CoreSchema) : _f050802Repo; }
+			set { _f050802Repo = value; }
+		}
+		#endregion Repository
+
+		private ExportService _exportService;
+		public ExportService ExportService
+		{
+			get { return _exportService == null ? _exportService = new ExportService() : _exportService; }
+			set { _exportService = value; }
+		}
+
+		private CommonService _commonService;
+		public CommonService CommonService
+		{
+			get { return _commonService == null ? _commonService = new CommonService() : _commonService; }
+			set { _commonService = value; }
+		}
+
 		private WmsTransaction _wmsTransaction;
 
 		public ExportVendorReturnService(WmsTransaction wmsTransation)
@@ -27,27 +64,22 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 		{
 			ApiResult res = new ApiResult { IsSuccessed = true };
 			List<ApiResponse> data = new List<ApiResponse>();
-			var f050305Repo = new F050305Repository(Schemas.CoreSchema);
-			var f160204Repo = new F160204Repository(Schemas.CoreSchema);
-			var f05030202Repo = new F05030202Repository(Schemas.CoreSchema);
-			var f050802Repo = new F050802Repository(Schemas.CoreSchema);
 			TransApiBaseService tacService = new TransApiBaseService();
 
-			var commonService = new CommonService();
-			var outputJsonInLog = commonService.GetSysGlobalValue("OutputJsonInLog");
+			var outputJsonInLog = CommonService.GetSysGlobalValue("OutputJsonInLog");
 			bool isSaveWmsData = string.IsNullOrWhiteSpace(outputJsonInLog) ? false : outputJsonInLog == "1";
 
       #region 取得 商品進倉未回檔資料
 
-      var f050305s = f050305Repo.GetDatasFor_SourceType13(dcCode, gupCode, custCode).ToList();
+      var f050305s = F050305Repo.GetDatasFor_SourceType13(dcCode, gupCode, custCode).ToList();
 
-      var f160204s = f160204Repo.GetDatasByExportVendorReturn(dcCode, gupCode, custCode, f050305s.Select(x => x.SOURCE_NO).Distinct().ToList());
+      var f160204s = F160204Repo.GetDatasByExportVendorReturn(dcCode, gupCode, custCode, f050305s.Select(x => x.SOURCE_NO).Distinct().ToList());
 
 			var ordNos = f050305s.Select(x => x.ORD_NO).Distinct().ToList();
 
-			var f05030202s = f05030202Repo.GetDatasByOrdNos(dcCode, gupCode, custCode, ordNos);
-			
-			var f050802s = f050802Repo.GetDatas(dcCode, gupCode, custCode, f05030202s.Select(x => x.WMS_ORD_NO).Distinct().ToList());
+			var f05030202s = ExportService.GetF05030202s(dcCode, gupCode, custCode, ordNos);
+
+			var f050802s = F050802Repo.GetDatas(dcCode, gupCode, custCode, f05030202s.Select(x => x.WMS_ORD_NO).Distinct().ToList());
 
 			#endregion
 
@@ -81,7 +113,7 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 							if (result.IsSuccessed)
 							{
 								#region 更新處理狀態
-								f050305Repo.UpdateProcFlag(f050305.ID, "1");
+								F050305Repo.UpdateProcFlag(f050305.ID, "1");
 								#endregion
 							}
 						}
@@ -121,7 +153,6 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 		/// <returns></returns>
 		private VnrReturn GetVnrReturns(F050305 f050305, string custOrdNo, List<F055004> f055004List, List<F160204> f160204List, List<F05030202> f05030202List, List<F050802> f050802List)
 		{
-			var f160204Repo = new F160204Repository(Schemas.CoreSchema, _wmsTransaction);
 			return new VnrReturn
 			{
 				CustVnrReturnNo = custOrdNo,
@@ -135,33 +166,33 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 
 		private List<F055004> GetF055004List(F050305 f050305)
 		{
-			var f055004Repo = new F055004Repository(Schemas.CoreSchema);
-			var exportService = new ExportService();
+			//取得F055004
+			var f055004s = ExportService.GetF055004s(f050305);
+			//若查無資料，則產生F055004
+			if (!f055004s.Any())
+			{
+				if (f050305.STATUS == "5")
+					ExportService.CreateF055004(f050305);
+			}
+			//產完F055004後再取F055004 (避免產生失敗)
+			f055004s = ExportService.GetF055004s(f050305);
 
-			var f055004s = f055004Repo.GetDatasByTrueAndCondition(o =>
-			o.DC_CODE == f050305.DC_CODE &&
-			o.GUP_CODE == f050305.GUP_CODE &&
-			o.CUST_CODE == f050305.CUST_CODE &&
-			o.ORD_NO == f050305.ORD_NO).ToList();
-
-			return f055004s.Any() ? f055004s : (f050305.STATUS == "5" ? exportService.CreateF055004(f050305) : new List<F055004>());
+			return f055004s;
 		}
 
 		public List<VnrReturnDetail> GetVnrReturnDetails(F050305 f050305, List<F055004> f055004List, List<F160204> f160204List, List<F05030202> f05030202List, List<F050802> f050802List)
 		{
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema);
-
 			var rtnWmsSeqs = f160204List.Select(x => x.RTN_WMS_SEQ.ToString()).ToList();
 
-			var f05030202s = f05030202List.Where(o => f160204List.Select(x => x.RTN_WMS_SEQ).Contains(Convert.ToInt32(o.ORD_SEQ))).ToList();
+			var f05030202s = f05030202List.Where(o => f160204List.Select(x => x.RTN_WMS_SEQ.ToString()).Contains(o.ORD_SEQ)).ToList();
 
 			var f055004s = f055004List.GroupBy(x => new { x.ITEM_CODE, x.ORD_SEQ, x.MAKE_NO }).Select(x => new
 			{
 				ItemCode = x.Key.ITEM_CODE,
-				Seq = Convert.ToInt32(x.Key.ORD_SEQ),
+				Seq = x.Key.ORD_SEQ,
 				MakeNo = x.Key.MAKE_NO,
 				Qty = x.Sum(z => z.QTY),
-				SerialNoList = x.Select(s=>s.SERIAL_NO).ToList()
+				SerialNoList = x.Select(s => s.SERIAL_NO).ToList()
 			});
 
 			List<VnrReturnDetailTemp> detailDatas = new List<VnrReturnDetailTemp>();
@@ -171,12 +202,12 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 			{
 				var detailDatasTmp = (from A in f05030202s
 															join B in f160204List
-															on Convert.ToInt32(A.ORD_SEQ) equals B.RTN_WMS_SEQ
+															on A.ORD_SEQ equals B.RTN_WMS_SEQ.ToString()
 															select new VnrReturnDetailCal
 															{
 																WmsOrdNo = A.WMS_ORD_NO,
 																WmsOrdSeq = A.WMS_ORD_SEQ,
-																Seq = Convert.ToInt32(A.ORD_SEQ),
+																Seq = A.ORD_SEQ,
 																ItemSeq = B.RTN_VNR_SEQ.ToString(),
 																ItemCode = B.ITEM_CODE,
 																B_ActQty = A.B_DELV_QTY,
@@ -223,10 +254,10 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 			{
 				detailDatas = (from A in f05030202s
 											 join B in f160204List
-											 on Convert.ToInt32(A.ORD_SEQ) equals B.RTN_WMS_SEQ
+											 on A.ORD_SEQ equals B.RTN_WMS_SEQ.ToString()
 											 select new VnrReturnDetailTemp
 											 {
-												 Seq = Convert.ToInt32(A.ORD_SEQ),
+												 Seq = A.ORD_SEQ,
 												 ItemSeq = B.RTN_VNR_SEQ.ToString(),
 												 ItemCode = B.ITEM_CODE,
 												 ActQty = Convert.ToInt32(A.A_DELV_QTY),

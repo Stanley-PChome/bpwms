@@ -192,33 +192,13 @@ namespace Wms3pl.WebServices.Shared.Services
 		public long GetF0701NextId()
 		{
 			var f0701Repo = new F0701Repository(Schemas.CoreSchema);
-			var f0701 = f0701Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
-				new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
-				 ()=> {
-					 var lockF0701 = f0701Repo.LockF0701();
-					  var id =  f0701Repo.GetF0701NextId();
-					 return new F0701
-					 {
-						 ID = id
-					 };
-				 });
-			return f0701.ID;
+			return f0701Repo.GetF0701NextId();
 		}
 
 		public long GetF070101NextId()
 		{
 			var f070101Repo = new F070101Repository(Schemas.CoreSchema);
-			var f070101 = f070101Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
-				new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
-				 () => {
-					 var lockF0701 = f070101Repo.LockF070101();
-					 var id = f070101Repo.GetF070101NextId();
-					 return new F070101
-					 {
-						 ID = id
-					 };
-				 });
-			return f070101.ID;
+			return f070101Repo.GetF070101NextId();
 		}
 
     public long GetF070104NextId()

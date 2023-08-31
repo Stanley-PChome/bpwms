@@ -309,5 +309,24 @@ namespace Wms3pl.Datas.F05
 			return SqlQuery<BoxHeaderData>(sql, parameters.ToArray()).FirstOrDefault();
 		}
 
+		public IQueryable<F05030101> GetDatasByOrdNo(string dcCode, string gupCode, string custCode, string ordNo)
+		{
+			var parameters = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p3", ordNo) { SqlDbType = System.Data.SqlDbType.VarChar },
+			};
+			var sql = @" SELECT WMS_ORD_NO
+										 FROM F05030101
+										WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND ORD_NO = @p3
+                   ";
+			return SqlQuery<F05030101>(sql, parameters.ToArray());
+		}
+
 	}
 }

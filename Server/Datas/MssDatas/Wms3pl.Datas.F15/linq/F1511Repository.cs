@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -122,5 +123,40 @@ namespace Wms3pl.Datas.F15
 					f1913Ex.UNMOVE_STOCK_QTY = f1511Ex.Sum(x => x.B_PICK_QTY);
 			});
 		}
-	}
+
+    public void UpdateVirtualMoved(string dcCode, string gupCode, string custCode, string ordNo, string ordSeq, int pickQty, DateTime? updDate, string updStaff, string updName)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", ordNo) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p4", ordSeq) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p5", pickQty) { SqlDbType = SqlDbType.Int },
+        new SqlParameter("@p6", updDate) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p7", updStaff) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p8", updName) { SqlDbType = SqlDbType.NVarChar }
+      };
+
+      var sql = @"
+                UPDATE 
+                  F1511
+                SET 
+                  A_PICK_QTY = @p5, 
+                  STATUS = '1',
+                  UPD_DATE = @p6, 
+                  UPD_STAFF = @p7, 
+                  UPD_NAME = @p8
+                WHERE
+                  DC_CODE = @p0
+                  AND GUP_CODE = @p1
+                  AND CUST_CODE = @p2
+                  AND ORDER_NO = @p3
+                  AND ORDER_SEQ = @p4
+                ";
+
+      ExecuteSqlCommand(sql, param.ToArray());
+    }
+  }
 }

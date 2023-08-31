@@ -3,12 +3,77 @@ using System.Collections.Generic;
 using System.Linq;
 using Wms3pl.Datas.F05;
 using Wms3pl.Datas.Shared.ApiEntities;
+using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
 
 namespace Wms3pl.WebServices.Shared.Services
 {
 	public class ExportService
 	{
+		#region Repository
+		private F055004Repository _f055004Repo;
+		public F055004Repository F055004Repo
+		{
+			get { return _f055004Repo == null ? _f055004Repo = new F055004Repository(Schemas.CoreSchema) : _f055004Repo; }
+			set { _f055004Repo = value; }
+		}
+
+		private F050301Repository _f050301Repo;
+		public F050301Repository F050301Repo
+		{
+			get { return _f050301Repo == null ? _f050301Repo = new F050301Repository(Schemas.CoreSchema) : _f050301Repo; }
+			set { _f050301Repo = value; }
+		}
+
+		private F05030101Repository _f05030101Repo;
+		public F05030101Repository F05030101Repo
+		{
+			get { return _f05030101Repo == null ? _f05030101Repo = new F05030101Repository(Schemas.CoreSchema, _wmsTransaction) : _f05030101Repo; }
+			set { _f05030101Repo = value; }
+		}
+
+		private F050302Repository _f050302Repo;
+		public F050302Repository F050302Repo
+		{
+			get { return _f050302Repo == null ? _f050302Repo = new F050302Repository(Schemas.CoreSchema) : _f050302Repo; }
+			set { _f050302Repo = value; }
+		}
+
+		private F05030202Repository _f05030202Repo;
+		public F05030202Repository F05030202Repo
+		{
+			get { return _f05030202Repo == null ? _f05030202Repo = new F05030202Repository(Schemas.CoreSchema, _wmsTransaction) : _f05030202Repo; }
+			set { _f05030202Repo = value; }
+		}
+
+		private F055001Repository _f055001Repo;
+		public F055001Repository F055001Repo
+		{
+			get { return _f055001Repo == null ? _f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction) : _f055001Repo; }
+			set { _f055001Repo = value; }
+		}
+
+		private F055002Repository _f055002Repo;
+		public F055002Repository F055002Repo
+		{
+			get { return _f055002Repo == null ? _f055002Repo = new F055002Repository(Schemas.CoreSchema, _wmsTransaction) : _f055002Repo; }
+			set { _f055002Repo = value; }
+		}
+
+		private F051202Repository _f051202Repo;
+		public F051202Repository F051202Repo
+		{
+			get { return _f051202Repo == null ? _f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransaction) : _f051202Repo; }
+			set { _f051202Repo = value; }
+		}
+
+		#endregion Repository
+
+		private List<F05030101> _f05030101CacheList;
+		private List<F05030202> _f05030202CacheList;
+		private List<F055001> _f055001CacheList;
+		private List<F055002> _f055002CacheList;
+
 		private WmsTransaction _wmsTransaction;
 
 		public ExportService(WmsTransaction wmsTransation = null)
@@ -16,30 +81,98 @@ namespace Wms3pl.WebServices.Shared.Services
 			_wmsTransaction = wmsTransation;
 		}
 
+		public List<string> GetWmsOrdNos(F050305 f050305)
+		{
+			if (_f05030101CacheList == null) _f05030101CacheList = new List<F05030101>();
+
+			var curnDatas = _f05030101CacheList.Where(x => x.DC_CODE == f050305.DC_CODE
+											&& x.GUP_CODE == f050305.GUP_CODE
+											&& x.CUST_CODE == f050305.CUST_CODE
+											&& x.ORD_NO == f050305.ORD_NO).ToList();
+
+			if (!curnDatas.Any())
+			{
+				curnDatas = F05030101Repo.GetDatasByOrdNo(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO).ToList();
+				_f05030101CacheList.AddRange(curnDatas);
+			}
+			return curnDatas.Select(x => x.WMS_ORD_NO).ToList();
+		}
+
+		public List<F055001> GetF055001s(F050305 f050305)
+		{
+			if (_f055001CacheList == null) _f055001CacheList = new List<F055001>();
+
+			var wmsOrdNos = GetWmsOrdNos(f050305);
+			var curnDatas = _f055001CacheList.Where(x => x.DC_CODE == f050305.DC_CODE
+											&& x.GUP_CODE == f050305.GUP_CODE
+											&& x.CUST_CODE == f050305.CUST_CODE
+											&& wmsOrdNos.Contains(x.WMS_ORD_NO)).ToList();
+
+			if (!curnDatas.Any())
+			{
+				curnDatas = F055001Repo.GetDatasByWmsOrdNos(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos).ToList();
+				_f055001CacheList.AddRange(curnDatas);
+			}
+			return curnDatas;
+		}
+
+		public List<F055002> GetF055002s(F050305 f050305)
+		{
+			if (_f055002CacheList == null) _f055002CacheList = new List<F055002>();
+
+			var curnDatas = _f055002CacheList.Where(x => x.DC_CODE == f050305.DC_CODE
+											&& x.GUP_CODE == f050305.GUP_CODE
+											&& x.CUST_CODE == f050305.CUST_CODE
+											&& x.ORD_NO == f050305.ORD_NO).ToList();
+
+			if (!curnDatas.Any())
+			{
+				curnDatas = F055002Repo.GetDatasByOrdNo(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO).ToList();
+				_f055002CacheList.AddRange(curnDatas);
+			}
+			return curnDatas;
+		}
+
+		public List<F055004> GetF055004s(F050305 f050305)
+		{
+			return F055004Repo.GetDatasByOrdNo(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO).ToList();
+		}
+
+		public List<F05030202> GetF05030202s(string dcCode, string gupCode, string custCode, List<string> ordNos)
+		{
+			if (_f05030202CacheList == null) _f05030202CacheList = new List<F05030202>();
+
+			var curnDatas = _f05030202CacheList.Where(x => x.DC_CODE == dcCode
+											&& x.GUP_CODE == gupCode
+											&& x.CUST_CODE == custCode
+											&& ordNos.Contains(x.ORD_NO)).ToList();
+
+			if (!curnDatas.Any())
+			{
+				curnDatas = F05030202Repo.GetDatasByOrdNos(dcCode, gupCode, custCode, ordNos).ToList();
+				_f05030202CacheList.AddRange(curnDatas);
+			}
+			return curnDatas;
+		}
 
 		public List<F055004> CreateF055004(F050305 f050305)
 		{
-			var f055004Repo = new F055004Repository(Schemas.CoreSchema);
 			var addF055004List = new List<F055004>();
 
-			var f050301Repo = new F050301Repository(Schemas.CoreSchema);
 			//判斷是否為跨庫訂單
-			var isMoveOut = f050301Repo.IsMoveOut(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO);
-			var f050302Repo = new F050302Repository(Schemas.CoreSchema);
+			var isMoveOut = F050301Repo.IsMoveOut(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO);
+
 			//取得訂單指定批號
-			var orderWithMakeNo = f050302Repo.GetMakeNosByOrdNo(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO).ToList();
-			var f05030202Repo = new F05030202Repository(Schemas.CoreSchema);
+			var orderWithMakeNo = F050302Repo.GetMakeNosByOrdNo(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO).ToList();
+
 			//取得所有訂單項次
-			//var f05030202s = f05030202Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == f050305.DC_CODE && x.GUP_CODE == f050305.GUP_CODE && x.CUST_CODE == f050305.CUST_CODE && x.ORD_NO == f050305.ORD_NO).ToList();
-			var currentOrdSeqs = f05030202Repo.GetOrdSeq(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO).ToList();
-			var f055001Repo = new F055001Repository(Schemas.CoreSchema);
-			var f055002Repo = new F055002Repository(Schemas.CoreSchema);
-			var f055002s = f055002Repo.GetDatasByOrdSeqs(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, f050305.ORD_NO, currentOrdSeqs);
-			var wmsOrdNos = f055002s.Select(x => x.WMS_ORD_NO).Distinct().ToList();
-			var f055001s = f055001Repo.GetDatas(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos).ToList();
-			var f051202Repo = new F051202Repository(Schemas.CoreSchema);
+			var f05030202s = GetF05030202s(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, new List<string> { f050305.ORD_NO });
+			var currentOrdSeqs = f05030202s.Select(x => x.ORD_SEQ).ToList();
+
+			var f055001s = GetF055001s(f050305);
+			var f055002s = GetF055002s(f050305).Where(x => currentOrdSeqs.Contains(x.ORD_SEQ)).ToList();
 			// 揀貨資料
-			var f051202s = f051202Repo.GetDatasByWmsOrdNosAndPickStatus1(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, wmsOrdNos).ToList();
+			var f051202s = F051202Repo.GetDatasByWmsOrdNosAndPickStatus1(f050305.DC_CODE, f050305.GUP_CODE, f050305.CUST_CODE, GetWmsOrdNos(f050305)).ToList();
 
 			//var pickDatas = (from o in f051202s
 			//								 join c in f05030202s
@@ -148,7 +281,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			}).ToList();
 
 			if (addF055004List.Any())
-				f055004Repo.BulkInsert(addF055004List, "ID");
+				F055004Repo.BulkInsert(addF055004List, "ID");
 
 			return addF055004List;
 		}

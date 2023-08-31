@@ -80,5 +80,21 @@ namespace Wms3pl.Datas.F19
 			var sql = @"SELECT * FROM F1905 WHERE GUP_CODE = @p0 AND CUST_CODE = @p1 AND ITEM_CODE = @p2";
 			return SqlQuery<F1905>(sql, para.ToArray()).FirstOrDefault();
 		}
-	}
+
+    public IQueryable<F1905> GetF1905ByItems(string gupCode, string custCode, List<string> itemCodes)
+    {
+      var sql = @"SELECT * FROM F1905 WHERE GUP_CODE = @p0 AND CUST_CODE = @p1";
+      var parameters = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", custCode) { SqlDbType = SqlDbType.VarChar },
+      };
+      sql += parameters.CombineSqlInParameters(" AND ITEM_CODE", itemCodes, SqlDbType.VarChar);
+      return SqlQuery<F1905>(sql, parameters.ToArray());
+      #region 原LINQ
+      //return _db.F1905s.Where(x => x.GUP_CODE == gupCode && x.CUST_CODE == custCode && itemCodes.Contains(x.ITEM_CODE));
+      #endregion
+    }
+
+  }
 }

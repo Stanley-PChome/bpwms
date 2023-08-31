@@ -330,6 +330,7 @@
       <xs:element name="_x003C_ALLOW_EDIT_BOX_QTY_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ALLOW_NOPRINTPICKORDER_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ALLOW_NOSHIPPACKAGE_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ALLOW_ORDER_LACKSHIP_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ALLOW_ORDER_NO_DELV_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_ALLOW_WAREHOUSEIN_CLOSED_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_AUTO_GEN_RTN_x003E_k__BackingField" nillable="true" type="xs:string" />

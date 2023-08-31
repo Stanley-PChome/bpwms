@@ -288,6 +288,7 @@ namespace Wms3pl.WpfClient.P08.Services
                             DelvdtlInfo info = new DelvdtlInfo() { DELVDTL_FORMAT = "default" };
 
                             //列印箱明細
+                            item.START_PRINT_TIME = DateTime.Now;
                             PrintBoxData(
                                     ExDataMapper.MapCollection<wcf.BoxDetailData, ExDataServices.P08ExDataService.DeliveryReport>(getBoxDetailReportRes.BoxDetail).ToList(),
                                     PrinterSet,
@@ -299,16 +300,28 @@ namespace Wms3pl.WpfClient.P08.Services
                             IsPrintSuccess = true;
                             break;
                         case "02":
-                            var getShipLittleLabelReportReq = new GetShipLittleLabelReportReq()
-                            {
-                                DcCode = dcCode,
-                                GupCode = gupCode,
-                                CustCode = custCode,
-                                PackageBoxNo = item.PackageBoxNo,
-                                WmsOrdNo = WmsOrdNo
-                            };
-                            var getShipLittleLabelReportRes = proxy.RunWcfMethod(w => w.GetShipLittleLabelReport(getShipLittleLabelReportReq));
+                            //var getShipLittleLabelReportReq = new GetShipLittleLabelReportReq()
+                            //{
+                            //    DcCode = dcCode,
+                            //    GupCode = gupCode,
+                            //    CustCode = custCode,
+                            //    PackageBoxNo = item.PackageBoxNo,
+                            //    WmsOrdNo = WmsOrdNo
+                            //};
+                            //var getShipLittleLabelReportRes = proxy.RunWcfMethod(w => w.GetShipLittleLabelReport(getShipLittleLabelReportReq));
+
+                            var boxLittleLabelDetail = new Box[]
+														{
+                                new Box
+                                {
+                                    BoxBarCode = item.CustOrdNo + "|" + item.PackageBoxNo.ToString().PadLeft(3, '0'),
+                                    BoxCode = item.CustOrdNo + "|" + item.PackageBoxNo.ToString().PadLeft(3, '0')
+                                }
+														};
+														var getShipLittleLabelReportRes = new GetShipLittleLabelReportRes { BoxLittleLabelDetail = boxLittleLabelDetail };
+
                             //列印出貨小白標([印表機])
+                            item.START_PRINT_TIME = DateTime.Now;
                             PrintShipLittleLabelRepor(PrinterSet, printerType, getShipLittleLabelReportRes);
 
                             IsPrintSuccess = true;
@@ -323,8 +336,9 @@ namespace Wms3pl.WpfClient.P08.Services
                                 WmsOrdNo = WmsOrdNo
                             };
                             var getRtnShipLittleLabelReportRes = proxy.RunWcfMethod(w => w.GetRtnShipLittleLabelReport(getRtnShipLittleLabelReportReq));
-                            //列印廠退出或小白標([印表機])
 
+                            //列印廠退出貨小白標([印表機])
+                            item.START_PRINT_TIME = DateTime.Now;
                             PrintRtnLable(PrinterSet,
                                     ExDataMapper.MapCollection<wcf.BoxRtnLittleLabel, ExDataServices.P08ExDataService.LittleWhiteReport>(getRtnShipLittleLabelReportRes.BoxRtnLittleLabelDetail).ToList());
                             IsPrintSuccess = true;
@@ -347,7 +361,8 @@ namespace Wms3pl.WpfClient.P08.Services
                                 results.Add(new ExecuteResult() { IsSuccessed = false, Message = $"[LMS出貨列印檔案]取得{item.ReportName}檔案失敗" + (string.IsNullOrEmpty(geShipFileRes.Message) ? "" : "，") + geShipFileRes.Message });
                                 continue;
                             }
-
+														
+                            item.START_PRINT_TIME = DateTime.Now;
                             if (geShipFileRes.ContentType == "application/vnd.ms-word")
                             {
                                 var wordToPDFService = new WordToPDFService();
@@ -577,5 +592,12 @@ namespace Wms3pl.WpfClient.P08.Services
       }
       return true;
     }
-  }
+
+		public PrintBoxSettingParam GetPrintBoxSetting(string dcCode, string gupCode, string custCode, string ShipMode)
+		{
+			var wcfproxy = GetWcfProxy<wcf.P08WcfServiceClient>();
+			return wcfproxy.RunWcfMethod(w => w.GetPrintBoxSetting(dcCode, gupCode, custCode, ShipMode));
+		}
+
+	}
 }

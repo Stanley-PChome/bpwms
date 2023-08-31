@@ -7,7 +7,7 @@
     using Wms3pl.WebServices.DataCommon;
 
     /// <summary>
-    /// 入庫任務清單
+    /// 集貨等待通知
     /// </summary>
     [Serializable]
     [DataServiceKey("ID")]

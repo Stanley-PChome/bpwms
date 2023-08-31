@@ -540,6 +540,12 @@
   <wsdl:message name="P08WcfService_StopAllot_OutputMessage">
     <wsdl:part name="parameters" element="tns:StopAllotResponse" />
   </wsdl:message>
+  <wsdl:message name="P08WcfService_GetPrintBoxSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintBoxSetting" />
+  </wsdl:message>
+  <wsdl:message name="P08WcfService_GetPrintBoxSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintBoxSettingResponse" />
+  </wsdl:message>
   <wsdl:portType name="P08WcfService">
     <wsdl:operation name="GetF1929WithF1909Tests">
       <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetF1929WithF1909Tests" message="tns:P08WcfService_GetF1929WithF1909Tests_InputMessage" />
@@ -892,6 +898,10 @@
     <wsdl:operation name="StopAllot">
       <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/StopAllot" message="tns:P08WcfService_StopAllot_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/StopAllotResponse" message="tns:P08WcfService_StopAllot_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintBoxSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/P08WcfService/GetPrintBoxSetting" message="tns:P08WcfService_GetPrintBoxSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/P08WcfService/GetPrintBoxSettingResponse" message="tns:P08WcfService_GetPrintBoxSetting_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_P08WcfService" type="tns:P08WcfService">
@@ -1681,6 +1691,15 @@
     </wsdl:operation>
     <wsdl:operation name="StopAllot">
       <soap:operation soapAction="http://tempuri.org/P08WcfService/StopAllot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintBoxSetting">
+      <soap:operation soapAction="http://tempuri.org/P08WcfService/GetPrintBoxSetting" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

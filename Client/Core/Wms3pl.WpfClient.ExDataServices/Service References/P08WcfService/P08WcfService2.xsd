@@ -524,6 +524,7 @@
       <xs:element minOccurs="0" name="OrdType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PackageBoxNo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="PackageMode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrintBoxSettingParam" nillable="true" type="tns:PrintBoxSettingParam" />
       <xs:element minOccurs="0" name="ShipMode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SugBoxNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WmsOrdNo" nillable="true" type="xs:string" />
@@ -531,6 +532,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CloseShipBoxReq" nillable="true" type="tns:CloseShipBoxReq" />
+  <xs:complexType name="PrintBoxSettingParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="isGetShipOrder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="isPrintBoxDetail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isPrintRtnShipLittleLabel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isPrintShipLittleLabel" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrintBoxSettingParam" nillable="true" type="tns:PrintBoxSettingParam" />
   <xs:complexType name="CloseShipBoxRes">
     <xs:sequence>
       <xs:element minOccurs="0" name="IsSuccessed" type="xs:boolean" />
@@ -557,6 +567,7 @@
       <xs:element minOccurs="0" name="ReportName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReportSeq" type="xs:int" />
       <xs:element minOccurs="0" name="ReportUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="START_PRINT_TIME" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="WmsOrdNo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

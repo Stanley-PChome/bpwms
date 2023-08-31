@@ -479,16 +479,16 @@
                                       </WrapPanel>
                                       <CheckBox Grid.Row="1" Grid.Column="2" Content="{x:Static Properties:Resources.ALLOWRT_SPECIALBUY}" Width="250" FontSize="20"  HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CheckStyle}"
 																					IsChecked="{Binding SelectedDataByView.ALLOWRT_SPECIALBUY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" IsEnabled="False"/>
-                                                                            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static Properties:Resources.CHECK_INCORRECT}" FontSize="20"  Style="{StaticResource LbTitleStyle}"  HorizontalAlignment="Left" />
-                                                                            <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource TxtStyle}" IsReadOnly="True">
-                                                                                <TextBox.Text>
-                                                                                    <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
-                                                                                        <Binding Path="SelectedDataByView.SPECIAL_IN" />
-                                                                                        <Binding Path="Special_InList" />
-                                                                                    </MultiBinding>
-                                                                                </TextBox.Text>
-                                                                            </TextBox>
-                                                                            <CheckBox Grid.Row="2" Grid.Column="2" Content="{x:Static Properties:Resources.SelectNeedItemspec}"  FontSize="20"  HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CheckStyle}"
+                                      <Label Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.CHECK_INCORRECT}" FontSize="20"  Style="{StaticResource LbTitleStyle}"  HorizontalAlignment="Left" />
+                                      <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource TxtStyle}" IsReadOnly="True">
+                                        <TextBox.Text>
+                                          <MultiBinding Converter="{StaticResource NameValuePairMultiConverter}">
+                                            <Binding Path="SelectedDataByView.SPECIAL_IN" />
+                                            <Binding Path="Special_InList" />
+                                          </MultiBinding>
+                                        </TextBox.Text>
+                                      </TextBox>
+                                      <CheckBox Grid.Row="2" Grid.Column="2" Content="{x:Static Properties:Resources.SelectNeedItemspec}"  FontSize="20"  HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CheckStyle}"
 																					IsChecked="{Binding SelectedDataByView.NEED_ITEMSPEC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" IsEnabled="False"/>
                                       <!--<Label Grid.Row="3" Grid.Column="0" Content="{x:Static Properties:Resources.SelectIsPrintInstockpalletsticker}" FontSize="20"  Style="{StaticResource LbTitleStyle}"  HorizontalAlignment="Left" />
                                                                             <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource TxtStyle}" IsReadOnly="True">
@@ -594,6 +594,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
@@ -690,21 +691,25 @@
                                       <CheckBox Grid.Row="6" Grid.Column="2" Content="{x:Static Properties:Resources.selectShowMessage}" FontSize="20"
 																                    Style="{StaticResource CheckStyle}" IsEnabled="False"
 																                    IsChecked="{Binding SelectedDataByView.SHOW_MESSAGE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" />
-                                      <WrapPanel Grid.Row="8" Grid.Column="0">
+                                      <CheckBox Grid.Row="7" Grid.Column="0" Content="是否允許訂單缺品出貨" FontSize="20"
+																                    Style="{StaticResource CheckStyle}" IsEnabled="False"
+																                    IsChecked="{Binding SelectedDataByView.ALLOW_ORDER_LACKSHIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" />
+
+                                      <WrapPanel Grid.Row="9" Grid.Column="0">
                                         <Label FontSize="20" HorizontalAlignment="Left"  Content="{x:Static Properties:Resources.MANAGER_LOCK}" ></Label>
                                         <ComboBox ItemsSource="{Binding LockData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 																                      DisplayMemberPath="Name" SelectedValuePath="Value" MinWidth="150" IsEnabled="False"
 																                    SelectedValue="{Binding SelectedDataByView.MANAGER_LOCK,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 																                      ></ComboBox>
                                       </WrapPanel>
-                                      <WrapPanel Grid.Row="8" Grid.Column="1">
+                                      <WrapPanel Grid.Row="9" Grid.Column="1">
                                         <Label FontSize="20" HorizontalAlignment="Left"  Content="{x:Static Properties:Resources.VNR_RTN_TYPE}" ></Label>
                                         <ComboBox ItemsSource="{Binding VnrRtnType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 																                      DisplayMemberPath="Name" SelectedValuePath="Value" MinWidth="150" IsEnabled="False"
 																                    SelectedValue="{Binding SelectedDataByView.VNR_RTN_TYPE,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 																                      ></ComboBox>
                                       </WrapPanel>
-                                      <WrapPanel Grid.Row="8" Grid.Column="2">
+                                      <WrapPanel Grid.Row="9" Grid.Column="2">
                                         <Label FontSize="20" HorizontalAlignment="Left"  Content="{x:Static Properties:Resources.DESTROY_TYPE}" ></Label>
                                         <ComboBox ItemsSource="{Binding DestroyType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 																                      DisplayMemberPath="Name" SelectedValuePath="Value" MinWidth="150" IsEnabled="False"
@@ -716,7 +721,7 @@
                                       <!--<Label Grid.Row="8" Grid.Column="0" Content="{x:Static Properties:Resources.SELFTAKE_CHECKCODE}" FontSize="20" HorizontalAlignment="Left"  Style="{StaticResource LbTitleStyle}" />
                                                                             <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource TxtStyle}" Width="380"
 																								 Text="{Binding SelectedDataByView.SELFTAKE_CHECKCODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>-->
-                                      <GroupBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="6">
+                                      <GroupBox Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="6">
                                         <GroupBox.HeaderTemplate>
                                           <DataTemplate>
                                             <CheckBox  Content="{x:Static Properties:Resources.RIBBON}" FontSize="20" Style="{StaticResource CheckStyle}" IsEnabled="False"
@@ -734,7 +739,7 @@
                                           </WrapPanel>
                                         </GroupBox.Content>
                                       </GroupBox>
-                                      <GroupBox Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="6" >
+                                      <GroupBox Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="6" >
                                         <GroupBox.HeaderTemplate>
                                           <DataTemplate>
                                             <CheckBox  Content="{x:Static Properties:Resources.SP_BOX}" FontSize="20" Style="{StaticResource CheckStyle}" IsEnabled="False"
@@ -1282,7 +1287,8 @@
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
@@ -1370,21 +1376,25 @@
                           <CheckBox Grid.Row="6" Grid.Column="2" Content="{x:Static Properties:Resources.selectShowMessage}" FontSize="20"
 																                    Style="{StaticResource CheckStyle}" 
 																                    IsChecked="{Binding SelectedData.SHOW_MESSAGE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" />
-                          <WrapPanel Grid.Row="7" Grid.Column="0">
+                          <CheckBox Grid.Row="7" Grid.Column="0" Content="是否允許訂單缺品出貨" FontSize="20"
+																                    Style="{StaticResource CheckStyle}" 
+																                    IsChecked="{Binding SelectedData.ALLOW_ORDER_LACKSHIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource StringToBoolConverter}}" />
+
+                          <WrapPanel Grid.Row="8" Grid.Column="0">
                             <Label FontSize="20" Content="{x:Static Properties:Resources.MANAGER_LOCK}" ></Label>
                             <ComboBox ItemsSource="{Binding LockData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 																  DisplayMemberPath="Name" SelectedValuePath="Value" MinWidth="150"
 																SelectedValue="{Binding SelectedData.MANAGER_LOCK,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 																  ></ComboBox>
                           </WrapPanel>
-                          <WrapPanel Grid.Row="7" Grid.Column="1">
+                          <WrapPanel Grid.Row="8" Grid.Column="1">
                             <Label FontSize="20" Content="{x:Static Properties:Resources.VNR_RTN_TYPE}" ></Label>
                             <ComboBox ItemsSource="{Binding VnrRtnType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 																  DisplayMemberPath="Name" SelectedValuePath="Value" MinWidth="150"
 																SelectedValue="{Binding SelectedData.VNR_RTN_TYPE,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 																  ></ComboBox>
                           </WrapPanel>
-                          <WrapPanel Grid.Row="7" Grid.Column="2">
+                          <WrapPanel Grid.Row="8" Grid.Column="2">
                             <Label FontSize="20" Content="{x:Static Properties:Resources.DESTROY_TYPE}" ></Label>
                             <ComboBox ItemsSource="{Binding DestroyType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 																  DisplayMemberPath="Name" SelectedValuePath="Value" MinWidth="150"
@@ -1395,7 +1405,7 @@
                           <!--<Label Grid.Row="8" Grid.Column="0" Content="{x:Static Properties:Resources.SELFTAKE_CHECKCODE}" FontSize="20"  HorizontalAlignment="Left" Style="{StaticResource LbTitleStyle}" />
                                                     <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" Width="380" MaxLength="32" HorizontalAlignment="Left"  Style="{StaticResource TxtStyle}"
 																		Text="{Binding SelectedData.SELFTAKE_CHECKCODE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
-                          <GroupBox Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="6">
+                          <GroupBox Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="6">
                             <GroupBox.HeaderTemplate>
                               <DataTemplate>
                                 <CheckBox Grid.Row="1" Grid.Column="0" Content="{x:Static Properties:Resources.RIBBON}" FontSize="20" Style="{StaticResource CheckStyle}"
@@ -1413,7 +1423,7 @@
                               </DockPanel>
                             </GroupBox.Content>
                           </GroupBox>
-                          <GroupBox Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="6" >
+                          <GroupBox Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="6" >
                             <GroupBox.HeaderTemplate>
                               <DataTemplate>
                                 <CheckBox Grid.Row="2" Grid.Column="0" Content="{x:Static Properties:Resources.SP_BOX}" FontSize="20" Style="{StaticResource CheckStyle}"

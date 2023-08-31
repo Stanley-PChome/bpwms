@@ -1453,4 +1453,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetPrintBoxSetting">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dcCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gupCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="custCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ShipMode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrintBoxSettingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q146="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities" minOccurs="0" name="GetPrintBoxSettingResult" nillable="true" type="q146:PrintBoxSettingParam" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

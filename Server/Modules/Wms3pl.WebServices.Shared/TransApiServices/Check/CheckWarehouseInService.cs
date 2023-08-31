@@ -374,7 +374,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
     /// <param name="f010201"></param>
     /// <param name="f010202List"></param>
     /// <returns></returns>
-    public void CheckWarehouseInsData(List<ApiResponse> res, string dcCode, string gupCode, string custCode, PostCreateWarehouseInsModel warehouseIns, List<F1903> f1903s)
+    public void CheckWarehouseInsData(List<ApiResponse> res, string dcCode, string gupCode, string custCode, PostCreateWarehouseInsModel warehouseIns, List<CommonProduct> f1903s)
     {
       if (warehouseIns.ProcFlag == "0")
       {

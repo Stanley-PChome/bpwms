@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -514,6 +515,24 @@ FROM   (SELECT K.dc_code,
 							AND GUP_CODE = @p1
 							AND CUST_CODE = @p2 ";
 			sql += sqlParameter.CombineSqlInParameters(" AND WMS_ORD_NO", wmsOrdNos, System.Data.SqlDbType.VarChar);
+
+			return SqlQuery<F055002>(sql, sqlParameter.ToArray());
+		}
+
+		public IQueryable<F055002> GetDatasByOrdNo(string dcCode, string gupCode, string custCode, string ordNo)
+		{
+			var sqlParameter = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", dcCode)  { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p2", custCode)  { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p3", ordNo)  { SqlDbType = SqlDbType.VarChar },
+			};
+			var sql = @"SELECT * FROM F055002
+                   WHERE DC_CODE = @p0
+						   AND GUP_CODE = @p1
+						   AND CUST_CODE = @p2
+						   AND ORD_NO = @p3 ";
 
 			return SqlQuery<F055002>(sql, sqlParameter.ToArray());
 		}

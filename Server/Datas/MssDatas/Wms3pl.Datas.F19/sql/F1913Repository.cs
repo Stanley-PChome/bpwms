@@ -3706,31 +3706,29 @@ UPDATE F1913
             return result;
         }
 
-    
-
-        public IQueryable<ReplensihModel> GetReplensihData(string dcCode, string gupCode, string custCode, string itemCode, string makeNo, string serialNo)
-        {
-            var parms = new List<SqlParameter>
+    public IQueryable<ReplensihModel> GetReplensihData(string dcCode, string gupCode, string custCode, string itemCode, string makeNo, string serialNo)
+    {
+      var parms = new List<SqlParameter>
             {
-                new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
-                new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
-                new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
-				new SqlParameter("@p3", itemCode) { SqlDbType = SqlDbType.VarChar },
-				new SqlParameter("@p4", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 },
-			};
+                new SqlParameter("@p0", dcCode)         { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p1", gupCode)        { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p2", custCode)       { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p3", itemCode)       { SqlDbType = SqlDbType.VarChar },
+                new SqlParameter("@p4", DateTime.Now)   { SqlDbType = SqlDbType.DateTime2 }
+            };
 
-            var inSql = string.Empty;
-			if (!string.IsNullOrWhiteSpace(serialNo))
-			{
-				inSql += string.Format(" AND A.SERIAL_NO = @p{0} ", parms.Count);
-				parms.Add(new SqlParameter(string.Format("@p{0}", parms.Count), serialNo));
-			}
-			else if (!string.IsNullOrWhiteSpace(makeNo))
-			{
-                inSql += string.Format(" AND A.MAKE_NO = @p{0} ", parms.Count);
-				parms.Add(new SqlParameter(string.Format("@p{0}", parms.Count), makeNo));
-			}
-			var sql = $@" SELECT 
+      var inSql = string.Empty;
+      if (!string.IsNullOrWhiteSpace(serialNo))
+      {
+        inSql += string.Format(" AND A.SERIAL_NO = @p{0} ", parms.Count);
+        parms.Add(new SqlParameter(string.Format("@p{0}", parms.Count), serialNo) { SqlDbType = SqlDbType.VarChar });
+      }
+      else if (!string.IsNullOrWhiteSpace(makeNo))
+      {
+        inSql += string.Format(" AND A.MAKE_NO = @p{0} ", parms.Count);
+        parms.Add(new SqlParameter(string.Format("@p{0}", parms.Count), makeNo) { SqlDbType = SqlDbType.VarChar });
+      }
+      var sql = $@" SELECT 
 						 A.ITEM_CODE ItemCode, 
 						 A.MAKE_NO MakeNo, 
 						 A.SERIAL_NO SerialNo, 
@@ -3753,10 +3751,10 @@ UPDATE F1913
 								) A GROUP BY A.ITEM_CODE, A.MAKE_NO, A.SERIAL_NO
 								ORDER BY A.ITEM_CODE, A.MAKE_NO, A.SERIAL_NO
                       ";
-            return SqlQuery<ReplensihModel>(sql, parms.ToArray());
-        }
+      return SqlQuery<ReplensihModel>(sql, parms.ToArray());
+    }
 
-		   public IQueryable<string> GetNeedReplenishItemCodes(string dcCode,string gupCode,string custCode)
+    public IQueryable<string> GetNeedReplenishItemCodes(string dcCode,string gupCode,string custCode)
 			 {
 			     var sql = @" 
 											SELECT A.ITEM_CODE
@@ -4442,7 +4440,7 @@ WHERE
 	AND A.CUST_CODE = @p2
 	AND D.ALL_SHP IS NOT NULL 
 	AND D.ALL_SHP >0
-	AND DATEDIFF(DAY,@p3,A.VALID_DATE) <= (D.ALL_SHP + 1)
+	AND DATEDIFF(DAY,@p3,A.VALID_DATE) < (D.ALL_SHP + 1)
 	AND C.WAREHOUSE_TYPE IN('G','M')
 	AND A.QTY > 0
   {para.CombineSqlNotInParameters("AND B.WAREHOUSE_ID", withoutWhId, SqlDbType.VarChar)}

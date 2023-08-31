@@ -32,26 +32,10 @@ namespace Wms3pl.WebServices.Schedule
     /// <returns></returns>
 		public static ApiResult ExecCreatePick(string source)
     {
-      List<F050301> CanceledOrders;
       var wmsTransation = new WmsTransaction();
       var pickServie = new SharedService(wmsTransation);
       var result = pickServie.AutoCreatePick(source);
-      if (result.IsSuccessed)
-      {
-        var checkResult = pickServie.AfterCreatePickCheckOrder(out CanceledOrders);
-        if (!checkResult.IsSuccessed)
-          return new ApiResult { IsSuccessed = checkResult.IsSuccessed, MsgCode = "", MsgContent = checkResult.Message };
-        wmsTransation.Complete();
-
-        if (CanceledOrders.Count > 0)
-        {
-          if (!String.IsNullOrEmpty(result.MsgContent))
-            result.MsgContent += Environment.NewLine + $"訂單被LMS取消{CanceledOrders.Count}筆";
-          else
-            result.MsgContent = $"訂單被LMS取消{CanceledOrders.Count}筆";
-        }
-      }
-      return result;
+			return result;
     }
 
 
@@ -326,5 +310,17 @@ namespace Wms3pl.WebServices.Schedule
       var service = new ImmediateItemScheduleService();
       return service.ExecImmediateItemSchedule();
     }
+
+    /// <summary>
+    /// 出貨單據完成通知排程
+    /// </summary>
+    /// <returns></returns>
+    public static ApiResult ShipFinishConfirmNotify()
+    {
+      var service = new ShipFinishConfirmNotifyService();
+      return service.ExecShipFinishConfirmNotify();
+    }
+
+
   }
 }

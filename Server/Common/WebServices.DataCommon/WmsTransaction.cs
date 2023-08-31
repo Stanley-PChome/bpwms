@@ -31,7 +31,7 @@ namespace Wms3pl.WebServices.DataCommon
 		/// </summary>
 		public bool UseBulkInsertFirst { get; set; }
 
-		public string Complete()
+		public string Complete(bool isCompressionScript = false)
 		{
 			// 沒SQL要執行，且沒快取要清除時，不做任何事情
 			if (!SqlCommands.Any() && !_cacheDatas.Any() && !_bulkInsertCommands.Any() && !EFCoreBulkInfos.Any())
@@ -46,16 +46,29 @@ namespace Wms3pl.WebServices.DataCommon
 						sql.Value.EFCoreBulk();
 					}
 
-					foreach (var sql in SqlCommands)
+					if(SqlCommands.Count > 0)
 					{
 						var resultCount = 0;
-						if (sql.Parameters is SqlParameter[])
-							resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText,sql.IsSqlParameterSetDbType, (SqlParameter[])sql.Parameters);
-						else
-							resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText, sql.IsSqlParameterSetDbType, (object[])sql.Parameters);
-						if (sql.ExeCountMustGreaterZero && resultCount <= 0)
+						// 壓縮語法
+						if (isCompressionScript)
 						{
-							return sql.ExeCountZeroMessage;
+							var res = ToCompressionScript();
+							if (!string.IsNullOrWhiteSpace(res))
+								return res;
+						}
+						else
+						{
+							foreach (var sql in SqlCommands)
+							{
+								if (sql.Parameters is SqlParameter[])
+									resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText, sql.IsSqlParameterSetDbType, (SqlParameter[])sql.Parameters);
+								else
+									resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sql.SqlCommandText, sql.IsSqlParameterSetDbType, (object[])sql.Parameters);
+								if (sql.ExeCountMustGreaterZero && resultCount <= 0)
+								{
+									return sql.ExeCountZeroMessage;
+								}
+							}
 						}
 					}
 
@@ -93,6 +106,79 @@ namespace Wms3pl.WebServices.DataCommon
 			{
 				if (DbContext.Database.GetDbConnection().State != System.Data.ConnectionState.Closed)
 					DbContext.Database.GetDbConnection().Close();
+			}
+			return string.Empty;
+		}
+
+		/// <summary>
+		/// 壓縮語法
+		/// 最大1000參數執行一批語法
+		/// </summary>
+		/// <returns></returns>
+		private string ToCompressionScript()
+		{
+			var paramList = new List<SqlParameter>();
+			var sb = new StringBuilder();
+			var maxParamCnt = 1000;
+			var isSqlParameterSetDbType = false;
+			var resultCount = 0;
+			for (var i = 0; i < SqlCommands.Count; i++)
+			{
+				if (SqlCommands[i].ExeCountMustGreaterZero)
+				{
+					resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, SqlCommands[i].SqlCommandText, SqlCommands[i].IsSqlParameterSetDbType, SqlCommands[i].Parameters);
+					if (SqlCommands[i].ExeCountMustGreaterZero && resultCount <= 0)
+					{
+						return SqlCommands[i].ExeCountZeroMessage;
+					}
+				}
+				else
+				{
+					if (SqlCommands[i].Parameters!=null && SqlCommands[i].Parameters is object[])
+						SqlCommands[i].Parameters = ExecuteCommandHelper.ParameterByNameToByPositionImpl(DbContext, SqlCommands[i].SqlCommandText, SqlCommands[i].Parameters, true);
+
+					if (sb.Length == 0)
+						isSqlParameterSetDbType = SqlCommands[i].IsSqlParameterSetDbType;
+
+					var addParmCount = (SqlCommands[i].Parameters == null) ? 0 : SqlCommands[i].Parameters.Count();
+					if ((paramList.Count + addParmCount) > maxParamCnt || SqlCommands[i].IsSqlParameterSetDbType != isSqlParameterSetDbType)
+					{
+						resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sb.ToString(), isSqlParameterSetDbType, paramList.ToArray());
+						paramList.Clear();
+						sb.Clear();
+						isSqlParameterSetDbType = SqlCommands[i].IsSqlParameterSetDbType;
+					}
+
+					if(SqlCommands[i].Parameters!=null)
+					{
+						var tag = "@B" + i.ToString() + "_";
+						foreach (SqlParameter p in SqlCommands[i].Parameters)
+						{
+							var parmName = p.ParameterName;
+							var replaceParmName = parmName.Replace("@", tag);
+							p.ParameterName = replaceParmName;
+
+							paramList.Add(p);
+						}
+						SqlCommands[i].SqlCommandText = SqlCommands[i].SqlCommandText.Replace("@", tag);
+					}
+
+					if (sb.Length == 0)
+					{
+						sb.Append(SqlCommands[i].SqlCommandText);
+					}
+					else
+					{
+						sb.AppendFormat("{0}{1}", Environment.NewLine, SqlCommands[i].SqlCommandText);
+					}
+				}
+			}
+			if (sb.Length > 0)
+			{
+				resultCount = ExecuteCommandHelper.ExecuteSqlCommand(DbContext, sb.ToString(), isSqlParameterSetDbType, paramList.ToArray());
+				paramList.Clear();
+				sb.Clear();
+				isSqlParameterSetDbType = false;
 			}
 			return string.Empty;
 		}

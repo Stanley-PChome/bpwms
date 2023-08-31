@@ -616,7 +616,12 @@ namespace Wms3pl.WebServices.DataCommon
 			ExecuteSqlCommandNonParams(sqlcommand, false, null);
 		}
 
-		private void ExecuteSqlCommandNonParams(string sqlcommand, bool exeCountMustGreaterZero, string exeCountZeroMessage)
+    public void ExecuteSqlCommand(string sqlcommand, out int seq, params SqlParameter[] parameters)
+    {
+      ExecuteCommandHelper.ExecuteSqlCommandWithOutputParameter(_db, sqlcommand, out seq, parameters);
+    }
+
+    private void ExecuteSqlCommandNonParams(string sqlcommand, bool exeCountMustGreaterZero, string exeCountZeroMessage)
 		{
 			_isForUpdate = false;
 			if (_wmsTransaction == null)

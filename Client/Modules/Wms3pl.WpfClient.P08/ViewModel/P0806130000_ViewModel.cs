@@ -634,23 +634,15 @@ namespace Wms3pl.WpfClient.P08.ViewModel
 								() => proxy08.BindComplete(SelectedDcCode, _gupCode, _custCode, wcfData.ToArray()));
 
 				RaisePropertyChanged("EmpOrderList");
+
         if (result.IsSuccessed)
-        {
           ShowInfoMessage(Properties.Resources.P0806130000_SaveSucess);
-          //完成後回到初始畫面
-          ModelDataSet(ModelType.OrigionMode);
-          InitialObject(true);
-        }
         else
-        {
           ShowWarningMessage(result.Message);
 
-          #region 把已經取消的揀貨單從清單中移除
-          var IsCancelOrder = string.IsNullOrWhiteSpace(result.No) ? Array.Empty<string>() : result.No.Split(',');
-          EmpOrderList = EmpOrderList.Where(x => !IsCancelOrder.Contains(x.ORDER_NO)).ToObservableCollection();
-          #endregion 把已經取消的揀貨單從清單中移除
-        }
-
+        //完成後回到初始畫面
+        ModelDataSet(ModelType.OrigionMode);
+        InitialObject(true);
       }
 			else
 			{

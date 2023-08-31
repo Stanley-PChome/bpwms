@@ -408,6 +408,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         new MsgModel{ MsgCode = "22023", MsgContent = "容器關箱失敗"}, //非實際內容，直接回傳WarehouseInService.ContainerCloseBox中的訊息
         new MsgModel{ MsgCode = "22024", MsgContent = "所有容器都呼叫容器上架共用服務後處理失敗"}, //非實際內容，直接回傳WarehouseInService.AfterConatinerTargetFinishedProcess中的訊息
         new MsgModel{ MsgCode = "22025", MsgContent = "只有揀區才允許使用分格容器"},
+        new MsgModel{ MsgCode = "22026", MsgContent = "此容器已存在清單中"},
 
 	      #endregion 20 進貨容器綁定
 

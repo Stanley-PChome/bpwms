@@ -647,5 +647,146 @@ namespace Wms3pl.WebServices.Process.P06.Services
 			return new ExecuteResult { IsSuccessed = true };
 		}
 
-	}
+    /// <summary>
+    /// 揀貨缺貨處理-缺品出貨確認
+    /// </summary>
+    /// <param name="F051206LackList"></param>
+    /// <returns></returns>
+    public ExecuteResult ConfirmLackToShip(List<F051206LackList> F051206LackList)
+    {
+      var f050802Repo = new F050802Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f051206Repo = new F051206Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f191302Repo = new F191302Repository(Schemas.CoreSchema, _wmsTransaction);
+      var sharedService = new SharedService(_wmsTransaction);
+
+      var returnAllotList = new List<ReturnNewAllocation>();
+      var returnStocks = new List<F1913>();
+      var updF050802s = new List<F050802>();
+      var updF051206s = new List<F051206>();
+      var updF051202s = new List<F051202>();
+      var updF1511s = new List<F1511>();
+      var addF191302s = new List<F191302>();
+
+      var f051206s = f051206Repo.GetDatasByLackSeq(F051206LackList.Select(x => x.LACK_SEQ).Distinct().ToList()).ToList();
+
+      //(4)	檢查每一筆項目是否已經有人員處理改筆缺貨(F051206.STATUS=2)
+      var chkF051206Status = f051206s.Where(x => x.STATUS == "2");
+      if (chkF051206Status.Any())
+      {
+        var rowNum = F051206LackList.Where(x => chkF051206Status.Select(x1 => x1.LACK_SEQ).Contains(x.LACK_SEQ)).Select(x => x.ROWNUM);
+        return new ExecuteResult(false, $"項次{string.Join(",", rowNum)}已有人處理，不可重複處理，請關閉此視窗，重新查詢後再進行處理");
+      }
+
+      //取得該筆訂單完整的揀貨單明細
+      var allF051202s = f051202Repo.GetDatasByWmsOrdNo(
+          F051206LackList.First().DC_CODE,
+          F051206LackList.First().GUP_CODE,
+          F051206LackList.First().CUST_CODE,
+          F051206LackList.First().WMS_ORD_NO)
+          .ToList();
+
+      //(5)[A] = 取得出貨單揀貨明細 f051202
+      var f051202s = allF051202s.Where(x =>
+          F051206LackList.Select(x1 => x1.PICK_ORD_NO).Distinct().Contains(x.PICK_ORD_NO))
+          .ToList();
+      //var f051202s = f051202Repo.GetDatasByPickOrdNos(
+      //    F051206LackList.First().DC_CODE, 
+      //    F051206LackList.First().GUP_CODE, 
+      //    F051206LackList.First().CUST_CODE, 
+      //    F051206LackList.Select(x => x.PICK_ORD_NO).Distinct().ToList())
+      //    .ToList();
+
+      //(6)[B] = 取得出貨單虛擬庫存明細 f1511
+      var f1511s = f1511Repo.GetDatas(
+          F051206LackList.First().DC_CODE,
+          F051206LackList.First().GUP_CODE,
+          F051206LackList.First().CUST_CODE,
+          F051206LackList.Select(x => x.PICK_ORD_NO).Distinct().ToList())
+          .ToList();
+
+      //(7)[C] = 取得出貨單明細 f050802
+      var f050802s = f050802Repo.GetDatas(
+          F051206LackList.First().DC_CODE,
+          F051206LackList.First().GUP_CODE,
+          F051206LackList.First().CUST_CODE,
+          F051206LackList.First().WMS_ORD_NO)
+          .ToList();
+
+      var pickLossWHId = sharedService.GetPickLossWarehouseId(
+          F051206LackList.First().DC_CODE,
+          F051206LackList.First().GUP_CODE,
+          F051206LackList.First().CUST_CODE);
+
+      var pickLossLocCode = sharedService.GetPickLossLoc(F051206LackList.First().DC_CODE, pickLossWHId);
+
+      //(8)	針對每一筆缺貨進行處理 
+      foreach (var f051206Lack in F051206LackList)
+      {
+        //上面查詢條件沒有帶入PICK_ORD_SEQ，是直接撈整張撿缺的揀貨單，這邊再補上有撿缺的條件
+        var f051202 = f051202s.FirstOrDefault(x => x.PICK_ORD_NO == f051206Lack.PICK_ORD_NO && x.PICK_ORD_SEQ == f051206Lack.PICK_ORD_SEQ);
+        var f1511 = f1511s.FirstOrDefault(x => x.ORDER_NO == f051206Lack.PICK_ORD_NO && x.ORDER_SEQ == f051206Lack.PICK_ORD_SEQ);
+
+        var resLack = sharedService.CreateStockLackProcess(new StockLack
+        {
+          DcCode = f051202.DC_CODE,
+          GupCode = f051202.GUP_CODE,
+          CustCode = f051202.CUST_CODE,
+          LackQty = f051206Lack.LACK_QTY.Value,
+          PickLackWarehouseId = pickLossWHId,
+          PickLackLocCode = pickLossLocCode,
+          F051202 = f051202,
+          F1511 = f1511,
+          ReturnStocks = returnStocks
+        });
+
+        if (!resLack.IsSuccessed)
+          return new ExecuteResult(resLack.IsSuccessed, resLack.Message);
+
+        returnAllotList.AddRange(resLack.ReturnNewAllocations);
+        returnStocks = resLack.ReturnStocks;
+        updF051202s.Add(resLack.UpdF051202);
+        updF1511s.Add(resLack.UpdF1511);
+        addF191302s.AddRange(resLack.AddF191302List);
+
+        var f051206 = f051206s.First(x => x.LACK_SEQ == f051206Lack.LACK_SEQ);
+        f051206.RETURN_FLAG = "1";
+        f051206.REASON = f051206Lack.REASON;
+        f051206.MEMO = f051206Lack.MEMO;
+        f051206.STATUS = "2";
+        updF051206s.Add(f051206);
+
+
+      }
+
+      var shipQty = updF051202s.Where(x => x.PICK_STATUS != "9").GroupBy(x => new { x.WMS_ORD_NO, x.WMS_ORD_SEQ }).Select(x => new { x.Key.WMS_ORD_NO, x.Key.WMS_ORD_SEQ, QTY = x.Sum(x1 => x1.A_PICK_QTY), Data = x });
+      //更新出貨單明細該項次的預計出貨數(F050802.B_DELV_QTY)= 該項次加總實際可出貨數
+      foreach (var item in shipQty)
+      {
+        foreach (var f051202item in item.Data)
+          f051202item.B_PICK_QTY = f051202item.A_PICK_QTY;
+
+        var updF050802 = f050802s.First(x => x.WMS_ORD_NO == item.WMS_ORD_NO && x.WMS_ORD_SEQ == item.WMS_ORD_SEQ);
+        updF050802.B_DELV_QTY = allF051202s.Where(x => x.WMS_ORD_NO == item.WMS_ORD_NO && x.WMS_ORD_SEQ == item.WMS_ORD_SEQ).Sum(x => x.A_PICK_QTY);
+        updF050802s.Add(updF050802);
+      }
+
+      sharedService.BulkAllocationToAllUp(returnAllotList, returnStocks, false, addF191302s);
+      sharedService.BulkInsertAllocation(returnAllotList, returnStocks, true);
+      if (addF191302s.Any())
+        f191302Repo.BulkInsert(addF191302s);
+      if(updF050802s.Any())
+        f050802Repo.BulkUpdate(updF050802s);
+      if (updF051202s.Any())
+        f051202Repo.BulkUpdate(updF051202s);
+      if (updF051206s.Any())
+        f051206Repo.BulkUpdate(updF051206s);
+      if (updF1511s.Any())
+        f1511Repo.BulkUpdate(updF1511s);
+
+      return new ExecuteResult(true);
+    }
+
+  }
 }

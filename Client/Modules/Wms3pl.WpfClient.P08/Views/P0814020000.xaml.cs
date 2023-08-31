@@ -64,6 +64,8 @@ namespace Wms3pl.WpfClient.P08.Views
       // 組印表機資訊、工作站編號
       if (Vm.SelectedF910501 != null)
 				Vm.DcChangeSetValue();
+
+			Vm.GetPrintBoxSetting();
 		}
 
 		/// <summary>
@@ -99,6 +101,11 @@ namespace Wms3pl.WpfClient.P08.Views
 						Vm.SearchContainerCommand.Execute(true);
 						if (Vm.SoundOn) PlaySoundHelper.Scan();
 					}
+				}
+				catch (Exception ex)
+				{
+					Vm.IsBusy = false;
+					FormException = ex;
 				}
 				finally
 				{

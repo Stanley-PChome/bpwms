@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Diagnostics;
 using System.Linq;
 using Wms3pl.Datas.F19;
 using Wms3pl.Datas.F91;
 using Wms3pl.Datas.Shared.ApiEntities;
+using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
 using Wms3pl.WebServices.Shared.Services;
 using Wms3pl.WebServices.Shared.TransApiServices.Check;
@@ -13,7 +16,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 {
 	public class CommonItemService
 	{
-		private WmsTransaction _wmsTransation;
+
+    private WmsTransaction _wmsTransation;
 		public CommonItemService(WmsTransaction wmsTransation)
 		{
 			_wmsTransation = wmsTransation;
@@ -99,7 +103,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// <returns></returns>
 		public ApiResult RecevieApiDatas(PostItemDataReq req)
 		{
-			CheckTransApiService ctaService = new CheckTransApiService();
+      CheckTransApiService ctaService = new CheckTransApiService();
 			TransApiBaseService tacService = new TransApiBaseService();
 			SharedService sharedService = new SharedService();
 			CommonService commonService = new CommonService();
@@ -130,10 +134,10 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 			int itemMaxCnt = Convert.ToInt32(commonService.GetSysGlobalValue("ItemMaxCnt"));
 			if (req.Result.Items.Count > itemMaxCnt)
 				return new ApiResult { IsSuccessed = false, MsgCode = "20018", MsgContent = string.Format(tacService.GetMsg("20018"), _moduleName, req.Result.Items.Count, itemMaxCnt) };
-			#endregion
+      #endregion
 
-			// 取得業主編號
-			string gupCode = commonService.GetGupCode(req.CustCode);
+      // 取得業主編號
+      string gupCode = commonService.GetGupCode(req.CustCode);
 
       //先把要存入資料庫的內容該轉大寫的先轉好
       req.Result.Items.ForEach(x =>
@@ -161,6 +165,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
       List<ApiResponse> data = new List<ApiResponse>();
       int addCnt = 0;
       int updCnt = 0;
+      CommonService commonService = new CommonService();
       F1903Repository f1903Repo = new F1903Repository(Schemas.CoreSchema, _wmsTransation);
       F190301Repository f190301Repo = new F190301Repository(Schemas.CoreSchema, _wmsTransation);
       F1905Repository f1905Repo = new F1905Repository(Schemas.CoreSchema, _wmsTransation);
@@ -182,14 +187,15 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
       var cCodes = items.Where(x => !string.IsNullOrWhiteSpace(x.Stype)).Select(x => x.Stype).Distinct().ToList();
       var pickWarehouseIds = items.Where(x => !string.IsNullOrWhiteSpace(x.PickWarehouseId)).Select(x => x.PickWarehouseId).Distinct().ToList();
       var oriVnrCodes = items.Where(x => !string.IsNullOrWhiteSpace(x.OriVnrCode)).Select(x => x.OriVnrCode).Distinct().ToList();
+
       // 取得大分類代碼資料
-      _aCodeList = f1915Repo.GetDatasByACode(gupCode, custCode, aCodes).Select(x => x.ACODE).ToList();
+      _aCodeList = f1915Repo.GetDatasByACodeReturnACODE(gupCode, custCode, aCodes).ToList();
 
       // 取得中分類代碼資料
-      _bCodeList = f1916Repo.GetDatasByBCode(gupCode, custCode, bCodes).Select(x => x.BCODE).ToList();
+      _bCodeList = f1916Repo.GetDatasByBCodeReturnBCODE(gupCode, custCode, bCodes).ToList();
 
       // 取得小分類代碼資料
-      _cCodeList = f1917Repo.GetDatasByCCode(gupCode, custCode, cCodes).Select(x => x.CCODE).ToList();
+      _cCodeList = f1917Repo.GetDatasByCCodeReturnCCODE(gupCode, custCode, cCodes).ToList();
 
       // 取得倉別代碼清單
       _typeIdList = f198001Repo.GetDatasByItemPickWare("1").Select(x => x.TYPE_ID).ToList();
@@ -204,14 +210,15 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
       _accUnitList = _f91000302List.Select(x => x.ACC_UNIT).ToList();
 
       // 取得廠商主檔清單
-      _vnrCodeList = f1908Repo.GetDatas(gupCode, custCode, oriVnrCodes).Select(x => x.VNR_CODE).ToList();
+      _vnrCodeList = f1908Repo.GetDatasReturnVnrCode(gupCode, custCode, oriVnrCodes).ToList();
 
       // 取得PCS編號
       var pcsData = _f91000302List.Where(x => x.ACC_UNIT_NAME == "PCS").SingleOrDefault();
       _pcsAccUnit = pcsData == null ? string.Empty : pcsData.ACC_UNIT;
 
       // 取得已存在貨主商品主檔清單
-      var thirdPartF1903List = f1903Repo.GetDatasByItems(gupCode, custCode, itemCodes).ToList();
+      //var thirdPartF1903List = f1903Repo.GetDatasByItems(gupCode, custCode, itemCodes).ToList();
+      var thirdPartF1903List = commonService.GetProductList(gupCode, custCode, itemCodes).ToList();
 
       // 取得商品階層主檔清單
       unitIds = unitIds.Select(x => _accUnitList.Contains(x) ? x : _pcsAccUnit).ToList();
@@ -236,7 +243,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
       #endregion
 
       #region 檢核
-      List<F1903> exceptF1903Data = new List<F1903>();
+      List<CommonProduct> exceptF1903Data = new List<CommonProduct>();
       List<F190301> exceptF190301Data = new List<F190301>();
       List<F1905> exceptF1905Data = new List<F1905>();
       List<F190305> exceptF190305Data = new List<F190305>();
@@ -342,78 +349,81 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
         var currData = _f1903List.Where(z => z.ITEM_CODE == updData.ITEM_CODE).SingleOrDefault();
         if (currData != null)
         {
+          f1903Repo.UpdatePostItemData(currData);
+          updCnt++;
+
           // 修改
-          updData.VEN_ORD = currData.VEN_ORD;
-          updData.ALL_DLN = currData.ALL_DLN;
-          updData.PICK_WARE = currData.PICK_WARE;
-          updData.C_D_FLAG = currData.C_D_FLAG;
-          updData.ALLOW_ALL_DLN = currData.ALLOW_ALL_DLN;
-          updData.MULTI_FLAG = currData.MULTI_FLAG;
-          updData.MIX_BATCHNO = currData.MIX_BATCHNO;
-          updData.ALLOWORDITEM = currData.ALLOWORDITEM;
-          updData.BUNDLE_SERIALLOC = currData.BUNDLE_SERIALLOC;
-          updData.BUNDLE_SERIALNO = currData.BUNDLE_SERIALLOC == "1" ? "1" : currData.BUNDLE_SERIALNO;
-          updData.ORD_SAVE_QTY = currData.ORD_SAVE_QTY;
-          updData.PICK_SAVE_QTY = currData.PICK_SAVE_QTY;
-          updData.ITEM_RETURN = currData.ITEM_RETURN;
-          updData.LOC_MIX_ITEM = currData.LOC_MIX_ITEM;
-          updData.SERIALNO_DIGIT = currData.SERIALNO_DIGIT;
-          updData.SERIAL_BEGIN = currData.SERIAL_BEGIN;
-          updData.SERIAL_RULE = currData.SERIAL_RULE;
-          updData.SAVE_DAY = currData.SAVE_DAY;
-          updData.ITEM_STAFF = currData.ITEM_STAFF;
-          updData.CHECK_PERCENT = currData.CHECK_PERCENT;
-          updData.PICK_SAVE_ORD = currData.PICK_SAVE_ORD;
-          updData.ISCARTON = currData.ISCARTON;
-          updData.LTYPE = currData.LTYPE;
-          updData.MTYPE = currData.MTYPE;
-          updData.STYPE = currData.STYPE;
-          updData.ITEM_NAME = currData.ITEM_NAME;
-          updData.EAN_CODE1 = currData.EAN_CODE1;
-          updData.EAN_CODE2 = currData.EAN_CODE2;
-          if (!string.IsNullOrWhiteSpace(currData.EAN_CODE3)) { updData.EAN_CODE3 = currData.EAN_CODE3; }
-          updData.ITEM_ENGNAME = currData.ITEM_ENGNAME;
-          updData.ITEM_COLOR = currData.ITEM_COLOR;
-          updData.ITEM_SIZE = currData.ITEM_SIZE;
-          updData.TYPE = currData.LTYPE;
-          updData.ITEM_HUMIDITY = currData.ITEM_HUMIDITY;
-          updData.ITEM_SPEC = currData.ITEM_SPEC;
-          updData.TMPR_TYPE = currData.TMPR_TYPE;
-          updData.FRAGILE = currData.FRAGILE;
-          updData.SPILL = currData.SPILL;
-          updData.ITEM_UNIT = currData.ITEM_UNIT;
-          updData.MEMO = currData.MEMO;
-          updData.PICK_WARE_ID = currData.PICK_WARE_ID;
-          updData.CUST_ITEM_NAME = currData.CUST_ITEM_NAME;
-          updData.MAKENO_REQU = currData.MAKENO_REQU;
-          updData.NEED_EXPIRED = currData.NEED_EXPIRED;
-          updData.ALL_SHP = currData.ALL_SHP;
-          updData.EAN_CODE4 = currData.EAN_CODE4;
-          if (currData.FIRST_IN_DATE.HasValue)
-          {
-            updData.FIRST_IN_DATE = currData.FIRST_IN_DATE;
-          }
-          updData.CUST_ITEM_CODE = currData.CUST_ITEM_CODE;
-          updData.VNR_CODE = currData.VNR_CODE;
-          updData.RET_ORD = currData.RET_ORD;
-          updData.IS_EASY_LOSE = currData.IS_EASY_LOSE;
-          updData.IS_PRECIOUS = currData.IS_PRECIOUS;
-          updData.IS_MAGNETIC = currData.IS_MAGNETIC;
-          updData.IS_PERISHABLE = currData.IS_PERISHABLE;
-          updData.IS_TEMP_CONTROL = currData.IS_TEMP_CONTROL;
-          updData.IS_ASYNC = "N";
-          updData.VNR_ITEM_CODE = currData.VNR_ITEM_CODE;
-          updData.ORI_VNR_CODE = currData.ORI_VNR_CODE;
-          updF1903Datas.Add(updData);
+          //updData.VEN_ORD = currData.VEN_ORD;
+          //updData.ALL_DLN = currData.ALL_DLN;
+          //updData.PICK_WARE = currData.PICK_WARE;
+          //updData.C_D_FLAG = currData.C_D_FLAG;
+          //updData.ALLOW_ALL_DLN = currData.ALLOW_ALL_DLN;
+          //updData.MULTI_FLAG = currData.MULTI_FLAG;
+          //updData.MIX_BATCHNO = currData.MIX_BATCHNO;
+          //updData.ALLOWORDITEM = currData.ALLOWORDITEM;
+          //updData.BUNDLE_SERIALLOC = currData.BUNDLE_SERIALLOC;
+          //updData.BUNDLE_SERIALNO = currData.BUNDLE_SERIALLOC == "1" ? "1" : currData.BUNDLE_SERIALNO;
+          //updData.ORD_SAVE_QTY = currData.ORD_SAVE_QTY;
+          //updData.PICK_SAVE_QTY = currData.PICK_SAVE_QTY;
+          //updData.ITEM_RETURN = currData.ITEM_RETURN;
+          //updData.LOC_MIX_ITEM = currData.LOC_MIX_ITEM;
+          //updData.SERIALNO_DIGIT = currData.SERIALNO_DIGIT;
+          //updData.SERIAL_BEGIN = currData.SERIAL_BEGIN;
+          //updData.SERIAL_RULE = currData.SERIAL_RULE;
+          //updData.SAVE_DAY = currData.SAVE_DAY;
+          //updData.ITEM_STAFF = currData.ITEM_STAFF;
+          //updData.CHECK_PERCENT = currData.CHECK_PERCENT;
+          //updData.PICK_SAVE_ORD = currData.PICK_SAVE_ORD;
+          //updData.ISCARTON = currData.ISCARTON;
+          //updData.LTYPE = currData.LTYPE;
+          //updData.MTYPE = currData.MTYPE;
+          //updData.STYPE = currData.STYPE;
+          //updData.ITEM_NAME = currData.ITEM_NAME;
+          //updData.EAN_CODE1 = currData.EAN_CODE1;
+          //updData.EAN_CODE2 = currData.EAN_CODE2;
+          //if (!string.IsNullOrWhiteSpace(currData.EAN_CODE3)) { updData.EAN_CODE3 = currData.EAN_CODE3; }
+          //updData.ITEM_ENGNAME = currData.ITEM_ENGNAME;
+          //updData.ITEM_COLOR = currData.ITEM_COLOR;
+          //updData.ITEM_SIZE = currData.ITEM_SIZE;
+          //updData.TYPE = currData.LTYPE;
+          //updData.ITEM_HUMIDITY = currData.ITEM_HUMIDITY;
+          //updData.ITEM_SPEC = currData.ITEM_SPEC;
+          //updData.TMPR_TYPE = currData.TMPR_TYPE;
+          //updData.FRAGILE = currData.FRAGILE;
+          //updData.SPILL = currData.SPILL;
+          //updData.ITEM_UNIT = currData.ITEM_UNIT;
+          //updData.MEMO = currData.MEMO;
+          //updData.PICK_WARE_ID = currData.PICK_WARE_ID;
+          //updData.CUST_ITEM_NAME = currData.CUST_ITEM_NAME;
+          //updData.MAKENO_REQU = currData.MAKENO_REQU;
+          //updData.NEED_EXPIRED = currData.NEED_EXPIRED;
+          //updData.ALL_SHP = currData.ALL_SHP;
+          //updData.EAN_CODE4 = currData.EAN_CODE4;
+          //if (currData.FIRST_IN_DATE.HasValue)
+          //{
+          //  updData.FIRST_IN_DATE = currData.FIRST_IN_DATE;
+          //}
+          //updData.CUST_ITEM_CODE = currData.CUST_ITEM_CODE;
+          //updData.VNR_CODE = currData.VNR_CODE;
+          //updData.RET_ORD = currData.RET_ORD;
+          //updData.IS_EASY_LOSE = currData.IS_EASY_LOSE;
+          //updData.IS_PRECIOUS = currData.IS_PRECIOUS;
+          //updData.IS_MAGNETIC = currData.IS_MAGNETIC;
+          //updData.IS_PERISHABLE = currData.IS_PERISHABLE;
+          //updData.IS_TEMP_CONTROL = currData.IS_TEMP_CONTROL;
+          //updData.IS_ASYNC = "N";
+          //updData.VNR_ITEM_CODE = currData.VNR_ITEM_CODE;
+          //updData.ORI_VNR_CODE = currData.ORI_VNR_CODE;
+          //updF1903Datas.Add(updData);
         }
       });
 
-      if (updF1903Datas.Any())
-      {
-        f1903Repo.BulkUpdate(updF1903Datas);
-        // 計算修改數
-        updCnt += itemDatas.Where(x => updF1903Datas.Select(z => z.ITEM_CODE).Contains(x.LastData.ItemCode)).Sum(x => x.Count);
-      }
+      //if (updF1903Datas.Any())
+      //{
+      //  f1903Repo.BulkUpdate(updF1903Datas);
+      //  // 計算修改數
+      //  updCnt += itemDatas.Where(x => updF1903Datas.Select(z => z.ITEM_CODE).Contains(x.LastData.ItemCode)).Sum(x => x.Count);
+      //}
       #endregion
 
       #region BulkUpdateF1905
@@ -513,7 +523,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
       #endregion
 
       #region Commit
-      _wmsTransation.Complete();
+      _wmsTransation.Complete(true);
       #endregion
 
       #region 回傳資料
@@ -575,8 +585,8 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 				if (!data.Any())
 				{
 					CreateItemData(gupCode, custCode, item);
-				}
-			}
+        }
+      }
 
 			result.IsSuccessed = !data.Any();
 			result.Data = data;

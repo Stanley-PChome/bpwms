@@ -2,6 +2,7 @@
 using System.Linq;
 using Wms3pl.Datas.F19;
 using Wms3pl.Datas.Shared.ApiEntities;
+using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
 using Wms3pl.WebServices.Shared.Services;
 
@@ -23,7 +24,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		/// <param name="locCode"></param>
 		/// <param name="f1903"></param>
 		/// <param name="itemCode"></param>
-		public void CheckItemCodeIsExist(ref List<FlashStockTransferData> res, string locCode, F1903 f1903, string itemCode)
+		public void CheckItemCodeIsExist(ref List<FlashStockTransferData> res, string locCode, CommonProduct f1903, string itemCode)
 		{
 			if (f1903 == null)
 				res.Add(new FlashStockTransferData { LocCode = locCode, ItemCode = itemCode, MsgCode = "20119", MsgContent = _tacService.GetMsg("20119") });
@@ -36,7 +37,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Check
 		/// <param name="locCode"></param>
 		/// <param name="f1903"></param>
 		/// <param name="item"></param>
-		public void CheckSnList(ref List<FlashStockTransferData> res, string locCode, F1903 f1903, FlashStockTransferDataResult item)
+		public void CheckSnList(ref List<FlashStockTransferData> res, string locCode, CommonProduct f1903, FlashStockTransferDataResult item)
 		{
 			if (f1903 != null)
 			{

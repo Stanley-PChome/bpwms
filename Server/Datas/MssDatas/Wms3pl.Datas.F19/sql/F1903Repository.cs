@@ -5,7 +5,9 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using Wms3pl.Datas.F19;
+using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
@@ -898,9 +900,14 @@ namespace Wms3pl.Datas.F19
 			ExecuteSqlCommand(sql, parameters.ToArray());
 		}
 
-    public IQueryable<F1903> GetDatasByCustItemCode(string gupCode, string custCode, List<string> custItemCodes)
+    public IQueryable<CommonProduct> GetCommonProductsByCustItemCodes(string gupCode, string custCode, List<string> custItemCodes)
     {
-      var sql = @"SELECT * FROM F1903 WHERE GUP_CODE = @p0 AND CUST_CODE = @p1";
+      var sql = @"SELECT GUP_CODE,CUST_CODE,ITEM_CODE,ALL_DLN,CUST_ITEM_CODE,ALLOWORDITEM,BUNDLE_SERIALLOC,BUNDLE_SERIALNO,LOC_MIX_ITEM,
+　　　SERIALNO_DIGIT,SERIAL_BEGIN,SERIAL_RULE,SAVE_DAY,PICK_SAVE_QTY,ISCARTON,ISAPPLE,ITEM_NAME,EAN_CODE1,EAN_CODE2,
+      EAN_CODE3,EAN_CODE4,TYPE,ITEM_SPEC,TMPR_TYPE,FRAGILE,SPILL,LG,VIRTUAL_TYPE,LTYPE,ITEM_COLOR,ITEM_SIZE,STOP_DATE,NEED_EXPIRED,
+	  ALL_SHP,FIRST_IN_DATE,VNR_CODE,IS_EASY_LOSE,IS_PRECIOUS,IS_MAGNETIC,IS_PERISHABLE,IS_TEMP_CONTROL,VNR_ITEM_CODE,RCV_MEMO,
+	  ORI_VNR_CODE,MIX_BATCHNO,C_D_FLAG,MAKENO_REQU,CRT_DATE,UPD_DATE
+   FROM F1903 WHERE GUP_CODE = @p0 AND CUST_CODE = @p1";
 
       var parameters = new List<SqlParameter>
       {
@@ -909,7 +916,7 @@ namespace Wms3pl.Datas.F19
       };
 
       sql += parameters.CombineSqlInParameters(" AND CUST_ITEM_CODE", custItemCodes, System.Data.SqlDbType.VarChar);
-      return SqlQuery<F1903>(sql, parameters.ToArray());
+      return SqlQuery<CommonProduct>(sql, parameters.ToArray());
 
     }
 
@@ -958,6 +965,37 @@ namespace Wms3pl.Datas.F19
       */
       #endregion
     }
+
+		public IQueryable<CommonProduct> GetCommonProductsByItemCodes(string gupCode, string custCode, List<string> itemCodes)
+		{
+			var sql = @"SELECT GUP_CODE,CUST_CODE,ITEM_CODE,ALL_DLN,CUST_ITEM_CODE,ALLOWORDITEM,BUNDLE_SERIALLOC,BUNDLE_SERIALNO,LOC_MIX_ITEM,
+　　　SERIALNO_DIGIT,SERIAL_BEGIN,SERIAL_RULE,SAVE_DAY,PICK_SAVE_QTY,ISCARTON,ISAPPLE,ITEM_NAME,EAN_CODE1,EAN_CODE2,
+      EAN_CODE3,EAN_CODE4,TYPE,ITEM_SPEC,TMPR_TYPE,FRAGILE,SPILL,LG,VIRTUAL_TYPE,LTYPE,ITEM_COLOR,ITEM_SIZE,STOP_DATE,NEED_EXPIRED,
+	  ALL_SHP,FIRST_IN_DATE,VNR_CODE,IS_EASY_LOSE,IS_PRECIOUS,IS_MAGNETIC,IS_PERISHABLE,IS_TEMP_CONTROL,VNR_ITEM_CODE,RCV_MEMO,
+	  ORI_VNR_CODE,MIX_BATCHNO,C_D_FLAG,MAKENO_REQU,CRT_DATE,UPD_DATE
+     FROM F1903 WHERE GUP_CODE=@p0 AND CUST_CODE=@p1";
+
+			var param = new List<SqlParameter>
+			{
+				new SqlParameter("@p0", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar },
+				new SqlParameter("@p1", custCode) { SqlDbType = System.Data.SqlDbType.VarChar }
+			};
+			if (itemCodes.Any())
+				sql += param.CombineSqlInParameters(" AND ITEM_CODE", itemCodes, System.Data.SqlDbType.VarChar);
+			else
+				return null;
+
+			return SqlQuery<CommonProduct>(sql, param.ToArray());
+
+			#region 原LINQ語法
+			/*
+      var result = _db.F1903s.Where(x => x.GUP_CODE == gupCode
+                                    && x.CUST_CODE == custCode
+                                    && itemCodes.Contains(x.ITEM_CODE));
+      return result;
+      */
+			#endregion
+		}
 
 		public IQueryable<F1903> GetDatasByWcsItemAsync(string gupCode, string custCode, int maxRecord)
 		{
@@ -1080,5 +1118,197 @@ namespace Wms3pl.Datas.F19
 
 			ExecuteSqlCommand(sql, sqlParameters.ToArray());
 		}
-	}
+
+    public List<WcsSkuCodeModel> GetDatasByWcsSnapshotStocks(string custCode, List<string> itemCodeList)
+    {
+      int range = 500;
+      int index = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(itemCodeList.Count()) / range));
+
+      var result = new List<WcsSkuCodeModel>();
+
+      for (int i = 0; i < index; i++)
+      {
+        var currList = itemCodeList.Skip(i * range).Take(range).ToList();
+
+        var sql = @"
+                  SELECT 
+                    ITEM_CODE SkuCode, 
+                    CUST_CODE OwnerCode, 
+                    GUP_CODE GupCode 
+                  FROM F1903 
+                  WHERE 
+                    CUST_CODE = '{0}'
+                    AND ITEM_CODE IN({1})
+                  ";
+
+        StringBuilder itemSqlIn = new StringBuilder();
+
+        foreach (var item in currList)
+        {
+          itemSqlIn.Append($"'{item}',");
+        }
+
+        itemSqlIn.Remove(itemSqlIn.Length - 1, 1);
+
+        sql = string.Format(sql, custCode, itemSqlIn.ToString());
+        result.AddRange(SqlQuery<WcsSkuCodeModel>(sql).ToList());
+      }
+
+      return result;
+    }
+  
+
+    /// <summary>
+    /// 更新
+    /// </summary>
+    /// <param name="f1903"></param>
+    public void UpdatePostItemData(F1903 f1903)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",  SqlDbType.Int)       { Value = f1903.VEN_ORD },
+        new SqlParameter("@p1",  SqlDbType.SmallInt)  { Value = f1903.ALL_DLN },
+        new SqlParameter("@p2",  SqlDbType.VarChar)   { Value = f1903.PICK_WARE },
+        new SqlParameter("@p3",  SqlDbType.VarChar)   { Value = f1903.C_D_FLAG },
+        new SqlParameter("@p4",  SqlDbType.SmallInt)  { Value = f1903.ALLOW_ALL_DLN },
+        new SqlParameter("@p5",  SqlDbType.Char)      { Value = f1903.MULTI_FLAG },
+        new SqlParameter("@p6",  SqlDbType.Char)      { Value = f1903.MIX_BATCHNO },
+        new SqlParameter("@p7",  SqlDbType.Char)      { Value = f1903.ALLOWORDITEM },
+        new SqlParameter("@p8",  SqlDbType.Char)      { Value = f1903.BUNDLE_SERIALLOC },
+        new SqlParameter("@p9",  SqlDbType.Char)      { Value = f1903.BUNDLE_SERIALLOC == "1" ? "1" : f1903.BUNDLE_SERIALNO },
+        new SqlParameter("@p10", SqlDbType.BigInt)    { Value = f1903.ORD_SAVE_QTY },
+        new SqlParameter("@p11", SqlDbType.BigInt)    { Value = f1903.PICK_SAVE_QTY },
+        new SqlParameter("@p12", SqlDbType.Char)      { Value = f1903.ITEM_RETURN },
+        new SqlParameter("@p13", SqlDbType.Char)      { Value = f1903.LOC_MIX_ITEM },
+        new SqlParameter("@p14", SqlDbType.SmallInt)  { Value = f1903.SERIALNO_DIGIT },
+        new SqlParameter("@p15", SqlDbType.VarChar)   { Value = f1903.SERIAL_BEGIN },
+        new SqlParameter("@p16", SqlDbType.Char)      { Value = f1903.SERIAL_RULE },
+        new SqlParameter("@p17", SqlDbType.Int)       { Value = f1903.SAVE_DAY },
+        new SqlParameter("@p18", SqlDbType.VarChar)   { Value = f1903.ITEM_STAFF },
+        new SqlParameter("@p19", SqlDbType.Decimal)   { Value = f1903.CHECK_PERCENT },
+        new SqlParameter("@p20", SqlDbType.Int)       { Value = f1903.PICK_SAVE_ORD },
+        new SqlParameter("@p21", SqlDbType.Char)      { Value = f1903.ISCARTON },
+        new SqlParameter("@p22", SqlDbType.VarChar)   { Value = f1903.LTYPE },
+        new SqlParameter("@p23", SqlDbType.VarChar)   { Value = f1903.MTYPE },
+        new SqlParameter("@p24", SqlDbType.VarChar)   { Value = f1903.STYPE },
+        new SqlParameter("@p25", SqlDbType.NVarChar)  { Value = f1903.ITEM_NAME },
+        new SqlParameter("@p26", SqlDbType.VarChar)   { Value = f1903.EAN_CODE1 },
+        new SqlParameter("@p27", SqlDbType.VarChar)   { Value = f1903.EAN_CODE2 },
+        new SqlParameter("@p28", SqlDbType.VarChar)   { Value = f1903.ITEM_ENGNAME },
+        new SqlParameter("@p29", SqlDbType.NVarChar)  { Value = f1903.ITEM_COLOR },
+        new SqlParameter("@p30", SqlDbType.NVarChar)  { Value = f1903.ITEM_SIZE },
+        new SqlParameter("@p31", SqlDbType.VarChar)   { Value = f1903.TYPE },
+        new SqlParameter("@p32", SqlDbType.SmallInt)  { Value = f1903.ITEM_HUMIDITY },
+        new SqlParameter("@p33", SqlDbType.NVarChar)  { Value = f1903.ITEM_SPEC },
+        new SqlParameter("@p34", SqlDbType.VarChar)   { Value = f1903.TMPR_TYPE },
+        new SqlParameter("@p35", SqlDbType.Char)      { Value = f1903.FRAGILE },
+        new SqlParameter("@p36", SqlDbType.Char)      { Value = f1903.SPILL },
+        new SqlParameter("@p37", SqlDbType.VarChar)   { Value = f1903.ITEM_UNIT },
+        new SqlParameter("@p38", SqlDbType.NVarChar)  { Value = f1903.MEMO },
+        new SqlParameter("@p39", SqlDbType.VarChar)   { Value = f1903.PICK_WARE_ID },
+        new SqlParameter("@p40", SqlDbType.NVarChar)  { Value = f1903.CUST_ITEM_NAME },
+        new SqlParameter("@p41", SqlDbType.Char)      { Value = f1903.MAKENO_REQU },
+        new SqlParameter("@p42", SqlDbType.Char)      { Value = f1903.NEED_EXPIRED },
+        new SqlParameter("@p43", SqlDbType.Int)       { Value = f1903.ALL_SHP },
+        new SqlParameter("@p44", SqlDbType.VarChar)   { Value = f1903.EAN_CODE4 },
+        new SqlParameter("@p45", SqlDbType.VarChar)   { Value = f1903.CUST_ITEM_CODE },
+        new SqlParameter("@p46", SqlDbType.VarChar)   { Value = f1903.VNR_CODE },
+        new SqlParameter("@p47", SqlDbType.Int)       { Value = f1903.RET_ORD },
+        new SqlParameter("@p48", SqlDbType.Char)      { Value = f1903.IS_EASY_LOSE },
+        new SqlParameter("@p49", SqlDbType.Char)      { Value = f1903.IS_PRECIOUS },
+        new SqlParameter("@p50", SqlDbType.Char)      { Value = f1903.IS_MAGNETIC },
+        new SqlParameter("@p51", SqlDbType.Char)      { Value = f1903.IS_PERISHABLE },
+        new SqlParameter("@p52", SqlDbType.Char)      { Value = f1903.IS_TEMP_CONTROL },
+        new SqlParameter("@p53", SqlDbType.VarChar)   { Value = f1903.VNR_ITEM_CODE },
+        new SqlParameter("@p54", SqlDbType.VarChar)   { Value = f1903.ORI_VNR_CODE },
+        new SqlParameter("@p55", SqlDbType.VarChar)   { Value = Current.Staff },
+        new SqlParameter("@p56", SqlDbType.NVarChar)  { Value = Current.StaffName },
+        new SqlParameter("@p57", SqlDbType.DateTime2) { Value = DateTime.Now },
+
+        new SqlParameter("@p58", SqlDbType.VarChar)   { Value = f1903.GUP_CODE },
+        new SqlParameter("@p59", SqlDbType.VarChar)   { Value = f1903.CUST_CODE },
+        new SqlParameter("@p60", SqlDbType.VarChar)   { Value = f1903.ITEM_CODE },
+      };
+
+      var sql2 = "";
+      if (!string.IsNullOrWhiteSpace(f1903.EAN_CODE3))
+      {
+        sql2 += $",EAN_CODE3 = @p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar));
+      }
+
+      if (f1903.FIRST_IN_DATE.HasValue)
+      {
+        sql2 += $",FIRST_IN_DATE = @p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.Date));
+      }
+
+
+
+      var sql = $@"UPDATE F1903 SET 
+VEN_ORD = @p0,
+ALL_DLN = @p1,
+PICK_WARE = @p2,
+C_D_FLAG = @p3,
+ALLOW_ALL_DLN = @p4,
+MULTI_FLAG = @p5,
+MIX_BATCHNO = @p6,
+ALLOWORDITEM = @p7,
+BUNDLE_SERIALLOC = @p8,
+BUNDLE_SERIALNO = @p9,
+ORD_SAVE_QTY = @p10,
+PICK_SAVE_QTY = @p11,
+ITEM_RETURN = @p12,
+LOC_MIX_ITEM = @p13,
+SERIALNO_DIGIT = @p14,
+SERIAL_BEGIN = @p15,
+SERIAL_RULE = @p16,
+SAVE_DAY = @p17,
+ITEM_STAFF = @p18,
+CHECK_PERCENT = @p19,
+PICK_SAVE_ORD = @p20,
+ISCARTON = @p21,
+LTYPE = @p22,
+MTYPE = @p23,
+STYPE = @p24,
+ITEM_NAME = @p25,
+EAN_CODE1 = @p26,
+EAN_CODE2 = @p27,
+ITEM_ENGNAME = @p28,
+ITEM_COLOR = @p29,
+ITEM_SIZE = @p30,
+TYPE = @p31,
+ITEM_HUMIDITY = @p32,
+ITEM_SPEC = @p33,
+TMPR_TYPE = @p34,
+FRAGILE = @p35,
+SPILL = @p36,
+ITEM_UNIT = @p37,
+MEMO = @p38,
+PICK_WARE_ID = @p39,
+CUST_ITEM_NAME = @p40,
+MAKENO_REQU = @p41,
+NEED_EXPIRED = @p42,
+ALL_SHP = @p43,
+EAN_CODE4 = @p44,
+CUST_ITEM_CODE = @p45,
+VNR_CODE = @p46,
+RET_ORD = @p47,
+IS_EASY_LOSE = @p48,
+IS_PRECIOUS = @p49,
+IS_MAGNETIC = @p50,
+IS_PERISHABLE = @p51,
+IS_TEMP_CONTROL = @p52,
+VNR_ITEM_CODE = @p53,
+ORI_VNR_CODE = @p54,
+IS_ASYNC = 'N',
+UPD_STAFF = @p55,
+UPD_NAME = @p56,
+UPD_DATE = @p57
+{sql2}
+WHERE GUP_CODE = @p58 AND CUST_CODE=@p59 AND ITEM_CODE = @p60";
+      ExecuteSqlCommandWithSqlParameterSetDbType(sql, para.ToArray());
+    }
+
+  }
 }

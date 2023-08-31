@@ -1389,7 +1389,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			var updF056001List = new List<F056001>();
 			var addF056002List = new List<F056002>();
 			// 取得出貨箱資訊
-			var f055001Datas = f055001Repo.GetDatas(dcCode, gupCode, custCode, canDebitWmsOrdNos).ToList();
+			var f055001Datas = f055001Repo.GetDatasByWmsOrdNos(dcCode, gupCode, custCode, canDebitWmsOrdNos).ToList();
 			if(f055001Datas.Any())
 			{
 				// 檢查出貨單所有宅配單是否都扣帳

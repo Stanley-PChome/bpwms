@@ -52,12 +52,27 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 
 		private List<string> srcSystems = new List<string>();
 
-		/// <summary>
-		/// Func1
-		/// </summary>
-		/// <param name="req"></param>
-		/// <returns></returns>
-		public ApiResult RecevieApiDatas(SnapshotStocksReceiptReq req)
+    private CheckSnapshotStocksReceiptService _ciwService;
+    public CheckSnapshotStocksReceiptService ciwService
+    {
+      get
+      {
+        if (_ciwService == null)
+          _ciwService = new CheckSnapshotStocksReceiptService();
+        return _ciwService;
+      }
+      set
+      {
+        _ciwService = value;
+      }
+    }
+
+    /// <summary>
+    /// Func1
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
+    public ApiResult RecevieApiDatas(SnapshotStocksReceiptReq req)
 		{
 			CheckTransWcsApiService ctaService = new CheckTransWcsApiService();
 			TransApiBaseService tacService = new TransApiBaseService();
@@ -97,7 +112,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 				_wmsTransaction = new WmsTransaction();
 			var f060601Repo = new F060601Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f060602Repo = new F060602Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f1913Repo = new F1913Repository(Schemas.CoreSchema);
+			var f1903Repo = new F1903Repository(Schemas.CoreSchema);
 			var f000904Repo = new F000904Repository(Schemas.CoreSchema);
 			var commonService = new CommonService();
 			var tacService = new TransApiBaseService();
@@ -106,7 +121,14 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 
 			// 取得品號資料，用以檢核品號是否存在
 			if (receipt.StockList != null)
-				skuDatas = f1913Repo.GetDatasByWcsSnapshotStocks(receipt.StockList).ToList();
+      {
+        var groupStockList = receipt.StockList.GroupBy(o => o.OwnerCode).ToList();
+
+        foreach (var groupList in groupStockList)
+        {
+				  skuDatas.AddRange(f1903Repo.GetDatasByWcsSnapshotStocks(groupList.Key, groupList.Select(o => o.SkuCode).ToList()));
+        }
+      }
 			#endregion
 
 			#region 檢核
@@ -146,9 +168,9 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 				SRC_SYSTEM = receipt.SrcSystem,
 				AUDIT_DATE = receipt.AuditDate,
 				CAL_DATE = calDate,
-				TOTAL_PAGE = Convert.ToInt32(receipt.TotalPage),
-				CURRENT_PAGE = Convert.ToInt32(receipt.CurrentPage),
-				PAGE_SIZE = Convert.ToInt32(receipt.PageSize),
+				TOTAL_PAGE = receipt.TotalPage.Value,
+				CURRENT_PAGE = receipt.CurrentPage.Value,
+				PAGE_SIZE = receipt.PageSize.Value,
 				PROC_FLAG = "0"
 			});
 			
@@ -161,10 +183,10 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 				GUP_CODE = commonService.GetGupCode(sku.OwnerCode),
 				CUST_CODE = sku.OwnerCode,
 				ITEM_CODE = sku.SkuCode,
-				SKU_LEVLE = Convert.ToInt32(sku.SkuLevel),
+				SKU_LEVLE = sku.SkuLevel.Value,
 				VALID_DATE = sku.ExpiryDate,
 				MAKE_NO = sku.OutBatchCode,
-				QTY = Convert.ToInt32(sku.SkuQty)
+				QTY = sku.SkuQty.Value
 			}).ToList());
 			#endregion
 
@@ -326,7 +348,6 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 		/// <returns></returns>
 		protected ApiResult CheckCommonColumnData(SnapshotStocksReceiptReq receipt)
 		{
-			CheckSnapshotStocksReceiptService ciwService = new CheckSnapshotStocksReceiptService();
 			ApiResult res = new ApiResult();
 			List<ApiResponse> data = new List<ApiResponse>();
 

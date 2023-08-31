@@ -145,9 +145,12 @@ namespace Wms3pl.WebServices.Process.P15.Services
 			}
 			
 			//調撥單狀態為3or4只更新上架物流中心、上架倉別與上架儲位
-			if (f151001 != null && (f151001.STATUS == "3" || f151001.STATUS == "4" ||
+			if (f151001 != null && 
+        (f151001.STATUS == "3" || f151001.STATUS == "4" ||
         (f151001.STATUS == "8" && !string.IsNullOrWhiteSpace(f151001.SOURCE_NO) && f151001.SOURCE_TYPE == "04") ||
-        (f151001.STATUS == "8" && !string.IsNullOrWhiteSpace(f151001.CONTAINER_CODE) && f151001.ALLOCATION_TYPE == "4")))
+        (f151001.STATUS == "8" && !string.IsNullOrWhiteSpace(f151001.CONTAINER_CODE) && f151001.ALLOCATION_TYPE == "4") ||
+        (f151001.STATUS == "8" && new[] { "1", "6" }.Contains(f151001.ALLOCATION_TYPE))
+        ))
       {
 				Log(LogName, "DB調撥單狀態[" + f151001.STATUS + "]為已下架處理或上架處理中或異常");
 				// 複製一份現有資料庫調撥單資料
@@ -166,7 +169,8 @@ namespace Wms3pl.WebServices.Process.P15.Services
           //SOURCE_NO!=null && SOURCE_TYPE == "04" 為商品檢驗異常處理
           //CONTAINER_CODE!=null && ALLOCATION_TYPE == "4" 為商品檢驗與容器綁定異常處理
           if ((!string.IsNullOrWhiteSpace(masterData.SOURCE_NO) && masterData.SOURCE_TYPE == "04") ||
-            (!string.IsNullOrWhiteSpace(masterData.CONTAINER_CODE) && masterData.ALLOCATION_TYPE == "4"))
+            (!string.IsNullOrWhiteSpace(masterData.CONTAINER_CODE) && masterData.ALLOCATION_TYPE == "4") ||
+            new[] { "1", "6" }.Contains(f151001.ALLOCATION_TYPE))
           {
             f151001.STATUS = "3";
             f151001.LOCK_STATUS = "2";
@@ -189,8 +193,11 @@ namespace Wms3pl.WebServices.Process.P15.Services
 					var sugLocCode = !string.IsNullOrWhiteSpace(detail.SUG_LOC_CODE) ? detail.SUG_LOC_CODE : "000000000";
 					var items = data.Where(o => o.ITEM_CODE == detail.ITEM_CODE && o.SUG_LOC_CODE == sugLocCode && o.PALLET_CTRL_NO == detail.PALLET_CTRL_NO &&
 												o.BOX_CTRL_NO == detail.BOX_CTRL_NO && o.MAKE_NO == detail.MAKE_NO && o.VALID_DATE == detail.VALID_DATE &&
-												o.ENTER_DATE == detail.ENTER_DATE && o.SRC_LOC_CODE == detail.SRC_LOC_CODE);
-					foreach (var f151002 in items)
+                        o.ENTER_DATE == detail.ENTER_DATE );
+          //如果是純上架調撥單前端進來的資料不會有來源儲位
+          if (!String.IsNullOrWhiteSpace(f151001.SRC_WAREHOUSE_ID))
+            items = items.Where(o => o.SRC_LOC_CODE == detail.SRC_LOC_CODE);
+          foreach (var f151002 in items)
 					{
             f151002.SUG_LOC_CODE = detail.TAR_LOC_CODE;
 						f151002.TAR_LOC_CODE = detail.TAR_LOC_CODE;

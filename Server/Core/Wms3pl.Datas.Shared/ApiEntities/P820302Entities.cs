@@ -40,6 +40,7 @@ namespace Wms3pl.Datas.Shared.ApiEntities
 		public int? TotalBoxNum { get; set; }
 		public List<SaleOrderReplyWarehouseOutDetail> WarehouseOutDetails { get; set; } = new List<SaleOrderReplyWarehouseOutDetail>();
 		public List<SaleOrderReplyPackage> Packages { get; set; } = new List<SaleOrderReplyPackage>();
+		public List<LackDetail> LackDetails { get; set; } = new List<LackDetail>();
 	}
 
 	public class SaleOrderReplyWarehouseOutDetail
@@ -120,10 +121,34 @@ namespace Wms3pl.Datas.Shared.ApiEntities
 		/// </summary>
 		public List<string> SnList { get; set; } = new List<string>();
 
-        /// <summary>
-        /// 效期
-        /// </summary>
-        public String ValidDate { get; set; }
+		/// <summary>
+		/// 效期
+		/// </summary>
+		public String ValidDate { get; set; }
 
-    }
+	}
+
+	public class LackDetail
+	{
+		/// <summary>
+		/// 原單據的品號項次
+		/// </summary>
+		public string ItemSeq { get; set; }
+		/// <summary>
+		/// 商品編號
+		/// </summary>
+		public string ItemCode { get; set; }
+		/// <summary>
+		/// 揀缺數量
+		/// </summary>
+		public int LackQty { get; set; }
+		/// <summary>
+		/// 揀缺原因
+		/// </summary>
+		public string LackCause { get; set; }
+		/// <summary>
+		/// 揀缺原因備註
+		/// </summary>
+		public string LackCauseMemo { get; set; }
+	}
 }

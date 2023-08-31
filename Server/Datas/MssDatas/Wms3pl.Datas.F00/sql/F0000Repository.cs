@@ -35,22 +35,32 @@ namespace Wms3pl.Datas.F00
 		{
 			var para = new List<SqlParameter>()
 			{
-				new SqlParameter("@p0",tableName) {SqlDbType = SqlDbType.VarChar},
-				new SqlParameter("@p1",apiName) {SqlDbType = SqlDbType.VarChar}
+				new SqlParameter("@p0",tableName) { SqlDbType = SqlDbType.VarChar },
+				new SqlParameter("@p1",apiName)   { SqlDbType = SqlDbType.VarChar }
       };
-			var sql = @"Select Top 1 * From F0000 With(UPDLOCK) Where UPD_LOCK_TABLE_NAME=@p0 AND (UPD_LOCK_API_NAME IS NULL OR UPD_LOCK_API_NAME=@p1) ORDER BY UPD_LOCK_API_NAME DESC;";
-			var f0000 = SqlQuery<F0000>(sql, para.ToArray()).FirstOrDefault();
-			if (f0000!= null && (string.IsNullOrWhiteSpace(f0000.IS_LOCK) || f0000.IS_LOCK == "0"))
+
+
+      var sql = @"Select TOP 1 ID,IS_LOCK From F0000 With(UPDLOCK) Where UPD_LOCK_TABLE_NAME = @p0";
+
+      //@"Select Top 1 * From F0000 With(UPDLOCK) Where UPD_LOCK_TABLE_NAME=@p0 AND (UPD_LOCK_API_NAME IS NULL OR UPD_LOCK_API_NAME=@p1) ORDER BY UPD_LOCK_API_NAME DESC;";
+      if (!string.IsNullOrWhiteSpace(apiName))
+        sql += @" AND UPD_LOCK_API_NAME = @p1";
+
+
+      var f0000ex = SqlQuery<F0000EX>(sql, para.ToArray()).FirstOrDefault();
+
+
+			if (f0000ex!= null && (string.IsNullOrWhiteSpace(f0000ex.IS_LOCK) || f0000ex.IS_LOCK == "0"))
 			{
-				f0000.IS_LOCK = "1";
+				f0000ex.IS_LOCK = "1";
 				var sql2 = @"UPDATE F0000 SET IS_LOCK='1',UPD_DATE=@p3,UPD_STAFF=@p0,UPD_NAME=@p1
                      WHERE ID = @p2 ";
 				var parm2 = new List<SqlParameter>
 				{
-					new SqlParameter("@p0",Current.Staff){SqlDbType = SqlDbType.VarChar},
-					new SqlParameter("@p1",Current.StaffName){SqlDbType = SqlDbType.NVarChar},
-					new SqlParameter("@p2",f0000.ID){SqlDbType = SqlDbType.BigInt},
-          new SqlParameter("@p3", DateTime.Now) {SqlDbType = SqlDbType.DateTime2}
+					new SqlParameter("@p0",Current.Staff)     { SqlDbType = SqlDbType.VarChar },
+					new SqlParameter("@p1",Current.StaffName) { SqlDbType = SqlDbType.NVarChar },
+					new SqlParameter("@p2",f0000ex.ID)          { SqlDbType = SqlDbType.BigInt },
+          new SqlParameter("@p3", DateTime.Now)     { SqlDbType = SqlDbType.DateTime2 }
         };
 				ExecuteSqlCommand(sql2, parm2.ToArray());
 				return true;

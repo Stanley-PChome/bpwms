@@ -146,5 +146,21 @@ namespace Wms3pl.WebServices.Process.P06.Services
 				wmsTransaction.Complete();
 			return result;
 		}
-	}
+
+    /// <summary>
+    /// 揀貨缺貨處理-缺品出貨確認
+    /// </summary>
+    /// <param name="F051206LackList"></param>
+    /// <returns></returns>
+    [OperationContract]
+    public ExecuteResult ConfirmLackToShip(List<F051206LackList> F051206LackList)
+    {
+      var wmsTransaction = new WmsTransaction();
+      var srv = new P060201Service(wmsTransaction);
+      var res = srv.ConfirmLackToShip(F051206LackList);
+      if (res.IsSuccessed)
+        wmsTransaction.Complete();
+      return res;
+    }
+  }
 }

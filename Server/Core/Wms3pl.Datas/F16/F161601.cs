@@ -20,93 +20,109 @@ namespace Wms3pl.Datas.F16
 	  /// </summary>
     [Key]
     [Required]
+		[Column(TypeName = "varchar(20)")]
 	  public string RTN_APPLY_NO { get; set; }
 
 	  /// <summary>
 	  /// 調撥申請單建立日期
 	  /// </summary>
     [Required]
-	  public DateTime RTN_APPLY_DATE { get; set; }
+		[Column(TypeName = "datetime2(0)")]
+		public DateTime RTN_APPLY_DATE { get; set; }
 
 	  /// <summary>
 	  /// 單據狀態(0:待處理  2:結案 9:取消)
 	  /// </summary>
     [Required]
-	  public string STATUS { get; set; }
+		[Column(TypeName = "char(1)")]
+		public string STATUS { get; set; }
 
-	  /// <summary>
-	  /// 備註
-	  /// </summary>
-	  public string MEMO { get; set; }
+		/// <summary>
+		/// 備註
+		/// </summary>
+		[Column(TypeName = "nvarchar(300)")]
+		public string MEMO { get; set; }
 
 	  /// <summary>
 	  /// 物流中心
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+		[Column(TypeName = "varchar(3)")]
+		public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 業主
 	  /// </summary>
     [Key]
     [Required]
-	  public string GUP_CODE { get; set; }
+		[Column(TypeName = "varchar(2)")]
+		public string GUP_CODE { get; set; }
 
 	  /// <summary>
 	  /// 貨主
 	  /// </summary>
     [Key]
     [Required]
-	  public string CUST_CODE { get; set; }
+		[Column(TypeName = "varchar(12)")]
+		public string CUST_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+		[Column(TypeName = "varchar(20)")]
+		public string CRT_STAFF { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+		[Column(TypeName = "datetime2(0)")]
+		public DateTime CRT_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+		/// <summary>
+		/// 異動人員
+		/// </summary>
+		[Column(TypeName = "varchar(20)")]
+		public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+		/// <summary>
+		/// 異動日期
+		/// </summary>
+		[Column(TypeName = "datetime2(0)")]
+		public DateTime? UPD_DATE { get; set; }
 
 	  /// <summary>
 	  /// 建立人名
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+		[Column(TypeName = "nvarchar(16)")]
+		public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+		/// <summary>
+		/// 異動人名
+		/// </summary>
+		[Column(TypeName = "nvarchar(16)")]
+		public string UPD_NAME { get; set; }
 
-	  /// <summary>
-	  /// 核准日期
-	  /// </summary>
-	  public DateTime? APPROVE_DATE { get; set; }
+		/// <summary>
+		/// 核准日期
+		/// </summary>
+		[Column(TypeName = "datetime2(0)")]
+		public DateTime? APPROVE_DATE { get; set; }
 
-	  /// <summary>
-	  /// 核准人員
-	  /// </summary>
-	  public string APPROVE_STAFF { get; set; }
+		/// <summary>
+		/// 核准人員
+		/// </summary>
+		[Column(TypeName = "varchar(20)")]
+		public string APPROVE_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 核准人名
-	  /// </summary>
-	  public string APPROVE_NAME { get; set; }
+		/// <summary>
+		/// 核准人名
+		/// </summary>
+		[Column(TypeName = "nvarchar(16)")]
+		public string APPROVE_NAME { get; set; }
   }
 }
         

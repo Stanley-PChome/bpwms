@@ -237,5 +237,16 @@ namespace Wms3pl.Datas.F05
                         ";
             ExecuteSqlCommand(sql, new object[] { dcCode, gupCode, custCode, wmsNo });
         }
+
+    /// <summary>
+    /// 出貨單據完成通知排程-取得在自動倉集貨場集貨的出貨單
+    /// </summary>
+    /// <returns></returns>
+    public IQueryable<ShipFinishConfirmNotifyData> GetShipFinishConfirmNotifyData()
+    {
+      var sql = @"SELECT DC_CODE,GUP_CODE,CUST_CODE,WMS_NO FROM F051301 WHERE COLLECTION_POSITION = '1' AND NOTIFY_MODE = '0'";
+      return SqlQuery<ShipFinishConfirmNotifyData>(sql);
     }
+
+  }
 }

@@ -36,7 +36,7 @@ namespace Wms3pl.WebServices.Shared.TransApiServices.Common
 		/// <summary>
 		/// 商品資料清單
 		/// </summary>
-		private List<F1903> _f1903List;
+		private List<CommonProduct> _f1903List;
 		#endregion
 
 		#region 主邏輯

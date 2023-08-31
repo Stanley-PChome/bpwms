@@ -1727,5 +1727,51 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
 
 			return SqlQuery<F051201>(sql, parms.ToArray());
 		}
-	}
+
+    public void UpdateOrderToStartPick(string dcCode, string gupCode, string custCode, List<string> pickOrdNos, DateTime pickStartTime, int status, string empId, string empName)
+    {
+      if (!pickOrdNos.Any())
+        return;
+
+      int range = 100;
+      int index = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(pickOrdNos.Count()) / range));
+
+      for (int i = 0; i < index; i++)
+      {
+        var currNos = pickOrdNos.Skip(i * range).Take(range).ToList();
+
+        var param = new List<SqlParameter>
+        {
+          new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar},
+          new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar},
+          new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar},
+          new SqlParameter("@p3", pickStartTime) { SqlDbType = SqlDbType.DateTime2},
+          new SqlParameter("@p4", status) { SqlDbType = SqlDbType.SmallInt},
+          new SqlParameter("@p5", empId) { SqlDbType = SqlDbType.VarChar},
+          new SqlParameter("@p6", empName) { SqlDbType = SqlDbType.NVarChar},
+          new SqlParameter("@p7", DateTime.Now) { SqlDbType = SqlDbType.DateTime2}
+        };
+
+        var sql = @"
+                UPDATE 
+                  F051201 
+                SET 
+                  PICK_STATUS = @p4, 
+                  PICK_START_TIME = @p3, 
+                  PICK_STAFF = @p5, 
+                  PICK_NAME = @p6, 
+                  UPD_DATE = @p7, 
+                  UPD_STAFF = @p5, 
+                  UPD_NAME = @p6 
+                WHERE 
+                  DC_CODE = @p0
+                  AND GUP_CODE = @p1
+                  AND CUST_CODE = @p2
+                ";
+
+        sql += param.CombineSqlInParameters("AND PICK_ORD_NO", currNos, SqlDbType.VarChar);
+        ExecuteSqlCommand(sql, param.ToArray());
+      }
+    }
+  }
 }

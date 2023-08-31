@@ -13390,6 +13390,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private string PackageModeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Wms3pl.WpfClient.ExDataServices.P08WcfService.PrintBoxSettingParam PrintBoxSettingParamField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShipModeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -13529,6 +13532,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.PrintBoxSettingParam PrintBoxSettingParam {
+            get {
+                return this.PrintBoxSettingParamField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrintBoxSettingParamField, value) != true)) {
+                    this.PrintBoxSettingParamField = value;
+                    this.RaisePropertyChanged("PrintBoxSettingParam");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ShipMode {
             get {
                 return this.ShipModeField;
@@ -13576,6 +13592,99 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.WorkStationIdField, value) != true)) {
                     this.WorkStationIdField = value;
                     this.RaisePropertyChanged("WorkStationId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PrintBoxSettingParam", Namespace="http://schemas.datacontract.org/2004/07/Wms3pl.Datas.Shared.Entities")]
+    [System.SerializableAttribute()]
+    public partial class PrintBoxSettingParam : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool isGetShipOrderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string isPrintBoxDetailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string isPrintRtnShipLittleLabelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string isPrintShipLittleLabelField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isGetShipOrder {
+            get {
+                return this.isGetShipOrderField;
+            }
+            set {
+                if ((this.isGetShipOrderField.Equals(value) != true)) {
+                    this.isGetShipOrderField = value;
+                    this.RaisePropertyChanged("isGetShipOrder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string isPrintBoxDetail {
+            get {
+                return this.isPrintBoxDetailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.isPrintBoxDetailField, value) != true)) {
+                    this.isPrintBoxDetailField = value;
+                    this.RaisePropertyChanged("isPrintBoxDetail");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string isPrintRtnShipLittleLabel {
+            get {
+                return this.isPrintRtnShipLittleLabelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.isPrintRtnShipLittleLabelField, value) != true)) {
+                    this.isPrintRtnShipLittleLabelField = value;
+                    this.RaisePropertyChanged("isPrintRtnShipLittleLabel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string isPrintShipLittleLabel {
+            get {
+                return this.isPrintShipLittleLabelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.isPrintShipLittleLabelField, value) != true)) {
+                    this.isPrintShipLittleLabelField = value;
+                    this.RaisePropertyChanged("isPrintShipLittleLabel");
                 }
             }
         }
@@ -13720,6 +13829,9 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         private string ReportUrlField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> START_PRINT_TIMEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WmsOrdNoField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -13845,6 +13957,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
                 if ((object.ReferenceEquals(this.ReportUrlField, value) != true)) {
                     this.ReportUrlField = value;
                     this.RaisePropertyChanged("ReportUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> START_PRINT_TIME {
+            get {
+                return this.START_PRINT_TIMEField;
+            }
+            set {
+                if ((this.START_PRINT_TIMEField.Equals(value) != true)) {
+                    this.START_PRINT_TIMEField = value;
+                    this.RaisePropertyChanged("START_PRINT_TIME");
                 }
             }
         }
@@ -17167,6 +17292,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/StopAllot", ReplyAction="http://tempuri.org/P08WcfService/StopAllotResponse")]
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.StopAllotParam param);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/GetPrintBoxSetting", ReplyAction="http://tempuri.org/P08WcfService/GetPrintBoxSettingResponse")]
+        Wms3pl.WpfClient.ExDataServices.P08WcfService.PrintBoxSettingParam GetPrintBoxSetting(string dcCode, string gupCode, string custCode, string ShipMode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P08WcfService/GetPrintBoxSetting", ReplyAction="http://tempuri.org/P08WcfService/GetPrintBoxSettingResponse")]
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.PrintBoxSettingParam> GetPrintBoxSettingAsync(string dcCode, string gupCode, string custCode, string ShipMode);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -17898,6 +18029,14 @@ namespace Wms3pl.WpfClient.ExDataServices.P08WcfService {
         
         public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.ExecuteResult> StopAllotAsync(Wms3pl.WpfClient.ExDataServices.P08WcfService.StopAllotParam param) {
             return base.Channel.StopAllotAsync(param);
+        }
+        
+        public Wms3pl.WpfClient.ExDataServices.P08WcfService.PrintBoxSettingParam GetPrintBoxSetting(string dcCode, string gupCode, string custCode, string ShipMode) {
+            return base.Channel.GetPrintBoxSetting(dcCode, gupCode, custCode, ShipMode);
+        }
+        
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P08WcfService.PrintBoxSettingParam> GetPrintBoxSettingAsync(string dcCode, string gupCode, string custCode, string ShipMode) {
+            return base.Channel.GetPrintBoxSettingAsync(dcCode, gupCode, custCode, ShipMode);
         }
     }
 }

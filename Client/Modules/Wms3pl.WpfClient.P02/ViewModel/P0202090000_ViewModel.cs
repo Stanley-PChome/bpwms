@@ -391,7 +391,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
         o =>
         {
           var selectedData = RecvRecords.Where(x => x.IsSelected);
-          var printItemLabel = selectedData.Where(x => x.Item.IS_PRINT_ITEM_ID_RAW == "1").Select(x => x.Item.RT_NO);
+          var printItemLabel = selectedData.Where(x => x.Item.IS_PRINT_ITEM_ID_RAW == "1").Select(x => x.Item.RT_NO + x.Item.RT_SEQ);
           var printRecvNote = selectedData.Where(x => x.Item.IS_PRINT_RECVNOTE_RAW == "1");
 
           if (printItemLabel.Any())
@@ -467,7 +467,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
     {
       var proxy = GetExProxy<P02ExDataSource>();
 
-      var labelData = proxy.CreateQuery<ItemLabelData>("GetF020209ItemLabelData")
+      var labelData = proxy.CreateQuery<ItemLabelData>("GetP020209ItemLabelData")
                            .AddQueryExOption("dcCode", SelectedDc)
                            .AddQueryExOption("gupCode", _gupCode)
                            .AddQueryExOption("custCode", _custCode)

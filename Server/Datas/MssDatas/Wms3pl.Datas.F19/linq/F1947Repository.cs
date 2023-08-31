@@ -35,15 +35,5 @@ namespace Wms3pl.Datas.F19
 
             return result;
         }
-
-        /// <summary>
-        /// 取得配送商資料
-        /// </summary>
-        /// <param name="dcCode"></param>
-        /// <returns></returns>
-        public IQueryable<F1947> GetDatas(string dcCode)
-        {
-            return _db.F1947s.Where(x => x.DC_CODE == dcCode);
-        }
     }
 }

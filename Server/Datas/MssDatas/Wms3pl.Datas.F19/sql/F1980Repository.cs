@@ -290,5 +290,25 @@ WHERE  B.DC_CODE = @p0
 			var sql = @"SELECT WAREHOUSE_ID AS WarehouseId,WAREHOUSE_NAME WarehouseName FROM F1980 WHERE DC_CODE = @p0 AND WAREHOUSE_TYPE = 'R' ";
 			return SqlQuery<WarehouseItem>(sql, para.ToArray());
 		}
-	}
+
+    public string GetWarehouseTmprType(string dcCode, string warehouseId)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", warehouseId) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                SELECT 
+                  TMPR_TYPE 
+                FROM F1980 
+                WHERE 
+                  DC_CODE = @p0 
+                  AND WAREHOUSE_ID = @p1
+                ";
+
+      return SqlQuery<string>(sql, param.ToArray()).FirstOrDefault();
+    }
+  }
 }

@@ -232,7 +232,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
               return;
             }
 
-            ItemLabelData = GetItemLabelData(SelectRecords.Item.RT_NO);
+            ItemLabelData = GetItemLabelData(SelectRecords.Item.RT_NO + SelectRecords.Item.RT_SEQ);
             RePrintItemLabel();
           }
           else if (IsReprintRecvNote)
@@ -278,7 +278,7 @@ namespace Wms3pl.WpfClient.P02.ViewModel
     {
       var proxy = GetExProxy<P02ExDataSource>();
 
-      var labelData = proxy.CreateQuery<ItemLabelData>("GetF020209ItemLabelData")
+      var labelData = proxy.CreateQuery<ItemLabelData>("GetP020209ItemLabelData")
                            .AddQueryExOption("dcCode", SelectedDc)
                            .AddQueryExOption("gupCode", _gupCode)
                            .AddQueryExOption("custCode", _custCode)

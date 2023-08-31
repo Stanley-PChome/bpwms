@@ -110,6 +110,7 @@
     <Compile Include="ViewModel\P0601030000_ViewModel.cs" />
     <Compile Include="ViewModel\P0602010000_ViewModel.cs" />
     <Compile Include="ViewModel\P0602010100_ViewModel.cs" />
+    <Compile Include="ViewModel\P0602010200_ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\P0602010100.xaml.cs">
       <DependentUpon>P0602010100.xaml</DependentUpon>
@@ -127,6 +128,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\P0602010200.xaml.cs">
+      <DependentUpon>P0602010200.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +153,10 @@
     <Page Include="Views\P0602010000.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\P0602010200.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

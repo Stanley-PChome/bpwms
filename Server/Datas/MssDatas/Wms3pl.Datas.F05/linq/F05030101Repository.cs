@@ -14,17 +14,6 @@ namespace Wms3pl.Datas.F05
 		{
 		}
 
-		public IQueryable<string> GetWmsOrdNos(string gupCode, string custCode, string dcCode, string ordNo)
-		{
-			var result = _db.F05030101s.AsNoTracking().Where(x => x.GUP_CODE == gupCode &&
-																														x.CUST_CODE == custCode &&
-																														x.DC_CODE == dcCode &&
-																														x.ORD_NO == ordNo)
-																								.Select(x => x.WMS_ORD_NO);
-
-			return result;
-		}
-
 		/// <summary>
 		/// 以訂單編號來取得尚未揀貨的揀貨明細
 		/// </summary>

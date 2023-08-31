@@ -20,127 +20,148 @@ namespace Wms3pl.Datas.F02
 	  /// </summary>
     [Key]
     [Required]
-	  public DateTime ARRIVE_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime ARRIVE_DATE { get; set; }
 
-	  /// <summary>
-	  /// 進場時段(0:上午1:下午2:夜間 9:不分)
-	  /// </summary>
-	  public string ARRIVE_TIME { get; set; }
+    /// <summary>
+    /// 進場時段(0:上午1:下午2:夜間 9:不分)
+    /// </summary>
+    [Column(TypeName = "char(1)")]
+    public string ARRIVE_TIME { get; set; }
 
 	  /// <summary>
 	  /// 進倉單號
 	  /// </summary>
     [Key]
     [Required]
-	  public string PURCHASE_NO { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string PURCHASE_NO { get; set; }
 
 	  /// <summary>
 	  /// 碼頭編號
 	  /// </summary>
-    [Required]
-	  public string PIER_CODE { get; set; }
+    [Column(TypeName = "varchar(4)")]
+    public string PIER_CODE { get; set; }
 
 	  /// <summary>
 	  /// 廠商編號
 	  /// </summary>
     [Required]
-	  public string VNR_CODE { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string VNR_CODE { get; set; }
 
-	  /// <summary>
-	  /// 車號
-	  /// </summary>
-	  public string CAR_NUMBER { get; set; }
+    /// <summary>
+    /// 車號
+    /// </summary>
+    [Column(TypeName = "varchar(10)")]
+    public string CAR_NUMBER { get; set; }
 
-	  /// <summary>
-	  /// 預計進場時間
-	  /// </summary>
-	  public string BOOK_INTIME { get; set; }
+    /// <summary>
+    /// 預計進場時間
+    /// </summary>
+    [Column(TypeName = "varchar(4)")]
+    public string BOOK_INTIME { get; set; }
 
-	  /// <summary>
-	  /// 進場時間
-	  /// </summary>
-	  public string INTIME { get; set; }
+    /// <summary>
+    /// 進場時間
+    /// </summary>
+    [Column(TypeName = "varchar(4)")]
+    public string INTIME { get; set; }
 
-	  /// <summary>
-	  /// 離場時間
-	  /// </summary>
-	  public string OUTTIME { get; set; }
+    /// <summary>
+    /// 離場時間
+    /// </summary>
+    [Column(TypeName = "varchar(4)")]
+    public string OUTTIME { get; set; }
 
 	  /// <summary>
 	  /// 物流中心
 	  /// </summary>
     [Key]
     [Required]
-	  public string DC_CODE { get; set; }
+    [Column(TypeName = "varchar(3)")]
+    public string DC_CODE { get; set; }
 
 	  /// <summary>
 	  /// 業主
 	  /// </summary>
     [Key]
     [Required]
-	  public string GUP_CODE { get; set; }
+    [Column(TypeName = "varchar(2)")]
+    public string GUP_CODE { get; set; }
 
 	  /// <summary>
 	  /// 貨主
 	  /// </summary>
     [Key]
     [Required]
-	  public string CUST_CODE { get; set; }
+    [Column(TypeName = "varchar(6)")]
+    public string CUST_CODE { get; set; }
 
 	  /// <summary>
 	  /// 建立日期
 	  /// </summary>
     [Required]
-	  public DateTime CRT_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime CRT_DATE { get; set; }
 
 	  /// <summary>
 	  /// 建立人員
 	  /// </summary>
     [Required]
-	  public string CRT_STAFF { get; set; }
+    [Column(TypeName = "varchar(20)")]
+    public string CRT_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 異動日期
-	  /// </summary>
-	  public DateTime? UPD_DATE { get; set; }
+    /// <summary>
+    /// 異動日期
+    /// </summary>
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime? UPD_DATE { get; set; }
 
-	  /// <summary>
-	  /// 異動人員
-	  /// </summary>
-	  public string UPD_STAFF { get; set; }
+    /// <summary>
+    /// 異動人員
+    /// </summary>
+    [Column(TypeName = "varchar(20)")]
+    public string UPD_STAFF { get; set; }
 
-	  /// <summary>
-	  /// 總品項數
-	  /// </summary>
-	  public Int32? ITEM_QTY { get; set; }
+    /// <summary>
+    /// 總品項數
+    /// </summary>
+    [Column(TypeName = "int")]
+    public Int32? ITEM_QTY { get; set; }
 
-	  /// <summary>
-	  /// 總件數
-	  /// </summary>
-	  public Int32? ORDER_QTY { get; set; }
+    /// <summary>
+    /// 總件數
+    /// </summary>
+    [Column(TypeName = "int")]
+    public Int32? ORDER_QTY { get; set; }
 
-	  /// <summary>
-	  /// 總體積(立方公分)
-	  /// </summary>
-	  public Decimal? ORDER_VOLUME { get; set; }
+    /// <summary>
+    /// 總體積(立方公分)
+    /// </summary>
+    [Column(TypeName = "decimal(18, 0)")]
+    public Decimal? ORDER_VOLUME { get; set; }
 
 	  /// <summary>
 	  /// 進場管理序號
 	  /// </summary>
     [Key]
     [Required]
-	  public Int16 SERIAL_NO { get; set; }
+    [Column(TypeName = "smallint")]
+    public Int16 SERIAL_NO { get; set; }
 
 	  /// <summary>
 	  /// 建立人名
 	  /// </summary>
     [Required]
-	  public string CRT_NAME { get; set; }
+    [Column(TypeName = "nvarchar(16)")]
+    public string CRT_NAME { get; set; }
 
-	  /// <summary>
-	  /// 異動人名
-	  /// </summary>
-	  public string UPD_NAME { get; set; }
+    /// <summary>
+    /// 異動人名
+    /// </summary>
+    [Column(TypeName = "nvarchar(16)")]
+    public string UPD_NAME { get; set; }
   }
 }
         

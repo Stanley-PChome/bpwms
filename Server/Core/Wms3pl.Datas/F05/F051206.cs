@@ -197,6 +197,11 @@ namespace Wms3pl.Datas.F05
     /// </summary>
     [Column(TypeName = "smallint")]
     public Int16? ALLOCATION_SEQ { get; set; }
+
+    /// <summary>
+    /// 序號
+    /// </summary>
+    [Column(TypeName = "varchar(50)")]
+    public string SERIAL_NO { get; set; }
   }
 }
-        

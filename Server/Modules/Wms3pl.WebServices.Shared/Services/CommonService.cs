@@ -47,7 +47,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <summary>
 		/// Cache_商品資料清單
 		/// </summary>
-		private List<F1903> _f1903CacheList;
+		private List<CommonProduct> _f1903CacheList;
 
 		/// <summary>
 		/// Cache_選單資料清單
@@ -96,23 +96,34 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// Cache 已找過DB但不存在DB的序號清單，避免重複找DB
 		/// </summary>
 		private List<NotDbFindSerial> _notDbFindSerialCacheList;
-		#endregion
+    #endregion
 
-		public void SetProductList(List<F1903> f1903s)
+		private F1901Repository _f1901Repo;
+		public F1901Repository F1901Repo
 		{
-			if (_f1903CacheList == null)
-				_f1903CacheList = f1903s;
-			else
-			{
-				foreach (var item in f1903s)
-				{
-					var index = _f1903CacheList.FindIndex(x => x.GUP_CODE == item.GUP_CODE && x.CUST_CODE == item.CUST_CODE && x.ITEM_CODE == item.ITEM_CODE);
-					if (index == -1)
-						_f1903CacheList.Add(item);
-					else
-						_f1903CacheList[index] = item;
-				}
-			}
+			get { return _f1901Repo == null ? _f1901Repo = new F1901Repository(Schemas.CoreSchema) : _f1901Repo; }
+			set { _f1901Repo = value; }
+		}
+
+		private F1909Repository _f1909Repo;
+		public F1909Repository F1909Repo
+		{
+			get { return _f1909Repo == null ? _f1909Repo = new F1909Repository(Schemas.CoreSchema) : _f1909Repo; }
+			set { _f1909Repo = value; }
+		}
+
+		private F0003Repository _f0003Repo;
+		public F0003Repository F0003Repo
+		{
+			get { return _f0003Repo == null ? _f0003Repo = new F0003Repository(Schemas.CoreSchema) : _f0003Repo; }
+			set { _f0003Repo = value; }
+		}
+
+		private F0020Repository _f0020Repo;
+		public F0020Repository F0020Repo
+		{
+			get { return _f0020Repo == null ? _f0020Repo = new F0020Repository(Schemas.CoreSchema) : _f0020Repo; }
+			set { _f0020Repo = value; }
 		}
 
 		/// <summary>
@@ -129,9 +140,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			if (f1901 == null)
 			{
-				var f1901Repo = new F1901Repository(Schemas.CoreSchema);
-
-				f1901 = f1901Repo.Find(x => x.DC_CODE == dcCode);
+				f1901 = F1901Repo.Find(x => x.DC_CODE == dcCode);
 
 				if (f1901 != null)
 					_f1901CacheList.Add(f1901);
@@ -141,8 +150,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 		public List<string> GetDcCodeList(string dcCode)
 		{
-			var f1901Repo = new F1901Repository(Schemas.CoreSchema);
-			return f1901Repo.GetDcCodesByDcCode(dcCode);
+			return F1901Repo.GetDcCodesByDcCode(dcCode);
 		}
 
 		/// <summary>
@@ -184,9 +192,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			if (f1909 == null)
 			{
-				var f1909Repo = new F1909Repository(Schemas.CoreSchema);
-
-				f1909 = f1909Repo.Find(x => x.GUP_CODE == gupCode && x.CUST_CODE == custCode);
+				f1909 = F1909Repo.Find(x => x.GUP_CODE == gupCode && x.CUST_CODE == custCode);
 
 				if (f1909 != null)
 					_f1909CacheList.Add(f1909);
@@ -334,12 +340,13 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="custCode">貨主編號</param>
 		/// <param name="itemCodeList">商品編號清單</param>
 		/// <returns></returns>
-		public List<F1903> GetProductList(string gupCode, string custCode, List<string> itemCodeList)
+		public List<CommonProduct> GetProductList(string gupCode, string custCode, List<string> itemCodeList)
 		{
-			var list = new List<F1903>();
+
+			var list = new List<CommonProduct>();
 
 			if (_f1903CacheList == null)
-				_f1903CacheList = new List<F1903>();
+				_f1903CacheList = new List<CommonProduct>();
 
 			// 如果商品編號清單筆數超過1000 則批次1000筆取回資料
 			int range = 1000;
@@ -363,7 +370,8 @@ namespace Wms3pl.WebServices.Shared.Services
 				if (noExistsItemCode.Any())
 				{
 					var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-					var currData = f1903Repo.GetDatasByItems(gupCode, custCode, noExistsItemCode).ToList();
+
+					var currData = f1903Repo.GetCommonProductsByItemCodes(gupCode, custCode, noExistsItemCode).ToList();
 
 					_f1903CacheList.AddRange(currData);
 
@@ -381,7 +389,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="custCode">貨主編號</param>
 		/// <param name="itemCode">商品編號</param>
 		/// <returns></returns>
-		public F1903 GetProduct(string gupCode, string custCode, string itemCode)
+		public CommonProduct GetProduct(string gupCode, string custCode, string itemCode)
 		{
 			return GetProductList(gupCode, custCode, new List<string> { itemCode }).FirstOrDefault();
 		}
@@ -403,9 +411,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			if (f0020 == null)
 			{
-				var f0020Repo = new F0020Repository(Schemas.CoreSchema);
-
-				f0020 = f0020Repo.Find(x => x.MSG_NO == msgNo);
+				f0020 = F0020Repo.Find(x => x.MSG_NO == msgNo);
 
 				if (f0020 != null)
 					_f0020List.Add(f0020);
@@ -427,9 +433,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			if (f0003 == null)
 			{
-				var f0003Repo = new F0003Repository(Schemas.CoreSchema);
-
-				f0003 = f0003Repo.Find(o => o.DC_CODE == "00" &&
+				f0003 = F0003Repo.Find(o => o.DC_CODE == "00" &&
 																		o.GUP_CODE == "00" &&
 																		o.CUST_CODE == "00" &&
 																		o.AP_NAME == apName);
@@ -456,9 +460,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			var f0003 = _f0003List.FirstOrDefault(x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.AP_NAME == apName);
 			if (f0003 == null)
 			{
-				var f0003Repo = new F0003Repository(Schemas.CoreSchema);
-
-				f0003 = f0003Repo.Find(o => o.DC_CODE == dcCode &&
+				f0003 = F0003Repo.Find(o => o.DC_CODE == dcCode &&
 																	 o.GUP_CODE == gupCode &&
 																	 o.CUST_CODE == custCode &&
 																	 o.AP_NAME == apName);
@@ -486,9 +488,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			if (f0003 == null)
 			{
-				var f0003Repo = new F0003Repository(Schemas.CoreSchema);
-
-				f0003 = f0003Repo.Find(o => o.DC_CODE == dcCode &&
+				f0003 = F0003Repo.Find(o => o.DC_CODE == dcCode &&
 																		o.GUP_CODE == "00" &&
 																		o.CUST_CODE == "00" &&
 																		o.AP_NAME == apName);
@@ -500,29 +500,40 @@ namespace Wms3pl.WebServices.Shared.Services
 
 		}
 
-		/// <summary>
-		/// 取得業主編號
-		/// </summary>
-		/// <param name="custCode">貨主編號</param>
-		/// <returns></returns>
-		public string GetGupCode(string custCode)
-		{
-			if (string.IsNullOrWhiteSpace(custCode))
-			{
-				return null;
-			}
+    /// <summary>
+    /// 取得業主編號
+    /// </summary>
+    /// <param name="custCode">貨主編號</param>
+    /// <returns></returns>
+    public string GetGupCode(string custCode)
+    {
+      if (string.IsNullOrWhiteSpace(custCode))
+      {
+        return null;
+      }
 
-			var f1909Repo = new F1909Repository(Schemas.CoreSchema);
-			var data = f1909Repo.GetData(custCode).FirstOrDefault();
-			return data != null ? data.GUP_CODE : string.Empty;
+      if (_f1909CacheList == null)
+        _f1909CacheList = new List<F1909>();
+
+      var f1909 = _f1909CacheList.FirstOrDefault(x => x.CUST_CODE == custCode);
+
+      if (f1909 == null)
+      {
+        f1909 = F1909Repo.Find(x => x.CUST_CODE == custCode);
+
+        if (f1909 != null)
+          _f1909CacheList.Add(f1909);
+      }
+
+      return f1909 != null ? f1909.GUP_CODE : string.Empty;
 		}
 
-		/// <summary>
-		/// 檢核物流中心是否存在
-		/// </summary>
-		/// <param name="dcCode">物流中心編號</param>
-		/// <returns></returns>
-		public bool CheckDcExist(string dcCode)
+    /// <summary>
+    /// 檢核物流中心是否存在
+    /// </summary>
+    /// <param name="dcCode">物流中心編號</param>
+    /// <returns></returns>
+    public bool CheckDcExist(string dcCode)
 		{
 			var dc = GetDc(dcCode);
 			return dc != null;
@@ -662,9 +673,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public bool CheckZoneCodeExist(string dcCode, string warehouseId)
 		{
-			var f1980Repo = new F1980Repository(Schemas.CoreSchema);
-			var data = f1980Repo.GetDatasByTrueAndCondition(o => o.DC_CODE == dcCode && o.WAREHOUSE_ID == warehouseId).FirstOrDefault();
-			return data != null;
+			return GetWarehouse(dcCode, warehouseId) != null;
 		}
 
 		public string GetEmpName(string empId)
@@ -707,21 +716,26 @@ namespace Wms3pl.WebServices.Shared.Services
 				return new List<F2501>();
 
 			var list = new List<F2501>();
-			var f2501Repo = new F2501Repository(Schemas.CoreSchema);
+			
 			int pageSize = 1000;
 			serialNos = serialNos.Distinct().ToList();
 			var existsSerialNos = _f2501CacheLList.Select(x => x.SERIAL_NO).Distinct().ToList();
 			var findSerialNos = serialNos.Except(existsSerialNos).ToList();
-			int page = Convert.ToInt32(Math.Ceiling((decimal)findSerialNos.Count() / pageSize));
-			for (int i = 0; i < page; i++)
+			if(findSerialNos.Any())
 			{
-				var currSerialNos = findSerialNos.Skip(i * pageSize).Take(pageSize).ToList();
+				var f2501Repo = new F2501Repository(Schemas.CoreSchema);
+				int page = Convert.ToInt32(Math.Ceiling((decimal)findSerialNos.Count() / pageSize));
+				for (int i = 0; i < page; i++)
+				{
+					var currSerialNos = findSerialNos.Skip(i * pageSize).Take(pageSize).ToList();
 
-				var f2501s = f2501Repo.GetDatas(gupCode, custCode, currSerialNos).ToList();
-				// 不存在DB的序號，加入已找過DB但不存在DB的序號清單
-				_notDbFindSerialCacheList.AddRange(currSerialNos.Except(f2501s.Select(x => x.SERIAL_NO)).Select(x => new NotDbFindSerial { GUP_CODE = gupCode, CUST_CODE = custCode, SERIAL_NO = x }));
-				_f2501CacheLList.AddRange(f2501s);
+					var f2501s = f2501Repo.GetDatas(gupCode, custCode, currSerialNos).ToList();
+					// 不存在DB的序號，加入已找過DB但不存在DB的序號清單
+					_notDbFindSerialCacheList.AddRange(currSerialNos.Except(f2501s.Select(x => x.SERIAL_NO)).Select(x => new NotDbFindSerial { GUP_CODE = gupCode, CUST_CODE = custCode, SERIAL_NO = x }));
+					_f2501CacheLList.AddRange(f2501s);
+				}
 			}
+		
 			return _f2501CacheLList.Where(x => x.GUP_CODE == gupCode && x.CUST_CODE == custCode && serialNos.Contains(x.SERIAL_NO)).ToList();
 		}
 
@@ -788,8 +802,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public List<F1905> GetProductSizeList(string gupCode, string custCode, List<string> itemCodeList)
 		{
-			var f1905Repo = new F1905Repository(Schemas.CoreSchema);
-
+			
 			var list = new List<F1905>();
 
 			if (_f1905CacheList == null)
@@ -816,6 +829,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				if (noExistsItemCode.Any())
 				{
+					var f1905Repo = new F1905Repository(Schemas.CoreSchema);
 					var currData = f1905Repo.GetF1905ByItemCodes(gupCode, custCode, noExistsItemCode).ToList();
 
 					_f1905CacheList.AddRange(currData);

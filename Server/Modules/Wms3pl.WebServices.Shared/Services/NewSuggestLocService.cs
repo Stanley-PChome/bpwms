@@ -16,7 +16,7 @@ namespace Wms3pl.WebServices.Shared.Services
 	{
 		private Dictionary<string, List<string>> _dcExcludeLocCodeList;
 		private Dictionary<ItemKey, bool> _itemIsSpecialItemList;
-		private F1903 _currentF1903;
+		private CommonProduct _currentF1903;
 		private F1905 _currentF1905;
 		private F1909 _currentF1909;
 		private List<string> _currentItemWareHouseTmprList;
@@ -898,12 +898,12 @@ namespace Wms3pl.WebServices.Shared.Services
 				// 若排除儲位數量小於限制可以進行SQL排除儲位筆數，就取需求量筆數(降低取過多儲位導致效能慢)
 				if (excludeLocs.Count < _limit)
 					mixItemLocs =
-						_f1912Repo.GetNewMixItemLoc(_req.DcCode,_req.CustCode,_req.ItemCode, _currentTarWarehouseType, aTypeCode,true, _req.TarWarehouseId, volumn,string.Join(",",_currentItemWareHouseTmprList),locs,true,_req.Qty).ToList();
-				else
-				{
+            _f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList), locs, true, _req.Qty).ToList();
+        else
+        {
 					// 取得所有混品儲位 
 					mixItemLocs =
-						_f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList)).ToList();
+						_f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList)).ToList();
 					// 在排除不可使用的儲位
 					mixItemLocs = mixItemLocs.Where(x => locs.All(y => y != x.LOC_CODE)).ToList();
 					mixItemLoc.IsAll = true;
@@ -921,12 +921,12 @@ namespace Wms3pl.WebServices.Shared.Services
 					// 若排除儲位數量小於限制可以進行SQL排除儲位筆數，就取需求量筆數(降低取過多儲位導致效能慢)
 					if (excludeLocs.Count < _limit)
 						mixItemLocs =
-							_f1912Repo.GetNewMixItemLoc(_req.DcCode,_req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList), locs, true, _req.Qty).ToList();
+							_f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList), locs, true, _req.Qty).ToList();
 					else
 					{
 						// 取得所有混品儲位 
 						mixItemLocs =
-							_f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList)).ToList();
+							_f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList)).ToList();
 						// 在排除不可使用的儲位
 						mixItemLocs = mixItemLocs.Where(x => locs.All(y => y != x.LOC_CODE)).ToList();
 						mixItemLoc.IsAll = true;

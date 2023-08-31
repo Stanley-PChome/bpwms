@@ -6370,6 +6370,8 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
         
         private string ALLOW_NOSHIPPACKAGEk__BackingFieldField;
         
+        private string ALLOW_ORDER_LACKSHIPk__BackingFieldField;
+        
         private string ALLOW_ORDER_NO_DELVk__BackingFieldField;
         
         private string ALLOW_WAREHOUSEIN_CLOSEDk__BackingFieldField;
@@ -6817,6 +6819,19 @@ namespace Wms3pl.WpfClient.ExDataServices.P71WcfService {
                 if ((object.ReferenceEquals(this.ALLOW_NOSHIPPACKAGEk__BackingFieldField, value) != true)) {
                     this.ALLOW_NOSHIPPACKAGEk__BackingFieldField = value;
                     this.RaisePropertyChanged("ALLOW_NOSHIPPACKAGEk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<ALLOW_ORDER_LACKSHIP>k__BackingField", IsRequired=true)]
+        public string ALLOW_ORDER_LACKSHIPk__BackingField {
+            get {
+                return this.ALLOW_ORDER_LACKSHIPk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ALLOW_ORDER_LACKSHIPk__BackingFieldField, value) != true)) {
+                    this.ALLOW_ORDER_LACKSHIPk__BackingFieldField = value;
+                    this.RaisePropertyChanged("ALLOW_ORDER_LACKSHIPk__BackingField");
                 }
             }
         }

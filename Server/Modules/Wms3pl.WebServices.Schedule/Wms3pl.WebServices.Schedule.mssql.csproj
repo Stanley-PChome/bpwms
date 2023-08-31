@@ -143,6 +143,7 @@
     <Compile Include="WmsSchedule\AutomaticUnlockService.cs" />
     <Compile Include="WmsSchedule\SettleService.cs" />
     <Compile Include="WmsSchedule\ShipDebitService.cs" />
+    <Compile Include="WmsSchedule\ShipFinishConfirmNotifyService.cs" />
     <Compile Include="WmsSchedule\WmsScheduleService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,10 @@
     <ProjectReference Include="..\..\Core\Wms3pl.DBCore\Wms3pl.DBCore.csproj">
       <Project>{d65c6f0b-8ed3-436d-a0c4-d452d4b54cc7}</Project>
       <Name>Wms3pl.DBCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F06\Wms3pl.Datas.F06.csproj">
+      <Project>{2006BE43-61BD-4259-9255-8FB393C052E6}</Project>
+      <Name>Wms3pl.Datas.F06</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Datas\MssDatas\Wms3pl.Datas.F07\Wms3pl.Datas.F07.csproj">
       <Project>{61302189-F348-4C74-BC5E-ED5BC88A6484}</Project>

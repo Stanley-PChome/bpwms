@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
@@ -1258,7 +1259,7 @@ WHERE
       return result;
     }
 
-    public IQueryable<ItemLabelData> GetF020209ItemLabelData(string dcCode, string gupCode, string custCode, List<string> rtNos)
+    public IQueryable<ItemLabelData> GetP020209ItemLabelData(string dcCode, string gupCode, string custCode, List<string> rtNos)
     {
       var param = new List<SqlParameter>
       {
@@ -1284,9 +1285,18 @@ WHERE
 	                A.DC_CODE = @p0
 	                AND A.GUP_CODE = @p1
 	                AND A.CUST_CODE = @p2
+                  AND RT_NO + RT_SEQ IN({0})
                 ";
 
-      sql += param.CombineSqlInParameters(" AND RT_NO", rtNos, SqlDbType.VarChar);
+      StringBuilder sqlIn = new StringBuilder();
+
+      foreach (var rtNo in rtNos)
+      {
+        sqlIn.Append($"'{rtNo}',");
+      }
+
+      sqlIn.Remove(sqlIn.Length - 1, 1);
+      sql = string.Format(sql, sqlIn.ToString());
 
       //加上ROW_NUM
       sql = $@"

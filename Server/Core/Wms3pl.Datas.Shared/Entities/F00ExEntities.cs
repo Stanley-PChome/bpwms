@@ -464,4 +464,10 @@ namespace Wms3pl.Datas.Shared.Entities
   }
 
 
+
+  public class F0000EX
+  {
+    public long ID { get; set; }
+    public string IS_LOCK { get; set; }
+  }
 }

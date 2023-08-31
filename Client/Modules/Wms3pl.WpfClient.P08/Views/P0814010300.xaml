@@ -33,8 +33,12 @@
     </uiLib:Wms3plWindow.Resources>
 
     <telerik:RadBusyIndicator BusyContent="{x:Static res:Resources.Loading}" IsIndeterminate="False" IsBusy="{Binding IsBusy}">
-        <uiLib:BasicMaster x:Name="Master">
-            <uiLib:BasicMaster.MainContent>
+		<uiLib:BasicMaster x:Name="Master">
+			<uiLib:BasicMaster.ToolBarArea>
+				<WrapPanel>
+				</WrapPanel>
+			</uiLib:BasicMaster.ToolBarArea>
+			<uiLib:BasicMaster.MainContent>
                 <DockPanel Style="{StaticResource WindowDockPanelStyle}">
                     <Viewbox VerticalAlignment="Top">
                         <GroupBox Header="請刷入容器條碼">

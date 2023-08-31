@@ -74,22 +74,6 @@ namespace Wms3pl.Datas.F19
             });
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gupCode"></param>
-        /// <param name="itemCodes"></param>
-        /// <param name="unitIds"></param>
-        /// <returns></returns>
-        public IQueryable<F190301> GetDatas(string gupCode, string custCode, List<string> itemCodes, List<string> unitIds)
-        {
-            return _db.F190301s.Where(x => x.GUP_CODE == gupCode
-                                         && x.CUST_CODE == custCode
-                                         &&
-                                           itemCodes.Contains(x.ITEM_CODE) &&
-                                           unitIds.Contains(x.UNIT_ID));
-        }
-
         public IQueryable<F190301> GetDatasByItemCodes(string gupCode, string custCode, List<string> itemCodes)
         {
             return _db.F190301s.Where(x => x.GUP_CODE == gupCode &&

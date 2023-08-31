@@ -66,7 +66,8 @@ namespace Wms3pl.WpfClient.P06.ViewModel
 				REASONList_Allot = _proxyDW.F1951s.Where(x => x.UCT_ID.Equals("MV"))
 		.OrderBy(o => o.UCC_CODE)
 		.ToList();//缺貨原因-揀貨
-				InitControls();
+
+        InitControls();
 			}
 		}
 
@@ -98,28 +99,31 @@ namespace Wms3pl.WpfClient.P06.ViewModel
 				cbSTATUS_ALLOT = STATUSList_ALLOT.First().Value;
 			SHOWQUERYPAGE = "Visible";
 			SHOWADDPAGE = "Collapsed";
-		}
+
+      AllowOrderLackShipBtnEnable = _proxyDW.F1909s.Where(x => x.GUP_CODE == _gupCode && x.CUST_CODE == _custCode).FirstOrDefault()?.ALLOW_ORDER_LACKSHIP == "1";
+
+    }
 
 
-		//public ObservableCollection<NameValuePair<string>> GetPICK_TIMEList()
-		//{
-		//	F0513List = _proxy.F0513s.Where(x => x.GUP_CODE.Equals(_gupCode))
-		//	.Where(x => x.CUST_CODE.Equals(_custCode))
-		//	.Where(x => x.DC_CODE.Equals(cbDC_CODE))
-		//	.Where(x => x.DELV_DATE.Equals(dpDELV_DATE))
-		//	.ToList();//出貨批次紀錄檔
-		//	return (from o in
-		//				(from o in F0513List
-		//				 select new { o.PICK_TIME }).Distinct()
-		//			orderby o.PICK_TIME
-		//			select new NameValuePair<string>()
-		//			{
-		//				Name = o.PICK_TIME,
-		//				Value = o.PICK_TIME
-		//			}).AsQueryable().ToObservableCollection();
-		//}
+    //public ObservableCollection<NameValuePair<string>> GetPICK_TIMEList()
+    //{
+    //	F0513List = _proxy.F0513s.Where(x => x.GUP_CODE.Equals(_gupCode))
+    //	.Where(x => x.CUST_CODE.Equals(_custCode))
+    //	.Where(x => x.DC_CODE.Equals(cbDC_CODE))
+    //	.Where(x => x.DELV_DATE.Equals(dpDELV_DATE))
+    //	.ToList();//出貨批次紀錄檔
+    //	return (from o in
+    //				(from o in F0513List
+    //				 select new { o.PICK_TIME }).Distinct()
+    //			orderby o.PICK_TIME
+    //			select new NameValuePair<string>()
+    //			{
+    //				Name = o.PICK_TIME,
+    //				Value = o.PICK_TIME
+    //			}).AsQueryable().ToObservableCollection();
+    //}
 
-		private string _currentTab;
+    private string _currentTab;
 		public string CURRENT_TAB
 		{
 			get { return _currentTab; }
@@ -876,9 +880,16 @@ namespace Wms3pl.WpfClient.P06.ViewModel
 			set { Set(ref _showModifyQtyOutOfStockBtn, value); }
 		}
 
+    private Boolean _allowOrderLackShipBtnEnable = false;
+    public Boolean AllowOrderLackShipBtnEnable
+    {
+      get { return _allowOrderLackShipBtnEnable; }
+      set { Set(ref _allowOrderLackShipBtnEnable, value); }
+    }
 
-		#region
-		private bool _lackQtyIsEnabled;
+
+    #region
+    private bool _lackQtyIsEnabled;
 
 		public bool LackQtyIsEnabled
 		{

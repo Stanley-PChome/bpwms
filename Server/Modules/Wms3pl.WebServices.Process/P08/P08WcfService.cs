@@ -448,7 +448,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			var srv = new P080613Service(wmsTransaction);
 			var result = srv.F0011Update(dcCode, gupCode, custCode, f0011BD.ToList());
 			if (result.IsSuccessed == true) wmsTransaction.Complete();
-			return result;
+      return result;
 		}
 
         [OperationContract]
@@ -1143,5 +1143,20 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		}
 
 		#endregion
+
+		/// <summary>
+		/// 取得包裝站設定
+		/// </summary>
+		/// <param name="dcCode"></param>
+		/// <param name="gupCode"></param>
+		/// <param name="custCode"></param>
+		/// <param name="ShipMode"></param>
+		/// <returns></returns>
+		[OperationContract]
+		public PrintBoxSettingParam GetPrintBoxSetting(string dcCode, string gupCode, string custCode, string ShipMode)
+		{
+			var service = new ShipPackageService();
+			return service.GetPrintBoxSetting(dcCode, gupCode, custCode, ShipMode);
+		}
 	}
 }

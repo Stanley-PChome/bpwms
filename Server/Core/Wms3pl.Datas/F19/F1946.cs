@@ -12,65 +12,77 @@
 	[Serializable]
 	[DataServiceKey("DC_CODE", "WORKSTATION_CODE")]
 	[Table("F1946")]
-	public class F1946: IAuditInfo
+	public class F1946 : IAuditInfo
 	{
 		/// <summary>
 		/// 物流中心編號
 		/// </summary>
 		[Key]
 		[Required]
+		[Column(TypeName = "varchar(3)")]
 		public string DC_CODE { get; set; }
 		/// <summary>
 		/// 工作站編號
 		/// </summary>
 		[Key]
 		[Required]
+		[Column(TypeName = "varchar(20)")]
 		public string WORKSTATION_CODE { get; set; }
 		/// <summary>
 		/// 工作站類型 (PA1: 包裝線包裝站、PA2: 單人包裝站)
 		/// </summary>
 		[Required]
+		[Column(TypeName = "varchar(4)")]
 		public string WORKSTATION_TYPE { get; set; }
 		/// <summary>
 		/// 工作站群組 (0: 出貨包裝)
 		/// </summary>
 		[Required]
+		[Column(TypeName = "char(1)")]
 		public string WORKSTATION_GROUP { get; set; }
 		/// <summary>
 		/// 包裝線號碼
 		/// </summary>
+		[Column(TypeName = "varchar(10)")]
 		public string PACKING_LINE_NO { get; set; }
-    /// <summary>
-    /// 工作站狀態(0: 關站、1:開站、2:暫停、3:關站中)
-    /// </summary>
-    [Required]
+		/// <summary>
+		/// 工作站狀態(0: 關站、1:開站、2:暫停、3:關站中)
+		/// </summary>
+		[Required]
+		[Column(TypeName = "char(1)")]
 		public string STATUS { get; set; }
 		/// <summary>
 		/// 建立日期
 		/// </summary>
 		[Required]
+		[Column(TypeName = "datetime2(0)")]
 		public DateTime CRT_DATE { get; set; }
 		/// <summary>
 		/// 建立人員編號
 		/// </summary>
 		[Required]
+		[Column(TypeName = "varchar(20)")]
 		public string CRT_STAFF { get; set; }
 		/// <summary>
 		/// 建立人員名稱
 		/// </summary>
 		[Required]
+		[Column(TypeName = "nvarchar(16)")]
 		public string CRT_NAME { get; set; }
 		/// <summary>
 		/// 異動日期
 		/// </summary>
+		[Column(TypeName = "datetime2(0)")]
 		public DateTime? UPD_DATE { get; set; }
 		/// <summary>
 		/// 異動人員編號
 		/// </summary>
+		[Column(TypeName = "varchar(20)")]
 		public string UPD_STAFF { get; set; }
 		/// <summary>
 		/// 異動人員名稱
 		/// </summary>
+		[Column(TypeName = "nvarchar(16)")]
 		public string UPD_NAME { get; set; }
 	}
 }
