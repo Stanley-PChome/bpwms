@@ -192,7 +192,7 @@ namespace Wms3pl.WebServices.ForeignWebApi.Business.LmsServices
 				Seq = x.Key.ORD_SEQ,
 				MakeNo = x.Key.MAKE_NO,
 				Qty = x.Sum(z => z.QTY),
-				SerialNoList = x.Select(s => s.SERIAL_NO).ToList()
+				SerialNoList = x.Where(w => !string.IsNullOrWhiteSpace(w.SERIAL_NO)).Select(s => s.SERIAL_NO).ToList()
 			});
 
 			List<VnrReturnDetailTemp> detailDatas = new List<VnrReturnDetailTemp>();
