@@ -59,7 +59,7 @@ using System.Windows.Markup;
 #elif (Ph_A7)
 [assembly: AssemblyVersion("6.0.41.0")]
 #elif PhTest
-[assembly: AssemblyVersion("3.0.21.0")]
+[assembly: AssemblyVersion("3.0.22.0")]
 #endif
 
 //[assembly: AssemblyFileVersion("0.9.0.0")]

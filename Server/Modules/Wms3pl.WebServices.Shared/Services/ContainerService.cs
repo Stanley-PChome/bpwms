@@ -135,58 +135,13 @@ namespace Wms3pl.WebServices.Shared.Services
 			var result = new ExecuteResult(true);
 			
 			var f0701Repo = new F0701Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f070101Repo = new F070101Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f060302Repo = new F060302Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f1980Repo = new F1980Repository(Schemas.CoreSchema, _wmsTransaction);
 
-			var f070101s = f070101Repo.GetDatasByTrueAndCondition(o =>
-			o.WMS_NO == wmsNo &&
-			o.DC_CODE == dcCode &&
-			o.GUP_CODE == gupCode &&
-			o.CUST_CODE == custCode).ToList();
+      f060302Repo.AddReleaseRecord(dcCode, gupCode, custCode, wmsNo, f0701ID);
 
-			if (f0701ID.HasValue)
-				f070101s = f070101s.Where(x => x.F0701_ID == f0701ID.Value).ToList();
+      f0701Repo.DeleteF0701(dcCode, gupCode, custCode, wmsNo, f0701ID);
 
-			if (f070101s.Any())
-			{
-				var f0701Ids = f070101s.Select(x => x.F0701_ID).Distinct().ToList();
-
-				var f0701s = f0701Repo.GetDatasByF0701Ids(f0701Ids).ToList();
-
-				var f060302s = f060302Repo.GetDatasByF07001s(f0701s, new List<string> { "0", "T" }).ToList();
-
-				f0701Ids.ForEach(f0701Id =>
-				{
-					var f0701 = f0701s.Where(x => x.ID == f0701Id).FirstOrDefault();
-
-					if (f0701 != null)
-					{
-						var currF060302s = f060302s.Where(x =>
-						x.DC_CODE == f0701.DC_CODE &&
-						x.CUST_CODE == f0701.CUST_CODE &&
-						x.WAREHOUSE_ID == f0701.WAREHOUSE_ID &&
-						x.CONTAINER_CODE == f0701.CONTAINER_CODE);
-
-						// 檢核是否為自動倉
-						if (!currF060302s.Any() && f1980Repo.CheckAutoWarehouse(f0701.DC_CODE, f0701.WAREHOUSE_ID))
-						{
-							f060302Repo.Add(new F060302
-							{
-								DC_CODE = f0701.DC_CODE,
-								CUST_CODE = f0701.CUST_CODE,
-								WAREHOUSE_ID = f0701.WAREHOUSE_ID,
-								CONTAINER_CODE = f0701.CONTAINER_CODE,
-								STATUS = "0"
-							});
-						}
-
-						f0701Repo.DeleteF0701(f0701.ID);
-					}
-				});
-			}
-
-			return result;
+      return result;
 		}
 
 		public long GetF0701NextId()

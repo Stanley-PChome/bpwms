@@ -302,7 +302,7 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 							MOVE_QTY = (int)detail.SRC_QTY,
 							LACK_TYPE = "0",
 							REASON = "001",
-							STATUS = "0",
+							STATUS = "2",
 						});
 						detail.STATUS = "2";
 						var f1511 = f1511s.First(x => x.ORDER_SEQ == detail.ALLOCATION_SEQ.ToString());

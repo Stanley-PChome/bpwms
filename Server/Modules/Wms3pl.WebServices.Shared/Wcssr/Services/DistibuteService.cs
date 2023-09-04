@@ -12,10 +12,20 @@ namespace Wms3pl.WebServices.Shared.Wcssr.Services
     {
         private WmsTransaction _wmsTransaction;
         private bool isSaveWmsData { get; set; }
-        public DistibuteService(WmsTransaction wmsTransaction = null)
+
+        private CommonService _CommonService;
+        public CommonService CommonService
+        {
+			    get { return _CommonService == null ? _CommonService = new CommonService() : _CommonService; }
+			    set { _CommonService = value; }
+		    }
+
+        public DistibuteService(WmsTransaction wmsTransaction = null, CommonService commonService = null)
         {
             _wmsTransaction = wmsTransaction;
-            var outputJsonInLog = new CommonService().GetSysGlobalValue("OutputJsonInLog");
+            CommonService = commonService;
+
+            var outputJsonInLog = CommonService.GetSysGlobalValue("OutputJsonInLog");
             isSaveWmsData = string.IsNullOrWhiteSpace(outputJsonInLog) ? false : outputJsonInLog == "1";
         }
 
