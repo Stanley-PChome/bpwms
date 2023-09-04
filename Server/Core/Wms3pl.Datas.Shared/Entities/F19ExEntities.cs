@@ -4121,4 +4121,12 @@ namespace Wms3pl.Datas.Shared.Entities
     public string LOC_CODE { get; set; }
     public int QTY { get; set; }
   }
+
+  public class F1913BoxKeyColumn
+  {
+    public string DC_CODE { get; set; }
+    public string GUP_CODE { get; set; }
+    public string CUST_CODE { get; set; }
+    public string ITEM_CODE { get; set; }
+  }
 }

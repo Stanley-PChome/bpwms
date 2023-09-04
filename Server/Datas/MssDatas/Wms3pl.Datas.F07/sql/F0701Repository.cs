@@ -66,7 +66,44 @@ namespace Wms3pl.Datas.F07
 			ExecuteSqlCommand(sql, parm.ToArray());
 		}
 
-		public void DeleteF0701ByIds(List<long> ids)
+    public void DeleteF0701(string dcCode, string gupCode, string custCode, string wmsNo, long? f0701Id)
+    {
+      var parm = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = wmsNo }
+      };
+
+      var sql = @"DELETE F0701
+                  WHERE 
+                    ID IN(
+                      SELECT 
+                        F0701_ID 
+                      FROM F070101 A
+                      WHERE 
+                        A.DC_CODE = @p0
+                        AND A.GUP_CODE = @p1
+                        AND A.CUST_CODE = @p2
+                        AND A.WMS_NO =  @p3
+                        {0})
+                  ";
+
+      var sql2 = "";
+
+      if(!string.IsNullOrWhiteSpace(f0701Id.ToString()))
+      {
+        sql2 += $" AND A.F0701_ID = @p{parm.Count}";
+        parm.Add(new SqlParameter($"@p{parm.Count}", SqlDbType.BigInt) { Value = f0701Id });
+      }
+
+      string.Format(sql, sql2);
+
+      ExecuteSqlCommand(sql, parm.ToArray());
+    }
+
+    public void DeleteF0701ByIds(List<long> ids)
 		{
 			var parameters = new List<object>{};
 			var sql = $"DELETE F0701 WHERE {parameters.CombineSqlInParameters(" ID ", ids)}";
