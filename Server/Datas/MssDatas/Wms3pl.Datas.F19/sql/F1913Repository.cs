@@ -4448,5 +4448,86 @@ GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE ,B.WAREHOUSE_ID ,A.ITEM_CODE ,A.VALI
       return SqlQuery<ProcImmediateItem>(sql, para.ToArray());
     }
 
+    public F1913BoxKeyColumn GetF1913BoxKeyColumn(string dcCode, string gupCode, string custCode, string boxNum)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = boxNum }
+      };
+
+      var sql = @"
+                SELECT TOP 1
+                  DC_CODE, 
+                  GUP_CODE, 
+                  CUST_CODE, 
+                  ITEM_CODE,
+                  LOC_CODE,
+                  VALID_DATE,
+                  ENTER_DATE,
+                  MAKE_NO,
+                  SERIAL_NO,
+                  VNR_CODE,
+                  BOX_CTRL_NO,
+                  PALLET_CTRL_NO
+                FROM F1913 
+                WHERE 
+                  DC_CODE = @p0 
+                  AND GUP_CODE = @p1 
+                  AND CUST_CODE = @p2 
+                  AND ITEM_CODE = @p3
+                ";
+
+      return SqlQuery<F1913BoxKeyColumn>(sql, param.ToArray()).FirstOrDefault();
+    }
+
+    public void UpdateBoxStock(string dcCode, string gupCode, string custCode, string boxNum, string locCode, DateTime validDate, DateTime enterDate,
+      string mekeNo, string serialNo, string vnrCode, string boxCtrlNo, string palletCtrlNo)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.DateTime2) { Value = DateTime.Now },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = Current.Staff },
+        new SqlParameter("@p2", SqlDbType.NVarChar) { Value = Current.StaffName },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p4", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p5", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p6", SqlDbType.VarChar) { Value = boxNum },
+        new SqlParameter("@p7", SqlDbType.VarChar) { Value = locCode },
+        new SqlParameter("@p8", SqlDbType.DateTime2) { Value = validDate },
+        new SqlParameter("@p9", SqlDbType.DateTime2) { Value = enterDate },
+        new SqlParameter("@p10", SqlDbType.VarChar) { Value = mekeNo },
+        new SqlParameter("@p11", SqlDbType.VarChar) { Value = serialNo },
+        new SqlParameter("@p12", SqlDbType.VarChar) { Value = vnrCode },
+        new SqlParameter("@p13", SqlDbType.VarChar) { Value = boxCtrlNo },
+        new SqlParameter("@p14", SqlDbType.VarChar) { Value = palletCtrlNo }
+      };
+
+      var sql = @"
+                UPDATE F1913
+                SET
+                  QTY -=1,
+                  UPD_DATE = @p0,
+                  UPD_STAFF = @p1,
+                  UPD_NAME = @p2
+                WHERE 
+                  DC_CODE = @p3 
+                  AND GUP_CODE = @p4 
+                  AND CUST_CODE = @p5 
+                  AND ITEM_CODE = @p6
+                  AND LOC_CODE = @p7
+                  AND VALID_DATE = @p8
+                  AND ENTER_DATE = @p9
+                  AND MAKE_NO = @p10
+                  AND SERIAL_NO = @p11
+                  AND VNR_CODE = @p12
+                  AND BOX_CTRL_NO = @p13
+                  AND PALLET_CTRL_NO = @p14
+                ";
+
+      ExecuteSqlCommand(sql, param.ToArray());
+    }
   }
 }

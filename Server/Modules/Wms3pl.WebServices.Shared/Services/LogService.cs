@@ -11,10 +11,18 @@ namespace Wms3pl.WebServices.Shared.Services
         private bool _isSetLog;
         private string _logFilePath;
         private string _fileName;
-        public LogService(string fileName)
+
+        private CommonService _CommonService;
+        public CommonService CommonService
         {
-            var commonService = new CommonService();
-            _isSetLog = commonService.GetSysGlobalValue("IsWriteLog") == "1";
+			    get { return _CommonService == null ? _CommonService = new CommonService() : _CommonService; }
+			    set { _CommonService = value; }
+		    }
+
+        public LogService(string fileName, CommonService commonService = null)
+        {
+            CommonService = commonService;
+            _isSetLog = CommonService.GetSysGlobalValue("IsWriteLog") == "1";
 						_logFilePath = ConfigurationManager.AppSettings["LogFilePath"];
             _fileName = fileName;
         }
