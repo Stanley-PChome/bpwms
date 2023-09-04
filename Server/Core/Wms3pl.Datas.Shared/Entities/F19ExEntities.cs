@@ -4128,5 +4128,13 @@ namespace Wms3pl.Datas.Shared.Entities
     public string GUP_CODE { get; set; }
     public string CUST_CODE { get; set; }
     public string ITEM_CODE { get; set; }
+    public string LOC_CODE { get; set; }
+    public DateTime VALID_DATE { get; set; }
+    public DateTime ENTER_DATE { get; set; }
+    public string SERIAL_NO { get; set; }
+    public string VNR_CODE { get; set; }
+    public string BOX_CTRL_NO { get; set; }
+    public string PALLET_CTRL_NO { get; set; }
+    public string MAKE_NO { get; set; }
   }
 }

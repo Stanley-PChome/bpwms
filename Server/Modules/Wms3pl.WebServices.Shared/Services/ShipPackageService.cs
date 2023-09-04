@@ -1653,7 +1653,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				return new ExecuteResult { IsSuccessed = true };
 
 			var f1913Repo = new F1913Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f1913 = f1913Repo.GetF1913BoxKeyColumn(dcCode, gupCode, custCode, boxNum).FirstOrDefault();
+			var f1913 = f1913Repo.GetF1913BoxKeyColumn(dcCode, gupCode, custCode, boxNum);
 
 			if (f1913 == null)
 			{
@@ -1685,7 +1685,8 @@ namespace Wms3pl.WebServices.Shared.Services
 			}
 			else
 			{
-				f1913Repo.UpdateBoxStock(f1913.DC_CODE, f1913.GUP_CODE, f1913.CUST_CODE, f1913.ITEM_CODE);
+				f1913Repo.UpdateBoxStock(f1913.DC_CODE, f1913.GUP_CODE, f1913.CUST_CODE, f1913.ITEM_CODE, f1913.LOC_CODE, f1913.VALID_DATE, f1913.ENTER_DATE,
+          f1913.MAKE_NO, f1913.SERIAL_NO, f1913.VNR_CODE, f1913.BOX_CTRL_NO, f1913.PALLET_CTRL_NO);
 			}
 
 			return new ExecuteResult { IsSuccessed = true };
