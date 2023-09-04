@@ -98,7 +98,7 @@ namespace Wms3pl.Datas.F07
         parm.Add(new SqlParameter($"@p{parm.Count}", SqlDbType.BigInt) { Value = f0701Id });
       }
 
-      string.Format(sql, sql2);
+      sql = string.Format(sql, sql2);
 
       ExecuteSqlCommand(sql, parm.ToArray());
     }
