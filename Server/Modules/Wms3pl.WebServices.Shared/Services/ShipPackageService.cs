@@ -900,9 +900,9 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="req"></param>
 		public CloseShipBoxRes CloseShipBox(CloseShipBoxReq req)
 		{
-			var logService = new LogService("ShipPackage_" + DateTime.Now.ToString("yyyyMMdd"));
+			var logService = new LogService("ShipPackage_" + DateTime.Now.ToString("yyyyMMdd"), CommonService);
 			logService.Log("關箱處理開始" + req.WmsOrdNo);
-			var distibuteService = new DistibuteService();
+			var distibuteService = new DistibuteService(null, CommonService);
 			var containerService = new ContainerService(_wmsTransaction);
 			var printService = new PrintService();
 			var consignService = new Lms.Services.ConsignService(_wmsTransaction);
@@ -1153,7 +1153,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				if (req.IsManualCloseBox)
 					LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "人員按下手動關箱", 0, null);
 			}
-			_wmsTransaction.Complete();
+			_wmsTransaction.Complete(true);
 			logService.Log("DB Commit 結束");
 
 			if (packingFinish)
@@ -1653,12 +1653,7 @@ namespace Wms3pl.WebServices.Shared.Services
 				return new ExecuteResult { IsSuccessed = true };
 
 			var f1913Repo = new F1913Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f1913 = f1913Repo.GetDatasByTrueAndCondition(x =>
-																				 x.DC_CODE == dcCode
-																			&& x.GUP_CODE == gupCode
-																			&& x.CUST_CODE == custCode
-																			&& x.ITEM_CODE == boxNum)
-													 .FirstOrDefault();
+			var f1913 = f1913Repo.GetF1913BoxKeyColumn(dcCode, gupCode, custCode, boxNum).FirstOrDefault();
 
 			if (f1913 == null)
 			{
@@ -1672,28 +1667,25 @@ namespace Wms3pl.WebServices.Shared.Services
 				if (f1912 == null)
 					return new ExecuteResult(true);
 
-				f1913 = new F1913
-				{
-					DC_CODE = dcCode,
-					GUP_CODE = gupCode,
-					CUST_CODE = custCode,
-					ENTER_DATE = DateTime.Today,
-					VALID_DATE = Convert.ToDateTime("9999/12/31"),
-					ITEM_CODE = boxNum,
-					LOC_CODE = f1912.LOC_CODE,
-					QTY = -1,
-					MAKE_NO = "0",
-					VNR_CODE = "000000",
-					BOX_CTRL_NO = "0",
-					PALLET_CTRL_NO = "0",
-					SERIAL_NO = "0"
-				};
-				f1913Repo.Add(f1913);
+				f1913Repo.Add(new F1913 {
+          DC_CODE = dcCode,
+          GUP_CODE = gupCode,
+          CUST_CODE = custCode,
+          ENTER_DATE = DateTime.Today,
+          VALID_DATE = Convert.ToDateTime("9999/12/31"),
+          ITEM_CODE = boxNum,
+          LOC_CODE = f1912.LOC_CODE,
+          QTY = -1,
+          MAKE_NO = "0",
+          VNR_CODE = "000000",
+          BOX_CTRL_NO = "0",
+          PALLET_CTRL_NO = "0",
+          SERIAL_NO = "0"
+        });
 			}
 			else
 			{
-				f1913.QTY -= 1;
-				f1913Repo.Update(f1913);
+				f1913Repo.UpdateBoxStock(f1913.DC_CODE, f1913.GUP_CODE, f1913.CUST_CODE, f1913.ITEM_CODE);
 			}
 
 			return new ExecuteResult { IsSuccessed = true };

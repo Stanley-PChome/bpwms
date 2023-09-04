@@ -4448,5 +4448,61 @@ GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE ,B.WAREHOUSE_ID ,A.ITEM_CODE ,A.VALI
       return SqlQuery<ProcImmediateItem>(sql, para.ToArray());
     }
 
+    public IQueryable<F1913BoxKeyColumn> GetF1913BoxKeyColumn(string dcCode, string gupCode, string custCode, string boxNum)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = boxNum }
+      };
+
+      var sql = @"
+                SELECT 
+                  DC_CODE, 
+                  GUP_CODE, 
+                  CUST_CODE, 
+                  ITEM_CODE 
+                FROM F1913 
+                WHERE 
+                  DC_CODE = @p0 
+                  AND GUP_CODE = @p1 
+                  AND CUST_CODE = @p2 
+                  AND ITEM_CODE = @p3
+                ";
+
+      return SqlQuery<F1913BoxKeyColumn>(sql, param.ToArray());
+    }
+
+    public void UpdateBoxStock(string dcCode, string gupCode, string custCode, string boxNum)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.DateTime2) { Value = DateTime.Now },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = Current.Staff },
+        new SqlParameter("@p2", SqlDbType.NVarChar) { Value = Current.StaffName },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p4", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p5", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p6", SqlDbType.VarChar) { Value = boxNum }
+      };
+
+      var sql = @"
+                UPDATE F1913
+                SET
+                  QTY -=1,
+                  UPD_DATE = @p0,
+                  UPD_STAFF = @p1,
+                  UPD_NAME = @p2
+                WHERE 
+                  DC_CODE = @p3 
+                  AND GUP_CODE = @p4 
+                  AND CUST_CODE = @p5 
+                  AND ITEM_CODE = @p6
+                ";
+
+      ExecuteSqlCommand(sql, param.ToArray());
+    }
   }
 }
