@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Wms3pl.Datas.Shared.Entities;
@@ -340,11 +341,11 @@ namespace Wms3pl.Datas.F05
 		{
 			var parms = new List<SqlParameter>
 			{
-				new SqlParameter("@p0",dcCode){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p1",gupCode){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p2",custCode){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p3",pastNo){SqlDbType = System.Data.SqlDbType.VarChar},
-			};
+        new SqlParameter("@p0",dcCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p1",gupCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2",custCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p3",pastNo){SqlDbType = SqlDbType.VarChar},
+      };
 			var sql = @" SELECT TOP (1) A.DC_CODE,A.GUP_CODE,A.CUST_CODE,A.WMS_ORD_NO,A.PACKAGE_BOX_NO,A.STATUS,A.PAST_NO,A.WORKSTATION_CODE,A.BOX_NUM,C.LOGISTIC_CODE,C.LOGISTIC_NAME
 										FROM F055001 A
 										JOIN F050901 B
@@ -370,31 +371,31 @@ namespace Wms3pl.Datas.F05
     {
       var parms = new List<SqlParameter>
 			{
-				new SqlParameter("@p0",status){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p1",auditTime){SqlDbType = System.Data.SqlDbType.DateTime2},
-				new SqlParameter("@p2",auditStaff){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p3",auditName){SqlDbType = System.Data.SqlDbType.NVarChar},
-				new SqlParameter("@p4",dcCode){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p5",gupCode){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p6",custCode){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p7",wmsOrdNo){SqlDbType = System.Data.SqlDbType.VarChar},
-				new SqlParameter("@p8",packageBoxNo){SqlDbType = System.Data.SqlDbType.SmallInt},
+        new SqlParameter("@p0",status){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p1",auditTime){SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p2",auditStaff){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p3",auditName){SqlDbType = SqlDbType.NVarChar},
+        new SqlParameter("@p4",dcCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p5",gupCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p6",custCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p7",wmsOrdNo){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p8",packageBoxNo){SqlDbType = SqlDbType.SmallInt},
       };
 			var optionalUpdateField = string.Empty;
 			if (!string.IsNullOrEmpty(boxNum))
 			{
         optionalUpdateField += ",BOX_NUM = @p" + parms.Count;
-				parms.Add(new SqlParameter("@p" + parms.Count, boxNum) { SqlDbType = System.Data.SqlDbType.VarChar });
-			}
+        parms.Add(new SqlParameter("@p" + parms.Count, boxNum) { SqlDbType = SqlDbType.VarChar });
+      }
       if (!string.IsNullOrEmpty(clientPc))
       {
         optionalUpdateField += ",AUDIT_CLIENT_PC = @p" + parms.Count;
-        parms.Add(new SqlParameter("@p" + parms.Count, clientPc) { SqlDbType = System.Data.SqlDbType.VarChar });
+        parms.Add(new SqlParameter("@p" + parms.Count, clientPc) { SqlDbType = SqlDbType.VarChar });
       }
       if (!string.IsNullOrEmpty(SorterCode))
       {
         optionalUpdateField += ",SORTER_CODE = @p" + parms.Count;
-        parms.Add(new SqlParameter("@p" + parms.Count, SorterCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+        parms.Add(new SqlParameter("@p" + parms.Count, SorterCode) { SqlDbType = SqlDbType.VarChar });
       }
 
       var sql = $@" UPDATE F055001 
@@ -410,17 +411,58 @@ namespace Wms3pl.Datas.F05
 		public IQueryable<F055001> GetDatasByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
 		{
 			var sqlParameter = new List<SqlParameter>();
-			sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = System.Data.SqlDbType.VarChar });
-			sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = System.Data.SqlDbType.VarChar });
-			sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = System.Data.SqlDbType.VarChar });
+      sqlParameter.Add(new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar });
+      sqlParameter.Add(new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar });
+      sqlParameter.Add(new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar });
 
-			var sql = $@" SELECT * FROM F055001
+      var sql = $@" SELECT * FROM F055001
 							WHERE DC_CODE = @p0
 							AND GUP_CODE = @p1
 							AND CUST_CODE = @p2 ";
-			sql += sqlParameter.CombineSqlInParameters(" AND WMS_ORD_NO", wmsOrdNos, System.Data.SqlDbType.VarChar);
+      sql += sqlParameter.CombineSqlInParameters(" AND WMS_ORD_NO", wmsOrdNos, SqlDbType.VarChar);
 
-			return SqlQuery<F055001>(sql, sqlParameter.ToArray());
+      return SqlQuery<F055001>(sql, sqlParameter.ToArray());
 		}
-	}
+
+    public IQueryable<ConsignmentDetail> GetConsignmentDetail(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var parms = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",SqlDbType.VarChar){Value = dcCode },
+        new SqlParameter("@p1",SqlDbType.VarChar){Value = gupCode },
+        new SqlParameter("@p2",SqlDbType.VarChar){Value = custCode },
+        new SqlParameter("@p3",SqlDbType.VarChar){Value = wmsNo }
+      };
+
+      var sql = $@"
+                SELECT
+                  A.PAST_NO,
+                  B.PACKAGE_BOX_NO,
+                  A.BOX_NUM,
+                  B.PACKAGE_BOX_SEQ,
+                  B.ITEM_CODE,
+                  B.PACKAGE_QTY,
+                  C.PACK_WEIGHT,
+                  B.PACKAGE_QTY * C.PACK_WEIGHT TOTAL_WEIGHT,
+                  B.SERIAL_NO,
+                  B.CRT_NAME,
+                  B.CRT_DATE
+                FROM F055001 A
+                JOIN F055002 B
+                  ON A.DC_CODE=B.DC_CODE AND A.GUP_CODE=B.GUP_CODE AND A.CUST_CODE=B.CUST_CODE AND A.WMS_ORD_NO=B.WMS_ORD_NO
+                JOIN F1905 C
+                  ON B.GUP_CODE=C.GUP_CODE AND B.CUST_CODE=C.CUST_CODE AND B.ITEM_CODE=C.ITEM_CODE
+                WHERE
+                  A.DC_CODE = @p0
+                  AND A.GUP_CODE = @p1
+                  AND A.CUST_CODE = @p2
+                  AND A.WMS_ORD_NO = @p3
+                ORDER BY
+                  B.PACKAGE_BOX_NO,
+                  B.PACKAGE_BOX_SEQ
+                ";
+
+      return SqlQuery<ConsignmentDetail>(sql, parms.ToArray());
+    }
+  }
 }

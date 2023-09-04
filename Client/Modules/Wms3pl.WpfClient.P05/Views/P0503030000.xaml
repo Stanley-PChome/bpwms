@@ -306,17 +306,99 @@
                          <DockPanel>
                              <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding PickDetailList}">
                                  <DataGrid.Columns>
+                                    <DataGridTextColumn Header="揀貨單號" Binding="{Binding PICK_ORD_NO}"/>
+                                    <DataGridTextColumn Header="揀貨單序號" Binding="{Binding PICK_ORD_SEQ}"/>
+                                    <DataGridTextColumn Header="揀貨儲位" Binding="{Binding PICK_LOC}"/>
+                                    <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}"/>
+                                    <DataGridTextColumn Header="預計揀貨數" Binding="{Binding B_PICK_QTY}"/>
+                                    <DataGridTextColumn Header="實際揀貨數" Binding="{Binding A_PICK_QTY}"/>
+                                    <DataGridTextColumn Header="揀貨狀態" Binding="{Binding PICK_STATUS}"/>
+                                    <DataGridTextColumn Header="批號" Binding="{Binding MAKE_NO}"/>
+                                    <DataGridTextColumn Header="序號" Binding="{Binding SERIAL_NO}"/>
+                                    <DataGridTextColumn Header="路順" Binding="{Binding ROUTE_SEQ}"/>
+                                    <DataGridTextColumn Header="PK區名稱" Binding="{Binding PK_AREA_NAME}"/>
+                                 </DataGrid.Columns>
+                             </DataGrid>
+                         </DockPanel>
+                     </GroupBox>
+                      <GroupBox Header="分貨資訊" DockPanel.Dock="Top">
+                         <DockPanel>
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DivideInfo}">
+                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="揀貨單號" Binding="{Binding PICK_ORD_NO}"/>
+                                    <DataGridTextColumn Header="出貨單號" Binding="{Binding WMS_ORD_NO}"/>
+                                    <DataGridTextColumn Header="容器編號" Binding="{Binding CONTAINER_CODE}"/>
+                                    <DataGridTextColumn Header="完成分貨後的下一步" Binding="{Binding NEXT_STEP}"/>
+                                    <DataGridTextColumn Header="分貨狀態" Binding="{Binding STATUS}"/>
+                                 </DataGrid.Columns>
+                             </DataGrid>
+                         </DockPanel>
+                     </GroupBox>
+                      <GroupBox Header="分貨明細資料" DockPanel.Dock="Top">
+                         <DockPanel>
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding DivideDetail}">
+                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="揀貨單號" Binding="{Binding PICK_ORD_NO}"/>
+                                    <DataGridTextColumn Header="揀貨單序號" Binding="{Binding PICK_ORD_SEQ}"/>
+                                    <DataGridTextColumn Header="分貨格編號" Binding="{Binding PICK_LOC_NO}"/>
+                                    <DataGridTextColumn Header="容器編號" Binding="{Binding CONTAINER_CODE}"/>
+                                    <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}"/>
+                                    <DataGridTextColumn Header="預計數量" Binding="{Binding B_SET_QTY}"/>
+                                    <DataGridTextColumn Header="實際數量" Binding="{Binding A_SET_QTY}"/>
+                                    <DataGridTextColumn Header="作業人員" Binding="{Binding UPD_NAME}"/>
+                                    <DataGridTextColumn Header="開始分貨時間" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" Width="auto"/>
+                                    <DataGridTextColumn Header="分貨完成時間" Binding="{Binding UPD_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" Width="auto"/>
+                                 </DataGrid.Columns>
+                             </DataGrid>
+                         </DockPanel>
+                     </GroupBox>
+                      <GroupBox Header="揀貨完成容器資料" DockPanel.Dock="Top">
+                         <DockPanel>
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding PickContainer}" Height="150">
+                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="揀貨單號" Binding="{Binding PICK_ORD_NO}" />
-                                    <DataGridTextColumn Header="揀貨單序號" Binding="{Binding PICK_ORD_SEQ}" />
-                                    <DataGridTextColumn Header="揀貨儲位" Binding="{Binding PICK_LOC}" />
+                                    <DataGridTextColumn Header="容器條碼" Binding="{Binding CONTAINER_CODE}" />
+                                    <DataGridTextColumn Header="容器分隔編號" Binding="{Binding BIN_CODE}" />
                                     <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}" />
-                                    <DataGridTextColumn Header="預計揀貨數" Binding="{Binding B_PICK_QTY}" />
-                                    <DataGridTextColumn Header="實際揀貨數" Binding="{Binding A_PICK_QTY}" />
-                                    <DataGridTextColumn Header="揀貨狀態" Binding="{Binding PICK_STATUS}" />
-                            <DataGridTextColumn Header="批號" Binding="{Binding MAKE_NO}" />
-                            <DataGridTextColumn Header="序號" Binding="{Binding SERIAL_NO}" />
-                                    <DataGridTextColumn Header="路順" Binding="{Binding ROUTE_SEQ}" />
-                                    <DataGridTextColumn Header="PK區名稱" Binding="{Binding PK_AREA_NAME}" />
+                                    <DataGridTextColumn Header="效期" Binding="{Binding VALID_DATE, StringFormat=\{0:yyyy/MM/dd\}}" Width="auto"/>
+                                    <DataGridTextColumn Header="批號" Binding="{Binding MAKE_NO}" />
+                                    <DataGridTextColumn Header="序號" Binding="{Binding SERIAL_NO}" />
+                                    <DataGridTextColumn Header="數量" Binding="{Binding QTY}" />
+                                    <DataGridTextColumn Header="建立時間" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" Width="auto"/>
+                                 </DataGrid.Columns>
+                             </DataGrid>
+                         </DockPanel>
+                     </GroupBox>
+                      <GroupBox Header="訂單取消資訊" DockPanel.Dock="Top">
+                         <DockPanel>
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding OrderCancelInfo}">
+                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="分類" Binding="{Binding TYPE}"/>
+                                    <DataGridTextColumn Header="揀貨單號" Binding="{Binding ORD_NO}"/>
+                                    <DataGridTextColumn Header="揀貨單明細序號" Binding="{Binding SEQ_NO}"/>
+                                    <DataGridTextColumn Header="揀貨儲位" Binding="{Binding LOC_CODE}"/>
+                                    <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}"/>
+                                    <DataGridTextColumn Header="效期" Binding="{Binding VALID_DATE, StringFormat=\{0:yyyy/MM/dd\}}" Width="auto"/>
+                                    <DataGridTextColumn Header="批號" Binding="{Binding MAKE_NO}"/>
+                                    <DataGridTextColumn Header="序號" Binding="{Binding SERIAL_NO}"/>
+                                    <DataGridTextColumn Header="預計回庫數" Binding="{Binding B_QTY}"/>
+                                    <DataGridTextColumn Header="實際回庫數" Binding="{Binding A_QTY}" />
+                                    <DataGridTextColumn Header="回庫儲位" Binding="{Binding RETURN_LOC_CODE}" />
+                                 </DataGrid.Columns>
+                             </DataGrid>
+                         </DockPanel>
+                     </GroupBox>
+                      <GroupBox Header="集貨場進出紀錄" DockPanel.Dock="Top">
+                         <DockPanel>
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding CollectionRecord}">
+                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="集貨場編號" Binding="{Binding COLLECTION_CODE}"/>
+                                    <DataGridTextColumn Header="集貨格編號" Binding="{Binding CELL_CODE}"/>
+                                    <DataGridTextColumn Header="出貨單號" Binding="{Binding WMS_ORD_NO}"/>
+                                    <DataGridTextColumn Header="容器編號" Binding="{Binding CONTAINER_CODE}"/>
+                                    <DataGridTextColumn Header="作業" Binding="{Binding STATUS}"/>
+                                    <DataGridTextColumn Header="作業人員" Binding="{Binding CRT_NAME}"/>
+                                    <DataGridTextColumn Header="作業時間" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" Width="auto"/>
                                  </DataGrid.Columns>
                              </DataGrid>
                          </DockPanel>
@@ -372,7 +454,7 @@
                         </DataGrid>
                       </DockPanel>
                     </GroupBox>
-                    <GroupBox Header="{x:Static Properties:Resources.P0503020100_PastNo}">
+                    <GroupBox Header="託運單查詢" DockPanel.Dock="Top">
                       <DockPanel>
                         <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding ConsignmentNote}">
                           <DataGrid.Columns>
@@ -406,6 +488,25 @@
                         </DataGrid>
                       </DockPanel>
                     </GroupBox>
+                    <GroupBox Header="託運單箱內明細資料" DockPanel.Dock="Top">
+                         <DockPanel>
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding ConsignmentDetail}">
+                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="宅配單號" Binding="{Binding PAST_NO}"/>
+                                    <DataGridTextColumn Header="包裝箱序" Binding="{Binding PACKAGE_BOX_NO}"/>
+                                    <DataGridTextColumn Header="包裝箱號" Binding="{Binding BOX_NUM}"/>
+                                    <DataGridTextColumn Header="明細箱序" Binding="{Binding PACKAGE_BOX_SEQ}"/>
+                                    <DataGridTextColumn Header="品號" Binding="{Binding ITEM_CODE}"/>
+                                    <DataGridTextColumn Header="箱內數量" Binding="{Binding PACKAGE_QTY}"/>
+                                    <DataGridTextColumn Header="單品重量" Binding="{Binding PACK_WEIGHT}"/>
+                                    <DataGridTextColumn Header="總重量" Binding="{Binding TOTAL_WEIGHT}"/>
+                                    <DataGridTextColumn Header="商品序號" Binding="{Binding SERIAL_NO}"/>
+                                    <DataGridTextColumn Header="建立人員" Binding="{Binding CRT_NAME}" />
+                                    <DataGridTextColumn Header="建立時間" Binding="{Binding CRT_DATE, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" Width="auto"/>
+                                 </DataGrid.Columns>
+                             </DataGrid>
+                         </DockPanel>
+                     </GroupBox>
                   </DockPanel>
                 </DockPanel>
               </ScrollViewer>

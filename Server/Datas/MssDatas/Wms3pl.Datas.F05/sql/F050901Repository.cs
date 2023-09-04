@@ -597,6 +597,7 @@ namespace Wms3pl.Datas.F05
 		public IQueryable<F050901WithF055001> GetF050901WithF055001s(string dcCode,string gupCode,string custCode,string wmsNo)
 		{
 			var param = new object[] { dcCode, gupCode, custCode, wmsNo };
+
 			var sql = @"SELECT
 						ROW_NUMBER()OVER(ORDER BY A.WMS_NO ASC) ROWNUM,
 						A.DELIVID_SEQ_NAME,

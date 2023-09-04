@@ -744,6 +744,38 @@ namespace Wms3pl.Datas.F15
 													";
 			return SqlQuery<F151002>(sql, parm.ToArray());
 		}
-	}
 
+    public IQueryable<OrderCancelInfo> GetOrderCancelInfoData(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                SELECT 
+                  '已產生虛擬回復上架單' TYPE,
+                  REFENCE_NO ORD_NO,
+                  REFENCE_SEQ SEQ_NO,
+                  ITEM_CODE,
+                  VALID_DATE,
+                  MAKE_NO,
+                  SERIAL_NO,
+                  TAR_QTY B_QTY,
+                  A_TAR_QTY A_QTY,
+                  TAR_LOC_CODE RETURN_LOC_CODE
+                FROM F151002
+                WHERE 
+                  DC_CODE = @p0
+                  AND GUP_CODE = @p1
+                  AND CUST_CODE = @p2
+                ";
+
+      sql += param.CombineSqlInParameters(" AND REFENCE_NO", pickOrdNos, SqlDbType.VarChar);
+
+      return SqlQuery<OrderCancelInfo>(sql, param.ToArray());
+    }
+  }
 }
