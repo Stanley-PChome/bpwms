@@ -403,14 +403,14 @@ namespace Wms3pl.WebServices.Shared.Services
 							//此容器為有分格容器，已有綁定商品資料，必須刷入分格條碼
 							return new ApiResult { IsSuccessed = false, MsgCode = "22013", MsgContent = "此容器為有分格容器，已有綁定商品資料，必須刷入分格條碼" };
 
-
+            //撈出這張單的F020502，檢查是否存在這容器
             //檢查沒有分格，但重複輸入容器
-            if (string.IsNullOrWhiteSpace(chkContainer.BinCode) && 
-              f020502s.Any(x => string.IsNullOrWhiteSpace(x.BIN_CODE) && x.CONTAINER_CODE == chkContainer.ContainerCode))
+            if (string.IsNullOrWhiteSpace(chkContainer.BinCode) &&
+              F020502Repo.CheckIsContainerExists(req.DcCode, req.GupCode, req.CustCode, req.PurchaseNo, req.RtNo, chkContainer.ContainerCode))
               return new ApiResult { IsSuccessed = false, MsgCode = "22013", MsgContent = "此容器已存在清單中" };
 
           }
-				}
+        }
 			}
 
 			if (f0205.B_QTY < f0205.A_QTY + req.PutQty)

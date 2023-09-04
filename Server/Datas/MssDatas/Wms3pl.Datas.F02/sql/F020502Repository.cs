@@ -200,5 +200,34 @@ WHERE
       return SqlQuery<int>(sql, para.ToArray()).Any();
     }
 
+    public bool CheckIsContainerExists(string dcCode, string gupCode, string custCode, string stockNo, string rtNo, string containerCode)
+    {
+      var para = new List<SqlParameter>()
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = stockNo },
+        new SqlParameter("@p4", SqlDbType.VarChar) { Value = rtNo },
+        new SqlParameter("@p5", SqlDbType.VarChar) { Value = containerCode },
+      };
+
+      var sql = $@"
+SELECT 
+TOP 1 1
+FROM 
+  F020502
+WHERE 
+	DC_CODE=@p0
+  AND GUP_CODE=@p1
+	AND CUST_CODE=@p2
+  AND STOCK_NO=@p3
+  AND RT_NO=@p4
+  AND CONTAINER_CODE=@p5";
+
+      return SqlQuery<int>(sql, para.ToArray()).Any();
+
+    }
+
   }
 }
