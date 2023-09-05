@@ -1496,6 +1496,8 @@ namespace Wms3pl.Datas.Shared.Entities
     public string SUG_LOGISTIC_CODE { get; set; }
     [DataMember]
     public string NP_FLAG { get; set; }
+    [DataMember]
+    public DateTime? UPD_DATE { get; set; }
     //[IgnoreDataMember]
     //public Dictionary<string, string> EncryptedProperties
     //{
@@ -6562,15 +6564,16 @@ namespace Wms3pl.Datas.Shared.Entities
 	// 託運單
 	[DataContract]
 	[Serializable]
-	[DataServiceKey("CONSIGN_NO")]
-	public class F050901WithF055001
-	{
-
-		/// <summary>
-		/// 配送商編號
-		/// </summary>
-		[DataMember]
-		public string DELIVID_SEQ_NAME { get; set; }
+	[DataServiceKey("ROWNUM")]
+	public class ConsignmentNote
+  {
+    [DataMember]
+    public int ROWNUM { get; set; }
+    /// <summary>
+    /// 配送商編號
+    /// </summary>
+    [DataMember]
+		public string LOGISTIC_CODE { get; set; }
 		/// <summary>
 		/// 配送商名稱  
 		/// </summary>
@@ -6580,7 +6583,7 @@ namespace Wms3pl.Datas.Shared.Entities
 		/// 宅配單號
 		/// </summary>
 		[DataMember]
-		public string CONSIGN_NO { get; set; }
+		public string PAST_NO { get; set; }
 		/// <summary>
 		/// 包裝紙箱編號
 		/// </summary>

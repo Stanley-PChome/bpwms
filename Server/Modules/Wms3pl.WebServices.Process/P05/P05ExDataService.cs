@@ -355,10 +355,10 @@ namespace Wms3pl.WebServices.Process.P05
 
 		// 託運單
 		[WebGet]
-		public IQueryable<F050901WithF055001> GetF050901WithF055001s(string dcCode, string gupCode, string custCode, string wmsOrdNo)
+		public IQueryable<ConsignmentNote> GetConsignmentNote(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
-			var repo = new F050901Repository(Schemas.CoreSchema);
-			return repo.GetF050901WithF055001s(dcCode, gupCode, custCode, wmsOrdNo);
+			var repo = new F055001Repository(Schemas.CoreSchema);
+			return repo.GetConsignmentNote(dcCode, gupCode, custCode, wmsOrdNo);
 		}
 		#endregion
 

@@ -593,34 +593,6 @@ namespace Wms3pl.Datas.F05
             return result;
         }
 
-		// 託運單
-		public IQueryable<F050901WithF055001> GetF050901WithF055001s(string dcCode,string gupCode,string custCode,string wmsNo)
-		{
-			var param = new object[] { dcCode, gupCode, custCode, wmsNo };
-
-			var sql = @"SELECT
-						ROW_NUMBER()OVER(ORDER BY A.WMS_NO ASC) ROWNUM,
-						A.DELIVID_SEQ_NAME,
-						(SELECT LOGISTIC_NAME  FROM F0002 WHERE DC_CODE=A.DC_CODE AND LOGISTIC_CODE = A.DELIVID_SEQ_NAME) LOGISTIC_NAME,
-						A.CONSIGN_NO,
-						B.BOX_NUM,
-            B.WORKSTATION_CODE,
-						A.CRT_NAME,
-						A.CRT_DATE 
-						FROM F050901 A
-						JOIN F055001 B 
-						ON A.DC_CODE = B.DC_CODE 
-						AND A.GUP_CODE = B.GUP_CODE 
-						AND A.CUST_CODE = B.CUST_CODE 
-						AND A.WMS_NO = B.WMS_ORD_NO 
-						AND A.CONSIGN_NO  = B.PAST_NO
-						WHERE A.DC_CODE = @p0
-						AND A.GUP_CODE = @p1
-						AND A.CUST_CODE = @p2
-						AND A.WMS_NO = @p3";
-			return SqlQuery<F050901WithF055001>(sql, param);
-		}
-
 		public IQueryable<F050901> GetDatasByWmsOrdNos(string dcCode, string gupCode, string custCode, List<string> wmsOrdNos)
 		{
 			var sqlParameter = new List<SqlParameter>();

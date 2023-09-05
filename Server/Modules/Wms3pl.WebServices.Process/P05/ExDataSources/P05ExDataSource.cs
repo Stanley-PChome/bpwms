@@ -423,9 +423,9 @@ namespace Wms3pl.WebServices.Process.P05.ExDataSources
 			get { return new List<PickDetail>().AsQueryable(); }
 		}
 
-		public IQueryable<F050901WithF055001> F050901WithF055001s
+		public IQueryable<ConsignmentNote> F050901WithF055001s
 		{
-			get { return new List<F050901WithF055001>().AsQueryable(); }
+			get { return new List<ConsignmentNote>().AsQueryable(); }
 		}
 
     public IQueryable<F05080505Data> F05080505Datas

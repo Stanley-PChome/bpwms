@@ -497,7 +497,8 @@ namespace Wms3pl.Datas.F05
                                           (SELECT TOP(1) NAME FROM F000904 WHERE TOPIC ='F050101' AND SUBTOPIC ='PACKING_TYPE' AND VALUE = A.PACKING_TYPE) PACKING_TYPE,
                                           (SELECT TOP(1) NAME FROM F000904 WHERE TOPIC ='F050801' AND SUBTOPIC ='SHIP_MODE' AND VALUE = A.SHIP_MODE) SHIP_MODE,
                        (SELECT TOP(1) LOGISTIC_NAME FROM F0002 WHERE DC_CODE = @p2 AND LOGISTIC_CODE = A.SUG_LOGISTIC_CODE) SUG_LOGISTIC_CODE,
-                      A.NP_FLAG
+                      A.NP_FLAG,
+                      A.UPD_DATE
 									FROM F050801 A
 									JOIN F05030101 B
 									ON B.DC_CODE = A.DC_CODE

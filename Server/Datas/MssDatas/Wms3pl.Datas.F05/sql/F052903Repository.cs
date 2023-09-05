@@ -75,7 +75,6 @@ namespace Wms3pl.Datas.F05
                   AND GUP_CODE = @p1
                   AND CUST_CODE = @p2
                   AND PICK_ORD_NO IN (SELECT DISTINCT PICK_ORD_NO FROM F051202 WHERE WMS_ORD_NO = @p3)
-                  AND WMS_ORD_NO = @p3
                 ";
 
       return SqlQuery<DivideInfo>(sql, parms.ToArray());
@@ -115,7 +114,6 @@ namespace Wms3pl.Datas.F05
                   AND A.GUP_CODE = @p1
                   AND A.CUST_CODE = @p2
                   AND A.PICK_ORD_NO IN (SELECT DISTINCT PICK_ORD_NO FROM F051202 WHERE WMS_ORD_NO = @p3)
-                  AND A.WMS_ORD_NO = @p3
                 ";
 
       return SqlQuery<DivideDetail>(sql, parms.ToArray());

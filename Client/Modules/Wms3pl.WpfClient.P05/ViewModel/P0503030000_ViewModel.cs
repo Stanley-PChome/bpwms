@@ -580,9 +580,9 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		}
 
 
-		private ObservableCollection<F050901WithF055001> _consignmentNote;
+		private ObservableCollection<ConsignmentNote> _consignmentNote;
 
-		public ObservableCollection<F050901WithF055001> ConsignmentNote
+		public ObservableCollection<ConsignmentNote> ConsignmentNote
 		{
 			get { return _consignmentNote; }
 			set
@@ -680,11 +680,14 @@ namespace Wms3pl.WpfClient.P05.ViewModel
         .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
 
       //分貨明細資料
-      DivideDetail = proxyP05Ex.CreateQuery<DivideDetail>("GetDivideDetail")
+      if (DivideInfo.Any())
+      {
+        DivideDetail = proxyP05Ex.CreateQuery<DivideDetail>("GetDivideDetail")
         .AddQueryExOption("dcCode", dcCode)
         .AddQueryExOption("gupCode", gupCode)
         .AddQueryExOption("custCode", custCode)
         .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
+      }
 
       //集貨場進出紀錄
       CollectionRecord = proxyP05Ex.CreateQuery<CollectionRecord>("GetCollectionRecord")
@@ -731,18 +734,21 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 			  .ToList();
 
 			//託運單
-			ConsignmentNote = proxyP05Ex.CreateQuery<F050901WithF055001>("GetF050901WithF055001s")
+			ConsignmentNote = proxyP05Ex.CreateQuery<ConsignmentNote>("GetConsignmentNote")
 				.AddQueryExOption("dcCode", dcCode)
 				.AddQueryExOption("gupCode", gupCode)
 				.AddQueryExOption("custCode", custCode)
 				.AddQueryExOption("wmsOrdNo", wmsOrdNo).ToObservableCollection();
 
       //託運單箱內明細資料
-      ConsignmentDetail = proxyP05Ex.CreateQuery<ConsignmentDetail>("GetConsignmentDetail")
+      if (ConsignmentNote.Any())
+      {
+        ConsignmentDetail = proxyP05Ex.CreateQuery<ConsignmentDetail>("GetConsignmentDetail")
         .AddQueryExOption("dcCode", dcCode)
         .AddQueryExOption("gupCode", gupCode)
         .AddQueryExOption("custCode", custCode)
         .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
+      }
 
       PrintList = new List<PrintListClass>();
 			var printList = new List<PrintListClass>();

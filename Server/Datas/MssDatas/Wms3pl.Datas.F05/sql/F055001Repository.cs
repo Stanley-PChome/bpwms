@@ -464,5 +464,33 @@ namespace Wms3pl.Datas.F05
 
       return SqlQuery<ConsignmentDetail>(sql, parms.ToArray());
     }
+
+    public IQueryable<ConsignmentNote> GetConsignmentNote(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p3", wmsNo) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"SELECT
+						      ROW_NUMBER()OVER(ORDER BY WMS_ORD_NO ASC) ROWNUM,
+						      LOGISTIC_CODE,
+						      (SELECT LOGISTIC_NAME FROM F0002 WHERE DC_CODE=F055001.DC_CODE AND LOGISTIC_CODE = F055001.LOGISTIC_CODE) LOGISTIC_NAME,
+						      PAST_NO,
+						      BOX_NUM,
+                  WORKSTATION_CODE,
+						      CRT_NAME,
+						      CRT_DATE 
+						      FROM F055001 
+						      WHERE DC_CODE = @p0
+						      AND GUP_CODE = @p1
+						      AND CUST_CODE = @p2
+						      AND WMS_ORD_NO = @p3";
+
+      return SqlQuery<ConsignmentNote>(sql, param.ToArray());
+    }
   }
 }
