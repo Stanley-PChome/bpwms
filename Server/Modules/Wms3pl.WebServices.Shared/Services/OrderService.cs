@@ -849,6 +849,7 @@ namespace Wms3pl.WebServices.Shared.Services
 			var updF0513Datas = new List<F0513>();
 			var addF060702List = new List<F060702>();
       var updF051301s = new List<F051301>();
+      var delF051301List = new List<string>();
 			#endregion
 
 			#region 取得要處理的資料
@@ -947,7 +948,6 @@ namespace Wms3pl.WebServices.Shared.Services
 						if (canCancel)
 						{
 							#region 調整揀貨單、揀貨單明細、揀貨總量明細、並將虛擬儲位庫存進行回復
-							
 
 							// 找出虛擬儲位檔資料
 							var currF1511s = f1511s.Where(x => x.ORDER_NO == f051201.PICK_ORD_NO).ToList();
@@ -967,11 +967,13 @@ namespace Wms3pl.WebServices.Shared.Services
 									updF051202List.Add(f051202);
 								}
 							}
+
 							if (currF051202s.All(x => x.PICK_STATUS == "9"))
 							{
 								f051201.PICK_STATUS = 9;
 								updF051201List.Add(f051201);
 							}
+
 							// 找出揀貨單總揀明細資料
 							var f051203s = f051203Repo.GetDataByPickNo(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, f051201.PICK_ORD_NO).ToList();
 							foreach (var f051203 in f051203s)
@@ -983,8 +985,18 @@ namespace Wms3pl.WebServices.Shared.Services
 								f051203.B_PICK_QTY = qty;
 								updF051203List.Add(f051203);
 							}
-							#endregion							
-						}					
+
+              // 如果出貨單所有的揀貨明細的狀態都為9(取消)，刪除F051301
+              var pickOrdsbyWmsNo = f051202s.GroupBy(o => o.WMS_ORD_NO);
+              foreach (var groupF051202 in pickOrdsbyWmsNo)
+              {
+                if (groupF051202.All(o => o.PICK_STATUS == "9"))
+                {
+                  delF051301List.Add(groupF051202.Key);
+                }
+              }
+              #endregion
+            }					
 					}
 
 					#region 未確認揀缺紀錄要自動結案，並將缺貨記錄搬到疑似遺失倉且寫入庫存異常紀錄
@@ -1036,7 +1048,7 @@ namespace Wms3pl.WebServices.Shared.Services
           {
             var f051301 = f051301Repo.Find(x => x.DC_CODE == f051201.DC_CODE && x.GUP_CODE == f051201.GUP_CODE && x.CUST_CODE == f051201.CUST_CODE && x.DELV_DATE == f051201.DELV_DATE && x.PICK_TIME == f051201.PICK_TIME && x.WMS_NO == f060201.WMS_NO);
 
-            if (f051301 != null)
+            if (f051301 != null && !delF051301List.Contains(f051301.WMS_NO))
             {
               if ((f051201.PICK_STATUS == 1 || f051201.PICK_STATUS == 2) && f051201.DISP_SYSTEM == "1" && f051201.ORD_TYPE == "1" && f051201.NEXT_STEP != ((int)NextStep.CrossAllotPier).ToString() && isPickAllWmsCancel && f060201 != null && f060201.STATUS == "2")
               {
@@ -1123,6 +1135,8 @@ namespace Wms3pl.WebServices.Shared.Services
 				SharedService.BulkInsertAllocation(returnNewAllocationList, returnStocks, true);
 			}
 
+      if (delF051301List.Any())
+        f051301Repo.DeleteF051301(dcCode, gupCode, custCode, delF051301List);
 			if (updF1511List.Any())
 				RestoreVirtualStock(updF1511List);
 			if (updF051201List.Any())
