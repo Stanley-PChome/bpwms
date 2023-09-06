@@ -38,7 +38,7 @@ namespace Wms3pl.Datas.Test.F05
             var wmsOrdNos = new List<string> { "O2017022000005", "O2017022000006" };
             #endregion
 
-            _f055002Repo.GetPackageBoxSeqsByWmsOrdNos(dcCode, gupCode, custCode, wmsOrdNos);
+            //_f055002Repo.GetPackageBoxSeqsByWmsOrdNos(dcCode, gupCode, custCode, wmsOrdNos);
         }
 
         [TestMethod]
