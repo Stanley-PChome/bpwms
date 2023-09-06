@@ -874,10 +874,13 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			// 取得疑似遺失倉第一個儲位[C] = sharedService.GetPickLossLoc
 			var doubtLackFstLoc = SharedService.GetPickLossLoc(dcCode, doubtLackWhId);
-			#endregion
 
-			// 取消訂單若揀貨單還沒開始揀貨可將揀貨單明細壓成9，並回傳要做虛擬儲位回復的F1511資料，再跑虛擬儲位自動回庫存
-			var groupBatchPicker = f051201s.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.DELV_DATE, x.PICK_TIME }).ToList();
+      // 找出揀貨單明細未全部取消的出貨單
+      var notAllCanceled = f051202Repo.GetNotAllCanceledOrders(dcCode, gupCode, custCode, wmsOrdNos);
+      #endregion
+
+      // 取消訂單若揀貨單還沒開始揀貨可將揀貨單明細壓成9，並回傳要做虛擬儲位回復的F1511資料，再跑虛擬儲位自動回庫存
+      var groupBatchPicker = f051201s.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.DELV_DATE, x.PICK_TIME }).ToList();
 			foreach (var batch in groupBatchPicker)
 			{
 				var batchCancelQty = 0;
