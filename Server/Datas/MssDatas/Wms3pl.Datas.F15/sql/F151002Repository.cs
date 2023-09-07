@@ -765,7 +765,8 @@ namespace Wms3pl.Datas.F15
                   SERIAL_NO,
                   TAR_QTY B_QTY,
                   A_TAR_QTY A_QTY,
-                  TAR_LOC_CODE RETURN_LOC_CODE
+                  TAR_LOC_CODE RETURN_LOC_CODE,
+                  ALLOCATION_NO
                 FROM F151002
                 WHERE 
                   DC_CODE = @p0

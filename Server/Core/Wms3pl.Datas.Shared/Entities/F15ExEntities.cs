@@ -1385,6 +1385,8 @@ namespace Wms3pl.Datas.Shared.Entities
     public int A_QTY { get; set; }
     [DataMember]
     public string RETURN_LOC_CODE { get; set; }
+    [DataMember]
+    public string ALLOCATION_NO { get; set; }
   }
   #endregion 訂單取消資訊
 }

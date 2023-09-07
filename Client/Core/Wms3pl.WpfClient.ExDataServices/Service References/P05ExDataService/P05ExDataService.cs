@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 2023/9/5 下午 04:41:59
+// Generation date: 2023/9/7 下午 01:22:31
 namespace Wms3pl.WpfClient.ExDataServices.P05ExDataService
 {
     
@@ -3110,602 +3110,603 @@ namespace Wms3pl.WpfClient.ExDataServices.P05ExDataService
                 "\"Edm.DateTime\" /><Property Name=\"MAKE_NO\" Type=\"Edm.String\" /><Property Name=\"SE" +
                 "RIAL_NO\" Type=\"Edm.String\" /><Property Name=\"B_QTY\" Type=\"Edm.Int32\" Nullable=\"f" +
                 "alse\" /><Property Name=\"A_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Nam" +
-                "e=\"RETURN_LOC_CODE\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"DivideInf" +
-                "o\"><Key><PropertyRef Name=\"PICK_ORD_NO\" /></Key><Property Name=\"PICK_ORD_NO\" Typ" +
-                "e=\"Edm.String\" Nullable=\"false\" /><Property Name=\"WMS_ORD_NO\" Type=\"Edm.String\" " +
-                "/><Property Name=\"CONTAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"NEXT_STEP\"" +
-                " Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /></EntityType><E" +
-                "ntityType Name=\"DivideDetail\"><Key><PropertyRef Name=\"PICK_ORD_NO\" /><PropertyRe" +
-                "f Name=\"PICK_ORD_SEQ\" /></Key><Property Name=\"PICK_ORD_NO\" Type=\"Edm.String\" Nul" +
-                "lable=\"false\" /><Property Name=\"PICK_ORD_SEQ\" Type=\"Edm.String\" Nullable=\"false\"" +
-                " /><Property Name=\"PICK_LOC_NO\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Na" +
-                "me=\"CONTAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"B_SET_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property " +
-                "Name=\"A_SET_QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"UPD_NAME\" T" +
-                "ype=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false" +
-                "\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /></EntityTyp" +
-                "e><EntityType Name=\"CollectionRecord\"><Key><PropertyRef Name=\"CELL_CODE\" /><Prop" +
-                "ertyRef Name=\"COLLECTION_CODE\" /></Key><Property Name=\"COLLECTION_CODE\" Type=\"Ed" +
-                "m.String\" Nullable=\"false\" /><Property Name=\"CELL_CODE\" Type=\"Edm.String\" Nullab" +
-                "le=\"false\" /><Property Name=\"WMS_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"CON" +
-                "TAINER_CODE\" Type=\"Edm.String\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Pr" +
-                "operty Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.D" +
-                "ateTime\" Nullable=\"false\" /></EntityType><EntityType Name=\"ConsignmentDetail\"><K" +
-                "ey><PropertyRef Name=\"PACKAGE_BOX_NO\" /><PropertyRef Name=\"PAST_NO\" /></Key><Pro" +
-                "perty Name=\"PAST_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PACKAG" +
-                "E_BOX_NO\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"BOX_NUM\" Type=\"Edm" +
-                ".String\" /><Property Name=\"PACKAGE_BOX_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" />" +
-                "<Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"PACKAGE_QTY\" Type" +
-                "=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"PACK_WEIGHT\" Type=\"Edm.Decimal\" " +
-                "Nullable=\"false\" /><Property Name=\"TOTAL_WEIGHT\" Type=\"Edm.Decimal\" Nullable=\"fa" +
-                "lse\" /><Property Name=\"SERIAL_NO\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" " +
-                "Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"fals" +
-                "e\" /></EntityType><EntityType Name=\"GetF050901CSV\"><Key><PropertyRef Name=\"CUST_" +
-                "ORD_NO\" /></Key><Property Name=\"CUST_ORD_NO\" Type=\"Edm.String\" Nullable=\"false\" " +
-                "/><Property Name=\"CUST_NAME\" Type=\"Edm.String\" /><Property Name=\"ALL_ID\" Type=\"E" +
-                "dm.String\" /><Property Name=\"CONSIGN_NO\" Type=\"Edm.String\" /><Property Name=\"GUP" +
-                "_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Prope" +
-                "rty Name=\"DC_CODE\" Type=\"Edm.String\" /></EntityType><Association Name=\"PickConta" +
-                "inerPutIntoOutContainerResult_UpdateOutContainerResult\"><End Type=\"Wms3pl.Datas." +
-                "Shared.Entities.PickContainerPutIntoOutContainerResult\" Role=\"PickContainerPutIn" +
-                "toOutContainerResult\" Multiplicity=\"*\" /><End Type=\"Wms3pl.Datas.Shared.Entities" +
-                ".OutContainerResult\" Role=\"UpdateOutContainerResult\" Multiplicity=\"0..1\" /></Ass" +
-                "ociation></Schema><Schema Namespace=\"Wms3pl.Datas.F05\" xmlns=\"http://schemas.mic" +
-                "rosoft.com/ado/2009/11/edm\"><EntityType Name=\"F05010103\"><Key><PropertyRef Name=" +
-                "\"LOG_ID\" /></Key><Property Name=\"LOG_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Pr" +
-                "operty Name=\"DC_CODE\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.St" +
-                "ring\" /><Property Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"TYPE\" Typ" +
-                "e=\"Edm.String\" /><Property Name=\"ORD_NO\" Type=\"Edm.String\" /><Property Name=\"DEL" +
-                "V_RETAILCODE\" Type=\"Edm.String\" /><Property Name=\"DELV_RETAILNAME\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"CONSIGN_NO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\"" +
-                " Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.Str" +
-                "ing\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" T" +
-                "ype=\"Edm.DateTime\" /><Property Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Na" +
-                "me=\"UPD_NAME\" Type=\"Edm.String\" /></EntityType></Schema><Schema Namespace=\"Wms3p" +
-                "l.WebServices.Process.P05.ExDataSources\" xmlns=\"http://schemas.microsoft.com/ado" +
-                "/2009/11/edm\"><EntityContainer Name=\"P05ExDataSource\" m:IsDefaultEntityContainer" +
-                "=\"true\"><EntitySet Name=\"ExecuteResults\" EntityType=\"Wms3pl.Datas.Shared.Entitie" +
-                "s.ExecuteResult\" /><EntitySet Name=\"F051201Datas\" EntityType=\"Wms3pl.Datas.Share" +
-                "d.Entities.F051201Data\" /><EntitySet Name=\"F051202Datas\" EntityType=\"Wms3pl.Data" +
-                "s.Shared.Entities.F051202Data\" /><EntitySet Name=\"F051201SelectedDatas\" EntityTy" +
-                "pe=\"Wms3pl.Datas.Shared.Entities.F051201SelectedData\" /><En";
+                "e=\"RETURN_LOC_CODE\" Type=\"Edm.String\" /><Property Name=\"ALLOCATION_NO\" Type=\"Edm" +
+                ".String\" /></EntityType><EntityType Name=\"DivideInfo\"><Key><PropertyRef Name=\"PI" +
+                "CK_ORD_NO\" /></Key><Property Name=\"PICK_ORD_NO\" Type=\"Edm.String\" Nullable=\"fals" +
+                "e\" /><Property Name=\"WMS_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"CONTAINER_C" +
+                "ODE\" Type=\"Edm.String\" /><Property Name=\"NEXT_STEP\" Type=\"Edm.String\" /><Propert" +
+                "y Name=\"STATUS\" Type=\"Edm.String\" /></EntityType><EntityType Name=\"DivideDetail\"" +
+                "><Key><PropertyRef Name=\"PICK_ORD_NO\" /><PropertyRef Name=\"PICK_ORD_SEQ\" /></Key" +
+                "><Property Name=\"PICK_ORD_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Property Nam" +
+                "e=\"PICK_ORD_SEQ\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"PICK_LOC_N" +
+                "O\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"CONTAINER_CODE\" Type=\"Edm" +
+                ".String\" /><Property Name=\"ITEM_CODE\" Type=\"Edm.String\" /><Property Name=\"B_SET_" +
+                "QTY\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"A_SET_QTY\" Type=\"Edm.In" +
+                "t32\" Nullable=\"false\" /><Property Name=\"UPD_NAME\" Type=\"Edm.String\" /><Property " +
+                "Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Property Name=\"UPD_DATE\"" +
+                " Type=\"Edm.DateTime\" Nullable=\"false\" /></EntityType><EntityType Name=\"Collectio" +
+                "nRecord\"><Key><PropertyRef Name=\"CELL_CODE\" /><PropertyRef Name=\"COLLECTION_CODE" +
+                "\" /></Key><Property Name=\"COLLECTION_CODE\" Type=\"Edm.String\" Nullable=\"false\" />" +
+                "<Property Name=\"CELL_CODE\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"" +
+                "WMS_ORD_NO\" Type=\"Edm.String\" /><Property Name=\"CONTAINER_CODE\" Type=\"Edm.String" +
+                "\" /><Property Name=\"STATUS\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"" +
+                "Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /><" +
+                "/EntityType><EntityType Name=\"ConsignmentDetail\"><Key><PropertyRef Name=\"PACKAGE" +
+                "_BOX_NO\" /><PropertyRef Name=\"PAST_NO\" /></Key><Property Name=\"PAST_NO\" Type=\"Ed" +
+                "m.String\" Nullable=\"false\" /><Property Name=\"PACKAGE_BOX_NO\" Type=\"Edm.Int32\" Nu" +
+                "llable=\"false\" /><Property Name=\"BOX_NUM\" Type=\"Edm.String\" /><Property Name=\"PA" +
+                "CKAGE_BOX_SEQ\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"ITEM_CODE\" Ty" +
+                "pe=\"Edm.String\" /><Property Name=\"PACKAGE_QTY\" Type=\"Edm.Int32\" Nullable=\"false\"" +
+                " /><Property Name=\"PACK_WEIGHT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property " +
+                "Name=\"TOTAL_WEIGHT\" Type=\"Edm.Decimal\" Nullable=\"false\" /><Property Name=\"SERIAL" +
+                "_NO\" Type=\"Edm.String\" /><Property Name=\"CRT_NAME\" Type=\"Edm.String\" /><Property" +
+                " Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable=\"false\" /></EntityType><EntityType" +
+                " Name=\"GetF050901CSV\"><Key><PropertyRef Name=\"CUST_ORD_NO\" /></Key><Property Nam" +
+                "e=\"CUST_ORD_NO\" Type=\"Edm.String\" Nullable=\"false\" /><Property Name=\"CUST_NAME\" " +
+                "Type=\"Edm.String\" /><Property Name=\"ALL_ID\" Type=\"Edm.String\" /><Property Name=\"" +
+                "CONSIGN_NO\" Type=\"Edm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><P" +
+                "roperty Name=\"CUST_CODE\" Type=\"Edm.String\" /><Property Name=\"DC_CODE\" Type=\"Edm." +
+                "String\" /></EntityType><Association Name=\"PickContainerPutIntoOutContainerResult" +
+                "_UpdateOutContainerResult\"><End Type=\"Wms3pl.Datas.Shared.Entities.PickContainer" +
+                "PutIntoOutContainerResult\" Role=\"PickContainerPutIntoOutContainerResult\" Multipl" +
+                "icity=\"*\" /><End Type=\"Wms3pl.Datas.Shared.Entities.OutContainerResult\" Role=\"Up" +
+                "dateOutContainerResult\" Multiplicity=\"0..1\" /></Association></Schema><Schema Nam" +
+                "espace=\"Wms3pl.Datas.F05\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><" +
+                "EntityType Name=\"F05010103\"><Key><PropertyRef Name=\"LOG_ID\" /></Key><Property Na" +
+                "me=\"LOG_ID\" Type=\"Edm.Int64\" Nullable=\"false\" /><Property Name=\"DC_CODE\" Type=\"E" +
+                "dm.String\" /><Property Name=\"GUP_CODE\" Type=\"Edm.String\" /><Property Name=\"CUST_" +
+                "CODE\" Type=\"Edm.String\" /><Property Name=\"TYPE\" Type=\"Edm.String\" /><Property Na" +
+                "me=\"ORD_NO\" Type=\"Edm.String\" /><Property Name=\"DELV_RETAILCODE\" Type=\"Edm.Strin" +
+                "g\" /><Property Name=\"DELV_RETAILNAME\" Type=\"Edm.String\" /><Property Name=\"CONSIG" +
+                "N_NO\" Type=\"Edm.String\" /><Property Name=\"CRT_DATE\" Type=\"Edm.DateTime\" Nullable" +
+                "=\"false\" /><Property Name=\"CRT_STAFF\" Type=\"Edm.String\" /><Property Name=\"CRT_NA" +
+                "ME\" Type=\"Edm.String\" /><Property Name=\"UPD_DATE\" Type=\"Edm.DateTime\" /><Propert" +
+                "y Name=\"UPD_STAFF\" Type=\"Edm.String\" /><Property Name=\"UPD_NAME\" Type=\"Edm.Strin" +
+                "g\" /></EntityType></Schema><Schema Namespace=\"Wms3pl.WebServices.Process.P05.ExD" +
+                "ataSources\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><EntityContaine" +
+                "r Name=\"P05ExDataSource\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"Exec" +
+                "uteResults\" EntityType=\"Wms3pl.Datas.Shared.Entities.ExecuteResult\" /><EntitySet" +
+                " Name=\"F051201Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051201Data\" /><En" +
+                "titySet Name=\"F051202Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051202Data" +
+                "\" /><EntitySet Name=\"F051201SelectedDatas\" EntityType=\"Wms3";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart11 = "titySet Name=\"F051201ReportDataAs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F0512" +
-                "01ReportDataA\" /><EntitySet Name=\"F051201ReportDataBs\" EntityType=\"Wms3pl.Datas." +
-                "Shared.Entities.F051201ReportDataB\" /><EntitySet Name=\"F050110ReportCustOrdNoDat" +
-                "as\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050110ReportCustOrdNoData\" /><Enti" +
-                "tySet Name=\"F0513WithF1909s\" EntityType=\"Wms3pl.Datas.Shared.Entities.F0513WithF" +
-                "1909\" /><EntitySet Name=\"F0513WithF050801Batchs\" EntityType=\"Wms3pl.Datas.Shared" +
-                ".Entities.F0513WithF050801Batch\" /><EntitySet Name=\"F050801WithF055001s\" EntityT" +
-                "ype=\"Wms3pl.Datas.Shared.Entities.F050801WithF055001\" /><EntitySet Name=\"F050805" +
-                "Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050805Data\" /><EntitySet Name=\"" +
-                "F05080501Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F05080501Data\" /><Entit" +
-                "ySet Name=\"F05080502Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F05080502Dat" +
-                "a\" /><EntitySet Name=\"F05080504Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F" +
-                "05080504Data\" /><EntitySet Name=\"F051206Picks\" EntityType=\"Wms3pl.Datas.Shared.E" +
-                "ntities.F051206Pick\" /><EntitySet Name=\"F051206AllocationLists\" EntityType=\"Wms3" +
-                "pl.Datas.Shared.Entities.F051206AllocationList\" /><EntitySet Name=\"F051206LackLi" +
-                "sts\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051206LackList\" /><EntitySet Name" +
-                "=\"F0010Lists\" EntityType=\"Wms3pl.Datas.Shared.Entities.F0010List\" /><EntitySet N" +
-                "ame=\"F050801StatisticsDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050801Sta" +
-                "tisticsData\" /><EntitySet Name=\"PickStatisticss\" EntityType=\"Wms3pl.Datas.Shared" +
-                ".Entities.PickingStatistics\" /><EntitySet Name=\"F050101Exs\" EntityType=\"Wms3pl.D" +
-                "atas.Shared.Entities.F050101Ex\" /><EntitySet Name=\"F050102Exs\" EntityType=\"Wms3p" +
-                "l.Datas.Shared.Entities.F050102Ex\" /><EntitySet Name=\"F050102Excels\" EntityType=" +
-                "\"Wms3pl.Datas.Shared.Entities.F050102Excel\" /><EntitySet Name=\"F050102WithF05080" +
-                "1s\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050102WithF050801\" /><EntitySet Na" +
-                "me=\"P05030201BasicDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.P05030201Basic" +
-                "Data\" /><EntitySet Name=\"F051202WithF055002s\" EntityType=\"Wms3pl.Datas.Shared.En" +
-                "tities.F051202WithF055002\" /><EntitySet Name=\"F050801NoShipOrderss\" EntityType=\"" +
-                "Wms3pl.Datas.Shared.Entities.F050801NoShipOrders\" /><EntitySet Name=\"F050001Data" +
-                "s\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050001Data\" /><EntitySet Name=\"F050" +
-                "802GroupItems\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050802GroupItem\" /><Ent" +
-                "itySet Name=\"P710802SearchResults\" EntityType=\"Wms3pl.Datas.Shared.Entities.P710" +
-                "802SearchResult\" /><EntitySet Name=\"F050301WmsOrdNoDatas\" EntityType=\"Wms3pl.Dat" +
-                "as.Shared.Entities.F050301WmsOrdNoData\" /><EntitySet Name=\"F050801MainDataRpts\" " +
-                "EntityType=\"Wms3pl.Datas.Shared.Entities.F050801MainDataRpt\" /><EntitySet Name=\"" +
-                "F050801DetailDataRpts\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050801DetailDat" +
-                "aRpt\" /><EntitySet Name=\"F050801ItemDatas\" EntityType=\"Wms3pl.Datas.Shared.Entit" +
-                "ies.F050801ItemData\" /><EntitySet Name=\"F051202VolumnDatas\" EntityType=\"Wms3pl.D" +
-                "atas.Shared.Entities.F051202VolumnData\" /><EntitySet Name=\"P050301QueryItems\" En" +
-                "tityType=\"Wms3pl.Datas.Shared.Entities.P050303QueryItem\" /><EntitySet Name=\"F051" +
-                "205Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051205Data\" /><EntitySet Nam" +
-                "e=\"F050801WithBills\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050801WithBill\" /" +
-                "><EntitySet Name=\"F700101CarDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F700" +
-                "101CarData\" /><EntitySet Name=\"F055002WithGridLogs\" EntityType=\"Wms3pl.Datas.Sha" +
-                "red.Entities.F055002WithGridLog\" /><EntitySet Name=\"F050304Exs\" EntityType=\"Wms3" +
-                "pl.Datas.Shared.Entities.F050304AddEService\" /><EntitySet Name=\"F05010103s\" Enti" +
-                "tyType=\"Wms3pl.Datas.F05.F05010103\" /><EntitySet Name=\"P050103PickTimes\" EntityT" +
-                "ype=\"Wms3pl.Datas.Shared.Entities.P050103PickTime\" /><EntitySet Name=\"P050103Pic" +
-                "kOrdNos\" EntityType=\"Wms3pl.Datas.Shared.Entities.P050103PickOrdNo\" /><EntitySet" +
-                " Name=\"P050103WmsOrdNos\" EntityType=\"Wms3pl.Datas.Shared.Entities.P050103WmsOrdN" +
-                "o\" /><EntitySet Name=\"F190906Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.P05" +
-                "0103ReportData\" /><EntitySet Name=\"WarehouseTypeLists\" EntityType=\"Wms3pl.Datas." +
-                "Shared.Entities.WarehouseTypeList\" /><EntitySet Name=\"F050110DataSearchs\" Entity" +
-                "Type=\"Wms3pl.Datas.Shared.Entities.F050110DataSearch\" /><EntitySet Name=\"F050110" +
-                "RetailCodeDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050110RetailCodeData\"" +
-                " /><EntitySet Name=\"F050110ReportDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities" +
-                ".F050110ReportData\" /><EntitySet Name=\"F050110ReportStickerDatas\" EntityType=\"Wm" +
-                "s3pl.Datas.Shared.Entities.F050110ReportStickerData\" /><EntitySet Name=\"P050112P" +
-                "icks\" EntityType=\"Wms3pl.Datas.Shared.Entities.P050112Pick\" /><EntitySet Name=\"P" +
-                "050112Batches\" EntityType=\"Wms3pl.Datas.Shared.Entities.P050112Batch\" /><EntityS" +
-                "et Name=\"PutReportDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.PutReportData\"" +
-                " /><EntitySet Name=\"PickReportDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.Pi" +
-                "ckReportData\" /><EntitySet Name=\"BatchPickStations\" EntityType=\"Wms3pl.Datas.Sha" +
-                "red.Entities.BatchPickStation\" /><EntitySet Name=\"F050004WithF190001s\" EntityTyp" +
-                "e=\"Wms3pl.Datas.Shared.Entities.F050004WithF190001\" /><EntitySet Name=\"P05030500" +
-                "00CalHeads\" EntityType=\"Wms3pl.Datas.Shared.Entities.P0503050000CalHead\" /><Enti" +
-                "tySet Name=\"F050113DataSearchs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050113" +
-                "DataSearch\" /><EntitySet Name=\"F050113ReportDatas\" EntityType=\"Wms3pl.Datas.Shar" +
-                "ed.Entities.F050113ReportData\" /><EntitySet Name=\"F050113ReportCustOrdNoDatas\" E" +
-                "ntityType=\"Wms3pl.Datas.Shared.Entities.F050113ReportCustOrdNoData\" /><EntitySet" +
-                " Name=\"RP0501010004Models\" EntityType=\"Wms3pl.Datas.Shared.Entities.RP0501010004" +
-                "Model\" /><EntitySet Name=\"RP0501010005Models\" EntityType=\"Wms3pl.Datas.Shared.En" +
-                "tities.RP0501010005Model\" /><EntitySet Name=\"BatchPickNoLists\" EntityType=\"Wms3p" +
-                "l.Datas.Shared.Entities.BatchPickNoList\" /><EntitySet Name=\"RePickNoLists\" Entit" +
-                "yType=\"Wms3pl.Datas.Shared.Entities.RePickNoList\" /><EntitySet Name=\"ReprintPick" +
-                "NoLists\" EntityType=\"Wms3pl.Datas.Shared.Entities.RePrintPickNoList\" /><EntitySe" +
-                "t Name=\"SinglePickingReportDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.Singl" +
-                "ePickingReportData\" /><EntitySet Name=\"BatchPickNoReportDatas\" EntityType=\"Wms3p" +
-                "l.Datas.Shared.Entities.BatchPickingReportData\" /><EntitySet Name=\"SinglePicking" +
-                "TickerDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.SinglePickingTickerData\" /" +
-                "><EntitySet Name=\"BatchPickingTickerDatas\" EntityType=\"Wms3pl.Datas.Shared.Entit" +
-                "ies.BatchPickingTickerData\" /><EntitySet Name=\"F051201WithF051202s\" EntityType=\"" +
-                "Wms3pl.Datas.Shared.Entities.F051201WithF051202\" /><EntitySet Name=\"PickDetails\"" +
-                " EntityType=\"Wms3pl.Datas.Shared.Entities.PickDetail\" /><EntitySet Name=\"F050901" +
-                "WithF055001s\" EntityType=\"Wms3pl.Datas.Shared.Entities.ConsignmentNote\" /><Entit" +
-                "ySet Name=\"F05080505Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F05080505Dat" +
-                "a\" /><EntitySet Name=\"F05080506Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F" +
-                "05080506Data\" /><EntitySet Name=\"PickContainer\" EntityType=\"Wms3pl.Datas.Shared." +
-                "Entities.PickContainer\" /><EntitySet Name=\"OrderCancelInfo\" EntityType=\"Wms3pl.D" +
-                "atas.Shared.Entities.OrderCancelInfo\" /><EntitySet Name=\"DivideInfo\" EntityType=" +
-                "\"Wms3pl.Datas.Shared.Entities.DivideInfo\" /><EntitySet Name=\"DivideDetail\" Entit" +
-                "yType=\"Wms3pl.Datas.Shared.Entities.DivideDetail\" /><EntitySet Name=\"CollectionR" +
-                "ecord\" EntityType=\"Wms3pl.Datas.Shared.Entities.CollectionRecord\" /><EntitySet N" +
-                "ame=\"ConsignmentDetail\" EntityType=\"Wms3pl.Datas.Shared.Entities.ConsignmentDeta" +
-                "il\" /><EntitySet Name=\"GetF050901CSV\" EntityType=\"Wms3pl.Da";
+            private const string ModelPart11 = "pl.Datas.Shared.Entities.F051201SelectedData\" /><EntitySet Name=\"F051201ReportDat" +
+                "aAs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051201ReportDataA\" /><EntitySet N" +
+                "ame=\"F051201ReportDataBs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051201Report" +
+                "DataB\" /><EntitySet Name=\"F050110ReportCustOrdNoDatas\" EntityType=\"Wms3pl.Datas." +
+                "Shared.Entities.F050110ReportCustOrdNoData\" /><EntitySet Name=\"F0513WithF1909s\" " +
+                "EntityType=\"Wms3pl.Datas.Shared.Entities.F0513WithF1909\" /><EntitySet Name=\"F051" +
+                "3WithF050801Batchs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F0513WithF050801Bat" +
+                "ch\" /><EntitySet Name=\"F050801WithF055001s\" EntityType=\"Wms3pl.Datas.Shared.Enti" +
+                "ties.F050801WithF055001\" /><EntitySet Name=\"F050805Datas\" EntityType=\"Wms3pl.Dat" +
+                "as.Shared.Entities.F050805Data\" /><EntitySet Name=\"F05080501Datas\" EntityType=\"W" +
+                "ms3pl.Datas.Shared.Entities.F05080501Data\" /><EntitySet Name=\"F05080502Datas\" En" +
+                "tityType=\"Wms3pl.Datas.Shared.Entities.F05080502Data\" /><EntitySet Name=\"F050805" +
+                "04Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F05080504Data\" /><EntitySet Na" +
+                "me=\"F051206Picks\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051206Pick\" /><Entit" +
+                "ySet Name=\"F051206AllocationLists\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051" +
+                "206AllocationList\" /><EntitySet Name=\"F051206LackLists\" EntityType=\"Wms3pl.Datas" +
+                ".Shared.Entities.F051206LackList\" /><EntitySet Name=\"F0010Lists\" EntityType=\"Wms" +
+                "3pl.Datas.Shared.Entities.F0010List\" /><EntitySet Name=\"F050801StatisticsDatas\" " +
+                "EntityType=\"Wms3pl.Datas.Shared.Entities.F050801StatisticsData\" /><EntitySet Nam" +
+                "e=\"PickStatisticss\" EntityType=\"Wms3pl.Datas.Shared.Entities.PickingStatistics\" " +
+                "/><EntitySet Name=\"F050101Exs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050101E" +
+                "x\" /><EntitySet Name=\"F050102Exs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F0501" +
+                "02Ex\" /><EntitySet Name=\"F050102Excels\" EntityType=\"Wms3pl.Datas.Shared.Entities" +
+                ".F050102Excel\" /><EntitySet Name=\"F050102WithF050801s\" EntityType=\"Wms3pl.Datas." +
+                "Shared.Entities.F050102WithF050801\" /><EntitySet Name=\"P05030201BasicDatas\" Enti" +
+                "tyType=\"Wms3pl.Datas.Shared.Entities.P05030201BasicData\" /><EntitySet Name=\"F051" +
+                "202WithF055002s\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051202WithF055002\" />" +
+                "<EntitySet Name=\"F050801NoShipOrderss\" EntityType=\"Wms3pl.Datas.Shared.Entities." +
+                "F050801NoShipOrders\" /><EntitySet Name=\"F050001Datas\" EntityType=\"Wms3pl.Datas.S" +
+                "hared.Entities.F050001Data\" /><EntitySet Name=\"F050802GroupItems\" EntityType=\"Wm" +
+                "s3pl.Datas.Shared.Entities.F050802GroupItem\" /><EntitySet Name=\"P710802SearchRes" +
+                "ults\" EntityType=\"Wms3pl.Datas.Shared.Entities.P710802SearchResult\" /><EntitySet" +
+                " Name=\"F050301WmsOrdNoDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050301Wms" +
+                "OrdNoData\" /><EntitySet Name=\"F050801MainDataRpts\" EntityType=\"Wms3pl.Datas.Shar" +
+                "ed.Entities.F050801MainDataRpt\" /><EntitySet Name=\"F050801DetailDataRpts\" Entity" +
+                "Type=\"Wms3pl.Datas.Shared.Entities.F050801DetailDataRpt\" /><EntitySet Name=\"F050" +
+                "801ItemDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050801ItemData\" /><Entit" +
+                "ySet Name=\"F051202VolumnDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F051202V" +
+                "olumnData\" /><EntitySet Name=\"P050301QueryItems\" EntityType=\"Wms3pl.Datas.Shared" +
+                ".Entities.P050303QueryItem\" /><EntitySet Name=\"F051205Datas\" EntityType=\"Wms3pl." +
+                "Datas.Shared.Entities.F051205Data\" /><EntitySet Name=\"F050801WithBills\" EntityTy" +
+                "pe=\"Wms3pl.Datas.Shared.Entities.F050801WithBill\" /><EntitySet Name=\"F700101CarD" +
+                "atas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F700101CarData\" /><EntitySet Name" +
+                "=\"F055002WithGridLogs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F055002WithGridL" +
+                "og\" /><EntitySet Name=\"F050304Exs\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050" +
+                "304AddEService\" /><EntitySet Name=\"F05010103s\" EntityType=\"Wms3pl.Datas.F05.F050" +
+                "10103\" /><EntitySet Name=\"P050103PickTimes\" EntityType=\"Wms3pl.Datas.Shared.Enti" +
+                "ties.P050103PickTime\" /><EntitySet Name=\"P050103PickOrdNos\" EntityType=\"Wms3pl.D" +
+                "atas.Shared.Entities.P050103PickOrdNo\" /><EntitySet Name=\"P050103WmsOrdNos\" Enti" +
+                "tyType=\"Wms3pl.Datas.Shared.Entities.P050103WmsOrdNo\" /><EntitySet Name=\"F190906" +
+                "Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.P050103ReportData\" /><EntitySet " +
+                "Name=\"WarehouseTypeLists\" EntityType=\"Wms3pl.Datas.Shared.Entities.WarehouseType" +
+                "List\" /><EntitySet Name=\"F050110DataSearchs\" EntityType=\"Wms3pl.Datas.Shared.Ent" +
+                "ities.F050110DataSearch\" /><EntitySet Name=\"F050110RetailCodeDatas\" EntityType=\"" +
+                "Wms3pl.Datas.Shared.Entities.F050110RetailCodeData\" /><EntitySet Name=\"F050110Re" +
+                "portDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050110ReportData\" /><Entity" +
+                "Set Name=\"F050110ReportStickerDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F0" +
+                "50110ReportStickerData\" /><EntitySet Name=\"P050112Picks\" EntityType=\"Wms3pl.Data" +
+                "s.Shared.Entities.P050112Pick\" /><EntitySet Name=\"P050112Batches\" EntityType=\"Wm" +
+                "s3pl.Datas.Shared.Entities.P050112Batch\" /><EntitySet Name=\"PutReportDatas\" Enti" +
+                "tyType=\"Wms3pl.Datas.Shared.Entities.PutReportData\" /><EntitySet Name=\"PickRepor" +
+                "tDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.PickReportData\" /><EntitySet Na" +
+                "me=\"BatchPickStations\" EntityType=\"Wms3pl.Datas.Shared.Entities.BatchPickStation" +
+                "\" /><EntitySet Name=\"F050004WithF190001s\" EntityType=\"Wms3pl.Datas.Shared.Entiti" +
+                "es.F050004WithF190001\" /><EntitySet Name=\"P0503050000CalHeads\" EntityType=\"Wms3p" +
+                "l.Datas.Shared.Entities.P0503050000CalHead\" /><EntitySet Name=\"F050113DataSearch" +
+                "s\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050113DataSearch\" /><EntitySet Name" +
+                "=\"F050113ReportDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F050113ReportData" +
+                "\" /><EntitySet Name=\"F050113ReportCustOrdNoDatas\" EntityType=\"Wms3pl.Datas.Share" +
+                "d.Entities.F050113ReportCustOrdNoData\" /><EntitySet Name=\"RP0501010004Models\" En" +
+                "tityType=\"Wms3pl.Datas.Shared.Entities.RP0501010004Model\" /><EntitySet Name=\"RP0" +
+                "501010005Models\" EntityType=\"Wms3pl.Datas.Shared.Entities.RP0501010005Model\" /><" +
+                "EntitySet Name=\"BatchPickNoLists\" EntityType=\"Wms3pl.Datas.Shared.Entities.Batch" +
+                "PickNoList\" /><EntitySet Name=\"RePickNoLists\" EntityType=\"Wms3pl.Datas.Shared.En" +
+                "tities.RePickNoList\" /><EntitySet Name=\"ReprintPickNoLists\" EntityType=\"Wms3pl.D" +
+                "atas.Shared.Entities.RePrintPickNoList\" /><EntitySet Name=\"SinglePickingReportDa" +
+                "tas\" EntityType=\"Wms3pl.Datas.Shared.Entities.SinglePickingReportData\" /><Entity" +
+                "Set Name=\"BatchPickNoReportDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.Batch" +
+                "PickingReportData\" /><EntitySet Name=\"SinglePickingTickerDatas\" EntityType=\"Wms3" +
+                "pl.Datas.Shared.Entities.SinglePickingTickerData\" /><EntitySet Name=\"BatchPickin" +
+                "gTickerDatas\" EntityType=\"Wms3pl.Datas.Shared.Entities.BatchPickingTickerData\" /" +
+                "><EntitySet Name=\"F051201WithF051202s\" EntityType=\"Wms3pl.Datas.Shared.Entities." +
+                "F051201WithF051202\" /><EntitySet Name=\"PickDetails\" EntityType=\"Wms3pl.Datas.Sha" +
+                "red.Entities.PickDetail\" /><EntitySet Name=\"F050901WithF055001s\" EntityType=\"Wms" +
+                "3pl.Datas.Shared.Entities.ConsignmentNote\" /><EntitySet Name=\"F05080505Datas\" En" +
+                "tityType=\"Wms3pl.Datas.Shared.Entities.F05080505Data\" /><EntitySet Name=\"F050805" +
+                "06Datas\" EntityType=\"Wms3pl.Datas.Shared.Entities.F05080506Data\" /><EntitySet Na" +
+                "me=\"PickContainer\" EntityType=\"Wms3pl.Datas.Shared.Entities.PickContainer\" /><En" +
+                "titySet Name=\"OrderCancelInfo\" EntityType=\"Wms3pl.Datas.Shared.Entities.OrderCan" +
+                "celInfo\" /><EntitySet Name=\"DivideInfo\" EntityType=\"Wms3pl.Datas.Shared.Entities" +
+                ".DivideInfo\" /><EntitySet Name=\"DivideDetail\" EntityType=\"Wms3pl.Datas.Shared.En" +
+                "tities.DivideDetail\" /><EntitySet Name=\"CollectionRecord\" EntityType=\"Wms3pl.Dat" +
+                "as.Shared.Entities.CollectionRecord\" /><EntitySet Name=\"ConsignmentDetail\" Entit" +
+                "yType=\"Wms3pl.Datas.Shared.Entities.ConsignmentDetail\" /><E";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart12 = "tas.Shared.Entities.GetF050901CSV\" /><FunctionImport Name=\"GetF051201DatasForB2B\"" +
-                " ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201Data)\" EntitySet=\"F0" +
-                "51201Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.S" +
-                "tring\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Para" +
-                "meter Name=\"isPrinted\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name" +
-                "=\"GetF051202DatasForB2B\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F05" +
-                "1202Data)\" EntitySet=\"F051202Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"pickTime\" Type=\"Edm.String\" /></FunctionImport><FunctionImport " +
-                "Name=\"GetF051201ReportDataAsForB2B\" ReturnType=\"Collection(Wms3pl.Datas.Shared.E" +
-                "ntities.F051201ReportDataA)\" EntitySet=\"F051201ReportDataAs\" m:HttpMethod=\"GET\">" +
-                "<Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvD" +
-                "ate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><Fun" +
-                "ctionImport Name=\"GetF051201ReportDataBsForB2B\" ReturnType=\"Collection(Wms3pl.Da" +
-                "tas.Shared.Entities.F051201ReportDataB)\" EntitySet=\"F051201ReportDataBs\" m:HttpM" +
-                "ethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCod" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter" +
-                " Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionIm" +
-                "port Name=\"GetF051201SelectedDatasForB2B\" ReturnType=\"Collection(Wms3pl.Datas.Sh" +
-                "ared.Entities.F051201SelectedData)\" EntitySet=\"F051201SelectedDatas\" m:HttpMetho" +
-                "d=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" />" +
-                "</FunctionImport><FunctionImport Name=\"UpdateF051201ForB2B\" ReturnType=\"Collecti" +
-                "on(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:Htt" +
-                "pMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupC" +
-                "ode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"userId\" Type=\"Edm.String\" /><Parameter Name=\"userName\" Ty" +
-                "pe=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201DatasForB2C\" " +
-                "ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201Data)\" EntitySet=\"F05" +
-                "1201Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Param" +
-                "eter Name=\"isPrinted\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
-                "\"GetF051202DatasForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051" +
-                "202Data)\" EntitySet=\"F051202Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"pickTime\" Type=\"Edm.String\" /></FunctionImport><FunctionImport N" +
-                "ame=\"GetF051201ReportDataAsForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared.En" +
-                "tities.F051201ReportDataA)\" EntitySet=\"F051201ReportDataAs\" m:HttpMethod=\"GET\"><" +
-                "Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm." +
-                "String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDa" +
-                "te\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm." +
-                "String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><Func" +
-                "tionImport Name=\"GetF051201SelectedDatasForB2C\" ReturnType=\"Collection(Wms3pl.Da" +
-                "tas.Shared.Entities.F051201SelectedData)\" EntitySet=\"F051201SelectedDatas\" m:Htt" +
-                "pMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupC" +
-                "ode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.Stri" +
-                "ng\" /></FunctionImport><FunctionImport Name=\"UpdateF051201ForB2C\" ReturnType=\"Co" +
-                "llection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\"" +
-                " m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><P" +
-                "arameter Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"userId\" Type=\"Edm.String\" /><Parameter Name=\"userNa" +
-                "me\" Type=\"Edm.String\" /><Parameter Name=\"deviceCount\" Type=\"Edm.String\" /></Func" +
-                "tionImport><FunctionImport Name=\"GetF050801WithF055001Datas\" ReturnType=\"Collect" +
-                "ion(Wms3pl.Datas.Shared.Entities.F050801WithF055001)\" EntitySet=\"F050801WithF055" +
-                "001s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter" +
-                " Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\"" +
-                " /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter " +
-                "Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\"" +
-                " /><Parameter Name=\"pastNo\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=" +
-                "\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"Edm.String\" /></FunctionImport><Fun" +
-                "ctionImport Name=\"GetF0513WithF1909Datas\" ReturnType=\"Collection(Wms3pl.Datas.Sh" +
-                "ared.Entities.F0513WithF1909)\" EntitySet=\"F0513WithF1909s\" m:HttpMethod=\"GET\"><P" +
-                "arameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.S" +
-                "tring\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDat" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"delvTime\" Type=\"Edm.String\" /><Parameter" +
-                " Name=\"status\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Update" +
-                "PierCode\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" En" +
-                "titySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.S" +
-                "tring\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"allId\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"takeTime\" Type=\"Edm.String\" /><Parameter Name=\"pierCode\" Type=\"" +
-                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetBatchDebitDatas\" ReturnT" +
-                "ype=\"Collection(Wms3pl.Datas.Shared.Entities.F0513WithF050801Batch)\" EntitySet=\"" +
-                "F0513WithF050801Batchs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\"" +
-                " Type=\"Edm.String\" /><Parameter Name=\"notOrder\" Type=\"Edm.Boolean\" Nullable=\"fal" +
-                "se\" /><Parameter Name=\"isB2c\" Type=\"Edm.Boolean\" Nullable=\"false\" /></FunctionIm" +
-                "port><FunctionImport Name=\"GetF050801NoShipOrders\" ReturnType=\"Collection(Wms3pl" +
-                ".Datas.Shared.Entities.F050801NoShipOrders)\" EntitySet=\"F050801NoShipOrderss\" m:" +
-                "HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"g" +
-                "upCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Para" +
-                "meter Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"";
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart13 = "pickTime\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type=\"Edm.String\" /><Param" +
-                "eter Name=\"ordNo\" Type=\"Edm.String\" /><Parameter Name=\"custOrdNo\" Type=\"Edm.Stri" +
-                "ng\" /></FunctionImport><FunctionImport Name=\"GetF050101ExDatas\" ReturnType=\"Coll" +
-                "ection(Wms3pl.Datas.Shared.Entities.F050101Ex)\" EntitySet=\"F050101Exs\" m:HttpMet" +
-                "hod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCod" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter N" +
-                "ame=\"ordDateFrom\" Type=\"Edm.String\" /><Parameter Name=\"ordDateTo\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"ordNo\" Type=\"Edm.String\" /><Parameter Name=\"arriveDateFro" +
-                "m\" Type=\"Edm.String\" /><Parameter Name=\"arriveDateTo\" Type=\"Edm.String\" /><Param" +
-                "eter Name=\"custOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"retailCode\" Type=\"Edm.String\" /><Parameter Name=\"custNam" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter" +
-                " Name=\"pastNo\" Type=\"Edm.String\" /><Parameter Name=\"address\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"channel\" Type=\"Edm.String\" /><Parameter Name=\"delvType\" Type=\"" +
-                "Edm.String\" /><Parameter Name=\"allId\" Type=\"Edm.String\" /><Parameter Name=\"moveO" +
-                "utTarget\" Type=\"Edm.String\" /><Parameter Name=\"subChannel\" Type=\"Edm.String\" /><" +
-                "/FunctionImport><FunctionImport Name=\"GetF050102ExDatas\" ReturnType=\"Collection(" +
-                "Wms3pl.Datas.Shared.Entities.F050102Ex)\" EntitySet=\"F050102Exs\" m:HttpMethod=\"GE" +
-                "T\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"" +
-                "Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"or" +
-                "dNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF050102WithF0" +
-                "50801s\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F050102WithF050801)\"" +
-                " EntitySet=\"F050102WithF050801s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Ty" +
-                "pe=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsordno\" Type=\"Edm.String\" /></F" +
-                "unctionImport><FunctionImport Name=\"GetP05030201BasicData\" ReturnType=\"Collectio" +
-                "n(Wms3pl.Datas.Shared.Entities.P05030201BasicData)\" EntitySet=\"P05030201BasicDat" +
-                "as\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"Ed" +
-                "m.String\" /></FunctionImport><FunctionImport Name=\"GetSourceNosByWmsOrdNo\" Retur" +
-                "nType=\"Edm.String\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type" +
-                "=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport>" +
-                "<FunctionImport Name=\"GetF050001Datas\" ReturnType=\"Collection(Wms3pl.Datas.Share" +
-                "d.Entities.F050001Data)\" EntitySet=\"F050001Datas\" m:HttpMethod=\"GET\"><Parameter " +
-                "Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordType\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"ordSDate\" Type=\"Edm.String\" /><Parameter Name=\"ord" +
-                "EDate\" Type=\"Edm.String\" /><Parameter Name=\"arrivalSDate\" Type=\"Edm.String\" /><P" +
-                "arameter Name=\"arrivalEDate\" Type=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"custOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"co" +
-                "nsignee\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter Name=\"sourceType\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"retailCode\" Type=\"Edm.String\" /><Parameter Name=\"ca" +
-                "rPeriod\" Type=\"Edm.String\" /><Parameter Name=\"delvNo\" Type=\"Edm.String\" /><Param" +
-                "eter Name=\"custCost\" Type=\"Edm.String\" /><Parameter Name=\"fastDealType\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"crossCode\" Type=\"Edm.String\" /><Parameter Name=\"cha" +
-                "nnel\" Type=\"Edm.String\" /><Parameter Name=\"subChannel\" Type=\"Edm.String\" /></Fun" +
-                "ctionImport><FunctionImport Name=\"GetF050805Datas\" ReturnType=\"Collection(Wms3pl" +
-                ".Datas.Shared.Entities.F050805Data)\" EntitySet=\"F050805Datas\" m:HttpMethod=\"GET\"" +
+            private const string ModelPart12 = "ntitySet Name=\"GetF050901CSV\" EntityType=\"Wms3pl.Datas.Shared.Entities.GetF050901" +
+                "CSV\" /><FunctionImport Name=\"GetF051201DatasForB2B\" ReturnType=\"Collection(Wms3p" +
+                "l.Datas.Shared.Entities.F051201Data)\" EntitySet=\"F051201Datas\" m:HttpMethod=\"GET" +
+                "\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"E" +
+                "dm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"del" +
+                "vDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"isPrinted\" Type=\"" +
+                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051202DatasForB2B\" Retu" +
+                "rnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051202Data)\" EntitySet=\"F051202" +
+                "Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Paramete" +
+                "r Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Ty" +
+                "pe=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201ReportDataAsF" +
+                "orB2B\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201ReportDataA)\" " +
+                "EntitySet=\"F051201ReportDataAs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"c" +
+                "ustCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Null" +
+                "able=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"p" +
+                "ickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201R" +
+                "eportDataBsForB2B\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201Re" +
+                "portDataB)\" EntitySet=\"F051201ReportDataBs\" m:HttpMethod=\"GET\"><Parameter Name=\"" +
+                "dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.St" +
+                "ring\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdN" +
+                "o\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201Selected" +
+                "DatasForB2B\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201Selected" +
+                "Data)\" EntitySet=\"F051201SelectedDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCo" +
+                "de\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /></FunctionImport><FunctionImp" +
+                "ort Name=\"UpdateF051201ForB2B\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Parameter Name" +
+                "=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Par" +
+                "ameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm." +
+                "String\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"userId" +
+                "\" Type=\"Edm.String\" /><Parameter Name=\"userName\" Type=\"Edm.String\" /></FunctionI" +
+                "mport><FunctionImport Name=\"GetF051201DatasForB2C\" ReturnType=\"Collection(Wms3pl" +
+                ".Datas.Shared.Entities.F051201Data)\" EntitySet=\"F051201Datas\" m:HttpMethod=\"GET\"" +
                 "><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"calN" +
-                "o\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF05080501Datas\"" +
-                " ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F05080501Data)\" EntitySet=\"" +
-                "F05080501Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"calNo\" Type=\"Edm.String\" /></FunctionImport><Funct" +
-                "ionImport Name=\"GetF05080502Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.En" +
-                "tities.F05080502Data)\" EntitySet=\"F05080502Datas\" m:HttpMethod=\"GET\"><Parameter " +
-                "Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"calNo\" Type=\"Edm" +
-                ".String\" /></FunctionImport><FunctionImport Name=\"GetF05080504Datas\" ReturnType=" +
-                "\"Collection(Wms3pl.Datas.Shared.Entities.F05080504Data)\" EntitySet=\"F05080504Dat" +
-                "as\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter N" +
-                "ame=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"calNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Na" +
-                "me=\"GetF05080505Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F0508" +
-                "0505Data)\" EntitySet=\"F05080505Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter N" +
-                "ame=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"calNo\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"flag\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
-                "\"GetF05080506Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F0508050" +
-                "6Data)\" EntitySet=\"F05080506Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"calNo\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"flag\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"Ge" +
-                "tF710802Type1\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P710802Search" +
-                "Result)\" EntitySet=\"P710802SearchResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gu" +
-                "pCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Param" +
-                "eter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"changeDateBegin\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"changeDateEnd\" Type=\"Edm.String\" /><Parameter Name" +
-                "=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"receiptType\" Type=\"Edm.String\" /><Parameter Name=\"makeNo\" Type=\"" +
-                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF710802Type2\" ReturnType" +
-                "=\"Collection(Wms3pl.Datas.Shared.Entities.P710802SearchResult)\" EntitySet=\"P7108" +
-                "02SearchResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"" +
-                "Edm.String\" /><Parameter Name=\"changeDateBegin\" Type=\"Edm.String\" /><Parameter N" +
-                "ame=\"changeDateEnd\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter Name=\"receiptTy" +
-                "pe\" Type=\"Edm.String\" /><Parameter Name=\"makeNo\" Type=\"Edm.String\" /></FunctionI" +
-                "mport><FunctionImport Name=\"GetF710802Type3\" ReturnType=\"Collection(Wms3pl.Datas" +
-                ".Shared.Entities.P710802SearchResult)\" EntitySet=\"P710802Se";
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart14 = "archResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.S" +
-                "tring\" /><Parameter Name=\"changeDateBegin\" Type=\"Edm.String\" /><Parameter Name=\"" +
-                "changeDateEnd\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter Name=\"makeNo\" Type=\"" +
-                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201WithF051202s\" Ret" +
-                "urnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201WithF051202)\" EntitySet=" +
-                "\"F051201WithF051202s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImpo" +
-                "rt><FunctionImport Name=\"GetPickDetails\" ReturnType=\"Collection(Wms3pl.Datas.Sha" +
-                "red.Entities.PickDetail)\" EntitySet=\"PickDetails\" m:HttpMethod=\"GET\"><Parameter " +
-                "Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"" +
-                "Edm.String\" /></FunctionImport><FunctionImport Name=\"GetConsignmentNote\" ReturnT" +
-                "ype=\"Collection(Wms3pl.Datas.Shared.Entities.ConsignmentNote)\" EntitySet=\"F05090" +
-                "1WithF055001s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><Fun" +
-                "ctionImport Name=\"CanViewPersonalData\" ReturnType=\"Edm.Boolean\" m:HttpMethod=\"GE" +
-                "T\"><Parameter Name=\"empID\" Type=\"Edm.String\" /></FunctionImport><FunctionImport " +
-                "Name=\"GetP050303SearchData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities." +
-                "P050303QueryItem)\" EntitySet=\"P050301QueryItems\" m:HttpMethod=\"GET\"><Parameter N" +
-                "ame=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /" +
-                "><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDateBegin\" Ty" +
-                "pe=\"Edm.DateTime\" /><Parameter Name=\"delvDateEnd\" Type=\"Edm.DateTime\" /><Paramet" +
-                "er Name=\"ordNo\" Type=\"Edm.String\" /><Parameter Name=\"custOrdNo\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type" +
-                "=\"Edm.String\" /><Parameter Name=\"consignNo\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"itemCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF055002" +
-                "WithGridLog\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F055002WithGrid" +
-                "Log)\" EntitySet=\"F055002WithGridLogs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter N" +
-                "ame=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" " +
-                "/></FunctionImport><FunctionImport Name=\"GetF050304ExDatas\" ReturnType=\"Collecti" +
-                "on(Wms3pl.Datas.Shared.Entities.F050304AddEService)\" EntitySet=\"F050304Exs\" m:Ht" +
+                "m.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delv" +
+                "Date\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"isPrinted\" Type=\"E" +
+                "dm.String\" /></FunctionImport><FunctionImport Name=\"GetF051202DatasForB2C\" Retur" +
+                "nType=\"Collection(Wms3pl.Datas.Shared.Entities.F051202Data)\" EntitySet=\"F051202D" +
+                "atas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\"" +
+                " /><Parameter Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Typ" +
+                "e=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201ReportDataAsFo" +
+                "rB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201ReportDataA)\" E" +
+                "ntitySet=\"F051201ReportDataAs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cu" +
+                "stCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nulla" +
+                "ble=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pi" +
+                "ckOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201Se" +
+                "lectedDatasForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F051201Se" +
+                "lectedData)\" EntitySet=\"F051201SelectedDatas\" m:HttpMethod=\"GET\"><Parameter Name" +
+                "=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Par" +
+                "ameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm." +
+                "String\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /></FunctionImport><Funct" +
+                "ionImport Name=\"UpdateF051201ForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared." +
+                "Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:HttpMethod=\"GET\"><Paramete" +
+                "r Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" " +
+                "/><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "userId\" Type=\"Edm.String\" /><Parameter Name=\"userName\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"deviceCount\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Na" +
+                "me=\"GetF050801WithF055001Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entit" +
+                "ies.F050801WithF055001)\" EntitySet=\"F050801WithF055001s\" m:HttpMethod=\"GET\"><Par" +
+                "ameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\"" +
+                " Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"pastNo\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"ordNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF0513Wit" +
+                "hF1909Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F0513WithF1909)" +
+                "\" EntitySet=\"F0513WithF1909s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cus" +
+                "tCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"delvTime\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type=\"Edm.Stri" +
+                "ng\" /></FunctionImport><FunctionImport Name=\"UpdatePierCode\" ReturnType=\"Collect" +
+                "ion(Wms3pl.Datas.Shared.Entities.ExecuteResult)\" EntitySet=\"ExecuteResults\" m:Ht" +
                 "tpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gup" +
                 "Code\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parame" +
-                "ter Name=\"ordNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF" +
-                "050801SeparateBillData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F050" +
-                "801WithBill)\" EntitySet=\"F050801WithBills\" m:HttpMethod=\"GET\"><Parameter Name=\"d" +
-                "cCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parame" +
-                "ter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.Str" +
-                "ing\" /></FunctionImport><FunctionImport Name=\"GetF700101Data\" ReturnType=\"Collec" +
-                "tion(Wms3pl.Datas.Shared.Entities.F700101CarData)\" EntitySet=\"F700101CarDatas\" m" +
-                ":HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
-                "gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm." +
-                "String\" /><Parameter Name=\"sourceTye\" Type=\"Edm.String\" /><Parameter Name=\"ordTy" +
-                "pe\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetOrderDelvRetai" +
-                "lLogs\" ReturnType=\"Collection(Wms3pl.Datas.F05.F05010103)\" EntitySet=\"F05010103s" +
-                "\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"ordNo\" Type=\"Edm.String\" /><Parameter Name=\"type\" Type=\"Edm.Stri" +
-                "ng\" /></FunctionImport><FunctionImport Name=\"GetSummaryReport\" ReturnType=\"Colle" +
-                "ction(Wms3pl.Datas.Shared.Entities.P050103ReportData)\" EntitySet=\"F190906Datas\" " +
-                "m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=" +
-                "\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"ordType\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm." +
-                "DateTime\" Nullable=\"false\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Nam" +
-                "e=\"GetPickTimes\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P050103Pick" +
-                "Time)\" EntitySet=\"P050103PickTimes\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordType\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /></FunctionImpor" +
-                "t><FunctionImport Name=\"GetPickOrderNos\" ReturnType=\"Collection(Wms3pl.Datas.Sha" +
-                "red.Entities.P050103PickOrdNo)\" EntitySet=\"P050103PickOrdNos\" m:HttpMethod=\"GET\"" +
-                "><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordT" +
-                "ype\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable" +
-                "=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /></FunctionImport><Func" +
-                "tionImport Name=\"GetWmsOrderNos\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Enti" +
-                "ties.P050103WmsOrdNo)\" EntitySet=\"P050103WmsOrdNos\" m:HttpMethod=\"GET\"><Paramete" +
-                "r Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordType\" Type=" +
-                "\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /" +
-                "><Parameter Name=\"pickTime\" Type=\"Edm.String\" /></FunctionImport><FunctionImport" +
-                " Name=\"GetP050112PickDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities." +
-                "P050112Pick)\" EntitySet=\"P050112Picks\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCod" +
-                "e\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDateS\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"delvDateE\" Type=\"Edm.String\" /><Parameter Name=\"pickTool\" T" +
-                "ype=\"Edm.String\" /><Parameter Name=\"areaCode\" Type=\"Edm.String\" /></FunctionImpo" +
-                "rt><FunctionImport Name=\"GetP050112Batches\" ReturnType=\"Collection(Wms3pl.Datas." +
-                "Shared.Entities.P050112Batch)\" EntitySet=\"P050112Batches\" m:HttpMethod=\"GET\"><Pa" +
-                "rameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"batchDat" +
-                "eS\" Type=\"Edm.String\" /><Parameter Name=\"batchDateE\" Type=\"Edm.String\" /><Parame" +
-                "ter Name=\"batchNo\" Type=\"Edm.String\" /><Parameter Name=\"pickStatus\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"putStatus\" Type=\"Edm.String\" /></FunctionImport><Functi" +
-                "onImport Name=\"GetPutReportDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Ent" +
-                "ities.PutReportData)\" EntitySet=\"PutReportDatas\" m:HttpMethod=\"GET\"><Parameter N" +
-                "ame=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" ";
+                "ter Name=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"allId\" Type=\"Edm.String\" /><Parameter Name=\"takeTime\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"pierCode\" Type=\"Edm.String\" /></FunctionImpor" +
+                "t><FunctionImport Name=\"GetBatchDebitDatas\" ReturnType=\"Collection(Wms3pl.Datas." +
+                "Shared.Entities.F0513WithF050801Batch)\" EntitySet=\"F0513WithF050801Batchs\" m:Htt" +
+                "pMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupC" +
+                "ode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Paramet" +
+                "er Name=\"notOrder\" Type=\"Edm.Boolean\" Nullable=\"false\" /><Parameter Name=\"isB2c\"" +
+                " Type=\"Edm.Boolean\" Nullable=\"false\" /></FunctionImport><FunctionImport Name=\"Ge" +
+                "tF050801NoShipOrders\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F05080" +
+                "1NoShipOrders)\" EntitySet=\"F050801NoShipOrderss\" m:HttpMethod=\"GET\"><Parameter N" +
+                "ame=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><" +
+                "Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Na";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart15 = "Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"batchNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetPickRe" +
-                "portDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.PickReportData)\" " +
-                "EntitySet=\"PickReportDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custC" +
-                "ode\" Type=\"Edm.String\" /><Parameter Name=\"batchNo\" Type=\"Edm.String\" /></Functio" +
-                "nImport><FunctionImport Name=\"GetBatchPickStations\" ReturnType=\"Collection(Wms3p" +
-                "l.Datas.Shared.Entities.BatchPickStation)\" EntitySet=\"BatchPickStations\" m:HttpM" +
+            private const string ModelPart13 = "me=\"delvDate\" Type=\"Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"status\" Type=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"Edm.S" +
+                "tring\" /><Parameter Name=\"custOrdNo\" Type=\"Edm.String\" /></FunctionImport><Funct" +
+                "ionImport Name=\"GetF050101ExDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.En" +
+                "tities.F050101Ex)\" EntitySet=\"F050101Exs\" m:HttpMethod=\"GET\"><Parameter Name=\"gu" +
+                "pCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"ordDateFrom\" Type=\"Edm.S" +
+                "tring\" /><Parameter Name=\"ordDateTo\" Type=\"Edm.String\" /><Parameter Name=\"ordNo\"" +
+                " Type=\"Edm.String\" /><Parameter Name=\"arriveDateFrom\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"arriveDateTo\" Type=\"Edm.String\" /><Parameter Name=\"custOrdNo\" Type=\"E" +
+                "dm.String\" /><Parameter Name=\"status\" Type=\"Edm.String\" /><Parameter Name=\"retai" +
+                "lCode\" Type=\"Edm.String\" /><Parameter Name=\"custName\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"wmsOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"pastNo\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"address\" Type=\"Edm.String\" /><Parameter Name=\"channel\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"delvType\" Type=\"Edm.String\" /><Parameter Name" +
+                "=\"allId\" Type=\"Edm.String\" /><Parameter Name=\"moveOutTarget\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"subChannel\" Type=\"Edm.String\" /></FunctionImport><FunctionImpo" +
+                "rt Name=\"GetF050102ExDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities." +
+                "F050102Ex)\" EntitySet=\"F050102Exs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name" +
+                "=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"Edm.String\" /></Fu" +
+                "nctionImport><FunctionImport Name=\"GetF050102WithF050801s\" ReturnType=\"Collectio" +
+                "n(Wms3pl.Datas.Shared.Entities.F050102WithF050801)\" EntitySet=\"F050102WithF05080" +
+                "1s\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter " +
+                "Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"wmsordno\" Type=\"Edm.String\" /></FunctionImport><FunctionImport" +
+                " Name=\"GetP05030201BasicData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entitie" +
+                "s.P05030201BasicData)\" EntitySet=\"P05030201BasicDatas\" m:HttpMethod=\"GET\"><Param" +
+                "eter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"Edm.String\" /></FunctionImport>" +
+                "<FunctionImport Name=\"GetSourceNosByWmsOrdNo\" ReturnType=\"Edm.String\" m:HttpMeth" +
+                "od=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode" +
+                "\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Na" +
+                "me=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF050" +
+                "001Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F050001Data)\" Enti" +
+                "tySet=\"F050001Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"ordType\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"ordSDate\" Type=\"Edm.String\" /><Parameter Name=\"ordEDate\" Type=\"Edm.String\" /><P" +
+                "arameter Name=\"arrivalSDate\" Type=\"Edm.String\" /><Parameter Name=\"arrivalEDate\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"custOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"consignee\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"sourceType\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "retailCode\" Type=\"Edm.String\" /><Parameter Name=\"carPeriod\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"delvNo\" Type=\"Edm.String\" /><Parameter Name=\"custCost\" Type=\"Ed" +
+                "m.String\" /><Parameter Name=\"fastDealType\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "crossCode\" Type=\"Edm.String\" /><Parameter Name=\"channel\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"subChannel\" Type=\"Edm.String\" /></FunctionImport><FunctionImport N" +
+                "ame=\"GetF050805Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F05080" +
+                "5Data)\" EntitySet=\"F050805Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "custCode\" Type=\"Edm.String\" /><Parameter Name=\"calNo\" Type=\"Edm.String\" /></Func" +
+                "tionImport><FunctionImport Name=\"GetF05080501Datas\" ReturnType=\"Collection(Wms3p" +
+                "l.Datas.Shared.Entities.F05080501Data)\" EntitySet=\"F05080501Datas\" m:HttpMethod=" +
+                "\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"calNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF05080502D" +
+                "atas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.F05080502Data)\" Entity" +
+                "Set=\"F05080502Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"calNo\" Type=\"Edm.String\" /></FunctionImport><" +
+                "FunctionImport Name=\"GetF05080504Datas\" ReturnType=\"Collection(Wms3pl.Datas.Shar" +
+                "ed.Entities.F05080504Data)\" EntitySet=\"F05080504Datas\" m:HttpMethod=\"GET\"><Param" +
+                "eter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"calNo\" Type" +
+                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF05080505Datas\" Return" +
+                "Type=\"Collection(Wms3pl.Datas.Shared.Entities.F05080505Data)\" EntitySet=\"F050805" +
+                "05Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parame" +
+                "ter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"calNo\" Type=\"Edm.String\" /><Parameter Name=\"flag\" Type=\"E" +
+                "dm.String\" /></FunctionImport><FunctionImport Name=\"GetF05080506Datas\" ReturnTyp" +
+                "e=\"Collection(Wms3pl.Datas.Shared.Entities.F05080506Data)\" EntitySet=\"F05080506D" +
+                "atas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\"" +
+                " /><Parameter Name=\"calNo\" Type=\"Edm.String\" /><Parameter Name=\"flag\" Type=\"Edm." +
+                "String\" /></FunctionImport><FunctionImport Name=\"GetF710802Type1\" ReturnType=\"Co" +
+                "llection(Wms3pl.Datas.Shared.Entities.P710802SearchResult)\" EntitySet=\"P710802Se" +
+                "archResults\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><P" +
+                "arameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm." +
+                "String\" /><Parameter Name=\"changeDateBegin\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"changeDateEnd\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\"" +
+                " /><Parameter Name=\"itemName\" Type=\"Edm.String\" /><Parameter Name=\"receiptType\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"makeNo\" Type=\"Edm.String\" /></FunctionImpor" +
+                "t><FunctionImport Name=\"GetF710802Type2\" ReturnType=\"Collection(Wms3pl.Datas.Sha" +
+                "red.Entities.P710802SearchResult)\" EntitySet=\"P710802SearchResults\" m:HttpMethod" +
+                "=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name" +
+                "=\"changeDateBegin\" Type=\"Edm.String\" /><Parameter Name=\"changeDateEnd\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemN" +
+                "ame\" Type=\"Edm.String\" /><Parameter Name=\"receiptType\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"makeNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"G" +
+                "etF710802Type3\" ReturnType=\"Collection(Wms3pl.Datas.Shared.";
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+            private const string ModelPart14 = "Entities.P710802SearchResult)\" EntitySet=\"P710802SearchResults\" m:HttpMethod=\"GET" +
+                "\"><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"cha" +
+                "ngeDateBegin\" Type=\"Edm.String\" /><Parameter Name=\"changeDateEnd\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" /><Parameter Name=\"itemName\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"makeNo\" Type=\"Edm.String\" /></FunctionImpor" +
+                "t><FunctionImport Name=\"GetF051201WithF051202s\" ReturnType=\"Collection(Wms3pl.Da" +
+                "tas.Shared.Entities.F051201WithF051202)\" EntitySet=\"F051201WithF051202s\" m:HttpM" +
                 "ethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCod" +
                 "e\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter" +
-                " Name=\"batchNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetCa" +
-                "lHeadList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P0503050000CalHea" +
-                "d)\" EntitySet=\"P0503050000CalHeads\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Nam" +
-                "e=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"calDateBegin\" Type=\"Edm.DateTi" +
-                "me\" /><Parameter Name=\"calDateEnd\" Type=\"Edm.DateTime\" /><Parameter Name=\"calNo\"" +
-                " Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201SingleStic" +
-                "kersReportDataAsForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.RP05" +
-                "01010004Model)\" EntitySet=\"RP0501010004Models\" m:HttpMethod=\"GET\"><Parameter Nam" +
-                "e=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm" +
-                ".DateTime\" Nullable=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Na" +
-                "me=\"GetF051201BatchReportDataAsForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Share" +
-                "d.Entities.P050103ReportData)\" EntitySet=\"F190906Datas\" m:HttpMethod=\"GET\"><Para" +
-                "meter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" " +
-                "Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><Function" +
-                "Import Name=\"GetF051201BatchStickersReportDataAsForB2C\" ReturnType=\"Collection(W" +
-                "ms3pl.Datas.Shared.Entities.RP0501010005Model)\" EntitySet=\"RP0501010005Models\" m" +
-                ":HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
-                "gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Par" +
-                "ameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"p" +
-                "ickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></F" +
-                "unctionImport><FunctionImport Name=\"GetF051202WithF055002s\" ReturnType=\"Collecti" +
-                "on(Wms3pl.Datas.Shared.Entities.F051202WithF055002)\" EntitySet=\"F051202WithF0550" +
-                "02s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" " +
-                "/><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImpor" +
-                "t Name=\"GetBatchPickNoList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities." +
-                "BatchPickNoList)\" EntitySet=\"BatchPickNoLists\" m:HttpMethod=\"GET\"><Parameter Nam" +
-                "e=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"sourceType\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"custCost\" Type=\"Edm.String\" /></FunctionImport><Fu" +
-                "nctionImport Name=\"GetRePickNoList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.E" +
-                "ntities.RePickNoList)\" EntitySet=\"RePickNoLists\" m:HttpMethod=\"GET\"><Parameter N" +
-                "ame=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><" +
-                "Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"sourceType\" Type=" +
-                "\"Edm.String\" /><Parameter Name=\"custCost\" Type=\"Edm.String\" /></FunctionImport><" +
-                "FunctionImport Name=\"GetReprintPickNoList\" ReturnType=\"Collection(Wms3pl.Datas.S" +
-                "hared.Entities.RePrintPickNoList)\" EntitySet=\"ReprintPickNoLists\" m:HttpMethod=\"" +
+                " Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetP" +
+                "ickDetails\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.PickDetail)\" Ent" +
+                "itySet=\"PickDetails\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Ty" +
+                "pe=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImpor" +
+                "t><FunctionImport Name=\"GetConsignmentNote\" ReturnType=\"Collection(Wms3pl.Datas." +
+                "Shared.Entities.ConsignmentNote)\" EntitySet=\"F050901WithF055001s\" m:HttpMethod=\"" +
                 "GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type" +
                 "=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
-                "pickOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></" +
-                "FunctionImport><FunctionImport Name=\"GetReBatchPrintPickNoList\" ReturnType=\"Coll" +
-                "ection(Wms3pl.Datas.Shared.Entities.BatchPickNoList)\" EntitySet=\"BatchPickNoList" +
+                "wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"CanViewPers" +
+                "onalData\" ReturnType=\"Edm.Boolean\" m:HttpMethod=\"GET\"><Parameter Name=\"empID\" Ty" +
+                "pe=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetP050303SearchData\" R" +
+                "eturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P050303QueryItem)\" EntitySet=" +
+                "\"P050301QueryItems\" m:HttpMethod=\"GET\"><Parameter Name=\"gupCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"dcCode\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"delvDateBegin\" Type=\"Edm.DateTime\" /><Paramete" +
+                "r Name=\"delvDateEnd\" Type=\"Edm.DateTime\" /><Parameter Name=\"ordNo\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"custOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo" +
+                "\" Type=\"Edm.String\" /><Parameter Name=\"status\" Type=\"Edm.String\" /><Parameter Na" +
+                "me=\"consignNo\" Type=\"Edm.String\" /><Parameter Name=\"itemCode\" Type=\"Edm.String\" " +
+                "/></FunctionImport><FunctionImport Name=\"GetF055002WithGridLog\" ReturnType=\"Coll" +
+                "ection(Wms3pl.Datas.Shared.Entities.F055002WithGridLog)\" EntitySet=\"F055002WithG" +
+                "ridLogs\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parame" +
+                "ter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionI" +
+                "mport Name=\"GetF050304ExDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.F050304AddEService)\" EntitySet=\"F050304Exs\" m:HttpMethod=\"GET\"><Parameter Nam" +
+                "e=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
+                "rameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"Edm.St" +
+                "ring\" /></FunctionImport><FunctionImport Name=\"GetF050801SeparateBillData\" Retur" +
+                "nType=\"Collection(Wms3pl.Datas.Shared.Entities.F050801WithBill)\" EntitySet=\"F050" +
+                "801WithBills\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><P" +
+                "arameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><Func" +
+                "tionImport Name=\"GetF700101Data\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Enti" +
+                "ties.F700101CarData)\" EntitySet=\"F700101CarDatas\" m:HttpMethod=\"GET\"><Parameter " +
+                "Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"so" +
+                "urceTye\" Type=\"Edm.String\" /><Parameter Name=\"ordType\" Type=\"Edm.String\" /></Fun" +
+                "ctionImport><FunctionImport Name=\"GetOrderDelvRetailLogs\" ReturnType=\"Collection" +
+                "(Wms3pl.Datas.F05.F05010103)\" EntitySet=\"F05010103s\" m:HttpMethod=\"GET\"><Paramet" +
+                "er Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\"" +
+                " /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordNo\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"type\" Type=\"Edm.String\" /></FunctionImport><Funct" +
+                "ionImport Name=\"GetSummaryReport\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Ent" +
+                "ities.P050103ReportData)\" EntitySet=\"F190906Datas\" m:HttpMethod=\"GET\"><Parameter" +
+                " Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordType\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" />" +
+                "<Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" Type=" +
+                "\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetPickTimes\" ReturnType=\"" +
+                "Collection(Wms3pl.Datas.Shared.Entities.P050103PickTime)\" EntitySet=\"P050103Pick" +
+                "Times\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Paramete" +
+                "r Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"ordType\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Typ" +
+                "e=\"Edm.DateTime\" Nullable=\"false\" /></FunctionImport><FunctionImport Name=\"GetPi" +
+                "ckOrderNos\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P050103PickOrdNo" +
+                ")\" EntitySet=\"P050103PickOrdNos\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "custCode\" Type=\"Edm.String\" /><Parameter Name=\"ordType\" Type=\"Edm.String\" /><Par" +
+                "ameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"p" +
+                "ickTime\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetWmsOrderN" +
+                "os\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P050103WmsOrdNo)\" Entity" +
+                "Set=\"P050103WmsOrdNos\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"ordType\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"pickTime\" T" +
+                "ype=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetP050112PickDatas\" R" +
+                "eturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P050112Pick)\" EntitySet=\"P050" +
+                "112Picks\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Str" +
+                "ing\" /><Parameter Name=\"delvDateS\" Type=\"Edm.String\" /><Parameter Name=\"delvDate" +
+                "E\" Type=\"Edm.String\" /><Parameter Name=\"pickTool\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"areaCode\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetP" +
+                "050112Batches\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P050112Batch)" +
+                "\" EntitySet=\"P050112Batches\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"E" +
+                "dm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cust" +
+                "Code\" Type=\"Edm.String\" /><Parameter Name=\"batchDateS\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"batchDateE\" Type=\"Edm.String\" /><Parameter Name=\"batchNo\" Type=\"Edm." +
+                "String\" /><Parameter Name=\"pickStatus\" Type=\"Edm.String\" /><Parameter Name=\"putS" +
+                "tatus\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetPutReportDa" +
+                "tas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.PutReportData)\" EntityS" +
+                "et=\"PutReportDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcC";
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+            private const string ModelPart15 = "ode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter" +
+                " Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"batchNo\" Type=\"Edm.String\"" +
+                " /></FunctionImport><FunctionImport Name=\"GetPickReportDatas\" ReturnType=\"Collec" +
+                "tion(Wms3pl.Datas.Shared.Entities.PickReportData)\" EntitySet=\"PickReportDatas\" m" +
+                ":HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Par" +
+                "ameter Name=\"batchNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=" +
+                "\"GetBatchPickStations\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.Batch" +
+                "PickStation)\" EntitySet=\"BatchPickStations\" m:HttpMethod=\"GET\"><Parameter Name=\"" +
+                "dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Param" +
+                "eter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"batchNo\" Type=\"Edm.Str" +
+                "ing\" /></FunctionImport><FunctionImport Name=\"GetCalHeadList\" ReturnType=\"Collec" +
+                "tion(Wms3pl.Datas.Shared.Entities.P0503050000CalHead)\" EntitySet=\"P0503050000Cal" +
+                "Heads\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Paramete" +
+                "r Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"calDateBegin\" Type=\"Edm.DateTime\" /><Parameter Name=\"calDat" +
+                "eEnd\" Type=\"Edm.DateTime\" /><Parameter Name=\"calNo\" Type=\"Edm.String\" /></Functi" +
+                "onImport><FunctionImport Name=\"GetF051201SingleStickersReportDataAsForB2C\" Retur" +
+                "nType=\"Collection(Wms3pl.Datas.Shared.Entities.RP0501010004Model)\" EntitySet=\"RP" +
+                "0501010004Models\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" " +
+                "/><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /" +
+                "><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type" +
+                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201BatchReportData" +
+                "AsForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.P050103ReportData)" +
+                "\" EntitySet=\"F190906Datas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCo" +
+                "de\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" Nullable=" +
+                "\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOr" +
+                "dNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetF051201BatchS" +
+                "tickersReportDataAsForB2C\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.R" +
+                "P0501010005Model)\" EntitySet=\"RP0501010005Models\" m:HttpMethod=\"GET\"><Parameter " +
+                "Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"" +
+                "Edm.DateTime\" Nullable=\"false\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" />" +
+                "<Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport" +
+                " Name=\"GetF051202WithF055002s\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti" +
+                "es.F051202WithF055002)\" EntitySet=\"F051202WithF055002s\" m:HttpMethod=\"GET\"><Para" +
+                "meter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.Stri" +
+                "ng\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsOrdNo\" " +
+                "Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetBatchPickNoList\" R" +
+                "eturnType=\"Collection(Wms3pl.Datas.Shared.Entities.BatchPickNoList)\" EntitySet=\"" +
+                "BatchPickNoLists\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" " +
+                "/><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"sourceType\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"custCost\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetRePickN" +
+                "oList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.RePickNoList)\" Entity" +
+                "Set=\"RePickNoLists\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"sourceType\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"custCost\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetRepri" +
+                "ntPickNoList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.RePrintPickNoL" +
+                "ist)\" EntitySet=\"ReprintPickNoLists\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\"" +
+                " Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Na" +
+                "me=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" " +
+                "/><Parameter Name=\"wmsOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImpor" +
+                "t Name=\"GetReBatchPrintPickNoList\" ReturnType=\"Collection(Wms3pl.Datas.Shared.En" +
+                "tities.BatchPickNoList)\" EntitySet=\"BatchPickNoLists\" m:HttpMethod=\"GET\"><Parame" +
+                "ter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"DelvDate\" Ty" +
+                "pe=\"Edm.DateTime\" Nullable=\"false\" /></FunctionImport><FunctionImport Name=\"GetS" +
+                "inglePickingReportDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.Sin" +
+                "glePickingReportData)\" EntitySet=\"SinglePickingReportDatas\" m:HttpMethod=\"GET\"><" +
+                "Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm." +
+                "String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDa" +
+                "te\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parame" +
+                "ter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"" +
+                "GetSinglePickingReportDatasCheckNotRePick\" ReturnType=\"Collection(Wms3pl.Datas.S" +
+                "hared.Entities.SinglePickingReportData)\" EntitySet=\"SinglePickingReportDatas\" m:" +
+                "HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"g" +
+                "upCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type=\"Edm" +
+                ".String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"IsCh" +
+                "eckNotRePick\" Type=\"Edm.Boolean\" Nullable=\"false\" /></FunctionImport><FunctionIm" +
+                "port Name=\"GetBatchPickingReportDatas\" ReturnType=\"Collection(Wms3pl.Datas.Share" +
+                "d.Entities.BatchPickingReportData)\" EntitySet=\"BatchPickNoReportDatas\" m:HttpMet" +
+                "hod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\"" +
+                " Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter N" +
+                "ame=\"delvDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type=\"Edm.String" +
+                "\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionIm" +
+                "port Name=\"GetBatchPickingReportDatasCheckRePrint\" ReturnType=\"Collection(Wms3pl" +
+                ".Datas.Shared.Entities.BatchPickingReportData)\" EntitySet=\"BatchPickNoReportData" +
                 "s\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Na" +
                 "me=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" />" +
-                "<Parameter Name=\"DelvDate\" Type=\"Edm.DateTime\" Nullable=\"false\" /></FunctionImpo" +
-                "rt><FunctionImport Name=\"GetSinglePickingReportDatas\" ReturnType=\"Collection(Wms" +
-                "3pl.Datas.Shared.Entities.SinglePickingReportData)\" EntitySet=\"SinglePickingRepo" +
-                "rtDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parame" +
-                "ter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Stri" +
-                "ng\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></Function" +
-                "Import><FunctionImport Name=\"GetSinglePickingReportDatasCheckNotRePick\" ReturnTy" +
-                "pe=\"Collection(Wms3pl.Datas.Shared.Entities.SinglePickingReportData)\" EntitySet=" +
-                "\"SinglePickingReportDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCo" +
-                "de\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Parame" +
-                "ter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.St" +
-                "ring\" /><Parameter Name=\"IsCheckNotRePick\" Type=\"Edm.Boolean\" Nullable=\"false\" /" +
-                "></FunctionImport><FunctionImport Name=\"GetBatchPickingReportDatas\" ReturnType=\"" +
-                "Collection(Wms3pl.Datas.Shared.Entities.BatchPickingReportData)\" EntitySet=\"Batc" +
-                "hPickNoReportDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String" +
-                "\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Typ" +
-                "e=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Parameter Nam" +
-                "e=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /" +
-                "></FunctionImport><FunctionImport Name=\"GetBatchPickingReportDatasCheckRePrint\" " +
-                "ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.BatchPickingReportData)\" Ent" +
-                "itySet=\"BatchPickNoReportDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type" +
-                "=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"c" +
-                "ustCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><P" +
-                "arameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"IsCheckNotRePick\" Type=\"Edm.Boolean\" Nullable=\"fal" +
-                "se\" /></FunctionImport><FunctionImport Name=\"GetSinglePickingTickerDatas\" Return" +
-                "Type=\"Collection(Wms3pl.Datas.Shared.Entities.SinglePickingTickerData)\" EntitySe" +
-                "t=\"SinglePickingTickerDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"E" +
-                "dm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cust" +
-                "Code\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Para" +
-                "meter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm." +
-                "String\" /></FunctionImport><FunctionImport Name=\"GetSinglePickingTickerDatasChec" +
-                "kRePrint\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entiti";
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-            private const string ModelPart16 = "es.SinglePickingTickerData)\" EntitySet=\"SinglePickingTickerDatas\" m:HttpMethod=\"G" +
-                "ET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=" +
-                "\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"d" +
-                "elvDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><P" +
-                "arameter Name=\"pickOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"IsCheckNotRePick\"" +
-                " Type=\"Edm.Boolean\" Nullable=\"false\" /></FunctionImport><FunctionImport Name=\"Ge" +
-                "tBatchPickingTickerDatas\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.Ba" +
-                "tchPickingTickerData)\" EntitySet=\"BatchPickingTickerDatas\" m:HttpMethod=\"GET\"><P" +
-                "arameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.S" +
-                "tring\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDat" +
-                "e\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Paramet" +
-                "er Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"G" +
-                "etBatchPickingTickerDatasCheckRePrint\" ReturnType=\"Collection(Wms3pl.Datas.Share" +
-                "d.Entities.BatchPickingTickerData)\" EntitySet=\"BatchPickingTickerDatas\" m:HttpMe" +
-                "thod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode" +
-                "\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter " +
-                "Name=\"delvDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type=\"Edm.Strin" +
-                "g\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /><Parameter Name=\"IsCheckNot" +
-                "RePick\" Type=\"Edm.Boolean\" Nullable=\"false\" /></FunctionImport><FunctionImport N" +
-                "ame=\"GetPickContainer\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.PickC" +
-                "ontainer)\" EntitySet=\"PickContainer\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\"" +
-                " Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Na" +
-                "me=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsNo\" Type=\"Edm.String\" /></" +
-                "FunctionImport><FunctionImport Name=\"GetOrderCancelInfoType1\" ReturnType=\"Collec" +
-                "tion(Wms3pl.Datas.Shared.Entities.OrderCancelInfo)\" EntitySet=\"OrderCancelInfo\" " +
+                "<Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /><Parameter Name=" +
+                "\"IsCheckNotRePick\" Type=\"Edm.Boolean\" Nullable=\"false\" /></FunctionImport><Funct" +
+                "ionImport Name=\"GetSinglePickingTickerDatas\" ReturnType=\"Collection(Wms3pl.Datas" +
+                ".Shared.Entities.SinglePickingTickerData)\" EntitySet=\"SinglePickingTickerDatas\" " +
                 "m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=" +
                 "\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Na" +
-                "me=\"GetOrderCancelInfoType2\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities" +
-                ".OrderCancelInfo)\" EntitySet=\"OrderCancelInfo\" m:HttpMethod=\"GET\"><Parameter Nam" +
-                "e=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Pa" +
-                "rameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Ed" +
-                "m.String\" /></FunctionImport><FunctionImport Name=\"GetDivideInfo\" ReturnType=\"Co" +
-                "llection(Wms3pl.Datas.Shared.Entities.DivideInfo)\" EntitySet=\"DivideInfo\" m:Http" +
+                "rameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"pickTime\" Type=\"E" +
+                "dm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport><F" +
+                "unctionImport Name=\"GetSinglePickingTickerDatasCheckRePrint";
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+            private const string ModelPart16 = "\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.SinglePickingTickerData)\" E" +
+                "ntitySet=\"SinglePickingTickerDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" " +
+                "Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Nam" +
+                "e=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" " +
+                "/><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Typ" +
+                "e=\"Edm.String\" /><Parameter Name=\"IsCheckNotRePick\" Type=\"Edm.Boolean\" Nullable=" +
+                "\"false\" /></FunctionImport><FunctionImport Name=\"GetBatchPickingTickerDatas\" Ret" +
+                "urnType=\"Collection(Wms3pl.Datas.Shared.Entities.BatchPickingTickerData)\" Entity" +
+                "Set=\"BatchPickingTickerDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"" +
+                "Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"cus" +
+                "tCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.DateTime\" /><Par" +
+                "ameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm" +
+                ".String\" /></FunctionImport><FunctionImport Name=\"GetBatchPickingTickerDatasChec" +
+                "kRePrint\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.BatchPickingTicker" +
+                "Data)\" EntitySet=\"BatchPickingTickerDatas\" m:HttpMethod=\"GET\"><Parameter Name=\"d" +
+                "cCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parame" +
+                "ter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"delvDate\" Type=\"Edm.Dat" +
+                "eTime\" /><Parameter Name=\"pickTime\" Type=\"Edm.String\" /><Parameter Name=\"pickOrd" +
+                "No\" Type=\"Edm.String\" /><Parameter Name=\"IsCheckNotRePick\" Type=\"Edm.Boolean\" Nu" +
+                "llable=\"false\" /></FunctionImport><FunctionImport Name=\"GetPickContainer\" Return" +
+                "Type=\"Collection(Wms3pl.Datas.Shared.Entities.PickContainer)\" EntitySet=\"PickCon" +
+                "tainer\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Paramet" +
+                "er Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.Strin" +
+                "g\" /><Parameter Name=\"wmsNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImpor" +
+                "t Name=\"GetOrderCancelInfoType1\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Enti" +
+                "ties.OrderCancelInfo)\" EntitySet=\"OrderCancelInfo\" m:HttpMethod=\"GET\"><Parameter" +
+                " Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /" +
+                "><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type" +
+                "=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetOrderCancelInfoType2\" " +
+                "ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.OrderCancelInfo)\" EntitySet=" +
+                "\"OrderCancelInfo\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" " +
+                "/><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=" +
+                "\"Edm.String\" /><Parameter Name=\"pickOrdNo\" Type=\"Edm.String\" /></FunctionImport>" +
+                "<FunctionImport Name=\"GetDivideInfo\" ReturnType=\"Collection(Wms3pl.Datas.Shared." +
+                "Entities.DivideInfo)\" EntitySet=\"DivideInfo\" m:HttpMethod=\"GET\"><Parameter Name=" +
+                "\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Para" +
+                "meter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsNo\" Type=\"Edm.Stri" +
+                "ng\" /></FunctionImport><FunctionImport Name=\"GetDivideDetail\" ReturnType=\"Collec" +
+                "tion(Wms3pl.Datas.Shared.Entities.DivideDetail)\" EntitySet=\"DivideDetail\" m:Http" +
                 "Method=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCo" +
                 "de\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Paramete" +
-                "r Name=\"wmsNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetDiv" +
-                "ideDetail\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.DivideDetail)\" En" +
-                "titySet=\"DivideDetail\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.Str" +
-                "ing\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" " +
-                "Type=\"Edm.String\" /><Parameter Name=\"wmsNo\" Type=\"Edm.String\" /></FunctionImport" +
-                "><FunctionImport Name=\"GetCollectionRecord\" ReturnType=\"Collection(Wms3pl.Datas." +
-                "Shared.Entities.CollectionRecord)\" EntitySet=\"CollectionRecord\" m:HttpMethod=\"GE" +
-                "T\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"" +
-                "Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wm" +
-                "sNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetConsignmentDe" +
-                "tail\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.ConsignmentDetail)\" En" +
-                "titySet=\"ConsignmentDetail\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Ed" +
-                "m.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custC" +
-                "ode\" Type=\"Edm.String\" /><Parameter Name=\"wmsNo\" Type=\"Edm.String\" /></FunctionI" +
-                "mport><FunctionImport Name=\"GetF050901CSVData\" ReturnType=\"Collection(Wms3pl.Dat" +
-                "as.Shared.Entities.GetF050901CSV)\" EntitySet=\"GetF050901CSV\" m:HttpMethod=\"GET\">" +
-                "<Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm" +
-                ".String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"begCr" +
-                "tDate\" Type=\"Edm.DateTime\" /><Parameter Name=\"endCrtDate\" Type=\"Edm.DateTime\" />" +
-                "</FunctionImport><AssociationSet Name=\"PickContainerPutIntoOutContainerResult_Up" +
-                "dateOutContainerResult\" Association=\"Wms3pl.Datas.Shared.Entities.PickContainerP" +
-                "utIntoOutContainerResult_UpdateOutContainerResult\"><End Role=\"PickContainerPutIn" +
-                "toOutContainerResult\" EntitySet=\"ExecuteResults\" /><End Role=\"UpdateOutContainer" +
-                "Result\" EntitySet=\"ExecuteResults\" /></AssociationSet></EntityContainer></Schema" +
-                "></edmx:DataServices></edmx:Edmx>";
+                "r Name=\"wmsNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"GetCol" +
+                "lectionRecord\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.CollectionRec" +
+                "ord)\" EntitySet=\"CollectionRecord\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" T" +
+                "ype=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name" +
+                "=\"custCode\" Type=\"Edm.String\" /><Parameter Name=\"wmsNo\" Type=\"Edm.String\" /></Fu" +
+                "nctionImport><FunctionImport Name=\"GetConsignmentDetail\" ReturnType=\"Collection(" +
+                "Wms3pl.Datas.Shared.Entities.ConsignmentDetail)\" EntitySet=\"ConsignmentDetail\" m" +
+                ":HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type=\"Edm.String\" /><Parameter Name=\"" +
+                "gupCode\" Type=\"Edm.String\" /><Parameter Name=\"custCode\" Type=\"Edm.String\" /><Par" +
+                "ameter Name=\"wmsNo\" Type=\"Edm.String\" /></FunctionImport><FunctionImport Name=\"G" +
+                "etF050901CSVData\" ReturnType=\"Collection(Wms3pl.Datas.Shared.Entities.GetF050901" +
+                "CSV)\" EntitySet=\"GetF050901CSV\" m:HttpMethod=\"GET\"><Parameter Name=\"dcCode\" Type" +
+                "=\"Edm.String\" /><Parameter Name=\"gupCode\" Type=\"Edm.String\" /><Parameter Name=\"c" +
+                "ustCode\" Type=\"Edm.String\" /><Parameter Name=\"begCrtDate\" Type=\"Edm.DateTime\" />" +
+                "<Parameter Name=\"endCrtDate\" Type=\"Edm.DateTime\" /></FunctionImport><Association" +
+                "Set Name=\"PickContainerPutIntoOutContainerResult_UpdateOutContainerResult\" Assoc" +
+                "iation=\"Wms3pl.Datas.Shared.Entities.PickContainerPutIntoOutContainerResult_Upda" +
+                "teOutContainerResult\"><End Role=\"PickContainerPutIntoOutContainerResult\" EntityS" +
+                "et=\"ExecuteResults\" /><End Role=\"UpdateOutContainerResult\" EntitySet=\"ExecuteRes" +
+                "ults\" /></AssociationSet></EntityContainer></Schema></edmx:DataServices></edmx:E" +
+                "dmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -35206,6 +35207,28 @@ namespace Wms3pl.WpfClient.ExDataServices.P05ExDataService
         private string _RETURN_LOC_CODE;
         partial void OnRETURN_LOC_CODEChanging(string value);
         partial void OnRETURN_LOC_CODEChanged();
+        /// <summary>
+        /// There are no comments for Property ALLOCATION_NO in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string ALLOCATION_NO
+        {
+            get
+            {
+                return this._ALLOCATION_NO;
+            }
+            set
+            {
+                this.OnALLOCATION_NOChanging(value);
+                this._ALLOCATION_NO = value;
+                this.OnALLOCATION_NOChanged();
+                this.OnPropertyChanged("ALLOCATION_NO");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _ALLOCATION_NO;
+        partial void OnALLOCATION_NOChanging(string value);
+        partial void OnALLOCATION_NOChanged();
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -36290,7 +36313,7 @@ namespace Wms3pl.WpfClient.ExDataServices.P05ExDataService
     }
 }
 // Original file name:
-// Generation date: 2023/9/5 下午 04:41:59
+// Generation date: 2023/9/7 下午 01:22:31
 namespace Wms3pl.Datas.F05
 {
     

@@ -260,6 +260,31 @@
                         <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding DATA_COUNT,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Blue" />
                       </Grid>
                     </WrapPanel>
+                    <GroupBox Header="{x:Static Properties:Resources.OrderDetail}" DockPanel.Dock="Top">
+                      <DockPanel>
+                        <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding dgOrdDetailList_Display}">
+                          <DataGrid.Columns>
+                            <DataGridTextColumn Header="{x:Static res:Resources.ItemNumber}" IsReadOnly="True">
+                              <DataGridTextColumn.Binding>
+                                <MultiBinding Converter="{StaticResource DataGridRowNumberConverter}">
+                                  <Binding />
+                                  <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType=DataGrid}" />
+                                </MultiBinding>
+                              </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_CODE}" Binding="{Binding ITEM_CODE}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_NAME}" Binding="{Binding ITEM_NAME}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SIZE}" Binding="{Binding ITEM_SIZE}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_SPEC}" Binding="{Binding ITEM_SPEC}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ITEM_COLOR}" Binding="{Binding ITEM_COLOR}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.ORD_QTY}" Binding="{Binding ORD_QTY}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="{x:Static Properties:Resources.P0503020000_MAKE_NO}" Binding="{Binding MAKE_NO}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="指定出貨序號" Binding="{Binding SERIAL_NO}" IsReadOnly="True" />
+                            <DataGridCheckBoxColumn Header="不出貨" Binding="{Binding NO_DELV,Mode=TwoWay, Converter={StaticResource StringToBoolConverter}}"/>
+                          </DataGrid.Columns>
+                        </DataGrid>
+                      </DockPanel>
+                    </GroupBox>
                     <GroupBox Header="{x:Static Properties:Resources.OutDetail}" DockPanel.Dock="Top">
                       <DockPanel>
                         <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding GoodsList}">
@@ -386,6 +411,7 @@
                                     <DataGridTextColumn Header="預計回庫數" Binding="{Binding B_QTY}"/>
                                     <DataGridTextColumn Header="實際回庫數" Binding="{Binding A_QTY}" />
                                     <DataGridTextColumn Header="回庫儲位" Binding="{Binding RETURN_LOC_CODE}" />
+                                    <DataGridTextColumn Header="調撥單號" Binding="{Binding ALLOCATION_NO}" />
                                  </DataGrid.Columns>
                              </DataGrid>
                          </DockPanel>
@@ -417,7 +443,7 @@
                      </GroupBox>
                      <GroupBox Header="{x:Static Properties:Resources.ReadSerialNoList}" DockPanel.Dock="Top">
                          <DockPanel>
-                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding ReadSerialNoList}" IsReadOnly="True" Width="650" Height="200">
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding ReadSerialNoList}" IsReadOnly="True" Height="200">
                                  <DataGrid.Columns>
                                      <DataGridCheckBoxColumn Header="{x:Static Properties:Resources.ISPASS}" Binding="{Binding ISPASS,Converter={StaticResource StringToBoolConverter}}" />
                                      <DataGridTextColumn Header="{x:Static res:Resources.Information}" Binding="{Binding MESSAGE}" FontSize="18" />
@@ -427,7 +453,11 @@
                                      <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_NAME}" Binding="{Binding CRT_NAME }" Width="auto"/>
                                  </DataGrid.Columns>
                              </DataGrid>
-                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding ReadOperationlList}" IsReadOnly="True" Height="200">
+                         </DockPanel>
+                     </GroupBox>
+                     <GroupBox DockPanel.Dock="Top">
+                         <DockPanel>
+                             <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding ReadOperationlList}" IsReadOnly="True">
                                  <DataGrid.Columns>
                                      <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_STAFF}" Binding="{Binding CRT_STAFF }" />
                                      <DataGridTextColumn Header="{x:Static Properties:Resources.CRT_NAME}" Binding="{Binding CRT_NAME}" />
@@ -468,9 +498,9 @@
                                 </MultiBinding>
                               </DataGridTextColumn.Binding>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="配送商編號" Binding="{Binding DELIVID_SEQ_NAME}" />
+                            <DataGridTextColumn Header="配送商編號" Binding="{Binding LOGISTIC_CODE}" />
                             <DataGridTextColumn Header="配送商名稱" Binding="{Binding LOGISTIC_NAME}" />
-                            <DataGridTextColumn Header="宅配單號" Binding="{Binding CONSIGN_NO}" />
+                            <DataGridTextColumn Header="託運單號" Binding="{Binding PAST_NO}" />
                             <DataGridTextColumn Header="包裝箱編號" Binding="{Binding BOX_NUM}" />
                             <DataGridTextColumn Header="工作站編號" Binding="{Binding WORKSTATION_CODE}" />
                             <DataGridTextColumn Header="建立人員" Binding="{Binding CRT_NAME}" />
@@ -494,7 +524,7 @@
                          <DockPanel>
                              <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding ConsignmentDetail}">
                                  <DataGrid.Columns>
-                                    <DataGridTextColumn Header="宅配單號" Binding="{Binding PAST_NO}"/>
+                                    <DataGridTextColumn Header="託運單號" Binding="{Binding PAST_NO}"/>
                                     <DataGridTextColumn Header="包裝箱序" Binding="{Binding PACKAGE_BOX_NO}"/>
                                     <DataGridTextColumn Header="包裝箱號" Binding="{Binding BOX_NUM}"/>
                                     <DataGridTextColumn Header="明細箱序" Binding="{Binding PACKAGE_BOX_SEQ}"/>

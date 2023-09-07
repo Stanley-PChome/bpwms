@@ -341,10 +341,24 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		{
 			STATUS_LIST = GetBaseTableService.GetF000904List(FunctionCode, "P050302", "STATUS");
 		}
-		#endregion
+    #endregion
 
-		#region 出貨明細
-		private ObservableCollection<F050102WithF050801> _goodslist;
+    #region 訂單明細
+    private ObservableCollection<F050102Ex> _dgorddetaillist_Display;
+
+    public ObservableCollection<F050102Ex> dgOrdDetailList_Display
+    {
+      get { return _dgorddetaillist_Display; }
+      set
+      {
+        _dgorddetaillist_Display = value;
+        RaisePropertyChanged("dgOrdDetailList_Display");
+      }
+    }
+    #endregion 訂單明細
+
+    #region 出貨明細
+    private ObservableCollection<F050102WithF050801> _goodslist;
 		public ObservableCollection<F050102WithF050801> GoodsList
 		{
 			get { return _goodslist; }
@@ -439,7 +453,7 @@ namespace Wms3pl.WpfClient.P05.ViewModel
         }
         #endregion
 
-        #region 包裝序號刷驗記錄
+    #region 包裝序號刷驗記錄
         private ObservableCollection<F05500101> _readserialnolist;
 		public ObservableCollection<F05500101> ReadSerialNoList
 		{
@@ -619,8 +633,16 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 			item.SOURCE_NO = proxyP05Ex.GetSourceNosByWmsOrdNo(gupCode, custCode, dcCode, wmsOrdNo);
 			BasicData = item;
 
-			//出貨明細
-			GoodsList = proxyP05Ex.CreateQuery<F050102WithF050801>("GetF050102WithF050801s")
+      // 訂單明細
+      dgOrdDetailList_Display = proxyP05Ex.CreateQuery<F050102Ex>("GetF050102ExDatas")
+        .AddQueryExOption("dcCode", dcCode)
+        .AddQueryExOption("gupCode", gupCode)
+        .AddQueryExOption("custCode", custCode)
+        .AddQueryExOption("ordNo", ordNo)
+        .ToObservableCollection();
+
+      //出貨明細
+      GoodsList = proxyP05Ex.CreateQuery<F050102WithF050801>("GetF050102WithF050801s")
 			  .AddQueryOption("gupCode", string.Format("'{0}'", gupCode))
 			  .AddQueryOption("custCode", string.Format("'{0}'", custCode))
 			  .AddQueryOption("dcCode", string.Format("'{0}'", dcCode))
@@ -688,6 +710,10 @@ namespace Wms3pl.WpfClient.P05.ViewModel
         .AddQueryExOption("custCode", custCode)
         .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
       }
+      else
+      {
+        DivideDetail = null;
+      }
 
       //集貨場進出紀錄
       CollectionRecord = proxyP05Ex.CreateQuery<CollectionRecord>("GetCollectionRecord")
@@ -748,6 +774,10 @@ namespace Wms3pl.WpfClient.P05.ViewModel
         .AddQueryExOption("gupCode", gupCode)
         .AddQueryExOption("custCode", custCode)
         .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
+      }
+      else
+      {
+        ConsignmentDetail = null;
       }
 
       PrintList = new List<PrintListClass>();

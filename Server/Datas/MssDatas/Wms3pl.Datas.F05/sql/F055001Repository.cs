@@ -449,7 +449,7 @@ namespace Wms3pl.Datas.F05
                   B.CRT_DATE
                 FROM F055001 A
                 JOIN F055002 B
-                  ON A.DC_CODE=B.DC_CODE AND A.GUP_CODE=B.GUP_CODE AND A.CUST_CODE=B.CUST_CODE AND A.WMS_ORD_NO=B.WMS_ORD_NO
+                  ON A.DC_CODE=B.DC_CODE AND A.GUP_CODE=B.GUP_CODE AND A.CUST_CODE=B.CUST_CODE AND A.WMS_ORD_NO=B.WMS_ORD_NO AND A.PACKAGE_BOX_NO=B.PACKAGE_BOX_NO
                 JOIN F1905 C
                   ON B.GUP_CODE=C.GUP_CODE AND B.CUST_CODE=C.CUST_CODE AND B.ITEM_CODE=C.ITEM_CODE
                 WHERE
@@ -458,8 +458,8 @@ namespace Wms3pl.Datas.F05
                   AND A.CUST_CODE = @p2
                   AND A.WMS_ORD_NO = @p3
                 ORDER BY
-                  B.PACKAGE_BOX_NO,
-                  B.PACKAGE_BOX_SEQ
+                  A.PAST_NO,
+                  A.PACKAGE_BOX_NO
                 ";
 
       return SqlQuery<ConsignmentDetail>(sql, parms.ToArray());
