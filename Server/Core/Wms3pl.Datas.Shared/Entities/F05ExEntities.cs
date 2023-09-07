@@ -7227,7 +7227,7 @@ namespace Wms3pl.Datas.Shared.Entities
 	/// </summary>
 	[Serializable]
   [DataContract]
-  [DataServiceKey("PAST_NO", "PACKAGE_BOX_NO")]
+  [DataServiceKey("PACKAGE_BOX_NO", "PACKAGE_BOX_SEQ")]
   public class ConsignmentDetail
   {
     [DataMember]
