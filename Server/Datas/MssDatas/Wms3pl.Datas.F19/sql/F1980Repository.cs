@@ -310,5 +310,20 @@ WHERE  B.DC_CODE = @p0
 
       return SqlQuery<string>(sql, param.ToArray()).FirstOrDefault();
     }
+
+    /// <summary>
+    /// 檢查該倉別是否為板進箱出倉
+    /// </summary>
+    public Boolean CheckTypeIsPallet(string dcCode, string warehouseId)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = warehouseId },
+      };
+      var sql = @"SELECT TOP 1 1 FROM F1980 WHERE DC_CODE = @p0 AND WAREHOUSE_ID = @p1 AND DEVICE_TYPE = '3'";
+      return SqlQuery<int>(sql, para.ToArray()).Any();
+    }
+
   }
 }

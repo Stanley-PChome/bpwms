@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+using System.Diagnostics;
 using System.Linq;
 using Wms3pl.Datas.F01;
 using Wms3pl.Datas.F02;
@@ -14,6 +15,7 @@ using Wms3pl.Datas.F25;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
+using Wms3pl.WebServices.Shared.ApiService;
 using Wms3pl.WebServices.Shared.Enums;
 using Wms3pl.WebServices.Shared.ServiceEntites;
 using Wms3pl.WebServices.Shared.WcsServices;
@@ -471,7 +473,6 @@ namespace Wms3pl.WebServices.Shared.Services
         public ReturnNewAllocationResult CreateOrUpdateAllocation(NewAllocationItemParam item, bool isCheck = true)
         {
             var f1980Repo = new F1980Repository(Schemas.CoreSchema);
-            CommonService commonService = new CommonService();
             var result = new ReturnNewAllocationResult { AllocationType = item.AllocationType };
             var returnStocks = item.ReturnStocks;
             #region 鎖定已產生調撥單未上架使用儲位
@@ -1029,7 +1030,8 @@ namespace Wms3pl.WebServices.Shared.Services
         /// <param name="stockDetailList"></param>
         private ExecuteResult SetTarLoc(NewAllocationItemParam item, ref List<StockDetail> stockDetailList, bool isCheck = true)
         {
-            var f1980Repo = new F1980Repository(Schemas.CoreSchema);
+      var swt = new Stopwatch();
+      var f1980Repo = new F1980Repository(Schemas.CoreSchema);
             //有指定來源與目的儲位設定
             if (item.SrcLocMapTarLocs != null && item.SrcLocMapTarLocs.Any())
             {
@@ -1225,12 +1227,15 @@ namespace Wms3pl.WebServices.Shared.Services
 
                 if (details.All(x => x.SerialNo == "0"))
                 {
-                    //分配無序號
-                    var result1 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.None, item.isIncludeResupply, details, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId, item.NotAllowSeparateLoc);
+          swt.Restart();
+          //分配無序號
+          var result1 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.None, item.isIncludeResupply, details, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId, item.NotAllowSeparateLoc);
                     if (!result1.IsSuccessed)
                         return result1;
-                }
-                else
+          swt.Stop();
+          ApiLogHelper.WriteFileContentAsync($"SetTarLoc SetSuggestLocToStockDetails:{swt.ElapsedMilliseconds}");
+        }
+        else
                 {
                     //分配整箱
                     var result1 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.CaseNo, item.isIncludeResupply, details, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
@@ -1280,8 +1285,8 @@ namespace Wms3pl.WebServices.Shared.Services
         /// <returns></returns>
         private ExecuteResult SetSuggestLocToStockDetails(string tarDcCode, string gupCode, string custCode, string itemCode, DateTime validDate, DateTime enterDate, string vnrCode, int? dataId, string tempWarehouseType, string tempWarehouseId, GetSuggestLocType getSuggestLocType, bool isIncludeResupply, List<StockDetail> itemStockDetails, List<F1912> srcF1912s, ref List<StockDetail> allStockDetails, string tarWarehouseId, bool notAllowSeparateLoc = false)
         {
-            var f1903 = GetF1903s(gupCode, custCode, new List<string> { itemCode }).First();
-            var f190301List = GetF190301WithF91000302s(gupCode, new List<string> { itemCode }, new List<string> { "箱", "盒" });
+      var f1903 = CommonService.GetProduct(gupCode, custCode, itemCode);
+      var f190301List = GetF190301WithF91000302s(gupCode, new List<string> { itemCode }, new List<string> { "箱", "盒" });
             var boxItem = f190301List.FirstOrDefault(x => x.UNIT_ID == "04");
             var f2501Repo = new F2501Repository(Schemas.CoreSchema);
             var list = new Dictionary<string, List<StockDetail>>();
@@ -1377,10 +1382,14 @@ namespace Wms3pl.WebServices.Shared.Services
                         qty += (int)exists.Sum(x => x.Qty);
                     }
                 }
-							if (_newSuggestLocService == null)
-								_newSuggestLocService = new NewSuggestLocService();
-
-								var suggestLocs = _newSuggestLocService.GetSuggestLocs(new NewSuggestLocParam
+        if (_newSuggestLocService == null)
+        {
+          _newSuggestLocService = new NewSuggestLocService();
+          _newSuggestLocService.CommonService = CommonService;
+        }
+        var swt = new Stopwatch();
+        swt.Restart();
+        var suggestLocs = _newSuggestLocService.GetSuggestLocs(new NewSuggestLocParam
 								{
 									DcCode = tarDcCode,
 									GupCode = gupCode,
@@ -1395,9 +1404,10 @@ namespace Wms3pl.WebServices.Shared.Services
 									TarWarehouseId = tempWarehouseId,
 									Qty = qty,
 								}, ref _excludeLocCodes);
+        swt.Stop();
+        ApiLogHelper.WriteFileContentAsync($"SetSuggestLocToStockDetails GetSuggestLocs:{swt.ElapsedMilliseconds}");
 
-				
-                if (!suggestLocs.Any())
+        if (!suggestLocs.Any())
                     return new ExecuteResult(false, string.Format("所選擇的目的倉別({0})，找不到品號({1})的建議上架儲位!",
                         tempWarehouseId ?? tempWarehouseType, itemCode));
 

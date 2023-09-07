@@ -24,9 +24,19 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 	/// </summary>
 	public class CommonOutWarehouseContainerReceiptService
 	{
-		#region 定義需檢核欄位、必填、型態、長度
-		// 出庫結果回報(按箱)資訊檢核設定
-		private List<ApiCkeckColumnModel> receiptCheckColumnList = new List<ApiCkeckColumnModel>
+    #region Service
+    private TransApiBaseService _tacService;
+    public TransApiBaseService TacService
+    {
+      get { return _tacService == null ? _tacService = new TransApiBaseService() : _tacService; }
+      set { _tacService = value; }
+    }
+
+    #endregion
+
+    #region 定義需檢核欄位、必填、型態、長度
+    // 出庫結果回報(按箱)資訊檢核設定
+    private List<ApiCkeckColumnModel> receiptCheckColumnList = new List<ApiCkeckColumnModel>
 		{
 			new ApiCkeckColumnModel{  Name = "OwnerCode",       Type = typeof(string),		MaxLength = 12, Nullable = false },
 			new ApiCkeckColumnModel{  Name = "DcCode",			Type = typeof(string),		MaxLength = 10,  Nullable = false },
@@ -105,14 +115,13 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 		public ApiResult RecevieApiDatas(OutWarehouseContainerReceiptReq req)
 		{
 			CheckTransWcsApiService ctaService = new CheckTransWcsApiService();
-			TransApiBaseService tacService = new TransApiBaseService();
 			CommonService commonService = new CommonService();
 			ApiResult res = new ApiResult { IsSuccessed = true };
 
 			#region 資料檢核
 			// 檢核參數
 			if (req == null)
-				return new ApiResult { IsSuccessed = false, MsgCode = "20056", MsgContent = tacService.GetMsg("20056") };
+				return new ApiResult { IsSuccessed = false, MsgCode = "20056", MsgContent = TacService.GetMsg("20056") };
 
 			// 檢核物流中心 必填、是否存在
 			ctaService.CheckDcCode(ref res, req);
@@ -184,12 +193,11 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 				SerialNos = x.SerialNumList
 			}).ToList();
 
-			// 取得序號資料
-			_serialNoList = f2501Repo.GetDataForWcsApiOutWarehouseReceipt(gupCode, custCode, itemSerialNos).Select(x => x.SERIAL_NO).ToList();
+      // 取得序號資料
+      _serialNoList = f2501Repo.GetDataForWcsApiOutWarehouseReceipt(gupCode, custCode, itemSerialNos).ToList();
 
 
-			var commonService = new CommonService();
-			var tacService = new TransApiBaseService();
+      var commonService = new CommonService();
 			var res = new ApiResult();
 			List<ApiResponse> data = new List<ApiResponse>();
 			List<string> successedReceiptCodes = new List<string>();
@@ -215,18 +223,15 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 							long id = -1; // -1代表有重複資料
 
 							var lockF060207 = f060207RepoLock.LockF060207();
-							var item = f060207RepoLock.GetDatasByTrueAndCondition(x => x.DC_CODE == dcCode &&
-												x.GUP_CODE == gupCode &&
-												x.CUST_CODE == custCode &&
-												x.CONTAINERCODE == container.ContainerCode &&
-												x.STATUS == "0").FirstOrDefault();
-							if (item == null)
-							{
-								id = f060207RepoLock.GetF060207NextId();
+              var hasData = f060207RepoLock.IsUnProcessData(dcCode, gupCode, custCode, container.ContainerCode);
+
+              if (!hasData)
+              {
+                id = f060207RepoLock.GetF060207NextId();
 							}
 							else
 							{
-								data.Add(new ApiResponse { No = container.ContainerCode, ErrorColumn = "ContainerCode", MsgCode = "20093", MsgContent = tacService.GetMsg("20093") });
+								data.Add(new ApiResponse { No = container.ContainerCode, ErrorColumn = "ContainerCode", MsgCode = "20093", MsgContent = TacService.GetMsg("20093") });
 							}
 
 							return new F060207 { ID = id };
@@ -287,7 +292,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 						}
 
 						successedReceiptCodes.Add(container.ContainerCode);
-						wmsTransation.Complete();
+						wmsTransation.Complete(true);
 					}
 				}
 			});
@@ -300,7 +305,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 
 			res.IsSuccessed = !data.Any();
 			res.MsgCode = "10005";
-			res.MsgContent = string.Format(tacService.GetMsg("10005"),
+			res.MsgContent = string.Format(TacService.GetMsg("10005"),
 					"出貨結果回報(按箱)",
 					res.SuccessCnt,
 					res.FailureCnt,
@@ -370,14 +375,13 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 		/// <returns></returns>
 		protected ApiResult CheckColumnNotNullAndMaxLength(string dcCode, string gupCode, string custCode, OutWarehouseContainerReceiptContainerModel receipt)
 		{
-			TransApiBaseService tacService = new TransApiBaseService();
 			ApiResult res = new ApiResult();
 			List<ApiResponse> data = new List<ApiResponse>();
 			
-			string nullErrorMsg = tacService.GetMsg("20058");
-			string formatErrorMsg = tacService.GetMsg("20059");
-			string dateErrorMsg = tacService.GetMsg("20075");
-			string datetimeErrorMsg = tacService.GetMsg("20050");
+			string nullErrorMsg = TacService.GetMsg("20058");
+			string formatErrorMsg = TacService.GetMsg("20059");
+			string dateErrorMsg = TacService.GetMsg("20075");
+			string datetimeErrorMsg = TacService.GetMsg("20050");
 
 
 
