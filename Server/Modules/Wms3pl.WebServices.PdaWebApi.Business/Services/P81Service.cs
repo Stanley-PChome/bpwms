@@ -379,7 +379,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 				new MsgModel{ MsgCode = "21960", MsgContent = "請先設定該商品檢驗項目"},
 				new MsgModel{ MsgCode = "21961", MsgContent = "效期商品必須填入總保存天數"},
 				new MsgModel{ MsgCode = "21962", MsgContent = "{0}長度不可超過{1}個字"},
-		new MsgModel{ MsgCode = "21963", MsgContent = "該進倉單已強制結案完成，此次無法進行驗收確認。"},
+		    new MsgModel{ MsgCode = "21963", MsgContent = "該進倉單已強制結案完成，此次無法進行驗收確認。"},
+		    new MsgModel{ MsgCode = "21964", MsgContent = "刷入的{0}[{1}]中有空白，請重新刷入。"},
 
         #endregion 19 進貨驗收
 
