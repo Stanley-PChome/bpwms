@@ -4529,5 +4529,20 @@ GROUP BY A.DC_CODE ,A.GUP_CODE ,A.CUST_CODE ,B.WAREHOUSE_ID ,A.ITEM_CODE ,A.VALI
 
       ExecuteSqlCommand(sql, param.ToArray());
     }
+
+    public IQueryable<F1913> GetRemoveData(string dcCode, List<string> locs)
+    {
+      var para = new List<SqlParameter>()
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar)    { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.DateTime2)  { Value = DateTime.Today.AddDays(-10) }
+      };
+
+      var sql = $@"SELECT * FROM F1913 WHERE DC_CODE=@p0 AND (CASE WHEN UPD_DATE IS NULL THEN CRT_DATE
+                    ELSE UPD_DATE END) <= @p1 AND QTY=0 {para.CombineSqlInParameters("AND LOC_CODE", locs, SqlDbType.VarChar)}";
+
+      return SqlQueryWithSqlParameterSetDbType<F1913>(sql, para.ToArray());
+    }
+
   }
 }

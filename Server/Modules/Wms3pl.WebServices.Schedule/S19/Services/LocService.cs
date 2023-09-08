@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Wms3pl.Datas.F00;
 using Wms3pl.Datas.F19;
@@ -170,12 +171,11 @@ namespace Wms3pl.WebServices.Schedule.S19.Services
 
           var usedVolumnDatas = f1912Repo.GetUsedVolumnByLocCodes(dcCode, locCodes).ToList();
           var f1912Datas = f1912Repo.GetF1912DataSQL(dcCode, locCodes).ToList();
-
+          var f1913AllDelDatas = f1913Repo.GetRemoveData(dcCode, locCodes).ToList();
           var datas = (from A in usedVolumnDatas
                        join B in f1912Datas
                              on new { A.DC_CODE, A.LOC_CODE } equals new { B.DC_CODE, B.LOC_CODE }
-                       select new { UsedVolumnData = A, F1912 = B }).ToList();
-
+                       select new { UsedVolumnData = A, F1912 = B,}).ToList();
 
           datas.ForEach(currData =>
           {
@@ -183,6 +183,13 @@ namespace Wms3pl.WebServices.Schedule.S19.Services
             if (currData.UsedVolumnData?.VOLUMN > 999999999999999999m) //避免超過DB設定大小decimal(18,0)
               currData.UsedVolumnData.VOLUMN = 999999999999999999m;
             f1912Repo.UpdateUsedVolumn(currData.F1912.DC_CODE, currData.F1912.LOC_CODE, currData.UsedVolumnData.VOLUMN ?? 0);
+            #endregion
+
+            #region 清除F1913
+            var f1913DelDatas = f1913AllDelDatas.Where(x => x.DC_CODE == currData.F1912.DC_CODE && x.LOC_CODE == currData.F1912.LOC_CODE);
+
+            foreach (var F1913DelData in f1913DelDatas)
+              f1913Repo.DeleteDataByKey(F1913DelData.DC_CODE, F1913DelData.GUP_CODE, F1913DelData.CUST_CODE, F1913DelData.ITEM_CODE, F1913DelData.LOC_CODE, F1913DelData.VALID_DATE, F1913DelData.ENTER_DATE, F1913DelData.VNR_CODE, F1913DelData.SERIAL_NO, F1913DelData.BOX_CTRL_NO, F1913DelData.PALLET_CTRL_NO, F1913DelData.MAKE_NO);
             #endregion
 
             _wmsTransation.Complete();
