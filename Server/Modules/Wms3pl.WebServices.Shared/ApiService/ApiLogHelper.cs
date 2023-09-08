@@ -308,13 +308,5 @@ namespace Wms3pl.WebServices.Shared.ApiService
       return ErrMsg?.Length > ErrMsgLength ? ErrMsg.Substring(0, ErrMsgLength) : ErrMsg;
     }
 
-    public static async Task WriteFileContentAsync(string msg)
-    {
-      using (var sw = new StreamWriter(@"C:\BpWms3pl\OutWarehouseContainerReceipt.txt", true))
-      {
-        await sw.WriteLineAsync(msg);
-      }
-    }
-
   }
 }

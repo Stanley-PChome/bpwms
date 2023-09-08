@@ -1020,450 +1020,442 @@ namespace Wms3pl.WebServices.Shared.Services
             }
         }
 
-        #endregion
+    #endregion
 
-        #region 設定上架儲位
-        /// <summary>
-        /// 設定上架儲位
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="stockDetailList"></param>
-        private ExecuteResult SetTarLoc(NewAllocationItemParam item, ref List<StockDetail> stockDetailList, bool isCheck = true)
-        {
-      var swt = new Stopwatch();
+    #region 設定上架儲位
+    /// <summary>
+    /// 設定上架儲位
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="stockDetailList"></param>
+    private ExecuteResult SetTarLoc(NewAllocationItemParam item, ref List<StockDetail> stockDetailList, bool isCheck = true)
+    {
       var f1980Repo = new F1980Repository(Schemas.CoreSchema);
-            //有指定來源與目的儲位設定
-            if (item.SrcLocMapTarLocs != null && item.SrcLocMapTarLocs.Any())
+      //有指定來源與目的儲位設定
+      if (item.SrcLocMapTarLocs != null && item.SrcLocMapTarLocs.Any())
+      {
+        var f1912s = GetF1912s(item.TarDcCode, item.SrcLocMapTarLocs.Where(x => !string.IsNullOrWhiteSpace(x.TarLocCode)).Select(x => x.TarLocCode).ToList());
+        foreach (var srcLocMapTarLoc in item.SrcLocMapTarLocs)
+        {
+          var details = stockDetailList.Where(x => x.SrcDcCode == item.SrcDcCode && x.SrcLocCode == srcLocMapTarLoc.SrcLocCode && x.ItemCode == srcLocMapTarLoc.ItemCode);
+          if (srcLocMapTarLoc.EnterDate.HasValue)
+            details = details.Where(x => x.EnterDate == srcLocMapTarLoc.EnterDate.Value);
+          if (srcLocMapTarLoc.ValidDate.HasValue)
+            details = details.Where(x => x.ValidDate == srcLocMapTarLoc.ValidDate.Value);
+          if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.VnrCode))
+            details = details.Where(x => x.VnrCode == srcLocMapTarLoc.VnrCode);
+          if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.SerialNo))
+            details = details.Where(x => x.SerialNo == srcLocMapTarLoc.SerialNo);
+          if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.BoxCtrlNo))
+            details = details.Where(x => x.BoxCtrlNo == srcLocMapTarLoc.BoxCtrlNo);
+          if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.PalletCtrlNo))
+            details = details.Where(x => x.PalletCtrlNo == srcLocMapTarLoc.PalletCtrlNo);
+          if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.MakeNo))
+            details = details.Where(x => x.MAKE_NO == srcLocMapTarLoc.MakeNo);
+          if (srcLocMapTarLoc.DataId.HasValue)
+            details = details.Where(x => x.DataId == srcLocMapTarLoc.DataId);
+
+          //有指定儲位
+          if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarLocCode))
+          {
+            var f1912 = f1912s.FirstOrDefault(x => x.LOC_CODE == srcLocMapTarLoc.TarLocCode);
+
+            foreach (var detail in details)
             {
-                var f1912s = GetF1912s(item.TarDcCode, item.SrcLocMapTarLocs.Where(x => !string.IsNullOrWhiteSpace(x.TarLocCode)).Select(x => x.TarLocCode).ToList());
-                foreach (var srcLocMapTarLoc in item.SrcLocMapTarLocs)
-                {
-                    var details = stockDetailList.Where(x => x.SrcDcCode == item.SrcDcCode && x.SrcLocCode == srcLocMapTarLoc.SrcLocCode && x.ItemCode == srcLocMapTarLoc.ItemCode);
-                    if (srcLocMapTarLoc.EnterDate.HasValue)
-                        details = details.Where(x => x.EnterDate == srcLocMapTarLoc.EnterDate.Value);
-                    if (srcLocMapTarLoc.ValidDate.HasValue)
-                        details = details.Where(x => x.ValidDate == srcLocMapTarLoc.ValidDate.Value);
-                    if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.VnrCode))
-                        details = details.Where(x => x.VnrCode == srcLocMapTarLoc.VnrCode);
-                    if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.SerialNo))
-                        details = details.Where(x => x.SerialNo == srcLocMapTarLoc.SerialNo);
-                    if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.BoxCtrlNo))
-                        details = details.Where(x => x.BoxCtrlNo == srcLocMapTarLoc.BoxCtrlNo);
-                    if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.PalletCtrlNo))
-                        details = details.Where(x => x.PalletCtrlNo == srcLocMapTarLoc.PalletCtrlNo);
-                    if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.MakeNo))
-                        details = details.Where(x => x.MAKE_NO == srcLocMapTarLoc.MakeNo);
-                    if (srcLocMapTarLoc.DataId.HasValue)
-                        details = details.Where(x => x.DataId == srcLocMapTarLoc.DataId);
+              detail.TarDcCode = item.TarDcCode;
+              detail.TarVnrCode = !string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarVnrCode) ? srcLocMapTarLoc.TarVnrCode : detail.VnrCode;
+              detail.TarWarehouseId = f1912.WAREHOUSE_ID;
+              detail.TarLocCode = f1912.LOC_CODE;
+              detail.TarValidDate = srcLocMapTarLoc.TarValidDate;
+              detail.TarMakeNo = srcLocMapTarLoc.TarMakeNo;
+              detail.TarBoxCtrlNo = srcLocMapTarLoc.TarBoxCtrlNo;
+              detail.TarPalletCtrlNo = srcLocMapTarLoc.TarPalletCtrlNo;
+              detail.BinCode = srcLocMapTarLoc.BinCode;
+              detail.SourceType = srcLocMapTarLoc.SourceType;
+              detail.SourceNo = srcLocMapTarLoc.SourceNo;
+              detail.ReferenceNo = srcLocMapTarLoc.ReferenceNo;
+              detail.ReferenceSeq = srcLocMapTarLoc.ReferenceSeq;
+              detail.AllocationType = item.AllocationType;
+              detail.AllocationTypeCode = item.AllocationTypeCode;
 
-                    //有指定儲位
-                    if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarLocCode))
-                    {
-                        var f1912 = f1912s.FirstOrDefault(x => x.LOC_CODE == srcLocMapTarLoc.TarLocCode);
-
-                        foreach (var detail in details)
-                        {
-                            detail.TarDcCode = item.TarDcCode;
-                            detail.TarVnrCode = !string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarVnrCode) ? srcLocMapTarLoc.TarVnrCode : detail.VnrCode;
-                            detail.TarWarehouseId = f1912.WAREHOUSE_ID;
-                            detail.TarLocCode = f1912.LOC_CODE;
-                            detail.TarValidDate = srcLocMapTarLoc.TarValidDate;
-                            detail.TarMakeNo = srcLocMapTarLoc.TarMakeNo;
-                            detail.TarBoxCtrlNo = srcLocMapTarLoc.TarBoxCtrlNo;
-                            detail.TarPalletCtrlNo = srcLocMapTarLoc.TarPalletCtrlNo;
-                            detail.BinCode = srcLocMapTarLoc.BinCode;
-                            detail.SourceType = srcLocMapTarLoc.SourceType;
-                            detail.SourceNo = srcLocMapTarLoc.SourceNo;
-                            detail.ReferenceNo = srcLocMapTarLoc.ReferenceNo;
-                            detail.ReferenceSeq = srcLocMapTarLoc.ReferenceSeq;
-                            detail.AllocationType= item.AllocationType;
-                            detail.AllocationTypeCode = item.AllocationTypeCode;
-
-                            //若來源倉庫的DeviceType=3，將調撥單轉為純下架單，並將TAR_WAREHOUSE_ID設定到PRE_TAR_WAREHOUSE_ID，並將TAR_WAREHOUSE_ID設為NULL，將F151001.ALLOCATION_TYPE設為5
-                            var findWardhouseDeviceType = f1980Repo.Find(p => p.DC_CODE == detail.SrcDcCode && p.WAREHOUSE_ID == detail.SrcWarehouseId);
-                            if (findWardhouseDeviceType?.DEVICE_TYPE == "3")
-                            {
-                                detail.PRE_TAR_WAREHOUSE_ID = item.TarWarehouseId;
-                                detail.TarWarehouseId = null;
-                                detail.AllocationType = AllocationType.NoTarget;
-                                detail.AllocationTypeCode = "5";
-                            }
-                        }
-                    }
-                    //有指定目的倉庫
-                    else if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarWarehouseId))
-                    {
-                        foreach (var detail in details)
-                        {
-                            detail.TarDcCode = item.TarDcCode;
-                            detail.TarVnrCode = !string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarVnrCode) ? srcLocMapTarLoc.TarVnrCode : detail.VnrCode;
-                            detail.TarWarehouseId = srcLocMapTarLoc.TarWarehouseId;
-                            detail.TarLocCode = srcLocMapTarLoc.TarLocCode;
-                            detail.TarValidDate = srcLocMapTarLoc.TarValidDate;
-                            detail.TarMakeNo = srcLocMapTarLoc.TarMakeNo;
-                            detail.TarBoxCtrlNo = srcLocMapTarLoc.TarBoxCtrlNo;
-                            detail.TarPalletCtrlNo = srcLocMapTarLoc.TarPalletCtrlNo;
-                            detail.BinCode = srcLocMapTarLoc.BinCode;
-                            detail.SourceType = srcLocMapTarLoc.SourceType;
-                            detail.SourceNo = srcLocMapTarLoc.SourceNo;
-                            detail.ReferenceNo = srcLocMapTarLoc.ReferenceNo;
-                            detail.ReferenceSeq = srcLocMapTarLoc.ReferenceSeq;
-                            detail.AllocationType = item.AllocationType;
-                            detail.AllocationTypeCode = item.AllocationTypeCode;
-
-                            //若來源倉庫的DeviceType=3，將調撥單轉為純下架單，並將TAR_WAREHOUSE_ID設定到PRE_TAR_WAREHOUSE_ID，並將TAR_WAREHOUSE_ID設為NULL，將F151001.ALLOCATION_TYPE設為5
-                            var findWardhouseDeviceType = f1980Repo.Find(p => p.DC_CODE == detail.SrcDcCode && p.WAREHOUSE_ID == detail.SrcWarehouseId);
-                            if (findWardhouseDeviceType?.DEVICE_TYPE == "3")
-                            {
-                                detail.PRE_TAR_WAREHOUSE_ID = item.TarWarehouseId;
-                                detail.TarWarehouseId = null;
-                                detail.AllocationType = AllocationType.NoTarget;
-                                detail.AllocationTypeCode = "5";
-                            }
-                        }
-                    }
-                }
+              //若來源倉庫的DeviceType=3，將調撥單轉為純下架單，並將TAR_WAREHOUSE_ID設定到PRE_TAR_WAREHOUSE_ID，並將TAR_WAREHOUSE_ID設為NULL，將F151001.ALLOCATION_TYPE設為5
+              var findWardhouseDeviceType = f1980Repo.Find(p => p.DC_CODE == detail.SrcDcCode && p.WAREHOUSE_ID == detail.SrcWarehouseId);
+              if (findWardhouseDeviceType?.DEVICE_TYPE == "3")
+              {
+                detail.PRE_TAR_WAREHOUSE_ID = item.TarWarehouseId;
+                detail.TarWarehouseId = null;
+                detail.AllocationType = AllocationType.NoTarget;
+                detail.AllocationTypeCode = "5";
+              }
             }
-            else
+          }
+          //有指定目的倉庫
+          else if (!string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarWarehouseId))
+          {
+            foreach (var detail in details)
             {
-                foreach (var detail in stockDetailList)
-                {
-                    detail.TarDcCode = item.TarDcCode;
-                    detail.AllocationType = item.AllocationType;
-                    detail.AllocationTypeCode = item.AllocationTypeCode;
+              detail.TarDcCode = item.TarDcCode;
+              detail.TarVnrCode = !string.IsNullOrWhiteSpace(srcLocMapTarLoc.TarVnrCode) ? srcLocMapTarLoc.TarVnrCode : detail.VnrCode;
+              detail.TarWarehouseId = srcLocMapTarLoc.TarWarehouseId;
+              detail.TarLocCode = srcLocMapTarLoc.TarLocCode;
+              detail.TarValidDate = srcLocMapTarLoc.TarValidDate;
+              detail.TarMakeNo = srcLocMapTarLoc.TarMakeNo;
+              detail.TarBoxCtrlNo = srcLocMapTarLoc.TarBoxCtrlNo;
+              detail.TarPalletCtrlNo = srcLocMapTarLoc.TarPalletCtrlNo;
+              detail.BinCode = srcLocMapTarLoc.BinCode;
+              detail.SourceType = srcLocMapTarLoc.SourceType;
+              detail.SourceNo = srcLocMapTarLoc.SourceNo;
+              detail.ReferenceNo = srcLocMapTarLoc.ReferenceNo;
+              detail.ReferenceSeq = srcLocMapTarLoc.ReferenceSeq;
+              detail.AllocationType = item.AllocationType;
+              detail.AllocationTypeCode = item.AllocationTypeCode;
 
-                    //若來源倉庫的DeviceType=3，將調撥單轉為純下架單，並將TAR_WAREHOUSE_ID設定到PRE_TAR_WAREHOUSE_ID，並將TAR_WAREHOUSE_ID設為NULL，將F151001.ALLOCATION_TYPE設為5
-                    var findWardhouseDeviceType = f1980Repo.Find(p => p.DC_CODE == detail.SrcDcCode && p.WAREHOUSE_ID == detail.SrcWarehouseId);
-                    if (findWardhouseDeviceType?.DEVICE_TYPE == "3")
-                    {
-                        detail.PRE_TAR_WAREHOUSE_ID = item.TarWarehouseId;
-                        detail.TarWarehouseId = null;
-                        detail.AllocationType = AllocationType.NoTarget;
-                        detail.AllocationTypeCode = "5";
-                    }
-                }
+              //若來源倉庫的DeviceType=3，將調撥單轉為純下架單，並將TAR_WAREHOUSE_ID設定到PRE_TAR_WAREHOUSE_ID，並將TAR_WAREHOUSE_ID設為NULL，將F151001.ALLOCATION_TYPE設為5
+              var findWardhouseDeviceType = f1980Repo.Find(p => p.DC_CODE == detail.SrcDcCode && p.WAREHOUSE_ID == detail.SrcWarehouseId);
+              if (findWardhouseDeviceType?.DEVICE_TYPE == "3")
+              {
+                detail.PRE_TAR_WAREHOUSE_ID = item.TarWarehouseId;
+                detail.TarWarehouseId = null;
+                detail.AllocationType = AllocationType.NoTarget;
+                detail.AllocationTypeCode = "5";
+              }
             }
+          }
+        }
+      }
+      else
+      {
+        foreach (var detail in stockDetailList)
+        {
+          detail.TarDcCode = item.TarDcCode;
+          detail.AllocationType = item.AllocationType;
+          detail.AllocationTypeCode = item.AllocationTypeCode;
 
-            //有指定目的儲位檢核
-            var hasSetTarLocDetail = stockDetailList.Where(x => !string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
-            foreach (var detail in hasSetTarLocDetail)
-            {
-                //檢核商品儲位
-                var result = CheckItemLocStatus(detail.SrcDcCode, detail.TarDcCode, detail.GupCode, detail.CustCode, detail.ItemCode, detail.SrcLocCode,
-                    detail.TarLocCode, detail.ValidDate.ToString("yyyy/MM/dd"), f1980Repo.CheckAutoWarehouse(detail.TarDcCode, detail.TarWarehouseId), detail.TarWarehouseId, isCheck);
-                if (!result.IsSuccessed)
-                    return result;
+          //若來源倉庫的DeviceType=3，將調撥單轉為純下架單，並將TAR_WAREHOUSE_ID設定到PRE_TAR_WAREHOUSE_ID，並將TAR_WAREHOUSE_ID設為NULL，將F151001.ALLOCATION_TYPE設為5
+          var findWardhouseDeviceType = f1980Repo.Find(p => p.DC_CODE == detail.SrcDcCode && p.WAREHOUSE_ID == detail.SrcWarehouseId);
+          if (findWardhouseDeviceType?.DEVICE_TYPE == "3")
+          {
+            detail.PRE_TAR_WAREHOUSE_ID = item.TarWarehouseId;
+            detail.TarWarehouseId = null;
+            detail.AllocationType = AllocationType.NoTarget;
+            detail.AllocationTypeCode = "5";
+          }
+        }
+      }
 
-                //檢查商品溫層
-                var message = CheckItemLocTmpr(detail.TarDcCode, detail.GupCode, detail.ItemCode, detail.CustCode, detail.TarLocCode);
-                if (!string.IsNullOrWhiteSpace(message))
-                    return new ExecuteResult(false, message);
+      //有指定目的儲位檢核
+      var hasSetTarLocDetail = stockDetailList.Where(x => !string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
+      foreach (var detail in hasSetTarLocDetail)
+      {
+        //檢核商品儲位
+        var result = CheckItemLocStatus(detail.SrcDcCode, detail.TarDcCode, detail.GupCode, detail.CustCode, detail.ItemCode, detail.SrcLocCode,
+            detail.TarLocCode, detail.ValidDate.ToString("yyyy/MM/dd"), f1980Repo.CheckAutoWarehouse(detail.TarDcCode, detail.TarWarehouseId), detail.TarWarehouseId, isCheck);
+        if (!result.IsSuccessed)
+          return result;
 
-                //檢查儲位是否已被其他貨主所使用
-                result = CheckNowCustCodeLoc(detail.TarDcCode, detail.TarLocCode, detail.CustCode);
-                if (!result.IsSuccessed)
-                    return result;
-            }
+        //檢查商品溫層
+        var message = CheckItemLocTmpr(detail.TarDcCode, detail.GupCode, detail.ItemCode, detail.CustCode, detail.TarLocCode);
+        if (!string.IsNullOrWhiteSpace(message))
+          return new ExecuteResult(false, message);
 
-            // 目的倉為自動倉不考慮混品規則
-            var autoWarehouseItem = new List<StockDetail>();
+        //檢查儲位是否已被其他貨主所使用
+        result = CheckNowCustCodeLoc(detail.TarDcCode, detail.TarLocCode, detail.CustCode);
+        if (!result.IsSuccessed)
+          return result;
+      }
 
-            foreach (var hasSetTarLocDetailItem in hasSetTarLocDetail)
-            {
-                if (f1980Repo.CheckAutoWarehouse(hasSetTarLocDetailItem.TarDcCode, hasSetTarLocDetailItem.TarWarehouseId))
-                {
-                    autoWarehouseItem.Add(hasSetTarLocDetailItem);
-                }
-            }
-            if (autoWarehouseItem.Any())
-            {
-                hasSetTarLocDetail = hasSetTarLocDetail.Except(autoWarehouseItem).ToList();
-            }
-            //針對商品不可混批進行檢核(可能同一商品上架同一個儲位明細有混效期) 
-            if (isCheck)
-            {
-                var checkDetails = hasSetTarLocDetail.GroupBy(x => new
-                {
-                    x.GupCode,
-                    x.CustCode,
-                    x.ItemCode,
-                    x.TarLocCode
-                }).Select(x => new CheckItemTarLocMixLoc
-                {
-                    GupCode = x.Key.GupCode,
-                    CustCode = x.Key.CustCode,
-                    ItemCode = x.Key.ItemCode,
-                    TarLocCode = x.Key.TarLocCode,
-                    CountValidDate = x.Select(c => c.TarValidDate ?? c.ValidDate).Distinct().Count()
-                }).ToList();
+      // 目的倉為自動倉不考慮混品規則
+      var autoWarehouseItem = new List<StockDetail>();
 
-                var checkItemMixLoc = CheckItemMixBatch(checkDetails);
-                if (!checkItemMixLoc.IsSuccessed)
-                    return checkItemMixLoc;
-            }
+      foreach (var hasSetTarLocDetailItem in hasSetTarLocDetail)
+      {
+        if (f1980Repo.CheckAutoWarehouse(hasSetTarLocDetailItem.TarDcCode, hasSetTarLocDetailItem.TarWarehouseId))
+        {
+          autoWarehouseItem.Add(hasSetTarLocDetailItem);
+        }
+      }
+      if (autoWarehouseItem.Any())
+      {
+        hasSetTarLocDetail = hasSetTarLocDetail.Except(autoWarehouseItem).ToList();
+      }
+      //針對商品不可混批進行檢核(可能同一商品上架同一個儲位明細有混效期) 
+      if (isCheck)
+      {
+        var checkDetails = hasSetTarLocDetail.GroupBy(x => new
+        {
+          x.GupCode,
+          x.CustCode,
+          x.ItemCode,
+          x.TarLocCode
+        }).Select(x => new CheckItemTarLocMixLoc
+        {
+          GupCode = x.Key.GupCode,
+          CustCode = x.Key.CustCode,
+          ItemCode = x.Key.ItemCode,
+          TarLocCode = x.Key.TarLocCode,
+          CountValidDate = x.Select(c => c.TarValidDate ?? c.ValidDate).Distinct().Count()
+        }).ToList();
 
-            //尚未指定目的儲位 => 改取建議儲位
-            var srcF1912s = new List<F1912>();
-            var srcDcLocs = stockDetailList.Where(x => !string.IsNullOrWhiteSpace(x.SrcLocCode)).GroupBy(x => x.SrcDcCode);
-            if(srcDcLocs.Any())
-                foreach (var srcDcLoc in srcDcLocs)
-                    srcF1912s.AddRange(GetF1912s(srcDcLoc.Key, srcDcLoc.Select(x => x.SrcLocCode).ToList()));
+        var checkItemMixLoc = CheckItemMixBatch(checkDetails);
+        if (!checkItemMixLoc.IsSuccessed)
+          return checkItemMixLoc;
+      }
 
-            var noSetTarLocDetails = stockDetailList.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode) && x.AllocationType != AllocationType.NoTarget);
-            var group = noSetTarLocDetails.GroupBy(x => new { x.GupCode, x.CustCode, x.ItemCode, x.EnterDate, x.ValidDate, x.VnrCode, x.TarWarehouseId, x.DataId });
-            foreach (var g in group)
-            {
-                var tempWarehouseId = g.Key.TarWarehouseId ?? item.TarWarehouseId;
-                var tempWarehouseType = item.TarWarehouseType;
-                if (string.IsNullOrWhiteSpace(tempWarehouseType) && string.IsNullOrWhiteSpace(tempWarehouseId))
-                {
-                    var f1903 = GetF1903s(g.Key.GupCode, g.Key.CustCode, new List<string> { g.Key.ItemCode }).First();
-                    if (!string.IsNullOrWhiteSpace(f1903.PICK_WARE_ID))
-                        tempWarehouseId = f1903.PICK_WARE_ID;
-                    else
-                        tempWarehouseType = f1903.PICK_WARE;
-                }
-                var details = g.ToList();
+      //尚未指定目的儲位 => 改取建議儲位
+      var srcF1912s = new List<F1912>();
+      var srcDcLocs = stockDetailList.Where(x => !string.IsNullOrWhiteSpace(x.SrcLocCode)).GroupBy(x => x.SrcDcCode);
+      if (srcDcLocs.Any())
+        foreach (var srcDcLoc in srcDcLocs)
+          srcF1912s.AddRange(GetF1912s(srcDcLoc.Key, srcDcLoc.Select(x => x.SrcLocCode).ToList()));
 
-                if (details.All(x => x.SerialNo == "0"))
-                {
-          swt.Restart();
+      var noSetTarLocDetails = stockDetailList.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode) && x.AllocationType != AllocationType.NoTarget);
+      var group = noSetTarLocDetails.GroupBy(x => new { x.GupCode, x.CustCode, x.ItemCode, x.EnterDate, x.ValidDate, x.VnrCode, x.TarWarehouseId, x.DataId });
+      foreach (var g in group)
+      {
+        var tempWarehouseId = g.Key.TarWarehouseId ?? item.TarWarehouseId;
+        var tempWarehouseType = item.TarWarehouseType;
+        if (string.IsNullOrWhiteSpace(tempWarehouseType) && string.IsNullOrWhiteSpace(tempWarehouseId))
+        {
+          var f1903 = GetF1903s(g.Key.GupCode, g.Key.CustCode, new List<string> { g.Key.ItemCode }).First();
+          if (!string.IsNullOrWhiteSpace(f1903.PICK_WARE_ID))
+            tempWarehouseId = f1903.PICK_WARE_ID;
+          else
+            tempWarehouseType = f1903.PICK_WARE;
+        }
+        var details = g.ToList();
+
+        if (details.All(x => x.SerialNo == "0"))
+        {
           //分配無序號
           var result1 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.None, item.isIncludeResupply, details, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId, item.NotAllowSeparateLoc);
-                    if (!result1.IsSuccessed)
-                        return result1;
-          swt.Stop();
-          ApiLogHelper.WriteFileContentAsync($"SetTarLoc SetSuggestLocToStockDetails:{swt.ElapsedMilliseconds}");
+          if (!result1.IsSuccessed)
+            return result1;
         }
         else
-                {
-                    //分配整箱
-                    var result1 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.CaseNo, item.isIncludeResupply, details, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
-                    if (!result1.IsSuccessed)
-                        return result1;
-                    var details1 = details.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
-                    //分配整盒
-                    var result2 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.BoxNo, item.isIncludeResupply, details1, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
-                    if (!result2.IsSuccessed)
-                        return result2;
-                    var details2 = details.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
-                    //分配儲值卡盒
-                    var result3 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.BatchNo, item.isIncludeResupply, details2, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
-                    if (!result3.IsSuccessed)
-                        return result3;
-                    var details3 = details.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
-                    //分配序號
-                    var result4 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.SerialNo, item.isIncludeResupply, details3, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
-                    if (!result4.IsSuccessed)
-                        return result4;
-                }
-            }
-
-            return new ExecuteResult(true);
-        }
-
-        /// <summary>
-        /// 設定調撥明細建議儲位
-        /// </summary>
-        /// <param name="tarDcCode">目的物流中心</param>
-        /// <param name="gupCode">業主</param>
-        /// <param name="custCode">貨主</param>
-        /// <param name="itemCode">品號</param>
-        /// <param name="validDate">效期</param>
-        /// <param name="enterDate">入庫日</param>
-        /// <param name="vnrCode">廠商</param>
-        /// <param name="dataId">資料群組 當有值代表只取第一個建議儲位 否則依建議儲位建立調撥明細</param>
-        /// <param name="tempWarehouseType">倉別型態</param>
-        /// <param name="tempWarehouseId">倉庫編號</param>
-        /// <param name="getSuggestLocType">取得建立儲位方式</param>
-        /// <param name="itemStockDetails">商品調撥明細</param>
-        /// <param name="isIncludeResupply">是否包含補貨區</param>
-        /// <param name="srcF1912s">來源儲位資料</param>
-        /// <param name="allStockDetails">所有調撥明細</param>
-        /// <param name="excludeLocs">排除儲位清單</param>
-        /// <param name="notAllowSeparateLoc">是否不允許商品拆儲位</param>
-        /// <returns></returns>
-        private ExecuteResult SetSuggestLocToStockDetails(string tarDcCode, string gupCode, string custCode, string itemCode, DateTime validDate, DateTime enterDate, string vnrCode, int? dataId, string tempWarehouseType, string tempWarehouseId, GetSuggestLocType getSuggestLocType, bool isIncludeResupply, List<StockDetail> itemStockDetails, List<F1912> srcF1912s, ref List<StockDetail> allStockDetails, string tarWarehouseId, bool notAllowSeparateLoc = false)
         {
+          //分配整箱
+          var result1 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.CaseNo, item.isIncludeResupply, details, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
+          if (!result1.IsSuccessed)
+            return result1;
+          var details1 = details.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
+          //分配整盒
+          var result2 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.BoxNo, item.isIncludeResupply, details1, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
+          if (!result2.IsSuccessed)
+            return result2;
+          var details2 = details.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
+          //分配儲值卡盒
+          var result3 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.BatchNo, item.isIncludeResupply, details2, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
+          if (!result3.IsSuccessed)
+            return result3;
+          var details3 = details.Where(x => string.IsNullOrWhiteSpace(x.TarLocCode)).ToList();
+          //分配序號
+          var result4 = SetSuggestLocToStockDetails(item.TarDcCode, g.Key.GupCode, g.Key.CustCode, g.Key.ItemCode, g.Key.ValidDate, g.Key.EnterDate, g.Key.VnrCode, g.Key.DataId, tempWarehouseType, tempWarehouseId, GetSuggestLocType.SerialNo, item.isIncludeResupply, details3, srcF1912s, ref stockDetailList, g.Key.TarWarehouseId);
+          if (!result4.IsSuccessed)
+            return result4;
+        }
+      }
+
+      return new ExecuteResult(true);
+    }
+
+    /// <summary>
+    /// 設定調撥明細建議儲位
+    /// </summary>
+    /// <param name="tarDcCode">目的物流中心</param>
+    /// <param name="gupCode">業主</param>
+    /// <param name="custCode">貨主</param>
+    /// <param name="itemCode">品號</param>
+    /// <param name="validDate">效期</param>
+    /// <param name="enterDate">入庫日</param>
+    /// <param name="vnrCode">廠商</param>
+    /// <param name="dataId">資料群組 當有值代表只取第一個建議儲位 否則依建議儲位建立調撥明細</param>
+    /// <param name="tempWarehouseType">倉別型態</param>
+    /// <param name="tempWarehouseId">倉庫編號</param>
+    /// <param name="getSuggestLocType">取得建立儲位方式</param>
+    /// <param name="itemStockDetails">商品調撥明細</param>
+    /// <param name="isIncludeResupply">是否包含補貨區</param>
+    /// <param name="srcF1912s">來源儲位資料</param>
+    /// <param name="allStockDetails">所有調撥明細</param>
+    /// <param name="excludeLocs">排除儲位清單</param>
+    /// <param name="notAllowSeparateLoc">是否不允許商品拆儲位</param>
+    /// <returns></returns>
+    private ExecuteResult SetSuggestLocToStockDetails(string tarDcCode, string gupCode, string custCode, string itemCode, DateTime validDate, DateTime enterDate, string vnrCode, int? dataId, string tempWarehouseType, string tempWarehouseId, GetSuggestLocType getSuggestLocType, bool isIncludeResupply, List<StockDetail> itemStockDetails, List<F1912> srcF1912s, ref List<StockDetail> allStockDetails, string tarWarehouseId, bool notAllowSeparateLoc = false)
+    {
       var f1903 = CommonService.GetProduct(gupCode, custCode, itemCode);
       var f190301List = GetF190301WithF91000302s(gupCode, new List<string> { itemCode }, new List<string> { "箱", "盒" });
-            var boxItem = f190301List.FirstOrDefault(x => x.UNIT_ID == "04");
-            var f2501Repo = new F2501Repository(Schemas.CoreSchema);
-            var list = new Dictionary<string, List<StockDetail>>();
-            switch (getSuggestLocType)
+      var boxItem = f190301List.FirstOrDefault(x => x.UNIT_ID == "04");
+      var f2501Repo = new F2501Repository(Schemas.CoreSchema);
+      var list = new Dictionary<string, List<StockDetail>>();
+      switch (getSuggestLocType)
+      {
+        case GetSuggestLocType.None:
+        case GetSuggestLocType.SerialNo:
+          list.Add(dataId.HasValue ? dataId.Value.ToString() : "", itemStockDetails);
+          break;
+        case GetSuggestLocType.CaseNo: //箱
+          notAllowSeparateLoc = true;
+          var caseItem = f190301List.FirstOrDefault(x => x.UNIT_ID == "05");
+          if (caseItem != null)
+          {
+            var caseQty = (boxItem != null) ? caseItem.UNIT_QTY * boxItem.UNIT_QTY : caseItem.UNIT_QTY;
+            var group = itemStockDetails.Where(x => !string.IsNullOrWhiteSpace(x.CaseNo)).GroupBy(x => x.CaseNo);
+            foreach (var g in group)
             {
-                case GetSuggestLocType.None:
-                case GetSuggestLocType.SerialNo:
-                    list.Add(dataId.HasValue ? dataId.Value.ToString() : "", itemStockDetails);
-                    break;
-                case GetSuggestLocType.CaseNo: //箱
-                    notAllowSeparateLoc = true;
-                    var caseItem = f190301List.FirstOrDefault(x => x.UNIT_ID == "05");
-                    if (caseItem != null)
-                    {
-                        var caseQty = (boxItem != null) ? caseItem.UNIT_QTY * boxItem.UNIT_QTY : caseItem.UNIT_QTY;
-                        var group = itemStockDetails.Where(x => !string.IsNullOrWhiteSpace(x.CaseNo)).GroupBy(x => x.CaseNo);
-                        foreach (var g in group)
-                        {
-                            //取得此箱此商品所有序號
-                            var caseSerialList = f2501Repo.GetDatasByCaseNo(gupCode, custCode, g.Key).Select(o => o.SERIAL_NO).ToList();
-                            //此箱此商品調撥序號是否與序號主檔此箱此商品序號一致
-                            var data = g.Where(x => caseSerialList.Any(y => y == x.SerialNo)).ToList();
-                            if (data.Count() == caseQty) //是否此箱有完整序號數量且滿足此商品一箱數量
-                                list.Add(g.Key, data);
-                        }
-                    }
-                    break;
-                case GetSuggestLocType.BoxNo: //盒
-                    notAllowSeparateLoc = true;
-                    if (boxItem != null)
-                    {
-                        var boxQty = boxItem.UNIT_QTY;
-                        var group = itemStockDetails.Where(x => !string.IsNullOrWhiteSpace(x.BoxNo)).GroupBy(x => x.BoxNo);
-                        foreach (var g in group)
-                        {
-                            //取得此盒此商品所有序號
-                            var boxSerialList = f2501Repo.GetDatasByBoxSerial(gupCode, custCode, g.Key).Select(o => o.SERIAL_NO).ToList();
-                            //此盒此商品調撥序號是否與序號主檔此盒此商品序號一致
-                            var data = g.Where(x => boxSerialList.Any(y => y == x.SerialNo)).ToList();
-                            if (data.Count() == boxQty) //是否此盒有完整序號數量且滿足此商品一盒數量
-                                list.Add(g.Key, data);
-                        }
-                    }
-                    break;
-                case GetSuggestLocType.BatchNo://儲值卡
-                    notAllowSeparateLoc = true;
-                    var serialNoService = new SerialNoService();
-                    var isBatchNoItem = serialNoService.IsBatchNoItem(gupCode, custCode, custCode);
-                    if (isBatchNoItem)
-                    {
-                        var batchQty = 200;//儲值卡盒序號數 固定200
-                        var group = itemStockDetails.Where(x => !string.IsNullOrWhiteSpace(x.BatchNo)).GroupBy(x => x.BatchNo);
-                        foreach (var g in group)
-                        {
-                            //取得此儲值卡盒此商品所有序號
-                            var boxSerialList = f2501Repo.GetDatasByBoxSerial(gupCode, custCode, g.Key).Select(o => o.SERIAL_NO).ToList();
-                            //此儲值卡盒此商品調撥序號是否與序號主檔此儲值卡盒此商品序號一致
-                            var data = g.Where(x => boxSerialList.Any(y => y == x.SerialNo)).ToList();
-                            if (data.Count() == batchQty) //是否此儲值卡盒有完整序號數量且滿足此商品一儲值卡盒數量
-                                list.Add(g.Key, data);
-                        }
-                    }
-                    break;
+              //取得此箱此商品所有序號
+              var caseSerialList = f2501Repo.GetDatasByCaseNo(gupCode, custCode, g.Key).Select(o => o.SERIAL_NO).ToList();
+              //此箱此商品調撥序號是否與序號主檔此箱此商品序號一致
+              var data = g.Where(x => caseSerialList.Any(y => y == x.SerialNo)).ToList();
+              if (data.Count() == caseQty) //是否此箱有完整序號數量且滿足此商品一箱數量
+                list.Add(g.Key, data);
             }
-
-            foreach (var item in list)
+          }
+          break;
+        case GetSuggestLocType.BoxNo: //盒
+          notAllowSeparateLoc = true;
+          if (boxItem != null)
+          {
+            var boxQty = boxItem.UNIT_QTY;
+            var group = itemStockDetails.Where(x => !string.IsNullOrWhiteSpace(x.BoxNo)).GroupBy(x => x.BoxNo);
+            foreach (var g in group)
             {
-							if (_excludeLocCodes == null)
-								_excludeLocCodes = _excludeLocs.Select(x => x.LOC_CODE).ToList();
-						 
-							//取建議儲位增加排除來源儲位
-							var srcLocCodes = item.Value.Where(x => !string.IsNullOrWhiteSpace(x.SrcLocCode)).Select(x => x.SrcLocCode).Distinct().ToList();
-              _excludeLocCodes.AddRange(srcLocCodes);
-							_excludeLocCodes = _excludeLocCodes.Distinct().ToList();
+              //取得此盒此商品所有序號
+              var boxSerialList = f2501Repo.GetDatasByBoxSerial(gupCode, custCode, g.Key).Select(o => o.SERIAL_NO).ToList();
+              //此盒此商品調撥序號是否與序號主檔此盒此商品序號一致
+              var data = g.Where(x => boxSerialList.Any(y => y == x.SerialNo)).ToList();
+              if (data.Count() == boxQty) //是否此盒有完整序號數量且滿足此商品一盒數量
+                list.Add(g.Key, data);
+            }
+          }
+          break;
+        case GetSuggestLocType.BatchNo://儲值卡
+          notAllowSeparateLoc = true;
+          var serialNoService = new SerialNoService();
+          var isBatchNoItem = serialNoService.IsBatchNoItem(gupCode, custCode, custCode);
+          if (isBatchNoItem)
+          {
+            var batchQty = 200;//儲值卡盒序號數 固定200
+            var group = itemStockDetails.Where(x => !string.IsNullOrWhiteSpace(x.BatchNo)).GroupBy(x => x.BatchNo);
+            foreach (var g in group)
+            {
+              //取得此儲值卡盒此商品所有序號
+              var boxSerialList = f2501Repo.GetDatasByBoxSerial(gupCode, custCode, g.Key).Select(o => o.SERIAL_NO).ToList();
+              //此儲值卡盒此商品調撥序號是否與序號主檔此儲值卡盒此商品序號一致
+              var data = g.Where(x => boxSerialList.Any(y => y == x.SerialNo)).ToList();
+              if (data.Count() == batchQty) //是否此儲值卡盒有完整序號數量且滿足此商品一儲值卡盒數量
+                list.Add(g.Key, data);
+            }
+          }
+          break;
+      }
 
-				       var qty = (int)item.Value.Sum(x => x.Qty);
-                List<StockDetail> exists = null;
-                //此商品可以混批且非批號控管 且非箱號、盒號、儲值卡盒號=>將已分配目的儲位移除合併數量在取建議儲位
-                if (f1903.MIX_BATCHNO == "1" && f1903.MAKENO_REQU == "0" && (getSuggestLocType == GetSuggestLocType.None || getSuggestLocType == GetSuggestLocType.SerialNo))
-                {
-                    exists = allStockDetails.Where(o => o.TarDcCode == tarDcCode && o.GupCode == gupCode && o.CustCode == custCode && o.ItemCode == itemCode && !string.IsNullOrWhiteSpace(o.TarLocCode)).ToList();
-                    if (!string.IsNullOrWhiteSpace(tempWarehouseId))
-                        exists = exists.Where(x => x.TarWarehouseId == tempWarehouseId).ToList();
-                    else
-                        exists = exists.Where(x => x.TarWarehouseId.Substring(0, 1) == tempWarehouseType).ToList();
+      foreach (var item in list)
+      {
+        if (_excludeLocCodes == null)
+          _excludeLocCodes = _excludeLocs.Select(x => x.LOC_CODE).ToList();
 
-                    if (exists.Any())
-                    {
-                        //排除已指定上架儲位
-                        _excludeLocs.RemoveAll(x => exists.Select(y => y.TarLocCode).Contains(x.LOC_CODE));
-                        //清除上架設定
-                        exists.ForEach(x => { x.TarWarehouseId = null; x.TarLocCode = null; x.TarDcCode = null; x.TarVnrCode = null; });
-                        qty += (int)exists.Sum(x => x.Qty);
-                    }
-                }
+        //取建議儲位增加排除來源儲位
+        var srcLocCodes = item.Value.Where(x => !string.IsNullOrWhiteSpace(x.SrcLocCode)).Select(x => x.SrcLocCode).Distinct().ToList();
+        _excludeLocCodes.AddRange(srcLocCodes);
+        _excludeLocCodes = _excludeLocCodes.Distinct().ToList();
+
+        var qty = (int)item.Value.Sum(x => x.Qty);
+        List<StockDetail> exists = null;
+        //此商品可以混批且非批號控管 且非箱號、盒號、儲值卡盒號=>將已分配目的儲位移除合併數量在取建議儲位
+        if (f1903.MIX_BATCHNO == "1" && f1903.MAKENO_REQU == "0" && (getSuggestLocType == GetSuggestLocType.None || getSuggestLocType == GetSuggestLocType.SerialNo))
+        {
+          exists = allStockDetails.Where(o => o.TarDcCode == tarDcCode && o.GupCode == gupCode && o.CustCode == custCode && o.ItemCode == itemCode && !string.IsNullOrWhiteSpace(o.TarLocCode)).ToList();
+          if (!string.IsNullOrWhiteSpace(tempWarehouseId))
+            exists = exists.Where(x => x.TarWarehouseId == tempWarehouseId).ToList();
+          else
+            exists = exists.Where(x => x.TarWarehouseId.Substring(0, 1) == tempWarehouseType).ToList();
+
+          if (exists.Any())
+          {
+            //排除已指定上架儲位
+            _excludeLocs.RemoveAll(x => exists.Select(y => y.TarLocCode).Contains(x.LOC_CODE));
+            //清除上架設定
+            exists.ForEach(x => { x.TarWarehouseId = null; x.TarLocCode = null; x.TarDcCode = null; x.TarVnrCode = null; });
+            qty += (int)exists.Sum(x => x.Qty);
+          }
+        }
         if (_newSuggestLocService == null)
         {
           _newSuggestLocService = new NewSuggestLocService();
           _newSuggestLocService.CommonService = CommonService;
         }
-        var swt = new Stopwatch();
-        swt.Restart();
         var suggestLocs = _newSuggestLocService.GetSuggestLocs(new NewSuggestLocParam
-								{
-									DcCode = tarDcCode,
-									GupCode = gupCode,
-									CustCode = custCode,
-									ItemCode = itemCode,
-									EnterDate = enterDate,
-									ValidDate = validDate,
-									AppointNeverItemMix = false,
-									NotAllowSeparateLoc = notAllowSeparateLoc,
-									IsIncludeResupply = isIncludeResupply,
-									TarWarehouseType = tempWarehouseType,
-									TarWarehouseId = tempWarehouseId,
-									Qty = qty,
-								}, ref _excludeLocCodes);
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"SetSuggestLocToStockDetails GetSuggestLocs:{swt.ElapsedMilliseconds}");
+        {
+          DcCode = tarDcCode,
+          GupCode = gupCode,
+          CustCode = custCode,
+          ItemCode = itemCode,
+          EnterDate = enterDate,
+          ValidDate = validDate,
+          AppointNeverItemMix = false,
+          NotAllowSeparateLoc = notAllowSeparateLoc,
+          IsIncludeResupply = isIncludeResupply,
+          TarWarehouseType = tempWarehouseType,
+          TarWarehouseId = tempWarehouseId,
+          Qty = qty,
+        }, ref _excludeLocCodes);
 
         if (!suggestLocs.Any())
-                    return new ExecuteResult(false, string.Format("所選擇的目的倉別({0})，找不到品號({1})的建議上架儲位!",
-                        tempWarehouseId ?? tempWarehouseType, itemCode));
+          return new ExecuteResult(false, string.Format("所選擇的目的倉別({0})，找不到品號({1})的建議上架儲位!",
+              tempWarehouseId ?? tempWarehouseType, itemCode));
 
-                if (!string.IsNullOrWhiteSpace(item.Key) && getSuggestLocType != GetSuggestLocType.None && getSuggestLocType != GetSuggestLocType.SerialNo) //箱號、盒號、儲值卡盒號 必須同一儲位
-                {
-                    var suggestLocFirst = suggestLocs.First();
-                    foreach (var stockDetail in item.Value)
-                    {
-                        stockDetail.TarDcCode = tarDcCode;
-                        stockDetail.TarVnrCode = stockDetail.VnrCode;
-                        stockDetail.TarWarehouseId = !string.IsNullOrWhiteSpace(tarWarehouseId) && string.IsNullOrWhiteSpace(suggestLocFirst.WarehouseId) ? tarWarehouseId : suggestLocFirst.WarehouseId;
-                        stockDetail.TarLocCode = suggestLocFirst.LocCode;
-                    }
-                }
-                else
-                {
-                    var newStockDetails = new List<StockDetail>();
-                    //分配建議儲位數量
-                    foreach (var suggestLoc in suggestLocs)
-                    {
-                        do
-                        {
-                            var stockDetail = item.Value.FirstOrDefault(x => string.IsNullOrEmpty(x.TarLocCode));
-                            if (stockDetail == null && exists != null)
-                                stockDetail = exists.FirstOrDefault(x => string.IsNullOrEmpty(x.TarLocCode));
-                            if (stockDetail == null) //找不到任何未指定目的儲位明細就跳離(基本上都會找到)
-                                break;
-                            if (suggestLoc.PutQty >= stockDetail.Qty) //建議儲位可分配數量>=調撥明細數量
-                            {
-                                stockDetail.TarDcCode = tarDcCode;
-                                stockDetail.TarVnrCode = stockDetail.VnrCode;
-                                stockDetail.TarWarehouseId = !string.IsNullOrWhiteSpace(tarWarehouseId) && string.IsNullOrWhiteSpace(suggestLoc.WarehouseId) ? tarWarehouseId : suggestLoc.WarehouseId;
-                                stockDetail.TarLocCode = suggestLoc.LocCode;
-                                suggestLoc.PutQty -= (int)stockDetail.Qty;
-                            }
-                            else //建議儲位可分配數量 < 調撥明細數量 =>拆明細
-                            {
-                                var newStockDetail = AutoMapper.Mapper.DynamicMap<StockDetail>(stockDetail);
-                                newStockDetail.Qty = suggestLoc.PutQty;
-                                newStockDetail.TarDcCode = tarDcCode;
-                                newStockDetail.TarVnrCode = stockDetail.VnrCode;
-                                newStockDetail.TarWarehouseId = !string.IsNullOrWhiteSpace(tarWarehouseId) && string.IsNullOrWhiteSpace(suggestLoc.WarehouseId) ? tarWarehouseId : suggestLoc.WarehouseId;
-                                newStockDetail.TarLocCode = suggestLoc.LocCode;
-                                newStockDetails.Add(newStockDetail);
-                                stockDetail.Qty -= suggestLoc.PutQty;
-                                suggestLoc.PutQty = 0;
-                            }
-                        } while (suggestLoc.PutQty > 0);
-                    }
-                    allStockDetails.AddRange(newStockDetails);
-                }
-                //移除排除的來源儲位
-								_excludeLocCodes = _excludeLocCodes.Except(srcLocCodes).ToList();
-            }
-            return new ExecuteResult(true);
+        if (!string.IsNullOrWhiteSpace(item.Key) && getSuggestLocType != GetSuggestLocType.None && getSuggestLocType != GetSuggestLocType.SerialNo) //箱號、盒號、儲值卡盒號 必須同一儲位
+        {
+          var suggestLocFirst = suggestLocs.First();
+          foreach (var stockDetail in item.Value)
+          {
+            stockDetail.TarDcCode = tarDcCode;
+            stockDetail.TarVnrCode = stockDetail.VnrCode;
+            stockDetail.TarWarehouseId = !string.IsNullOrWhiteSpace(tarWarehouseId) && string.IsNullOrWhiteSpace(suggestLocFirst.WarehouseId) ? tarWarehouseId : suggestLocFirst.WarehouseId;
+            stockDetail.TarLocCode = suggestLocFirst.LocCode;
+          }
         }
+        else
+        {
+          var newStockDetails = new List<StockDetail>();
+          //分配建議儲位數量
+          foreach (var suggestLoc in suggestLocs)
+          {
+            do
+            {
+              var stockDetail = item.Value.FirstOrDefault(x => string.IsNullOrEmpty(x.TarLocCode));
+              if (stockDetail == null && exists != null)
+                stockDetail = exists.FirstOrDefault(x => string.IsNullOrEmpty(x.TarLocCode));
+              if (stockDetail == null) //找不到任何未指定目的儲位明細就跳離(基本上都會找到)
+                break;
+              if (suggestLoc.PutQty >= stockDetail.Qty) //建議儲位可分配數量>=調撥明細數量
+              {
+                stockDetail.TarDcCode = tarDcCode;
+                stockDetail.TarVnrCode = stockDetail.VnrCode;
+                stockDetail.TarWarehouseId = !string.IsNullOrWhiteSpace(tarWarehouseId) && string.IsNullOrWhiteSpace(suggestLoc.WarehouseId) ? tarWarehouseId : suggestLoc.WarehouseId;
+                stockDetail.TarLocCode = suggestLoc.LocCode;
+                suggestLoc.PutQty -= (int)stockDetail.Qty;
+              }
+              else //建議儲位可分配數量 < 調撥明細數量 =>拆明細
+              {
+                var newStockDetail = AutoMapper.Mapper.DynamicMap<StockDetail>(stockDetail);
+                newStockDetail.Qty = suggestLoc.PutQty;
+                newStockDetail.TarDcCode = tarDcCode;
+                newStockDetail.TarVnrCode = stockDetail.VnrCode;
+                newStockDetail.TarWarehouseId = !string.IsNullOrWhiteSpace(tarWarehouseId) && string.IsNullOrWhiteSpace(suggestLoc.WarehouseId) ? tarWarehouseId : suggestLoc.WarehouseId;
+                newStockDetail.TarLocCode = suggestLoc.LocCode;
+                newStockDetails.Add(newStockDetail);
+                stockDetail.Qty -= suggestLoc.PutQty;
+                suggestLoc.PutQty = 0;
+              }
+            } while (suggestLoc.PutQty > 0);
+          }
+          allStockDetails.AddRange(newStockDetails);
+        }
+        //移除排除的來源儲位
+        _excludeLocCodes = _excludeLocCodes.Except(srcLocCodes).ToList();
+      }
+      return new ExecuteResult(true);
+    }
 
 
 

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Wms3pl.Datas.F06;
 using Wms3pl.Datas.F15;
@@ -18,7 +17,6 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 {
 	public class OutWarehouseContainerReceiptService : BaseService
 	{
-    Stopwatch swt = new Stopwatch();
 
     private WmsTransaction _wmsTransaction;
 		private F151001Repository _f151001Repo;
@@ -52,10 +50,10 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 				CommonService commonService = new CommonService();
 				var dcCustList = commonService.GetDcCustList(req.DcCode, req.GupCode, req.CustCode);
 				dcCustList.ForEach(item =>
-							{
-								var result = OutboundContainerConfirm(item.DC_CODE, item.GUP_CODE, item.CUST_CODE);
-								data.Add(new ApiResponse { MsgCode = result.MsgCode, MsgContent = result.MsgContent, No = $"DC_CODE：{item.DC_CODE} GUP_CODE：{item.GUP_CODE} CUST_CODE：{ item.CUST_CODE}" });
-							});
+        {
+          var result = OutboundContainerConfirm(item.DC_CODE, item.GUP_CODE, item.CUST_CODE);
+          data.Add(new ApiResponse { MsgCode = result.MsgCode, MsgContent = result.MsgContent, No = $"DC_CODE：{item.DC_CODE} GUP_CODE：{item.GUP_CODE} CUST_CODE：{ item.CUST_CODE}" });
+        });
 				res.Data = JsonConvert.SerializeObject(data);
 				return res;
 			}, true);
@@ -72,7 +70,6 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 			ApiResult res = new ApiResult { IsSuccessed = true };
 			_wmsTransaction = new WmsTransaction();
 
-      swt.Restart();
 			_f151001Repo = new F151001Repository(Schemas.CoreSchema, _wmsTransaction);
 			_f151002Repo = new F151002Repository(Schemas.CoreSchema, _wmsTransaction);
 			_f1511Repo = new F1511Repository(Schemas.CoreSchema, _wmsTransaction);
@@ -82,20 +79,12 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 
 			var f1980Repo = new F1980Repository(Schemas.CoreSchema);
 			var f060207Repo = new F060207Repository(Schemas.CoreSchema, _wmsTransaction);
-      swt.Stop();
-      ApiLogHelper.WriteFileContentAsync($"New Repo:{swt.ElapsedMilliseconds}");
 
-      swt.Restart();
       var f060207s = f060207Repo.GetDatasByNoProcess(dcCode, gupCode, custCode).ToList();
-      swt.Stop();
-      ApiLogHelper.WriteFileContentAsync($"Get F060207s:{swt.ElapsedMilliseconds}");
-
       int successCnt = 0;
 
 			foreach (var f060207 in f060207s)
 			{
-        swt.Restart();
-
         var checkTypeIsPallet = f1980Repo.CheckTypeIsPallet(dcCode, f060207.WAREHOUSE_ID);
 
         if (!checkTypeIsPallet) // 倉庫類型<>板進箱出倉(3)
@@ -119,15 +108,7 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 				}
 
         f060207Repo.UpdateFields(new { f060207.STATUS, f060207.MSG_CONTENT }, x => x.ID == f060207.ID);
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"Proc F060207:{swt.ElapsedMilliseconds}");
-
-        ApiLogHelper.WriteFileContentAsync($"Commit SQL Qty:{_wmsTransaction.SqlCommands.Count}");
-        swt.Restart();
         _wmsTransaction.Complete(true);
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"DB Commit:{swt.ElapsedMilliseconds}\r\n");
-        break;
       }
 
       int failCnt = f060207s.Count - successCnt;
@@ -151,19 +132,11 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 		/// <returns></returns>
 		private ExecuteResult ProcessAllocation(F060207 f060207)
 		{
-      var swt1 = new Stopwatch();
-
-      swt1.Restart();
       var f06020701Repo = new F06020701Repository(Schemas.CoreSchema, _wmsTransaction);
 			var containerDetails = f06020701Repo.GetContainerDetails(f060207.ID).ToList();
-      swt1.Stop();
-      ApiLogHelper.WriteFileContentAsync($"ProcessAllocation Get F06020701:{swt1.ElapsedMilliseconds}");
 
-      swt1.Restart();
       var f1924Repo = new F1924Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f1924 = f1924Repo.Find(x => x.EMP_ID == f060207.OPERATOR && x.ISDELETED == "0");
-      swt1.Stop();
-      ApiLogHelper.WriteFileContentAsync($"ProcessAllocation Get f1924:{swt1.ElapsedMilliseconds}");
 
       var empId = f1924 == null ? f060207.OPERATOR : f1924.EMP_ID;
 			var empName = f1924 == null ? "支援人員" : f1924.EMP_NAME;
@@ -173,7 +146,6 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 			var containerF151002s = new List<F151002>();
 			var containerF1511s = new List<F1511>();
 
-      swt1.Restart();
       #region Step1 檢查容器單據、單據明細
 
       var result = ContainerOrderCheck(ref containerF151001s, ref containerF151002s, ref containerF1511s, ref containerDetails);
@@ -181,30 +153,21 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 				return result;
 
       #endregion
-      swt1.Stop();
-      ApiLogHelper.WriteFileContentAsync($"ProcessAllocation ContainerOrderCheck:{swt1.ElapsedMilliseconds}");
 
-      swt1.Restart();
       #region Step2 更新容器內下架調撥單
 
       ContainerOrderDownProcess(empId, empName, containerF151001s, containerF151002s, containerF1511s, ref containerDetails);
 
       #endregion
-      swt1.Stop();
-      ApiLogHelper.WriteFileContentAsync($"ProcessAllocation ContainerOrderDownProcess:{swt1.ElapsedMilliseconds}");
 
-      swt1.Restart();
       #region Step3 產生容器調撥上架單
       var allotResult = ContainerUpProcess(f060207, empId, empName, containerDetails);
 			if (!allotResult.Result.IsSuccessed)
 				return allotResult.Result;
       #endregion
-      swt1.Stop();
-      ApiLogHelper.WriteFileContentAsync($"ProcessAllocation ContainerUpProcess:{swt1.ElapsedMilliseconds}");
 
       var newAllocationNo = allotResult.AllocationList.First().Master.ALLOCATION_NO;
 
-      swt1.Restart();
       #region Step4 產生容器資料
 
       var containerResult = CreateContainer(f060207, newAllocationNo, containerDetails);
@@ -212,13 +175,8 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 			//更新調撥單容器ID
 			allotResult.AllocationList.First().Master.F0701_ID = containerResult.f0701_ID;
       #endregion
-      swt1.Stop();
-      ApiLogHelper.WriteFileContentAsync($"ProcessAllocation CreateContainer:{swt1.ElapsedMilliseconds}");
 
-      swt1.Restart();
       var bulkResult = _sharedService.BulkInsertAllocation(allotResult.AllocationList, allotResult.StockList, true);
-      swt1.Stop();
-      ApiLogHelper.WriteFileContentAsync($"ProcessAllocation BulkInsertAllocation:{swt1.ElapsedMilliseconds}");
       if (!bulkResult.IsSuccessed)
 				return bulkResult;
 

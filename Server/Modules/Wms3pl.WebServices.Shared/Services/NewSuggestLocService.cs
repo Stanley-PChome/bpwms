@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,7 +63,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public List<NewSuggestLoc> GetSuggestLocs(NewSuggestLocParam req,ref List<string> excludeLocs)
 		{
-      var swt = new Stopwatch();
       _suggestLocs = new List<NewSuggestLoc>();
 			if (excludeLocs == null)
 				excludeLocs = new List<string>();
@@ -78,7 +76,6 @@ namespace Wms3pl.WebServices.Shared.Services
 			_req = req;
 
 			#region 取得資料
-      swt.Restart();
       // 取得商品資料
       _currentF1903 = CommonService.GetProduct(_req.GupCode, _req.CustCode, _req.ItemCode);
 			if (_currentF1903 == null)
@@ -86,19 +83,14 @@ namespace Wms3pl.WebServices.Shared.Services
 				SetSameSourceLoc(_req.Qty);
 				return _suggestLocs;
 			}
-      swt.Stop();
-      ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs GetProduct:{swt.ElapsedMilliseconds}");
 
       // 取得貨主資料
-      swt.Restart();
       _currentF1909 = CommonService.GetCust(_req.GupCode, _req.CustCode);
 			if (_currentF1909 == null)
 			{
 				SetSameSourceLoc(_req.Qty);
 				return _suggestLocs;
 			}
-      swt.Stop();
-      ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs GetCust:{swt.ElapsedMilliseconds}");
 
       if (!string.IsNullOrWhiteSpace(_req.TarWarehouseType))
 				_currentTarWarehouseType = _req.TarWarehouseType.ToUpper();
@@ -180,7 +172,6 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			
 
-        swt.Restart();
         // 是否為特殊商品(促銷商品)，若是則須放在黃金揀貨區
         var isGoldenItem = GetHasSpecialItem();
 				if (!isGoldenItem)
@@ -188,10 +179,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					//檢查是否為越庫商品，若是則需放在黃金揀貨區
 					isGoldenItem = _currentF1903.C_D_FLAG == "1";
 				}
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs GetHasSpecialItem:{swt.ElapsedMilliseconds}");
 
-        swt.Restart();
         #region 取得黃金揀貨區建議儲位
         if (isGoldenItem)
 				{
@@ -217,11 +205,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					return _suggestLocs;
 				}
         #endregion
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs 取得黃金揀貨區建議儲位:{swt.ElapsedMilliseconds}");
 
-
-        swt.Restart();
         // 取得商品材積
         _currentF1905 = CommonService.GetProductSize(_req.GupCode, _req.CustCode, _req.ItemCode);
 				if (_currentF1905 == null)
@@ -229,10 +213,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					SetSameSourceLoc(_req.Qty);
 					return _suggestLocs;
 				}
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs 取得商品材積:{swt.ElapsedMilliseconds}");
 
-        swt.Restart();
         #region 取得補貨區建議儲位
         if (_req.IsIncludeResupply)
 				{
@@ -247,10 +228,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				}
         #endregion
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs 取得補貨區建議儲位:{swt.ElapsedMilliseconds}");
 
-        swt.Restart();
         #region 取得揀貨區建議儲位
         if (_req.Qty > 0)
 				{
@@ -285,10 +263,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				}
         #endregion
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs 取得揀貨區建議儲位:{swt.ElapsedMilliseconds}");
 
-        swt.Restart();
         #region 未指定倉庫編號，指定倉庫型態為良品倉(G)，取得自動倉揀貨區建議儲位
 
         // 還有剩餘數量，且未指定目的倉庫，且指定倉庫型態=G(良品倉)，再找找看自動倉是否有符合的儲位可以用
@@ -299,8 +274,6 @@ namespace Wms3pl.WebServices.Shared.Services
 					SetSameSourceLoc(_req.Qty);
 
         #endregion
-        swt.Stop();
-        ApiLogHelper.WriteFileContentAsync($"GetSuggestLocs 未指定倉庫編號:{swt.ElapsedMilliseconds}");
 
         #endregion
       }
@@ -883,7 +856,6 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="excludeLocs"></param>
 		private void GetCanMixLoc(string aTypeCode, bool isBundleSerialLoc, ref List<string> excludeLocs, List<NewItemLocPriorityInfo> itemLocPriorityInfos=null)
 		{
-      var swt = new Stopwatch();
       string nearestLoc = string.Empty;
 			if(itemLocPriorityInfos!=null && itemLocPriorityInfos.Any())
 			{
@@ -926,12 +898,8 @@ namespace Wms3pl.WebServices.Shared.Services
         // 若排除儲位數量小於限制可以進行SQL排除儲位筆數，就取需求量筆數(降低取過多儲位導致效能慢)
         if (excludeLocs.Count < _limit)
         {
-        swt.Restart();
           mixItemLocs =
             _f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList), locs, true, _req.Qty).ToList();
-          swt.Stop();
-          ApiLogHelper.WriteFileContentAsync($"NewSuggestLocService.GetCanMixLoc:{swt.ElapsedMilliseconds}");
-
         }
         else
         {
