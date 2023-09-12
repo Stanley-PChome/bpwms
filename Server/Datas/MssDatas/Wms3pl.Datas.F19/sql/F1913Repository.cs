@@ -3781,7 +3781,7 @@ UPDATE F1913
 											  AND D.WAREHOUSE_ID = C.WAREHOUSE_ID
 											  AND D.AREA_CODE = C.AREA_CODE
                       WHERE
-                        C.WAREHOUSE_ID NOT IN(SELECT SYS_PATH FROM F0003 WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2 AND AP_NAME IN('PickLossWHId', 'InventoryLossWHId'))
+                        C.WAREHOUSE_ID LIKE 'G%'
 											GROUP BY 
                         A.DC_CODE,
                         A.GUP_CODE,
