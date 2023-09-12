@@ -73,6 +73,15 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
     }
     #endregion F051301Repository
 
+    #region F050801Repository
+    private F050801Repository _F050801Repo;
+    public F050801Repository F050801Repo
+    {
+      get { return _F050801Repo == null ? _F050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction) : _F050801Repo; }
+      set { _F050801Repo = value; }
+    }
+    #endregion F050801Repository
+
     #endregion Repositorys
 
     public ShipFinishConfirmNotifyService()
@@ -112,6 +121,11 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
             //檢查出貨單是否有已配庫待產生揀貨單資料
             var isHaveAllotData = F050306Repo.IsHaveAllotData(curData.DC_CODE, curData.GUP_CODE, curData.CUST_CODE, curData.WMS_NO);
             if (isHaveAllotData)
+              continue;
+
+            // 檢查出貨單是否取消
+            var isOrderCanceled = F050801Repo.IsOrderCanceled(curData.DC_CODE, curData.GUP_CODE, curData.CUST_CODE, curData.WMS_NO);
+            if (isOrderCanceled)
               continue;
 
             totalCrtOrd.Add(curData.WMS_NO);
