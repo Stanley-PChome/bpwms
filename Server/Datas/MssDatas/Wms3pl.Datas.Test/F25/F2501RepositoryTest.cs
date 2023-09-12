@@ -343,9 +343,19 @@ namespace Wms3pl.Datas.Test.F25
             _f2501Repository.GetSnList(gupCode,custCode, itemCode, snList);
         }
 
-        private void Output(object obj)
-        {
-            Console.WriteLine($@"{JsonSerializer.Serialize(obj)}");
-        }
+    [TestMethod]
+    public void CheckSerialType()
+    {
+      #region Params
+      var gupCode = "10";
+      var custCode = "010001";
+      var sn = "SN62023731SD01";
+      #endregion
+
+      var res = _f2501Repository.CheckSerialType(gupCode, custCode, sn);
+      Output(res);
+    }
+
+
     }
 }

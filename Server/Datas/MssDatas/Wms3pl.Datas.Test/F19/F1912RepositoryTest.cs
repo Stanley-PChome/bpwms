@@ -5,6 +5,9 @@ using Wms3pl.WebServices.DataCommon;
 using System.Diagnostics;
 using System;
 using System.Collections.Generic;
+using Wms3pl.Datas.F25;
+using Wms3pl.Datas.Shared.Entities;
+using System.Linq;
 
 namespace Wms3pl.Datas.Test
 {
@@ -149,23 +152,45 @@ namespace Wms3pl.Datas.Test
             _f1912Repo.GetMoveLocRes(dcCode, loc, custNo, gupCode, itemNo);
         }
 
-        [TestMethod]
-        public void GetMoveItemLocRes()
-        {
-            #region Params
-            var dcCode = "001";
-            var loc = "10H020201";
-            var custNo = "030001";
-            var gupCode = "01";
-            var itemNo = "BT18111107";
-						var sn = "";
+    [TestMethod]
+    public void GetMoveItemLocRes()
+    {
+      #region Params
+      var dcCode = "12";
+      var loc = "A09010101";
+      var gupCode = "10";
+      var custNo = "010001";
+      var eanCode = "";
+      var sn = "SN62023731SD01";
 
-            #endregion
+      #endregion
 
-            _f1912Repo.GetMoveItemLocRes(dcCode, loc, custNo, gupCode, itemNo, sn);
-        }
+      var f2501Repo = new F2501Repository(Schemas.CoreSchema);
+      var f1903Repo = new F1903Repository(Schemas.CoreSchema);
 
-        [TestMethod]
+      CheckSerialTypeEn serialType;
+      if (!string.IsNullOrWhiteSpace(sn))
+      {
+        serialType = f2501Repo.CheckSerialType(gupCode, custNo, sn);
+        serialType = serialType == null ? serialType = new CheckSerialTypeEn() : serialType;
+      }
+      else
+        serialType = new CheckSerialTypeEn() { SerialNoType = "2" };
+
+
+      var oriRes = _f1912Repo.GetMoveItemLocRes(dcCode, loc, custNo, gupCode, eanCode, sn).ToList();
+
+      var itemCodes=new List<string>();
+      if (!string.IsNullOrWhiteSpace(eanCode))
+        itemCodes = f1903Repo.GetItemByCondition(gupCode, custNo, eanCode).Select(x => x.ITEM_CODE).ToList();
+
+      var res = _f1912Repo.GetMoveItemLocRes(dcCode, loc, custNo, gupCode, itemCodes, sn, serialType).ToList();
+
+      Assert.AreEqual(JsonSerializer.Serialize(oriRes), JsonSerializer.Serialize(res));
+
+    }
+
+    [TestMethod]
         public void CheckLocExist()
         {
             #region Params

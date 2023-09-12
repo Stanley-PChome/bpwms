@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -1872,6 +1873,161 @@ ORDER BY SUBSTRING([LOC_CODE],1,5);";
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="loc"></param>
+    /// <param name="custNo"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="itemCode"></param>
+    /// <param name="sn"></param>
+    /// <param name="serialNoType"></param>
+    /// <returns></returns>
+    public IQueryable<GetMoveItemLocRes> GetMoveItemLocRes(string dcCode, string loc, string custNo, string gupCode, List<string> itemCodes, string sn, CheckSerialTypeEn serialNoType)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custNo},
+      };
+
+
+      var f1913Filter = "";
+      var f1903Filter = "";
+      var f1912Filter = "";
+
+      if (string.IsNullOrWhiteSpace(serialNoType.SerialNoType))  //非在庫序號
+        //f1913Filter = "1=0"; 
+        return new List<GetMoveItemLocRes>().AsQueryable();
+      else if (serialNoType.SerialNoType == "0") //一般序號
+      {
+        f1913Filter = $" ITEM_CODE=@p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = serialNoType.ITEM_CODE });
+      }
+      else if (serialNoType.SerialNoType == "1") //綁儲位序號
+      {
+        f1913Filter = $" SERIAL_NO=@p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = sn });
+      }
+      else if (serialNoType.SerialNoType == "2") //一般商品
+      {
+        if (itemCodes != null && itemCodes.Any())
+        {
+          var itemCodeFilterSql = para.CombineSqlInParameters(" ITEM_CODE", itemCodes, SqlDbType.VarChar);
+          f1913Filter = itemCodeFilterSql;
+
+          f1903Filter = itemCodeFilterSql;
+        }
+
+        if (!string.IsNullOrWhiteSpace(loc))
+        {
+          f1912Filter = $" AND A.LOC_CODE=@p{para.Count}";
+          para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = loc });
+        }
+      }
+
+      var sql = $@"SELECT 
+	B.ITEM_CODE ItemNo,
+  B.LOC_CODE Loc,
+  C.WAREHOUSE_NAME WhName,
+  D.ITEM_NAME ItemName,
+  SUM(B.QTY) StockQty
+FROM F1912 A
+INNER JOIN
+
+(SELECT * FROM F1913 {(string.IsNullOrWhiteSpace(f1913Filter) ? "" : "WHERE " + f1913Filter) }) B
+	ON A.DC_CODE = B.DC_CODE AND A.LOC_CODE = B.LOC_CODE 
+
+INNER JOIN F1980 C
+	ON A.WAREHOUSE_ID = C.WAREHOUSE_ID AND A.DC_CODE = C.DC_CODE 
+INNER JOIN 
+(SELECT * FROM F1903 {(string.IsNullOrWhiteSpace(f1903Filter) ? "" : "WHERE " + f1903Filter) }) D
+	ON B.GUP_CODE = D.GUP_CODE AND B.CUST_CODE = D.CUST_CODE AND B.ITEM_CODE = D.ITEM_CODE
+WHERE 
+  A.DC_CODE = @p0 
+  AND A.AREA_CODE!='-1'
+  AND A.NOW_STATUS_ID NOT IN ('03','04')
+  AND D.GUP_CODE=@p1
+  AND D.CUST_CODE=@p2
+  AND B.QTY>0
+  {f1912Filter}
+GROUP BY B.ITEM_CODE,B.LOC_CODE,C.WAREHOUSE_NAME,D.ITEM_NAME";
+
+      return SqlQuery<GetMoveItemLocRes>(sql, para.ToArray());
+      #region 原LINQ
+      /*
+      var f1912s = _db.F1912s.AsNoTracking().Where(x => x.DC_CODE == dcCode && x.AREA_CODE.Trim() != "-1" && x.NOW_STATUS_ID != "03" && x.NOW_STATUS_ID != "04");
+      var f1913s = _db.F1913s.AsNoTracking().Where(x => x.DC_CODE == dcCode && x.CUST_CODE == custNo && x.GUP_CODE == gupCode);
+      var f1980s = _db.F1980s.AsNoTracking();
+      var f1903s = _db.F1903s.AsNoTracking();
+
+      if (!string.IsNullOrWhiteSpace(sn))
+      {
+        var f2501 = _db.F2501s.AsNoTracking().Where(x =>
+        x.GUP_CODE == gupCode &&
+        x.CUST_CODE == custNo &&
+        x.SERIAL_NO == sn &&
+        x.STATUS == "A1").FirstOrDefault();
+
+        if (f2501 == null)
+          f1913s = new List<F1913>().AsQueryable();
+        else
+        {
+          if (f1903s.Where(x => x.GUP_CODE == gupCode && x.CUST_CODE == custNo && x.ITEM_CODE == f2501.ITEM_CODE).FirstOrDefault()?.BUNDLE_SERIALLOC == "1")
+            f1913s = f1913s.Where(x => x.SERIAL_NO == sn);
+          else
+            f1913s = f1913s.Where(x => x.ITEM_CODE == f2501.ITEM_CODE);
+        }
+
+      }
+      else
+      {
+        if (!string.IsNullOrWhiteSpace(itemNo))
+        {
+          var itemCodes = f1903s.Where(x =>
+          x.GUP_CODE == gupCode &&
+          x.CUST_CODE == custNo &&
+          (x.ITEM_CODE == itemNo ||
+          x.EAN_CODE1 == itemNo ||
+          x.EAN_CODE2 == itemNo ||
+          x.EAN_CODE3 == itemNo)).Select(x => x.ITEM_CODE).ToList();
+
+          f1913s = f1913s.Where(x => itemCodes.Contains(x.ITEM_CODE));
+          f1903s = f1903s.Where(x => itemCodes.Contains(x.ITEM_CODE));
+        }
+
+        if (!string.IsNullOrWhiteSpace(loc))
+        {
+          f1912s = f1912s.Where(x => x.LOC_CODE == loc);
+        }
+      }
+
+      //var stackQty = (from A in f1912s
+      //               join B in f1913s on A.LOC_CODE equals B.LOC_CODE
+      //               join C in f1980s on new { A.WAREHOUSE_ID, A.DC_CODE } equals new { C.WAREHOUSE_ID, C.DC_CODE }
+      //               select new { B.QTY }).Sum(x=>x.QTY);
+
+      var result = from A in f1912s
+                   join B in f1913s on A.LOC_CODE equals B.LOC_CODE
+                   join C in f1980s on new { A.WAREHOUSE_ID, A.DC_CODE } equals new { C.WAREHOUSE_ID, C.DC_CODE }
+                   join D in f1903s on new { B.GUP_CODE, B.CUST_CODE, B.ITEM_CODE } equals new { D.GUP_CODE, D.CUST_CODE, D.ITEM_CODE }
+                   where B.QTY != 0
+                   group B by new { B.ITEM_CODE, B.LOC_CODE, C.WAREHOUSE_NAME, D.ITEM_NAME } into g
+                   select new GetMoveItemLocRes
+                   {
+                     WhName = g.Key.WAREHOUSE_NAME,
+                     ItemName = g.Key.ITEM_NAME,
+                     ItemNo = g.Key.ITEM_CODE,
+                     Loc = g.Key.LOC_CODE,
+                     StockQty = Convert.ToInt32(g.Sum(x => x.QTY))
+                   };
+
+      return result;
+      */
+      #endregion
+    }
   }
 
 }
