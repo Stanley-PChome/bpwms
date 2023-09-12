@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.F19;
+using Wms3pl.Datas.F25;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.WebServices.DataCommon;
@@ -56,10 +57,37 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       var gupCode = p81Service.GetGupCode(getStockReq.CustNo);
 
       // 資料處裡
-      var getInventoryInfo = f1912Repo.GetInventoryInfo(getStockReq.CustNo, getStockReq.DcNo, gupCode, getStockReq.ItemNo,
-          getStockReq.MkNo, getStockReq.Sn, getStockReq.WhNo, getStockReq.BegLoc, getStockReq.EndLoc,
-          getStockReq.BegPalletNo, getStockReq.EndPalletNo, getStockReq.BegEnterDate, getStockReq.EndEnterDate,
-          getStockReq.BegValidDate, getStockReq.EndValidDate);
+      //var getInventoryInfo = f1912Repo.GetInventoryInfo(getStockReq.CustNo, getStockReq.DcNo, gupCode, getStockReq.ItemNo,
+      //    getStockReq.MkNo, getStockReq.Sn, getStockReq.WhNo, getStockReq.BegLoc, getStockReq.EndLoc,
+      //    getStockReq.BegPalletNo, getStockReq.EndPalletNo, getStockReq.BegEnterDate, getStockReq.EndEnterDate,
+      //    getStockReq.BegValidDate, getStockReq.EndValidDate);
+
+      var getInventoryInfo = new List<GetStockRes>();
+
+      var itemCode = new List<string>();
+      string BUNDLE_SERIALLOC = null;
+      string serialItemCode = null;
+      if (!string.IsNullOrWhiteSpace(getStockReq.ItemNo))
+      {
+        var f1903Repo = new F1903Repository(Schemas.CoreSchema);
+        itemCode = f1903Repo.GetDatasByBarCode(gupCode, getStockReq.CustNo, getStockReq.ItemNo).Select(x => x.ITEM_CODE).ToList();
+      }
+      if (!string.IsNullOrWhiteSpace(getStockReq.Sn))
+      {
+        var f2501Repo = new F2501Repository(Schemas.CoreSchema);
+        var f1903 = f2501Repo.GetF1903DataBySerialNo(gupCode, getStockReq.CustNo, getStockReq.Sn);
+        //找不到這序號就直接回傳
+        if (f1903 == null)
+          return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = p81Service.GetMsg("10001"), Data = getInventoryInfo };
+
+        BUNDLE_SERIALLOC = f1903.BUNDLE_SERIALLOC;
+        serialItemCode = f1903.ITEM_CODE;
+
+      }
+      getInventoryInfo = f1912Repo.GetInventoryInfo(getStockReq.CustNo, getStockReq.DcNo, gupCode, itemCode, getStockReq.MkNo,
+     getStockReq.Sn, getStockReq.WhNo, getStockReq.BegLoc, getStockReq.EndLoc, getStockReq.BegPalletNo, getStockReq.EndPalletNo, getStockReq.BegEnterDate,
+     getStockReq.EndEnterDate, getStockReq.BegValidDate, getStockReq.EndValidDate, BUNDLE_SERIALLOC, serialItemCode).ToList();
+
 
       return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = p81Service.GetMsg("10001"), Data = getInventoryInfo.Where(x => x.StockQty > 0 || x.BPickQty > 0).ToList() };
     }

@@ -273,7 +273,7 @@ namespace Wms3pl.Datas.F19
         /// 查詢庫存資料
         /// </summary>
         /// <returns></returns>
-        public IQueryable<GetStockRes> GetInventoryInfo(string custNo, string dcNo, string gupCode, string itemNo, string mkNo,
+        public IQueryable<GetStockRes> GetInventoryInfoX(string custNo, string dcNo, string gupCode, string itemNo, string mkNo,
             string sn, string whNo, string begLoc, string endLoc, string begPalletNo, string endPalletNo, DateTime? begEnterDate,
             DateTime? endEnterDate, DateTime? begValidDate, DateTime? endValidDate)
     {
@@ -369,7 +369,7 @@ namespace Wms3pl.Datas.F19
                     .Where(x => x.LOC_CODE == B.LOC_CODE && x.ITEM_CODE == B.ITEM_CODE && x.VALID_DATE == B.VALID_DATE && x.ENTER_DATE == B.ENTER_DATE && x.MAKE_NO == B.MAKE_NO)
                    select new GetStockRes
                    {
-                     DcNo = B.CUST_CODE,
+                     DcNo = A.DC_CODE,
                      CustNo = B.CUST_CODE,
                      WhName = E.WAREHOUSE_NAME,
                      Loc = B.LOC_CODE,
