@@ -3169,8 +3169,6 @@ namespace Wms3pl.WebServices.Shared.Services
             // 調整預計數 = 實揀數
             // stockLack.F051202.B_PICK_QTY = stockLack.F051202.A_PICK_QTY; 這邊不可以改掉，會影響缺貨判斷
             stockLack.F1511.B_PICK_QTY = stockLack.F1511.A_PICK_QTY;
-            if (stockLack.F151002.STATUS == "0")
-                stockLack.F151002.STATUS = "2";
             if (stockLack.F1511.STATUS == "0")
                 stockLack.F1511.STATUS = "1";
             result.UpdF151002 = stockLack.F151002;
