@@ -3755,40 +3755,56 @@ UPDATE F1913
     }
 
     public IQueryable<string> GetNeedReplenishItemCodes(string dcCode,string gupCode,string custCode)
-			 {
-			     var sql = @" 
-											SELECT A.ITEM_CODE
-											FROM (
-											SELECT A.DC_CODE,A.GUP_CODE,A.CUST_CODE,B.ITEM_CODE,B.PICK_SAVE_QTY,
-											SUM(CASE WHEN D.ATYPE_CODE IN ('A','B') THEN A.QTY ELSE 0 END) PICK_QTY,
-											SUM(CASE WHEN D.ATYPE_CODE IN ('C') THEN A.QTY ELSE 0 END) REPLENISH_QTY     
+		  {
+			  var sql = @" 
+									SELECT 
+                    A.ITEM_CODE
+									FROM (
+											SELECT 
+                        A.DC_CODE,
+                        A.GUP_CODE,
+                        A.CUST_CODE,
+                        B.ITEM_CODE,
+                        B.PICK_SAVE_QTY,
+											  SUM(CASE WHEN D.ATYPE_CODE IN ('A','B') THEN A.QTY ELSE 0 END) PICK_QTY,
+											  SUM(CASE WHEN D.ATYPE_CODE IN ('C') THEN A.QTY ELSE 0 END) REPLENISH_QTY     
 											FROM F1913 A
 											JOIN F1903 B
-											ON B.GUP_CODE = A.GUP_CODE
-											AND B.CUST_CODE = A.CUST_CODE
-											AND B.ITEM_CODE = A.ITEM_CODE
+											  ON B.GUP_CODE = A.GUP_CODE
+											  AND B.CUST_CODE = A.CUST_CODE
+											  AND B.ITEM_CODE = A.ITEM_CODE
 											JOIN F1912 C
-											ON C.DC_CODE = A.DC_CODE
-											AND C.LOC_CODE = A.LOC_CODE
+											  ON C.DC_CODE = A.DC_CODE
+											  AND C.LOC_CODE = A.LOC_CODE
 											JOIN F1919 D
-											ON D.DC_CODE = C.DC_CODE
-											AND D.WAREHOUSE_ID = C.WAREHOUSE_ID
-											AND D.AREA_CODE = C.AREA_CODE
-											GROUP BY A.DC_CODE,A.GUP_CODE,A.CUST_CODE,B.ITEM_CODE,B.PICK_SAVE_QTY) A
-											WHERE A.REPLENISH_QTY>0  --有補貨庫存
-											AND A.PICK_QTY <A.PICK_SAVE_QTY --揀區庫存小於補貨安全庫存數
-                      AND A.DC_CODE = @p0
-                      AND A.GUP_CODE = @p1
-                      AND A.CUST_CODE = @p2 ";
-					var parms = new List<SqlParameter>
-					{
-						new SqlParameter("@p0",SqlDbType.VarChar){ Value = dcCode},
-						new SqlParameter("@p1",SqlDbType.VarChar){ Value = gupCode},
-						new SqlParameter("@p2",SqlDbType.VarChar){ Value = custCode},
-					};
-			    return SqlQuery<string>(sql,parms.ToArray());
+											  ON D.DC_CODE = C.DC_CODE
+											  AND D.WAREHOUSE_ID = C.WAREHOUSE_ID
+											  AND D.AREA_CODE = C.AREA_CODE
+                      WHERE
+                        C.WAREHOUSE_ID LIKE 'G%'
+											GROUP BY 
+                        A.DC_CODE,
+                        A.GUP_CODE,
+                        A.CUST_CODE,
+                        B.ITEM_CODE,
+                        B.PICK_SAVE_QTY) A
+									WHERE 
+                    A.REPLENISH_QTY>0  --有補貨庫存
+                    AND A.PICK_QTY <A.PICK_SAVE_QTY --揀區庫存小於補貨安全庫存數
+                    AND A.DC_CODE = @p0
+                    AND A.GUP_CODE = @p1
+                    AND A.CUST_CODE = @p2
+                  ";
 
-			 }
+				var parms = new List<SqlParameter>
+			  {
+					new SqlParameter("@p0",SqlDbType.VarChar){ Value = dcCode},
+          new SqlParameter("@p1",SqlDbType.VarChar){ Value = gupCode},
+          new SqlParameter("@p2",SqlDbType.VarChar){ Value = custCode},
+			  };
+
+			  return SqlQuery<string>(sql,parms.ToArray());
+		  }
 
     //public F1913 FindDataByKey(string dcCode, string gupCode, string custCode, string itemCode, string locCode, DateTime validDate, DateTime enterDate, string vnrCode, string serialNo, string boxCtrlNo, string palletCtrlNo, string makeNo)
     //{
