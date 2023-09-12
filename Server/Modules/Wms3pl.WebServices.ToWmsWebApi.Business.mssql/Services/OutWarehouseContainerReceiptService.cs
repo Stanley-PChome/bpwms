@@ -17,7 +17,8 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 {
 	public class OutWarehouseContainerReceiptService : BaseService
 	{
-		private WmsTransaction _wmsTransaction;
+
+    private WmsTransaction _wmsTransaction;
 		private F151001Repository _f151001Repo;
 		private F151002Repository _f151002Repo;
 		private F1511Repository _f1511Repo;
@@ -49,10 +50,10 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 				CommonService commonService = new CommonService();
 				var dcCustList = commonService.GetDcCustList(req.DcCode, req.GupCode, req.CustCode);
 				dcCustList.ForEach(item =>
-							{
-								var result = OutboundContainerConfirm(item.DC_CODE, item.GUP_CODE, item.CUST_CODE);
-								data.Add(new ApiResponse { MsgCode = result.MsgCode, MsgContent = result.MsgContent, No = $"DC_CODE：{item.DC_CODE} GUP_CODE：{item.GUP_CODE} CUST_CODE：{ item.CUST_CODE}" });
-							});
+        {
+          var result = OutboundContainerConfirm(item.DC_CODE, item.GUP_CODE, item.CUST_CODE);
+          data.Add(new ApiResponse { MsgCode = result.MsgCode, MsgContent = result.MsgContent, No = $"DC_CODE：{item.DC_CODE} GUP_CODE：{item.GUP_CODE} CUST_CODE：{ item.CUST_CODE}" });
+        });
 				res.Data = JsonConvert.SerializeObject(data);
 				return res;
 			}, true);
@@ -78,15 +79,17 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 
 			var f1980Repo = new F1980Repository(Schemas.CoreSchema);
 			var f060207Repo = new F060207Repository(Schemas.CoreSchema, _wmsTransaction);
-			var f060207s = f060207Repo.GetDatasByNoProcess(dcCode, gupCode, custCode).ToList();
-			int successCnt = 0;
+
+      var f060207s = f060207Repo.GetDatasByNoProcess(dcCode, gupCode, custCode).ToList();
+      int successCnt = 0;
 
 			foreach (var f060207 in f060207s)
 			{
-				var warehouseDeviceType = f1980Repo.GetDatasByTrueAndCondition(x => x.DC_CODE == f060207.DC_CODE && x.WAREHOUSE_ID == f060207.WAREHOUSE_ID).FirstOrDefault()?.DEVICE_TYPE;
-				if (warehouseDeviceType != "3") // 倉庫類型<>板進箱出倉(3)
-				{
-					f060207.STATUS = "3";
+        var checkTypeIsPallet = f1980Repo.CheckTypeIsPallet(dcCode, f060207.WAREHOUSE_ID);
+
+        if (!checkTypeIsPallet) // 倉庫類型<>板進箱出倉(3)
+        {
+          f060207.STATUS = "3";
 					f060207.MSG_CONTENT = "倉庫類型非板進箱出倉不處理此容器";
 				}
 				else // 倉庫類型=板進箱出倉(3)
@@ -103,11 +106,12 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 						f060207.MSG_CONTENT = result.Message;
 					}
 				}
-				f060207Repo.Update(f060207);
-				_wmsTransaction.Complete();
-			}
 
-			int failCnt = f060207s.Count - successCnt;
+        f060207Repo.UpdateFields(new { f060207.STATUS, f060207.MSG_CONTENT }, x => x.ID == f060207.ID);
+        _wmsTransaction.Complete(true);
+      }
+
+      int failCnt = f060207s.Count - successCnt;
 			res.MsgCode = "10005";
 
 			res.MsgContent = string.Format(_tacService.GetMsg("10005"), "出庫結果回傳(按箱)", successCnt, failCnt, f060207s.Count);
@@ -128,12 +132,13 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 		/// <returns></returns>
 		private ExecuteResult ProcessAllocation(F060207 f060207)
 		{
-			var f06020701Repo = new F06020701Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f06020701Repo = new F06020701Repository(Schemas.CoreSchema, _wmsTransaction);
 			var containerDetails = f06020701Repo.GetContainerDetails(f060207.ID).ToList();
 
-			var f1924Repo = new F1924Repository(Schemas.CoreSchema, _wmsTransaction);
+      var f1924Repo = new F1924Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f1924 = f1924Repo.Find(x => x.EMP_ID == f060207.OPERATOR && x.ISDELETED == "0");
-			var empId = f1924 == null ? f060207.OPERATOR : f1924.EMP_ID;
+
+      var empId = f1924 == null ? f060207.OPERATOR : f1924.EMP_ID;
 			var empName = f1924 == null ? "支援人員" : f1924.EMP_NAME;
 			// 依調撥單號排序
 			var groupAllocations = containerDetails.GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.ALLOCATION_NO }).OrderBy(x => x.Key.ALLOCATION_NO).ToList();
@@ -141,38 +146,38 @@ namespace Wms3pl.WebServices.ToWmsWebApi.Business.mssql.Services
 			var containerF151002s = new List<F151002>();
 			var containerF1511s = new List<F1511>();
 
-			#region Step1 檢查容器單據、單據明細
+      #region Step1 檢查容器單據、單據明細
 
-			var result = ContainerOrderCheck(ref containerF151001s, ref containerF151002s, ref containerF1511s, ref containerDetails);
+      var result = ContainerOrderCheck(ref containerF151001s, ref containerF151002s, ref containerF1511s, ref containerDetails);
 			if (!result.IsSuccessed)
 				return result;
 
-			#endregion
+      #endregion
 
-			#region Step2 更新容器內下架調撥單
+      #region Step2 更新容器內下架調撥單
 
-			ContainerOrderDownProcess(empId, empName, containerF151001s, containerF151002s, containerF1511s, ref containerDetails);
+      ContainerOrderDownProcess(empId, empName, containerF151001s, containerF151002s, containerF1511s, ref containerDetails);
 
-			#endregion
+      #endregion
 
-			#region Step3 產生容器調撥上架單
-			var allotResult = ContainerUpProcess(f060207, empId, empName, containerDetails);
+      #region Step3 產生容器調撥上架單
+      var allotResult = ContainerUpProcess(f060207, empId, empName, containerDetails);
 			if (!allotResult.Result.IsSuccessed)
 				return allotResult.Result;
-			#endregion
+      #endregion
 
-			var newAllocationNo = allotResult.AllocationList.First().Master.ALLOCATION_NO;
+      var newAllocationNo = allotResult.AllocationList.First().Master.ALLOCATION_NO;
 
-			#region Step4 產生容器資料
+      #region Step4 產生容器資料
 
-			var containerResult = CreateContainer(f060207, newAllocationNo, containerDetails);
+      var containerResult = CreateContainer(f060207, newAllocationNo, containerDetails);
 
 			//更新調撥單容器ID
 			allotResult.AllocationList.First().Master.F0701_ID = containerResult.f0701_ID;
-			#endregion
+      #endregion
 
-			var bulkResult = _sharedService.BulkInsertAllocation(allotResult.AllocationList, allotResult.StockList, true);
-			if (!bulkResult.IsSuccessed)
+      var bulkResult = _sharedService.BulkInsertAllocation(allotResult.AllocationList, allotResult.StockList, true);
+      if (!bulkResult.IsSuccessed)
 				return bulkResult;
 
 			return new ExecuteResult(true);
