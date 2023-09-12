@@ -105,6 +105,17 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ph_A7|x64'">
     <OutputPath>bin\x64\Ph_A7\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest_A7|AnyCPU'">
+    <OutputPath>bin\PhTest_A7\</OutputPath>
+    <DefineConstants>PHTEST</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest_A7|x64'">
+    <OutputPath>bin\x64\PhTest_A7\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ChineseConverter">
       <HintPath>..\..\..\Dlls\ChineseConverter.dll</HintPath>

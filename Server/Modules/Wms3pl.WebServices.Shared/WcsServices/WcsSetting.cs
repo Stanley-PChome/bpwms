@@ -9,7 +9,7 @@ namespace Wms3pl.WebServices.Shared.Wcs.WcsApiConnectSetting
 		{
 			get
 			{
-#if (PhTest)
+#if (PhTest) || (PhTest_A7)
         return ConfigurationManager.AppSettings["WcsApiUrl_" + DcCode];
 #else
         return ConfigurationManager.AppSettings["WcsApiUrl"];
@@ -20,7 +20,7 @@ namespace Wms3pl.WebServices.Shared.Wcs.WcsApiConnectSetting
 		{
 			get
 			{
-#if (PhTest)
+#if (PhTest) || (PhTest_A7)
         return ConfigurationManager.AppSettings["WcsApiAuthToken_" + DcCode];
 #else
         return ConfigurationManager.AppSettings["WcsApiAuthToken"];
