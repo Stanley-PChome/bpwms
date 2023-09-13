@@ -48,12 +48,13 @@ namespace Wms3pl.Datas.F06
                     AND C.CUST_CODE = B.CUST_CODE
                     AND C.WAREHOUSE_ID = B.WAREHOUSE_ID
                     AND C.CONTAINER_CODE = B.CONTAINER_CODE
+                    AND C.STATUS IN('0','T')
                   JOIN F1980 D
                     ON D.DC_CODE = B.DC_CODE
                     AND D.WAREHOUSE_ID = B.WAREHOUSE_ID
                   WHERE 
                     D.DEVICE_TYPE !='0' 
-                    AND (C.STATUS IS NULL OR  C.STATUS NOT IN('0','T'))
+                    AND C.STATUS IS NULL 
                     AND A.DC_CODE = @p3
                     AND A.GUP_CODE = @p4
                     AND A.CUST_CODE = @p5
