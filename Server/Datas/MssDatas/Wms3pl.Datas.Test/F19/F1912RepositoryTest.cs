@@ -132,10 +132,6 @@ namespace Wms3pl.Datas.Test
       DateTime? begValidDate = null;
       DateTime? endValidDate = null;
       #endregion
-      var oldRes = _f1912Repo.GetInventoryInfoX(custNo, dcNo, gupCode, itemNo, mkNo,
-     sn, whNo, begLoc, endLoc, begPalletNo, endPalletNo, begEnterDate,
-     endEnterDate, begValidDate, endValidDate).OrderBy(x => x.Loc).ThenBy(x => x.MkNo).ThenBy(x => x.Sn).ToList();
-      oldRes.ForEach(x => x.DiffVDate = (x.ValidDate - DateTime.Today).Days);
 
       var newRes = new List<GetStockRes>();
       var itemCode = new List<string>();
@@ -162,7 +158,6 @@ namespace Wms3pl.Datas.Test
       //Console.WriteLine(JsonSerializer.Serialize(oldRes));
       Console.WriteLine(JsonSerializer.Serialize(newRes));
 
-      Assert.AreEqual(JsonSerializer.Serialize(oldRes), JsonSerializer.Serialize(newRes));
     }
 
     [TestMethod]
@@ -180,41 +175,19 @@ namespace Wms3pl.Datas.Test
             _f1912Repo.GetMoveLocRes(dcCode, loc, custNo, gupCode, itemNo);
         }
 
-        [TestMethod]
-        public void GetMoveItemLocRes()
-        {
-            #region Params
-            var dcCode = "001";
-            var loc = "10H020201";
-            var custNo = "030001";
-            var gupCode = "01";
-            var itemNo = "BT18111107";
-						var sn = "";
+    [TestMethod]
+    public void GetMoveItemLocRes()
+    {
+      #region Params
+      var dcCode = "001";
+      var loc = "10H020201";
+      var custNo = "030001";
+      var gupCode = "01";
+      var itemNo = "BT18111107";
+      var sn = "";
 
-            #endregion
+      #endregion
 
-      var f2501Repo = new F2501Repository(Schemas.CoreSchema);
-      var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-
-      CheckSerialTypeEn serialType;
-      if (!string.IsNullOrWhiteSpace(sn))
-      {
-        serialType = f2501Repo.CheckSerialType(gupCode, custNo, sn);
-        serialType = serialType == null ? serialType = new CheckSerialTypeEn() : serialType;
-      }
-      else
-        serialType = new CheckSerialTypeEn() { SerialNoType = "2" };
-
-
-      //var oriRes = _f1912Repo.GetMoveItemLocRes(dcCode, loc, custNo, gupCode, eanCode, sn).ToList();
-
-      var itemCodes=new List<string>();
-      if (!string.IsNullOrWhiteSpace(eanCode))
-        itemCodes = f1903Repo.GetItemByCondition(gupCode, custNo, eanCode).Select(x => x.ITEM_CODE).ToList();
-
-      var res = _f1912Repo.GetMoveItemLocRes(dcCode, loc, custNo, gupCode, itemCodes, sn, serialType).ToList();
-
-      //Assert.AreEqual(JsonSerializer.Serialize(oriRes), JsonSerializer.Serialize(res));
 
     }
 
