@@ -190,22 +190,16 @@ namespace Wms3pl.WebServices.Process.P05.Services
 			var f051201Repo = new F051201Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f051202Repo = new F051202Repository(Schemas.CoreSchema, _wmsTransaction);
 			var f051203Repo = new F051203Repository(Schemas.CoreSchema, _wmsTransaction);
-			List<F051201> updateF051201s = new List<F051201>();
+			List<string> updateF051201s = new List<string>();
 			List<F051202> updateF051202s = new List<F051202>();
 			List<F051203> updateF051203s = new List<F051203>();
 			List<F051202> f051202s = null;
 			List<F051203> f051203s = null;
 			var pickRouteService = new PickRouteService(_wmsTransaction);
 
-			var f0513 = f0513Repo.Find(y => y.DC_CODE == batchPickNoList.DC_CODE &&
-														 y.GUP_CODE == batchPickNoList.GUP_CODE &&
-														 y.CUST_CODE == batchPickNoList.CUST_CODE &&
-														 y.DELV_DATE == batchPickNoList.DELV_DATE &&
-														 y.PICK_TIME == batchPickNoList.PICK_TIME);
-			f0513.ISPRINTED = "1";
+      var f0513SourceType = f0513Repo.GetSourceType(batchPickNoList.DC_CODE, batchPickNoList.GUP_CODE, batchPickNoList.CUST_CODE, batchPickNoList.DELV_DATE, batchPickNoList.PICK_TIME);
 
-
-			var f051201s = f051201Repo.GetDatasByTrueAndCondition(y => y.DC_CODE == batchPickNoList.DC_CODE &&
+      var f051201s = f051201Repo.GetDatasByTrueAndCondition(y => y.DC_CODE == batchPickNoList.DC_CODE &&
 												y.GUP_CODE == batchPickNoList.GUP_CODE &&
 												y.CUST_CODE == batchPickNoList.CUST_CODE &&
 												y.DELV_DATE == batchPickNoList.DELV_DATE &&
@@ -220,60 +214,57 @@ namespace Wms3pl.WebServices.Process.P05.Services
 				f051202s = f051202Repo.GetDatasByPickNosNotStatus(batchPickNoList.DC_CODE, batchPickNoList.GUP_CODE, batchPickNoList.CUST_CODE, "9", notBatchPickOrdNos).ToList();
 				f051203s = f051203Repo.GetDatasByPickNosNotStatus(batchPickNoList.DC_CODE, batchPickNoList.GUP_CODE, batchPickNoList.CUST_CODE, "9", batchPickOrdNos).ToList();
 			}
-			var routeType = f0513.SOURCE_TYPE == "13" ? 2 : 1;
+			var routeType = f0513SourceType == "13" ? 2 : 1;
 			foreach (var f051201 in f051201s)
 			{
-				f051201.ISPRINTED = "1";
-				f051201.PICK_STATUS = 1;
-				updateF051201s.Add(f051201);
+        updateF051201s.Add(f051201.PICK_ORD_NO);
 
-				if (useLMSRoute)
+        if (useLMSRoute)
 				{
-					var res = UpdateRouteReq(updateF051202s, updateF051203s, pickRouteService, f051203s, f051202s, routeType, f051201);
-					if (!res.IsSuccessed)
+					var res = UpdateRouteReq(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, f051201.DELV_DATE, f051201.PICK_TIME, f051201.SPLIT_TYPE, f051201.PICK_ORD_NO, updateF051202s, updateF051203s, pickRouteService, f051203s, f051202s, routeType);
+          if (!res.IsSuccessed)
 					{
 						return res;
 					}
 				}
 			}
 
-			f0513Repo.Update(f0513);
-			f051201Repo.BulkUpdate(updateF051201s);
+      f0513Repo.UpdatePrinted(batchPickNoList.DC_CODE, batchPickNoList.GUP_CODE, batchPickNoList.CUST_CODE, batchPickNoList.DELV_DATE, batchPickNoList.PICK_TIME);
+      f051201Repo.UpdatePrinted(batchPickNoList.DC_CODE, batchPickNoList.GUP_CODE, batchPickNoList.CUST_CODE, updateF051201s);
 
-
-			if (useLMSRoute)
+      if (useLMSRoute)
 			{
 				f051202Repo.BulkUpdate(updateF051202s);
 				f051203Repo.BulkUpdate(updateF051203s);
 			}
 
 			return new ExecuteResult() { IsSuccessed = true };
-
 		}
 
-		private ExecuteResult UpdateRouteReq(List<F051202> updateF051202s, List<F051203> updateF051203s, PickRouteService pickRouteService, List<F051203> f051203s, List<F051202> f051202s, int routeType, F051201 f051201, bool isRePick = false)
+		private ExecuteResult UpdateRouteReq(string dcCode, string gupCode, string custCode, DateTime? delvDate, string pickTime, string splitType, string pickOrdNo, List<F051202> updateF051202s, List<F051203> updateF051203s, PickRouteService pickRouteService, List<F051203> f051203s, List<F051202> f051202s, int routeType, bool isRePick = false)
 		{
-			var splitType = f051201.SPLIT_TYPE;
 			List<string> pickLocs;
-
 			List<F051202> subF051202s = null;
 			List<F051203> subF051203s = null;
+
 			if (splitType == "03" || isRePick)
 			{
-				subF051202s = f051202s.Where(a => a.DC_CODE == f051201.DC_CODE && a.GUP_CODE == f051201.GUP_CODE && a.CUST_CODE == f051201.CUST_CODE && a.PICK_ORD_NO == f051201.PICK_ORD_NO).ToList();
-				pickLocs = subF051202s.Select(a => a.PICK_LOC).ToList();
+        subF051202s = f051202s.Where(a => a.DC_CODE == dcCode && a.GUP_CODE == gupCode && a.CUST_CODE == custCode && a.PICK_ORD_NO == pickOrdNo).ToList();
+        pickLocs = subF051202s.Select(a => a.PICK_LOC).ToList();
 			}
 			else
 			{
-				subF051203s = f051203s.Where(a => a.DC_CODE == f051201.DC_CODE && a.GUP_CODE == f051201.GUP_CODE && a.CUST_CODE == f051201.CUST_CODE && a.PICK_ORD_NO == f051201.PICK_ORD_NO).ToList();
-				pickLocs = subF051203s.Select(a => a.PICK_LOC).ToList();
+        subF051203s = f051203s.Where(a => a.DC_CODE == dcCode && a.GUP_CODE == gupCode && a.CUST_CODE == custCode && a.PICK_ORD_NO == pickOrdNo).ToList();
+        pickLocs = subF051203s.Select(a => a.PICK_LOC).ToList();
 			}
-			var res = pickRouteService.GetLmsPickRoute(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, f051201.PICK_ORD_NO, routeType, pickLocs);
-			if (!res.IsSuccessed)
+
+      var res = pickRouteService.GetLmsPickRoute(dcCode, gupCode, custCode, pickOrdNo, routeType, pickLocs);
+
+      if (!res.IsSuccessed)
 			{
-				return new ExecuteResult { IsSuccessed = false, Message = string.Format(Resources.CanNotUseLMSRoute, f051201.DELV_DATE?.ToString("yyyy/MM/dd"), f051201.PICK_TIME) };
-			}
-			else
+        return new ExecuteResult { IsSuccessed = false, Message = string.Format(Resources.CanNotUseLMSRoute, delvDate?.ToString("yyyy/MM/dd"), pickTime) };
+      }
+      else
 			{
 				var datas = res.Data as PickLocRouteData[];
 				if (datas != null && datas.Any())
@@ -326,17 +317,15 @@ namespace Wms3pl.WebServices.Process.P05.Services
 			List<F051202> updateF051202s = new List<F051202>();
 			var pickRouteService = new PickRouteService(_wmsTransaction);
 
-
-
 			var f051201 = f051201Repo.Find(y => y.DC_CODE == rePickNoList.DC_CODE &&
 												y.GUP_CODE == rePickNoList.GUP_CODE &&
 												y.CUST_CODE == rePickNoList.CUST_CODE &&
 												y.DELV_DATE == rePickNoList.DELV_DATE &&
 												y.PICK_TIME == rePickNoList.PICK_TIME &&
 												y.PICK_ORD_NO == rePickNoList.PICK_ORD_NO);
+
 			f051201.ISPRINTED = "1";
 			f051201.PICK_STATUS = 1;
-
 
 			if (useLMSRoute)
 			{
@@ -347,21 +336,18 @@ namespace Wms3pl.WebServices.Process.P05.Services
 															 y.PICK_TIME == rePickNoList.PICK_TIME);
 
 				var f051202s = f051202Repo.GetDatasByPickNosNotStatus(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, "9", new List<string> { f051201.PICK_ORD_NO }).ToList();
-
 				var routeType = f0513.SOURCE_TYPE == "13" ? 2 : 1;
-				var res = UpdateRouteReq(updateF051202s, null, pickRouteService, null, f051202s, routeType, f051201, true);
-				if (!res.IsSuccessed)
-				{
+        var res = UpdateRouteReq(f051201.DC_CODE, f051201.GUP_CODE, f051201.CUST_CODE, f051201.DELV_DATE, f051201.PICK_TIME, f051201.SPLIT_TYPE, f051201.PICK_ORD_NO, updateF051202s, null, pickRouteService, null, f051202s, routeType, true);
+
+        if (!res.IsSuccessed)
 					return res;
-				}
+
 				f051202Repo.BulkUpdate(updateF051202s);
 			}
 
 			f051201Repo.Update(f051201);
 
-
 			return new ExecuteResult() { IsSuccessed = true };
-
 		}
     #endregion
 

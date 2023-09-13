@@ -942,7 +942,62 @@ CASE WHEN A.SOURCE_TYPE='13' THEN B.RTN_VNR_CODE ELSE '' END RTN_VNR_CODE from F
                       AND PICK_TIME = @p4 ";
 			return SqlQuery<F0513>(sql, parms.ToArray()).FirstOrDefault();
 		}
-	}
+
+    public string GetSourceType(string dcCode, string gupCode, string custCode, DateTime? delvDate, string pickTime)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",dcCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p1",gupCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2",custCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p3",delvDate.Value){SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p4",pickTime){SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @" SELECT TOP (1) SOURCE_TYPE
+                     FROM F0513 
+                    WHERE DC_CODE = @p0
+                      AND GUP_CODE = @p1
+                      AND CUST_CODE = @p2
+                      AND DELV_DATE = @p3
+                      AND PICK_TIME = @p4 ";
+
+      return SqlQuery<string>(sql, param.ToArray()).FirstOrDefault();
+    }
+
+    public void UpdatePrinted(string dcCode, string gupCode, string custCode, DateTime? delvDate, string pickTime)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",DateTime.Now){ SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p1",Current.Staff){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2",Current.StaffName){ SqlDbType = SqlDbType.NVarChar},
+        new SqlParameter("@p3",dcCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p4",gupCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p5",custCode){SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p6",delvDate.Value){SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p7",pickTime){SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                UPDATE 
+                  F0513 
+                SET 
+                  ISPRINTED = '1',
+                  UPD_DATE = @p0,
+                  UPD_STAFF = @p1,
+                  UPD_NAME = @p2
+                WHERE 
+                  DC_CODE = @p3
+                  AND GUP_CODE = @p4
+                  AND CUST_CODE = @p5
+                  AND DELV_DATE = @p6
+                  AND PICK_TIME = @p7
+                ";
+
+      ExecuteSqlCommand(sql, param.ToArray());
+    }
+  }
 }
 
 
