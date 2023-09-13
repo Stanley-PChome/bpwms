@@ -43,8 +43,8 @@ namespace Wms3pl.Datas.F19
 	  /// </summary>
     [Key]
     [Required]
-		//[Column(TypeName = "datetime2(0)")]
-		public DateTime VALID_DATE { get; set; }
+    [Column(TypeName = "datetime2(0)")]
+    public DateTime VALID_DATE { get; set; }
 
 	  /// <summary>
 	  /// 入庫日期(YYYY/MM/DD)
