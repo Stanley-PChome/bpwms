@@ -1234,16 +1234,14 @@ namespace Wms3pl.Datas.F19
       if (!string.IsNullOrWhiteSpace(f1903.EAN_CODE3))
       {
         sql2 += $",EAN_CODE3 = @p{para.Count}";
-        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar));
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = f1903.EAN_CODE3 } );
       }
 
       if (f1903.FIRST_IN_DATE.HasValue)
       {
         sql2 += $",FIRST_IN_DATE = @p{para.Count}";
-        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.Date));
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.Date) { Value = f1903.FIRST_IN_DATE });
       }
-
-
 
       var sql = $@"UPDATE F1903 SET 
 VEN_ORD = @p0,
