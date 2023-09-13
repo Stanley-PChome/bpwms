@@ -71,6 +71,9 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       {
         var f1903Repo = new F1903Repository(Schemas.CoreSchema);
         itemCode = f1903Repo.GetDatasByBarCode(gupCode, getStockReq.CustNo, getStockReq.ItemNo).Select(x => x.ITEM_CODE).ToList();
+        if (itemCode == null || !itemCode.Any())
+          return new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = p81Service.GetMsg("10001"), Data = getInventoryInfo };
+
       }
       if (!string.IsNullOrWhiteSpace(getStockReq.Sn))
       {
