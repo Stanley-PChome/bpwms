@@ -5,7 +5,9 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Wms3pl.Datas.F25;
 using Wms3pl.Datas.Shared.Entities;
+using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -1871,6 +1873,136 @@ ORDER BY SUBSTRING([LOC_CODE],1,5);";
       #endregion
 
     }
+
+    public IQueryable<GetStockRes> GetInventoryInfo(string custNo, string dcNo, string gupCode, List<string> itemCode, string mkNo,
+    string sn, string whNo, string begLoc, string endLoc, string begPalletNo, string endPalletNo, DateTime? begEnterDate,
+    DateTime? endEnterDate, DateTime? begValidDate, DateTime? endValidDate, string BUNDLE_SERIALLOC, string serialItemCode)
+    {
+      var f1913Filter = "";
+      var f1912Filter = "";
+
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcNo },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custNo },
+        new SqlParameter("@p3", SqlDbType.DateTime2) { Value = DateTime.Today },
+      };
+
+
+      if (itemCode.Any())
+        f1913Filter += para.CombineSqlInParameters(" AND B.ITEM_CODE", itemCode, SqlDbType.VarChar);
+
+      if (!string.IsNullOrWhiteSpace(mkNo))
+      {
+        f1913Filter += $" AND B.MAKE_NO=@p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = mkNo });
+      }
+
+      if (!string.IsNullOrWhiteSpace(sn))
+      {
+        if (BUNDLE_SERIALLOC == "1")
+        {
+          f1913Filter += $" AND B.SERIAL_NO=@p{para.Count}";
+          para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = sn });
+        }
+        else
+        {
+          f1913Filter += $" AND B.ITEM_CODE=@p{para.Count}";
+          para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = serialItemCode });
+        }
+      }
+
+      if (whNo != "ALL" && !string.IsNullOrWhiteSpace(whNo))
+      {
+        f1912Filter += $" AND A.WAREHOUSE_ID=@p{para.Count}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = whNo });
+      }
+
+      if (!string.IsNullOrWhiteSpace(begLoc))
+      {
+        f1913Filter += $" AND B.LOC_CODE BETWEEN @p{para.Count} AND @p{para.Count + 1}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = begLoc });
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = endLoc });
+      }
+
+      if (!string.IsNullOrWhiteSpace(begPalletNo))
+      {
+        f1913Filter += $" AND B.PALLET_CTRL_NO BETWEEN @p{para.Count} AND @p{para.Count + 1}";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar)  { Value = begPalletNo });
+        para.Add(new SqlParameter($"@p{para.Count }", SqlDbType.VarChar) { Value = endPalletNo });
+      }
+
+      if (begEnterDate != null)
+      {
+        f1913Filter += $" AND (B.ENTER_DATE >= @p{para.Count} AND B.ENTER_DATE < @p{para.Count + 1})";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.DateTime2) { Value = begEnterDate });
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.DateTime2) { Value = endEnterDate.Value.AddDays(1) });
+      }
+
+      if (begValidDate != null)
+      {
+        f1913Filter += $" AND (B.VALID_DATE >= @p{para.Count} AND VALID_DATE < @p{para.Count + 1})";
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.DateTime2) { Value = begValidDate });
+        para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.DateTime2) { Value = endValidDate.Value.AddDays(1) });
+      }
+
+      var sql = $@"SELECT 
+	A.DC_CODE AS DcNo,
+	B.CUST_CODE AS CustNo,
+	C.WAREHOUSE_NAME AS WhName,
+	B.LOC_CODE AS Loc,
+	B.ITEM_CODE AS ItemNo,
+	B.VALID_DATE AS ValidDate,
+	B.ENTER_DATE AS EnterDate,
+	D1.ACC_UNIT_NAME AS Unit,
+	B.MAKE_NO AS MkNo,
+	B.SERIAL_NO AS Sn,
+	B.QTY AS StockQty,
+	B.BOX_CTRL_NO AS BoxNo,
+	B.PALLET_CTRL_NO AS PalletNo,
+	A1.LOC_STATUS_NAME AS LocStatus,
+	DATEDIFF(DAY,@p3,B.VALID_DATE) AS DiffVDate,
+	D.ITEM_NAME AS ItemName,
+	D.ITEM_SIZE AS ItemSize,
+	D.ITEM_COLOR AS ItemColor,
+	D.ITEM_SPEC AS ItemSpec,
+	(SELECT 
+		SUM(E.B_PICK_QTY) 
+	FROM F1511 E 
+	WHERE E.DC_CODE=A.DC_CODE 
+		AND E.GUP_CODE=B.GUP_CODE 
+		AND E.CUST_CODE=B.CUST_CODE 
+		AND E.LOC_CODE=B.LOC_CODE 
+		AND E.ITEM_CODE=B.ITEM_CODE 
+		AND E.VALID_DATE=B.VALID_DATE 
+		AND E.ENTER_DATE=B.ENTER_DATE 
+		AND E.MAKE_NO=B.MAKE_NO
+    AND E.STATUS='0'
+    AND E.B_PICK_QTY>0) AS BPickQty,
+	D.EAN_CODE1 AS EANCode1,
+	D.BUNDLE_SERIALNO AS BundleSerialNo
+FROM F1912 A
+INNER JOIN F1943 A1
+	ON A.NOW_STATUS_ID=A1.LOC_STATUS_ID
+INNER JOIN F1913 B
+	ON A.DC_CODE=B.DC_CODE AND A.LOC_CODE =B.LOC_CODE 
+INNER JOIN F1980 C
+	ON A.DC_CODE=C.DC_CODE AND A.WAREHOUSE_ID=C.WAREHOUSE_ID
+INNER JOIN F1903 D
+	ON B.GUP_CODE=D.GUP_CODE AND B.CUST_CODE =D.CUST_CODE AND B.ITEM_CODE=D.ITEM_CODE
+INNER JOIN F91000302 D1
+	ON D1.ITEM_TYPE_ID ='001' AND D.ITEM_UNIT=D1.ACC_UNIT 
+WHERE A.DC_CODE=@p0
+AND B.GUP_CODE=@p1
+AND B.CUST_CODE=@p2
+AND B.QTY>0
+{f1912Filter}
+{f1913Filter}";
+
+      return SqlQuery<GetStockRes>(sql, para.ToArray());
+    }
+
 
   }
 

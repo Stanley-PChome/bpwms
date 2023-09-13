@@ -151,16 +151,16 @@ namespace Wms3pl.WebServices.DataCommon
 
 					if(SqlCommands[i].Parameters!=null)
 					{
-						var tag = "@B" + i.ToString() + "_";
+						var tag = "@B" + i.ToString() + "_p";
 						foreach (SqlParameter p in SqlCommands[i].Parameters)
 						{
 							var parmName = p.ParameterName;
-							var replaceParmName = parmName.Replace("@", tag);
+							var replaceParmName = parmName.Replace("@p", tag);
 							p.ParameterName = replaceParmName;
 
 							paramList.Add(p);
 						}
-						SqlCommands[i].SqlCommandText = SqlCommands[i].SqlCommandText.Replace("@", tag);
+						SqlCommands[i].SqlCommandText = SqlCommands[i].SqlCommandText.Replace("@p", tag);
 					}
 
 					if (sb.Length == 0)

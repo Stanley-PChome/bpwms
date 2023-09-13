@@ -5,6 +5,10 @@ using Wms3pl.WebServices.DataCommon;
 using System.Diagnostics;
 using System;
 using System.Collections.Generic;
+using Wms3pl.Datas.F25;
+using Wms3pl.Datas.Shared.Entities;
+using System.Linq;
+using Wms3pl.Datas.Shared.Pda.Entitues;
 
 namespace Wms3pl.Datas.Test
 {
@@ -108,33 +112,55 @@ namespace Wms3pl.Datas.Test
             _f1912Repo.GetTmprTypeData(dcCode, locCode);
         }
 
-        [TestMethod]
-        public void GetInventoryInfo()
-        {
-            #region Params
-            var custNo = "020001";
-            var dcNo = "001";
-            var gupCode = "01";
-            var itemNo = "1B6C0021E";
-            var mkNo = "0";
-            var sn = "0";
-            var whNo = "G09";
-            var begLoc = "20A030402";
-            var endLoc = "20A050401";
-            var begPalletNo = "0";
-            var endPalletNo = "2";
-            var begEnterDate = Convert.ToDateTime("2018-07-01");
-            var endEnterDate = Convert.ToDateTime("2018-07-20");
-            var begValidDate = Convert.ToDateTime("1990-10-02");
-            var endValidDate = Convert.ToDateTime("9999-12-31");
-            #endregion
+    [TestMethod]
+    public void GetInventoryInfo()
+    {
+      #region Params
+      var custNo = "010001";
+      var dcNo = "12";
+      var gupCode = "10";
+      var itemNo = "";
+      var mkNo = "";
+      var sn = "0223042133";
+      var whNo = "";
+      var begLoc = "";
+      var endLoc = "";
+      var begPalletNo = "";
+      var endPalletNo = "";
+      DateTime? begEnterDate = null;
+      DateTime? endEnterDate = null;
+      DateTime? begValidDate = null;
+      DateTime? endValidDate = null;
+      #endregion
 
-            _f1912Repo.GetInventoryInfo(custNo, dcNo, gupCode, itemNo, mkNo,
-            sn, whNo, begLoc, endLoc, begPalletNo, endPalletNo, begEnterDate,
-            endEnterDate, begValidDate, endValidDate);
-        }
+      var newRes = new List<GetStockRes>();
+      var itemCode = new List<string>();
+      string BUNDLE_SERIALLOC = null;
+      string serialItemCode = null;
+      if (!string.IsNullOrWhiteSpace(itemNo))
+      {
+        var f1903Repo = new F1903Repository(Schemas.CoreSchema);
+        itemCode = f1903Repo.GetDatasByBarCode(gupCode, custNo, itemNo).Select(x => x.ITEM_CODE).ToList();
+      }
+      if (!string.IsNullOrWhiteSpace(sn))
+      {
+        var f2501Repo = new F2501Repository(Schemas.CoreSchema);
+        var f1903 = f2501Repo.GetF1903DataBySerialNo(gupCode, custNo, sn);
+        if (f1903 == null)
+          return;
+        BUNDLE_SERIALLOC = f1903.BUNDLE_SERIALLOC;
+        serialItemCode = f1903.ITEM_CODE;
+      }
+      newRes = _f1912Repo.GetInventoryInfo(custNo, dcNo, gupCode, itemCode, mkNo,
+     sn, whNo, begLoc, endLoc, begPalletNo, endPalletNo, begEnterDate,
+     endEnterDate, begValidDate, endValidDate, BUNDLE_SERIALLOC, serialItemCode).OrderBy(x => x.Loc).ThenBy(x => x.MkNo).ThenBy(x => x.Sn).ToList();
 
-        [TestMethod]
+      //Console.WriteLine(JsonSerializer.Serialize(oldRes));
+      Console.WriteLine(JsonSerializer.Serialize(newRes));
+
+    }
+
+    [TestMethod]
         public void GetMoveLocRes()
         {
             #region Params
@@ -149,21 +175,21 @@ namespace Wms3pl.Datas.Test
             _f1912Repo.GetMoveLocRes(dcCode, loc, custNo, gupCode, itemNo);
         }
 
-        [TestMethod]
-        public void GetMoveItemLocRes()
-        {
-            #region Params
-            var dcCode = "001";
-            var loc = "10H020201";
-            var custNo = "030001";
-            var gupCode = "01";
-            var itemNo = "BT18111107";
-						var sn = "";
+    [TestMethod]
+    public void GetMoveItemLocRes()
+    {
+      #region Params
+      var dcCode = "001";
+      var loc = "10H020201";
+      var custNo = "030001";
+      var gupCode = "01";
+      var itemNo = "BT18111107";
+      var sn = "";
 
-            #endregion
+      #endregion
 
-            _f1912Repo.GetMoveItemLocRes(dcCode, loc, custNo, gupCode, itemNo, sn);
-        }
+
+    }
 
         [TestMethod]
         public void CheckLocExist()
