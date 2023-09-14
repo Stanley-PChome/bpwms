@@ -1127,12 +1127,6 @@ namespace Wms3pl.WebServices.Process.P08.Services
       f055001.PACK_CLIENT_PC = Current.DeviceIp;
       f055001.CLOSEBOX_TIME = DateTime.Now;
 
-      if (isManualCloseBox)
-        LogF05500101(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, null, null, null, "1", "人員按下手動關箱");
-
-      if (isCompletePackage)
-        LogF05500101(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, null, null, null, "1", "包裝完成", 0);
-
         //廠退出貨不需要申請宅單
         if (f050801.SOURCE_TYPE != "13")
       {
