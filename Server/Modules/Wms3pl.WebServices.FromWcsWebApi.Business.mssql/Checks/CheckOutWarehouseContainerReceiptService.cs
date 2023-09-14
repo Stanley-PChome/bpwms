@@ -144,7 +144,7 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Checks
 		/// <param name="sku"></param>
 		/// <param name="receiptCode"></param>
 		/// <param name="index"></param>
-		public void CheckSkuSerialNumEquelSkuQty(List<ApiResponse> res, OutWarehouseContainerReceiptSkuModel sku, string receiptCode, int index, List<string> serialNoList)
+		public void CheckSkuSerialNumEquelSkuQty(List<ApiResponse> res, OutWarehouseContainerReceiptSkuModel sku, string receiptCode, int index)
 		{
 			if (sku.SerialNumList != null && sku.SerialNumList.Any() && sku.SkuQty != sku.SerialNumList.Count)
 				res.Add(new ApiResponse { No = receiptCode, ErrorColumn = "SerialNumList", MsgCode = "20043", MsgContent = string.Format(tacService.GetMsg("20043"), $"{receiptCode}第{index + 1}筆明細") });

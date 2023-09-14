@@ -99,10 +99,6 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 		/// </summary>
 		private List<F051203> _f051203ListByP;
 
-		/// <summary>
-		/// 序號資料清單
-		/// </summary>
-		private List<string> _serialNoList;
 		#endregion
 
 
@@ -192,10 +188,6 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 				ItemCode = x.SkuCode,
 				SerialNos = x.SerialNumList
 			}).ToList();
-
-      // 取得序號資料
-      _serialNoList = f2501Repo.GetDataForWcsApiOutWarehouseReceipt(gupCode, custCode, itemSerialNos).ToList();
-
 
       var commonService = new CommonService();
 			var res = new ApiResult();
@@ -524,11 +516,8 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 				// 檢查商品序號清單(SerialNumList)內所有資料以逗號連接總長度是否超過8000
 				ciwService.CheckSkuSerialNum(data, sku, receipt.ContainerCode, index);
 
-				// 檢查該明細序號是否存在
-				ciwService.CheckSkuSerialNumIsExist(data, sku, receipt.ContainerCode, index, _serialNoList);
-
 				// 檢查該明細序號長度是否與裝箱數量相同
-				ciwService.CheckSkuSerialNumEquelSkuQty(data, sku, receipt.ContainerCode, index, _serialNoList);
+				ciwService.CheckSkuSerialNumEquelSkuQty(data, sku, receipt.ContainerCode, index);
 			}
 			
 			#endregion
