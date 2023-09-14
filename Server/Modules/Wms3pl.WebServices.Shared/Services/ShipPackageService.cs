@@ -351,16 +351,16 @@ namespace Wms3pl.WebServices.Shared.Services
 			#endregion
 			logService.Log("取得出貨單資料 結束");
 			logService.Log("檢核 開始");
-			#region 檢核
-			// 檢查訂單是否取消
-			var f050101 = f050101Repo.GetDataByWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, f050801.WMS_ORD_NO);
-			if (f050101 != null && f050101.STATUS == "9")
-				if (req.ShipMode == "2")
-					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此訂單已取消，請將容器移至異常區，請手動按下取消到站紀錄" }, true);
-				else
-					return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此訂單已取消" });
-			// 檢查出貨單據狀態
-			if (f050801.STATUS == 9)// 如果[A].STATUS =9 回傳訊息[false,此出貨單已取消]
+      #region 檢核
+      // 檢查訂單是否取消
+      var f050101 = f050101Repo.GetDataByWmsOrdNo(req.DcCode, req.GupCode, req.CustCode, f050801.WMS_ORD_NO);
+      if (f050101 != null && f050101.STATUS == "9")
+        if (req.ShipMode == "2")
+          return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此訂單已取消，請將容器移至異常區，請手動按下取消到站紀錄" }, true);
+        else
+          return SearchAndCheckWmsOrderInfoReturn(result, new ExecuteResult { IsSuccessed = false, Message = "此訂單已取消" });
+      // 檢查出貨單據狀態
+      if (f050801.STATUS == 9)// 如果[A].STATUS =9 回傳訊息[false,此出貨單已取消]
 				if (req.ShipMode == "2")
 				{
 					F060208RepoNoTrans.UpdateProcFlag(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, 3, new List<int> { 9 });
@@ -1148,15 +1148,16 @@ namespace Wms3pl.WebServices.Shared.Services
 			else // 如果[FF]出貨明細有任何一筆有差異，[SS] = 加箱完成
 			{
 				msg = req.IsAppendBox ? "加箱完成" : "關箱完成";
-				if (req.IsAppendBox)
-					LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "人員按下加箱", 0, null);
-				if (req.IsManualCloseBox)
-					LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "人員按下手動關箱", 0, null);
 			}
 			_wmsTransaction.Complete(true);
 			logService.Log("DB Commit 結束");
 
-			if (packingFinish)
+      if (req.IsAppendBox)
+        LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "人員按下加箱", 0, null);
+      if (req.IsManualCloseBox)
+        LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "人員按下手動關箱", 0, null);
+
+      if (packingFinish)
 			{
 				LogF05500101(req.DcCode, req.GupCode, req.CustCode, req.WmsOrdNo, null, null, null, "1", "包裝完成", 0, null);
 				logService.Log("寫入包裝完成紀錄 結束");
