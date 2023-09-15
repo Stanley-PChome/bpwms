@@ -429,6 +429,7 @@
     <None Include="Properties\PublishProfiles\Debug.pubxml" />
     <None Include="Properties\PublishProfiles\Ph.pubxml" />
     <None Include="Properties\PublishProfiles\PhTest.pubxml" />
+    <None Include="Properties\PublishProfiles\PhTest_A7.pubxml" />
     <None Include="Properties\PublishProfiles\Ph_A7.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Web.Ph.config">
