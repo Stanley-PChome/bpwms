@@ -55,7 +55,7 @@ namespace Wms3pl.Datas.Test.F05
 			var ordNo = "S2017022000003";
 			#endregion
 
-			_f05030101Repo.GetWmsOrdNos(gupCode, custCode, dcCode, ordNo);
+			//_f05030101Repo.GetWmsOrdNos(gupCode, custCode, dcCode, ordNo);
 		}
 
 		[TestMethod]

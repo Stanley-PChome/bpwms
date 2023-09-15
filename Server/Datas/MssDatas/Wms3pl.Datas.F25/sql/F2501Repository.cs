@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.F19;
+using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.Datas.Shared.Pda.Entitues;
 using Wms3pl.DBCore;
@@ -710,5 +711,37 @@ FROM   (
 
 			ExecuteSqlCommand(sql, sqlParameter.ToArray());
 		}
+
+
+    /// <summary>
+    /// 取得序號目前狀態 null:非在庫序號 0:一般序號 1:綁儲位序號
+    /// </summary>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="serialNo"></param>
+    /// <returns></returns>
+    public CheckSerialTypeEn CheckSerialType(string gupCode,string custCode,string serialNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = serialNo },
+      };
+      var sql = @"SELECT 
+TOP 1
+CASE 
+	WHEN a.SERIAL_NO !='' AND B.BUNDLE_SERIALLOC ='0' THEN '0'
+	WHEN a.SERIAL_NO !='' AND B.BUNDLE_SERIALLOC ='1' THEN '1'
+END SerialNoType,
+A.ITEM_CODE
+FROM F2501 A
+LEFT JOIN F1903 B
+	ON A.GUP_CODE =B.GUP_CODE  AND A.CUST_CODE = B.CUST_CODE AND A.ITEM_CODE = B.ITEM_CODE 
+WHERE A.GUP_CODE=@p0 AND A.CUST_CODE=@p1 AND A.SERIAL_NO=@p2 AND STATUS='A1';";
+
+      return SqlQueryWithSqlParameterSetDbType<CheckSerialTypeEn>(sql, para.ToArray()).FirstOrDefault();
+    }
+
   }
 }

@@ -560,253 +560,287 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		private List<wcf.RePickNoList> _printRePickNoList = null;
 		private List<wcf.BatchPickNoList> _printBatchPickNoListTemp = null;
 		private List<wcf.RePickNoList> _printRePickNoListTemp = null;
+
 		public void DoPrint(bool useLMSRoute)
 		{
 
 			var proxyP05 = GetExProxy<P05ExDataSource>();
-			if (SelectedTabIndex == 0)
-			{
-				if (_isInitDoPrint)
-				{
-					_printBatchPickNoList = ExDataMapper.MapCollection<BatchPickNoList, wcf.BatchPickNoList>(BatchPickNoList.Where(si => si.IsSelected).Select(si => si.Item)).ToList();
-					_printRePickNoList = ExDataMapper.MapCollection<RePickNoList, wcf.RePickNoList>(RePickNoList.Where(si => si.IsSelected).Select(si => si.Item)).ToList();
-					_printBatchPickNoListTemp = _printBatchPickNoList.Select(a => a).ToList();
-					_printRePickNoListTemp = _printRePickNoList.Select(a => a).ToList();
-					_isInitDoPrint = false;
-				}
-				else
-				{
-					_printBatchPickNoList = _printBatchPickNoListTemp.Select(a => a).ToList();
-					// 若_printBatchPickNoListTemp還有資料，代表補揀單尚未執行，所以不需做_printRePickNoList由_printRePickNoListTemp的轉換
-					if (_printBatchPickNoListTemp == null || !_printBatchPickNoListTemp.Any())
-					{
-						_printRePickNoList = _printRePickNoListTemp.Select(a => a).ToList();
-					}
-				}
+      if (SelectedTabIndex == 0)
+      {
+        if (_isInitDoPrint)
+        {
+          _printBatchPickNoList = ExDataMapper.MapCollection<BatchPickNoList, wcf.BatchPickNoList>(BatchPickNoList.Where(si => si.IsSelected).Select(si => si.Item)).ToList();
+          _printRePickNoList = ExDataMapper.MapCollection<RePickNoList, wcf.RePickNoList>(RePickNoList.Where(si => si.IsSelected).Select(si => si.Item)).ToList();
+          _printBatchPickNoListTemp = _printBatchPickNoList.Select(a => a).ToList();
+          _printRePickNoListTemp = _printRePickNoList.Select(a => a).ToList();
+          _isInitDoPrint = false;
+        }
+        else
+        {
+          _printBatchPickNoList = _printBatchPickNoListTemp.Select(a => a).ToList();
 
-				var proxy = GetWcfProxy<wcf.P05WcfServiceClient>();
-				foreach (var item in _printBatchPickNoList)
-				{
-					SinglePickingReportDatas = new List<SinglePickingReportData>();
-					SinglePickingTickerDatas = new List<SinglePickingTickerData>();
-					BatchPickingReportDatas = new List<BatchPickingReportData>();
-					BatchPickingTickerDatas = new List<BatchPickingTickerData>();
-					var result = proxy.RunWcfMethod(w => w.PrintUpdateBatchPickNo(item, useLMSRoute));
-					// 只當LMS取路順失敗後選擇「依儲位順序排列」該筆useLMSRoute的值為false外，其他部分仍應該為true
-					useLMSRoute = true;
-					if (result.IsSuccessed)
-					{
-						_printBatchPickNoListTemp.Remove(item);
-						// 單一揀貨紙本張數
-						var singlePapers = proxyP05.CreateQuery<SinglePickingReportData>("GetSinglePickingReportDatas")
-												.AddQueryExOption("dcCode", item.DC_CODE)
-												.AddQueryExOption("gupCode", item.GUP_CODE)
-												.AddQueryExOption("custCode", item.CUST_CODE)
-												.AddQueryExOption("delvDate", item.DELV_DATE)
-												.AddQueryExOption("pickTime", item.PICK_TIME)
-												.AddQueryExOption("pickOrdNo", "")
-											 .ToList();
-						SinglePickingReportDatas.AddRange(singlePapers);
+          // 若_printBatchPickNoListTemp還有資料，代表補揀單尚未執行，所以不需做_printRePickNoList由_printRePickNoListTemp的轉換
+          if (_printBatchPickNoListTemp == null || !_printBatchPickNoListTemp.Any())
+          {
+            _printRePickNoList = _printRePickNoListTemp.Select(a => a).ToList();
+          }
+        }
 
-						// 批量揀貨紙本張數
-						var batchPapers = proxyP05.CreateQuery<BatchPickingReportData>("GetBatchPickingReportDatas")
-												.AddQueryExOption("dcCode", item.DC_CODE)
-												.AddQueryExOption("gupCode", item.GUP_CODE)
-												.AddQueryExOption("custCode", item.CUST_CODE)
-												.AddQueryExOption("delvDate", item.DELV_DATE)
-												.AddQueryExOption("pickTime", item.PICK_TIME)
-												.AddQueryExOption("pickOrdNo", "")
-											 .ToList();
+        var proxy = GetWcfProxy<wcf.P05WcfServiceClient>();
 
-						BatchPickingReportDatas.AddRange(batchPapers);
+        if (_printBatchPickNoList != null && _printBatchPickNoList.Any())
+        {
+          foreach (var item in _printBatchPickNoList)
+          {
+            SinglePickingReportDatas = new List<SinglePickingReportData>();
+            SinglePickingTickerDatas = new List<SinglePickingTickerData>();
+            BatchPickingReportDatas = new List<BatchPickingReportData>();
+            BatchPickingTickerDatas = new List<BatchPickingTickerData>();
 
-						// 單一揀貨貼紙
-						var singlePastes = proxyP05.CreateQuery<SinglePickingTickerData>("GetSinglePickingTickerDatas")
-												 .AddQueryExOption("dcCode", item.DC_CODE)
-												 .AddQueryExOption("gupCode", item.GUP_CODE)
-												 .AddQueryExOption("custCode", item.CUST_CODE)
-												 .AddQueryExOption("delvDate", item.DELV_DATE)
-												 .AddQueryExOption("pickTime", item.PICK_TIME)
-												 .AddQueryExOption("pickOrdNo", "")
-											.ToList();
-						SinglePickingTickerDatas.AddRange(singlePastes);
+            var result = proxy.RunWcfMethod(w => w.PrintUpdateBatchPickNo(item, useLMSRoute));
 
-						//批量揀貨貼紙
-						var batchPastes = proxyP05.CreateQuery<BatchPickingTickerData>("GetBatchPickingTickerDatas")
-												 .AddQueryExOption("dcCode", item.DC_CODE)
-												 .AddQueryExOption("gupCode", item.GUP_CODE)
-												 .AddQueryExOption("custCode", item.CUST_CODE)
-												 .AddQueryExOption("delvDate", item.DELV_DATE)
-												 .AddQueryExOption("pickTime", item.PICK_TIME)
-												 .AddQueryExOption("pickOrdNo", "")
-											.ToList();
-						BatchPickingTickerDatas.AddRange(batchPastes);
-						DoPrintReport();
-					}
-					else if (!result.IsSuccessed && !string.IsNullOrEmpty(result.Message))
-					{
-						var confirmResp = ShowConfirmMessage(result.Message, Properties.Resources.Reacquire, Properties.Resources.ArrangedInOrderOfStorage, Properties.Resources.CancelPrinting);
-						switch (confirmResp)
-						{
-							case DialogResponse.Yes:
-								DoPrint(true);
-								break;
-							case DialogResponse.No:
-								DoPrint(false);
-								break;
-							case DialogResponse.Cancel:
-								break;
-						}
+            // 只當LMS取路順失敗後選擇「依儲位順序排列」該筆useLMSRoute的值為false外，其他部分仍應該為true
+            useLMSRoute = true;
 
-						return;
-					}
-				}
+            if (result.IsSuccessed)
+            {
+              if (item.ATFL_N_PICK_CNT > 0)
+              {
+                _printBatchPickNoListTemp.Remove(item);
 
-				foreach (var item in _printRePickNoList)
-				{
-					SinglePickingReportDatas = new List<SinglePickingReportData>();
-					SinglePickingTickerDatas = new List<SinglePickingTickerData>();
-					BatchPickingReportDatas = new List<BatchPickingReportData>();
-					BatchPickingTickerDatas = new List<BatchPickingTickerData>();
-					var result1 = proxy.RunWcfMethod(w => w.PrintUpdateRePickNo(item, useLMSRoute));
-					// 只當LMS取路順失敗後選擇「依儲位順序排列」該筆useLMSRoute的值為false外，其他部分仍應該為true
-					useLMSRoute = true;
-					if (result1.IsSuccessed)
-					{
-						_printRePickNoListTemp.Remove(item);
-						if (item.PICK_TOOL == "1")
-						{
-							// 單一揀貨紙本張數
-							var singlePapers = proxyP05.CreateQuery<SinglePickingReportData>("GetSinglePickingReportDatas")
-													.AddQueryExOption("dcCode", item.DC_CODE)
-													.AddQueryExOption("gupCode", item.GUP_CODE)
-													.AddQueryExOption("custCode", item.CUST_CODE)
-													.AddQueryExOption("delvDate", item.DELV_DATE)
-													.AddQueryExOption("pickTime", item.PICK_TIME)
-													.AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
-												 .ToList();
-							SinglePickingReportDatas.AddRange(singlePapers);
+                // 單一揀貨紙本張數
+                var singlePapers = proxyP05.CreateQuery<SinglePickingReportData>("GetSinglePickingReportDatas")
+                          .AddQueryExOption("dcCode", item.DC_CODE)
+                          .AddQueryExOption("gupCode", item.GUP_CODE)
+                          .AddQueryExOption("custCode", item.CUST_CODE)
+                          .AddQueryExOption("delvDate", item.DELV_DATE)
+                          .AddQueryExOption("pickTime", item.PICK_TIME)
+                          .AddQueryExOption("pickOrdNo", "")
+                         .ToList();
 
-							// 批量揀貨紙本張數
-							var batchPapers = proxyP05.CreateQuery<BatchPickingReportData>("GetBatchPickingReportDatas")
-													.AddQueryExOption("dcCode", item.DC_CODE)
-													.AddQueryExOption("gupCode", item.GUP_CODE)
-													.AddQueryExOption("custCode", item.CUST_CODE)
-													.AddQueryExOption("delvDate", item.DELV_DATE)
-													.AddQueryExOption("pickTime", item.PICK_TIME)
-													.AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
-												 .ToList();
+                SinglePickingReportDatas.AddRange(singlePapers);
+              }
 
-							BatchPickingReportDatas.AddRange(batchPapers);
-						}
-						else
-						{
-							// 單一揀貨貼紙
-							var singlePastes = proxyP05.CreateQuery<SinglePickingTickerData>("GetSinglePickingTickerDatas")
-													 .AddQueryExOption("dcCode", item.DC_CODE)
-													 .AddQueryExOption("gupCode", item.GUP_CODE)
-													 .AddQueryExOption("custCode", item.CUST_CODE)
-													 .AddQueryExOption("delvDate", item.DELV_DATE)
-													 .AddQueryExOption("pickTime", item.PICK_TIME)
-													 .AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
-												.ToList();
-							SinglePickingTickerDatas.AddRange(singlePastes);
+              if (item.ATFL_B_PICK_CNT > 0)
+              {
+                // 批量揀貨紙本張數
+                var batchPapers = proxyP05.CreateQuery<BatchPickingReportData>("GetBatchPickingReportDatas")
+                          .AddQueryExOption("dcCode", item.DC_CODE)
+                          .AddQueryExOption("gupCode", item.GUP_CODE)
+                          .AddQueryExOption("custCode", item.CUST_CODE)
+                          .AddQueryExOption("delvDate", item.DELV_DATE)
+                          .AddQueryExOption("pickTime", item.PICK_TIME)
+                          .AddQueryExOption("pickOrdNo", "")
+                         .ToList();
 
-							//批量揀貨貼紙
-							var batchPastes = proxyP05.CreateQuery<BatchPickingTickerData>("GetBatchPickingTickerDatas")
-													 .AddQueryExOption("dcCode", item.DC_CODE)
-													 .AddQueryExOption("gupCode", item.GUP_CODE)
-													 .AddQueryExOption("custCode", item.CUST_CODE)
-													 .AddQueryExOption("delvDate", item.DELV_DATE)
-													 .AddQueryExOption("pickTime", item.PICK_TIME)
-													 .AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
-												.ToList();
-							BatchPickingTickerDatas.AddRange(batchPastes);
-						}
-						DoPrintReport();
-					}
-					else if (!result1.IsSuccessed && !string.IsNullOrEmpty(result1.Message))
-					{
-						var confirmResp = ShowConfirmMessage(result1.Message, Properties.Resources.Reacquire, Properties.Resources.ArrangedInOrderOfStorage, Properties.Resources.CancelPrinting);
-						switch (confirmResp)
-						{
-							case DialogResponse.Yes:
-								DoPrint(true);
-								break;
-							case DialogResponse.No:
-								DoPrint(false);
-								break;
-							case DialogResponse.Cancel:
-								break;
-						}
+                BatchPickingReportDatas.AddRange(batchPapers);
+              }
 
-						return;
-					}
-				}
-			}
+              if (item.ATFL_NP_PICK_CNT > 0)
+              {
+                // 單一揀貨貼紙
+                var singlePastes = proxyP05.CreateQuery<SinglePickingTickerData>("GetSinglePickingTickerDatas")
+                           .AddQueryExOption("dcCode", item.DC_CODE)
+                           .AddQueryExOption("gupCode", item.GUP_CODE)
+                           .AddQueryExOption("custCode", item.CUST_CODE)
+                           .AddQueryExOption("delvDate", item.DELV_DATE)
+                           .AddQueryExOption("pickTime", item.PICK_TIME)
+                           .AddQueryExOption("pickOrdNo", "")
+                        .ToList();
+
+                SinglePickingTickerDatas.AddRange(singlePastes);
+              }
+
+              if (item.ATFL_BP_PICK_CNT > 0)
+              {
+                //批量揀貨貼紙
+                var batchPastes = proxyP05.CreateQuery<BatchPickingTickerData>("GetBatchPickingTickerDatas")
+                           .AddQueryExOption("dcCode", item.DC_CODE)
+                           .AddQueryExOption("gupCode", item.GUP_CODE)
+                           .AddQueryExOption("custCode", item.CUST_CODE)
+                           .AddQueryExOption("delvDate", item.DELV_DATE)
+                           .AddQueryExOption("pickTime", item.PICK_TIME)
+                           .AddQueryExOption("pickOrdNo", "")
+                        .ToList();
+
+                BatchPickingTickerDatas.AddRange(batchPastes);
+              }
+
+              DoPrintReport();
+            }
+            else if (!result.IsSuccessed && !string.IsNullOrEmpty(result.Message))
+            {
+              var confirmResp = ShowConfirmMessage(result.Message, Properties.Resources.Reacquire, Properties.Resources.ArrangedInOrderOfStorage, Properties.Resources.CancelPrinting);
+              switch (confirmResp)
+              {
+                case DialogResponse.Yes:
+                  DoPrint(true);
+                  break;
+                case DialogResponse.No:
+                  DoPrint(false);
+                  break;
+                case DialogResponse.Cancel:
+                  break;
+              }
+
+              return;
+            }
+          }
+        }
+
+        if (_printRePickNoList != null && _printRePickNoList.Any())
+        {
+          foreach (var item in _printRePickNoList)
+          {
+            SinglePickingReportDatas = new List<SinglePickingReportData>();
+            SinglePickingTickerDatas = new List<SinglePickingTickerData>();
+            BatchPickingReportDatas = new List<BatchPickingReportData>();
+            BatchPickingTickerDatas = new List<BatchPickingTickerData>();
+
+            var result1 = proxy.RunWcfMethod(w => w.PrintUpdateRePickNo(item, useLMSRoute));
+
+            // 只當LMS取路順失敗後選擇「依儲位順序排列」該筆useLMSRoute的值為false外，其他部分仍應該為true
+            useLMSRoute = true;
+
+            if (result1.IsSuccessed)
+            {
+              _printRePickNoListTemp.Remove(item);
+
+              if (item.PICK_TOOL == "1")
+              {
+                // 單一揀貨紙本張數
+                var singlePapers = proxyP05.CreateQuery<SinglePickingReportData>("GetSinglePickingReportDatas")
+                            .AddQueryExOption("dcCode", item.DC_CODE)
+                            .AddQueryExOption("gupCode", item.GUP_CODE)
+                            .AddQueryExOption("custCode", item.CUST_CODE)
+                            .AddQueryExOption("delvDate", item.DELV_DATE)
+                            .AddQueryExOption("pickTime", item.PICK_TIME)
+                            .AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
+                           .ToList();
+                SinglePickingReportDatas.AddRange(singlePapers);
+
+                // 批量揀貨紙本張數
+                var batchPapers = proxyP05.CreateQuery<BatchPickingReportData>("GetBatchPickingReportDatas")
+                            .AddQueryExOption("dcCode", item.DC_CODE)
+                            .AddQueryExOption("gupCode", item.GUP_CODE)
+                            .AddQueryExOption("custCode", item.CUST_CODE)
+                            .AddQueryExOption("delvDate", item.DELV_DATE)
+                            .AddQueryExOption("pickTime", item.PICK_TIME)
+                            .AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
+                           .ToList();
+
+                BatchPickingReportDatas.AddRange(batchPapers);
+              }
+              else
+              {
+                // 單一揀貨貼紙
+                var singlePastes = proxyP05.CreateQuery<SinglePickingTickerData>("GetSinglePickingTickerDatas")
+                             .AddQueryExOption("dcCode", item.DC_CODE)
+                             .AddQueryExOption("gupCode", item.GUP_CODE)
+                             .AddQueryExOption("custCode", item.CUST_CODE)
+                             .AddQueryExOption("delvDate", item.DELV_DATE)
+                             .AddQueryExOption("pickTime", item.PICK_TIME)
+                             .AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
+                          .ToList();
+                SinglePickingTickerDatas.AddRange(singlePastes);
+
+                //批量揀貨貼紙
+                var batchPastes = proxyP05.CreateQuery<BatchPickingTickerData>("GetBatchPickingTickerDatas")
+                             .AddQueryExOption("dcCode", item.DC_CODE)
+                             .AddQueryExOption("gupCode", item.GUP_CODE)
+                             .AddQueryExOption("custCode", item.CUST_CODE)
+                             .AddQueryExOption("delvDate", item.DELV_DATE)
+                             .AddQueryExOption("pickTime", item.PICK_TIME)
+                             .AddQueryExOption("pickOrdNo", item.PICK_ORD_NO)
+                          .ToList();
+                BatchPickingTickerDatas.AddRange(batchPastes);
+              }
+              DoPrintReport();
+            }
+            else if (!result1.IsSuccessed && !string.IsNullOrEmpty(result1.Message))
+            {
+              var confirmResp = ShowConfirmMessage(result1.Message, Properties.Resources.Reacquire, Properties.Resources.ArrangedInOrderOfStorage, Properties.Resources.CancelPrinting);
+              switch (confirmResp)
+              {
+                case DialogResponse.Yes:
+                  DoPrint(true);
+                  break;
+                case DialogResponse.No:
+                  DoPrint(false);
+                  break;
+                case DialogResponse.Cancel:
+                  break;
+              }
+
+              return;
+            }
+          }
+        }
+      }
       else if (SelectedTabIndex == 1)
       {
-				SinglePickingReportDatas = new List<SinglePickingReportData>();
-				SinglePickingTickerDatas = new List<SinglePickingTickerData>();
-				BatchPickingReportDatas = new List<BatchPickingReportData>();
-				BatchPickingTickerDatas = new List<BatchPickingTickerData>();
+        SinglePickingReportDatas = new List<SinglePickingReportData>();
+        SinglePickingTickerDatas = new List<SinglePickingTickerData>();
+        BatchPickingReportDatas = new List<BatchPickingReportData>();
+        BatchPickingTickerDatas = new List<BatchPickingTickerData>();
 
         var a = ReprintPickNoList.Where(x => x.IsSelected).Select(x => x.Item).GroupBy(x => new { x.DC_CODE, x.GUP_CODE, x.CUST_CODE, x.DELV_DATE, x.PICK_TIME, x.PICK_ORD_NO, x.PICK_TOOL });
 
         foreach (var item in a)
-				{
-					if (item.Key.PICK_TOOL == "1")
-					{
-						// 單一揀貨紙本張數
-						var singlePapers = proxyP05.CreateQuery<SinglePickingReportData>("GetSinglePickingReportDatas")
-												.AddQueryExOption("dcCode", item.Key.DC_CODE)
-												.AddQueryExOption("gupCode", item.Key.GUP_CODE)
-												.AddQueryExOption("custCode", item.Key.CUST_CODE)
-												.AddQueryExOption("delvDate", item.Key.DELV_DATE)
-												.AddQueryExOption("pickTime", item.Key.PICK_TIME)
-												.AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
-											 .ToList();
-						SinglePickingReportDatas.AddRange(singlePapers);
+        {
+          if (item.Key.PICK_TOOL == "1")
+          {
+            // 單一揀貨紙本張數
+            var singlePapers = proxyP05.CreateQuery<SinglePickingReportData>("GetSinglePickingReportDatas")
+                        .AddQueryExOption("dcCode", item.Key.DC_CODE)
+                        .AddQueryExOption("gupCode", item.Key.GUP_CODE)
+                        .AddQueryExOption("custCode", item.Key.CUST_CODE)
+                        .AddQueryExOption("delvDate", item.Key.DELV_DATE)
+                        .AddQueryExOption("pickTime", item.Key.PICK_TIME)
+                        .AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
+                       .ToList();
+            SinglePickingReportDatas.AddRange(singlePapers);
 
-						// 批量揀貨紙本張數
-						var batchPapers = proxyP05.CreateQuery<BatchPickingReportData>("GetBatchPickingReportDatas")
-												.AddQueryExOption("dcCode", item.Key.DC_CODE)
-												.AddQueryExOption("gupCode", item.Key.GUP_CODE)
-												.AddQueryExOption("custCode", item.Key.CUST_CODE)
-												.AddQueryExOption("delvDate", item.Key.DELV_DATE)
-												.AddQueryExOption("pickTime", item.Key.PICK_TIME)
-												.AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
-											 .ToList();
+            // 批量揀貨紙本張數
+            var batchPapers = proxyP05.CreateQuery<BatchPickingReportData>("GetBatchPickingReportDatas")
+                        .AddQueryExOption("dcCode", item.Key.DC_CODE)
+                        .AddQueryExOption("gupCode", item.Key.GUP_CODE)
+                        .AddQueryExOption("custCode", item.Key.CUST_CODE)
+                        .AddQueryExOption("delvDate", item.Key.DELV_DATE)
+                        .AddQueryExOption("pickTime", item.Key.PICK_TIME)
+                        .AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
+                       .ToList();
 
-						BatchPickingReportDatas.AddRange(batchPapers);
-					}
-					else
-					{
-						// 單一揀貨貼紙
-						var singlePastes = proxyP05.CreateQuery<SinglePickingTickerData>("GetSinglePickingTickerDatas")
-												 .AddQueryExOption("dcCode", item.Key.DC_CODE)
-												 .AddQueryExOption("gupCode", item.Key.GUP_CODE)
-												 .AddQueryExOption("custCode", item.Key.CUST_CODE)
-												 .AddQueryExOption("delvDate", item.Key.DELV_DATE)
-												 .AddQueryExOption("pickTime", item.Key.PICK_TIME)
-												 .AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
-											.ToList();
-						SinglePickingTickerDatas.AddRange(singlePastes);
+            BatchPickingReportDatas.AddRange(batchPapers);
+          }
+          else
+          {
+            // 單一揀貨貼紙
+            var singlePastes = proxyP05.CreateQuery<SinglePickingTickerData>("GetSinglePickingTickerDatas")
+                         .AddQueryExOption("dcCode", item.Key.DC_CODE)
+                         .AddQueryExOption("gupCode", item.Key.GUP_CODE)
+                         .AddQueryExOption("custCode", item.Key.CUST_CODE)
+                         .AddQueryExOption("delvDate", item.Key.DELV_DATE)
+                         .AddQueryExOption("pickTime", item.Key.PICK_TIME)
+                         .AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
+                      .ToList();
+            SinglePickingTickerDatas.AddRange(singlePastes);
 
-						//批量揀貨貼紙
-						var batchPastes = proxyP05.CreateQuery<BatchPickingTickerData>("GetBatchPickingTickerDatas")
-												 .AddQueryExOption("dcCode", item.Key.DC_CODE)
-												 .AddQueryExOption("gupCode", item.Key.GUP_CODE)
-												 .AddQueryExOption("custCode", item.Key.CUST_CODE)
-												 .AddQueryExOption("delvDate", item.Key.DELV_DATE)
-												 .AddQueryExOption("pickTime", item.Key.PICK_TIME)
-												 .AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
-											.ToList();
-						BatchPickingTickerDatas.AddRange(batchPastes);
-					}
-				}
-				DoPrintReport();
-			}
+            //批量揀貨貼紙
+            var batchPastes = proxyP05.CreateQuery<BatchPickingTickerData>("GetBatchPickingTickerDatas")
+                         .AddQueryExOption("dcCode", item.Key.DC_CODE)
+                         .AddQueryExOption("gupCode", item.Key.GUP_CODE)
+                         .AddQueryExOption("custCode", item.Key.CUST_CODE)
+                         .AddQueryExOption("delvDate", item.Key.DELV_DATE)
+                         .AddQueryExOption("pickTime", item.Key.PICK_TIME)
+                         .AddQueryExOption("pickOrdNo", item.Key.PICK_ORD_NO)
+                      .ToList();
+            BatchPickingTickerDatas.AddRange(batchPastes);
+          }
+        }
+
+        DoPrintReport();
+      }
       else if (SelectedTabIndex == 2)
       {
         SinglePickingReportDatas = new List<SinglePickingReportData>();
@@ -827,8 +861,8 @@ namespace Wms3pl.WpfClient.P05.ViewModel
                       .AddQueryExOption("pickTime", item.Key.PICK_TIME)
                       .AddQueryExOption("pickOrdNo", "")
                       .AddQueryExOption("IsCheckNotRePick", true)
-
                      .ToList();
+
           SinglePickingReportDatas.AddRange(singlePapers);
 
           // 批量揀貨紙本張數
@@ -840,10 +874,10 @@ namespace Wms3pl.WpfClient.P05.ViewModel
                       .AddQueryExOption("pickTime", item.Key.PICK_TIME)
                       .AddQueryExOption("pickOrdNo", "")
                       .AddQueryExOption("IsCheckNotRePick", true)
-
                      .ToList();
 
           BatchPickingReportDatas.AddRange(batchPapers);
+
           // 單一揀貨貼紙
           var singlePastes = proxyP05.CreateQuery<SinglePickingTickerData>("GetSinglePickingTickerDatasCheckRePrint")
                        .AddQueryExOption("dcCode", item.Key.DC_CODE)
@@ -853,8 +887,8 @@ namespace Wms3pl.WpfClient.P05.ViewModel
                        .AddQueryExOption("pickTime", item.Key.PICK_TIME)
                        .AddQueryExOption("pickOrdNo", "")
                       .AddQueryExOption("IsCheckNotRePick", true)
-
                     .ToList();
+
           SinglePickingTickerDatas.AddRange(singlePastes);
 
           //批量揀貨貼紙
@@ -866,10 +900,11 @@ namespace Wms3pl.WpfClient.P05.ViewModel
                        .AddQueryExOption("pickTime", item.Key.PICK_TIME)
                        .AddQueryExOption("pickOrdNo", "")
                       .AddQueryExOption("IsCheckNotRePick", true)
-
                     .ToList();
+
           BatchPickingTickerDatas.AddRange(batchPastes);
         }
+
         DoPrintReport();
       }
     }

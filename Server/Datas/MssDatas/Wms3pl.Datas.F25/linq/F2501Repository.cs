@@ -425,14 +425,6 @@ namespace Wms3pl.Datas.F25
 			return data;
 		}
 
-		public IQueryable<F2501> GetDataForWcsApiOutWarehouseReceipt(string gupCode, string custCode, List<WcsApiOutWarehouseReceiptItemSerialModel> itemSerialNos)
-		{
-			return _db.F2501s.AsNoTracking().Where(x => x.GUP_CODE == gupCode &&
-			x.CUST_CODE == custCode &&
-			itemSerialNos.Any(z => z.ItemCode == x.ITEM_CODE &&
-			z.SerialNos.Contains(x.SERIAL_NO)));
-		}
-
 		public IQueryable<F2501> GetDatasForWcsSchedule(string gupCode, string custCode, List<string> itemCodes)
 		{
 			var statusList = new List<string> { "C1", "D2" };

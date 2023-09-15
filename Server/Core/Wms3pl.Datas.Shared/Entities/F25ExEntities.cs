@@ -462,4 +462,13 @@ namespace Wms3pl.Datas.Shared.Entities
 		[DataMember]
 		public string SERIAL_NO { get; set; }
 	}
+
+  public class CheckSerialTypeEn
+  {
+    /// <summary>
+    /// null:非在庫序號 0:一般序號 1:綁儲位序號 2:一般商品
+    /// </summary>
+    public string SerialNoType { get; set; }
+    public string ITEM_CODE { get; set; }
+  }
 }

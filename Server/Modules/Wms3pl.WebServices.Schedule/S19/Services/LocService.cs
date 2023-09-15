@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Wms3pl.Datas.F00;
 using Wms3pl.Datas.F19;
@@ -170,12 +171,10 @@ namespace Wms3pl.WebServices.Schedule.S19.Services
 
           var usedVolumnDatas = f1912Repo.GetUsedVolumnByLocCodes(dcCode, locCodes).ToList();
           var f1912Datas = f1912Repo.GetF1912DataSQL(dcCode, locCodes).ToList();
-
           var datas = (from A in usedVolumnDatas
                        join B in f1912Datas
                              on new { A.DC_CODE, A.LOC_CODE } equals new { B.DC_CODE, B.LOC_CODE }
-                       select new { UsedVolumnData = A, F1912 = B }).ToList();
-
+                       select new { UsedVolumnData = A, F1912 = B,}).ToList();
 
           datas.ForEach(currData =>
           {
@@ -204,6 +203,7 @@ namespace Wms3pl.WebServices.Schedule.S19.Services
             resData.Add(new ApiResponse { MsgContent = $"物流中心 {dcCode} 無儲位需要更新儲位容積" });
           }
 
+          f1913Repo.RemoveStockZeroData(dcCode);
         }
 
         return new ApiResult

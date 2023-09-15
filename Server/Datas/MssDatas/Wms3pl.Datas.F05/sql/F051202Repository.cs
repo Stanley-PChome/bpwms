@@ -745,5 +745,30 @@ WHERE
 
       ExecuteSqlCommand(sql, param.ToArray());
     }
+
+    public IQueryable<string> GetNotAllCanceledOrders(string dcCode, string gupCode, string custCode, List<string> wmsNos)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode)   { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode)  { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                SELECT DISTINCT 
+                  WMS_ORD_NO 
+                FROM F051202 
+                WHERE 
+                  DC_CODE = @p0
+                  AND GUP_CODE = @p1 
+                  AND CUST_CODE = @p2 
+                  AND PICK_STATUS != '9'
+                ";
+
+      sql += param.CombineSqlInParameters(" AND WMS_ORD_NO", wmsNos, SqlDbType.VarChar);
+
+      return SqlQuery<string>(sql, param.ToArray());
+    }
   }
 }

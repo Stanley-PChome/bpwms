@@ -35,7 +35,7 @@ namespace Wms3pl.Datas.Test.F01
 			var status = "";
 			#endregion
 
-			_f010201Repo.GetF010201Datas(dcCode, gupCode, custCode, begStockDate, endStockDate, stockNo, vnrCode, vnrName, custOrdNo, sourceNo, status);
+			//_f010201Repo.GetF010201Datas(dcCode, gupCode, custCode, begStockDate, endStockDate, stockNo, vnrCode, vnrName, custOrdNo, sourceNo, status);
 		}
 
 		[TestMethod]

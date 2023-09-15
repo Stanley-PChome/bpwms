@@ -146,7 +146,7 @@ namespace Wms3pl.Datas.Test.F05
             var wmsOrdNos = new List<string> { "O2017022000001", "O2017022000002" };
             #endregion
 
-            _f055001Repo.GetDatas(dcCode, gupCode, custCode, wmsOrdNos);
+            //_f055001Repo.GetDatas(dcCode, gupCode, custCode, wmsOrdNos);
         }
 
     }

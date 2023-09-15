@@ -1204,8 +1204,15 @@ namespace Wms3pl.WebServices.PdaWebApiLib.Controllers
 			if (req.EanCode3.Length > 26)
 				return new ApiResult { IsSuccessed = false, MsgCode = "21962", MsgContent = string.Format(_p81Service.GetMsg("21962"), "國際條碼三", 26) };
 
-			//人員輸入的資料都改成大寫
-			req.WmsNo = req.WmsNo?.ToUpper();
+      if(req.EanCode1.IndexOf(" ") != -1)
+        return new ApiResult { IsSuccessed = false, MsgCode = "21964", MsgContent = string.Format(_p81Service.GetMsg("21964"), "國際條碼一", req.EanCode1) };
+      if (req.EanCode2.IndexOf(" ") != -1)
+        return new ApiResult { IsSuccessed = false, MsgCode = "21964", MsgContent = string.Format(_p81Service.GetMsg("21964"), "國際條碼二", req.EanCode2) };
+      if (req.EanCode3.IndexOf(" ") != -1)
+        return new ApiResult { IsSuccessed = false, MsgCode = "21964", MsgContent = string.Format(_p81Service.GetMsg("21964"), "國際條碼三", req.EanCode3) };
+
+      //人員輸入的資料都改成大寫
+      req.WmsNo = req.WmsNo?.ToUpper();
       req.WmsSeq = req.WmsSeq?.ToUpper();
       req.RtNo = req.RtNo?.ToUpper();
       req.RtSeq = req.RtSeq?.ToUpper();
