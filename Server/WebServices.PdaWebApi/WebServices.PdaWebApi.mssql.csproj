@@ -263,6 +263,7 @@
     <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\Ph.pubxml" />
     <None Include="Properties\PublishProfiles\PhTest.pubxml" />
+    <None Include="Properties\PublishProfiles\PhTest_A7.pubxml" />
     <None Include="Properties\PublishProfiles\Ph_A7.pubxml" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />

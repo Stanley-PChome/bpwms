@@ -281,6 +281,7 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Ph.pubxml" />
     <None Include="Properties\PublishProfiles\PhTest.pubxml" />
+    <None Include="Properties\PublishProfiles\PhTest_A7.pubxml" />
     <None Include="Properties\PublishProfiles\Ph_A7.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
