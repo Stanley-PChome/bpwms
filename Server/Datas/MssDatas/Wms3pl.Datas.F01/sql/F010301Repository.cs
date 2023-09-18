@@ -140,13 +140,27 @@ namespace Wms3pl.Datas.F01
         /// <returns></returns>
         public IQueryable<ReceiptUnCheckData> GetF010301UncheckReceiptShipOrdNo(string dcCode, string LogisticCode)
         {
-            var sql =
-@"SELECT a.RECV_DATE,c.LOGISTIC_NAME,a.SHIP_ORD_NO,SUM(a.BOX_CNT) BOX_CNT
-FROM F010301 a 
-LEFT JOIN F010302 AS b ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO 
-LEFT JOIN F0002 c ON a.ALL_ID=c.LOGISTIC_CODE
-WHERE b.ID IS NULL AND a.DC_CODE=@p0 AND a.ALL_ID=@p1 GROUP BY a.RECV_DATE,a.ALL_ID,c.LOGISTIC_NAME,a.SHIP_ORD_NO;
-";
+            var sql = @"
+                      SELECT 
+                        a.RECV_DATE,
+                        c.LOGISTIC_NAME,
+                        a.SHIP_ORD_NO,SUM(a.BOX_CNT) BOX_CNT
+                      FROM F010301 a 
+                        LEFT JOIN F010302 AS b 
+                          ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO 
+                        LEFT JOIN F0002 c 
+                          ON a.DC_CODE=c.DC_CODE AND a.ALL_ID=c.LOGISTIC_CODE
+                      WHERE 
+                        b.ID IS NULL 
+                        AND a.DC_CODE=@p0 
+                        AND a.ALL_ID=@p1 
+                      GROUP BY 
+                        a.RECV_DATE,
+                        a.ALL_ID,
+                        c.LOGISTIC_NAME,
+                        a.SHIP_ORD_NO;
+                      ";
+
             var para = new List<SqlParameter>()
             {
                 new SqlParameter("@p0",SqlDbType.VarChar){Value=dcCode},
@@ -156,6 +170,5 @@ WHERE b.ID IS NULL AND a.DC_CODE=@p0 AND a.ALL_ID=@p1 GROUP BY a.RECV_DATE,a.ALL
             var result = SqlQuery<ReceiptUnCheckData>(sql, para.ToArray());
             return result;
         }
-
     }
 }
