@@ -100,7 +100,13 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 							res.MsgCode = "400-001";
 							res.MsgContent = "申請宅單失敗";
 						}
-						else
+            else if (d == 3)
+            {
+              res.IsSuccessed = false;
+              res.MsgCode = "400-003";
+              res.MsgContent = "申請宅單失敗";
+            }
+            else
 						{
 							res.IsSuccessed = true;
 							res.MsgCode = "200";

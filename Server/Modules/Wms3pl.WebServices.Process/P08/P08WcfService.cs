@@ -534,7 +534,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			var result = service.ApplyConsign(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo);
 			if (result.IsSuccessed)
 				wmsTransaction.Complete();
-			return result;
+      return new ExecuteResult { IsSuccessed = result.IsSuccessed, Message = result.MsgContent, No = result.Data.ToString() };
 		}
 		[OperationContract]
 		public ExecuteResult CancelConsign(string dcCode, string gupCode, string custCode, string wmsOrdNo)
