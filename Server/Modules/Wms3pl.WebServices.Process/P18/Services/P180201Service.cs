@@ -148,7 +148,7 @@ namespace Wms3pl.WebServices.Process.P18.Services
 					// 該調撥單自動完成過帳。
 					bulkAllocationResult = sharedService.BulkAllocationToAllDown(returnAllocationResult.AllocationList);
 					if (!bulkAllocationResult.IsSuccessed) return new ExecuteResult(false, bulkAllocationResult.Message);
-					bulkAllocationResult = sharedService.BulkAllocationToAllUp(returnAllocationResult.AllocationList, returnStocks);
+          bulkAllocationResult = sharedService.BulkAllocationToAllUp(returnAllocationResult.AllocationList, returnStocks, false);
 					if (!bulkAllocationResult.IsSuccessed) return new ExecuteResult(false, bulkAllocationResult.Message);
 
 					if (returnAllocationResult.AllocationList.Any())
