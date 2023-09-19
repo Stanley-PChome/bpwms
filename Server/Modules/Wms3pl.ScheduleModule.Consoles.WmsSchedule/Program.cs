@@ -43,7 +43,7 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsSchedule
 			//param.GupCode = "10";
 			//param.CustCode = "010001";
 			_config.SchemaName = "PHWMS_DEV";
-			_config.ScheduleNo = "01";
+			_config.ScheduleNo = "30";
 #endif
             Schemas.CoreSchema = _config.SchemaName;
 			ConsoleHelper.FilePath = string.Format(ConfigurationManager.AppSettings["FilePath"], DateTime.Today.ToString("yyyyMMdd"));

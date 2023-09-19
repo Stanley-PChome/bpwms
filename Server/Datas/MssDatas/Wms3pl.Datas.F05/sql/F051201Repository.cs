@@ -1773,5 +1773,37 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
         ExecuteSqlCommand(sql, param.ToArray());
       }
     }
+
+    public void UpdatePrinted(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",DateTime.Now){ SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p1",Current.Staff){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2",Current.StaffName){ SqlDbType = SqlDbType.NVarChar},
+        new SqlParameter("@p3",dcCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p4",gupCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p5",custCode){ SqlDbType = SqlDbType.VarChar},
+      };
+
+      var sql = @"
+                UPDATE 
+                  F051201 
+                SET 
+                  ISPRINTED = '1', 
+                  PICK_STATUS = 1, 
+                  UPD_DATE = @p0, 
+                  UPD_STAFF = @p1, 
+                  UPD_NAME = @p2 
+                WHERE 
+                  DC_CODE = @p3
+                  AND GUP_CODE = @p4
+                  AND CUST_CODE = @p5
+                ";
+
+      sql += param.CombineSqlInParameters("AND PICK_ORD_NO", pickOrdNos, SqlDbType.VarChar);
+
+      ExecuteSqlCommand(sql, param.ToArray());
+    }
   }
 }

@@ -2439,5 +2439,30 @@ WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2";
 
       ExecuteSqlCommand(sql, param.ToArray());
     }
+
+    public bool IsOrderCanceled(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = wmsNo }
+      };
+
+      var sql = @"
+                SELECT TOP 1 
+                  1 
+                FROM F050801 
+                WHERE 
+                  DC_CODE = @p0 
+                  AND GUP_CODE = @p1 
+                  AND CUST_CODE = @p2 
+                  AND WMS_ORD_NO = @p3
+                  AND STATUS = 9
+                ";
+
+      return SqlQuery<int>(sql, param.ToArray()).Any();
+    }
   }
 }

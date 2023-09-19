@@ -25,7 +25,7 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 		private F055001Repository _f055001Repo;
 		public F055001Repository F055001Repo
 		{
-			get { return _f055001Repo == null ? _f055001Repo = new F055001Repository(Schemas.CoreSchema) : _f055001Repo; }
+			get { return _f055001Repo == null ? _f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction) : _f055001Repo; }
 			set { _f055001Repo = value; }
 		}
 

@@ -60,7 +60,7 @@ namespace Wms3pl.Datas.F05
             return SqlQuery<F051301>(sql, parms.ToArray()).FirstOrDefault();
         }
 
-        public void DeleteF051301(string gupCode, string custCode, string wmsOrdNo)
+    public void DeleteF051301(string gupCode, string custCode, string wmsOrdNo)
 		{
 			var parm = new List<SqlParameter>
 			{
@@ -77,7 +77,23 @@ namespace Wms3pl.Datas.F05
 			ExecuteSqlCommand(sql, parm.ToArray());
 		}
 
-		public void UpdateNextStepByWmsOrdNos(string dcCode, string gupCode, string custCode, string nextStep, List<string> wmsOrdNos)
+    public void DeleteF051301(string dcCode, string gupCode, string custCode, List<string> wmsNos)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"DELETE F051301 WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2";
+
+      sql += param.CombineSqlInParameters(" AND WMS_NO", wmsNos, SqlDbType.VarChar);
+
+      ExecuteSqlCommand(sql, param.ToArray());
+    }
+
+    public void UpdateNextStepByWmsOrdNos(string dcCode, string gupCode, string custCode, string nextStep, List<string> wmsOrdNos)
 		{
 			var parms = new List<object> { nextStep, DateTime.Now, Current.Staff, Current.StaffName, dcCode, gupCode, custCode };
 			var sql = @" UPDATE F051301 SET NEXT_STEP = @p0,UPD_DATE = @p1 ,UPD_STAFF = @p2, UPD_NAME = @p3
@@ -247,6 +263,5 @@ namespace Wms3pl.Datas.F05
       var sql = @"SELECT DC_CODE,GUP_CODE,CUST_CODE,WMS_NO FROM F051301 WHERE COLLECTION_POSITION = '1' AND NOTIFY_MODE = '0'";
       return SqlQuery<ShipFinishConfirmNotifyData>(sql);
     }
-
   }
 }

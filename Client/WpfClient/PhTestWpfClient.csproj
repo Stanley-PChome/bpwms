@@ -34,12 +34,12 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://bpwms-dev.agroup.in/PhTestInWpfClientInstall/</InstallUrl>
-    <MinimumRequiredVersion>3.0.22.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>3.0.23.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>3.0.22.0</ApplicationVersion>
+    <ApplicationVersion>3.0.23.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -141,6 +141,19 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest|AnyCPU'">
     <OutputPath>bin\PhTest\</OutputPath>
     <DefineConstants>PhTest</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest_A7|x86'">
+    <OutputPath>bin\x86\PhTest_A7\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest_A7|AnyCPU'">
+    <OutputPath>bin\PhTest_A7\</OutputPath>
+    <DefineConstants>PhTest</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.0.2.32240, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">

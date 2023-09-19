@@ -70,6 +70,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ph_A7|AnyCPU'">
     <OutputPath>bin\Ph_A7\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest_A7|AnyCPU'">
+    <OutputPath>bin\PhTest_A7\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

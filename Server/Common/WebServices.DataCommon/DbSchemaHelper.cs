@@ -119,6 +119,9 @@ namespace Wms3pl.WebServices.DataCommon
 									case "BP5E3C4W3M8SMMSWMS":
 										schema = "PHWMS_DEV";
 										break;
+                  case "BPE3I1J2F8KW2T5WMS":
+										schema = "PHWMS_DEV_A7";
+										break;
 									case "BP58A2EJ51AMOMSWMS":
 										schema = "PHWMS_PDT";
 										break;

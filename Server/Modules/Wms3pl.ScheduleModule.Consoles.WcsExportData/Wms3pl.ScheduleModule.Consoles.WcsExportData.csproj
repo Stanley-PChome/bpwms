@@ -44,6 +44,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ph_A7|AnyCPU'">
     <OutputPath>bin\Ph_A7\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PhTest_A7|AnyCPU'">
+    <OutputPath>bin\PhTest_A7\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.EntityFrameworkCore.2.2.6\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
@@ -161,6 +167,9 @@
       <DependentUpon>App.config</DependentUpon>
     </None>
     <None Include="App.PhTest.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="App.PhTest_A7.config">
       <DependentUpon>App.config</DependentUpon>
     </None>
     <None Include="App.Ph_A7.config">
