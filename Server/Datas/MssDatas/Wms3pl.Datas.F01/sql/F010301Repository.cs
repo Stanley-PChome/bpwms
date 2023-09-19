@@ -79,23 +79,48 @@ namespace Wms3pl.Datas.F01
 
         public ScanCargoData InsertF010301AndGetNewID(F010301 f010301Data)
         {
-            /* // 判斷資料是否重複的檢查，經確認後無須檢查此項目
-            //var sql = @"SELECT TOP 1 * FROM F010301 WHERE DC_CODE=@p0 AND ALL_ID=@p1 AND SHIP_ORD_NO=@p2";
-            //var para = new List<SqlParameter>()
-            //{
-            //    new SqlParameter("@p0",SqlDbType.VarChar){Value=f010301Data.DC_CODE},
-            //    new SqlParameter("@p1",SqlDbType.VarChar){Value=f010301Data.ALL_ID},
-            //    new SqlParameter("@p2",SqlDbType.VarChar){Value=f010301Data.SHIP_ORD_NO}
-            //};
-            //var CheckDupResult = SqlQuery<F010301>(sql, para.ToArray());
-            //if (CheckDupResult?.Any() ?? true)
-            //    return new ScanCargoData() { ID = -1 };
-            */
-            f010301Data.CHECK_STATUS = "0"; //在F010302資料寫入、更新才會更動此欄位
-            Add(f010301Data);
+            var param = new List<SqlParameter>
+            {
+              new SqlParameter("p0", f010301Data.DC_CODE) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("p1", f010301Data.ALL_ID) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("p2", f010301Data.RECV_DATE) { SqlDbType = SqlDbType.DateTime2 },
+              new SqlParameter("p3", f010301Data.RECV_TIME) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("p4", f010301Data.RECV_USER) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("p5", f010301Data.RECV_NAME) { SqlDbType = SqlDbType.NVarChar },
+              new SqlParameter("p6", f010301Data.SHIP_ORD_NO) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("p7", f010301Data.BOX_CNT) { SqlDbType = SqlDbType.SmallInt },
+              new SqlParameter("p8", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 },
+              new SqlParameter("p9", Current.Staff) { SqlDbType = SqlDbType.VarChar },
+              new SqlParameter("p10", Current.StaffName) { SqlDbType = SqlDbType.NVarChar }
+            };
+
+            var sql = @"
+                      DECLARE @a INT;
+
+                      BEGIN
+                      INSERT INTO F010301(DC_CODE, ALL_ID, RECV_DATE, RECV_TIME, RECV_USER, RECV_NAME, SHIP_ORD_NO, BOX_CNT, CHECK_STATUS, CRT_DATE, CRT_STAFF, CRT_NAME)
+                      VALUES(@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, '0', @p8, @p9, @p10)
+
+                      SELECT @a = CAST(CURRENT_VALUE AS BIGINT)
+                      FROM SYS.SEQUENCES  
+                      WHERE NAME = 'SEQ_F010301_ID'; 
+                      SELECT @a ID
+                      END
+                      ";
+
+            var f010301ID = SqlQuery<long>(sql, param.ToArray()).First();
+
             _wmsTransaction.Complete();
-            var sql = @"SELECT TOP 1 * FROM F010301 ORDER BY ID DESC";
-            var result = SqlQuery<ScanCargoData>(sql).First();
+
+            var param2 = new List<SqlParameter>
+            {
+              new SqlParameter("@p0", f010301ID) { SqlDbType = SqlDbType.BigInt }
+            };
+
+            var sql2 = @"SELECT * FROM F010301 WHERE ID = @p0";
+
+            var result = SqlQuery<ScanCargoData>(sql2, param2.ToArray()).First();
+
             if (result != null)
                 return result;
             else

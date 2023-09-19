@@ -32,12 +32,14 @@ namespace Wms3pl.WebServices.Process.P02.Services
         {
             var f010301repo = new F010301Repository(Schemas.CoreSchema, _wmsTransaction);
             var f010302repo = new F010302Repository(Schemas.CoreSchema, _wmsTransaction);
+
             var CheckDupResult = f010302repo.Filter(x => x.DC_CODE == f010302Data.DC_CODE && x.ALL_ID == f010302Data.ALL_ID && x.SHIP_ORD_NO == f010302Data.SHIP_ORD_NO).ToList();
+
             if (CheckDupResult?.Any() ?? true)
                 return new ScanReceiptData() { ID = -1 }; //已有重複資料
 
-
             var GetCHECK_BOX_CNT = f010301repo.Filter(x => x.DC_CODE == f010302Data.DC_CODE && x.ALL_ID == f010302Data.ALL_ID && x.SHIP_ORD_NO == f010302Data.SHIP_ORD_NO).ToList();
+
             if (GetCHECK_BOX_CNT.Any())
             {
                 f010302Data.CHECK_BOX_CNT = (short)GetCHECK_BOX_CNT.Sum(x => x.BOX_CNT);
@@ -48,14 +50,12 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
             f010301repo.UpdateFields(new { CHECK_STATUS = GetCheckStatus(f010302Data) }, x => x.DC_CODE == f010302Data.DC_CODE && x.ALL_ID == f010302Data.ALL_ID && x.SHIP_ORD_NO == f010302Data.SHIP_ORD_NO);
 
-            //f010302Data.SHIP_BOX_CNT = 1;
-            //f010302Data.CHECK_STATUS = (f010302Data.CHECK_BOX_CNT == f010302Data.SHIP_BOX_CNT) ? "1" : "0";
             f010302Data.CHECK_STATUS = GetCheckStatus(f010302Data);
 
-            f010302repo.Add(f010302Data);
+            var f010302ID = f010302repo.InsertAndReturnID(f010302Data);
             _wmsTransaction.Complete();
 
-            return f010302repo.GetNewF010302Data();
+            return f010302repo.GetF010302ByID(f010302ID);
         }
 
         public ExecuteResult UpdateF010302ShipBoxCnt(ScanReceiptData f010302Data)
