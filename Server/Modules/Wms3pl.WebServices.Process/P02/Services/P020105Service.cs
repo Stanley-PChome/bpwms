@@ -50,12 +50,15 @@ namespace Wms3pl.WebServices.Process.P02.Services
 
             f010301repo.UpdateFields(new { CHECK_STATUS = GetCheckStatus(f010302Data) }, x => x.DC_CODE == f010302Data.DC_CODE && x.ALL_ID == f010302Data.ALL_ID && x.SHIP_ORD_NO == f010302Data.SHIP_ORD_NO);
 
-            f010302Data.CHECK_STATUS = GetCheckStatus(f010302Data);
+            var f010302ID = f010302repo.GetF010302NextId();
 
-            var f010302ID = f010302repo.InsertAndReturnID(f010302Data);
+            f010302Data.CHECK_STATUS = GetCheckStatus(f010302Data);
+            f010302Data.ID = f010302ID;
+
+            f010302repo.Add(f010302Data);
             _wmsTransaction.Complete();
 
-            return f010302repo.GetF010302ByID(f010302ID);
+            return f010302Data;
         }
 
         public ExecuteResult UpdateF010302ShipBoxCnt(ScanReceiptData f010302Data)

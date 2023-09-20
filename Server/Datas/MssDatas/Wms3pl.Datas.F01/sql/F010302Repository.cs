@@ -108,5 +108,12 @@ namespace Wms3pl.Datas.F01
 
 			      return SqlQuery<long>(sql, param.ToArray()).Single();
 		    }
+
+        public long GetF010302NextId()
+		    {
+			    var sql = @"SELECT NEXT VALUE FOR SEQ_F010302_ID";
+
+			    return SqlQuery<long>(sql).Single();
+		    }
     }
 }
