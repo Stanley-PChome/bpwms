@@ -1308,5 +1308,36 @@ WHERE GUP_CODE = @p58 AND CUST_CODE=@p59 AND ITEM_CODE = @p60";
       ExecuteSqlCommandWithSqlParameterSetDbType(sql, para.ToArray());
     }
 
+    public IQueryable<F1903> GetF1912s_Sql(string gupCode, string custCode, string itemCode, string itemName)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                SELECT
+                  *
+                FROM F1903
+                WHERE
+                  GUP_CODE = @p0
+                  AND CUST_CODE = @p1
+                  AND SND_TYPE != '9'
+                ";
+
+      if (!string.IsNullOrWhiteSpace(itemCode))
+      {
+        sql += $" AND ITEM_CODE = @p{param.Count}";
+        param.Add(new SqlParameter($"@p{param.Count}", itemCode) { SqlDbType = SqlDbType.VarChar });
+      }
+
+      if (!string.IsNullOrWhiteSpace(itemName))
+        sql += $" AND ITEM_NAME LIKE '{itemName}%'";
+
+      var result = SqlQuery<F1903>(sql, param.ToArray());
+
+      return result;
+    }
   }
 }
