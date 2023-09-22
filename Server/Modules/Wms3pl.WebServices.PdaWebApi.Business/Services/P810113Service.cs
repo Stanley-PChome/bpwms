@@ -784,7 +784,6 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           return updRcvMemoRes;
         #endregion
 
-
         if (req.InputType == 0) // 表示要處理更換容器的作業
         {
           // 檢查容器是否在使用中
@@ -794,10 +793,16 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
                       {
                         var lockF0701 = f0701Repo.LockF0701();
                         var f0701ByNewCon = f0701Repo.GetDataByContainerCode("0", newContainerCode);
+
                         if (f0701ByNewCon == null)
-                          f0701Id = f0701Repo.Insert(req.DcNo, req.CustNo, "NA", newContainerCode, "0");
+                        {
+                          f0701Id = f0701Repo.GetF0701NextId();
+                          f0701Repo.InsertF0701(f0701Id, req.DcNo, req.CustNo, "NA" ,newContainerCode, "0");
+                        }
+
                         return f0701ByNewCon;
                       });
+
           if (f0701 != null)// 若資料存在 回傳錯誤訊息”新容器已被使用，請更換其他容器”
           {
             result = new ApiResult { IsSuccessed = false, MsgCode = "21313", MsgContent = _p81Service.GetMsg("21313") };
