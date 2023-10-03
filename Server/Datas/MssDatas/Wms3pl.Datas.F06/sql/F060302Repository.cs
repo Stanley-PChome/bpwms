@@ -70,13 +70,14 @@ namespace Wms3pl.Datas.F06
         ExecuteSqlCommand(sql, param.ToArray());
       }
 
-    public void AddReleaseRecord2(long f0531_ID)
+    public void AddReleaseRecordByF053201(long f0531_ID)
     {
       var param = new List<SqlParameter>
         {
           new SqlParameter("@p0", SqlDbType.DateTime2) { Value = DateTime.Now },
           new SqlParameter("@p1", SqlDbType.VarChar) { Value = Current.Staff },
-          new SqlParameter("@p2", SqlDbType.NVarChar) { Value = Current.StaffName }
+          new SqlParameter("@p2", SqlDbType.NVarChar) { Value = Current.StaffName },
+          new SqlParameter("@p3", SqlDbType.BigInt) { Value = f0531_ID }
         };
 
       var sql = @"
@@ -108,7 +109,7 @@ namespace Wms3pl.Datas.F06
                     AND C.CONTAINER_CODE = A.CONTAINER_CODE
                     AND C.STATUS IN('0','T')
                   WHERE 
-                    A.ID IN(SELECT F0701_ID FROM F053201 WHERE F0531_ID = @p0)
+                    A.ID IN(SELECT F0701_ID FROM F053201 WHERE F0531_ID = @p3)
                   ";
 
       ExecuteSqlCommand(sql, param.ToArray());

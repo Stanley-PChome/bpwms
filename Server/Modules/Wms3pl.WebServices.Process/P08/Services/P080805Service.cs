@@ -937,7 +937,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					f0530Repo.DeleteByF0531Id(outContainerInfo.F0531_ID);
 
           // 寫入F060302釋放容器
-          f060302Repo.AddReleaseRecord2(outContainerInfo.F0531_ID);
+          f060302Repo.AddReleaseRecordByF053201(outContainerInfo.F0531_ID);
 
           //H.	釋放容器綁定 DELETE  F0701 WHERE ID IN(SELECT F0701_ID FROM F053201 WHERE F0531_ID = <參數1>)
           f0701Repo.DeleteByF0531Id(outContainerInfo.F0531_ID);
