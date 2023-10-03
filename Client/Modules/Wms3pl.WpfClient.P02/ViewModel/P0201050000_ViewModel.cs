@@ -800,8 +800,6 @@ namespace Wms3pl.WpfClient.P02.ViewModel
 
             CargoFreightNoFilter = "";
 
-            LoadUnckeckReceiptCommand.Execute(null);
-
             ReceiptReceiptFreightNoFilter = "";
             ReceiptUncheckFreightNoFilter = "";
             ReceiptShowUnnormalData = false;
