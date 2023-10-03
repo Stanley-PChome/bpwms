@@ -133,6 +133,7 @@
     <Compile Include="linq\F076102Repository.cs" />
     <Compile Include="linq\F076101Repository.cs" />
     <Compile Include="linq\F076103Repository.cs" />
+    <Compile Include="linq\F076108Repository.cs" />
     <Compile Include="linq\F076107Repository.cs" />
     <Compile Include="linq\F076106Repository.cs" />
     <Compile Include="linq\F076105Repository.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="sql\F076107Repository.cs" />
     <Compile Include="sql\F076106Repository.cs" />
     <Compile Include="sql\F076105Repository.cs" />
+    <Compile Include="sql\F076108Repository.cs" />
     <Compile Include="sql\F077101Repository.cs" />
     <Compile Include="sql\F070101Repository.cs" />
     <Compile Include="sql\F070103Repository.cs" />
