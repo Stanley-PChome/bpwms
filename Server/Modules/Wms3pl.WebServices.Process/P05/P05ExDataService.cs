@@ -355,10 +355,10 @@ namespace Wms3pl.WebServices.Process.P05
 
 		// 託運單
 		[WebGet]
-		public IQueryable<F050901WithF055001> GetF050901WithF055001s(string dcCode, string gupCode, string custCode, string wmsOrdNo)
+		public IQueryable<ConsignmentNote> GetConsignmentNote(string dcCode, string gupCode, string custCode, string wmsOrdNo)
 		{
-			var repo = new F050901Repository(Schemas.CoreSchema);
-			return repo.GetF050901WithF055001s(dcCode, gupCode, custCode, wmsOrdNo);
+			var repo = new F055001Repository(Schemas.CoreSchema);
+			return repo.GetConsignmentNote(dcCode, gupCode, custCode, wmsOrdNo);
 		}
 		#endregion
 
@@ -629,5 +629,63 @@ namespace Wms3pl.WebServices.Process.P05
       return p050104Service.GetBatchPickingTickerDatas(dcCode, gupCode, custCode, delvDate, pickTime, pickOrdNo, IsCheckNotRePick);
     }
 
+    #region 揀貨完成容器資料
+    [WebGet]
+    public IQueryable<PickContainer> GetPickContainer(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var p050303Service = new P050303Service();
+      return p050303Service.GetPickContainerData(dcCode, gupCode, custCode, wmsNo);
+    }
+    #endregion 揀貨完成容器資料
+
+    #region 訂單取消資訊
+    [WebGet]
+    public IQueryable<OrderCancelInfo> GetOrderCancelInfoType1(string dcCode, string gupCode, string custCode, string pickOrdNo)
+    {
+      var p050303Service = new P050303Service();
+      return p050303Service.GetOrderCancelInfoDataType1(dcCode, gupCode, custCode, pickOrdNo);
+    }
+
+    [WebGet]
+    public IQueryable<OrderCancelInfo> GetOrderCancelInfoType2(string dcCode, string gupCode, string custCode, string pickOrdNo)
+    {
+      var p050303Service = new P050303Service();
+      return p050303Service.GetOrderCancelInfoDataType2(dcCode, gupCode, custCode, pickOrdNo);
+    }
+    #endregion 訂單取消資訊
+
+    #region 分貨資訊
+    [WebGet]
+    public IQueryable<DivideInfo> GetDivideInfo(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var p050303Service = new P050303Service();
+      return p050303Service.GetDivideInfo(dcCode, gupCode, custCode, wmsNo);
+    }
+
+    [WebGet]
+    public IQueryable<DivideDetail> GetDivideDetail(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var p050303Service = new P050303Service();
+      return p050303Service.GetDivideDetail(dcCode, gupCode, custCode, wmsNo);
+    }
+    #endregion 分貨資訊
+
+    #region 集貨場進出紀錄
+    [WebGet]
+    public IQueryable<CollectionRecord> GetCollectionRecord(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var p050303Service = new P050303Service();
+      return p050303Service.GetCollectionRecord(dcCode, gupCode, custCode, wmsNo);
+    }
+    #endregion 集貨場進出紀錄
+
+    #region 託運單箱內明細資料
+    [WebGet]
+    public IQueryable<ConsignmentDetail> GetConsignmentDetail(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var p050303Service = new P050303Service();
+      return p050303Service.GetConsignmentDetail(dcCode, gupCode, custCode, wmsNo);
+    }
+    #endregion 託運單箱內明細資料
   }
 }

@@ -423,18 +423,49 @@ namespace Wms3pl.WebServices.Process.P05.ExDataSources
 			get { return new List<PickDetail>().AsQueryable(); }
 		}
 
-		public IQueryable<F050901WithF055001> F050901WithF055001s
+		public IQueryable<ConsignmentNote> F050901WithF055001s
 		{
-			get { return new List<F050901WithF055001>().AsQueryable(); }
+			get { return new List<ConsignmentNote>().AsQueryable(); }
 		}
-        public IQueryable<F05080505Data> F05080505Datas
-        {
-            get { return new List<F05080505Data>().AsQueryable(); }
-        }
-        public IQueryable<F05080506Data> F05080506Datas
-        {
-            get { return new List<F05080506Data>().AsQueryable(); }
-        }
 
+    public IQueryable<F05080505Data> F05080505Datas
+    {
+      get { return new List<F05080505Data>().AsQueryable(); }
     }
+
+    public IQueryable<F05080506Data> F05080506Datas
+    {
+      get { return new List<F05080506Data>().AsQueryable(); }
+    }
+
+    public IQueryable<PickContainer> PickContainer
+    {
+      get { return new List<PickContainer>().AsQueryable(); }
+    }
+
+    public IQueryable<OrderCancelInfo> OrderCancelInfo
+    {
+      get { return new List<OrderCancelInfo>().AsQueryable(); }
+    }
+
+    public IQueryable<DivideInfo> DivideInfo
+    {
+      get { return new List<DivideInfo>().AsQueryable(); }
+    }
+
+    public IQueryable<DivideDetail> DivideDetail
+    {
+      get { return new List<DivideDetail>().AsQueryable(); }
+    }
+
+    public IQueryable<CollectionRecord> CollectionRecord
+    {
+      get { return new List<CollectionRecord>().AsQueryable(); }
+    }
+
+    public IQueryable<ConsignmentDetail> ConsignmentDetail
+    {
+      get { return new List<ConsignmentDetail>().AsQueryable(); }
+    }
+  }
 }

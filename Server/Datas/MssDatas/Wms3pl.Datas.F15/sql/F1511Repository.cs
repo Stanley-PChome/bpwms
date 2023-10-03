@@ -383,5 +383,38 @@ WHERE DC_CODE = @p0
 
 			return SqlQuery<F1511>(sql, parms.ToArray());
 		}
-	}
+
+    public IQueryable<OrderCancelInfo> GetOrderCancelInfoData(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", dcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", gupCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p2", custCode) { SqlDbType = SqlDbType.VarChar }
+      };
+
+      var sql = @"
+                SELECT 
+                  '待虛擬回復' TYPE,
+                  ORDER_NO ORD_NO,
+                  ORDER_SEQ SEQ_NO,
+                  LOC_CODE,
+                  ITEM_CODE,
+                  VALID_DATE,
+                  MAKE_NO,
+                  SERIAL_NO,
+                  B_PICK_QTY B_QTY
+                FROM F1511
+                WHERE 
+                  DC_CODE = @p0
+                  AND GUP_CODE = @p1
+                  AND CUST_CODE = @p2
+                  AND STATUS = '1'
+                ";
+
+      sql += param.CombineSqlInParameters(" AND ORDER_NO", pickOrdNos, SqlDbType.VarChar);
+
+      return SqlQuery<OrderCancelInfo>(sql, param.ToArray());
+    }
+  }
 }

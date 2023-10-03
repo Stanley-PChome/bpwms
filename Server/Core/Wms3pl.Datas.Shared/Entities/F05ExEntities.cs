@@ -1496,6 +1496,8 @@ namespace Wms3pl.Datas.Shared.Entities
     public string SUG_LOGISTIC_CODE { get; set; }
     [DataMember]
     public string NP_FLAG { get; set; }
+    [DataMember]
+    public DateTime? UPD_DATE { get; set; }
     //[IgnoreDataMember]
     //public Dictionary<string, string> EncryptedProperties
     //{
@@ -6562,15 +6564,16 @@ namespace Wms3pl.Datas.Shared.Entities
 	// 託運單
 	[DataContract]
 	[Serializable]
-	[DataServiceKey("CONSIGN_NO")]
-	public class F050901WithF055001
-	{
-
-		/// <summary>
-		/// 配送商編號
-		/// </summary>
-		[DataMember]
-		public string DELIVID_SEQ_NAME { get; set; }
+	[DataServiceKey("ROWNUM")]
+	public class ConsignmentNote
+  {
+    [DataMember]
+    public int ROWNUM { get; set; }
+    /// <summary>
+    /// 配送商編號
+    /// </summary>
+    [DataMember]
+		public string LOGISTIC_CODE { get; set; }
 		/// <summary>
 		/// 配送商名稱  
 		/// </summary>
@@ -6580,7 +6583,7 @@ namespace Wms3pl.Datas.Shared.Entities
 		/// 宅配單號
 		/// </summary>
 		[DataMember]
-		public string CONSIGN_NO { get; set; }
+		public string PAST_NO { get; set; }
 		/// <summary>
 		/// 包裝紙箱編號
 		/// </summary>
@@ -7144,4 +7147,110 @@ namespace Wms3pl.Datas.Shared.Entities
 		public string F050301_ORD_NO { get; set; }
 		public List<decimal> F050801_STATUS_List { get; set; }
 	}
+
+  /// <summary>
+	/// 分貨資訊
+	/// </summary>
+	[Serializable]
+  [DataContract]
+  [DataServiceKey("PICK_ORD_NO")]
+  public class DivideInfo
+  {
+    [DataMember]
+    public string PICK_ORD_NO { get; set; }
+    [DataMember]
+    public string WMS_ORD_NO { get; set; }
+    [DataMember]
+    public string CONTAINER_CODE { get; set; }
+    [DataMember]
+    public string NEXT_STEP { get; set; }
+    [DataMember]
+    public string STATUS { get; set; }
+  }
+
+  /// <summary>
+	/// 分貨明細資料
+	/// </summary>
+	[Serializable]
+  [DataContract]
+  [DataServiceKey("PICK_ORD_NO", "PICK_ORD_SEQ")]
+  public class DivideDetail
+  {
+    [DataMember]
+    public string PICK_ORD_NO { get; set; }
+    [DataMember]
+    public string PICK_ORD_SEQ { get; set; }
+    [DataMember]
+    public int PICK_LOC_NO { get; set; }
+    [DataMember]
+    public string CONTAINER_CODE { get; set; }
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+    [DataMember]
+    public int B_SET_QTY { get; set; }
+    [DataMember]
+    public int A_SET_QTY { get; set; }
+    [DataMember]
+    public string UPD_NAME { get; set; }
+    [DataMember]
+    public DateTime CRT_DATE { get; set; }
+    [DataMember]
+    public DateTime UPD_DATE { get; set; }
+  }
+
+  /// <summary>
+	/// 集貨場進出紀錄
+	/// </summary>
+	[Serializable]
+  [DataContract]
+  [DataServiceKey("COLLECTION_CODE", "CELL_CODE")]
+  public class CollectionRecord
+  {
+    [DataMember]
+    public string COLLECTION_CODE { get; set; }
+    [DataMember]
+    public string CELL_CODE { get; set; }
+    [DataMember]
+    public string WMS_ORD_NO { get; set; }
+    [DataMember]
+    public string CONTAINER_CODE { get; set; }
+    [DataMember]
+    public string STATUS { get; set; }
+    [DataMember]
+    public string CRT_NAME { get; set; }
+    [DataMember]
+    public DateTime CRT_DATE { get; set; }
+  }
+
+  /// <summary>
+	/// 託運單箱內明細資料
+	/// </summary>
+	[Serializable]
+  [DataContract]
+  [DataServiceKey("PACKAGE_BOX_NO", "PACKAGE_BOX_SEQ")]
+  public class ConsignmentDetail
+  {
+    [DataMember]
+    public string PAST_NO { get; set; }
+    [DataMember]
+    public int PACKAGE_BOX_NO { get; set; }
+    [DataMember]
+    public string BOX_NUM { get; set; }
+    [DataMember]
+    public int PACKAGE_BOX_SEQ { get; set; }
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+    [DataMember]
+    public int PACKAGE_QTY { get; set; }
+    [DataMember]
+    public decimal PACK_WEIGHT { get; set; }
+    [DataMember]
+    public decimal TOTAL_WEIGHT { get; set; }
+    [DataMember]
+    public string SERIAL_NO { get; set; }
+    [DataMember]
+    public string CRT_NAME { get; set; }
+    [DataMember]
+    public DateTime CRT_DATE { get; set; }
+  }
 }
