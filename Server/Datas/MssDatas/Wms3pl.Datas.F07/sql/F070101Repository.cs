@@ -328,7 +328,7 @@ WHERE
 
       var sql = @"
                 SELECT 
-                  A.PICK_ORD_NO, 
+                  B.PICK_ORD_NO, 
                   A.CONTAINER_CODE, 
                   B.BIN_CODE, 
                   B.ITEM_CODE, 
