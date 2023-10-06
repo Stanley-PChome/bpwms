@@ -34,12 +34,12 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://bpwms15dev.agroup.in/PhTestInWpfClientInstall/</InstallUrl>
-    <MinimumRequiredVersion>7.0.0.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>7.0.2.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>7.0.0.0</ApplicationVersion>
+    <ApplicationVersion>7.0.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
