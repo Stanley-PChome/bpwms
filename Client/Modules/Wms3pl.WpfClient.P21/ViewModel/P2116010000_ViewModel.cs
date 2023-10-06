@@ -218,6 +218,28 @@ namespace Wms3pl.WpfClient.P21.ViewModel
         }
         #endregion Log紀錄清單
 
+        #region 查詢日期
+        private DateTime _startDate = DateTime.Today;
+        /// <summary>
+        /// 查詢日期-起日
+        /// </summary>
+        public DateTime StartDate
+        {
+          get { return _startDate; }
+          set { Set(() => StartDate, ref _startDate, value); }
+        }
+
+        private DateTime _endDate = DateTime.Today.AddDays(6);
+        /// <summary>
+        /// 查詢日期-迄日
+        /// </summary>
+        public DateTime EndDate
+        {
+          get { return _endDate; }
+          set { Set(() => EndDate, ref _endDate, value); }
+        }
+        #endregion 查詢日期
+
         #endregion UI屬性
 
         #region ICommand
@@ -235,8 +257,14 @@ namespace Wms3pl.WpfClient.P21.ViewModel
                             return;
                         }
 
+                        if ((EndDate - StartDate).Days > 6)
+                        {
+                            ShowWarningMessage("查詢日期區間不得大於7天");
+                            return;
+                        }
+
                         var proxy = GetWcfProxy<wcf.P21WcfServiceClient>();
-                        var result = proxy.RunWcfMethod(w => w.GetF0090x(SelectedDc, SelectedQueryCount, SelectedSortMode == "1", SelectedFunctionShowName.Map<F0006, wcf.F0006>(), SearchOrdNo, ReturnMessage, IsOnlyFailMessage));
+                        var result = proxy.RunWcfMethod(w => w.GetF0090x(SelectedDc, SelectedQueryCount, SelectedSortMode == "1", SelectedFunctionShowName.Map<F0006, wcf.F0006>(), SearchOrdNo, ReturnMessage, IsOnlyFailMessage, StartDate, EndDate));
                         if (!result?.Any() ?? true)
                         {
                             ShowInfoMessage("查無資料");

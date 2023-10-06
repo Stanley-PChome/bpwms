@@ -141,13 +141,15 @@ namespace Wms3pl.Datas.F00
     /// <param name="SearchOrdNo"></param>
     /// <param name="ReturnMessage"></param>
     /// <returns></returns>
-    public IQueryable<F0090x> GetF0090x(String DcCode, String QueryCount, Boolean IsSortDesc, F0006 FunctionName, String SearchOrdNo, String ReturnMessage, Boolean IsOnlyFailMessage)
+    public IQueryable<F0090x> GetF0090x(String DcCode, String QueryCount, Boolean IsSortDesc, F0006 FunctionName, String SearchOrdNo, String ReturnMessage, Boolean IsOnlyFailMessage, DateTime startDate, DateTime endDate)
     {
       int intQueryCount;
       String SortSQL, SendDataSQL = null, ReturnDataSQL = null, OnlyFailMessageSQL = null, sql = null, APISQL = null;
       var para = new List<SqlParameter>()
       {
-        new SqlParameter("@p0", DcCode) { SqlDbType = SqlDbType.VarChar }
+        new SqlParameter("@p0", DcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", startDate) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p2", endDate.AddDays(1)) { SqlDbType = SqlDbType.DateTime2 }
       };
 
       if (FunctionName == null)
@@ -183,9 +185,24 @@ namespace Wms3pl.Datas.F00
       else
         SortSQL = " ORDER BY CRT_DATE";
 
-      if (!String.IsNullOrWhiteSpace(FunctionName.PROG_LOG_TABLE) && !String.IsNullOrWhiteSpace(FunctionName.PROG_NAME))
+      if (!String.IsNullOrWhiteSpace(FunctionName.PROG_LOG_TABLE) && !String.IsNullOrWhiteSpace(FunctionName.PROG_NAME) && string.IsNullOrWhiteSpace(SearchOrdNo))
       {
-        sql = $@"SELECT TOP {intQueryCount} *,'{FunctionName.PROG_LOG_TABLE}' LOG_TABLE FROM {FunctionName.PROG_LOG_TABLE} WHERE DC_CODE IN('0', @p0) AND NAME=@p{para.Count}";
+        sql = $@"SELECT TOP {intQueryCount} 
+                   ID,
+                   NAME,
+                   SEND_DATA,
+                   RETURN_DATA,
+                   ERRMSG,
+                   CRT_DATE,
+                   UPD_DATE,
+                   '{FunctionName.PROG_LOG_TABLE}' LOG_TABLE 
+                 FROM {FunctionName.PROG_LOG_TABLE} 
+                 WHERE 
+                   DC_CODE IN('0', @p0) 
+                   AND NAME = @p{para.Count}
+                   AND CRT_DATE > @p1
+                   AND CRT_DATE < @p2";
+
         para.Add(new SqlParameter($"@p{para.Count}", FunctionName.PROG_NAME) { SqlDbType = SqlDbType.VarChar });
 
         //搜尋第一層LOG資料(PROG_LOG_TABLE)
@@ -201,22 +218,16 @@ namespace Wms3pl.Datas.F00
                     NAME,
                     SEND_DATA,
                     RETURN_DATA,
-                    STATUS,
                     ERRMSG,
-                    DC_CODE,
-                    GUP_CODE,
-                    CUST_CODE,
                     CRT_DATE,
-                    CRT_STAFF,
-                    CRT_NAME,
                     UPD_DATE,
-                    UPD_STAFF,
-                    UPD_NAME,
                     '{FunctionName.API_LOG_TABLE}' LOG_TABLE 
                   FROM {FunctionName.API_LOG_TABLE} 
                   WHERE 
                     DC_CODE IN('0', @p0) 
-                    AND NAME=@p{para.Count}";
+                    AND NAME = @p{para.Count}
+                    AND CRT_DATE > @p1
+                    AND CRT_DATE < @p2";
 
         para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = FunctionName.API_NAME });
 

@@ -960,10 +960,10 @@ namespace Wms3pl.WpfClient.ExDataServices.P21WcfService {
         System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P21WcfService.ExecuteResult> DoAssignNewTasksAsync(string schedule, string[] docIds);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P21WcfService/GetF0090x", ReplyAction="http://tempuri.org/P21WcfService/GetF0090xResponse")]
-        Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[] GetF0090x(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage);
+        Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[] GetF0090x(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage, System.DateTime startDate, System.DateTime endDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/P21WcfService/GetF0090x", ReplyAction="http://tempuri.org/P21WcfService/GetF0090xResponse")]
-        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[]> GetF0090xAsync(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage);
+        System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[]> GetF0090xAsync(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage, System.DateTime startDate, System.DateTime endDate);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1049,12 +1049,12 @@ namespace Wms3pl.WpfClient.ExDataServices.P21WcfService {
             return base.Channel.DoAssignNewTasksAsync(schedule, docIds);
         }
         
-        public Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[] GetF0090x(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage) {
-            return base.Channel.GetF0090x(DcCode, QueryCount, IsSortDesc, FunctionName, SearchOrdNo, ReturnMessage, IsOnlyFailMessage);
+        public Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[] GetF0090x(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage, System.DateTime startDate, System.DateTime endDate) {
+            return base.Channel.GetF0090x(DcCode, QueryCount, IsSortDesc, FunctionName, SearchOrdNo, ReturnMessage, IsOnlyFailMessage, startDate, endDate);
         }
         
-        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[]> GetF0090xAsync(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage) {
-            return base.Channel.GetF0090xAsync(DcCode, QueryCount, IsSortDesc, FunctionName, SearchOrdNo, ReturnMessage, IsOnlyFailMessage);
+        public System.Threading.Tasks.Task<Wms3pl.WpfClient.ExDataServices.P21WcfService.F0090x[]> GetF0090xAsync(string DcCode, string QueryCount, bool IsSortDesc, Wms3pl.WpfClient.ExDataServices.P21WcfService.F0006 FunctionName, string SearchOrdNo, string ReturnMessage, bool IsOnlyFailMessage, System.DateTime startDate, System.DateTime endDate) {
+            return base.Channel.GetF0090xAsync(DcCode, QueryCount, IsSortDesc, FunctionName, SearchOrdNo, ReturnMessage, IsOnlyFailMessage, startDate, endDate);
         }
     }
 }
