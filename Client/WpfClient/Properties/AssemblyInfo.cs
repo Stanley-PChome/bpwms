@@ -57,11 +57,11 @@ using System.Windows.Markup;
 #elif (Ph)
 [assembly: AssemblyVersion("2.0.39.0")]
 #elif (Ph_A7)
-[assembly: AssemblyVersion("6.0.43.0")]
+[assembly: AssemblyVersion("6.0.44.0")]
 #elif PhTest
 [assembly: AssemblyVersion("3.0.23.0")]
 #elif PhTest_A7
-[assembly: AssemblyVersion("7.0.0.0")]
+[assembly: AssemblyVersion("7.0.2.0")]
 #endif
 
 //[assembly: AssemblyFileVersion("0.9.0.0")]

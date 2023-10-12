@@ -297,6 +297,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
 			string isFirst = string.Empty;
 			string status = string.Empty;
+
 			// 表示他是第一箱
 			if (f051401.CONTAINER_CODE == req.ContainerCode)
 			{
@@ -316,6 +317,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
       {
         #region 資料異動
         var lockRes = LockContainerProcess(f070101.CONTAINER_CODE);
+
         if (!lockRes.IsSuccessed)
           return new ApiResult { IsSuccessed = false, MsgCode = "21123", MsgContent = p81Service.GetMsg("21123") };
 
@@ -325,6 +327,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           #region 更新F060201
           // 更新F060201.STATUS = 0 by WMS_NO = F051401.wms_ord_no + STATUS = 3(等待人工揀貨) CustCode、GupCode
           var f060201s = f060201Repo.AsForUpdate().GetDatasByTrueAndCondition(o => o.WMS_NO == f051401.WMS_ORD_NO && o.STATUS == "3" && o.CUST_CODE == req.CustNo && o.GUP_CODE == gupCode && o.DC_CODE == req.DcNo).ToList();
+
           if (f060201s.Any())
           {
             f060201s.ForEach(f060201 =>
@@ -342,6 +345,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 
           #region 更新F051301.STATUS=2(集貨中)
           var f051301 = f051301Repo.Find(o => o.DC_CODE == req.DcNo && o.GUP_CODE == gupCode && o.CUST_CODE == req.CustNo && o.WMS_NO == f070101.WMS_NO);
+
           if (f051301 == null)
             return new ApiResult { IsSuccessed = false, MsgCode = "21103", MsgContent = p81Service.GetMsg("21103") };
 
@@ -357,6 +361,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
           var firstF070101Res = GetF070101Data(f051401.CONTAINER_CODE, true);
           if (!firstF070101Res.IsSuccessed)
             return firstF070101Res;
+
           var firstf070101 = (F070101)firstF070101Res.Data;
 
           // 接著取得第二箱內資料，撈 F070102 by F070101_ID by 刷入的容器的流水ID(從最前面得到)
@@ -376,24 +381,33 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
             ORG_F070101_ID = f070101.ID,
             PICK_ORD_NO = x.PICK_ORD_NO
           });
+
           f070102Repo.BulkInsert(addF070102Datas);
 
-          // 刪掉該筆資料F0701 by CONTAINER_CODE = 容器編號 + DC_CODE = DcNo
-          var delRes = containerService.DelContainer(req.DcNo, gupCode, req.CustNo, firstf070101.WMS_NO, f070101.F0701_ID);
-          if (!delRes.IsSuccessed)
-            return new ApiResult { IsSuccessed = false, MsgCode = "99999", MsgContent = delRes.Message };
+          // 判斷是否為自動倉的容器
+          var f0701 = f0701Repo.Find(o => o.ID == f070101.F0701_ID);
 
-
-
-          // 新增F060302
-          f060302Repo.Add(new F060302
+          if (f0701.WAREHOUSE_ID == "NA")
           {
-            DC_CODE = f070101.DC_CODE,
-            CUST_CODE = f070101.CUST_CODE,
-            WAREHOUSE_ID = "ALL",
-            CONTAINER_CODE = f070101.CONTAINER_CODE,
-            STATUS = "0",
-          });
+            // 新增F060302
+            f060302Repo.Add(new F060302
+            {
+              DC_CODE = f070101.DC_CODE,
+              CUST_CODE = f070101.CUST_CODE,
+              WAREHOUSE_ID = "ALL",
+              CONTAINER_CODE = f070101.CONTAINER_CODE,
+              STATUS = "0",
+            });
+
+            f0701Repo.DeleteById(f0701.ID);
+          }
+          else
+          {
+            // 刪掉該筆資料F0701 by CONTAINER_CODE = 容器編號 + DC_CODE = DcNo
+            var delRes = containerService.DelContainer(req.DcNo, gupCode, req.CustNo, firstf070101.WMS_NO, f070101.F0701_ID);
+            if (!delRes.IsSuccessed)
+              return new ApiResult { IsSuccessed = false, MsgCode = "99999", MsgContent = delRes.Message };
+          }
         }
 
         #region 新增F051402

@@ -153,7 +153,7 @@ namespace Wms3pl.WebServices.DataSevices
         public IQueryable<F1903> GetF1912s(string gupCode, string custCode, string itemCode, string itemName)
         {
             var repo = new F1903Repository(Schemas.CoreSchema);
-            return repo.GetF1912s(gupCode, custCode, itemCode, itemName);
+            return repo.GetF1912s_Sql(gupCode, custCode, itemCode, itemName);
         }
 
         [WebGet]

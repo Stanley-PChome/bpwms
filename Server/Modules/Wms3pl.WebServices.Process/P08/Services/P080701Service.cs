@@ -1133,7 +1133,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
         //申請宅配單號
         var lmsApiRes = consignService.ApplyConsign(f055001.DC_CODE, f055001.GUP_CODE, f055001.CUST_CODE, f055001.WMS_ORD_NO, f055001.PACKAGE_BOX_NO, f055001: f055001);
         if (!lmsApiRes.IsSuccessed)
-          return new ExecuteResult { IsSuccessed = false, Message = $"{lmsApiRes.Message}\r\n呼叫LMS申請宅配單失敗，請執行<手動關箱>", No = "LMS ERROR" };
+          return new ExecuteResult { IsSuccessed = false, Message = $"{lmsApiRes.MsgContent}\r\n呼叫LMS申請宅配單失敗，請執行<手動關箱>", No = "LMS ERROR" };
       }
       else
 			{

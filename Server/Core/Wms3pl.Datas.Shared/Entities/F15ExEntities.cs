@@ -1356,4 +1356,37 @@ namespace Wms3pl.Datas.Shared.Entities
 		[DataMember]
 		public List<F151001DetailDatas> F151001DetailDatas { get; set; }
 	}
+
+  #region 訂單取消資訊
+  [DataContract]
+  [Serializable]
+  [DataServiceKey("ORD_NO")]
+  public class OrderCancelInfo
+  {
+    [DataMember]
+    public string TYPE { get; set; }
+    [DataMember]
+    public string ORD_NO { get; set; }
+    [DataMember]
+    public string SEQ_NO { get; set; }
+    [DataMember]
+    public string LOC_CODE { get; set; }
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+    [DataMember]
+    public DateTime? VALID_DATE { get; set; }
+    [DataMember]
+    public string MAKE_NO { get; set; }
+    [DataMember]
+    public string SERIAL_NO { get; set; }
+    [DataMember]
+    public int B_QTY { get; set; }
+    [DataMember]
+    public int A_QTY { get; set; }
+    [DataMember]
+    public string RETURN_LOC_CODE { get; set; }
+    [DataMember]
+    public string ALLOCATION_NO { get; set; }
+  }
+  #endregion 訂單取消資訊
 }
