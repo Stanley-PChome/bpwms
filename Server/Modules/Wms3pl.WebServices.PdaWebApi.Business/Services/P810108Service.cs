@@ -212,7 +212,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
             var f1980Repo = new F1980Repository(Schemas.CoreSchema);
             var sharedService = new SharedService();
             var p08130101StockList = new List<P08130101Stock>();
-            var p081301Service = new P081301Service();
+            var p081301Service = new P081301Service(_wmsTransation);
             var checkItemTarLocMixLocList = new List<CheckItemTarLocMixLoc>();
             DateTime dateTime;
             var apiResult = new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = p81Service.GetMsg("10001") };
@@ -357,7 +357,10 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
             {
                 var createAllocation = p081301Service.CreateAllocation(postMoveConfirmReq.DcNo, gupCode, postMoveConfirmReq.CustNo, postMoveConfirmReq.TarLoc, p08130101StockList);
                 if (createAllocation.IsSuccessed)
+                {
+                    _wmsTransation.Complete();
                     apiResult = new ApiResult { IsSuccessed = true, MsgCode = "20701", MsgContent = p81Service.GetMsg("20701") };
+                }
                 else
                     apiResult = new ApiResult { IsSuccessed = false, MsgCode = "20756", MsgContent = string.Format(p81Service.GetMsg("20756"), createAllocation.Message.Replace("\n", "")) };
             }
