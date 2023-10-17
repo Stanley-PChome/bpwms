@@ -2309,7 +2309,7 @@ namespace Wms3pl.WebServices.Shared.Services
           {
             if (isPickSchedule)
             {
-              errMsg.Add(e.Message);
+              errMsg.Add(e.ToString());
               continue;
             }
             else
@@ -2994,7 +2994,7 @@ namespace Wms3pl.WebServices.Shared.Services
 								else
 								{
 									// 如果加總後資料筆數 >= 揀貨單上限筆數 或 出貨單數+本次出貨不重複出貨單數 > 揀貨單最大出貨單數(分貨作業最大格數) 要切新揀貨單
-									if ((recordCnt >= pickOrderMaxRecord) || (currentNotRepeatWmsOrdNos.Count + wmsOrdNos.Count > maxOrderCntByPick))
+									if ((recordCnt >= pickOrderMaxRecord))
 									{
 										pickPages.Add(page, pickDetails);
 										page++;
