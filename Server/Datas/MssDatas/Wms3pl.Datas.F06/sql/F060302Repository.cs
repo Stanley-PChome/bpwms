@@ -69,5 +69,50 @@ namespace Wms3pl.Datas.F06
 
         ExecuteSqlCommand(sql, param.ToArray());
       }
+
+    public void AddReleaseRecordByF053201(long f0531_ID)
+    {
+      var param = new List<SqlParameter>
+        {
+          new SqlParameter("@p0", SqlDbType.DateTime2) { Value = DateTime.Now },
+          new SqlParameter("@p1", SqlDbType.VarChar) { Value = Current.Staff },
+          new SqlParameter("@p2", SqlDbType.NVarChar) { Value = Current.StaffName },
+          new SqlParameter("@p3", SqlDbType.BigInt) { Value = f0531_ID }
+        };
+
+      var sql = @"
+                  INSERT INTO F060302(
+                    DC_CODE,
+                    CUST_CODE,
+                    WAREHOUSE_ID,
+                    CONTAINER_CODE,
+                    STATUS,
+                    CRT_DATE,
+                    CRT_STAFF,
+                    CRT_NAME)
+                  SELECT 
+                    A.DC_CODE,
+                    A.CUST_CODE,
+                    A.WAREHOUSE_ID,
+                    A.CONTAINER_CODE,
+                    '0' STATUS,
+                    @p0 CRT_DATE, 
+                    @p1 CRT_STAFF,
+                    @p2 CRT_NAME
+                  FROM F0701 A
+                  JOIN F070101 B
+                    ON A.ID = B.F0701_ID
+                  LEFT JOIN F060302 C
+                    ON C.DC_CODE = A.DC_CODE
+                    AND C.CUST_CODE = A.CUST_CODE
+                    AND C.WAREHOUSE_ID = A.WAREHOUSE_ID
+                    AND C.CONTAINER_CODE = A.CONTAINER_CODE
+                    AND C.STATUS IN('0','T')
+                  WHERE 
+                    A.ID IN(SELECT F0701_ID FROM F053201 WHERE F0531_ID = @p3)
+                  ";
+
+      ExecuteSqlCommand(sql, param.ToArray());
     }
+  }
 }
