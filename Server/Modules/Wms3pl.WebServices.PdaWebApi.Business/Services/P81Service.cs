@@ -116,6 +116,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         new MsgModel{ MsgCode = "20356", MsgContent = "此序號{0}無法找到對應的調撥單號" },
         //20357
         new MsgModel{ MsgCode = "20357", MsgContent = "此調撥單已有人員列印並處理中，不可作業" },
+        new MsgModel{ MsgCode = "20358", MsgContent = "此調撥單{0}目前正在處理中，請稍後再試" },
+
         #endregion
 
         #region 04 出貨作業

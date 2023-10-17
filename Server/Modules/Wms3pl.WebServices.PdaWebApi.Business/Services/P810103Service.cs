@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using Wms3pl.Datas.F02;
+using Wms3pl.Datas.F07;
 using Wms3pl.Datas.F15;
 using Wms3pl.Datas.F19;
 using Wms3pl.Datas.F25;
@@ -15,18 +17,28 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 {
 	public class P810103Service
 	{
-		protected WmsTransaction _wmsTransation;
-		public P810103Service(WmsTransaction wmsTransation = null)
-		{
-			_wmsTransation = wmsTransation;
-		}
+    private P81Service _p81Service;
+    public P81Service P81Service
+    {
+      get { return _p81Service == null ? _p81Service = new P81Service(_wmsTransation) : _p81Service; }
+      set { _p81Service = value; }
+    }
 
-		/// <summary>
-		/// 調撥單據查詢
-		/// </summary>
-		/// <param name="getAllocReq"></param>
-		/// <returns></returns>
-		public ApiResult GetAlloc(GetAllocReq getAllocReq, string gupCode)
+    private bool isLockCancelContainer = false;
+
+
+    protected WmsTransaction _wmsTransation;
+    public P810103Service(WmsTransaction wmsTransation = null)
+    {
+      _wmsTransation = wmsTransation;
+    }
+
+    /// <summary>
+    /// 調撥單據查詢
+    /// </summary>
+    /// <param name="getAllocReq"></param>
+    /// <returns></returns>
+    public ApiResult GetAlloc(GetAllocReq getAllocReq, string gupCode)
 		{
 			var p81Service = new P81Service();
 			var f02020107Repo = new F02020107Repository(Schemas.CoreSchema);
@@ -766,34 +778,94 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 			#region 資料處理
 			if (result.IsSuccessed)
 			{
-				var param = new AllocationConfirmParam
-				{
-					DcCode = postAllocConfirmReq.DcNo,
-					GupCode = gupCode,
-					CustCode = postAllocConfirmReq.CustNo,
-					AllocNo = postAllocConfirmReq.AllocNo,
-					Operator = postAllocConfirmReq.AccNo,
-					Details = new List<AllocationConfirmDetail>
-					{
-						new AllocationConfirmDetail{ Seq = f151002Data.ALLOCATION_SEQ, TarLocCode = postAllocConfirmReq.ActLoc, Qty = postAllocConfirmReq.ActQty }
-					}
-				};
+        try
+        {
+          var lockRes = LockAllocationOrder(postAllocConfirmReq.AllocNo);
+          if (!lockRes.IsSuccessed)
+            return lockRes;
 
-        sharedService.AllocationConfirm(param);
-        stockService.SaveChange();
-        _wmsTransation.Complete();
+          var param = new AllocationConfirmParam
+          {
+            DcCode = postAllocConfirmReq.DcNo,
+            GupCode = gupCode,
+            CustCode = postAllocConfirmReq.CustNo,
+            AllocNo = postAllocConfirmReq.AllocNo,
+            Operator = postAllocConfirmReq.AccNo,
+            Details = new List<AllocationConfirmDetail>
+            {
+              new AllocationConfirmDetail{ Seq = f151002Data.ALLOCATION_SEQ, TarLocCode = postAllocConfirmReq.ActLoc, Qty = postAllocConfirmReq.ActQty }
+            }
+          };
 
-				// 下架
-				if (postAllocConfirmReq.AllocType == "02")
-					result = new ApiResult { IsSuccessed = true, MsgCode = "10003", MsgContent = p81Service.GetMsg("10003") };
 
-				// 上架
-				else if (postAllocConfirmReq.AllocType == "01" || postAllocConfirmReq.AllocType == "03")
-					result = new ApiResult { IsSuccessed = true, MsgCode = "10004", MsgContent = p81Service.GetMsg("10004") };
-			}
-			#endregion
+          sharedService.AllocationConfirm(param);
+          stockService.SaveChange();
+          _wmsTransation.Complete();
 
-			return result;
+          // 下架
+          if (postAllocConfirmReq.AllocType == "02")
+            result = new ApiResult { IsSuccessed = true, MsgCode = "10003", MsgContent = p81Service.GetMsg("10003") };
+
+          // 上架
+          else if (postAllocConfirmReq.AllocType == "01" || postAllocConfirmReq.AllocType == "03")
+            result = new ApiResult { IsSuccessed = true, MsgCode = "10004", MsgContent = p81Service.GetMsg("10004") };
+        }
+        catch (Exception ex)
+        { throw new Exception("", ex); }
+        finally
+        { UnlockAllocationOrder(new[] { postAllocConfirmReq.AllocNo }.ToList()); }
+      }
+      #endregion
+
+      return result;
 		}
-	}
+
+    /// <summary>
+    /// 進貨單操作鎖定
+    /// </summary>
+    /// <param name="req">傳入參數</param>
+    /// <returns></returns>
+    private ApiResult LockAllocationOrder(string allocationNo)
+    {
+      var f076108Repo = new F076108Repository(Schemas.CoreSchema);
+      #region 進貨單檢查&鎖定
+      var f076108 = f076108Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
+        new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
+        () =>
+        {
+          var lockF076108 = f076108Repo.LockF076108();
+          var chkF076108 = f076108Repo.Find(x => x.ALLOCATION_NO == allocationNo);
+          if (chkF076108 != null)
+            return null;
+          var newF076108 = new F076108() { ALLOCATION_NO = allocationNo };
+          f076108Repo.Add(newF076108);
+          isLockCancelContainer = true;
+          return newF076108;
+        });
+
+      if (f076108 == null)
+        return new ApiResult { IsSuccessed = false, MsgCode = "20358", MsgContent = string.Format(P81Service.GetMsg("20358"), allocationNo) };
+
+      return new ApiResult { IsSuccessed = true, MsgCode = "10005", MsgContent = "執行成功" };
+
+      #endregion
+    }
+
+    /// <summary>
+    /// 進貨單操作解鎖
+    /// </summary>
+    /// <param name="containerCode"></param>
+    /// <returns></returns>
+    public ApiResult UnlockAllocationOrder(List<string> allocationNos)
+    {
+      var f076108Repo = new F076108Repository(Schemas.CoreSchema);
+      if (isLockCancelContainer)
+      {
+        f076108Repo.DeleteByAllocationNo(allocationNos);
+        isLockCancelContainer = false;
+      }
+      return new ApiResult { IsSuccessed = true };
+    }
+
+  }
 }
