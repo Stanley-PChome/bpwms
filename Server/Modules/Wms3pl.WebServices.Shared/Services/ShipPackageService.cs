@@ -1383,9 +1383,10 @@ namespace Wms3pl.WebServices.Shared.Services
 			#endregion
 
 			#region 修改 F050801
-			// 若出貨單狀態為已取消則不可更新為待處理(0)
+
       int? isPackCheck = null;
 
+			// 若出貨單狀態為已取消則不可更新為待處理(0)
 			if (f050801 != null && f050801.STATUS != 9)
 			{
 				var CheckPackageModeResult = CheckPackageMode(f050801, "0");
@@ -1398,9 +1399,10 @@ namespace Wms3pl.WebServices.Shared.Services
           isPackCheck = 1;
 				else if (f050801.ISPACKCHECK == 2)
           isPackCheck = 0;
+
+			  F050801Repo.UpdateOrderUnpacked(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, isPackCheck);
 			}
 
-			F050801Repo.UpdateOrderUnpacked(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, isPackCheck);
 			#endregion
 
 			#region 出貨包裝_取消廠退單
