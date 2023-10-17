@@ -92,7 +92,7 @@ namespace Wms3pl.Datas.Shared.ApiEntities
 		/// </summary>
 		public string OutBatchCode { get; set; }
 		/// <summary>
-		/// 外部批號=商品入庫日(yyMMdd)+序號3碼數字) 或喬巴15碼批號
+		/// 序號
 		/// </summary>
 		public List<string> SerialNumList { get; set; }
 		/// <summary>

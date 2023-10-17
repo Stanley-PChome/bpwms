@@ -263,8 +263,8 @@ namespace Wms3pl.WebServices.FromWcsWebApi.Business.mssql.Services
 								SKULEVEL = sku.SkuLevel,
 								EXPIRYDATE = DateTime.TryParse(sku.ExpiryDate, out var date) ? date : (DateTime?)null,
 								OUTBATCHCODE = sku.OutBatchCode,
-								SERIALNUMLIST = sku.SerialNumList == null ? null : string.Join(",", sku.SerialNumList),
-								BINCODE = sku.BinCode,
+                SERIALNUMLIST = (sku.SerialNumList == null || !sku.SerialNumList.Any()) ? null : string.Join(",", sku.SerialNumList),
+                BINCODE = sku.BinCode,
 								COMPLETE_TIME = Convert.ToDateTime(sku.CompleteTime),
 								ISLASTCONTAINER = sku.IsLastContainer.Value,
 								CONTAINER_TOTAL = sku.ContainerTotal

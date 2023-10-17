@@ -53,7 +53,7 @@ namespace Wms3pl.ScheduleModule.Consoles.WmsImportData
 			//param.DcCode = "12";
 			//param.GupCode = "10";
 			//param.CustCode = "010001";
-			param.ScheduleNo = "02";
+			param.ScheduleNo = "08";
 			//param.StockCompareDate = DateTime.Today;
 #endif
 			Schemas.CoreSchema = _appConfig.SchemaName;
