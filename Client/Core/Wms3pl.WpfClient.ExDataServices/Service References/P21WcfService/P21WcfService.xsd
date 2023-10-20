@@ -141,6 +141,8 @@
         <xs:element minOccurs="0" name="SearchOrdNo" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="ReturnMessage" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="IsOnlyFailMessage" type="xs:boolean" />
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

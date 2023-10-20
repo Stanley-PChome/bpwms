@@ -679,5 +679,28 @@ namespace Wms3pl.Datas.F05
 
 			return result;
 		}
-	}
+
+    /// <summary>
+    /// 檢查出貨單是否有缺貨無其他庫存
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="wmsNo"></param>
+    /// <returns></returns>
+    public Boolean isHavePickLackNoOtherStock(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var para = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = wmsNo },
+      };
+
+      var sql = @"SELECT TOP 1 1 FROM F051206 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND WMS_ORD_NO=@p3";
+
+      return SqlQuery<int>(sql, para.ToArray()).Any();
+    }
+  }
 }

@@ -69,5 +69,46 @@ namespace Wms3pl.Datas.F19
       return SqlQueryWithSqlParameterSetDbType<string>(sql, para.ToArray());
     }
 
+    /// <summary>
+		/// 取得已過濾人員權限的廠商主檔
+		/// </summary>
+		/// <param name="gupCode"></param>
+		/// <param name="custCode"></param>
+		/// <param name="vnrCode"></param>
+		/// <param name="vnrName"></param>
+		/// <returns></returns>
+    public IQueryable<F1908> GetAllowedF1908s(string gupCode, string vnrCode, string vnrName, string custCode)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", custCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", Current.Staff) { SqlDbType = SqlDbType.VarChar },
+      };
+
+      var sql = @"
+                SELECT
+                  DISTINCT A.*
+                FROM F1908 A
+                JOIN F192402 B
+                  ON A.GUP_CODE=B.GUP_CODE AND A.CUST_CODE=B.CUST_CODE
+                JOIN F1909 C
+                  ON A.GUP_CODE=C.GUP_CODE AND A.CUST_CODE=C.CUST_CODE
+                WHERE
+                  C. CUST_CODE = @p0
+                  AND A.STATUS != '9'
+                  AND B.EMP_ID = @p1
+                ";
+
+      if (!string.IsNullOrWhiteSpace(gupCode))
+        sql += $" AND A.GUP_CODE = '{gupCode}'";
+
+      if (!string.IsNullOrWhiteSpace(vnrCode))
+        sql += $" AND A.VNR_CODE = '{vnrCode}'";
+
+      if (!string.IsNullOrWhiteSpace(vnrName))
+        sql += $" AND A.VNR_NAME LIKE '%{vnrName}%'";
+
+      return SqlQuery<F1908>(sql, param.ToArray());
+    }
   }
 }

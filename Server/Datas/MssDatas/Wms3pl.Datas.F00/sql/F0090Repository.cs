@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Transactions;
 using Wms3pl.Datas.F00.Interfaces;
 using Wms3pl.Datas.Shared.Entities;
@@ -139,22 +141,26 @@ namespace Wms3pl.Datas.F00
     /// <param name="SearchOrdNo"></param>
     /// <param name="ReturnMessage"></param>
     /// <returns></returns>
-    public IQueryable<F0090x> GetF0090x(String DcCode, String QueryCount, Boolean IsSortDesc, F0006 FunctionName, String SearchOrdNo, String ReturnMessage, Boolean IsOnlyFailMessage)
+    public IQueryable<F0090x> GetF0090x(String DcCode, String QueryCount, Boolean IsSortDesc, F0006 FunctionName, String SearchOrdNo, String ReturnMessage, Boolean IsOnlyFailMessage, DateTime startDate, DateTime endDate)
     {
       int intQueryCount;
       String SortSQL, SendDataSQL = null, ReturnDataSQL = null, OnlyFailMessageSQL = null, sql = null, APISQL = null;
       var para = new List<SqlParameter>()
       {
-        new SqlParameter("@p0", DcCode) { SqlDbType = SqlDbType.VarChar }
+        new SqlParameter("@p0", DcCode) { SqlDbType = SqlDbType.VarChar },
+        new SqlParameter("@p1", startDate) { SqlDbType = SqlDbType.DateTime2 },
+        new SqlParameter("@p2", endDate.AddDays(1)) { SqlDbType = SqlDbType.DateTime2 }
       };
 
       if (FunctionName == null)
         return null;
+
       if (String.IsNullOrWhiteSpace(FunctionName.PROG_LOG_TABLE) && String.IsNullOrEmpty(FunctionName.API_LOG_TABLE))
         return null;
 
       if (!int.TryParse(QueryCount, out intQueryCount))
         throw new Exception("無法辨識的QueryCount");
+
       intQueryCount = (intQueryCount + 1) * 100;
 
       if (!string.IsNullOrWhiteSpace(SearchOrdNo))
@@ -162,11 +168,13 @@ namespace Wms3pl.Datas.F00
         SendDataSQL = $" AND SEND_DATA LIKE @p{para.Count}";
         para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.NVarChar) { Value = $"%{SearchOrdNo}%" });
       }
+
       if (!string.IsNullOrWhiteSpace(ReturnMessage))
       {
         ReturnDataSQL = $" AND RETURN_DATA LIKE @p{para.Count}";
         para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.NVarChar) { Value = $"%{ReturnMessage}%" });
       }
+
       if (IsOnlyFailMessage)
       {
         OnlyFailMessageSQL = $" AND STATUS IN('0','9')";
@@ -177,9 +185,24 @@ namespace Wms3pl.Datas.F00
       else
         SortSQL = " ORDER BY CRT_DATE";
 
-      if (!String.IsNullOrWhiteSpace(FunctionName.PROG_LOG_TABLE) && !String.IsNullOrWhiteSpace(FunctionName.PROG_NAME))
+      if (!String.IsNullOrWhiteSpace(FunctionName.PROG_LOG_TABLE) && !String.IsNullOrWhiteSpace(FunctionName.PROG_NAME) && string.IsNullOrWhiteSpace(SearchOrdNo))
       {
-        sql = $@"SELECT TOP {intQueryCount} *,'{FunctionName.PROG_LOG_TABLE}' LOG_TABLE FROM {FunctionName.PROG_LOG_TABLE} WHERE DC_CODE IN('0', @p0) AND NAME=@p{para.Count}";
+        sql = $@"SELECT TOP {intQueryCount} 
+                   ID,
+                   NAME,
+                   SEND_DATA,
+                   RETURN_DATA,
+                   ERRMSG,
+                   CRT_DATE,
+                   UPD_DATE,
+                   '{FunctionName.PROG_LOG_TABLE}' LOG_TABLE 
+                 FROM {FunctionName.PROG_LOG_TABLE} 
+                 WHERE 
+                   DC_CODE IN('0', @p0) 
+                   AND NAME = @p{para.Count}
+                   AND CRT_DATE > @p1
+                   AND CRT_DATE < @p2";
+
         para.Add(new SqlParameter($"@p{para.Count}", FunctionName.PROG_NAME) { SqlDbType = SqlDbType.VarChar });
 
         //搜尋第一層LOG資料(PROG_LOG_TABLE)
@@ -189,42 +212,125 @@ namespace Wms3pl.Datas.F00
       //搜尋第二層LOG資料(API_LOG_TABLE)
       if (!string.IsNullOrWhiteSpace(FunctionName.API_LOG_TABLE))
       {
-        string objName = "SEND_DATA";
-        if (!string.IsNullOrWhiteSpace(FunctionName.FILTER_RULE))
-          objName = $"JSON_QUERY(SEND_DATA, '$.{FunctionName.FILTER_RULE}'";
+        APISQL = $@"
+                  SELECT TOP {intQueryCount} 
+                    ID,
+                    NAME,
+                    SEND_DATA,
+                    RETURN_DATA,
+                    ERRMSG,
+                    CRT_DATE,
+                    UPD_DATE,
+                    '{FunctionName.API_LOG_TABLE}' LOG_TABLE 
+                  FROM {FunctionName.API_LOG_TABLE} 
+                  WHERE 
+                    DC_CODE IN('0', @p0) 
+                    AND NAME = @p{para.Count}
+                    AND CRT_DATE > @p1
+                    AND CRT_DATE < @p2";
 
-        APISQL = $@"SELECT TOP {intQueryCount} 
-														ID,
-														NAME,
-														ISNULL(CASE WHEN LEN(SEND_DATA) >= 4000 THEN '內容太長不顯示' ELSE {objName}) END, SEND_DATA) SEND_DATA,
-														RETURN_DATA,
-														STATUS,
-														ERRMSG,
-														DC_CODE,
-														GUP_CODE,
-														CUST_CODE,
-														CRT_DATE,
-														CRT_STAFF,
-														CRT_NAME,
-														UPD_DATE,
-														UPD_STAFF,
-														UPD_NAME,
-														'{FunctionName.API_LOG_TABLE}' LOG_TABLE FROM {FunctionName.API_LOG_TABLE} WHERE DC_CODE IN('0', @p0) AND NAME=@p{para.Count}";
         para.Add(new SqlParameter($"@p{para.Count}", SqlDbType.VarChar) { Value = FunctionName.API_NAME });
 
         APISQL += SendDataSQL + ReturnDataSQL + OnlyFailMessageSQL + SortSQL;
-
-        if (!String.IsNullOrWhiteSpace(sql))
-          sql = $@"SELECT TOP {intQueryCount} * FROM ({sql} UNION {APISQL}) A {SortSQL}";
-        else
-          sql = APISQL;
       }
 
-      var result = SqlQueryWithSqlParameterSetDbType<F0090x>(sql, para.ToArray()).ToList();
+      if (!String.IsNullOrWhiteSpace(sql) && !String.IsNullOrWhiteSpace(APISQL))
+        sql = $@"SELECT TOP {intQueryCount} * FROM ({sql} UNION {APISQL}) A {SortSQL}";
+      else if (!String.IsNullOrWhiteSpace(APISQL))
+        sql = APISQL;
 
-      return result.AsQueryable();
+      var results = SqlQueryWithSqlParameterSetDbType<F0090x>(sql, para.ToArray()).ToList();
+
+      switch (FunctionName.FILTER_RULE)
+      {
+        case "LmsData":
+          foreach (var result in results)
+          {
+            try
+            {
+              JObject json = JObject.Parse(result.SEND_DATA);
+
+              if (json["LmsData"] != null)
+                result.SEND_DATA = Regex.Replace(json["LmsData"].ToString(), @"[\n\r\s]+", "");
+            }
+            catch
+            {
+              result.SEND_DATA = "內容太長不顯示";
+            }
+          }
+          break;
+
+        case "WcsData":
+          foreach (var result in results)
+          {
+            try
+            {
+              JObject json = JObject.Parse(result.SEND_DATA);
+
+              if (json["WcsData"] != null)
+                result.SEND_DATA = Regex.Replace(json["WcsData"].ToString(), @"[\n\r\s]+", "");
+            }
+            catch
+            {
+              result.SEND_DATA = "內容太長不顯示";
+            }
+          }
+          break;
+
+        case "WcssrData":
+          foreach (var result in results)
+          {
+            try
+            {
+              JObject json = JObject.Parse(result.SEND_DATA);
+
+              if (json["WcssrData"] != null)
+                result.SEND_DATA = Regex.Replace(json["WcssrData"].ToString(), @"[\n\r\s]+", "");
+            }
+            catch
+            {
+              result.SEND_DATA = "內容太長不顯示";
+            }
+          }
+          break;
+
+        case "WmsCondition":
+          foreach (var result in results)
+          {
+            try
+            {
+              JObject json = JObject.Parse(result.SEND_DATA);
+
+              if (json["WmsCondition"] != null)
+                result.SEND_DATA = Regex.Replace(json["WmsCondition"].ToString(), @"[\n\r\s]+", "");
+            }
+            catch
+            {
+              result.SEND_DATA = "內容太長不顯示";
+            }
+          }
+          break;
+
+        case "WmsData":
+          foreach (var result in results)
+          {
+            try
+            {
+              JObject json = JObject.Parse(result.SEND_DATA);
+
+              if (json["WmsData"] != null)
+                result.SEND_DATA = Regex.Replace(json["WmsData"].ToString(), @"[\n\r\s]+", "");
+            }
+            catch
+            {
+              result.SEND_DATA = "內容太長不顯示";
+            }
+          }
+          break;
+      }
+
+      return results.AsQueryable();
     }
-
 
     public IQueryable<string> GetBeginningWithF0090(string tableName)
     {

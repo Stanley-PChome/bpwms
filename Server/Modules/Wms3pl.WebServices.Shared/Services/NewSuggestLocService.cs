@@ -180,6 +180,14 @@ namespace Wms3pl.WebServices.Shared.Services
 					isGoldenItem = _currentF1903.C_D_FLAG == "1";
 				}
 
+        // 取得商品材積
+        _currentF1905 = CommonService.GetProductSize(_req.GupCode, _req.CustCode, _req.ItemCode);
+        if (_currentF1905 == null)
+        {
+          SetSameSourceLoc(_req.Qty);
+          return _suggestLocs;
+        }
+
         #region 取得黃金揀貨區建議儲位
         if (isGoldenItem)
 				{
@@ -205,14 +213,6 @@ namespace Wms3pl.WebServices.Shared.Services
 					return _suggestLocs;
 				}
         #endregion
-
-        // 取得商品材積
-        _currentF1905 = CommonService.GetProductSize(_req.GupCode, _req.CustCode, _req.ItemCode);
-				if (_currentF1905 == null)
-				{
-					SetSameSourceLoc(_req.Qty);
-					return _suggestLocs;
-				}
 
         #region 取得補貨區建議儲位
         if (_req.IsIncludeResupply)

@@ -55,7 +55,7 @@ namespace Wms3pl.ScheduleModule.Consoles.WcsExportData
 			//param.DcCode = "12";
 			//param.GupCode = "10";
 			//param.CustCode = "010001";
-			param.ScheduleNo = "05";
+			param.ScheduleNo = "04";
 #endif
       Schemas.CoreSchema = _appConfig.SchemaName;
     } 

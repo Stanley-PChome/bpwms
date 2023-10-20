@@ -228,4 +228,32 @@ namespace Wms3pl.Datas.Shared.Entities
 	}
 
   #endregion
+
+  /// <summary>
+  /// 揀貨完成容器資料
+  /// </summary>
+  [DataContract]
+  [Serializable]
+  [DataServiceKey("PICK_ORD_NO")]
+  public class PickContainer
+  {
+    [DataMember]
+    public string PICK_ORD_NO { get; set; }
+    [DataMember]
+    public string CONTAINER_CODE { get; set; }
+    [DataMember]
+    public string BIN_CODE { get; set; }
+    [DataMember]
+    public string ITEM_CODE { get; set; }
+    [DataMember]
+    public DateTime? VALID_DATE { get; set; }
+    [DataMember]
+    public string MAKE_NO { get; set; }
+    [DataMember]
+    public string SERIAL_NO { get; set; }
+    [DataMember]
+    public int QTY { get; set; }
+    [DataMember]
+    public DateTime CRT_DATE { get; set; }
+  }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wms3pl.Datas.F05;
+using Wms3pl.Datas.F07;
+using Wms3pl.Datas.F15;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
@@ -381,10 +383,10 @@ namespace Wms3pl.WebServices.Process.P05.Services
       var repo = new F0513Repository(Schemas.CoreSchema, _wmsTransaction);
       return repo.GetBatchPickingTickerDatas(dcCode, gupCode, custCode, delvDate, pickTime, pickOrdNo, IsCheckNotRePick);
 		}
-		#endregion
-	}
+    #endregion
+  }
 
-	public enum PickType
+  public enum PickType
 	{
 		Single, //單一
 		Batch, //批量

@@ -86,10 +86,10 @@ namespace Wms3pl.WebServices.Process.P21.Services
 		#endregion
 
 		[OperationContract]
-		public IQueryable<F0090x> GetF0090x(String DcCode, String QueryCount, Boolean IsSortDesc, F0006 FunctionName, String SearchOrdNo, String ReturnMessage, Boolean IsOnlyFailMessage)
+		public IQueryable<F0090x> GetF0090x(String DcCode, String QueryCount, Boolean IsSortDesc, F0006 FunctionName, String SearchOrdNo, String ReturnMessage, Boolean IsOnlyFailMessage, DateTime startDate, DateTime endDate)
 		{
 			var f0090Repo = new F0090Repository(Schemas.CoreSchema);
-			return f0090Repo.GetF0090x(DcCode, QueryCount, IsSortDesc, FunctionName, SearchOrdNo, ReturnMessage, IsOnlyFailMessage);
+			return f0090Repo.GetF0090x(DcCode, QueryCount, IsSortDesc, FunctionName, SearchOrdNo, ReturnMessage, IsOnlyFailMessage, startDate, endDate);
 		}
 	}
 }
