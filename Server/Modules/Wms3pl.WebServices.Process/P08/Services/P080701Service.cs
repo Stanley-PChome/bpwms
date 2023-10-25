@@ -1127,19 +1127,13 @@ namespace Wms3pl.WebServices.Process.P08.Services
       f055001.PACK_CLIENT_PC = Current.DeviceIp;
       f055001.CLOSEBOX_TIME = DateTime.Now;
 
-      if (isManualCloseBox)
-        LogF05500101(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, null, null, null, "1", "人員按下手動關箱");
-
-      if (isCompletePackage)
-        LogF05500101(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, null, null, null, "1", "包裝完成", 0);
-
         //廠退出貨不需要申請宅單
         if (f050801.SOURCE_TYPE != "13")
       {
         //申請宅配單號
         var lmsApiRes = consignService.ApplyConsign(f055001.DC_CODE, f055001.GUP_CODE, f055001.CUST_CODE, f055001.WMS_ORD_NO, f055001.PACKAGE_BOX_NO, f055001: f055001);
         if (!lmsApiRes.IsSuccessed)
-          return new ExecuteResult { IsSuccessed = false, Message = $"{lmsApiRes.Message}\r\n呼叫LMS申請宅配單失敗，請執行<手動關箱>", No = "LMS ERROR" };
+          return new ExecuteResult { IsSuccessed = false, Message = $"{lmsApiRes.MsgContent}\r\n呼叫LMS申請宅配單失敗，請執行<手動關箱>", No = "LMS ERROR" };
       }
       else
 			{

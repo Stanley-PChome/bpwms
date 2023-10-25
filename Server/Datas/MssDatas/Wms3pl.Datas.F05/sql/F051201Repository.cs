@@ -1635,15 +1635,15 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
 		public IQueryable<F051201WithF051202> GetF051201WithF051202s(string dcCode,string gupCode,string custCode,string wmsOrdNo)
 		{
 			var param = new object[] { dcCode, gupCode, custCode, wmsOrdNo };
-			var sql = @"SELECT  DISTINCT A.PICK_ORD_NO ,
-						(SELECT NAME FROM F000904 WHERE TOPIC = 'F051201' AND SUBTOPIC ='PICK_STATUS' AND VALUE = A.PICK_STATUS) PICK_STATUS,
-						(SELECT NAME FROM F000904 WHERE TOPIC = 'F051201' AND SUBTOPIC='PICK_TYPE' AND VALUE=A.PICK_TYPE) PICK_TYPE,
-						(SELECT NAME FROM F000904 WHERE TOPIC = 'F051201' AND SUBTOPIC='PICK_TOOL' AND VALUE=A.PICK_TOOL) PICK_TOOL,
-						(SELECT NAME FROM F000904 WHERE TOPIC = 'F051201' AND SUBTOPIC='NEXT_STEP' AND VALUE=A.NEXT_STEP) NEXT_STEP,
+      var sql = $@"SELECT  DISTINCT A.PICK_ORD_NO ,
+						(SELECT NAME FROM VW_F000904_LANG WHERE TOPIC = 'F051201' AND SUBTOPIC ='PICK_STATUS' AND VALUE = A.PICK_STATUS AND LANG = '{Current.Lang}') PICK_STATUS,
+						(SELECT NAME FROM VW_F000904_LANG WHERE TOPIC = 'F051201' AND SUBTOPIC='PICK_TYPE' AND VALUE=A.PICK_TYPE AND LANG = '{Current.Lang}') PICK_TYPE,
+						(SELECT NAME FROM VW_F000904_LANG WHERE TOPIC = 'F051201' AND SUBTOPIC='PICK_TOOL' AND VALUE=A.PICK_TOOL AND LANG = '{Current.Lang}') PICK_TOOL,
+						(SELECT NAME FROM VW_F000904_LANG WHERE TOPIC = 'F051201' AND SUBTOPIC='NEXT_STEP' AND VALUE=A.NEXT_STEP AND LANG = '{Current.Lang}') NEXT_STEP,
 						A.PICK_START_TIME,
 						A.PICK_FINISH_DATE,
-						(SELECT NAME FROM F000904 WHERE TOPIC = 'F051201' AND SUBTOPIC='CONTAINER_TYPE' AND VALUE=A.CONTAINER_TYPE) CONTAINER_TYPE_NAME,
-						(SELECT NAME FROM F000904 WHERE TOPIC = 'F051201' AND SUBTOPIC = 'DISP_SYSTEM' AND VALUE = A.DISP_SYSTEM) DISP_SYSTEM,
+						(SELECT NAME FROM VW_F000904_LANG WHERE TOPIC = 'F051201' AND SUBTOPIC='CONTAINER_TYPE' AND VALUE=A.CONTAINER_TYPE AND LANG = '{Current.Lang}') CONTAINER_TYPE_NAME,
+						(SELECT NAME FROM VW_F000904_LANG WHERE TOPIC = 'F051201' AND SUBTOPIC = 'DISP_SYSTEM' AND VALUE = A.DISP_SYSTEM AND LANG = '{Current.Lang}') DISP_SYSTEM,
 						A.PICK_NAME,
             A.PRIORITY_VALUE
 						FROM F051201 A 
@@ -1772,6 +1772,38 @@ string delvDate, string pickTime, string pickOrdNo, string ordType)
         sql += param.CombineSqlInParameters("AND PICK_ORD_NO", currNos, SqlDbType.VarChar);
         ExecuteSqlCommand(sql, param.ToArray());
       }
+    }
+
+    public void UpdatePrinted(string dcCode, string gupCode, string custCode, List<string> pickOrdNos)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",DateTime.Now){ SqlDbType = SqlDbType.DateTime2},
+        new SqlParameter("@p1",Current.Staff){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p2",Current.StaffName){ SqlDbType = SqlDbType.NVarChar},
+        new SqlParameter("@p3",dcCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p4",gupCode){ SqlDbType = SqlDbType.VarChar},
+        new SqlParameter("@p5",custCode){ SqlDbType = SqlDbType.VarChar},
+      };
+
+      var sql = @"
+                UPDATE 
+                  F051201 
+                SET 
+                  ISPRINTED = '1', 
+                  PICK_STATUS = 1, 
+                  UPD_DATE = @p0, 
+                  UPD_STAFF = @p1, 
+                  UPD_NAME = @p2 
+                WHERE 
+                  DC_CODE = @p3
+                  AND GUP_CODE = @p4
+                  AND CUST_CODE = @p5
+                ";
+
+      sql += param.CombineSqlInParameters("AND PICK_ORD_NO", pickOrdNos, SqlDbType.VarChar);
+
+      ExecuteSqlCommand(sql, param.ToArray());
     }
   }
 }

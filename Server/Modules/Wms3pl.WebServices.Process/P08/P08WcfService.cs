@@ -342,6 +342,13 @@ namespace Wms3pl.WebServices.Process.P08.Services
         finishCurrentBoxResult.F050801Data = f050801;
         finishCurrentBoxResult.F055001Data = f055001;
         wmsTransaction.Complete();
+
+        if (isManualCloseBox)
+            p080701Service.LogF05500101(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, null, null, null, "1", "人員按下手動關箱");
+
+        if (isCompletePackage)
+          p080701Service.LogF05500101(f050801.DC_CODE, f050801.GUP_CODE, f050801.CUST_CODE, f050801.WMS_ORD_NO, null, null, null, "1", "包裝完成", 0);
+
       }
 
       return finishCurrentBoxResult;
@@ -527,7 +534,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			var result = service.ApplyConsign(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo);
 			if (result.IsSuccessed)
 				wmsTransaction.Complete();
-			return result;
+      return new ExecuteResult { IsSuccessed = result.IsSuccessed, Message = result.MsgContent, No = result.Data.ToString() };
 		}
 		[OperationContract]
 		public ExecuteResult CancelConsign(string dcCode, string gupCode, string custCode, string wmsOrdNo)

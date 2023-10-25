@@ -37,36 +37,44 @@
 
             <uiLib:BasicMaster.MainContent>
                 <DockPanel Style="{StaticResource WindowDockPanelStyle}">
-                    <Grid DockPanel.Dock="Top" Margin="5" Width="750" HorizontalAlignment="Left">
+                    <Grid DockPanel.Dock="Top" Margin="5,15,0,0" HorizontalAlignment="Left">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="物流中心" Style="{StaticResource LbStyle}"/>
-                        <ComboBox Grid.Column="1" Grid.Row="0" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedDc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label Grid.Column="2" Grid.Row="0" Content="查詢筆數"/>
-                        <ComboBox Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboStyle}" ItemsSource="{Binding QueryCount, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedQueryCount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label Grid.Column="4" Grid.Row="0" Content="排序方式" />
-                        <ComboBox Grid.Column="5" Grid.Row="0"  Style="{StaticResource ComboStyle}" Width="auto" HorizontalAlignment="Stretch" ItemsSource="{Binding SortMode, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedSortMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox Grid.Column="1" Grid.Row="0" Width="130" Style="{StaticResource ComboStyle}" ItemsSource="{Binding DcList, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedDc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Column="6" Grid.Row="1" Content="查詢筆數"/>
+                        <ComboBox Grid.Column="7" Grid.Row="1" Width="80" Style="{StaticResource ComboStyle}" ItemsSource="{Binding QueryCount, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedQueryCount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Column="8" Grid.Row="1" Content="排序方式" />
+                        <ComboBox Grid.Column="9" Grid.Row="1" Style="{StaticResource ComboStyle}" Width="80" HorizontalAlignment="Stretch" ItemsSource="{Binding SortMode, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedSortMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Grid.Column="0" Grid.Row="1"  Content="介接系統"/>
-                        <ComboBox Grid.Column="1" Grid.Row="1"  Style="{StaticResource ComboStyle}" ItemsSource="{Binding ExtSystem, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedExtSystem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox Grid.Column="1" Grid.Row="1" Width="130" Style="{StaticResource ComboStyle}" ItemsSource="{Binding ExtSystem, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Value" SelectedValue="{Binding SelectedExtSystem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Grid.Column="2" Grid.Row="1" Content="功能名稱"/>
                         <ComboBox Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3" Width="auto" HorizontalAlignment="Stretch" Style="{StaticResource ComboStyle}" ItemsSource="{Binding FunctionShowNameList, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="SHOW_NAME" SelectedItem="{Binding SelectedFunctionShowName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label Grid.Column="0" Grid.Row="2" Content="查詢單號"/>
-                        <TextBox Grid.Column="1" Grid.Row="2" Width="auto" HorizontalAlignment="Stretch" Style="{StaticResource TxtStyle}" Text="{Binding SearchOrdNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label Grid.Column="2" Grid.Row="2" Content="回傳訊息"/>
-                        <TextBox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Width="auto"  HorizontalAlignment="Stretch" Style="{StaticResource TxtStyle}" Text="{Binding ReturnMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                        <CheckBox Grid.Column="5" Grid.Row="2" Content="只顯示失敗的紀錄" VerticalContentAlignment="Center" IsChecked="{Binding IsOnlyFailMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Column="6" Grid.Row="0" Content="查詢單號"/>
+                        <TextBox Grid.Column="7" Grid.Row="0" Width="180" Grid.ColumnSpan="2" Style="{StaticResource TxtStyle}" Text="{Binding SearchOrdNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Column="9" Grid.Row="0" Content="回傳訊息"/>
+                        <TextBox Grid.Column="10" Grid.Row="0" Grid.ColumnSpan="2" Width="180" Style="{StaticResource TxtStyle}" Text="{Binding ReturnMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox Grid.Column="10" Grid.Row="1" Content="只顯示失敗的紀錄" VerticalContentAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding IsOnlyFailMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Column="2" Grid.Row="0" Content="查詢日期"/>
+                        <DatePicker Grid.Column="3" Grid.Row="0" Width="150" Style="{StaticResource DateStyle}" SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Grid.Column="4" Grid.Row="0" Style="{StaticResource LbStyle}" Content="~" HorizontalContentAlignment="Center"/>
+                        <DatePicker Grid.Column="5" Grid.Row="0" Width="150" Style="{StaticResource DateStyle}" SelectedDate="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                     <ScrollViewer>
                         <DockPanel>
@@ -80,9 +88,9 @@
                                 <DataGrid Style="{StaticResource DgStyle}" ItemsSource="{Binding LogList,UpdateSourceTrigger=PropertyChanged}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
-                                        <DataGridTextColumn Header="程式名稱(API/排程)" Binding="{Binding NAME}"/>
-                                        <DataGridTextColumn Header="傳送資料(send_data)" Binding="{Binding SEND_DATA}" Width="500"/>
-                                        <DataGridTextColumn Header="接收資料(return_data)" Binding="{Binding RETURN_DATA}" Width="500"/>
+                                        <DataGridTextColumn Header="程式名稱 ( API/排程 )" Binding="{Binding NAME}"/>
+                                        <DataGridTextColumn Header="傳送資料 ( SEND__DATA )" Binding="{Binding SEND_DATA}" Width="500"/>
+                                        <DataGridTextColumn Header="接收資料 ( RETURN__DATA )" Binding="{Binding RETURN_DATA}" Width="500"/>
                                         <DataGridTextColumn Header="錯誤訊息" Binding="{Binding ERRMSG}"/>
                                         <DataGridTextColumn Header="開始時間" Binding="{Binding CRT_DATE,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd HH:mm:ss'}"/>
                                         <DataGridTextColumn Header="完成時間" Binding="{Binding UPD_DATE,Converter={StaticResource DateTimeToStringConverter},ConverterParameter='yyyy/MM/dd HH:mm:ss'}"/>

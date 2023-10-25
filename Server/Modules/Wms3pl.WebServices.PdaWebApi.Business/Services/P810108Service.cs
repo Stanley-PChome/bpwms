@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Wms3pl.Datas.F19;
+using Wms3pl.Datas.F25;
 using Wms3pl.Datas.Shared.ApiEntities;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.Datas.Shared.Pda.Entitues;
@@ -128,63 +129,81 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
             };
         }
 
-        /// <summary>
-        /// 搬移作業-商品儲位查詢
-        /// </summary>
-        /// <param name="getMoveItemLoc"></param>
-        /// <returns></returns>
-        private ApiResult GetMoveItemLoc(GetMoveItemLocReq getMoveItemLoc, string gupCode)
-        {
-            var p81Service = new P81Service();
-            var f1903Repo = new F1903Repository(Schemas.CoreSchema);
-            var f1912Repo = new F1912Repository(Schemas.CoreSchema);
+    /// <summary>
+    /// 搬移作業-商品儲位查詢
+    /// </summary>
+    /// <param name="getMoveItemLoc"></param>
+    /// <returns></returns>
+    private ApiResult GetMoveItemLoc(GetMoveItemLocReq getMoveItemLoc, string gupCode)
+    {
+      var p81Service = new P81Service();
+      var f1903Repo = new F1903Repository(Schemas.CoreSchema);
+      var f1912Repo = new F1912Repository(Schemas.CoreSchema);
+      var f2501Repo = new F2501Repository(Schemas.CoreSchema);
+      var commonService = new CommonService();
+      // 傳入參數轉大寫
+      if (!string.IsNullOrWhiteSpace(getMoveItemLoc.ItemNo))
+        getMoveItemLoc.ItemNo = getMoveItemLoc.ItemNo.ToUpper();
+      if (!string.IsNullOrWhiteSpace(getMoveItemLoc.Loc))
+        getMoveItemLoc.Loc = getMoveItemLoc.Loc.ToUpper();
+      if (!string.IsNullOrWhiteSpace(getMoveItemLoc.Sn))
+        getMoveItemLoc.Sn = getMoveItemLoc.Sn.ToUpper();
 
-            // 傳入參數轉大寫
-            if (!string.IsNullOrWhiteSpace(getMoveItemLoc.ItemNo))
-                getMoveItemLoc.ItemNo = getMoveItemLoc.ItemNo.ToUpper();
-            if (!string.IsNullOrWhiteSpace(getMoveItemLoc.Loc))
-                getMoveItemLoc.Loc = getMoveItemLoc.Loc.ToUpper();
-            if (!string.IsNullOrWhiteSpace(getMoveItemLoc.Sn))
-                getMoveItemLoc.Sn = getMoveItemLoc.Sn.ToUpper();
+      // 帳號檢核
+      var checkAcc = p81Service.CheckAcc(getMoveItemLoc.AccNo).Count();
 
-            // 帳號檢核
-            var checkAcc = p81Service.CheckAcc(getMoveItemLoc.AccNo).Count();
+      // 檢核人員功能權限
+      var checkAccFunction = p81Service.CheckAccFunction(getMoveItemLoc.FuncNo, getMoveItemLoc.AccNo);
 
-            // 檢核人員功能權限
-            var checkAccFunction = p81Service.CheckAccFunction(getMoveItemLoc.FuncNo, getMoveItemLoc.AccNo);
+      // 檢核人員貨主權限
+      var checkAccCustCode = p81Service.CheckAccCustCode(getMoveItemLoc.CustNo, getMoveItemLoc.AccNo);
 
-            // 檢核人員貨主權限
-            var checkAccCustCode = p81Service.CheckAccCustCode(getMoveItemLoc.CustNo, getMoveItemLoc.AccNo);
+      // 檢核人員物流中心權限
+      var checkAccDc = p81Service.CheckAccDc(getMoveItemLoc.DcNo, getMoveItemLoc.AccNo);
 
-            // 檢核人員物流中心權限
-            var checkAccDc = p81Service.CheckAccDc(getMoveItemLoc.DcNo, getMoveItemLoc.AccNo);
+      // 取得商品品號
+      var f1903 = p81Service.GetItemCode(getMoveItemLoc.CustNo, getMoveItemLoc.ItemNo);
 
-            // 取得商品品號
-            var f1903 = p81Service.GetItemCode(getMoveItemLoc.CustNo, getMoveItemLoc.ItemNo);
+      // 確認品號與儲位至少有一個欄位有值
+      // todo neo:這個F1912的查詢是不是可以拉掉？ 看起來不可能查到資料
+      var f1912 = f1912Repo.Find(x => x.DC_CODE == getMoveItemLoc.DcNo && x.LOC_CODE == getMoveItemLoc.Loc);
+      if (string.IsNullOrWhiteSpace(getMoveItemLoc.FuncNo) ||
+              string.IsNullOrWhiteSpace(getMoveItemLoc.AccNo) ||
+              string.IsNullOrWhiteSpace(getMoveItemLoc.DcNo) ||
+              string.IsNullOrWhiteSpace(getMoveItemLoc.CustNo) ||
+              checkAcc == 0 ||
+              checkAccFunction == 0 ||
+              checkAccCustCode == 0 ||
+              checkAccDc == 0 ||
+              !(f1903 != null || f1912 != null))
+        return new ApiResult { IsSuccessed = true, MsgCode = "20069", MsgContent = p81Service.GetMsg("20069") };
 
-            // 確認品號與儲位至少有一個欄位有值
-            var f1912 = f1912Repo.Find(x => x.DC_CODE == getMoveItemLoc.DcNo && x.LOC_CODE == getMoveItemLoc.Loc);
-            if (string.IsNullOrWhiteSpace(getMoveItemLoc.FuncNo) ||
-                    string.IsNullOrWhiteSpace(getMoveItemLoc.AccNo) ||
-                    string.IsNullOrWhiteSpace(getMoveItemLoc.DcNo) ||
-                    string.IsNullOrWhiteSpace(getMoveItemLoc.CustNo) ||
-                    checkAcc == 0 ||
-                    checkAccFunction == 0 ||
-                    checkAccCustCode == 0 ||
-                    checkAccDc == 0 ||
-                    !(f1903 != null || f1912 != null))
-                return new ApiResult { IsSuccessed = true, MsgCode = "20069", MsgContent = p81Service.GetMsg("20069") };
+      CheckSerialTypeEn serialType;
+      if (!string.IsNullOrWhiteSpace(getMoveItemLoc.Sn))
+      {
+        serialType = f2501Repo.CheckSerialType(gupCode, getMoveItemLoc.CustNo, getMoveItemLoc.Sn);
+        serialType = serialType == null ? serialType = new CheckSerialTypeEn() : serialType;
+      }
+      else
+        serialType = new CheckSerialTypeEn() { SerialNoType = "2" };
 
-            return  new ApiResult
-            {
-                IsSuccessed = true,
-                MsgCode = "10001",
-                MsgContent = p81Service.GetMsg("10001"),
-                Data = f1912Repo.GetMoveItemLocRes(getMoveItemLoc.DcNo, getMoveItemLoc.Loc, getMoveItemLoc.CustNo, gupCode, getMoveItemLoc.ItemNo, getMoveItemLoc.Sn)
-            };
-        }
+      var itemCodes = new List<string>();
+      if (!string.IsNullOrWhiteSpace(getMoveItemLoc.ItemNo))
+        itemCodes = f1903Repo.GetItemByCondition(gupCode, getMoveItemLoc.CustNo, getMoveItemLoc.ItemNo).Select(x => x.ITEM_CODE).ToList();
 
-        public ApiResult PostMoveConfirm(PostMoveConfirmReq postMoveConfirmReq)
+      var data = f1912Repo.GetMoveItemLocRes(getMoveItemLoc.DcNo, getMoveItemLoc.Loc, getMoveItemLoc.CustNo, gupCode, itemCodes, getMoveItemLoc.Sn, serialType);
+
+      //var data = f1912Repo.GetMoveItemLocRes(getMoveItemLoc.DcNo, getMoveItemLoc.Loc, getMoveItemLoc.CustNo, gupCode, getMoveItemLoc.ItemNo, getMoveItemLoc.Sn);
+      return new ApiResult
+      {
+        IsSuccessed = true,
+        MsgCode = "10001",
+        MsgContent = p81Service.GetMsg("10001"),
+        Data = data
+      };
+    }
+
+    public ApiResult PostMoveConfirm(PostMoveConfirmReq postMoveConfirmReq)
         {
             var p81Service = new P81Service();
             var gupCode = p81Service.GetGupCode(postMoveConfirmReq.CustNo);
@@ -193,7 +212,7 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
             var f1980Repo = new F1980Repository(Schemas.CoreSchema);
             var sharedService = new SharedService();
             var p08130101StockList = new List<P08130101Stock>();
-            var p081301Service = new P081301Service();
+            var p081301Service = new P081301Service(_wmsTransation);
             var checkItemTarLocMixLocList = new List<CheckItemTarLocMixLoc>();
             DateTime dateTime;
             var apiResult = new ApiResult { IsSuccessed = true, MsgCode = "10001", MsgContent = p81Service.GetMsg("10001") };
@@ -338,7 +357,10 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
             {
                 var createAllocation = p081301Service.CreateAllocation(postMoveConfirmReq.DcNo, gupCode, postMoveConfirmReq.CustNo, postMoveConfirmReq.TarLoc, p08130101StockList);
                 if (createAllocation.IsSuccessed)
+                {
+                    _wmsTransation.Complete();
                     apiResult = new ApiResult { IsSuccessed = true, MsgCode = "20701", MsgContent = p81Service.GetMsg("20701") };
+                }
                 else
                     apiResult = new ApiResult { IsSuccessed = false, MsgCode = "20756", MsgContent = string.Format(p81Service.GetMsg("20756"), createAllocation.Message.Replace("\n", "")) };
             }

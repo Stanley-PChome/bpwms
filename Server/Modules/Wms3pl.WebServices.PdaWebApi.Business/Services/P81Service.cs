@@ -116,6 +116,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
         new MsgModel{ MsgCode = "20356", MsgContent = "此序號{0}無法找到對應的調撥單號" },
         //20357
         new MsgModel{ MsgCode = "20357", MsgContent = "此調撥單已有人員列印並處理中，不可作業" },
+        new MsgModel{ MsgCode = "20358", MsgContent = "此調撥單{0}目前正在處理中，請稍後再試" },
+
         #endregion
 
         #region 04 出貨作業
@@ -379,7 +381,8 @@ namespace Wms3pl.WebServices.PdaWebApi.Business.Services
 				new MsgModel{ MsgCode = "21960", MsgContent = "請先設定該商品檢驗項目"},
 				new MsgModel{ MsgCode = "21961", MsgContent = "效期商品必須填入總保存天數"},
 				new MsgModel{ MsgCode = "21962", MsgContent = "{0}長度不可超過{1}個字"},
-		new MsgModel{ MsgCode = "21963", MsgContent = "該進倉單已強制結案完成，此次無法進行驗收確認。"},
+		    new MsgModel{ MsgCode = "21963", MsgContent = "該進倉單已強制結案完成，此次無法進行驗收確認。"},
+		    new MsgModel{ MsgCode = "21964", MsgContent = "刷入的{0}[{1}]中有空白，請重新刷入。"},
 
         #endregion 19 進貨驗收
 

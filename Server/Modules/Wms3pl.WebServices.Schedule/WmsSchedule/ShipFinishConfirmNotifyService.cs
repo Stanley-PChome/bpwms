@@ -46,6 +46,15 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
     }
     #endregion F051301Repository
 
+    #region F051206Repository
+    private F051206Repository _F051206Repo;
+    public F051206Repository F051206Repo
+    {
+      get { return _F051206Repo == null ? _F051206Repo = new F051206Repository(Schemas.CoreSchema, _wmsTransaction) : _F051206Repo; }
+      set { _F051206Repo = value; }
+    }
+    #endregion F051206Repository
+
     #region F05120601Repository
     private F05120601Repository _F05120601Repo;
     public F05120601Repository F05120601Repo
@@ -53,7 +62,7 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
       get { return _F05120601Repo == null ? _F05120601Repo = new F05120601Repository(Schemas.CoreSchema, _wmsTransaction) : _F05120601Repo; }
       set { _F05120601Repo = value; }
     }
-    #endregion F051301Repository
+    #endregion F05120601Repository
 
     #region F050306Repository
     private F050306Repository _F050306Repo;
@@ -72,6 +81,15 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
       set { _F060702Repo = value; }
     }
     #endregion F051301Repository
+
+    #region F050801Repository
+    private F050801Repository _F050801Repo;
+    public F050801Repository F050801Repo
+    {
+      get { return _F050801Repo == null ? _F050801Repo = new F050801Repository(Schemas.CoreSchema, _wmsTransaction) : _F050801Repo; }
+      set { _F050801Repo = value; }
+    }
+    #endregion F050801Repository
 
     #endregion Repositorys
 
@@ -104,6 +122,11 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
             if (isPickNotDone)
               continue;
 
+            //檢查出貨單是否有缺貨無其他庫存
+            var isHavePickLackNoOtherStock = F051206Repo.isHavePickLackNoOtherStock(curData.DC_CODE, curData.GUP_CODE, curData.CUST_CODE, curData.WMS_NO);
+            if (isHavePickLackNoOtherStock)
+              continue;
+
             //檢查出貨單是否有揀缺待配庫
             var isHavePickLackUnAllot = F05120601Repo.IsHavePickLackUnAllot(curData.DC_CODE, curData.GUP_CODE, curData.CUST_CODE, curData.WMS_NO);
             if (isHavePickLackUnAllot)
@@ -112,6 +135,11 @@ namespace Wms3pl.WebServices.Schedule.WmsSchedule
             //檢查出貨單是否有已配庫待產生揀貨單資料
             var isHaveAllotData = F050306Repo.IsHaveAllotData(curData.DC_CODE, curData.GUP_CODE, curData.CUST_CODE, curData.WMS_NO);
             if (isHaveAllotData)
+              continue;
+
+            // 檢查出貨單是否取消
+            var isOrderCanceled = F050801Repo.IsOrderCanceled(curData.DC_CODE, curData.GUP_CODE, curData.CUST_CODE, curData.WMS_NO);
+            if (isOrderCanceled)
               continue;
 
             totalCrtOrd.Add(curData.WMS_NO);

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Text.Json;
 using Wms3pl.DBCore;
 using Wms3pl.WebServices.DataCommon;
 
@@ -25,10 +26,16 @@ namespace Wms3pl.Datas.Test
 
 			(listener as DiagnosticListener).SubscribeWithAdapter(commandLisetener);
 		}
-	}
+
+    protected void Output(object obj)
+    {
+      Console.WriteLine($@"{JsonSerializer.Serialize(obj)}");
+    }
+
+  }
 
 
-	public class WmsLogger : ILogger
+  public class WmsLogger : ILogger
 	{
 		public IDisposable BeginScope<TState>(TState state)
 		{

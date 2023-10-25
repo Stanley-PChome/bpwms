@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Wms3pl.Datas.F00;
 using Wms3pl.Datas.F05;
+using Wms3pl.Datas.F06;
 using Wms3pl.Datas.F07;
 using Wms3pl.Datas.F15;
 using Wms3pl.Datas.F19;
@@ -844,12 +845,12 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				var f0530Repo = new F0530Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0531Repo = new F0531Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0532Repo = new F0532Repository(Schemas.CoreSchema, wmsTransaction);
-				var f053201Repo = new F053201Repository(Schemas.CoreSchema, wmsTransaction);
 				var f053202Repo = new F053202Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0533Repo = new F0533Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0534Repo = new F0534Repository(Schemas.CoreSchema, wmsTransaction);
 				var f2501Repo = new F2501Repository(Schemas.CoreSchema, wmsTransaction);
 				var f0701Repo = new F0701Repository(Schemas.CoreSchema, wmsTransaction);
+        var f060302Repo = new F060302Repository(Schemas.CoreSchema, wmsTransaction);
 
 				//(1)	跨庫箱號鎖定
 				var lockResult = LockOutContainer(outContainerInfo.OUT_CONTAINER_CODE);
@@ -935,8 +936,11 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					//G.	釋放使用中揀貨容器 : 刪除 F0530 WHERE F0701_ID IN(SELECT F0701_ID FROM F053201 WHERE F0531_ID =< 參數1 >)
 					f0530Repo.DeleteByF0531Id(outContainerInfo.F0531_ID);
 
-					//H.	釋放容器綁定 DELETE  F0701 WHERE ID IN(SELECT F0701_ID FROM F053201 WHERE F0531_ID = <參數1>)
-					f0701Repo.DeleteByF0531Id(outContainerInfo.F0531_ID);
+          // 寫入F060302釋放容器
+          f060302Repo.AddReleaseRecordByF053201(outContainerInfo.F0531_ID);
+
+          //H.	釋放容器綁定 DELETE  F0701 WHERE ID IN(SELECT F0701_ID FROM F053201 WHERE F0531_ID = <參數1>)
+          f0701Repo.DeleteByF0531Id(outContainerInfo.F0531_ID);
 
 					//I.	刪除F0531 WHERE ID=<參數1>
 					f0531Repo.Delete(x => x.ID == outContainerInfo.F0531_ID);

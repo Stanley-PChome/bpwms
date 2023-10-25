@@ -79,27 +79,15 @@ namespace Wms3pl.Datas.F01
 
         public ScanCargoData InsertF010301AndGetNewID(F010301 f010301Data)
         {
-            /* // 判斷資料是否重複的檢查，經確認後無須檢查此項目
-            //var sql = @"SELECT TOP 1 * FROM F010301 WHERE DC_CODE=@p0 AND ALL_ID=@p1 AND SHIP_ORD_NO=@p2";
-            //var para = new List<SqlParameter>()
-            //{
-            //    new SqlParameter("@p0",SqlDbType.VarChar){Value=f010301Data.DC_CODE},
-            //    new SqlParameter("@p1",SqlDbType.VarChar){Value=f010301Data.ALL_ID},
-            //    new SqlParameter("@p2",SqlDbType.VarChar){Value=f010301Data.SHIP_ORD_NO}
-            //};
-            //var CheckDupResult = SqlQuery<F010301>(sql, para.ToArray());
-            //if (CheckDupResult?.Any() ?? true)
-            //    return new ScanCargoData() { ID = -1 };
-            */
+            var f010301ID = GetF010301NextId();
+
             f010301Data.CHECK_STATUS = "0"; //在F010302資料寫入、更新才會更動此欄位
+            f010301Data.ID = f010301ID;
+
             Add(f010301Data);
             _wmsTransaction.Complete();
-            var sql = @"SELECT TOP 1 * FROM F010301 ORDER BY ID DESC";
-            var result = SqlQuery<ScanCargoData>(sql).First();
-            if (result != null)
-                return result;
-            else
-                return new ScanCargoData() { ID = -9999 };
+
+            return (ScanCargoData)f010301Data;
         }
 
         public IQueryable<ScanCargoData> GetF010301UncheckedScanCargoDatas(string dcCode, string LogisticCode, string RecvUser)
@@ -140,13 +128,27 @@ namespace Wms3pl.Datas.F01
         /// <returns></returns>
         public IQueryable<ReceiptUnCheckData> GetF010301UncheckReceiptShipOrdNo(string dcCode, string LogisticCode)
         {
-            var sql =
-@"SELECT a.RECV_DATE,c.LOGISTIC_NAME,a.SHIP_ORD_NO,SUM(a.BOX_CNT) BOX_CNT
-FROM F010301 a 
-LEFT JOIN F010302 AS b ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO 
-LEFT JOIN F0002 c ON a.ALL_ID=c.LOGISTIC_CODE
-WHERE b.ID IS NULL AND a.DC_CODE=@p0 AND a.ALL_ID=@p1 GROUP BY a.RECV_DATE,a.ALL_ID,c.LOGISTIC_NAME,a.SHIP_ORD_NO;
-";
+            var sql = @"
+                      SELECT 
+                        a.RECV_DATE,
+                        c.LOGISTIC_NAME,
+                        a.SHIP_ORD_NO,SUM(a.BOX_CNT) BOX_CNT
+                      FROM F010301 a 
+                        LEFT JOIN F010302 AS b 
+                          ON a.DC_CODE=b.DC_CODE AND a.ALL_ID=b.ALL_ID AND a.SHIP_ORD_NO=b.SHIP_ORD_NO 
+                        LEFT JOIN F0002 c 
+                          ON a.DC_CODE=c.DC_CODE AND a.ALL_ID=c.LOGISTIC_CODE
+                      WHERE 
+                        b.ID IS NULL 
+                        AND a.DC_CODE=@p0 
+                        AND a.ALL_ID=@p1 
+                      GROUP BY 
+                        a.RECV_DATE,
+                        a.ALL_ID,
+                        c.LOGISTIC_NAME,
+                        a.SHIP_ORD_NO;
+                      ";
+
             var para = new List<SqlParameter>()
             {
                 new SqlParameter("@p0",SqlDbType.VarChar){Value=dcCode},
@@ -157,5 +159,11 @@ WHERE b.ID IS NULL AND a.DC_CODE=@p0 AND a.ALL_ID=@p1 GROUP BY a.RECV_DATE,a.ALL
             return result;
         }
 
+        public long GetF010301NextId()
+		    {
+			    var sql = @"SELECT NEXT VALUE FOR SEQ_F010301_ID";
+
+			    return SqlQuery<long>(sql).Single();
+		    }
     }
 }

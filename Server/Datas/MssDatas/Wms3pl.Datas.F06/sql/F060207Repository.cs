@@ -31,5 +31,19 @@ namespace Wms3pl.Datas.F06
 
 			return SqlQuery<long>(sql).Single();
 		}
-	}
+
+    public bool IsUnProcessData(string dcCode, string gupCode, string custCode, string containerCode)
+    {
+      var para = new List<SqlParameter>()
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = containerCode }
+      };
+      var sql = @"SELECT TOP 1 1 FROM F060207 WHERE DC_CODE=@p0 AND GUP_CODE=@p1 AND CUST_CODE=@p2 AND CONTAINERCODE=@p3 AND STATUS = '0'";
+      return SqlQuery<F060207>(sql, para.ToArray()).Any();
+    }
+
+  }
 }

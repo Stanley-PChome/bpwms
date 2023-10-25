@@ -497,7 +497,8 @@ namespace Wms3pl.Datas.F05
                                           (SELECT TOP(1) NAME FROM F000904 WHERE TOPIC ='F050101' AND SUBTOPIC ='PACKING_TYPE' AND VALUE = A.PACKING_TYPE) PACKING_TYPE,
                                           (SELECT TOP(1) NAME FROM F000904 WHERE TOPIC ='F050801' AND SUBTOPIC ='SHIP_MODE' AND VALUE = A.SHIP_MODE) SHIP_MODE,
                        (SELECT TOP(1) LOGISTIC_NAME FROM F0002 WHERE DC_CODE = @p2 AND LOGISTIC_CODE = A.SUG_LOGISTIC_CODE) SUG_LOGISTIC_CODE,
-                      A.NP_FLAG
+                      A.NP_FLAG,
+                      A.UPD_DATE
 									FROM F050801 A
 									JOIN F05030101 B
 									ON B.DC_CODE = A.DC_CODE
@@ -2438,6 +2439,31 @@ WHERE DC_CODE = @p0 AND GUP_CODE = @p1 AND CUST_CODE = @p2";
       sql = string.Format(sql, sql2);
 
       ExecuteSqlCommand(sql, param.ToArray());
+    }
+
+    public bool IsOrderCanceled(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0", SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1", SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2", SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3", SqlDbType.VarChar) { Value = wmsNo }
+      };
+
+      var sql = @"
+                SELECT TOP 1 
+                  1 
+                FROM F050801 
+                WHERE 
+                  DC_CODE = @p0 
+                  AND GUP_CODE = @p1 
+                  AND CUST_CODE = @p2 
+                  AND WMS_ORD_NO = @p3
+                  AND STATUS = 9
+                ";
+
+      return SqlQuery<int>(sql, param.ToArray()).Any();
     }
   }
 }

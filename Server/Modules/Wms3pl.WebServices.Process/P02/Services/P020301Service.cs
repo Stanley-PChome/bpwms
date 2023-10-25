@@ -269,6 +269,12 @@ namespace Wms3pl.WebServices.Process.P02.Services
             if (f1511 != null)
             {
               f1511.B_PICK_QTY = (int)f151002.SRC_QTY;
+              //如果User是全部上架到另一個儲位，就把原本的虛擬儲位清掉
+              if (f151002.SRC_QTY == 0)
+              {
+                f1511.A_PICK_QTY = (int)f151002.SRC_QTY;
+                f1511.STATUS = "2";
+              }
               f1511Repo.Update(f1511);
             }
           }

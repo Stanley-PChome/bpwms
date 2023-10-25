@@ -154,10 +154,12 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
               {
                 obj.F060302s.ForEach(f060302 =>
                 {
-                  f060302.STATUS = "2";//成功狀態改為2
-                  f060302.MESSAGE = "Success";
+                  //重試次數超過設定值後才改失敗
+                  if (f060302.RESENT_CNT >= SettingsResendCount)
+                    f060302.STATUS = "F";//錯誤將狀態改為F
+                  else
+                    f060302.STATUS = "T";
                 });
-                successCnt += obj.F060302s.Count;
               }
             }
 
@@ -165,7 +167,7 @@ namespace Wms3pl.WebServices.ToWcsWebApi.Business.mssql.Services
           }, false,
           (fResult) =>
           {
-            if (!fResult.IsSuccessed)
+            if (!fResult.IsSuccessed && fResult.MsgCode == "99999")
             {
               obj.F060302s.ForEach(f060302 =>
               {

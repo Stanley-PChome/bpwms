@@ -2309,7 +2309,7 @@ namespace Wms3pl.WebServices.Shared.Services
           {
             if (isPickSchedule)
             {
-              errMsg.Add(e.Message);
+              errMsg.Add(e.ToString());
               continue;
             }
             else
@@ -2994,7 +2994,7 @@ namespace Wms3pl.WebServices.Shared.Services
 								else
 								{
 									// 如果加總後資料筆數 >= 揀貨單上限筆數 或 出貨單數+本次出貨不重複出貨單數 > 揀貨單最大出貨單數(分貨作業最大格數) 要切新揀貨單
-									if ((recordCnt >= pickOrderMaxRecord) || (currentNotRepeatWmsOrdNos.Count + wmsOrdNos.Count > maxOrderCntByPick))
+									if ((recordCnt >= pickOrderMaxRecord))
 									{
 										pickPages.Add(page, pickDetails);
 										page++;
@@ -5235,7 +5235,9 @@ namespace Wms3pl.WebServices.Shared.Services
     public ExecuteResult PickVirtualLocRecovery(string dcCode, string gupCode, string custCode, string pickOrdNo)
     {
       var addStockList = new List<OrderStockChange>();
+      var delF051301List = new List<string>();
       var result = new ExecuteResult(true);
+
       //只處理P單
       if (!new string[] { "P" }.Contains(pickOrdNo.Substring(0, 1)))
       {
@@ -5245,6 +5247,7 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			var f051201 = GetF051201(dcCode, gupCode, custCode, pickOrdNo);
 			var f051202s = GetF051202s(dcCode, gupCode, custCode, pickOrdNo);
+
 			// 取得虛擬儲位
 			var f1511s = GetF1511s(dcCode, gupCode, custCode, pickOrdNo);
 
@@ -5286,6 +5289,7 @@ namespace Wms3pl.WebServices.Shared.Services
 					}
           x.STATUS = "9";
         });
+
 				#region 更新F051201
 				f051201.PICK_STATUS = 9;
 				_f051201Repo.Update(f051201);
@@ -5293,12 +5297,30 @@ namespace Wms3pl.WebServices.Shared.Services
 
 				_f1511Repo.BulkUpdate(f1511s);
 				_f051202Repo.BulkUpdate(updF051202List);
+
 				if (addStockList.Any())
 				{
 					StockService.AddStock(addStockList);
 					UpdateUsedVolumnByLocCodes(dcCode, gupCode, custCode, addStockList.Select(x => x.LocCode).Distinct());
 				}
-			}
+
+        // 若出貨單所屬揀貨單明細均已取消，刪除F051301
+        var f051202sByWmsNos = f051202Repo.GetDatasByWmsOrdNos(dcCode, gupCode, custCode, f051202s.Select(o => o.WMS_ORD_NO).Distinct().ToList());
+        var f051202sGroupBy = f051202sByWmsNos.GroupBy(o => o.WMS_ORD_NO);
+
+        foreach (var group in f051202sGroupBy)
+        {
+          var notCanceledDetail = group.Where(o => o.PICK_STATUS == "0" && !updF051202List.Select(x => x.PICK_ORD_NO).Contains(o.PICK_ORD_NO));
+
+          if (!notCanceledDetail.Any())
+          {
+            delF051301List.Add(group.Key);
+          }
+        }
+
+        f051301Repo.DeleteF051301(dcCode, gupCode, custCode, delF051301List);
+      }
+
       return result;
     }
     #endregion 揀貨虛擬儲位回復

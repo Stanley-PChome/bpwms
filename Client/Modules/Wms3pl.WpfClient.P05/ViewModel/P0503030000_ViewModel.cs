@@ -341,10 +341,24 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		{
 			STATUS_LIST = GetBaseTableService.GetF000904List(FunctionCode, "P050302", "STATUS");
 		}
-		#endregion
+    #endregion
 
-		#region 出貨明細
-		private ObservableCollection<F050102WithF050801> _goodslist;
+    #region 訂單明細
+    private ObservableCollection<F050102Ex> _dgorddetaillist_Display;
+
+    public ObservableCollection<F050102Ex> dgOrdDetailList_Display
+    {
+      get { return _dgorddetaillist_Display; }
+      set
+      {
+        _dgorddetaillist_Display = value;
+        RaisePropertyChanged("dgOrdDetailList_Display");
+      }
+    }
+    #endregion 訂單明細
+
+    #region 出貨明細
+    private ObservableCollection<F050102WithF050801> _goodslist;
 		public ObservableCollection<F050102WithF050801> GoodsList
 		{
 			get { return _goodslist; }
@@ -372,10 +386,62 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 			get { return _pickDetailList; }
 			set { Set(() => PickDetailList, ref _pickDetailList, value); }
 		}
-		#endregion
+    #endregion
 
-		#region 出貨序號
-		private ObservableCollection<F051202WithF055002> _outSerialNoList;
+    #region 揀貨完成容器資料
+    private ObservableCollection<PickContainer> _PickContainer;
+    public ObservableCollection<PickContainer> PickContainer
+    {
+      get { return _PickContainer; }
+      set { Set(() => PickContainer, ref _PickContainer, value); }
+    }
+    #endregion 揀貨完成容器資料
+
+    #region 訂單取消資訊
+    private ObservableCollection<OrderCancelInfo> _OrderCancelInfo;
+    public ObservableCollection<OrderCancelInfo> OrderCancelInfo
+    {
+      get { return _OrderCancelInfo; }
+      set { Set(() => OrderCancelInfo, ref _OrderCancelInfo, value); }
+    }
+    #endregion 訂單取消資訊
+
+    #region 分貨資訊
+    private ObservableCollection<DivideInfo> _DivideInfo;
+    public ObservableCollection<DivideInfo> DivideInfo
+    {
+      get { return _DivideInfo; }
+      set { Set(() => DivideInfo, ref _DivideInfo, value); }
+    }
+
+    private ObservableCollection<DivideDetail> _DivideDetail;
+    public ObservableCollection<DivideDetail> DivideDetail
+    {
+      get { return _DivideDetail; }
+      set { Set(() => DivideDetail, ref _DivideDetail, value); }
+    }
+    #endregion 分貨資訊
+
+    #region 集貨場進出紀錄
+    private ObservableCollection<CollectionRecord> _CollectionRecord;
+    public ObservableCollection<CollectionRecord> CollectionRecord
+    {
+      get { return _CollectionRecord; }
+      set { Set(() => CollectionRecord, ref _CollectionRecord, value); }
+    }
+    #endregion 集貨場進出紀錄
+
+    #region 託運單箱內明細
+    private ObservableCollection<ConsignmentDetail> _ConsignmentDetail;
+    public ObservableCollection<ConsignmentDetail> ConsignmentDetail
+    {
+      get { return _ConsignmentDetail; }
+      set { Set(() => ConsignmentDetail, ref _ConsignmentDetail, value); }
+    }
+    #endregion 託運單箱內明細
+
+    #region 出貨序號
+    private ObservableCollection<F051202WithF055002> _outSerialNoList;
         public ObservableCollection<F051202WithF055002> OutSerialNoList
         {
             get { return _outSerialNoList; }
@@ -387,7 +453,7 @@ namespace Wms3pl.WpfClient.P05.ViewModel
         }
         #endregion
 
-        #region 包裝序號刷驗記錄
+    #region 包裝序號刷驗記錄
         private ObservableCollection<F05500101> _readserialnolist;
 		public ObservableCollection<F05500101> ReadSerialNoList
 		{
@@ -528,9 +594,9 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 		}
 
 
-		private ObservableCollection<F050901WithF055001> _consignmentNote;
+		private ObservableCollection<ConsignmentNote> _consignmentNote;
 
-		public ObservableCollection<F050901WithF055001> ConsignmentNote
+		public ObservableCollection<ConsignmentNote> ConsignmentNote
 		{
 			get { return _consignmentNote; }
 			set
@@ -567,8 +633,16 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 			item.SOURCE_NO = proxyP05Ex.GetSourceNosByWmsOrdNo(gupCode, custCode, dcCode, wmsOrdNo);
 			BasicData = item;
 
-			//出貨明細
-			GoodsList = proxyP05Ex.CreateQuery<F050102WithF050801>("GetF050102WithF050801s")
+      // 訂單明細
+      dgOrdDetailList_Display = proxyP05Ex.CreateQuery<F050102Ex>("GetF050102ExDatas")
+        .AddQueryExOption("dcCode", dcCode)
+        .AddQueryExOption("gupCode", gupCode)
+        .AddQueryExOption("custCode", custCode)
+        .AddQueryExOption("ordNo", ordNo)
+        .ToObservableCollection();
+
+      //出貨明細
+      GoodsList = proxyP05Ex.CreateQuery<F050102WithF050801>("GetF050102WithF050801s")
 			  .AddQueryOption("gupCode", string.Format("'{0}'", gupCode))
 			  .AddQueryOption("custCode", string.Format("'{0}'", custCode))
 			  .AddQueryOption("dcCode", string.Format("'{0}'", dcCode))
@@ -590,20 +664,77 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 				.AddQueryExOption("custCode", custCode)
 				.AddQueryExOption("wmsOrdNo", wmsOrdNo).ToObservableCollection();
 
+      //揀貨完成容器資料
+      PickContainer = proxyP05Ex.CreateQuery<PickContainer>("GetPickContainer")
+        .AddQueryExOption("dcCode", dcCode)
+        .AddQueryExOption("gupCode", gupCode)
+        .AddQueryExOption("custCode", custCode)
+        .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
 
-			//出貨序號
-			OutSerialNoList = proxyP05Ex.CreateQuery<F051202WithF055002>("GetF051202WithF055002s")
+      //訂單取消資訊
+      if (BasicData.STATUS == 29)
+      {
+        OrderCancelInfo = proxyP05Ex.CreateQuery<OrderCancelInfo>("GetOrderCancelInfoType1")
+          .AddQueryExOption("dcCode", dcCode)
+          .AddQueryExOption("gupCode", gupCode)
+          .AddQueryExOption("custCode", custCode)
+          .AddQueryExOption("pickOrdNo", string.Join(",", PickList.Select(o => o.PICK_ORD_NO))).ToObservableCollection();
+
+        if (!OrderCancelInfo.Any())
+        {
+          OrderCancelInfo = proxyP05Ex.CreateQuery<OrderCancelInfo>("GetOrderCancelInfoType2")
+            .AddQueryExOption("dcCode", dcCode)
+            .AddQueryExOption("gupCode", gupCode)
+            .AddQueryExOption("custCode", custCode)
+            .AddQueryExOption("pickOrdNo", string.Join(",", PickList.Select(o => o.PICK_ORD_NO))).ToObservableCollection();
+        }
+      }
+      else
+      {
+        OrderCancelInfo = null;
+      }
+
+      //分貨資訊
+      DivideInfo = proxyP05Ex.CreateQuery<DivideInfo>("GetDivideInfo")
+        .AddQueryExOption("dcCode", dcCode)
+        .AddQueryExOption("gupCode", gupCode)
+        .AddQueryExOption("custCode", custCode)
+        .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
+
+      //分貨明細資料
+      if (DivideInfo.Any())
+      {
+        DivideDetail = proxyP05Ex.CreateQuery<DivideDetail>("GetDivideDetail")
+        .AddQueryExOption("dcCode", dcCode)
+        .AddQueryExOption("gupCode", gupCode)
+        .AddQueryExOption("custCode", custCode)
+        .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
+      }
+      else
+      {
+        DivideDetail = null;
+      }
+
+      //集貨場進出紀錄
+      CollectionRecord = proxyP05Ex.CreateQuery<CollectionRecord>("GetCollectionRecord")
+        .AddQueryExOption("dcCode", dcCode)
+        .AddQueryExOption("gupCode", gupCode)
+        .AddQueryExOption("custCode", custCode)
+        .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
+
+      //出貨序號
+      OutSerialNoList = proxyP05Ex.CreateQuery<F051202WithF055002>("GetF051202WithF055002s")
                .AddQueryOption("dcCode", string.Format("'{0}'", dcCode))
               .AddQueryOption("gupCode", string.Format("'{0}'", gupCode))
               .AddQueryOption("custCode", string.Format("'{0}'", custCode))
               .AddQueryOption("wmsordno", string.Format("'{0}'", wmsOrdNo)).ToObservableCollection();
 
-            //包裝序號刷驗紀錄 F05500101
-            var proxyP05 = GetProxy<F05Entities>();
+      //包裝序號刷驗紀錄 F05500101
+      var proxyP05 = GetProxy<F05Entities>();
 			ReadSerialNoList =
 			  proxyP05.F05500101s.Where(
 				x => x.DC_CODE == dcCode && x.GUP_CODE == gupCode && x.CUST_CODE == custCode && x.WMS_ORD_NO == wmsOrdNo)
-				.OrderBy(o=>o.CRT_DATE).ToObservableCollection();
+				.OrderBy(o => o.CRT_DATE).ThenBy(o => o.LOG_SEQ).ToObservableCollection();
 
 			//操作刷驗記錄記錄 F055002
 			ReadOperationlList = proxyP05Ex.CreateQuery<F055002WithGridLog>("GetF055002WithGridLog")				
@@ -629,13 +760,27 @@ namespace Wms3pl.WpfClient.P05.ViewModel
 			  .ToList();
 
 			//託運單
-			ConsignmentNote = proxyP05Ex.CreateQuery<F050901WithF055001>("GetF050901WithF055001s")
+			ConsignmentNote = proxyP05Ex.CreateQuery<ConsignmentNote>("GetConsignmentNote")
 				.AddQueryExOption("dcCode", dcCode)
 				.AddQueryExOption("gupCode", gupCode)
 				.AddQueryExOption("custCode", custCode)
 				.AddQueryExOption("wmsOrdNo", wmsOrdNo).ToObservableCollection();
 
-			PrintList = new List<PrintListClass>();
+      //託運單箱內明細資料
+      if (ConsignmentNote.Any())
+      {
+        ConsignmentDetail = proxyP05Ex.CreateQuery<ConsignmentDetail>("GetConsignmentDetail")
+        .AddQueryExOption("dcCode", dcCode)
+        .AddQueryExOption("gupCode", gupCode)
+        .AddQueryExOption("custCode", custCode)
+        .AddQueryExOption("wmsNo", wmsOrdNo).ToObservableCollection();
+      }
+      else
+      {
+        ConsignmentDetail = null;
+      }
+
+      PrintList = new List<PrintListClass>();
 			var printList = new List<PrintListClass>();
 
 			if (data.PRINT_PASS == "1")

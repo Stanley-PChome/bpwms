@@ -22,17 +22,31 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		{
 		}
 
+    private ContainerService _ContainerService;
+    public ContainerService ContainerService
+    {
+      get
+      {
+        if (_ContainerService == null)
+          _ContainerService = new ContainerService(wmsTransaction);
 
+        return _ContainerService;
+      }
+      set
+      {
+        _ContainerService = value;
+      }
+    }
 
-		/// <summary>
-		/// 刷讀容器條碼
-		/// </summary>
-		/// <param name="dcCode"></param>
-		/// <param name="gupCode"></param>
-		/// <param name="custCode"></param>
-		/// <param name="containerCode"></param>
-		/// <returns></returns>
-		public BindingPickContainerResult ScanBindingPickContainerCode(string dcCode, string gupCode, string custCode, string containerCode)
+    /// <summary>
+    /// 刷讀容器條碼
+    /// </summary>
+    /// <param name="dcCode"></param>
+    /// <param name="gupCode"></param>
+    /// <param name="custCode"></param>
+    /// <param name="containerCode"></param>
+    /// <returns></returns>
+    public BindingPickContainerResult ScanBindingPickContainerCode(string dcCode, string gupCode, string custCode, string containerCode)
 		{
 			try
 			{
@@ -78,10 +92,13 @@ namespace Wms3pl.WebServices.Process.P08.Services
 						STATUS = "9",
 						HAS_CP_ITEM = bindingPickContainerInfo.HAS_CP_ITEM
 					});
+
 					//B.	更新F0534.STATUS=9(空箱釋放)
 					f0534Repo.UpdateStatusById(bindingPickContainerInfo.F0534_ID, "9");
-					//C.	刪除F0701
-					f0701Repo.DeleteF0701(bindingPickContainerInfo.F0701_ID);
+
+          //C.	呼叫容器釋放共用函數
+          ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO);
+
 					//D.	新增F053602 (Log)
 					f053602 = new F053602
 					{
@@ -936,7 +953,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 						return new OutContainerResult { IsSuccessed = false, Message = "未刷入揀貨容器，不可綁定跨庫箱號" };
 
 					//A.	[C] = F0701 ID取號
-					var newF0701Id = GetF0701NextId();
+					var newF0701Id = ContainerService.GetF0701NextId();
 					//B.	[D] = F0531 ID取號
 					var newF0531Id = GetF0531NextId();
 					//C.	[E] = 取得箱序
@@ -1429,8 +1446,8 @@ namespace Wms3pl.WebServices.Process.P08.Services
 			{
 				//A.	更新F0536.STATUS=1(分貨完成) 
 				f0536Repo.UpdateStatusByF0701Id(bindingPickContainerInfo.F0701_ID, "1");
-				//B.	揀貨容器釋放，刪除F0701 WHERE ID =<參數5>
-				f0701Repo.DeleteById(bindingPickContainerInfo.F0701_ID);
+        //B.	揀貨容器釋放，呼叫容器釋放共用
+        ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO);
 				//C.	使用中揀貨容器釋放，刪除F0530 WHERE F0701_ID=<參數5>
 				f0530Repo.DeleteByF0701Id(bindingPickContainerInfo.F0701_ID);
 				//D.	新增F053602(log)
@@ -1525,27 +1542,6 @@ namespace Wms3pl.WebServices.Process.P08.Services
 		}
 
 		/// <summary>
-		/// 取消訂單容器綁定取號
-		/// </summary>
-		/// <returns></returns>
-		public long GetF0701NextId()
-		{
-			var f0701Repo = new F0701Repository(Schemas.CoreSchema);
-			var f0701 = f0701Repo.UseTransationScope(new TransactionScope(TransactionScopeOption.Required,
-														new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }),
-														() =>
-														{
-															var lockF0701 = f0701Repo.LockF0701();
-															var id = f0701Repo.GetF0701NextId();
-															return new F0701
-															{
-																ID = id
-															};
-														});
-			return f0701.ID;
-		}
-
-		/// <summary>
 		/// 取得揀貨容器未完成分貨資料
 		/// </summary>
 		/// <param name="f0701_Id"></param>
@@ -1603,11 +1599,11 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				//(4)	更新F0536.STATUS=2 (人員手動分貨完成)
 				f0536Repo.UpdateStatusByF0701Id(bindingPickContainerInfo.F0701_ID, "2");
 
-				//(5)	釋放揀貨容器 DELETE F0701 WHERE ID =<參數1>
-				f0701Repo.DeleteById(bindingPickContainerInfo.F0701_ID);
+        //(5)	釋放揀貨容器 DELETE F0701 WHERE ID =<參數1>
+        ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO);
 
-				// 釋放進行中揀貨容器
-				f0530Repo.DeleteByF0701Id(bindingPickContainerInfo.F0701_ID);
+        // 釋放進行中揀貨容器
+        f0530Repo.DeleteByF0701Id(bindingPickContainerInfo.F0701_ID);
 
 				//更新F0534.STATUS=1(已放入並關閉稽核箱待分配)
 				f0534Repo.UpdatePartialCloseByF0701Id(bindingPickContainerInfo.F0701_ID);

@@ -662,7 +662,7 @@ namespace Wms3pl.WpfClient.P08.ViewModel
           CancelPackingEnabled = true;
 
           break;
-        case Mode.OrderShipedAndCanceled:          // 出貨單已出貨 出貨單已取消
+        case Mode.OrderShiped:          // 出貨單已出貨 出貨單已取消
           BtnExitVisibility = Visibility.Visible;
           BtnPausePackingVisibility = Visibility.Collapsed;
           BtnWorkStationSettingVisibility = Visibility.Visible;
@@ -683,6 +683,29 @@ namespace Wms3pl.WpfClient.P08.ViewModel
           StartPackingEnabled = true;
           CloseBoxEnabled = true;
           CancelPackingEnabled = false;
+          EnableReadSerial = false;
+          break;
+        case Mode.Canceled:          // 出貨單已取消
+          BtnExitVisibility = Visibility.Visible;
+          BtnPausePackingVisibility = Visibility.Collapsed;
+          BtnWorkStationSettingVisibility = Visibility.Visible;
+          BtnReprintVisibility = Visibility.Visible;
+          BtnStartPackingVisibility = Visibility.Visible;
+          BtnEndPackingVisibility = Visibility.Collapsed;
+          BtnCancelPackingVisibility = Visibility.Visible;
+          BtnManualCloseBoxVisibility = Visibility.Collapsed;
+
+          DcEnabled = false;
+          if (ShipMode == "1")
+            ContainerEnabled = true;
+          FocusSelectAllContainer();
+          ItemVerifyEnabled = false;
+          DcEnabled = false;
+          WorkStationSettingEnabled = true;
+          ReprintEnabled = true;
+          StartPackingEnabled = true;
+          CloseBoxEnabled = true;
+          CancelPackingEnabled = DetailData.Any(x => x.TotalPackageQty > 0);
           EnableReadSerial = false;
           break;
         case Mode.Packing:              // 包裝中
@@ -1400,9 +1423,14 @@ namespace Wms3pl.WpfClient.P08.ViewModel
             ChangeMode(Mode.OrderPackingFinished);
             return;
           }
-          else if (WmsOrdData.Status == 5 || WmsOrdData.Status == 6 || WmsOrdData.Status == 9)
+          else if (WmsOrdData.Status == 5 || WmsOrdData.Status == 6)
           {
-            ChangeMode(Mode.OrderShipedAndCanceled);
+            ChangeMode(Mode.OrderShiped);
+            return;
+          }
+          else if (WmsOrdData.Status == 9)
+          {
+            ChangeMode(Mode.Canceled);
             return;
           }
         }
@@ -1888,11 +1916,15 @@ namespace Wms3pl.WpfClient.P08.ViewModel
     /// <summary>
     /// 出貨單已出貨
     /// </summary>
-    OrderShipedAndCanceled,
+    OrderShiped,
     /// <summary>
     /// 包裝中
     /// </summary>
-    Packing
+    Packing,
+    /// <summary>
+    /// 出貨單已取消
+    /// </summary>
+    Canceled
   }
 
   public class CloseBoxParam

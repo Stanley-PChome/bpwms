@@ -32,6 +32,7 @@ namespace Wms3pl.DBCore
 			modelBuilder.Entity<F076105>().HasKey(key => new { key.CONTAINER_CODE });
 			modelBuilder.Entity<F076106>().HasKey(key => new { key.CONTAINER_CODE });
 			modelBuilder.Entity<F076107>().HasKey(key => new { key.CONTAINER_CODE });
+			modelBuilder.Entity<F076108>().HasKey(key => new { key.ALLOCATION_NO });
 		}
 	}
 }

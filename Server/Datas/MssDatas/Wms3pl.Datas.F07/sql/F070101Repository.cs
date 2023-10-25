@@ -316,5 +316,38 @@ WHERE
       return SqlQuery<string>(sql, para.ToArray()).FirstOrDefault();
     }
 
+    public IQueryable<PickContainer> GetPickContainerData(string dcCode, string gupCode, string custCode, string wmsNo)
+    {
+      var param = new List<SqlParameter>
+      {
+        new SqlParameter("@p0",SqlDbType.VarChar) { Value = dcCode },
+        new SqlParameter("@p1",SqlDbType.VarChar) { Value = gupCode },
+        new SqlParameter("@p2",SqlDbType.VarChar) { Value = custCode },
+        new SqlParameter("@p3",SqlDbType.VarChar) { Value = wmsNo }
+      };
+
+      var sql = @"
+                SELECT 
+                  B.PICK_ORD_NO, 
+                  A.CONTAINER_CODE, 
+                  B.BIN_CODE, 
+                  B.ITEM_CODE, 
+                  B.VALID_DATE, 
+                  B.MAKE_NO, 
+                  B.SERIAL_NO, 
+                  B.QTY, 
+                  A.CRT_DATE 
+                FROM F070101 A 
+                JOIN F070102 B 
+                  ON A.ID = B.F070101_ID 
+                WHERE 
+                  A.DC_CODE = @p0
+                  AND A.GUP_CODE = @p1
+                  AND A.CUST_CODE = @p2
+                  AND A.WMS_NO = @p3
+                ";
+
+      return SqlQuery<PickContainer>(sql, param.ToArray());
+    }
   }
 }

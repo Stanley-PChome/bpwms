@@ -7,6 +7,7 @@ using Wms3pl.Datas.F05;
 using Wms3pl.Datas.F19;
 using Wms3pl.Datas.Shared.Entities;
 using Wms3pl.WebServices.DataCommon;
+using Wms3pl.WebServices.Shared.ApiService;
 using Wms3pl.WebServices.Shared.Enums;
 using Wms3pl.WebServices.Shared.ServiceEntites;
 
@@ -62,7 +63,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <returns></returns>
 		public List<NewSuggestLoc> GetSuggestLocs(NewSuggestLocParam req,ref List<string> excludeLocs)
 		{
-			_suggestLocs = new List<NewSuggestLoc>();
+      _suggestLocs = new List<NewSuggestLoc>();
 			if (excludeLocs == null)
 				excludeLocs = new List<string>();
 
@@ -75,22 +76,23 @@ namespace Wms3pl.WebServices.Shared.Services
 			_req = req;
 
 			#region 取得資料
-			// 取得商品資料
-			_currentF1903 = CommonService.GetProduct(_req.GupCode, _req.CustCode, _req.ItemCode);
+      // 取得商品資料
+      _currentF1903 = CommonService.GetProduct(_req.GupCode, _req.CustCode, _req.ItemCode);
 			if (_currentF1903 == null)
 			{
 				SetSameSourceLoc(_req.Qty);
 				return _suggestLocs;
 			}
-			// 取得貨主資料
-			_currentF1909 = CommonService.GetCust(_req.GupCode, _req.CustCode);
+
+      // 取得貨主資料
+      _currentF1909 = CommonService.GetCust(_req.GupCode, _req.CustCode);
 			if (_currentF1909 == null)
 			{
 				SetSameSourceLoc(_req.Qty);
 				return _suggestLocs;
 			}
 
-			if (!string.IsNullOrWhiteSpace(_req.TarWarehouseType))
+      if (!string.IsNullOrWhiteSpace(_req.TarWarehouseType))
 				_currentTarWarehouseType = _req.TarWarehouseType.ToUpper();
 			else if (!string.IsNullOrWhiteSpace(_req.TarWarehouseId))
 				_currentTarWarehouseType = _req.TarWarehouseId.Substring(0, 1).ToUpper();
@@ -170,16 +172,24 @@ namespace Wms3pl.WebServices.Shared.Services
 
 			
 
-				// 是否為特殊商品(促銷商品)，若是則須放在黃金揀貨區
-				var isGoldenItem = GetHasSpecialItem();
+        // 是否為特殊商品(促銷商品)，若是則須放在黃金揀貨區
+        var isGoldenItem = GetHasSpecialItem();
 				if (!isGoldenItem)
 				{
 					//檢查是否為越庫商品，若是則需放在黃金揀貨區
 					isGoldenItem = _currentF1903.C_D_FLAG == "1";
 				}
 
-				#region 取得黃金揀貨區建議儲位
-				if(isGoldenItem)
+        // 取得商品材積
+        _currentF1905 = CommonService.GetProductSize(_req.GupCode, _req.CustCode, _req.ItemCode);
+        if (_currentF1905 == null)
+        {
+          SetSameSourceLoc(_req.Qty);
+          return _suggestLocs;
+        }
+
+        #region 取得黃金揀貨區建議儲位
+        if (isGoldenItem)
 				{
 					var itemLocPriorityInfos = GetItemPickLocPriorityInfo("B", canMixItem,ref excludeLocs).ToList();
 					// 黃金揀貨區儲位有此商品儲位，不管混批、材積只要有同商品的儲位則全數放入(會考慮商品是否混品)
@@ -202,20 +212,10 @@ namespace Wms3pl.WebServices.Shared.Services
 					}
 					return _suggestLocs;
 				}
-				#endregion
+        #endregion
 
-
-				// 取得商品材積
-				_currentF1905 = CommonService.GetProductSize(_req.GupCode, _req.CustCode, _req.ItemCode);
-				if (_currentF1905 == null)
-				{
-					SetSameSourceLoc(_req.Qty);
-					return _suggestLocs;
-				}
-		
-
-				#region 取得補貨區建議儲位
-				if(_req.IsIncludeResupply)
+        #region 取得補貨區建議儲位
+        if (_req.IsIncludeResupply)
 				{
 					var itemResupplyLocPriorityInfos = GetItemResupplyLocPriorityInfo(canMixItem, ref excludeLocs).ToList();
 					// 補貨區儲位有此商品儲位，先找有此商品同效期同入庫日的儲位，如果沒有才找最接近已放此商品儲位的空儲位
@@ -227,10 +227,10 @@ namespace Wms3pl.WebServices.Shared.Services
 						GetSuggestLocByEmpty("C", isBundleSerialLoc, ref excludeLocs);
 
 				}
-				#endregion
+        #endregion
 
-				#region 取得揀貨區建議儲位
-				if(_req.Qty > 0)
+        #region 取得揀貨區建議儲位
+        if (_req.Qty > 0)
 				{
 					var itemLocPriorityInfos = GetItemPickLocPriorityInfo("A", canMixItem, ref excludeLocs).ToList();
 					// 揀貨區儲位有此商品儲位，先找有此商品同效期同入庫日的儲位，如果沒有才找最接近已放此商品儲位的空儲位
@@ -262,23 +262,23 @@ namespace Wms3pl.WebServices.Shared.Services
 						GetEmptyLoc(EmptyLocSubjectType.Dc, "A", isBundleSerialLoc, ref excludeLocs);
 
 				}
-				#endregion
+        #endregion
 
-				#region 未指定倉庫編號，指定倉庫型態為良品倉(G)，取得自動倉揀貨區建議儲位
+        #region 未指定倉庫編號，指定倉庫型態為良品倉(G)，取得自動倉揀貨區建議儲位
 
-				// 還有剩餘數量，且未指定目的倉庫，且指定倉庫型態=G(良品倉)，再找找看自動倉是否有符合的儲位可以用
-				if (_req.Qty > 0 && string.IsNullOrWhiteSpace(_req.TarWarehouseId) && !string.IsNullOrWhiteSpace(_currentTarWarehouseType) && _currentTarWarehouseType == "G")
+        // 還有剩餘數量，且未指定目的倉庫，且指定倉庫型態=G(良品倉)，再找找看自動倉是否有符合的儲位可以用
+        if (_req.Qty > 0 && string.IsNullOrWhiteSpace(_req.TarWarehouseId) && !string.IsNullOrWhiteSpace(_currentTarWarehouseType) && _currentTarWarehouseType == "G")
 					SetAutoWarehouseSuggestLoc(_req.DcCode);
 				// 還有剩餘數量，找不到建議儲位，給預設值
 				else if (_req.Qty > 0)
 					SetSameSourceLoc(_req.Qty);
 
-				#endregion
+        #endregion
 
-				#endregion
-			}
+        #endregion
+      }
 
-			return _suggestLocs;
+      return _suggestLocs;
 		}
 
 	
@@ -856,7 +856,7 @@ namespace Wms3pl.WebServices.Shared.Services
 		/// <param name="excludeLocs"></param>
 		private void GetCanMixLoc(string aTypeCode, bool isBundleSerialLoc, ref List<string> excludeLocs, List<NewItemLocPriorityInfo> itemLocPriorityInfos=null)
 		{
-			string nearestLoc = string.Empty;
+      string nearestLoc = string.Empty;
 			if(itemLocPriorityInfos!=null && itemLocPriorityInfos.Any())
 			{
 				var itemLocPriorityInfo = itemLocPriorityInfos.OrderByDescending(a => a.ATYPE_CODE).ThenBy(a => a.VALID_DATE).ThenBy(a => a.ENTER_DATE)
@@ -894,20 +894,22 @@ namespace Wms3pl.WebServices.Shared.Services
 					WAREHOUSE_ID = _req.TarWarehouseId,
 					Volume = volumn
 				};
-				// 取得混品儲位 
-				// 若排除儲位數量小於限制可以進行SQL排除儲位筆數，就取需求量筆數(降低取過多儲位導致效能慢)
-				if (excludeLocs.Count < _limit)
-					mixItemLocs =
+        // 取得混品儲位 
+        // 若排除儲位數量小於限制可以進行SQL排除儲位筆數，就取需求量筆數(降低取過多儲位導致效能慢)
+        if (excludeLocs.Count < _limit)
+        {
+          mixItemLocs =
             _f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList), locs, true, _req.Qty).ToList();
+        }
         else
         {
-					// 取得所有混品儲位 
-					mixItemLocs =
-						_f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList)).ToList();
-					// 在排除不可使用的儲位
-					mixItemLocs = mixItemLocs.Where(x => locs.All(y => y != x.LOC_CODE)).ToList();
-					mixItemLoc.IsAll = true;
-				}
+          // 取得所有混品儲位 
+          mixItemLocs =
+            _f1912Repo.GetNewMixItemLoc(_req.DcCode, _req.GupCode, _req.CustCode, _req.ItemCode, _currentTarWarehouseType, aTypeCode, true, _req.TarWarehouseId, volumn, string.Join(",", _currentItemWareHouseTmprList)).ToList();
+          // 在排除不可使用的儲位
+          mixItemLocs = mixItemLocs.Where(x => locs.All(y => y != x.LOC_CODE)).ToList();
+          mixItemLoc.IsAll = true;
+        }
 				mixItemLoc.DataList = mixItemLocs;
 				list.Add(mixItemLoc);
 			}

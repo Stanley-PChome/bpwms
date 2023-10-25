@@ -25,7 +25,7 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 		private F055001Repository _f055001Repo;
 		public F055001Repository F055001Repo
 		{
-			get { return _f055001Repo == null ? _f055001Repo = new F055001Repository(Schemas.CoreSchema) : _f055001Repo; }
+			get { return _f055001Repo == null ? _f055001Repo = new F055001Repository(Schemas.CoreSchema, _wmsTransaction) : _f055001Repo; }
 			set { _f055001Repo = value; }
 		}
 
@@ -77,32 +77,36 @@ namespace Wms3pl.WebServices.Shared.Lms.Services
 		/// <param name="isScanBox"></param>
 		/// <param name="SugBoxNo"></param>
 		/// <returns></returns>
-		public ExecuteResult ApplyConsign(string dcCode, string gupCode, string custCode, string wmsOrdNo, short packageBoxNo, string isScanBox = null, string sugBoxNo = null, F055001 f055001 = null)
-		{
-      ExecuteResult res = new ExecuteResult { IsSuccessed = true };
-			var transportCode = string.Empty;
-			var apiResult2 = ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "ApplyConsign", new { DcCode = dcCode, GupCode = gupCode, CustCode = custCode, WmsOrdNo = wmsOrdNo, PackageBoxNo = packageBoxNo, IsScanBox = isScanBox, SugBoxNo = sugBoxNo }, () =>
-			{
-				var lmsApiReq = GetApplyRequestData(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo, sugBoxNo, f055001);
-				var apiResult = LmsApplyConsign(lmsApiReq, gupCode);
-				if (apiResult.IsSuccessed)
-				{
-					var rtnData = (LmsDataResult)apiResult.Data;
-					ProcessData(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo, rtnData, isScanBox, sugBoxNo, f055001);
-					transportCode = rtnData.TransportCode;
-				}
-				return apiResult;
-			}
-			,false);
+		public ApiResult ApplyConsign(string dcCode, string gupCode, string custCode, string wmsOrdNo, short packageBoxNo, string isScanBox = null, string sugBoxNo = null, F055001 f055001 = null)
+    {
+      ApiResult res;
+      var transportCode = string.Empty;
+      var apiResult2 = ApiLogHelper.CreateApiLogInfo(dcCode, gupCode, custCode, "ApplyConsign", new { DcCode = dcCode, GupCode = gupCode, CustCode = custCode, WmsOrdNo = wmsOrdNo, PackageBoxNo = packageBoxNo, IsScanBox = isScanBox, SugBoxNo = sugBoxNo }, () =>
+      {
+        var lmsApiReq = GetApplyRequestData(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo, sugBoxNo, f055001);
+        var apiResult = LmsApplyConsign(lmsApiReq, gupCode);
+        if (apiResult.IsSuccessed)
+        {
+          var rtnData = (LmsDataResult)apiResult.Data;
+          ProcessData(dcCode, gupCode, custCode, wmsOrdNo, packageBoxNo, rtnData, isScanBox, sugBoxNo, f055001);
+          transportCode = rtnData.TransportCode;
+        }
+        return apiResult;
+      }
+      , false);
+      res = apiResult2;
 
       if (!apiResult2.IsSuccessed)
-        res = new ExecuteResult { IsSuccessed = apiResult2.IsSuccessed, Message = "[LMS申請宅配單]" + apiResult2.MsgCode + " " + apiResult2.MsgContent, No = transportCode };
+      {
+        res.MsgContent = "[LMS申請宅配單]" + apiResult2.MsgCode + " " + apiResult2.MsgContent;
+        res.Data = transportCode;
+      }
       else
-        res.No = transportCode;
+        res.Data = transportCode;
       return res;
-		}
+    }
 
-		public ApiResult LmsApplyConsign(ShipOrderInsertReq req,string gupCode)
+    public ApiResult LmsApplyConsign(ShipOrderInsertReq req,string gupCode)
 		{
 			string url = "ShipOrder/Insert";
 

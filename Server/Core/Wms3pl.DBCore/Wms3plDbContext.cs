@@ -582,6 +582,7 @@ namespace Wms3pl.DBCore
     public DbSet<F076105> F076105s { get; set; }
     public DbSet<F076106> F076106s { get; set; }
     public DbSet<F076107> F076107s { get; set; }
+    public DbSet<F076108> F076108s { get; set; }
     public DbSet<F077102> F077102s { get; set; }
     #endregion
 

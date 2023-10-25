@@ -328,50 +328,6 @@ namespace Wms3pl.Datas.F07
             return SqlQuery<F0701>(sql, parms.ToArray()).FirstOrDefault();
         }
 
-        public long Insert(string dcCode, string custCode, string warehouseId, string containerCode, string containerType)
-        {
-            var parm = new List<SqlParameter>();
-            parm.Add(new SqlParameter("@p0", dcCode));
-            parm.Add(new SqlParameter("@p1", custCode));
-            parm.Add(new SqlParameter("@p2", warehouseId));
-            parm.Add(new SqlParameter("@p3", containerCode));
-            parm.Add(new SqlParameter("@p4", containerType));
-            parm.Add(new SqlParameter("@p5", Current.Staff));
-            parm.Add(new SqlParameter("@p6", Current.StaffName));
-            parm.Add(new SqlParameter("@p7", DateTime.Now) { SqlDbType = SqlDbType.DateTime2 });
-
-            var sql = @"DECLARE @a INT;
-                        DECLARE @b varchar(20);
-                        BEGIN TRAN
-                        Select Top 1 @b =UPD_LOCK_TABLE_NAME From F0000 With(UPDLOCK) Where UPD_LOCK_TABLE_NAME='F0701';
-                        INSERT INTO F0701
-                        (
-                        	DC_CODE,
-                        	CUST_CODE,
-                        	WAREHOUSE_ID,
-                        	CONTAINER_CODE,
-                        	CONTAINER_TYPE,
-                        	CRT_DATE,
-                        	CRT_STAFF,
-                        	CRT_NAME) VALUES
-                        (
-                        @p0,
-                        @p1,
-                        @p2,
-                        @p3,
-                        @p4,
-                        @p7,
-                        @p5,
-                        @p6);
-                        SELECT @a=CAST(current_value as int)
-                        FROM sys.sequences  
-                        WHERE name = 'SEQ_F0701_ID' ; 
-                        select @a ID
-                        COMMIT TRAN;";
-
-            return SqlQuery<long>(sql, parm.ToArray()).Single();
-        }
-
 		public IQueryable<PickContainerInfo> GetPickContainerInfo(string dcCode, string containerCode)
 		{
 			var sqlParameter = new List<SqlParameter>();
