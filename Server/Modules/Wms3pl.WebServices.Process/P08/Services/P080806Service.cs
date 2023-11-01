@@ -97,7 +97,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 					f0534Repo.UpdateStatusById(bindingPickContainerInfo.F0534_ID, "9");
 
           //C.	呼叫容器釋放共用函數
-          ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO);
+          ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO, bindingPickContainerInfo.F0701_ID);
 
 					//D.	新增F053602 (Log)
 					f053602 = new F053602
@@ -1447,7 +1447,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				//A.	更新F0536.STATUS=1(分貨完成) 
 				f0536Repo.UpdateStatusByF0701Id(bindingPickContainerInfo.F0701_ID, "1");
         //B.	揀貨容器釋放，呼叫容器釋放共用
-        ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO);
+        ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO, bindingPickContainerInfo.F0701_ID);
 				//C.	使用中揀貨容器釋放，刪除F0530 WHERE F0701_ID=<參數5>
 				f0530Repo.DeleteByF0701Id(bindingPickContainerInfo.F0701_ID);
 				//D.	新增F053602(log)
@@ -1600,7 +1600,7 @@ namespace Wms3pl.WebServices.Process.P08.Services
 				f0536Repo.UpdateStatusByF0701Id(bindingPickContainerInfo.F0701_ID, "2");
 
         //(5)	釋放揀貨容器 DELETE F0701 WHERE ID =<參數1>
-        ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO);
+        ContainerService.DelContainer(dcCode, gupCode, custCode, bindingPickContainerInfo.PICK_ORD_NO, bindingPickContainerInfo.F0701_ID);
 
         // 釋放進行中揀貨容器
         f0530Repo.DeleteByF0701Id(bindingPickContainerInfo.F0701_ID);
